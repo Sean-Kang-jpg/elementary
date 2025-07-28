@@ -1,0 +1,198 @@
+// --- START OF FILE Code_js_9.2_수정본 --- // v9.2 -> v9.2.1 (연식 추가, 파서 수정)
+
+// --- 사용자 설정 필요한 값 ---
+// 시트 1: 학교 기본 정보
+const SHEET1_ID = "1KMZqDF6i91iAKZJwXe61v47jCA7_FuX4lvjguLGNKX4"; // <<< 실제 시트 ID로 변경
+const SHEET1_NAME = "Sheet1";
+const S1_COL_CITY_EDU = 0;    // <<< 지역 필터링에 사용할 열 (0 = 첫 번째 열 A) 확인 필수!
+const S1_COL_EDU_OFFICE = 1;  const S1_COL_REGION = 2;
+const S1_COL_SCHOOL_CODE = 3; const S1_COL_SCHOOL_NAME = 4; const S1_COL_SCHOOL_TYPE = 5;
+const S1_COL_EST_TYPE = 6;    const S1_COL_EXCLUDE_YN = 7;  const S1_COL_EXCLUDE_REASON = 8;
+const S1_COL_ADDRESS = 9;     const S1_COL_LAT = 10;        const S1_COL_LNG = 11;
+// --- 학년별 데이터 칼럼 인덱스 (v4.0 예시 유지, 실제 값으로 수정 필요) ---
+const S1_COL_G1_CLASSES = 12; const S1_COL_G1_STUDENTS = 13; const S1_COL_G1_PER_CLASS = 14;
+const S1_COL_G2_CLASSES = 15; const S1_COL_G2_STUDENTS = 16; const S1_COL_G2_PER_CLASS = 17;
+const S1_COL_G3_CLASSES = 18; const S1_COL_G3_STUDENTS = 19; const S1_COL_G3_PER_CLASS = 20;
+const S1_COL_G4_CLASSES = 21; const S1_COL_G4_STUDENTS = 22; const S1_COL_G4_PER_CLASS = 23;
+const S1_COL_G5_CLASSES = 24; const S1_COL_G5_STUDENTS = 25; const S1_COL_G5_PER_CLASS = 26;
+const S1_COL_G6_CLASSES = 27; const S1_COL_G6_STUDENTS = 28; const S1_COL_G6_PER_CLASS = 29;
+const S1_COL_TOTAL_STUDENTS = 38; const S1_COL_TEACHERS = 40;
+// -------------------------------------------------------------------
+
+// 시트 2: 배정 아파트 정보
+const SHEET2_ID = "1jIpdfk62ENpkps4ywxSquY2kQcMfQ9e5XOXsv8b2yVM"; // <<< 실제 시트 ID로 변경
+const SHEET2_NAME = "Sheet1";
+const S2_COL_UID = 0;          const S2_COL_APT_CD = 1;       const S2_COL_APT_NAME = 2;
+const S2_COL_APT_ADDRESS = 3;  const S2_COL_LEGALDONG_CD = 4; const S2_COL_STD_YR = 5;
+const S2_COL_APT_LNG = 6;      const S2_COL_APT_LAT = 7;      const S2_COL_EDU_CITY = 8;
+const S2_COL_EDU_OFFICE = 9;   const S2_COL_DISTRICT_NAME = 10; const S2_COL_SCHOOL_NAME = 11;
+const S2_COL_HOUSEHOLDS = 19;
+const S2_COL_PARKING_PER_HH = 20;
+const S2_COL_PARKING_UNDERGROUND = 21;
+const S2_COL_HAS_UNDERGROUND_PARKING = 22; // 이 값은 이제 클라이언트에서 직접 사용하지 않음 (비율 계산으로 대체)
+// --- v9.2.1: 연식 컬럼 추가 ---
+const S2_COL_APT_AGE = 25; // !!! 26번째 칼럼 (0-based index 25) 확인 !!!
+// --------------------------
+
+/**
+ * Google Sheet 2개에서 특정 지역 데이터를 읽고 조인하는 함수.
+ * @param {string[] | null} selectedRegions 필터링할 지역 이름 배열. null이면 전체 로드.
+ */
+function getSchoolData(selectedRegions) {
+  Logger.log(`[Server] getSchoolData received selectedRegions: ${JSON.stringify(selectedRegions)}`);
+
+  if (selectedRegions !== null && !Array.isArray(selectedRegions)) {
+    Logger.log(`[Server] Warning: received invalid type for selectedRegions. Treating as ALL.`);
+    selectedRegions = null;
+  }
+
+  try {
+    // 파서 수정: 실패 시 0 대신 null 반환
+    const parseIntSafe = (val) => { const num = parseInt(val, 10); return isNaN(num) ? null : num; };
+    const parseFloatSafe = (val) => { const num = parseFloat(val); return isNaN(num) ? null : num; };
+    // Boolean 파서는 유지 (혹시 다른 곳에서 사용될 수 있으므로)
+    const parseBooleanSafe = (val) => { if (val === null || val === undefined) return null; const lowerVal = String(val).toLowerCase().trim(); return lowerVal === 'true' || lowerVal === 'y' || lowerVal === 'yes' || lowerVal === '1'; };
+
+    // --- Sheet 1 ---
+    const ss1 = SpreadsheetApp.openById(SHEET1_ID); const sheet1 = ss1.getSheetByName(SHEET1_NAME); if (!sheet1) throw new Error(`Sheet 1 (${SHEET1_NAME}) not found`);
+    const schoolRange = sheet1.getDataRange(); const schoolValues = schoolRange.getValues(); const schoolMap = {}; Logger.log(`[Server] Reading Sheet 1: ${schoolValues.length - 1} total rows`);
+    let processedCount = 0; let includedCount = 0;
+
+    schoolValues.slice(1).forEach((row, index) => {
+      const schoolRegion = String(row[S1_COL_CITY_EDU] || '').trim();
+      let shouldInclude = (selectedRegions === null) || (Array.isArray(selectedRegions) && selectedRegions.includes(schoolRegion));
+
+      if (!shouldInclude) return;
+      includedCount++;
+
+      const schoolName = String(row[S1_COL_SCHOOL_NAME] || '').trim(); const eduOffice = String(row[S1_COL_EDU_OFFICE] || '').trim(); if (!schoolName || !eduOffice) return;
+      const key = schoolName + "||" + eduOffice; if (schoolMap[key]) return;
+      const latStr = row[S1_COL_LAT]; const lngStr = row[S1_COL_LNG]; const lat = parseFloatSafe(latStr); const lng = parseFloatSafe(lngStr); if (lat === null || lng === null) return;
+
+      schoolMap[key] = {
+        name: schoolName, eduOffice: eduOffice, address: String(row[S1_COL_ADDRESS] || '').trim(), lat: lat, lng: lng, schoolCode: String(row[S1_COL_SCHOOL_CODE] || '').trim(), estType: String(row[S1_COL_EST_TYPE] || '').trim(),
+        // 학년 정보 파싱 (null이면 0으로 처리)
+        grade1Classes: parseIntSafe(row[S1_COL_G1_CLASSES]) ?? 0, grade1Students: parseIntSafe(row[S1_COL_G1_STUDENTS]) ?? 0, grade1PerClass: parseFloatSafe(row[S1_COL_G1_PER_CLASS]) ?? 0.0,
+        grade2Classes: parseIntSafe(row[S1_COL_G2_CLASSES]) ?? 0, grade2Students: parseIntSafe(row[S1_COL_G2_STUDENTS]) ?? 0, grade2PerClass: parseFloatSafe(row[S1_COL_G2_PER_CLASS]) ?? 0.0,
+        grade3Classes: parseIntSafe(row[S1_COL_G3_CLASSES]) ?? 0, grade3Students: parseIntSafe(row[S1_COL_G3_STUDENTS]) ?? 0, grade3PerClass: parseFloatSafe(row[S1_COL_G3_PER_CLASS]) ?? 0.0,
+        grade4Classes: parseIntSafe(row[S1_COL_G4_CLASSES]) ?? 0, grade4Students: parseIntSafe(row[S1_COL_G4_STUDENTS]) ?? 0, grade4PerClass: parseFloatSafe(row[S1_COL_G4_PER_CLASS]) ?? 0.0,
+        grade5Classes: parseIntSafe(row[S1_COL_G5_CLASSES]) ?? 0, grade5Students: parseIntSafe(row[S1_COL_G5_STUDENTS]) ?? 0, grade5PerClass: parseFloatSafe(row[S1_COL_G5_PER_CLASS]) ?? 0.0,
+        grade6Classes: parseIntSafe(row[S1_COL_G6_CLASSES]) ?? 0, grade6Students: parseIntSafe(row[S1_COL_G6_STUDENTS]) ?? 0, grade6PerClass: parseFloatSafe(row[S1_COL_G6_PER_CLASS]) ?? 0.0,
+        totalStudents: parseIntSafe(row[S1_COL_TOTAL_STUDENTS]) ?? 0, teachers: parseIntSafe(row[S1_COL_TEACHERS]) ?? 0,
+        apartments: []
+       };
+      processedCount++;
+    });
+    Logger.log(`[Server] Filtered ${includedCount} rows from Sheet 1 based on region(s).`);
+    Logger.log(`[Server] Processed Sheet 1 for region(s) '${selectedRegions ? JSON.stringify(selectedRegions) : 'ALL'}': ${processedCount} valid schools added to map`);
+
+    // --- Sheet 2 ---
+    const ss2 = SpreadsheetApp.openById(SHEET2_ID); const sheet2 = ss2.getSheetByName(SHEET2_NAME); if (!sheet2) throw new Error(`Sheet 2 (${SHEET2_NAME}) not found`);
+    const aptRange = sheet2.getDataRange(); const aptValues = aptRange.getValues(); let joinCounter = 0; Logger.log(`[Server] Reading & Joining Sheet 2: ${aptValues.length - 1} total rows`);
+    aptValues.slice(1).forEach((row, index) => {
+      const aptSchoolName = String(row[S2_COL_SCHOOL_NAME] || '').trim(); const aptEduOffice = String(row[S2_COL_EDU_OFFICE] || '').trim(); const aptName = String(row[S2_COL_APT_NAME] || '').trim(); if (!aptName || !aptSchoolName || !aptEduOffice) return;
+      const aptKey = aptSchoolName + "||" + aptEduOffice;
+
+      if (schoolMap[aptKey]) { // 필터링된 학교에 해당하는 아파트만 처리
+        const aptLatStr = row[S2_COL_APT_LAT]; const aptLngStr = row[S2_COL_APT_LNG];
+        const aptLat = parseFloatSafe(aptLatStr); const aptLng = parseFloatSafe(aptLngStr);
+
+        // 아파트 데이터 파싱 (null 반환 가능)
+        const households = parseIntSafe(row[S2_COL_HOUSEHOLDS]);
+        const parkingPerHH = parseFloatSafe(row[S2_COL_PARKING_PER_HH]);
+        const parkingUnderground = parseIntSafe(row[S2_COL_PARKING_UNDERGROUND]);
+        // const hasUndergroundParking = parseBooleanSafe(row[S2_COL_HAS_UNDERGROUND_PARKING]); // 이 값은 이제 덜 중요
+        const aptAge = parseIntSafe(row[S2_COL_APT_AGE]); // 연식(NN) 읽기
+
+        schoolMap[aptKey].apartments.push({
+            name: aptName,
+            address: String(row[S2_COL_APT_ADDRESS] || '').trim(),
+            lat: aptLat, // null 가능
+            lng: aptLng, // null 가능
+            households: households, // null 가능
+            parkingPerHH: parkingPerHH, // null 가능
+            parkingUnderground: parkingUnderground, // null 가능
+            // hasUndergroundParking: hasUndergroundParking, // 필요시 유지 가능
+            aptAge: aptAge // 연식 정보 추가 (null 가능)
+         });
+        joinCounter++;
+      }
+    });
+    Logger.log(`[Server] Processed Sheet 2: ${joinCounter} apartments joined for the selected region(s)`);
+
+    const schoolsArray = Object.values(schoolMap);
+    Logger.log(`[Server] getSchoolData complete: Returning ${schoolsArray.length} schools for region(s) '${selectedRegions ? JSON.stringify(selectedRegions) : 'ALL'}'`);
+    return schoolsArray;
+
+  } catch (e) {
+    Logger.log(`[Server] getSchoolData Error: ${e.message}\n${e.stack}`);
+    throw new Error(`Server error processing school data: ${e.message}`);
+  }
+}
+
+/**
+ * 웹 앱 요청 처리 함수 (doGet)
+ */
+function doGet(e) {
+  try {
+    const template = HtmlService.createTemplateFromFile("index");
+    // 네이버 지도 API 인증을 위한 Client ID 설정
+    // 실제 사용을 위해서는 네이버 클라우드 플랫폼에서 발급받은 Client ID로 변경해야 합니다
+    template.ncpClientId = "7aekg87fq9"; // 실제 NCP Client ID로 변경 필요
+    
+    // Client ID가 설정되지 않은 경우 경고 메시지 표시
+    if (!template.ncpClientId || template.ncpClientId === "YOUR_ACTUAL_NCP_CLIENT_ID") {
+      Logger.log("경고: 네이버 지도 API를 사용하려면 실제 NCP Client ID를 설정해야 합니다.");
+      return HtmlService.createHtmlOutput(
+        '<html>' +
+        '<head>' +
+        '<meta charset="UTF-8">' +
+        '<meta name="viewport" content="width=device-width, initial-scale=1.0">' +
+        '<title>설정 필요</title>' +
+        '<style>' +
+        'body { font-family: Arial, sans-serif; padding: 20px; text-align: center; }' +
+        '.error-box { background: #f8d7da; border: 1px solid #f5c6cb; border-radius: 5px; padding: 20px; margin: 20px auto; max-width: 600px; }' +
+        '.warning { color: #721c24; font-weight: bold; }' +
+        '.instructions { text-align: left; margin-top: 20px; }' +
+        '.step { margin: 10px 0; padding: 10px; background: #fff; border-radius: 3px; }' +
+        '</style>' +
+        '</head>' +
+        '<body>' +
+        '<div class="error-box">' +
+        '<h2 class="warning">⚠️ 네이버 지도 API 설정이 필요합니다</h2>' +
+        '<p>이 애플리케이션을 사용하려면 네이버 클라우드 플랫폼에서 지도 API를 설정해야 합니다.</p>' +
+        '<div class="instructions">' +
+        '<h3>설정 방법:</h3>' +
+        '<div class="step">' +
+        '<strong>1단계:</strong> <a href="https://www.ncloud.com/" target="_blank">네이버 클라우드 플랫폼</a>에 가입하고 로그인' +
+        '</div>' +
+        '<div class="step">' +
+        '<strong>2단계:</strong> 콘솔에서 "AI·NAVER API" → "Maps" → "Maps" 서비스 활성화' +
+        '</div>' +
+        '<div class="step">' +
+        '<strong>3단계:</strong> "AI·NAVER API" → "Application"에서 새 애플리케이션 등록' +
+        '</div>' +
+        '<div class="step">' +
+        '<strong>4단계:</strong> 발급받은 Client ID를 Code.gs 파일의 template.ncpClientId에 설정' +
+        '</div>' +
+        '<div class="step">' +
+        '<strong>5단계:</strong> 애플리케이션 설정에서 도메인 등록 (script.google.com, script.googleusercontent.com)' +
+        '</div>' +
+        '</div>' +
+        '<p style="margin-top: 20px; font-size: 14px; color: #666;">' +
+        '설정 완료 후 페이지를 새로고침하세요.' +
+        '</p>' +
+        '</div>' +
+        '</body>' +
+        '</html>'
+      );
+    }
+    
+    return template.evaluate().setTitle("초등학교 배정 아파트 지도").addMetaTag('viewport', 'width=device-width, initial-scale=1.0');
+  } catch (e) {
+    Logger.log(`doGet Error: ${e.message}\n${e.stack}`);
+    return HtmlService.createHtmlOutput(`<p>페이지 로드 오류: ${e.message}. 관리자에게 문의하세요.</p>`);
+  }
+}
+
+// --- END OF FILE Code_js_9.2_수정본 ---

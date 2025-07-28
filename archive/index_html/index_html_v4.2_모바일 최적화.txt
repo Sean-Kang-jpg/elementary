@@ -1,0 +1,1129 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>초등학교 배정 아파트 지도</title>
+    <!-- 네이버 지도 API 로딩 -->
+    <script type="text/javascript"
+            src="https://oapi.map.naver.com/openapi/v3/maps.js?ncpKeyId=<?= ncpClientId ?>&submodules=geocoder"
+            onerror="handleApiError()"></script>
+    <!-- Chart.js 로딩 -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        /* --- CSS 스타일 --- */
+        html, body { height: 100%; width: 100%; margin: 0; padding: 0; font-family: 'Noto Sans KR', 'Malgun Gothic', dotum, sans-serif; overflow: hidden; position: fixed; }
+        #map_wrap { display: flex; flex-direction: column; height: 100%; width: 100%; position: relative; }
+        #filter_toggle_btn { display: block; position: fixed; top: 10px; left: 10px; z-index: 1002; padding: 8px 12px; background-color: rgba(66, 133, 244, 0.9); color: white; border: none; border-radius: 50px; font-size: 14px; font-weight: 500; cursor: pointer; box-shadow: 0 2px 5px rgba(0,0,0,0.2); transition: background-color 0.2s; }
+        #filter_toggle_btn:hover { background-color: #3367d6; }
+        #filter_panel { position: fixed; top: 0; left: -100%; width: 85%; max-width: 320px; height: 100%; background-color: #ffffff; box-shadow: 2px 0 8px rgba(0,0,0,0.15); transition: left 0.3s ease-out; z-index: 1001; overflow-y: auto; padding: 15px; box-sizing: border-box; display: flex; flex-direction: column; gap: 15px; }
+        #filter_panel.visible { left: 0; }
+        #filter_panel .panel_header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #e0e0e0; padding-bottom: 10px; margin-bottom: 10px; }
+        #filter_panel .panel_header h2 { margin: 0; font-size: 16px; font-weight: 600; }
+        #filter_panel .close_panel_btn { background: none; border: none; font-size: 24px; color: #5f6368; cursor: pointer; padding: 0 5px; line-height: 1; }
+        #overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.4); z-index: 1000; }
+        #overlay.visible { display: block; }
+        .filter_group { display: flex; flex-direction: column; gap: 8px; width: 100%; }
+        .filter_group_row { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+        .filter_group label { font-weight: 600; font-size: 14px; color: #333; margin-bottom: 4px; display: block;}
+        #region_checkboxes_container { border: 1px solid #eee; padding: 8px 10px; border-radius: 4px; max-height: 180px; overflow-y: auto; width: 100%; box-sizing: border-box; }
+        #region_checkboxes { display: flex; flex-wrap: wrap; gap: 5px 15px; align-items: center; }
+        .region-option { display: flex; align-items: center; }
+        .region-option input[type="checkbox"] { margin-right: 5px; cursor: pointer; transform: scale(1.1);}
+        .region-option label { margin-right: 0; font-weight: normal; cursor: pointer; font-size: 14px; padding: 5px 0;}
+        #select_all_regions + label { font-weight: bold !important; }
+        #grade_selector { padding: 10px 12px; border: 1px solid #ddd; border-radius: 4px; font-size: 14px; cursor: pointer; width: 100%; background-color: #fff; box-sizing: border-box;}
+        #student_filter { padding: 10px 12px; width: 100%; border: 1px solid #ddd; border-radius: 4px; font-size: 14px; text-align: right; box-sizing: border-box; background-color: #fff;}
+        #student_filter:focus, #grade_selector:focus { outline: none; border-color: #4285f4; box-shadow: 0 0 0 2px rgba(66, 133, 244, 0.25); }
+        .btn { padding: 10px 15px; cursor: pointer; background-color: #4285f4; color: white; border: none; border-radius: 4px; font-size: 14px; font-weight: 500; transition: background-color 0.2s, transform 0.1s; display: inline-flex; align-items: center; justify-content: center; gap: 6px; width: 100%; box-sizing: border-box; min-height: 44px; }
+        .btn:hover { background-color: #3367d6; }
+        .btn:active { transform: translateY(1px); }
+        .btn[disabled] { background-color: #d0d0d0; cursor: not-allowed; opacity: 0.7; }
+        .btn-secondary { background-color: #f1f3f4; color: #3c4043; }
+        .btn-secondary:hover { background-color: #e8eaed; }
+        #load_apply_btn { background-color: #34a853; }
+        #load_apply_btn:hover { background-color: #1e8e3e; }
+        .button-group { display: flex; gap: 8px; width: 100%; flex-direction: row; }
+        .button-group .btn { width: auto; flex-grow: 1;}
+        .button-group .btn-secondary { flex-grow: 0; padding: 10px; width: 44px; }
+        .search_group { display: flex; flex-direction: column; gap: 8px; width: 100%; position: relative;}
+        .search_input_wrapper { display: flex; flex-direction: column; gap: 8px; }
+        #search_input { width: 100%; padding: 10px 12px; border: 1px solid #ddd; border-radius: 4px; font-size: 14px; min-height: 44px; box-sizing: border-box;}
+        #search_input:focus { outline: none; border-color: #4285f4; box-shadow: 0 0 0 2px rgba(66, 133, 244, 0.25); }
+        #search_btn { width: 100%; }
+        #school_search_results { background-color: white; border: 1px solid #eee; border-radius: 4px; max-height: 150px; overflow-y: auto; z-index: 10; display: none; width: 100%; position: static; margin-top: 5px; box-shadow: none; }
+        #school_search_results ul { list-style: none; padding: 0; margin: 0; }
+        #school_search_results li { padding: 10px 12px; cursor: pointer; font-size: 14px; border-bottom: 1px solid #eee; transition: background-color 0.2s; }
+        #school_search_results li:last-child { border-bottom: none; }
+        #school_search_results li:hover { background-color: #f8f9fa; }
+        #school_search_results li .edu-office { font-size: 12px; color: #5f6368; margin-left: 5px; }
+        .loading-spinner { width: 16px; height: 16px; border: 2px solid rgba(66, 133, 244, 0.3); border-radius: 50%; border-top-color: #4285f4; animation: spin 1s linear infinite; display: none; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        #map { flex-grow: 1; width: 100%; background-color: #f5f5f5; position: relative; min-height: 0; flex-basis: 0; }
+        .school_marker_content { background-color: white; border: none; border-radius: 6px; padding: 6px 10px; font-size: 12px; font-weight: 500; text-align: center; white-space: nowrap; box-shadow: 0 2px 6px rgba(0,0,0,0.15); cursor: pointer; transition: none; display: flex; flex-direction: column; align-items: center; gap: 2px; }
+        .school_marker_content .school_name { color: #1a73e8; display: block; font-weight: 600; }
+        .school_marker_content .count_container { display: flex; align-items: baseline; gap: 4px; }
+        .school_marker_content .student_count { color: #000000; font-size: 11px; background-color: #f2f2f2; padding: 2px 6px; border-radius: 10px; display: inline-block; }
+        .school_marker_content .comparison_rate { font-size: 9px; color: #5f6368; font-weight: normal; }
+        .comparison_rate.rate-positive { color: #34a853; }
+        .comparison_rate.rate-negative { color: #ea4335; }
+        .apt_marker { border: none; border-radius: 50%; display: flex; justify-content: center; align-items: center; cursor: pointer; box-shadow: 0 2px 4px rgba(0,0,0,0.2); transition: none; color: white; font-weight: bold; }
+
+        /* --- Bottom Sheet 관련 스타일 --- */
+        #bottom_sheet_info { position: fixed; bottom: -100%; left: 0; width: 100%; max-height: 70vh; background-color: white; border-top-left-radius: 16px; border-top-right-radius: 16px; box-shadow: 0 -4px 15px rgba(0,0,0,0.15); transition: bottom 0.3s ease-out; z-index: 1005; overflow: hidden; display: flex; flex-direction: column; }
+        #bottom_sheet_info.visible { bottom: 0; }
+        .bottom_sheet_header { position: relative; padding: 10px 45px 5px 16px; cursor: grab; text-align: center; border-bottom: 1px solid #eee; flex-shrink: 0; }
+        .bottom_sheet_handle { display: inline-block; width: 40px; height: 5px; background-color: #ccc; border-radius: 3px; margin-bottom: 8px; }
+        .bottom_sheet_close_btn { position: absolute; top: 50%; right: 10px; transform: translateY(-50%); background: none; border: none; font-size: 28px; line-height: 1; padding: 5px; cursor: pointer; color: #5f6368; z-index: 2; }
+        .bottom_sheet_close_btn:hover { color: #000; }
+
+        /* --- 전체 내용 영역 가로 스크롤 설정 --- */
+        .bottom_sheet_content {
+            flex-grow: 1;
+            overflow-y: auto; /* 세로 스크롤은 유지 */
+            overflow-x: auto; /* 가로 스크롤 활성화 */
+            padding-bottom: 16px; /* 하단 여백 및 스크롤바 공간 */
+            white-space: nowrap; /* 내부 컨텐츠가 줄바꿈되지 않고 옆으로 길어지도록 함 */
+        }
+
+        /* --- 내용 래퍼 스타일 --- */
+        .custom_info_window_content {
+            padding: 16px;
+            line-height: 1.6;
+            max-width: none; /* 최대 너비 제한 없음 */
+            font-size: 13px;
+            animation: fadeIn 0.2s ease-out;
+            width: auto; /* 너비를 내용에 맞게 */
+            box-sizing: border-box;
+            display: inline-block; /* 내용만큼 너비 차지 */
+            min-width: 100%; /* 최소 너비는 화면 너비만큼 */
+            white-space: normal; /* 이 컨테이너 자체에서는 일반 줄바꿈 허용 (내부 요소에서 nowrap 제어) */
+            vertical-align: top; /* 여러 inline-block 요소 정렬 기준 */
+        }
+
+        /* 내부 요소 기본 스타일 */
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .custom_info_window_content .info_title_school, .custom_info_window_content .info_title_apt { font-size: 16px; font-weight: 600; display: block; margin-bottom: 10px; padding-right: 20px; padding-bottom: 8px; border-bottom-width: 2px; border-bottom-style: solid; white-space: normal; /* 제목은 줄바꿈 허용 */ }
+        .custom_info_window_content .info_title_school { color: #1a73e8; border-bottom-color: #e8f0fe;}
+        .custom_info_window_content .info_title_apt { color: #fa7b17; border-bottom-color: #fef0e6;}
+        .chart-container { width: 100%; max-width: 300px; height: 150px; margin: 10px auto 15px auto; position: relative; display: inline-block; /* 가로 스크롤 컨텍스트 내에서 작동하도록 */ vertical-align: top; white-space: normal; /* 차트 영역은 줄바꿈 */ }
+        .chart-container canvas { display: block; width: 100% !important; height: 100% !important; }
+        .custom_info_window_content .info_line { margin-bottom: 6px; font-size: 13px; display: flex; align-items: center; flex-wrap: wrap; white-space: normal; /* 학년 정보 라인은 줄바꿈 허용 */ }
+        .info_line .label { color: #5f6368; margin-right: 8px; font-weight: 500; min-width: 50px; flex-shrink: 0; }
+        .info_line .value { font-weight: 500; color: #202124; }
+        .info_line .value-container { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; }
+        .student-badge { background-color: #e8f0fe; color: #1a73e8; padding: 3px 8px; border-radius: 12px; font-weight: 600; font-size: 13px; display: inline-flex; align-items: center; white-space: nowrap; /* 배지 내부는 한 줄 */ }
+        .student-badge svg { margin-right: 4px; fill: currentColor;}
+        .class-count-text { font-size: 13px; color: #3c4043; }
+        .per-class-text { font-size: 12px; color: #5f6368; }
+        .comparison-rate-info { font-size: 12px; color: #5f6368; margin-left: 4px; }
+        .comparison-rate-info.rate-positive { color: #1e8e3e; }
+        .comparison-rate-info.rate-negative { color: #d93025; }
+        .custom_info_window_content .apt_list_title { font-weight: 600; margin-top: 14px; margin-bottom: 8px; display: flex; align-items: center; gap: 6px; font-size: 14px; color: #202124; border-top: 1px solid #f1f3f4; padding-top: 12px; white-space: normal; /* 아파트 목록 제목은 줄바꿈 허용 */ }
+        .custom_info_window_content .apt_list_title svg { fill: #fbbc04; }
+
+        /* 아파트 목록 스타일 (핵심: li에 nowrap 적용) */
+        .custom_info_window_content .apt_list { margin: 0; padding-left: 0; list-style: none; font-size: 13px; color: #3c4043; white-space: normal; /* ul 자체는 일반 줄바꿈 */}
+        .custom_info_window_content .apt_list li {
+            margin-bottom: 6px;
+            display: flex; /* 내부 요소 가로 정렬 */
+            justify-content: space-between; /* 양 끝 정렬 */
+            align-items: center;
+            padding: 6px 8px;
+            border-radius: 4px;
+            transition: background-color 0.2s;
+            cursor: pointer;
+            white-space: nowrap; /* <<-- 중요: li 내부 요소가 줄바꿈되지 않도록 함 */
+            border-bottom: 1px solid #f1f3f4; /* 구분선 추가 (선택 사항) */
+        }
+        .custom_info_window_content .apt_list li:last-child { border-bottom: none; }
+        .custom_info_window_content .apt_list li[onclick]:hover { background-color: #f8f9fa; }
+        .custom_info_window_content .apt_list li::before { content: ""; width: 6px; height: 6px; background-color: #fbbc04; border-radius: 50%; margin-right: 8px; display: inline-block; flex-shrink: 0; }
+        .custom_info_window_content .apt_list li[style*="cursor: default"]::before { background-color: #bdc1c6; }
+        /* 아파트 이름: 최대 너비 제한 제거 */
+        .custom_info_window_content .apt_list li .apt_name_part {
+            flex-grow: 1; /* 가능한 공간 차지 */
+            margin-right: 8px;
+            white-space: nowrap; /* 이름 자체도 줄바꿈 안 함 */
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: none; /* 제한 없음 */
+            /* color: #007bff; /* 테스트용 색상 */
+        }
+        /* 아파트 상세 정보: 줄어들지 않고, 내부에서는 wrap 허용 */
+        .custom_info_window_content .apt_list li .apt_details_part {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex-shrink: 0; /* 중요: 줄어들지 않음 */
+            font-size: 12px;
+            color: #5f6368;
+            flex-wrap: wrap; /* 상세 항목 많으면 여기서 줄바꿈 */
+            justify-content: flex-end;
+            white-space: normal; /* 상세 항목 내부는 일반 줄바꿈 */
+            text-align: right; /* 오른쪽 정렬 */
+            /* background-color: #eee; /* 테스트용 배경 */
+        }
+        .apt_details_part .detail_item { white-space: nowrap; padding: 2px 5px; border-radius: 4px; background-color: #f1f3f4; line-height: 1.3; margin-bottom: 2px; }
+        .apt_details_part .parking-ug-percent.low { color: #fbbc04; }
+        .apt_details_part .parking-ug-percent.none { color: #d93025; }
+        .apt_details_part .household-count { font-weight: 500; color: #3c4043; background-color: transparent;}
+
+        /* 아파트 상세 정보 (개별 아파트 클릭 시) */
+        .custom_info_window_content .apt_detail { font-size: 13px; color: #3c4043; display: flex; align-items: center; margin-bottom: 6px; flex-wrap: wrap; justify-content: center; white-space: normal; /* 여기도 줄바꿈 허용 */ }
+        .household-badge { background-color: #fef0e6; color: #fa7b17; padding: 3px 8px; border-radius: 12px; font-weight: 600; font-size: 13px; display: inline-flex; align-items: center; margin-left: 5px; margin-right: 8px; white-space: nowrap; }
+        .household-badge svg { margin-right: 4px; fill: currentColor; }
+        .parking-info { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 8px; padding-top: 8px; border-top: 1px solid #f1f3f4; justify-content: center; white-space: normal; }
+        .parking-item { font-size: 13px; color: #5f6368; }
+        .parking-item .value { color: #202124; font-weight: 500; margin-left: 4px; }
+        .parking-item .value.yes { color: #34a853; }
+        .parking-item .value.no { color: #ea4335; }
+        .apt-year-info { font-size: 13px; color: #5f6368; margin-top: 8px; padding-top: 8px; border-top: 1px solid #f1f3f4; text-align: center; white-space: normal; }
+        .apt-year-info .label { font-weight: 500; margin-right: 5px; }
+        .apt-year-info .value { color: #202124; font-weight: 500; margin-left: 4px; }
+
+        /* 로딩 오버레이 */
+         #loading_status_overlay { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background-color: rgba(0,0,0,0.7); color: white; padding: 10px 20px; border-radius: 25px; font-size: 14px; z-index: 1010; display: none; align-items: center; gap: 8px; }
+         #loading_status_overlay.visible { display: flex; }
+         #loading_spinner_overlay { width: 16px; height: 16px; border: 2px solid rgba(255, 255, 255, 0.3); border-radius: 50%; border-top-color: #fff; animation: spin 1s linear infinite; }
+
+    </style>
+</head>
+<body>
+    <div id="map_wrap">
+        <button id="filter_toggle_btn">☰ 필터 & 검색</button>
+        <div id="filter_panel">
+            <div class="panel_header"> <h2>필터 & 검색</h2> <button class="close_panel_btn">×</button> </div>
+            <div class="filter_group">
+                <label>지역</label>
+                <div id="region_checkboxes_container">
+                    <div id="region_checkboxes">
+                        <div class="region-option"> <input type="checkbox" id="select_all_regions" name="region" value="ALL" checked> <label for="select_all_regions">전체</label> </div>
+                        <div class="region-option"><input type="checkbox" id="region_seoul" name="region" value="서울특별시교육청"><label for="region_seoul">서울</label></div>
+                        <div class="region-option"><input type="checkbox" id="region_gyeonggi" name="region" value="경기도교육청"><label for="region_gyeonggi">경기</label></div>
+                        <div class="region-option"><input type="checkbox" id="region_incheon" name="region" value="인천광역시교육청"><label for="region_incheon">인천</label></div>
+                        <div class="region-option"><input type="checkbox" id="region_busan" name="region" value="부산광역시교육청"><label for="region_busan">부산</label></div>
+                        <div class="region-option"><input type="checkbox" id="region_daegu" name="region" value="대구광역시교육청"><label for="region_daegu">대구</label></div>
+                        <div class="region-option"><input type="checkbox" id="region_gwangju" name="region" value="광주광역시교육청"><label for="region_gwangju">광주</label></div>
+                        <div class="region-option"><input type="checkbox" id="region_daejeon" name="region" value="대전광역시교육청"><label for="region_daejeon">대전</label></div>
+                        <div class="region-option"><input type="checkbox" id="region_ulsan" name="region" value="울산광역시교육청"><label for="region_ulsan">울산</label></div>
+                        <div class="region-option"><input type="checkbox" id="region_sejong" name="region" value="세종특별자치시교육청"><label for="region_sejong">세종</label></div>
+                        <div class="region-option"><input type="checkbox" id="region_gangwon" name="region" value="강원도교육청"><label for="region_gangwon">강원</label></div>
+                        <div class="region-option"><input type="checkbox" id="region_chungbuk" name="region" value="충청북도교육청"><label for="region_chungbuk">충북</label></div>
+                        <div class="region-option"><input type="checkbox" id="region_chungnam" name="region" value="충청남도교육청"><label for="region_chungnam">충남</label></div>
+                        <div class="region-option"><input type="checkbox" id="region_jeonbuk" name="region" value="전라북도교육청"><label for="region_jeonbuk">전북</label></div>
+                        <div class="region-option"><input type="checkbox" id="region_jeonnam" name="region" value="전라남도교육청"><label for="region_jeonnam">전남</label></div>
+                        <div class="region-option"><input type="checkbox" id="region_gyeongbuk" name="region" value="경상북도교육청"><label for="region_gyeongbuk">경북</label></div>
+                        <div class="region-option"><input type="checkbox" id="region_gyeongnam" name="region" value="경상남도교육청"><label for="region_gyeongnam">경남</label></div>
+                        <div class="region-option"><input type="checkbox" id="region_jeju" name="region" value="제주특별자치도교육청"><label for="region_jeju">제주</label></div>
+                    </div>
+                </div>
+            </div>
+            <div class="filter_group">
+                <label for="grade_selector">학년</label>
+                <select id="grade_selector"> <option value="1" selected>1학년</option> <option value="2">2학년</option> <option value="3">3학년</option> <option value="4">4학년</option> <option value="5">5학년</option> <option value="6">6학년</option> </select>
+                <button id="load_apply_btn" class="btn">선택 지역/학년 적용</button>
+            </div>
+            <div class="filter_group">
+                <label for="student_filter">학생수 필터 (0 이상)</label>
+                <div class="filter_group_row">
+                    <input type="number" id="student_filter" value="0" min="0" placeholder="0" disabled>
+                    <div class="button-group">
+                        <button id="apply_student_filter_btn" class="btn" disabled>필터 적용</button>
+                        <button id="clear_filter_btn" class="btn btn-secondary" title="학생수 필터 해제" disabled> <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"></path></svg> </button>
+                    </div>
+                </div>
+            </div>
+            <div class="filter_group search_group">
+                <label for="search_input">학교/지역 검색</label>
+                <div class="search_input_wrapper">
+                    <input type="text" id="search_input" placeholder="학교명(XX초) 또는 지역명" disabled>
+                    <button id="search_btn" class="btn" disabled> <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path></svg> 검색 </button>
+                </div>
+                <div id="school_search_results"></div>
+            </div>
+            <div id="loading_status_panel" style="text-align: center; color: #5f6368; font-size: 13px; margin-top: auto; padding-top: 15px; border-top: 1px solid #eee;">
+                <div class="loading-spinner" id="loading_spinner_panel"></div>
+                <span id="status_text_panel">지역/학년 선택 후 [적용] 버튼을 눌러주세요.</span>
+            </div>
+        </div>
+        <div id="overlay"></div>
+        <div id="map"></div>
+        <!-- --- 바텀 시트 HTML 수정 (닫기 버튼 추가) --- -->
+        <div id="bottom_sheet_info">
+             <div class="bottom_sheet_header">
+                 <div class="bottom_sheet_handle"></div>
+                 <button class="bottom_sheet_close_btn" aria-label="닫기">×</button>
+             </div>
+             <div class="bottom_sheet_content"></div>
+        </div>
+        <div id="loading_status_overlay">
+            <div class="loading-spinner" id="loading_spinner_overlay"></div>
+            <span id="status_text_overlay">로딩 중...</span>
+        </div>
+    </div>
+
+        <script>
+        // --- 전역 변수 ---
+        let map = null; let schoolMarkers = []; let apartmentMarkers = [];
+        let bottomSheetElement = null;
+        let filterPanel = null; let overlay = null; let filterToggleBtn = null;
+        let rawSchoolData = []; let isDataLoaded = false; let currentFilter = 0;
+        let selectedGrade = 1; let currentlyDisplayedRegions = null; let isLoading = false;
+        const DYNAMIC_FILTER_ZOOM_LEVEL = 13; const DYNAMIC_FILTER_MIN_STUDENTS = 100;
+        let gradeChartInstance = null;
+        const panelControlIds = ['grade_selector', 'student_filter', 'apply_student_filter_btn', 'clear_filter_btn', 'search_input', 'search_btn', 'load_apply_btn', 'select_all_regions'];
+        let loadingSpinnerPanel, statusTextPanel;
+        let loadingStatusOverlay, loadingSpinnerOverlay, statusTextOverlay;
+        let searchResultsContainer;
+        let createdMarkerCount = 0;
+        let currentIndex = 0;
+        let isMapInitialized = false; // 지도 초기화 플래그
+
+        // --- API 로딩 오류 처리 ---
+        function handleApiError() {
+             console.error('Naver Maps API load failed.');
+             const msg = '오류: 지도 API 로딩 실패.';
+             const panelStatus = document.getElementById('status_text_panel');
+             const overlayStatus = document.getElementById('status_text_overlay');
+             if(panelStatus) panelStatus.textContent = msg;
+             if(overlayStatus) overlayStatus.textContent = msg;
+             alert('지도 API 로딩 실패. 페이지를 새로고침하거나 관리자에게 문의하세요.');
+             const panelSpinner = document.getElementById('loading_spinner_panel');
+             const overlayIndicator = document.getElementById('loading_status_overlay');
+             if(panelSpinner) panelSpinner.style.display = 'none';
+             if(overlayIndicator) overlayIndicator.style.display = 'none';
+        }
+
+        // --- 로딩 상태 표시 및 컨트롤 제어 ---
+        function setLoading(loading, message = null) {
+            if (!loadingSpinnerPanel || !loadingStatusOverlay || !statusTextPanel || !statusTextOverlay) {
+                console.warn("setLoading called before essential loading elements are ready.");
+                return;
+            }
+            isLoading = loading; // isLoading 상태 업데이트
+            const spinnerDisplay = loading ? 'block' : 'none';
+            loadingSpinnerPanel.style.display = spinnerDisplay;
+            if(loadingSpinnerOverlay) loadingSpinnerOverlay.style.display = spinnerDisplay;
+            if (message) updateLoadingStatus(message);
+            loadingStatusOverlay.style.display = loading ? 'flex' : 'none';
+            if (loading && message && statusTextOverlay) statusTextOverlay.textContent = message;
+
+            enableControls(isDataLoaded); // 로딩 상태 변경 시 항상 컨트롤 상태 재평가
+        }
+
+        // --- 데이터 로드 상태에 따른 컨트롤 활성화/비활성화 ---
+        function enableControls(isContentLoaded) { // *** 수정된 버전 ***
+             if (!filterPanel) { console.warn("Filter panel not found, cannot update control states."); return; }
+             // console.log(`[EnableControls] isContentLoaded=${isContentLoaded}, isLoading=${isLoading}`);
+
+             // 1. '적용' 버튼 상태 결정: 로딩 중일 때만 비활성화
+             const loadApplyBtn = document.getElementById('load_apply_btn');
+             if (loadApplyBtn) {
+                 loadApplyBtn.disabled = isLoading;
+                 // console.log(`[EnableControls] Load/Apply button disabled: ${loadApplyBtn.disabled}`);
+             } else {
+                  // console.warn("Load/Apply button not found"); // 주석 처리 (반복 로그 방지)
+             }
+
+             // 2. 데이터 의존 컨트롤 상태 결정
+             const dataDependentControls = ['student_filter', 'apply_student_filter_btn', 'clear_filter_btn', 'search_input', 'search_btn'];
+             dataDependentControls.forEach(id => {
+                 const element = document.getElementById(id);
+                 if (element) {
+                     element.disabled = !isContentLoaded || isLoading; // 데이터 로드 안됐거나 로딩 중이면 비활성화
+                     // console.log(`[EnableControls] ${id} disabled: ${element.disabled}`);
+                 }
+             });
+
+             // 3. 학년 선택 컨트롤 상태 결정
+             const gradeSelector = document.getElementById('grade_selector');
+             if (gradeSelector) {
+                 gradeSelector.disabled = isLoading; // 로딩 중일 때만 비활성화
+                 // console.log(`[EnableControls] grade_selector disabled: ${gradeSelector.disabled}`);
+             }
+
+             // 4. 지역 선택 컨트롤 상태 결정
+             const selectAllCheckbox = document.getElementById('select_all_regions');
+             const regionCheckboxes = filterPanel.querySelectorAll('#region_checkboxes input[name="region"]:not(#select_all_regions)');
+
+             if (!isLoading) { // 로딩 중 아닐 때
+                 if (selectAllCheckbox) selectAllCheckbox.disabled = false;
+                 const isAllChecked = selectAllCheckbox && selectAllCheckbox.checked;
+                 regionCheckboxes.forEach(cb => { cb.disabled = isAllChecked; });
+             } else { // 로딩 중일 때
+                  if (selectAllCheckbox) selectAllCheckbox.disabled = true;
+                  regionCheckboxes.forEach(cb => cb.disabled = true);
+             }
+             // console.log(`[EnableControls] Controls update finished.`);
+        }
+
+
+        // --- 로딩 상태 메시지 업데이트 ---
+        function updateLoadingStatus(message) {
+            if (statusTextPanel) statusTextPanel.textContent = message;
+            if (statusTextOverlay && loadingStatusOverlay && loadingStatusOverlay.style.display !== 'none') {
+                 statusTextOverlay.textContent = message;
+            }
+            console.log("Status Update:", message);
+        }
+
+        // --- 필터 패널 제어 ---
+        function toggleFilterPanel() {
+             if (!filterPanel || !overlay) return;
+             filterPanel.classList.toggle('visible');
+             overlay.classList.toggle('visible');
+             if (!filterPanel.classList.contains('visible')) clearSchoolSearchResults();
+        }
+        function closeFilterPanel() {
+             if (!filterPanel || !overlay) return;
+             filterPanel.classList.remove('visible');
+             overlay.classList.remove('visible');
+             clearSchoolSearchResults();
+        }
+
+        // --- 바텀 시트 제어 ---
+        function openBottomSheet(contentHtml) { // *** 수정된 버전 ***
+            if (!bottomSheetElement) { console.error("Bottom sheet element not found."); return; }
+            const contentArea = bottomSheetElement.querySelector('.bottom_sheet_content');
+            if (!contentArea) { console.error("Bottom sheet content area not found."); return; }
+            // closeInfoDisplays(); // <--- 호출 제거됨!
+            contentArea.innerHTML = contentHtml;
+            bottomSheetElement.classList.add('visible');
+            contentArea.scrollTop = 0;
+            console.log("Bottom sheet opened with new content.");
+        }
+        function closeBottomSheet() {
+            if (bottomSheetElement && bottomSheetElement.classList.contains('visible')) {
+                bottomSheetElement.classList.remove('visible');
+                destroyChart();
+                console.log("Bottom sheet closed.");
+            }
+        }
+
+        // --- 모든 정보창/바텀시트 닫기 ---
+        function closeInfoDisplays() { closeBottomSheet(); }
+
+        // --- 차트 파괴 ---
+        function destroyChart() { if (gradeChartInstance) { gradeChartInstance.destroy(); gradeChartInstance = null; console.log("Previous chart instance destroyed."); } }
+
+        // --- 학년별 데이터 및 변화율 계산 ---
+        function getGradeData(schoolData, grade, type) { // *** 수정된 버전 ***
+            if (!schoolData || grade < 1 || grade > 6) { return type === 'PerClass' ? 0.0 : 0; }
+            const key = `grade${grade}${type}`;
+            const value = schoolData[key];
+            if (value == null) { return type === 'PerClass' ? 0.0 : 0; }
+            if (type === 'PerClass') { const num = parseFloat(value); return isNaN(num) ? 0.0 : num; }
+            else { const num = parseInt(value, 10); return isNaN(num) ? 0 : num; }
+        }
+        function calculateNextGradeChange(schoolData, currentGrade) { if (!schoolData || currentGrade < 1 || currentGrade >= 6) { return { change: null, nextGrade: null }; } const currentStudents = getGradeData(schoolData, currentGrade, 'Students'); const nextGrade = currentGrade + 1; const nextGradeStudents = getGradeData(schoolData, nextGrade, 'Students'); if (nextGradeStudents == null || nextGradeStudents === 0 || currentStudents === 0) { return { change: null, nextGrade: nextGrade }; } const change = ((currentStudents - nextGradeStudents) / nextGradeStudents) * 100; return { change: parseFloat(change.toFixed(1)), nextGrade: nextGrade }; }
+        function formatChangeRate(changeResult) { if (!changeResult || changeResult.change === null || changeResult.nextGrade === null) { return ''; } const rate = changeResult.change; const nextGrade = changeResult.nextGrade; const sign = rate >= 0 ? '+' : ''; const rateClass = rate >= 0 ? 'rate-positive' : 'rate-negative'; return `<span class="comparison_rate ${rateClass}">(vs.${nextGrade}학 ${sign}${rate}%)</span>`; }
+        function formatChangeRateForInfo(changeResult) { if (!changeResult || changeResult.change === null || changeResult.nextGrade === null) { return ''; } const rate = changeResult.change; const nextGrade = changeResult.nextGrade; const sign = rate >= 0 ? '+' : ''; const rateClass = rate >= 0 ? 'rate-positive' : 'rate-negative'; return `<span class="comparison-rate-info ${rateClass}">(vs.${nextGrade}학년 ${sign}${rate}%)</span>`; }
+
+        // --- 지도 초기화 ---
+        function initMap() {
+             if (isMapInitialized) { console.warn("Map already initialized. Skipping."); return; }
+             console.log("Attempting to initialize map...");
+             isMapInitialized = true;
+
+             filterPanel = document.getElementById('filter_panel');
+             overlay = document.getElementById('overlay');
+             filterToggleBtn = document.getElementById('filter_toggle_btn');
+             bottomSheetElement = document.getElementById('bottom_sheet_info');
+             loadingSpinnerPanel = document.getElementById('loading_spinner_panel');
+             statusTextPanel = document.getElementById('status_text_panel');
+             loadingStatusOverlay = document.getElementById('loading_status_overlay');
+             loadingSpinnerOverlay = document.getElementById('loading_spinner_overlay');
+             statusTextOverlay = document.getElementById('status_text_overlay');
+             searchResultsContainer = document.getElementById('school_search_results');
+
+             if (!filterPanel || !overlay || !filterToggleBtn || !bottomSheetElement || !loadingSpinnerPanel || !statusTextPanel || !loadingStatusOverlay || !loadingSpinnerOverlay || !statusTextOverlay || !searchResultsContainer) {
+                  console.error("Essential UI or loading elements not found! Cannot initialize map.");
+                  if(statusTextPanel) statusTextPanel.textContent = "오류: UI 요소 로드 실패";
+                  isMapInitialized = false; return;
+             }
+             updateLoadingStatus('지도 API 로딩 확인 중...');
+             if (typeof naver === 'undefined' || typeof naver.maps === 'undefined' || typeof naver.maps.Map === 'undefined') {
+                  console.error("Naver Maps API not loaded or ready yet.");
+                  updateLoadingStatus('오류: 지도 API 로딩 실패.');
+                  isMapInitialized = false; return;
+             }
+             updateLoadingStatus('지도 객체 생성 중...');
+             try {
+                 const mapOptions = {
+                     center: new naver.maps.LatLng(37.5665, 126.9780), zoom: 10, mapTypeControl: true, zoomControl: true, zoomControlOptions: { position: naver.maps.Position.TOP_RIGHT }, mapDataControl: false, scaleControl: true, draggable: true, pinchZoom: true, scrollWheel: true, keyboardShortcuts: false, disableDoubleTapZoom: false, disableDoubleClickZoom: true, tileTransition: true, scaleControlOptions: { position: naver.maps.Position.BOTTOM_LEFT }, logoControlOptions: { position: naver.maps.Position.BOTTOM_RIGHT }, mapDataControlOptions: { position: naver.maps.Position.BOTTOM_LEFT }, useStyleMap: true
+                 };
+                 map = new naver.maps.Map('map', mapOptions);
+                 console.log("Map object created successfully.");
+
+                 naver.maps.Event.once(map, 'init_stylemap', function() {
+                     console.log("Map tiles loaded (init_stylemap event). Map is ready.");
+                     updateLoadingStatus('지역/학년 선택 후 [적용] 버튼을 눌러주세요.');
+                     enableControls(false);
+                 });
+                 naver.maps.Event.addListener(map, 'idle', function() {});
+                 naver.maps.Event.addListener(map, 'tilesloaded', function() {});
+                 naver.maps.Event.addListener(map, 'click', () => { closeInfoDisplays(); clearSchoolSearchResults(); });
+                 let zoomTimer = null;
+                 naver.maps.Event.addListener(map, 'zoom_changed', function() {
+                      console.log("Zoom level changed to:", map.getZoom()); clearTimeout(zoomTimer);
+                      zoomTimer = setTimeout(() => { if (isDataLoaded) applyGradeAndFilter(); }, 300);
+                  });
+
+                 // --- 컨트롤 이벤트 리스너 설정 ---
+                 if(filterToggleBtn) filterToggleBtn.addEventListener('click', toggleFilterPanel); else console.warn("Filter toggle button not found");
+                 if(filterPanel){
+                     const closePanelBtn = filterPanel.querySelector('.close_panel_btn');
+                     if(closePanelBtn) closePanelBtn.addEventListener('click', closeFilterPanel); else console.warn("Close panel button not found");
+                 }
+                 if(overlay) overlay.addEventListener('click', closeFilterPanel); else console.warn("Overlay not found");
+
+                 // --- 바텀 시트 리스너 수정 ---
+                 if(bottomSheetElement){
+                     const bottomSheetHeader = bottomSheetElement.querySelector('.bottom_sheet_header');
+                     const closeBottomSheetBtn = bottomSheetElement.querySelector('.bottom_sheet_close_btn'); // 추가된 버튼 찾기
+
+                     // 헤더 영역 클릭 시 (버튼 제외) 닫기
+                     if(bottomSheetHeader) {
+                         bottomSheetHeader.addEventListener('click', (event) => {
+                             // 클릭된 요소가 닫기 버튼이 아닐 경우에만 닫기 실행
+                             if (!closeBottomSheetBtn || !closeBottomSheetBtn.contains(event.target)) {
+                                 closeBottomSheet();
+                             }
+                         });
+                     } else {
+                         console.warn("Bottom sheet header not found");
+                     }
+
+                     // 명시적 닫기 버튼 클릭 시 닫기
+                     if(closeBottomSheetBtn) {
+                         closeBottomSheetBtn.addEventListener('click', closeBottomSheet);
+                     } else {
+                         console.warn("Bottom sheet close button not found");
+                     }
+                 } else {
+                     console.error("Bottom sheet element could not be found during init.");
+                 }
+                 // --- 바텀 시트 리스너 수정 끝 ---
+
+                 const loadApplyBtn = document.getElementById('load_apply_btn');
+                 const studentFilterBtn = document.getElementById('apply_student_filter_btn');
+                 const searchButton = document.getElementById('search_btn');
+                 const searchInput = document.getElementById('search_input');
+                 const selectAllCheckbox = document.getElementById('select_all_regions');
+                 const regionCheckboxes = filterPanel ? filterPanel.querySelectorAll('#region_checkboxes input[name="region"]:not(#select_all_regions)') : [];
+                 const clearStudentFilterBtn = document.getElementById('clear_filter_btn');
+
+                 if (loadApplyBtn) loadApplyBtn.addEventListener('click', handleLoadApplyClick); else console.warn("Load/Apply button not found");
+                 if (studentFilterBtn) studentFilterBtn.addEventListener('click', () => { if (isDataLoaded) { applyGradeAndFilter(); closeFilterPanel(); } }); else console.warn("Apply student filter button not found");
+                 if (clearStudentFilterBtn) clearStudentFilterBtn.addEventListener('click', clearFilter); else console.warn("Clear filter button not found");
+
+                 if (searchInput && searchButton) {
+                     const performSearchIfNeeded = () => { console.log("performSearchIfNeeded called"); console.log("Search attempt - isDataLoaded:", isDataLoaded); if (isDataLoaded) { console.log("Calling searchLocation()..."); searchLocation(); } else { alert("먼저 지역/학년 선택 후 [적용] 버튼을 눌러 데이터를 로드해주세요."); }};
+                     searchButton.addEventListener('click', performSearchIfNeeded);
+                     searchInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') performSearchIfNeeded(); });
+                 } else console.warn("Search input or button not found");
+
+                 if (selectAllCheckbox) {
+                     selectAllCheckbox.addEventListener('change', function() {
+                         const isChecked = this.checked;
+                         regionCheckboxes.forEach(cb => { cb.checked = false; cb.disabled = isChecked; });
+                         enableControls(isDataLoaded);
+                     });
+                 } else console.warn("Select All checkbox not found");
+
+                 regionCheckboxes.forEach(checkbox => {
+                     checkbox.addEventListener('change', function() {
+                         console.log("Region checkbox changed:", this.id, this.checked);
+                         const siblingSelectAll = document.getElementById('select_all_regions');
+                         const siblingRegions = filterPanel.querySelectorAll('#region_checkboxes input[name="region"]:not(#select_all_regions)');
+                         if (this.checked) { if (siblingSelectAll) siblingSelectAll.checked = false; }
+                         else { const anyChecked = Array.from(siblingRegions).some(cb => cb.checked); if (!anyChecked && siblingSelectAll) { siblingSelectAll.checked = true; } }
+                         enableControls(isDataLoaded);
+                     });
+                 });
+
+                 console.log("Event listeners attached.");
+
+             } catch (e) { console.error("Error during map initialization or listener attachment:", e); updateLoadingStatus('오류: 지도 초기화 중 문제 발생.'); isMapInitialized = false; }
+         } // initMap 끝
+
+        // --- '적용' 버튼 클릭 핸들러 ---
+        function handleLoadApplyClick() {
+            if (isLoading) { console.log("Already loading data, please wait."); return; }
+            const gradeSelector = document.getElementById('grade_selector');
+            const selectAllCheckbox = document.getElementById('select_all_regions');
+            const checkedRegions = filterPanel ? filterPanel.querySelectorAll('#region_checkboxes input[name="region"]:not(#select_all_regions):checked') : [];
+            if (!gradeSelector || !selectAllCheckbox) { console.error("Cannot apply: Control elements not found."); return; }
+            let regionsToLoad = null;
+            let regionDisplayText = "전체";
+            if (!selectAllCheckbox.checked) {
+                if (checkedRegions.length > 0) {
+                    regionsToLoad = Array.from(checkedRegions).map(cb => cb.value);
+                    regionDisplayText = Array.from(checkedRegions).map(cb => cb.labels[0].textContent).join(', ');
+                } else { alert("지역을 하나 이상 선택하거나 '전체'를 선택해주세요."); return; }
+            }
+            selectedGrade = parseInt(gradeSelector.value, 10) || 1;
+            currentlyDisplayedRegions = regionsToLoad;
+            console.log(`Apply clicked. Requesting data for Region(s): ${JSON.stringify(regionsToLoad) || 'ALL'}, Grade: ${selectedGrade}`);
+            setLoading(true, `${regionDisplayText} 지역 데이터 로딩 중...`);
+            clearMapData();
+            try {
+                google.script.run
+                    .withSuccessHandler(onDataLoadSuccess)
+                    .withFailureHandler(onDataLoadFailure)
+                    .getSchoolData(regionsToLoad);
+                window.pendingActionAfterLoad = applyGradeAndFilter;
+            } catch (e) { console.error("Error calling google.script.run:", e); onDataLoadFailure({message: "서버 함수 호출 중 오류 발생"}); }
+            closeFilterPanel();
+         }
+
+        // --- 지도 데이터 초기화 함수 ---
+        function clearMapData() {
+             console.log("Clearing map data...");
+             schoolMarkers.forEach(m => m.setMap(null)); schoolMarkers = [];
+             apartmentMarkers.forEach(m => m.setMap(null)); apartmentMarkers = [];
+             closeInfoDisplays();
+             clearSchoolSearchResults();
+             isDataLoaded = false; rawSchoolData = [];
+             enableControls(false);
+         }
+
+        // --- 데이터 로드 성공/실패 핸들러 ---
+        function onDataLoadSuccess(schoolsArray) {
+            const regionDisplayText = currentlyDisplayedRegions ? currentlyDisplayedRegions.map(r => r.replace(/교육청|광역시|특별자치시|특별자치도|도|특별시/g,'')).join(',') : "전체";
+            console.log(`onDataLoadSuccess called with data length: ${schoolsArray ? schoolsArray.length : 'null/undefined'}`);
+            if (!Array.isArray(schoolsArray)) { console.error("Received invalid data format from server:", schoolsArray); onDataLoadFailure({ message: "서버로부터 잘못된 데이터 형식을 받았습니다." }); return; }
+            rawSchoolData = schoolsArray;
+            isDataLoaded = true; // 중요: 데이터 로드 성공 시 플래그 설정
+            updateLoadingStatus(`학교 데이터 ${schoolsArray.length}개 로드 완료 (${regionDisplayText}). 마커 생성 중...`);
+            startMarkerCreation(); // 마커 생성 시작
+        }
+        function onDataLoadFailure(error) {
+             console.error("Failed to load school data:", error);
+             const userMessage = `학교 데이터 로딩 실패: ${error && error.message ? error.message : '알 수 없는 오류'}. 잠시 후 다시 시도하거나 관리자에게 문의하세요.`;
+             alert(userMessage);
+             updateLoadingStatus("오류: 학교 데이터 로딩 실패.");
+             isDataLoaded = false; setLoading(false); enableControls(false);
+             window.pendingActionAfterLoad = null;
+         }
+
+        // --- 마커 생성 시작 함수 ---
+        function startMarkerCreation() {
+            console.log("startMarkerCreation called. Total schools in rawData:", rawSchoolData.length);
+            createdMarkerCount = 0; currentIndex = 0; schoolMarkers = [];
+            const totalSchools = rawSchoolData.length;
+            const regionDisplayText = currentlyDisplayedRegions ? currentlyDisplayedRegions.map(r => r.replace(/교육청|광역시|특별자치시|특별자치도|도|특별시/g,'')).join(',') : "전체";
+
+            if (totalSchools === 0) {
+                updateLoadingStatus(`표시할 학교 데이터 없음 (${regionDisplayText}).`);
+                setLoading(false);
+                enableControls(true); // 데이터 없어도 다른 컨트롤 사용 가능하도록
+                if (window.pendingActionAfterLoad) { try { window.pendingActionAfterLoad(); } catch(e) { console.error("Error in pending action with no data:", e); } window.pendingActionAfterLoad = null; }
+                if (currentlyDisplayedRegions && currentlyDisplayedRegions.length > 0) moveMapToRegion(currentlyDisplayedRegions[0]);
+                return;
+            }
+
+             if (totalSchools > 0 && rawSchoolData[0].lat && rawSchoolData[0].lng && typeof rawSchoolData[0].lat === 'number' && typeof rawSchoolData[0].lng === 'number') {
+                 try { const firstPos = new naver.maps.LatLng(rawSchoolData[0].lat, rawSchoolData[0].lng); map.setCenter(firstPos); map.setZoom(11); }
+                 catch (e) { console.error("Error moving map to first school:", e); }
+             } else if (currentlyDisplayedRegions && currentlyDisplayedRegions.length > 0) { moveMapToRegion(currentlyDisplayedRegions[0]); }
+
+            setTimeout(processChunk, 0);
+         }
+
+        // --- 마커 생성 청크 처리 함수 ---
+        function processChunk() { // *** 수정된 버전 (디버깅 로그 포함) ***
+            const CHUNK_SIZE = 100; const MAX_TIME_PER_CHUNK = 50;
+            const startTime = Date.now(); const totalSchools = rawSchoolData.length;
+            let processedInChunk = 0;
+
+            // console.log(`[ProcessChunk] Starting chunk. Current index: ${currentIndex}, Total schools: ${totalSchools}`);
+
+            while (currentIndex < totalSchools && (Date.now() - startTime < MAX_TIME_PER_CHUNK)) {
+                const school = rawSchoolData[currentIndex];
+                const currentSchoolIndex = currentIndex;
+                processedInChunk++;
+
+                // console.log(`[ProcessChunk] Processing index: ${currentSchoolIndex}, School: ${school?.name}`);
+
+                if (school && typeof school.lat === 'number' && typeof school.lng === 'number' && !isNaN(school.lat) && !isNaN(school.lng)) {
+                    try {
+                        const position = new naver.maps.LatLng(school.lat, school.lng);
+                        const marker = createSchoolMarker(school, position); // *** createSchoolMarker 호출 ***
+
+                        if (marker) {
+                            // console.log(`[ProcessChunk] Marker object CREATED successfully for index ${currentSchoolIndex}: ${school.name}`); // 성공 로그
+                            schoolMarkers.push(marker);
+                            createdMarkerCount++;
+                            // console.log(`[ProcessChunk] Marker pushed and count incremented. Current count: ${createdMarkerCount}`); // 카운터 증가 로그
+                        } else {
+                            console.warn(`[ProcessChunk] Marker creation function returned null for index ${currentSchoolIndex}: ${school.name}`); // *** 실패 시 로그 ***
+                        }
+                    } catch(e) {
+                        console.error(`[ProcessChunk] Error during marker creation or push for index ${currentSchoolIndex} (${school?.name}):`, e);
+                    }
+                } else {
+                    // console.warn(`[ProcessChunk] Skipping index ${currentSchoolIndex} due to invalid lat/lng: ${school?.name}`);
+                }
+                currentIndex++;
+            }
+
+            // console.log(`[ProcessChunk] Finished chunk. Processed ${processedInChunk} items. Current index: ${currentIndex}`);
+
+            const percentage = Math.round((currentIndex / totalSchools) * 100);
+            updateLoadingStatus(`학교 마커 생성 중... (${percentage}%)`);
+
+            if (currentIndex < totalSchools) {
+                setTimeout(processChunk, 0);
+            } else {
+                // *** 모든 마커 생성 완료 시점 ***
+                console.log(`[ProcessChunk] All chunks finished. Final marker count: ${createdMarkerCount}, schoolMarkers array length: ${schoolMarkers.length}`); // *** 최종 개수 확인 로그 ***
+                const displayText = currentlyDisplayedRegions ? currentlyDisplayedRegions.map(r => r.replace(/교육청|광역시|특별자치시|특별자치도|도|특별시/g,'')).join(',') : "전체";
+                updateLoadingStatus(`${createdMarkerCount}개 학교 정보 표시됨 (${displayText}).`);
+                if (window.pendingActionAfterLoad) {
+                    console.log("Markers created. Executing initial filter apply.");
+                    setLoading(true, "필터 적용 중...");
+                    setTimeout(() => {
+                        try { window.pendingActionAfterLoad(); } catch (e) { console.error("Error during pending action execution:", e); alert("필터 적용 중 오류가 발생했습니다."); }
+                        finally { window.pendingActionAfterLoad = null; setLoading(false); console.log("Initial filter applied."); }
+                    }, 50);
+                } else { setLoading(false); }
+                 enableControls(true); // 마커 생성/필터 완료 후 컨트롤 최종 활성화
+            }
+        } // end processChunk
+
+        // --- 특정 지역으로 지도 이동 ---
+        function moveMapToRegion(regionName) {
+             console.log(`Moving map to region: ${regionName}`);
+             let query = regionName.replace('교육청', '');
+             if (query === '경기') query = '경기도'; if (query === '강원') query = '강원도'; if (query === '충북') query = '충청북도'; if (query === '충남') query = '충청남도'; if (query === '전북') query = '전라북도'; if (query === '전남') query = '전라남도'; if (query === '경북') query = '경상북도'; if (query === '경남') query = '경상남도'; if (query === '제주') query = '제주특별자치도';
+             naver.maps.Service.geocode({ query: query }, (status, response) => {
+                 if (status === naver.maps.Service.Status.OK && response.v2.addresses.length > 0) {
+                     try { const result = response.v2.addresses[0]; const point = new naver.maps.LatLng(result.y, result.x); map.setCenter(point); map.setZoom(10); console.log(`Map centered on ${query}`); }
+                     catch (e) { console.error("Error processing geocode result for region:", e); }
+                 } else { console.warn(`Geocoding failed for region: ${query}. Status: ${status}`); }
+             });
+         }
+        // --- 상세 정보 표시용 HTML 생성 함수 ---
+        function buildSchoolDetailHtml(clickedSchool) {
+             let infoContent = `<div class="custom_info_window_content">`;
+             infoContent += `<strong class="info_title_school">${clickedSchool.name}</strong>`;
+             infoContent += `<div class="chart-container"><canvas id="gradeChartCanvas"></canvas></div>`; // 캔버스 ID 확인
+             const currentStudents = getGradeData(clickedSchool, selectedGrade, 'Students');
+             const currentClasses = getGradeData(clickedSchool, selectedGrade, 'Classes');
+             let currentPerClass = getGradeData(clickedSchool, selectedGrade, 'PerClass');
+             if (currentPerClass === 0 && currentClasses > 0 && currentStudents > 0) { currentPerClass = parseFloat((currentStudents / currentClasses).toFixed(1)); }
+             const studentsText = (currentStudents != null && !isNaN(currentStudents)) ? currentStudents + '명' : '정보 없음'; // NaN 체크 추가
+             const classesText = currentClasses > 0 ? currentClasses + '학급' : '';
+             const perClassText = currentPerClass > 0 ? `(학급당 ${currentPerClass}명)` : '';
+             const changeResult = calculateNextGradeChange(clickedSchool, selectedGrade);
+             const changeRateText = formatChangeRateForInfo(changeResult);
+             infoContent += `<div class="info_line"><span class="label">${selectedGrade}학년:</span><span class="value-container"><span class="student-badge"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"></path></svg>${studentsText}</span>${classesText ? `<span class="class-count-text">${classesText}</span>` : ''}${perClassText ? `<span class="per-class-text">${perClassText}</span>` : ''}${changeRateText}</span></div>`;
+             if (clickedSchool.apartments && clickedSchool.apartments.length > 0) {
+               const sortedApartments = [...clickedSchool.apartments].sort((a, b) => (b.households || 0) - (a.households || 0));
+               const topApartments = sortedApartments.slice(0, 7);
+               const remainingCount = sortedApartments.length - topApartments.length;
+               infoContent += `<span class="apt_list_title"><svg width="16" height="16" viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8h5z" fill="#fbbc04"></path></svg> 배정 아파트 (${clickedSchool.apartments.length}개)</span><ul class="apt_list">`;
+               topApartments.forEach(apt => {
+                 let detailsPartHtml = '<span class="apt_details_part">'; let hasDetails = false;
+                 if (apt.aptAge != null && apt.aptAge >= 0) { detailsPartHtml += `<span class="detail_item apt-age">${apt.aptAge}년차</span>`; hasDetails = true; }
+                 let parkingInfoHtml = '';
+                 if (apt.parkingPerHH != null && apt.households != null && apt.parkingUnderground != null && apt.households > 0 && apt.parkingPerHH > 0) {
+                   const estimatedTotalParking = apt.parkingPerHH * apt.households;
+                   if (estimatedTotalParking > 0 && apt.parkingUnderground >= 0) { const percentage = Math.round((apt.parkingUnderground / estimatedTotalParking) * 100); let percentClass = 'parking-ug-percent'; if (percentage === 0) percentClass += ' none'; else if (percentage < 50) percentClass += ' low'; parkingInfoHtml = `<span class="detail_item ${percentClass}">지하 ${percentage}%</span>`; hasDetails = true; }
+                 } else if (apt.parkingUnderground != null && apt.parkingUnderground >= 0) { parkingInfoHtml = `<span class="detail_item parking-ug-percent">(지하 ${apt.parkingUnderground}대)</span>`; hasDetails = true; }
+                 if (apt.parkingPerHH != null && apt.parkingPerHH > 0) { detailsPartHtml += `<span class="detail_item parking-per-hh">${apt.parkingPerHH.toFixed(1)}대</span>`; hasDetails = true; }
+                 detailsPartHtml += parkingInfoHtml;
+                 if (apt.households != null && apt.households > 0) { detailsPartHtml += `<span class="detail_item household-count">${apt.households}세대</span>`; hasDetails = true; }
+                 if (!hasDetails) { detailsPartHtml += `<span class="detail_item">정보 없음</span>`; }
+                 detailsPartHtml += '</span>';
+                 infoContent += `<li data-apt-name="${apt.name || ''}" data-apt-address="${apt.address || ''}" onclick="findApartment(this)">` + `<span class="apt_name_part">${apt.name || ''}</span>` + detailsPartHtml + `</li>`;
+               });
+               if (remainingCount > 0) { infoContent += `<li style="color: #5f6368; cursor: default; justify-content: center;">... 외 ${remainingCount}개</li>`; }
+               infoContent += '</ul>';
+             } else { infoContent += '<div class="info_line" style="margin-top:10px;">배정 아파트 정보 없음</div>'; }
+             infoContent += `</div>`;
+             return infoContent;
+        }
+        function buildAptDetailHtml(clickedApt) {
+            let infoContent = `<div class="custom_info_window_content">`;
+            infoContent += `<strong class="info_title_apt">${clickedApt.name || '이름없음'}</strong>`;
+            const households = clickedApt.households;
+            if (households != null && households > 0) { infoContent += `<div class="apt_detail"><span class="household-badge"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3L2 12h3v8h14v-8h3L12 3zm5 15h-4v-6H7v6H3v-7.17l9-8.1 9 8.1V18z"></path></svg>${households}세대</span></div>`; }
+            else { infoContent += `<div class="apt_detail" style="color: #5f6368;">세대수 정보 없음</div>`; }
+            let parkingHtml = '<div class="parking-info">'; let hasParkingInfo = false;
+            const parkingPerHH = clickedApt.parkingPerHH; const undergroundParking = clickedApt.parkingUnderground;
+            if (parkingPerHH != null && parkingPerHH > 0) { parkingHtml += `<span class="parking-item"><span class="label">세대당:</span><span class="value">${parkingPerHH.toFixed(2)}대</span></span>`; hasParkingInfo = true; }
+            if (parkingPerHH != null && households != null && undergroundParking != null && households > 0 && parkingPerHH > 0) {
+              const estimatedTotalParking = parkingPerHH * households;
+              if (estimatedTotalParking > 0 && undergroundParking >= 0) { const percentage = Math.round((undergroundParking / estimatedTotalParking) * 100); parkingHtml += `<span class="parking-item"><span class="label">지하:</span><span class="value ${percentage > 0 ? 'yes' : 'no'}">${percentage}%</span> <span style="font-size:11px; color:#888">(${undergroundParking}/${Math.round(estimatedTotalParking)})</span></span>`; hasParkingInfo = true; }
+              else if (undergroundParking >= 0) { parkingHtml += `<span class="parking-item"><span class="label">지하:</span><span class="value">${undergroundParking}대</span></span>`; hasParkingInfo = true; }
+            } else if (undergroundParking != null && undergroundParking >= 0) { parkingHtml += `<span class="parking-item"><span class="label">지하:</span><span class="value">${undergroundParking}대</span></span>`; hasParkingInfo = true; }
+            if (!hasParkingInfo) { parkingHtml += `<span class="parking-item" style="color: #9aa0a6;">주차 정보 없음</span>`; }
+            parkingHtml += '</div>'; infoContent += parkingHtml;
+            const aptAge = clickedApt.aptAge;
+            if (aptAge != null && !isNaN(aptAge) && aptAge >= 0) { infoContent += `<div class="apt-year-info"><span class="label">연식:</span><span class="value">${aptAge}년차</span></div>`; }
+            else { infoContent += `<div class="apt-year-info" style="color: #9aa0a6;">연식 정보 없음</div>`; }
+            infoContent += `</div>`;
+            return infoContent;
+        }
+
+        // --- 학교 상세 정보 표시 (바텀 시트만 사용) ---
+        function showSchoolDetails(marker) { // *** 수정된 버전 ***
+          try {
+            const clickedSchool = marker.schoolData; if (!clickedSchool) return;
+            console.log("showSchoolDetails called for:", clickedSchool.name);
+
+            console.log("[showSchoolDetails] Building HTML...");
+            const detailHtml = buildSchoolDetailHtml(clickedSchool);
+            // console.log("[showSchoolDetails] Generated Detail HTML:", detailHtml);
+
+            console.log("[showSchoolDetails] Opening bottom sheet...");
+            openBottomSheet(detailHtml); // openBottomSheet 내부에서 closeInfoDisplays 호출 안 함
+
+            console.log("[showSchoolDetails] Displaying apartment markers...");
+            console.log("Apartment data for marker display:", clickedSchool.apartments);
+            displayApartmentMarkers(clickedSchool.apartments, false); // 호출 확인
+
+            setTimeout(() => {
+                 console.log("[showSchoolDetails] Attempting to create chart inside bottom sheet...");
+                 const canvasElement = bottomSheetElement ? bottomSheetElement.querySelector('#gradeChartCanvas') : null;
+                 if (canvasElement) {
+                     console.log("[showSchoolDetails] Canvas element found. Creating chart...");
+                     const ctx = canvasElement.getContext('2d');
+                     const gradeLabels = ['1', '2', '3', '4', '5', '6'];
+                     const gradeData = gradeLabels.map((label, index) => getGradeData(clickedSchool, index + 1, 'Students'));
+                     destroyChart();
+                     gradeChartInstance = new Chart(ctx, { type: 'bar', data: { labels: gradeLabels, datasets: [{ label: '학생 수', data: gradeData, backgroundColor: ['rgba(54, 162, 235, 0.6)','rgba(255, 99, 132, 0.6)','rgba(255, 206, 86, 0.6)','rgba(75, 192, 192, 0.6)','rgba(153, 102, 255, 0.6)','rgba(255, 159, 64, 0.6)'], borderWidth: 0 }] }, options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false }, tooltip: { callbacks: { label: function(context) { return ` ${context.parsed.y}명`; } } } }, scales: { y: { beginAtZero: true, ticks:{ font:{size:10}} }, x: { title: { display: true, text: '학년', font:{size:10} }, ticks:{ font:{size:10}} } } } });
+                     console.log("[showSchoolDetails] Chart created successfully for", clickedSchool.name);
+                 } else { console.error("!!! Canvas element #gradeChartCanvas NOT FOUND in bottom sheet after timeout."); /*if(bottomSheetElement) console.log("Current bottom sheet innerHTML:", bottomSheetElement.innerHTML);*/ }
+            }, 150);
+
+          } catch (error) { console.error("showSchoolDetails error:", error); alert("정보 표시 오류"); closeInfoDisplays(); }
+        }
+
+        // --- 아파트 상세 정보 표시 (바텀 시트만 사용) ---
+        function showApartmentDetails(marker) {
+          try {
+            const clickedApt = marker.aptData; if (!clickedApt) return;
+            console.log(`Show details for apt: ${clickedApt.name}`);
+            const detailHtml = buildAptDetailHtml(clickedApt);
+            openBottomSheet(detailHtml);
+          } catch (error) { console.error("showApartmentDetails error:", error); closeInfoDisplays(); }
+         }
+
+        // --- 학교 마커 생성 함수 ---
+        function createSchoolMarker(school, position) { // *** 수정된 상세 로깅 버전 ***
+            // console.log(`[CreateMarker] Creating marker for: ${school?.name}`);
+            try {
+                const initialStudentText = '?';
+                const initialNameColor = '#1a73e8';
+                const markerContent = `<div class="school_marker_content"><span class="school_name" style="color: ${initialNameColor}">${school.name || ''}</span><div class="count_container"><span class="student_count">${initialStudentText}명</span></div></div>`;
+                const markerOptions = { position: position, title: `${school.name || ''} (${school.address || ''})`, icon: { content: markerContent, anchor: new naver.maps.Point(30, 15) }, schoolData: school, zIndex: 100 };
+                // console.log("[CreateMarker] Marker options:", JSON.stringify(markerOptions));
+
+                let marker = null;
+                try {
+                     marker = new naver.maps.Marker(markerOptions);
+                     // console.log(`[CreateMarker] naver.maps.Marker object created for ${school?.name}`);
+                } catch (markerCreationError) {
+                     console.error(`[CreateMarker] !!! FAILED to create naver.maps.Marker object for ${school?.name}:`, markerCreationError);
+                     // console.error(`[CreateMarker] Failed options:`, { ...markerOptions, schoolData: '...' });
+                     return null;
+                }
+
+                try {
+                    marker.setMap(map);
+                    // console.log(`[CreateMarker] Marker set on map for ${school?.name}`);
+                } catch (setMapError) {
+                    console.error(`[CreateMarker] !!! FAILED to set marker on map for ${school?.name}:`, setMapError);
+                    return null;
+                }
+
+                try {
+                    naver.maps.Event.addListener(marker, 'click', () => { /*console.log(`Marker clicked: ${school?.name}`);*/ showSchoolDetails(marker); });
+                    // console.log(`[CreateMarker] Click listener added for ${school?.name}`);
+                } catch (listenerError) {
+                     console.error(`[CreateMarker] !!! FAILED to add click listener for ${school?.name}:`, listenerError);
+                }
+                return marker; // *** 최종 반환 ***
+            } catch (error) {
+                console.error(`[CreateMarker] General error creating marker for school '${school?.name}':`, error);
+                return null;
+            }
+        }
+
+        // --- 아파트 마커 생성 함수 ---
+        function createApartmentMarker(apt, position) {
+             try {
+                 const households = apt.households || 0;
+                 const markerSize = Math.max(24, Math.min(40, 24 + Math.floor(households / 100) * 2));
+                 const displayNumber = households > 0 ? Math.round(households / 100) : '?';
+                 const markerContent = `<div class="apt_marker" style="width:${markerSize}px; height:${markerSize}px; background-color: rgba(250, 123, 23, 0.8); font-size: ${Math.max(10, markerSize * 0.4)}px; line-height: ${markerSize}px;">${displayNumber}</div>`;
+                 const marker = new naver.maps.Marker({ position, title: apt.name || '', icon: { content: markerContent, anchor: new naver.maps.Point(markerSize / 2, markerSize / 2) }, aptData: apt, zIndex: 50, map: map });
+                 naver.maps.Event.addListener(marker, 'click', () => showApartmentDetails(marker));
+                 return marker;
+             } catch (error) { console.error(`Apt "${apt.name}" 마커 생성 오류:`, error); return null; }
+         }
+
+        // --- 아파트 마커 표시 및 지오코딩 요청 ---
+        function displayApartmentMarkers(apartments, maintainExisting = false) {
+             console.log("displayApartmentMarkers called with apartments:", apartments);
+             if (!maintainExisting) { apartmentMarkers.forEach(m => m.setMap(null)); apartmentMarkers = []; }
+             if (!apartments || apartments.length === 0) { console.log("No apartments to display."); return; }
+             apartments.forEach((apt) => {
+                 // console.log("Processing apartment:", apt?.name, "Coords:", apt?.lat, apt?.lng);
+                 if (!apt || !apt.name) return;
+                 const aptId = apt.address ? `${apt.name}||${apt.address}` : apt.name;
+                 const isDup = apartmentMarkers.some(m => { const mApt = m.aptData; if (!mApt) return false; const mId = mApt.address ? `${mApt.name}||${mApt.address}`: mApt.name; return mId === aptId; });
+                 if (isDup) return;
+                 const hasCoords = apt.lat != null && apt.lng != null && typeof apt.lat === 'number' && typeof apt.lng === 'number';
+                 if (hasCoords) {
+                     // console.log("Attempting to create apt marker:", apt.name);
+                     try { const pos = new naver.maps.LatLng(apt.lat, apt.lng); const marker = createApartmentMarker(apt, pos); if(marker) apartmentMarkers.push(marker); }
+                     catch (e) { console.error(`Apt '${apt.name}' 좌표 오류:`, e); if (apt.address) requestGeocodeForApartment(apt); }
+                 } else if (apt.address) { /*console.log("Requesting geocode for apt:", apt.name);*/ requestGeocodeForApartment(apt); }
+                 else { console.warn(`Apt '${apt.name}' 위치 정보 없음.`); }
+             });
+             console.log(`Finished processing apartments. ${apartmentMarkers.length} markers added.`);
+         }
+        function requestGeocodeForApartment(apt) {
+             console.log(`Geocoding requested for: ${apt.name} (${apt.address})`);
+             naver.maps.Service.geocode({ query: apt.address }, (status, response) => {
+                 if(status === naver.maps.Service.Status.OK && response.v2.addresses.length > 0){
+                     try {
+                         const result = response.v2.addresses[0]; const position = new naver.maps.LatLng(result.y, result.x);
+                         const aptIdentifier = apt.address ? (apt.name + "||" + apt.address) : apt.name;
+                         const isDuplicateAfterGeocode = apartmentMarkers.some(m => { const markerApt = m.aptData; if(!markerApt) return false; const markerId = markerApt.address ? `${markerApt.name}||${markerApt.address}` : markerApt.name; return markerId === aptIdentifier; });
+                         if (!isDuplicateAfterGeocode) { const marker = createApartmentMarker(apt, position); if(marker) apartmentMarkers.push(marker); }
+                         else console.log(`Duplicate marker prevented after geocoding for ${apt.name}`);
+                     } catch(e) { console.error(`Apt '${apt.name}' 지오코딩 결과 처리 오류:`, e); }
+                 } else { console.warn(`Apt "${apt.name}" 주소(${apt.address}) 지오코딩 실패: Status ${status}`); }
+             });
+         }
+
+        // --- 학교 찾기 (findSchool) ---
+        function findSchool(schoolName, eduOffice = null) {
+            if (!isDataLoaded) { alert("학교 정보가 로드되지 않았습니다."); return; }
+            closeInfoDisplays(); clearSchoolSearchResults();
+            console.log(`Finding school: ${schoolName} ${eduOffice ? '('+eduOffice+')' : ''}`);
+            const foundMarker = schoolMarkers.find(marker => marker.schoolData && marker.schoolData.name === schoolName && (eduOffice === null || !marker.schoolData.eduOffice || marker.schoolData.eduOffice === eduOffice));
+            if (foundMarker) {
+                 console.log(`School found: ${schoolName}. Moving map.`);
+                 map.panTo(foundMarker.getPosition()); map.setZoom(16);
+                 if (!foundMarker.getVisible()) { foundMarker.setVisible(true); }
+                 setTimeout(() => { showSchoolDetails(foundMarker); }, 300);
+                 updateLoadingStatus(`학교 찾음: ${schoolName}`);
+                 closeFilterPanel();
+            } else {
+                 const regionDisplayText = currentlyDisplayedRegions ? currentlyDisplayedRegions.map(r => r.replace(/교육청|광역시|특별자치시|특별자치도|도|특별시/g,'')).join(',') : "전체";
+                 alert(`학교 '${schoolName}' ${eduOffice ? '('+eduOffice+')' : ''} 위치를 현재 표시된 지역(${regionDisplayText})에서 찾을 수 없습니다.`);
+                 updateLoadingStatus(`학교 '${schoolName}' 찾기 실패 (${regionDisplayText})`);
+            }
+         }
+        // --- 아파트 찾기 (findApartment) ---
+        function findApartment(element) {
+            if (!isDataLoaded) return;
+            try {
+                const aptName = element.dataset.aptName; const aptAddress = element.dataset.aptAddress; if (!aptName) return;
+                console.log(`Finding apt: ${aptName} ${aptAddress ? '('+aptAddress+')' : ''}`);
+                closeInfoDisplays();
+                const aptIdentifier = aptAddress ? (aptName + "||" + aptAddress) : aptName;
+                const foundMarker = apartmentMarkers.find(marker => { const markerApt = marker.aptData; if (!markerApt) return false; const markerId = markerApt.address ? `${markerApt.name}||${markerApt.address}` : markerApt.name; return markerId === aptIdentifier; });
+                if (foundMarker) { console.log("Apt marker found. Moving."); map.panTo(foundMarker.getPosition()); map.setZoom(16); setTimeout(() => { showApartmentDetails(foundMarker); }, 300); }
+                else {
+                    console.log("Apt marker not found. Searching raw data and geocoding if needed.");
+                    let foundAptData = null;
+                    for (const school of rawSchoolData) { if(school.apartments) { foundAptData = school.apartments.find(apt => (apt.address ? `${apt.name}||${apt.address}` : apt.name) === aptIdentifier); if(foundAptData) break; } }
+                    if (foundAptData) {
+                        console.log("Apt data found."); const hasCoords = foundAptData.lat != null && foundAptData.lng != null;
+                        if (hasCoords) {
+                            console.log("Coords found."); try { const position = new naver.maps.LatLng(foundAptData.lat, foundAptData.lng); map.panTo(position); map.setZoom(16); const newMarker = createApartmentMarker(foundAptData, position); if (newMarker) { apartmentMarkers.push(newMarker); setTimeout(() => { showApartmentDetails(newMarker); }, 300); } } // 배열에도 추가
+                            catch (e) { console.error("Apt coord error:", e); if (foundAptData.address) requestGeocodeForApartment(foundAptData); else alert("Apt 위치 찾기 실패"); }
+                        } else if (foundAptData.address) { console.log("Coords not found, geocoding..."); requestGeocodeForApartment(foundAptData); }
+                        else { alert(`Apt '${aptName}' 위치 정보 부족`); }
+                    } else { alert(`Apt '${aptName}' 정보 없음`); }
+                }
+            } catch (error) { console.error("findApartment error:", error); alert("아파트 검색 오류"); }
+         }
+        // --- 학년/학생수 필터 적용 함수 ---
+        function applyGradeAndFilter() {
+            console.log(`[ApplyFilter] Starting filter apply. Grade: ${selectedGrade}, Filter: ${currentFilter}`);
+            if (!map || !isDataLoaded) { console.warn("Cannot apply filters: Map or data not ready."); if (!isDataLoaded) updateLoadingStatus("데이터 로드 필요."); return; }
+            if (searchResultsContainer) clearSchoolSearchResults();
+
+            const studentFilterInput = document.getElementById('student_filter');
+            currentFilter = parseInt(studentFilterInput ? studentFilterInput.value : "0", 10) || 0;
+            const currentZoom = map.getZoom();
+            const isZoomedOut = currentZoom <= DYNAMIC_FILTER_ZOOM_LEVEL;
+            const regionDisplayText = currentlyDisplayedRegions ? currentlyDisplayedRegions.map(r => r.replace(/교육청|광역시|특별자치시|특별자치도|도|특별시/g,'')).join(',') : "전체";
+
+            console.log(`[ApplyFilter] Applying filter: Region(s) ${regionDisplayText}, Grade ${selectedGrade}, Min Students ${currentFilter}, Zoom ${currentZoom}, ZoomedOut Filter Active: ${isZoomedOut}`);
+
+            let visibleCount = 0;
+            console.log(`[ApplyFilter] Processing ${schoolMarkers.length} school markers.`);
+            schoolMarkers.forEach((marker, index) => {
+                if (!marker || !marker.schoolData) { console.warn(`[ApplyFilter] Invalid marker or schoolData at index ${index}`); return; }
+                const schoolData = marker.schoolData;
+                const schoolName = schoolData.name || 'Unknown School';
+
+                const students = getGradeData(schoolData, selectedGrade, 'Students');
+                // console.log(`[ApplyFilter] School: ${schoolName}, Grade: ${selectedGrade}, Students: ${students}, Type: ${typeof students}`);
+
+                try {
+                    const icon = marker.getIcon();
+                    if (icon && typeof icon.content === 'string') {
+                        const parser = new DOMParser();
+                        const doc = parser.parseFromString(icon.content, 'text/html');
+                        const studentCountSpan = doc.querySelector('.student_count');
+                        const schoolNameSpan = doc.querySelector('.school_name');
+                        const countContainer = doc.querySelector('.count_container');
+
+                        if (studentCountSpan) {
+                            const studentText = (students != null && !isNaN(students)) ? `${students}명` : '?명';
+                            // console.log(`[ApplyFilter] Setting student text for ${schoolName} to: ${studentText}`);
+                            studentCountSpan.textContent = studentText;
+                        } else { console.warn(`[ApplyFilter] student_count span not found for ${schoolName}`); }
+
+                        if (schoolNameSpan) {
+                            schoolNameSpan.style.color = (students != null && !isNaN(students) && students >= DYNAMIC_FILTER_MIN_STUDENTS) ? '#1a73e8' : '#e53935';
+                        } else { console.warn(`[ApplyFilter] school_name span not found for ${schoolName}`); }
+
+                        if (countContainer) {
+                            const existingRateSpan = countContainer.querySelector('.comparison_rate'); if(existingRateSpan) existingRateSpan.remove();
+                            const changeResult = calculateNextGradeChange(schoolData, selectedGrade);
+                            const changeRateHtml = formatChangeRate(changeResult);
+                            if (changeRateHtml) { countContainer.insertAdjacentHTML('beforeend', changeRateHtml); }
+                        } else { console.warn(`[ApplyFilter] count_container not found for ${schoolName}`); }
+
+                        marker.setIcon({ content: doc.body.innerHTML, anchor: new naver.maps.Point(30, 15) });
+
+                    } else { console.warn(`[ApplyFilter] Invalid icon content for ${schoolName}:`, icon?.content); }
+                } catch (e) { console.error(`[ApplyFilter] Error updating marker icon for ${schoolName}:`, e); }
+
+                let visible = (students != null && !isNaN(students)) && students >= currentFilter;
+                if (isZoomedOut) { visible = visible && (students != null && !isNaN(students)) && (students >= DYNAMIC_FILTER_MIN_STUDENTS); }
+                // console.log(`[ApplyFilter] Visibility for ${schoolName}: ${visible} (students: ${students}, currentFilter: ${currentFilter}, isZoomedOut: ${isZoomedOut})`);
+                marker.setVisible(visible);
+                if (visible) visibleCount++;
+            });
+
+            let statusMessage = `${regionDisplayText} ${selectedGrade}학년: ${visibleCount}개교`;
+            if (isZoomedOut && currentFilter < DYNAMIC_FILTER_MIN_STUDENTS) { statusMessage += ` (줌 축소: ${DYNAMIC_FILTER_MIN_STUDENTS}명 이상)`; }
+            else if (isZoomedOut) { statusMessage += ` (줌 축소 필터 활성)`; }
+            updateLoadingStatus(statusMessage);
+
+            closeInfoDisplays();
+            apartmentMarkers.forEach(m => m.setMap(null)); apartmentMarkers = [];
+            console.log("[ApplyFilter] Filter apply finished.");
+        }
+        // --- 필터 초기화 (학생 수 필터만) ---
+        function clearFilter() {
+            const studentFilterInput = document.getElementById('student_filter');
+            if (studentFilterInput) studentFilterInput.value = "0";
+            if (!isDataLoaded) { updateLoadingStatus("필터 초기화됨."); return; }
+            if (searchResultsContainer) clearSchoolSearchResults();
+            const regionDisplayText = currentlyDisplayedRegions ? currentlyDisplayedRegions.map(r => r.replace(/교육청|광역시|특별자치시|특별자치도|도|특별시/g,'')).join(',') : "전체";
+            console.log(`Student filter cleared. Re-applying with Region(s) ${regionDisplayText}, Grade ${selectedGrade}, Filter 0.`);
+            applyGradeAndFilter(); // 필터 0으로 재적용
+        }
+        // --- 학교 검색 관련 함수 ---
+        function searchSchoolByName(query) {
+             if (!isDataLoaded) return { type: 'none' };
+             console.log(`Searching for school name: ${query}`);
+             const baseQuery = query.replace(/초등학교|초$/,'').trim();
+             let exactMatch = null;
+             const partialMatches = [];
+             schoolMarkers.forEach(marker => {
+                 if (!marker.schoolData || !marker.schoolData.name) return;
+                 const schoolName = marker.schoolData.name.trim();
+                 if (!marker.getVisible()) return; // 현재 보이는 마커 중에서만 검색
+                 if (schoolName === query) { exactMatch = marker; return; }
+                 if (schoolName.includes(baseQuery)) { partialMatches.push(marker); }
+             });
+             if (exactMatch) { return { type: 'exact', marker: exactMatch }; }
+             else if (partialMatches.length === 1) { return { type: 'single_partial', marker: partialMatches[0] }; }
+             else if (partialMatches.length > 1) { partialMatches.sort((a, b) => a.schoolData.name.localeCompare(b.schoolData.name)); return { type: 'multiple', results: partialMatches }; }
+             else { return { type: 'none' }; }
+         }
+        function displaySchoolSearchResults(results) {
+             if (!searchResultsContainer) return;
+             searchResultsContainer.innerHTML = '';
+             const ul = document.createElement('ul');
+             results.forEach(marker => {
+                 const li = document.createElement('li');
+                 li.textContent = marker.schoolData.name;
+                 if (marker.schoolData.eduOffice) {
+                     const officeSpan = document.createElement('span');
+                     officeSpan.className = 'edu-office';
+                     officeSpan.textContent = `(${marker.schoolData.eduOffice})`;
+                     li.appendChild(officeSpan);
+                 }
+                 li.dataset.schoolName = marker.schoolData.name;
+                 li.dataset.eduOffice = marker.schoolData.eduOffice || '';
+                 li.onclick = function() { selectSchoolFromResults(this); }; // 클릭 시 selectSchoolFromResults 호출
+                 ul.appendChild(li);
+             });
+             searchResultsContainer.appendChild(ul);
+             searchResultsContainer.style.display = 'block';
+         }
+        function clearSchoolSearchResults() { if (searchResultsContainer) { searchResultsContainer.innerHTML = ''; searchResultsContainer.style.display = 'none'; } }
+        function selectSchoolFromResults(element) { const schoolName = element.dataset.schoolName; const eduOffice = element.dataset.eduOffice; findSchool(schoolName, eduOffice || null); }
+
+        // --- 장소/학교 검색 ---
+        function searchLocation() {
+            console.log("[searchLocation] Function called."); // *** 함수 호출 로그 ***
+            if (!searchResultsContainer) { console.warn("Search results container not found."); } else { clearSchoolSearchResults(); }
+            const searchInput = document.getElementById('search_input');
+            if (!searchInput) { console.error("[searchLocation] Search input not found."); return; }
+            const query = searchInput.value.trim();
+            console.log("[searchLocation] Search query:", query);
+            if (!query) { alert("검색어를 입력해주세요."); searchInput.focus(); return; }
+            const regionDisplayText = currentlyDisplayedRegions ? currentlyDisplayedRegions.map(r => r.replace(/교육청|광역시|특별자치시|특별자치도|도|특별시/g,'')).join(',') : "전체";
+
+            if (query.endsWith('초') || query.endsWith('초등학교')) {
+                 console.log("[searchLocation] Searching for school name...");
+                 setLoading(true, `학교 '${query}' 검색 중 (${regionDisplayText})...`);
+                 setTimeout(() => {
+                    const result = searchSchoolByName(query);
+                    console.log("[searchLocation] School search result:", result);
+                    setLoading(false);
+                    if (result.type === 'exact' || result.type === 'single_partial') {
+                         findSchool(result.marker.schoolData.name, result.marker.schoolData.eduOffice);
+                    } else if (result.type === 'multiple') {
+                         displaySchoolSearchResults(result.results);
+                         updateLoadingStatus(`${result.results.length}개 학교 검색됨. 선택해주세요.`);
+                    } else {
+                         alert(`'${query}'와(과) 일치하는 학교를 찾을 수 없습니다 (현재 표시된 ${regionDisplayText} 지역).`);
+                         updateLoadingStatus(`'${query}' 학교 검색 결과 없음 (${regionDisplayText})`);
+                    }
+                 }, 0);
+            } else {
+                 console.log("[searchLocation] Searching for location (geocoding)...");
+                 setLoading(true, `위치 '${query}' 검색 중...`);
+                 naver.maps.Service.geocode({ query: query }, function(status, response) {
+                     console.log("[searchLocation] Geocode callback status:", status);
+                     setLoading(false);
+                     if (status === naver.maps.Service.Status.OK && response.v2.addresses.length > 0) {
+                          try { const result = response.v2.addresses[0]; const point = new naver.maps.LatLng(result.y, result.x); const address = result.roadAddress || result.jibunAddress; console.log(`Location search successful. Moving to: ${address}`); map.panTo(point); map.setZoom(15); updateLoadingStatus(`검색 결과: ${address}`); closeFilterPanel(); }
+                          catch (e) { console.error("Geocoding 결과 처리 오류:", e); alert("검색 결과를 처리하는 중 오류가 발생했습니다."); updateLoadingStatus("검색 결과 처리 오류"); }
+                     } else if (status === naver.maps.Service.Status.ERROR) {
+                         console.error("Geocoding API 오류:", response); alert("검색 중 오류가 발생했습니다."); updateLoadingStatus("검색 오류");
+                     } else {
+                         console.log("No results for location query:", query); alert(`'${query}' 위치 검색 결과가 없습니다.`); updateLoadingStatus(`'${query}' 위치 검색 결과 없음`);
+                     }
+                 });
+            }
+        }
+
+
+        // --- 페이지 로드 시 초기화 ---
+         document.addEventListener('DOMContentLoaded', function() {
+             console.log("DOM fully loaded and parsed. Initializing map...");
+             initMap();
+         });
+
+    </script>
+</body>
+</html>
