@@ -1,0 +1,24 @@
+{
+  "name": "school-apartment-map",
+  "version": "1.0.0",
+  "description": "초등학교 배정 아파트 지도 - Supabase Migration",
+  "main": "index.html",
+  "scripts": {
+    "start": "python -m http.server 8000",
+    "serve": "npx serve .",
+    "build": "echo 'No build step required for static site'",
+    "deploy": "echo 'Upload files to your hosting provider'"
+  },
+  "keywords": [
+    "school",
+    "apartment",
+    "map",
+    "supabase",
+    "naver-maps"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "serve": "^14.0.0"
+  }
+}
