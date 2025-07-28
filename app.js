@@ -27,9 +27,29 @@ async function getSchoolData(selectedRegions) {
         
         // 지역 필터링 (edu_office 필드에서 LIKE 검색)
         if (selectedRegions && Array.isArray(selectedRegions) && selectedRegions.length > 0) {
-            // "서울특별시교육청" -> "서울특별시" 패턴으로 변환
             const regionPatterns = selectedRegions.map(region => {
-                const baseRegion = region.replace('교육청', '');
+                // 각 지역별 패턴 매핑
+                const regionMap = {
+                    '서울특별시교육청': '서울특별시',
+                    '경기도교육청': '경기도',
+                    '인천광역시교육청': '인천광역시',
+                    '부산광역시교육청': '부산광역시',
+                    '대구광역시교육청': '대구광역시',
+                    '광주광역시교육청': '광주광역시',
+                    '대전광역시교육청': '대전광역시',
+                    '울산광역시교육청': '울산광역시',
+                    '세종특별자치시교육청': '세종특별자치시',
+                    '강원도교육청': '강원도',
+                    '충청북도교육청': '충청북도',
+                    '충청남도교육청': '충청남도',
+                    '전라북도교육청': '전라북도',
+                    '전라남도교육청': '전라남도',
+                    '경상북도교육청': '경상북도',
+                    '경상남도교육청': '경상남도',
+                    '제주특별자치도교육청': '제주특별자치도'
+                };
+                
+                const baseRegion = regionMap[region] || region.replace('교육청', '');
                 return `edu_office.like.*${baseRegion}*`;
             }).join(',');
             query += `&or=(${regionPatterns})`;
