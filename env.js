@@ -1,4 +1,0 @@
-// Environment Variables Loader for Browser
-window.ENV = {
-    SUPABASE_ANON_KEY: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imx5bm9ienZiaHNkbmZuZmVlY3R6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTIzMzAwNzYsImV4cCI6MjA2NzkwNjA3Nn0.-OBS5v4zMtlmMD-qtkom8tqPhYNyVCnIrJWolNbtG5A'
-};
