@@ -23,7 +23,7 @@ async function getSchoolData(selectedRegions) {
     console.log(`[Supabase] getSchoolData received selectedRegions: ${JSON.stringify(selectedRegions)}`);
     
     try {
-        let query = `${SUPABASE_URL}/rest/v1/schools?select=*,apartments(*)`;
+        let query = `${SUPABASE_URL}/rest/v1/schools?select=*,apartments(*)&limit=5000`;
         
         // 지역 필터링 (edu_office 필드에서 LIKE 검색)
         // selectedRegions가 null이거나 빈 배열이면 전체 데이터 로드
