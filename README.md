@@ -78,12 +78,19 @@ window.ENV = {
 1. `env.js` 파일에 직접 키 입력
 2. 보안상 민감하지 않은 anon key만 사용
 
-**Vercel/Netlify (서버리스):**
-1. Build 시 환경변수를 사용하여 `env.js` 자동 생성
-2. Build Command 예시:
-```bash
-echo "window.ENV = { SUPABASE_ANON_KEY: '$SUPABASE_ANON_KEY' };" > env.js && [build_command]
-```
+**Vercel 배포:**
+1. [Vercel](https://vercel.com)에 GitHub 계정으로 로그인
+2. 리포지토리 임포트: `Sean-Kang-jpg/elementary`
+3. Environment Variables 설정:
+   - Key: `SUPABASE_ANON_KEY`
+   - Value: `your_supabase_anon_key`
+4. Deploy 클릭 (자동으로 env.js 생성됨)
+
+**Netlify 배포:**
+1. [Netlify](https://netlify.com)에 계정 생성
+2. Site settings → Environment variables
+3. `SUPABASE_ANON_KEY` 추가
+4. Build command: `echo "window.ENV = { SUPABASE_ANON_KEY: '$SUPABASE_ANON_KEY' };" > env.js`
 
 ### 네이버 지도 API 설정 (index.html에서 수정)
 ```html
