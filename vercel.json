@@ -2,12 +2,5 @@
   "buildCommand": "echo \"window.ENV = { SUPABASE_ANON_KEY: '$SUPABASE_ANON_KEY' };\" > env.js",
   "outputDirectory": ".",
   "installCommand": "",
-  "framework": null,
-  "functions": {},
-  "rewrites": [
-    {
-      "source": "/(.*)",
-      "destination": "/index.html"
-    }
-  ]
+  "framework": null
 }
