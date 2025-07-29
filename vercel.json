@@ -1,6 +1,6 @@
 {
-  "buildCommand": "echo \"window.ENV = { SUPABASE_ANON_KEY: '$SUPABASE_ANON_KEY' };\" > env.js",
-  "outputDirectory": ".",
+  "buildCommand": "echo \"window.ENV = { SUPABASE_ANON_KEY: '$SUPABASE_ANON_KEY' };\" > env.js && mkdir -p public && cp *.html *.js *.css public/ 2>/dev/null || cp *.html *.js public/",
+  "outputDirectory": "public",
   "installCommand": "",
   "framework": null
 }
