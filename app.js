@@ -26,7 +26,8 @@ async function getSchoolData(selectedRegions) {
         let query = `${SUPABASE_URL}/rest/v1/schools?select=*,apartments(*)`;
         
         // 지역 필터링 (edu_office 필드에서 LIKE 검색)
-        if (selectedRegions && Array.isArray(selectedRegions) && selectedRegions.length > 0) {
+        // selectedRegions가 null이거나 빈 배열이면 전체 데이터 로드
+        if (selectedRegions && Array.isArray(selectedRegions) && selectedRegions.length > 0 && !selectedRegions.includes('ALL')) {
             const regionPatterns = selectedRegions.map(region => {
                 // 각 지역별 패턴 매핑
                 const regionMap = {
