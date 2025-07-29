@@ -6,7 +6,7 @@
   "scripts": {
     "start": "python -m http.server 8000",
     "serve": "npx serve .",
-    "build": "echo \"window.ENV = { SUPABASE_ANON_KEY: '$SUPABASE_ANON_KEY' };\" > env.js && mkdir -p public && cp *.html *.js public/",
+    "build": "bash build.sh",
     "deploy": "echo 'Upload files to your hosting provider'"
   },
   "keywords": [
