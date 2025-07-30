@@ -31,6 +31,9 @@
         .region-option { display: flex; align-items: center; }
         .region-option input[type="checkbox"] { margin-right: 5px; cursor: pointer; transform: scale(1.1);}
         .region-option label { margin-right: 0; font-weight: normal; cursor: pointer; font-size: 14px; padding: 5px 0;}
+        .school-type-option { display: flex; align-items: center; }
+        .school-type-option input[type="checkbox"] { margin-right: 5px; cursor: pointer; transform: scale(1.1);}
+        .school-type-option label { margin-right: 0; font-weight: normal; cursor: pointer; font-size: 14px; padding: 5px 0;}
         #select_all_regions + label { font-weight: bold !important; }
         #grade_selector { padding: 10px 12px; border: 1px solid #ddd; border-radius: 4px; font-size: 14px; cursor: pointer; width: 100%; background-color: #fff; box-sizing: border-box;}
         #student_filter { padding: 10px 12px; width: 100%; border: 1px solid #ddd; border-radius: 4px; font-size: 14px; text-align: right; box-sizing: border-box; background-color: #fff;}
@@ -64,6 +67,9 @@
         .school_marker_content .school_name { color: #1a73e8; display: block; font-weight: 600; }
         .school_marker_content .count_container { display: flex; align-items: baseline; gap: 4px; }
         .school_marker_content .student_count { color: #000000; font-size: 11px; background-color: #f2f2f2; padding: 2px 6px; border-radius: 10px; display: inline-block; }
+        .school_marker_content .school_type { font-size: 9px; color: #fff; background-color: #34a853; padding: 1px 4px; border-radius: 6px; display: inline-block; margin-left: 4px; font-weight: 500; }
+        .school_marker_content .school_type.private { background-color: #ea4335; }
+        .school_marker_content .school_type.national { background-color: #4285f4; }
         .school_marker_content .comparison_rate { font-size: 9px; color: #5f6368; font-weight: normal; }
         .comparison_rate.rate-positive { color: #34a853; }
         .comparison_rate.rate-negative { color: #ea4335; }
@@ -216,6 +222,17 @@
                 <button id="load_apply_btn" class="btn">선택 지역/학년 적용</button>
             </div>
             <div class="filter_group">
+                <label>학교 종류</label>
+                <div id="school_type_checkboxes_container" style="border: 1px solid #eee; padding: 8px 10px; border-radius: 4px; margin-bottom: 15px;">
+                    <div id="school_type_checkboxes" style="display: flex; flex-wrap: wrap; gap: 5px 15px; align-items: center;">
+                        <div class="school-type-option"> <input type="checkbox" id="type_all_schools" name="schooltype" value="ALL" checked> <label for="type_all_schools" style="font-weight: bold;">전체</label> </div>
+                        <div class="school-type-option"><input type="checkbox" id="type_public" name="schooltype" value="공립"><label for="type_public">공립</label></div>
+                        <div class="school-type-option"><input type="checkbox" id="type_private" name="schooltype" value="사립"><label for="type_private">사립</label></div>
+                        <div class="school-type-option"><input type="checkbox" id="type_national" name="schooltype" value="국립"><label for="type_national">국립</label></div>
+                    </div>
+                </div>
+            </div>
+            <div class="filter_group">
                 <label for="student_filter">학생수 필터 (0 이상)</label>
                 <div class="filter_group_row">
                     <input type="number" id="student_filter" value="0" min="0" placeholder="0" disabled>
@@ -253,7 +270,6 @@
         </div>
     </div>
 
-    <script src="env.js"></script>
     <script src="app.js"></script>
 </body>
 </html>

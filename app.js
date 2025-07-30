@@ -1,6 +1,6 @@
 // Supabase Configuration
 const SUPABASE_URL = 'https://lynobzvbhsdnfnfeectz.supabase.co';
-const SUPABASE_ANON_KEY = window.ENV?.SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imx5bm9ienZiaHNkbmZuZmVlY3R6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTIzMzAwNzYsImV4cCI6MjA2NzkwNjA3Nn0.-OBS5v4zMtlmMD-qtkom8tqPhYNyVCnIrJWolNbtG5A';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imx5bm9ienZiaHNkbmZuZmVlY3R6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTIzMzAwNzYsImV4cCI6MjA2NzkwNjA3Nn0.-OBS5v4zMtlmMD-qtkom8tqPhYNyVCnIrJWolNbtG5A';
 
 // --- 전역 변수 ---
 let map = null; let schoolMarkers = []; let apartmentMarkers = [];
@@ -8,6 +8,7 @@ let bottomSheetElement = null;
 let filterPanel = null; let overlay = null; let filterToggleBtn = null;
 let rawSchoolData = []; let isDataLoaded = false; let currentFilter = 0;
 let selectedGrade = 1; let currentlyDisplayedRegions = null; let isLoading = false;
+let selectedSchoolTypes = ['ALL'];
 const DYNAMIC_FILTER_ZOOM_LEVEL = 13; const DYNAMIC_FILTER_MIN_STUDENTS = 100;
 let gradeChartInstance = null;
 const panelControlIds = ['grade_selector', 'student_filter', 'apply_student_filter_btn', 'clear_filter_btn', 'search_input', 'search_btn', 'load_apply_btn', 'select_all_regions'];
@@ -72,6 +73,34 @@ async function getSchoolData(selectedRegions) {
         const schools = await response.json();
         console.log(`[Supabase] Retrieved ${schools.length} schools from database`);
         
+        // 학교 종류 데이터 확인을 위한 디버깅
+        if (schools.length > 0) {
+            console.log('[DEBUG] Sample school data:', {
+                name: schools[0].name,
+                public_Yn: schools[0].public_Yn,
+                estType_raw: schools[0].public_Yn
+            });
+            
+            // 서울교대부속초등학교 찾기
+            const testSchool = schools.find(s => s.name && s.name.includes('서울교대부속'));
+            if (testSchool) {
+                console.log('[DEBUG] 서울교대부속초등학교 데이터:', {
+                    name: testSchool.name,
+                    public_Yn: testSchool.public_Yn,
+                    raw_data: testSchool
+                });
+            }
+            
+            // 다양한 학교 종류 샘플 확인
+            schools.slice(0, 10).forEach((school, idx) => {
+                console.log(`[DEBUG] School ${idx}:`, {
+                    name: school.name,
+                    public_Yn: school.public_Yn,
+                    type: typeof school.public_Yn
+                });
+            });
+        }
+
         // Google Apps Script 형식으로 변환
         return schools.map(school => ({
             name: school.name,
@@ -79,7 +108,7 @@ async function getSchoolData(selectedRegions) {
             address: school.address,
             lat: school.lat,
             lng: school.lng,
-            estType: school.public_yn || '공립',
+            estType: school.public_Yn || '공립',
             grade1Classes: school.grade1_classes || 0,
             grade1Students: school.grade1_students || 0,
             grade1PerClass: school.grade1_per_class || 0,
@@ -240,6 +269,23 @@ function destroyChart() {
     } 
 }
 
+// --- 학교 종류 필터 관련 함수 ---
+function updateSelectedSchoolTypes() {
+    const selectAllCheckbox = document.getElementById('type_all_schools');
+    const typeCheckboxes = filterPanel ? filterPanel.querySelectorAll('#school_type_checkboxes input[name="schooltype"]:not(#type_all_schools)') : [];
+    
+    if (selectAllCheckbox && selectAllCheckbox.checked) {
+        selectedSchoolTypes = ['ALL'];
+    } else {
+        selectedSchoolTypes = Array.from(typeCheckboxes).filter(cb => cb.checked).map(cb => cb.value);
+        if (selectedSchoolTypes.length === 0) {
+            selectedSchoolTypes = ['ALL'];
+            if (selectAllCheckbox) selectAllCheckbox.checked = true;
+        }
+    }
+    console.log('Selected school types:', selectedSchoolTypes);
+}
+
 // --- 학년별 데이터 및 변화율 계산 ---
 function getGradeData(schoolData, grade, type) {
     if (!schoolData || grade < 1 || grade > 6) { return type === 'PerClass' ? 0.0 : 0; }
@@ -375,6 +421,8 @@ function initMap() {
         const selectAllCheckbox = document.getElementById('select_all_regions');
         const regionCheckboxes = filterPanel ? filterPanel.querySelectorAll('#region_checkboxes input[name="region"]:not(#select_all_regions)') : [];
         const clearStudentFilterBtn = document.getElementById('clear_filter_btn');
+        const selectAllSchoolTypesCheckbox = document.getElementById('type_all_schools');
+        const schoolTypeCheckboxes = filterPanel ? filterPanel.querySelectorAll('#school_type_checkboxes input[name="schooltype"]:not(#type_all_schools)') : [];
 
         if (loadApplyBtn) loadApplyBtn.addEventListener('click', handleLoadApplyClick); else console.warn("Load/Apply button not found");
         if (studentFilterBtn) studentFilterBtn.addEventListener('click', () => { if (isDataLoaded) { applyGradeAndFilter(); closeFilterPanel(); } }); else console.warn("Apply student filter button not found");
@@ -417,6 +465,34 @@ function initMap() {
                     } 
                 }
                 enableControls(isDataLoaded);
+            });
+        });
+
+        // 학교 종류 필터 이벤트 리스너
+        if (selectAllSchoolTypesCheckbox) {
+            selectAllSchoolTypesCheckbox.addEventListener('change', function() {
+                const isChecked = this.checked;
+                schoolTypeCheckboxes.forEach(cb => { cb.checked = false; cb.disabled = isChecked; });
+                updateSelectedSchoolTypes();
+                if (isDataLoaded) applyGradeAndFilter();
+            });
+        } else console.warn("Select All school types checkbox not found");
+
+        schoolTypeCheckboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                console.log("School type checkbox changed:", this.id, this.checked);
+                const siblingSelectAll = document.getElementById('type_all_schools');
+                const siblingTypes = filterPanel.querySelectorAll('#school_type_checkboxes input[name="schooltype"]:not(#type_all_schools)');
+                if (this.checked) { 
+                    if (siblingSelectAll) siblingSelectAll.checked = false; 
+                } else { 
+                    const anyChecked = Array.from(siblingTypes).some(cb => cb.checked); 
+                    if (!anyChecked && siblingSelectAll) { 
+                        siblingSelectAll.checked = true; 
+                    } 
+                }
+                updateSelectedSchoolTypes();
+                if (isDataLoaded) applyGradeAndFilter();
             });
         });
 
@@ -843,7 +919,17 @@ function createSchoolMarker(school, position) {
     try {
         const initialStudentText = '?';
         const initialNameColor = '#1a73e8';
-        const markerContent = `<div class="school_marker_content"><span class="school_name" style="color: ${initialNameColor}">${school.name || ''}</span><div class="count_container"><span class="student_count">${initialStudentText}명</span></div></div>`;
+        let schoolTypeClass = 'school_type';
+        let schoolTypeText = '공립';
+        
+        if (school.estType === '사립') {
+            schoolTypeClass = 'school_type private';
+            schoolTypeText = '사립';
+        } else if (school.estType === '국립') {
+            schoolTypeClass = 'school_type national';
+            schoolTypeText = '국립';
+        }
+        const markerContent = `<div class="school_marker_content"><span class="school_name" style="color: ${initialNameColor}">${school.name || ''} <span class="${schoolTypeClass}">${schoolTypeText}</span></span><div class="count_container"><span class="student_count">${initialStudentText}명</span></div></div>`;
         const markerOptions = { 
             position: position, 
             title: `${school.name || ''} (${school.address || ''})`, 
@@ -1029,6 +1115,22 @@ function applyGradeAndFilter() {
 
                 if (schoolNameSpan) {
                     schoolNameSpan.style.color = (students != null && !isNaN(students) && students >= DYNAMIC_FILTER_MIN_STUDENTS) ? '#1a73e8' : '#e53935';
+                    
+                    // 공립/사립/국립 표시가 없으면 추가
+                    let schoolTypeSpan = schoolNameSpan.querySelector('.school_type');
+                    if (!schoolTypeSpan) {
+                        let schoolTypeClass = 'school_type';
+                        let schoolTypeText = '공립';
+                        
+                        if (schoolData.estType === '사립') {
+                            schoolTypeClass = 'school_type private';
+                            schoolTypeText = '사립';
+                        } else if (schoolData.estType === '국립') {
+                            schoolTypeClass = 'school_type national';
+                            schoolTypeText = '국립';
+                        }
+                        schoolNameSpan.insertAdjacentHTML('beforeend', `<span class="${schoolTypeClass}">${schoolTypeText}</span>`);
+                    }
                 } else { 
                     console.warn(`[ApplyFilter] school_name span not found for ${schoolName}`); 
                 }
@@ -1057,7 +1159,14 @@ function applyGradeAndFilter() {
             console.error(`[ApplyFilter] Error updating marker icon for ${schoolName}:`, e); 
         }
 
-        let visible = (students != null && !isNaN(students)) && students >= currentFilter;
+        // 학교 종류 필터 적용
+        let typeVisible = true;
+        if (!selectedSchoolTypes.includes('ALL')) {
+            const schoolType = schoolData.estType || '공립';
+            typeVisible = selectedSchoolTypes.includes(schoolType);
+        }
+
+        let visible = (students != null && !isNaN(students)) && students >= currentFilter && typeVisible;
         if (isZoomedOut) { 
             visible = visible && (students != null && !isNaN(students)) && (students >= DYNAMIC_FILTER_MIN_STUDENTS); 
         }
@@ -1066,6 +1175,13 @@ function applyGradeAndFilter() {
     });
 
     let statusMessage = `${regionDisplayText} ${selectedGrade}학년: ${visibleCount}개교`;
+    
+    // 학교 종류 필터 상태 표시
+    if (!selectedSchoolTypes.includes('ALL')) {
+        const typeText = selectedSchoolTypes.join('/');
+        statusMessage += ` (${typeText})`;
+    }
+    
     if (isZoomedOut && currentFilter < DYNAMIC_FILTER_MIN_STUDENTS) { 
         statusMessage += ` (줌 축소: ${DYNAMIC_FILTER_MIN_STUDENTS}명 이상)`; 
     } else if (isZoomedOut) { 
