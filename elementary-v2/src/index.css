@@ -1,0 +1,332 @@
+/* 모바일 최적화 스타일 */
+@import './styles/mobile.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light;
+  color: rgba(31, 41, 55, 1);
+  background-color: rgba(249, 250, 251, 1);
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+#root {
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* Map labels follow the compact white-marker language used by the v1 map. */
+.school-map-marker {
+  display: flex;
+  min-width: 72px;
+  max-width: 180px;
+  cursor: pointer;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  padding: 6px 10px;
+  border: 1px solid rgba(218, 220, 224, 0.95);
+  border-radius: 6px;
+  background: #fff;
+  box-shadow: 0 2px 6px rgba(32, 33, 36, 0.18);
+  color: #202124;
+  font-family: 'Noto Sans KR', 'Malgun Gothic', system-ui, sans-serif;
+  text-align: center;
+  white-space: nowrap;
+  transition: border-color 120ms ease, box-shadow 120ms ease, transform 120ms ease;
+}
+
+.school-map-marker:hover {
+  z-index: 2;
+  border-color: #8ab4f8;
+  box-shadow: 0 4px 10px rgba(32, 33, 36, 0.22);
+  transform: translateY(-1px);
+}
+
+.school-map-marker--dimmed {
+  opacity: 0.62;
+  box-shadow: 0 1px 3px rgba(32, 33, 36, 0.12);
+}
+
+.school-map-marker--dimmed:hover {
+  opacity: 0.9;
+}
+
+.school-map-marker--selected {
+  border: 2px solid #174ea6;
+  background: #1a73e8;
+  box-shadow: 0 5px 12px rgba(26, 115, 232, 0.38);
+  transform: translateY(-2px);
+}
+
+.school-map-marker--selected .school-map-marker__name {
+  color: #fff;
+}
+
+.school-map-marker--selected .school-map-marker__count {
+  background: rgba(255, 255, 255, 0.92);
+  color: #174ea6;
+}
+
+.school-map-marker__name {
+  display: block;
+  max-width: 160px;
+  overflow: hidden;
+  color: #1a73e8;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.25;
+  text-overflow: ellipsis;
+}
+
+.school-map-marker__count {
+  display: inline-block;
+  padding: 2px 7px;
+  border-radius: 10px;
+  background: #f1f3f4;
+  color: #202124;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.apartment-map-marker {
+  --marker-width: 72px;
+  --marker-height: 34px;
+  display: flex;
+  width: var(--marker-width);
+  height: var(--marker-height);
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Noto Sans KR', 'Malgun Gothic', system-ui, sans-serif;
+  transition: transform 120ms ease;
+}
+
+.apartment-map-marker--dot {
+  --marker-width: 24px;
+  --marker-height: 24px;
+}
+
+.apartment-map-marker--small {
+  --marker-width: 64px;
+  --marker-height: 32px;
+}
+
+.apartment-map-marker--medium {
+  --marker-width: 72px;
+  --marker-height: 34px;
+}
+
+.apartment-map-marker--large {
+  --marker-width: 82px;
+  --marker-height: 36px;
+}
+
+.apartment-map-marker--xlarge {
+  --marker-width: 94px;
+  --marker-height: 40px;
+}
+
+.apartment-map-marker:hover,
+.apartment-map-marker--selected {
+  transform: translateY(-2px);
+}
+
+.apartment-map-marker__label {
+  position: relative;
+  display: inline-flex;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  border: 1px solid #99d5cd;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.97);
+  color: #115e59;
+  box-shadow: 0 2px 5px rgba(32, 33, 36, 0.2);
+  white-space: nowrap;
+  transition: background 120ms ease, border-color 120ms ease, box-shadow 120ms ease, color 120ms ease;
+}
+
+.apartment-map-marker__label::after {
+  position: absolute;
+  bottom: -5px;
+  left: 50%;
+  width: 9px;
+  height: 9px;
+  border-right: 1px solid #99d5cd;
+  border-bottom: 1px solid #99d5cd;
+  background: inherit;
+  content: '';
+  transform: translateX(-50%) rotate(45deg);
+}
+
+.apartment-map-marker__label strong {
+  position: relative;
+  z-index: 1;
+  font-size: 13px;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.apartment-map-marker__label small {
+  position: relative;
+  z-index: 1;
+  color: #4b6f69;
+  font-size: 9px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.apartment-map-marker:hover .apartment-map-marker__label {
+  border-color: #0f766e;
+  box-shadow: 0 4px 8px rgba(15, 118, 110, 0.25);
+}
+
+.apartment-map-marker--selected .apartment-map-marker__label {
+  border-color: #064e3b;
+  background: #0f766e;
+  color: #fff;
+  box-shadow: 0 4px 9px rgba(6, 78, 59, 0.35);
+}
+
+.apartment-map-marker--selected .apartment-map-marker__label::after {
+  border-color: #064e3b;
+}
+
+.apartment-map-marker--selected .apartment-map-marker__label small {
+  color: #ccfbf1;
+}
+
+.apartment-map-marker__dot {
+  width: 8px;
+  height: 8px;
+  border: 1px solid #fff;
+  border-radius: 50%;
+  background: #0f766e;
+  box-shadow: 0 1px 3px rgba(6, 78, 59, 0.5);
+}
+
+.apartment-map-marker--dot:hover .apartment-map-marker__dot,
+.apartment-map-marker--dot.apartment-map-marker--selected .apartment-map-marker__dot {
+  width: 12px;
+  height: 12px;
+  outline: 2px solid rgba(15, 118, 110, 0.24);
+}
+
+.apartment-map-marker--small .apartment-map-marker__label strong {
+  font-size: 12px;
+}
+
+.apartment-map-marker--medium .apartment-map-marker__label strong {
+  font-size: 13px;
+}
+
+.apartment-map-marker--large:not(.apartment-map-marker--selected) .apartment-map-marker__label {
+  border-width: 1.5px;
+  background: rgba(240, 253, 250, 0.98);
+}
+
+.apartment-map-marker--large .apartment-map-marker__label strong {
+  font-size: 14px;
+}
+
+.apartment-map-marker--xlarge .apartment-map-marker__label {
+  border-width: 2px;
+  border-color: #0f766e;
+}
+
+.apartment-map-marker--xlarge .apartment-map-marker__label strong {
+  font-size: 15px;
+}
+
+.apartment-map-marker--xlarge .apartment-map-marker__label small {
+  font-size: 10px;
+}
+
+.school-cluster-marker {
+  display: inline-flex;
+  cursor: pointer;
+  align-items: center;
+  gap: 7px;
+  padding: 6px 10px;
+  border: 1px solid #e0e0e0;
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 2px 6px rgba(32, 33, 36, 0.17);
+  color: #202124;
+  font-family: 'Noto Sans KR', 'Malgun Gothic', system-ui, sans-serif;
+  font-size: 12px;
+  white-space: nowrap;
+  transition: border-color 120ms ease, box-shadow 120ms ease, transform 120ms ease;
+}
+
+.school-cluster-marker:hover {
+  border-color: #8ab4f8;
+  box-shadow: 0 4px 10px rgba(32, 33, 36, 0.22);
+  transform: translateY(-1px);
+}
+
+.school-cluster-marker strong {
+  color: #1a73e8;
+  font-weight: 700;
+}
+
+.school-cluster-marker span {
+  color: #5f6368;
+  font-size: 11px;
+}
+
+.school-cluster-marker .school-cluster-marker__high {
+  color: #1e8e3e;
+}
+
+.school-cluster-marker .school-cluster-marker__low {
+  color: #d93025;
+}
+
+@media (max-width: 640px) {
+  .school-map-marker {
+    max-width: 138px;
+    padding: 5px 8px;
+  }
+
+  .school-map-marker__name {
+    max-width: 122px;
+  }
+
+  .school-cluster-marker span {
+    display: none;
+  }
+
+  .school-cluster-marker--district span {
+    display: inline;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    color: #ffffff;
+    background-color: #242424;
+  }
+}

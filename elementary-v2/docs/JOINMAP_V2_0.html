@@ -1,0 +1,857 @@
+<title>초등 배정 데이터 조인맵</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans+KR:wght@400;500;600&family=IBM+Plex+Serif:ital,wght@0,500;0,600;1,400&display=swap">
+
+<style>
+:root{
+  --paper:#f5f7f9;
+  --card:#ffffff;
+  --ink:#161b24;
+  --muted:#5d6879;
+  --faint:#8a94a4;
+  --rule:#dde2ea;
+  --rule-strong:#c3cbd8;
+  --accent:#33578f;
+  --accent-soft:#eaf0f9;
+  --ok:#22603f;
+  --ok-soft:#e4f0e9;
+  --warn:#9a5310;
+  --warn-soft:#f8eddf;
+  --stop:#902536;
+  --stop-soft:#f9e6e9;
+  --shadow:0 1px 2px rgba(20,28,42,.06),0 8px 24px -16px rgba(20,28,42,.28);
+
+  --f-display:"IBM Plex Serif",Georgia,"Times New Roman",serif;
+  --f-body:"IBM Plex Sans KR","IBM Plex Sans",-apple-system,"Segoe UI",sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#0e1118;
+    --card:#161b24;
+    --ink:#e7ecf4;
+    --muted:#98a3b5;
+    --faint:#727e91;
+    --rule:#242c39;
+    --rule-strong:#333d4d;
+    --accent:#8fb0e6;
+    --accent-soft:#1a2333;
+    --ok:#6cc396;
+    --ok-soft:#152a20;
+    --warn:#e3a866;
+    --warn-soft:#2c2115;
+    --stop:#ea94a3;
+    --stop-soft:#2e1a1f;
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px -16px rgba(0,0,0,.8);
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0e1118;
+  --card:#161b24;
+  --ink:#e7ecf4;
+  --muted:#98a3b5;
+  --faint:#727e91;
+  --rule:#242c39;
+  --rule-strong:#333d4d;
+  --accent:#8fb0e6;
+  --accent-soft:#1a2333;
+  --ok:#6cc396;
+  --ok-soft:#152a20;
+  --warn:#e3a866;
+  --warn-soft:#2c2115;
+  --stop:#ea94a3;
+  --stop-soft:#2e1a1f;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px -16px rgba(0,0,0,.8);
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--f-body);
+  font-size:16px;
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:1060px;margin:0 auto;padding:0 24px 96px}
+
+/* ---------- masthead ---------- */
+.masthead{
+  padding:64px 0 40px;
+  border-bottom:2px solid var(--ink);
+  display:flex;flex-direction:column;gap:18px;
+}
+.kicker{
+  font-family:var(--f-mono);
+  font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--accent);font-weight:600;
+}
+h1{
+  font-family:var(--f-display);
+  font-size:clamp(34px,5.2vw,54px);
+  line-height:1.08;font-weight:600;margin:0;
+  letter-spacing:-.015em;text-wrap:balance;
+}
+.standfirst{
+  font-size:17.5px;color:var(--muted);max-width:64ch;margin:0;
+}
+.meta{
+  display:flex;flex-wrap:wrap;gap:8px 28px;
+  font-family:var(--f-mono);font-size:12px;color:var(--faint);
+  padding-top:6px;
+}
+.meta b{color:var(--muted);font-weight:500}
+
+/* ---------- sections ---------- */
+section{padding-top:56px}
+h2{
+  font-family:var(--f-display);
+  font-size:26px;font-weight:600;margin:0 0 6px;
+  letter-spacing:-.01em;
+}
+h3{
+  font-family:var(--f-body);
+  font-size:14px;font-weight:600;margin:34px 0 12px;
+  letter-spacing:.02em;color:var(--ink);
+}
+.lede{color:var(--muted);max-width:68ch;margin:0 0 26px}
+p{max-width:68ch}
+
+/* ---------- legend ---------- */
+.legend{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 30px}
+.lg{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:12.5px;font-family:var(--f-mono);
+  padding:6px 12px;border-radius:2px;border:1px solid var(--rule);
+  background:var(--card);
+}
+.dot{width:9px;height:9px;border-radius:50%;flex:none}
+.dot.ok{background:var(--ok)}
+.dot.warn{background:var(--warn)}
+.dot.stop{background:var(--stop)}
+
+/* ---------- verdict cards ---------- */
+.verdicts{display:grid;grid-template-columns:repeat(auto-fit,minmax(268px,1fr));gap:14px;margin-bottom:8px}
+.verdict{
+  background:var(--card);border:1px solid var(--rule);border-radius:3px;
+  padding:20px 20px 22px;box-shadow:var(--shadow);
+  display:flex;flex-direction:column;gap:8px;
+}
+.verdict .tag{
+  font-family:var(--f-mono);font-size:10.5px;letter-spacing:.12em;
+  text-transform:uppercase;font-weight:600;
+}
+.verdict.ok .tag{color:var(--ok)}
+.verdict.warn .tag{color:var(--warn)}
+.verdict.stop .tag{color:var(--stop)}
+.verdict h4{margin:0;font-size:16.5px;font-weight:600;font-family:var(--f-body);line-height:1.35}
+.verdict p{margin:0;font-size:14px;color:var(--muted);line-height:1.6}
+
+/* ---------- chain ---------- */
+.chain{
+  background:var(--card);border:1px solid var(--rule);border-radius:3px;
+  padding:28px 26px;box-shadow:var(--shadow);margin-bottom:8px;
+  overflow-x:auto;
+}
+.chain-title{
+  font-family:var(--f-mono);font-size:11px;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--faint);font-weight:600;
+  margin-bottom:20px;
+}
+.node{
+  border:1px solid var(--rule-strong);border-radius:3px;
+  padding:13px 16px;background:var(--paper);
+  display:grid;grid-template-columns:1fr auto;gap:4px 18px;align-items:baseline;
+  min-width:320px;
+}
+.node.term{border-color:var(--accent);background:var(--accent-soft)}
+.node-src{
+  font-size:12px;color:var(--muted);font-family:var(--f-mono);
+  grid-column:1/-1;letter-spacing:.02em;
+}
+.node-key{font-family:var(--f-mono);font-size:14.5px;font-weight:600;color:var(--ink)}
+.node-val{
+  font-family:var(--f-mono);font-size:13px;color:var(--accent);
+  white-space:nowrap;
+}
+.link{
+  display:flex;flex-wrap:wrap;align-items:center;gap:6px 12px;
+  margin:0 0 0 22px;padding:11px 0 11px 20px;
+  border-left:2px solid var(--rule-strong);
+}
+.link.ok{border-left-color:var(--ok)}
+.link.warn{border-left-color:var(--warn)}
+.link.stop{border-left-color:var(--stop);border-left-style:dashed}
+.badge{
+  font-family:var(--f-mono);font-size:11px;font-weight:600;
+  letter-spacing:.04em;padding:3px 9px;border-radius:2px;
+}
+.link.ok .badge{background:var(--ok-soft);color:var(--ok)}
+.link.warn .badge{background:var(--warn-soft);color:var(--warn)}
+.link.stop .badge{background:var(--stop-soft);color:var(--stop)}
+.link-note{font-size:13px;color:var(--muted)}
+.link-note code{font-family:var(--f-mono);font-size:12.5px;color:var(--ink)}
+.stack{display:flex;flex-direction:column;gap:0}
+.branch{margin-left:22px;padding-left:20px;border-left:2px dotted var(--rule-strong);padding-top:4px}
+
+/* ---------- tables ---------- */
+.tw{overflow-x:auto;border:1px solid var(--rule);border-radius:3px;background:var(--card);box-shadow:var(--shadow)}
+table{border-collapse:collapse;width:100%;font-size:13.5px;min-width:640px}
+th,td{padding:10px 14px;text-align:left;border-bottom:1px solid var(--rule);vertical-align:top}
+thead th{
+  font-family:var(--f-mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--faint);font-weight:600;background:var(--paper);
+  position:sticky;top:0;
+}
+tbody tr:last-child td{border-bottom:none}
+td.k{font-family:var(--f-mono);font-size:12.5px;color:var(--ink);white-space:nowrap}
+td.v{font-family:var(--f-mono);font-size:12.5px;color:var(--accent);white-space:nowrap}
+.st{font-family:var(--f-mono);font-size:11px;font-weight:600;white-space:nowrap}
+.st.ok{color:var(--ok)}
+.st.warn{color:var(--warn)}
+.st.stop{color:var(--stop)}
+caption{
+  caption-side:top;text-align:left;padding:14px 14px 10px;
+  font-family:var(--f-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--faint);font-weight:600;
+}
+
+/* ---------- action list ---------- */
+ol.actions{list-style:none;counter-reset:a;padding:0;margin:22px 0 0;display:flex;flex-direction:column;gap:2px}
+ol.actions li{
+  counter-increment:a;display:grid;grid-template-columns:auto 1fr;gap:16px;
+  padding:16px 0;border-top:1px solid var(--rule);align-items:start;
+}
+ol.actions li::before{
+  content:counter(a,decimal-leading-zero);
+  font-family:var(--f-mono);font-size:12px;font-weight:600;color:var(--accent);
+  padding-top:2px;
+}
+ol.actions strong{display:block;font-size:15.5px;font-weight:600;margin-bottom:3px}
+ol.actions span{color:var(--muted);font-size:14px}
+.who{
+  font-family:var(--f-mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;
+  padding:2px 7px;border-radius:2px;margin-left:8px;vertical-align:2px;
+  background:var(--warn-soft);color:var(--warn);font-weight:600;
+}
+.who.me{background:var(--accent-soft);color:var(--accent)}
+
+/* ---------- execution report ---------- */
+.report-summary{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px;margin:22px 0 28px}
+.report-stat{background:var(--card);border:1px solid var(--rule);border-top:3px solid var(--accent);padding:15px 16px}
+.report-stat.warn{border-top-color:var(--warn)}
+.report-stat.stop{border-top-color:var(--stop)}
+.report-stat b{display:block;font-family:var(--f-mono);font-size:25px;line-height:1.1;color:var(--ink)}
+.report-stat span{display:block;margin-top:5px;font-size:12.5px;color:var(--muted)}
+.checklist{list-style:none;padding:0;margin:14px 0 0;border-top:1px solid var(--rule)}
+.checklist li{display:grid;grid-template-columns:22px minmax(0,1fr) auto;gap:10px 12px;padding:15px 0;border-bottom:1px solid var(--rule);align-items:start}
+.check{width:18px;height:18px;margin-top:2px;border:1px solid var(--rule-strong);background:var(--card);color:var(--faint);display:grid;place-items:center;font-family:var(--f-mono);font-size:12px;line-height:1}
+.done .check{border-color:var(--ok);background:var(--ok-soft);color:var(--ok)}
+.doing .check{border-color:var(--accent);background:var(--accent-soft);color:var(--accent)}
+.blocked .check{border-color:var(--warn);background:var(--warn-soft);color:var(--warn)}
+.checklist strong{display:block;font-size:15px;line-height:1.45}
+.checklist p{margin:3px 0 0;color:var(--muted);font-size:13.5px;line-height:1.55;max-width:none}
+.status{font-family:var(--f-mono);font-size:10.5px;letter-spacing:.06em;font-weight:600;padding:3px 6px;border-radius:2px;white-space:nowrap;background:var(--accent-soft);color:var(--accent)}
+.done .status{background:var(--ok-soft);color:var(--ok)}
+.blocked .status{background:var(--warn-soft);color:var(--warn)}
+.issue-table td:first-child{font-weight:600}
+
+footer{
+  margin-top:64px;padding-top:22px;border-top:1px solid var(--rule);
+  font-family:var(--f-mono);font-size:11.5px;color:var(--faint);
+  display:flex;flex-wrap:wrap;gap:6px 24px;
+}
+a{color:var(--accent)}
+@media (max-width:640px){
+  .masthead{padding:44px 0 30px}
+  .node{min-width:0}
+  .node-val{white-space:normal;word-break:break-all}
+}
+</style>
+
+<div class="wrap">
+
+<header class="masthead">
+  <div class="kicker">v2.0 운영 기준선 · v2.1 프런트 개선 계획</div>
+  <h1>초등 배정 데이터 조인맵</h1>
+  <p class="standfirst">공식 학구도 폴리곤과 아파트 대표점·동별 건물을 결합해 배정정보를 자체 산출하는 확정 ETL, 예외 큐, 다음 학교·아파트 마스터 검증 계획.</p>
+  <div class="meta">
+    <span><b>실측일</b> 2026-08-30</span>
+    <span><b>현재 버전</b> v2.0 운영 기준선</span>
+    <span><b>대상 범위</b> 서울 · 경기 · 인천</span>
+    <span><b>매핑 방식</b> 대표점 공간조인 + 동별 건물 보정</span>
+    <span><b>운영 상태</b> 로컬 백엔드 감사 통과 · 운영 검수 큐 247건</span>
+  </div>
+</header>
+
+<section>
+  <h2>결론 먼저</h2>
+  <p class="lede">아파트 배정의 기준 원천은 2026 공식 학구도 폴리곤이다. Geomarket 2024는 비교·변경 이력으로만 보존하고, 대표점 공간조인과 동별 건물 보정을 결합해 최신 배정을 자체 산출한다.</p>
+
+  <div class="verdicts">
+    <div class="verdict ok">
+      <span class="tag">구조 확정</span>
+      <h4>배정 키는 학구도ID로 보존한다</h4>
+      <p>기존처럼 <code>"서울교동초통학구역"</code>에서 학교명을 잘라 유사도 매칭하지 않는다. 공식 폴리곤의 <code>HAKGUDO_ID</code>와 학구도명을 배정 결과에 함께 저장하고, <code>school_id</code> 연결은 다음 학교 정보 ETL에서 공식 코드 교차표를 검증한 뒤 추가한다.</p>
+    </div>
+    <div class="verdict ok">
+      <span class="tag">의존 해소</span>
+      <h4>Geomarket이 멈춰도 파이프라인은 산다</h4>
+      <p>Geomarket은 2024에서 갱신이 멈췄지만, 그것이 하던 일(아파트 좌표 × 통학구역 폴리곤 공간조인)의 원재료를 우리가 이미 갖고 있다. 폴리곤은 반기 갱신되므로 자체 산출로 전환하면 매년 최신화된다.</p>
+    </div>
+    <div class="verdict ok">
+      <span class="tag">연결 구조 확정</span>
+      <h4><code>apt_cd</code>와 K-apt는 1:N 단지 그룹으로 잇는다</h4>
+      <p><code>apt_cd</code>는 학구도 배정 행 키로 유지하고, 주소·지번·단지명 완전일치로 연결한 K-apt <code>단지코드</code>를 상위 그룹 키로 추가한다. 여러 <code>apt_cd</code>가 한 K-apt 단지를 구성할 수 있으므로 그룹 총계는 개별 행에 덮어쓰지 않는다.</p>
+    </div>
+    <div class="verdict ok">
+      <span class="tag">해결됨</span>
+      <h4>학교알리미 3종은 단일 키로 묶인다</h4>
+      <p>기본정보(<code>apiType=0</code>) · 학년별 학생수(<code>09</code>) · 방과후(<code>59</code>)가 모두 <code>SCHUL_CODE</code> 하나로 이어진다. 기본정보에 위경도까지 들어있어 표준데이터와의 대조 정확도도 함께 올라간다.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>학교축 조인 체인</h2>
+  <p class="lede">배정정보에서 출발해 학년별 학생수까지 도달하는 경로. 앞의 두 구간은 코드 완전일치로 이어지지만, 학교 식별자 체계가 셋으로 갈라지는 마지막 구간에서 이름·주소 매칭이 필요해진다.</p>
+
+  <div class="legend">
+    <span class="lg"><span class="dot ok"></span>코드 완전일치</span>
+    <span class="lg"><span class="dot warn"></span>이름·주소 유사도 매칭</span>
+    <span class="lg"><span class="dot stop"></span>차단 / 미확인</span>
+  </div>
+
+  <div class="chain">
+    <div class="chain-title">배정정보 → 학교 마스터 → 학사통계</div>
+    <div class="stack">
+      <div class="node">
+        <span class="node-src">① Geomarket 아파트 단지별 배정 학군 · data_sn=49 · <strong>2024 참고값</strong></span>
+        <span class="node-key">hakgudo_nm</span>
+        <span class="node-val">"서울교동초통학구역"</span>
+      </div>
+      <div class="link ok">
+        <span class="badge">완전일치</span>
+        <span class="link-note">학구명 + <code>edu_nm</code>(교육지원청명) 조인 — 폴리곤 <code>HAKGUDO_NM</code>과 표기 체계가 동일</span>
+      </div>
+      <div class="link ok">
+        <span class="badge">대체 경로</span>
+        <span class="link-note">Geomarket 없이도 도달 가능 — 아파트 좌표를 폴리곤에 <code>ST_Contains</code> 공간조인하면 같은 <code>HAKGUDO_ID</code>가 나온다</span>
+      </div>
+      <div class="node term">
+        <span class="node-src">초등학교통학구역 폴리곤 · <strong>15099520</strong> · 7,140개 · 2026-03-20 기준</span>
+        <span class="node-key">HAKGUDO_ID</span>
+        <span class="node-val">Z000102998</span>
+      </div>
+      <div class="link ok">
+        <span class="badge">완전일치</span>
+        <span class="link-note">학구ID 1:1 — 폴리곤 속성에 <code>HAKGUDO_NM</code>·<code>EDU_NM</code>이 함께 있어 15021149 없이도 조인된다</span>
+      </div>
+      <div class="node term">
+        <span class="node-src">전국학교학구도연계정보표준데이터 · 15021158</span>
+        <span class="node-key">학교ID</span>
+        <span class="node-val">B000013195</span>
+      </div>
+      <div class="link ok">
+        <span class="badge">완전일치</span>
+        <span class="link-note">동일 학교ID 체계 — 좌표·주소·교육청 확보</span>
+      </div>
+      <div class="node term">
+        <span class="node-src">전국초중등학교위치표준데이터 · 15159184 · 12,011행 · 2026-03-20</span>
+        <span class="node-key">학교ID</span>
+        <span class="node-val">B000013195</span>
+      </div>
+
+      <div class="link warn">
+        <span class="badge">좌표 + 이름 대조</span>
+        <span class="link-note">공통 코드 없음 → 위경도 + 도로명주소 + 학교명 + 교육지원청명 4중 대조</span>
+      </div>
+      <div class="branch">
+        <div class="node term">
+          <span class="node-src">③ 학교알리미 학교기본정보 · <code>apiType=0</code> · 좌표 보유</span>
+          <span class="node-key">SCHUL_CODE</span>
+          <span class="node-val">S000003563</span>
+        </div>
+        <div class="link ok">
+          <span class="badge">완전일치</span>
+          <span class="link-note">동일 <code>SCHUL_CODE</code> — 학교알리미 정보공시 전 항목이 이 키 하나로 묶인다</span>
+        </div>
+        <div class="node">
+          <span class="node-src">③ 학년별·학급별 학생수 · <code>apiType=09</code> · 2026 공시</span>
+          <span class="node-key">COL_S_SUM · COL_C_SUM</span>
+          <span class="node-val">학년별 학생수 · 학급수</span>
+        </div>
+        <div class="link ok">
+          <span class="badge">완전일치</span>
+          <span class="link-note">동일 <code>SCHUL_CODE</code></span>
+        </div>
+        <div class="node">
+          <span class="node-src">④ 방과후학교 운영계획 및 운영·지원현황 · <code>apiType=59</code> · 2026 공시</span>
+          <span class="node-key">SUM_ASL_PGM_FGR</span>
+          <span class="node-val">28개 · 수강 956명</span>
+        </div>
+        <div style="height:12px"></div>
+        <div class="node">
+          <span class="node-src">② NEIS 학교기본정보 · 보조 · 교육청 메타 보완용</span>
+          <span class="node-key">SD_SCHUL_CODE</span>
+          <span class="node-val">7010057</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p style="font-size:13.5px;color:var(--muted);margin-top:14px">학교 식별자는 <code>B000013195</code>(표준) · <code>S000003563</code>(학교알리미) · <code>7010057</code>(NEIS) 세 갈래지만, 실제로 이어야 할 구간은 <strong>표준 ↔ 학교알리미 한 곳뿐</strong>이다. 학교알리미 기본정보가 위경도와 도로명주소를 함께 주므로 좌표 일치로 대조할 수 있어, 이름만으로 맞추던 기존 방식보다 훨씬 견고하다. NEIS는 이 경로가 확보되면 필수가 아니다.</p>
+
+  <h3>학교알리미 apiType 코드표 (실측 확인)</h3>
+  <div class="tw">
+    <table>
+      <thead><tr><th>apiType</th><th>공시항목</th><th>이 프로젝트에서의 쓰임</th></tr></thead>
+      <tbody>
+        <tr><td class="k">0</td><td>학교기본정보</td><td>학교 마스터 · <strong>위경도 · 도로명주소</strong> — 표준데이터 대조의 축</td></tr>
+        <tr><td class="k">09</td><td>학년별·학급별 학생수</td><td>1학년 학생수 필터 · 학년별 통계 차트</td></tr>
+        <tr><td class="k">59</td><td>방과후학교 운영계획 및 운영·지원현황</td><td>방과후 프로그램수 · 돌봄교실 운영 현황</td></tr>
+        <tr><td class="k">10</td><td>전·출입 및 학업중단 학생 수</td><td>학령인구 증감 추세 (선택)</td></tr>
+        <tr><td class="k">51</td><td>입학생 현황</td><td>신입생 규모 추이 (선택)</td></tr>
+        <tr><td class="k">34</td><td>급식 실시 현황</td><td>확장 후보</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p style="font-size:13px;color:var(--muted);margin-top:12px">호출 형식은 <code>openApi.do?apiKey=&amp;apiType=&amp;sidoCode=&amp;sggCode=&amp;schulKndCode=02&amp;pbanYr=</code>. apiType은 순차번호가 아니라 공시항목 고유코드이며(59·62·63·94 등), <code>apiType=0</code>만 <code>pbanYr</code>이 필요 없다. <code>schulKndCode=02</code>가 초등학교임을 실측으로 확인했다.</p>
+</section>
+
+<section>
+  <h2>아파트축 조인 체인</h2>
+  <p class="lede">현재 <code>apt_cd</code>를 학구도 배정 키로 유지하고 공식 공간조인 결과를 결합한다. K-apt는 주차·동 수·관리 속성을 보강하고 분할된 <code>apt_cd</code>를 상위 단지로 묶는 선택적 원천이며, 검증된 연결은 별도 교차표로 추적한다.</p>
+
+  <div class="chain">
+    <div class="chain-title">배정 기준점 → 단지 속성 → 시세</div>
+    <div class="stack">
+      <div class="node term">
+        <span class="node-src">① Geomarket · 49,288행 · std_yr 2024</span>
+        <span class="node-key">apt_cd</span>
+        <span class="node-val">APT1111021000010428000001</span>
+      </div>
+      <div class="link ok">
+        <span class="badge">완전일치</span>
+        <span class="link-note">동일 Geomarket 체계 — 세대수·사용승인년도·좌표·임대여부 확보</span>
+      </div>
+      <div class="node">
+        <span class="node-src">Geomarket 아파트단지 기준정보 · apt_mst_info · 30컬럼</span>
+        <span class="node-key">nmhsh · use_aprv_yr · lo/la</span>
+        <span class="node-val">149 · 1968 · 126.988/37.572</span>
+      </div>
+      <div class="link ok">
+        <span class="badge">완전일치 계층</span>
+        <span class="link-note">도로명주소 → 지번주소 → 시도·시군구·단지명 순으로 연결하고 세대수·동 수·승인연도로 검증</span>
+      </div>
+      <div class="node">
+        <span class="node-src">⑤ K-apt 단지 기본정보 CSV · 2026-08-21 전국 21,690행 / 수도권 9,861행 · 85컬럼</span>
+        <span class="node-key">단지코드</span>
+        <span class="node-val">A11007001</span>
+      </div>
+      <div class="link ok">
+        <span class="badge">완전일치</span>
+        <span class="link-note">동일 kaptCode — 지상·지하 주차면수 등 CSV 결측 보완</span>
+      </div>
+      <div class="node">
+        <span class="node-src">⑤ K-apt 공식 자료실 주간 XLSX · 세션·CSRF 자동 수집</span>
+        <span class="node-key">kaptCode · bjdCode</span>
+        <span class="node-val">A10027875 · 2638010100</span>
+      </div>
+      <div class="link warn">
+        <span class="badge">유사도 매칭</span>
+        <span class="link-note">응답에 단지코드 없음 → <code>sggCd</code>(5자리) + <code>umdNm</code> + <code>jibun</code> + <code>aptNm</code>으로만 대조</span>
+      </div>
+      <div class="node">
+        <span class="node-src">⑥ 아파트 매매 실거래가 · 15126469 · 호출 성공</span>
+        <span class="node-key">sggCd + umdNm + jibun</span>
+        <span class="node-val">11110 · 명륜2가 · 4</span>
+      </div>
+    </div>
+  </div>
+  <p style="font-size:13.5px;color:var(--muted);margin-top:14px">수도권 운영 모수 20,421개는 좌표·주소·식별키가 모두 유효해 학구도 ETL을 독립 실행할 수 있다. 법정동코드는 인천이지만 주소·좌표·단지코드가 광주광역시인 오염 1건을 제외했다. 최신 K-apt는 8,744개 <code>apt_cd</code>를 8,385개 단지코드에 연결했다. 공유 단지 299개 중 214개 그룹은 구성 단지 세대수 합으로 1:N 관계를 검증했고, 85개 그룹은 별도 큐로 분리했다.</p>
+  <div class="tw" style="margin-top:22px">
+    <table>
+      <caption>단지 명칭·속성 이력 판정 규칙</caption>
+      <thead><tr><th>대상</th><th>자동 판정</th><th>보존·적용 방식</th></tr></thead>
+      <tbody>
+        <tr><td>단지명</td><td>2024 기준명과 2026-08 K-apt 명칭을 정규화해 동일명·표기 변형·개명 후보·보류로 분류</td><td><code>latest_known_name</code>과 모든 <code>name_aliases</code>, 원천 기준일을 함께 저장</td></tr>
+        <tr><td>재건축 전후 중복</td><td>구·신 명칭의 개별 세대수가 각각 K-apt 총세대수와 일치하면 <code>historical_current_overlap</code></td><td>하나의 1:N 단지로 확정하지 않고 이력·식별 검토 큐로 분리</td></tr>
+        <tr><td>주차대수</td><td>1:1 단지 확정 시 더 최신인 2026-08 K-apt 값을 채택</td><td>2024 값과 최신 관측값을 이력에 모두 보존하며 수기 검수에서는 제외</td></tr>
+        <tr><td>세대수·동 수·승인연도</td><td>차이가 나면 합병·분할·재건축 범위 충돌로 판정</td><td>자동 덮어쓰지 않고 기존값·최신 관측값·검토 상태를 함께 저장</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section>
+  <h2>공간조인 검증 결과</h2>
+  <p class="lede">Geomarket 2024를 정답지가 아닌 과거 참고값으로 놓고, 아파트 좌표를 통학구역 폴리곤에 <code>ST_Contains</code>한 결과와 차이를 분석했다. 초기 검증 대상은 서울·경기·인천 아파트 20,048개 × 폴리곤 2,632개다.</p>
+
+  <div class="verdicts" style="margin-bottom:26px">
+    <div class="verdict ok">
+      <span class="tag">98.4%</span>
+      <h4>실질 일치</h4>
+      <p>완전일치 18,924건(94.4%) + 부분일치 811건(4.0%). 폴리곤 밖으로 벗어난 단지는 20,048개 중 <strong>7개</strong>뿐이다.</p>
+    </div>
+    <div class="verdict ok">
+      <span class="tag">역전</span>
+      <h4>어긋난 곳은 폴리곤이 더 최신</h4>
+      <p>불일치 306건 중 122건은 <strong>Geomarket이 낡아서</strong> 생겼다. 서울보광초·서울면중초는 이미 폐교돼 2026-03 학교 목록에 없는데 Geomarket은 여전히 배정하고 있다.</p>
+    </div>
+    <div class="verdict warn">
+      <span class="tag">보완 필요</span>
+      <h4>단지가 학구 경계에 걸치는 경우</h4>
+      <p>부분일치 811건은 한 단지가 여러 통학구역에 걸쳐 Geomarket은 전부 나열하는데 점 좌표 하나로는 한 곳만 잡히는 사례다. 큰 단지는 대표점 대신 VWorld 건물 폴리곤으로 동별 판정해야 한다.</p>
+    </div>
+  </div>
+
+  <div class="tw">
+    <table>
+      <caption>판정 결과 · 아파트 20,048개</caption>
+      <thead><tr><th>구분</th><th>건수</th><th>비율</th><th>해석</th></tr></thead>
+      <tbody>
+        <tr><td>완전일치</td><td class="v">18,924</td><td class="v">94.4%</td><td>Geomarket 참고값과 학구도명 집합이 동일</td></tr>
+        <tr><td>부분일치</td><td class="v">811</td><td class="v">4.0%</td><td>교집합 있음 — 단지가 복수 학구에 걸침</td></tr>
+        <tr><td>불일치</td><td class="v">306</td><td class="v">1.5%</td><td>아래 원인 분류 참조</td></tr>
+        <tr><td>폴리곤 밖</td><td class="v">7</td><td class="v">0.0%</td><td>재건축 중 단지 등</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="tw" style="margin-top:18px">
+    <table>
+      <caption>불일치 306건의 원인</caption>
+      <thead><tr><th>원인</th><th>건수</th><th>어느 쪽이 맞나</th></tr></thead>
+      <tbody>
+        <tr><td>폐교·통폐합 — Geomarket 참고값의 학교가 2026-03 목록에 없음</td><td class="v">30</td><td class="st ok">폴리곤</td></tr>
+        <tr><td>공동통학구역으로 개편</td><td class="v">92</td><td class="st ok">폴리곤</td></tr>
+        <tr><td>인접 학구 경계 차이 — 개별 확인 필요</td><td class="v">184</td><td class="st warn">미판정</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p style="font-size:13.5px;color:var(--muted);margin-top:14px">남은 184건은 전체의 <strong>0.9%</strong>이고, 대부분 인접한 두 학구 사이 경계선상 단지다(예: 화곡초 ↔ 신월초). 2024→2025 사이 학구 경계 조정일 수도, Geomarket이 법정동 단위로 뭉뚱그린 것일 수도 있어 표본 확인이 필요하다. 어느 쪽이든 파이프라인 성립 여부를 뒤집지는 않는다.</p>
+
+  <div class="tw" style="margin-top:22px">
+    <table>
+      <caption>VWorld 건물 폴리곤 동 단위 보정 · 보정 후보 1,084개 전체</caption>
+      <thead><tr><th>구분</th><th>건수</th><th>비율</th><th>해석</th></tr></thead>
+      <tbody>
+        <tr><td>동별 실제 분리</td><td class="v">89</td><td class="v">8.2%</td><td>동 중심점이 복수 학구로 갈림 — 동별 배정 테이블 필요</td></tr>
+        <tr><td>단일 학구로 정리</td><td class="v">740</td><td class="v">68.3%</td><td>후보였지만 모든 매칭 동이 한 학구에 들어감</td></tr>
+        <tr><td>건물 매칭 실패</td><td class="v">255</td><td class="v">23.5%</td><td>소규모·주상복합·표기 불일치 등으로 추가 매칭 규칙 필요</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p style="font-size:13.5px;color:var(--muted);margin-top:14px">VWorld <code>LT_C_SPBD</code>는 아파트 동을 개별 폴리곤으로 제공한다. 일반적으로 <code>buld_nm</code>은 단지명, <code>buld_nm_dc</code>는 동명이지만 은마처럼 동명이 <code>buld_nm</code>에 포함되는 예외도 있다. 기존 성공 829개 중 학구명이 빈 17개를 실패로 정정해 유효 건물 판정은 812개다. 원본 P1 큐는 248개이며 광주 주소 오염 1건을 제외한 수도권 운영 큐는 247개다.</p>
+
+  <div class="tw" style="margin-top:22px">
+    <table>
+      <caption>고신뢰 대표점 배정 중 Geomarket 2024와 차이·누락 1,107개의 원인</caption>
+      <thead><tr><th>원인</th><th>건수</th><th>해석</th></tr></thead>
+      <tbody>
+        <tr><td>Geomarket 복수 배정 안에 새 대표 학구 포함</td><td class="v">514</td><td>완전 충돌이 아니라 공식 폴리곤이 단일 학구로 좁힌 사례</td></tr>
+        <tr><td>Geomarket row는 있으나 초등 배정 JSON 결측</td><td class="v">309</td><td>원본 결측으로 새 폴리곤 산출값을 우선 사용</td></tr>
+        <tr><td>Geomarket 학구명이 현재 폴리곤에 없음</td><td class="v">95</td><td>폐교·개편·명칭 변경 가능성이 높은 과거 학구명</td></tr>
+        <tr><td>공동통학구역 표현 변화</td><td class="v">93</td><td>단일/공동학구 표기 체계 변화</td></tr>
+        <tr><td>정면 충돌 표본 검수 필요</td><td class="v">86</td><td>새 대표 학구와 Geomarket 단일 학구가 다름</td></tr>
+        <tr><td>일부 과거 학구명 포함</td><td class="v">10</td><td>복수 배정 중 일부만 현재 폴리곤에 없음</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section>
+  <h2>소스별 실측 키 형식</h2>
+  <p class="lede">아래 값은 문서가 아니라 실제 API 응답과 내려받은 파일에서 확인한 것이다. 확인 방법이 다른 항목은 근거를 따로 표시했다.</p>
+
+  <div class="tw">
+    <table>
+      <caption>학교 소스</caption>
+      <thead><tr><th>소스</th><th>식별 키</th><th>실측 값</th><th>기준일 / 규모</th><th>상태</th></tr></thead>
+      <tbody>
+        <tr><td>초중등학교위치 표준데이터<br><span style="color:var(--faint);font-size:12px">15159184</span></td><td class="k">학교ID</td><td class="v">B000013195</td><td>2026-03-20 · 12,011행</td><td class="st ok">다운로드 성공</td></tr>
+        <tr><td>학교학구도연계정보<br><span style="color:var(--faint);font-size:12px">15021158</span></td><td class="k">학구ID → 학교ID</td><td class="v">B000…</td><td>2026-03-20</td><td class="st warn">컬럼 문서 확인<br>파일 미수신</td></tr>
+        <tr><td><strong>초등학교통학구역 폴리곤</strong><br><span style="color:var(--faint);font-size:12px">15099520 · SHP</span></td><td class="k">HAKGUDO_ID<br>HAKGUDO_NM · EDU_NM</td><td class="v">Z000102998<br>남춘천초통학구역</td><td>2026-03-20 · 전국 7,140개</td><td class="st ok">기준 스냅샷 확정<br>EPSG:5186</td></tr>
+        <tr><td>초등학교통학구역 표준데이터<br><span style="color:var(--faint);font-size:12px">15021149</span></td><td class="k">학구ID · 학구명</td><td class="v">폴리곤과 중복</td><td>2026-03-20</td><td class="st warn">불필요<br>SHP가 대체</td></tr>
+        <tr><td>NEIS 학교기본정보</td><td class="k">SD_SCHUL_CODE<br>ATPT_OFCDC_SC_CODE</td><td class="v">7010057<br>B10</td><td>전국 초등 6,341교</td><td class="st ok">API 호출 성공</td></tr>
+        <tr><td>학교알리미 학교기본정보<br><span style="color:var(--faint);font-size:12px">apiType=0</span></td><td class="k">SCHUL_CODE<br>LGTUD · LTTUD</td><td class="v">S000003563<br>127.0028935758</td><td>상시 · 종로구 13교</td><td class="st ok">API 호출 성공<br>좌표 보유</td></tr>
+        <tr><td>학교알리미 학년별 학생수<br><span style="color:var(--faint);font-size:12px">apiType=09</span></td><td class="k">SCHUL_CODE</td><td class="v">COL_S_SUM · COL_C_SUM</td><td>2026 공시 · 전국 6,281교</td><td class="st ok">API 호출 성공</td></tr>
+        <tr><td>학교알리미 방과후<br><span style="color:var(--faint);font-size:12px">apiType=59</span></td><td class="k">SCHUL_CODE</td><td class="v">SUM_ASL_PGM_FGR = 28</td><td>2026 공시</td><td class="st ok">API 호출 성공</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="tw" style="margin-top:22px">
+    <table>
+      <caption>아파트 소스</caption>
+      <thead><tr><th>소스</th><th>식별 키</th><th>실측 값</th><th>기준일 / 규모</th><th>상태</th></tr></thead>
+      <tbody>
+        <tr><td>Geomarket 배정 학군<br><span style="color:var(--faint);font-size:12px">data_sn=49</span></td><td class="k">apt_cd<br>legaldong_cd</td><td class="v">APT1111021000010428000001<br>1111013700</td><td>std_yr 2024 · 49,288행</td><td class="st ok">로컬 파일 확인</td></tr>
+        <tr><td>Geomarket 단지 기준정보<br><span style="color:var(--faint);font-size:12px">apt_mst_info</span></td><td class="k">apt_cd</td><td class="v">동일 체계 · 30컬럼</td><td>202410</td><td class="st ok">로컬 파일 확인</td></tr>
+        <tr><td>K-apt 단지 기본정보 CSV</td><td class="k">단지코드</td><td class="v">A11007001</td><td>2026-08-21 · 전국 21,690행<br>수도권 9,861행</td><td class="st ok">공식 자료실 자동 수집</td></tr>
+        <tr><td>공동주택 기본정보 API V4<br><span style="color:var(--faint);font-size:12px">15058453</span></td><td class="k">kaptCode</td><td class="v">오류코드 12</td><td>2026-08-27 프로브</td><td class="st warn">서비스 없음·폐기 응답<br>주간 XLSX로 대체</td></tr>
+        <tr><td>공동주택 단지 목록<br><span style="color:var(--faint);font-size:12px">AptListService3</span></td><td class="k">—</td><td class="v">Forbidden</td><td>—</td><td class="st stop">활용신청 필요</td></tr>
+        <tr><td>아파트 매매 실거래가<br><span style="color:var(--faint);font-size:12px">15126469</span></td><td class="k">sggCd · umdNm<br>jibun · aptNm</td><td class="v">11110 · 명륜2가<br>4 · 아남1</td><td>월 단위 · 2026-05 확인</td><td class="st ok">API 호출 성공<br>단지코드 없음</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="confirmed-etl">
+  <h2>학구도 ETL 확정안</h2>
+  <p class="lede">현재 확보된 서울·경기·인천 데이터로 운영 가능한 v1 프로세스를 고정한다. 건물 원천 추가와 전국 확장은 후속 개선으로 분리하고, 미해결 건은 억지로 확정하지 않고 대표점 잠정값과 검수 상태를 함께 제공한다.</p>
+
+  <div class="tw">
+    <table>
+      <caption>확정 실행 순서와 단계별 계약</caption>
+      <thead><tr><th>단계</th><th>입력·처리</th><th>산출·검증 기준</th></tr></thead>
+      <tbody>
+        <tr><td class="k">1 · snapshot</td><td>2026-03-20 공식 학구도 폴리곤 버전을 고정하고 학교 연결 원천은 별도 보관</td><td><code>hakgudo_id</code>, 명칭, 교육청, 기준일, geometry 보존. <code>school_id</code> 교차표는 학교 ETL에서 검증</td></tr>
+        <tr><td class="k">2 · apartment universe</td><td><code>apt_cd</code> 기준 서울·경기·인천 20,421개 단지 로드</td><td>법정동코드와 주소 지역 교차검사, 좌표·중복 ID 차단</td></tr>
+        <tr><td class="k">3 · point join</td><td>대표점을 공식 폴리곤에 공간조인</td><td>20,395개 포함, 고신뢰 19,347개 기본 배정, 미포함 27개 별도 표시</td></tr>
+        <tr><td class="k">4 · risk detection</td><td>복수 인접 학구, 경계 거리, 추정 단지 반경, 대형 단지 조건 계산</td><td>동별 검사가 필요한 단지만 건물 보정 단계로 전달</td></tr>
+        <tr><td class="k">5 · building correction</td><td>VWorld 동 폴리곤과 동명을 매칭해 동 중심점을 다시 공간조인</td><td>건물 단위 보정 839개, 실제 동별 분리 101개를 별도 저장</td></tr>
+        <tr><td class="k">6 · decisions</td><td>P2 116개는 2026 공식값, P1 자동·중복·수기 해결 24개는 결정 로그 적용</td><td>Geomarket은 덮어쓰기 금지 참고값, 모든 변경에 근거 파일 기록</td></tr>
+        <tr><td class="k">7 · publish</td><td>단지 배정·동별 배정·검수 큐를 각각 출력</td><td>수도권 미해결 247개는 대표점 잠정값과 <code>review_required=true</code>를 함께 제공</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>판정 우선순위와 예외 정책</h3>
+  <ol class="actions">
+    <li><div><strong>공식 지도 기반 동별 오버라이드</strong><span>동 그룹과 학구가 수기 확정된 경우 최우선 적용하며 근거 페이지와 판정자를 보존한다.</span></div></li>
+    <li><div><strong>공식 동 좌표 조회</strong><span>복원된 모든 동이 공식 조회에서 동일하게 반환된 경우 자동 확정한다.</span></div></li>
+    <li><div><strong>VWorld 건물 폴리곤</strong><span>동 수·동명·주소가 완전한 단지는 건물 중심점 공간조인 결과를 적용한다.</span></div></li>
+    <li><div><strong>공식 대표점 공간조인</strong><span>건물 보정이 없으면 기본 배정으로 사용한다. 위험 후보는 잠정값으로만 제공한다.</span></div></li>
+    <li><div><strong>Geomarket 2024</strong><span>배정에는 사용하지 않고 과거값 비교, 변경 탐지, 원인 분석에만 사용한다.</span></div></li>
+  </ol>
+
+  <div class="tw" style="margin-top:22px">
+    <table>
+      <caption>운영 산출물</caption>
+      <thead><tr><th>파일·테이블</th><th>행 단위</th><th>필수 추적 필드</th></tr></thead>
+      <tbody>
+        <tr><td><code>final_apartment_assignments</code></td><td>단지 1행</td><td><code>apt_cd</code>, 학구ID, <code>assignment_method</code>, <code>confidence</code>, <code>review_required</code>, 기준일</td></tr>
+        <tr><td><code>final_apartment_building_assignments</code></td><td>단지 동 1행</td><td><code>apt_cd + dong_name</code>, 학구ID, 좌표, 매칭 근거</td></tr>
+        <tr><td><code>assignment_review_queue</code></td><td>미해결 단지 1행</td><td>검수 사유, 후보 학구, 주소, 대표점, 추천 조치</td></tr>
+        <tr><td><code>assignment_decision_log</code></td><td>판정 1행</td><td>이전값·확정값, 근거 파일, 판정 방식, 판정일</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>후속 마스터 ETL 검증 결과</h3>
+  <p class="lede">학구도 배정 로직 v1에 이어 학교 정보와 아파트 단지 마스터의 원천·키·결측·최신성 검증을 완료했다. 남은 항목은 운영을 막지 않는 선택적 보강 또는 전국 확장 과제로 분리한다.</p>
+  <ul class="checklist">
+    <li class="done">
+      <span class="check">✓</span><div><strong>학교 개별 정보 ETL v2 확정</strong><p>기존 2,305교의 부산 오염 65건과 중복 ID 24개를 제거하고 공식 원천의 학교급 충돌 1건을 예외 처리했다. 서울 606교·경기 1,379교·인천 275교, 총 2,260교 모두를 고유한 학교알리미 <code>SCHUL_CODE</code>에 연결했다. 2026 학생 통계는 2,257교, 미공시 3교는 2025 대체값과 출처를 표시한다.</p></div><span class="status">완료</span>
+    </li>
+    <li class="done">
+      <span class="check">✓</span><div><strong>아파트 단지 정보 ETL v1 확정</strong><p>수도권 20,421개는 <code>apt_cd</code>·<code>uid</code> 중복 0건, 주소·좌표 결측 0건이다. 주소 지역 교차검사로 광주 오염 1건을 제외했고, 2026-08 K-apt 9,861개 중 8,385개 코드를 8,744개 행에 연결했다. 1:N 공유 단지는 214개 그룹을 검증 완료하고 85개를 검토 대상으로 분리했다.</p></div><span class="status">완료</span>
+    </li>
+    <li class="blocked">
+      <span class="check">!</span><div><strong>전국 건물 원천 확대</strong><p>건축HUB·GIS 건물통합정보·도로명주소 건물DB 연결은 전국 확장 단계에서 진행한다. 수도권 247건은 검수 큐로 보존하며 v1 배정을 막지 않는다.</p></div><span class="status">추후 개선</span>
+    </li>
+  </ul>
+</section>
+
+<section id="execution-report">
+  <h2>ETL 진행 리포트</h2>
+  <p class="lede">기준일 2026-08-29. Geomarket 2024는 비교용 참고값으로만 유지하고, 공식 학구도 폴리곤을 최종 배정 기준으로 전환했다. 프런트 조회 계약과 원격 적재 검증을 마쳤으며 다음 단계는 정기 ETL 운영화다.</p>
+
+  <div class="report-summary">
+    <div class="report-stat"><b>19,347</b><span>2026 폴리곤 고신뢰 대표점 배정</span></div>
+    <div class="report-stat"><b>839</b><span>VWorld 건물 폴리곤 보정 완료</span></div>
+    <div class="report-stat warn"><b>247</b><span>수도권 운영 검수 큐</span></div>
+    <div class="report-stat"><b>116</b><span>P2 공식 2026 값 채택 완료</span></div>
+  </div>
+
+  <h3>실행 체크리스트</h3>
+  <ul class="checklist">
+    <li class="done">
+      <span class="check">✓</span><div><strong>공식 학구도 폴리곤 기반 대표점 배정</strong><p>2026-03-20 공식 폴리곤으로 수도권 운영 아파트 20,421개 중 20,395개를 공간조인했다. 고신뢰 19,347개는 최신 기본 배정으로 사용한다.</p></div><span class="status">완료</span>
+    </li>
+    <li class="done">
+      <span class="check">✓</span><div><strong>경계·대단지 후보의 VWorld 동별 폴리곤 보정</strong><p>보정 후보 1,084개 전체 실행을 마쳤다. 740개는 단일 학구, 89개는 실제 동별 분리로 확인됐다.</p></div><span class="status">완료</span>
+    </li>
+    <li class="done">
+      <span class="check">✓</span><div><strong>Geomarket 2024 차이 원인 분류</strong><p>2026 고신뢰 19,347개 중 1,176개 차이를 분류했다. 복수 배정 포함 512개, 원본 결측 313개, 과거 학구명 113개가 대부분이다.</p></div><span class="status">완료</span>
+    </li>
+    <li class="done">
+      <span class="check">✓</span><div><strong>2026 폴리곤 갱신 및 P2 큐 재산정</strong><p>전국 폴리곤은 7,123개에서 7,140개로 늘었고, 대표점 미포함은 37개에서 27개로 줄었다. 신규 후보 32개 중 31개는 2026 학구 변경, 1개는 공동(일방) 표기 변경이다. 전체 분류를 재검사한 최종 정면 충돌은 116개다.</p></div><span class="status">완료</span>
+    </li>
+    <li class="done">
+      <span class="check">✓</span><div><strong>검수 후보 통합 및 활성 큐 재산정</strong><p>기존 P1 실패 255개 외에 학구명 없는 허위 성공 17개를 발견해 P1 모수를 272개로 정정했다. P2 116개는 공식값을 채택하고 P1 24개를 해결해 현재 미해결 큐는 P1 248개다.</p></div><span class="status">정정 완료</span>
+    </li>
+    <li class="done">
+      <span class="check">✓</span><div><strong>P2 2026 공식 학구도 값 채택</strong><p>Geomarket 2024는 참고값으로만 보존하고, 116개 모두 2026-03-20 공식 폴리곤 값을 적용한다. 각 행은 <code>accepted_official_20260320</code> 결정 로그로 남겨 변경 근거를 추적한다.</p></div><span class="status">공식값 채택</span>
+    </li>
+    <li class="done">
+      <span class="check">✓</span><div><strong>P1 재매칭과 v1 예외 큐 확정</strong><p>정정된 건물 실패 272개에 동명 파싱·중복 제거·수기 판정을 적용해 24개를 해결했다. 잔여 248개는 기존 저신뢰 77개, 건물 무후보 154개, 학구명 없는 허위 성공 17개로 분류하고 <code>review_required=true</code>로 고정한다.</p></div><span class="status">v1 확정</span>
+    </li>
+    <li class="done">
+      <span class="check">✓</span><div><strong>P1 A+B 35개 공식 브라우저 좌표 조회</strong><p>학구도 GIS가 사용하는 공식 조회 요청으로 첫 배치를 확인했다. 대표점 학구 반환 18개, 무학구 17개다. A군 20개 중 3개가 2026 학구를 반환했고, B군 15개는 모두 대표점 학구를 확인했지만 실제 동별 분리 여부는 지도 판독이 남아 있다.</p></div><span class="status">1차 완료</span>
+    </li>
+    <li class="done">
+      <span class="check">✓</span><div><strong>B군 사례 15개 해결</strong><p>아크포레자이위브는 1101~1111동을 광명남초, 나머지 2단지를 광문초로 확정했다. 첫 B군 15개는 모두 동별 또는 단지별 공식 학구 배정을 기록했다.</p></div><span class="status">완료</span>
+    </li>
+    <li class="done">
+      <span class="check">✓</span><div><strong>좌표 기반 bbox 재매칭 표본 실험</strong><p>대표 5건 중 대림e편한세상은 검단로 446의 101~119동 19개를 복원했고 공식 조회에서 전 동이 인천왕길초로 일치했다. 반포주공은 17/32동만 복원됐으며 한신한진·부평그랑힐스·동신2단지는 원천 폴리곤 부족 또는 불일치로 자동 확정하지 않았다.</p></div><span class="status">1/5 확정</span>
+    </li>
+    <li class="done">
+      <span class="check">✓</span><div><strong>잔여 큐 처리 원칙 확정</strong><p>원본 P1 248개 중 광주 주소 오염 1건은 운영 모수에서 제외했다. 수도권 247개는 대표점 공식 학구를 잠정값으로 제공하되 확정값과 구분하고 후보·주소·좌표·실패 사유를 보존한다.</p></div><span class="status">예외 수용</span>
+    </li>
+    <li class="done">
+      <span class="check">✓</span><div><strong>v1 최종 산출물 계약 확정</strong><p>대표점 기본값, 건물 보정값, 동별 분리 101개, 미해결 검수 큐를 각각 분리한다. 모든 결과에는 배정 방식·신뢰도·공식 기준일·검수 필요 여부를 포함한다.</p></div><span class="status">구조 확정</span>
+    </li>
+    <li class="done">
+      <span class="check">✓</span><div><strong>학교 개별 정보 ETL v2 확정</strong><p>공식 기본정보 2,260교와 학교알리미 기본정보·학생 통계를 결합했다. <code>school_id ↔ SCHUL_CODE</code>는 주소 2,012교, 학교명·좌표 230교, 학교명·교육지원청 18교로 전부 연결됐고 중복 코드는 없다. 2026 학생 통계 2,257교와 2025 대체 3교를 구분해 저장한다.</p></div><span class="status">완료</span>
+    </li>
+    <li class="done">
+      <span class="check">✓</span><div><strong>아파트 단지 정보 ETL v1 확정</strong><p>기존 20,437개 전부 미매칭 결과는 잘못된 경로·매칭 구현에서 발생한 산출물로 폐기했다. 주소 지역 교차검사 후 20,421개를 기준으로 K-apt 8,744개 행을 연결하고 <code>KAPT:{단지코드}</code> 그룹 키를 생성했다. K-apt 커버리지 확인 대상은 691개다.</p></div><span class="status">완료</span>
+    </li>
+    <li class="done">
+      <span class="check">✓</span><div><strong>운영 마스터와 DB 적재 계약 생성</strong><p>학교 2,260개, 관리단지 20,164개, <code>apt_cd</code> 배정단위 20,421개와 학교·단지 serving 20,891개를 생성했다. 7개 데이터 테이블 112,997행을 적재하고 DB 내부 serving 재생성 계약을 준비했다.</p></div><span class="status">운영 반영</span>
+    </li>
+    <li class="done">
+      <span class="check">✓</span><div><strong>휴교 공동학구와 이력키 보정</strong><p><code>대원초단남초공동통학구역</code> 2개 단지는 휴교 중인 대원초 명칭을 보존하면서 운영 학교 단남초에 연결했다. 공유단지 검토 339개 이력행은 실제 운영 단지키로 재매핑해 외래키 검사를 통과했다.</p></div><span class="status">완료</span>
+    </li>
+    <li class="done">
+      <span class="check">✓</span><div><strong>Supabase 운영 스키마·데이터 적재</strong><p>기존 테이블을 유지한 채 운영 테이블 8개를 생성하고 7개 데이터 테이블에 112,997행을 적재했다. 공개 5개·비공개 3개 RLS를 확인했고, serving 단일 조회는 일반 7개 단지 약 0.18초·최대 408개 약 0.20초였다.</p></div><span class="status">전환 검증 완료</span>
+    </li>
+    <li class="done">
+      <span class="check">✓</span><div><strong>최신 K-apt 주간 스냅샷</strong><p>API V4의 오류코드 12는 유지되지만 공식 자료실의 세션·CSRF·첨부파일 POST 흐름을 자동화했다. 2026-08-21 전국 21,690행 XLSX를 수집·CSV 변환해 운영 마스터에 반영했다.</p></div><span class="status">완료</span>
+    </li>
+    <li class="done">
+      <span class="check">✓</span><div><strong>프런트 상태와 지도 조회 안정화</strong><p>중복 <code>AppProvider</code>를 제거해 검색·지도·상세 상태를 통합했다. 초기 지도 bounds 동기화, <code>idle</code> 기반 요청, 180ms 지연과 오래된 응답 무시를 적용하고 lint·typecheck·build를 통과했다.</p></div><span class="status">완료</span>
+    </li>
+    <li class="done">
+      <span class="check">✓</span><div><strong>프런트 조회용 DB 계약 확정</strong><p><code>school_master</code>는 학교 검색·지도·상세, <code>school_apartment_serving</code>은 학교별 단지 목록에 사용한다. 프런트의 <code>select('*')</code>를 제거하고 명시 필드, 검색·지도 인덱스, 공개 2개·관리 6개 정책을 SQL 10에 반영했다.</p></div><span class="status">운영 반영</span>
+    </li>
+    <li class="done">
+      <span class="check">✓</span><div><strong>K-apt 주차·임대 속성 연결</strong><p>지상·지하 주차대수와 분양·전체임대·공공임대·민간임대 세대수 및 비율을 단지 마스터, Serving, 프런트에 연결했다. 관리단지 8,300개에 공공임대 값이 있으며 원천 이상 4건은 공개값에서 제외했다.</p></div><span class="status">운영 반영</span>
+    </li>
+    <li class="done">
+      <span class="check">✓</span><div><strong>SQL 10 적용과 원격 데이터 갱신</strong><p><code>10_finalize_frontend_data_contract.sql</code>을 적용하고 <code>apartment_complex_master</code> 20,164행과 <code>school_apartment_serving</code> 20,891행을 갱신했다. 익명 사용자는 프런트 2개 테이블만 조회되고 관리자 6개 테이블은 차단됨을 확인했다.</p></div><span class="status">완료</span>
+    </li>
+    <li class="done">
+      <span class="check">✓</span><div><strong>최종 산출물 재생성과 로컬 감사</strong><p>확정 스키마로 단지 20,164행과 Serving 20,891행을 다시 만들었다. 주차·임대 산술, 공공임대 비율 범위 및 Complex→Serving 일치 검사를 포함한 백엔드 감사 52/52와 원격 행 수 검증을 통과했다.</p></div><span class="status">완료</span>
+    </li>
+    <li class="done">
+      <span class="check">✓</span><div><strong>아파트 필터와 브라우저 UX 재검증</strong><p>연식 제한 없음과 공공임대 비율 필터를 구현했다. 원격 데이터로 학교 검색→지도 이동→학년별 통계→아파트 조회 흐름과 구축 단지 노출을 데스크톱·모바일에서 확인했다.</p></div><span class="status">완료</span>
+    </li>
+    <li class="done">
+      <span class="check">✓</span><div><strong>SQL 09 Serving 재생성 함수</strong><p>Supabase 안전 갱신 규칙에 맞춰 <code>DELETE ... WHERE TRUE</code>로 보완했다. 재생성 전·삽입·재생성 후 모두 20,891행이며 익명 2개·관리자 6개 RLS 계약도 유지됨을 확인했다.</p></div><span class="status">완료</span>
+    </li>
+    <li class="done">
+      <span class="check">✓</span><div><strong>정기 ETL 원격 pilot</strong><p>SQL 11을 적용하고 원천 3개 약 12.2MB를 비공개 Storage에 보관했다. 6개 마스터 92,106행을 staging·upsert하고 Serving 20,891행을 재생성한 뒤 staging 0행과 완료 실행 로그를 확인했다.</p></div><span class="status">완료</span>
+    </li>
+    <li class="done">
+      <span class="check">✓</span><div><strong>정기 실행·실패 대응·보관 정리</strong><p>로컬 Windows 실행기를 매일 03:15에 등록했다. Supabase 일정에서 만기된 K-apt·학교정보만 수집하고 최대 3회 재시도하며, 중복 실행 차단·선택적 webhook 알림·staging 정리·45일 만료 Storage 객체 삭제를 수행한다. no-op 예약 실행과 Serving 보호 테스트를 통과했다.</p></div><span class="status">완료</span>
+    </li>
+    <li>
+      <span class="check">!</span><div><strong>최초 만기 실운영 확인</strong><p>현재 만기된 소스는 없다. 다음 K-apt 주간 일정 도래 시 무인 수집·빌드·원격 반영 결과와 무료 티어 사용량을 대시보드에서 확인한다.</p></div><span class="status">모니터링</span>
+    </li>
+    <li class="done">
+      <span class="check">✓</span><div><strong>ETL 관리자 모니터링 대시보드</strong><p>주기·도메인·서울/경기/인천 범위, 실행 이력, 원천 보관량, 검증 지표를 표시하는 <code>/admin/etl</code>과 관리자 RLS를 적용했다. 관리자 1명, 일정 4건, 실행 6건, 스냅샷 6건, 품질검사 8/8 및 익명 차단을 확인했다.</p></div><span class="status">완료</span>
+    </li>
+    <li class="done">
+      <span class="check">✓</span><div><strong>공개 지도 1차 UX 개선</strong><p>모바일 필터 열기·닫기·검색 컨트롤에 접근성 이름을 추가하고, 닫힌 서랍을 키보드 탐색에서 제외했다. 마커 갱신 중 기존 결과를 유지하며 모바일 초기 클러스터를 147개에서 37개로 줄여 지도 가림을 완화했다.</p></div><span class="status">완료</span>
+    </li>
+    <li class="done">
+      <span class="check">✓</span><div><strong>내 주변 학교 중심 상세 UX</strong><p>기존 위치 권한은 자동 복원하고 최초 방문은 <code>내 주변</code> 버튼으로 명시적으로 요청한다. 기본 제한 필터를 해제하고 생활권 줌으로 시작하며, 학교 선택 즉시 1학년 학생수·학급수·학급당 학생수와 주요 배정 단지의 세대수·준공연도·주차 정보를 표시한다. 서울대곡초 표본을 데스크톱·모바일에서 확인했다.</p></div><span class="status">완료</span>
+    </li>
+    <li class="done">
+      <span class="check">✓</span><div><strong>1.0 지도 디자인 복원</strong><p>전체 화면 지도와 떠 있는 검색·필터, 흰색 학교명·학생수 마커, 행정구역 요약 pill, 하단 상세 패널을 기존 1.0 기준으로 복원했다. hover 정보창을 제거하고 경기도 주소를 시 또는 시·구 단위로 집계해 초기 요약 마커 과밀도 함께 수정했다.</p></div><span class="status">완료</span>
+    </li>
+    <li class="done">
+      <span class="check">✓</span><div><strong>지도 드릴다운·선택 학교·배정 아파트</strong><p>구 클릭은 해당 구의 동만, 동 클릭은 동일한 행정동 라벨 기준의 개별 학교만 다시 조회한다. 선택 학교는 최상위 파란 마커로 강조하고 주변 학교는 62% 톤으로 유지하며 배정 아파트는 청록색 세대수 말풍선으로 구분한다. 100세대 미만은 낮은 레이어의 점으로 축소하고 상세정보는 하단 패널에서 제공한다. 공식 geometry 공개 계약 전에는 오인 가능한 가상 학구 폴리곤을 그리지 않는다.</p></div><span class="status">v2.0 완료</span>
+    </li>
+    <li class="done">
+      <span class="check">✓</span><div><strong>프런트 UX·디자인 시스템 방향 수립</strong><p>신뢰도 높은 지도형 서비스 테마, 학교·아파트·교통 색상 체계, 통합검색, 필터 적용 범위와 단계별 구현 순서를 정리했다. 검색은 학교·아파트부터 시작하고 주소·지하철은 검색 계약과 원천 데이터 확보 후 확장한다.</p></div><span class="status">설계 완료</span>
+    </li>
+    <li>
+      <span class="check">→</span><div><strong>디자인 토큰과 통합검색 구현</strong><p>공통 색상·타이포·간격·상태 컴포넌트를 먼저 적용한 뒤, 중복 없는 학교·아파트 검색 인덱스와 유형별 검색 결과를 구현한다. 아파트 필터와 학교 지도 필터의 적용 범위도 화면에서 명확히 분리한다.</p></div><span class="status">다음</span>
+    </li>
+    <li>
+      <span class="check">→</span><div><strong>GitHub Actions 실행 전환</strong><p>현재 Windows 작업은 PC가 켜져 있고 사용자가 로그인한 동안 실행된다. 수기 확정 배정·아파트 기준 데이터를 버전형 원천 번들로 패키징한 뒤 GitHub Actions가 Storage에서 내려받아 동일 ETL을 재현하도록 전환하고, 첫 원격 실운영 성공 전까지 Windows 작업을 예비 경로로 유지한다.</p></div><span class="status">다음</span>
+    </li>
+  </ul>
+
+  <h3>이슈와 처리 원칙</h3>
+  <div class="tw issue-table">
+    <table>
+      <caption>우선순위별 이슈 관리</caption>
+      <thead><tr><th>이슈</th><th>규모</th><th>판정 기준 / 다음 조치</th></tr></thead>
+      <tbody>
+        <tr><td>K-apt 단일 후보 미확정</td><td class="v">174</td><td>완전일치 후보의 점수 차가 부족한 선택적 속성 보강 큐. 학구도 배정에는 영향 없음</td></tr>
+        <tr><td>최신 K-apt API</td><td class="v">오류 12</td><td>API는 서비스 없음·폐기 응답이나 공식 주간 XLSX 자동 수집으로 운영 경로를 대체함</td></tr>
+        <tr><td>K-apt 커버리지 확인</td><td class="v">691 / 232</td><td>세대수 150 이상 무후보 / 세대수 미상 무후보. K-apt 비가입·갱신 시차를 후속 확인</td></tr>
+        <tr><td>1:N 공유 단지 검토</td><td class="v">85</td><td>구성 <code>apt_cd</code> 세대수 합과 K-apt 총세대수가 3%를 초과하거나 비교 불가한 그룹</td></tr>
+        <tr><td>과거·현재 명칭 중복</td><td class="v">13</td><td>재건축 전후 또는 중복 별칭으로 보이는 <code>historical_current_overlap</code>. 공유 단지 자동 확정 금지</td></tr>
+        <tr><td>단지명 판정 보류</td><td class="v">47</td><td>주소는 연결되지만 명칭 변화와 구조 속성 근거가 부족해 최신명 자동 채택 금지</td></tr>
+        <tr><td>아파트 속성 충돌</td><td class="v">1,278 / 420</td><td>최신 K-apt 자동 채택 / 세대수·동 수·승인연도를 포함한 식별·범위 검토. 양쪽 값을 보존하고 구조 충돌은 자동 덮어쓰기 금지</td></tr>
+        <tr><td>건물 폴리곤 매칭 실패</td><td class="v">248</td><td>기존 실패 255개에 학구명 없는 허위 성공 17개를 더하고 자동·중복·수기 해결 24개를 제외</td></tr>
+        <tr><td>P1 2차 재매칭 결과</td><td class="v">77 / 154 / 17</td><td>원본 큐 248개. 무후보 154개 중 광주 주소 오염 1개를 운영 제외해 수도권은 247개</td></tr>
+        <tr><td>좌표 bbox 표본 실험</td><td class="v">1 / 1 / 3</td><td>자동 확정 / 부분 복원 / 원천 부족. 대림e편한세상만 19/19동과 공식 인천왕길초 배정을 확인했다.</td></tr>
+        <tr><td>저신뢰 후보 품질</td><td class="v">77</td><td>도로명·건물번호가 조금 다른 경우 동일 도로 클러스터와 동 수 완전성을 함께 본다. 주소 재지오코딩은 기존 좌표와 1km 이상 차이나면 거부한다.</td></tr>
+        <tr><td>건물 후보 없음</td><td class="v">154</td><td>주소·대표 좌표는 모두 존재한다. 단지명 검색 대신 좌표 기반 bbox 수집, 도로명 건물번호 묶음, 공간 연결 클러스터로 재매칭한다.</td></tr>
+        <tr><td>P1 브라우저 첫 배치</td><td class="v">18 / 17</td><td>대표점 학구 반환 / 무학구. 은마 사례처럼 대표점은 단지 전체를 대표하지 않으므로 VWorld 동별 좌표를 우선 사용</td></tr>
+        <tr><td>Geomarket 정면 충돌</td><td class="v">116</td><td class="st ok">해결 · 2026 공식 폴리곤 값을 채택하고 Geomarket은 참고값으로 보존</td></tr>
+        <tr><td>활성 검수 큐</td><td class="v">248 / 247</td><td>원본 P1 큐 / 주소 지역 교차검사 후 수도권 운영 큐</td></tr>
+        <tr><td>Supabase 운영 DB</td><td class="v">8개 테이블 · 112,997행</td><td>기존 테이블 유지. 공개 5개 익명 조회, 이력·실행로그 3개 RLS 보호, 프런트 serving 단일 조회 확인</td></tr>
+        <tr><td>대표점 폴리곤 미포함</td><td class="v">27</td><td>2026 재산출 기준. 좌표·CRS·단지 중심점 오류를 확인하고, 건물 폴리곤 또는 주소 지오코딩으로 보완한다.</td></tr>
+        <tr><td>동별 실제 분리</td><td class="v">101</td><td>아크포레자이위브를 추가 확정했다. 모든 동의 학구 배정, 경계 거리, 누락·중복 여부를 검사하고 <code>canonical_apt_id + dong_name</code> 단위 배정을 유지한다.</td></tr>
+        <tr><td>Serving 상세 속성</td><td class="v">원격 완료</td><td>공공임대 필드가 관리단지 8,300개·Serving 8,713행에 연결됐다. 20,164개 단지와 20,891개 Serving 행의 원격 적재·검증을 완료했다.</td></tr>
+        <tr><td>구축 아파트 조회</td><td class="v">해결</td><td>5~50년 선택과 제한 없음 옵션으로 변경했다. 서울대곡초 표본에서 40년 초과 단지 노출을 브라우저로 확인했다.</td></tr>
+        <tr><td>프런트 조회 인덱스</td><td class="v">적용 완료</td><td>학교명 trigram 검색, 위·경도 viewport, 학교별 아파트 복합 필터 인덱스를 SQL 10으로 적용했다.</td></tr>
+        <tr><td>K-apt 임대 원천 이상</td><td class="v">4</td><td>공공임대 세대수가 총세대수를 초과한 원천 행은 임대 세부값·비율을 null로 제외하고 <code>review_required=true</code>로 보존했다. SQL 10을 재실행해 비율 0~100 제약까지 반영했다.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>다음 산출물</h3>
+  <ol class="actions">
+    <li><div><strong><code>apartment_master_v1_20260320.csv/json</code><span class="who me">생성 완료</span></strong><span>주소 지역 교차검사를 통과한 수도권 20,421개 단지의 배정 키와 속성을 저장한다.</span></div></li>
+    <li><div><strong><code>apartment_master_v1_report.json</code><span class="who me">생성 완료</span></strong><span>K-apt 연결 8,744개, 공유 단지 검증 214개·검토 85개, 미판정 174개, 커버리지 구분과 속성 완성도를 기록한다.</span></div></li>
+    <li><div><strong><code>apartment_shared_complex_review.csv</code><span class="who me">생성 완료</span></strong><span>1:N 후보 중 구성 세대수 합으로 확인되지 않은 85개 K-apt 그룹과 차이율을 저장한다.</span></div></li>
+    <li><div><strong><code>apartment_name_history_operational_v1.csv</code><span class="who me">생성 완료</span></strong><span>2024 기준명과 2026-08 최신 확인명 26,222행을 실제 운영 단지키에 맞춰 보존한다.</span></div></li>
+    <li><div><strong><code>apartment_property_history.csv</code><span class="who me">생성 완료</span></strong><span>속성 변경 1,885행의 과거값, 최신 관측값, 채택값과 자동 갱신·검토 판정을 저장한다.</span></div></li>
+    <li><div><strong><code>apartment_kapt_review_queue.csv</code><span class="who me">생성 완료</span></strong><span>완전일치 근거만으로 단일 후보를 확정할 수 없는 174개와 상위 후보 점수를 보존한다.</span></div></li>
+    <li><div><strong><code>apartment_property_conflicts.csv</code><span class="who me">생성 완료</span></strong><span>속성차이 1,698개를 최신값 자동 채택 1,278개와 식별·범위 검토 420개로 분류하고 원본 덮어쓰기 없이 보존한다.</span></div></li>
+    <li><div><strong><code>school_master_v1_20260320.csv/json</code><span class="who me">생성 완료</span></strong><span>2026 공식 기본정보 2,260교와 과거 KERIS 통계 상태, 본교·분교, 주소·좌표, 출처 기준일을 저장한다.</span></div></li>
+    <li><div><strong><code>school_master_v1_report.json</code><span class="who me">생성 완료</span></strong><span>부산 오염 65건, 학교급 충돌 1건, 과거 전용 분교 2건, 학생 통계 결측 23건과 NEIS 코드 부재를 기록한다.</span></div></li>
+    <li><div><strong><code>school_master_v1_exceptions.csv</code><span class="who me">생성 완료</span></strong><span>인천신검단중학교의 학교급 오류와 2026 공식 원천에서 사라진 분교 2개를 후속 확인 대상으로 분리한다.</span></div></li>
+    <li><div><strong><code>school_master_v2_20260320.csv/json</code><span class="who me">생성 완료</span></strong><span>2,260교의 공식 기본정보, 고유 <code>SCHUL_CODE</code>, 2026 학생 통계와 3교의 2025 대체 상태를 제공한다.</span></div></li>
+    <li><div><strong><code>school_id_schoolinfo_crosswalk_2026.csv</code><span class="who me">생성 완료</span></strong><span>주소·좌표·교육지원청 근거와 거리, 매칭 방식을 포함한 2,260개 학교 코드 교차표다.</span></div></li>
+    <li><div><strong><code>final_apartment_assignments.csv</code></strong><span>아파트 단위 최종 배정, <code>assignment_method</code>, <code>confidence</code>, 학구도 기준일을 포함한다.</span></div></li>
+    <li><div><strong><code>final_apartment_building_assignments.csv</code></strong><span>동별 분리 단지의 건물명, 건물 폴리곤 판정 학구도, 매칭 근거를 저장한다.</span></div></li>
+    <li><div><strong><code>school_master_operational_v1.csv/json</code><span class="who me">생성 완료</span></strong><span>학교 2,260개를 DB 적재 계약에 맞춘 운영 마스터로 저장한다.</span></div></li>
+    <li><div><strong><code>apartment_complex_master_v1.csv/json</code><span class="who me">생성 완료</span></strong><span>K-apt 우선 관리단지 20,164개와 값별 출처·그룹 상태를 저장한다.</span></div></li>
+    <li><div><strong><code>apartment_assignment_units_v1.csv/json</code><span class="who me">생성 완료</span></strong><span><code>apt_cd</code> 기준 배정단위 20,421개와 공식 학구, 신뢰도, 검수 상태를 저장한다.</span></div></li>
+    <li><div><strong><code>apartment_assignment_schools_v1.csv/json</code><span class="who me">생성 완료</span></strong><span>단일·공동통학구역의 학교 연결 21,154행을 저장하며 20,395개 배정단위를 학교 코드에 연결한다.</span></div></li>
+    <li><div><strong><code>06_create_operational_master_tables.sql</code><span class="who me">생성 완료</span></strong><span>기존 테이블을 삭제하지 않고 운영 마스터·이력·ETL 실행기록 테이블과 공간 인덱스를 생성한다.</span></div></li>
+    <li><div><strong><code>fetch_kapt_board_snapshot.py</code> · <code>convert_kapt_xlsx_to_csv.py</code><span class="who me">생성 완료</span></strong><span>공식 자료실의 최신 주간 XLSX를 세션·CSRF 흐름으로 수집하고 ETL용 UTF-8 CSV로 변환한다.</span></div></li>
+    <li><div><strong><code>upload_operational_masters.py</code><span class="who me">원격 적재 완료</span></strong><span><code>--apply</code>로 7개 데이터 테이블 112,997행을 멱등 upsert하고 테이블별 원격 행 수를 검증했다.</span></div></li>
+    <li><div><strong><code>backend_audit_report.md/json</code><span class="who me">49/49 통과</span></strong><span>학년 통계·기본키·외래키·좌표·학교 연결·serving·RLS·SQL 컬럼·원자적 serving 재생성 계약을 검증한다.</span></div></li>
+    <li><div><strong><code>supabase_backend_check.json</code><span class="who me">전환 검증 완료</span></strong><span>운영 테이블 8개와 112,997개 데이터 행, 공개 5개 익명 조회, 비공개 이력·실행로그 3개 RLS 보호를 확인했다.</span></div></li>
+    <li><div><strong><code>assignment_review_queue.csv</code><span class="who me">활성 큐 갱신 완료</span></strong><span>P2 해결 건과 P1 해결 24개를 제외하고 허위 성공 17개를 복원해 P1 248개를 남겼다.</span></div></li>
+    <li><div><strong><code>p1_parser_v2_assignments.csv</code><span class="who me">생성 완료</span></strong><span><code>buld_nm</code> 내 동명 파싱 재실행 결과와 자동 해결 10건의 근거를 저장한다.</span></div></li>
+    <li><div><strong><code>p1_resolved_cases.csv</code><span class="who me">갱신 완료</span></strong><span>B군 15개와 bbox 자동 확정 1개의 판정과 근거를 보존한다.</span></div></li>
+    <li><div><strong><code>p1_manual_dong_resolutions.csv</code><span class="who me">갱신 완료</span></strong><span>확정 단지의 동 그룹별 공식 학구와 아크포레자이위브 1·2단지 분할 배정을 저장한다.</span></div></li>
+    <li><div><strong><code>p2_hakgudo_browser_review.csv</code><span class="who me">결정 로그 갱신 완료</span></strong><span>P2 116건을 <code>accepted_official_20260320</code>으로 기록하고 공식 학구도와 Geomarket 참고값을 함께 보존한다.</span></div></li>
+    <li><div><strong><code>p1_schoolzone_batch1.csv</code><span class="who me">생성 완료</span></strong><span>P1 A+B 35건의 공식 브라우저 대표점 조회 결과와 후속 동별 검수 여부를 기록한다.</span></div></li>
+    <li><div><strong><code>p1_b_browser_review_final.pdf</code><span class="who me">재생성 완료</span></strong><span>15개 B군 검토 이미지를 묶었다. 5·7·9·10·13번은 대표점 중심으로 재캡처했고, 6번은 전체 단지가 보이도록 한 단계 더 줌아웃했다.</span></div></li>
+    <li><div><strong><code>bbox_sample_rematch_summary.csv</code><span class="who me">생성 완료</span></strong><span>대표 5건의 좌표 교정, 도로 클러스터, 동 수 커버리지와 보수적 추천 상태를 저장한다.</span></div></li>
+    <li><div><strong><code>bbox_sample_rematch_official_dongs.csv</code><span class="who me">생성 완료</span></strong><span>자동 확정 후보 19개 동의 공식 학구도 좌표 조회 결과를 저장한다.</span></div></li>
+  </ol>
+</section>
+
+<footer>
+  <span>실측 기준 2026-08-29</span>
+  <span>서울 · 경기 · 인천</span>
+  <span>elementary-v2 파이프라인 재구축</span>
+</footer>
+
+</div>

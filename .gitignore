@@ -1,1 +1,31 @@
-.env
+# Local configuration and secrets
+**/.env
+**/.env.*
+!**/.env.example
+
+# JavaScript and TypeScript build output
+**/node_modules/
+**/dist/
+**/build/
+**/*.tsbuildinfo
+
+# Python caches and virtual environments
+**/__pycache__/
+**/*.py[cod]
+**/.venv/
+**/venv/
+
+# Regenerable ETL and browser-review artifacts
+elementary-v2/etl/local_outputs_*/
+elementary-v2/etl/temp/
+elementary-v2/etl/downloads/
+elementary-v2/etl/runtime/
+elementary-v2/etl/logs/
+
+# Editor and operating-system files
+**/.vscode/
+**/.idea/
+**/.DS_Store
+**/Thumbs.db
+**/*.log
+**/.browser-test-profile/

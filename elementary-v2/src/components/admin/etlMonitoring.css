@@ -1,0 +1,71 @@
+.etl-dashboard, .etl-login-shell, .etl-center-state { min-height: 100vh; color: #17212b; background: #f4f6f8; letter-spacing: 0; }
+.etl-dashboard { padding-bottom: 48px; }
+.etl-topbar { min-height: 76px; padding: 14px 28px; display: flex; align-items: center; justify-content: space-between; gap: 24px; background: #fff; border-bottom: 1px solid #dce2e7; }
+.etl-topbar p, .etl-section-heading span { margin: 0 0 2px; color: #647482; font-size: 11px; font-weight: 700; text-transform: uppercase; }
+.etl-topbar h1 { margin: 0; font-size: 22px; line-height: 1.2; }
+.etl-topbar-actions { display: flex; align-items: center; gap: 8px; }
+.etl-topbar button, .etl-topbar a, .etl-center-state button { min-height: 36px; padding: 8px 12px; border: 1px solid #bec9d2; border-radius: 5px; background: #fff; color: #253440; font-size: 13px; font-weight: 700; text-decoration: none; cursor: pointer; }
+.etl-topbar button:hover, .etl-topbar a:hover { border-color: #28745c; color: #176347; }
+.etl-topbar button:disabled { opacity: .55; cursor: wait; }
+.etl-live { margin-right: 8px; color: #5e6d78; font-size: 12px; white-space: nowrap; }
+.etl-live i { width: 7px; height: 7px; margin-right: 6px; display: inline-block; border-radius: 50%; background: #23815f; }
+.etl-kpis { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-bottom: 1px solid #dce2e7; background: #fff; }
+.etl-kpis article { min-height: 104px; padding: 18px 28px; border-right: 1px solid #e3e7ea; }
+.etl-kpis article:last-child { border-right: 0; }
+.etl-kpis span, .etl-kpis small { display: block; color: #667681; font-size: 12px; }
+.etl-kpis b { margin: 4px 0 2px; display: block; font-size: 26px; line-height: 1.2; }
+.etl-section { margin-top: 22px; border-top: 1px solid #d5dde3; border-bottom: 1px solid #d5dde3; background: #fff; }
+.etl-section-heading { min-height: 64px; padding: 12px 24px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #e1e6ea; }
+.etl-section-heading h2 { margin: 0; font-size: 16px; }
+.etl-section-heading > b { color: #344651; font-size: 13px; }
+.etl-table-wrap { overflow-x: auto; }
+.etl-table-wrap table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.etl-table-wrap th { padding: 10px 16px; color: #6b7983; background: #f7f8f9; font-size: 11px; text-align: left; white-space: nowrap; }
+.etl-table-wrap td { min-height: 48px; padding: 11px 16px; border-top: 1px solid #edf0f2; white-space: nowrap; }
+.etl-table-wrap td strong, .etl-table-wrap td small { display: block; }
+.etl-table-wrap td small { margin-top: 2px; max-width: 280px; overflow: hidden; color: #75838c; font-size: 11px; text-overflow: ellipsis; }
+.etl-scope-list { display: flex; gap: 4px; }
+.etl-scope-list span { padding: 2px 6px; border: 1px solid #ced7dd; border-radius: 4px; color: #4c5e69; font-size: 11px; }
+.etl-status { display: inline-flex; min-width: 52px; height: 22px; align-items: center; justify-content: center; border-radius: 4px; font-size: 11px; font-weight: 800; text-transform: uppercase; }
+.etl-status-healthy, .etl-status-completed, .etl-status-pass, .etl-status-validated { color: #176347; background: #e2f2eb; }
+.etl-status-due, .etl-status-warn, .etl-status-started, .etl-status-archived, .etl-status-unknown { color: #8a5709; background: #fff0cf; }
+.etl-status-failed, .etl-status-fail, .etl-status-rejected { color: #a12a2a; background: #fde7e7; }
+.etl-status-disabled, .etl-status-expired { color: #64727c; background: #e9edf0; }
+.etl-run-strip { height: 34px; padding: 10px 24px; display: flex; align-items: center; gap: 4px; border-bottom: 1px solid #edf0f2; }
+.etl-run-strip i { width: 100%; max-width: 64px; height: 8px; border-radius: 2px; background: #ced6dc; }
+.etl-run-strip i.completed { background: #2a8062; }
+.etl-run-strip i.failed { background: #c74747; }
+.etl-run-strip i.started { background: #d79931; }
+.etl-split { display: grid; grid-template-columns: 1.1fr .9fr; gap: 20px; }
+.etl-check-list { padding: 4px 20px 14px; }
+.etl-check-list > div { min-height: 42px; display: grid; grid-template-columns: 62px minmax(0, 1fr) auto; align-items: center; gap: 10px; border-bottom: 1px solid #edf0f2; font-size: 12px; }
+.etl-check-list > div:last-child { border-bottom: 0; }
+.etl-check-list b { color: #4b5b65; font-size: 12px; }
+.etl-login-shell, .etl-center-state { display: grid; place-items: center; padding: 24px; }
+.etl-login-panel, .etl-center-state > div { width: min(100%, 360px); padding: 28px; border: 1px solid #d7dfe4; border-radius: 6px; background: #fff; box-shadow: 0 12px 32px rgba(33, 49, 61, .08); }
+.etl-brand-mark { width: 46px; height: 34px; display: grid; place-items: center; border-radius: 4px; color: #fff; background: #20674f; font-size: 12px; font-weight: 900; }
+.etl-login-panel h1, .etl-center-state h1 { margin: 14px 0 22px; font-size: 22px; }
+.etl-login-panel label { margin-top: 14px; display: block; color: #4d5e69; font-size: 12px; font-weight: 700; }
+.etl-login-panel input { width: 100%; height: 42px; margin-top: 6px; padding: 0 10px; border: 1px solid #bdc8d0; border-radius: 4px; box-sizing: border-box; font: inherit; }
+.etl-login-panel button { width: 100%; height: 42px; margin-top: 18px; border: 0; border-radius: 4px; color: #fff; background: #20674f; font-weight: 800; cursor: pointer; }
+.etl-login-panel a { margin-top: 16px; display: block; color: #4f6572; font-size: 12px; text-align: center; }
+.etl-login-error { color: #a12a2a; font-size: 12px; }
+.etl-center-state { color: #53636d; }
+.etl-center-state > div { text-align: center; }
+
+@media (min-width: 1180px) {
+  .etl-section, .etl-split { margin-left: 28px; margin-right: 28px; }
+}
+
+@media (max-width: 800px) {
+  .etl-topbar { padding: 12px 16px; align-items: flex-start; flex-direction: column; }
+  .etl-topbar-actions { width: 100%; overflow-x: auto; }
+  .etl-live { display: none; }
+  .etl-kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .etl-kpis article { min-height: 88px; padding: 14px 16px; border-bottom: 1px solid #e3e7ea; }
+  .etl-kpis b { font-size: 22px; }
+  .etl-split { display: block; }
+  .etl-section { margin-top: 14px; }
+  .etl-section-heading { padding: 10px 16px; }
+  .etl-table-wrap th, .etl-table-wrap td { padding-left: 12px; padding-right: 12px; }
+}

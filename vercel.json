@@ -1,6 +1,13 @@
 {
-  "buildCommand": "bash build.sh",
-  "outputDirectory": "public",
-  "installCommand": "",
-  "framework": null
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": "vite",
+  "installCommand": "cd elementary-v2 && npm ci",
+  "buildCommand": "cd elementary-v2 && npm run build",
+  "outputDirectory": "elementary-v2/dist",
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
 }

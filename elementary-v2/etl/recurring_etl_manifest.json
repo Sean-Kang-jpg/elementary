@@ -1,0 +1,32 @@
+{
+  "pipeline_name": "elementary-recurring-etl",
+  "pipeline_version": "operational-v1",
+  "retention_days": 45,
+  "scope": {
+    "regions": ["서울특별시", "경기도", "인천광역시"],
+    "domains": ["school", "apartment", "school_zone"]
+  },
+  "snapshots": [
+    {
+      "source_name": "kapt-basic",
+      "source_as_of": "2026-08-21",
+      "path": "etl/local_outputs_20260320/kapt_basic_20260821.xlsx",
+      "row_count": 21690,
+      "schema_version": "kapt-board-v1"
+    },
+    {
+      "source_name": "schoolinfo-basic",
+      "source_as_of": "2026-08-29",
+      "path": "etl/local_outputs_20260320/schoolinfo_2026_basic_capital.json",
+      "row_count": 2260,
+      "schema_version": "schoolinfo-2026-v1"
+    },
+    {
+      "source_name": "schoolinfo-grade-students",
+      "source_as_of": "2026-08-29",
+      "path": "etl/local_outputs_20260320/schoolinfo_2026_grade_students_capital.json",
+      "row_count": 2257,
+      "schema_version": "schoolinfo-2026-v1"
+    }
+  ]
+}
