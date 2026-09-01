@@ -33,6 +33,57 @@ body {
   margin: 0 auto;
 }
 
+.filter-range {
+  height: 24px;
+  cursor: pointer;
+  appearance: none;
+  background: transparent;
+}
+
+.filter-range::-webkit-slider-runnable-track {
+  height: 4px;
+  border-radius: 999px;
+  background: linear-gradient(
+    to right,
+    #2563eb 0,
+    #2563eb var(--range-progress),
+    #d1d5db var(--range-progress),
+    #d1d5db 100%
+  );
+}
+
+.filter-range::-webkit-slider-thumb {
+  width: 22px;
+  height: 22px;
+  margin-top: -9px;
+  appearance: none;
+  border: 1px solid #d1d5db;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 1px 4px rgba(31, 41, 55, 0.22);
+}
+
+.filter-range::-moz-range-track {
+  height: 4px;
+  border-radius: 999px;
+  background: #d1d5db;
+}
+
+.filter-range::-moz-range-progress {
+  height: 4px;
+  border-radius: 999px;
+  background: #2563eb;
+}
+
+.filter-range::-moz-range-thumb {
+  width: 22px;
+  height: 22px;
+  border: 1px solid #d1d5db;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 1px 4px rgba(31, 41, 55, 0.22);
+}
+
 /* Map labels follow the compact white-marker language used by the v1 map. */
 .school-map-marker {
   display: flex;

@@ -11,6 +11,7 @@ import { getDisplayMode } from '../../utils/mapUtils'
 import { MapBounds, School } from '../../types'
 import SchoolMarker from './SchoolMarker'
 import ClusterMarker from './ClusterMarker'
+import NeighborhoodSchoolSheet from './NeighborhoodSchoolSheet'
 
 interface MarkerManagerProps {
   map: NaverMap | null
@@ -65,6 +66,7 @@ const MarkerManager: React.FC<MarkerManagerProps> = ({ map }) => {
     } else {
       setNeighborhoodScope(cluster.label || getSchoolNeighborhoodLabel(cluster.schools[0]))
       setNeighborhoodSchoolIds(cluster.schools.map((school) => school.school_id))
+      setSchools(cluster.schools)
     }
     dispatch({ type: 'SET_SELECTED_SCHOOL', payload: null })
     dispatch({
@@ -72,6 +74,16 @@ const MarkerManager: React.FC<MarkerManagerProps> = ({ map }) => {
       payload: { zoom: nextZoom, center: cluster.center },
     })
   }, [dispatch, state.map.zoom])
+
+  const handleClearNeighborhood = useCallback(() => {
+    setNeighborhoodScope(null)
+    setNeighborhoodSchoolIds([])
+    dispatch({ type: 'SET_SELECTED_SCHOOL', payload: null })
+    dispatch({
+      type: 'SET_MAP_STATE',
+      payload: { zoom: 13, center: state.map.center },
+    })
+  }, [dispatch, state.map.center])
 
   useEffect(() => {
     if (state.map.zoom <= 12) {
@@ -222,6 +234,18 @@ const MarkerManager: React.FC<MarkerManagerProps> = ({ map }) => {
           onClick={handleSchoolClick}
         />
       ))}
+
+      {districtScope && neighborhoodScope && (
+        <NeighborhoodSchoolSheet
+          district={districtScope.district}
+          neighborhood={neighborhoodScope}
+          schools={schools}
+          targetGrade={state.filters.target_grade}
+          isOpen={!state.selectedSchool}
+          onSchoolSelect={handleSchoolClick}
+          onClear={handleClearNeighborhood}
+        />
+      )}
 
     </>
   )

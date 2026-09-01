@@ -11,10 +11,13 @@ interface BottomSheetProps {
   isOpen: boolean
   onClose: () => void
   children: React.ReactNode
-  title?: string
+  title?: React.ReactNode
   headerAction?: React.ReactNode
   snapPoints?: number[] // 0-1 사이의 값들 (화면 높이 비율)
   defaultSnap?: number
+  swipeDownBehavior?: 'close' | 'collapse'
+  onSnapChange?: (snapIndex: number) => void
+  closeLabel?: string
   className?: string
 }
 
@@ -28,6 +31,9 @@ const BottomSheet: React.FC<BottomSheetProps> = ({
   headerAction,
   snapPoints = DEFAULT_SNAP_POINTS,
   defaultSnap = 0,
+  swipeDownBehavior = 'close',
+  onSnapChange,
+  closeLabel = '상세 정보 닫기',
   className = ''
 }) => {
   const [currentSnap, setCurrentSnap] = useState(defaultSnap)
@@ -62,12 +68,24 @@ const BottomSheet: React.FC<BottomSheetProps> = ({
     const expandThreshold = Math.max(60, window.innerHeight * 0.06)
 
     if (dragOffset >= closeThreshold) {
-      onClose()
+      if (swipeDownBehavior === 'collapse') {
+        setCurrentSnap((snap) => {
+          const nextSnap = Math.max(snap - 1, 0)
+          onSnapChange?.(nextSnap)
+          return nextSnap
+        })
+      } else {
+        onClose()
+      }
     } else if (dragOffset <= -expandThreshold) {
-      setCurrentSnap((snap) => Math.min(snap + 1, snapPoints.length - 1))
+      setCurrentSnap((snap) => {
+        const nextSnap = Math.min(snap + 1, snapPoints.length - 1)
+        onSnapChange?.(nextSnap)
+        return nextSnap
+      })
     }
     setDragOffset(0)
-  }, [dragOffset, isDragging, onClose, snapPoints.length])
+  }, [dragOffset, isDragging, onClose, onSnapChange, snapPoints.length, swipeDownBehavior])
 
   // 터치 이벤트
   const handleTouchStart = (e: React.TouchEvent) => {
@@ -91,8 +109,9 @@ const BottomSheet: React.FC<BottomSheetProps> = ({
     if (isOpen) {
       setCurrentSnap(defaultSnap)
       setDragOffset(0)
+      onSnapChange?.(defaultSnap)
     }
-  }, [defaultSnap, isOpen])
+  }, [defaultSnap, isOpen, onSnapChange])
 
   useEffect(() => {
     if (!isDragging) return
@@ -154,25 +173,25 @@ const BottomSheet: React.FC<BottomSheetProps> = ({
       >
         {/* 드래그 핸들 */}
         <div
-          className="drag-handle flex justify-center py-3 touch-target"
+          className="drag-handle flex h-7 min-h-0 w-full justify-center py-2"
           onTouchStart={handleTouchStart}
           onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}
           onMouseDown={handleMouseDown}
         >
-          <div className="w-12 h-1 bg-gray-300 rounded-full" />
+          <div className="h-1 w-10 rounded-full bg-gray-300" />
         </div>
 
         {/* 헤더 */}
         {title && (
-          <div className="flex items-center justify-between gap-3 border-b border-gray-200 px-4 pb-4">
+          <div className="flex items-center justify-between gap-3 border-b border-gray-200 px-4 pb-3">
             <h2 className="min-w-0 truncate text-lg font-semibold text-gray-900">{title}</h2>
             <div className="flex flex-none items-center gap-1">
               {headerAction}
               <button
                 type="button"
                 onClick={onClose}
-                aria-label="상세 정보 닫기"
+                aria-label={closeLabel}
                 className="rounded-md p-2 transition-colors hover:bg-gray-100"
               >
                 <X className="text-gray-500" size={20} aria-hidden="true" />

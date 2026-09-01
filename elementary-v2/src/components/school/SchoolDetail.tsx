@@ -141,7 +141,7 @@ const SchoolDetail: React.FC<SchoolDetailProps> = ({ school, isOpen, onClose }) 
           <Star size={21} fill={isFavorite ? 'currentColor' : 'none'} aria-hidden="true" />
         </button>
       ) : undefined}
-      snapPoints={[0.45, 0.7]}
+      snapPoints={[0.38, 0.68]}
       defaultSnap={0}
     >
       {currentView === 'apartments' ? (
@@ -162,21 +162,20 @@ const SchoolDetail: React.FC<SchoolDetailProps> = ({ school, isOpen, onClose }) 
           />
         </div>
       ) : (
-        <div className="mx-auto max-w-4xl space-y-6 px-4 py-5">
+        <div className="mx-auto max-w-4xl space-y-4 px-4 py-3">
           <section>
             <div className="flex items-start gap-2 text-sm text-gray-600">
               <MapPin className="mt-0.5 flex-none" size={16} aria-hidden="true" />
               <span>{school.address || `${school.city || ''} ${school.district || ''}`}</span>
             </div>
             {school.student_statistics_year && (
-              <p className="mt-2 text-xs text-gray-500">{school.student_statistics_year}년 학생 통계</p>
+              <p className="mt-1 text-xs text-gray-500">{school.student_statistics_year}년 학생 통계</p>
             )}
           </section>
 
           <section aria-labelledby="first-grade-title">
             <div className="mb-2 flex items-baseline justify-between">
               <h3 id="first-grade-title" className="font-semibold text-gray-950">1학년 현황</h3>
-              <span className="text-xs text-gray-500">입학 규모를 보는 핵심 지표</span>
             </div>
             <div className="grid grid-cols-3 gap-2" aria-label="학교 통계 지표">
               {([
@@ -189,10 +188,10 @@ const SchoolDetail: React.FC<SchoolDetailProps> = ({ school, isOpen, onClose }) 
                   type="button"
                   onClick={() => setSelectedMetric(metric)}
                   aria-pressed={selectedMetric === metric}
-                  className={`flex min-h-[86px] flex-col items-center justify-center rounded-md border px-2 py-3 text-center transition-colors ${selectedMetric === metric ? 'border-blue-600 bg-blue-50 text-blue-800' : 'border-gray-200 bg-white text-gray-700 hover:bg-gray-50'}`}
+                  className={`flex min-h-[68px] flex-col items-center justify-center rounded-md border px-2 py-2 text-center transition-colors ${selectedMetric === metric ? 'border-blue-600 bg-blue-50 text-blue-800' : 'border-gray-200 bg-white text-gray-700 hover:bg-gray-50'}`}
                 >
-                  <Icon size={17} className="mb-1" aria-hidden="true" />
-                  <strong className="text-xl leading-none">{value.toLocaleString()}</strong>
+                  <Icon size={15} className="mb-0.5" aria-hidden="true" />
+                  <strong className="text-lg leading-none">{value.toLocaleString()}</strong>
                   <span className="mt-1 text-[11px] font-medium">{label} · {unit}</span>
                 </button>
               ))}
@@ -200,11 +199,11 @@ const SchoolDetail: React.FC<SchoolDetailProps> = ({ school, isOpen, onClose }) 
           </section>
 
           <section aria-labelledby="grade-title">
-            <h3 id="grade-title" className="mb-3 font-semibold text-gray-950">학년별 학생 현황</h3>
+            <h3 id="grade-title" className="mb-2 font-semibold text-gray-950">학년별 학생 현황</h3>
             <GradeChart school={school} metric={selectedMetric} />
-            <div className="mt-3 grid grid-cols-3 gap-px overflow-hidden rounded-md border border-gray-200 bg-gray-200 sm:grid-cols-6">
+            <div className="mt-2 grid grid-cols-3 gap-px overflow-hidden rounded-md border border-gray-200 bg-gray-200 sm:grid-cols-6">
               {gradeData.map(({ grade, students, classes, perClass }) => (
-                <div key={grade} className="bg-white px-2 py-3 text-center">
+                <div key={grade} className="bg-white px-2 py-2 text-center">
                   <strong className="text-sm text-gray-950">{grade}학년</strong>
                   <span className="mt-1 block text-sm font-semibold text-blue-700">{students}명</span>
                   <span className="block text-xs text-gray-500">{classes}학급 · {perClass}명</span>
@@ -238,7 +237,7 @@ const SchoolDetail: React.FC<SchoolDetailProps> = ({ school, isOpen, onClose }) 
                     onClick={() => {
                       dispatch({ type: 'SET_SELECTED_APARTMENT', payload: apartment })
                     }}
-                    className="flex w-full items-center gap-3 border-b border-gray-100 py-3 text-left last:border-b-0 hover:bg-gray-50"
+                    className="flex w-full items-center gap-3 border-b border-gray-100 py-2.5 text-left last:border-b-0 hover:bg-gray-50"
                   >
                     <Building2 className="flex-none text-gray-400" size={19} aria-hidden="true" />
                     <span className="min-w-0 flex-1">

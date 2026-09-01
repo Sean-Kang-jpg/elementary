@@ -1,0 +1,11 @@
+elementary-v2/.browser-test-profile/
+elementary-v2/etl/local_outputs_*/
+elementary-v2/etl/temp/
+elementary-v2/etl/downloads/
+elementary-v2/etl/runtime/
+elementary-v2/etl/logs/
+elementary-v2/node_modules/
+elementary-v2/dist/
+elementary-v2/.env
+elementary-v2/.env.*
+!elementary-v2/.env.example

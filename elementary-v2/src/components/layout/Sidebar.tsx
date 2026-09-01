@@ -41,7 +41,7 @@ export default function Sidebar({ children }: SidebarProps) {
         ref={sidebarRef}
         id="filter-sidebar"
         aria-hidden={!ui.sidebar_open}
-        className={`fixed inset-y-0 left-0 z-50 flex w-[85%] max-w-80 flex-col bg-white shadow-xl transition-transform duration-300 ease-out ${ui.sidebar_open ? 'translate-x-0' : '-translate-x-full'}`}
+        className={`fixed inset-y-0 left-0 z-50 flex w-full max-w-[420px] flex-col bg-white shadow-xl transition-transform duration-300 ease-out ${ui.sidebar_open ? 'translate-x-0' : '-translate-x-full'}`}
       >
         <div className="flex items-center justify-between border-b border-gray-200 px-4 py-3">
           <h2 className="text-base font-semibold text-gray-950">필터 &amp; 검색</h2>
@@ -54,7 +54,7 @@ export default function Sidebar({ children }: SidebarProps) {
             <X size={22} aria-hidden="true" />
           </button>
         </div>
-        <div className="min-h-0 flex-1 overflow-y-auto pb-6 safe-area-bottom">{children}</div>
+        <div className="min-h-0 flex-1 overflow-hidden">{children}</div>
       </aside>
     </>
   )

@@ -1,5 +1,17 @@
 import React, { createContext, useContext, useReducer, ReactNode } from 'react'
-import { FilterState, MapState, UIState, School, Apartment, BreakPoint } from '../types'
+import { FilterState, MapState, UIState, School, Apartment, BreakPoint, UNLIMITED_APARTMENT_AGE } from '../types'
+
+export const DEFAULT_FILTERS: FilterState = {
+  target_grade: 1,
+  min_students: 0,
+  school_types: ['public', 'private', 'national'],
+  min_parking_ratio: 0,
+  max_apartment_age: UNLIMITED_APARTMENT_AGE,
+  max_public_rental_ratio: 100,
+  min_households: 0,
+  selected_cities: ['서울특별시', '경기도', '인천광역시'],
+  selected_districts: [],
+}
 
 // 🎯 App State 타입 정의
 interface AppState {
@@ -52,17 +64,7 @@ type AppAction =
 
 // 🎛️ 초기 상태
 const initialState: AppState = {
-  filters: {
-    target_grade: 1,
-    min_students: 0,
-    school_types: ['public', 'private', 'national'],
-    min_parking_ratio: 0,
-    max_apartment_age: 200,
-    max_public_rental_ratio: 100,
-    min_households: 0,
-    selected_cities: ['서울특별시', '경기도', '인천광역시'],
-    selected_districts: []
-  },
+  filters: DEFAULT_FILTERS,
   
   map: {
     center: { lat: 37.5665, lng: 126.9780 }, // 서울시청

@@ -59,6 +59,106 @@ class DataCache {
 }
 
 const dataCache = new DataCache()
+const matchingSchoolCache = new Map<string, { ids: Set<string>; count: number; timestamp: number }>()
+let crossFilterRpcAvailable: boolean | null = null
+
+const SCHOOL_TYPE_VALUES: Record<FilterState['school_types'][number], string> = {
+  public: '공립',
+  private: '사립',
+  national: '국립',
+}
+
+export const hasApartmentFilters = (filters: FilterState) => (
+  filters.min_households > 0
+  || filters.min_parking_ratio > 0
+  || filters.max_apartment_age < UNLIMITED_APARTMENT_AGE
+  || filters.max_public_rental_ratio < 100
+)
+
+const matchingSchoolParams = (filters: FilterState) => ({
+  p_target_grade: filters.target_grade,
+  p_min_students: filters.min_students,
+  p_school_types: filters.school_types.map((type) => SCHOOL_TYPE_VALUES[type]),
+  p_regions: filters.selected_cities.length ? filters.selected_cities : null,
+  p_districts: filters.selected_districts.length ? filters.selected_districts : null,
+  p_apply_apartment_filters: hasApartmentFilters(filters),
+  p_min_households: filters.min_households,
+  p_min_parking_ratio: filters.min_parking_ratio,
+  p_min_use_approval_year: filters.max_apartment_age < UNLIMITED_APARTMENT_AGE
+    ? new Date().getFullYear() - filters.max_apartment_age
+    : null,
+  p_max_public_rental_ratio: filters.max_public_rental_ratio,
+})
+
+const matchingSchoolKey = (filters: FilterState) => JSON.stringify(matchingSchoolParams(filters))
+
+const isMissingCrossFilterRpc = (error: { code?: string; message?: string }) => (
+  error.code === 'PGRST202'
+  || error.code === '42883'
+  || Boolean(error.message?.includes('filter_school_ids'))
+)
+
+const fetchMatchingSchoolSet = async (filters: FilterState) => {
+  const cacheKey = matchingSchoolKey(filters)
+  const cached = matchingSchoolCache.get(cacheKey)
+  if (cached && Date.now() - cached.timestamp < 5 * 60 * 1000) return cached
+  if (crossFilterRpcAvailable === false) return null
+
+  const ids = new Set<string>()
+  let totalCount = 0
+  for (let start = 0; ; start += 1000) {
+    const { data, error } = await supabase
+      .rpc('filter_school_ids', matchingSchoolParams(filters))
+      .range(start, start + 999)
+    if (error) {
+      if (isMissingCrossFilterRpc(error)) {
+        crossFilterRpcAvailable = false
+        return null
+      }
+      throw error
+    }
+    crossFilterRpcAvailable = true
+    const rows = (data || []) as Array<{ school_id: string; total_count: number | string }>
+    rows.forEach((row) => ids.add(String(row.school_id)))
+    if (rows[0]) totalCount = Number(rows[0].total_count) || 0
+    if (rows.length < 1000) break
+  }
+
+  const result = { ids, count: totalCount, timestamp: Date.now() }
+  matchingSchoolCache.set(cacheKey, result)
+  return result
+}
+
+export const getFilteredSchoolCount = async (filters: FilterState): Promise<number | null> => {
+  const cached = matchingSchoolCache.get(matchingSchoolKey(filters))
+  if (cached && Date.now() - cached.timestamp < 5 * 60 * 1000) return cached.count
+  if (crossFilterRpcAvailable === false) return null
+
+  try {
+    const { data, error } = await supabase
+      .rpc('filter_school_ids', matchingSchoolParams(filters))
+      .limit(1)
+    if (error) {
+      if (isMissingCrossFilterRpc(error)) {
+        crossFilterRpcAvailable = false
+        return null
+      }
+      throw error
+    }
+    crossFilterRpcAvailable = true
+    const rows = (data || []) as Array<{ total_count: number | string }>
+    return rows[0] ? Number(rows[0].total_count) || 0 : 0
+  } catch (error) {
+    console.warn('교차 필터 결과 수 조회 실패:', error)
+    return null
+  }
+}
+
+const applyCrossDomainFilter = async (schools: School[], filters: FilterState) => {
+  if (!hasApartmentFilters(filters)) return schools
+  const matching = await fetchMatchingSchoolSet(filters)
+  return matching ? schools.filter((school) => matching.ids.has(school.school_id)) : schools
+}
 
 const numberValue = (value: unknown): number => {
   const parsed = Number(value)
@@ -161,6 +261,12 @@ export const fetchRegionData = async (
       schoolTypes: filters.school_types,
       cities: filters.selected_cities,
       districts: filters.selected_districts,
+      apartments: {
+        minHouseholds: filters.min_households,
+        minParkingRatio: filters.min_parking_ratio,
+        maxAge: filters.max_apartment_age,
+        maxPublicRentalRatio: filters.max_public_rental_ratio,
+      },
     }),
   )
   const cached = dataCache.get(cacheKey)
@@ -220,7 +326,8 @@ export const fetchSchoolDetailData = async (bounds: MapBounds, filters: FilterSt
   const { data, error } = await query.limit(1000)
   if (error) throw error
   const rows = (data || []) as unknown as SchoolMasterRow[]
-  return rows.map(toSchool).filter((school) => establishmentTypeAllowed(school, filters))
+  const schools = rows.map(toSchool).filter((school) => establishmentTypeAllowed(school, filters))
+  return applyCrossDomainFilter(schools, filters)
 }
 
 export const fetchDistrictOverviewData = async (filters: FilterState): Promise<School[]> => {
@@ -231,6 +338,10 @@ export const fetchDistrictOverviewData = async (filters: FilterState): Promise<S
     schoolTypes: filters.school_types,
     cities: filters.selected_cities,
     districts: filters.selected_districts,
+    minHouseholds: filters.min_households,
+    minParkingRatio: filters.min_parking_ratio,
+    maxApartmentAge: filters.max_apartment_age,
+    maxPublicRentalRatio: filters.max_public_rental_ratio,
   })}`
   const cached = dataCache.get(cacheKey)
   if (cached) return cached as School[]
@@ -252,10 +363,11 @@ export const fetchDistrictOverviewData = async (filters: FilterState): Promise<S
     if (!data || data.length < 1000) break
   }
 
-  const schools = rows
+  const schoolCandidates = rows
     .map(toSchool)
     .filter((school) => establishmentTypeAllowed(school, filters))
     .filter((school) => filters.selected_districts.length === 0 || filters.selected_districts.includes(school.district || ''))
+  const schools = await applyCrossDomainFilter(schoolCandidates, filters)
   dataCache.set(cacheKey, schools)
   return schools
 }
@@ -276,11 +388,12 @@ export const fetchSchoolsByAdministrativeArea = async (
 
   const { data, error } = await query.limit(1000)
   if (error) throw error
-  return ((data || []) as unknown as SchoolMasterRow[])
+  const schools = ((data || []) as unknown as SchoolMasterRow[])
     .map(toSchool)
     .filter((school) => establishmentTypeAllowed(school, filters))
     .filter((school) => school.district === district)
     .filter((school) => !neighborhood || getSchoolNeighborhoodLabel(school) === neighborhood)
+  return applyCrossDomainFilter(schools, filters)
 }
 
 export const fetchSchoolsByIds = async (
@@ -298,9 +411,10 @@ export const fetchSchoolsByIds = async (
     .limit(1000)
 
   if (error) throw error
-  return ((data || []) as unknown as SchoolMasterRow[])
+  const schools = ((data || []) as unknown as SchoolMasterRow[])
     .map(toSchool)
     .filter((school) => establishmentTypeAllowed(school, filters))
+  return applyCrossDomainFilter(schools, filters)
 }
 
 export const searchSchoolsByName = async (searchTerm: string, region?: string): Promise<School[]> => {
@@ -393,4 +507,7 @@ const getRegionCenter = (region: string): Coordinates => ({
   인천광역시: { lat: 37.4563, lng: 126.7052 },
 }[region] || { lat: 37.5, lng: 127.0 })
 
-export const clearDataCache = () => dataCache.clear()
+export const clearDataCache = () => {
+  dataCache.clear()
+  matchingSchoolCache.clear()
+}

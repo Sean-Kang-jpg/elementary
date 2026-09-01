@@ -29,3 +29,6 @@ elementary-v2/etl/logs/
 **/Thumbs.db
 **/*.log
 **/.browser-test-profile/
+
+.vercel
+.env*.local
