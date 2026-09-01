@@ -3,7 +3,7 @@
  * 줌 레벨에 따라 개별 마커 또는 클러스터 마커를 표시
  */
 
-import React, { useEffect, useState, useCallback } from 'react'
+import React, { useEffect, useRef, useState, useCallback } from 'react'
 import { useAppContext } from '../../contexts/AppContext'
 import { fetchDistrictOverviewData, fetchRegionData, fetchSchoolsByAdministrativeArea, fetchSchoolsByIds } from '../../services/dataService'
 import { ClusterPoint, getSchoolNeighborhoodLabel, groupSchoolsByDistrict, groupSchoolsByNeighborhood } from '../../utils/clusterUtils'
@@ -23,6 +23,15 @@ interface DistrictScope {
   district: string
 }
 
+interface ViewportSnapshot {
+  center: { lat: number; lng: number }
+  zoom: number
+}
+
+const DISTRICT_SHEET_RATIO = 0.32
+const NEIGHBORHOOD_SHEET_RATIO = 0.28
+const SCHOOL_SHEET_RATIO = 0.38
+
 const clusterIntersectsBounds = (cluster: ClusterPoint, bounds: MapBounds) => (
   cluster.bounds.north >= bounds.southwest.lat
   && cluster.bounds.south <= bounds.northeast.lat
@@ -39,6 +48,72 @@ const MarkerManager: React.FC<MarkerManagerProps> = ({ map }) => {
   const [districtScope, setDistrictScope] = useState<DistrictScope | null>(null)
   const [neighborhoodScope, setNeighborhoodScope] = useState<string | null>(null)
   const [neighborhoodSchoolIds, setNeighborhoodSchoolIds] = useState<string[]>([])
+  const districtReturnViewportRef = useRef<ViewportSnapshot | null>(null)
+  const neighborhoodReturnViewportRef = useRef<ViewportSnapshot | null>(null)
+  const schoolReturnViewportRef = useRef<ViewportSnapshot | null>(null)
+  const previousSelectedSchoolRef = useRef<School | null>(null)
+  const neighborhoodEnteredDirectlyRef = useRef(false)
+
+  const getViewportSnapshot = useCallback((): ViewportSnapshot => {
+    if (!map) return { center: state.map.center, zoom: state.map.zoom }
+    const center = map.getCenter()
+    return {
+      center: { lat: center.lat(), lng: center.lng() },
+      zoom: map.getZoom(),
+    }
+  }, [map, state.map.center, state.map.zoom])
+
+  const setCamera = useCallback((viewport: ViewportSnapshot, sheetRatio = 0) => {
+    const maps = window.naver?.maps
+    if (!map || !maps?.LatLng) {
+      dispatch({ type: 'SET_MAP_STATE', payload: viewport })
+      return
+    }
+
+    map.setZoom(viewport.zoom)
+    map.setCenter(new maps.LatLng(viewport.center.lat, viewport.center.lng))
+    if (sheetRatio > 0 && maps.Point) {
+      window.requestAnimationFrame(() => {
+        map.panBy(new maps.Point(0, Math.round(window.innerHeight * sheetRatio / 2)))
+      })
+    }
+  }, [dispatch, map])
+
+  const keepSchoolInVisibleMap = useCallback((school: School) => {
+    if (!map || !school.latitude || !school.longitude) return
+
+    const bounds = map.getBounds()
+    const northeast = bounds.getNE()
+    const southwest = bounds.getSW()
+    const latitudeSpan = northeast.lat() - southwest.lat()
+    const longitudeSpan = northeast.lng() - southwest.lng()
+    if (latitudeSpan <= 0 || longitudeSpan <= 0) return
+
+    const x = (school.longitude - southwest.lng()) / longitudeSpan
+    const y = (northeast.lat() - school.latitude) / latitudeSpan
+    const safeLeft = 0.08
+    const safeRight = 0.92
+    const safeTop = 0.08
+    const safeBottom = 1 - SCHOOL_SHEET_RATIO - 0.04
+    if (x >= safeLeft && x <= safeRight && y >= safeTop && y <= safeBottom) return
+
+    const currentCenter = map.getCenter()
+    const desiredX = x < safeLeft || x > safeRight ? 0.5 : x
+    const desiredY = y < safeTop || y > safeBottom
+      ? (safeTop + safeBottom) / 2
+      : y
+    setCamera({
+      zoom: map.getZoom(),
+      center: {
+        lat: desiredY === y
+          ? currentCenter.lat()
+          : school.latitude + (desiredY - 0.5) * latitudeSpan,
+        lng: desiredX === x
+          ? currentCenter.lng()
+          : school.longitude - (desiredX - 0.5) * longitudeSpan,
+      },
+    })
+  }, [map, setCamera])
 
   // 현재 표시 모드
   const displayMode = getDisplayMode(state.map.zoom)
@@ -46,17 +121,21 @@ const MarkerManager: React.FC<MarkerManagerProps> = ({ map }) => {
 
   // 학교 클릭 핸들러
   const handleSchoolClick = useCallback((school: School) => {
+    schoolReturnViewportRef.current = getViewportSnapshot()
     dispatch({
       type: 'SET_SELECTED_SCHOOL',
       payload: school
     })
-  }, [dispatch])
+    window.requestAnimationFrame(() => keepSchoolInVisibleMap(school))
+  }, [dispatch, getViewportSnapshot, keepSchoolInVisibleMap])
 
   // Move exactly one level down: district -> neighborhood -> school.
   const handleClusterClick = useCallback((cluster: ClusterPoint) => {
     const isDistrictLevel = state.map.zoom <= 12
     const nextZoom = isDistrictLevel ? 13 : 15
     if (isDistrictLevel) {
+      districtReturnViewportRef.current = getViewportSnapshot()
+      neighborhoodEnteredDirectlyRef.current = false
       const firstSchool = cluster.schools[0]
       setSchools([])
       setClusters([])
@@ -67,16 +146,25 @@ const MarkerManager: React.FC<MarkerManagerProps> = ({ map }) => {
       setNeighborhoodScope(null)
       setNeighborhoodSchoolIds([])
     } else {
+      const firstSchool = cluster.schools[0]
+      neighborhoodReturnViewportRef.current = getViewportSnapshot()
+      neighborhoodEnteredDirectlyRef.current = !districtScope
+      if (!districtScope) {
+        setDistrictScope({
+          region: firstSchool.region,
+          district: firstSchool.district || firstSchool.city || firstSchool.region,
+        })
+      }
       setNeighborhoodScope(cluster.label || getSchoolNeighborhoodLabel(cluster.schools[0]))
       setNeighborhoodSchoolIds(cluster.schools.map((school) => school.school_id))
       setSchools(cluster.schools)
     }
     dispatch({ type: 'SET_SELECTED_SCHOOL', payload: null })
-    dispatch({
-      type: 'SET_MAP_STATE',
-      payload: { zoom: nextZoom, center: cluster.center },
-    })
-  }, [dispatch, state.map.zoom])
+    setCamera(
+      { zoom: nextZoom, center: cluster.center },
+      isDistrictLevel ? DISTRICT_SHEET_RATIO : NEIGHBORHOOD_SHEET_RATIO,
+    )
+  }, [dispatch, districtScope, getViewportSnapshot, setCamera, state.map.zoom])
 
   const handleClearDistrict = useCallback(() => {
     setSchools([])
@@ -85,32 +173,49 @@ const MarkerManager: React.FC<MarkerManagerProps> = ({ map }) => {
     setNeighborhoodScope(null)
     setNeighborhoodSchoolIds([])
     dispatch({ type: 'SET_SELECTED_SCHOOL', payload: null })
-    dispatch({
-      type: 'SET_MAP_STATE',
-      payload: { zoom: 12, center: state.map.center },
-    })
-  }, [dispatch, state.map.center])
+    const returnViewport = districtReturnViewportRef.current
+    districtReturnViewportRef.current = null
+    neighborhoodReturnViewportRef.current = null
+    neighborhoodEnteredDirectlyRef.current = false
+    if (returnViewport) setCamera(returnViewport)
+  }, [dispatch, setCamera])
 
   const handleClearNeighborhood = useCallback(() => {
+    const enteredDirectly = neighborhoodEnteredDirectlyRef.current
     setSchools([])
     setClusters([])
     setNeighborhoodScope(null)
     setNeighborhoodSchoolIds([])
+    if (enteredDirectly) setDistrictScope(null)
     dispatch({ type: 'SET_SELECTED_SCHOOL', payload: null })
-    dispatch({
-      type: 'SET_MAP_STATE',
-      payload: { zoom: 13, center: state.map.center },
-    })
-  }, [dispatch, state.map.center])
+    const returnViewport = neighborhoodReturnViewportRef.current
+    neighborhoodReturnViewportRef.current = null
+    neighborhoodEnteredDirectlyRef.current = false
+    if (returnViewport) setCamera(returnViewport)
+  }, [dispatch, setCamera])
+
+  useEffect(() => {
+    const previousSchool = previousSelectedSchoolRef.current
+    if (previousSchool && !state.selectedSchool && schoolReturnViewportRef.current) {
+      setCamera(schoolReturnViewportRef.current)
+      schoolReturnViewportRef.current = null
+    }
+    previousSelectedSchoolRef.current = state.selectedSchool
+  }, [setCamera, state.selectedSchool])
 
   useEffect(() => {
     if (state.map.zoom <= 12) {
       setDistrictScope(null)
       setNeighborhoodScope(null)
       setNeighborhoodSchoolIds([])
+      neighborhoodEnteredDirectlyRef.current = false
     } else if (state.map.zoom < 15) {
       setNeighborhoodScope(null)
       setNeighborhoodSchoolIds([])
+      if (neighborhoodEnteredDirectlyRef.current) {
+        setDistrictScope(null)
+        neighborhoodEnteredDirectlyRef.current = false
+      }
     }
   }, [state.map.zoom])
 
