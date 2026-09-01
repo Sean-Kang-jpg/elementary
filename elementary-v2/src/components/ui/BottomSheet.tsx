@@ -69,11 +69,13 @@ const BottomSheet: React.FC<BottomSheetProps> = ({
 
     if (dragOffset >= closeThreshold) {
       if (swipeDownBehavior === 'collapse') {
-        setCurrentSnap((snap) => {
-          const nextSnap = Math.max(snap - 1, 0)
+        if (currentSnap === 0) {
+          onClose()
+        } else {
+          const nextSnap = Math.max(currentSnap - 1, 0)
+          setCurrentSnap(nextSnap)
           onSnapChange?.(nextSnap)
-          return nextSnap
-        })
+        }
       } else {
         onClose()
       }
@@ -85,7 +87,7 @@ const BottomSheet: React.FC<BottomSheetProps> = ({
       })
     }
     setDragOffset(0)
-  }, [dragOffset, isDragging, onClose, onSnapChange, snapPoints.length, swipeDownBehavior])
+  }, [currentSnap, dragOffset, isDragging, onClose, onSnapChange, snapPoints.length, swipeDownBehavior])
 
   // 터치 이벤트
   const handleTouchStart = (e: React.TouchEvent) => {

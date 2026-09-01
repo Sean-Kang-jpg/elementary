@@ -11,6 +11,7 @@ import { getDisplayMode } from '../../utils/mapUtils'
 import { MapBounds, School } from '../../types'
 import SchoolMarker from './SchoolMarker'
 import ClusterMarker from './ClusterMarker'
+import DistrictNeighborhoodSheet from './DistrictNeighborhoodSheet'
 import NeighborhoodSchoolSheet from './NeighborhoodSchoolSheet'
 
 interface MarkerManagerProps {
@@ -57,6 +58,8 @@ const MarkerManager: React.FC<MarkerManagerProps> = ({ map }) => {
     const nextZoom = isDistrictLevel ? 13 : 15
     if (isDistrictLevel) {
       const firstSchool = cluster.schools[0]
+      setSchools([])
+      setClusters([])
       setDistrictScope({
         region: firstSchool.region,
         district: cluster.label || firstSchool.district || '',
@@ -75,7 +78,22 @@ const MarkerManager: React.FC<MarkerManagerProps> = ({ map }) => {
     })
   }, [dispatch, state.map.zoom])
 
+  const handleClearDistrict = useCallback(() => {
+    setSchools([])
+    setClusters([])
+    setDistrictScope(null)
+    setNeighborhoodScope(null)
+    setNeighborhoodSchoolIds([])
+    dispatch({ type: 'SET_SELECTED_SCHOOL', payload: null })
+    dispatch({
+      type: 'SET_MAP_STATE',
+      payload: { zoom: 12, center: state.map.center },
+    })
+  }, [dispatch, state.map.center])
+
   const handleClearNeighborhood = useCallback(() => {
+    setSchools([])
+    setClusters([])
     setNeighborhoodScope(null)
     setNeighborhoodSchoolIds([])
     dispatch({ type: 'SET_SELECTED_SCHOOL', payload: null })
@@ -234,6 +252,19 @@ const MarkerManager: React.FC<MarkerManagerProps> = ({ map }) => {
           onClick={handleSchoolClick}
         />
       ))}
+
+      {districtScope && !neighborhoodScope && (
+        <DistrictNeighborhoodSheet
+          region={districtScope.region}
+          district={districtScope.district}
+          schools={schools}
+          targetGrade={state.filters.target_grade}
+          loading={loading}
+          isOpen={!state.selectedSchool}
+          onNeighborhoodSelect={handleClusterClick}
+          onClear={handleClearDistrict}
+        />
+      )}
 
       {districtScope && neighborhoodScope && (
         <NeighborhoodSchoolSheet
