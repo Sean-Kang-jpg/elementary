@@ -16,7 +16,10 @@ v2.0 establishes the current production foundation:
 - Map-first frontend with nearby-school discovery, v1-style markers, search, filters, and school/apartment detail
 - School detail prioritizes grade statistics, then lists assigned apartments by household count with ground/underground parking
 - Predictable map hierarchy: district summaries, neighborhood summaries, then individual schools
-- Click-through map drilldown queries the selected administrative area at each level, while school selection preserves the current zoom
+- Click-through map drilldown queries the selected district, then resolves neighborhood schools by the marker's exact school IDs; school selection preserves the current zoom
+- Clicking a visible school changes only selection, details, and apartment markers; the map center and zoom remain unchanged while apartment data loads
+- Administrative markers show only blue/orange school counts with a map legend; school details open with three selectable first-grade metrics, a persistent favorite star, and swipe-down dismissal
+- District and neighborhood marker counts are calculated from every school in each administrative area and cached independently of the viewport, so map panning changes visibility but never changes the displayed totals
 - Selected schools use a solid-blue top-layer marker, nearby schools remain readable at 62% opacity, and assigned apartments retain teal identity
 - Shared assigned-apartment results: selecting a school displays exact household-count callouts scaled by complex size, reduces sub-100-household complexes to low-priority dots, and opens exact apartment detail on selection
 - Passing frontend lint, typecheck, production build, and operational backend audits

@@ -1,4 +1,4 @@
-import { ArrowLeft, Building2, CarFront, ChevronRight, LoaderCircle, MapPin } from 'lucide-react'
+import { ArrowLeft, Building2, CarFront, ChevronRight, LayoutGrid, LoaderCircle, MapPin, Star, UserRound, Users } from 'lucide-react'
 import React, { useEffect, useMemo, useState } from 'react'
 import { School } from '../../types'
 import { useAppContext } from '../../contexts/AppContext'
@@ -14,6 +14,9 @@ interface SchoolDetailProps {
   onClose: () => void
 }
 
+type SchoolMetric = 'students' | 'classes' | 'perClass'
+const FAVORITE_SCHOOLS_KEY = 'favorite-school-ids'
+
 const SchoolDetail: React.FC<SchoolDetailProps> = ({ school, isOpen, onClose }) => {
   const { state, dispatch } = useAppContext()
   const apartments = useMemo(
@@ -24,11 +27,24 @@ const SchoolDetail: React.FC<SchoolDetailProps> = ({ school, isOpen, onClose }) 
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [currentView, setCurrentView] = useState<'school' | 'apartments' | 'apartment-detail'>('school')
+  const [selectedMetric, setSelectedMetric] = useState<SchoolMetric>('students')
+  const [isFavorite, setIsFavorite] = useState(false)
 
   useEffect(() => {
     setCurrentView('school')
+    setSelectedMetric('students')
     dispatch({ type: 'SET_SELECTED_APARTMENT', payload: null })
   }, [dispatch, school?.school_id])
+
+  useEffect(() => {
+    if (!school?.school_id) return
+    try {
+      const favoriteIds = JSON.parse(localStorage.getItem(FAVORITE_SCHOOLS_KEY) || '[]') as string[]
+      setIsFavorite(favoriteIds.includes(school.school_id))
+    } catch {
+      setIsFavorite(false)
+    }
+  }, [school?.school_id])
 
   useEffect(() => {
     if (selectedApartment) setCurrentView('apartment-detail')
@@ -81,6 +97,20 @@ const SchoolDetail: React.FC<SchoolDetailProps> = ({ school, isOpen, onClose }) 
     onClose()
   }
 
+  const toggleFavorite = () => {
+    try {
+      const favoriteIds = JSON.parse(localStorage.getItem(FAVORITE_SCHOOLS_KEY) || '[]') as string[]
+      const nextFavorite = !favoriteIds.includes(school.school_id)
+      const nextIds = nextFavorite
+        ? [...favoriteIds, school.school_id]
+        : favoriteIds.filter((schoolId) => schoolId !== school.school_id)
+      localStorage.setItem(FAVORITE_SCHOOLS_KEY, JSON.stringify(nextIds))
+      setIsFavorite(nextFavorite)
+    } catch {
+      setIsFavorite(false)
+    }
+  }
+
   if (currentView === 'apartment-detail') {
     return (
       <ApartmentDetail
@@ -100,6 +130,17 @@ const SchoolDetail: React.FC<SchoolDetailProps> = ({ school, isOpen, onClose }) 
       isOpen={isOpen}
       onClose={close}
       title={title}
+      headerAction={currentView === 'school' ? (
+        <button
+          type="button"
+          onClick={toggleFavorite}
+          aria-label={isFavorite ? '즐겨찾기 해제' : '즐겨찾기 추가'}
+          aria-pressed={isFavorite}
+          className={`rounded-md p-2 transition-colors hover:bg-gray-100 ${isFavorite ? 'text-amber-500' : 'text-gray-500'}`}
+        >
+          <Star size={21} fill={isFavorite ? 'currentColor' : 'none'} aria-hidden="true" />
+        </button>
+      ) : undefined}
       snapPoints={[0.45, 0.7]}
       defaultSnap={0}
     >
@@ -137,25 +178,30 @@ const SchoolDetail: React.FC<SchoolDetailProps> = ({ school, isOpen, onClose }) 
               <h3 id="first-grade-title" className="font-semibold text-gray-950">1학년 현황</h3>
               <span className="text-xs text-gray-500">입학 규모를 보는 핵심 지표</span>
             </div>
-            <div className="grid grid-cols-3 border-y border-gray-200 py-4 text-center">
-              <div className="border-r border-gray-200">
-                <strong className="block text-2xl text-blue-700">{school.grade1_students.toLocaleString()}</strong>
-                <span className="text-xs text-gray-500">학생 수</span>
-              </div>
-              <div className="border-r border-gray-200">
-                <strong className="block text-2xl text-gray-950">{firstGradeClasses}</strong>
-                <span className="text-xs text-gray-500">학급 수</span>
-              </div>
-              <div>
-                <strong className="block text-2xl text-gray-950">{firstGradePerClass}</strong>
-                <span className="text-xs text-gray-500">학급당 학생</span>
-              </div>
+            <div className="grid grid-cols-3 gap-2" aria-label="학교 통계 지표">
+              {([
+                ['students', '학생수', school.grade1_students, '명', Users],
+                ['classes', '학급수', firstGradeClasses, '학급', LayoutGrid],
+                ['perClass', '학급당', firstGradePerClass, '명', UserRound],
+              ] as const).map(([metric, label, value, unit, Icon]) => (
+                <button
+                  key={metric}
+                  type="button"
+                  onClick={() => setSelectedMetric(metric)}
+                  aria-pressed={selectedMetric === metric}
+                  className={`flex min-h-[86px] flex-col items-center justify-center rounded-md border px-2 py-3 text-center transition-colors ${selectedMetric === metric ? 'border-blue-600 bg-blue-50 text-blue-800' : 'border-gray-200 bg-white text-gray-700 hover:bg-gray-50'}`}
+                >
+                  <Icon size={17} className="mb-1" aria-hidden="true" />
+                  <strong className="text-xl leading-none">{value.toLocaleString()}</strong>
+                  <span className="mt-1 text-[11px] font-medium">{label} · {unit}</span>
+                </button>
+              ))}
             </div>
           </section>
 
           <section aria-labelledby="grade-title">
             <h3 id="grade-title" className="mb-3 font-semibold text-gray-950">학년별 학생 현황</h3>
-            <GradeChart school={school} />
+            <GradeChart school={school} metric={selectedMetric} />
             <div className="mt-3 grid grid-cols-3 gap-px overflow-hidden rounded-md border border-gray-200 bg-gray-200 sm:grid-cols-6">
               {gradeData.map(({ grade, students, classes, perClass }) => (
                 <div key={grade} className="bg-white px-2 py-3 text-center">

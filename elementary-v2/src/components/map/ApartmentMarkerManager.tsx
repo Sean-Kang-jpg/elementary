@@ -1,4 +1,4 @@
-import { useCallback, useEffect } from 'react'
+import { useCallback } from 'react'
 import { useAppContext } from '../../contexts/AppContext'
 import type { Apartment } from '../../types'
 import ApartmentMarker from './ApartmentMarker'
@@ -14,19 +14,6 @@ export default function ApartmentMarkerManager({ map }: ApartmentMarkerManagerPr
   const selectApartment = useCallback((apartment: Apartment) => {
     dispatch({ type: 'SET_SELECTED_APARTMENT', payload: apartment })
   }, [dispatch])
-
-  useEffect(() => {
-    const maps = window.naver?.maps
-    if (!maps || !selectedSchool) return
-
-    map.panTo(new maps.LatLng(selectedSchool.latitude, selectedSchool.longitude))
-
-    const panTimer = window.setTimeout(() => {
-      map.panBy(new maps.Point(0, Math.min(Math.round(window.innerHeight * 0.12), 120)))
-    }, 250)
-
-    return () => window.clearTimeout(panTimer)
-  }, [map, selectedSchool])
 
   if (!selectedSchool) return null
 

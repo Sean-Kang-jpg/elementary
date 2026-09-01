@@ -223,6 +223,43 @@ export const fetchSchoolDetailData = async (bounds: MapBounds, filters: FilterSt
   return rows.map(toSchool).filter((school) => establishmentTypeAllowed(school, filters))
 }
 
+export const fetchDistrictOverviewData = async (filters: FilterState): Promise<School[]> => {
+  const gradeColumn = `grade${filters.target_grade}_students`
+  const cacheKey = `district-overview_${JSON.stringify({
+    grade: filters.target_grade,
+    minStudents: filters.min_students,
+    schoolTypes: filters.school_types,
+    cities: filters.selected_cities,
+    districts: filters.selected_districts,
+  })}`
+  const cached = dataCache.get(cacheKey)
+  if (cached) return cached as School[]
+
+  const rows: SchoolMasterRow[] = []
+  for (let start = 0; ; start += 1000) {
+    let query = supabase
+      .from('school_master')
+      .select([
+        'school_id', 'school_name', 'school_type', 'road_address', 'legal_address', 'region',
+        'latitude', 'longitude', 'establishment_type', gradeColumn,
+      ].join(','))
+      .gte(gradeColumn, filters.min_students)
+
+    if (filters.selected_cities.length) query = query.in('region', filters.selected_cities)
+    const { data, error } = await query.range(start, start + 999)
+    if (error) throw error
+    rows.push(...((data || []) as unknown as SchoolMasterRow[]))
+    if (!data || data.length < 1000) break
+  }
+
+  const schools = rows
+    .map(toSchool)
+    .filter((school) => establishmentTypeAllowed(school, filters))
+    .filter((school) => filters.selected_districts.length === 0 || filters.selected_districts.includes(school.district || ''))
+  dataCache.set(cacheKey, schools)
+  return schools
+}
+
 export const fetchSchoolsByAdministrativeArea = async (
   region: string,
   district: string,
@@ -244,6 +281,26 @@ export const fetchSchoolsByAdministrativeArea = async (
     .filter((school) => establishmentTypeAllowed(school, filters))
     .filter((school) => school.district === district)
     .filter((school) => !neighborhood || getSchoolNeighborhoodLabel(school) === neighborhood)
+}
+
+export const fetchSchoolsByIds = async (
+  schoolIds: string[],
+  filters: FilterState,
+): Promise<School[]> => {
+  if (schoolIds.length === 0) return []
+
+  const gradeColumn = `grade${filters.target_grade}_students`
+  const { data, error } = await supabase
+    .from('school_master')
+    .select(SCHOOL_SELECT_FIELDS)
+    .in('school_id', schoolIds)
+    .gte(gradeColumn, filters.min_students)
+    .limit(1000)
+
+  if (error) throw error
+  return ((data || []) as unknown as SchoolMasterRow[])
+    .map(toSchool)
+    .filter((school) => establishmentTypeAllowed(school, filters))
 }
 
 export const searchSchoolsByName = async (searchTerm: string, region?: string): Promise<School[]> => {

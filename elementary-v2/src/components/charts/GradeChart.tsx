@@ -16,11 +16,11 @@ ChartJS.register(CategoryScale, LinearScale, BarElement, Tooltip, Legend)
 
 interface GradeChartProps {
   school: School
+  metric?: 'students' | 'classes' | 'perClass'
   className?: string
 }
 
-const GradeChart: React.FC<GradeChartProps> = ({ school, className = '' }) => {
-  const [chartType, setChartType] = React.useState<'students' | 'perClass'>('students')
+const GradeChart: React.FC<GradeChartProps> = ({ school, metric = 'students', className = '' }) => {
   const grades = Array.from({ length: 6 }, (_, index) => {
     const grade = index + 1
     return {
@@ -30,14 +30,16 @@ const GradeChart: React.FC<GradeChartProps> = ({ school, className = '' }) => {
       perClass: Number(school[`grade${grade}_per_class` as keyof School]) || 0,
     }
   })
-  const values = grades.map((grade) => chartType === 'students'
-    ? grade.students
-    : grade.perClass || (grade.classes ? Math.round(grade.students / grade.classes * 10) / 10 : 0))
+  const values = grades.map((grade) => {
+    if (metric === 'students') return grade.students
+    if (metric === 'classes') return grade.classes
+    return grade.perClass || (grade.classes ? Math.round(grade.students / grade.classes * 10) / 10 : 0)
+  })
 
   const data: ChartData<'bar'> = {
     labels: grades.map(({ grade }) => `${grade}학년`),
     datasets: [{
-      label: chartType === 'students' ? '학생 수' : '학급당 학생 수',
+      label: metric === 'students' ? '학생수' : metric === 'classes' ? '학급수' : '학급당 학생수',
       data: values,
       backgroundColor: grades.map(({ grade }) => grade === 1 ? '#2563eb' : '#93c5fd'),
       borderRadius: 3,
@@ -52,7 +54,7 @@ const GradeChart: React.FC<GradeChartProps> = ({ school, className = '' }) => {
       legend: { display: false },
       tooltip: {
         callbacks: {
-          label: ({ parsed }) => `${parsed.y}명`,
+          label: ({ parsed }) => `${parsed.y}${metric === 'classes' ? '학급' : '명'}`,
         },
       },
     },
@@ -69,24 +71,6 @@ const GradeChart: React.FC<GradeChartProps> = ({ school, className = '' }) => {
 
   return (
     <div className={className}>
-      <div className="mb-3 inline-flex rounded-md border border-gray-200 p-1" aria-label="차트 지표">
-        <button
-          type="button"
-          onClick={() => setChartType('students')}
-          aria-pressed={chartType === 'students'}
-          className={`rounded px-3 py-1 text-xs font-medium ${chartType === 'students' ? 'bg-blue-50 text-blue-800' : 'text-gray-600'}`}
-        >
-          학생 수
-        </button>
-        <button
-          type="button"
-          onClick={() => setChartType('perClass')}
-          aria-pressed={chartType === 'perClass'}
-          className={`rounded px-3 py-1 text-xs font-medium ${chartType === 'perClass' ? 'bg-blue-50 text-blue-800' : 'text-gray-600'}`}
-        >
-          학급당 학생 수
-        </button>
-      </div>
       <div className="h-48">
         <Bar data={data} options={options} />
       </div>

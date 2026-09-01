@@ -298,11 +298,27 @@ body {
 }
 
 .school-cluster-marker .school-cluster-marker__high {
-  color: #1e8e3e;
+  display: inline-flex;
+  width: 24px;
+  height: 24px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #2563eb;
+  color: #fff;
+  font-weight: 800;
 }
 
 .school-cluster-marker .school-cluster-marker__low {
-  color: #d93025;
+  display: inline-flex;
+  width: 24px;
+  height: 24px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #f59e0b;
+  color: #422006;
+  font-weight: 800;
 }
 
 @media (max-width: 640px) {

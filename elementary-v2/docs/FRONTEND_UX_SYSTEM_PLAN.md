@@ -85,6 +85,9 @@ Use staged filters with `결과 보기` on mobile to avoid a query on every slid
 - School markers use white labels with blue names and a selected-grade count.
 - Apartment markers use parking/Airbnb-style exact-count callouts (`4,424세대`) sized by household tier. Complexes below 100 households use low-priority dots so larger complexes stay visible; selected callouts invert to solid teal and exact names remain in the bottom detail.
 - School map levels never mix representations at one zoom: district summary, neighborhood summary, then individual school.
+- District and neighborhood summaries use blue and amber count circles rather than inequality symbols; a compact legend explains the 80-student threshold.
+- District and neighborhood count circles always represent the complete administrative area, not the current viewport. Panning may reveal or hide a marker but must not change its counts.
+- School details begin with selectable first-grade students, classes, and students-per-class metrics plus a persistent favorite action. School and apartment sheets dismiss on a deliberate downward swipe while retaining the close button.
 - Clicking a district or neighborhood queries only that administrative scope and advances exactly one level; selecting a school pans without changing zoom.
 - Mobility-map conventions inform layering rather than branding: larger complexes receive higher z-order, while dense low-value points stay visually quiet.
 - School selection uses a solid-blue top-layer marker; other schools stay clickable and readable at 62% opacity, while assigned apartments remain teal.

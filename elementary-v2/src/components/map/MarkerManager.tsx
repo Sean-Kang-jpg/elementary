@@ -5,10 +5,10 @@
 
 import React, { useEffect, useState, useCallback } from 'react'
 import { useAppContext } from '../../contexts/AppContext'
-import { fetchRegionData, fetchSchoolsByAdministrativeArea } from '../../services/dataService'
+import { fetchDistrictOverviewData, fetchRegionData, fetchSchoolsByAdministrativeArea, fetchSchoolsByIds } from '../../services/dataService'
 import { ClusterPoint, getSchoolNeighborhoodLabel, groupSchoolsByDistrict, groupSchoolsByNeighborhood } from '../../utils/clusterUtils'
 import { getDisplayMode } from '../../utils/mapUtils'
-import { School } from '../../types'
+import { MapBounds, School } from '../../types'
 import SchoolMarker from './SchoolMarker'
 import ClusterMarker from './ClusterMarker'
 
@@ -21,6 +21,13 @@ interface DistrictScope {
   district: string
 }
 
+const clusterIntersectsBounds = (cluster: ClusterPoint, bounds: MapBounds) => (
+  cluster.bounds.north >= bounds.southwest.lat
+  && cluster.bounds.south <= bounds.northeast.lat
+  && cluster.bounds.east >= bounds.southwest.lng
+  && cluster.bounds.west <= bounds.northeast.lng
+)
+
 const MarkerManager: React.FC<MarkerManagerProps> = ({ map }) => {
   const { state, dispatch } = useAppContext()
   const [schools, setSchools] = useState<School[]>([])
@@ -29,6 +36,7 @@ const MarkerManager: React.FC<MarkerManagerProps> = ({ map }) => {
   const [error, setError] = useState<string | null>(null)
   const [districtScope, setDistrictScope] = useState<DistrictScope | null>(null)
   const [neighborhoodScope, setNeighborhoodScope] = useState<string | null>(null)
+  const [neighborhoodSchoolIds, setNeighborhoodSchoolIds] = useState<string[]>([])
 
   // 현재 표시 모드
   const displayMode = getDisplayMode(state.map.zoom)
@@ -53,8 +61,10 @@ const MarkerManager: React.FC<MarkerManagerProps> = ({ map }) => {
         district: cluster.label || firstSchool.district || '',
       })
       setNeighborhoodScope(null)
+      setNeighborhoodSchoolIds([])
     } else {
-      setNeighborhoodScope(cluster.label || cluster.schools[0].neighborhood || null)
+      setNeighborhoodScope(cluster.label || getSchoolNeighborhoodLabel(cluster.schools[0]))
+      setNeighborhoodSchoolIds(cluster.schools.map((school) => school.school_id))
     }
     dispatch({ type: 'SET_SELECTED_SCHOOL', payload: null })
     dispatch({
@@ -67,8 +77,10 @@ const MarkerManager: React.FC<MarkerManagerProps> = ({ map }) => {
     if (state.map.zoom <= 12) {
       setDistrictScope(null)
       setNeighborhoodScope(null)
+      setNeighborhoodSchoolIds([])
     } else if (state.map.zoom < 15) {
       setNeighborhoodScope(null)
+      setNeighborhoodSchoolIds([])
     }
   }, [state.map.zoom])
 
@@ -88,7 +100,11 @@ const MarkerManager: React.FC<MarkerManagerProps> = ({ map }) => {
       setError(null)
 
       try {
-        const data = districtScope && state.map.zoom >= 13
+        const data = state.map.zoom < 15 && !districtScope
+          ? await fetchDistrictOverviewData(state.filters)
+          : state.map.zoom >= 15 && neighborhoodSchoolIds.length > 0
+          ? await fetchSchoolsByIds(neighborhoodSchoolIds, state.filters)
+          : districtScope && state.map.zoom >= 13
           ? await fetchSchoolsByAdministrativeArea(
             districtScope.region,
             districtScope.district,
@@ -104,8 +120,10 @@ const MarkerManager: React.FC<MarkerManagerProps> = ({ map }) => {
         // 개별 학교 데이터인 경우에만 처리 (id 또는 school_id 필드 확인)
         if (Array.isArray(data) && data.length > 0 && ('id' in data[0] || 'school_id' in data[0])) {
           const schoolData = data as School[]
-          const scopedSchoolData = state.map.zoom >= 15 && neighborhoodScope
-            ? schoolData.filter((school) => school.district === districtScope?.district && getSchoolNeighborhoodLabel(school) === neighborhoodScope)
+          const scopedSchoolData = state.map.zoom >= 15 && neighborhoodSchoolIds.length > 0
+            ? schoolData
+            : state.map.zoom >= 15 && neighborhoodScope
+              ? schoolData.filter((school) => school.district === districtScope?.district && getSchoolNeighborhoodLabel(school) === neighborhoodScope)
             : state.map.zoom >= 13 && districtScope
               ? schoolData.filter((school) => school.district === districtScope.district)
               : schoolData
@@ -114,9 +132,11 @@ const MarkerManager: React.FC<MarkerManagerProps> = ({ map }) => {
 
           // Keep one predictable hierarchy per zoom: district, neighborhood, school.
           if (state.map.zoom <= 12) {
-            setClusters(groupSchoolsByDistrict(scopedSchoolData, state.filters.target_grade))
+            const districtClusters = groupSchoolsByDistrict(scopedSchoolData, state.filters.target_grade)
+            setClusters(districtClusters.filter((cluster) => clusterIntersectsBounds(cluster, state.map.bounds!)))
           } else if (state.map.zoom < 15) {
-            setClusters(groupSchoolsByNeighborhood(scopedSchoolData, state.filters.target_grade))
+            const neighborhoodClusters = groupSchoolsByNeighborhood(scopedSchoolData, state.filters.target_grade)
+            setClusters(neighborhoodClusters.filter((cluster) => clusterIntersectsBounds(cluster, state.map.bounds!)))
           } else {
             setClusters([])
           }
@@ -140,7 +160,7 @@ const MarkerManager: React.FC<MarkerManagerProps> = ({ map }) => {
       cancelled = true
       if (requestTimer) clearTimeout(requestTimer)
     }
-  }, [districtScope, map, neighborhoodScope, state.map.bounds, state.map.zoom, state.filters, shouldShowMarkers, displayMode])
+  }, [districtScope, map, neighborhoodSchoolIds, neighborhoodScope, state.map.bounds, state.map.zoom, state.filters, shouldShowMarkers, displayMode])
 
   // 마커 렌더링
   if (!map || !shouldShowMarkers) return null
@@ -159,6 +179,13 @@ const MarkerManager: React.FC<MarkerManagerProps> = ({ map }) => {
       {error && (
         <div className="absolute top-4 left-4 bg-red-50 border border-red-200 rounded p-3 z-10 max-w-xs" role="alert">
           <span className="text-sm text-red-800">{error}</span>
+        </div>
+      )}
+
+      {clusters.length > 0 && (
+        <div className="pointer-events-none absolute bottom-4 left-3 z-10 flex items-center gap-3 rounded-md border border-gray-200 bg-white/95 px-3 py-2 text-[11px] font-medium text-gray-700 shadow-sm" aria-label="학교 규모 색상 안내">
+          <span className="inline-flex items-center gap-1.5"><span className="h-2.5 w-2.5 rounded-full bg-blue-600" aria-hidden="true" />{state.filters.target_grade}학년 80명부터</span>
+          <span className="inline-flex items-center gap-1.5"><span className="h-2.5 w-2.5 rounded-full bg-amber-500" aria-hidden="true" />{state.filters.target_grade}학년 79명까지</span>
         </div>
       )}
 
@@ -184,7 +211,7 @@ const MarkerManager: React.FC<MarkerManagerProps> = ({ map }) => {
         />
       ))}
 
-      {clusters.length === 0 && schools.map((school) => (
+      {state.map.zoom >= 15 && clusters.length === 0 && schools.map((school) => (
         <SchoolMarker
           key={school.school_id}
           school={school}
