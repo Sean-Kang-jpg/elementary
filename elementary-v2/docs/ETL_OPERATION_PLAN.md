@@ -101,6 +101,33 @@ Finalize the read model and UX before expanding the recurring ETL. The frontend 
 - [ ] Add repeatable `agent-browser` smoke scenarios for the public map and authenticated ETL dashboard.
 - [ ] Package reviewed local assignment inputs as a versioned portable bundle, then migrate recurring execution from the logged-in Windows task to GitHub Actions.
 
+### v2.1 Map Discovery Sprint
+
+Detailed behavior and acceptance checks are maintained in `FRONTEND_UX_SYSTEM_PLAN.md`.
+
+- [x] P1: add shared layout/layer tokens, safe-area-aware `지도 / 소식 / 즐겨찾기` GNB, and mobile zoom-control removal.
+- [x] P2: redesign the rounded search surface and add a horizontally scrollable quick-filter bar below it.
+- [x] P2: keep SQL `13` as the filter contract and verify frontend cache keys and combined-filter requests against its existing parameters.
+- [x] P2: keep the equalizer icon as the full-filter entry and expose establishment type, grade, students, households, and parking as direct chips.
+- [x] P3: sort district-sheet neighborhoods by selected-grade students and replace threshold text with accessible blue/amber count circles.
+- [x] P4: build local-first school/apartment favorites and define the editorial contract before enabling the published news feed.
+- [ ] Verify mobile/desktop layering, navigation-state preservation, filter equivalence, district drilldown, and all frontend quality commands.
+
+## Future Milestone: Additional Data Domains
+
+This work starts after the v2.1 map-discovery sprint and requires pilot approval before any production migration. See `FUTURE_DATA_DOMAINS_PLAN.md` for academy, timetable, playground, storage, licensing, and go/no-go details.
+
+- [ ] Profile one complete capital-region `학원교습소정보` snapshot; confirm source keys and whether records are institution- or course-level.
+- [ ] Test course-level elementary classification as explicit, likely, mixed, excluded, or unknown; manually review a stratified 200-row sample.
+- [ ] Approve academy ingestion only after elementary precision and address/geocoding coverage meet thresholds.
+- [ ] Verify NEIS school-code linkage and run a four-week timetable pilot for 10 representative elementary schools.
+- [ ] Define the timetable user feature and bounded retention policy before creating production row-level tables.
+- [ ] Confirm playground-data license and location-service requirements before requesting or using the API key.
+- [ ] Validate the playground coordinate reference system and source-ID stability on at least 100 capital-region records.
+- [ ] Profile annual playground records by place type, public/private, indoor/outdoor, operation status, coordinate completeness, and duplicates.
+- [ ] Extend ETL monitoring domains/cadences and free-tier capacity checks only with approved academy/timetable/playground migrations.
+- [ ] Keep raw pilot snapshots private and keep all three domains outside the current two-table public frontend contract.
+
 ## Refresh Runbook
 
 1. Archive source files in private Storage and record their checksums.
@@ -138,6 +165,9 @@ The first command is read-only. Use `--build` when newly collected source files 
 | I-11 | Resolved | SQL `12`, one administrator UUID, the post-migration pilot, anonymous blocking, and authenticated monitoring reads are verified. |
 | I-12 | Accepted v1 | The Windows task uses interactive logon and runs only while the ETL workstation user is logged in; `StartWhenAvailable` catches a missed run after login. |
 | I-13 | Next | Move scheduling to GitHub Actions after reviewed assignment and apartment base inputs are packaged into a portable source bundle; keep the Windows task as fallback through the first successful remote production run. |
+| I-14 | Discovery | NEIS academy data includes middle/high-school and mixed offerings. Elementary eligibility must be classified per course and manually validated before publication. |
+| I-15 | Discovery | Daily class/period timetable rows can exceed the free-tier budget if nationwide history is retained. Define the feature and retention window from a 10-school pilot first. |
+| I-16 | Blocked pending review | Playground data states Korea Open Government License Type 4 and location-information business requirements. Confirm commercial-use and location-service eligibility before API ingestion or publication. |
 
 ## Update Log
 
@@ -170,3 +200,6 @@ The first command is read-only. Use `--build` when newly collected source files 
 - 2026-08-31: Removed school-selection `panTo`/`panBy`; clicking a visible school now opens its details and apartment markers without changing the current map center or zoom.
 - 2026-09-01: Replaced inequality text on administrative markers with blue/orange numeric counts and a compact legend. Added selectable students/classes/per-class summary buttons, persistent school favorites, and swipe-down dismissal to the shared school/apartment bottom sheet.
 - 2026-09-01: Changed district and neighborhood summaries from viewport counts to full administrative-area counts. Capital-region school rows are paged once and cached for 30 minutes; viewport changes only filter marker visibility. Verified 서초구 remained 15/8 before and after panning.
+- 2026-09-02: Planned the v2.1 discovery sprint: rounded search, SQL-13-based quick-filter chips, mobile zoom removal, student-sorted district rows, marker-style count circles, and a map/news/favorites GNB. Students per class remains a detail metric rather than a filter.
+- 2026-09-02: Added post-v2.1 NEIS academy and elementary-timetable discovery. Academy publication requires course-level elementary classification; timetable storage requires a measured volume and bounded-retention pilot.
+- 2026-09-02: Added playgrounds as the third future data domain. Annual ingestion remains blocked until license/location-service eligibility, coordinate CRS, source IDs, and duplicate behavior are verified.

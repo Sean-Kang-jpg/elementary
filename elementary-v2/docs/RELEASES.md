@@ -29,19 +29,24 @@ Local ETL outputs, browser captures, PDFs, secrets, dependencies, and build arti
 
 ## v2.1 - Frontend Discovery Upgrade
 
-Status: planned; implementation begins after the v2.0 baseline is tagged.
+Status: release candidate; local implementation and responsive QA complete, production verification pending.
 
 v2.1 will focus on user discovery without changing the verified v2.0 ETL source of truth:
 
-1. Apply shared color, typography, spacing, surface, and interaction tokens.
-2. Add a deduplicated search contract for schools and apartment complexes.
-3. Group unified-search results by school, apartment, address, and later station.
-4. Separate school-map, assigned-apartment, and location filter scopes.
-5. Add applied-filter chips, staged mobile apply, and map/list result views.
-6. Add address geocoding.
-7. Select and ingest a station master before adding subway discovery.
+1. Applied shared color, spacing, surface, interaction, and layer tokens.
+2. Added a rounded search surface and horizontal quick-filter row with a full-filter icon entry point.
+3. Reused the SQL `13` filter contract and preserved one combined school/apartment request.
+4. Removed mobile zoom buttons and added a safe-area-aware `지도 / 소식 / 즐겨찾기` GNB.
+5. Sorted district neighborhoods by selected-grade students and used marker-style numeric count circles.
+6. Built local-first school/apartment favorites and defined the news content contract.
+7. Reduced mobile school targeting to zoom `14` and aligned individual-school rendering to that level.
+8. Deferred deduplicated apartment search, address geocoding, station discovery, and published news content.
 
 The detailed UX contract is maintained in `FRONTEND_UX_SYSTEM_PLAN.md`.
+
+## Post-v2.1 Data Candidates
+
+Academy/tutoring-center, elementary-timetable, and playground data are discovery items, not part of the v2.1 release contract. Academy data requires course-level elementary-audience validation because mixed middle/high-school offerings are present. Timetable data requires a feature and retention decision before daily class/period rows are stored at scale. Playground data requires license/location-service review and coordinate-system validation before ingestion. The detailed gates are maintained in `FUTURE_DATA_DOMAINS_PLAN.md`.
 
 ## Versioning Rule
 

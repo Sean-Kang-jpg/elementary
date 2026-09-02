@@ -3,9 +3,11 @@
  * 개별 아파트의 상세 정보를 표시
  */
 
-import React from 'react'
+import { Star } from 'lucide-react'
+import React, { useEffect, useState } from 'react'
 import { Apartment } from '../../types'
 import BottomSheet from '../ui/BottomSheet'
+import { apartmentFavorite, isFavorite as checkFavorite, toggleFavorite } from '../../utils/favorites'
 
 interface ApartmentDetailProps {
   apartment: Apartment | null
@@ -20,6 +22,12 @@ const ApartmentDetail: React.FC<ApartmentDetailProps> = ({
   onClose,
   onBack
 }) => {
+  const [isFavorite, setIsFavorite] = useState(false)
+
+  useEffect(() => {
+    setIsFavorite(apartment ? checkFavorite('apartment', apartment.id) : false)
+  }, [apartment])
+
   if (!apartment) return null
 
   // 아파트 연식 계산
@@ -57,6 +65,17 @@ const ApartmentDetail: React.FC<ApartmentDetailProps> = ({
       isOpen={isOpen}
       onClose={onClose}
       title={apartment.name}
+      headerAction={(
+        <button
+          type="button"
+          onClick={() => setIsFavorite(toggleFavorite(apartmentFavorite(apartment)))}
+          aria-label={isFavorite ? '즐겨찾기 해제' : '즐겨찾기 추가'}
+          aria-pressed={isFavorite}
+          className={`rounded-md p-2 transition-colors hover:bg-gray-100 ${isFavorite ? 'text-amber-500' : 'text-gray-500'}`}
+        >
+          <Star size={21} fill={isFavorite ? 'currentColor' : 'none'} aria-hidden="true" />
+        </button>
+      )}
       snapPoints={[0.45, 0.7]}
       defaultSnap={1}
     >

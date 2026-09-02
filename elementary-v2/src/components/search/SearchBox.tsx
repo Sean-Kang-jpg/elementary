@@ -3,6 +3,7 @@
  * 학교명/주소 자동완성 검색 기능
  */
 
+import { Clock3, LoaderCircle, Search, School as SchoolIcon, X } from 'lucide-react'
 import React, { useState, useEffect, useRef, useCallback } from 'react'
 import { School } from '../../types'
 import { searchSchoolsByName } from '../../services/dataService'
@@ -89,7 +90,7 @@ const SearchBox: React.FC<SearchBoxProps> = ({
             lat: school.latitude,
             lng: school.longitude
           },
-          zoom: 15 // 학교 상세 보기 줌 레벨
+          zoom: 14
         }
       })
     }
@@ -149,7 +150,8 @@ const SearchBox: React.FC<SearchBoxProps> = ({
   const highlightMatch = (text: string, query: string) => {
     if (!query.trim()) return text
 
-    const regex = new RegExp(`(${query.trim()})`, 'gi')
+    const escapedQuery = query.trim().replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+    const regex = new RegExp(`(${escapedQuery})`, 'gi')
     const parts = text.split(regex)
 
     return parts.map((part, index) =>
@@ -170,10 +172,8 @@ const SearchBox: React.FC<SearchBoxProps> = ({
     <div ref={resultsRef} className={`relative ${className}`}>
       {/* 검색 입력 */}
       <div className="relative">
-        <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-          <svg className="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-          </svg>
+        <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-4">
+          <Search className="text-gray-500" size={20} aria-hidden="true" />
         </div>
         <input
           ref={inputRef}
@@ -187,7 +187,7 @@ const SearchBox: React.FC<SearchBoxProps> = ({
           aria-controls="school-search-results"
           role="combobox"
           placeholder={placeholder}
-          className="mobile-input block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-blue-500 focus:border-blue-500 text-base"
+          className="mobile-input block h-12 w-full rounded-2xl border border-white/80 bg-white pl-11 pr-11 text-base leading-5 text-gray-950 shadow-[0_3px_14px_rgba(32,33,36,0.2)] outline-none placeholder:text-gray-500 focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
         />
         {query && (
           <button
@@ -199,21 +199,19 @@ const SearchBox: React.FC<SearchBoxProps> = ({
               setIsOpen(false)
               inputRef.current?.focus()
             }}
-            className="absolute inset-y-0 right-0 pr-3 flex items-center"
+            className="absolute inset-y-0 right-1 flex w-10 items-center justify-center rounded-full text-gray-500 hover:text-gray-800"
           >
-            <svg className="h-4 w-4 text-gray-400 hover:text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-            </svg>
+            <X size={18} aria-hidden="true" />
           </button>
         )}
       </div>
 
       {/* 검색 결과 드롭다운 */}
       {isOpen && (
-        <div id="school-search-results" className="absolute z-50 w-full mt-1 bg-white border border-gray-200 rounded-lg shadow-lg max-h-80 overflow-auto">
+        <div id="school-search-results" className="absolute mt-2 max-h-[min(60vh,420px)] w-full overflow-auto rounded-lg border border-gray-200 bg-white shadow-xl">
           {isLoading ? (
             <div className="p-4 text-center">
-              <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-blue-500 mx-auto"></div>
+              <LoaderCircle className="mx-auto animate-spin text-blue-600" size={22} aria-hidden="true" />
               <div className="mt-2 text-sm text-gray-500">검색 중...</div>
             </div>
           ) : displayResults.length > 0 ? (
@@ -235,7 +233,8 @@ const SearchBox: React.FC<SearchBoxProps> = ({
                   }`}
                 >
                   <div className="flex items-center justify-between">
-                    <div className="flex-1 min-w-0">
+                  <span className="mr-3 flex h-9 w-9 flex-none items-center justify-center rounded-full bg-blue-50 text-blue-700"><SchoolIcon size={18} aria-hidden="true" /></span>
+                  <div className="min-w-0 flex-1">
                       <div className="font-medium text-gray-900 truncate">
                         {query.trim().length >= 2
                           ? highlightMatch(school.school_name, query)
@@ -255,8 +254,8 @@ const SearchBox: React.FC<SearchBoxProps> = ({
                         {school.grade1_students > 0 && (
                           <span className={`px-2 py-0.5 text-xs rounded-full ${
                             school.grade1_students >= 80
-                              ? 'bg-green-100 text-green-800'
-                              : 'bg-orange-100 text-orange-800'
+                              ? 'bg-blue-50 text-blue-800'
+                              : 'bg-amber-50 text-amber-800'
                           }`}>
                             1학년 {school.grade1_students}명
                           </span>
@@ -264,9 +263,7 @@ const SearchBox: React.FC<SearchBoxProps> = ({
                       </div>
                     </div>
                     {query.trim().length < 2 && (
-                      <svg className="h-4 w-4 text-gray-400 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                      </svg>
+                      <Clock3 className="ml-2 flex-none text-gray-400" size={16} aria-hidden="true" />
                     )}
                   </div>
                 </button>
@@ -274,17 +271,13 @@ const SearchBox: React.FC<SearchBoxProps> = ({
             </>
           ) : query.trim().length >= 2 ? (
             <div className="p-4 text-center text-gray-500">
-              <svg className="h-8 w-8 text-gray-300 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-              </svg>
+              <Search className="mx-auto mb-2 text-gray-300" size={30} aria-hidden="true" />
               <div className="text-sm">검색 결과가 없습니다.</div>
               <div className="text-xs mt-1">다른 키워드로 검색해보세요.</div>
             </div>
           ) : (
             <div className="p-4 text-center text-gray-500">
-              <svg className="h-8 w-8 text-gray-300 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-              </svg>
+              <Search className="mx-auto mb-2 text-gray-300" size={30} aria-hidden="true" />
               <div className="text-sm">학교명 또는 주소를 입력하세요.</div>
               <div className="text-xs mt-1">최소 2글자 이상 입력해주세요.</div>
             </div>

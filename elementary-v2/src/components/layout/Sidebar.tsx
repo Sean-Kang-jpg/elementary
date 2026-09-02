@@ -32,7 +32,7 @@ export default function Sidebar({ children }: SidebarProps) {
         <button
           type="button"
           aria-label="필터 바깥 영역 닫기"
-          className="fixed inset-0 z-40 bg-black/40"
+          className="app-overlay-backdrop fixed inset-0 bg-black/40"
           onClick={toggleSidebar}
         />
       )}
@@ -40,11 +40,14 @@ export default function Sidebar({ children }: SidebarProps) {
       <aside
         ref={sidebarRef}
         id="filter-sidebar"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="filter-sidebar-title"
         aria-hidden={!ui.sidebar_open}
-        className={`fixed inset-y-0 left-0 z-50 flex w-full max-w-[420px] flex-col bg-white shadow-xl transition-transform duration-300 ease-out ${ui.sidebar_open ? 'translate-x-0' : '-translate-x-full'}`}
+        className={`app-overlay fixed inset-y-0 left-0 flex w-full max-w-[420px] flex-col bg-white shadow-xl transition-transform duration-300 ease-out ${ui.sidebar_open ? 'translate-x-0' : '-translate-x-full'}`}
       >
         <div className="flex items-center justify-between border-b border-gray-200 px-4 py-3">
-          <h2 className="text-base font-semibold text-gray-950">필터 &amp; 검색</h2>
+          <h2 id="filter-sidebar-title" className="text-base font-semibold text-gray-950">필터 &amp; 검색</h2>
           <button
             type="button"
             onClick={toggleSidebar}

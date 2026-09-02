@@ -1,4 +1,4 @@
-import { ChevronRight, MapPinned, School as SchoolIcon, Users } from 'lucide-react'
+import { ChevronRight, MapPinned, Users } from 'lucide-react'
 import { useCallback, useMemo, useState } from 'react'
 import { School } from '../../types'
 import { ClusterPoint, groupSchoolsByNeighborhood } from '../../utils/clusterUtils'
@@ -29,7 +29,8 @@ export default function DistrictNeighborhoodSheet({
   const neighborhoods = useMemo(
     () => groupSchoolsByNeighborhood(schools, targetGrade)
       .sort((a, b) => (
-        b.schools.length - a.schools.length
+        b.total_students - a.total_students
+        || b.schools.length - a.schools.length
         || (a.label || '').localeCompare(b.label || '', 'ko')
       )),
     [schools, targetGrade],
@@ -45,8 +46,12 @@ export default function DistrictNeighborhoodSheet({
         <ChevronRight className="flex-none text-gray-400" size={16} aria-hidden="true" />
         <span className="truncate">{district}</span>
       </div>
-      <span className="mt-0.5 block text-xs font-medium text-gray-500">
-        {neighborhoods.length}개 동 · {schools.length}개 초등학교
+      <span className="mt-0.5 flex items-center gap-2 text-xs font-medium text-gray-500">
+        <span>{neighborhoods.length}개 동 · {schools.length}개 초등학교</span>
+        <span className="inline-flex items-center gap-1" aria-label="파랑은 80명 이상 학교, 주황은 80명 미만 학교">
+          <span className="h-2 w-2 rounded-full bg-blue-600" aria-hidden="true" />80+
+          <span className="ml-1 h-2 w-2 rounded-full bg-amber-500" aria-hidden="true" />80 미만
+        </span>
       </span>
     </div>
   )
@@ -94,10 +99,9 @@ export default function DistrictNeighborhoodSheet({
                       <Users size={13} aria-hidden="true" />
                       {targetGrade}학년 {cluster.total_students.toLocaleString('ko-KR')}명
                     </span>
-                    <span className="inline-flex items-center gap-1">
-                      <SchoolIcon size={13} aria-hidden="true" />
-                      <span className="font-semibold text-blue-700">80명부터 {cluster.high_count || 0}</span>
-                      <span className="font-semibold text-amber-700">79명까지 {cluster.low_count || 0}</span>
+                    <span className="inline-flex items-center gap-1.5" aria-label={`80명 이상 학교 ${cluster.high_count || 0}개, 80명 미만 학교 ${cluster.low_count || 0}개`}>
+                      <span className="district-count-circle district-count-circle--high" aria-hidden="true">{cluster.high_count || 0}</span>
+                      <span className="district-count-circle district-count-circle--low" aria-hidden="true">{cluster.low_count || 0}</span>
                     </span>
                   </span>
                 </span>

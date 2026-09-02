@@ -7,6 +7,7 @@ import BottomSheet from '../ui/BottomSheet'
 import ApartmentList from '../apartment/ApartmentList'
 import ApartmentDetail from '../apartment/ApartmentDetail'
 import GradeChart from '../charts/GradeChart'
+import { isFavorite as checkFavorite, schoolFavorite, toggleFavorite as toggleSavedFavorite } from '../../utils/favorites'
 
 interface SchoolDetailProps {
   school: School | null
@@ -15,7 +16,6 @@ interface SchoolDetailProps {
 }
 
 type SchoolMetric = 'students' | 'classes' | 'perClass'
-const FAVORITE_SCHOOLS_KEY = 'favorite-school-ids'
 
 const SchoolDetail: React.FC<SchoolDetailProps> = ({ school, isOpen, onClose }) => {
   const { state, dispatch } = useAppContext()
@@ -38,12 +38,7 @@ const SchoolDetail: React.FC<SchoolDetailProps> = ({ school, isOpen, onClose }) 
 
   useEffect(() => {
     if (!school?.school_id) return
-    try {
-      const favoriteIds = JSON.parse(localStorage.getItem(FAVORITE_SCHOOLS_KEY) || '[]') as string[]
-      setIsFavorite(favoriteIds.includes(school.school_id))
-    } catch {
-      setIsFavorite(false)
-    }
+    setIsFavorite(checkFavorite('school', school.school_id))
   }, [school?.school_id])
 
   useEffect(() => {
@@ -98,17 +93,7 @@ const SchoolDetail: React.FC<SchoolDetailProps> = ({ school, isOpen, onClose }) 
   }
 
   const toggleFavorite = () => {
-    try {
-      const favoriteIds = JSON.parse(localStorage.getItem(FAVORITE_SCHOOLS_KEY) || '[]') as string[]
-      const nextFavorite = !favoriteIds.includes(school.school_id)
-      const nextIds = nextFavorite
-        ? [...favoriteIds, school.school_id]
-        : favoriteIds.filter((schoolId) => schoolId !== school.school_id)
-      localStorage.setItem(FAVORITE_SCHOOLS_KEY, JSON.stringify(nextIds))
-      setIsFavorite(nextFavorite)
-    } catch {
-      setIsFavorite(false)
-    }
+    setIsFavorite(toggleSavedFavorite(schoolFavorite(school)))
   }
 
   if (currentView === 'apartment-detail') {

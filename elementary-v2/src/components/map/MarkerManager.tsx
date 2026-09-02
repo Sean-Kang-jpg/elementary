@@ -132,7 +132,7 @@ const MarkerManager: React.FC<MarkerManagerProps> = ({ map }) => {
   // Move exactly one level down: district -> neighborhood -> school.
   const handleClusterClick = useCallback((cluster: ClusterPoint) => {
     const isDistrictLevel = state.map.zoom <= 12
-    const nextZoom = isDistrictLevel ? 13 : 15
+    const nextZoom = isDistrictLevel ? 13 : 14
     if (isDistrictLevel) {
       districtReturnViewportRef.current = getViewportSnapshot()
       neighborhoodEnteredDirectlyRef.current = false
@@ -209,7 +209,7 @@ const MarkerManager: React.FC<MarkerManagerProps> = ({ map }) => {
       setNeighborhoodScope(null)
       setNeighborhoodSchoolIds([])
       neighborhoodEnteredDirectlyRef.current = false
-    } else if (state.map.zoom < 15) {
+    } else if (state.map.zoom < 14) {
       setNeighborhoodScope(null)
       setNeighborhoodSchoolIds([])
       if (neighborhoodEnteredDirectlyRef.current) {
@@ -235,15 +235,15 @@ const MarkerManager: React.FC<MarkerManagerProps> = ({ map }) => {
       setError(null)
 
       try {
-        const data = state.map.zoom < 15 && !districtScope
+        const data = state.map.zoom < 14 && !districtScope
           ? await fetchDistrictOverviewData(state.filters)
-          : state.map.zoom >= 15 && neighborhoodSchoolIds.length > 0
+          : state.map.zoom >= 14 && neighborhoodSchoolIds.length > 0
           ? await fetchSchoolsByIds(neighborhoodSchoolIds, state.filters)
           : districtScope && state.map.zoom >= 13
           ? await fetchSchoolsByAdministrativeArea(
             districtScope.region,
             districtScope.district,
-            state.map.zoom >= 15 ? neighborhoodScope : null,
+            state.map.zoom >= 14 ? neighborhoodScope : null,
             state.filters,
           )
           : await fetchRegionData(
@@ -255,9 +255,9 @@ const MarkerManager: React.FC<MarkerManagerProps> = ({ map }) => {
         // 개별 학교 데이터인 경우에만 처리 (id 또는 school_id 필드 확인)
         if (Array.isArray(data) && data.length > 0 && ('id' in data[0] || 'school_id' in data[0])) {
           const schoolData = data as School[]
-          const scopedSchoolData = state.map.zoom >= 15 && neighborhoodSchoolIds.length > 0
+          const scopedSchoolData = state.map.zoom >= 14 && neighborhoodSchoolIds.length > 0
             ? schoolData
-            : state.map.zoom >= 15 && neighborhoodScope
+            : state.map.zoom >= 14 && neighborhoodScope
               ? schoolData.filter((school) => school.district === districtScope?.district && getSchoolNeighborhoodLabel(school) === neighborhoodScope)
             : state.map.zoom >= 13 && districtScope
               ? schoolData.filter((school) => school.district === districtScope.district)
@@ -269,7 +269,7 @@ const MarkerManager: React.FC<MarkerManagerProps> = ({ map }) => {
           if (state.map.zoom <= 12) {
             const districtClusters = groupSchoolsByDistrict(scopedSchoolData, state.filters.target_grade)
             setClusters(districtClusters.filter((cluster) => clusterIntersectsBounds(cluster, state.map.bounds!)))
-          } else if (state.map.zoom < 15) {
+          } else if (state.map.zoom < 14) {
             const neighborhoodClusters = groupSchoolsByNeighborhood(scopedSchoolData, state.filters.target_grade)
             setClusters(neighborhoodClusters.filter((cluster) => clusterIntersectsBounds(cluster, state.map.bounds!)))
           } else {
@@ -318,7 +318,7 @@ const MarkerManager: React.FC<MarkerManagerProps> = ({ map }) => {
       )}
 
       {clusters.length > 0 && (
-        <div className="pointer-events-none absolute bottom-4 left-3 z-10 flex items-center gap-3 rounded-md border border-gray-200 bg-white/95 px-3 py-2 text-[11px] font-medium text-gray-700 shadow-sm" aria-label="학교 규모 색상 안내">
+        <div className="map-legend pointer-events-none absolute left-3 flex items-center gap-3 rounded-md border border-gray-200 bg-white/95 px-3 py-2 text-[11px] font-medium text-gray-700 shadow-sm" aria-label="학교 규모 색상 안내">
           <span className="inline-flex items-center gap-1.5"><span className="h-2.5 w-2.5 rounded-full bg-blue-600" aria-hidden="true" />{state.filters.target_grade}학년 80명부터</span>
           <span className="inline-flex items-center gap-1.5"><span className="h-2.5 w-2.5 rounded-full bg-amber-500" aria-hidden="true" />{state.filters.target_grade}학년 79명까지</span>
         </div>
@@ -346,7 +346,7 @@ const MarkerManager: React.FC<MarkerManagerProps> = ({ map }) => {
         />
       ))}
 
-      {state.map.zoom >= 15 && clusters.length === 0 && schools.map((school) => (
+      {state.map.zoom >= 14 && clusters.length === 0 && schools.map((school) => (
         <SchoolMarker
           key={school.school_id}
           school={school}

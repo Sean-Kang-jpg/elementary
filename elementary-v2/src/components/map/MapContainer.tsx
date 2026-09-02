@@ -35,7 +35,7 @@ const MapContainer: React.FC<MapContainerProps> = ({ className = '' }) => {
         zoom: 11,
         minZoom: 8,
         maxZoom: 18,
-        zoomControl: true,
+        zoomControl: window.matchMedia('(min-width: 640px)').matches,
         zoomControlOptions: {
           position: window.naver.maps.Position?.TOP_RIGHT || 'TOP_RIGHT',
           style: window.naver.maps.ZoomControlStyle?.SMALL || 'SMALL',
@@ -105,7 +105,7 @@ const MapContainer: React.FC<MapContainerProps> = ({ className = '' }) => {
         }
         dispatch({
           type: 'SET_MAP_STATE',
-          payload: { center: { lat: coords.latitude, lng: coords.longitude }, zoom: 15 },
+          payload: { center: { lat: coords.latitude, lng: coords.longitude }, zoom: 14 },
         })
         setIsLocating(false)
       },
@@ -192,7 +192,7 @@ const MapContainer: React.FC<MapContainerProps> = ({ className = '' }) => {
           type="button"
           onClick={locateUser}
           disabled={isLocating}
-          className="absolute bottom-6 right-3 z-10 inline-flex h-11 items-center gap-2 rounded-md border border-gray-300 bg-white px-3 text-sm font-semibold text-gray-800 shadow-md hover:bg-gray-50 disabled:cursor-wait disabled:opacity-70 sm:right-5"
+          className="map-floating-control absolute right-3 inline-flex h-11 items-center gap-2 rounded-md border border-gray-300 bg-white px-3 text-sm font-semibold text-gray-800 shadow-md hover:bg-gray-50 disabled:cursor-wait disabled:opacity-70 sm:right-5"
           aria-label="현재 위치에서 주변 학교 보기"
           title="현재 위치에서 주변 학교 보기"
         >
@@ -204,7 +204,7 @@ const MapContainer: React.FC<MapContainerProps> = ({ className = '' }) => {
       )}
 
       {locationError && (
-        <div className="absolute bottom-20 right-3 z-10 flex max-w-xs items-start gap-2 rounded-md border border-amber-200 bg-white p-3 text-sm text-gray-700 shadow-lg sm:right-5" role="alert">
+        <div className="map-floating-alert absolute right-3 flex max-w-xs items-start gap-2 rounded-md border border-amber-200 bg-white p-3 text-sm text-gray-700 shadow-lg sm:right-5" role="alert">
           <span>{locationError}</span>
           <button type="button" onClick={() => setLocationError(null)} aria-label="위치 안내 닫기" className="text-gray-500 hover:text-gray-800">
             <X size={16} aria-hidden="true" />

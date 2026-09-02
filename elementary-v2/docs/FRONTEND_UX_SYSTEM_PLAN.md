@@ -56,7 +56,6 @@ Separate filters by what they affect. Apartment filters must not silently look l
 
 - Grade selector
 - Student count range, not only a minimum
-- Class count or students per class
 - Establishment type
 - Statistics year and data availability
 - Region and district
@@ -105,6 +104,74 @@ Use staged filters with `결과 보기` on mobile to avoid a query on every slid
 4. Add address geocoding and a map/list result switch.
 5. Add station master ETL, station search, line colors, and radius-based discovery.
 6. Add comparison, saved places, and shareable map state only after core discovery metrics are measured.
+
+## v2.1 Map Discovery Implementation Plan
+
+Status: **release candidate** (2026-09-02). The v2.0 Supabase read contracts remain unchanged.
+
+### Interaction Contract
+
+- Replace the current split filter/search header with a softer, rounded search surface and a horizontally scrollable quick-filter row directly below it.
+- Put a `SlidersHorizontal` icon button at the far left of the quick-filter row. It opens the complete filter sheet; each following chip opens only its own selector.
+- Initial quick filters are `설립 유형`, `학년`, `학생 수`, `세대 수`, and `주차`. Active chips use the relevant entity color and show a compact selected value.
+- Keep draft values inside each selector and apply once on confirmation. This prevents repeated RPC and viewport requests while a slider is moving.
+- Hide the Naver `+/-` zoom control below the `sm` breakpoint. Touch pinch and double-tap remain available.
+- Establish explicit layers: map < markers < GNB < header/quick filters < bottom sheets < open filter/search overlays. An open filter must always be the top interactive surface.
+- Add a fixed, safe-area-aware three-item GNB: `지도`, `소식`, `즐겨찾기`. The map remains mounted only on the map tab so returning does not discard its viewport.
+
+### Data Contract Gate
+
+- Keep students per class as a derived school-detail metric, not a v2.1 filter condition.
+- Reuse the current SQL `13` establishment-type, selected-grade student-count, and apartment parameters without another database migration.
+- Update `FilterState`, `dataService`, cache keys, and filter count logic only when the existing parameters need a new UI representation.
+- Search styling, mobile zoom visibility, district sorting, count circles, and GNB layout require no database migration.
+- Keep favorites local-first for v2.1 (`school` and `apartment` IDs with schema version). Account sync and comparison remain later decisions.
+- Define a separate content contract before activating `소식`; do not mix editorial content into `school_master` or the Serving table.
+
+### Delivery Checklist
+
+#### P1. Navigation And Layer Foundation
+
+- [x] Add shared radius, elevation, layer, header-height, and GNB-height tokens.
+- [x] Add the three-item GNB and preserve map viewport/state across tab changes.
+- [x] Hide Naver zoom controls on mobile and offset map controls, legends, and sheets above the GNB.
+- [x] Raise open filters and search results above all map and navigation surfaces.
+
+#### P2. Search And Quick Filters
+
+- [x] Redesign search as a rounded, high-contrast surface using Lucide search/clear icons and compact entity-result visuals.
+- [x] Add the horizontal quick-filter row and full-filter icon entry point.
+- [x] Implement compact direct selectors, removable active states, and reset behavior; retain staged apply in the full filter sheet.
+- [x] Verify combined school and apartment filters still use one `filter_school_ids` request and stable cache keys.
+
+#### P3. District Sheet Refinement
+
+- [x] Sort neighborhood rows by total students in the selected grade, descending; break ties by school count and Korean name.
+- [x] Replace `80명부터/79명까지` row text with blue and amber numeric circles matching map markers.
+- [x] Keep one compact legend in the sheet header and preserve full accessible labels for screen readers.
+
+#### P4. New GNB Destinations
+
+- [x] Build a favorites list from the existing school star plus apartment favorites; support jump-to-map and removal.
+- [x] Define the news taxonomy and content source for district/neighborhood reports, school news, and book reviews.
+- [x] Ship the news destination as an explicit empty state; keep the published feed, detail, and share flow disabled until content exists.
+- [x] Defer cross-school/apartment comparison until favorite usage and required comparison fields are measured.
+
+#### P5. Release QA
+
+- [x] Lower school-search and current-location targets to zoom `14`, and render individual schools from zoom `14` so nearby schools remain visible on mobile.
+- [x] Isolate Naver Maps SDK failures with a recoverable map boundary so search, details, and navigation remain usable.
+- [x] Verify `360`, `390`, and `430` pixel mobile layouts without horizontal overflow or filter/GNB overlap.
+- [ ] Verify desktop layouts, production Naver Maps authorization, district drilldown, and school/apartment favorites on the deployed URL.
+- [ ] Run final `lint`, `typecheck`, and production `build`, then record the production URL and release commit.
+
+### Acceptance Checks
+
+- Mobile widths `360`, `390`, and `430`; desktop widths `1280` and `1440` have no overlap among search, filters, Naver controls, sheets, and GNB.
+- Keyboard focus order is search, quick filters, map controls, map entities, then GNB; every icon-only control has an accessible name.
+- Combined filters return the same school IDs in the quick-filter and full-filter paths for every supported SQL `13` condition.
+- District rows remain stable while panning and reorder only when the target grade or filters change.
+- `lint`, `typecheck`, `build`, and agent-browser flows pass for map navigation, filter apply/reset, district drilldown, favorites, and tab return.
 
 ## Current Gaps
 

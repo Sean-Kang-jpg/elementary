@@ -1,10 +1,16 @@
 import { lazy, Suspense, useEffect, useState } from 'react'
 import MainLayout from './components/layout/MainLayout'
+import type { AppTab } from './components/layout/BottomNavigation'
 import FilterPanel from './components/filters/FilterPanel'
 import MapContainer from './components/map/MapContainer'
+import MapErrorBoundary from './components/map/MapErrorBoundary'
 import SchoolDetail from './components/school/SchoolDetail'
 import { useAppContext } from './contexts/AppContext'
 import { testSupabaseConnection } from './lib/supabase'
+import FavoritesPage from './components/navigation/FavoritesPage'
+import NewsPage from './components/navigation/NewsPage'
+import { getSchoolDetail } from './services/dataService'
+import type { FavoriteRecord } from './utils/favorites'
 
 interface ConnectionStatus {
   supabase: 'connecting' | 'success' | 'error'
@@ -16,6 +22,7 @@ function MapApplication() {
   const [connectionStatus, setConnectionStatus] = useState<ConnectionStatus>({
     supabase: 'connecting'
   })
+  const [activeTab, setActiveTab] = useState<AppTab>('map')
 
   // 선택된 학교 상세 정보 바텀시트 상태
   const handleCloseSchoolDetail = () => {
@@ -23,6 +30,27 @@ function MapApplication() {
       type: 'SET_SELECTED_SCHOOL',
       payload: null
     })
+  }
+
+  const handleTabChange = (tab: AppTab) => {
+    if (tab !== 'map') {
+      if (state.ui.sidebar_open) dispatch({ type: 'TOGGLE_SIDEBAR' })
+      dispatch({ type: 'SET_SELECTED_SCHOOL', payload: null })
+    }
+    setActiveTab(tab)
+  }
+
+  const handleOpenFavorite = async (favorite: FavoriteRecord) => {
+    try {
+      const schoolId = favorite.kind === 'school' ? favorite.id : favorite.schoolId
+      const school = await getSchoolDetail(schoolId)
+      if (!school) return
+      dispatch({ type: 'SET_MAP_STATE', payload: { center: { lat: favorite.latitude || school.latitude, lng: favorite.longitude || school.longitude }, zoom: 14 } })
+      dispatch({ type: 'SET_SELECTED_SCHOOL', payload: school })
+      setActiveTab('map')
+    } catch (error) {
+      console.error('Failed to open favorite:', error)
+    }
   }
 
   useEffect(() => {
@@ -40,9 +68,13 @@ function MapApplication() {
   }, [])
 
   return (
-    <MainLayout sidebar={<FilterPanel />}>
-      {/* 네이버 지도 컴포넌트 */}
-      <MapContainer className="h-full w-full" />
+    <MainLayout sidebar={<FilterPanel />} activeTab={activeTab} onTabChange={handleTabChange}>
+      <MapErrorBoundary>
+        <MapContainer className="h-full w-full" />
+      </MapErrorBoundary>
+
+      {activeTab === 'news' && <NewsPage />}
+      {activeTab === 'favorites' && <FavoritesPage onOpen={handleOpenFavorite} />}
       
       {connectionStatus.supabase === 'error' && (
         <div className="absolute top-4 right-4 z-10 max-w-xs">
@@ -69,7 +101,7 @@ function MapApplication() {
       {/* 학교 상세 정보 바텀시트 */}
       <SchoolDetail
         school={state.selectedSchool}
-        isOpen={!!state.selectedSchool}
+        isOpen={activeTab === 'map' && !!state.selectedSchool}
         onClose={handleCloseSchoolDetail}
       />
     </MainLayout>

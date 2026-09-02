@@ -163,12 +163,12 @@ const BottomSheet: React.FC<BottomSheetProps> = ({
   if (!isOpen) return null
 
   return createPortal(
-    <div className="pointer-events-none fixed inset-0 z-50">
+    <div className="app-sheet-layer pointer-events-none fixed inset-0">
       <div
         ref={sheetRef}
         className={`pointer-events-auto absolute left-0 right-0 flex max-h-[70vh] flex-col overflow-hidden rounded-t-2xl bg-white shadow-[0_-4px_15px_rgba(0,0,0,0.15)] transition-all duration-300 ${className}`}
         style={{
-          bottom: 0,
+          bottom: 'var(--app-bottom-inset)',
           height: `${snapPoints[currentSnap] * 100}vh`,
           transform: isDragging ? `translateY(${translateY}px)` : undefined
         }}
