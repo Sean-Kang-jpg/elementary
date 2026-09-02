@@ -75,10 +75,18 @@ export default function ApartmentMarker({ apartment, map, selected, onClick }: A
     const mouseoutListener = maps.Event.addListener(marker, 'mouseout', () => marker.setZIndex(restingZIndex))
 
     return () => {
-      maps.Event.removeListener(clickListener)
-      maps.Event.removeListener(mouseoverListener)
-      maps.Event.removeListener(mouseoutListener)
-      marker.setMap(null)
+      try {
+        maps.Event.removeListener(clickListener)
+        maps.Event.removeListener(mouseoverListener)
+        maps.Event.removeListener(mouseoutListener)
+      } catch {
+        // Naver Maps may release listeners while replacing many markers.
+      }
+      try {
+        marker.setMap(null)
+      } catch {
+        // Marker cleanup is intentionally idempotent.
+      }
       markerRef.current = null
     }
   }, [apartment, map, onClick, selected])

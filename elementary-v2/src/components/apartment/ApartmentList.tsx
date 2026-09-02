@@ -1,4 +1,4 @@
-import { Building2, CarFront, ChevronRight, LoaderCircle } from 'lucide-react'
+import { Building2, CarFront, ChevronRight, LoaderCircle, RefreshCw } from 'lucide-react'
 import React, { useMemo, useState } from 'react'
 import { Apartment } from '../../types'
 
@@ -7,6 +7,7 @@ interface ApartmentListProps {
   loading?: boolean
   error?: string | null
   onApartmentSelect?: (apartment: Apartment) => void
+  onRetry?: () => void
 }
 
 type SortField = 'name' | 'parking' | 'year' | 'households'
@@ -16,6 +17,7 @@ const ApartmentList: React.FC<ApartmentListProps> = ({
   loading = false,
   error = null,
   onApartmentSelect,
+  onRetry,
 }) => {
   const [sortBy, setSortBy] = useState<SortField>('households')
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('desc')
@@ -51,7 +53,17 @@ const ApartmentList: React.FC<ApartmentListProps> = ({
     )
   }
 
-  if (error) return <div className="m-4 rounded-md border border-red-200 bg-red-50 p-4 text-sm text-red-800">{error}</div>
+  if (error) return (
+    <div className="m-4 flex items-center gap-3 rounded-md border border-amber-200 bg-amber-50 p-4" role="alert">
+      <span className="min-w-0 flex-1 text-sm text-amber-900">{error}</span>
+      {onRetry && (
+        <button type="button" onClick={onRetry} className="inline-flex h-9 flex-none items-center gap-1.5 rounded-md bg-blue-600 px-3 text-sm font-semibold text-white hover:bg-blue-700">
+          <RefreshCw size={15} aria-hidden="true" />
+          다시 시도
+        </button>
+      )}
+    </div>
+  )
 
   return (
     <div className="flex h-full flex-col">

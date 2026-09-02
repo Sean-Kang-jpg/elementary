@@ -46,6 +46,16 @@ v2.1 will focus on user discovery without changing the verified v2.0 ETL source 
 
 The detailed UX contract is maintained in `FRONTEND_UX_SYSTEM_PLAN.md`.
 
+## v2.1.1 - Stability And Automated QA
+
+Status: implemented locally; production deployment pending.
+
+- Added recoverable map and assigned-apartment loading, empty, and error states.
+- Added in-browser request timing for map and apartment Serving reads.
+- Prevented stale wide bounds from issuing an unnecessary 1,000-row query after school search.
+- Hardened Naver map and marker cleanup during filter changes and React development remounts.
+- Added a repeatable public-map smoke command with mobile/desktop overflow and performance budgets.
+
 ## Post-v2.1 Data Candidates
 
 Academy/tutoring-center, elementary-timetable, and playground data are discovery items, not part of the v2.1 release contract. Academy data requires course-level elementary-audience validation because mixed middle/high-school offerings are present. Timetable data requires a feature and retention decision before daily class/period rows are stored at scale. Playground data requires license/location-service review and coordinate-system validation before ingestion. The detailed gates are maintained in `FUTURE_DATA_DOMAINS_PLAN.md`.

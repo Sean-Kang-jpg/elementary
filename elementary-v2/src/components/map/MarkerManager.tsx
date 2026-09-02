@@ -13,6 +13,8 @@ import SchoolMarker from './SchoolMarker'
 import ClusterMarker from './ClusterMarker'
 import DistrictNeighborhoodSheet from './DistrictNeighborhoodSheet'
 import NeighborhoodSchoolSheet from './NeighborhoodSchoolSheet'
+import { LoaderCircle, RefreshCw, SearchX } from 'lucide-react'
+import { recordPerformanceMetric } from '../../utils/performanceMetrics'
 
 interface MarkerManagerProps {
   map: NaverMap | null
@@ -45,6 +47,8 @@ const MarkerManager: React.FC<MarkerManagerProps> = ({ map }) => {
   const [clusters, setClusters] = useState<ClusterPoint[]>([])
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const [hasLoaded, setHasLoaded] = useState(false)
+  const [requestVersion, setRequestVersion] = useState(0)
   const [districtScope, setDistrictScope] = useState<DistrictScope | null>(null)
   const [neighborhoodScope, setNeighborhoodScope] = useState<string | null>(null)
   const [neighborhoodSchoolIds, setNeighborhoodSchoolIds] = useState<string[]>([])
@@ -233,58 +237,77 @@ const MarkerManager: React.FC<MarkerManagerProps> = ({ map }) => {
 
       setLoading(true)
       setError(null)
+      const startedAt = performance.now()
+      const liveBounds = map.getBounds()
+      const requestBounds: MapBounds = {
+        northeast: { lat: liveBounds.getNE().lat(), lng: liveBounds.getNE().lng() },
+        southwest: { lat: liveBounds.getSW().lat(), lng: liveBounds.getSW().lng() },
+      }
+      const requestZoom = map.getZoom()
 
       try {
-        const data = state.map.zoom < 14 && !districtScope
+        const data = requestZoom < 14 && !districtScope
           ? await fetchDistrictOverviewData(state.filters)
-          : state.map.zoom >= 14 && neighborhoodSchoolIds.length > 0
+          : requestZoom >= 14 && neighborhoodSchoolIds.length > 0
           ? await fetchSchoolsByIds(neighborhoodSchoolIds, state.filters)
-          : districtScope && state.map.zoom >= 13
+          : districtScope && requestZoom >= 13
           ? await fetchSchoolsByAdministrativeArea(
             districtScope.region,
             districtScope.district,
-            state.map.zoom >= 14 ? neighborhoodScope : null,
+            requestZoom >= 14 ? neighborhoodScope : null,
             state.filters,
           )
           : await fetchRegionData(
-            state.map.bounds,
-            state.map.zoom,
+            requestBounds,
+            requestZoom,
             state.filters,
           )
 
         // 개별 학교 데이터인 경우에만 처리 (id 또는 school_id 필드 확인)
         if (Array.isArray(data) && data.length > 0 && ('id' in data[0] || 'school_id' in data[0])) {
           const schoolData = data as School[]
-          const scopedSchoolData = state.map.zoom >= 14 && neighborhoodSchoolIds.length > 0
+          const scopedSchoolData = requestZoom >= 14 && neighborhoodSchoolIds.length > 0
             ? schoolData
-            : state.map.zoom >= 14 && neighborhoodScope
+            : requestZoom >= 14 && neighborhoodScope
               ? schoolData.filter((school) => school.district === districtScope?.district && getSchoolNeighborhoodLabel(school) === neighborhoodScope)
-            : state.map.zoom >= 13 && districtScope
+            : requestZoom >= 13 && districtScope
               ? schoolData.filter((school) => school.district === districtScope.district)
               : schoolData
           if (cancelled) return
           setSchools(scopedSchoolData)
+          setHasLoaded(true)
 
           // Keep one predictable hierarchy per zoom: district, neighborhood, school.
-          if (state.map.zoom <= 12) {
+          if (requestZoom <= 12) {
             const districtClusters = groupSchoolsByDistrict(scopedSchoolData, state.filters.target_grade)
-            setClusters(districtClusters.filter((cluster) => clusterIntersectsBounds(cluster, state.map.bounds!)))
-          } else if (state.map.zoom < 14) {
+            setClusters(districtClusters.filter((cluster) => clusterIntersectsBounds(cluster, requestBounds)))
+          } else if (requestZoom < 14) {
             const neighborhoodClusters = groupSchoolsByNeighborhood(scopedSchoolData, state.filters.target_grade)
-            setClusters(neighborhoodClusters.filter((cluster) => clusterIntersectsBounds(cluster, state.map.bounds!)))
+            setClusters(neighborhoodClusters.filter((cluster) => clusterIntersectsBounds(cluster, requestBounds)))
           } else {
             setClusters([])
           }
         } else if (!cancelled) {
           setSchools([])
           setClusters([])
+          setHasLoaded(true)
+        }
+        if (!cancelled) {
+          recordPerformanceMetric('school-map-load', startedAt, 'success', {
+            zoom: requestZoom,
+            resultCount: Array.isArray(data) ? data.length : 0,
+            scoped: Boolean(districtScope || neighborhoodScope),
+          })
         }
       } catch (err) {
         if (cancelled) return
         console.error('학교 데이터 로드 실패:', err)
         setError(err instanceof Error ? err.message : '데이터 로드 실패')
-        setSchools([])
-        setClusters([])
+        setHasLoaded(true)
+        recordPerformanceMetric('school-map-load', startedAt, 'error', {
+          zoom: requestZoom,
+          scoped: Boolean(districtScope || neighborhoodScope),
+        })
       } finally {
         if (!cancelled) setLoading(false)
       }
@@ -295,7 +318,7 @@ const MarkerManager: React.FC<MarkerManagerProps> = ({ map }) => {
       cancelled = true
       if (requestTimer) clearTimeout(requestTimer)
     }
-  }, [districtScope, map, neighborhoodSchoolIds, neighborhoodScope, state.map.bounds, state.map.zoom, state.filters, shouldShowMarkers, displayMode])
+  }, [districtScope, map, neighborhoodSchoolIds, neighborhoodScope, requestVersion, state.map.bounds, state.map.zoom, state.filters, shouldShowMarkers, displayMode])
 
   // 마커 렌더링
   if (!map || !shouldShowMarkers) return null
@@ -303,17 +326,31 @@ const MarkerManager: React.FC<MarkerManagerProps> = ({ map }) => {
   return (
     <>
       {loading && (
-        <div className="absolute top-4 left-4 bg-white rounded shadow p-2 z-10" role="status">
-          <div className="flex items-center space-x-2">
-            <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-blue-500" />
-            <span className="text-sm text-gray-600">마커 갱신 중</span>
+        <div className="map-data-status absolute left-1/2 top-28 z-10 -translate-x-1/2 rounded-md border border-gray-200 bg-white/95 px-3 py-2 shadow-md" role="status" data-testid="map-loading-state">
+          <div className="flex items-center gap-2">
+            <LoaderCircle className="animate-spin text-blue-600" size={16} aria-hidden="true" />
+            <span className="text-sm text-gray-700">지도 정보를 불러오는 중</span>
           </div>
         </div>
       )}
 
       {error && (
-        <div className="absolute top-4 left-4 bg-red-50 border border-red-200 rounded p-3 z-10 max-w-xs" role="alert">
-          <span className="text-sm text-red-800">{error}</span>
+        <div className="map-data-status absolute left-1/2 top-28 z-10 flex w-[min(92vw,360px)] -translate-x-1/2 items-center gap-3 rounded-md border border-amber-200 bg-white p-3 shadow-lg" role="alert" data-testid="map-error-state">
+          <span className="min-w-0 flex-1 text-sm text-gray-700">학교 정보를 불러오지 못했습니다.</span>
+          <button type="button" onClick={() => setRequestVersion((value) => value + 1)} className="inline-flex h-9 flex-none items-center gap-1.5 rounded-md bg-blue-600 px-3 text-sm font-semibold text-white hover:bg-blue-700">
+            <RefreshCw size={15} aria-hidden="true" />
+            다시 시도
+          </button>
+        </div>
+      )}
+
+      {!loading && !error && hasLoaded && schools.length === 0 && clusters.length === 0 && (
+        <div className="map-data-status absolute left-1/2 top-28 z-10 flex w-[min(92vw,360px)] -translate-x-1/2 items-center gap-3 rounded-md border border-gray-200 bg-white p-3 shadow-lg" role="status" data-testid="map-empty-state">
+          <SearchX className="flex-none text-gray-400" size={19} aria-hidden="true" />
+          <span className="min-w-0 flex-1 text-sm text-gray-700">현재 조건에 맞는 학교가 없습니다.</span>
+          <button type="button" onClick={() => dispatch({ type: 'RESET_FILTERS' })} className="h-9 flex-none rounded-md border border-gray-300 px-3 text-sm font-semibold text-gray-800 hover:bg-gray-50">
+            필터 초기화
+          </button>
         </div>
       )}
 

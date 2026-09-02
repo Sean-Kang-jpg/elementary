@@ -1,7 +1,7 @@
 {
   "name": "elementary-school-v2",
   "private": true,
-  "version": "2.1.0",
+  "version": "2.1.1",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -10,7 +10,9 @@
     "preview": "vite preview",
     "typecheck": "tsc -b --pretty false",
     "browser:install": "agent-browser install",
-    "browser:smoke": "agent-browser --session elementary-smoke open http://localhost:3001/admin/etl && agent-browser --session elementary-smoke wait --load networkidle && agent-browser --session elementary-smoke snapshot -i && agent-browser --session elementary-smoke close"
+    "browser:smoke": "npm run browser:smoke:public",
+    "browser:smoke:public": "node scripts/public-smoke.mjs",
+    "browser:smoke:admin": "agent-browser --session elementary-admin-smoke open http://localhost:3001/admin/etl && agent-browser --session elementary-admin-smoke wait --load networkidle && agent-browser --session elementary-admin-smoke snapshot -i && agent-browser --session elementary-admin-smoke close"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.57.4",

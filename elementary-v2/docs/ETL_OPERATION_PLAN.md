@@ -91,14 +91,16 @@ Finalize the read model and UX before expanding the recurring ETL. The frontend 
 - [x] Restore the legacy v1 map language: full-screen map, white school-name markers, district summary pills, restrained hover, and a non-dimming bottom detail sheet.
 - [x] Show assigned apartment name and household-count markers after school selection; share one Serving query with school detail and open apartment detail from the marker.
 - [x] Define the frontend theme, entity colors, unified-search behavior, scoped filter model, and phased UX delivery plan.
-- [ ] Implement shared design tokens and replace ad hoc colors, SVG icons, radii, and subjective status labels.
+- [x] Implement shared design tokens and replace the primary map/search/filter/navigation colors, icons, radii, and layer values.
 - [ ] Add a deduplicated school/apartment search contract and grouped unified-search results.
 - [ ] Separate school-map, assigned-apartment, and location filters; add applied chips and staged mobile apply.
 - [ ] Select a station master source before adding station search, line filters, and radius-based discovery.
-- [ ] Add explicit loading, empty, stale-data, and recoverable error states for both frontend Serving contracts.
-- [ ] Measure initial map load, viewport queries, school selection, and apartment-list rendering against UX budgets.
+- [x] Add explicit loading, empty, and recoverable error states for school-map and assigned-apartment reads.
+- [ ] Add source-freshness and stale-data indicators after the public Serving contracts expose source timestamps.
+- [x] Measure map and assigned-apartment reads against 5-second and 3-second smoke budgets.
 - [x] Improve mobile filter and detail-panel ergonomics without changing the finalized two-table data contract.
-- [ ] Add repeatable `agent-browser` smoke scenarios for the public map and authenticated ETL dashboard.
+- [x] Add a repeatable `agent-browser` smoke scenario for public map load, filters, search, school detail, apartment reads, responsive widths, and request budgets.
+- [ ] Extend the repeatable smoke suite to the authenticated ETL dashboard with a non-personal test account.
 - [ ] Package reviewed local assignment inputs as a versioned portable bundle, then migrate recurring execution from the logged-in Windows task to GitHub Actions.
 
 ### v2.1 Map Discovery Sprint

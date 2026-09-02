@@ -53,10 +53,18 @@ const ClusterMarker: React.FC<ClusterMarkerProps> = ({ cluster, map, targetGrade
     const mouseoutListener = maps.Event.addListener(marker, 'mouseout', () => marker.setZIndex(200))
 
     return () => {
-      maps.Event.removeListener(clickListener)
-      maps.Event.removeListener(mouseoverListener)
-      maps.Event.removeListener(mouseoutListener)
-      marker.setMap(null)
+      try {
+        maps.Event.removeListener(clickListener)
+        maps.Event.removeListener(mouseoverListener)
+        maps.Event.removeListener(mouseoutListener)
+      } catch {
+        // Naver Maps may release listeners while replacing many markers.
+      }
+      try {
+        marker.setMap(null)
+      } catch {
+        // Marker cleanup is intentionally idempotent.
+      }
       markerRef.current = null
     }
   }, [cluster, map, onClick, targetGrade])

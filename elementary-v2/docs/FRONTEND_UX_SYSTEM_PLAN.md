@@ -173,6 +173,19 @@ Status: **complete** (2026-09-03). The v2.0 Supabase read contracts remain uncha
 - District rows remain stable while panning and reorder only when the target grade or filters change.
 - `lint`, `typecheck`, `build`, and agent-browser flows pass for map navigation, filter apply/reset, district drilldown, favorites, and tab return.
 
+## v2.1.1 Stability Patch
+
+Status: **implemented locally** (2026-09-03).
+
+- [x] Record the latest 50 map and assigned-apartment request timings in `window.__ELEMENTARY_PERFORMANCE__`.
+- [x] Add compact loading, empty-result, retry, and filter-reset states without covering the search or GNB.
+- [x] Preserve existing markers when a refresh fails and make Naver map/marker cleanup idempotent.
+- [x] Query with the live Naver map bounds to avoid a stale 1,000-row school request after search zoom.
+- [x] Add `npm run browser:smoke:public` for filter, search, school detail, apartment read, responsive-width, error, and performance checks.
+- [x] Verify induced Supabase failure renders a retry action without horizontal overflow at 390 pixels.
+
+Local baseline: initial capital-region map reads completed in about 1.1-1.5 seconds and the 24-row sample apartment read in about 0.16-0.19 seconds. Smoke budgets are 5 seconds and 3 seconds respectively.
+
 ## Current Gaps
 
 - Search currently queries only `school_name`, despite the address placeholder.

@@ -1,4 +1,4 @@
-import { ArrowLeft, Building2, CarFront, ChevronRight, LayoutGrid, LoaderCircle, MapPin, Star, UserRound, Users } from 'lucide-react'
+import { ArrowLeft, Building2, CarFront, ChevronRight, LayoutGrid, LoaderCircle, MapPin, RefreshCw, Star, UserRound, Users } from 'lucide-react'
 import React, { useEffect, useMemo, useState } from 'react'
 import { School } from '../../types'
 import { useAppContext } from '../../contexts/AppContext'
@@ -8,6 +8,7 @@ import ApartmentList from '../apartment/ApartmentList'
 import ApartmentDetail from '../apartment/ApartmentDetail'
 import GradeChart from '../charts/GradeChart'
 import { isFavorite as checkFavorite, schoolFavorite, toggleFavorite as toggleSavedFavorite } from '../../utils/favorites'
+import { recordPerformanceMetric } from '../../utils/performanceMetrics'
 
 interface SchoolDetailProps {
   school: School | null
@@ -29,6 +30,7 @@ const SchoolDetail: React.FC<SchoolDetailProps> = ({ school, isOpen, onClose }) 
   const [currentView, setCurrentView] = useState<'school' | 'apartments' | 'apartment-detail'>('school')
   const [selectedMetric, setSelectedMetric] = useState<SchoolMetric>('students')
   const [isFavorite, setIsFavorite] = useState(false)
+  const [requestVersion, setRequestVersion] = useState(0)
 
   useEffect(() => {
     setCurrentView('school')
@@ -51,19 +53,29 @@ const SchoolDetail: React.FC<SchoolDetailProps> = ({ school, isOpen, onClose }) 
     setLoading(true)
     setError(null)
     dispatch({ type: 'SET_APARTMENTS', payload: [] })
+    const startedAt = performance.now()
     getApartmentsNearSchool(school.school_id, state.filters)
       .then((data) => {
-        if (active) dispatch({ type: 'SET_APARTMENTS', payload: data })
+        if (active) {
+          dispatch({ type: 'SET_APARTMENTS', payload: data })
+          recordPerformanceMetric('school-apartment-load', startedAt, 'success', {
+            schoolId: school.school_id,
+            resultCount: data.length,
+          })
+        }
       })
       .catch((reason) => {
         if (!active) return
         console.error('배정 아파트 조회 실패:', reason)
         dispatch({ type: 'SET_APARTMENTS', payload: [] })
         setError('배정 아파트 정보를 불러오지 못했습니다.')
+        recordPerformanceMetric('school-apartment-load', startedAt, 'error', {
+          schoolId: school.school_id,
+        })
       })
       .finally(() => active && setLoading(false))
     return () => { active = false }
-  }, [dispatch, isOpen, school?.school_id, state.filters])
+  }, [dispatch, isOpen, requestVersion, school?.school_id, state.filters])
 
   const gradeData = useMemo(() => {
     if (!school) return []
@@ -141,6 +153,7 @@ const SchoolDetail: React.FC<SchoolDetailProps> = ({ school, isOpen, onClose }) 
             apartments={apartments}
             loading={loading}
             error={error}
+            onRetry={() => setRequestVersion((value) => value + 1)}
             onApartmentSelect={(apartment) => {
               dispatch({ type: 'SET_SELECTED_APARTMENT', payload: apartment })
             }}
@@ -210,7 +223,13 @@ const SchoolDetail: React.FC<SchoolDetailProps> = ({ school, isOpen, onClose }) 
               )}
             </div>
             {error ? (
-              <p className="rounded-md border border-red-200 bg-red-50 p-3 text-sm text-red-800">{error}</p>
+              <div className="flex items-center gap-3 rounded-md border border-amber-200 bg-amber-50 p-3" role="alert">
+                <p className="min-w-0 flex-1 text-sm text-amber-900">배정 아파트 정보를 불러오지 못했습니다.</p>
+                <button type="button" onClick={() => setRequestVersion((value) => value + 1)} className="inline-flex h-9 flex-none items-center gap-1.5 rounded-md bg-blue-600 px-3 text-sm font-semibold text-white hover:bg-blue-700">
+                  <RefreshCw size={15} aria-hidden="true" />
+                  다시 시도
+                </button>
+              </div>
             ) : apartments.length === 0 && !loading ? (
               <p className="border-y border-gray-100 py-4 text-sm text-gray-500">현재 조건에 표시할 배정 단지가 없습니다.</p>
             ) : (

@@ -16,6 +16,7 @@ const MapContainer: React.FC<MapContainerProps> = ({ className = '' }) => {
   const naverMapRef = useRef<NaverMap | null>(null)
   const locationMarkerRef = useRef<Marker | null>(null)
   const mapListenersRef = useRef<unknown[]>([])
+  const cleanupTimerRef = useRef<number | null>(null)
   const [isMapReady, setIsMapReady] = useState(false)
   const [isLocating, setIsLocating] = useState(false)
   const [mapError, setMapError] = useState<string | null>(null)
@@ -121,6 +122,10 @@ const MapContainer: React.FC<MapContainerProps> = ({ className = '' }) => {
   }, [dispatch])
 
   useEffect(() => {
+    if (cleanupTimerRef.current !== null) {
+      window.clearTimeout(cleanupTimerRef.current)
+      cleanupTimerRef.current = null
+    }
     const checkNaverMaps = () => {
       if (window.naver?.maps) initializeMap()
       else window.setTimeout(checkNaverMaps, 100)
@@ -128,13 +133,34 @@ const MapContainer: React.FC<MapContainerProps> = ({ className = '' }) => {
     checkNaverMaps()
 
     return () => {
-      const maps = window.naver?.maps
-      if (maps?.Event) mapListenersRef.current.forEach((listener) => maps.Event.removeListener(listener))
-      mapListenersRef.current = []
-      locationMarkerRef.current?.destroy()
-      locationMarkerRef.current = null
-      naverMapRef.current?.destroy()
-      naverMapRef.current = null
+      cleanupTimerRef.current = window.setTimeout(() => {
+        const maps = window.naver?.maps
+        if (maps?.Event) {
+          mapListenersRef.current.forEach((listener) => {
+            try {
+              maps.Event.removeListener(listener)
+            } catch {
+              // The SDK may already have released listeners during cleanup.
+            }
+          })
+        }
+        mapListenersRef.current = []
+        const locationMarker = locationMarkerRef.current
+        locationMarkerRef.current = null
+        try {
+          locationMarker?.destroy()
+        } catch {
+          // The map can release child markers before React cleanup runs.
+        }
+        const map = naverMapRef.current
+        naverMapRef.current = null
+        try {
+          map?.destroy()
+        } catch {
+          // Ignore duplicate SDK cleanup during a real unmount.
+        }
+        cleanupTimerRef.current = null
+      }, 0)
     }
   }, [initializeMap])
 
@@ -147,14 +173,26 @@ const MapContainer: React.FC<MapContainerProps> = ({ className = '' }) => {
 
   useEffect(() => {
     const maps = window.naver?.maps
-    if (naverMapRef.current && maps?.LatLng) {
-      naverMapRef.current.setCenter(new maps.LatLng(state.map.center.lat, state.map.center.lng))
+    const map = naverMapRef.current
+    if (isMapReady && map && maps?.LatLng) {
+      try {
+        map.setCenter(new maps.LatLng(state.map.center.lat, state.map.center.lng))
+      } catch {
+        // A replacement map will apply the latest context state after initialization.
+      }
     }
-  }, [state.map.center])
+  }, [isMapReady, state.map.center])
 
   useEffect(() => {
-    if (naverMapRef.current) naverMapRef.current.setZoom(state.map.zoom)
-  }, [state.map.zoom])
+    const map = naverMapRef.current
+    if (isMapReady && map) {
+      try {
+        map.setZoom(state.map.zoom)
+      } catch {
+        // A replacement map will apply the latest context state after initialization.
+      }
+    }
+  }, [isMapReady, state.map.zoom])
 
   if (mapError) {
     return (
