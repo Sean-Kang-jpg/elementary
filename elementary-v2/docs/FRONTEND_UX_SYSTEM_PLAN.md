@@ -175,7 +175,7 @@ Status: **complete** (2026-09-03). The v2.0 Supabase read contracts remain uncha
 
 ## v2.1.1 Stability Patch
 
-Status: **implemented locally** (2026-09-03).
+Status: **complete and deployed** (2026-09-03), release commit `f81efab`.
 
 - [x] Record the latest 50 map and assigned-apartment request timings in `window.__ELEMENTARY_PERFORMANCE__`.
 - [x] Add compact loading, empty-result, retry, and filter-reset states without covering the search or GNB.
@@ -184,7 +184,7 @@ Status: **implemented locally** (2026-09-03).
 - [x] Add `npm run browser:smoke:public` for filter, search, school detail, apartment read, responsive-width, error, and performance checks.
 - [x] Verify induced Supabase failure renders a retry action without horizontal overflow at 390 pixels.
 
-Local baseline: initial capital-region map reads completed in about 1.1-1.5 seconds and the 24-row sample apartment read in about 0.16-0.19 seconds. Smoke budgets are 5 seconds and 3 seconds respectively.
+Production baseline: the initial capital-region map read completed in 1.18 seconds, the school-level 11-row read in 0.17 seconds, and the 24-row apartment read in 0.19 seconds. Smoke budgets are 5 seconds and 3 seconds respectively.
 
 ## Current Gaps
 

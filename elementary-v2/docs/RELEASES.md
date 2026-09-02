@@ -48,7 +48,7 @@ The detailed UX contract is maintained in `FRONTEND_UX_SYSTEM_PLAN.md`.
 
 ## v2.1.1 - Stability And Automated QA
 
-Status: implemented locally; production deployment pending.
+Status: complete; release commit `f81efab` deployed and verified in production on 2026-09-03.
 
 - Added recoverable map and assigned-apartment loading, empty, and error states.
 - Added in-browser request timing for map and apartment Serving reads.
