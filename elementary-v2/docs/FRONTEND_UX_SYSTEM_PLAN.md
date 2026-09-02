@@ -107,7 +107,7 @@ Use staged filters with `결과 보기` on mobile to avoid a query on every slid
 
 ## v2.1 Map Discovery Implementation Plan
 
-Status: **release candidate** (2026-09-02). The v2.0 Supabase read contracts remain unchanged.
+Status: **complete** (2026-09-03). The v2.0 Supabase read contracts remain unchanged.
 
 ### Interaction Contract
 
@@ -162,8 +162,8 @@ Status: **release candidate** (2026-09-02). The v2.0 Supabase read contracts rem
 - [x] Lower school-search and current-location targets to zoom `14`, and render individual schools from zoom `14` so nearby schools remain visible on mobile.
 - [x] Isolate Naver Maps SDK failures with a recoverable map boundary so search, details, and navigation remain usable.
 - [x] Verify `360`, `390`, and `430` pixel mobile layouts without horizontal overflow or filter/GNB overlap.
-- [ ] Verify desktop layouts, production Naver Maps authorization, district drilldown, and school/apartment favorites on the deployed URL.
-- [ ] Run final `lint`, `typecheck`, and production `build`, then record the production URL and release commit.
+- [x] Verify desktop layouts, production Naver Maps authorization, district drilldown, and school/apartment favorites on the deployed URL.
+- [x] Run final `lint`, `typecheck`, and production `build`; deploy commit `670b350` to `https://elementary-lovat.vercel.app`.
 
 ### Acceptance Checks
 

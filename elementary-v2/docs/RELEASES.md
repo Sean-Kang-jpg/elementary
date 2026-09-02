@@ -29,7 +29,9 @@ Local ETL outputs, browser captures, PDFs, secrets, dependencies, and build arti
 
 ## v2.1 - Frontend Discovery Upgrade
 
-Status: release candidate; local implementation and responsive QA complete, production verification pending.
+Status: complete; deployed and verified in production on 2026-09-03.
+
+Production: `https://elementary-lovat.vercel.app` from release commit `670b350`.
 
 v2.1 will focus on user discovery without changing the verified v2.0 ETL source of truth:
 

@@ -111,7 +111,7 @@ Detailed behavior and acceptance checks are maintained in `FRONTEND_UX_SYSTEM_PL
 - [x] P2: keep the equalizer icon as the full-filter entry and expose establishment type, grade, students, households, and parking as direct chips.
 - [x] P3: sort district-sheet neighborhoods by selected-grade students and replace threshold text with accessible blue/amber count circles.
 - [x] P4: build local-first school/apartment favorites and define the editorial contract before enabling the published news feed.
-- [ ] Verify mobile/desktop layering, navigation-state preservation, filter equivalence, district drilldown, and all frontend quality commands.
+- [x] Verify mobile/desktop layering, navigation-state preservation, filter equivalence, district drilldown, favorites, and all frontend quality commands in production.
 
 ## Future Milestone: Additional Data Domains
 
