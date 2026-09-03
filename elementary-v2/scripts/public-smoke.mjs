@@ -7,9 +7,12 @@ const cli = path.join(projectRoot, 'node_modules', 'agent-browser', 'bin', 'agen
 const baseUrl = process.argv[2] || 'http://127.0.0.1:3001'
 const session = `elementary-public-smoke-${process.pid}`
 const namespace = 'elementary-smoke'
+const connectionArgs = process.env.AGENT_BROWSER_CDP_PORT
+  ? ['--cdp', process.env.AGENT_BROWSER_CDP_PORT]
+  : []
 
 const run = (args, { quiet = false } = {}) => {
-  const result = spawnSync(process.execPath, [cli, '--namespace', namespace, '--session', session, ...args], {
+  const result = spawnSync(process.execPath, [cli, '--namespace', namespace, '--session', session, ...connectionArgs, ...args], {
     cwd: projectRoot,
     encoding: 'utf8',
     timeout: 45_000,
@@ -65,6 +68,27 @@ try {
   assertPage("document.documentElement.scrollWidth === window.innerWidth", '390px layout has no horizontal overflow')
   assertPage("(window.__ELEMENTARY_PERFORMANCE__ || []).some((metric) => metric.name === 'school-map-load' && metric.status === 'success' && metric.context.resultCount > 0)", 'district data loaded and measured')
 
+  run(['fill', 'input[role="combobox"]', '은마'])
+  run(['wait', '900'])
+  assertPage("[...document.querySelectorAll('#map-search-results [role=option]')].filter((node) => node.textContent?.includes('은마')).length === new Set([...document.querySelectorAll('#map-search-results [role=option]')].filter((node) => node.textContent?.includes('은마')).map((node) => node.querySelector('.font-medium')?.textContent)).size", 'apartment search results are deduplicated')
+  assertPage("[...document.querySelectorAll('#map-search-results [role=option]')].some((node) => node.textContent?.includes('4,424세대'))", 'apartment search returned household data')
+  run(['eval', `(() => {
+    const result = [...document.querySelectorAll('#map-search-results [role=option]')]
+      .find((node) => node.textContent?.includes('4,424세대'))
+    if (!result) throw new Error('Apartment search result not found')
+    result.click()
+    return 'apartment selected'
+  })()`])
+  run(['wait', '1800'])
+  assertPage("document.body.innerText.includes('총 세대수') && document.body.innerText.includes('배정학교:')", 'apartment search opened the assigned-school detail flow')
+  run(['eval', `(() => {
+    const close = document.querySelector('button[aria-label="상세 정보 닫기"]')
+    if (!close) throw new Error('Apartment detail close button not found')
+    close.click()
+    return 'apartment detail closed'
+  })()`])
+  run(['wait', '300'])
+
   run(['eval', `(() => {
     const button = [...document.querySelectorAll('button')]
       .find((node) => node.textContent?.trim() === '학생 수')
@@ -99,8 +123,8 @@ try {
 
   run(['fill', 'input[role="combobox"]', '서울방현'])
   run(['wait', '900'])
-  assertPage("document.querySelectorAll('#school-search-results button').length > 0", 'school search returned results')
-  run(['eval', "document.querySelector('#school-search-results button').click(); 'school selected'"])
+  assertPage("document.querySelectorAll('#map-search-results [role=option]').length > 0", 'school search returned results')
+  run(['eval', "document.querySelector('#map-search-results [role=option]').click(); 'school selected'"])
   run(['wait', '2500'])
   assertPage("document.body.innerText.includes('서울방현초등학교')", 'school detail rendered')
   assertPage("(window.__ELEMENTARY_PERFORMANCE__ || []).some((metric) => metric.name === 'school-apartment-load' && metric.status === 'success' && metric.context.resultCount > 0)", 'assigned apartments loaded and measured')
@@ -143,7 +167,7 @@ try {
   process.stdout.write(`Performance metrics: ${metrics}\n`)
   process.stdout.write('Public map smoke test passed.\n')
 } finally {
-  spawnSync(process.execPath, [cli, '--namespace', namespace, '--session', session, 'close'], {
+  spawnSync(process.execPath, [cli, '--namespace', namespace, '--session', session, ...connectionArgs, 'close'], {
     cwd: projectRoot,
     encoding: 'utf8',
     timeout: 15_000,

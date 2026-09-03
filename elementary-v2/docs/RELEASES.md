@@ -58,7 +58,7 @@ Status: complete; release commit `f81efab` deployed and verified in production o
 
 ## v2.2 - Interaction Foundation
 
-Status: in progress; P0 was deployed and verified in production on 2026-09-03 from commit `20ac24a`.
+Status: in progress; P0 is deployed and P1 unified search is verified locally on 2026-09-03.
 
 Production: `https://elementary-lovat.vercel.app`.
 
@@ -67,6 +67,9 @@ Production: `https://elementary-lovat.vercel.app`.
 - Preserved native content scrolling at maximum expansion and returned downward gestures to the sheet only at the content's top edge.
 - Applied stepwise collapse and dismissal to district, neighborhood, school, and apartment sheets.
 - Extended public browser smoke coverage to the complete mobile sheet gesture flow.
+- Added grouped school/apartment name search over the existing two-table public contract without a schema change.
+- Deduplicated apartment assignments by canonical complex, surfaced multi-school assignments, and linked results to the existing map and bottom-sheet detail flow.
+- Verified keyboard selection and 360, 390, 430, and 1280 pixel layouts against live Supabase data.
 
 ## Post-v2.1 Data Candidates
 

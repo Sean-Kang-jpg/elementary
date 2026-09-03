@@ -35,8 +35,7 @@ const SchoolDetail: React.FC<SchoolDetailProps> = ({ school, isOpen, onClose }) 
   useEffect(() => {
     setCurrentView('school')
     setSelectedMetric('students')
-    dispatch({ type: 'SET_SELECTED_APARTMENT', payload: null })
-  }, [dispatch, school?.school_id])
+  }, [school?.school_id])
 
   useEffect(() => {
     if (!school?.school_id) return

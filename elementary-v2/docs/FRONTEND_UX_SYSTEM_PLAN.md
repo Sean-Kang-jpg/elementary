@@ -188,7 +188,7 @@ Production baseline: the initial capital-region map read completed in 1.18 secon
 
 ## v2.2 Interaction Foundation
 
-Status: **in progress; P0 deployed** (2026-09-03), implementation commit `20ac24a`. Start with shared mobile interaction quality before adding another data or navigation surface.
+Status: **in progress; P0 deployed and P1 verified locally** (2026-09-03), implementation baseline `20ac24a`. Shared mobile interaction quality is followed by map-entity discovery.
 
 - [x] P0: replace handle-only sheet gestures with content-aware drag and scroll handoff.
 - [x] P0: support default, middle, and 88% expanded snaps without the previous 70vh ceiling.
@@ -196,12 +196,16 @@ Status: **in progress; P0 deployed** (2026-09-03), implementation commit `20ac24
 - [x] P0: collapse one snap at a time before dismissal and retain the explicit close action.
 - [x] P0: add repeatable public smoke checks for content swipe expansion, scroll ownership, and top-edge collapse.
 - [x] P0: verify the production flow at 360, 390, 430, and 1280 pixels; initial map and apartment reads completed in 1.21 seconds and 0.28 seconds.
-- [ ] Define the remaining v2.2 scope after bottom-sheet behavior is reviewed on a physical mobile device.
+- [x] P1: search `school_master` and `school_apartment_serving` in parallel after a 300ms debounce, with eight results per entity type.
+- [x] P1: deduplicate apartment rows by `canonical_complex_id` and disclose multi-school assignments as `대표학교 외 N곳`.
+- [x] P1: open school results in the school sheet and apartment results directly in the apartment sheet while retaining the assigned-school context and markers.
+- [x] P1: add stale-request protection, mixed recent-search history, keyboard selection, and mobile/desktop smoke coverage.
+- [ ] P2: align district filters with viewport queries and make active school-versus-apartment filter scope explicit.
+- [ ] P3: map `building_count` into apartment details and evaluate station search only after a source contract exists.
 
 ## Current Gaps
 
-- Search currently queries only `school_name`, despite the address placeholder.
-- `SearchResult` anticipates apartments, but no apartment search path exists.
+- Address search is intentionally deferred; the current search contract covers school and apartment names only.
 - Apartment filters currently affect only the selected school's apartment query.
 - `selected_districts` is not applied to the school viewport query.
 - Station entities and station-to-school distance data do not exist yet.

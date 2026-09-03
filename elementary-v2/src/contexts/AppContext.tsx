@@ -58,6 +58,7 @@ type AppAction =
   | { type: 'SET_APARTMENTS'; payload: Apartment[] }
   | { type: 'SET_SELECTED_SCHOOL'; payload: School | null }
   | { type: 'SET_SELECTED_APARTMENT'; payload: Apartment | null }
+  | { type: 'OPEN_SEARCHED_APARTMENT'; payload: { school: School; apartment: Apartment } }
 
   // 반응형 액션
   | { type: 'SET_BREAKPOINT'; payload: BreakPoint }
@@ -195,6 +196,14 @@ function appReducer(state: AppState, action: AppAction): AppState {
       return {
         ...state,
         selectedApartment: action.payload,
+      }
+
+    case 'OPEN_SEARCHED_APARTMENT':
+      return {
+        ...state,
+        selectedSchool: action.payload.school,
+        selectedApartment: action.payload.apartment,
+        apartments: [action.payload.apartment],
       }
 
     // 반응형 관련

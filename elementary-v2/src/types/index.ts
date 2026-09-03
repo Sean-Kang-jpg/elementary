@@ -179,6 +179,9 @@ export interface SearchResult {
   district: string
   city: string
   coordinates: { lat: number; lng: number }
+  school?: School
+  apartment?: Apartment
+  assigned_schools?: Array<{ school_id: string; school_name: string; assignment_rank: number }>
 }
 
 // 💾 캐시 관련 타입

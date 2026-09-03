@@ -1,6 +1,6 @@
 import { supabase } from '../lib/supabase'
 import { UNLIMITED_APARTMENT_AGE } from '../types'
-import type { Apartment, Coordinates, FilterState, MapBounds, School } from '../types'
+import type { Apartment, Coordinates, FilterState, MapBounds, School, SearchResult } from '../types'
 import { getSchoolNeighborhoodLabel } from '../utils/clusterUtils'
 import { generateCacheKey, getDisplayMode } from '../utils/mapUtils'
 
@@ -32,7 +32,7 @@ const APARTMENT_SELECT_FIELDS = [
   'region', 'district', 'latitude', 'longitude', 'households', 'use_approval_year',
   'parking_total', 'parking_ground', 'parking_underground', 'parking_per_household',
   'sale_households', 'rental_units_total', 'public_rental_units', 'private_rental_units',
-  'public_rental_ratio',
+  'public_rental_ratio', 'assignment_rank',
 ].join(',')
 
 class DataCache {
@@ -425,6 +425,102 @@ export const searchSchoolsByName = async (searchTerm: string, region?: string): 
   return ((data || []) as unknown as SchoolMasterRow[]).map(toSchool)
 }
 
+const toApartment = (row: ApartmentServingRow): Apartment => {
+  const currentYear = new Date().getFullYear()
+  const households = numberValue(row.households)
+  const builtYear = numberValue(row.use_approval_year)
+  return {
+    id: String(row.canonical_complex_id),
+    name: String(row.complex_name || ''),
+    address: String(row.road_address || ''),
+    district: String(row.district || ''),
+    city: String(row.region || ''),
+    latitude: numberValue(row.latitude),
+    longitude: numberValue(row.longitude),
+    households,
+    built_year: builtYear,
+    age: builtYear ? currentYear - builtYear : 0,
+    parking_total: numberValue(row.parking_total),
+    parking_per_household: numberValue(row.parking_per_household),
+    underground_parking: numberValue(row.parking_underground),
+    ground_parking: numberValue(row.parking_ground),
+    public_rental_units: numberValue(row.public_rental_units),
+    public_rental_ratio: numberValue(row.public_rental_ratio),
+    private_rental_units: numberValue(row.private_rental_units),
+    rental_units_total: numberValue(row.rental_units_total),
+    sale_households: numberValue(row.sale_households),
+    assigned_school_id: String(row.school_id || ''),
+    assigned_school_name: String(row.school_name || ''),
+  }
+}
+
+export const searchMapEntities = async (searchTerm: string): Promise<SearchResult[]> => {
+  const term = searchTerm.trim()
+  if (term.length < 2) return []
+
+  const [schoolResponse, apartmentResponse] = await Promise.all([
+    supabase
+      .from('school_master')
+      .select(SCHOOL_SELECT_FIELDS)
+      .ilike('school_name', `%${term}%`)
+      .order('school_name')
+      .limit(8),
+    supabase
+      .from('school_apartment_serving')
+      .select(APARTMENT_SELECT_FIELDS)
+      .ilike('complex_name', `%${term}%`)
+      .order('assignment_rank')
+      .order('households', { ascending: false, nullsFirst: false })
+      .limit(40),
+  ])
+
+  if (schoolResponse.error) throw schoolResponse.error
+  if (apartmentResponse.error) throw apartmentResponse.error
+
+  const schools = ((schoolResponse.data || []) as unknown as SchoolMasterRow[])
+    .map(toSchool)
+    .map((school): SearchResult => ({
+      type: 'school',
+      id: school.school_id,
+      name: school.school_name,
+      address: school.address,
+      district: school.district || '',
+      city: school.city || school.region,
+      coordinates: { lat: school.latitude, lng: school.longitude },
+      school,
+    }))
+
+  const apartmentsById = new Map<string, SearchResult>()
+  ;((apartmentResponse.data || []) as unknown as ApartmentServingRow[]).forEach((row) => {
+    const apartment = toApartment(row)
+    const assignment = {
+      school_id: apartment.assigned_school_id,
+      school_name: apartment.assigned_school_name,
+      assignment_rank: numberValue(row.assignment_rank) || 1,
+    }
+    const existing = apartmentsById.get(apartment.id)
+    if (existing) {
+      if (!existing.assigned_schools?.some((school) => school.school_id === assignment.school_id)) {
+        existing.assigned_schools?.push(assignment)
+      }
+    } else {
+      apartmentsById.set(apartment.id, {
+        type: 'apartment',
+        id: apartment.id,
+        name: apartment.name,
+        address: apartment.address,
+        district: apartment.district,
+        city: apartment.city,
+        coordinates: { lat: apartment.latitude, lng: apartment.longitude },
+        apartment,
+        assigned_schools: [assignment],
+      })
+    }
+  })
+
+  return [...schools, ...Array.from(apartmentsById.values()).slice(0, 8)]
+}
+
 export const getSchoolDetail = async (schoolId: string): Promise<School | null> => {
   const { data, error } = await supabase.from('school_master').select(SCHOOL_SELECT_FIELDS).eq('school_id', schoolId).maybeSingle()
   if (error) throw error
@@ -471,34 +567,7 @@ export const getApartmentsNearSchool = async (
   const { data, error } = await query.limit(1000)
   if (error) throw error
 
-  return ((data || []) as unknown as ApartmentServingRow[]).map((row): Apartment => {
-    const households = numberValue(row.households)
-    const builtYear = numberValue(row.use_approval_year)
-    const parkingTotal = numberValue(row.parking_total)
-    return {
-      id: String(row.canonical_complex_id),
-      name: String(row.complex_name || ''),
-      address: String(row.road_address || ''),
-      district: String(row.district || ''),
-      city: String(row.region || ''),
-      latitude: numberValue(row.latitude),
-      longitude: numberValue(row.longitude),
-      households,
-      built_year: builtYear,
-      age: builtYear ? currentYear - builtYear : 0,
-      parking_total: parkingTotal,
-      parking_per_household: numberValue(row.parking_per_household),
-      underground_parking: numberValue(row.parking_underground),
-      ground_parking: numberValue(row.parking_ground),
-      public_rental_units: numberValue(row.public_rental_units),
-      public_rental_ratio: numberValue(row.public_rental_ratio),
-      private_rental_units: numberValue(row.private_rental_units),
-      rental_units_total: numberValue(row.rental_units_total),
-      sale_households: numberValue(row.sale_households),
-      assigned_school_id: schoolId,
-      assigned_school_name: String(row.school_name || ''),
-    }
-  })
+  return ((data || []) as unknown as ApartmentServingRow[]).map(toApartment)
 }
 
 const getRegionCenter = (region: string): Coordinates => ({

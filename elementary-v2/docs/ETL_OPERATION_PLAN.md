@@ -207,3 +207,4 @@ The first command is read-only. Use `--build` when newly collected source files 
 - 2026-09-02: Added playgrounds as the third future data domain. Annual ingestion remains blocked until license/location-service eligibility, coordinate CRS, source IDs, and duplicate behavior are verified.
 - 2026-09-03: Verified the Windows ETL task is Ready and completed its 03:15 no-op maintenance run with result 0; no source group was due. Deferred GitHub Actions migration until after v2.2 frontend work.
 - 2026-09-03: Started v2.2 with content-aware bottom-sheet gestures, three-stage expansion up to 88% of the viewport, nested scroll handoff, and automated mobile gesture smoke coverage.
+- 2026-09-03: Added v2.2 school/apartment name search using the existing public Serving contract; canonical complexes are deduplicated and multi-school assignments remain visible in search results.
