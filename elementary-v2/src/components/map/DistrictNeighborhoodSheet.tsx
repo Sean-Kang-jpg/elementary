@@ -61,7 +61,7 @@ export default function DistrictNeighborhoodSheet({
       isOpen={isOpen}
       onClose={onClear}
       title={title}
-      snapPoints={[0.09, 0.32, 0.56]}
+      snapPoints={[0.09, 0.36, 0.88]}
       defaultSnap={1}
       swipeDownBehavior="collapse"
       onSnapChange={handleSnapChange}

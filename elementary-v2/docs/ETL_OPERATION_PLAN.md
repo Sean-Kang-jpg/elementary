@@ -1,8 +1,8 @@
 # ETL Operation Plan
 
-Last updated: 2026-08-30
+Last updated: 2026-09-03
 
-Release status: **v2.0 operational baseline complete; v2.1 frontend discovery upgrade planned.**
+Release status: **v2.0 operational baseline complete; v2.1 released; v2.2 interaction work in progress.**
 
 This document is the single checklist for the school-zone, school, apartment, Supabase, and frontend data pipeline. Update it whenever a task is completed, deferred, or blocked. `joinmap.html` remains the detailed visual report; this file controls the next work.
 
@@ -101,7 +101,7 @@ Finalize the read model and UX before expanding the recurring ETL. The frontend 
 - [x] Improve mobile filter and detail-panel ergonomics without changing the finalized two-table data contract.
 - [x] Add a repeatable `agent-browser` smoke scenario for public map load, filters, search, school detail, apartment reads, responsive widths, and request budgets.
 - [ ] Extend the repeatable smoke suite to the authenticated ETL dashboard with a non-personal test account.
-- [ ] Package reviewed local assignment inputs as a versioned portable bundle, then migrate recurring execution from the logged-in Windows task to GitHub Actions.
+- [ ] **Deferred until after v2.2 frontend work:** Package reviewed local assignment inputs as a versioned portable bundle, then migrate recurring execution from the logged-in Windows task to GitHub Actions.
 
 ### v2.1 Map Discovery Sprint
 
@@ -166,7 +166,7 @@ The first command is read-only. Use `--build` when newly collected source files 
 | I-10 | Resolved | SQL `11` and the first recurring pilot completed. Three source objects use about 12.2 MB, staging was purged, and the run is recorded as completed. |
 | I-11 | Resolved | SQL `12`, one administrator UUID, the post-migration pilot, anonymous blocking, and authenticated monitoring reads are verified. |
 | I-12 | Accepted v1 | The Windows task uses interactive logon and runs only while the ETL workstation user is logged in; `StartWhenAvailable` catches a missed run after login. |
-| I-13 | Next | Move scheduling to GitHub Actions after reviewed assignment and apartment base inputs are packaged into a portable source bundle; keep the Windows task as fallback through the first successful remote production run. |
+| I-13 | Deferred | Move scheduling to GitHub Actions after v2.2 frontend work and after reviewed assignment and apartment base inputs are packaged into a portable source bundle; keep the Windows task as fallback through the first successful remote production run. |
 | I-14 | Discovery | NEIS academy data includes middle/high-school and mixed offerings. Elementary eligibility must be classified per course and manually validated before publication. |
 | I-15 | Discovery | Daily class/period timetable rows can exceed the free-tier budget if nationwide history is retained. Define the feature and retention window from a 10-school pilot first. |
 | I-16 | Blocked pending review | Playground data states Korea Open Government License Type 4 and location-information business requirements. Confirm commercial-use and location-service eligibility before API ingestion or publication. |
@@ -205,3 +205,5 @@ The first command is read-only. Use `--build` when newly collected source files 
 - 2026-09-02: Planned the v2.1 discovery sprint: rounded search, SQL-13-based quick-filter chips, mobile zoom removal, student-sorted district rows, marker-style count circles, and a map/news/favorites GNB. Students per class remains a detail metric rather than a filter.
 - 2026-09-02: Added post-v2.1 NEIS academy and elementary-timetable discovery. Academy publication requires course-level elementary classification; timetable storage requires a measured volume and bounded-retention pilot.
 - 2026-09-02: Added playgrounds as the third future data domain. Annual ingestion remains blocked until license/location-service eligibility, coordinate CRS, source IDs, and duplicate behavior are verified.
+- 2026-09-03: Verified the Windows ETL task is Ready and completed its 03:15 no-op maintenance run with result 0; no source group was due. Deferred GitHub Actions migration until after v2.2 frontend work.
+- 2026-09-03: Started v2.2 with content-aware bottom-sheet gestures, three-stage expansion up to 88% of the viewport, nested scroll handoff, and automated mobile gesture smoke coverage.

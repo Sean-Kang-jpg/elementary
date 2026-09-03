@@ -26,11 +26,42 @@ const assertPage = (condition, message) => run([
   `(() => { if (!(${condition})) throw new Error(${JSON.stringify(message)}); return ${JSON.stringify(`PASS: ${message}`)} })()`,
 ])
 
+const swipeSheet = (startY, endY, scrollTop = null) => run(['eval', `(() => {
+  const element = document.querySelector('[data-testid="bottom-sheet-scroll"]')
+  if (!element) throw new Error('Bottom sheet scroll surface not found')
+  ${scrollTop === null ? '' : `element.scrollTop = ${scrollTop}`}
+  const touch = (y) => new Touch({
+    identifier: 1,
+    target: element,
+    clientX: Math.round(window.innerWidth / 2),
+    clientY: y,
+  })
+  element.dispatchEvent(new TouchEvent('touchstart', {
+    bubbles: true,
+    cancelable: true,
+    touches: [touch(${startY})],
+    changedTouches: [touch(${startY})],
+  }))
+  element.dispatchEvent(new TouchEvent('touchmove', {
+    bubbles: true,
+    cancelable: true,
+    touches: [touch(${endY})],
+    changedTouches: [touch(${endY})],
+  }))
+  element.dispatchEvent(new TouchEvent('touchend', {
+    bubbles: true,
+    cancelable: true,
+    touches: [],
+    changedTouches: [touch(${endY})],
+  }))
+  return 'sheet swiped'
+})()`])
+
 try {
   run(['set', 'viewport', '390', '844'])
   run(['open', baseUrl])
   run(['wait', '2500'])
-  assertPage("document.title.includes('v2.1')", 'v2.1 application loaded')
+  assertPage("document.title.includes('v2.2')", 'v2.2 application loaded')
   assertPage("document.documentElement.scrollWidth === window.innerWidth", '390px layout has no horizontal overflow')
   assertPage("(window.__ELEMENTARY_PERFORMANCE__ || []).some((metric) => metric.name === 'school-map-load' && metric.status === 'success' && metric.context.resultCount > 0)", 'district data loaded and measured')
 
@@ -73,6 +104,20 @@ try {
   run(['wait', '2500'])
   assertPage("document.body.innerText.includes('서울방현초등학교')", 'school detail rendered')
   assertPage("(window.__ELEMENTARY_PERFORMANCE__ || []).some((metric) => metric.name === 'school-apartment-load' && metric.status === 'success' && metric.context.resultCount > 0)", 'assigned apartments loaded and measured')
+  assertPage("document.querySelector('[data-testid=bottom-sheet]')?.dataset.snapIndex === '0'", 'school sheet opened at its default snap')
+
+  swipeSheet(650, 470)
+  run(['wait', '400'])
+  assertPage("document.querySelector('[data-testid=bottom-sheet]')?.dataset.snapIndex === '1'", 'content swipe expanded the sheet to its middle snap')
+  swipeSheet(650, 450)
+  run(['wait', '400'])
+  assertPage("document.querySelector('[data-testid=bottom-sheet]')?.dataset.snapIndex === '2'", 'content swipe expanded the sheet to its 88% snap')
+  swipeSheet(400, 570, 100)
+  run(['wait', '100'])
+  assertPage("document.querySelector('[data-testid=bottom-sheet]')?.dataset.snapIndex === '2'", 'scrolled content retained control of a downward swipe')
+  swipeSheet(400, 570, 0)
+  run(['wait', '400'])
+  assertPage("document.querySelector('[data-testid=bottom-sheet]')?.dataset.snapIndex === '1'", 'top-edge downward swipe collapsed the sheet one snap')
 
   const interactionErrors = JSON.parse(run(['--json', 'errors', '--clear'], { quiet: true }))
   const unexpectedErrors = interactionErrors.data.errors.filter((error) => (

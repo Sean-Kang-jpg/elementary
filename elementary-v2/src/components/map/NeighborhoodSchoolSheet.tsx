@@ -56,7 +56,7 @@ export default function NeighborhoodSchoolSheet({
       isOpen={isOpen}
       onClose={onClear}
       title={title}
-      snapPoints={[0.09, 0.28, 0.52]}
+      snapPoints={[0.09, 0.34, 0.88]}
       defaultSnap={1}
       swipeDownBehavior="collapse"
       onSnapChange={handleSnapChange}

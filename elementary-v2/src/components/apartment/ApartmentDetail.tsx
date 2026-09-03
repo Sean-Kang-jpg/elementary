@@ -76,8 +76,9 @@ const ApartmentDetail: React.FC<ApartmentDetailProps> = ({
           <Star size={21} fill={isFavorite ? 'currentColor' : 'none'} aria-hidden="true" />
         </button>
       )}
-      snapPoints={[0.45, 0.7]}
+      snapPoints={[0.45, 0.7, 0.88]}
       defaultSnap={1}
+      swipeDownBehavior="collapse"
     >
       <div className="p-4 space-y-6">
         {/* 뒤로가기 버튼 */}

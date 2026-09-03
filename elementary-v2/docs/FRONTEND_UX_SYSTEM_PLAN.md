@@ -186,6 +186,17 @@ Status: **complete and deployed** (2026-09-03), release commit `f81efab`.
 
 Production baseline: the initial capital-region map read completed in 1.18 seconds, the school-level 11-row read in 0.17 seconds, and the 24-row apartment read in 0.19 seconds. Smoke budgets are 5 seconds and 3 seconds respectively.
 
+## v2.2 Interaction Foundation
+
+Status: **in progress** (2026-09-03). Start with shared mobile interaction quality before adding another data or navigation surface.
+
+- [x] P0: replace handle-only sheet gestures with content-aware drag and scroll handoff.
+- [x] P0: support default, middle, and 88% expanded snaps without the previous 70vh ceiling.
+- [x] P0: keep scrolling inside expanded content, then hand a downward gesture back to the sheet only at the content's top edge.
+- [x] P0: collapse one snap at a time before dismissal and retain the explicit close action.
+- [x] P0: add repeatable public smoke checks for content swipe expansion, scroll ownership, and top-edge collapse.
+- [ ] Define the remaining v2.2 scope after bottom-sheet behavior is reviewed on a physical mobile device.
+
 ## Current Gaps
 
 - Search currently queries only `school_name`, despite the address placeholder.

@@ -138,8 +138,9 @@ const SchoolDetail: React.FC<SchoolDetailProps> = ({ school, isOpen, onClose }) 
           <Star size={21} fill={isFavorite ? 'currentColor' : 'none'} aria-hidden="true" />
         </button>
       ) : undefined}
-      snapPoints={[0.38, 0.68]}
+      snapPoints={[0.38, 0.68, 0.88]}
       defaultSnap={0}
+      swipeDownBehavior="collapse"
     >
       {currentView === 'apartments' ? (
         <div className="mx-auto h-full w-full max-w-4xl">

@@ -56,6 +56,16 @@ Status: complete; release commit `f81efab` deployed and verified in production o
 - Hardened Naver map and marker cleanup during filter changes and React development remounts.
 - Added a repeatable public-map smoke command with mobile/desktop overflow and performance budgets.
 
+## v2.2 - Interaction Foundation
+
+Status: in progress; the first deployable increment was completed on 2026-09-03.
+
+- Replaced handle-only bottom-sheet gestures with content-aware drag and scroll handoff.
+- Added default, middle, and 88% expanded snap states without changing the Supabase frontend contract.
+- Preserved native content scrolling at maximum expansion and returned downward gestures to the sheet only at the content's top edge.
+- Applied stepwise collapse and dismissal to district, neighborhood, school, and apartment sheets.
+- Extended public browser smoke coverage to the complete mobile sheet gesture flow.
+
 ## Post-v2.1 Data Candidates
 
 Academy/tutoring-center, elementary-timetable, and playground data are discovery items, not part of the v2.1 release contract. Academy data requires course-level elementary-audience validation because mixed middle/high-school offerings are present. Timetable data requires a feature and retention decision before daily class/period rows are stored at scale. Playground data requires license/location-service review and coordinate-system validation before ingestion. The detailed gates are maintained in `FUTURE_DATA_DOMAINS_PLAN.md`.
