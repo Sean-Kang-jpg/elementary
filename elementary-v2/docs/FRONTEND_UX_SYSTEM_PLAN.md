@@ -188,13 +188,14 @@ Production baseline: the initial capital-region map read completed in 1.18 secon
 
 ## v2.2 Interaction Foundation
 
-Status: **in progress** (2026-09-03). Start with shared mobile interaction quality before adding another data or navigation surface.
+Status: **in progress; P0 deployed** (2026-09-03), implementation commit `20ac24a`. Start with shared mobile interaction quality before adding another data or navigation surface.
 
 - [x] P0: replace handle-only sheet gestures with content-aware drag and scroll handoff.
 - [x] P0: support default, middle, and 88% expanded snaps without the previous 70vh ceiling.
 - [x] P0: keep scrolling inside expanded content, then hand a downward gesture back to the sheet only at the content's top edge.
 - [x] P0: collapse one snap at a time before dismissal and retain the explicit close action.
 - [x] P0: add repeatable public smoke checks for content swipe expansion, scroll ownership, and top-edge collapse.
+- [x] P0: verify the production flow at 360, 390, 430, and 1280 pixels; initial map and apartment reads completed in 1.21 seconds and 0.28 seconds.
 - [ ] Define the remaining v2.2 scope after bottom-sheet behavior is reviewed on a physical mobile device.
 
 ## Current Gaps

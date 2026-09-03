@@ -58,7 +58,9 @@ Status: complete; release commit `f81efab` deployed and verified in production o
 
 ## v2.2 - Interaction Foundation
 
-Status: in progress; the first deployable increment was completed on 2026-09-03.
+Status: in progress; P0 was deployed and verified in production on 2026-09-03 from commit `20ac24a`.
+
+Production: `https://elementary-lovat.vercel.app`.
 
 - Replaced handle-only bottom-sheet gestures with content-aware drag and scroll handoff.
 - Added default, middle, and 88% expanded snap states without changing the Supabase frontend contract.
