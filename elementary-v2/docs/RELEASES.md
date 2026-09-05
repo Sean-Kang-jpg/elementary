@@ -58,7 +58,7 @@ Status: complete; release commit `f81efab` deployed and verified in production o
 
 ## v2.2 - Interaction Foundation
 
-Status: in progress; P0 is deployed and P1 unified search is verified locally on 2026-09-03.
+Status: in progress; P0 and P1 unified search are deployed and production-verified on 2026-09-05 (`507e3a8`).
 
 Production: `https://elementary-lovat.vercel.app`.
 
@@ -70,6 +70,7 @@ Production: `https://elementary-lovat.vercel.app`.
 - Added grouped school/apartment name search over the existing two-table public contract without a schema change.
 - Deduplicated apartment assignments by canonical complex, surfaced multi-school assignments, and linked results to the existing map and bottom-sheet detail flow.
 - Verified keyboard selection and 360, 390, 430, and 1280 pixel layouts against live Supabase data.
+- Production smoke verified the primary mobile flow, quick filters, school/apartment detail opening, three-stage sheet gestures, and zero unexpected page errors. The initial 2,260-school map read completed in 2.39 seconds and apartment reads completed in 0.32 seconds.
 
 ## Post-v2.1 Data Candidates
 

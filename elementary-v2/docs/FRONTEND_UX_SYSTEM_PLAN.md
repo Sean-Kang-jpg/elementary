@@ -188,7 +188,7 @@ Production baseline: the initial capital-region map read completed in 1.18 secon
 
 ## v2.2 Interaction Foundation
 
-Status: **in progress; P0 deployed and P1 verified locally** (2026-09-03), implementation baseline `20ac24a`. Shared mobile interaction quality is followed by map-entity discovery.
+Status: **in progress; P0 and P1 deployed and production-verified** (2026-09-05), implementation baseline `507e3a8`. Shared mobile interaction quality is followed by map-entity discovery.
 
 - [x] P0: replace handle-only sheet gestures with content-aware drag and scroll handoff.
 - [x] P0: support default, middle, and 88% expanded snaps without the previous 70vh ceiling.
@@ -200,6 +200,7 @@ Status: **in progress; P0 deployed and P1 verified locally** (2026-09-03), imple
 - [x] P1: deduplicate apartment rows by `canonical_complex_id` and disclose multi-school assignments as `대표학교 외 N곳`.
 - [x] P1: open school results in the school sheet and apartment results directly in the apartment sheet while retaining the assigned-school context and markers.
 - [x] P1: add stale-request protection, mixed recent-search history, keyboard selection, and mobile/desktop smoke coverage.
+- [x] P1: verify production at 360, 390, 430, and 1280 pixels, including mobile zoom-control removal, quick filters, detail flows, and all bottom-sheet snap transitions.
 - [ ] P2: align district filters with viewport queries and make active school-versus-apartment filter scope explicit.
 - [ ] P3: map `building_count` into apartment details and evaluate station search only after a source contract exists.
 
