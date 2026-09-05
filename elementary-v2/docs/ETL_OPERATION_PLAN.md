@@ -1,6 +1,6 @@
 # ETL Operation Plan
 
-Last updated: 2026-09-03
+Last updated: 2026-09-06
 
 Release status: **v2.0 operational baseline complete; v2.1 released; v2.2 interaction work in progress.**
 
@@ -92,8 +92,9 @@ Finalize the read model and UX before expanding the recurring ETL. The frontend 
 - [x] Show assigned apartment name and household-count markers after school selection; share one Serving query with school detail and open apartment detail from the marker.
 - [x] Define the frontend theme, entity colors, unified-search behavior, scoped filter model, and phased UX delivery plan.
 - [x] Implement shared design tokens and replace the primary map/search/filter/navigation colors, icons, radii, and layer values.
-- [ ] Add a deduplicated school/apartment search contract and grouped unified-search results.
-- [ ] Separate school-map, assigned-apartment, and location filters; add applied chips and staged mobile apply.
+- [x] Add a deduplicated school/apartment search contract and grouped unified-search results.
+- [x] Separate school and assigned-apartment filter scopes, add direct chips, and keep staged mobile apply in the full panel.
+- [ ] Add location filters only after the P4 station/address source contract is approved.
 - [ ] Select a station master source before adding station search, line filters, and radius-based discovery.
 - [x] Add explicit loading, empty, and recoverable error states for school-map and assigned-apartment reads.
 - [ ] Add source-freshness and stale-data indicators after the public Serving contracts expose source timestamps.
@@ -102,6 +103,17 @@ Finalize the read model and UX before expanding the recurring ETL. The frontend 
 - [x] Add a repeatable `agent-browser` smoke scenario for public map load, filters, search, school detail, apartment reads, responsive widths, and request budgets.
 - [ ] Extend the repeatable smoke suite to the authenticated ETL dashboard with a non-personal test account.
 - [ ] **Deferred until after v2.2 frontend work:** Package reviewed local assignment inputs as a versioned portable bundle, then migrate recurring execution from the logged-in Windows task to GitHub Actions.
+
+### v2.2 P3 And Follow-up Order
+
+1. **P3 frontend contract completion:** expose the already-stored `building_count` value through the apartment TypeScript model and the list/detail UI. No SQL or Serving refresh is required unless live completeness checks reveal missing uploads.
+2. **P3 verification:** check null handling, representative complex values, school/apartment navigation, 360/390/430/1280 layouts, public smoke tests, and map/apartment request budgets before commit and deployment.
+3. **P4 location discovery:** choose station and address-search sources, then document identifiers, aliases, coordinates, licensing, API cost, refresh cadence, and proximity semantics. Do not add public tables before this contract is approved.
+4. **P5 ETL portability:** version the reviewed local input bundle, reproduce one full run in GitHub Actions, compare row counts/checksums with the Windows run, and retain Windows scheduling as fallback until the first remote production run passes.
+5. **P5 admin QA:** create a non-personal authenticated test account and automate monitoring-dashboard checks without placing credentials in the repository.
+6. **P6 future data pilots:** run academy, timetable, and playground pilots independently; production schema work begins only after each domain's quality, legal, product, and free-tier gates pass.
+
+P3 exit criteria are: `building_count` is visible where available, absent values render cleanly, no schema migration is introduced, frontend quality commands and browser QA pass, and the deployed production alias is verified. Station search, address search, GitHub Actions migration, and new data domains are explicitly not part of P3.
 
 ### v2.1 Map Discovery Sprint
 

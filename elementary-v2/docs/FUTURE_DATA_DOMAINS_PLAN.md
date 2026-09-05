@@ -1,8 +1,8 @@
 # Future Data Domains Plan
 
-Last updated: 2026-09-02
+Last updated: 2026-09-06
 
-Status: **post-v2.1 discovery; no production schema change approved.**
+Status: **v2.2 P6 discovery queue; no production schema change approved.**
 
 This plan covers NEIS academy/tutoring-center data, elementary timetable data, and Ministry of the Interior and Safety playground data. All three domains stay separate from `school_master` and `school_apartment_serving` until their product use, volume, licensing, and quality gates are verified.
 

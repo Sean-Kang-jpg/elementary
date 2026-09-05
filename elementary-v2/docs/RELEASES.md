@@ -79,6 +79,13 @@ Production: `https://elementary-lovat.vercel.app`.
 
 Academy/tutoring-center, elementary-timetable, and playground data are discovery items, not part of the v2.1 release contract. Academy data requires course-level elementary-audience validation because mixed middle/high-school offerings are present. Timetable data requires a feature and retention decision before daily class/period rows are stored at scale. Playground data requires license/location-service review and coordinate-system validation before ingestion. The detailed gates are maintained in `FUTURE_DATA_DOMAINS_PLAN.md`.
 
+## v2.2 Remaining Order
+
+1. P3 completes the existing apartment frontend contract by displaying `building_count`; it does not require a database migration.
+2. P4 separately evaluates station and address-search source contracts before implementation.
+3. P5 packages local ETL inputs, migrates scheduling to GitHub Actions, and adds authenticated monitoring QA.
+4. P6 runs gated academy, timetable, and playground discovery pilots.
+
 ## Versioning Rule
 
 - Patch (`2.0.x`): fixes that preserve the current data and UI contracts.
