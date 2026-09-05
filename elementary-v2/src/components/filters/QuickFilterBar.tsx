@@ -1,11 +1,12 @@
 import { Building2, CarFront, ChevronDown, GraduationCap, SlidersHorizontal, Users } from 'lucide-react'
-import { useEffect, useRef, useState } from 'react'
+import { Fragment, useEffect, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
 import { DEFAULT_FILTERS, useFilters, useUI } from '../../contexts/AppContext'
 import { clearDataCache } from '../../services/dataService'
 import type { FilterState } from '../../types'
 
 type FilterKey = 'schoolType' | 'grade' | 'students' | 'households' | 'parking'
+type FilterScope = '학교' | '아파트'
 
 const TYPE_OPTIONS: Array<{ label: string; value: FilterState['school_types'] }> = [
   { label: '전체', value: DEFAULT_FILTERS.school_types },
@@ -46,6 +47,7 @@ export default function QuickFilterBar() {
   const items = [
     {
       key: 'schoolType' as const,
+      scope: '학교' as FilterScope,
       label: typeLabel === '전체' ? '설립 유형' : typeLabel,
       active: typeLabel !== '전체',
       icon: GraduationCap,
@@ -53,6 +55,7 @@ export default function QuickFilterBar() {
     },
     {
       key: 'grade' as const,
+      scope: '학교' as FilterScope,
       label: `${filters.target_grade}학년`,
       active: filters.target_grade !== 1,
       icon: GraduationCap,
@@ -60,6 +63,7 @@ export default function QuickFilterBar() {
     },
     {
       key: 'students' as const,
+      scope: '학교' as FilterScope,
       label: filters.min_students ? `${filters.min_students}명+` : '학생 수',
       active: filters.min_students > 0,
       icon: Users,
@@ -67,6 +71,7 @@ export default function QuickFilterBar() {
     },
     {
       key: 'households' as const,
+      scope: '아파트' as FilterScope,
       label: filters.min_households ? `${filters.min_households.toLocaleString()}세대+` : '세대 수',
       active: filters.min_households > 0,
       icon: Building2,
@@ -74,6 +79,7 @@ export default function QuickFilterBar() {
     },
     {
       key: 'parking' as const,
+      scope: '아파트' as FilterScope,
       label: filters.min_parking_ratio ? `주차 ${filters.min_parking_ratio}대+` : '주차',
       active: filters.min_parking_ratio > 0,
       icon: CarFront,
@@ -101,19 +107,24 @@ export default function QuickFilterBar() {
         <button type="button" onClick={toggleSidebar} className="quick-filter-button quick-filter-button--all" aria-label="전체 필터 열기">
           <SlidersHorizontal size={17} aria-hidden="true" />
         </button>
-        {items.map(({ key, label, active, icon: Icon }) => (
-          <div key={key} className="relative flex-none">
-            <button
-              type="button"
-              onClick={(event) => toggleMenu(key, event.currentTarget)}
-              aria-expanded={openFilter === key}
-              className={`quick-filter-button ${active ? 'quick-filter-button--active' : ''}`}
-            >
-              <Icon size={15} aria-hidden="true" />
-              <span>{label}</span>
-              <ChevronDown size={14} aria-hidden="true" />
-            </button>
-          </div>
+        {items.map(({ key, scope, label, active, icon: Icon }, index) => (
+          <Fragment key={key}>
+            {(index === 0 || items[index - 1].scope !== scope) && (
+              <span className="flex-none px-1 text-[11px] font-bold text-gray-500">{scope}</span>
+            )}
+            <div className="relative flex-none">
+              <button
+                type="button"
+                onClick={(event) => toggleMenu(key, event.currentTarget)}
+                aria-expanded={openFilter === key}
+                className={`quick-filter-button ${active ? 'quick-filter-button--active' : ''}`}
+              >
+                <Icon size={15} aria-hidden="true" />
+                <span>{label}</span>
+                <ChevronDown size={14} aria-hidden="true" />
+              </button>
+            </div>
+          </Fragment>
         ))}
       </div>
       {activeItem && createPortal(

@@ -66,6 +66,7 @@ try {
   run(['wait', '2500'])
   assertPage("document.title.includes('v2.2')", 'v2.2 application loaded')
   assertPage("document.documentElement.scrollWidth === window.innerWidth", '390px layout has no horizontal overflow')
+  assertPage("document.querySelector('.quick-filter-row')?.textContent?.includes('학교') && document.querySelector('.quick-filter-row')?.textContent?.includes('아파트')", 'quick filters disclose school and apartment scope')
   assertPage("(window.__ELEMENTARY_PERFORMANCE__ || []).some((metric) => metric.name === 'school-map-load' && metric.status === 'success' && metric.context.resultCount > 0)", 'district data loaded and measured')
 
   run(['fill', 'input[role="combobox"]', '은마'])

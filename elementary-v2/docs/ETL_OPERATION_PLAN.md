@@ -209,3 +209,4 @@ The first command is read-only. Use `--build` when newly collected source files 
 - 2026-09-03: Started v2.2 with content-aware bottom-sheet gestures, three-stage expansion up to 88% of the viewport, nested scroll handoff, and automated mobile gesture smoke coverage.
 - 2026-09-03: Added v2.2 school/apartment name search using the existing public Serving contract; canonical complexes are deduplicated and multi-school assignments remain visible in search results.
 - 2026-09-05: Promoted v2.2 P1 (`507e3a8`) to production and passed the public browser smoke suite at 360, 390, 430, and 1280 pixels. The 2,260-school initial map read completed in 2.39 seconds and apartment reads completed in 0.32 seconds.
+- 2026-09-05: Completed v2.2 P2 by applying the same selected-district ID contract to viewport markers and result counts, with explicit school/apartment quick-filter scope labels. A live `서울특별시/강남구` RPC check returned 34 schools with zero address-scope mismatches.

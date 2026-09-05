@@ -201,13 +201,12 @@ Status: **in progress; P0 and P1 deployed and production-verified** (2026-09-05)
 - [x] P1: open school results in the school sheet and apartment results directly in the apartment sheet while retaining the assigned-school context and markers.
 - [x] P1: add stale-request protection, mixed recent-search history, keyboard selection, and mobile/desktop smoke coverage.
 - [x] P1: verify production at 360, 390, 430, and 1280 pixels, including mobile zoom-control removal, quick filters, detail flows, and all bottom-sheet snap transitions.
-- [ ] P2: align district filters with viewport queries and make active school-versus-apartment filter scope explicit.
+- [x] P2: align district filters with viewport queries and make active school-versus-apartment filter scope explicit.
 - [ ] P3: map `building_count` into apartment details and evaluate station search only after a source contract exists.
 
 ## Current Gaps
 
 - Address search is intentionally deferred; the current search contract covers school and apartment names only.
 - Apartment filters currently affect only the selected school's apartment query.
-- `selected_districts` is not applied to the school viewport query.
 - Station entities and station-to-school distance data do not exist yet.
 - `building_count` exists in the Serving schema but is not mapped into the frontend apartment type.

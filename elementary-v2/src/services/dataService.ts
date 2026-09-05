@@ -92,6 +92,10 @@ const matchingSchoolParams = (filters: FilterState) => ({
 
 const matchingSchoolKey = (filters: FilterState) => JSON.stringify(matchingSchoolParams(filters))
 
+const needsMatchingSchoolSet = (filters: FilterState) => (
+  hasApartmentFilters(filters) || filters.selected_districts.length > 0
+)
+
 const isMissingCrossFilterRpc = (error: { code?: string; message?: string }) => (
   error.code === 'PGRST202'
   || error.code === '42883'
@@ -154,10 +158,15 @@ export const getFilteredSchoolCount = async (filters: FilterState): Promise<numb
   }
 }
 
-const applyCrossDomainFilter = async (schools: School[], filters: FilterState) => {
-  if (!hasApartmentFilters(filters)) return schools
+const applyMatchingSchoolFilter = async (schools: School[], filters: FilterState) => {
+  const districtFilteredSchools = filters.selected_districts.length
+    ? schools.filter((school) => filters.selected_districts.includes(school.district || ''))
+    : schools
+  if (!needsMatchingSchoolSet(filters)) return districtFilteredSchools
   const matching = await fetchMatchingSchoolSet(filters)
-  return matching ? schools.filter((school) => matching.ids.has(school.school_id)) : schools
+  return matching
+    ? districtFilteredSchools.filter((school) => matching.ids.has(school.school_id))
+    : districtFilteredSchools
 }
 
 const numberValue = (value: unknown): number => {
@@ -327,7 +336,7 @@ export const fetchSchoolDetailData = async (bounds: MapBounds, filters: FilterSt
   if (error) throw error
   const rows = (data || []) as unknown as SchoolMasterRow[]
   const schools = rows.map(toSchool).filter((school) => establishmentTypeAllowed(school, filters))
-  return applyCrossDomainFilter(schools, filters)
+  return applyMatchingSchoolFilter(schools, filters)
 }
 
 export const fetchDistrictOverviewData = async (filters: FilterState): Promise<School[]> => {
@@ -367,7 +376,7 @@ export const fetchDistrictOverviewData = async (filters: FilterState): Promise<S
     .map(toSchool)
     .filter((school) => establishmentTypeAllowed(school, filters))
     .filter((school) => filters.selected_districts.length === 0 || filters.selected_districts.includes(school.district || ''))
-  const schools = await applyCrossDomainFilter(schoolCandidates, filters)
+  const schools = await applyMatchingSchoolFilter(schoolCandidates, filters)
   dataCache.set(cacheKey, schools)
   return schools
 }
@@ -393,7 +402,7 @@ export const fetchSchoolsByAdministrativeArea = async (
     .filter((school) => establishmentTypeAllowed(school, filters))
     .filter((school) => school.district === district)
     .filter((school) => !neighborhood || getSchoolNeighborhoodLabel(school) === neighborhood)
-  return applyCrossDomainFilter(schools, filters)
+  return applyMatchingSchoolFilter(schools, filters)
 }
 
 export const fetchSchoolsByIds = async (
@@ -414,7 +423,7 @@ export const fetchSchoolsByIds = async (
   const schools = ((data || []) as unknown as SchoolMasterRow[])
     .map(toSchool)
     .filter((school) => establishmentTypeAllowed(school, filters))
-  return applyCrossDomainFilter(schools, filters)
+  return applyMatchingSchoolFilter(schools, filters)
 }
 
 export const searchSchoolsByName = async (searchTerm: string, region?: string): Promise<School[]> => {

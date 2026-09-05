@@ -71,6 +71,8 @@ Production: `https://elementary-lovat.vercel.app`.
 - Deduplicated apartment assignments by canonical complex, surfaced multi-school assignments, and linked results to the existing map and bottom-sheet detail flow.
 - Verified keyboard selection and 360, 390, 430, and 1280 pixel layouts against live Supabase data.
 - Production smoke verified the primary mobile flow, quick filters, school/apartment detail opening, three-stage sheet gestures, and zero unexpected page errors. The initial 2,260-school map read completed in 2.39 seconds and apartment reads completed in 0.32 seconds.
+- Aligned selected-district filtering across result counts and viewport school markers, including a client fallback when the cross-filter RPC is unavailable.
+- Grouped quick filters under explicit school and apartment scope labels without adding another row to the mobile header.
 
 ## Post-v2.1 Data Candidates
 
