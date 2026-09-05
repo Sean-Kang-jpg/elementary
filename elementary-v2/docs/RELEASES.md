@@ -58,7 +58,7 @@ Status: complete; release commit `f81efab` deployed and verified in production o
 
 ## v2.2 - Interaction Foundation
 
-Status: in progress; P0 and P1 unified search are deployed and production-verified on 2026-09-05 (`507e3a8`).
+Status: in progress; P0 through P2 are deployed and production-verified on 2026-09-05 (`cfb8954`).
 
 Production: `https://elementary-lovat.vercel.app`.
 
@@ -73,6 +73,7 @@ Production: `https://elementary-lovat.vercel.app`.
 - Production smoke verified the primary mobile flow, quick filters, school/apartment detail opening, three-stage sheet gestures, and zero unexpected page errors. The initial 2,260-school map read completed in 2.39 seconds and apartment reads completed in 0.32 seconds.
 - Aligned selected-district filtering across result counts and viewport school markers, including a client fallback when the cross-filter RPC is unavailable.
 - Grouped quick filters under explicit school and apartment scope labels without adding another row to the mobile header.
+- P2 production smoke completed with a 1.23-second initial map read and 0.32-0.43-second apartment reads.
 
 ## Post-v2.1 Data Candidates
 

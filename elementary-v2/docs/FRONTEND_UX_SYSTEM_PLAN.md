@@ -188,7 +188,7 @@ Production baseline: the initial capital-region map read completed in 1.18 secon
 
 ## v2.2 Interaction Foundation
 
-Status: **in progress; P0 and P1 deployed and production-verified** (2026-09-05), implementation baseline `507e3a8`. Shared mobile interaction quality is followed by map-entity discovery.
+Status: **in progress; P0 through P2 deployed and production-verified** (2026-09-05), implementation baseline `cfb8954`. Shared mobile interaction quality is followed by map-entity discovery.
 
 - [x] P0: replace handle-only sheet gestures with content-aware drag and scroll handoff.
 - [x] P0: support default, middle, and 88% expanded snaps without the previous 70vh ceiling.
