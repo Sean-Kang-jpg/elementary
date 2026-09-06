@@ -81,7 +81,7 @@ try {
     return 'apartment selected'
   })()`])
   run(['wait', '1800'])
-  assertPage("document.body.innerText.includes('총 세대수') && document.body.innerText.includes('배정학교:')", 'apartment search opened the assigned-school detail flow')
+  assertPage("document.body.innerText.includes('총 세대수') && document.body.innerText.includes('동 수') && document.body.innerText.includes('배정학교:')", 'apartment search opened the assigned-school detail flow with building count')
   run(['eval', `(() => {
     const close = document.querySelector('button[aria-label="상세 정보 닫기"]')
     if (!close) throw new Error('Apartment detail close button not found')

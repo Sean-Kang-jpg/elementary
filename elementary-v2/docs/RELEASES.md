@@ -74,6 +74,8 @@ Production: `https://elementary-lovat.vercel.app`.
 - Aligned selected-district filtering across result counts and viewport school markers, including a client fallback when the cross-filter RPC is unavailable.
 - Grouped quick filters under explicit school and apartment scope labels without adding another row to the mobile header.
 - P2 production smoke completed with a 1.23-second initial map read and 0.32-0.43-second apartment reads.
+- P3 maps the existing Serving `building_count` into apartment lists and details, hides missing values, and fixes a stray zero rendered for zero-percent public rental data.
+- P3 local QA passed with 93.4% live Serving coverage and a 4,424-household/28-building verification for 은마.
 
 ## Post-v2.1 Data Candidates
 

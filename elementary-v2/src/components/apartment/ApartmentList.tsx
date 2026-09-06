@@ -111,6 +111,9 @@ const ApartmentList: React.FC<ApartmentListProps> = ({
               <span className="mt-1 block truncate text-xs text-gray-500">{apartment.address || '주소 정보 없음'}</span>
               <span className="mt-2 flex flex-wrap gap-x-3 gap-y-1 text-xs text-gray-700">
                 <span>{apartment.households.toLocaleString()}세대</span>
+                {apartment.building_count > 0
+                  ? <span>{apartment.building_count.toLocaleString()}개 동</span>
+                  : null}
                 <span>{apartment.built_year ? `${apartment.built_year}년 준공` : '준공연도 미확인'}</span>
                 <span className="inline-flex items-center gap-1">
                   <CarFront size={12} aria-hidden="true" />

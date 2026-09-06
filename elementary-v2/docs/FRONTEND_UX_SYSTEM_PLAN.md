@@ -188,7 +188,7 @@ Production baseline: the initial capital-region map read completed in 1.18 secon
 
 ## v2.2 Interaction Foundation
 
-Status: **in progress; P0 through P2 deployed and production-verified** (2026-09-05), implementation baseline `cfb8954`. P3 is limited to completing the existing apartment data contract in the frontend.
+Status: **in progress; P0 through P2 deployed, P3 implemented and locally verified** (2026-09-06). P4 station-source discovery has started without a production schema change.
 
 - [x] P0: replace handle-only sheet gestures with content-aware drag and scroll handoff.
 - [x] P0: support default, middle, and 88% expanded snaps without the previous 70vh ceiling.
@@ -202,13 +202,13 @@ Status: **in progress; P0 through P2 deployed and production-verified** (2026-09
 - [x] P1: add stale-request protection, mixed recent-search history, keyboard selection, and mobile/desktop smoke coverage.
 - [x] P1: verify production at 360, 390, 430, and 1280 pixels, including mobile zoom-control removal, quick filters, detail flows, and all bottom-sheet snap transitions.
 - [x] P2: align district filters with viewport queries and make active school-versus-apartment filter scope explicit.
-- [ ] P3: map the existing Serving `building_count` field into the apartment type, query, list, and detail sheet.
-- [ ] P3: show `동 수` only when the value is positive; preserve the current layout when the source value is absent.
-- [ ] P3: verify representative large/small complexes, school-to-apartment navigation, responsive layouts, and public read performance without a schema migration.
+- [x] P3: map the existing Serving `building_count` field into the apartment type, query, list, and detail sheet.
+- [x] P3: show `동 수` only when the value is positive; preserve the current layout when the source value is absent.
+- [x] P3: verify representative values, school-to-apartment navigation, responsive layouts, and public read performance without a schema migration.
 
 ### Work After P3
 
-- [ ] P4 discovery: select and license-check a canonical station source with stable station/line identifiers and WGS84 coordinates.
+- [x] P4 discovery: select the National Railway station/location file as the canonical source and its dated code list as the change-validation source; record the unrestricted public-data listing.
 - [ ] P4 discovery: define station-name aliases, transfer-station deduplication, and station-to-school/apartment distance behavior before adding station search.
 - [ ] P4 discovery: decide whether address search uses a geocoding provider or normalized address fields; keep it outside name search until accuracy and API-cost limits are known.
 - [ ] P5 operations: package reviewed assignment and apartment inputs as a versioned portable bundle, then migrate scheduled ETL to GitHub Actions with the Windows task retained through the first successful remote run.

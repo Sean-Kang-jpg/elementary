@@ -120,13 +120,21 @@ const ApartmentDetail: React.FC<ApartmentDetailProps> = ({
         {/* 주요 지표 */}
         <div className="bg-gray-50 rounded-lg p-4">
           <h3 className="font-medium text-gray-900 mb-3">주요 정보</h3>
-          <div className="grid grid-cols-2 gap-4">
+          <div className={`grid gap-4 ${apartment.building_count > 0 ? 'grid-cols-3' : 'grid-cols-2'}`}>
             <div className="text-center">
               <div className="text-2xl font-bold text-blue-600">
                 {(apartment.households || 0).toLocaleString()}
               </div>
               <div className="text-xs text-gray-500">총 세대수</div>
             </div>
+            {apartment.building_count > 0 ? (
+              <div className="text-center">
+                <div className="text-2xl font-bold text-gray-800">
+                  {apartment.building_count.toLocaleString()}
+                </div>
+                <div className="text-xs text-gray-500">동 수</div>
+              </div>
+            ) : null}
             <div className="text-center">
               <div className="text-2xl font-bold text-green-600">
                 {apartment.built_year || '-'}
@@ -165,7 +173,7 @@ const ApartmentDetail: React.FC<ApartmentDetailProps> = ({
           </div>
 
           {/* 공공임대 정보 */}
-          {apartment.public_rental_ratio && apartment.public_rental_ratio > 0 && (
+          {apartment.public_rental_ratio > 0 ? (
             <div className="bg-orange-50 border border-orange-200 rounded-lg p-4">
               <div className="flex items-center mb-2">
                 <svg className="h-5 w-5 text-orange-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -180,7 +188,7 @@ const ApartmentDetail: React.FC<ApartmentDetailProps> = ({
                 </div>
               </div>
             </div>
-          )}
+          ) : null}
 
           {/* 연식 정보 */}
           <div className="bg-white border border-gray-200 rounded-lg p-4">

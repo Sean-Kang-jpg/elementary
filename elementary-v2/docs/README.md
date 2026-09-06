@@ -10,6 +10,7 @@ These are the maintained documents for the current application:
 - `FRONTEND_UX_SYSTEM_PLAN.md`: v2.1 theme, search, filter, and delivery design.
 - `NEWS_CONTENT_CONTRACT.md`: editorial categories, publishing states, and the future news data boundary.
 - `FUTURE_DATA_DOMAINS_PLAN.md`: post-v2.1 academy/tutoring-center, elementary-timetable, and playground discovery, schema candidates, and go/no-go gates.
+- `STATION_SEARCH_SOURCE_PLAN.md`: v2.2 P4 station-source decision, pilot contract, map behavior, and production go/no-go gate.
 - `JOINMAP_V2_0.html`: immutable visual report snapshot for the v2.0 Git baseline.
 - `../sql/EXECUTION_GUIDE.md`: operational Supabase migration, upload, refresh, and stop conditions.
 - `../../../joinmap.html`: working visual report outside the Git repository; snapshot it for each release.

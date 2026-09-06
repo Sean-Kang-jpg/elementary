@@ -91,6 +91,7 @@ export interface Apartment {
   
   // 아파트 상세 정보
   households: number // 세대수
+  building_count: number // 동 수 (0이면 원천 미확인)
   built_year: number // 건축년도
   age: number // 연식
   

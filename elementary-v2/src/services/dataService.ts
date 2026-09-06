@@ -29,7 +29,7 @@ const SCHOOL_SELECT_FIELDS = [
 
 const APARTMENT_SELECT_FIELDS = [
   'school_id', 'school_name', 'canonical_complex_id', 'complex_name', 'road_address',
-  'region', 'district', 'latitude', 'longitude', 'households', 'use_approval_year',
+  'region', 'district', 'latitude', 'longitude', 'households', 'building_count', 'use_approval_year',
   'parking_total', 'parking_ground', 'parking_underground', 'parking_per_household',
   'sale_households', 'rental_units_total', 'public_rental_units', 'private_rental_units',
   'public_rental_ratio', 'assignment_rank',
@@ -447,6 +447,7 @@ const toApartment = (row: ApartmentServingRow): Apartment => {
     latitude: numberValue(row.latitude),
     longitude: numberValue(row.longitude),
     households,
+    building_count: numberValue(row.building_count),
     built_year: builtYear,
     age: builtYear ? currentYear - builtYear : 0,
     parking_total: numberValue(row.parking_total),
