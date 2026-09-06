@@ -188,7 +188,7 @@ Production baseline: the initial capital-region map read completed in 1.18 secon
 
 ## v2.2 Interaction Foundation
 
-Status: **in progress; P0 through P2 deployed, P3 implemented and locally verified** (2026-09-06). P4 station-source discovery has started without a production schema change.
+Status: **P0 through P3 deployed and production-verified** (2026-09-06), implementation baseline `cafe111`. P4 station-source discovery has started without a production schema change.
 
 - [x] P0: replace handle-only sheet gestures with content-aware drag and scroll handoff.
 - [x] P0: support default, middle, and 88% expanded snaps without the previous 70vh ceiling.

@@ -76,6 +76,7 @@ Production: `https://elementary-lovat.vercel.app`.
 - P2 production smoke completed with a 1.23-second initial map read and 0.32-0.43-second apartment reads.
 - P3 maps the existing Serving `building_count` into apartment lists and details, hides missing values, and fixes a stray zero rendered for zero-percent public rental data.
 - P3 local QA passed with 93.4% live Serving coverage and a 4,424-household/28-building verification for 은마.
+- P3 (`cafe111`) was deployed and production-verified on 2026-09-06; the public smoke suite passed with a 1.20-second initial map read and 0.28-0.35-second apartment reads.
 
 ## Post-v2.1 Data Candidates
 

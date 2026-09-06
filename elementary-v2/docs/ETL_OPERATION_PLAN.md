@@ -115,7 +115,7 @@ Finalize the read model and UX before expanding the recurring ETL. The frontend 
 
 P3 exit criteria are: `building_count` is visible where available, absent values render cleanly, no schema migration is introduced, frontend quality commands and browser QA pass, and the deployed production alias is verified. Station search, address search, GitHub Actions migration, and new data domains are explicitly not part of P3.
 
-P3 implementation status: local verification passed on 2026-09-06. Serving coverage is 19,502 of 20,891 rows (93.4%); 은마 renders as 4,424 households and 28 buildings, while missing values remain hidden. Production deployment verification remains before final closure.
+P3 implementation status: production verification passed on 2026-09-06 (`cafe111`). Serving coverage is 19,502 of 20,891 rows (93.4%); 은마 renders as 4,424 households and 28 buildings, while missing values remain hidden. The production smoke measured a 1.20-second initial map read and 0.28-0.35-second apartment reads.
 
 ### v2.1 Map Discovery Sprint
 
