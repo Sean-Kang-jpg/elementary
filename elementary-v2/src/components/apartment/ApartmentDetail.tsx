@@ -23,6 +23,7 @@ const ApartmentDetail: React.FC<ApartmentDetailProps> = ({
   onBack
 }) => {
   const [isFavorite, setIsFavorite] = useState(false)
+  const [sheetSnap, setSheetSnap] = useState(1)
 
   useEffect(() => {
     setIsFavorite(apartment ? checkFavorite('apartment', apartment.id) : false)
@@ -76,11 +77,12 @@ const ApartmentDetail: React.FC<ApartmentDetailProps> = ({
           <Star size={21} fill={isFavorite ? 'currentColor' : 'none'} aria-hidden="true" />
         </button>
       )}
-      snapPoints={[0.45, 0.7, 0.88]}
+      snapPoints={[0.11, 0.45, 0.7, 0.88]}
       defaultSnap={1}
-      swipeDownBehavior="collapse"
+      swipeDownBehavior="minimize"
+      onSnapChange={setSheetSnap}
     >
-      <div className="p-4 space-y-6">
+      {sheetSnap === 0 ? null : <div className="p-4 space-y-6">
         {/* 뒤로가기 버튼 */}
         {onBack && (
           <button
@@ -229,7 +231,7 @@ const ApartmentDetail: React.FC<ApartmentDetailProps> = ({
 
         {/* 하단 여백 */}
         <div className="h-4"></div>
-      </div>
+      </div>}
     </BottomSheet>
   )
 }

@@ -2,7 +2,18 @@
 
 ## Execution Model
 
-The current builders depend on local reviewed assignment files and archived apartment inputs. Run recurring ETL on this Windows workstation until those inputs are packaged into a portable source bundle. GitHub Actions remains deferred because a remote checkout cannot yet reproduce the full build.
+The current builders depend on local reviewed assignment files and archived apartment inputs. `etl/portable_inputs_manifest.json` defines the five-file portability contract, and `etl/prepare_portable_inputs.py --package` validates checksums and creates the ignored local ZIP/lock pair. Continue running ETL on this Windows workstation until a remote runner can restore that bundle and reproduce the full build.
+
+Validate or package the reviewed baseline without contacting Supabase:
+
+```powershell
+python etl/prepare_portable_inputs.py
+python etl/prepare_portable_inputs.py --package
+```
+
+Do not commit the generated ZIP. The current bundle is stored at `etl-source-snapshots/portable-inputs/elementary-reviewed-inputs-v1/2026-09-06/bundle.zip`; service-role restore and anonymous-access blocking were verified on 2026-09-06.
+
+The repository-root workflow `.github/workflows/etl-portability-check.yml` is intentionally manual and read-only. Before its first run, configure repository Actions secrets named `SUPABASE_URL` and `SUPABASE_SERVICE_KEY`. The workflow restores the private bundle and verifies every file but does not update database tables or Serving rows.
 
 `etl/run_due_etl.py` reads enabled rows from `etl_schedules`. A daily check only collects source groups whose `next_due_at` is missing or past due:
 

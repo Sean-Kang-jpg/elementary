@@ -1,0 +1,27 @@
+name: ETL portability check
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  restore-reviewed-inputs:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    defaults:
+      run:
+        working-directory: elementary-v2
+    env:
+      SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+      SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Restore and verify reviewed ETL inputs
+        run: python etl/prepare_portable_inputs.py --restore-dir etl/runtime/restored-inputs
+      - name: Run portability unit tests
+        run: python -m unittest etl.tests.test_portable_inputs

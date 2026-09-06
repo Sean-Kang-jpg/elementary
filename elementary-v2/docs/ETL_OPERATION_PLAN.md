@@ -95,7 +95,7 @@ Finalize the read model and UX before expanding the recurring ETL. The frontend 
 - [x] Add a deduplicated school/apartment search contract and grouped unified-search results.
 - [x] Separate school and assigned-apartment filter scopes, add direct chips, and keep staged mobile apply in the full panel.
 - [ ] Add location filters only after the P4 station/address source contract is approved.
-- [ ] Select a station master source before adding station search, line filters, and radius-based discovery.
+- [x] Select KRIC's nationwide urban-rail station file as the station master source and add a local XLSX/CSV profiler before station schema approval.
 - [x] Add explicit loading, empty, and recoverable error states for school-map and assigned-apartment reads.
 - [ ] Add source-freshness and stale-data indicators after the public Serving contracts expose source timestamps.
 - [x] Measure map and assigned-apartment reads against 5-second and 3-second smoke budgets.
@@ -103,6 +103,9 @@ Finalize the read model and UX before expanding the recurring ETL. The frontend 
 - [x] Add a repeatable `agent-browser` smoke scenario for public map load, filters, search, school detail, apartment reads, responsive widths, and request budgets.
 - [ ] Extend the repeatable smoke suite to the authenticated ETL dashboard with a non-personal test account.
 - [ ] **Deferred until after v2.2 frontend work:** Package reviewed local assignment inputs as a versioned portable bundle, then migrate recurring execution from the logged-in Windows task to GitHub Actions.
+- [x] Define the P5 reviewed-input manifest and generate a checksum-locked local bundle: 5 files, 23,042,750 input bytes, 4,345,369 ZIP bytes.
+- [x] Upload the portable bundle to private `etl-source-snapshots/portable-inputs/` Storage, restore it with service-role access, verify all checksums, and confirm anonymous access is blocked.
+- [ ] Add `SUPABASE_URL` and `SUPABASE_SERVICE_KEY` as GitHub Actions secrets, run the manual portability workflow, and compare a subsequent read-only build with the Windows outputs before enabling writes.
 
 ### v2.2 P3 And Follow-up Order
 
@@ -180,12 +183,14 @@ The first command is read-only. Use `--build` when newly collected source files 
 | I-10 | Resolved | SQL `11` and the first recurring pilot completed. Three source objects use about 12.2 MB, staging was purged, and the run is recorded as completed. |
 | I-11 | Resolved | SQL `12`, one administrator UUID, the post-migration pilot, anonymous blocking, and authenticated monitoring reads are verified. |
 | I-12 | Accepted v1 | The Windows task uses interactive logon and runs only while the ETL workstation user is logged in; `StartWhenAvailable` catches a missed run after login. |
-| I-13 | Deferred | Move scheduling to GitHub Actions after v2.2 frontend work and after reviewed assignment and apartment base inputs are packaged into a portable source bundle; keep the Windows task as fallback through the first successful remote production run. |
+| I-13 | In progress | The reviewed-input bundle is stored privately and remote restore/checksum verification passes. Configure GitHub Secrets and reproduce a read-only Actions build before enabling writes; keep the Windows task as fallback through the first successful remote production run. |
 | I-14 | Discovery | NEIS academy data includes middle/high-school and mixed offerings. Elementary eligibility must be classified per course and manually validated before publication. |
 | I-15 | Discovery | Daily class/period timetable rows can exceed the free-tier budget if nationwide history is retained. Define the feature and retention window from a 10-school pilot first. |
 | I-16 | Blocked pending review | Playground data states Korea Open Government License Type 4 and location-information business requirements. Confirm commercial-use and location-service eligibility before API ingestion or publication. |
 
 ## Update Log
+
+- 2026-09-06: Deferred station/address search after source-contract discovery. Added a checksum-locked five-file ETL portability manifest, generated a 4.35 MB bundle from 23.04 MB of reviewed inputs, uploaded it to private Storage, passed service-role restore, and confirmed anonymous download is blocked.
 
 - 2026-08-28: Archived 146 pre-operational files under `archive/elementary-v2-pre-operational-20260828/` and added an active documentation index.
 - 2026-08-28: Consolidated the current pipeline status; marked SQL `09` and recurring source ingestion as the next milestone.

@@ -10,7 +10,7 @@ interface BottomSheetProps {
   headerAction?: React.ReactNode
   snapPoints?: number[]
   defaultSnap?: number
-  swipeDownBehavior?: 'close' | 'collapse'
+  swipeDownBehavior?: 'close' | 'collapse' | 'minimize'
   onSnapChange?: (snapIndex: number) => void
   closeLabel?: string
   className?: string
@@ -159,8 +159,10 @@ const BottomSheet: React.FC<BottomSheetProps> = ({
 
     if (movedDown && swipeDownBehavior === 'close') {
       onClose()
-    } else if (movedDown && drag.startSnap === 0) {
+    } else if (movedDown && drag.startSnap === 0 && swipeDownBehavior !== 'minimize') {
       onClose()
+    } else if (movedDown && drag.startSnap === 0) {
+      commitSnap(0)
     } else if (movedDown) {
       commitSnap(drag.startSnap - 1)
     } else if (movedUp) {

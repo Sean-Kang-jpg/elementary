@@ -1,0 +1,45 @@
+{
+  "bundle_name": "elementary-reviewed-inputs-v1",
+  "bundle_version": "2026-09-06",
+  "storage": {
+    "bucket": "etl-source-snapshots",
+    "archive_path": "portable-inputs/elementary-reviewed-inputs-v1/2026-09-06/bundle.zip"
+  },
+  "files": [
+    {
+      "role": "apartment-base",
+      "source_path": "../../archive/GAS/GAS/임시/apt_mst_info_202410.csv",
+      "bundle_path": "apartment/apt_mst_info_202410.csv",
+      "byte_size": 13060240,
+      "sha256": "9092f884b008d701349e6652d2e1f8453034302d95378d600a22442225a51853"
+    },
+    {
+      "role": "reviewed-school-baseline",
+      "source_path": "etl/local_outputs_20260320/school_master_v1_20260320.json",
+      "bundle_path": "school/school_master_v1_20260320.json",
+      "byte_size": 3744850,
+      "sha256": "0a9c64e7be89c347ebf547eff32daba9fa5c7d2dd6c1f57f25050a0b7532a5cb"
+    },
+    {
+      "role": "reviewed-assignment-baseline",
+      "source_path": "etl/local_outputs_20260320/apartment_point_assignments.csv",
+      "bundle_path": "assignment/apartment_point_assignments.csv",
+      "byte_size": 6156474,
+      "sha256": "58526d7111e9445e208212f5577b734fcccb7c5735bc0a30fffd818bf00ddafe"
+    },
+    {
+      "role": "assignment-review-queue",
+      "source_path": "etl/local_outputs_20260320/assignment_review_queue.csv",
+      "bundle_path": "assignment/assignment_review_queue.csv",
+      "byte_size": 75977,
+      "sha256": "e26ba05bf897a342e1214592cf1827042c2da06d8cbabf92c181478d2636c43e"
+    },
+    {
+      "role": "assignment-review-resolutions",
+      "source_path": "etl/local_outputs_20260320/p1_resolved_cases.csv",
+      "bundle_path": "assignment/p1_resolved_cases.csv",
+      "byte_size": 5209,
+      "sha256": "ef81589a9d651a5662fd650dc2bc1fdd83faefb83a55dfbe256166e0031e86eb"
+    }
+  ]
+}

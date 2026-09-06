@@ -205,13 +205,17 @@ Status: **P0 through P3 deployed and production-verified** (2026-09-06), impleme
 - [x] P3: map the existing Serving `building_count` field into the apartment type, query, list, and detail sheet.
 - [x] P3: show `동 수` only when the value is positive; preserve the current layout when the source value is absent.
 - [x] P3: verify representative values, school-to-apartment navigation, responsive layouts, and public read performance without a schema migration.
+- [x] P3 follow-up: minimize school and apartment detail sheets to a title-only peek without clearing the selected map entity; reserve hierarchy changes for map zoom and explicit close actions.
 
 ### Work After P3
 
 - [x] P4 discovery: select the National Railway station/location file as the canonical source and its dated code list as the change-validation source; record the unrestricted public-data listing.
-- [ ] P4 discovery: define station-name aliases, transfer-station deduplication, and station-to-school/apartment distance behavior before adding station search.
-- [ ] P4 discovery: decide whether address search uses a geocoding provider or normalized address fields; keep it outside name search until accuracy and API-cost limits are known.
-- [ ] P5 operations: package reviewed assignment and apartment inputs as a versioned portable bundle, then migrate scheduled ETL to GitHub Actions with the Windows task retained through the first successful remote run.
+- [x] P4 discovery: define station-name aliases, reviewed transfer-station grouping, and a bounded 1.5 km station-to-school distance query before adding station search.
+- [x] P4 discovery: add a dependency-free XLSX/CSV profiler for capital-region coverage, coordinates, source keys, normalized names, and review candidates.
+- [ ] **Deferred:** resume station and address search only after the official station file is archived and geocoding accuracy/API-cost limits can be evaluated.
+- [x] P5 operations: define and checksum the five-file reviewed-input contract; validate 23,042,750 source bytes and produce a 4,345,369-byte local portable ZIP plus lock file.
+- [x] P5 operations: upload the bundle to private Supabase Storage, restore it using service-role credentials, verify all member checksums, and confirm anonymous download is blocked.
+- [ ] P5 operations: restore the reviewed-input bundle in GitHub Actions, then migrate scheduled ETL with the Windows task retained through the first successful remote run.
 - [ ] P5 operations: add a non-personal authenticated account to the ETL dashboard smoke suite and verify alerts, due schedules, run checks, and snapshot visibility.
 - [ ] P6 data pilots: evaluate academy, timetable, and playground sources against the separate `FUTURE_DATA_DOMAINS_PLAN.md` go/no-go gates before creating production tables.
 
@@ -220,4 +224,4 @@ Status: **P0 through P3 deployed and production-verified** (2026-09-06), impleme
 - Address search is intentionally deferred; the current search contract covers school and apartment names only.
 - Apartment filters currently affect only the selected school's apartment query.
 - Station entities and station-to-school/apartment distance data do not exist yet; this is P4 discovery, not P3 implementation.
-- `building_count` exists in the Serving schema but is not mapped into the frontend apartment type; this is the bounded P3 task.
+- The latest official station file still needs to be archived and profiled before a station schema can be approved.

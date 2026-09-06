@@ -29,12 +29,14 @@ const SchoolDetail: React.FC<SchoolDetailProps> = ({ school, isOpen, onClose }) 
   const [error, setError] = useState<string | null>(null)
   const [currentView, setCurrentView] = useState<'school' | 'apartments' | 'apartment-detail'>('school')
   const [selectedMetric, setSelectedMetric] = useState<SchoolMetric>('students')
+  const [sheetSnap, setSheetSnap] = useState(1)
   const [isFavorite, setIsFavorite] = useState(false)
   const [requestVersion, setRequestVersion] = useState(0)
 
   useEffect(() => {
     setCurrentView('school')
     setSelectedMetric('students')
+    setSheetSnap(1)
   }, [school?.school_id])
 
   useEffect(() => {
@@ -137,11 +139,12 @@ const SchoolDetail: React.FC<SchoolDetailProps> = ({ school, isOpen, onClose }) 
           <Star size={21} fill={isFavorite ? 'currentColor' : 'none'} aria-hidden="true" />
         </button>
       ) : undefined}
-      snapPoints={[0.38, 0.68, 0.88]}
-      defaultSnap={0}
-      swipeDownBehavior="collapse"
+      snapPoints={[0.11, 0.38, 0.68, 0.88]}
+      defaultSnap={1}
+      swipeDownBehavior="minimize"
+      onSnapChange={setSheetSnap}
     >
-      {currentView === 'apartments' ? (
+      {sheetSnap === 0 ? null : currentView === 'apartments' ? (
         <div className="mx-auto h-full w-full max-w-4xl">
           <div className="border-b border-gray-200 px-4 py-2">
             <button type="button" onClick={() => setCurrentView('school')} className="inline-flex items-center gap-1 py-2 text-sm font-medium text-blue-700 hover:text-blue-900">
