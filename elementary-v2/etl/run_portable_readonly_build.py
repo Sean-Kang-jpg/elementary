@@ -56,6 +56,19 @@ def sha256(path: Path) -> str:
     return digest.hexdigest()
 
 
+def content_sha256(path: Path) -> str:
+    if path.suffix == ".json":
+        value = json.loads(path.read_text(encoding="utf-8"))
+        canonical = json.dumps(
+            value,
+            ensure_ascii=False,
+            sort_keys=True,
+            separators=(",", ":"),
+        ).encode("utf-8")
+        return hashlib.sha256(canonical).hexdigest()
+    return sha256(path)
+
+
 def load_manifest(path: Path) -> dict:
     return json.loads(path.read_text(encoding="utf-8"))
 
@@ -144,7 +157,7 @@ def write_comparison_report(
             "name": name,
             "rows": row_count(path),
             "byte_size": path.stat().st_size,
-            "sha256": sha256(path),
+            "sha256": content_sha256(path),
         })
     report = {
         "generated_at": datetime.now(timezone.utc).isoformat(),

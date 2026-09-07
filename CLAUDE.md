@@ -10,7 +10,7 @@
 - Active app: `F:\sm\vibe\elementary\pjt_250826\elementary-v2`
 - Stack: React 18, TypeScript, Vite, Tailwind CSS, Supabase, Naver Maps
 - Branch: `master`
-- Last pushed baseline: `1c87d49` (`Advance v2.2 UX and ETL portability`)
+- Last pushed baseline: `732f8bd` (`Complete ETL portability baseline`)
 - Production: `https://elementary-lovat.vercel.app`
 - Supabase project ref: `vsgeksumgvcrkzjwvlgs`
 
@@ -39,24 +39,22 @@ npm run typecheck
 - v2.2 P3: 아파트 `building_count` 표시 완료
 - P3 follow-up: 상세 bottom sheet를 아래로 밀면 선택을 유지한 채 제목 높이로 최소화
 - v2.2 P4: 역·주소 검색은 공식 원본과 비용·정확도 검증 전까지 보류
-- v2.2 P5: build-complete bundle v2의 로컬 전체 재현과 Windows checksum 기준선 완료,
-  v2 Storage 업로드 및 GitHub Actions 실제 실행 대기
+- v2.2 P5: build-complete bundle v2의 로컬 전체 재현 완료. checksum 기준선은
+  플랫폼 독립 방식으로 재정의했다. GitHub Actions 실제 실행 대기
 - P6: 학원·시간표·놀이터 데이터 후보 검증 대기
 
 전체 진행표는 `elementary-v2/docs/PROJECT_PROGRESS.html`에서 확인한다.
 
 ## Uncommitted Work At Handoff
 
-2026-09-07 세션 시작 기준으로 `1c87d49` 이후 아래 변경이 미커밋 상태다.
-다음 세션에서는 내용을 먼저 검토하고 완료 여부를 판단한다.
+2026-09-07 세션에서 ETL·분석·문서 작업은 커밋했다. 아래 frontend 변경만 미커밋으로
+남아 있으며, lint·typecheck·build·public smoke를 아직 돌리지 않았다.
 
 - `elementary-v2/src/components/map/MarkerManager.tsx`
 - `elementary-v2/src/components/navigation/NewsPage.tsx`
-- `elementary-v2/etl/analyze_report_clusters.py`
-- `elementary-v2/etl/verify_missing_school_sample.py`
-- `elementary-v2/docs/REPORT_CLUSTER_INSIGHTS_20260906.md`
-- `elementary-v2/docs/REPORT_MISSING_SCHOOL_SAMPLE_20260906.md`
-- `elementary-v2/docs/INSTAGRAM_CAROUSEL_GRADE1_CLUSTER_20260906.md`
+- `elementary-v2/src/services/dataService.ts`
+
+`dataService.ts`는 세션 도중 사용자가 직접 수정한 파일이다. 되돌리지 않았다.
 
 이 목록은 시점 기록이다. 실제 상태는 항상 `git status --short`로 다시 확인한다.
 
@@ -82,13 +80,15 @@ migration은 Supabase 상태를 확인하지 않고 재설계하지 않는다.
 
 ## Next Priority
 
-### 1. 현재 미커밋 Front·콘텐츠 작업 정리
+### 1. 미커밋 frontend 작업 정리
 
-1. MarkerManager와 NewsPage diff를 검토한다.
-2. 클러스터 분석 스크립트와 두 검증 리포트의 재현성을 확인한다.
-3. Instagram carousel 원고가 분석 결과와 일치하는지 대조한다.
-4. `PROJECT_PROGRESS.html`과 관련 계획 문서에 상태를 반영한다.
-5. frontend 검증 후 선별 commit/push 한다.
+1. MarkerManager, NewsPage, dataService diff를 검토한다.
+2. `npm run lint`, `typecheck`, `build`, `browser:smoke:public`을 돌린다.
+3. 검증 통과 후 commit/push 한다.
+
+콘텐츠·분석 쪽은 정리를 마쳤다. 두 검증 리포트를 현재 스냅샷으로 재생성했고,
+Instagram carousel 원고의 수치 5곳을 재생성 결과에 맞춰 고쳤다.
+`PROJECT_PROGRESS.html`은 아직 이번 ETL 변경을 반영하지 않았다.
 
 ### 2. P5 ETL 원격 실행 검증
 
@@ -123,7 +123,10 @@ Actions secrets는 영구 외부 설정이므로 사용자 승인 없이 등록�
 - ZIP 8,383,649 bytes
 - ZIP SHA-256: `d7226fcf92ea9a60be431cce414e304e8abe8ee78c664a4ab774592e110f8b6f`
 - bundle v2 로컬 전체 빌드 및 backend audit 52/52 통과
-- Windows 결과 7개 행 수·SHA-256 기준선: `etl/portable_readonly_baseline.json`
+- 결과 7개 행 수·SHA-256 기준선: `etl/portable_readonly_baseline.json`
+- 기준선 해시는 플랫폼 독립이다. JSON은 canonical 직렬화 내용을 해싱하고
+  (`Path.write_text`가 Windows에서 CRLF를 쓰기 때문), CSV는 `csv.DictWriter`가
+  모든 플랫폼에서 CRLF를 쓰므로 바이트 해시를 유지한다.
 - Storage object:
   `etl-source-snapshots/portable-inputs/elementary-reviewed-inputs-v1/2026-09-06/bundle.zip`
 - 기존 bundle v1은 service-role restore 및 anon 다운로드 차단 확인 완료

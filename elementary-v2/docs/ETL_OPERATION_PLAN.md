@@ -1,6 +1,6 @@
 # ETL Operation Plan
 
-Last updated: 2026-09-06
+Last updated: 2026-09-07
 
 Release status: **v2.0 operational baseline complete; v2.1 released; v2.2 interaction work in progress.**
 
@@ -105,6 +105,7 @@ Finalize the read model and UX before expanding the recurring ETL. The frontend 
 - [ ] **Deferred until after v2.2 frontend work:** Package reviewed local assignment inputs as a versioned portable bundle, then migrate recurring execution from the logged-in Windows task to GitHub Actions.
 - [x] Replace the incomplete five-file portability bundle with build-complete v2 inputs: eight files, 50,553,797 input bytes, and an 8,383,649-byte local ZIP.
 - [x] Reproduce all seven operational outputs from the local v2 bundle without database writes; pass 52/52 backend checks and lock Windows row counts plus SHA-256 values as the remote comparison baseline.
+- [x] Make the comparison baseline platform-independent: hash JSON outputs by canonical content rather than raw bytes, so a Linux Actions run can match the Windows baseline.
 - [x] Upload portability bundle v2 to its versioned private Storage path, verify its remote archive and eight member checksums, and confirm anonymous download is blocked.
 - [ ] Add `SUPABASE_URL` and `SUPABASE_SERVICE_KEY` as GitHub Actions secrets and run the manual workflow against the locked Windows baseline before enabling writes.
 
@@ -184,13 +185,15 @@ The first command is read-only. Use `--build` when newly collected source files 
 | I-10 | Resolved | SQL `11` and the first recurring pilot completed. Three source objects use about 12.2 MB, staging was purged, and the run is recorded as completed. |
 | I-11 | Resolved | SQL `12`, one administrator UUID, the post-migration pilot, anonymous blocking, and authenticated monitoring reads are verified. |
 | I-12 | Accepted v1 | The Windows task uses interactive logon and runs only while the ETL workstation user is logged in; `StartWhenAvailable` catches a missed run after login. |
-| I-13 | In progress | The reviewed-input bundle is stored privately and remote restore/checksum verification passes. Configure GitHub Secrets and reproduce a read-only Actions build before enabling writes; keep the Windows task as fallback through the first successful remote production run. |
+| I-13 | In progress | The reviewed-input bundle is stored privately and remote restore/checksum verification passes. The comparison baseline was platform-dependent because `Path.write_text` emits CRLF on Windows and LF on Linux; JSON outputs are now hashed by canonical content, while CSV outputs keep byte hashes because `csv.DictWriter` always writes CRLF. Configure GitHub Secrets and reproduce a read-only Actions build before enabling writes; keep the Windows task as fallback through the first successful remote production run. |
 | I-14 | Discovery | NEIS academy data includes middle/high-school and mixed offerings. Elementary eligibility must be classified per course and manually validated before publication. |
 | I-15 | Discovery | Daily class/period timetable rows can exceed the free-tier budget if nationwide history is retained. Define the feature and retention window from a 10-school pilot first. |
 | I-16 | Blocked pending review | Playground data states Korea Open Government License Type 4 and location-information business requirements. Confirm commercial-use and location-service eligibility before API ingestion or publication. |
 
 ## Update Log
 
+- 2026-09-07: Fixed the portability comparison baseline, which could never have matched a Linux Actions run. JSON outputs are written through `Path.write_text`, so Windows stored CRLF and Linux would store LF, changing the byte hash without changing the data. `run_portable_readonly_build.py` now hashes JSON by canonical content (`sort_keys`, fixed separators) and keeps byte hashes for CSV, which `csv.DictWriter` writes as CRLF on every platform. Re-locked the five JSON baseline hashes; row counts and the two CSV hashes are unchanged. 13 Python unit tests pass and all seven outputs match the baseline. Remaining P5 work is unchanged: register Actions secrets and run the workflow.
+- 2026-09-07: Regenerated the two 2026-09-06 analysis reports against the current snapshot. `verify_missing_school_sample.py` reproduced byte-identical output, but `analyze_report_clusters.py` did not: the operational outputs were rebuilt at 20:01 on 2026-09-07, which shifted school and complex cluster membership (school cluster 0: 730 to 707; complex cluster 0: 2,921 to 3,420 complexes, median 788 to 594 households). Committed the regenerated reports and corrected five figures in the Instagram carousel draft that still quoted the superseded run. Analysis reports are snapshot-bound and must be regenerated whenever operational outputs are rebuilt.
 - 2026-09-06: Deferred station/address search after source-contract discovery. Added a checksum-locked five-file ETL portability manifest, generated a 4.35 MB bundle from 23.04 MB of reviewed inputs, uploaded it to private Storage, passed service-role restore, and confirmed anonymous download is blocked.
 
 - 2026-08-28: Archived 146 pre-operational files under `archive/elementary-v2-pre-operational-20260828/` and added an active documentation index.

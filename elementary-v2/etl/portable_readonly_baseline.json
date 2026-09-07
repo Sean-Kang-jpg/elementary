@@ -4,11 +4,11 @@
   "bundle_version": "2026-09-07",
   "audit_check_count": 52,
   "files": [
-    {"name": "school_master_operational_v1.json", "rows": 2260, "sha256": "1867326716ae0a036d0b528a48b4b00c865ebae7c9e6e52586f9d09dc4405b72"},
-    {"name": "apartment_complex_master_v1.json", "rows": 20164, "sha256": "2546d07b81d64691ef0c509360d3e2aa9761ab2fe69beee61244945068b7183a"},
-    {"name": "apartment_assignment_units_v1.json", "rows": 20421, "sha256": "ea7cfdbe4525f122681862ee08e019b262ca98a6d71ae686ee9f64be2e91f3df"},
-    {"name": "apartment_assignment_schools_v1.json", "rows": 21154, "sha256": "19278ceb11c9779f90d603675c4c5f3ee54e9faa86874d532c27afd0a8bd08b7"},
-    {"name": "school_apartment_serving_v1.json", "rows": 20891, "sha256": "448c6e62aaaea0037dd120ac71b70a1a51bb639874998005966463dac568dc25"},
+    {"name": "school_master_operational_v1.json", "rows": 2260, "sha256": "4287df12253fb114157e247af378bb7d8d2780fea0d714927e35fff111944971"},
+    {"name": "apartment_complex_master_v1.json", "rows": 20164, "sha256": "1db43cbfe8f4fae5008b20991e39271abeea2855725ef98bb7a12f30362dc631"},
+    {"name": "apartment_assignment_units_v1.json", "rows": 20421, "sha256": "a37b7687517574f693ca3d233428ed2db65f843df0e515557a76ad68df5c957d"},
+    {"name": "apartment_assignment_schools_v1.json", "rows": 21154, "sha256": "870865498e4bd49fa806c8ae1ddfc18b0ce2622b03d2177419437956637c051d"},
+    {"name": "school_apartment_serving_v1.json", "rows": 20891, "sha256": "820dac35e1083fe79a000879ea737090abb89c4212a763e4ad58b040094e8667"},
     {"name": "apartment_name_history_operational_v1.csv", "rows": 26225, "sha256": "9565bab78bb403824d244cda8e5fa6abbfdabc1612fe20e38758ec8e551822e8"},
     {"name": "apartment_property_history_operational_v1.csv", "rows": 1889, "sha256": "89f48f4fa7be16cd229d7c7bda10c05c099caee10e779a6cc029c8d682a05002"}
   ]

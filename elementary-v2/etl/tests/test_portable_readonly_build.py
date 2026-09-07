@@ -1,4 +1,5 @@
 import hashlib
+import json
 import tempfile
 import unittest
 from pathlib import Path
@@ -60,6 +61,19 @@ class PortableReadonlyBuildTest(unittest.TestCase):
             run_portable_readonly_build.compare_with_baseline(report, baseline)[0],
             "rows",
         )
+
+    def test_json_content_checksum_ignores_formatting(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary_directory:
+            root = Path(temporary_directory)
+            compact = root / "compact.json"
+            pretty = root / "pretty.json"
+            value = [{"school_id": "A", "students": 80}]
+            compact.write_text(json.dumps(value, separators=(",", ":")), encoding="utf-8")
+            pretty.write_text(json.dumps(value, indent=2) + "\n", encoding="utf-8", newline="\r\n")
+            self.assertEqual(
+                run_portable_readonly_build.content_sha256(compact),
+                run_portable_readonly_build.content_sha256(pretty),
+            )
 
 
 if __name__ == "__main__":
