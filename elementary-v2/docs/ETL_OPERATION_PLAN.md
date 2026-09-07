@@ -103,9 +103,10 @@ Finalize the read model and UX before expanding the recurring ETL. The frontend 
 - [x] Add a repeatable `agent-browser` smoke scenario for public map load, filters, search, school detail, apartment reads, responsive widths, and request budgets.
 - [ ] Extend the repeatable smoke suite to the authenticated ETL dashboard with a non-personal test account.
 - [ ] **Deferred until after v2.2 frontend work:** Package reviewed local assignment inputs as a versioned portable bundle, then migrate recurring execution from the logged-in Windows task to GitHub Actions.
-- [x] Define the P5 reviewed-input manifest and generate a checksum-locked local bundle: 5 files, 23,042,750 input bytes, 4,345,369 ZIP bytes.
-- [x] Upload the portable bundle to private `etl-source-snapshots/portable-inputs/` Storage, restore it with service-role access, verify all checksums, and confirm anonymous access is blocked.
-- [ ] Add `SUPABASE_URL` and `SUPABASE_SERVICE_KEY` as GitHub Actions secrets, run the manual portability workflow, and compare a subsequent read-only build with the Windows outputs before enabling writes.
+- [x] Replace the incomplete five-file portability bundle with build-complete v2 inputs: eight files, 50,553,797 input bytes, and an 8,383,649-byte local ZIP.
+- [x] Reproduce all seven operational outputs from the local v2 bundle without database writes; pass 52/52 backend checks and lock Windows row counts plus SHA-256 values as the remote comparison baseline.
+- [x] Upload portability bundle v2 to its versioned private Storage path, verify its remote archive and eight member checksums, and confirm anonymous download is blocked.
+- [ ] Add `SUPABASE_URL` and `SUPABASE_SERVICE_KEY` as GitHub Actions secrets and run the manual workflow against the locked Windows baseline before enabling writes.
 
 ### v2.2 P3 And Follow-up Order
 

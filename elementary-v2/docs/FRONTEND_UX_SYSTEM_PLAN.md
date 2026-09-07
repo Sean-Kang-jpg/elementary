@@ -213,9 +213,10 @@ Status: **P0 through P3 deployed and production-verified** (2026-09-06), impleme
 - [x] P4 discovery: define station-name aliases, reviewed transfer-station grouping, and a bounded 1.5 km station-to-school distance query before adding station search.
 - [x] P4 discovery: add a dependency-free XLSX/CSV profiler for capital-region coverage, coordinates, source keys, normalized names, and review candidates.
 - [ ] **Deferred:** resume station and address search only after the official station file is archived and geocoding accuracy/API-cost limits can be evaluated.
-- [x] P5 operations: define and checksum the five-file reviewed-input contract; validate 23,042,750 source bytes and produce a 4,345,369-byte local portable ZIP plus lock file.
-- [x] P5 operations: upload the bundle to private Supabase Storage, restore it using service-role credentials, verify all member checksums, and confirm anonymous download is blocked.
-- [ ] P5 operations: restore the reviewed-input bundle in GitHub Actions, then migrate scheduled ETL with the Windows task retained through the first successful remote run.
+- [x] P5 operations: expand the reviewed-input contract to eight build-complete files; validate 50,553,797 source bytes and produce an 8,383,649-byte portable v2 ZIP plus lock file.
+- [x] P5 operations: reproduce all seven operational outputs locally from the v2 bundle, pass 52/52 backend checks, and lock row counts plus SHA-256 values as the Windows comparison baseline.
+- [x] P5 operations: upload bundle v2 to private Storage, verify all eight remote checksums, and confirm anonymous download is blocked.
+- [ ] P5 operations: restore and compare bundle v2 in GitHub Actions, then migrate scheduled ETL with the Windows task retained through the first successful remote run.
 - [ ] P5 operations: add a non-personal authenticated account to the ETL dashboard smoke suite and verify alerts, due schedules, run checks, and snapshot visibility.
 - [ ] P6 data pilots: evaluate academy, timetable, and playground sources against the separate `FUTURE_DATA_DOMAINS_PLAN.md` go/no-go gates before creating production tables.
 

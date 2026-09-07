@@ -1,9 +1,9 @@
 {
-  "bundle_name": "elementary-reviewed-inputs-v1",
-  "bundle_version": "2026-09-06",
+  "bundle_name": "elementary-reviewed-inputs-v2",
+  "bundle_version": "2026-09-07",
   "storage": {
     "bucket": "etl-source-snapshots",
-    "archive_path": "portable-inputs/elementary-reviewed-inputs-v1/2026-09-06/bundle.zip"
+    "archive_path": "portable-inputs/elementary-reviewed-inputs-v2/2026-09-07/bundle.zip"
   },
   "files": [
     {
@@ -19,6 +19,27 @@
       "bundle_path": "school/school_master_v1_20260320.json",
       "byte_size": 3744850,
       "sha256": "0a9c64e7be89c347ebf547eff32daba9fa5c7d2dd6c1f57f25050a0b7532a5cb"
+    },
+    {
+      "role": "kapt-basic",
+      "source_path": "etl/local_outputs_20260320/kapt_basic_20260904.csv",
+      "bundle_path": "apartment/kapt_basic_20260904.csv",
+      "byte_size": 22132539,
+      "sha256": "dd3b57a70d13338e08db5eb9dacaf93d5bc4448319a892e8345552005808bfd3"
+    },
+    {
+      "role": "schoolinfo-basic",
+      "source_path": "etl/local_outputs_20260320/schoolinfo_2026_basic_capital.json",
+      "bundle_path": "school/schoolinfo_2026_basic_capital.json",
+      "byte_size": 3033586,
+      "sha256": "456f84819b23f008c9a24549953dde5a926f7f3fd48c7f774639496ffe1712ad"
+    },
+    {
+      "role": "schoolinfo-grade-students",
+      "source_path": "etl/local_outputs_20260320/schoolinfo_2026_grade_students_capital.json",
+      "bundle_path": "school/schoolinfo_2026_grade_students_capital.json",
+      "byte_size": 2344922,
+      "sha256": "7b1721dbd1aedaeb75d118edd6598ec131a757fd8e79bd84417458b59a52169c"
     },
     {
       "role": "reviewed-assignment-baseline",

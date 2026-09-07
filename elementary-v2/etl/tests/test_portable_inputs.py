@@ -92,6 +92,16 @@ class PortableInputsTest(unittest.TestCase):
 
             self.assertEqual((restore_dir / "inputs/reviewed.csv").read_bytes(), source.read_bytes())
 
+    def test_rejects_anonymously_readable_bundle(self) -> None:
+        manifest = {"storage": {"bucket": "private", "archive_path": "inputs/bundle.zip"}}
+        with patch.object(prepare_portable_inputs, "anonymous_credentials", return_value=("https://example.test", "anon")), patch.object(
+            prepare_portable_inputs,
+            "storage_request",
+            return_value=b"unexpected",
+        ):
+            with self.assertRaisesRegex(RuntimeError, "anonymous"):
+                prepare_portable_inputs.verify_anonymous_access_blocked(manifest)
+
 
 if __name__ == "__main__":
     unittest.main()

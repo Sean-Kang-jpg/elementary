@@ -24,4 +24,13 @@ jobs:
       - name: Restore and verify reviewed ETL inputs
         run: python etl/prepare_portable_inputs.py --restore-dir etl/runtime/restored-inputs
       - name: Run portability unit tests
-        run: python -m unittest etl.tests.test_portable_inputs
+        run: python -m unittest etl.tests.test_portable_inputs etl.tests.test_portable_readonly_build
+      - name: Reproduce operational outputs without database writes
+        run: python etl/run_portable_readonly_build.py --restore-dir etl/runtime/restored-inputs
+      - name: Upload comparison report
+        uses: actions/upload-artifact@v4
+        with:
+          name: portable-readonly-build-report
+          path: elementary-v2/etl/local_outputs_20260320/portable_readonly_build_report.json
+          if-no-files-found: error
+          retention-days: 14

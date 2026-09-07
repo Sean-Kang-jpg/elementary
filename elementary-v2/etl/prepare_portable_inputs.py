@@ -53,6 +53,15 @@ def storage_credentials() -> tuple[str, str]:
     return url.rstrip("/"), key
 
 
+def anonymous_credentials() -> tuple[str, str]:
+    load_env(PROJECT_DIR / ".env")
+    url = os.getenv("VITE_SUPABASE_URL") or os.getenv("SUPABASE_URL")
+    key = os.getenv("VITE_SUPABASE_ANON_KEY") or os.getenv("SUPABASE_ANON_KEY")
+    if not url or not key:
+        raise RuntimeError("VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY must be set")
+    return url.rstrip("/"), key
+
+
 def storage_request(url: str, key: str, bucket: str, object_path: str, method: str, body: bytes | None = None) -> bytes:
     quoted_path = urllib.parse.quote(object_path, safe="/")
     request = urllib.request.Request(
@@ -175,6 +184,19 @@ def upload_and_verify(manifest: dict[str, Any], files: list[dict[str, Any]], arc
     print(f"uploaded and verified storage://{bucket}/{object_path}")
 
 
+def verify_anonymous_access_blocked(manifest: dict[str, Any]) -> None:
+    storage = manifest.get("storage") or {}
+    url, key = anonymous_credentials()
+    try:
+        storage_request(url, key, storage["bucket"], storage["archive_path"], "GET")
+    except RuntimeError as error:
+        if "HTTP 400" not in str(error) and "HTTP 401" not in str(error) and "HTTP 403" not in str(error):
+            raise
+        print(f"anonymous access blocked for storage://{storage['bucket']}/{storage['archive_path']}")
+        return
+    raise RuntimeError("private portable bundle is readable with anonymous credentials")
+
+
 def restore(manifest: dict[str, Any], files: list[dict[str, Any]], restore_dir: Path) -> None:
     storage = manifest.get("storage") or {}
     url, key = storage_credentials()
@@ -201,6 +223,7 @@ def main() -> None:
     parser.add_argument("--package", action="store_true", help="Create the ZIP after validation")
     parser.add_argument("--upload", action="store_true", help="Upload the package to private Supabase Storage and verify it")
     parser.add_argument("--restore-dir", type=Path, help="Restore the private bundle and verify every member")
+    parser.add_argument("--verify-anon-blocked", action="store_true", help="Fail if the private bundle is anonymously readable")
     args = parser.parse_args()
     manifest_path = args.manifest if args.manifest.is_absolute() else (PROJECT_DIR / args.manifest).resolve()
     if args.package or args.upload or not args.restore_dir:
@@ -217,6 +240,8 @@ def main() -> None:
         upload_and_verify(manifest, files, archive_path)
     if args.restore_dir:
         restore(manifest, files, args.restore_dir)
+    if args.verify_anon_blocked:
+        verify_anonymous_access_blocked(manifest)
 
 
 if __name__ == "__main__":

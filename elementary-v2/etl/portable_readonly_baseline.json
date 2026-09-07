@@ -1,0 +1,15 @@
+{
+  "baseline_name": "windows-bundle-only-build",
+  "bundle_name": "elementary-reviewed-inputs-v2",
+  "bundle_version": "2026-09-07",
+  "audit_check_count": 52,
+  "files": [
+    {"name": "school_master_operational_v1.json", "rows": 2260, "sha256": "1867326716ae0a036d0b528a48b4b00c865ebae7c9e6e52586f9d09dc4405b72"},
+    {"name": "apartment_complex_master_v1.json", "rows": 20164, "sha256": "2546d07b81d64691ef0c509360d3e2aa9761ab2fe69beee61244945068b7183a"},
+    {"name": "apartment_assignment_units_v1.json", "rows": 20421, "sha256": "ea7cfdbe4525f122681862ee08e019b262ca98a6d71ae686ee9f64be2e91f3df"},
+    {"name": "apartment_assignment_schools_v1.json", "rows": 21154, "sha256": "19278ceb11c9779f90d603675c4c5f3ee54e9faa86874d532c27afd0a8bd08b7"},
+    {"name": "school_apartment_serving_v1.json", "rows": 20891, "sha256": "448c6e62aaaea0037dd120ac71b70a1a51bb639874998005966463dac568dc25"},
+    {"name": "apartment_name_history_operational_v1.csv", "rows": 26225, "sha256": "9565bab78bb403824d244cda8e5fa6abbfdabc1612fe20e38758ec8e551822e8"},
+    {"name": "apartment_property_history_operational_v1.csv", "rows": 1889, "sha256": "89f48f4fa7be16cd229d7c7bda10c05c099caee10e779a6cc029c8d682a05002"}
+  ]
+}
