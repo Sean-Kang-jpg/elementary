@@ -216,7 +216,8 @@ Status: **P0 through P3 deployed and production-verified** (2026-09-06), impleme
 - [x] P5 operations: expand the reviewed-input contract to eight build-complete files; validate 50,553,797 source bytes and produce an 8,383,649-byte portable v2 ZIP plus lock file.
 - [x] P5 operations: reproduce all seven operational outputs locally from the v2 bundle, pass 52/52 backend checks, and lock row counts plus SHA-256 values as the Windows comparison baseline.
 - [x] P5 operations: upload bundle v2 to private Storage, verify all eight remote checksums, and confirm anonymous download is blocked.
-- [ ] P5 operations: restore and compare bundle v2 in GitHub Actions, then migrate scheduled ETL with the Windows task retained through the first successful remote run.
+- [x] P5 operations: restore and compare bundle v2 in read-only GitHub Actions run `34242752216`; all seven output row counts and canonical checksums match the Windows baseline.
+- [ ] P5 operations: retain the Windows fallback and migrate scheduled database writes only after separate approval and a monitored production run.
 - [ ] P5 operations: add a non-personal authenticated account to the ETL dashboard smoke suite and verify alerts, due schedules, run checks, and snapshot visibility.
 - [ ] P6 data pilots: evaluate academy, timetable, and playground sources against the separate `FUTURE_DATA_DOMAINS_PLAN.md` go/no-go gates before creating production tables.
 

@@ -131,7 +131,7 @@
           <tr><td class="phase">Frontend v2.1</td><td><span class="status done">배포 완료</span></td><td>검색·필터·GNB·지역 드릴다운·즐겨찾기·반응형 QA</td><td class="evidence"><code>670b350</code></td></tr>
           <tr><td class="phase">Frontend v2.2 P0~P3</td><td><span class="status done">완료</span></td><td>바텀시트 제스처, 통합 검색, 필터 문맥, 아파트 동 수</td><td class="evidence">타이틀 최소화 UX 반영·배포 확인</td></tr>
           <tr><td class="phase">v2.2 P4</td><td><span class="status deferred">보류</span></td><td>역 데이터 소스·별칭·거리 검색 계약과 프로파일러 작성</td><td class="evidence">공식 원본 파일 확보 후 역/주소 검색 재개</td></tr>
-          <tr><td class="phase">v2.2 P5</td><td><span class="status doing">진행 중</span></td><td>8개 입력 bundle v2, 로컬 전체 재현, 52개 감사, Storage·보안 검증</td><td class="evidence">GitHub Actions secrets 및 수동 비교</td></tr>
+          <tr><td class="phase">v2.2 P5</td><td><span class="status doing">쓰기 전환 대기</span></td><td>8개 입력 bundle v2, 로컬·Ubuntu 전체 재현, 52개 감사, 7개 산출물 비교 통과</td><td class="evidence">정기 DB 쓰기 별도 승인</td></tr>
           <tr><td class="phase">P6 데이터 확장</td><td><span class="status waiting">검증 대기</span></td><td>학원·시간표·놀이터 후보와 승인 기준 정의</td><td class="evidence">수도권 표본 프로파일링과 go/no-go 판단</td></tr>
         </tbody>
       </table>
@@ -173,9 +173,9 @@
             <li class="checked">기존 v1 비공개 번들 복원·익명 접근 차단</li>
             <li class="checked">전체 재현·checksum 비교 GitHub Actions workflow</li>
             <li class="checked">bundle v2 비공개 Storage 업로드·익명 차단</li>
-            <li>GitHub Actions secrets 2개 등록</li>
-            <li>원격 복원·테스트·read-only 결과 비교</li>
-            <li>성공 후 정기 실행 및 알림 전환</li>
+            <li class="checked">GitHub Actions secrets 2개 등록</li>
+            <li class="checked">원격 복원·테스트·read-only 결과 비교</li>
+            <li>별도 승인 후 정기 DB 쓰기 및 알림 전환</li>
           </ul>
         </article>
       </div>
@@ -184,11 +184,11 @@
     <section>
       <div class="section-head"><h2>다음 실행 순서</h2><p class="section-note">쓰기 자동화는 비교 검증 이후에만 활성화</p></div>
       <div class="next">
-        <div class="next-row"><div><strong>현재 변경 커밋 및 원격 푸시</strong><small>UX 후속, 운영 문서, 프로파일러, 이식성 workflow 포함</small></div><span class="status doing">이번 작업</span></div>
-        <div class="next-row"><div><strong>GitHub Actions secrets 등록</strong><small><code>SUPABASE_URL</code>, <code>SUPABASE_SERVICE_KEY</code></small></div><span class="status waiting">승인 필요</span></div>
+        <div class="next-row"><div><strong>이식성 기준선 커밋 및 원격 푸시</strong><small><code>d3e29f1</code> 플랫폼 독립 checksum 기준선</small></div><span class="status done">완료</span></div>
+        <div class="next-row"><div><strong>GitHub Actions secrets 등록</strong><small><code>SUPABASE_URL</code>, <code>SUPABASE_SERVICE_KEY</code></small></div><span class="status done">완료</span></div>
         <div class="next-row"><div><strong>bundle v2 Storage 업로드</strong><small>버전 경로 저장·원격 8개 checksum·익명 차단 확인</small></div><span class="status done">완료</span></div>
-        <div class="next-row"><div><strong>ETL portability workflow 수동 실행</strong><small>전체 산출물과 Windows 행 수·SHA-256·52개 품질 체크 대조</small></div><span class="status waiting">대기</span></div>
-        <div class="next-row"><div><strong>정기 실행 이전 결정</strong><small>첫 원격 성공 전까지 Windows Task Scheduler 유지</small></div><span class="status waiting">대기</span></div>
+        <div class="next-row"><div><strong>ETL portability workflow 수동 실행</strong><small>run <code>34242752216</code>: 전체 산출물·행 수·checksum·52개 품질 체크 통과</small></div><span class="status done">완료</span></div>
+        <div class="next-row"><div><strong>정기 실행 이전 결정</strong><small>Windows Task Scheduler를 유지하고 DB 쓰기는 별도 승인 후 전환</small></div><span class="status waiting">승인 대기</span></div>
       </div>
     </section>
 

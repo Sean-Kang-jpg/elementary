@@ -10,7 +10,7 @@
 - Active app: `F:\sm\vibe\elementary\pjt_250826\elementary-v2`
 - Stack: React 18, TypeScript, Vite, Tailwind CSS, Supabase, Naver Maps
 - Branch: `master`
-- Last pushed baseline: `732f8bd` (`Complete ETL portability baseline`)
+- Last pushed baseline: `d3e29f1` (`Make ETL portability baseline platform-independent`)
 - Production: `https://elementary-lovat.vercel.app`
 - Supabase project ref: `vsgeksumgvcrkzjwvlgs`
 
@@ -39,8 +39,8 @@ npm run typecheck
 - v2.2 P3: 아파트 `building_count` 표시 완료
 - P3 follow-up: 상세 bottom sheet를 아래로 밀면 선택을 유지한 채 제목 높이로 최소화
 - v2.2 P4: 역·주소 검색은 공식 원본과 비용·정확도 검증 전까지 보류
-- v2.2 P5: build-complete bundle v2의 로컬 전체 재현 완료. checksum 기준선은
-  플랫폼 독립 방식으로 재정의했다. GitHub Actions 실제 실행 대기
+- v2.2 P5: build-complete bundle v2의 로컬·Ubuntu 전체 재현 완료. read-only
+  GitHub Actions run `34242752216`에서 52/52 감사와 7개 산출물 비교 통과
 - P6: 학원·시간표·놀이터 데이터 후보 검증 대기
 
 전체 진행표는 `elementary-v2/docs/PROJECT_PROGRESS.html`에서 확인한다.
@@ -88,16 +88,14 @@ migration은 Supabase 상태를 확인하지 않고 재설계하지 않는다.
 
 콘텐츠·분석 쪽은 정리를 마쳤다. 두 검증 리포트를 현재 스냅샷으로 재생성했고,
 Instagram carousel 원고의 수치 5곳을 재생성 결과에 맞춰 고쳤다.
-`PROJECT_PROGRESS.html`은 아직 이번 ETL 변경을 반영하지 않았다.
+`PROJECT_PROGRESS.html`에 read-only Actions 성공과 다음 승인 게이트를 반영했다.
 
-### 2. P5 ETL 원격 실행 검증
+### 2. P5 ETL 쓰기 전환 검토
 
-1. GitHub Actions secrets에 `SUPABASE_URL`, `SUPABASE_SERVICE_KEY`를 등록한다.
-2. `.github/workflows/etl-portability-check.yml`을 수동 실행한다.
-3. 원격 restore, checksum, unit test 결과를 확인한다.
-4. GitHub read-only build와 Windows 산출물의 행 수·해시·품질 결과를 비교한다.
-5. 첫 원격 성공 전까지 Windows Task Scheduler를 유지한다.
-6. 비교 통과 후에만 DB write와 정기 schedule 전환을 승인한다.
+1. GitHub Actions secrets 등록과 read-only run `34242752216` 검증은 완료했다.
+2. Windows Task Scheduler를 fallback으로 유지한다.
+3. DB write와 정기 schedule 전환은 사용자 별도 승인 후에만 진행한다.
+4. 첫 write run은 ETL dashboard, Serving, snapshot, alert를 함께 모니터링한다.
 
 Actions secrets는 영구 외부 설정이므로 사용자 승인 없이 등록하거나 변경하지 않는다.
 
