@@ -322,6 +322,11 @@ const MarkerManager: React.FC<MarkerManagerProps> = ({ map }) => {
 
   // 마커 렌더링
   if (!map || !shouldShowMarkers) return null
+  const selectedSchoolNeedsFallback = Boolean(
+    state.selectedSchool
+    && !schools.some((school) => school.school_id === state.selectedSchool?.school_id)
+    && !clusters.some((cluster) => cluster.schools.some((school) => school.school_id === state.selectedSchool?.school_id)),
+  )
 
   return (
     <>
@@ -394,6 +399,16 @@ const MarkerManager: React.FC<MarkerManagerProps> = ({ map }) => {
           onClick={handleSchoolClick}
         />
       ))}
+
+      {selectedSchoolNeedsFallback && state.selectedSchool && (
+        <SchoolMarker
+          school={state.selectedSchool}
+          map={map}
+          targetGrade={state.filters.target_grade}
+          selected
+          onClick={handleSchoolClick}
+        />
+      )}
 
       {districtScope && !neighborhoodScope && (
         <DistrictNeighborhoodSheet

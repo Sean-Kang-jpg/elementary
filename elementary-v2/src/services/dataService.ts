@@ -14,6 +14,20 @@ export interface RegionData {
   center: Coordinates
 }
 
+export interface ReportScatterRow {
+  schoolId: string
+  schoolName: string
+  region: string
+  grade1Students: number
+  complexName: string
+  households: number | null
+  builtYear: number | null
+  parkingRatio: number | null
+  undergroundParking: number | null
+}
+
+let reportScatterRowsPromise: Promise<ReportScatterRow[]> | null = null
+
 type SchoolMasterRow = Record<string, unknown>
 type ApartmentServingRow = Record<string, unknown>
 
@@ -535,6 +549,63 @@ export const getSchoolDetail = async (schoolId: string): Promise<School | null> 
   const { data, error } = await supabase.from('school_master').select(SCHOOL_SELECT_FIELDS).eq('school_id', schoolId).maybeSingle()
   if (error) throw error
   return data ? toSchool(data as unknown as SchoolMasterRow) : null
+}
+
+const loadReportScatterRows = async (): Promise<ReportScatterRow[]> => {
+  const fetchAll = async (table: 'school_master' | 'school_apartment_serving', fields: string) => {
+    const rows: Array<Record<string, unknown>> = []
+    for (let start = 0; ; start += 1000) {
+      const { data, error } = await supabase.from(table).select(fields).range(start, start + 999)
+      if (error) throw error
+      rows.push(...((data || []) as unknown as Array<Record<string, unknown>>))
+      if (!data || data.length < 1000) break
+    }
+    return rows
+  }
+  const [schoolRows, servingRows] = await Promise.all([
+    fetchAll('school_master', 'school_id,school_name,region,grade1_students'),
+    fetchAll('school_apartment_serving', 'school_id,complex_name,households,use_approval_year,parking_per_household,parking_underground'),
+  ])
+
+  const schools = new Map(
+    schoolRows.map((row) => [
+      String(row.school_id),
+      {
+        name: String(row.school_name || ''),
+        region: String(row.region || ''),
+        grade1Students: numberValue(row.grade1_students),
+      },
+    ]),
+  )
+  return servingRows.flatMap((row) => {
+    const school = schools.get(String(row.school_id))
+    if (!school) return []
+    const households = row.households == null || row.households === '' ? null : numberValue(row.households)
+    const builtYear = row.use_approval_year == null || row.use_approval_year === '' ? null : numberValue(row.use_approval_year)
+    const parkingRatio = row.parking_per_household == null || row.parking_per_household === '' ? null : numberValue(row.parking_per_household)
+    const undergroundParking = row.parking_underground == null || row.parking_underground === '' ? null : numberValue(row.parking_underground)
+    return [{
+      schoolId: String(row.school_id),
+      schoolName: school.name,
+      region: school.region,
+      grade1Students: school.grade1Students,
+      complexName: String(row.complex_name || ''),
+      households,
+      builtYear,
+      parkingRatio,
+      undergroundParking,
+    }]
+  })
+}
+
+export const fetchReportScatterRows = (): Promise<ReportScatterRow[]> => {
+  if (!reportScatterRowsPromise) {
+    reportScatterRowsPromise = loadReportScatterRows().catch((error) => {
+      reportScatterRowsPromise = null
+      throw error
+    })
+  }
+  return reportScatterRowsPromise
 }
 
 export const getAllRegionsSummary = async (): Promise<RegionData[]> => fetchRegionAggregatedData({
