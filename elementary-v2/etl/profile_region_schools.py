@@ -28,6 +28,9 @@ from collections import Counter
 from pathlib import Path
 from typing import Any, Iterable
 
+if __package__ in (None, ""):  # `python etl/profile_region_schools.py`
+    sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+
 from etl.region_registry import RegionScope, load_registry
 
 ETL_DIR = Path(__file__).resolve().parent

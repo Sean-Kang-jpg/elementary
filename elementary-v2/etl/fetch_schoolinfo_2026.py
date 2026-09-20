@@ -1,27 +1,36 @@
-"""Fetch and region-filter 2026 Schoolinfo disclosure datasets."""
+"""Fetch and region-filter Schoolinfo disclosure datasets for a chosen scope.
+
+The API is queried nationwide (`sidoCode=00`) and filtered locally, so widening
+the scope costs no extra requests. Scope comes from the region registry rather
+than a hardcoded list; with no arguments it stays the three capital regions, and
+the output file keeps its `_capital` name so the portability baseline and the
+recurring runner are unaffected.
+"""
 
 from __future__ import annotations
 
 import argparse
 import json
 import os
+import sys
 from datetime import date, datetime
 from pathlib import Path
-from typing import Any
+from typing import Any, Sequence
 from urllib.error import HTTPError, URLError
 from urllib.parse import urlencode
 from urllib.request import urlopen
 
+if __package__ in (None, ""):  # `python etl/fetch_schoolinfo_2026.py`, as the runner invokes it
+    sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+
+from etl.region_registry import RegionScope, load_registry
 
 BASE_DIR = Path(__file__).resolve().parent
 OUTPUT_DIR = BASE_DIR / "local_outputs_20260320"
 ENDPOINT = "https://www.schoolinfo.go.kr/openApi.do"
-CAPITAL_OFFICES = {
-    "서울특별시교육청",
-    "경기도교육청",
-    "인천광역시교육청",
-}
-CAPITAL_PREFIXES = ("서울특별시", "경기도", "인천광역시")
+
+OFFICE_KEYS = ("ATPT_OFCDC_ORG_NM", "ATPT_OFCDC_NM", "SIDO_NM")
+ADDRESS_KEYS = ("ORG_RDNMA", "RDNMA", "ADRCD_NM", "ADDRESS")
 
 
 def first_value(row: dict[str, Any], keys: tuple[str, ...]) -> str:
@@ -32,10 +41,59 @@ def first_value(row: dict[str, Any], keys: tuple[str, ...]) -> str:
     return ""
 
 
-def is_capital_row(row: dict[str, Any]) -> bool:
-    office = first_value(row, ("ATPT_OFCDC_ORG_NM", "ATPT_OFCDC_NM", "SIDO_NM"))
-    address = first_value(row, ("ORG_RDNMA", "RDNMA", "ADRCD_NM", "ADDRESS"))
-    return office in CAPITAL_OFFICES or address.startswith(CAPITAL_PREFIXES)
+def row_in_scope(row: dict[str, Any], scopes: Sequence[RegionScope]) -> bool:
+    """Whether a Schoolinfo row belongs to any selected scope.
+
+    A row is accepted by its education office or by its address, matching the
+    previous capital-region behavior. A scope narrowed to specific cities is
+    decided on the address alone, because the office covers the whole region.
+    """
+    registry = load_registry()
+    office = first_value(row, OFFICE_KEYS)
+    address = first_value(row, ADDRESS_KEYS)
+    office_region = registry.by_education_office(office)
+    address_region = registry.region_for_address(address)
+    for scope in scopes:
+        if scope.cities:
+            if address and scope.includes_address(address):
+                return True
+            continue
+        if office_region is not None and office_region.canonical_name == scope.region.canonical_name:
+            return True
+        if address_region is not None and address_region.canonical_name == scope.region.canonical_name:
+            return True
+    return False
+
+
+def scope_slug(scopes: Sequence[RegionScope]) -> str:
+    """Stable file-name fragment for a scope.
+
+    The three capital regions keep the historical `capital` slug so existing
+    outputs, the portable bundle manifest, and the locked baseline keep matching.
+    Other scopes are named by NEIS office code, with `-partial` marking a
+    city-filtered scope; the exact cities are recorded in the fetch report, not
+    in the file name.
+    """
+    registry = load_registry()
+    selected = {scope.region.canonical_name for scope in scopes}
+    if not any(scope.cities for scope in scopes):
+        if selected == {region.canonical_name for region in registry.production_regions}:
+            return "capital"
+    parts = [
+        scope.region.neis_office_code.lower() + ("-partial" if scope.cities else "")
+        for scope in scopes
+    ]
+    return "-".join(sorted(parts))
+
+
+def build_scopes(registry, regions: Sequence[str], cities: Sequence[str]) -> tuple[RegionScope, ...]:
+    if not regions:
+        return tuple(registry.scope(region.canonical_name) for region in registry.production_regions)
+    if cities and len(regions) != 1:
+        raise ValueError("--cities applies to a single --regions value")
+    if cities:
+        return (registry.scope(regions[0], cities),)
+    return tuple(registry.scope(name) for name in regions)
 
 
 def load_env_value(path: Path, key: str) -> str:
@@ -78,12 +136,28 @@ def fetch(api_key: str, api_type: str, year: int) -> tuple[list[dict[str, Any]],
     return rows, payload
 
 
-def main() -> None:
-    parser = argparse.ArgumentParser()
+def main(argv: list[str] | None = None) -> None:
+    parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--year", type=int, default=date.today().year)
-    args = parser.parse_args()
+    parser.add_argument(
+        "--regions",
+        nargs="*",
+        default=(),
+        help="registry region names; default is the current production scope",
+    )
+    parser.add_argument(
+        "--cities",
+        nargs="*",
+        default=(),
+        help="restrict a single region to these cities, as in --regions 전라남도 --cities 목포시",
+    )
+    args = parser.parse_args(argv)
     if not 2000 <= args.year <= date.today().year + 1:
         raise ValueError("year is outside the supported range")
+
+    registry = load_registry()
+    scopes = build_scopes(registry, args.regions, args.cities)
+    slug = scope_slug(scopes)
 
     api_key = os.getenv("KERIS_SCHOOLINFO_API_KEY") or load_env_value(
         BASE_DIR.parent / ".env", "KERIS_SCHOOLINFO_API_KEY"
@@ -95,22 +169,25 @@ def main() -> None:
     report: dict[str, Any] = {
         "generated_at": datetime.now().isoformat(),
         "year": args.year,
-        "filter": "capital education office or address prefix",
+        "registry_version": registry.registry_version,
+        "scope": [scope.label for scope in scopes],
+        "scope_slug": slug,
+        "filter": "education office or address, resolved through the region registry",
         "datasets": {},
     }
 
     for api_type, label in (("0", "basic"), ("09", "grade_students")):
         rows, payload = fetch(api_key, api_type, args.year)
-        capital_rows = [row for row in rows if is_capital_row(row)]
-        output_path = OUTPUT_DIR / f"schoolinfo_{args.year}_{label}_capital.json"
+        selected = [row for row in rows if row_in_scope(row, scopes)]
+        output_path = OUTPUT_DIR / f"schoolinfo_{args.year}_{label}_{slug}.json"
         with output_path.open("w", encoding="utf-8") as handle:
-            json.dump(capital_rows, handle, ensure_ascii=False, indent=2)
+            json.dump(selected, handle, ensure_ascii=False, indent=2)
         report["datasets"][label] = {
             "api_type": api_type,
             "result_message": payload.get("resultMsg"),
             "all_rows": len(rows),
-            "capital_rows": len(capital_rows),
-            "field_names": sorted({key for row in capital_rows for key in row}),
+            "selected_rows": len(selected),
+            "field_names": sorted({key for row in selected for key in row}),
             "output": output_path.name,
         }
 

@@ -1,4 +1,10 @@
-"""Fetch current K-apt basic/detail records for known capital-region codes."""
+"""Fetch current K-apt basic/detail records for a chosen region scope.
+
+Scope comes from the region registry; with no arguments it stays the three
+capital regions. The `시도` column is resolved through the registry rather than
+compared directly, so post-merger values such as 전라남도광주특별시, which cover
+more than one region, are split by 시군구 instead of being dropped.
+"""
 
 from __future__ import annotations
 
@@ -11,9 +17,16 @@ import urllib.error
 import urllib.parse
 import urllib.request
 import xml.etree.ElementTree as ET
+import sys
 from datetime import date, datetime
 from pathlib import Path
-from typing import Any
+from typing import Any, Sequence
+
+if __package__ in (None, ""):  # `python etl/fetch_kapt_current.py`
+    sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+
+from etl.fetch_schoolinfo_2026 import build_scopes
+from etl.region_registry import RegionScope, RegionScopeError, load_registry
 
 
 BASE_DIR = Path(__file__).resolve().parent
@@ -22,7 +35,6 @@ ROOT_DIR = BASE_DIR.parents[2]
 DEFAULT_CODES = ROOT_DIR / "archive" / "legacy-v1" / "etl" / "data" / "kapt" / "20250801_apt_data.csv"
 OUTPUT_DIR = BASE_DIR / "local_outputs_20260320"
 API_BASE = "https://apis.data.go.kr/1613000/AptBasisInfoServiceV4"
-REGIONS = {"서울특별시", "경기도", "인천광역시"}
 
 
 def load_env(path: Path) -> None:
@@ -44,10 +56,35 @@ def api_key() -> str:
     return urllib.parse.unquote(value)
 
 
-def load_codes(path: Path) -> list[str]:
+def row_in_scope(row: dict[str, str], scopes: Sequence[RegionScope]) -> bool:
+    """Whether a K-apt code row belongs to any selected scope."""
+    registry = load_registry()
+    sido = (row.get("시도") or "").strip()
+    sigungu = (row.get("시군구") or "").strip()
+    if not sido:
+        return False
+    try:
+        region = registry.resolve_source_region(sido, sigungu, row.get("도로명주소"))
+    except RegionScopeError:
+        return False
+    for scope in scopes:
+        if scope.region.canonical_name != region.canonical_name:
+            continue
+        if not scope.cities or sigungu in scope.cities:
+            return True
+    return False
+
+
+def load_codes(path: Path, scopes: Sequence[RegionScope]) -> list[str]:
     with path.open(encoding="cp949", newline="") as handle:
-        rows = csv.DictReader(handle)
-        return sorted({row["단지코드"].strip() for row in rows if row.get("시도") in REGIONS and row.get("단지코드")})
+        rows = list(csv.DictReader(handle))
+    return sorted(
+        {
+            row["단지코드"].strip()
+            for row in rows
+            if row.get("단지코드") and row_in_scope(row, scopes)
+        }
+    )
 
 
 def parse_response(payload: bytes, content_type: str) -> tuple[dict[str, Any] | None, str | None]:
@@ -98,13 +135,27 @@ def fetch(endpoint: str, kapt_code: str, key: str) -> tuple[dict[str, Any] | Non
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--codes-from", type=Path, default=DEFAULT_CODES)
-    parser.add_argument("--limit", type=int, default=0, help="0 fetches every known capital-region code")
+    parser.add_argument("--limit", type=int, default=0, help="0 fetches every code in scope")
     parser.add_argument("--include-detail", action="store_true")
     parser.add_argument("--delay", type=float, default=0.1)
+    parser.add_argument(
+        "--regions",
+        nargs="*",
+        default=(),
+        help="registry region names; default is the current production scope",
+    )
+    parser.add_argument(
+        "--cities",
+        nargs="*",
+        default=(),
+        help="restrict a single region to these cities",
+    )
     args = parser.parse_args()
 
     key = api_key()
-    codes = load_codes(args.codes_from)
+    scopes = build_scopes(load_registry(), args.regions, args.cities)
+    codes = load_codes(args.codes_from, scopes)
+    print(f"scope: {', '.join(scope.label for scope in scopes)} -> {len(codes):,} codes")
     if args.limit:
         codes = codes[: args.limit]
     snapshot_date = date.today().isoformat()
