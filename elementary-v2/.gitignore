@@ -45,6 +45,7 @@ pids/
 # ETL temporary files
 etl/temp/
 etl/downloads/
+etl/data/
 etl/runtime/
 etl/logs/
 *.csv

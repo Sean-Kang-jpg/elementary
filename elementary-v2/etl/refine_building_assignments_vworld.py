@@ -29,7 +29,7 @@ BASE = Path(__file__).parent
 SHP = BASE / "data" / "hakgudo" / "elem_hakgudo_20250922.shp"
 DEFAULT_INPUT = BASE / "local_outputs" / "building_check_candidates.csv"
 DEFAULT_OUT_DIR = BASE / "local_outputs"
-KEY = os.getenv("VWORLD_API_KEY") or "B6A216F3-038A-366B-B85D-44324FF03BDB"
+KEY = os.getenv("VWORLD_API_KEY") or ""
 DOMAIN = "https://github.com/sean-kang-jpg/elementary"
 DEG = 0.006
 

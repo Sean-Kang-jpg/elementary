@@ -2,7 +2,7 @@
 
 This guide applies to the `operational-v1` school, apartment, and assignment masters. Legacy SQL files `01` through `05` are not required for this load and must not be used to replace the operational tables.
 
-Current completion status and pending work are tracked in [`docs/ETL_OPERATION_PLAN.md`](../docs/ETL_OPERATION_PLAN.md). Update that checklist after each migration or production ETL run.
+Current completion status and pending work are tracked in [`docs/operations/OPERATION_PLAN.md`](../docs/operations/OPERATION_PLAN.md). Update that checklist after each migration or production ETL run.
 
 ## 1. Prepare Supabase
 
@@ -56,6 +56,18 @@ After SQL `09` has been tested, apply `sql/11_create_recurring_etl_contract.sql`
 Apply `sql/12_create_etl_monitoring_dashboard.sql` to add authenticated administrator access, source schedules, regional/domain scopes, and run checks. Register an Auth user in `etl_admin_users` before opening `/admin/etl`; no service-role key is used by the browser.
 
 Public read policies apply only to the two frontend tables. Normalized apartment masters, assignment links, history, and `etl_runs` remain service-role-only.
+
+SQL `14_create_academy_proximity_serving.sql` is an optional academy-domain migration and must be applied only after reviewing the academy product contract. It adds privacy-minimized address markers, apartment origin points and summaries, plus the anonymous `nearby_academy_addresses` RPC. It does not expose raw academy addresses or institution names and does not materialize the one-million-row apartment/address candidate.
+
+After applying SQL `14`, validate and upload only the three approved serving snapshots:
+
+```bash
+python etl/upload_academy_proximity.py
+python etl/upload_academy_proximity.py --remote-check
+python etl/upload_academy_proximity.py --apply
+```
+
+The first command validates local keys, JSON fields, and profile row counts. The second performs a read-only schema/count preflight. The final command upserts in foreign-key order, verifies exact remote counts, and calls `nearby_academy_addresses` with the anonymous key. Never upload `apartment_academy_proximity_20260920.csv`; the million-row link candidate was explicitly rejected.
 
 ## 4. Load and Verify
 

@@ -1,0 +1,121 @@
+{
+  "generated_at": "2026-09-20T20:54:18.173147+09:00",
+  "source": {
+    "provider": "국토교통부",
+    "dataset": "아파트 매매 실거래 상세 자료",
+    "endpoint": "https://apis.data.go.kr/1613000/RTMSDataSvcAptTradeDev/getRTMSDataSvcAptTradeDev",
+    "lawd_cd": "11110",
+    "deal_ymd": "202608"
+  },
+  "transactions": 17,
+  "available_fields": [
+    "aptDong",
+    "aptNm",
+    "aptSeq",
+    "bonbun",
+    "bubun",
+    "buildYear",
+    "buyerGbn",
+    "dealAmount",
+    "dealDay",
+    "dealMonth",
+    "dealYear",
+    "dealingGbn",
+    "estateAgentSggNm",
+    "excluUseAr",
+    "floor",
+    "jibun",
+    "landCd",
+    "landLeaseholdGbn",
+    "rgstDate",
+    "roadNm",
+    "roadNmBonbun",
+    "roadNmBubun",
+    "roadNmCd",
+    "roadNmSeq",
+    "roadNmSggCd",
+    "roadNmbCd",
+    "sggCd",
+    "slerGbn",
+    "umdCd",
+    "umdNm"
+  ],
+  "field_population": {
+    "aptDong": 1,
+    "aptNm": 17,
+    "aptSeq": 17,
+    "bonbun": 17,
+    "bubun": 17,
+    "buildYear": 17,
+    "buyerGbn": 17,
+    "dealAmount": 17,
+    "dealDay": 17,
+    "dealMonth": 17,
+    "dealYear": 17,
+    "dealingGbn": 17,
+    "estateAgentSggNm": 16,
+    "excluUseAr": 17,
+    "floor": 17,
+    "jibun": 17,
+    "landCd": 17,
+    "landLeaseholdGbn": 17,
+    "rgstDate": 1,
+    "roadNm": 17,
+    "roadNmBonbun": 17,
+    "roadNmBubun": 17,
+    "roadNmCd": 17,
+    "roadNmSeq": 17,
+    "roadNmSggCd": 17,
+    "roadNmbCd": 16,
+    "sggCd": 17,
+    "slerGbn": 17,
+    "umdCd": 17,
+    "umdNm": 17
+  },
+  "match_counts": {
+    "exact_address_name": 13,
+    "unique_address": 3,
+    "unique_district_name": 1
+  },
+  "matched_transactions": 17,
+  "match_rate": 1.0,
+  "non_exact_samples": [
+    {
+      "tier": "unique_address",
+      "sgg_cd": "11110",
+      "umd_nm": "무악동",
+      "jibun": "82-0",
+      "apt_nm": "현대",
+      "matched_complex_id": "KAPT:A11081503"
+    },
+    {
+      "tier": "unique_address",
+      "sgg_cd": "11110",
+      "umd_nm": "사직동",
+      "jibun": "9-0",
+      "apt_nm": "광화문스페이스본(101동~105동)",
+      "matched_complex_id": "KAPT:A11005401"
+    },
+    {
+      "tier": "unique_address",
+      "sgg_cd": "11110",
+      "umd_nm": "사직동",
+      "jibun": "9-0",
+      "apt_nm": "광화문스페이스본(101동~105동)",
+      "matched_complex_id": "KAPT:A11005401"
+    },
+    {
+      "tier": "unique_district_name",
+      "sgg_cd": "11110",
+      "umd_nm": "교북동",
+      "jibun": "126-0",
+      "apt_nm": "경희궁자이(4단지)",
+      "matched_complex_id": "KAPT:A10026940"
+    }
+  ],
+  "notes": [
+    "The API has no K-apt code or canonical_complex_id; linkage is derived.",
+    "Raw transaction rows are private runtime artifacts and must not be committed.",
+    "Cancellation/change fields must be retained because the source is mutable after first publication."
+  ]
+}

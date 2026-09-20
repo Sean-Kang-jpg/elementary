@@ -1,0 +1,279 @@
+{
+  "generated_at": "2026-09-20T20:53:36.008371+09:00",
+  "source": {
+    "provider": "국토교통부",
+    "dataset": "아파트 매매 실거래 상세 자료",
+    "endpoint": "https://apis.data.go.kr/1613000/RTMSDataSvcAptTradeDev/getRTMSDataSvcAptTradeDev",
+    "lawd_cd": "11680",
+    "deal_ymd": "202608"
+  },
+  "transactions": 87,
+  "available_fields": [
+    "aptDong",
+    "aptNm",
+    "aptSeq",
+    "bonbun",
+    "bubun",
+    "buildYear",
+    "buyerGbn",
+    "cdealDay",
+    "cdealType",
+    "dealAmount",
+    "dealDay",
+    "dealMonth",
+    "dealYear",
+    "dealingGbn",
+    "estateAgentSggNm",
+    "excluUseAr",
+    "floor",
+    "jibun",
+    "landCd",
+    "landLeaseholdGbn",
+    "rgstDate",
+    "roadNm",
+    "roadNmBonbun",
+    "roadNmBubun",
+    "roadNmCd",
+    "roadNmSeq",
+    "roadNmSggCd",
+    "roadNmbCd",
+    "sggCd",
+    "slerGbn",
+    "umdCd",
+    "umdNm"
+  ],
+  "field_population": {
+    "aptDong": 4,
+    "aptNm": 87,
+    "aptSeq": 87,
+    "bonbun": 87,
+    "bubun": 87,
+    "buildYear": 87,
+    "buyerGbn": 87,
+    "cdealDay": 4,
+    "cdealType": 4,
+    "dealAmount": 87,
+    "dealDay": 87,
+    "dealMonth": 87,
+    "dealYear": 87,
+    "dealingGbn": 87,
+    "estateAgentSggNm": 81,
+    "excluUseAr": 87,
+    "floor": 87,
+    "jibun": 87,
+    "landCd": 87,
+    "landLeaseholdGbn": 87,
+    "rgstDate": 9,
+    "roadNm": 87,
+    "roadNmBonbun": 87,
+    "roadNmBubun": 87,
+    "roadNmCd": 87,
+    "roadNmSeq": 87,
+    "roadNmSggCd": 87,
+    "roadNmbCd": 82,
+    "sggCd": 87,
+    "slerGbn": 87,
+    "umdCd": 87,
+    "umdNm": 87
+  },
+  "match_counts": {
+    "exact_address_name": 64,
+    "unique_address": 8,
+    "unique_district_name": 11,
+    "unmatched": 2,
+    "ambiguous": 2
+  },
+  "matched_transactions": 83,
+  "match_rate": 0.954,
+  "non_exact_samples": [
+    {
+      "tier": "unique_address",
+      "sgg_cd": "11680",
+      "umd_nm": "압구정동",
+      "jibun": "369-1",
+      "apt_nm": "현대1차(12,13,21,22,31,32,33동)",
+      "matched_complex_id": "KAPT:A13589802"
+    },
+    {
+      "tier": "unique_district_name",
+      "sgg_cd": "11680",
+      "umd_nm": "압구정동",
+      "jibun": "486-0",
+      "apt_nm": "한양4",
+      "matched_complex_id": "KAPT:A13590204"
+    },
+    {
+      "tier": "unmatched",
+      "sgg_cd": "11680",
+      "umd_nm": "압구정동",
+      "jibun": "433-0",
+      "apt_nm": "신현대11차",
+      "matched_complex_id": null
+    },
+    {
+      "tier": "unique_address",
+      "sgg_cd": "11680",
+      "umd_nm": "대치동",
+      "jibun": "506-0",
+      "apt_nm": "선경1차(1동-7동)",
+      "matched_complex_id": "KAPT:A13583604"
+    },
+    {
+      "tier": "unique_district_name",
+      "sgg_cd": "11680",
+      "umd_nm": "청담동",
+      "jibun": "62-6",
+      "apt_nm": "청담디에브스아파트",
+      "matched_complex_id": "APT:APT1168041663080028000001"
+    },
+    {
+      "tier": "unique_district_name",
+      "sgg_cd": "11680",
+      "umd_nm": "개포동",
+      "jibun": "1284-0",
+      "apt_nm": "개포자이프레지던스",
+      "matched_complex_id": "KAPT:A10023348"
+    },
+    {
+      "tier": "unique_address",
+      "sgg_cd": "11680",
+      "umd_nm": "자곡동",
+      "jibun": "618-0",
+      "apt_nm": "강남브리즈힐(토지임대부아파트)",
+      "matched_complex_id": "KAPT:A13520004"
+    },
+    {
+      "tier": "unique_district_name",
+      "sgg_cd": "11680",
+      "umd_nm": "대치동",
+      "jibun": "894-0",
+      "apt_nm": "현대썬앤빌테헤란",
+      "matched_complex_id": "APT:APT1168041664310033000001"
+    },
+    {
+      "tier": "unique_district_name",
+      "sgg_cd": "11680",
+      "umd_nm": "압구정동",
+      "jibun": "489-0",
+      "apt_nm": "한양3",
+      "matched_complex_id": "KAPT:A13590204"
+    },
+    {
+      "tier": "unique_district_name",
+      "sgg_cd": "11680",
+      "umd_nm": "청담동",
+      "jibun": "122-35",
+      "apt_nm": "청담신원아침도시마인",
+      "matched_complex_id": "APT:APT1168041663030030000001"
+    },
+    {
+      "tier": "unique_address",
+      "sgg_cd": "11680",
+      "umd_nm": "압구정동",
+      "jibun": "426-0",
+      "apt_nm": "신현대9차",
+      "matched_complex_id": "KAPT:A13511004"
+    },
+    {
+      "tier": "ambiguous",
+      "sgg_cd": "11680",
+      "umd_nm": "개포동",
+      "jibun": "12-0",
+      "apt_nm": "삼익대청아파트",
+      "matched_complex_id": null
+    },
+    {
+      "tier": "ambiguous",
+      "sgg_cd": "11680",
+      "umd_nm": "개포동",
+      "jibun": "12-0",
+      "apt_nm": "성원대치2단지아파트",
+      "matched_complex_id": null
+    },
+    {
+      "tier": "unique_district_name",
+      "sgg_cd": "11680",
+      "umd_nm": "개포동",
+      "jibun": "1281-0",
+      "apt_nm": "디에이치아너힐즈",
+      "matched_complex_id": "KAPT:A10025203"
+    },
+    {
+      "tier": "unique_address",
+      "sgg_cd": "11680",
+      "umd_nm": "대치동",
+      "jibun": "511-0",
+      "apt_nm": "한보미도맨션2",
+      "matched_complex_id": "KAPT:A13528004"
+    },
+    {
+      "tier": "unique_district_name",
+      "sgg_cd": "11680",
+      "umd_nm": "개포동",
+      "jibun": "1281-0",
+      "apt_nm": "디에이치아너힐즈",
+      "matched_complex_id": "KAPT:A10025203"
+    },
+    {
+      "tier": "unmatched",
+      "sgg_cd": "11680",
+      "umd_nm": "대치동",
+      "jibun": "910-5",
+      "apt_nm": "풍림아이원1차103동(910-5)",
+      "matched_complex_id": null
+    },
+    {
+      "tier": "unique_district_name",
+      "sgg_cd": "11680",
+      "umd_nm": "논현동",
+      "jibun": "211-21",
+      "apt_nm": "펜트힐루논현",
+      "matched_complex_id": "APT:APT1168030050860641000001"
+    },
+    {
+      "tier": "unique_address",
+      "sgg_cd": "11680",
+      "umd_nm": "대치동",
+      "jibun": "511-0",
+      "apt_nm": "한보미도맨션2",
+      "matched_complex_id": "KAPT:A13528004"
+    },
+    {
+      "tier": "unique_district_name",
+      "sgg_cd": "11680",
+      "umd_nm": "압구정동",
+      "jibun": "489-0",
+      "apt_nm": "한양3",
+      "matched_complex_id": "KAPT:A13590204"
+    },
+    {
+      "tier": "unique_address",
+      "sgg_cd": "11680",
+      "umd_nm": "자곡동",
+      "jibun": "618-0",
+      "apt_nm": "강남브리즈힐(토지임대부아파트)",
+      "matched_complex_id": "KAPT:A13520004"
+    },
+    {
+      "tier": "unique_address",
+      "sgg_cd": "11680",
+      "umd_nm": "수서동",
+      "jibun": "708-0",
+      "apt_nm": "삼익",
+      "matched_complex_id": "KAPT:A13522003"
+    },
+    {
+      "tier": "unique_district_name",
+      "sgg_cd": "11680",
+      "umd_nm": "역삼동",
+      "jibun": "902-0",
+      "apt_nm": "강남센트럴아이파크",
+      "matched_complex_id": "KAPT:A10023825"
+    }
+  ],
+  "notes": [
+    "The API has no K-apt code or canonical_complex_id; linkage is derived.",
+    "Raw transaction rows are private runtime artifacts and must not be committed.",
+    "Cancellation/change fields must be retained because the source is mutable after first publication."
+  ]
+}

@@ -185,6 +185,21 @@ export interface SearchResult {
   assigned_schools?: Array<{ school_id: string; school_name: string; assignment_rank: number }>
 }
 
+export interface AcademyAddress {
+  address_id: string
+  region: string
+  district: string
+  latitude: number
+  longitude: number
+  institution_count: number
+  institution_type_counts: Record<string, number>
+  realm_counts: Record<string, number>
+  top_subjects: string
+  straight_distance_m: number
+  distance_band: 'core' | 'extended'
+  distance_origin_type: 'nearest_building_centroid' | 'complex_centroid'
+}
+
 // 💾 캐시 관련 타입
 export interface CacheEntry<T> {
   data: T

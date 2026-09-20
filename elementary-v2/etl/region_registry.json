@@ -1,0 +1,619 @@
+{
+  "registry_name": "elementary-region-registry",
+  "registry_version": "region-registry-v1",
+  "updated": "2026-09-20",
+  "notes": [
+    "Single source of truth for first-level administrative region scopes in the nationwide expansion (N0-N4).",
+    "bounds are validation envelopes measured from the 2026-03-20 nationwide school standard data, widened by 0.05 degrees. They cover schools only; a scope's own EDA must confirm they also cover its apartments.",
+    "school_name_prefix is a MATCHING VARIANT, never an assertion. school_name_prefix_coverage_pct is measured: 대구 96.6% and 서울 93.9% mostly carry it, 부산 1.3% and 울산 4.0% essentially do not, and the provinces never do. Matching must accept both the prefixed and unprefixed form of every label.",
+    "legacy_code and aliases exist because 강원도 -> 강원특별자치도 (2023) and 전라북도 -> 전북특별자치도 (2024) renamed the region and changed its legal-dong prefix.",
+    "address_prefixes lists the strings that may identify this region from the START of an address. Short aliases such as '광주' are for exact source-field values only: 경기도 광주시 would otherwise be read as 광주광역시.",
+    "elementary_school_count_20260320 and education_support_office_count come from the same snapshot. The 17 regions account for all 6,303 nationwide elementary schools with no unresolved address.",
+    "merged_source_regions translates source values that do not map one-to-one onto a registry region. Resolve with resolve_source_region(); never add such a value as a plain alias."
+  ],
+  "regions": [
+    {
+      "canonical_name": "서울특별시",
+      "short_name": "서울",
+      "aliases": [
+        "서울",
+        "서울시",
+        "서울특별시"
+      ],
+      "legal_dong_code": "11",
+      "legacy_legal_dong_codes": [],
+      "neis_office_code": "B10",
+      "education_office": "서울특별시교육청",
+      "education_office_aliases": [
+        "서울특별시교육청"
+      ],
+      "school_name_prefix": "서울",
+      "has_city_level": false,
+      "bounds": {
+        "min_lat": 37.3914,
+        "max_lat": 37.7372,
+        "min_lng": 126.7546,
+        "max_lng": 127.2303
+      },
+      "bounds_source": "measured_school_standard_data_20260320",
+      "wave": "capital",
+      "status": "production",
+      "address_prefixes": [
+        "서울특별시"
+      ],
+      "school_name_prefix_coverage_pct": 93.9,
+      "elementary_school_count_20260320": 606,
+      "education_support_office_count": 11
+    },
+    {
+      "canonical_name": "경기도",
+      "short_name": "경기",
+      "aliases": [
+        "경기",
+        "경기도"
+      ],
+      "legal_dong_code": "41",
+      "legacy_legal_dong_codes": [],
+      "neis_office_code": "J10",
+      "education_office": "경기도교육청",
+      "education_office_aliases": [
+        "경기도교육청"
+      ],
+      "school_name_prefix": null,
+      "has_city_level": true,
+      "bounds": {
+        "min_lat": 36.87,
+        "max_lat": 38.233,
+        "min_lng": 126.5022,
+        "max_lng": 127.8011
+      },
+      "bounds_source": "measured_school_standard_data_20260320",
+      "wave": "capital",
+      "status": "production",
+      "address_prefixes": [
+        "경기도"
+      ],
+      "school_name_prefix_coverage_pct": 0.0,
+      "elementary_school_count_20260320": 1379,
+      "education_support_office_count": 25
+    },
+    {
+      "canonical_name": "인천광역시",
+      "short_name": "인천",
+      "aliases": [
+        "인천",
+        "인천시",
+        "인천광역시"
+      ],
+      "legal_dong_code": "28",
+      "legacy_legal_dong_codes": [],
+      "neis_office_code": "E10",
+      "education_office": "인천광역시교육청",
+      "education_office_aliases": [
+        "인천광역시교육청"
+      ],
+      "school_name_prefix": "인천",
+      "has_city_level": false,
+      "bounds": {
+        "min_lat": 37.1268,
+        "max_lat": 38.0254,
+        "min_lng": 124.6116,
+        "max_lng": 126.8304
+      },
+      "bounds_source": "measured_school_standard_data_20260320",
+      "wave": "capital",
+      "status": "production",
+      "address_prefixes": [
+        "인천광역시"
+      ],
+      "school_name_prefix_coverage_pct": 88.8,
+      "elementary_school_count_20260320": 276,
+      "education_support_office_count": 5
+    },
+    {
+      "canonical_name": "부산광역시",
+      "short_name": "부산",
+      "aliases": [
+        "부산",
+        "부산시",
+        "부산광역시"
+      ],
+      "legal_dong_code": "26",
+      "legacy_legal_dong_codes": [],
+      "neis_office_code": "C10",
+      "education_office": "부산광역시교육청",
+      "education_office_aliases": [
+        "부산광역시교육청"
+      ],
+      "school_name_prefix": "부산",
+      "has_city_level": false,
+      "bounds": {
+        "min_lat": 35.0011,
+        "max_lat": 35.4097,
+        "min_lng": 128.7813,
+        "max_lng": 129.3325
+      },
+      "bounds_source": "measured_school_standard_data_20260320",
+      "wave": "N1",
+      "status": "planned",
+      "address_prefixes": [
+        "부산광역시"
+      ],
+      "school_name_prefix_coverage_pct": 1.3,
+      "elementary_school_count_20260320": 302,
+      "education_support_office_count": 5
+    },
+    {
+      "canonical_name": "대구광역시",
+      "short_name": "대구",
+      "aliases": [
+        "대구",
+        "대구시",
+        "대구광역시"
+      ],
+      "legal_dong_code": "27",
+      "legacy_legal_dong_codes": [],
+      "neis_office_code": "D10",
+      "education_office": "대구광역시교육청",
+      "education_office_aliases": [
+        "대구광역시교육청"
+      ],
+      "school_name_prefix": "대구",
+      "has_city_level": false,
+      "bounds": {
+        "min_lat": 35.6098,
+        "max_lat": 36.3043,
+        "min_lng": 128.3626,
+        "max_lng": 128.8033
+      },
+      "bounds_source": "measured_school_standard_data_20260320",
+      "wave": "N1",
+      "status": "planned",
+      "region_notes": "군위군 was transferred from 경상북도 in 2023. Legal-dong codes and school office assignment for 군위 must be checked against the collection date.",
+      "address_prefixes": [
+        "대구광역시"
+      ],
+      "school_name_prefix_coverage_pct": 96.6,
+      "elementary_school_count_20260320": 237,
+      "education_support_office_count": 5
+    },
+    {
+      "canonical_name": "대전광역시",
+      "short_name": "대전",
+      "aliases": [
+        "대전",
+        "대전시",
+        "대전광역시"
+      ],
+      "legal_dong_code": "30",
+      "legacy_legal_dong_codes": [],
+      "neis_office_code": "G10",
+      "education_office": "대전광역시교육청",
+      "education_office_aliases": [
+        "대전광역시교육청"
+      ],
+      "school_name_prefix": "대전",
+      "has_city_level": false,
+      "bounds": {
+        "min_lat": 36.1792,
+        "max_lat": 36.5042,
+        "min_lng": 127.2142,
+        "max_lng": 127.5438
+      },
+      "bounds_source": "measured_school_standard_data_20260320",
+      "wave": "N1",
+      "status": "planned",
+      "address_prefixes": [
+        "대전광역시"
+      ],
+      "school_name_prefix_coverage_pct": 80.6,
+      "elementary_school_count_20260320": 155,
+      "education_support_office_count": 2
+    },
+    {
+      "canonical_name": "광주광역시",
+      "short_name": "광주",
+      "aliases": [
+        "광주",
+        "광주시",
+        "광주광역시"
+      ],
+      "legal_dong_code": "29",
+      "legacy_legal_dong_codes": [],
+      "neis_office_code": "F10",
+      "education_office": "광주광역시교육청",
+      "education_office_aliases": [
+        "광주광역시교육청"
+      ],
+      "school_name_prefix": "광주",
+      "has_city_level": false,
+      "bounds": {
+        "min_lat": 35.0167,
+        "max_lat": 35.2965,
+        "min_lng": 126.6509,
+        "max_lng": 127.0521
+      },
+      "bounds_source": "measured_school_standard_data_20260320",
+      "wave": "N1",
+      "status": "planned",
+      "region_notes": "경기도 광주시 shares the short name 광주. Alias resolution must never map '광주시' to this region from a 경기도 address.",
+      "address_prefixes": [
+        "광주광역시"
+      ],
+      "school_name_prefix_coverage_pct": 27.7,
+      "elementary_school_count_20260320": 155,
+      "education_support_office_count": 2
+    },
+    {
+      "canonical_name": "울산광역시",
+      "short_name": "울산",
+      "aliases": [
+        "울산",
+        "울산시",
+        "울산광역시"
+      ],
+      "legal_dong_code": "31",
+      "legacy_legal_dong_codes": [],
+      "neis_office_code": "H10",
+      "education_office": "울산광역시교육청",
+      "education_office_aliases": [
+        "울산광역시교육청"
+      ],
+      "school_name_prefix": "울산",
+      "has_city_level": false,
+      "bounds": {
+        "min_lat": 35.3011,
+        "max_lat": 35.7207,
+        "min_lng": 129.0361,
+        "max_lng": 129.5069
+      },
+      "bounds_source": "measured_school_standard_data_20260320",
+      "wave": "N1",
+      "status": "planned",
+      "address_prefixes": [
+        "울산광역시"
+      ],
+      "school_name_prefix_coverage_pct": 4.0,
+      "elementary_school_count_20260320": 124,
+      "education_support_office_count": 2
+    },
+    {
+      "canonical_name": "전라남도",
+      "short_name": "전남",
+      "aliases": [
+        "전남",
+        "전라남도"
+      ],
+      "legal_dong_code": "46",
+      "legacy_legal_dong_codes": [],
+      "neis_office_code": "Q10",
+      "education_office": "전라남도교육청",
+      "education_office_aliases": [
+        "전라남도교육청"
+      ],
+      "school_name_prefix": null,
+      "has_city_level": true,
+      "bounds": {
+        "min_lat": 34.0026,
+        "max_lat": 35.4841,
+        "min_lng": 125.0803,
+        "max_lng": 127.828
+      },
+      "bounds_source": "measured_school_standard_data_20260320",
+      "wave": "N1",
+      "status": "planned",
+      "region_notes": "N1 loads only the 목포시 city scope. The province-wide load belongs to N3.",
+      "address_prefixes": [
+        "전라남도"
+      ],
+      "school_name_prefix_coverage_pct": 0.0,
+      "elementary_school_count_20260320": 444,
+      "education_support_office_count": 22
+    },
+    {
+      "canonical_name": "세종특별자치시",
+      "short_name": "세종",
+      "aliases": [
+        "세종",
+        "세종시",
+        "세종특별자치시"
+      ],
+      "legal_dong_code": "36",
+      "legacy_legal_dong_codes": [],
+      "neis_office_code": "I10",
+      "education_office": "세종특별자치시교육청",
+      "education_office_aliases": [
+        "세종특별자치시교육청",
+        "세종시교육청"
+      ],
+      "school_name_prefix": "세종",
+      "has_city_level": false,
+      "bounds": {
+        "min_lat": 36.3937,
+        "max_lat": 36.7706,
+        "min_lng": 127.1084,
+        "max_lng": 127.4166
+      },
+      "bounds_source": "measured_school_standard_data_20260320",
+      "wave": "N2",
+      "status": "planned",
+      "region_notes": "Addresses use 세종특별자치시 + 읍/면/동 with no district level. New-town school zones change frequently.",
+      "address_prefixes": [
+        "세종특별자치시"
+      ],
+      "school_name_prefix_coverage_pct": 1.8,
+      "elementary_school_count_20260320": 55,
+      "education_support_office_count": 1
+    },
+    {
+      "canonical_name": "제주특별자치도",
+      "short_name": "제주",
+      "aliases": [
+        "제주",
+        "제주도",
+        "제주특별자치도"
+      ],
+      "legal_dong_code": "50",
+      "legacy_legal_dong_codes": [],
+      "neis_office_code": "T10",
+      "education_office": "제주특별자치도교육청",
+      "education_office_aliases": [
+        "제주특별자치도교육청",
+        "제주도교육청"
+      ],
+      "school_name_prefix": "제주",
+      "has_city_level": true,
+      "bounds": {
+        "min_lat": 33.1192,
+        "max_lat": 34.0143,
+        "min_lng": 126.1269,
+        "max_lng": 127.0054
+      },
+      "bounds_source": "measured_school_standard_data_20260320",
+      "wave": "N2",
+      "status": "planned",
+      "region_notes": "제주시 and 서귀포시 are cities without districts. 추자도 belongs to 제주시 and sits near 33.95N, above the main island.",
+      "address_prefixes": [
+        "제주특별자치도"
+      ],
+      "school_name_prefix_coverage_pct": 5.0,
+      "elementary_school_count_20260320": 119,
+      "education_support_office_count": 2
+    },
+    {
+      "canonical_name": "강원특별자치도",
+      "short_name": "강원",
+      "aliases": [
+        "강원",
+        "강원도",
+        "강원특별자치도"
+      ],
+      "legal_dong_code": "51",
+      "legacy_legal_dong_codes": [
+        "42"
+      ],
+      "neis_office_code": "K10",
+      "education_office": "강원특별자치도교육청",
+      "education_office_aliases": [
+        "강원특별자치도교육청",
+        "강원도교육청"
+      ],
+      "school_name_prefix": null,
+      "has_city_level": true,
+      "bounds": {
+        "min_lat": 37.0476,
+        "max_lat": 38.547,
+        "min_lng": 127.1148,
+        "max_lng": 129.3922
+      },
+      "bounds_source": "measured_school_standard_data_20260320",
+      "wave": "N2",
+      "status": "planned",
+      "region_notes": "Renamed from 강원도 in 2023; older snapshots carry 강원도 and legal-dong prefix 42.",
+      "address_prefixes": [
+        "강원특별자치도",
+        "강원도"
+      ],
+      "school_name_prefix_coverage_pct": 0.0,
+      "elementary_school_count_20260320": 356,
+      "education_support_office_count": 17
+    },
+    {
+      "canonical_name": "충청북도",
+      "short_name": "충북",
+      "aliases": [
+        "충북",
+        "충청북도"
+      ],
+      "legal_dong_code": "43",
+      "legacy_legal_dong_codes": [],
+      "neis_office_code": "M10",
+      "education_office": "충청북도교육청",
+      "education_office_aliases": [
+        "충청북도교육청"
+      ],
+      "school_name_prefix": null,
+      "has_city_level": true,
+      "bounds": {
+        "min_lat": 35.9736,
+        "max_lat": 37.2346,
+        "min_lng": 127.2361,
+        "max_lng": 128.5326
+      },
+      "bounds_source": "measured_school_standard_data_20260320",
+      "wave": "N2",
+      "status": "planned",
+      "region_notes": "청주시 has general-purpose districts, so addresses reach province → city → district → neighborhood.",
+      "address_prefixes": [
+        "충청북도"
+      ],
+      "school_name_prefix_coverage_pct": 0.0,
+      "elementary_school_count_20260320": 268,
+      "education_support_office_count": 10
+    },
+    {
+      "canonical_name": "충청남도",
+      "short_name": "충남",
+      "aliases": [
+        "충남",
+        "충청남도"
+      ],
+      "legal_dong_code": "44",
+      "legacy_legal_dong_codes": [],
+      "neis_office_code": "N10",
+      "education_office": "충청남도교육청",
+      "education_office_aliases": [
+        "충청남도교육청"
+      ],
+      "school_name_prefix": null,
+      "has_city_level": true,
+      "bounds": {
+        "min_lat": 35.9634,
+        "max_lat": 37.0985,
+        "min_lng": 126.0317,
+        "max_lng": 127.6213
+      },
+      "bounds_source": "measured_school_standard_data_20260320",
+      "wave": "N2",
+      "status": "planned",
+      "address_prefixes": [
+        "충청남도"
+      ],
+      "school_name_prefix_coverage_pct": 0.0,
+      "elementary_school_count_20260320": 417,
+      "education_support_office_count": 14
+    },
+    {
+      "canonical_name": "전북특별자치도",
+      "short_name": "전북",
+      "aliases": [
+        "전북",
+        "전라북도",
+        "전북특별자치도"
+      ],
+      "legal_dong_code": "52",
+      "legacy_legal_dong_codes": [
+        "45"
+      ],
+      "neis_office_code": "P10",
+      "education_office": "전북특별자치도교육청",
+      "education_office_aliases": [
+        "전북특별자치도교육청",
+        "전라북도교육청"
+      ],
+      "school_name_prefix": null,
+      "has_city_level": true,
+      "bounds": {
+        "min_lat": 35.2786,
+        "max_lat": 36.1965,
+        "min_lng": 126.2423,
+        "max_lng": 127.8984
+      },
+      "bounds_source": "measured_school_standard_data_20260320",
+      "wave": "N2",
+      "status": "planned",
+      "region_notes": "Renamed from 전라북도 in 2024; older snapshots carry 전라북도 and legal-dong prefix 45. 전주시 has general-purpose districts.",
+      "address_prefixes": [
+        "전북특별자치도",
+        "전라북도"
+      ],
+      "school_name_prefix_coverage_pct": 0.0,
+      "elementary_school_count_20260320": 407,
+      "education_support_office_count": 14
+    },
+    {
+      "canonical_name": "경상북도",
+      "short_name": "경북",
+      "aliases": [
+        "경북",
+        "경상북도"
+      ],
+      "legal_dong_code": "47",
+      "legacy_legal_dong_codes": [],
+      "neis_office_code": "R10",
+      "education_office": "경상북도교육청",
+      "education_office_aliases": [
+        "경상북도교육청"
+      ],
+      "school_name_prefix": null,
+      "has_city_level": true,
+      "bounds": {
+        "min_lat": 35.5231,
+        "max_lat": 37.5867,
+        "min_lng": 127.8361,
+        "max_lng": 130.9528
+      },
+      "bounds_source": "measured_school_standard_data_20260320",
+      "wave": "N2",
+      "status": "planned",
+      "region_notes": "울릉군 extends the longitude envelope well past the mainland. 군위군 left for 대구광역시 in 2023.",
+      "address_prefixes": [
+        "경상북도"
+      ],
+      "school_name_prefix_coverage_pct": 0.0,
+      "elementary_school_count_20260320": 479,
+      "education_support_office_count": 22
+    },
+    {
+      "canonical_name": "경상남도",
+      "short_name": "경남",
+      "aliases": [
+        "경남",
+        "경상남도"
+      ],
+      "legal_dong_code": "48",
+      "legacy_legal_dong_codes": [],
+      "neis_office_code": "S10",
+      "education_office": "경상남도교육청",
+      "education_office_aliases": [
+        "경상남도교육청"
+      ],
+      "school_name_prefix": null,
+      "has_city_level": true,
+      "bounds": {
+        "min_lat": 34.5855,
+        "max_lat": 35.8883,
+        "min_lng": 127.5783,
+        "max_lng": 129.2236
+      },
+      "bounds_source": "measured_school_standard_data_20260320",
+      "wave": "N2",
+      "status": "planned",
+      "region_notes": "창원시 has general-purpose districts.",
+      "address_prefixes": [
+        "경상남도"
+      ],
+      "school_name_prefix_coverage_pct": 0.0,
+      "elementary_school_count_20260320": 524,
+      "education_support_office_count": 18
+    }
+  ],
+  "merged_source_regions": [
+    {
+      "source_value": "전남광주통합특별시",
+      "observed_spellings": [
+        "전남광주통합특별시"
+      ],
+      "reported_effective_from": "2026-07-01",
+      "observed_in": [
+        "kapt_basic_20260904.csv 시도 column",
+        "kapt_basic_20260904.csv 법정동주소"
+      ],
+      "not_observed_in": [
+        "kapt_basic_20260904.csv 도로명주소 (still 광주광역시 / 전라남도)",
+        "school_location_20260320.csv",
+        "elem_hakgudo 2026-03-20 SD_CD and EDU_UP_NM"
+      ],
+      "resolves_by": "sigungu",
+      "sigungu_map": {
+        "동구": "광주광역시",
+        "서구": "광주광역시",
+        "남구": "광주광역시",
+        "북구": "광주광역시",
+        "광산구": "광주광역시"
+      },
+      "default_region": "전라남도",
+      "note": "광주시 and 전라남도 merged on 2026-07-01. The official name is not settled across sources: K-apt writes 전남광주통합특별시 while the reported administrative name is 전라남도광주특별시/특례시. Inside this source value the 광주 area has no city level (region -> 구) while the 전남 area does (region -> 시/군), so it cannot be modelled as one region with a single address depth. Until the school and school-zone sources publish merged naming, both halves stay separate registry regions and this block only translates source values."
+    }
+  ]
+}

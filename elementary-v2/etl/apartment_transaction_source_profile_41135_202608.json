@@ -1,0 +1,331 @@
+{
+  "generated_at": "2026-09-20T20:53:37.779854+09:00",
+  "source": {
+    "provider": "국토교통부",
+    "dataset": "아파트 매매 실거래 상세 자료",
+    "endpoint": "https://apis.data.go.kr/1613000/RTMSDataSvcAptTradeDev/getRTMSDataSvcAptTradeDev",
+    "lawd_cd": "41135",
+    "deal_ymd": "202608"
+  },
+  "transactions": 152,
+  "available_fields": [
+    "aptDong",
+    "aptNm",
+    "aptSeq",
+    "bonbun",
+    "bubun",
+    "buildYear",
+    "buyerGbn",
+    "dealAmount",
+    "dealDay",
+    "dealMonth",
+    "dealYear",
+    "dealingGbn",
+    "estateAgentSggNm",
+    "excluUseAr",
+    "floor",
+    "jibun",
+    "landCd",
+    "landLeaseholdGbn",
+    "rgstDate",
+    "roadNm",
+    "roadNmBonbun",
+    "roadNmBubun",
+    "roadNmCd",
+    "roadNmSeq",
+    "roadNmSggCd",
+    "roadNmbCd",
+    "sggCd",
+    "slerGbn",
+    "umdCd",
+    "umdNm"
+  ],
+  "field_population": {
+    "aptDong": 3,
+    "aptNm": 152,
+    "aptSeq": 152,
+    "bonbun": 152,
+    "bubun": 152,
+    "buildYear": 152,
+    "buyerGbn": 152,
+    "dealAmount": 152,
+    "dealDay": 152,
+    "dealMonth": 152,
+    "dealYear": 152,
+    "dealingGbn": 152,
+    "estateAgentSggNm": 149,
+    "excluUseAr": 152,
+    "floor": 152,
+    "jibun": 152,
+    "landCd": 152,
+    "landLeaseholdGbn": 152,
+    "rgstDate": 3,
+    "roadNm": 152,
+    "roadNmBonbun": 152,
+    "roadNmBubun": 152,
+    "roadNmCd": 152,
+    "roadNmSeq": 152,
+    "roadNmSggCd": 152,
+    "roadNmbCd": 146,
+    "sggCd": 152,
+    "slerGbn": 152,
+    "umdCd": 152,
+    "umdNm": 152
+  },
+  "match_counts": {
+    "exact_address_name": 112,
+    "unique_address": 21,
+    "unique_district_name": 13,
+    "unmatched": 4,
+    "ambiguous": 2
+  },
+  "matched_transactions": 146,
+  "match_rate": 0.9605,
+  "non_exact_samples": [
+    {
+      "tier": "unique_address",
+      "sgg_cd": "41135",
+      "umd_nm": "정자동",
+      "jibun": "6-0",
+      "apt_nm": "파크뷰",
+      "matched_complex_id": "KAPT:A46386328"
+    },
+    {
+      "tier": "unique_district_name",
+      "sgg_cd": "41135",
+      "umd_nm": "백현동",
+      "jibun": "608-0",
+      "apt_nm": "THESHARP판교퍼스트파크",
+      "matched_complex_id": "KAPT:A10024274"
+    },
+    {
+      "tier": "unique_address",
+      "sgg_cd": "41135",
+      "umd_nm": "수내동",
+      "jibun": "34-0",
+      "apt_nm": "양지마을(금호1)",
+      "matched_complex_id": "KAPT:A46391907"
+    },
+    {
+      "tier": "unique_address",
+      "sgg_cd": "41135",
+      "umd_nm": "구미동",
+      "jibun": "63-0",
+      "apt_nm": "까치마을(4단지)(선경)",
+      "matched_complex_id": "KAPT:A46374321"
+    },
+    {
+      "tier": "unique_address",
+      "sgg_cd": "41135",
+      "umd_nm": "판교동",
+      "jibun": "635-0",
+      "apt_nm": "판교원마을6단지(판교대광로제비앙)",
+      "matched_complex_id": "KAPT:A46341004"
+    },
+    {
+      "tier": "unique_address",
+      "sgg_cd": "41135",
+      "umd_nm": "삼평동",
+      "jibun": "705-0",
+      "apt_nm": "봇들마을1단지(판교신미주)",
+      "matched_complex_id": "KAPT:A46340002"
+    },
+    {
+      "tier": "unique_district_name",
+      "sgg_cd": "41135",
+      "umd_nm": "정자동",
+      "jibun": "9-0",
+      "apt_nm": "현대I-PARK1",
+      "matched_complex_id": "KAPT:A46381114"
+    },
+    {
+      "tier": "unique_district_name",
+      "sgg_cd": "41135",
+      "umd_nm": "대장동",
+      "jibun": "638-0",
+      "apt_nm": "판교더샵포레스트11단지",
+      "matched_complex_id": "KAPT:A10024278"
+    },
+    {
+      "tier": "unique_district_name",
+      "sgg_cd": "41135",
+      "umd_nm": "대장동",
+      "jibun": "623-0",
+      "apt_nm": "판교풍경채어바니티(7단지)",
+      "matched_complex_id": "KAPT:A10024068"
+    },
+    {
+      "tier": "unmatched",
+      "sgg_cd": "41135",
+      "umd_nm": "야탑동",
+      "jibun": "330-0",
+      "apt_nm": "장미마을(동부)",
+      "matched_complex_id": null
+    },
+    {
+      "tier": "unmatched",
+      "sgg_cd": "41135",
+      "umd_nm": "운중동",
+      "jibun": "899-0",
+      "apt_nm": "산운마을4단지(리가)",
+      "matched_complex_id": null
+    },
+    {
+      "tier": "unique_address",
+      "sgg_cd": "41135",
+      "umd_nm": "구미동",
+      "jibun": "201-0",
+      "apt_nm": "무지개(3단지)(건영)",
+      "matched_complex_id": "KAPT:A10023454"
+    },
+    {
+      "tier": "ambiguous",
+      "sgg_cd": "41135",
+      "umd_nm": "분당동",
+      "jibun": "66-0",
+      "apt_nm": "장안타운(건영)",
+      "matched_complex_id": null
+    },
+    {
+      "tier": "unique_address",
+      "sgg_cd": "41135",
+      "umd_nm": "삼평동",
+      "jibun": "705-0",
+      "apt_nm": "봇들마을1단지(판교신미주)",
+      "matched_complex_id": "KAPT:A46340002"
+    },
+    {
+      "tier": "unique_address",
+      "sgg_cd": "41135",
+      "umd_nm": "정자동",
+      "jibun": "174-1",
+      "apt_nm": "분당더샾스타파크",
+      "matched_complex_id": "KAPT:A46386710"
+    },
+    {
+      "tier": "unique_district_name",
+      "sgg_cd": "41135",
+      "umd_nm": "이매동",
+      "jibun": "100-0",
+      "apt_nm": "이매촌(삼성)",
+      "matched_complex_id": "KAPT:A46382916"
+    },
+    {
+      "tier": "unique_address",
+      "sgg_cd": "41135",
+      "umd_nm": "이매동",
+      "jibun": "133-0",
+      "apt_nm": "아름마을(삼호)",
+      "matched_complex_id": "KAPT:A46373315"
+    },
+    {
+      "tier": "unique_district_name",
+      "sgg_cd": "41135",
+      "umd_nm": "백현동",
+      "jibun": "608-0",
+      "apt_nm": "THESHARP판교퍼스트파크",
+      "matched_complex_id": "KAPT:A10024274"
+    },
+    {
+      "tier": "unique_address",
+      "sgg_cd": "41135",
+      "umd_nm": "서현동",
+      "jibun": "87-0",
+      "apt_nm": "시범한신",
+      "matched_complex_id": "KAPT:A46377208"
+    },
+    {
+      "tier": "unique_address",
+      "sgg_cd": "41135",
+      "umd_nm": "금곡동",
+      "jibun": "141-0",
+      "apt_nm": "청솔마을(대원)",
+      "matched_complex_id": "KAPT:A46371710"
+    },
+    {
+      "tier": "unique_address",
+      "sgg_cd": "41135",
+      "umd_nm": "구미동",
+      "jibun": "212-0",
+      "apt_nm": "무지개(12단지)(주공)",
+      "matched_complex_id": "KAPT:A46371417"
+    },
+    {
+      "tier": "unique_address",
+      "sgg_cd": "41135",
+      "umd_nm": "구미동",
+      "jibun": "212-0",
+      "apt_nm": "무지개(12단지)(주공)",
+      "matched_complex_id": "KAPT:A46371417"
+    },
+    {
+      "tier": "unique_district_name",
+      "sgg_cd": "41135",
+      "umd_nm": "이매동",
+      "jibun": "100-0",
+      "apt_nm": "이매촌(삼성)",
+      "matched_complex_id": "KAPT:A46382916"
+    },
+    {
+      "tier": "unique_district_name",
+      "sgg_cd": "41135",
+      "umd_nm": "정자동",
+      "jibun": "9-0",
+      "apt_nm": "현대I-PARK1",
+      "matched_complex_id": "KAPT:A46381114"
+    },
+    {
+      "tier": "unique_district_name",
+      "sgg_cd": "41135",
+      "umd_nm": "대장동",
+      "jibun": "638-0",
+      "apt_nm": "판교더샵포레스트11단지",
+      "matched_complex_id": "KAPT:A10024278"
+    },
+    {
+      "tier": "unique_district_name",
+      "sgg_cd": "41135",
+      "umd_nm": "정자동",
+      "jibun": "9-0",
+      "apt_nm": "현대I-PARK1",
+      "matched_complex_id": "KAPT:A46381114"
+    },
+    {
+      "tier": "unique_address",
+      "sgg_cd": "41135",
+      "umd_nm": "구미동",
+      "jibun": "63-0",
+      "apt_nm": "까치마을(4단지)(롯데)",
+      "matched_complex_id": "KAPT:A46374321"
+    },
+    {
+      "tier": "unique_address",
+      "sgg_cd": "41135",
+      "umd_nm": "운중동",
+      "jibun": "922-0",
+      "apt_nm": "산운마을11단지(판교포레라움)",
+      "matched_complex_id": "KAPT:A46379102"
+    },
+    {
+      "tier": "unique_address",
+      "sgg_cd": "41135",
+      "umd_nm": "구미동",
+      "jibun": "63-0",
+      "apt_nm": "까치마을(4단지)(롯데)",
+      "matched_complex_id": "KAPT:A46374321"
+    },
+    {
+      "tier": "unique_district_name",
+      "sgg_cd": "41135",
+      "umd_nm": "대장동",
+      "jibun": "642-0",
+      "apt_nm": "판교풍경채어바니티(5단지)",
+      "matched_complex_id": "KAPT:A10024048"
+    }
+  ],
+  "notes": [
+    "The API has no K-apt code or canonical_complex_id; linkage is derived.",
+    "Raw transaction rows are private runtime artifacts and must not be committed.",
+    "Cancellation/change fields must be retained because the source is mutable after first publication."
+  ]
+}

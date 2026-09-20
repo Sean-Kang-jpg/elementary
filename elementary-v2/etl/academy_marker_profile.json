@@ -1,0 +1,13 @@
+{
+  "snapshot": "acainsti_capital_20260916.json",
+  "source_institutions": 71692,
+  "address_markers": 29664,
+  "geocoded_markers": 29274,
+  "geocode_coverage": 0.9869,
+  "geocode_statuses": {
+    "matched": 29274,
+    "api_error": 390
+  },
+  "institutions_per_marker": 2.42,
+  "output": "academy_address_markers_20260916.csv"
+}

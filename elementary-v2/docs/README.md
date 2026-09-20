@@ -1,19 +1,65 @@
-# Active Documentation
+# Elementary Documentation
 
-These are the maintained documents for the current application:
+Status: **Active documentation index**  
+Last updated: 2026-09-17
 
-- `ETL_OPERATION_PLAN.md`: authoritative plan, checklist, issues, and recurring ETL runbook.
-- `ETL_MONITORING_SETUP.md`: SQL `12`, Supabase Auth administrator registration, and `/admin/etl` access.
-- `ETL_SCHEDULING_SETUP.md`: due-source collection, retries, alerts, and Windows Task Scheduler setup.
-- `DATA_PIPELINE_VALIDATION_20260825.md`: evidence and decisions from school-zone pipeline validation.
-- `RELEASES.md`: v2.0 baseline, v2.1 scope, and versioning rules.
-- `FRONTEND_UX_SYSTEM_PLAN.md`: v2.1 theme, search, filter, and delivery design.
-- `NEWS_CONTENT_CONTRACT.md`: editorial categories, publishing states, and the future news data boundary.
-- `FUTURE_DATA_DOMAINS_PLAN.md`: post-v2.1 academy/tutoring-center, elementary-timetable, and playground discovery, schema candidates, and go/no-go gates.
-- `STATION_SEARCH_SOURCE_PLAN.md`: v2.2 P4 station-source decision, pilot contract, map behavior, and production go/no-go gate.
-- `PROJECT_PROGRESS.html`: current cross-functional roadmap, status summary, and next-action checklist.
-- `JOINMAP_V2_0.html`: immutable visual report snapshot for the v2.0 Git baseline.
-- `../sql/EXECUTION_GUIDE.md`: operational Supabase migration, upload, refresh, and stop conditions.
-- `../../../joinmap.html`: working visual report outside the Git repository; snapshot it for each release.
+This directory contains the maintained product, architecture, UX, operations, decision, and reference documents for the active application. Pending work is authoritative only in the Operation Plan.
 
-The 2024-2025 PRD, TRD, schema, flow, UX, and task documents were moved to `../../../archive/elementary-v2-pre-operational-20260828/`. They describe the superseded legacy table and ETL design and should be used only as historical reference.
+## Start here
+
+- [Product Brief](product/PRODUCT_BRIEF.md): users, problem, value, and current boundary.
+- [Product Requirements](product/PRD.md): functional and non-functional requirements.
+- [Data Architecture](architecture/DATA_ARCHITECTURE.html): current DRD and preserved v2.0 measured baseline.
+- [System Architecture](architecture/SYSTEM_ARCHITECTURE.md): runtime, ETL, database, and deployment boundaries.
+- [Operation Plan](operations/OPERATION_PLAN.md): the single current backlog, status log, issues, and release gates.
+
+## Product
+
+- [Product Brief](product/PRODUCT_BRIEF.md)
+- [Product Requirements](product/PRD.md)
+- [User Journeys](product/USER_JOURNEYS.md)
+- [Information Architecture](product/INFORMATION_ARCHITECTURE.md)
+- [News Content Contract](product/NEWS_CONTENT_CONTRACT.md)
+
+## Architecture
+
+- [Data Architecture / DRD](architecture/DATA_ARCHITECTURE.html)
+- [System Architecture](architecture/SYSTEM_ARCHITECTURE.md)
+- [Data Contracts](architecture/DATA_CONTRACTS.md)
+- [Security Model](architecture/SECURITY_MODEL.md)
+- [SQL Execution Guide](../sql/EXECUTION_GUIDE.md)
+
+## UX
+
+- [UX Scenarios](ux/UX_SCENARIOS.md)
+- [Map Interaction Specification](ux/MAP_INTERACTION_SPEC.md)
+- [Frontend UX System Plan](ux/FRONTEND_UX_SYSTEM_PLAN.md)
+
+## Operations
+
+- [Operation Plan](operations/OPERATION_PLAN.md)
+- [ETL Scheduling](operations/ETL_SCHEDULING.md)
+- [Monitoring](operations/MONITORING.md)
+- [Region Scope Inventory](operations/REGION_SCOPE_INVENTORY.md): every capital-region assumption in the codebase, classified for the N0 generalization pass.
+- [Region EDA Findings](operations/REGION_EDA_FINDINGS.md): measured results of the per-region EDA gate, newest first.
+- [Project Progress](PROJECT_PROGRESS.html): summary dashboard; it is not the authoritative backlog.
+
+## Decisions
+
+- [ADR-001: Two-table public read model](decisions/ADR-001-serving-read-model.md)
+- [ADR-002: Official school-zone source](decisions/ADR-002-official-school-zone-source.md)
+- [ADR-003: Nationwide rollout](decisions/ADR-003-nationwide-rollout.md)
+
+## Reference
+
+- [Pipeline validation evidence](reference/DATA_PIPELINE_VALIDATION_20260825.md)
+- [Station search source plan](reference/STATION_SEARCH_SOURCE_PLAN.md)
+- [Release history](RELEASES.md)
+
+## Document rules
+
+- `operations/OPERATION_PLAN.md` is the only active task checklist.
+- Architecture and UX documents describe accepted behavior, not work status.
+- ADRs preserve why consequential decisions were made.
+- Dated reports and reproducibility scripts remain outside the active tree under `../../../archive/elementary-v2-analysis-20260916/`.
+- Compatibility pointer files at the previous document paths remain for one release and must not receive new content.

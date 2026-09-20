@@ -1,0 +1,36 @@
+{
+  "criteria": {
+    "minimum_households": 500,
+    "excluded_when_prior_building_points_exist": true,
+    "trusted_building_count_ratio": [
+      0.75,
+      1.25
+    ]
+  },
+  "results": {
+    "requested_complexes": 3632,
+    "successful_requests": 3632,
+    "complexes_with_matches": 3118,
+    "trusted_complexes": 2498,
+    "fallback_complexes": 1134,
+    "trusted_building_points": 26002,
+    "by_region": {
+      "경기도": {
+        "requested_complexes": 2371,
+        "trusted_complexes": 1764
+      },
+      "서울특별시": {
+        "requested_complexes": 828,
+        "trusted_complexes": 441
+      },
+      "인천광역시": {
+        "requested_complexes": 433,
+        "trusted_complexes": 293
+      }
+    }
+  },
+  "private_outputs": [
+    "runtime\\apartment_buildings\\vworld_large_complex_results.jsonl",
+    "runtime\\apartment_buildings\\trusted_large_complex_buildings.csv"
+  ]
+}

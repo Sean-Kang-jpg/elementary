@@ -1,0 +1,42 @@
+{
+  "parameters": {
+    "radius_m": 800.0,
+    "centroid_method": "canonical complex representative point",
+    "comparison_method": "union of academy addresses within radius of any matched building centroid",
+    "distance_metric": "haversine straight-line distance"
+  },
+  "inputs": {
+    "complexes_with_building_points": 3151,
+    "building_points": 37825,
+    "matched_academy_addresses": 29274
+  },
+  "results": {
+    "complexes_with_changed_address_set": 2746,
+    "changed_complex_share_pct": 87.15,
+    "complexes_with_net_increase": 2735,
+    "complexes_with_net_decrease": 10,
+    "complexes_with_same_count_but_changed_set": 11,
+    "centroid_address_links": 116255,
+    "building_address_links": 141878,
+    "added_address_links": 25926,
+    "removed_address_links": 303,
+    "net_address_links": 25623,
+    "net_change_per_complex_p50": 5,
+    "net_change_per_complex_p90": 18,
+    "net_change_per_complex_p95": 25.0,
+    "additional_academy_records": 75264,
+    "trusted_building_match_complexes": 3057,
+    "trusted_changed_complexes": 2664,
+    "trusted_changed_complex_share_pct": 87.14,
+    "trusted_centroid_address_links": 112310,
+    "trusted_building_address_links": 136951,
+    "trusted_net_address_links": 24641,
+    "trusted_additional_academy_records": 72175
+  },
+  "limitations": [
+    "Building points exist only for the previous large-complex and school-zone-boundary candidate cohort.",
+    "Building centroids are not apartment entrances or pedestrian-network distances.",
+    "The comparison uses address-level academy markers and deduplicates each address per complex.",
+    "Trusted building matches require the matched-point count to be 75%-125% of the official building count."
+  ]
+}

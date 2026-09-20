@@ -1,8 +1,9 @@
-import { LocateFixed, LoaderCircle, X } from 'lucide-react'
+import { GraduationCap, LocateFixed, LoaderCircle, X } from 'lucide-react'
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 import { useAppContext } from '../../contexts/AppContext'
 import MarkerManager from './MarkerManager'
 import ApartmentMarkerManager from './ApartmentMarkerManager'
+import AcademyMarkerManager from './AcademyMarkerManager'
 import '../../types/naver-maps.d.ts'
 
 interface MapContainerProps {
@@ -21,7 +22,14 @@ const MapContainer: React.FC<MapContainerProps> = ({ className = '' }) => {
   const [isLocating, setIsLocating] = useState(false)
   const [mapError, setMapError] = useState<string | null>(null)
   const [locationError, setLocationError] = useState<string | null>(null)
+  const [showAcademies, setShowAcademies] = useState(false)
+  const [academyCount, setAcademyCount] = useState<number | null>(null)
   const { state, dispatch } = useAppContext()
+
+  useEffect(() => {
+    setShowAcademies(false)
+    setAcademyCount(null)
+  }, [state.selectedApartment?.id])
 
   const initializeMap = useCallback(() => {
     if (!mapRef.current || naverMapRef.current) return
@@ -217,6 +225,27 @@ const MapContainer: React.FC<MapContainerProps> = ({ className = '' }) => {
       <div ref={mapRef} className="h-full w-full" aria-label="주변 초등학교 지도" />
       {isMapReady && <MarkerManager map={naverMapRef.current} />}
       {isMapReady && naverMapRef.current && <ApartmentMarkerManager map={naverMapRef.current} />}
+      {isMapReady && naverMapRef.current && state.selectedApartment && (
+        <AcademyMarkerManager
+          map={naverMapRef.current}
+          apartment={state.selectedApartment}
+          enabled={showAcademies}
+          onCountChange={setAcademyCount}
+        />
+      )}
+
+      {isMapReady && state.selectedApartment && (
+        <button
+          type="button"
+          onClick={() => setShowAcademies((current) => !current)}
+          className={`academy-layer-toggle absolute right-3 inline-flex h-11 items-center gap-2 rounded-md border px-3 text-sm font-semibold shadow-md transition-colors sm:right-5 ${showAcademies ? 'border-emerald-700 bg-emerald-700 text-white' : 'border-gray-300 bg-white text-gray-800 hover:bg-gray-50'}`}
+          aria-pressed={showAcademies}
+          aria-label="선택한 아파트 주변 학원 표시"
+        >
+          {academyCount === -1 ? <LoaderCircle className="animate-spin" size={18} aria-hidden="true" /> : <GraduationCap size={18} aria-hidden="true" />}
+          <span>{showAcademies && academyCount != null && academyCount >= 0 ? `학원 ${academyCount}` : '주변 학원'}</span>
+        </button>
+      )}
 
       {!isMapReady && (
         <div className="absolute inset-0 flex items-center justify-center bg-gray-100/80">

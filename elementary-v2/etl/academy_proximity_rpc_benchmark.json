@@ -1,0 +1,59 @@
+{
+  "generated_at": "2026-09-20T20:58:44.522515+09:00",
+  "endpoint": "nearby_academy_addresses",
+  "radius_m": 800,
+  "results": [
+    {
+      "tier": "sparse",
+      "canonical_complex_id": "KAPT:A10026643",
+      "expected_addresses": 14,
+      "returned_addresses": 14,
+      "runs": 5,
+      "latency_ms": {
+        "min": 169.3,
+        "median": 189.6,
+        "max": 911.2
+      }
+    },
+    {
+      "tier": "median",
+      "canonical_complex_id": "APT:APT4146144091120030000001",
+      "expected_addresses": 46,
+      "returned_addresses": 46,
+      "runs": 5,
+      "latency_ms": {
+        "min": 160.7,
+        "median": 182.1,
+        "max": 305.2
+      }
+    },
+    {
+      "tier": "dense",
+      "canonical_complex_id": "APT:APT1123041151020031000001",
+      "expected_addresses": 100,
+      "returned_addresses": 100,
+      "runs": 5,
+      "latency_ms": {
+        "min": 239.8,
+        "median": 269.5,
+        "max": 299.5
+      }
+    },
+    {
+      "tier": "maximum",
+      "canonical_complex_id": "APT:APT1168041664180037000001",
+      "expected_addresses": 537,
+      "returned_addresses": 537,
+      "runs": 5,
+      "latency_ms": {
+        "min": 260.2,
+        "median": 345.6,
+        "max": 696.6
+      }
+    }
+  ],
+  "acceptance": {
+    "median_ms_max": 1000,
+    "status": "pass"
+  }
+}

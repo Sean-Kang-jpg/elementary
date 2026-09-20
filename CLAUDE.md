@@ -1,8 +1,8 @@
 # Session Init: Elementary Map
 
 새 작업 세션에서 프로젝트 상태를 빠르게 복원하기 위한 인수인계 문서다.
-세부 상태는 이 파일보다 `elementary-v2/docs/ETL_OPERATION_PLAN.md`와
-`elementary-v2/docs/FRONTEND_UX_SYSTEM_PLAN.md`를 우선한다.
+세부 상태는 이 파일보다 `elementary-v2/docs/operations/OPERATION_PLAN.md`와
+`elementary-v2/docs/ux/FRONTEND_UX_SYSTEM_PLAN.md`를 우선한다.
 
 ## Start Here
 
@@ -41,7 +41,8 @@ npm run typecheck
 - v2.2 P4: 역·주소 검색은 공식 원본과 비용·정확도 검증 전까지 보류
 - v2.2 P5: build-complete bundle v2의 로컬·Ubuntu 전체 재현 완료. read-only
   GitHub Actions run `34242752216`에서 52/52 감사와 7개 산출물 비교 통과
-- P6: 학원·시간표·놀이터 데이터 후보 검증 대기
+- P6: 수도권 실측 검토 완료. 학원 진행 권고, 시간표 보류, 놀이터 착수 불가
+  (`../archive/elementary-v2-analysis-20260916/docs/REPORT_P6_DATA_DOMAIN_FEASIBILITY_20260907.md`)
 
 전체 진행표는 `elementary-v2/docs/PROJECT_PROGRESS.html`에서 확인한다.
 
@@ -99,12 +100,30 @@ Instagram carousel 원고의 수치 5곳을 재생성 결과에 맞춰 고쳤다
 
 Actions secrets는 영구 외부 설정이므로 사용자 승인 없이 등록하거나 변경하지 않는다.
 
-### 3. 이후 후보
+### 3. P6 학원 도메인
+
+블로커는 VWORLD 인증키 만료 하나다. `EXPIRE_KEY`로 300건 표본 지오코딩이 전량 실패했고,
+`coordinate_bbox_sample_rematch.py`, `refine_building_assignments_vworld.py`,
+`verify_building_level.py`도 같은 키를 쓰므로 현재 함께 동작하지 않는다.
+
+1. 사용자가 vworld.kr에서 키를 갱신하고 `.env`의 `VWORLD_API_KEY`를 교체한다.
+2. 300건 표본으로 지오코딩 매치율을 측정한다.
+3. 통과하면 고유 주소 29,683건을 전량 지오코딩한다(71,690건이 아니다. 75.5%가 같은
+   건물에 입주해 있다).
+4. 아파트 반경 기준을 정하고 `학원 → 반경 내 아파트 → 배정 학교`로 연결한다. 학원은
+   학교에 배정되지 않으므로 배정 관계를 만들지 않는다.
+5. 마커는 주소 단위 1개로 생성한다. 표기 방식은 추후 논의한다.
+
+관련 스크립트는 `../archive/elementary-v2-analysis-20260916/etl/research/`에 있고 원천 스냅샷은
+`elementary-v2/etl/runtime/academy/`에 둔다(Git 제외).
+
+### 4. 이후 후보
 
 - 비개인용 인증 계정을 이용한 `/admin/etl` smoke 확장
 - Serving source timestamp 공개 후 freshness 표시
 - KRIC 공식 원본 확보 후 역/주소 검색 P4 재개
-- 학원·시간표·놀이터 수도권 pilot과 go/no-go 판단
+- 학교 마스터의 인천 행정구역을 2026 개편 후 기준으로 갱신
+- 시간표 재개 시 창의적 체험활동 프로그램 태그 축소안으로 한정
 
 ## ETL Portability
 
@@ -139,7 +158,7 @@ bundle과 restore 결과는 `elementary-v2/etl/runtime/`의 로컬 산출물이�
 canonical 후보는 KRIC `전체_도시철도역사정보_20260630`이다. profiler와 source
 contract만 준비되어 있으며 production schema는 없다.
 
-- 계획: `elementary-v2/docs/STATION_SEARCH_SOURCE_PLAN.md`
+- 계획: `elementary-v2/docs/reference/STATION_SEARCH_SOURCE_PLAN.md`
 - profiler: `elementary-v2/etl/profile_station_source.py`
 - tests: `elementary-v2/etl/tests/test_station_profile.py`
 
@@ -182,12 +201,12 @@ python -m py_compile etl/prepare_portable_inputs.py etl/profile_station_source.p
 ## Documentation Map
 
 - 진행 요약: `elementary-v2/docs/PROJECT_PROGRESS.html`
-- ETL 기준 계획: `elementary-v2/docs/ETL_OPERATION_PLAN.md`
-- Frontend UX 계획: `elementary-v2/docs/FRONTEND_UX_SYSTEM_PLAN.md`
-- ETL scheduling: `elementary-v2/docs/ETL_SCHEDULING_SETUP.md`
-- 추가 데이터: `elementary-v2/docs/FUTURE_DATA_DOMAINS_PLAN.md`
+- ETL 기준 계획: `elementary-v2/docs/operations/OPERATION_PLAN.md`
+- Frontend UX 계획: `elementary-v2/docs/ux/FRONTEND_UX_SYSTEM_PLAN.md`
+- ETL scheduling: `elementary-v2/docs/operations/ETL_SCHEDULING.md`
+- 추가 데이터: `elementary-v2/docs/operations/OPERATION_PLAN.md`의 Additional Data Domains 절
 - 릴리스 기록: `elementary-v2/docs/RELEASES.md`
-- v2.0 시각 snapshot: `elementary-v2/docs/JOINMAP_V2_0.html`
+- 분석 아카이브: `../archive/elementary-v2-analysis-20260916/`
 
 `F:\sm\vibe\elementary\archive`와 v1 문서는 참고 전용이다.
 

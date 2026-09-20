@@ -1,4 +1,9 @@
-<title>초등 배정 데이터 조인맵</title>
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Elementary 데이터 아키텍처</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans+KR:wght@400;500;600&family=IBM+Plex+Serif:ital,wght@0,500;0,600;1,400&display=swap">
@@ -270,24 +275,84 @@ a{color:var(--accent)}
   .node-val{white-space:normal;word-break:break-all}
 }
 </style>
+</head>
+<body>
 
 <div class="wrap">
 
 <header class="masthead">
-  <div class="kicker">v2.0 운영 기준선 · v2.1 프런트 개선 계획</div>
-  <h1>초등 배정 데이터 조인맵</h1>
-  <p class="standfirst">공식 학구도 폴리곤과 아파트 대표점·동별 건물을 결합해 배정정보를 자체 산출하는 확정 ETL, 예외 큐, 다음 학교·아파트 마스터 검증 계획.</p>
+  <div class="kicker">Current DRD · v2.2 production contract · nationwide expansion baseline</div>
+  <h1>Elementary 데이터 아키텍처</h1>
+  <p class="standfirst">공식 원천에서 운영 마스터와 공개 Serving까지 이어지는 데이터 흐름, Supabase 접근 경계, ETL 제어면, 지역 확장 및 롤백 계약.</p>
   <div class="meta">
-    <span><b>실측일</b> 2026-08-30</span>
-    <span><b>현재 버전</b> v2.0 운영 기준선</span>
-    <span><b>대상 범위</b> 서울 · 경기 · 인천</span>
+    <span><b>문서 기준일</b> 2026-09-17</span>
+    <span><b>현재 계약</b> SQL 06–13 · v2.2 P3</span>
+    <span><b>운영 범위</b> 서울 · 경기 · 인천</span>
+    <span><b>확장 계획</b> N0 일반화 → 지역별 wave</span>
     <span><b>매핑 방식</b> 대표점 공간조인 + 동별 건물 보정</span>
-    <span><b>운영 상태</b> 로컬 백엔드 감사 통과 · 운영 검수 큐 247건</span>
+    <span><b>운영 상태</b> 52/52 감사 · portable read-only CI 통과</span>
   </div>
 </header>
 
 <section>
-  <h2>결론 먼저</h2>
+  <h2>현행 운영 계약</h2>
+  <p class="lede">브라우저는 <code>school_master</code>와 <code>school_apartment_serving</code>, 그리고 승인된 필터 RPC만 읽는다. 원천 스냅샷·staging·정규화 마스터·검수 증거는 공개하지 않으며, Serving은 서비스 역할만 호출할 수 있는 원자적 함수로 갱신한다.</p>
+
+  <div class="chain">
+    <div class="chain-title">Source → ETL control plane → Operational masters → Public read model</div>
+    <div class="stack">
+      <div class="node">
+        <span class="node-src">공식·공공 원천</span>
+        <span class="node-key">dated source snapshot</span>
+        <span class="node-val">학교 · 학년통계 · 학구도 · 아파트 · K-apt</span>
+      </div>
+      <div class="link ok"><span class="badge">private</span><span class="link-note">checksum manifest · 비공개 Storage · 45일 metadata retention</span></div>
+      <div class="node term">
+        <span class="node-src">ETL 제어면 · SQL 11–12</span>
+        <span class="node-key">etl_runs · etl_source_snapshots · etl_staging_rows</span>
+        <span class="node-val">etl_schedules · etl_run_checks · exact regional scope</span>
+      </div>
+      <div class="link ok"><span class="badge">validated upsert</span><span class="link-note">기본키 · 외래키 · 좌표 · 원천일 · review 상태 검사</span></div>
+      <div class="node term">
+        <span class="node-src">정규화 운영 마스터 · SQL 06–10</span>
+        <span class="node-key">school + complex + assignment + history</span>
+        <span class="node-val">학교 1행 · 단지 1행 · 배정단위/학교 N:M</span>
+      </div>
+      <div class="link ok"><span class="badge">atomic refresh</span><span class="link-note"><code>refresh_school_apartment_serving()</code> · advisory lock · 실패 시 이전 snapshot 유지</span></div>
+      <div class="node term">
+        <span class="node-src">공개 read model · SQL 10·13</span>
+        <span class="node-key">school_master · school_apartment_serving</span>
+        <span class="node-val">명시 필드 조회 · 검색/viewport 인덱스 · 교차필터 RPC</span>
+      </div>
+    </div>
+  </div>
+
+  <h3>접근 경계</h3>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>주체</th><th>허용 범위</th><th>차단·보호</th></tr></thead>
+      <tbody>
+        <tr><td><code>anon</code></td><td>승인된 학교·Serving 조회와 공개 필터 RPC</td><td>운영 마스터, 이력, staging, run/snapshot, refresh 실행 차단</td></tr>
+        <tr><td><code>authenticated</code></td><td>공개 조회 + 등록된 ETL 관리자에 한한 모니터링 조회</td><td><code>etl_admin_users</code> 검사 없이 운영 정보 조회 불가</td></tr>
+        <tr><td><code>service_role</code></td><td>스냅샷 기록, staging, upsert, cleanup, Serving refresh</td><td>브라우저 번들 및 공개 환경변수에 절대 노출하지 않음</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>현재 마이그레이션 경계</h3>
+  <div class="verdicts">
+    <div class="verdict ok"><span class="tag">SQL 06–10</span><h4>운영 데이터와 Serving</h4><p>운영 마스터, 학년 통계, 원자적 Serving 갱신, 상세 K-apt 속성, 공개 2-table 계약과 RLS를 정의한다.</p></div>
+    <div class="verdict ok"><span class="tag">SQL 11–12</span><h4>ETL 운영과 모니터링</h4><p>비공개 원천 스냅샷, transient staging, 보존 정리, 실행 scope, 일정, 품질검사와 관리자 접근을 정의한다.</p></div>
+    <div class="verdict ok"><span class="tag">SQL 13</span><h4>교차필터 RPC</h4><p>학교 조건과 배정 아파트 조건을 DB에서 함께 적용해 브라우저 조인과 과다 전송을 방지한다.</p></div>
+    <div class="verdict warn"><span class="tag">N0 next</span><h4>전국 지역 레지스트리</h4><p>수도권 allowlist를 17개 시도 registry와 선택적 시군구 scope로 교체한 뒤 대도시권부터 독립 검증·적재한다.</p></div>
+  </div>
+</section>
+
+<section>
+  <h2>v2.0 실측 기준선</h2>
+  <p class="lede">아래 상세 조인 체인과 수치는 2026-08-29 수도권 스냅샷을 보존한 기준 자료다. 현행 상태와 우선순위는 위 운영 계약 및 <code>../operations/OPERATION_PLAN.md</code>를 따른다.</p>
+
+  <h3>결론 먼저</h3>
   <p class="lede">아파트 배정의 기준 원천은 2026 공식 학구도 폴리곤이다. Geomarket 2024는 비교·변경 이력으로만 보존하고, 대표점 공간조인과 동별 건물 보정을 결합해 최신 배정을 자체 산출한다.</p>
 
   <div class="verdicts">
@@ -771,8 +836,11 @@ a{color:var(--accent)}
     <li class="done">
       <span class="check">✓</span><div><strong>프런트 UX·디자인 시스템 방향 수립</strong><p>신뢰도 높은 지도형 서비스 테마, 학교·아파트·교통 색상 체계, 통합검색, 필터 적용 범위와 단계별 구현 순서를 정리했다. 검색은 학교·아파트부터 시작하고 주소·지하철은 검색 계약과 원천 데이터 확보 후 확장한다.</p></div><span class="status">설계 완료</span>
     </li>
+    <li class="done">
+      <span class="check">✓</span><div><strong>학교·아파트 통합검색 1차</strong><p>기존 공개 2개 테이블을 병렬 조회해 학교와 아파트 결과를 유형별로 표시한다. 아파트는 대표 단지 ID로 중복 제거하고 복수 배정은 대표학교 외 N곳으로 알린다. 검색 선택에서 지도·배정학교·아파트 상세로 바로 연결되며 모바일·데스크톱 자동 검증을 통과했다.</p></div><span class="status">v2.2 P1 완료</span>
+    </li>
     <li>
-      <span class="check">→</span><div><strong>디자인 토큰과 통합검색 구현</strong><p>공통 색상·타이포·간격·상태 컴포넌트를 먼저 적용한 뒤, 중복 없는 학교·아파트 검색 인덱스와 유형별 검색 결과를 구현한다. 아파트 필터와 학교 지도 필터의 적용 범위도 화면에서 명확히 분리한다.</p></div><span class="status">다음</span>
+      <span class="check">→</span><div><strong>필터 범위·데이터 표시 정합성</strong><p>구 필터를 지도 조회에도 동일하게 적용하고, 학교 조건과 배정 아파트 조건의 적용 범위를 화면에서 명확히 구분한다. 단지 동수 필드를 상세에 연결하며 주소·지하철 검색은 원천 데이터 계약을 확보한 뒤 확장한다.</p></div><span class="status">v2.2 P2</span>
     </li>
     <li>
       <span class="check">→</span><div><strong>GitHub Actions 실행 전환</strong><p>현재 Windows 작업은 PC가 켜져 있고 사용자가 로그인한 동안 실행된다. 수기 확정 배정·아파트 기준 데이터를 버전형 원천 번들로 패키징한 뒤 GitHub Actions가 Storage에서 내려받아 동일 ETL을 재현하도록 전환하고, 첫 원격 실운영 성공 전까지 Windows 작업을 예비 경로로 유지한다.</p></div><span class="status">다음</span>
@@ -849,9 +917,11 @@ a{color:var(--accent)}
 </section>
 
 <footer>
-  <span>실측 기준 2026-08-29</span>
-  <span>서울 · 경기 · 인천</span>
-  <span>elementary-v2 파이프라인 재구축</span>
+  <span>현행 계약 2026-09-17</span>
+  <span>v2.0 실측 기준 2026-08-29</span>
+  <span>상세 실행 상태: ../operations/OPERATION_PLAN.md</span>
 </footer>
 
 </div>
+</body>
+</html>

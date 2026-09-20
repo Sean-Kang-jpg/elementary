@@ -1,0 +1,335 @@
+{
+  "generated_at": "2026-09-20T20:53:37.541735+09:00",
+  "source": {
+    "provider": "국토교통부",
+    "dataset": "아파트 매매 실거래 상세 자료",
+    "endpoint": "https://apis.data.go.kr/1613000/RTMSDataSvcAptTradeDev/getRTMSDataSvcAptTradeDev",
+    "lawd_cd": "28185",
+    "deal_ymd": "202608"
+  },
+  "transactions": 427,
+  "available_fields": [
+    "aptDong",
+    "aptNm",
+    "aptSeq",
+    "bonbun",
+    "bubun",
+    "buildYear",
+    "buyerGbn",
+    "cdealDay",
+    "cdealType",
+    "dealAmount",
+    "dealDay",
+    "dealMonth",
+    "dealYear",
+    "dealingGbn",
+    "estateAgentSggNm",
+    "excluUseAr",
+    "floor",
+    "jibun",
+    "landCd",
+    "landLeaseholdGbn",
+    "rgstDate",
+    "roadNm",
+    "roadNmBonbun",
+    "roadNmBubun",
+    "roadNmCd",
+    "roadNmSeq",
+    "roadNmSggCd",
+    "roadNmbCd",
+    "sggCd",
+    "slerGbn",
+    "umdCd",
+    "umdNm"
+  ],
+  "field_population": {
+    "aptDong": 45,
+    "aptNm": 427,
+    "aptSeq": 427,
+    "bonbun": 427,
+    "bubun": 427,
+    "buildYear": 427,
+    "buyerGbn": 427,
+    "cdealDay": 10,
+    "cdealType": 10,
+    "dealAmount": 427,
+    "dealDay": 427,
+    "dealMonth": 427,
+    "dealYear": 427,
+    "dealingGbn": 427,
+    "estateAgentSggNm": 414,
+    "excluUseAr": 427,
+    "floor": 427,
+    "jibun": 427,
+    "landCd": 427,
+    "landLeaseholdGbn": 427,
+    "rgstDate": 45,
+    "roadNm": 427,
+    "roadNmBonbun": 427,
+    "roadNmBubun": 427,
+    "roadNmCd": 427,
+    "roadNmSeq": 427,
+    "roadNmSggCd": 427,
+    "roadNmbCd": 392,
+    "sggCd": 427,
+    "slerGbn": 427,
+    "umdCd": 427,
+    "umdNm": 427
+  },
+  "match_counts": {
+    "exact_address_name": 353,
+    "unmatched": 15,
+    "ambiguous": 11,
+    "unique_district_name": 38,
+    "unique_address": 10
+  },
+  "matched_transactions": 401,
+  "match_rate": 0.9391,
+  "non_exact_samples": [
+    {
+      "tier": "unmatched",
+      "sgg_cd": "28185",
+      "umd_nm": "송도동",
+      "jibun": "92-0",
+      "apt_nm": "더샵송도센트럴파크Ⅲ",
+      "matched_complex_id": null
+    },
+    {
+      "tier": "ambiguous",
+      "sgg_cd": "28185",
+      "umd_nm": "연수동",
+      "jibun": "633-0",
+      "apt_nm": "대동",
+      "matched_complex_id": null
+    },
+    {
+      "tier": "unique_district_name",
+      "sgg_cd": "28185",
+      "umd_nm": "송도동",
+      "jibun": "397-5",
+      "apt_nm": "힐스테이트레이크송도3차",
+      "matched_complex_id": "KAPT:A10022954"
+    },
+    {
+      "tier": "unique_district_name",
+      "sgg_cd": "28185",
+      "umd_nm": "송도동",
+      "jibun": "109-0",
+      "apt_nm": "더샵송도프라임뷰20BL",
+      "matched_complex_id": "KAPT:A10023693"
+    },
+    {
+      "tier": "unmatched",
+      "sgg_cd": "28185",
+      "umd_nm": "송도동",
+      "jibun": "396-7",
+      "apt_nm": "송도자이크리스탈오션",
+      "matched_complex_id": null
+    },
+    {
+      "tier": "unique_district_name",
+      "sgg_cd": "28185",
+      "umd_nm": "동춘동",
+      "jibun": "가-",
+      "apt_nm": "송도파크레인동일하이빌",
+      "matched_complex_id": "KAPT:A10025594"
+    },
+    {
+      "tier": "unique_district_name",
+      "sgg_cd": "28185",
+      "umd_nm": "송도동",
+      "jibun": "30-2",
+      "apt_nm": "힐스테이트송도더스카이",
+      "matched_complex_id": "APT:APT2818548568170010000001"
+    },
+    {
+      "tier": "unique_district_name",
+      "sgg_cd": "28185",
+      "umd_nm": "동춘동",
+      "jibun": "가-",
+      "apt_nm": "송도파크레인동일하이빌",
+      "matched_complex_id": "KAPT:A10025594"
+    },
+    {
+      "tier": "unique_district_name",
+      "sgg_cd": "28185",
+      "umd_nm": "송도동",
+      "jibun": "109-0",
+      "apt_nm": "더샵송도프라임뷰20BL",
+      "matched_complex_id": "KAPT:A10023693"
+    },
+    {
+      "tier": "unique_district_name",
+      "sgg_cd": "28185",
+      "umd_nm": "동춘동",
+      "jibun": "가-",
+      "apt_nm": "송도파크자이",
+      "matched_complex_id": "KAPT:A10025531"
+    },
+    {
+      "tier": "unique_address",
+      "sgg_cd": "28185",
+      "umd_nm": "선학동",
+      "jibun": "353-0",
+      "apt_nm": "대동",
+      "matched_complex_id": "KAPT:A40680606"
+    },
+    {
+      "tier": "ambiguous",
+      "sgg_cd": "28185",
+      "umd_nm": "연수동",
+      "jibun": "633-0",
+      "apt_nm": "대동",
+      "matched_complex_id": null
+    },
+    {
+      "tier": "unmatched",
+      "sgg_cd": "28185",
+      "umd_nm": "송도동",
+      "jibun": "22-6",
+      "apt_nm": "송도아리스타프라임아파트",
+      "matched_complex_id": null
+    },
+    {
+      "tier": "unique_district_name",
+      "sgg_cd": "28185",
+      "umd_nm": "동춘동",
+      "jibun": "가-",
+      "apt_nm": "송도파크자이",
+      "matched_complex_id": "KAPT:A10025531"
+    },
+    {
+      "tier": "unique_district_name",
+      "sgg_cd": "28185",
+      "umd_nm": "송도동",
+      "jibun": "30-2",
+      "apt_nm": "힐스테이트송도더스카이",
+      "matched_complex_id": "APT:APT2818548568170010000001"
+    },
+    {
+      "tier": "unique_district_name",
+      "sgg_cd": "28185",
+      "umd_nm": "동춘동",
+      "jibun": "가-",
+      "apt_nm": "송도동일하이빌파크포레",
+      "matched_complex_id": "KAPT:A10025586"
+    },
+    {
+      "tier": "unique_district_name",
+      "sgg_cd": "28185",
+      "umd_nm": "동춘동",
+      "jibun": "가-",
+      "apt_nm": "송도파크자이",
+      "matched_complex_id": "KAPT:A10025531"
+    },
+    {
+      "tier": "unique_district_name",
+      "sgg_cd": "28185",
+      "umd_nm": "송도동",
+      "jibun": "397-5",
+      "apt_nm": "힐스테이트레이크송도3차",
+      "matched_complex_id": "KAPT:A10022954"
+    },
+    {
+      "tier": "unmatched",
+      "sgg_cd": "28185",
+      "umd_nm": "송도동",
+      "jibun": "312-1",
+      "apt_nm": "호반써밋송도",
+      "matched_complex_id": null
+    },
+    {
+      "tier": "unique_address",
+      "sgg_cd": "28185",
+      "umd_nm": "선학동",
+      "jibun": "353-0",
+      "apt_nm": "대동",
+      "matched_complex_id": "KAPT:A40680606"
+    },
+    {
+      "tier": "unique_address",
+      "sgg_cd": "28185",
+      "umd_nm": "옥련동",
+      "jibun": "633-0",
+      "apt_nm": "현대2차아파트",
+      "matched_complex_id": "KAPT:A40678903"
+    },
+    {
+      "tier": "ambiguous",
+      "sgg_cd": "28185",
+      "umd_nm": "동춘동",
+      "jibun": "941-0",
+      "apt_nm": "대동",
+      "matched_complex_id": null
+    },
+    {
+      "tier": "unique_district_name",
+      "sgg_cd": "28185",
+      "umd_nm": "동춘동",
+      "jibun": "1131-1",
+      "apt_nm": "연수서해그랑블1단지",
+      "matched_complex_id": "KAPT:A10026613"
+    },
+    {
+      "tier": "ambiguous",
+      "sgg_cd": "28185",
+      "umd_nm": "연수동",
+      "jibun": "582-2",
+      "apt_nm": "솔밭마을아파트",
+      "matched_complex_id": null
+    },
+    {
+      "tier": "unique_district_name",
+      "sgg_cd": "28185",
+      "umd_nm": "송도동",
+      "jibun": "397-5",
+      "apt_nm": "힐스테이트레이크송도3차",
+      "matched_complex_id": "KAPT:A10022954"
+    },
+    {
+      "tier": "unmatched",
+      "sgg_cd": "28185",
+      "umd_nm": "송도동",
+      "jibun": "155-1",
+      "apt_nm": "송도아메리칸타운더샵",
+      "matched_complex_id": null
+    },
+    {
+      "tier": "unique_address",
+      "sgg_cd": "28185",
+      "umd_nm": "동춘동",
+      "jibun": "924-3",
+      "apt_nm": "자이(xi)",
+      "matched_complex_id": "KAPT:A40613003"
+    },
+    {
+      "tier": "unique_address",
+      "sgg_cd": "28185",
+      "umd_nm": "옥련동",
+      "jibun": "633-0",
+      "apt_nm": "현대2차아파트",
+      "matched_complex_id": "KAPT:A40678903"
+    },
+    {
+      "tier": "unique_address",
+      "sgg_cd": "28185",
+      "umd_nm": "동춘동",
+      "jibun": "923-0",
+      "apt_nm": "연수타운(금호,동아)",
+      "matched_complex_id": "KAPT:A40677501"
+    },
+    {
+      "tier": "unique_district_name",
+      "sgg_cd": "28185",
+      "umd_nm": "동춘동",
+      "jibun": "가-",
+      "apt_nm": "송도파크레인동일하이빌",
+      "matched_complex_id": "KAPT:A10025594"
+    }
+  ],
+  "notes": [
+    "The API has no K-apt code or canonical_complex_id; linkage is derived.",
+    "Raw transaction rows are private runtime artifacts and must not be committed.",
+    "Cancellation/change fields must be retained because the source is mutable after first publication."
+  ]
+}

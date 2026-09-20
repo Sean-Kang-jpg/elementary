@@ -348,12 +348,39 @@ body {
 
 .map-floating-control,
 .map-floating-alert,
-.map-legend {
+.map-legend,
+.academy-layer-toggle {
   z-index: var(--layer-map-ui);
 }
 
 .map-floating-control {
   bottom: 24px;
+}
+
+.academy-layer-toggle {
+  top: 126px;
+}
+
+.academy-map-marker {
+  display: flex;
+  width: 36px;
+  height: 36px;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  box-shadow: 0 2px 7px rgb(15 23 42 / 24%);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 750;
+}
+
+.academy-map-marker--core {
+  background: #047857;
+}
+
+.academy-map-marker--extended {
+  background: #64748b;
 }
 
 .map-floating-alert {
@@ -379,6 +406,10 @@ body {
 
   .map-floating-control {
     bottom: calc(var(--app-gnb-height) + 14px);
+  }
+
+  .academy-layer-toggle {
+    top: 132px;
   }
 
   .map-floating-alert {

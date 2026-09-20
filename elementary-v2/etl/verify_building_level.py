@@ -28,7 +28,7 @@ from shapely.strtree import STRtree
 
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
-KEY = os.getenv("VWORLD_API_KEY") or "B6A216F3-038A-366B-B85D-44324FF03BDB"
+KEY = os.getenv("VWORLD_API_KEY") or ""
 DOMAIN = "https://github.com/sean-kang-jpg/elementary"
 BASE = Path(__file__).parent
 SHP = BASE / "data" / "hakgudo" / "elem_hakgudo_20250922.shp"

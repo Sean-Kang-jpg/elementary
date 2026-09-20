@@ -1,0 +1,44 @@
+{
+  "contract": {
+    "core_radius_m": 600,
+    "extended_maximum_m": 800,
+    "large_complex_households": 500,
+    "distance_metric": "straight-line haversine"
+  },
+  "inputs": {
+    "complexes": 20172,
+    "large_complexes": 4285,
+    "trusted_large_complexes": 3057,
+    "matched_academy_addresses": 29274
+  },
+  "outputs": {
+    "linked_academy_addresses": 28952,
+    "apartment_address_links": 1075094,
+    "core_links": 659062,
+    "extended_links": 416032,
+    "building_origin_links": 136951,
+    "centroid_origin_links": 938143,
+    "origin_points": 53373,
+    "apartment_summaries": 20172,
+    "links_per_complex_p50": 46.0,
+    "links_per_complex_p90": 100.0,
+    "links_per_complex_p95": 122.0,
+    "links_per_complex_max": 537
+  },
+  "privacy": {
+    "public_candidate_excludes_road_address": true,
+    "public_candidate_excludes_institution_names": true,
+    "raw_source_remains_private": true
+  },
+  "serving_strategy": {
+    "materialize_all_links_in_postgres": false,
+    "reason": "The full candidate has over one million links; use indexed origin points plus an on-demand RPC."
+  },
+  "private_outputs": [
+    "runtime\\academy\\apartment_academy_proximity_20260920.csv",
+    "runtime\\academy\\academy_address_serving_20260920.csv",
+    "runtime\\academy\\apartment_academy_origins_20260920.csv",
+    "runtime\\academy\\apartment_academy_summary_20260920.csv"
+  ],
+  "pipeline_version": "academy-proximity-v1"
+}

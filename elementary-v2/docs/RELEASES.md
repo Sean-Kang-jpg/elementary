@@ -23,7 +23,7 @@ v2.0 establishes the current production foundation:
 - Selected schools use a solid-blue top-layer marker, nearby schools remain readable at 62% opacity, and assigned apartments retain teal identity
 - Shared assigned-apartment results: selecting a school displays exact household-count callouts scaled by complex size, reduces sub-100-household complexes to low-priority dots, and opens exact apartment detail on selection
 - Passing frontend lint, typecheck, production build, and operational backend audits
-- Versioned visual report snapshot in `JOINMAP_V2_0.html`
+- Versioned visual report snapshot, now retained in `../../../archive/elementary-v2-analysis-20260916/docs/JOINMAP_V2_0.html`
 
 Local ETL outputs, browser captures, PDFs, secrets, dependencies, and build artifacts are not part of the Git baseline. They remain reproducible local or private-Storage evidence.
 
@@ -44,7 +44,7 @@ v2.1 will focus on user discovery without changing the verified v2.0 ETL source 
 7. Reduced mobile school targeting to zoom `14` and aligned individual-school rendering to that level.
 8. Deferred deduplicated apartment search, address geocoding, station discovery, and published news content.
 
-The detailed UX contract is maintained in `FRONTEND_UX_SYSTEM_PLAN.md`.
+The detailed UX contract is maintained in [`ux/FRONTEND_UX_SYSTEM_PLAN.md`](ux/FRONTEND_UX_SYSTEM_PLAN.md).
 
 ## v2.1.1 - Stability And Automated QA
 
@@ -80,7 +80,7 @@ Production: `https://elementary-lovat.vercel.app`.
 
 ## Post-v2.1 Data Candidates
 
-Academy/tutoring-center, elementary-timetable, and playground data are discovery items, not part of the v2.1 release contract. Academy data requires course-level elementary-audience validation because mixed middle/high-school offerings are present. Timetable data requires a feature and retention decision before daily class/period rows are stored at scale. Playground data requires license/location-service review and coordinate-system validation before ingestion. The detailed gates are maintained in `FUTURE_DATA_DOMAINS_PLAN.md`.
+Academy/tutoring-center, elementary-timetable, and playground data are not part of the v2.1 release contract. The current decisions and remaining production gates are maintained in [`operations/OPERATION_PLAN.md`](operations/OPERATION_PLAN.md); the superseded standalone plan and discovery evidence are archived outside the active application tree.
 
 ## v2.2 Remaining Order
 
