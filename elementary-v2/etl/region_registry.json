@@ -590,11 +590,11 @@
   ],
   "merged_source_regions": [
     {
-      "source_value": "전남광주통합특별시",
+      "source_value": "전라남도광주특별시",
       "observed_spellings": [
+        "전라남도광주특별시",
         "전남광주통합특별시"
       ],
-      "reported_effective_from": "2026-07-01",
       "observed_in": [
         "kapt_basic_20260904.csv 시도 column",
         "kapt_basic_20260904.csv 법정동주소"
@@ -613,7 +613,11 @@
         "광산구": "광주광역시"
       },
       "default_region": "전라남도",
-      "note": "광주시 and 전라남도 merged on 2026-07-01. The official name is not settled across sources: K-apt writes 전남광주통합특별시 while the reported administrative name is 전라남도광주특별시/특례시. Inside this source value the 광주 area has no city level (region -> 구) while the 전남 area does (region -> 시/군), so it cannot be modelled as one region with a single address depth. Until the school and school-zone sources publish merged naming, both halves stay separate registry regions and this block only translates source values."
+      "note": "광주시 and 전라남도 merged into 전라남도광주특별시 on 2026-07-01, and their education offices merge as well. K-apt already writes the merged value as 전남광주통합특별시 in its 시도 column and 법정동주소; every source that feeds the assignment backbone still writes 광주광역시 and 전라남도 separately, including K-apt's own road addresses. While that holds, both halves remain separate registry regions and this block only translates source values. Inside the merged area the 광주 half has no city level (region -> 구) while the 전남 half does (region -> 시/군), so collapsing them into one region will require a per-area address depth and a merged education office; that migration waits until the school and school-zone sources publish merged naming.",
+      "official_name": "전라남도광주특별시",
+      "effective_from": "2026-07-01",
+      "education_office_merges": true,
+      "transition_state": "sources_not_yet_migrated"
     }
   ]
 }

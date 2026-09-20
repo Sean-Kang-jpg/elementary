@@ -134,8 +134,17 @@ class MergedSourceRegion:
     source_value: str
     sigungu_map: dict[str, str]
     default_region: str
-    reported_effective_from: str | None = None
+    observed_spellings: tuple[str, ...] = ()
+    official_name: str | None = None
+    effective_from: str | None = None
+    education_office_merges: bool = False
     note: str | None = None
+
+    def matches(self, value: str) -> bool:
+        """Whether a source value is this merged region, under any spelling."""
+        normalized = _normalize(value)
+        candidates = {self.source_value, self.official_name or "", *self.observed_spellings}
+        return normalized in {_normalize(name) for name in candidates if name}
 
     def region_name_for(self, sigungu: str | None) -> str:
         return self.sigungu_map.get(_normalize(sigungu), self.default_region)
@@ -150,7 +159,10 @@ class RegionRegistry:
                 source_value=row["source_value"],
                 sigungu_map={_normalize(k): v for k, v in row.get("sigungu_map", {}).items()},
                 default_region=row["default_region"],
-                reported_effective_from=row.get("reported_effective_from"),
+                observed_spellings=tuple(row.get("observed_spellings", ())),
+                official_name=row.get("official_name"),
+                effective_from=row.get("effective_from"),
+                education_office_merges=bool(row.get("education_office_merges", False)),
                 note=row.get("note"),
             )
             for row in payload.get("merged_source_regions", ())
@@ -184,9 +196,20 @@ class RegionRegistry:
         return tuple(region for region in self.regions if region.is_production)
 
     def get(self, name: str) -> Region:
-        """Resolve a canonical name, short name, or alias."""
+        """Resolve a canonical name, short name, or alias.
+
+        A merged source value is refused rather than guessed at: it covers more
+        than one region, so callers must use `resolve_source_region()` with the
+        row's 시군구 or road address.
+        """
         region = self._by_alias.get(_normalize(name))
         if region is None:
+            merged = self.merged_source_region(name)
+            if merged is not None:
+                raise RegionScopeError(
+                    f"{name!r} is a merged source value covering more than one region; "
+                    "use resolve_source_region() with 시군구 or a road address"
+                )
             raise RegionScopeError(f"unknown region: {name!r}")
         return region
 
@@ -220,11 +243,7 @@ class RegionRegistry:
         return best[1] if best else None
 
     def merged_source_region(self, value: str) -> MergedSourceRegion | None:
-        normalized = _normalize(value)
-        return next(
-            (row for row in self.merged_source_regions if _normalize(row.source_value) == normalized),
-            None,
-        )
+        return next((row for row in self.merged_source_regions if row.matches(value)), None)
 
     def resolve_source_region(
         self,

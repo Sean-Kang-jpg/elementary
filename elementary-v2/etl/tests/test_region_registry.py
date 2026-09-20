@@ -126,10 +126,27 @@ class RegionRegistryTest(unittest.TestCase):
         self.assertEqual(outside, [])
 
     def test_merged_source_value_is_not_a_plain_alias(self) -> None:
-        """전남광주통합특별시 covers two regions, so get() must refuse it."""
-        with self.assertRaises(RegionScopeError):
-            self.registry.get("전남광주통합특별시")
-        self.assertIsNotNone(self.registry.merged_source_region("전남광주통합특별시"))
+        """The merged region covers two regions, so get() must refuse every spelling."""
+        for spelling in ("전라남도광주특별시", "전남광주통합특별시"):
+            with self.assertRaises(RegionScopeError, msg=spelling):
+                self.registry.get(spelling)
+            self.assertIsNotNone(self.registry.merged_source_region(spelling), spelling)
+
+    def test_merged_region_records_the_official_name_and_office_merger(self) -> None:
+        merged = self.registry.merged_source_region("전라남도광주특별시")
+        self.assertEqual(merged.official_name, "전라남도광주특별시")
+        self.assertEqual(merged.effective_from, "2026-07-01")
+        self.assertTrue(merged.education_office_merges)
+        self.assertIn("전남광주통합특별시", merged.observed_spellings)
+
+    def test_both_merged_spellings_resolve_identically(self) -> None:
+        for spelling in ("전라남도광주특별시", "전남광주통합특별시"):
+            self.assertEqual(
+                self.registry.resolve_source_region(spelling, "목포시").canonical_name, "전라남도", spelling
+            )
+            self.assertEqual(
+                self.registry.resolve_source_region(spelling, "광산구").canonical_name, "광주광역시", spelling
+            )
 
     def test_merged_source_value_splits_by_district(self) -> None:
         for sigungu, expected in (

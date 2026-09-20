@@ -1,6 +1,6 @@
 # Region EDA Findings
 
-Last updated: 2026-09-20
+Last updated: 2026-09-21
 
 Accumulated results of the per-region EDA gate defined in `OPERATION_PLAN.md`. One section per scope, newest first. Findings here are the reason the registry holds the values it does; they are not a task list.
 
@@ -52,7 +52,7 @@ No other source agrees, and K-apt does not even agree with itself:
 
 1,554 of 21,712 K-apt rows have a `시도` value that disagrees with their own road address.
 
-The merger is real: 광주시 and 전라남도 merged on **2026-07-01**. The official name is not settled across sources — K-apt writes `전남광주통합특별시`, while the reported administrative name is 전라남도광주특별시 or 특례시 — so the registry stores the observed source spelling and asserts no display name.
+The merger is real and confirmed: 광주시 and 전라남도 merged into **전라남도광주특별시** on **2026-07-01**, and their education offices merge as well. K-apt writes the merged value as `전남광주통합특별시`; the registry records the official name and the K-apt spelling together and resolves either identically.
 
 **The merged region has two different address depths inside it**, which is why it cannot be one region:
 
@@ -67,7 +67,9 @@ Both halves stay separate registry regions, matching the school standard data, t
 
 Validated against the full K-apt file: all 21,712 rows resolve into exactly 17 regions, with 광주광역시 932 and 전라남도 778 summing to the 1,710 merged rows. Only 2 rows anywhere disagree with their own road address, and both are unrelated source errors (a 마포구 row addressed in 고양시, a 정읍시 row addressed in 부산).
 
-This is a source-translation layer, not a product decision. The user-facing region name, and what happens when the school and school-zone sources publish merged naming, remain open; see I-20.
+This is a source-translation layer, deliberately not the final model. Collapsing the two halves into one region is blocked on the sources, not on the decision: the school standard data and the 학구도 polygons still carry 광주광역시교육청 and 전라남도교육청 as separate offices with separate `SD_CD` values. When they migrate, three things change together — one region with a **per-area address depth** (the 광주 half has no city level, the 전남 half does), one merged education office, and the displayed region name. Tracked as I-20.
+
+Because the education offices merge, the 광주 and 목포 EDA passes must re-check the school-zone label format against the post-merger office rather than reusing anything measured here. Both scopes stay in the N1 queue with EDA first.
 
 Daejeon is unaffected: its 588 K-apt rows carry `대전광역시` and its five districts.
 
