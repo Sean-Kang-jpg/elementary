@@ -1,0 +1,16 @@
+.env
+.env.*
+node_modules/
+dist/
+etl/data/
+etl/runtime/
+etl/local_outputs/
+etl/local_outputs_*/
+etl/downloads/
+etl/logs/
+*.csv
+*.xlsx
+*.zip
+*.shp
+*.dbf
+*.shx
