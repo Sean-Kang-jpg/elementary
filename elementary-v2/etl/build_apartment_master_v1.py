@@ -1,16 +1,25 @@
-"""Build a capital-region apartment master with conservative K-apt enrichment."""
+"""Build an apartment master with conservative K-apt enrichment.
+
+The region scope comes from the region registry's production regions, which are
+the three capital regions until a nationwide expansion wave promotes another.
+"""
 
 from __future__ import annotations
 
 import csv
 import json
 import re
+import sys
 from collections import Counter, defaultdict
 from datetime import datetime
 from difflib import SequenceMatcher
 from pathlib import Path
 from typing import Any
 
+if __package__ in (None, ""):  # `python etl/build_apartment_master_v1.py`
+    sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+
+from etl.region_registry import load_registry
 
 BASE_DIR = Path(__file__).resolve().parent
 ROOT_DIR = BASE_DIR.parents[2]
@@ -32,7 +41,20 @@ def latest_kapt_source() -> tuple[Path, str, str]:
 
 
 KAPT_SOURCE, KAPT_AS_OF, KAPT_ENCODING = latest_kapt_source()
-TARGET_CODES = {"11": "서울특별시", "41": "경기도", "28": "인천광역시"}
+def target_codes() -> dict[str, str]:
+    """Legal-dong region prefix to region name, for the regions in production.
+
+    Renamed regions keep their legacy prefix as well, so a snapshot taken before
+    강원도 became 강원특별자치도 still resolves.
+    """
+    return {
+        code: region.canonical_name
+        for region in load_registry().production_regions
+        for code in region.legal_dong_codes
+    }
+
+
+TARGET_CODES = target_codes()
 TARGET_REGIONS = set(TARGET_CODES.values())
 APARTMENT_BASE_AS_OF = "2024-10-01"
 

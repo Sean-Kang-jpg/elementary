@@ -5,12 +5,17 @@ from __future__ import annotations
 import csv
 import json
 import re
+import sys
 from collections import Counter, defaultdict
 from datetime import datetime
 from pathlib import Path
 from statistics import mean
 from typing import Any
 
+if __package__ in (None, ""):  # `python etl/build_operational_masters.py`
+    sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+
+from etl.region_registry import RegionScopeError, load_registry
 
 BASE_DIR = Path(__file__).resolve().parent
 OUTPUT_DIR = BASE_DIR / "local_outputs_20260320"
@@ -76,9 +81,14 @@ def school_zone_label(value: Any) -> str:
     return re.sub(r"[^0-9A-Za-z가-힣]", "", name).lower()
 
 
+def region_name_for_address(address: Any) -> str:
+    """Region name for an address, or "" when no registry region matches."""
+    region = load_registry().region_for_address(str(address or ""))
+    return region.canonical_name if region else ""
+
+
 def school_region(school: dict[str, Any]) -> str:
-    address = str(school.get("road_address") or school.get("legal_address") or "")
-    return next((region for region in ("서울특별시", "경기도", "인천광역시") if address.startswith(region)), "")
+    return region_name_for_address(school.get("road_address") or school.get("legal_address"))
 
 
 def segment_school_zone(label: str, candidates: list[tuple[str, str]]) -> list[str]:
@@ -104,7 +114,10 @@ def segment_school_zone(label: str, candidates: list[tuple[str, str]]) -> list[s
 def match_school_zone(value: Any, region: str, candidates: list[tuple[str, str]]) -> list[str]:
     cleaned_value = re.sub(r"\([^)]*\)|\[[^]]*\]", "", str(value or ""))
     parts = re.split(r"\||\s+및\s+", cleaned_value)
-    region_prefix = {"서울특별시": "서울", "인천광역시": "인천"}.get(region)
+    try:
+        region_prefix = load_registry().get(region).school_name_prefix if region else None
+    except RegionScopeError:
+        region_prefix = None
     candidate_variants = list(candidates)
     if region_prefix:
         candidate_variants.extend(
@@ -168,14 +181,7 @@ def build_school_master(rows: list[dict[str, str]]) -> list[dict[str, Any]]:
             "operation_status": row.get("operation_status") or None,
             "road_address": row.get("address") or None,
             "legal_address": row.get("address_old") or None,
-            "region": next(
-                (
-                    region
-                    for region in ("서울특별시", "경기도", "인천광역시")
-                    if str(row.get("address") or row.get("address_old") or "").startswith(region)
-                ),
-                None,
-            ),
+            "region": region_name_for_address(row.get("address") or row.get("address_old")) or None,
             "education_office": row.get("education_office") or None,
             "education_support_office": row.get("education_support_office") or None,
             "latitude": floating(row.get("latitude")),

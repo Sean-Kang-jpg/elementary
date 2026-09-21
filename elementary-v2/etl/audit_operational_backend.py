@@ -4,11 +4,16 @@ from __future__ import annotations
 
 import csv
 import json
+import sys
 from collections import Counter
 from datetime import date, datetime
 from pathlib import Path
 from typing import Any
 
+if __package__ in (None, ""):  # `python etl/audit_operational_backend.py`
+    sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+
+from etl.region_registry import RegionScopeError, load_registry
 
 BASE_DIR = Path(__file__).resolve().parent
 OUTPUT_DIR = BASE_DIR / "local_outputs_20260320"
@@ -18,7 +23,22 @@ SUPABASE_REPORT = OUTPUT_DIR / "supabase_backend_check.json"
 SQL_PATH = BASE_DIR.parent / "sql" / "06_create_operational_master_tables.sql"
 SERVING_REFRESH_SQL_PATH = BASE_DIR.parent / "sql" / "09_create_serving_refresh_function.sql"
 UPLOADER_PATH = BASE_DIR / "upload_operational_masters.py"
-REGIONS = {"서울특별시", "경기도", "인천광역시"}
+REGIONS = {region.canonical_name for region in load_registry().production_regions}
+
+
+def within_region_bounds(region_name: Any, latitude: Any, longitude: Any) -> bool:
+    """Whether a coordinate falls inside its own region's registry envelope.
+
+    Checking each row against its own region replaces the single capital-region
+    box, which would reject Busan, Jeju, and Ulleung outright.
+    """
+    if latitude is None or longitude is None:
+        return False
+    try:
+        region = load_registry().get(str(region_name or ""))
+    except RegionScopeError:
+        return False
+    return region.bounds.contains(float(latitude), float(longitude))
 
 
 def load(path: Path) -> list[dict[str, Any]]:
@@ -199,14 +219,9 @@ def main() -> None:
     for table in ("school_master", "apartment_complex_master", "apartment_assignment_units"):
         failures = []
         for row in datasets[table]:
-            latitude = row.get("latitude")
-            longitude = row.get("longitude")
-            if latitude is None or longitude is None:
+            if not within_region_bounds(row.get("region"), row.get("latitude"), row.get("longitude")):
                 failures.append(identity(row, keys[table]))
-                continue
-            if not (36.7 <= float(latitude) <= 38.7 and 124.0 <= float(longitude) <= 128.3):
-                failures.append(identity(row, keys[table]))
-        add_check(checks, f"{table}: capital-region coordinate bounds", failures)
+        add_check(checks, f"{table}: coordinates inside their own region bounds", failures)
 
     for table in ("school_master", "apartment_complex_master", "apartment_assignment_units"):
         add_check(
