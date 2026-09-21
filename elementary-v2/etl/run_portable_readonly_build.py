@@ -116,11 +116,27 @@ def row_count(path: Path) -> int:
         return sum(1 for _ in csv.DictReader(handle))
 
 
+def build_arguments(script: str, project_dir: Path) -> list[str]:
+    """Extra arguments that pin a build script to the bundle's own inputs.
+
+    The apartment builder otherwise discovers the newest `kapt_basic_*.csv` in
+    the output directory, which on the ETL workstation is that morning's
+    scheduled snapshot rather than the reviewed input the bundle restored.
+    """
+    if script != "build_apartment_master_v1.py":
+        return []
+    root_name, relative_target = ROLE_TARGETS["kapt-basic"]
+    if root_name != "output":
+        raise ValueError("kapt-basic is expected to materialize into the output directory")
+    return ["--kapt-source", str(project_dir / "etl" / "local_outputs_20260320" / relative_target)]
+
+
 def run_build(project_dir: Path = PROJECT_DIR) -> None:
     etl_dir = project_dir / "etl"
     for script in BUILD_SCRIPTS:
+        command = [sys.executable, str(etl_dir / script), *build_arguments(script, project_dir)]
         print(f"running {script}")
-        subprocess.run([sys.executable, str(etl_dir / script)], cwd=project_dir, check=True)
+        subprocess.run(command, cwd=project_dir, check=True)
 
 
 def compare_with_baseline(report: dict, baseline: dict) -> list[str]:

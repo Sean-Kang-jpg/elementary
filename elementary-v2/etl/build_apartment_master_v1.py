@@ -6,8 +6,10 @@ the three capital regions until a nationwide expansion wave promotes another.
 
 from __future__ import annotations
 
+import argparse
 import csv
 import json
+import os
 import re
 import sys
 from collections import Counter, defaultdict
@@ -28,7 +30,24 @@ APT_SOURCE = ROOT_DIR / "archive" / "GAS" / "GAS" / "임시" / "apt_mst_info_202
 LEGACY_KAPT_SOURCE = ROOT_DIR / "archive" / "legacy-v1" / "etl" / "data" / "kapt" / "20250801_apt_data.csv"
 
 
+def kapt_source_metadata(path: Path) -> tuple[Path, str, str]:
+    """Snapshot date and encoding for an explicitly chosen K-apt file."""
+    match = re.fullmatch(r"kapt_basic_(\d{8})\.csv", path.name)
+    if match:
+        return path, datetime.strptime(match.group(1), "%Y%m%d").date().isoformat(), "utf-8-sig"
+    if path.name == LEGACY_KAPT_SOURCE.name:
+        return path, "2025-08-01", "cp949"
+    raise ValueError(f"cannot derive a snapshot date from {path.name}; expected kapt_basic_YYYYMMDD.csv")
+
+
 def latest_kapt_source() -> tuple[Path, str, str]:
+    """Newest local K-apt snapshot, used only when no source is given.
+
+    Discovery is a convenience for ad-hoc local builds. A reproducible build
+    must pass `--kapt-source` (or set `ELEMENTARY_KAPT_SOURCE`), because this
+    directory accumulates daily snapshots on the ETL workstation and the newest
+    one is not necessarily the reviewed input a bundle restored.
+    """
     candidates: list[tuple[str, Path]] = []
     for path in OUTPUT_DIR.glob("kapt_basic_*.csv"):
         match = re.fullmatch(r"kapt_basic_(\d{8})\.csv", path.name)
@@ -40,7 +59,14 @@ def latest_kapt_source() -> tuple[Path, str, str]:
     return LEGACY_KAPT_SOURCE, "2025-08-01", "cp949"
 
 
-KAPT_SOURCE, KAPT_AS_OF, KAPT_ENCODING = latest_kapt_source()
+def configured_kapt_source() -> tuple[Path, str, str]:
+    configured = os.getenv("ELEMENTARY_KAPT_SOURCE")
+    if configured:
+        return kapt_source_metadata(Path(configured))
+    return latest_kapt_source()
+
+
+KAPT_SOURCE, KAPT_AS_OF, KAPT_ENCODING = configured_kapt_source()
 def target_codes() -> dict[str, str]:
     """Legal-dong region prefix to region name, for the regions in production.
 
@@ -139,7 +165,23 @@ def write_csv(path: Path, rows: list[dict[str, Any]], fieldnames: list[str]) -> 
         writer.writerows(rows)
 
 
-def main() -> None:
+def main(argv: list[str] | None = None) -> None:
+    global KAPT_SOURCE, KAPT_AS_OF, KAPT_ENCODING
+
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument(
+        "--kapt-source",
+        type=Path,
+        help="K-apt snapshot to build from; required for a reproducible build, "
+        "otherwise the newest local snapshot is discovered",
+    )
+    args = parser.parse_args(argv)
+    if args.kapt_source:
+        KAPT_SOURCE, KAPT_AS_OF, KAPT_ENCODING = kapt_source_metadata(args.kapt_source)
+    if not KAPT_SOURCE.is_file():
+        raise FileNotFoundError(f"K-apt source not found: {KAPT_SOURCE}")
+    print(f"K-apt source: {KAPT_SOURCE.name} (as of {KAPT_AS_OF})")
+
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
     apartments: list[dict[str, str]] = []
     with APT_SOURCE.open(encoding="cp949", newline="") as handle:
