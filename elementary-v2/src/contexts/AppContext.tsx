@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useReducer, ReactNode } from 'react'
+import { PRODUCTION_REGION_NAMES } from '../constants/regionRegistry'
 import { FilterState, MapState, UIState, School, Apartment, BreakPoint, UNLIMITED_APARTMENT_AGE } from '../types'
 
 export const DEFAULT_FILTERS: FilterState = {
@@ -9,7 +10,7 @@ export const DEFAULT_FILTERS: FilterState = {
   max_apartment_age: UNLIMITED_APARTMENT_AGE,
   max_public_rental_ratio: 100,
   min_households: 0,
-  selected_cities: ['서울특별시', '경기도', '인천광역시'],
+  selected_cities: [...PRODUCTION_REGION_NAMES],
   selected_districts: [],
 }
 

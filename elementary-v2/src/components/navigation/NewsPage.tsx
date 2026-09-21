@@ -1,5 +1,6 @@
 import { BarChart3, Filter, LoaderCircle, RotateCcw } from 'lucide-react'
 import { useEffect, useMemo, useState } from 'react'
+import { PRODUCTION_REGION_NAMES } from '../../constants/regionRegistry'
 import { fetchReportScatterRows, type ReportScatterRow } from '../../services/dataService'
 
 type XMetric = 'households' | 'builtYear' | 'parkingRatio'
@@ -11,7 +12,7 @@ type SchoolPlotRow = ReportScatterRow & {
   housingHomogeneity: number | null
 }
 
-const REGION_OPTIONS = ['전체', '서울특별시', '경기도', '인천광역시']
+const REGION_OPTIONS = ['전체', ...PRODUCTION_REGION_NAMES]
 const FILTER_OPTIONS: Array<{ value: FilterOption; label: string }> = [
   { value: 'all', label: '전체' },
   { value: 'before2000', label: '1999년 이전' },

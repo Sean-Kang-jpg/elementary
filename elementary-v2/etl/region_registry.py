@@ -57,6 +57,8 @@ class Region:
     has_city_level: bool
     bounds: Bounds
     bounds_source: str
+    center: tuple[float, float]
+    center_source: str
     wave: str
     status: str
     elementary_school_count: int | None = None
@@ -310,6 +312,8 @@ def _build_region(row: dict[str, Any]) -> Region:
             max_lng=float(bounds["max_lng"]),
         ),
         bounds_source=row["bounds_source"],
+        center=(float(row["center"]["lat"]), float(row["center"]["lng"])),
+        center_source=row["center_source"],
         wave=row["wave"],
         status=row["status"],
         elementary_school_count=row.get("elementary_school_count_20260320"),

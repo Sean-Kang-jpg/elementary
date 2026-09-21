@@ -1,8 +1,9 @@
 import { supabase } from '../lib/supabase'
 import { UNLIMITED_APARTMENT_AGE } from '../types'
 import type { AcademyAddress, Apartment, Coordinates, FilterState, MapBounds, School, SearchResult } from '../types'
+import { regionCenter, regionHasCityLevel } from '../constants/regionRegistry'
 import { getSchoolNeighborhoodLabel } from '../utils/clusterUtils'
-import { generateCacheKey, getDisplayMode } from '../utils/mapUtils'
+import { DEFAULT_CENTERS, generateCacheKey, getDisplayMode } from '../utils/mapUtils'
 
 export interface RegionData {
   region: string
@@ -190,13 +191,15 @@ const numberValue = (value: unknown): number => {
 
 const addressParts = (address: string) => {
   const parts = address.trim().split(/\s+/)
-  const isGyeonggi = parts[0] === '경기도'
-  const city = isGyeonggi ? parts[1] || '' : parts[0] || ''
-  const subDistrict = isGyeonggi && /구$/.test(parts[2] || '') ? parts[2] : ''
+  // Provinces put a city between region and district (경기도 성남시 분당구);
+  // metropolitan cities and Sejong go straight to the district.
+  const hasCityLevel = regionHasCityLevel(parts[0] || '')
+  const city = hasCityLevel ? parts[1] || '' : parts[0] || ''
+  const subDistrict = hasCityLevel && /구$/.test(parts[2] || '') ? parts[2] : ''
 
   return {
     city,
-    district: isGyeonggi
+    district: hasCityLevel
       ? [city, subDistrict].filter(Boolean).join(' ')
       : parts[1] || '',
   }
@@ -675,11 +678,8 @@ export const getAcademiesNearApartment = async (canonicalComplexId: string): Pro
   }))
 }
 
-const getRegionCenter = (region: string): Coordinates => ({
-  서울특별시: { lat: 37.5665, lng: 126.9780 },
-  경기도: { lat: 37.4138, lng: 127.5183 },
-  인천광역시: { lat: 37.4563, lng: 126.7052 },
-}[region] || { lat: 37.5, lng: 127.0 })
+const getRegionCenter = (region: string): Coordinates =>
+  regionCenter(region) || DEFAULT_CENTERS.ALL
 
 export const clearDataCache = () => {
   dataCache.clear()

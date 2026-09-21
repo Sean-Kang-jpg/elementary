@@ -1,6 +1,6 @@
 # Region Scope Inventory
 
-Last updated: 2026-09-20
+Last updated: 2026-09-21
 
 Every place the codebase assumes Seoul, Gyeonggi, and Incheon. This is the N0 work list: each row is classified so the generalization pass changes production scope without disturbing historical baselines or archived research.
 
@@ -65,6 +65,18 @@ Classification:
 | `src/types/index.ts:11` | Comment lists the three regions as the domain of `region` | Naming artifact | Update the comment with the schema change |
 | `src/components/navigation/NewsPage.tsx:14` | `REGION_OPTIONS` hardcodes the three regions | Production scope | Build from the registry |
 | `src/services/dataService.ts` full-table school read | All schools are paged once and cached for 30 minutes (2,260 rows today) | Production scope | Must become region- or viewport-scoped before roughly 6,300 national schools reach the map |
+
+## Completed in N0 so far
+
+Done on 2026-09-20 and 2026-09-21, all verified against the locked portability baseline or the frontend gate:
+
+- **ETL collection**: both collectors take `--regions`/`--cities` and resolve regions through the registry.
+- **ETL build**: region derivation, the school-name prefix, and legal-dong prefixes come from the registry.
+- **ETL validation**: the audit checks each row against its own region's bounds, still 52/52.
+- **ETL scheduling**: every run records its resolved scope and per-region row counts.
+- **Frontend**: default regions, the news filter, map centers, and the address parser's city level now come from the generated `src/constants/regionRegistry.ts`; `etl/export_region_registry_ts.py --check` guards drift.
+
+Still open: the SQL `14` migration, the SQL `12` schedule rows, the region-scoped school read, `audit_apartment_etl.py`, `audit_school_etl.py`, `build_school_master_v2.py`, and the `_capital` file names.
 
 ## Out of scope
 
