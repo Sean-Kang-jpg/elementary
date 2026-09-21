@@ -49,11 +49,11 @@ class RegionRegistrySqlTest(unittest.TestCase):
     def test_schedule_update_is_guarded_for_databases_without_migration_12(self) -> None:
         self.assertIn("TO_REGCLASS('public.etl_schedules') IS NOT NULL", self.sql)
 
-    def test_file_number_does_not_collide_with_the_academy_migrations(self) -> None:
+    def test_migration_number_is_unique(self) -> None:
+        """14 and 15 belong to the academy domain, so this one is 16."""
         self.assertTrue(TARGET.name.startswith("16_"), TARGET.name)
-        sql_dir = TARGET.parent
-        self.assertTrue((sql_dir / "14_create_academy_proximity_serving.sql").exists())
-        self.assertTrue((sql_dir / "15_create_school_academy_proximity.sql").exists())
+        same_number = sorted(path.name for path in TARGET.parent.glob("16_*.sql"))
+        self.assertEqual(same_number, [TARGET.name])
 
 
 if __name__ == "__main__":
