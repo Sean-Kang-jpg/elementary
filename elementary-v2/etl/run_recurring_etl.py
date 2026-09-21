@@ -11,11 +11,17 @@ import sys
 import urllib.error
 import urllib.parse
 import urllib.request
+from collections import Counter
 from datetime import date, datetime, timedelta
 from pathlib import Path
 from typing import Any
 
+if __package__ in (None, ""):  # `python etl/run_recurring_etl.py`
+    sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+
 import upload_operational_masters as uploader
+
+from etl.region_registry import load_registry
 
 
 BASE_DIR = Path(__file__).resolve().parent
@@ -58,6 +64,55 @@ def request_json(
     except urllib.error.HTTPError as exc:
         detail = exc.read().decode("utf-8", errors="replace")[:2000]
         raise RuntimeError(f"{method} {path}: HTTP {exc.code}: {detail}") from exc
+
+
+def resolve_scope(manifest: dict[str, Any]) -> dict[str, Any]:
+    """Validate the manifest scope against the registry and resolve it.
+
+    A run records exactly which regions and cities it covers, so it can be
+    attributed, retried, or rolled back on its own. An unknown region name fails
+    here rather than silently producing a partial load.
+    """
+    registry = load_registry()
+    scope = manifest.get("scope") or {}
+    scopes = registry.scopes_from_manifest(scope)
+    if not scopes:
+        raise ValueError("manifest scope must name at least one region")
+    return {
+        "registry_version": registry.registry_version,
+        "regions": [item.region.canonical_name for item in scopes],
+        "cities": {
+            item.region.canonical_name: list(item.cities) for item in scopes if item.cities
+        },
+        "labels": [item.label for item in scopes],
+        "domains": list(scope.get("domains", ())),
+    }
+
+
+def region_row_counts(
+    loaded: list[tuple[str, tuple[str, ...], list[dict[str, Any]]]]
+) -> dict[str, dict[str, int]]:
+    """Row counts per region for every staged table that carries a region."""
+    counts: dict[str, dict[str, int]] = {}
+    for table, _, rows in loaded:
+        per_region = Counter(str(row.get("region") or "") for row in rows if "region" in row)
+        if per_region:
+            counts[table] = dict(sorted(per_region.items()))
+    return counts
+
+
+def out_of_scope_regions(
+    loaded: list[tuple[str, tuple[str, ...], list[dict[str, Any]]]],
+    resolved_scope: dict[str, Any],
+) -> dict[str, int]:
+    """Regions present in the staged rows but absent from the declared scope."""
+    allowed = set(resolved_scope["regions"])
+    found: Counter[str] = Counter()
+    for table_counts in region_row_counts(loaded).values():
+        for region, count in table_counts.items():
+            if region not in allowed:
+                found[region or "(missing)"] += count
+    return dict(found)
 
 
 def load_manifest(path: Path) -> dict[str, Any]:
@@ -158,7 +213,7 @@ def create_run(
             "status": "started",
             "source_as_of": source_dates,
             "row_counts": row_counts,
-            "scope": manifest.get("scope", {}),
+            "scope": manifest.get("resolved_scope") or resolve_scope(manifest),
             "trigger_type": trigger_type,
             "attempt_number": attempt_number,
         },
@@ -298,6 +353,38 @@ def update_schedules(url: str, key: str, run_id: str, manifest: dict[str, Any]) 
         )
 
 
+def scope_checks(
+    run_id: str,
+    loaded: list[tuple[str, tuple[str, ...], list[dict[str, Any]]]],
+    resolved_scope: dict[str, Any],
+) -> list[dict[str, Any]]:
+    """Per-region row counts, plus a guard against rows outside the scope."""
+    checks: list[dict[str, Any]] = [
+        {
+            "run_id": run_id,
+            "check_name": f"row_count:{table}",
+            "scope_name": region or "(missing)",
+            "status": "pass" if region in set(resolved_scope["regions"]) else "warn",
+            "metric_value": count,
+            "metric_unit": "rows",
+        }
+        for table, per_region in region_row_counts(loaded).items()
+        for region, count in per_region.items()
+    ]
+    outside = out_of_scope_regions(loaded, resolved_scope)
+    checks.append(
+        {
+            "run_id": run_id,
+            "check_name": "rows_outside_declared_scope",
+            "scope_name": "global",
+            "status": "pass" if not outside else "warn",
+            "metric_value": sum(outside.values()),
+            "metric_unit": "rows",
+        }
+    )
+    return checks
+
+
 def record_checks(
     url: str,
     key: str,
@@ -305,6 +392,8 @@ def record_checks(
     row_counts: dict[str, int],
     serving_rows: int,
     staging_rows: int,
+    loaded: list[tuple[str, tuple[str, ...], list[dict[str, Any]]]] | None = None,
+    resolved_scope: dict[str, Any] | None = None,
 ) -> None:
     checks = [
         {
@@ -337,6 +426,8 @@ def record_checks(
             },
         ]
     )
+    if loaded is not None and resolved_scope is not None:
+        checks.extend(scope_checks(run_id, loaded, resolved_scope))
     request_json(
         url,
         key,
@@ -384,7 +475,16 @@ def apply_run(
             purge_staging(url, key, run_id)
         staging_rows = uploader.table_count(url, key, "etl_staging_rows")
         update_schedules(url, key, run_id, manifest)
-        record_checks(url, key, run_id, row_counts, remote_serving, staging_rows)
+        record_checks(
+            url,
+            key,
+            run_id,
+            row_counts,
+            remote_serving,
+            staging_rows,
+            loaded,
+            manifest.get("resolved_scope") or resolve_scope(manifest),
+        )
         uploader.finish_etl_run(url, key, run_id, "completed")
         print(f"completed ETL run; serving rows: {remote_serving:,}")
     except Exception as exc:
@@ -409,9 +509,17 @@ def main() -> None:
         raise ValueError("attempt-number must be at least 1")
     manifest_path = args.manifest if args.manifest.is_absolute() else PROJECT_DIR / args.manifest
     manifest = load_manifest(manifest_path)
+    resolved_scope = resolve_scope(manifest)
+    manifest["resolved_scope"] = resolved_scope
+    print(f"scope: {', '.join(resolved_scope['labels'])} (registry {resolved_scope['registry_version']})")
     if args.build:
         build_outputs()
     loaded = validate_outputs()
+    for table, per_region in region_row_counts(loaded).items():
+        print(f"  {table}: " + ", ".join(f"{region} {count:,}" for region, count in per_region.items()))
+    outside = out_of_scope_regions(loaded, resolved_scope)
+    if outside:
+        print(f"  WARNING: rows outside the declared scope: {outside}")
     for snapshot in manifest["snapshots"]:
         body, compression, digest = snapshot_bytes(snapshot["resolved_path"])
         print(
