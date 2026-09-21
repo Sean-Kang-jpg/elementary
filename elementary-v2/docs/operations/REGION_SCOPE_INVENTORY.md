@@ -51,9 +51,9 @@ Classification:
 
 | Location | What it assumes | Class | N0 action |
 | --- | --- | --- | --- |
-| `sql/06_create_operational_master_tables.sql:90,113` | `region IN ('서울특별시','경기도','인천광역시')` on complexes and assignments | Production scope | New idempotent migration `14` replaces both with registry-backed validation, keeping `NOT NULL`, foreign keys, RLS, and source traceability |
-| `sql/07_add_school_grade_statistics.sql:31-33` | School region derived from three address prefixes | Production scope | Extend to all 17 regions, including renamed prefixes, in the same migration |
-| `sql/12_create_etl_monitoring_dashboard.sql:58-64` | Four schedule rows store a fixed three-region scope | Production scope | Make scope a per-run value so each wave's runs are attributable and separately rollback-able |
+| `sql/06_create_operational_master_tables.sql:90,113` | `region IN ('서울특별시','경기도','인천광역시')` on complexes and assignments | Production scope | **Written 2026-09-21** as `sql/16_create_region_registry_contract.sql`: a private `region_registry` table plus foreign keys. Not applied yet |
+| `sql/07_add_school_grade_statistics.sql:31-33` | School region derived from three address prefixes | Production scope | **Written 2026-09-21**: migration 16 adds `region_from_address()`, which resolves all 17 regions including pre-rename prefixes |
+| `sql/12_create_etl_monitoring_dashboard.sql:58-64` | Four schedule rows store a fixed three-region scope | Production scope | **Done 2026-09-21**: each run records its resolved scope, and migration 16 repoints the seeded schedule scopes at the production regions |
 
 ## Frontend
 
@@ -78,7 +78,7 @@ Done on 2026-09-20 and 2026-09-21, all verified against the locked portability b
 
 - **Frontend map read**: the school read is scoped to the regions whose registry envelope overlaps the viewport, measured at 0.89 s against 2.21 s before.
 
-Still open: the SQL `14` migration, the SQL `12` schedule rows, `audit_apartment_etl.py`, `audit_school_etl.py`, `build_school_master_v2.py`, and the `_capital` file names.
+Still open: applying migration `16`, `audit_apartment_etl.py`, `audit_school_etl.py`, `build_school_master_v2.py`, and the `_capital` file names.
 
 ## Out of scope
 

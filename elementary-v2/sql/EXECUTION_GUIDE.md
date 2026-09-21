@@ -69,6 +69,42 @@ python etl/upload_academy_proximity.py --apply
 
 The first command validates local keys, JSON fields, and profile row counts. The second performs a read-only schema/count preflight. The final command upserts in foreign-key order, verifies exact remote counts, and calls `nearby_academy_addresses` with the anonymous key. Never upload `apartment_academy_proximity_20260920.csv`; the million-row link candidate was explicitly rejected.
 
+### Migration 16: region registry contract
+
+`sql/16_create_region_registry_contract.sql` is required before any nationwide expansion wave and is generated from `etl/region_registry.json` by `etl/export_region_registry_sql.py`. Never hand-edit it; change the registry and regenerate, which the `etl.tests.test_region_registry_sql` drift test enforces.
+
+It replaces migration 06's literal `region IN ('서울특별시', '경기도', '인천광역시')` checks with a private `region_registry` table and foreign keys from `apartment_complex_master`, `apartment_assignment_units`, and `school_master`. Promoting a region then becomes `UPDATE region_registry SET is_production = TRUE`, not another schema migration. `school_master.region` gains validation it never had. The table is service-role only, so the anonymous contract stays at `school_master` and `school_apartment_serving`.
+
+The migration is transactional and re-runnable. All 17 regions are seeded, but only the three capital regions start with `is_production = TRUE`, so applying it changes no current behavior.
+
+Verify after applying:
+
+```sql
+-- 17 regions seeded, 3 in production
+SELECT COUNT(*) AS regions, COUNT(*) FILTER (WHERE is_production) AS production FROM region_registry;
+
+-- the three foreign keys exist and are validated
+SELECT conrelid::regclass AS table_name, conname, convalidated
+FROM pg_constraint
+WHERE confrelid = 'region_registry'::regclass
+ORDER BY 1;
+
+-- the old literal checks are gone
+SELECT conname FROM pg_constraint
+WHERE conname IN ('apartment_complex_region_check', 'apartment_assignment_region_check');
+
+-- address resolution, including pre-rename prefixes
+SELECT region_from_address('강원도 춘천시 중앙로 1') AS gangwon,
+       region_from_address('경기도 광주시 경안로 7') AS gyeonggi_gwangju;
+
+-- schedules follow the production regions
+SELECT schedule_id, scope_regions FROM etl_schedules ORDER BY schedule_id;
+```
+
+Expected: 17 and 3; three `convalidated = true` rows; no rows for the old checks; `강원특별자치도` and `경기도`; every schedule carrying the same three production regions.
+
+Anonymous access must stay blocked. With the anon key, `select * from region_registry` returns no rows and no data, while `school_master` and `school_apartment_serving` still read normally.
+
 ## 4. Load and Verify
 
 After `check_supabase_schema.py` confirms all tables are available, run:
