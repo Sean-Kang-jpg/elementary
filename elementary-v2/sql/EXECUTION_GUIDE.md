@@ -77,7 +77,15 @@ It replaces migration 06's literal `region IN ('서울특별시', '경기도', '
 
 The migration is transactional and re-runnable. All 17 regions are seeded, but only the three capital regions start with `is_production = TRUE`, so applying it changes no current behavior.
 
-Verify after applying:
+Verify after applying with the read-only checker, which needs no SQL editor:
+
+```bash
+python etl/verify_region_registry_contract.py
+```
+
+It confirms the seeded regions, the production flags, the registry version, anonymous refusal on `region_registry` alongside working anonymous reads of the two public tables, the schedule scopes, that every region-backed table holds only production regions, and the three foreign keys, which it proves by asking PostgREST to embed `region_registry`. Applied on 2026-09-21: 14/14 checks passed.
+
+For constraint metadata in the SQL editor:
 
 ```sql
 -- 17 regions seeded, 3 in production
