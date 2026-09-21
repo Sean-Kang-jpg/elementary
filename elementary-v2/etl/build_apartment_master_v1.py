@@ -21,7 +21,8 @@ from typing import Any
 if __package__ in (None, ""):  # `python etl/build_apartment_master_v1.py`
     sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
-from etl.region_registry import load_registry
+from etl.fetch_schoolinfo_2026 import build_scopes, scope_slug
+from etl.region_registry import RegionScopeError, load_registry
 
 BASE_DIR = Path(__file__).resolve().parent
 ROOT_DIR = BASE_DIR.parents[2]
@@ -67,6 +68,8 @@ def configured_kapt_source() -> tuple[Path, str, str]:
 
 
 KAPT_SOURCE, KAPT_AS_OF, KAPT_ENCODING = configured_kapt_source()
+
+
 def target_codes() -> dict[str, str]:
     """Legal-dong region prefix to region name, for the regions in production.
 
@@ -87,6 +90,17 @@ APARTMENT_BASE_AS_OF = "2024-10-01"
 
 def text(value: Any) -> str:
     return str(value or "").strip()
+
+
+def kapt_region(row: dict[str, str]) -> str:
+    """Region for a K-apt row, splitting merged values such as 전라남도광주특별시."""
+    try:
+        region = load_registry().resolve_source_region(
+            text(row.get("시도")), text(row.get("시군구")), row.get("도로명주소")
+        )
+    except RegionScopeError:
+        return ""
+    return region.canonical_name
 
 
 def normalize(value: Any) -> str:
@@ -166,9 +180,17 @@ def write_csv(path: Path, rows: list[dict[str, Any]], fieldnames: list[str]) -> 
 
 
 def main(argv: list[str] | None = None) -> None:
-    global KAPT_SOURCE, KAPT_AS_OF, KAPT_ENCODING
+    global KAPT_SOURCE, KAPT_AS_OF, KAPT_ENCODING, TARGET_CODES, TARGET_REGIONS
 
     parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument(
+        "--regions", nargs="*", default=(),
+        help="registry region names; default is the current production scope",
+    )
+    parser.add_argument(
+        "--cities", nargs="*", default=(),
+        help="restrict a single region to these cities",
+    )
     parser.add_argument(
         "--kapt-source",
         type=Path,
@@ -176,6 +198,18 @@ def main(argv: list[str] | None = None) -> None:
         "otherwise the newest local snapshot is discovered",
     )
     args = parser.parse_args(argv)
+
+    scopes = build_scopes(load_registry(), args.regions, args.cities)
+    slug = scope_slug(list(scopes))
+    suffix = "_20260320" if slug == "capital" else f"_{slug}"
+    TARGET_CODES = {
+        code: scope.region.canonical_name
+        for scope in scopes
+        for code in scope.region.legal_dong_codes
+    }
+    TARGET_REGIONS = set(TARGET_CODES.values())
+    print(f"scope: {', '.join(scope.label for scope in scopes)} (slug {slug})")
+
     if args.kapt_source:
         KAPT_SOURCE, KAPT_AS_OF, KAPT_ENCODING = kapt_source_metadata(args.kapt_source)
     if not KAPT_SOURCE.is_file():
@@ -195,7 +229,7 @@ def main(argv: list[str] | None = None) -> None:
     kapt_rows: list[dict[str, str]] = []
     with KAPT_SOURCE.open(encoding=KAPT_ENCODING, newline="") as handle:
         for row in csv.DictReader(handle):
-            if text(row.get("시도")) in TARGET_REGIONS:
+            if kapt_region(row) in TARGET_REGIONS:
                 kapt_rows.append(row)
     kapt_by_code = {text(row.get("단지코드")): row for row in kapt_rows}
 
@@ -548,13 +582,13 @@ def main(argv: list[str] | None = None) -> None:
                 "top_candidates": json.dumps(ranked[:5], ensure_ascii=False),
             })
 
-    csv_path = OUTPUT_DIR / "apartment_master_v1_20260320.csv"
-    json_path = OUTPUT_DIR / "apartment_master_v1_20260320.json"
-    review_path = OUTPUT_DIR / "apartment_kapt_review_queue.csv"
-    shared_review_path = OUTPUT_DIR / "apartment_shared_complex_review.csv"
-    property_review_path = OUTPUT_DIR / "apartment_property_conflicts.csv"
-    name_history_path = OUTPUT_DIR / "apartment_name_history.csv"
-    property_history_path = OUTPUT_DIR / "apartment_property_history.csv"
+    csv_path = OUTPUT_DIR / f"apartment_master_v1{suffix}.csv"
+    json_path = OUTPUT_DIR / f"apartment_master_v1{suffix}.json"
+    review_path = OUTPUT_DIR / f"apartment_kapt_review_queue{suffix if slug != 'capital' else ''}.csv"
+    shared_review_path = OUTPUT_DIR / f"apartment_shared_complex_review{suffix if slug != 'capital' else ''}.csv"
+    property_review_path = OUTPUT_DIR / f"apartment_property_conflicts{suffix if slug != 'capital' else ''}.csv"
+    name_history_path = OUTPUT_DIR / f"apartment_name_history{suffix if slug != 'capital' else ''}.csv"
+    property_history_path = OUTPUT_DIR / f"apartment_property_history{suffix if slug != 'capital' else ''}.csv"
     write_csv(csv_path, master, list(master[0]))
     with json_path.open("w", encoding="utf-8") as handle:
         json.dump(master, handle, ensure_ascii=False, indent=2)
@@ -644,7 +678,7 @@ def main(argv: list[str] | None = None) -> None:
             property_review_path.name, name_history_path.name, property_history_path.name,
         ],
     }
-    with (OUTPUT_DIR / "apartment_master_v1_report.json").open("w", encoding="utf-8") as handle:
+    with (OUTPUT_DIR / f"apartment_master_v1_report{'' if slug == 'capital' else '_' + slug}.json").open("w", encoding="utf-8") as handle:
         json.dump(report, handle, ensure_ascii=False, indent=2)
     print(json.dumps(report, ensure_ascii=True, indent=2))
 

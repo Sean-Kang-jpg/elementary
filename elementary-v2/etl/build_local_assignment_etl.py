@@ -16,6 +16,9 @@ from collections import Counter
 from datetime import datetime
 from pathlib import Path
 
+if __package__ in (None, ""):  # `python etl/build_local_assignment_etl.py`
+    sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+
 import shapefile
 from pyproj import Transformer
 from shapely.geometry import Point, shape
@@ -26,11 +29,30 @@ sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 BASE = Path(__file__).parent
 SHP = BASE / "data" / "hakgudo" / "elem_hakgudo_20250922.shp"
 APT_MST = Path(r"F:/sm/vibe/elementary/archive/GAS/GAS/임시/apt_mst_info_202410.csv")
-TARGET_SD = {"11", "41", "28"}  # Seoul, Gyeonggi, Incheon
-TARGET_SD_NAMES = {"11": "seoul", "41": "gyeonggi", "28": "incheon"}
+# Legacy region slugs for the capital scope. New scopes use the canonical name,
+# which is what the operational builder and the audits read.
+CAPITAL_SD_NAMES = {"11": "seoul", "41": "gyeonggi", "28": "incheon"}
+TARGET_SD: set[str] = set(CAPITAL_SD_NAMES)
+TARGET_SD_NAMES: dict[str, str] = dict(CAPITAL_SD_NAMES)
+
+
+def apply_scope(scopes) -> str:
+    """Point this module at a region scope and return its slug."""
+    global TARGET_SD, TARGET_SD_NAMES
+    codes: dict[str, str] = {}
+    for scope in scopes:
+        for code in scope.region.legal_dong_codes:
+            codes[code] = scope.region.canonical_name
+    TARGET_SD = set(codes)
+    slug = scope_slug(list(scopes))
+    TARGET_SD_NAMES = dict(CAPITAL_SD_NAMES) if slug == "capital" else codes
+    return slug
 MAX_NEARBY_M = 250.0
 RADIUS_FACTOR = 2.0
 RADIUS_CAP_M = 180.0
+
+from etl.fetch_schoolinfo_2026 import build_scopes, scope_slug
+from etl.region_registry import load_registry
 
 to_5186 = Transformer.from_crs("EPSG:4326", "EPSG:5186", always_xy=True)
 
@@ -180,7 +202,20 @@ def main():
     parser = argparse.ArgumentParser(description="Build local official-polygon assignment CSV/JSON outputs.")
     parser.add_argument("--out-dir", type=Path, default=BASE / "local_outputs")
     parser.add_argument("--shp", type=Path, default=SHP, help="Official elementary hakgudo SHP input.")
+    parser.add_argument(
+        "--regions", nargs="*", default=(),
+        help="registry region names; default is the current production scope",
+    )
+    parser.add_argument(
+        "--cities", nargs="*", default=(),
+        help="restrict a single region to these cities",
+    )
     args = parser.parse_args()
+
+    scopes = build_scopes(load_registry(), args.regions, args.cities)
+    slug = apply_scope(scopes)
+    suffix = "" if slug == "capital" else f"_{slug}"
+    print(f"scope: {', '.join(scope.label for scope in scopes)} (slug {slug})")
 
     tree, geoms, metas = load_polygons(args.shp)
     apartments = load_apartments()
@@ -191,11 +226,11 @@ def main():
     candidates = [r for r in rows if r["needs_building_check"]]
 
     args.out_dir.mkdir(parents=True, exist_ok=True)
-    assignments_csv = args.out_dir / "apartment_point_assignments.csv"
-    candidates_csv = args.out_dir / "building_check_candidates.csv"
-    assignments_json = args.out_dir / "apartment_point_assignments.json"
-    candidates_json = args.out_dir / "building_check_candidates.json"
-    summary_json = args.out_dir / "assignment_summary.json"
+    assignments_csv = args.out_dir / f"apartment_point_assignments{suffix}.csv"
+    candidates_csv = args.out_dir / f"building_check_candidates{suffix}.csv"
+    assignments_json = args.out_dir / f"apartment_point_assignments{suffix}.json"
+    candidates_json = args.out_dir / f"building_check_candidates{suffix}.json"
+    summary_json = args.out_dir / f"assignment_summary{suffix}.json"
 
     write_csv(assignments_csv, rows)
     write_csv(candidates_csv, candidates)

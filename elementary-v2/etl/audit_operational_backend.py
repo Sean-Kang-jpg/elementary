@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import argparse
 import csv
 import json
 import sys
@@ -13,12 +14,13 @@ from typing import Any
 if __package__ in (None, ""):  # `python etl/audit_operational_backend.py`
     sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
+from etl.fetch_schoolinfo_2026 import build_scopes, scope_slug
 from etl.region_registry import RegionScopeError, load_registry
 
 BASE_DIR = Path(__file__).resolve().parent
 OUTPUT_DIR = BASE_DIR / "local_outputs_20260320"
-REPORT_JSON = OUTPUT_DIR / "backend_audit_report.json"
-REPORT_MD = OUTPUT_DIR / "backend_audit_report.md"
+REPORT_JSON_NAME = "backend_audit_report"
+REPORT_MD_NAME = "backend_audit_report"
 SUPABASE_REPORT = OUTPUT_DIR / "supabase_backend_check.json"
 SQL_PATH = BASE_DIR.parent / "sql" / "06_create_operational_master_tables.sql"
 SERVING_REFRESH_SQL_PATH = BASE_DIR.parent / "sql" / "09_create_serving_refresh_function.sql"
@@ -93,15 +95,33 @@ def sql_columns(sql: str, table: str) -> set[str]:
     return columns
 
 
-def main() -> None:
+def main(argv: list[str] | None = None) -> None:
+    global REGIONS
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument(
+        "--regions", nargs="*", default=(),
+        help="registry region names; default is the current production scope",
+    )
+    parser.add_argument(
+        "--cities", nargs="*", default=(),
+        help="restrict a single region to these cities",
+    )
+    args = parser.parse_args(argv)
+
+    scopes = build_scopes(load_registry(), args.regions, args.cities)
+    slug = scope_slug(list(scopes))
+    suffix = "" if slug == "capital" else f"_{slug}"
+    REGIONS = {scope.region.canonical_name for scope in scopes}
+    print(f"scope: {', '.join(scope.label for scope in scopes)} (slug {slug})")
+
     datasets = {
-        "school_master": load(OUTPUT_DIR / "school_master_operational_v1.json"),
-        "apartment_complex_master": load(OUTPUT_DIR / "apartment_complex_master_v1.json"),
-        "apartment_assignment_units": load(OUTPUT_DIR / "apartment_assignment_units_v1.json"),
-        "apartment_assignment_schools": load(OUTPUT_DIR / "apartment_assignment_schools_v1.json"),
-        "school_apartment_serving": load(OUTPUT_DIR / "school_apartment_serving_v1.json"),
-        "apartment_name_history": load(OUTPUT_DIR / "apartment_name_history_operational_v1.csv"),
-        "apartment_property_history": load(OUTPUT_DIR / "apartment_property_history_operational_v1.csv"),
+        "school_master": load(OUTPUT_DIR / f"school_master_operational_v1{suffix}.json"),
+        "apartment_complex_master": load(OUTPUT_DIR / f"apartment_complex_master_v1{suffix}.json"),
+        "apartment_assignment_units": load(OUTPUT_DIR / f"apartment_assignment_units_v1{suffix}.json"),
+        "apartment_assignment_schools": load(OUTPUT_DIR / f"apartment_assignment_schools_v1{suffix}.json"),
+        "school_apartment_serving": load(OUTPUT_DIR / f"school_apartment_serving_v1{suffix}.json"),
+        "apartment_name_history": load(OUTPUT_DIR / f"apartment_name_history_operational_v1{suffix}.csv"),
+        "apartment_property_history": load(OUTPUT_DIR / f"apartment_property_history_operational_v1{suffix}.csv"),
     }
     keys = {
         "school_master": ("school_id",),
@@ -411,7 +431,7 @@ def main() -> None:
         "units_with_school_links": len(link_units),
         "checks": checks,
     }
-    REPORT_JSON.write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8")
+    (OUTPUT_DIR / f"{REPORT_JSON_NAME}{suffix}.json").write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8")
 
     lines = [
         "# Backend Operational Data Audit",
@@ -443,7 +463,7 @@ def main() -> None:
             lines.append("```json")
             lines.append(json.dumps(check["samples"], ensure_ascii=False, indent=2))
             lines.append("```")
-    REPORT_MD.write_text("\n".join(lines) + "\n", encoding="utf-8")
+    (OUTPUT_DIR / f"{REPORT_MD_NAME}{suffix}.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
     print(json.dumps({key: report[key] for key in ("status", "total_rows", "check_count", "failed_check_count")}, indent=2))
     if failed:
         for check in failed:

@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import argparse
 import csv
 import json
 import re
@@ -15,6 +16,7 @@ from typing import Any
 if __package__ in (None, ""):  # `python etl/build_operational_masters.py`
     sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
+from etl.fetch_schoolinfo_2026 import build_scopes, scope_slug
 from etl.region_registry import RegionScopeError, load_registry
 
 BASE_DIR = Path(__file__).resolve().parent
@@ -398,9 +400,9 @@ def build_assignment_units(
     return output, school_links
 
 
-def dump_outputs(name: str, rows: list[dict[str, Any]]) -> tuple[Path, Path]:
-    csv_path = OUTPUT_DIR / f"{name}.csv"
-    json_path = OUTPUT_DIR / f"{name}.json"
+def dump_outputs(name: str, rows: list[dict[str, Any]], suffix: str = "") -> tuple[Path, Path]:
+    csv_path = OUTPUT_DIR / f"{name}{suffix}.csv"
+    json_path = OUTPUT_DIR / f"{name}{suffix}.json"
     write_csv(csv_path, rows)
     json_path.write_text(json.dumps(rows, ensure_ascii=False, indent=2), encoding="utf-8")
     return csv_path, json_path
@@ -481,20 +483,42 @@ def build_school_apartment_serving(
     return output
 
 
-def main() -> None:
-    apartments = read_csv(APARTMENTS)
-    school_source = read_csv(SCHOOLS)
+def read_optional_csv(path: Path) -> list[dict[str, str]]:
+    """Reviewed review-queue and resolution inputs exist for the capital scope only."""
+    return read_csv(path) if path.is_file() else []
+
+
+def main(argv: list[str] | None = None) -> None:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument(
+        "--regions", nargs="*", default=(),
+        help="registry region names; default is the current production scope",
+    )
+    parser.add_argument(
+        "--cities", nargs="*", default=(),
+        help="restrict a single region to these cities",
+    )
+    args = parser.parse_args(argv)
+
+    scopes = build_scopes(load_registry(), args.regions, args.cities)
+    slug = scope_slug(list(scopes))
+    scope_suffix = "" if slug == "capital" else f"_{slug}"
+    input_suffix = "_20260320" if slug == "capital" else f"_{slug}"
+    print(f"scope: {', '.join(scope.label for scope in scopes)} (slug {slug})")
+
+    apartments = read_csv(OUTPUT_DIR / f"apartment_master_v1{input_suffix}.csv")
+    school_source = read_csv(OUTPUT_DIR / f"school_master_v2{input_suffix}.csv")
     school_master = build_school_master(school_source)
     complex_master = build_complex_master(apartments)
     assignment_units, assignment_school_links = build_assignment_units(
         apartments,
-        read_csv(POINT_ASSIGNMENTS),
-        read_csv(REVIEW_QUEUE),
-        read_csv(RESOLVED_CASES),
+        read_csv(OUTPUT_DIR / f"apartment_point_assignments{scope_suffix}.csv"),
+        read_optional_csv(OUTPUT_DIR / f"assignment_review_queue{scope_suffix}.csv"),
+        read_optional_csv(OUTPUT_DIR / f"p1_resolved_cases{scope_suffix}.csv"),
         school_master,
     )
-    name_history = remap_history(read_csv(NAME_HISTORY), assignment_units)
-    property_history = remap_history(read_csv(PROPERTY_HISTORY), assignment_units)
+    name_history = remap_history(read_csv(OUTPUT_DIR / f"apartment_name_history{scope_suffix}.csv"), assignment_units)
+    property_history = remap_history(read_csv(OUTPUT_DIR / f"apartment_property_history{scope_suffix}.csv"), assignment_units)
     school_apartment_serving = build_school_apartment_serving(
         school_master,
         complex_master,
@@ -517,12 +541,12 @@ def main() -> None:
         ("apartment_assignment_schools_v1", assignment_school_links),
         ("school_apartment_serving_v1", school_apartment_serving),
     ):
-        outputs.extend(path.name for path in dump_outputs(name, rows))
+        outputs.extend(path.name for path in dump_outputs(name, rows, scope_suffix))
     for name, rows in (
         ("apartment_name_history_operational_v1", name_history),
         ("apartment_property_history_operational_v1", property_history),
     ):
-        path = OUTPUT_DIR / f"{name}.csv"
+        path = OUTPUT_DIR / f"{name}{scope_suffix}.csv"
         write_csv(path, rows)
         outputs.append(path.name)
 
@@ -544,7 +568,7 @@ def main() -> None:
         "apartment_property_history": len(property_history),
         "outputs": outputs,
     }
-    report_path = OUTPUT_DIR / "operational_masters_report.json"
+    report_path = OUTPUT_DIR / f"operational_masters_report{scope_suffix}.json"
     report_path.write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8")
     print(json.dumps(report, ensure_ascii=False, indent=2))
 

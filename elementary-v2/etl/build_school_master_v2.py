@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import argparse
 import csv
 import json
 import math
@@ -15,6 +16,7 @@ from typing import Any
 if __package__ in (None, ""):  # `python etl/build_school_master_v2.py`
     sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
+from etl.fetch_schoolinfo_2026 import build_scopes, scope_slug
 from etl.region_registry import load_registry
 
 
@@ -123,9 +125,39 @@ def write_csv(path: Path, rows: list[dict[str, Any]], fieldnames: list[str]) -> 
         writer.writerows(rows)
 
 
-def main() -> None:
-    schoolinfo_year, basic_source, grade_source = latest_schoolinfo_sources()
-    with MASTER_V1.open(encoding="utf-8") as handle:
+def base_master_path(slug: str) -> Path:
+    """Reviewed baseline for the capital scope, generated base for a new wave."""
+    if slug == "capital":
+        return MASTER_V1
+    return OUTPUT_DIR / f"school_master_v1_{slug}.json"
+
+
+def main(argv: list[str] | None = None) -> None:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument(
+        "--regions", nargs="*", default=(),
+        help="registry region names; default is the current production scope",
+    )
+    parser.add_argument(
+        "--cities", nargs="*", default=(),
+        help="restrict a single region to these cities",
+    )
+    parser.add_argument("--base", type=Path, help="override the base master path")
+    args = parser.parse_args(argv)
+
+    scopes = build_scopes(load_registry(), args.regions, args.cities)
+    slug = scope_slug(list(scopes))
+    suffix = "_20260320" if slug == "capital" else f"_{slug}"
+    base_path = args.base or base_master_path(slug)
+    if not base_path.is_file():
+        raise FileNotFoundError(
+            f"base master not found: {base_path}; run build_school_base_v1.py for this scope first"
+        )
+    print(f"scope: {', '.join(scope.label for scope in scopes)} (slug {slug})")
+    print(f"base master: {base_path.name}")
+
+    schoolinfo_year, basic_source, grade_source = latest_schoolinfo_sources(None if slug == "capital" else slug)
+    with base_path.open(encoding="utf-8") as handle:
         master = json.load(handle)
     with basic_source.open(encoding="utf-8") as handle:
         basic_rows = json.load(handle)
@@ -249,9 +281,9 @@ def main() -> None:
             row["other_students"] = None
         enriched.append(row)
 
-    csv_path = OUTPUT_DIR / "school_master_v2_20260320.csv"
-    json_path = OUTPUT_DIR / "school_master_v2_20260320.json"
-    crosswalk_path = OUTPUT_DIR / f"school_id_schoolinfo_crosswalk_{schoolinfo_year}.csv"
+    csv_path = OUTPUT_DIR / f"school_master_v2{suffix}.csv"
+    json_path = OUTPUT_DIR / f"school_master_v2{suffix}.json"
+    crosswalk_path = OUTPUT_DIR / f"school_id_schoolinfo_crosswalk_{schoolinfo_year}{'' if slug == 'capital' else '_' + slug}.csv"
     write_csv(csv_path, enriched, list(enriched[0]))
     with json_path.open("w", encoding="utf-8") as handle:
         json.dump(enriched, handle, ensure_ascii=False, indent=2)
@@ -277,7 +309,7 @@ def main() -> None:
         ],
         "outputs": [csv_path.name, json_path.name, crosswalk_path.name],
     }
-    with (OUTPUT_DIR / "school_master_v2_report.json").open("w", encoding="utf-8") as handle:
+    with (OUTPUT_DIR / f"school_master_v2_report{'' if slug == 'capital' else '_' + slug}.json").open("w", encoding="utf-8") as handle:
         json.dump(report, handle, ensure_ascii=False, indent=2)
     print(json.dumps(report, ensure_ascii=True, indent=2))
 
