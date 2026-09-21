@@ -168,3 +168,23 @@ export const regionHasCityLevel = (name: string): boolean =>
 
 export const regionCenter = (name: string): { lat: number; lng: number } | undefined =>
   findRegion(name)?.center
+
+export interface RegionBoundsQuery {
+  northeast: { lat: number; lng: number }
+  southwest: { lat: number; lng: number }
+}
+
+/**
+ * Regions whose envelope overlaps the given map bounds.
+ *
+ * Used to read schools only for the regions actually on screen. A district
+ * never spans two regions, so per-district and per-neighborhood totals stay
+ * complete for everything the map can show.
+ */
+export const regionsIntersectingBounds = (bounds: RegionBoundsQuery): string[] =>
+  REGIONS.filter((region) => (
+    region.bounds.minLat <= bounds.northeast.lat &&
+    region.bounds.maxLat >= bounds.southwest.lat &&
+    region.bounds.minLng <= bounds.northeast.lng &&
+    region.bounds.maxLng >= bounds.southwest.lng
+  )).map((region) => region.canonicalName)

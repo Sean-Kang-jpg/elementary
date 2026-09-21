@@ -247,7 +247,7 @@ const MarkerManager: React.FC<MarkerManagerProps> = ({ map }) => {
 
       try {
         const data = requestZoom < 14 && !districtScope
-          ? await fetchDistrictOverviewData(state.filters)
+          ? await fetchDistrictOverviewData(requestBounds, state.filters)
           : requestZoom >= 14 && neighborhoodSchoolIds.length > 0
           ? await fetchSchoolsByIds(neighborhoodSchoolIds, state.filters)
           : districtScope && requestZoom >= 13

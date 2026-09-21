@@ -1,7 +1,7 @@
 import { supabase } from '../lib/supabase'
 import { UNLIMITED_APARTMENT_AGE } from '../types'
-import type { AcademyAddress, Apartment, Coordinates, FilterState, MapBounds, School, SearchResult } from '../types'
-import { regionCenter, regionHasCityLevel } from '../constants/regionRegistry'
+import type { AcademyAddress, Apartment, ApartmentAcademySummary, Coordinates, FilterState, MapBounds, School, SearchResult } from '../types'
+import { regionCenter, regionHasCityLevel, regionsIntersectingBounds } from '../constants/regionRegistry'
 import { getSchoolNeighborhoodLabel } from '../utils/clusterUtils'
 import { DEFAULT_CENTERS, generateCacheKey, getDisplayMode } from '../utils/mapUtils'
 
@@ -308,10 +308,12 @@ export const fetchRegionData = async (
 export const fetchRegionAggregatedData = async (filters: FilterState): Promise<RegionData[]> => {
   const rows: SchoolMasterRow[] = []
   for (let start = 0; ; start += 1000) {
-    const { data, error } = await supabase
+    let query = supabase
       .from('school_master')
       .select('school_id,road_address,legal_address,region,total_students,student_data_status,establishment_type')
-      .range(start, start + 999)
+
+    if (filters.selected_cities.length) query = query.in('region', filters.selected_cities)
+    const { data, error } = await query.range(start, start + 999)
     if (error) throw error
     rows.push(...(data || []))
     if (!data || data.length < 1000) break
@@ -356,13 +358,32 @@ export const fetchSchoolDetailData = async (bounds: MapBounds, filters: FilterSt
   return applyMatchingSchoolFilter(schools, filters)
 }
 
-export const fetchDistrictOverviewData = async (filters: FilterState): Promise<School[]> => {
+/**
+ * Regions to read for a viewport: the selected regions narrowed to those whose
+ * registry envelope is actually on screen.
+ *
+ * District and neighborhood totals must stay full-area rather than
+ * viewport-clipped, so this scopes by region rather than by bounds. A district
+ * never spans two regions, so every total the map can show stays complete.
+ */
+const regionsInView = (bounds: MapBounds, filters: FilterState): string[] => {
+  const visible = regionsIntersectingBounds(bounds)
+  const selected = filters.selected_cities.length ? filters.selected_cities : visible
+  const scoped = selected.filter((region) => visible.includes(region))
+  return scoped.length ? scoped : selected
+}
+
+export const fetchDistrictOverviewData = async (
+  bounds: MapBounds,
+  filters: FilterState,
+): Promise<School[]> => {
   const gradeColumn = `grade${filters.target_grade}_students`
+  const regions = regionsInView(bounds, filters)
   const cacheKey = `district-overview_${JSON.stringify({
     grade: filters.target_grade,
     minStudents: filters.min_students,
     schoolTypes: filters.school_types,
-    cities: filters.selected_cities,
+    cities: regions,
     districts: filters.selected_districts,
     minHouseholds: filters.min_households,
     minParkingRatio: filters.min_parking_ratio,
@@ -382,7 +403,7 @@ export const fetchDistrictOverviewData = async (filters: FilterState): Promise<S
       ].join(','))
       .gte(gradeColumn, filters.min_students)
 
-    if (filters.selected_cities.length) query = query.in('region', filters.selected_cities)
+    if (regions.length) query = query.in('region', regions)
     const { data, error } = await query.range(start, start + 999)
     if (error) throw error
     rows.push(...((data || []) as unknown as SchoolMasterRow[]))
@@ -676,6 +697,24 @@ export const getAcademiesNearApartment = async (canonicalComplexId: string): Pro
       ? 'nearest_building_centroid'
       : 'complex_centroid',
   }))
+}
+
+export const getApartmentAcademySummaries = async (
+  canonicalComplexIds: string[],
+): Promise<Record<string, ApartmentAcademySummary>> => {
+  const ids = [...new Set(canonicalComplexIds.filter(Boolean))]
+  if (!ids.length) return {}
+
+  const { data, error } = await supabase
+    .from('apartment_academy_summary')
+    .select('canonical_complex_id,core_address_count,extended_address_count,core_institution_count,extended_institution_count,distance_origin_type,updated_at')
+    .in('canonical_complex_id', ids)
+  if (error) throw error
+
+  return ((data || []) as ApartmentAcademySummary[]).reduce<Record<string, ApartmentAcademySummary>>((result, row) => {
+    result[row.canonical_complex_id] = row
+    return result
+  }, {})
 }
 
 const getRegionCenter = (region: string): Coordinates =>

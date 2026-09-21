@@ -76,7 +76,9 @@ Done on 2026-09-20 and 2026-09-21, all verified against the locked portability b
 - **ETL scheduling**: every run records its resolved scope and per-region row counts.
 - **Frontend**: default regions, the news filter, map centers, and the address parser's city level now come from the generated `src/constants/regionRegistry.ts`; `etl/export_region_registry_ts.py --check` guards drift.
 
-Still open: the SQL `14` migration, the SQL `12` schedule rows, the region-scoped school read, `audit_apartment_etl.py`, `audit_school_etl.py`, `build_school_master_v2.py`, and the `_capital` file names.
+- **Frontend map read**: the school read is scoped to the regions whose registry envelope overlaps the viewport, measured at 0.89 s against 2.21 s before.
+
+Still open: the SQL `14` migration, the SQL `12` schedule rows, `audit_apartment_etl.py`, `audit_school_etl.py`, `build_school_master_v2.py`, and the `_capital` file names.
 
 ## Out of scope
 
