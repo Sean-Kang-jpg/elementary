@@ -29,7 +29,7 @@ Classification:
 | `etl/build_operational_masters.py:370` | `대원초` special case in the match-method label | Validation rule | Review during the first non-capital EDA; a per-school exception list does not scale |
 | `etl/build_apartment_master_v1.py:35,45` | `TARGET_CODES` maps three legal-dong prefixes; `서울시`/`인천시` normalized by hand | Production scope | Take codes from the registry, including legacy codes 42 and 45; replace hand normalization with alias resolution |
 | `etl/build_school_master_v1.py:17-24,78` | Three legacy per-region input files and `CAPITAL_EDUCATION_OFFICES` | Historical baseline | Legacy v1 builder; generalize only if it re-enters the pipeline |
-| `etl/build_school_master_v2.py:25-30,61` | `*_capital.json` inputs and a three-region loop | Production scope and naming artifact | Loop over scopes; rename inputs with the manifest and baseline in one change |
+| `etl/build_school_master_v2.py:25-30,61` | `*_capital.json` inputs and a three-region loop | Production scope | **Done 2026-09-21**: the region comes from the registry and the input glob treats the scope slug as opaque, so a new wave needs no change here |
 
 ## ETL validation
 
@@ -37,15 +37,15 @@ Classification:
 | --- | --- | --- | --- |
 | `etl/audit_operational_backend.py:21,215` | `REGIONS` set rejects any other region value | Validation rule | Validate against registry production scopes for the run |
 | `etl/audit_operational_backend.py:202-209` | One hardcoded box `36.7-38.7N, 124.0-128.3E` for every table | Validation rule | Check each row against its own region's registry bounds. The current box is capital-only and would reject Busan, Jeju, and Ulleung |
-| `etl/audit_apartment_etl.py:20,29,170-180` | `TARGET_CODES`, hand normalization, `capital_rows` metrics | Validation rule | Registry-driven; report per-region counts instead of one capital total |
-| `etl/audit_school_etl.py:22-24,239,258` | Per-region prefixes, `capital_region_schools`, the recorded 2,240-school universe | Validation rule and historical baseline | Generalize the counts; keep the 2,240 sentence as a dated historical note |
+| `etl/audit_apartment_etl.py:20,29,170-180` | `TARGET_CODES`, hand normalization, `capital_rows` metrics | Validation rule | **Done 2026-09-21**: legal-dong prefixes come from the registry, K-apt rows resolve through `resolve_source_region()` so merged values split correctly, and the report counts per region under `rows_in_scope` |
+| `etl/audit_school_etl.py:22-24,239,258` | Per-region prefixes, `capital_region_schools`, the recorded 2,240-school universe | Historical only | **Closed 2026-09-21 without generalizing**: this audits the v1 per-region snapshots, which are no longer present locally, and nothing calls it. Annotated as historical; `audit_operational_backend.py` is the operational audit |
 
 ## ETL scheduling and portability
 
 | Location | What it assumes | Class | N0 action |
 | --- | --- | --- | --- |
 | `etl/recurring_etl_manifest.json:5-8` | `scope.regions` lists the three capital regions | Production scope | Already the right shape. `registry.scopes_from_manifest()` now also accepts `{"region": ..., "cities": [...]}` for the Mokpo pilot |
-| `etl/run_due_etl.py:114-115`, `etl/run_portable_readonly_build.py:26-27`, `etl/portable_inputs_manifest.json:32-40` | `schoolinfo_YYYY_*_capital.json` file names | Naming artifact | Rename only as one change across runner, manifest, bundle, and `portable_readonly_baseline.json`, or keep the names and document them as opaque. Renaming changes bundle paths and therefore the locked baseline |
+| `etl/run_due_etl.py:114-115`, `etl/run_portable_readonly_build.py:26-27`, `etl/portable_inputs_manifest.json:32-40` | `schoolinfo_YYYY_*_capital.json` file names | Naming artifact | **Closed 2026-09-21 by keeping the names**: `capital` is simply the collector's slug for the production scope, and other scopes get their own slug. Renaming would churn the bundle paths and the locked baseline for no gain |
 
 ## SQL
 
@@ -78,7 +78,7 @@ Done on 2026-09-20 and 2026-09-21, all verified against the locked portability b
 
 - **Frontend map read**: the school read is scoped to the regions whose registry envelope overlaps the viewport, measured at 0.89 s against 2.21 s before.
 
-Still open: applying migration `16`, `audit_apartment_etl.py`, `audit_school_etl.py`, `build_school_master_v2.py`, and the `_capital` file names.
+Still open: applying migration `16` to Supabase. Everything else in this inventory is either done or deliberately closed.
 
 ## Out of scope
 

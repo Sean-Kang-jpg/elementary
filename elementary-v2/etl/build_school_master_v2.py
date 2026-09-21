@@ -6,10 +6,16 @@ import csv
 import json
 import math
 import re
+import sys
 from collections import Counter, defaultdict
 from datetime import datetime
 from pathlib import Path
 from typing import Any
+
+if __package__ in (None, ""):  # `python etl/build_school_master_v2.py`
+    sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+
+from etl.region_registry import load_registry
 
 
 BASE_DIR = Path(__file__).resolve().parent
@@ -20,14 +26,23 @@ GRADE_CLASS_FIELDS = tuple(f"grade{i}_classes" for i in range(1, 7))
 GRADE_PER_CLASS_FIELDS = tuple(f"grade{i}_per_class" for i in range(1, 7))
 
 
-def latest_schoolinfo_sources() -> tuple[int, Path, Path]:
+def latest_schoolinfo_sources(scope_slug: str | None = None) -> tuple[int, Path, Path]:
+    """Newest paired Schoolinfo snapshots, for a scope slug or any scope.
+
+    The collector names its output by scope: `capital` for the production
+    regions, otherwise the NEIS office code. The slug is opaque here, so a new
+    regional wave needs no change to this builder.
+    """
+    pattern = re.compile(
+        rf"schoolinfo_(\d{{4}})_basic_({re.escape(scope_slug) if scope_slug else '[a-z0-9-]+'})\.json"
+    )
     candidates: list[tuple[int, Path, Path]] = []
-    for basic_path in OUTPUT_DIR.glob("schoolinfo_*_basic_capital.json"):
-        match = re.fullmatch(r"schoolinfo_(\d{4})_basic_capital\.json", basic_path.name)
+    for basic_path in OUTPUT_DIR.glob("schoolinfo_*_basic_*.json"):
+        match = pattern.fullmatch(basic_path.name)
         if not match:
             continue
-        year = int(match.group(1))
-        grade_path = OUTPUT_DIR / f"schoolinfo_{year}_grade_students_capital.json"
+        year, slug = int(match.group(1)), match.group(2)
+        grade_path = OUTPUT_DIR / f"schoolinfo_{year}_grade_students_{slug}.json"
         if grade_path.is_file():
             candidates.append((year, basic_path, grade_path))
     if not candidates:
@@ -57,11 +72,8 @@ def number(value: Any, kind: type[int] | type[float]) -> int | float | None:
 
 
 def region_from_address(value: Any) -> str:
-    address = text(value)
-    for region in ("서울특별시", "경기도", "인천광역시"):
-        if address.startswith(region):
-            return region
-    return ""
+    region = load_registry().region_for_address(text(value))
+    return region.canonical_name if region else ""
 
 
 def distance_m(lat1: Any, lon1: Any, lat2: Any, lon2: Any) -> float | None:

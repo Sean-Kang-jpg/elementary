@@ -1,4 +1,12 @@
-"""Audit the current Seoul/Gyeonggi/Incheon integrated school snapshots."""
+"""Audit the 2025 legacy integrated school snapshots.
+
+Historical, not part of the operational pipeline. It reads the three
+per-region `*_integrated_schools_*.json` files from the v1 ETL, which are no
+longer present locally, and nothing else calls it. Its capital-region
+assumptions and its recorded findings, such as the 2,240-school universe,
+are kept as a record of that build rather than generalized; the operational
+school audit is `audit_operational_backend.py`.
+"""
 
 from __future__ import annotations
 

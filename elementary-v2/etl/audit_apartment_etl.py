@@ -1,14 +1,24 @@
-"""Audit the capital-region apartment master and local K-apt snapshot."""
+"""Audit the apartment master and local K-apt snapshot for the production scope.
+
+Region scope comes from the region registry, so the report is per region
+rather than one capital total.
+"""
 
 from __future__ import annotations
 
 import csv
 import json
 import re
+import sys
 from collections import Counter, defaultdict
 from datetime import datetime
 from pathlib import Path
 from typing import Any
+
+if __package__ in (None, ""):  # `python etl/audit_apartment_etl.py`
+    sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+
+from etl.region_registry import RegionScopeError, load_registry
 
 
 BASE_DIR = Path(__file__).resolve().parent
@@ -17,8 +27,28 @@ OUTPUT_DIR = BASE_DIR / "local_outputs_20260320"
 APT_SOURCE = ROOT_DIR / "archive" / "GAS" / "GAS" / "임시" / "apt_mst_info_202410.csv"
 KAPT_SOURCE = ROOT_DIR / "archive" / "legacy-v1" / "etl" / "data" / "kapt" / "20250801_apt_data.csv"
 ASSIGNMENT_SOURCE = OUTPUT_DIR / "apartment_point_assignments.json"
-TARGET_CODES = {"11": "서울특별시", "41": "경기도", "28": "인천광역시"}
+def target_codes() -> dict[str, str]:
+    """Legal-dong region prefix to region name, for the regions in production."""
+    return {
+        code: region.canonical_name
+        for region in load_registry().production_regions
+        for code in region.legal_dong_codes
+    }
+
+
+TARGET_CODES = target_codes()
 TARGET_REGIONS = set(TARGET_CODES.values())
+
+
+def kapt_region(row: dict[str, str]) -> str:
+    """Region for a K-apt row, splitting merged values such as 전라남도광주특별시."""
+    try:
+        region = load_registry().resolve_source_region(
+            text(row.get("시도")), text(row.get("시군구")), row.get("도로명주소")
+        )
+    except RegionScopeError:
+        return ""
+    return region.canonical_name
 
 
 def text(value: Any) -> str:
@@ -73,7 +103,7 @@ def main() -> None:
     kapt_rows: list[dict[str, str]] = []
     with KAPT_SOURCE.open(encoding="cp949", newline="") as handle:
         for row in csv.DictReader(handle):
-            if text(row.get("시도")) in TARGET_REGIONS:
+            if kapt_region(row) in TARGET_REGIONS:
                 kapt_rows.append(row)
 
     with ASSIGNMENT_SOURCE.open(encoding="utf-8") as handle:
@@ -167,7 +197,7 @@ def main() -> None:
             "assignments": str(ASSIGNMENT_SOURCE),
         },
         "apartment_master": {
-            "capital_rows": len(apartments),
+            "rows_in_scope": len(apartments),
             "assignment_rows": len(assignments),
             "excluded_from_assignment": len(excluded),
             "valid_coordinates": valid_coordinates,
@@ -177,10 +207,10 @@ def main() -> None:
             "by_region": dict(sorted(Counter(TARGET_CODES[text(row.get("legaldong_cd"))[:2]] for row in apartments).items())),
         },
         "kapt": {
-            "capital_rows": len(kapt_rows),
+            "rows_in_scope": len(kapt_rows),
             "unique_codes": len({key for key in kapt_code_counts if key}),
             "duplicate_codes": sum(1 for key, count in kapt_code_counts.items() if key and count > 1),
-            "by_region": dict(sorted(Counter(text(row.get("시도")) for row in kapt_rows).items())),
+            "by_region": dict(sorted(Counter(kapt_region(row) for row in kapt_rows).items())),
         },
         "exact_link_probe": {
             "unique_road_address": exact_road,
