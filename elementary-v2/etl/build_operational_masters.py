@@ -79,10 +79,13 @@ def school_zone_label(value: Any) -> str:
     name = re.sub(r"\([^)]*\)|\[[^]]*\]", "", name)
     name = re.sub(r"^\d{4}\..*?월\s*", "", name)
     name = name.replace("소규모학교", "").replace("작업 후", "")
-    # Offices write joint zones differently: 공동 and 공동(일방) in the capital,
-    # 일방향공동 / 양방향공동 in Daegu, 제한적공동 in Jeollanam-do.
-    name = re.sub(r"(?:제한적|일방향|양방향)?공동(?:\(일방\))?통학구역$", "", name)
-    name = re.sub(r"통학구역$", "", name)
+    # Whitespace before the suffix, as in `공동(일방) 통학구역` in Gyeongbuk.
+    name = re.sub(r"\s+", "", name)
+    # Each office writes the zone suffix its own way: 공동 and 공동(일방) in the
+    # capital, 일방향공동 / 양방향공동 in Daegu, 제한적공동 in Jeollanam-do,
+    # 광역 in Gyeongnam, 공통 in Gangwon, and 학구 rather than 통학구역 in
+    # Chungbuk.
+    name = re.sub(r"(?:제한적|일방향|양방향|광역)?(?:공동|공통)?(?:\(일방\))?(?:통학구역|학구)$", "", name)
     return re.sub(r"[^0-9A-Za-z가-힣]", "", name).lower()
 
 
@@ -118,7 +121,8 @@ def segment_school_zone(label: str, candidates: list[tuple[str, str]]) -> list[s
 
 def match_school_zone(value: Any, region: str, candidates: list[tuple[str, str]]) -> list[str]:
     cleaned_value = re.sub(r"\([^)]*\)|\[[^]]*\]", "", str(value or ""))
-    parts = re.split(r"\||\s+및\s+", cleaned_value)
+    # Some offices put several zone records in one field, comma separated.
+    parts = re.split(r"\||,|\s+및\s+", cleaned_value)
     try:
         region_prefix = load_registry().get(region).school_name_prefix if region else None
     except RegionScopeError:

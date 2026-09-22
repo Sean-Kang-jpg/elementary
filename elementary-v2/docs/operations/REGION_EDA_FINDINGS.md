@@ -73,6 +73,51 @@ Because the education offices merge, the 광주 and 목포 EDA passes must re-ch
 
 Daejeon is unaffected: its 588 K-apt rows carry `대전광역시` and its five districts.
 
+## 남은 6개 도와 전라남도 전체 (2026-09-23)
+
+All seventeen regions are now built. The remaining provinces brought four more zone-suffix formats and one product question.
+
+### Four more suffix formats, one of them large
+
+| Format | Region | Zones |
+| --- | --- | --- |
+| `광역통학구역` | 경상남도 | 86 |
+| Several zone records in one field, comma separated | 충북, 충남, 경북 | 9 |
+| `공동(일방)학구`, with 학구 rather than 통학구역 | 충청북도 | 1 |
+| Whitespace before the suffix, `공동(일방) 통학구역` | 경상북도 | 1 |
+| `공통통학구역` | 강원특별자치도 | 1 |
+
+경상남도 was the worst region measured anywhere at **86.0%**, almost entirely because of `광역통학구역`. After the fix it reads 99.7%.
+
+| Region | Before | After |
+| --- | --- | --- |
+| 경상남도 | 86.0% | **99.7%** |
+| 충청북도 | 98.3% | 99.4% |
+| 경상북도 | 97.4% | 98.2% |
+| 강원특별자치도 | 98.2% | 98.5% |
+| 충청남도 | 99.1% | 99.3% |
+| 전북특별자치도 | 100% | 100% |
+
+### Nationwide build
+
+| Region | Schools | Complexes | Assignments | Serving | Audit |
+| --- | --- | --- | --- | --- | --- |
+| 강원 | 356 | 1,351 | 1,359 | 2,371 | 50/52 |
+| 충북 | 268 | 1,302 | 1,333 | 2,343 | 50/52 |
+| 충남 | 417 | 1,485 | 1,499 | 2,996 | 50/52 |
+| 전북 | 407 | 1,423 | 1,442 | 2,543 | 50/52 |
+| 경북 | 479 | 2,855 | 2,882 | 10,308 | 49/52 |
+| 경남 | 524 | 3,682 | 3,728 | 4,165 | 49/52 |
+| 전남 | 444 | 1,404 | 1,415 | 1,601 | 49/52 |
+
+With the capital region that is **6,302 schools, 45,915 canonical complexes, and 60,520 serving rows**, against 2,260 / 20,164 / 20,891 in production today.
+
+### Wide-area joint zones are a product question, not a defect
+
+경북 produces 10,308 serving rows from 2,882 assignments, 3.6× the ratio anywhere else. The cause is real data: 경주 has a `공동(일방)통학구역` naming **17 schools**, and 함안 in 경남 names 9. One apartment is therefore assigned to seventeen schools, all of them correct in the sense that a child there may attend any of them.
+
+Nationwide, 484 complexes are assigned to 9 or more schools. Before upload someone has to decide whether those publish as ordinary assignments, or whether a zone above some school count is presented differently. Left open rather than decided here.
+
 ## 광주·목포·세종·제주 (2026-09-23)
 
 ### The merger is already in the school sources, and it broke both scopes silently
