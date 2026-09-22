@@ -78,7 +78,9 @@ def school_zone_label(value: Any) -> str:
     name = re.sub(r"\([^)]*\)|\[[^]]*\]", "", name)
     name = re.sub(r"^\d{4}\..*?월\s*", "", name)
     name = name.replace("소규모학교", "").replace("작업 후", "")
-    name = re.sub(r"공동(?:\(일방\))?통학구역$", "", name)
+    # Offices write joint zones differently: 공동, 공동(일방) in the capital,
+    # and 일방향공동 / 양방향공동 in Daegu.
+    name = re.sub(r"(?:일방향|양방향)?공동(?:\(일방\))?통학구역$", "", name)
     name = re.sub(r"통학구역$", "", name)
     return re.sub(r"[^0-9A-Za-z가-힣]", "", name).lower()
 

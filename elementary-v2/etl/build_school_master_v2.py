@@ -125,6 +125,12 @@ def write_csv(path: Path, rows: list[dict[str, Any]], fieldnames: list[str]) -> 
         writer.writerows(rows)
 
 
+def sorted_counts(counts: dict[Any, int]) -> dict[str, int]:
+    """Sort counter keys with unmatched rows, whose key is None, reported last."""
+    ordered = sorted(counts.items(), key=lambda item: (item[0] is None, str(item[0] or "")))
+    return {("(none)" if key is None else str(key)): value for key, value in ordered}
+
+
 def base_master_path(slug: str) -> Path:
     """Reviewed baseline for the capital scope, generated base for a new wave."""
     if slug == "capital":
@@ -300,9 +306,9 @@ def main(argv: list[str] | None = None) -> None:
         "schools": len(enriched),
         "schoolinfo_basic_rows": len(basic_rows),
         "schoolinfo_grade_rows": len(grade_rows),
-        "crosswalk_status_counts": dict(sorted(match_counts.items())),
-        "crosswalk_method_counts": dict(sorted(method_counts.items())),
-        "student_data_status_counts": dict(sorted(student_counts.items())),
+        "crosswalk_status_counts": sorted_counts(match_counts),
+        "crosswalk_method_counts": sorted_counts(method_counts),
+        "student_data_status_counts": sorted_counts(student_counts),
         "schoolinfo_codes_unique": len({row["schoolinfo_code"] for row in crosswalk if row["schoolinfo_code"]}),
         "unmatched_or_ambiguous": [
             row for row in crosswalk if row["match_status"] != "matched"

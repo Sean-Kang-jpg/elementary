@@ -1,6 +1,6 @@
 # Region EDA Findings
 
-Last updated: 2026-09-21
+Last updated: 2026-09-22
 
 Accumulated results of the per-region EDA gate defined in `OPERATION_PLAN.md`. One section per scope, newest first. Findings here are the reason the registry holds the values it does; they are not a task list.
 
@@ -72,6 +72,46 @@ This is a source-translation layer, deliberately not the final model. Collapsing
 Because the education offices merge, the 광주 and 목포 EDA passes must re-check the school-zone label format against the post-merger office rather than reusing anything measured here. Both scopes stay in the N1 queue with EDA first.
 
 Daejeon is unaffected: its 588 K-apt rows carry `대전광역시` and its five districts.
+
+## 대구·부산·울산 (2026-09-22)
+
+Built after Daejeon, with the review cases parked for one batch review rather than resolved region by region.
+
+### Zone-label formats differ by office, and Daegu proved it
+
+The zone profiler (`etl/profile_region_school_zones.py`) segments every zone label in a region against its schools and reports per education office. First run:
+
+| Region | Segmented | Worst office |
+| --- | --- | --- |
+| 대전 | 170/170 (100%) | — |
+| 대구 | 219/231 (94.8%) | 군위교육지원청 1/6 (16.7%) |
+| 부산 | 307/308 (99.7%) | 남부교육지원청 56/57 |
+| 울산 | 126/127 (99.2%) | 강남교육지원청 63/64 |
+
+Daegu writes joint zones as `일방향공동통학구역` and `양방향공동통학구역`, where the capital and Daejeon write `공동통학구역` or `공동(일방)통학구역`. The matcher stripped only the latter, so twelve labels failed, including every 군위 zone. Widening that one regular expression took Daegu to **231/231 (100%)** and cut its schools with no zone record from 30 to 8. The capital outputs are byte-identical after the change, checked against the locked baseline.
+
+This is the concrete form of the warning that offices organize records differently: one region needed a parser change, and its newest district needed it most.
+
+### Build results
+
+| Region | Schools | Complexes | Assignments | Review required | Serving | Audit |
+| --- | --- | --- | --- | --- | --- | --- |
+| 대전 | 155 | 1,035 | 1,063 (100%) | 0 | 1,171 | 52/52 |
+| 대구 | 237 | 2,075 | 2,097 (100%) | 0 | 2,338 | 51/52 |
+| 부산 | 302 | 4,847 | 4,891 (99.8%) | 11 | 5,283 | 49/52 |
+| 울산 | 124 | 1,631 | 1,670 (100%) | 0 | 1,763 | 52/52 |
+
+### Parked review cases
+
+`etl/collect_review_cases.py` gathers them across regions into one sheet; 36 rows, of which 25 are distinct subjects because Busan's 11 unassigned complexes also appear as review-required units.
+
+- **부산 11 unassigned complexes**, the only no-hit cases in the four regions.
+- **부산 `신연초통학구역`** names a school that exists in no nationwide record, leaving 3 complexes with a named zone and no school link.
+- **울산 `상북초원동초이천분교공동통학구역`** names 원동초 이천분교, while the only Ulsan branch school on record is 상북초등학교소호분교장.
+- **5 schools with no Schoolinfo grade statistics**: 대구 4, 부산 1.
+- **4 public schools with no zone record**: 대구 2, 부산 2. National-university and private schools are excluded, since they admit without a 통학구역.
+
+A school without grade statistics still publishes, but with empty grade fields, so these are a product decision as much as a data one.
 
 ## 대전광역시 (2026-09-20)
 
