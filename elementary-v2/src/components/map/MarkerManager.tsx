@@ -5,12 +5,14 @@
 
 import React, { useEffect, useRef, useState, useCallback } from 'react'
 import { useAppContext } from '../../contexts/AppContext'
-import { fetchDistrictOverviewData, fetchRegionData, fetchSchoolsByAdministrativeArea, fetchSchoolsByIds } from '../../services/dataService'
+import { fetchDistrictOverviewData, fetchRegionAggregatedData, fetchRegionData, fetchSchoolsByAdministrativeArea, fetchSchoolsByIds } from '../../services/dataService'
+import type { RegionData } from '../../services/dataService'
 import { ClusterPoint, getSchoolNeighborhoodLabel, groupSchoolsByDistrict, groupSchoolsByNeighborhood } from '../../utils/clusterUtils'
 import { getDisplayMode } from '../../utils/mapUtils'
 import { MapBounds, School } from '../../types'
 import SchoolMarker from './SchoolMarker'
 import ClusterMarker from './ClusterMarker'
+import RegionMarker from './RegionMarker'
 import DistrictNeighborhoodSheet from './DistrictNeighborhoodSheet'
 import NeighborhoodSchoolSheet from './NeighborhoodSchoolSheet'
 import { LoaderCircle, RefreshCw, SearchX } from 'lucide-react'
@@ -45,6 +47,7 @@ const MarkerManager: React.FC<MarkerManagerProps> = ({ map }) => {
   const { state, dispatch } = useAppContext()
   const [schools, setSchools] = useState<School[]>([])
   const [clusters, setClusters] = useState<ClusterPoint[]>([])
+  const [regions, setRegions] = useState<RegionData[]>([])
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [hasLoaded, setHasLoaded] = useState(false)
@@ -121,7 +124,10 @@ const MarkerManager: React.FC<MarkerManagerProps> = ({ map }) => {
 
   // 현재 표시 모드
   const displayMode = getDisplayMode(state.map.zoom)
-  const shouldShowMarkers = displayMode === 'SCHOOLS' && state.map.zoom >= 11 // 줌 11부터 마커 표시
+  // Zoomed out past the district level the map showed nothing at all; it now
+  // falls back to one marker per province or metropolitan city.
+  const showRegionMarkers = displayMode !== 'SCHOOLS'
+  const shouldShowMarkers = displayMode === 'SCHOOLS' && state.map.zoom >= 11
 
   // 학교 클릭 핸들러
   const handleSchoolClick = useCallback((school: School) => {
@@ -132,6 +138,11 @@ const MarkerManager: React.FC<MarkerManagerProps> = ({ map }) => {
     })
     window.requestAnimationFrame(() => keepSchoolInVisibleMap(school))
   }, [dispatch, getViewportSnapshot, keepSchoolInVisibleMap])
+
+  // One level down from a region: jump to its centre at the district zoom.
+  const handleRegionClick = useCallback((region: RegionData) => {
+    setCamera({ center: region.center, zoom: 10 })
+  }, [setCamera])
 
   // Move exactly one level down: district -> neighborhood -> school.
   const handleClusterClick = useCallback((cluster: ClusterPoint) => {
@@ -229,7 +240,31 @@ const MarkerManager: React.FC<MarkerManagerProps> = ({ map }) => {
     let requestTimer: ReturnType<typeof setTimeout> | undefined
 
     const loadSchoolData = async () => {
-      if (!map || !state.map.bounds || !shouldShowMarkers) {
+      if (!map || !state.map.bounds) return
+      if (showRegionMarkers) {
+        const regionStartedAt = performance.now()
+        try {
+          const regionData = await fetchRegionAggregatedData(state.filters)
+          if (cancelled) return
+          setSchools([])
+          setClusters([])
+          setRegions(regionData)
+          setHasLoaded(true)
+          recordPerformanceMetric('school-map-load', regionStartedAt, 'success', {
+            zoom: map.getZoom(),
+            resultCount: regionData.length,
+            scoped: false,
+          })
+        } catch (error) {
+          if (!cancelled) {
+            console.error('지역 집계 조회 실패:', error)
+            setRegions([])
+          }
+        }
+        return
+      }
+      setRegions([])
+      if (!shouldShowMarkers) {
         setSchools([])
         setClusters([])
         return
@@ -318,7 +353,7 @@ const MarkerManager: React.FC<MarkerManagerProps> = ({ map }) => {
       cancelled = true
       if (requestTimer) clearTimeout(requestTimer)
     }
-  }, [districtScope, map, neighborhoodSchoolIds, neighborhoodScope, requestVersion, state.map.bounds, state.map.zoom, state.filters, shouldShowMarkers, displayMode])
+  }, [districtScope, map, neighborhoodSchoolIds, neighborhoodScope, requestVersion, state.map.bounds, state.map.zoom, state.filters, shouldShowMarkers, showRegionMarkers, displayMode])
 
   // 마커 렌더링
   if (!map || !shouldShowMarkers) return null
@@ -365,6 +400,15 @@ const MarkerManager: React.FC<MarkerManagerProps> = ({ map }) => {
           <span className="inline-flex items-center gap-1.5"><span className="h-2.5 w-2.5 rounded-full bg-amber-500" aria-hidden="true" />{state.filters.target_grade}학년 79명까지</span>
         </div>
       )}
+
+      {regions.map((region) => (
+        <RegionMarker
+          key={region.region}
+          region={region}
+          map={map}
+          onClick={handleRegionClick}
+        />
+      ))}
 
       {clusters.length > 0 && clusters.map((cluster, index) => (
         cluster.schools.length === 1 && !cluster.label
