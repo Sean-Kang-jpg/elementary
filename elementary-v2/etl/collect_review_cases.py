@@ -61,9 +61,11 @@ def case(region: str, kind: str, subject: str, detail: str, evidence: str = "") 
     }
 
 
-def collect_region(region_name: str, zone_profiles: dict[str, Any]) -> list[dict[str, str]]:
+def collect_region(
+    region_name: str, zone_profiles: dict[str, Any], cities: tuple[str, ...] = ()
+) -> list[dict[str, str]]:
     registry = load_registry()
-    scopes = list(build_scopes(registry, [region_name], ()))
+    scopes = list(build_scopes(registry, [region_name], cities))
     slug = scope_slug(scopes)
     suffix = "" if slug == "capital" else f"_{slug}"
     rows: list[dict[str, str]] = []
@@ -107,7 +109,9 @@ def collect_region(region_name: str, zone_profiles: dict[str, Any]) -> list[dict
                 f"school_id={school.get('school_id')}",
             ))
 
-    profile = zone_profiles.get(region_name, {})
+    # Zone-level cases are province-wide, so a city scope reports only its own
+    # build cases and leaves zone coverage to the full-region pass.
+    profile = {} if cities else zone_profiles.get(region_name, {})
     for label in profile.get("failures", []):
         rows.append(case(region_name, "unmatched_zone_label", label, "zone label did not segment", ""))
     for name, establishment in profile.get("schools_without_zone", []):
@@ -120,6 +124,7 @@ def collect_region(region_name: str, zone_profiles: dict[str, Any]) -> list[dict
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("regions", nargs="+")
+    parser.add_argument("--cities", nargs="*", default=(), help="restrict a single region to these cities")
     parser.add_argument("--zone-profile", type=Path, default=ZONE_PROFILE)
     parser.add_argument("--out", type=Path, default=OUTPUT_DIR / "review_cases.csv")
     args = parser.parse_args(argv)
@@ -128,9 +133,11 @@ def main(argv: list[str] | None = None) -> int:
     zone_profiles = {profile["region"]: profile for profile in zone_data.get("profiles", [])}
     missing_profiles = [name for name in args.regions if name not in zone_profiles]
 
+    if args.cities and len(args.regions) != 1:
+        parser.error("--cities applies to a single region")
     rows: list[dict[str, str]] = []
     for region_name in args.regions:
-        rows.extend(collect_region(region_name, zone_profiles))
+        rows.extend(collect_region(region_name, zone_profiles, tuple(args.cities)))
     rows.sort(key=lambda row: (row["case_type"], row["region"], row["subject"]))
 
     args.out.parent.mkdir(parents=True, exist_ok=True)

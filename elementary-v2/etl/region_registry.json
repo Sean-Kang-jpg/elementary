@@ -683,7 +683,8 @@
       ],
       "observed_in": [
         "kapt_basic_20260904.csv 시도 column",
-        "kapt_basic_20260904.csv 법정동주소"
+        "kapt_basic_20260904.csv 법정동주소",
+        "schoolinfo 2026 openApi: ATPT_OFCDC_ORG_NM and ORG_RDNMA both use 전남광주통합특별시"
       ],
       "not_observed_in": [
         "kapt_basic_20260904.csv 도로명주소 (still 광주광역시 / 전라남도)",
@@ -699,11 +700,19 @@
         "광산구": "광주광역시"
       },
       "default_region": "전라남도",
-      "note": "광주시 and 전라남도 merged into 전라남도광주특별시 on 2026-07-01, and their education offices merge as well. K-apt already writes the merged value as 전남광주통합특별시 in its 시도 column and 법정동주소; every source that feeds the assignment backbone still writes 광주광역시 and 전라남도 separately, including K-apt's own road addresses. While that holds, both halves remain separate registry regions and this block only translates source values. Inside the merged area the 광주 half has no city level (region -> 구) while the 전남 half does (region -> 시/군), so collapsing them into one region will require a per-area address depth and a merged education office; that migration waits until the school and school-zone sources publish merged naming.",
+      "note": "광주시 and 전라남도 merged into 전라남도광주특별시 on 2026-07-01, and their education offices merge as well. K-apt already writes the merged value as 전남광주통합특별시 in its 시도 column and 법정동주소; every source that feeds the assignment backbone still writes 광주광역시 and 전라남도 separately, including K-apt's own road addresses. While that holds, both halves remain separate registry regions and this block only translates source values. Inside the merged area the 광주 half has no city level (region -> 구) while the 전남 half does (region -> 시/군), so collapsing them into one region will require a per-area address depth and a merged education office; that migration waits until the school and school-zone sources publish merged naming. The Schoolinfo API already uses the merged value in both the education-office name and the address, so office and address resolution must split it by 시군구 exactly as the K-apt 시도 column does.",
       "official_name": "전라남도광주특별시",
       "effective_from": "2026-07-01",
       "education_office_merges": true,
-      "transition_state": "sources_not_yet_migrated"
+      "transition_state": "sources_not_yet_migrated",
+      "address_prefixes": [
+        "전라남도광주특별시",
+        "전남광주통합특별시"
+      ],
+      "education_offices": [
+        "전라남도광주특별시교육청",
+        "전남광주통합특별시교육청"
+      ]
     }
   ]
 }

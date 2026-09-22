@@ -78,9 +78,9 @@ def school_zone_label(value: Any) -> str:
     name = re.sub(r"\([^)]*\)|\[[^]]*\]", "", name)
     name = re.sub(r"^\d{4}\..*?월\s*", "", name)
     name = name.replace("소규모학교", "").replace("작업 후", "")
-    # Offices write joint zones differently: 공동, 공동(일방) in the capital,
-    # and 일방향공동 / 양방향공동 in Daegu.
-    name = re.sub(r"(?:일방향|양방향)?공동(?:\(일방\))?통학구역$", "", name)
+    # Offices write joint zones differently: 공동 and 공동(일방) in the capital,
+    # 일방향공동 / 양방향공동 in Daegu, 제한적공동 in Jeollanam-do.
+    name = re.sub(r"(?:제한적|일방향|양방향)?공동(?:\(일방\))?통학구역$", "", name)
     name = re.sub(r"통학구역$", "", name)
     return re.sub(r"[^0-9A-Za-z가-힣]", "", name).lower()
 
@@ -156,6 +156,29 @@ def match_school_zone(value: Any, region: str, candidates: list[tuple[str, str]]
                 matches.extend(segmented)
                 break
     return list(dict.fromkeys(matches))
+
+
+def match_school_zone_scoped(
+    value: Any,
+    region: str,
+    candidates: list[tuple[str, str]],
+    fallback_candidates: list[tuple[str, str]] | None = None,
+) -> tuple[list[str], bool]:
+    """Match within the region first, then nationwide if that finds nothing.
+
+    A joint zone can name a school in a neighbouring region: 전라남도 zones
+    reference 광주 schools, and 세종 zones reference 충북 and 충남 ones. The
+    region-scoped attempt runs first and is unchanged, so this only adds matches
+    where there were none; the flag lets the caller record how it matched.
+    """
+    matches = match_school_zone(value, region, candidates)
+    if matches:
+        return matches, False
+    if fallback_candidates:
+        matches = match_school_zone(value, region, fallback_candidates)
+        if matches:
+            return matches, True
+    return [], False
 
 
 def source_value(kapt_value: Any, base_value: Any, use_kapt: bool, kapt_as_of: Any) -> tuple[Any, str]:

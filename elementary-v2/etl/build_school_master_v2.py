@@ -28,16 +28,15 @@ GRADE_CLASS_FIELDS = tuple(f"grade{i}_classes" for i in range(1, 7))
 GRADE_PER_CLASS_FIELDS = tuple(f"grade{i}_per_class" for i in range(1, 7))
 
 
-def latest_schoolinfo_sources(scope_slug: str | None = None) -> tuple[int, Path, Path]:
-    """Newest paired Schoolinfo snapshots, for a scope slug or any scope.
+def latest_schoolinfo_sources(scope_slug: str) -> tuple[int, Path, Path]:
+    """Newest paired Schoolinfo snapshots for one scope slug.
 
     The collector names its output by scope: `capital` for the production
-    regions, otherwise the NEIS office code. The slug is opaque here, so a new
-    regional wave needs no change to this builder.
+    regions, otherwise the NEIS office code. The slug is required, because the
+    output directory holds a file per scope and matching any of them would
+    silently build one region from another region's snapshot.
     """
-    pattern = re.compile(
-        rf"schoolinfo_(\d{{4}})_basic_({re.escape(scope_slug) if scope_slug else '[a-z0-9-]+'})\.json"
-    )
+    pattern = re.compile(rf"schoolinfo_(\d{{4}})_basic_({re.escape(scope_slug)})\.json")
     candidates: list[tuple[int, Path, Path]] = []
     for basic_path in OUTPUT_DIR.glob("schoolinfo_*_basic_*.json"):
         match = pattern.fullmatch(basic_path.name)
@@ -60,6 +59,11 @@ def normalize(value: Any) -> str:
     return re.sub(r"[^0-9A-Za-z가-힣]", "", text(value)).lower()
 
 
+def normalize_address(value: Any) -> str:
+    """Normalize an address after rewriting any merged region prefix."""
+    return normalize(load_registry().canonicalize_address(text(value)))
+
+
 def normalize_name(value: Any) -> str:
     return normalize(re.sub(r"\(폐교\)$", "", text(value)))
 
@@ -74,7 +78,9 @@ def number(value: Any, kind: type[int] | type[float]) -> int | float | None:
 
 
 def region_from_address(value: Any) -> str:
-    region = load_registry().region_for_address(text(value))
+    """Region for an address, merged post-merger prefixes included."""
+    registry = load_registry()
+    region = registry.region_for_address(registry.canonicalize_address(text(value)))
     return region.canonical_name if region else ""
 
 
@@ -92,8 +98,8 @@ def distance_m(lat1: Any, lon1: Any, lat2: Any, lon2: Any) -> float | None:
 
 
 def candidate_score(school: dict[str, Any], basic: dict[str, Any]) -> tuple[int, str, float | None]:
-    school_address = normalize(school.get("address"))
-    basic_address = normalize(basic.get("SCHUL_RDNMA"))
+    school_address = normalize_address(school.get("address"))
+    basic_address = normalize_address(basic.get("SCHUL_RDNMA"))
     address_exact = bool(school_address and school_address == basic_address)
     name_exact = normalize_name(school.get("school_name")) == normalize_name(basic.get("SCHUL_NM"))
     same_region = region_from_address(school.get("address_old") or school.get("address")) == region_from_address(
@@ -162,7 +168,7 @@ def main(argv: list[str] | None = None) -> None:
     print(f"scope: {', '.join(scope.label for scope in scopes)} (slug {slug})")
     print(f"base master: {base_path.name}")
 
-    schoolinfo_year, basic_source, grade_source = latest_schoolinfo_sources(None if slug == "capital" else slug)
+    schoolinfo_year, basic_source, grade_source = latest_schoolinfo_sources(slug)
     with base_path.open(encoding="utf-8") as handle:
         master = json.load(handle)
     with basic_source.open(encoding="utf-8") as handle:
@@ -173,7 +179,7 @@ def main(argv: list[str] | None = None) -> None:
     basic_by_address: dict[str, list[dict[str, Any]]] = defaultdict(list)
     basic_by_name: dict[str, list[dict[str, Any]]] = defaultdict(list)
     for row in basic_rows:
-        basic_by_address[normalize(row.get("SCHUL_RDNMA"))].append(row)
+        basic_by_address[normalize_address(row.get("SCHUL_RDNMA"))].append(row)
         basic_by_name[normalize_name(row.get("SCHUL_NM"))].append(row)
     grade_by_code = {text(row.get("SCHUL_CODE")): row for row in grade_rows if text(row.get("SCHUL_CODE"))}
     grade_by_name: dict[str, list[dict[str, Any]]] = defaultdict(list)
@@ -184,7 +190,7 @@ def main(argv: list[str] | None = None) -> None:
     used_codes: set[str] = set()
     for school in master:
         candidates: dict[str, dict[str, Any]] = {}
-        address_key = normalize(school.get("address"))
+        address_key = normalize_address(school.get("address"))
         name_key = normalize_name(school.get("school_name"))
         for row in basic_by_address.get(address_key, []) + basic_by_name.get(name_key, []):
             code = text(row.get("SCHUL_CODE"))

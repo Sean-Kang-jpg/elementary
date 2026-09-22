@@ -222,9 +222,18 @@ def main(argv: list[str] | None = None) -> None:
         for row in csv.DictReader(handle):
             region_code = text(row.get("legaldong_cd"))[:2]
             expected_region = TARGET_CODES.get(region_code)
-            addresses = (text(row.get("rdnmadr")), text(row.get("lnmadr")))
-            if expected_region and any(address.startswith(expected_region) for address in addresses):
-                apartments.append(row)
+            addresses = (text(row.get("rdnmadr")), text(row.get("lnmadr")), text(row.get("lnno_adres")))
+            if not expected_region or not any(address.startswith(expected_region) for address in addresses):
+                continue
+            city_scopes = [scope for scope in scopes if scope.cities]
+            if city_scopes and not any(
+                scope.includes_address(address)
+                for scope in city_scopes
+                for address in addresses
+                if address
+            ):
+                continue
+            apartments.append(row)
 
     kapt_rows: list[dict[str, str]] = []
     with KAPT_SOURCE.open(encoding=KAPT_ENCODING, newline="") as handle:

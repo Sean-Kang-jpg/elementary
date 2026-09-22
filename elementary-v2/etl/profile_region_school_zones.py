@@ -28,13 +28,29 @@ if __package__ in (None, ""):  # `python etl/profile_region_school_zones.py`
 
 import shapefile
 
-from etl.build_operational_masters import match_school_zone, school_zone_label
+from etl.build_operational_masters import match_school_zone_scoped, school_zone_label
 from etl.region_registry import load_registry
 
 BASE_DIR = Path(__file__).resolve().parent
 DEFAULT_SHP = BASE_DIR / "data" / "hakgudo" / "20260320" / "extracted" / "초등학교통학구역.shp"
 SCHOOL_SOURCE = BASE_DIR / "data" / "schoolzone" / "school_location_20260320.csv"
 ELEMENTARY = "초등학교"
+
+
+def candidate_labels(rows: list[dict[str, str]], region: Any) -> list[tuple[str, str]]:
+    return sorted(
+        {
+            (school_zone_label(variant), row["학교ID"])
+            for row in rows
+            for variant in region.name_variants(row["학교명"])
+        },
+        key=lambda item: (-len(item[0]), item[0], item[1]),
+    )
+
+
+def load_all_schools() -> list[dict[str, str]]:
+    with SCHOOL_SOURCE.open(encoding="utf-8-sig", newline="") as handle:
+        return [row for row in csv.DictReader(handle) if row.get("학교급구분") == ELEMENTARY]
 
 
 def load_schools(region_name: str) -> list[dict[str, str]]:
@@ -69,24 +85,24 @@ def profile_region(region_name: str, shp_path: Path) -> dict[str, Any]:
         return {"region": region.canonical_name, "schools": len(schools), "zones": len(zones),
                 "error": "no schools or no zones for this region"}
 
-    candidates = sorted(
-        {
-            (school_zone_label(variant), row["학교ID"])
-            for row in schools
-            for variant in region.name_variants(row["학교명"])
-        },
-        key=lambda item: (-len(item[0]), item[0], item[1]),
-    )
+    candidates = candidate_labels(schools, region)
+    nationwide = candidate_labels(load_all_schools(), region)
 
     matched_schools: set[str] = set()
     failures: list[str] = []
+    cross_region: list[str] = []
     per_office: dict[str, Counter] = defaultdict(Counter)
     for zone in zones:
         office = str(zone.get("EDU_NM") or "")
-        school_ids = match_school_zone(zone.get("HAKGUDO_NM"), region.canonical_name, candidates)
+        school_ids, used_fallback = match_school_zone_scoped(
+            zone.get("HAKGUDO_NM"), region.canonical_name, candidates, nationwide
+        )
         per_office[office]["zones"] += 1
         if school_ids:
             per_office[office]["segmented"] += 1
+            if used_fallback:
+                per_office[office]["cross_region"] += 1
+                cross_region.append(str(zone.get("HAKGUDO_NM")))
             matched_schools.update(school_ids)
         else:
             failures.append(str(zone.get("HAKGUDO_NM")))
@@ -106,6 +122,7 @@ def profile_region(region_name: str, shp_path: Path) -> dict[str, Any]:
         "segmented": segmented,
         "segmented_pct": round(100 * segmented / len(zones), 1),
         "failures": failures,
+        "cross_region_zones": cross_region,
         "schools_without_zone": uncovered,
         "private_schools_without_zone": sum(1 for _, kind in uncovered if kind == "사립"),
         "by_office": {
@@ -139,6 +156,9 @@ def main(argv: list[str] | None = None) -> int:
         print(f"  segmented {profile['segmented']}/{profile['zones']} ({profile['segmented_pct']}%)")
         for office, stats in profile["by_office"].items():
             print(f"    {office:<28} {stats['segmented']:>4}/{stats['zones']:<4} ({stats['segmented_pct']}%)")
+        if profile["cross_region_zones"]:
+            print(f"  matched only with schools from another region: {len(profile['cross_region_zones'])} "
+                  f"{profile['cross_region_zones'][:4]}")
         if profile["failures"]:
             print(f"  FAILED labels ({len(profile['failures'])}): {profile['failures'][:8]}")
         uncovered = profile["schools_without_zone"]

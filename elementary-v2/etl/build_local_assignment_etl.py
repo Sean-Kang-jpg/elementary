@@ -34,16 +34,33 @@ APT_MST = Path(r"F:/sm/vibe/elementary/archive/GAS/GAS/임시/apt_mst_info_20241
 CAPITAL_SD_NAMES = {"11": "seoul", "41": "gyeonggi", "28": "incheon"}
 TARGET_SD: set[str] = set(CAPITAL_SD_NAMES)
 TARGET_SD_NAMES: dict[str, str] = dict(CAPITAL_SD_NAMES)
+TARGET_SCOPES: list = []
+
+
+def in_scope(legal_dong_cd: str, road_address: str, legal_address: str) -> bool:
+    """Region by legal-dong prefix, narrowed by address when cities are named."""
+    if legal_dong_cd[:2] not in TARGET_SD:
+        return False
+    city_scopes = [scope for scope in TARGET_SCOPES if scope.cities]
+    if not city_scopes:
+        return True
+    return any(
+        scope.includes_address(address)
+        for scope in city_scopes
+        for address in (road_address, legal_address)
+        if address
+    )
 
 
 def apply_scope(scopes) -> str:
     """Point this module at a region scope and return its slug."""
-    global TARGET_SD, TARGET_SD_NAMES
+    global TARGET_SD, TARGET_SD_NAMES, TARGET_SCOPES
     codes: dict[str, str] = {}
     for scope in scopes:
         for code in scope.region.legal_dong_codes:
             codes[code] = scope.region.canonical_name
     TARGET_SD = set(codes)
+    TARGET_SCOPES = list(scopes)
     slug = scope_slug(list(scopes))
     TARGET_SD_NAMES = dict(CAPITAL_SD_NAMES) if slug == "capital" else codes
     return slug
@@ -97,7 +114,7 @@ def load_apartments():
     with open(APT_MST, encoding="cp949") as f:
         for row in csv.DictReader(f):
             legal = row.get("legaldong_cd") or ""
-            if legal[:2] not in TARGET_SD:
+            if not in_scope(legal, row.get("rdnmadr") or "", row.get("lnno_adres") or ""):
                 continue
             lon = as_float(row.get("lo"))
             lat = as_float(row.get("la"))

@@ -137,6 +137,8 @@ class MergedSourceRegion:
     sigungu_map: dict[str, str]
     default_region: str
     observed_spellings: tuple[str, ...] = ()
+    address_prefixes: tuple[str, ...] = ()
+    education_offices: tuple[str, ...] = ()
     official_name: str | None = None
     effective_from: str | None = None
     education_office_merges: bool = False
@@ -151,6 +153,19 @@ class MergedSourceRegion:
     def region_name_for(self, sigungu: str | None) -> str:
         return self.sigungu_map.get(_normalize(sigungu), self.default_region)
 
+    def matches_office(self, office: str) -> bool:
+        normalized = _normalize(office)
+        return normalized in {_normalize(name) for name in self.education_offices}
+
+    def region_name_for_address(self, address: str) -> str | None:
+        """Split a merged address by the token that follows the region name."""
+        text = str(address or "").strip()
+        for prefix in self.address_prefixes:
+            if text.startswith(prefix):
+                remainder = text[len(prefix):].strip().split()
+                return self.region_name_for(remainder[0] if remainder else None)
+        return None
+
 
 class RegionRegistry:
     def __init__(self, payload: dict[str, Any]) -> None:
@@ -162,6 +177,8 @@ class RegionRegistry:
                 sigungu_map={_normalize(k): v for k, v in row.get("sigungu_map", {}).items()},
                 default_region=row["default_region"],
                 observed_spellings=tuple(row.get("observed_spellings", ())),
+                address_prefixes=tuple(row.get("address_prefixes", ())),
+                education_offices=tuple(row.get("education_offices", ())),
                 official_name=row.get("official_name"),
                 effective_from=row.get("effective_from"),
                 education_office_merges=bool(row.get("education_office_merges", False)),
@@ -222,7 +239,11 @@ class RegionRegistry:
         return region
 
     def by_education_office(self, office: str) -> Region | None:
+        """A merged office covers two regions, so it resolves to neither."""
         return self._by_office.get(_normalize(office))
+
+    def merged_office(self, office: str) -> MergedSourceRegion | None:
+        return next((row for row in self.merged_source_regions if row.matches_office(office)), None)
 
     def by_legal_dong_code(self, code: str) -> Region | None:
         """Accept a full legal-dong code or just its two-digit region prefix."""
@@ -232,7 +253,8 @@ class RegionRegistry:
         """Identify a region from the start of an address.
 
         Only `address_prefixes` are considered, so `경기도 광주시` never reads as
-        광주광역시. The longest prefix wins.
+        광주광역시. The longest prefix wins. A merged post-2026-07-01 address is
+        split by the district that follows the merged region name.
         """
         text = str(address or "").strip()
         if not text:
@@ -242,7 +264,13 @@ class RegionRegistry:
             for prefix in region.address_prefixes:
                 if text.startswith(prefix) and (best is None or len(prefix) > best[0]):
                     best = (len(prefix), region)
-        return best[1] if best else None
+        if best:
+            return best[1]
+        for merged in self.merged_source_regions:
+            region_name = merged.region_name_for_address(text)
+            if region_name:
+                return self.get(region_name)
+        return None
 
     def merged_source_region(self, value: str) -> MergedSourceRegion | None:
         return next((row for row in self.merged_source_regions if row.matches(value)), None)
@@ -267,6 +295,49 @@ class RegionRegistry:
             if region is not None:
                 return region
         return self.get(merged.region_name_for(sigungu))
+
+    def canonicalize_address(self, address: str) -> str:
+        """Rewrite a merged region prefix to the canonical region name.
+
+        Sources migrated to the 2026-07-01 merger at different times, so the
+        same school reads as `전라남도 목포시 ...` in one and
+        `전남광주통합특별시 목포시 ...` in another. Address matching has to
+        compare them on equal terms.
+        """
+        text = str(address or "").strip()
+        if not text:
+            return text
+        for merged in self.merged_source_regions:
+            for prefix in merged.address_prefixes:
+                if text.startswith(prefix):
+                    remainder = text[len(prefix):].strip()
+                    region_name = merged.region_name_for(remainder.split()[0] if remainder else None)
+                    return f"{region_name} {remainder}".strip()
+        return text
+
+    def scope_includes_address(self, scope: RegionScope, address: str) -> bool:
+        """Whether an address falls in a scope, merged region names included.
+
+        `RegionScope.includes_address` only knows its own region's prefixes;
+        this also resolves a merged post-2026-07-01 address such as
+        `전남광주통합특별시 목포시 ...` before applying the city filter.
+        """
+        text = str(address or "").strip()
+        if not text:
+            return False
+        if scope.includes_address(text):
+            return True
+        region = self.region_for_address(text)
+        if region is None or region.canonical_name != scope.region.canonical_name:
+            return False
+        if not scope.cities:
+            return True
+        for merged in self.merged_source_regions:
+            for prefix in merged.address_prefixes:
+                if text.startswith(prefix):
+                    remainder = text[len(prefix):].strip()
+                    return remainder.startswith(tuple(scope.cities))
+        return False
 
     def scope(self, name: str, cities: Iterable[str] = ()) -> RegionScope:
         return RegionScope(self.get(name), tuple(cities))

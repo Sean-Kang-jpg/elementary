@@ -1,6 +1,6 @@
 # Region EDA Findings
 
-Last updated: 2026-09-22
+Last updated: 2026-09-23
 
 Accumulated results of the per-region EDA gate defined in `OPERATION_PLAN.md`. One section per scope, newest first. Findings here are the reason the registry holds the values it does; they are not a task list.
 
@@ -72,6 +72,50 @@ This is a source-translation layer, deliberately not the final model. Collapsing
 Because the education offices merge, the 광주 and 목포 EDA passes must re-check the school-zone label format against the post-merger office rather than reusing anything measured here. Both scopes stay in the N1 queue with EDA first.
 
 Daejeon is unaffected: its 588 K-apt rows carry `대전광역시` and its five districts.
+
+## 광주·목포·세종·제주 (2026-09-23)
+
+### The merger is already in the school sources, and it broke both scopes silently
+
+The Schoolinfo API returns `전남광주통합특별시교육청` as the education office and `전남광주통합특별시 북구 …` as the address. The registry knew the merged value only as a K-apt `시도` value, so office and address resolution both failed and **광주 and 목포 fetched 0 rows each**. Neither build errored: the school master simply carried empty grade fields for every school, which is how 광주 first appeared with 155 schools and no statistics at all.
+
+Three registry changes fixed it, all resolving the merged value by the district that follows it:
+
+- merged education-office names resolve through the address instead,
+- `region_for_address` splits a merged address prefix,
+- `canonicalize_address` rewrites a merged prefix to the canonical region name before any address comparison.
+
+The last one matters beyond the fetch. The standard data writes `전라남도 목포시 …` while Schoolinfo writes `전남광주통합특별시 목포시 …`, so exact-address matching never fired: 광주 matched 154 of 155 schools through a name-and-distance fallback. After canonicalizing both sides, 광주 matches **155/155 on exact address**.
+
+### Zone-label formats, continued
+
+Two more formats appeared, and joint zones turned out to cross region borders:
+
+| Format | Region | Zones affected |
+| --- | --- | --- |
+| `제한적공동통학구역` | 전라남도 | 108 |
+| `일방향공동` / `양방향공동` | 대구 | 12 (fixed earlier) |
+| Joint zone naming a school in another region | 전남 5, 세종 6, 울산 1 | 12 |
+
+전남 zones name 광주 schools, and 세종 zones name 충북 and 충남 ones. The matcher tries the region first and only then a wider pool, so this only adds matches; `match_school_zone_scoped` reports which path was used. Within a single-region build the wider pool is still just that region, so cross-border zones stay unresolved and surface as review cases. The real fix is to build neighbouring regions as one scope, which the `--regions` list already supports.
+
+| Region | Segmented | After fixes |
+| --- | --- | --- |
+| 전라남도 | 384/501 (76.6%) | 496/501 (99.0%) |
+| 세종 | 60/67 (89.6%) | 66/67 (98.5%) |
+| 광주 | 166/167 (99.4%) | unchanged |
+| 제주 | 127/128 (99.2%) | unchanged |
+
+### Build results
+
+| Scope | Schools | Complexes | Assignments | Serving | Grade data |
+| --- | --- | --- | --- | --- | --- |
+| 광주 | 155 | 1,292 | 1,306 (100%) | 1,319 | 155/155 |
+| 세종 | 55 | 248 | 253 (100%) | 259 | 55/55 |
+| 제주 | 119 | 1,121 | 1,121 (100%) | 1,169 | 118/119 |
+| 전남 / 목포시 | 33 | 280 | 280 (100%) | 276 | 26/33 |
+
+목포's 7 schools without statistics are not missing from Schoolinfo: their rows carry **no address at all**, only coordinates, which are within 50 m of the standard data. Address matching therefore fails and the name-and-distance fallback is blocked by its same-region test, which reads an empty address. Parked as review cases rather than loosening the matcher at the end of a long change.
 
 ## 대구·부산·울산 (2026-09-22)
 

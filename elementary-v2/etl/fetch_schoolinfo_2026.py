@@ -53,9 +53,12 @@ def row_in_scope(row: dict[str, Any], scopes: Sequence[RegionScope]) -> bool:
     address = first_value(row, ADDRESS_KEYS)
     office_region = registry.by_education_office(office)
     address_region = registry.region_for_address(address)
+    if office_region is None and registry.merged_office(office):
+        # A merged office covers two regions, so the address decides.
+        office_region = address_region
     for scope in scopes:
         if scope.cities:
-            if address and scope.includes_address(address):
+            if address and registry.scope_includes_address(scope, address):
                 return True
             continue
         if office_region is not None and office_region.canonical_name == scope.region.canonical_name:
