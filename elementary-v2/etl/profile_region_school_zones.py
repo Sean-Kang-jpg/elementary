@@ -27,9 +27,13 @@ if __package__ in (None, ""):  # `python etl/profile_region_school_zones.py`
     sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 import shapefile
+from pyproj import Transformer
+from shapely.geometry import shape
 
 from etl.build_operational_masters import match_school_zone_scoped, school_zone_label
 from etl.region_registry import load_registry
+
+TO_WGS84 = Transformer.from_crs("EPSG:5186", "EPSG:4326", always_xy=True)
 
 BASE_DIR = Path(__file__).resolve().parent
 DEFAULT_SHP = BASE_DIR / "data" / "hakgudo" / "20260320" / "extracted" / "초등학교통학구역.shp"
@@ -67,13 +71,23 @@ def load_schools(region_name: str) -> list[dict[str, str]]:
 
 
 def load_zones(shp_path: Path, legal_dong_code: str) -> list[dict[str, Any]]:
+    """Zone records for a region, each with its centroid in WGS84.
+
+    The centroid is the reference point that keeps a cross-border match honest:
+    a school of the same name elsewhere in the country is far from it.
+    """
     reader = shapefile.Reader(str(shp_path), encoding="euc-kr")
     fields = [field[0] for field in reader.fields[1:]]
-    return [
-        record
-        for record in (dict(zip(fields, row)) for row in reader.records())
-        if record.get("SD_CD") == legal_dong_code
-    ]
+    zones = []
+    for record, geometry in zip(reader.records(), reader.shapes()):
+        row = dict(zip(fields, record))
+        if row.get("SD_CD") != legal_dong_code:
+            continue
+        centre = shape(geometry.__geo_interface__).centroid
+        longitude, latitude = TO_WGS84.transform(centre.x, centre.y)
+        row["_centroid"] = (latitude, longitude)
+        zones.append(row)
+    return zones
 
 
 def profile_region(region_name: str, shp_path: Path) -> dict[str, Any]:
@@ -85,8 +99,22 @@ def profile_region(region_name: str, shp_path: Path) -> dict[str, Any]:
         return {"region": region.canonical_name, "schools": len(schools), "zones": len(zones),
                 "error": "no schools or no zones for this region"}
 
+    all_schools = load_all_schools()
+    neighbour_names = {other.canonical_name for other in registry.adjacent_regions(region.canonical_name)}
+    neighbour_names.add(region.canonical_name)
+    nearby_schools = [
+        row for row in all_schools
+        if (lambda found: found is not None and found.canonical_name in neighbour_names)(
+            registry.region_for_address(row.get("소재지도로명주소") or row.get("소재지지번주소") or "")
+        )
+    ]
     candidates = candidate_labels(schools, region)
-    nationwide = candidate_labels(load_all_schools(), region)
+    wider = candidate_labels(nearby_schools, region)
+    school_points = {
+        row["학교ID"]: (float(row["위도"]), float(row["경도"]))
+        for row in all_schools
+        if row.get("위도") and row.get("경도")
+    }
 
     matched_schools: set[str] = set()
     failures: list[str] = []
@@ -95,7 +123,12 @@ def profile_region(region_name: str, shp_path: Path) -> dict[str, Any]:
     for zone in zones:
         office = str(zone.get("EDU_NM") or "")
         school_ids, used_fallback = match_school_zone_scoped(
-            zone.get("HAKGUDO_NM"), region.canonical_name, candidates, nationwide
+            zone.get("HAKGUDO_NM"),
+            region.canonical_name,
+            candidates,
+            wider,
+            zone.get("_centroid"),
+            school_points,
         )
         per_office[office]["zones"] += 1
         if school_ids:

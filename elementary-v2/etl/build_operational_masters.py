@@ -5,6 +5,7 @@ from __future__ import annotations
 import argparse
 import csv
 import json
+import math
 import re
 import sys
 from collections import Counter, defaultdict
@@ -158,27 +159,55 @@ def match_school_zone(value: Any, region: str, candidates: list[tuple[str, str]]
     return list(dict.fromkeys(matches))
 
 
+def haversine_km(left: tuple[float, float], right: tuple[float, float]) -> float:
+    radius = 6371.0
+    lat1, lon1 = math.radians(left[0]), math.radians(left[1])
+    lat2, lon2 = math.radians(right[0]), math.radians(right[1])
+    inner = (
+        math.sin((lat2 - lat1) / 2) ** 2
+        + math.cos(lat1) * math.cos(lat2) * math.sin((lon2 - lon1) / 2) ** 2
+    )
+    return 2 * radius * math.asin(math.sqrt(inner))
+
+
+# A joint zone can name a school across a region border, but only a nearby one.
+# Measured cases separate cleanly: real ones sit within 10 km, while same-name
+# schools elsewhere in the country are 47 km or more away.
+MAX_CROSS_REGION_KM = 15.0
+
+
 def match_school_zone_scoped(
     value: Any,
     region: str,
     candidates: list[tuple[str, str]],
-    fallback_candidates: list[tuple[str, str]] | None = None,
+    wider_candidates: list[tuple[str, str]] | None = None,
+    reference: tuple[float, float] | None = None,
+    school_points: dict[str, tuple[float, float]] | None = None,
+    max_km: float = MAX_CROSS_REGION_KM,
 ) -> tuple[list[str], bool]:
-    """Match within the region first, then nationwide if that finds nothing.
+    """Match within the region first, then nearby schools outside it.
 
-    A joint zone can name a school in a neighbouring region: 전라남도 zones
-    reference 광주 schools, and 세종 zones reference 충북 and 충남 ones. The
-    region-scoped attempt runs first and is unchanged, so this only adds matches
-    where there were none; the flag lets the caller record how it matched.
+    School names repeat across the country: 대산초 exists four times and 상북초
+    three. Matching against a nationwide pool therefore invents assignments, so
+    a wider match is kept only when every school it names is within `max_km` of
+    the reference point, which is the apartment being assigned or the zone's own
+    centroid.
     """
     matches = match_school_zone(value, region, candidates)
     if matches:
         return matches, False
-    if fallback_candidates:
-        matches = match_school_zone(value, region, fallback_candidates)
-        if matches:
-            return matches, True
-    return [], False
+    if not wider_candidates:
+        return [], False
+    matches = match_school_zone(value, region, wider_candidates)
+    if not matches:
+        return [], False
+    if reference is None or not school_points:
+        return matches, True
+    for school_id in matches:
+        point = school_points.get(school_id)
+        if point is None or haversine_km(reference, point) > max_km:
+            return [], False
+    return matches, True
 
 
 def source_value(kapt_value: Any, base_value: Any, use_kapt: bool, kapt_as_of: Any) -> tuple[Any, str]:
@@ -356,9 +385,16 @@ def build_assignment_units(
         key=lambda item: (-len(item[0]), item[0], item[1]),
     )
 
+    school_points = {
+        school["school_id"]: (school["latitude"], school["longitude"])
+        for school in schools
+        if school.get("latitude") is not None and school.get("longitude") is not None
+    }
+
     output = []
     school_links = []
     school_match_cache: dict[tuple[str, str], list[str]] = {}
+    cross_region_matches: set[tuple[str, str]] = set()
     for apt_id, apartment in sorted(apartment_by_id.items()):
         point = point_by_id.get(apt_id, {})
         resolved = resolved_by_id.get(apt_id)
@@ -385,14 +421,22 @@ def build_assignment_units(
 
         cache_key = (hakgudo_name or "", apartment.get("region") or "")
         if cache_key not in school_match_cache:
-            school_candidates = match_school_zone(
+            reference = (
+                (floating(apartment.get("latitude")), floating(apartment.get("longitude")))
+                if apartment.get("latitude") and apartment.get("longitude")
+                else None
+            )
+            school_candidates, crossed = match_school_zone_scoped(
                 hakgudo_name,
                 cache_key[1],
                 schools_by_region.get(cache_key[1], []),
-            ) if hakgudo_name else []
-            if hakgudo_name and not school_candidates:
-                school_candidates = match_school_zone(hakgudo_name, cache_key[1], all_school_candidates)
+                all_school_candidates,
+                reference if reference and None not in reference else None,
+                school_points,
+            ) if hakgudo_name else ([], False)
             school_match_cache[cache_key] = school_candidates
+            if crossed:
+                cross_region_matches.add(cache_key)
         school_candidates = school_match_cache[cache_key]
         for rank, school_id in enumerate(school_candidates, start=1):
             school_links.append({

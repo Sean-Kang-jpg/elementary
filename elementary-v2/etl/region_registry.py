@@ -296,6 +296,27 @@ class RegionRegistry:
                 return region
         return self.get(merged.region_name_for(sigungu))
 
+    def adjacent_regions(self, name: str, margin: float = 0.12) -> tuple[Region, ...]:
+        """Regions whose envelope touches this one, within a small margin.
+
+        Used to bound cross-border school-zone matching. Envelopes are coarse,
+        so this is deliberately generous: the distance check does the real work.
+        """
+        region = self.get(name)
+        bounds = region.bounds
+        neighbours = []
+        for other in self.regions:
+            if other.canonical_name == region.canonical_name:
+                continue
+            if (
+                other.bounds.min_lat - margin <= bounds.max_lat
+                and other.bounds.max_lat + margin >= bounds.min_lat
+                and other.bounds.min_lng - margin <= bounds.max_lng
+                and other.bounds.max_lng + margin >= bounds.min_lng
+            ):
+                neighbours.append(other)
+        return tuple(neighbours)
+
     def canonicalize_address(self, address: str) -> str:
         """Rewrite a merged region prefix to the canonical region name.
 
