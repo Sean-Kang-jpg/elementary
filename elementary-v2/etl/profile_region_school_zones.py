@@ -30,7 +30,11 @@ import shapefile
 from pyproj import Transformer
 from shapely.geometry import shape
 
-from etl.build_operational_masters import match_school_zone_scoped, school_zone_label
+from etl.build_operational_masters import (
+    match_school_zone_scoped,
+    school_label_variants,
+    school_zone_label,
+)
 from etl.region_registry import load_registry
 
 TO_WGS84 = Transformer.from_crs("EPSG:5186", "EPSG:4326", always_xy=True)
@@ -42,11 +46,15 @@ ELEMENTARY = "초등학교"
 
 
 def candidate_labels(rows: list[dict[str, str]], region: Any) -> list[tuple[str, str]]:
+    """Every spelling of every school, including the city prefix zones may use."""
     return sorted(
         {
             (school_zone_label(variant), row["학교ID"])
             for row in rows
-            for variant in region.name_variants(row["학교명"])
+            for variant in school_label_variants({
+                "school_name": row["학교명"],
+                "road_address": row.get("소재지도로명주소") or row.get("소재지지번주소"),
+            })
         },
         key=lambda item: (-len(item[0]), item[0], item[1]),
     )

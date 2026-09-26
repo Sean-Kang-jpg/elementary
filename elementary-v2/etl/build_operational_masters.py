@@ -232,6 +232,38 @@ def assignment_role(zone_name: Any, rank: int) -> str:
 
 
 
+def city_prefix_for(address: Any) -> str:
+    """City or county name a zone label may prefix a school name with.
+
+    Gangwon zones write 원주섬강초 and 고성동광초 where the school itself is
+    섬강초등학교 in 원주시 and 동광초등학교 in 고성군. Only provinces have this
+    level, so metropolitan districts are left alone.
+    """
+    registry = load_registry()
+    text = str(address or "").strip()
+    region = registry.region_for_address(text)
+    if region is None or not region.has_city_level:
+        return ""
+    parts = registry.canonicalize_address(text).split()
+    if len(parts) < 2:
+        return ""
+    city = parts[1]
+    return city[:-1] if city.endswith(("시", "군")) else ""
+
+
+def school_label_variants(school: dict[str, Any]) -> list[str]:
+    """Every spelling of one school that a zone label might use."""
+    name = str(school.get("school_name") or "")
+    address = school.get("road_address") or school.get("legal_address")
+    region = load_registry().region_for_address(str(address or ""))
+    variants = list(region.name_variants(name)) if region else [name]
+    city = city_prefix_for(address)
+    if city and not name.startswith(city):
+        variants.append(f"{city}{name}")
+    return variants
+
+
+
 def source_value(kapt_value: Any, base_value: Any, use_kapt: bool, kapt_as_of: Any) -> tuple[Any, str]:
     if use_kapt and kapt_value not in (None, ""):
         return kapt_value, f"kapt_{str(kapt_as_of or 'unknown').replace('-', '_')}"
@@ -397,11 +429,15 @@ def build_assignment_units(
     resolved_by_id = {row["apt_cd"]: row for row in resolved_rows if row.get("status") == "resolved"}
     schools_by_region: dict[str, list[tuple[str, str]]] = defaultdict(list)
     for school in schools:
-        label = school_zone_label(school["school_name"])
-        if label:
-            schools_by_region[school_region(school)].append((label, school["school_id"]))
+        for variant in school_label_variants(school):
+            label = school_zone_label(variant)
+            if label:
+                schools_by_region[school_region(school)].append((label, school["school_id"]))
     for region in schools_by_region:
-        schools_by_region[region].sort(key=lambda item: (-len(item[0]), item[0], item[1]))
+        schools_by_region[region] = sorted(
+            set(schools_by_region[region]),
+            key=lambda item: (-len(item[0]), item[0], item[1]),
+        )
     all_school_candidates = sorted(
         {item for candidates in schools_by_region.values() for item in candidates},
         key=lambda item: (-len(item[0]), item[0], item[1]),
