@@ -72,7 +72,7 @@ export const REGIONS: RegionDefinition[] = [
     canonicalName: '울산광역시',
     shortName: '울산',
     hasCityLevel: false,
-    isProduction: false,
+    isProduction: true,
     center: { lat: 35.5109, lng: 129.2715 },
     bounds: { minLat: 35.3011, maxLat: 35.7207, minLng: 129.0361, maxLng: 129.5069 },
   },

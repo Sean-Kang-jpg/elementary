@@ -29,13 +29,24 @@ class ReadonlyBuildPinningTest(unittest.TestCase):
         with tempfile.TemporaryDirectory() as directory:
             project = Path(directory)
             arguments = build_arguments("build_apartment_master_v1.py", project)
-        self.assertEqual(arguments[0], "--kapt-source")
+        self.assertIn("--kapt-source", arguments)
         expected_name = ROLE_TARGETS["kapt-basic"][1]
-        self.assertTrue(arguments[1].endswith(expected_name), arguments[1])
+        source = arguments[arguments.index("--kapt-source") + 1]
+        self.assertTrue(source.endswith(expected_name), source)
 
-    def test_other_build_scripts_take_no_extra_arguments(self) -> None:
-        for script in ("build_school_master_v2.py", "build_operational_masters.py", "audit_operational_backend.py"):
-            self.assertEqual(build_arguments(script, Path(".")), [], script)
+    def test_every_build_script_is_pinned_to_the_capital_scope(self) -> None:
+        """The bundle reproduces the capital, not whatever the registry now holds."""
+        for script in (
+            "build_apartment_master_v1.py",
+            "build_school_master_v2.py",
+            "build_operational_masters.py",
+            "audit_operational_backend.py",
+        ):
+            arguments = build_arguments(script, Path("."))
+            self.assertEqual(arguments[:1], ["--regions"], script)
+            self.assertEqual(
+                set(arguments[1:4]), {"서울특별시", "경기도", "인천광역시"}, script
+            )
 
 
 if __name__ == "__main__":

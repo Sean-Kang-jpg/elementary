@@ -45,7 +45,7 @@ FROM (VALUES
     ('대구광역시', '대구', '27', ARRAY[]::TEXT[], 'D10', '대구광역시교육청', ARRAY['대구광역시']::TEXT[], FALSE, FALSE, 'N1'),
     ('대전광역시', '대전', '30', ARRAY[]::TEXT[], 'G10', '대전광역시교육청', ARRAY['대전광역시']::TEXT[], FALSE, TRUE, 'N1'),
     ('광주광역시', '광주', '29', ARRAY[]::TEXT[], 'F10', '광주광역시교육청', ARRAY['광주광역시']::TEXT[], FALSE, FALSE, 'N1'),
-    ('울산광역시', '울산', '31', ARRAY[]::TEXT[], 'H10', '울산광역시교육청', ARRAY['울산광역시']::TEXT[], FALSE, FALSE, 'N1'),
+    ('울산광역시', '울산', '31', ARRAY[]::TEXT[], 'H10', '울산광역시교육청', ARRAY['울산광역시']::TEXT[], FALSE, TRUE, 'N1'),
     ('전라남도', '전남', '46', ARRAY[]::TEXT[], 'Q10', '전라남도교육청', ARRAY['전라남도']::TEXT[], TRUE, FALSE, 'N1'),
     ('세종특별자치시', '세종', '36', ARRAY[]::TEXT[], 'I10', '세종특별자치시교육청', ARRAY['세종특별자치시']::TEXT[], FALSE, FALSE, 'N2'),
     ('제주특별자치도', '제주', '50', ARRAY[]::TEXT[], 'T10', '제주특별자치도교육청', ARRAY['제주특별자치도']::TEXT[], TRUE, FALSE, 'N2'),
