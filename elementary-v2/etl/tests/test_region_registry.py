@@ -14,9 +14,15 @@ class RegionRegistryTest(unittest.TestCase):
         names = {region.canonical_name for region in self.registry}
         self.assertEqual(len(names), 17)
 
-    def test_capital_regions_are_the_only_production_scopes(self) -> None:
+    def test_capital_regions_are_always_in_production(self) -> None:
+        """Which regions are live changes as waves land; the capital never leaves."""
         production = {region.canonical_name for region in self.registry.production_regions}
-        self.assertEqual(production, set(CAPITAL_REGIONS))
+        self.assertTrue(set(CAPITAL_REGIONS) <= production, production)
+
+    def test_production_regions_are_measured_not_assumed(self) -> None:
+        for region in self.registry.production_regions:
+            self.assertTrue(region.bounds_source.startswith("measured"), region.canonical_name)
+            self.assertIsNotNone(region.elementary_school_count, region.canonical_name)
 
     def test_identifiers_are_unique(self) -> None:
         for attribute in ("neis_office_code", "legal_dong_code", "education_office"):

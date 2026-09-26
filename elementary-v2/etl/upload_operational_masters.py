@@ -99,9 +99,11 @@ def upsert_batch(url: str, key: str, table: str, keys: tuple[str, ...], rows: li
         raise RuntimeError(f"{table}: HTTP {exc.code}: {detail}") from exc
 
 
-def table_count(url: str, key: str, table: str) -> int:
+def table_count(url: str, key: str, table: str, filters: str = "") -> int:
+    """Exact row count, optionally narrowed by a PostgREST filter fragment."""
+    query = f"select=*&limit=1&{filters}" if filters else "select=*&limit=1"
     request = urllib.request.Request(
-        f"{url}/rest/v1/{table}?select=*&limit=1",
+        f"{url}/rest/v1/{table}?{query}",
         headers={
             "apikey": key,
             "Authorization": f"Bearer {key}",
@@ -203,8 +205,7 @@ def scoped_tables(suffix: str) -> tuple[tuple[str, Path, tuple[str, ...]], ...]:
 
 
 def region_count(url: str, key: str, table: str, region: str) -> int:
-    quoted = urllib.parse.quote(region)
-    return table_count(url, key, f"{table}?region=eq.{quoted}")
+    return table_count(url, key, table, f"region=eq.{urllib.parse.quote(region)}")
 
 
 def main() -> None:
@@ -233,6 +234,11 @@ def main() -> None:
     args = parser.parse_args()
     if args.batch_size < 1 or args.batch_size > 1000:
         raise ValueError("--batch-size must be between 1 and 1000")
+    if args.refresh_serving and (args.regions or args.cities):
+        # refresh_school_apartment_serving() rebuilds the whole table from the
+        # masters in the database, so its expected count is every region's, not
+        # this scope's. A wave uploads its own serving rows instead.
+        raise ValueError("--refresh-serving rebuilds every region; do not combine it with --regions")
 
     scopes = build_scopes(load_registry(), args.regions, args.cities)
     slug = scope_slug(list(scopes))
