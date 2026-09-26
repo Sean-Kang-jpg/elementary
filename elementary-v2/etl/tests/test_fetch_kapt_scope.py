@@ -16,11 +16,13 @@ class FetchKaptScopeTest(unittest.TestCase):
     def scopes(self, regions=(), cities=()):
         return build_scopes(self.registry, regions, cities)
 
-    def test_capital_scope_matches_the_previous_exact_comparison(self) -> None:
+    def test_default_scope_accepts_production_regions_only(self) -> None:
         scopes = self.scopes()
-        for sido in ("서울특별시", "경기도", "인천광역시"):
-            self.assertTrue(row_in_scope(kapt_row(sido, "강남구"), scopes), sido)
-        self.assertFalse(row_in_scope(kapt_row("대전광역시", "서구"), scopes))
+        for region in self.registry.production_regions:
+            self.assertTrue(row_in_scope(kapt_row(region.canonical_name, "강남구"), scopes),
+                            region.canonical_name)
+        outside = next(region for region in self.registry if not region.is_production)
+        self.assertFalse(row_in_scope(kapt_row(outside.canonical_name, "서구"), scopes))
 
     def test_missing_or_unknown_region_is_rejected_without_raising(self) -> None:
         scopes = self.scopes()

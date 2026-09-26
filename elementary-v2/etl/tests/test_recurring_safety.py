@@ -19,6 +19,8 @@ class RecurringSafetyTests(unittest.TestCase):
             "pipeline_name": "test",
             "pipeline_version": "test-v1",
             "retention_days": 1,
+            # A run always declares its scope; verification is per region.
+            "scope": {"regions": ["서울특별시"], "domains": ["school"]},
             "snapshots": [],
         }
         loaded = [("school_master", ("school_id",), [{"school_id": "S1"}])]
