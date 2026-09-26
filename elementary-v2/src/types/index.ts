@@ -200,6 +200,16 @@ export interface AcademyAddress {
   distance_origin_type: 'nearest_building_centroid' | 'complex_centroid'
 }
 
+export interface ApartmentAcademySummary {
+  canonical_complex_id: string
+  core_address_count: number
+  extended_address_count: number
+  core_institution_count: number
+  extended_institution_count: number
+  distance_origin_type: 'nearest_building_centroid' | 'complex_centroid'
+  updated_at?: string
+}
+
 // 💾 캐시 관련 타입
 export interface CacheEntry<T> {
   data: T

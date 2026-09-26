@@ -1,6 +1,7 @@
-import { Building2, CarFront, ChevronRight, LoaderCircle, RefreshCw } from 'lucide-react'
+import { Building2, LoaderCircle, RefreshCw } from 'lucide-react'
 import React, { useMemo, useState } from 'react'
-import { Apartment } from '../../types'
+import type { Apartment, ApartmentAcademySummary } from '../../types'
+import ApartmentCard from './ApartmentCard'
 
 interface ApartmentListProps {
   apartments: Apartment[]
@@ -8,6 +9,7 @@ interface ApartmentListProps {
   error?: string | null
   onApartmentSelect?: (apartment: Apartment) => void
   onRetry?: () => void
+  academySummaries?: Record<string, ApartmentAcademySummary>
 }
 
 type SortField = 'name' | 'parking' | 'year' | 'households'
@@ -18,6 +20,7 @@ const ApartmentList: React.FC<ApartmentListProps> = ({
   error = null,
   onApartmentSelect,
   onRetry,
+  academySummaries = {},
 }) => {
   const [sortBy, setSortBy] = useState<SortField>('households')
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('desc')
@@ -98,33 +101,14 @@ const ApartmentList: React.FC<ApartmentListProps> = ({
             <Building2 className="mx-auto mb-3 text-gray-300" size={36} aria-hidden="true" />
             현재 조건에 표시할 배정 단지가 없습니다.
           </div>
-        ) : sortedApartments.map((apartment) => (
-          <button
+        ) : <div className="space-y-2 py-3">{sortedApartments.map((apartment) => (
+          <ApartmentCard
             key={apartment.id}
-            type="button"
+            apartment={apartment}
+            academySummary={academySummaries[apartment.id]}
             onClick={() => onApartmentSelect?.(apartment)}
-            className="flex w-full items-center gap-3 border-b border-gray-100 py-4 text-left hover:bg-gray-50"
-          >
-            <Building2 className="flex-none text-gray-400" size={20} aria-hidden="true" />
-            <span className="min-w-0 flex-1">
-              <span className="block truncate text-sm font-semibold text-gray-950">{apartment.name}</span>
-              <span className="mt-1 block truncate text-xs text-gray-500">{apartment.address || '주소 정보 없음'}</span>
-              <span className="mt-2 flex flex-wrap gap-x-3 gap-y-1 text-xs text-gray-700">
-                <span>{apartment.households.toLocaleString()}세대</span>
-                {apartment.building_count > 0
-                  ? <span>{apartment.building_count.toLocaleString()}개 동</span>
-                  : null}
-                <span>{apartment.built_year ? `${apartment.built_year}년 준공` : '준공연도 미확인'}</span>
-                <span className="inline-flex items-center gap-1">
-                  <CarFront size={12} aria-hidden="true" />
-                  지상 {apartment.ground_parking.toLocaleString()}대 · 지하 {apartment.underground_parking.toLocaleString()}대
-                </span>
-                <span>세대당 {apartment.parking_per_household.toFixed(1)}대</span>
-              </span>
-            </span>
-            <ChevronRight className="flex-none text-gray-400" size={18} aria-hidden="true" />
-          </button>
-        ))}
+          />
+        ))}</div>}
       </div>
     </div>
   )

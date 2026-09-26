@@ -1,6 +1,6 @@
 # ETL Operation Plan
 
-Last updated: 2026-09-20
+Last updated: 2026-09-26
 
 Release status: **v2.0 operational baseline complete; v2.1 released; v2.2 interaction work in progress; nationwide expansion N0 underway with Daejeon as the first N1 scope.**
 
@@ -12,6 +12,17 @@ This document is the single checklist for the school-zone, school, apartment, Su
 - `[ ]`: pending work
 - **Deferred**: intentionally postponed; not a current blocker
 - **Issue**: requires monitoring, review, or a later correction
+
+## Current UX Milestone: School, Apartment, and Academy Integration
+
+- [x] Replace text-heavy assigned-apartment rows with reusable visual cards showing scale, age, parking composition, and nearby-academy context.
+- [x] Add apartment-detail academy summaries with 600 m core and 600-800 m extended counts plus an opt-in map layer.
+- [x] Add a school-detail education tab and a school-scoped academy map-layer trigger.
+- [x] Keep school-scoped academy access on the public serving boundary by deriving assigned complexes from `school_apartment_serving`.
+- [x] Pass frontend lint, typecheck, and production build for the local integration.
+- [ ] Apply `15_create_school_academy_proximity.sql` to Supabase and verify the anonymous RPC result and representative latency.
+- [ ] Run allowed-domain mobile QA for school detail, apartment detail, academy markers, sheet gestures, and 360/390/430 px layouts.
+- [ ] Commit and deploy only after SQL 15 and the allowed-domain smoke pass; retain the existing production deployment until then.
 
 ## Completed Baseline
 

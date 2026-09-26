@@ -699,6 +699,32 @@ export const getAcademiesNearApartment = async (canonicalComplexId: string): Pro
   }))
 }
 
+const toAcademyAddress = (row: Record<string, unknown>): AcademyAddress => ({
+  address_id: String(row.address_id),
+  region: String(row.region || ''),
+  district: String(row.district || ''),
+  latitude: numberValue(row.latitude),
+  longitude: numberValue(row.longitude),
+  institution_count: numberValue(row.institution_count),
+  institution_type_counts: (row.institution_type_counts || {}) as Record<string, number>,
+  realm_counts: (row.realm_counts || {}) as Record<string, number>,
+  top_subjects: String(row.top_subjects || ''),
+  straight_distance_m: numberValue(row.straight_distance_m),
+  distance_band: row.distance_band === 'core' ? 'core' : 'extended',
+  distance_origin_type: row.distance_origin_type === 'nearest_building_centroid'
+    ? 'nearest_building_centroid'
+    : 'complex_centroid',
+})
+
+export const getAcademiesNearSchool = async (schoolId: string): Promise<AcademyAddress[]> => {
+  const { data, error } = await supabase.rpc('nearby_academy_addresses_for_school', {
+    p_school_id: schoolId,
+    p_max_distance_m: 800,
+  })
+  if (error) throw error
+  return ((data || []) as Array<Record<string, unknown>>).map(toAcademyAddress)
+}
+
 export const getApartmentAcademySummaries = async (
   canonicalComplexIds: string[],
 ): Promise<Record<string, ApartmentAcademySummary>> => {

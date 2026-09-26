@@ -1,10 +1,11 @@
 import { useEffect, useRef, useState } from 'react'
-import { getAcademiesNearApartment } from '../../services/dataService'
-import type { AcademyAddress, Apartment } from '../../types'
+import { getAcademiesNearApartment, getAcademiesNearSchool } from '../../services/dataService'
+import type { AcademyAddress, Apartment, School } from '../../types'
 
 interface AcademyMarkerManagerProps {
   map: NaverMap
-  apartment: Apartment
+  apartment?: Apartment | null
+  school?: School | null
   enabled: boolean
   onCountChange: (count: number | null) => void
 }
@@ -15,7 +16,7 @@ const markerContent = (academy: AcademyAddress) => `
   </div>
 `
 
-export default function AcademyMarkerManager({ map, apartment, enabled, onCountChange }: AcademyMarkerManagerProps) {
+export default function AcademyMarkerManager({ map, apartment, school, enabled, onCountChange }: AcademyMarkerManagerProps) {
   const [academies, setAcademies] = useState<AcademyAddress[]>([])
   const markersRef = useRef<Marker[]>([])
 
@@ -27,7 +28,12 @@ export default function AcademyMarkerManager({ map, apartment, enabled, onCountC
       return () => { active = false }
     }
     onCountChange(-1)
-    getAcademiesNearApartment(apartment.id)
+    const request = apartment?.id
+      ? getAcademiesNearApartment(apartment.id)
+      : school?.school_id
+        ? getAcademiesNearSchool(school.school_id)
+        : Promise.resolve([])
+    request
       .then((rows) => {
         if (!active) return
         setAcademies(rows)
@@ -38,7 +44,7 @@ export default function AcademyMarkerManager({ map, apartment, enabled, onCountC
         if (active) onCountChange(null)
       })
     return () => { active = false }
-  }, [apartment.id, enabled, onCountChange])
+  }, [apartment?.id, enabled, onCountChange, school?.school_id])
 
   useEffect(() => {
     const maps = window.naver?.maps

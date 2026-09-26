@@ -29,7 +29,18 @@ const MapContainer: React.FC<MapContainerProps> = ({ className = '' }) => {
   useEffect(() => {
     setShowAcademies(false)
     setAcademyCount(null)
-  }, [state.selectedApartment?.id])
+  }, [state.selectedApartment?.id, state.selectedSchool?.school_id])
+
+  useEffect(() => {
+    const showAcademies = () => setShowAcademies(true)
+    const showSchoolAcademies = () => setShowAcademies(true)
+    window.addEventListener('joinmap:show-academies', showAcademies)
+    window.addEventListener('joinmap:show-school-academies', showSchoolAcademies)
+    return () => {
+      window.removeEventListener('joinmap:show-academies', showAcademies)
+      window.removeEventListener('joinmap:show-school-academies', showSchoolAcademies)
+    }
+  }, [])
 
   const initializeMap = useCallback(() => {
     if (!mapRef.current || naverMapRef.current) return
@@ -225,22 +236,23 @@ const MapContainer: React.FC<MapContainerProps> = ({ className = '' }) => {
       <div ref={mapRef} className="h-full w-full" aria-label="주변 초등학교 지도" />
       {isMapReady && <MarkerManager map={naverMapRef.current} />}
       {isMapReady && naverMapRef.current && <ApartmentMarkerManager map={naverMapRef.current} />}
-      {isMapReady && naverMapRef.current && state.selectedApartment && (
+      {isMapReady && naverMapRef.current && (state.selectedApartment || state.selectedSchool) && (
         <AcademyMarkerManager
           map={naverMapRef.current}
           apartment={state.selectedApartment}
+          school={state.selectedSchool}
           enabled={showAcademies}
           onCountChange={setAcademyCount}
         />
       )}
 
-      {isMapReady && state.selectedApartment && (
+      {isMapReady && (state.selectedApartment || state.selectedSchool) && (
         <button
           type="button"
           onClick={() => setShowAcademies((current) => !current)}
           className={`academy-layer-toggle absolute right-3 inline-flex h-11 items-center gap-2 rounded-md border px-3 text-sm font-semibold shadow-md transition-colors sm:right-5 ${showAcademies ? 'border-emerald-700 bg-emerald-700 text-white' : 'border-gray-300 bg-white text-gray-800 hover:bg-gray-50'}`}
           aria-pressed={showAcademies}
-          aria-label="선택한 아파트 주변 학원 표시"
+          aria-label={state.selectedApartment ? '선택한 아파트 주변 학원 표시' : '선택한 학교 생활권 학원 표시'}
         >
           {academyCount === -1 ? <LoaderCircle className="animate-spin" size={18} aria-hidden="true" /> : <GraduationCap size={18} aria-hidden="true" />}
           <span>{showAcademies && academyCount != null && academyCount >= 0 ? `학원 ${academyCount}` : '주변 학원'}</span>
