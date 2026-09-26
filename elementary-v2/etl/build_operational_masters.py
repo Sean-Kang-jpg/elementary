@@ -214,6 +214,24 @@ def match_school_zone_scoped(
     return matches, True
 
 
+def assignment_role(zone_name: Any, rank: int) -> str:
+    """Role of one school within a zone record.
+
+    A one-way joint zone (`공동(일방)`, `일방향공동`) is not a shared assignment:
+    the first school is where the address is assigned, and the rest are rural
+    schools the student may choose instead. Gyeongju names 17 schools that way
+    and Haman 9, so treating them all as assignments would put one apartment in
+    seventeen schools' assigned lists.
+    """
+    name = str(zone_name or "")
+    if rank == 1:
+        return "primary"
+    if "일방" in name:
+        return "optional_one_way"
+    return "shared_zone_active" if "공동" in name else "primary"
+
+
+
 def source_value(kapt_value: Any, base_value: Any, use_kapt: bool, kapt_as_of: Any) -> tuple[Any, str]:
     if use_kapt and kapt_value not in (None, ""):
         return kapt_value, f"kapt_{str(kapt_as_of or 'unknown').replace('-', '_')}"
@@ -447,7 +465,7 @@ def build_assignment_units(
                 "apt_cd": apt_id,
                 "school_id": school_id,
                 "assignment_rank": rank,
-                "assignment_role": "shared_zone_active" if "공동" in str(hakgudo_name) else "primary",
+                "assignment_role": assignment_role(hakgudo_name, rank),
                 "match_method": "region_school_zone_segmentation_with_inactive_alias" if "대원초" in str(hakgudo_name) else "region_school_zone_segmentation",
                 "pipeline_version": PIPELINE_VERSION,
             })
@@ -506,6 +524,11 @@ def build_school_apartment_serving(
     confidence_rank = {"low": 0, "medium": 1, "high": 2}
 
     for link in links:
+        # Optional one-way choices are kept in the assignment tables but stay
+        # out of the published read model, which answers "which school is this
+        # apartment assigned to".
+        if link.get("assignment_role") == "optional_one_way":
+            continue
         unit = unit_by_id[link["apt_cd"]]
         key = (link["school_id"], unit["canonical_complex_id"])
         group = groups.setdefault(key, {"apt_cd_list": set(), "assignment_roles": set(), "links": []})

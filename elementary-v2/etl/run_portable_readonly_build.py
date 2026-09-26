@@ -158,9 +158,38 @@ def compare_with_baseline(report: dict, baseline: dict) -> list[str]:
     return differences
 
 
+def relock_baseline(report: dict, baseline_path: Path, reason: str) -> None:
+    """Rewrite the locked baseline after a deliberate change to the model.
+
+    Relocking is how an intended change is recorded, and it is the wrong answer
+    to drift: a mismatch caused by the environment, such as a build reading a
+    newer local snapshot, must be fixed rather than blessed. The reason is
+    stored so the file says why its numbers moved.
+    """
+    baseline = json.loads(baseline_path.read_text(encoding="utf-8"))
+    previous = {item["name"]: item for item in baseline["files"]}
+    baseline["files"] = [
+        {"name": item["name"], "rows": item["rows"], "sha256": item["sha256"]}
+        for item in report["files"]
+    ]
+    baseline["audit_check_count"] = report["audit_check_count"]
+    baseline.setdefault("relock_history", []).append({
+        "relocked_at": datetime.now(timezone.utc).isoformat(),
+        "reason": reason,
+        "row_changes": {
+            item["name"]: [previous.get(item["name"], {}).get("rows"), item["rows"]]
+            for item in report["files"]
+            if previous.get(item["name"], {}).get("rows") != item["rows"]
+        },
+    })
+    baseline_path.write_text(json.dumps(baseline, ensure_ascii=False, indent=2) + chr(10), encoding="utf-8")
+    print(f"relocked {baseline_path.name}: {reason}")
+
+
 def write_comparison_report(
     output_dir: Path = OUTPUT_DIR,
     baseline_path: Path = DEFAULT_BASELINE,
+    relock_reason: str | None = None,
 ) -> Path:
     audit_path = output_dir / "backend_audit_report.json"
     audit = json.loads(audit_path.read_text(encoding="utf-8"))
@@ -183,6 +212,8 @@ def write_comparison_report(
         "row_counts": audit["row_counts"],
         "files": files,
     }
+    if relock_reason:
+        relock_baseline(report, baseline_path, relock_reason)
     baseline = json.loads(baseline_path.read_text(encoding="utf-8"))
     differences = compare_with_baseline(report, baseline)
     report["baseline"] = {
@@ -210,13 +241,19 @@ def main() -> None:
     )
     parser.add_argument("--materialize-only", action="store_true")
     parser.add_argument("--baseline", type=Path, default=DEFAULT_BASELINE)
+    parser.add_argument(
+        "--relock",
+        metavar="REASON",
+        help="rewrite the locked baseline from this run; only for a deliberate "
+             "model change, never to bless environment drift",
+    )
     args = parser.parse_args()
     manifest = load_manifest(args.manifest)
     paths = materialize_inputs(manifest, args.restore_dir)
     print(f"materialized {len(paths)} build inputs")
     if not args.materialize_only:
         run_build()
-        write_comparison_report(baseline_path=args.baseline)
+        write_comparison_report(baseline_path=args.baseline, relock_reason=args.relock)
 
 
 if __name__ == "__main__":

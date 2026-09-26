@@ -4,12 +4,52 @@
   "bundle_version": "2026-09-07",
   "audit_check_count": 52,
   "files": [
-    {"name": "school_master_operational_v1.json", "rows": 2260, "sha256": "4287df12253fb114157e247af378bb7d8d2780fea0d714927e35fff111944971"},
-    {"name": "apartment_complex_master_v1.json", "rows": 20164, "sha256": "1db43cbfe8f4fae5008b20991e39271abeea2855725ef98bb7a12f30362dc631"},
-    {"name": "apartment_assignment_units_v1.json", "rows": 20421, "sha256": "a37b7687517574f693ca3d233428ed2db65f843df0e515557a76ad68df5c957d"},
-    {"name": "apartment_assignment_schools_v1.json", "rows": 21154, "sha256": "870865498e4bd49fa806c8ae1ddfc18b0ce2622b03d2177419437956637c051d"},
-    {"name": "school_apartment_serving_v1.json", "rows": 20891, "sha256": "820dac35e1083fe79a000879ea737090abb89c4212a763e4ad58b040094e8667"},
-    {"name": "apartment_name_history_operational_v1.csv", "rows": 26225, "sha256": "9565bab78bb403824d244cda8e5fa6abbfdabc1612fe20e38758ec8e551822e8"},
-    {"name": "apartment_property_history_operational_v1.csv", "rows": 1889, "sha256": "89f48f4fa7be16cd229d7c7bda10c05c099caee10e779a6cc029c8d682a05002"}
+    {
+      "name": "school_master_operational_v1.json",
+      "rows": 2260,
+      "sha256": "4287df12253fb114157e247af378bb7d8d2780fea0d714927e35fff111944971"
+    },
+    {
+      "name": "apartment_complex_master_v1.json",
+      "rows": 20164,
+      "sha256": "1db43cbfe8f4fae5008b20991e39271abeea2855725ef98bb7a12f30362dc631"
+    },
+    {
+      "name": "apartment_assignment_units_v1.json",
+      "rows": 20421,
+      "sha256": "a37b7687517574f693ca3d233428ed2db65f843df0e515557a76ad68df5c957d"
+    },
+    {
+      "name": "apartment_assignment_schools_v1.json",
+      "rows": 21154,
+      "sha256": "a309f19e9dac460272e8177333f406c605ca5ae9e44d3221354ecf1d3ba10f4a"
+    },
+    {
+      "name": "school_apartment_serving_v1.json",
+      "rows": 20850,
+      "sha256": "e85b9f17de8ad733c437180a9686b01b1f550a52b103fb9176935ae1e631a206"
+    },
+    {
+      "name": "apartment_name_history_operational_v1.csv",
+      "rows": 26225,
+      "sha256": "9565bab78bb403824d244cda8e5fa6abbfdabc1612fe20e38758ec8e551822e8"
+    },
+    {
+      "name": "apartment_property_history_operational_v1.csv",
+      "rows": 1889,
+      "sha256": "89f48f4fa7be16cd229d7c7bda10c05c099caee10e779a6cc029c8d682a05002"
+    }
+  ],
+  "relock_history": [
+    {
+      "relocked_at": "2026-09-26T12:24:57.530222+00:00",
+      "reason": "One-way joint zones (공동(일방), 일방향공동) now publish only their first school: ranks 2+ are optional choices, not assignments. Capital serving drops 20,891 to 20,850.",
+      "row_changes": {
+        "school_apartment_serving_v1.json": [
+          20891,
+          20850
+        ]
+      }
+    }
   ]
 }
