@@ -193,13 +193,22 @@ def delete_storage_objects(url: str, key: str, bucket: str, paths: list[str]) ->
 
 
 def run_maintenance(url: str, key: str) -> None:
-    cleanup_result = recurring.request_json(
-        url,
-        key,
-        "POST",
-        "/rest/v1/rpc/cleanup_recurring_etl",
-        {},
-    )
+    # Each call clears a bounded number of runs, so repeat until it reports
+    # nothing left. A single call cannot drain a backlog.
+    cleanup_result = []
+    for _ in range(20):
+        batch = recurring.request_json(
+            url,
+            key,
+            "POST",
+            "/rest/v1/rpc/cleanup_recurring_etl",
+            {},
+        ) or []
+        cleanup_result = batch
+        deleted = int(batch[0].get("staging_rows_deleted") or 0) if batch else 0
+        print(f"staging cleanup removed {deleted:,} rows")
+        if deleted == 0:
+            break
     expired = recurring.request_json(
         url,
         key,

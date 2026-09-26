@@ -385,6 +385,18 @@ def scope_checks(
     return checks
 
 
+def staging_depth(url: str, key: str) -> int:
+    """Staging rows left behind, from the planner estimate.
+
+    An exact count scans the table, which is what timed out once staging had
+    grown to millions of rows, so monitoring must not depend on it.
+    """
+    rows = request_json(url, key, "POST", "/rest/v1/rpc/etl_staging_depth", {}) or []
+    if isinstance(rows, list) and rows:
+        return int(rows[0].get("estimated_rows") or 0)
+    return 0
+
+
 def record_checks(
     url: str,
     key: str,
@@ -420,7 +432,9 @@ def record_checks(
                 "run_id": run_id,
                 "check_name": "staging_rows_after_cleanup",
                 "scope_name": "global",
-                "status": "pass" if staging_rows == 0 else "warn",
+                # Left as a warning this went unnoticed until staging reached
+                # 3.3M rows and 95% of the database.
+                "status": "pass" if staging_rows == 0 else "fail",
                 "metric_value": staging_rows,
                 "metric_unit": "rows",
             },
@@ -473,7 +487,7 @@ def apply_run(
         mark_snapshots(url, key, run_id, "validated")
         if not keep_staging:
             purge_staging(url, key, run_id)
-        staging_rows = uploader.table_count(url, key, "etl_staging_rows")
+        staging_rows = staging_depth(url, key)
         update_schedules(url, key, run_id, manifest)
         record_checks(
             url,

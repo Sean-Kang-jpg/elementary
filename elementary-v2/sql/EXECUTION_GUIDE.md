@@ -113,6 +113,35 @@ Expected: 17 and 3; three `convalidated = true` rows; no rows for the old checks
 
 Anonymous access must stay blocked. With the anon key, `select * from region_registry` returns no rows and no data, while `school_master` and `school_apartment_serving` still read normally.
 
+### Migration 17: staging retention and capacity measurement
+
+`sql/17_fix_staging_retention.sql` fixes a defect that made `etl_staging_rows` grow to 3.3M rows and 3.1 GB, 95% of the database, while the operational tables stayed small.
+
+`cleanup_recurring_etl` deleted by `staged_at`, which has no index, so once the table grew the delete scanned every row and was cancelled by the statement timeout. Nothing was reclaimed and each run added about 92,000 more rows. The rewrite deletes per run through the primary key and bounds the work per call, so a call cannot time out; repeat it until it reports zero. The migration also adds `etl_staging_depth()` and `public_table_sizes()` so the capacity gate can be measured instead of estimated.
+
+Apply, then drain and reclaim:
+
+```sql
+-- 1. apply sql/17_fix_staging_retention.sql
+
+-- 2. reclaim the space. DELETE alone will not: it leaves dead tuples and the
+--    file stays large until VACUUM FULL, while TRUNCATE returns the space at
+--    once. Staging is transient by design and holds only finished runs.
+TRUNCATE TABLE etl_staging_rows;
+
+-- 3. confirm
+SELECT * FROM public_table_sizes() LIMIT 10;
+SELECT * FROM etl_staging_depth();
+```
+
+Then check the budget from the command line:
+
+```bash
+python etl/check_capacity.py
+```
+
+It prints per-table sizes, the share of the plan limit, and fails when the total is over the 70% budget. Run it before every expansion wave.
+
 ## 4. Load and Verify
 
 After `check_supabase_schema.py` confirms all tables are available, run:
