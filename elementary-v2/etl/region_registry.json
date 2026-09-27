@@ -189,7 +189,7 @@
       },
       "bounds_source": "measured_school_standard_data_20260320",
       "wave": "N1",
-      "status": "planned",
+      "status": "production",
       "region_notes": "군위군 was transferred from 경상북도 in 2023. Legal-dong codes and school office assignment for 군위 must be checked against the collection date.",
       "address_prefixes": [
         "대구광역시"
@@ -201,7 +201,9 @@
         "lat": 35.957,
         "lng": 128.5829
       },
-      "center_source": "bounds_midpoint"
+      "center_source": "bounds_midpoint",
+      "promoted_on": "2026-09-27",
+      "promotion_note": "N1 wave: 237 schools, 2,075 complexes, 2,259 serving rows uploaded and verified per region. Four schools publish no figures; none has an assigned apartment."
     },
     {
       "canonical_name": "대전광역시",

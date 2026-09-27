@@ -42,7 +42,7 @@ FROM (VALUES
     ('경기도', '경기', '41', ARRAY[]::TEXT[], 'J10', '경기도교육청', ARRAY['경기도']::TEXT[], TRUE, TRUE, 'capital'),
     ('인천광역시', '인천', '28', ARRAY[]::TEXT[], 'E10', '인천광역시교육청', ARRAY['인천광역시']::TEXT[], FALSE, TRUE, 'capital'),
     ('부산광역시', '부산', '26', ARRAY[]::TEXT[], 'C10', '부산광역시교육청', ARRAY['부산광역시']::TEXT[], FALSE, FALSE, 'N1'),
-    ('대구광역시', '대구', '27', ARRAY[]::TEXT[], 'D10', '대구광역시교육청', ARRAY['대구광역시']::TEXT[], FALSE, FALSE, 'N1'),
+    ('대구광역시', '대구', '27', ARRAY[]::TEXT[], 'D10', '대구광역시교육청', ARRAY['대구광역시']::TEXT[], FALSE, TRUE, 'N1'),
     ('대전광역시', '대전', '30', ARRAY[]::TEXT[], 'G10', '대전광역시교육청', ARRAY['대전광역시']::TEXT[], FALSE, TRUE, 'N1'),
     ('광주광역시', '광주', '29', ARRAY[]::TEXT[], 'F10', '광주광역시교육청', ARRAY['광주광역시']::TEXT[], FALSE, FALSE, 'N1'),
     ('울산광역시', '울산', '31', ARRAY[]::TEXT[], 'H10', '울산광역시교육청', ARRAY['울산광역시']::TEXT[], FALSE, TRUE, 'N1'),

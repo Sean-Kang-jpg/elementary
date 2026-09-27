@@ -256,12 +256,23 @@ def main(argv: list[str] | None = None) -> None:
         for grade in range(1, 7)
         for metric in ("students", "classes", "per_class")
     )
-    # A school with no Schoolinfo code is not in the disclosure system at all,
-    # such as the international school in Jeju's English Education City, so it
-    # has no grade figures to be missing. A school that has a code and still
-    # lacks them is a real gap.
-    disclosed_rows = [row for row in school_rows if row.get("schoolinfo_code")]
+    # Three different situations, and only the last is a gap in our pipeline:
+    #  - no Schoolinfo code: not in the disclosure system at all, like the
+    #    international school in Jeju's English Education City;
+    #  - a code but no figures published: the disclosure lists the school and
+    #    carries no numbers, as with Daegu's four, two of which now report as
+    #    campuses of other schools after the 2023 Gunwi transfer;
+    #  - figures published but incomplete: something was lost on the way in.
     undisclosed = [row["school_id"] for row in school_rows if not row.get("schoolinfo_code")]
+    unpublished = [
+        row["school_id"]
+        for row in school_rows
+        if row.get("schoolinfo_code") and not row.get("student_data_status")
+    ]
+    disclosed_rows = [
+        row for row in school_rows
+        if row.get("schoolinfo_code") and row.get("student_data_status")
+    ]
     add_check(
         checks,
         "school master: complete grade statistics",
@@ -436,6 +447,7 @@ def main(argv: list[str] | None = None) -> None:
         "row_counts": {table: len(rows) for table, rows in datasets.items()},
         "total_rows": sum(len(rows) for rows in datasets.values()),
         "schools_outside_disclosure": len(undisclosed),
+        "schools_disclosed_without_figures": len(unpublished),
         "check_count": len(checks),
         "failed_check_count": len(failed),
         "review_required_units": len(review_units),

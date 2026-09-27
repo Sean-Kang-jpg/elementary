@@ -48,7 +48,7 @@ export const REGIONS: RegionDefinition[] = [
     canonicalName: '대구광역시',
     shortName: '대구',
     hasCityLevel: false,
-    isProduction: false,
+    isProduction: true,
     center: { lat: 35.957, lng: 128.5829 },
     bounds: { minLat: 35.6098, maxLat: 36.3043, minLng: 128.3626, maxLng: 128.8033 },
   },
