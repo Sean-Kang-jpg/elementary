@@ -256,10 +256,20 @@ def main(argv: list[str] | None = None) -> None:
         for grade in range(1, 7)
         for metric in ("students", "classes", "per_class")
     )
+    # A school with no Schoolinfo code is not in the disclosure system at all,
+    # such as the international school in Jeju's English Education City, so it
+    # has no grade figures to be missing. A school that has a code and still
+    # lacks them is a real gap.
+    disclosed_rows = [row for row in school_rows if row.get("schoolinfo_code")]
+    undisclosed = [row["school_id"] for row in school_rows if not row.get("schoolinfo_code")]
     add_check(
         checks,
         "school master: complete grade statistics",
-        [row["school_id"] for row in school_rows if any(row.get(field) is None for field in grade_fields)],
+        [
+            row["school_id"]
+            for row in disclosed_rows
+            if any(row.get(field) is None for field in grade_fields)
+        ],
     )
     add_check(
         checks,
@@ -425,6 +435,7 @@ def main(argv: list[str] | None = None) -> None:
         "remote_blocker": remote_blocker,
         "row_counts": {table: len(rows) for table, rows in datasets.items()},
         "total_rows": sum(len(rows) for rows in datasets.values()),
+        "schools_outside_disclosure": len(undisclosed),
         "check_count": len(checks),
         "failed_check_count": len(failed),
         "review_required_units": len(review_units),

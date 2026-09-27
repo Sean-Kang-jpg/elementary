@@ -150,7 +150,11 @@ def profile_region(region_name: str, shp_path: Path) -> dict[str, Any]:
 
     by_id = {row["학교ID"]: row for row in schools}
     uncovered = [
-        (by_id[school_id]["학교명"], by_id[school_id].get("설립형태", ""))
+        (
+            by_id[school_id]["학교명"],
+            by_id[school_id].get("설립형태", ""),
+            by_id[school_id].get("소재지도로명주소") or by_id[school_id].get("소재지지번주소") or "",
+        )
         for school_id in by_id
         if school_id not in matched_schools
     ]
@@ -165,7 +169,7 @@ def profile_region(region_name: str, shp_path: Path) -> dict[str, Any]:
         "failures": failures,
         "cross_region_zones": cross_region,
         "schools_without_zone": uncovered,
-        "private_schools_without_zone": sum(1 for _, kind in uncovered if kind == "사립"),
+        "private_schools_without_zone": sum(1 for _, kind, _ in uncovered if kind == "사립"),
         "by_office": {
             office: {
                 "zones": counter["zones"],
@@ -206,7 +210,7 @@ def main(argv: list[str] | None = None) -> int:
         print(f"  schools with no zone: {len(uncovered)} "
               f"({profile['private_schools_without_zone']} 사립)")
         if uncovered:
-            print(f"    {[name for name, _ in uncovered][:8]}")
+            print(f"    {[name for name, _, _ in uncovered][:8]}")
 
     if args.json:
         args.json.parent.mkdir(parents=True, exist_ok=True)

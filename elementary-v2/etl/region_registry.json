@@ -1,7 +1,7 @@
 {
   "registry_name": "elementary-region-registry",
   "registry_version": "region-registry-v1",
-  "updated": "2026-09-26",
+  "updated": "2026-09-27",
   "notes": [
     "Single source of truth for first-level administrative region scopes in the nationwide expansion (N0-N4).",
     "bounds are validation envelopes measured from the 2026-03-20 nationwide school standard data, widened by 0.05 degrees. They cover schools only; a scope's own EDA must confirm they also cover its apartments.",
@@ -426,7 +426,7 @@
       },
       "bounds_source": "measured_school_standard_data_20260320",
       "wave": "N2",
-      "status": "planned",
+      "status": "production",
       "region_notes": "제주시 and 서귀포시 are cities without districts. 추자도 belongs to 제주시 and sits near 33.95N, above the main island.",
       "address_prefixes": [
         "제주특별자치도"
@@ -438,7 +438,9 @@
         "lat": 33.5667,
         "lng": 126.5661
       },
-      "center_source": "bounds_midpoint"
+      "center_source": "bounds_midpoint",
+      "promoted_on": "2026-09-27",
+      "promotion_note": "N2 wave: 119 schools, 1,121 complexes, 1,169 serving rows uploaded and verified per region."
     },
     {
       "canonical_name": "강원특별자치도",

@@ -49,13 +49,44 @@ def load_csv(path: Path) -> list[dict[str, str]]:
         return list(csv.DictReader(handle))
 
 
-def case(region: str, kind: str, subject: str, detail: str, evidence: str = "") -> dict[str, str]:
+# Most urgent first: a wrong or missing assignment misleads a parent, while a
+# school with no zone record usually just has no apartments to assign.
+PRIORITY = {
+    "unassigned_apartment": 1,
+    "named_zone_without_school": 2,
+    "review_required_unit": 3,
+    "unmatched_zone_label": 4,
+    "school_without_grade_data": 5,
+    "school_without_zone": 6,
+}
+
+WHAT_TO_CHECK = {
+    "unassigned_apartment": "Does this complex really sit outside every school zone, or is its coordinate wrong?",
+    "named_zone_without_school": "Does the named school exist under another name, or is it new since the school snapshot?",
+    "review_required_unit": "Is the assignment the pipeline flagged correct?",
+    "unmatched_zone_label": "Which schools does this label mean?",
+    "school_without_grade_data": "Publish the school with empty grade figures, or hold it back?",
+    "school_without_zone": "Expected for a school with no apartments nearby; confirm none are missing.",
+}
+
+
+def case(
+    region: str,
+    kind: str,
+    subject: str,
+    detail: str,
+    evidence: str = "",
+    address: str = "",
+) -> dict[str, str]:
     return {
+        "priority": PRIORITY.get(kind, 9),
         "region": region,
         "case_type": kind,
         "subject": subject,
         "detail": detail,
         "evidence": evidence,
+        "what_to_check": WHAT_TO_CHECK.get(kind, ""),
+        "map": f"https://map.naver.com/p/search/{address}" if address else "",
         "verdict": "",
         "note": "",
     }
@@ -84,6 +115,7 @@ def collect_region(
                 unit.get("apt_name") or unit["apt_cd"],
                 unit.get("road_address") or "",
                 f"lat={unit.get('latitude')} lng={unit.get('longitude')}",
+                unit.get("road_address") or "",
             ))
         elif unit["apt_cd"] not in linked_apts:
             rows.append(case(
@@ -91,6 +123,7 @@ def collect_region(
                 unit.get("apt_name") or unit["apt_cd"],
                 unit.get("road_address") or "",
                 f"zone={unit.get('hakgudo_name')}",
+                unit.get("road_address") or "",
             ))
         if str(unit.get("review_required")).lower() in {"true", "1"}:
             rows.append(case(
@@ -98,6 +131,7 @@ def collect_region(
                 unit.get("apt_name") or unit["apt_cd"],
                 unit.get("road_address") or "",
                 f"reason={unit.get('review_reason') or ''} zone={unit.get('hakgudo_name') or ''}",
+                unit.get("road_address") or "",
             ))
 
     for school in schools:
@@ -107,6 +141,7 @@ def collect_region(
                 school.get("school_name") or school.get("school_id"),
                 school.get("road_address") or "",
                 f"school_id={school.get('school_id')}",
+                school.get("road_address") or "",
             ))
 
     # Zone-level cases are province-wide, so a city scope reports only its own
@@ -114,10 +149,15 @@ def collect_region(
     profile = {} if cities else zone_profiles.get(region_name, {})
     for label in profile.get("failures", []):
         rows.append(case(region_name, "unmatched_zone_label", label, "zone label did not segment", ""))
-    for name, establishment in profile.get("schools_without_zone", []):
+    for entry in profile.get("schools_without_zone", []):
+        name, establishment = entry[0], entry[1]
+        address = entry[2] if len(entry) > 2 else ""
         if establishment in {"사립", "국립"}:
             continue  # private and national-university schools have no 통학구역 by design
-        rows.append(case(region_name, "school_without_zone", name, f"establishment={establishment}", ""))
+        rows.append(case(
+            region_name, "school_without_zone", name, address,
+            f"establishment={establishment}", address,
+        ))
     return rows
 
 
@@ -138,11 +178,14 @@ def main(argv: list[str] | None = None) -> int:
     rows: list[dict[str, str]] = []
     for region_name in args.regions:
         rows.extend(collect_region(region_name, zone_profiles, tuple(args.cities)))
-    rows.sort(key=lambda row: (row["case_type"], row["region"], row["subject"]))
+    rows.sort(key=lambda row: (row["priority"], row["region"], row["subject"]))
 
     args.out.parent.mkdir(parents=True, exist_ok=True)
     with args.out.open("w", encoding="utf-8-sig", newline="") as handle:
-        writer = csv.DictWriter(handle, fieldnames=["region", "case_type", "subject", "detail", "evidence", "verdict", "note"])
+        writer = csv.DictWriter(handle, fieldnames=[
+            "priority", "region", "case_type", "subject", "detail",
+            "evidence", "what_to_check", "map", "verdict", "note",
+        ])
         writer.writeheader()
         writer.writerows(rows)
 
