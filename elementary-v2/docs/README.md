@@ -44,6 +44,7 @@ This directory contains the maintained product, architecture, UX, operations, de
 - [Monitoring](operations/MONITORING.md)
 - [Region Scope Inventory](operations/REGION_SCOPE_INVENTORY.md): every capital-region assumption in the codebase, classified for the N0 generalization pass.
 - [Region EDA Findings](operations/REGION_EDA_FINDINGS.md): measured results of the per-region EDA gate, newest first.
+- [Manual QA Review](operations/MANUAL_QA_REVIEW.html): browser checklist for the current regional assignment samples; verdicts stay in this browser until exported as CSV.
 - [Project Progress](PROJECT_PROGRESS.html): summary dashboard; it is not the authoritative backlog.
 
 ## Decisions
