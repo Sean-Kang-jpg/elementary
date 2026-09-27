@@ -45,16 +45,26 @@ SCHOOL_SOURCE = BASE_DIR / "data" / "schoolzone" / "school_location_20260320.csv
 ELEMENTARY = "초등학교"
 
 
-def candidate_labels(rows: list[dict[str, str]], region: Any) -> list[tuple[str, str]]:
-    """Every spelling of every school, including the city prefix zones may use."""
+def candidate_labels(
+    rows: list[dict[str, str]], region: Any, include_stripped: bool = False
+) -> list[tuple[str, str]]:
+    """Every spelling of every school, including the city prefix zones may use.
+
+    `include_stripped` belongs to the wider pool only, matching the builder: a
+    name with its city dropped is looser, and only a distance-validated match
+    may rely on it.
+    """
     return sorted(
         {
             (school_zone_label(variant), row["학교ID"])
             for row in rows
-            for variant in school_label_variants({
-                "school_name": row["학교명"],
-                "road_address": row.get("소재지도로명주소") or row.get("소재지지번주소"),
-            })
+            for variant in school_label_variants(
+                {
+                    "school_name": row["학교명"],
+                    "road_address": row.get("소재지도로명주소") or row.get("소재지지번주소"),
+                },
+                include_stripped=include_stripped,
+            )
         },
         key=lambda item: (-len(item[0]), item[0], item[1]),
     )
@@ -117,7 +127,7 @@ def profile_region(region_name: str, shp_path: Path) -> dict[str, Any]:
         )
     ]
     candidates = candidate_labels(schools, region)
-    wider = candidate_labels(nearby_schools, region)
+    wider = candidate_labels(nearby_schools, region, include_stripped=True)
     school_points = {
         row["학교ID"]: (float(row["위도"]), float(row["경도"]))
         for row in all_schools

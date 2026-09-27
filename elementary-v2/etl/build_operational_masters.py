@@ -251,15 +251,31 @@ def city_prefix_for(address: Any) -> str:
     return city[:-1] if city.endswith(("시", "군")) else ""
 
 
-def school_label_variants(school: dict[str, Any]) -> list[str]:
-    """Every spelling of one school that a zone label might use."""
+def school_label_variants(school: dict[str, Any], include_stripped: bool = False) -> list[str]:
+    """Every spelling of one school that a zone label might use.
+
+    The city prefix goes both ways. Gangwon zones write 원주섬강초 for
+    섬강초등학교 in 원주시, so the prefixed form is always offered. A Gyeongbuk
+    zone writes 압량초 for the school recorded as 경산압량초등학교, so the
+    stripped form is needed too, but it is looser: dropping a city name can make
+    one school's name look like another's. It is therefore offered only in the
+    wider candidate pool, which validates a match by distance, and never in the
+    region's own pool.
+    """
     name = str(school.get("school_name") or "")
     address = school.get("road_address") or school.get("legal_address")
     region = load_registry().region_for_address(str(address or ""))
     variants = list(region.name_variants(name)) if region else [name]
     city = city_prefix_for(address)
-    if city and not name.startswith(city):
-        variants.append(f"{city}{name}")
+    if city:
+        if not name.startswith(city):
+            variants.append(f"{city}{name}")
+        elif include_stripped:
+            stripped = name[len(city):]
+            # Keep it only when a real stem survives: 경산압량초 leaves 압량,
+            # while 성남초 in 성남시 would leave nothing at all.
+            if len(stripped.split("초")[0]) >= 2:
+                variants.append(stripped)
     return variants
 
 
@@ -438,8 +454,16 @@ def build_assignment_units(
             set(schools_by_region[region]),
             key=lambda item: (-len(item[0]), item[0], item[1]),
         )
+    # The wider pool adds the looser stripped spellings; every match through it
+    # is distance-validated, so a name that only looks similar cannot stick.
     all_school_candidates = sorted(
-        {item for candidates in schools_by_region.values() for item in candidates},
+        {item for candidates in schools_by_region.values() for item in candidates}
+        | {
+            (school_zone_label(variant), school["school_id"])
+            for school in schools
+            for variant in school_label_variants(school, include_stripped=True)
+            if school_zone_label(variant)
+        },
         key=lambda item: (-len(item[0]), item[0], item[1]),
     )
 
