@@ -14,7 +14,11 @@ from typing import Any
 if __package__ in (None, ""):  # `python etl/audit_operational_backend.py`
     sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
-from etl.build_operational_masters import school_zone_label
+from etl.build_operational_masters import (
+    UPSTREAM_GAPS_PATH,
+    school_zone_label,
+    upstream_school_gaps,
+)
 from etl.fetch_schoolinfo_2026 import build_scopes, scope_slug
 from etl.region_registry import RegionScopeError, load_registry
 
@@ -23,7 +27,6 @@ OUTPUT_DIR = BASE_DIR / "local_outputs_20260320"
 REPORT_JSON_NAME = "backend_audit_report"
 REPORT_MD_NAME = "backend_audit_report"
 SUPABASE_REPORT = OUTPUT_DIR / "supabase_backend_check.json"
-UPSTREAM_GAPS_PATH = BASE_DIR / "upstream_school_gaps.json"
 SQL_PATH = BASE_DIR.parent / "sql" / "06_create_operational_master_tables.sql"
 SERVING_REFRESH_SQL_PATH = BASE_DIR.parent / "sql" / "09_create_serving_refresh_function.sql"
 UPLOADER_PATH = BASE_DIR / "upload_operational_masters.py"
@@ -76,20 +79,6 @@ def add_check(checks: list[dict[str, Any]], name: str, failures: list[Any], samp
         }
     )
 
-
-def upstream_school_gaps() -> dict[str, dict[str, Any]]:
-    """Reviewed upstream gaps, keyed by the normalized zone label.
-
-    A zone can name a school that the school standard data does not contain, so
-    the school has no `school_id` and cannot enter `school_master`. That is a
-    defect in the source, not in the matcher: the label parsed correctly and the
-    school simply is not there. Each one is listed explicitly with its evidence
-    so the release gate can pass without hiding a real regression.
-    """
-    if not UPSTREAM_GAPS_PATH.is_file():
-        return {}
-    payload = json.loads(UPSTREAM_GAPS_PATH.read_text(encoding="utf-8"))
-    return {school_zone_label(gap["zone_label"]): gap for gap in payload.get("gaps", [])}
 
 
 def review_trace_ids(

@@ -55,3 +55,50 @@ class SchoolZoneMatchingTest(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class UpstreamGapSegmentationTest(unittest.TestCase):
+    """A joint zone must keep the schools that exist when one is a listed gap."""
+
+    def test_a_joint_zone_naming_a_listed_gap_keeps_its_real_school(self) -> None:
+        self.assertEqual(
+            match_school_zone(
+                "무안사랑초무안희망초공동통학구역",
+                "전라남도",
+                [("무안사랑초", "sarang")],
+            ),
+            ["sarang"],
+        )
+
+    def test_a_zone_naming_only_a_listed_gap_still_matches_nothing(self) -> None:
+        """Dropping the name must not let the zone borrow a neighbour's school."""
+        self.assertEqual(
+            match_school_zone(
+                "무안희망초제한적공동통학구역",
+                "전라남도",
+                [("무안사랑초", "sarang")],
+            ),
+            [],
+        )
+
+    def test_a_gap_name_that_is_a_real_candidate_is_not_dropped(self) -> None:
+        """Once the source republishes the school, the label must match it."""
+        self.assertEqual(
+            match_school_zone(
+                "무안희망초제한적공동통학구역",
+                "전라남도",
+                [("무안희망초", "himang")],
+            ),
+            ["himang"],
+        )
+
+    def test_the_retry_cannot_change_a_label_that_already_matched(self) -> None:
+        """It runs only on a label that matched nothing, so it never rewrites one."""
+        self.assertEqual(
+            match_school_zone(
+                "무안사랑초통학구역",
+                "전라남도",
+                [("무안사랑초", "sarang"), ("무안희망초", "himang")],
+            ),
+            ["sarang"],
+        )

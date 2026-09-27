@@ -46,15 +46,15 @@ FROM (VALUES
     ('대전광역시', '대전', '30', ARRAY[]::TEXT[], 'G10', '대전광역시교육청', ARRAY['대전광역시']::TEXT[], FALSE, TRUE, 'N1'),
     ('광주광역시', '광주', '29', ARRAY[]::TEXT[], 'F10', '광주광역시교육청', ARRAY['광주광역시']::TEXT[], FALSE, TRUE, 'N1'),
     ('울산광역시', '울산', '31', ARRAY[]::TEXT[], 'H10', '울산광역시교육청', ARRAY['울산광역시']::TEXT[], FALSE, TRUE, 'N1'),
-    ('전라남도', '전남', '46', ARRAY[]::TEXT[], 'Q10', '전라남도교육청', ARRAY['전라남도']::TEXT[], TRUE, FALSE, 'N1'),
+    ('전라남도', '전남', '46', ARRAY[]::TEXT[], 'Q10', '전라남도교육청', ARRAY['전라남도']::TEXT[], TRUE, TRUE, 'N1'),
     ('세종특별자치시', '세종', '36', ARRAY[]::TEXT[], 'I10', '세종특별자치시교육청', ARRAY['세종특별자치시']::TEXT[], FALSE, TRUE, 'N2'),
     ('제주특별자치도', '제주', '50', ARRAY[]::TEXT[], 'T10', '제주특별자치도교육청', ARRAY['제주특별자치도']::TEXT[], TRUE, TRUE, 'N2'),
-    ('강원특별자치도', '강원', '51', ARRAY['42']::TEXT[], 'K10', '강원특별자치도교육청', ARRAY['강원특별자치도', '강원도']::TEXT[], TRUE, FALSE, 'N2'),
+    ('강원특별자치도', '강원', '51', ARRAY['42']::TEXT[], 'K10', '강원특별자치도교육청', ARRAY['강원특별자치도', '강원도']::TEXT[], TRUE, TRUE, 'N2'),
     ('충청북도', '충북', '43', ARRAY[]::TEXT[], 'M10', '충청북도교육청', ARRAY['충청북도']::TEXT[], TRUE, TRUE, 'N2'),
     ('충청남도', '충남', '44', ARRAY[]::TEXT[], 'N10', '충청남도교육청', ARRAY['충청남도']::TEXT[], TRUE, TRUE, 'N2'),
-    ('전북특별자치도', '전북', '52', ARRAY['45']::TEXT[], 'P10', '전북특별자치도교육청', ARRAY['전북특별자치도', '전라북도']::TEXT[], TRUE, FALSE, 'N2'),
-    ('경상북도', '경북', '47', ARRAY[]::TEXT[], 'R10', '경상북도교육청', ARRAY['경상북도']::TEXT[], TRUE, FALSE, 'N2'),
-    ('경상남도', '경남', '48', ARRAY[]::TEXT[], 'S10', '경상남도교육청', ARRAY['경상남도']::TEXT[], TRUE, FALSE, 'N2')
+    ('전북특별자치도', '전북', '52', ARRAY['45']::TEXT[], 'P10', '전북특별자치도교육청', ARRAY['전북특별자치도', '전라북도']::TEXT[], TRUE, TRUE, 'N2'),
+    ('경상북도', '경북', '47', ARRAY[]::TEXT[], 'R10', '경상북도교육청', ARRAY['경상북도']::TEXT[], TRUE, TRUE, 'N2'),
+    ('경상남도', '경남', '48', ARRAY[]::TEXT[], 'S10', '경상남도교육청', ARRAY['경상남도']::TEXT[], TRUE, TRUE, 'N2')
 ) AS seed (
     canonical_name, short_name, legal_dong_code, legacy_legal_dong_codes,
     neis_office_code, education_office, address_prefixes, has_city_level,

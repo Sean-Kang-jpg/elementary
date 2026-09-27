@@ -31,6 +31,22 @@ NAME_HISTORY = OUTPUT_DIR / "apartment_name_history.csv"
 PROPERTY_HISTORY = OUTPUT_DIR / "apartment_property_history.csv"
 PIPELINE_VERSION = "operational-v1"
 INACTIVE_ZONE_SCHOOL_LABELS = {"대원초"}
+UPSTREAM_GAPS_PATH = BASE_DIR / "upstream_school_gaps.json"
+
+
+def upstream_school_gaps() -> dict[str, dict[str, Any]]:
+    """Reviewed upstream gaps, keyed by the normalized zone label.
+
+    A zone can name a school that the school standard data does not contain, so
+    the school has no `school_id` and cannot enter `school_master`. That is a
+    defect in the source, not in the matcher: the label parsed correctly and the
+    school simply is not there. Each one is listed explicitly with its evidence
+    so the release gate can pass without hiding a real regression.
+    """
+    if not UPSTREAM_GAPS_PATH.is_file():
+        return {}
+    payload = json.loads(UPSTREAM_GAPS_PATH.read_text(encoding="utf-8"))
+    return {school_zone_label(gap["zone_label"]): gap for gap in payload.get("gaps", [])}
 
 
 def read_csv(path: Path) -> list[dict[str, str]]:
@@ -123,6 +139,24 @@ def segment_school_zone(label: str, candidates: list[tuple[str, str]]) -> list[s
     return visit(0) or []
 
 
+def first_segmentation(
+    labels: list[str], candidates: list[tuple[str, str]]
+) -> list[str]:
+    for label in labels:
+        segmented = segment_school_zone(label, candidates)
+        if segmented:
+            return segmented
+    return []
+
+
+def strip_gap_labels(label: str, active_candidate_labels: set[str]) -> str:
+    """`label` without the names of schools confirmed missing from the source."""
+    for gap_label in upstream_school_gaps():
+        if gap_label in label and gap_label not in active_candidate_labels:
+            label = label.replace(gap_label, "")
+    return label
+
+
 def match_school_zone(value: Any, region: str, candidates: list[tuple[str, str]]) -> list[str]:
     cleaned_value = re.sub(r"\([^)]*\)|\[[^]]*\]", "", str(value or ""))
     # Some offices put several zone records in one field, comma separated.
@@ -168,11 +202,24 @@ def match_school_zone(value: Any, region: str, candidates: list[tuple[str, str]]
         labels = [label]
         if region_prefix:
             labels.append(label.replace(region_prefix, ""))
-        for candidate_label in labels:
-            segmented = segment_school_zone(candidate_label, candidate_variants)
-            if segmented:
-                matches.extend(segmented)
-                break
+        segmented = first_segmentation(labels, candidate_variants)
+        if not segmented:
+            # Segmentation needs full cover, so a joint zone naming a listed
+            # upstream gap loses the schools that do exist alongside it. Drop
+            # only those names, and only when no candidate carries them, then
+            # try once more. This runs solely on a label that matched nothing,
+            # so it can add an assignment but never change one.
+            reduced = [
+                stripped
+                for stripped in (
+                    strip_gap_labels(candidate_label, active_candidate_labels)
+                    for candidate_label in labels
+                )
+                if stripped
+            ]
+            if reduced != [label for label in labels if label]:
+                segmented = first_segmentation(reduced, candidate_variants)
+        matches.extend(segmented)
     return list(dict.fromkeys(matches))
 
 

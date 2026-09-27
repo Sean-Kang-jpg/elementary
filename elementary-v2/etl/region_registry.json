@@ -348,7 +348,7 @@
       },
       "bounds_source": "measured_school_standard_data_20260320",
       "wave": "N1",
-      "status": "planned",
+      "status": "production",
       "region_notes": "N1 loads only the 목포시 city scope. The province-wide load belongs to N3.",
       "address_prefixes": [
         "전라남도"
@@ -472,7 +472,7 @@
       },
       "bounds_source": "measured_school_standard_data_20260320",
       "wave": "N2",
-      "status": "planned",
+      "status": "production",
       "region_notes": "Renamed from 강원도 in 2023; older snapshots carry 강원도 and legal-dong prefix 42.",
       "address_prefixes": [
         "강원특별자치도",
@@ -590,7 +590,7 @@
       },
       "bounds_source": "measured_school_standard_data_20260320",
       "wave": "N2",
-      "status": "planned",
+      "status": "production",
       "region_notes": "Renamed from 전라북도 in 2024; older snapshots carry 전라북도 and legal-dong prefix 45. 전주시 has general-purpose districts.",
       "address_prefixes": [
         "전북특별자치도",
@@ -629,7 +629,7 @@
       },
       "bounds_source": "measured_school_standard_data_20260320",
       "wave": "N2",
-      "status": "planned",
+      "status": "production",
       "region_notes": "울릉군 extends the longitude envelope well past the mainland. 군위군 left for 대구광역시 in 2023.",
       "address_prefixes": [
         "경상북도"
@@ -667,7 +667,7 @@
       },
       "bounds_source": "measured_school_standard_data_20260320",
       "wave": "N2",
-      "status": "planned",
+      "status": "production",
       "region_notes": "창원시 has general-purpose districts.",
       "address_prefixes": [
         "경상남도"

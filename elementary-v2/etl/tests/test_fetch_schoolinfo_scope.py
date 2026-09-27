@@ -49,13 +49,16 @@ class FetchSchoolinfoScopeTest(unittest.TestCase):
         self.assertTrue(row_in_scope(school_row(office="인천광역시교육청"), scopes))
 
     def test_rows_outside_the_scope_are_rejected(self) -> None:
-        scopes = self.default_scopes()
-        outside = next(
-            region for region in self.registry if not region.is_production
-        )
+        """"Outside" is relative to the scope asked for, not to promotion status:
+        every region is in production, so the default scope excludes nothing."""
+        scopes = build_scopes(self.registry, ["서울특별시"], ())
+        outside = self.registry.get("부산광역시")
         self.assertFalse(row_in_scope(school_row(office=outside.education_office), scopes))
         self.assertFalse(row_in_scope(school_row(address=f"{outside.canonical_name} 어딘가로 1"), scopes))
         self.assertFalse(row_in_scope(school_row(), scopes))
+
+    def test_a_row_with_neither_office_nor_address_is_rejected_by_any_scope(self) -> None:
+        self.assertFalse(row_in_scope(school_row(), self.default_scopes()))
 
     def test_daejeon_scope_selects_daejeon_rows_only(self) -> None:
         scopes = build_scopes(self.registry, ["대전광역시"], ())
