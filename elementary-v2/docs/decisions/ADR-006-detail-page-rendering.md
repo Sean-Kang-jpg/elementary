@@ -76,7 +76,7 @@ Vercel 제약: 빌드 출력 파일 수에 상한은 없으나 10만 개 이상�
 - **단점**:
   - 프리렌더 HTML과 SPA가 표현하는 내용이 갈라질 수 있다. 두 벌을 만들지
     않도록 데이터→요약 매핑을 공유 모듈 하나로 두어야 한다
-  - 서버 측 Supabase 조회가 생긴다. **anon 키로, 공개 2테이블만** 읽는다.
+  - 서버 측 Supabase 조회가 생긴다. **anon 키로, 공개 읽기 계약 안에서만** 읽는다.
     service_role 키를 이 경로에 두지 않는다 ([`../architecture/SECURITY_MODEL.md`](../architecture/SECURITY_MODEL.md))
   - 첫 요청 지연이 정적 파일보다 길다 (캐시 히트 후에는 동일)
 
@@ -106,7 +106,7 @@ A는 되풀이 ETL과 구조적으로 충돌하고, C는 아직 검증되지 않
 1. `react-router` 도입, `/school/:id`, `/apt/:id`, `/region/:code`, `/compare` 경로
 2. [`vercel.json`](../../../vercel.json)의 전면 rewrite를 경로별로 분리 —
    상세 경로는 함수로, 나머지는 `index.html`로
-3. 상세 경로 서버리스 함수: anon 키로 공개 2테이블 조회 →
+3. 상세 경로 서버리스 함수: anon 키로 공개 읽기 계약 안에서 조회 →
    메타 + 콘텐츠 HTML 생성 → `s-maxage=3600, stale-while-revalidate=86400`
 4. 요약 문구·수치 포맷을 클라이언트와 공유하는 단일 모듈
 5. `public/` 생성 후 `robots.txt`, `sitemap.xml`. 현재 규모는 단일 사이트맵
@@ -119,6 +119,20 @@ A는 되풀이 ETL과 구조적으로 충돌하고, C는 아직 검증되지 않
 측정 쪽 상세는 [`../product/MEASUREMENT_PLAN.md`](../product/MEASUREMENT_PLAN.md).
 
 ## 선행 조건
+
+### 0. 배포에서 깊은 경로가 살아 있어야 한다 (2026-09-27, 배포 대기)
+
+발견 당시 운영 배포는 `/`를 제외한 모든 경로에 Vercel 수준 404를 냈다
+(`X-Vercel-Error: NOT_FOUND`). 배포가 git 빌드가 아니라 버전 관리 밖의
+`.deploy/<sha>/app/`에서 나가는데 그 트리의 `vercel.json`에 `rewrites`가
+없었기 때문이다. 상세 URL이 해석된다는 이 ADR의 전제가 성립하지 않았다.
+
+저장소 쪽 수정은 끝났다 — `elementary-v2/vercel.json`이 추적 대상이 되고
+`rewrites`를 갖췄으며, public smoke가 `/admin/etl`의 해석을 검사한다.
+**다음 배포가 이 파일을 실제로 집어가는지 확인해야 이 조건이 닫힌다.**
+`OPERATION_PLAN`의 I-27을 따른다.
+
+### 1. 아파트 식별자 영속성
 
 URL에 들어가는 아파트 식별자가 영속적이어야 한다.
 [`../reference/REPORT_CONCEPT_PREFLIGHT_20260926.md`](../reference/REPORT_CONCEPT_PREFLIGHT_20260926.md) 2.4절의

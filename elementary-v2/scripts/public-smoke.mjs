@@ -60,7 +60,26 @@ const swipeSheet = (startY, endY, scrollTop = null) => run(['eval', `(() => {
   return 'sheet swiped'
 })()`])
 
+// I-27: a deployment without an SPA rewrite serves `/` correctly and 404s
+// every other path, so opening only the base URL cannot see the failure.
+// Vite's dev server falls back to index.html, so this passes locally and only
+// fails where it matters: a deployed target that lost its rewrite rule.
+const assertDeepLinkResolves = async (deepPath) => {
+  const target = new URL(deepPath, baseUrl).toString()
+  const response = await fetch(target, { redirect: 'follow' })
+  const body = response.ok ? await response.text() : ''
+  if (!response.ok || !body.includes('<div id="root">')) {
+    throw new Error(
+      `Deep link ${deepPath} did not resolve to the application shell `
+      + `(HTTP ${response.status}). The SPA rewrite is missing from the deployed configuration.`,
+    )
+  }
+  process.stdout.write(`PASS: deep link ${deepPath} resolves to the application shell\n`)
+}
+
 try {
+  await assertDeepLinkResolves('/admin/etl')
+
   run(['set', 'viewport', '390', '844'])
   run(['open', baseUrl])
   run(['wait', '2500'])

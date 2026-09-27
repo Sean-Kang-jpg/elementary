@@ -61,20 +61,33 @@ npm run typecheck
 
 ## Data Contract
 
-브라우저의 익명 조회는 아래 두 테이블만 사용한다.
+브라우저의 익명 조회가 닿는 것은 테이블 3개와 함수 3개다. 2026-09-27에 배포된
+anon 키로 운영 DB에 직접 확인했다.
 
 1. `school_master`
 2. `school_apartment_serving`
+3. `apartment_academy_summary` — 학원 개수만, 주소·기관명은 비공개 (SQL `14`)
+4. `filter_school_ids(...)` (SQL `13`)
+5. `nearby_academy_addresses(...)` (SQL `14`)
+6. `nearby_academy_addresses_for_school(...)` (SQL `15`)
 
 정규화 마스터, 배정 링크, ETL run/check, staging, source snapshot은 공개하지 않는다.
+같은 확인에서 `apartment_complex_master`·`apartment_name_history`·
+`apartment_property_history`·`etl_runs`는 `200 []`, `region_registry`·
+`etl_schedules`·`etl_staging_rows`·`etl_source_snapshots`는 `401`로 차단을 확인했다.
 관리 작업은 `service_role` 또는 등록된 ETL 관리자 계정으로만 수행한다.
 
-현재 운영 규모:
+전체 계약은 `elementary-v2/docs/architecture/DATA_CONTRACTS.md`를 따른다.
 
-- 학교 2,260개
-- canonical apartment complex 20,164개
-- school-apartment Serving 20,891행
-- 적용 완료 SQL `06`~`13`
+현재 운영 규모 (2026-09-27, 시점 기록이므로 판단 전 재확인한다):
+
+- 운영 공개 지역 7개: 서울·경기·인천·대전·울산·제주·대구
+  (전체 17개 중. `etl/region_registry.json`의 `status=production`이 기준)
+- 적용 완료 SQL `06`~`17`
+- DB 143.4 MB, 무료 한도의 28.7%
+
+행 수는 지역 승격 때마다 바뀌므로 여기에 적지 않는다.
+`docs/operations/OPERATION_PLAN.md`의 Update Log가 웨이브별 실측을 기록한다.
 
 SQL 작업은 `elementary-v2/sql/EXECUTION_GUIDE.md`와 번호 순서를 따른다. 이미 적용된
 migration은 Supabase 상태를 확인하지 않고 재설계하지 않는다.
