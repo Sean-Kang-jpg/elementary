@@ -90,7 +90,9 @@ try {
 
   run(['fill', 'input[role="combobox"]', '은마'])
   run(['wait', '900'])
-  assertPage("[...document.querySelectorAll('#map-search-results [role=option]')].filter((node) => node.textContent?.includes('은마')).length === new Set([...document.querySelectorAll('#map-search-results [role=option]')].filter((node) => node.textContent?.includes('은마')).map((node) => node.querySelector('.font-medium')?.textContent)).size", 'apartment search results are deduplicated')
+  // Keyed on name plus address, not name alone: 은마 exists in both 서울 and 대구,
+  // so two distinct complexes legitimately share a name once a region is promoted.
+  assertPage("[...document.querySelectorAll('#map-search-results [role=option]')].filter((node) => node.textContent?.includes('은마')).length === new Set([...document.querySelectorAll('#map-search-results [role=option]')].filter((node) => node.textContent?.includes('은마')).map((node) => [...node.querySelectorAll('span > span')].slice(0, 2).map((part) => part.textContent).join('|'))).size", 'apartment search results are deduplicated')
   assertPage("[...document.querySelectorAll('#map-search-results [role=option]')].some((node) => node.textContent?.includes('4,424세대'))", 'apartment search returned household data')
   run(['eval', `(() => {
     const result = [...document.querySelectorAll('#map-search-results [role=option]')]

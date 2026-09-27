@@ -14,6 +14,7 @@ from typing import Any
 if __package__ in (None, ""):  # `python etl/audit_operational_backend.py`
     sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
+from etl.build_operational_masters import school_zone_label
 from etl.fetch_schoolinfo_2026 import build_scopes, scope_slug
 from etl.region_registry import RegionScopeError, load_registry
 
@@ -22,6 +23,7 @@ OUTPUT_DIR = BASE_DIR / "local_outputs_20260320"
 REPORT_JSON_NAME = "backend_audit_report"
 REPORT_MD_NAME = "backend_audit_report"
 SUPABASE_REPORT = OUTPUT_DIR / "supabase_backend_check.json"
+UPSTREAM_GAPS_PATH = BASE_DIR / "upstream_school_gaps.json"
 SQL_PATH = BASE_DIR.parent / "sql" / "06_create_operational_master_tables.sql"
 SERVING_REFRESH_SQL_PATH = BASE_DIR.parent / "sql" / "09_create_serving_refresh_function.sql"
 UPLOADER_PATH = BASE_DIR / "upload_operational_masters.py"
@@ -73,6 +75,21 @@ def add_check(checks: list[dict[str, Any]], name: str, failures: list[Any], samp
             "samples": failures[:sample_size],
         }
     )
+
+
+def upstream_school_gaps() -> dict[str, dict[str, Any]]:
+    """Reviewed upstream gaps, keyed by the normalized zone label.
+
+    A zone can name a school that the school standard data does not contain, so
+    the school has no `school_id` and cannot enter `school_master`. That is a
+    defect in the source, not in the matcher: the label parsed correctly and the
+    school simply is not there. Each one is listed explicitly with its evidence
+    so the release gate can pass without hiding a real regression.
+    """
+    if not UPSTREAM_GAPS_PATH.is_file():
+        return {}
+    payload = json.loads(UPSTREAM_GAPS_PATH.read_text(encoding="utf-8"))
+    return {school_zone_label(gap["zone_label"]): gap for gap in payload.get("gaps", [])}
 
 
 def review_trace_ids(
@@ -346,11 +363,21 @@ def main(argv: list[str] | None = None) -> None:
         )
 
     link_units = {row["apt_cd"] for row in datasets["apartment_assignment_schools"]}
-    named_without_link = [
-        row["apt_cd"]
-        for row in datasets["apartment_assignment_units"]
-        if row.get("hakgudo_name") and row["apt_cd"] not in link_units
-    ]
+    # A unit is excused only when its whole zone names one reviewed upstream gap
+    # and that school is genuinely missing from this scope's master. A joint zone
+    # or a school that has since appeared keeps failing.
+    known_gaps = upstream_school_gaps()
+    master_names = {row["school_name"] for row in datasets["school_master"]}
+    named_without_link: list[str] = []
+    gap_units: list[dict[str, Any]] = []
+    for row in datasets["apartment_assignment_units"]:
+        if not row.get("hakgudo_name") or row["apt_cd"] in link_units:
+            continue
+        gap = known_gaps.get(school_zone_label(row["hakgudo_name"]))
+        if gap and gap["school_name"] not in master_names:
+            gap_units.append({"apt_cd": row["apt_cd"], "school_name": gap["school_name"]})
+        else:
+            named_without_link.append(row["apt_cd"])
     review_units = [row for row in datasets["apartment_assignment_units"] if row.get("review_required") is True]
     review_queue_path = OUTPUT_DIR / f"assignment_review_queue{suffix}.csv"
     review_source_ids = review_trace_ids(
@@ -362,6 +389,8 @@ def main(argv: list[str] | None = None) -> None:
     # operational builder; it does not originate in the legacy building-level
     # review queue. Regional waves commonly have only this kind of review row.
     add_check(checks, "named assignments without school link", named_without_link)
+    checks[-1]["known_upstream_gap_count"] = len(gap_units)
+    checks[-1]["known_upstream_gap_samples"] = gap_units[:10]
     add_check(
         checks,
         "review queue matches active operational units",
@@ -474,6 +503,7 @@ def main(argv: list[str] | None = None) -> None:
         "schools_outside_disclosure": len(undisclosed),
         "schools_disclosed_without_figures": len(unpublished),
         "check_count": len(checks),
+        "known_upstream_gap_units": len(gap_units),
         "failed_check_count": len(failed),
         "review_required_units": len(review_units),
         "units_with_school_links": len(link_units),
@@ -491,6 +521,7 @@ def main(argv: list[str] | None = None) -> None:
         f"- Checks: **{report['check_count']}**, failed: **{report['failed_check_count']}**",
         f"- Assignment review queue: **{report['review_required_units']:,}**",
         f"- Units with school links: **{report['units_with_school_links']:,}**",
+        f"- Excused upstream school gaps: **{report['known_upstream_gap_units']:,}**",
         "",
         "## Remote Readiness",
         "",
@@ -512,7 +543,7 @@ def main(argv: list[str] | None = None) -> None:
             lines.append(json.dumps(check["samples"], ensure_ascii=False, indent=2))
             lines.append("```")
     (OUTPUT_DIR / f"{REPORT_MD_NAME}{suffix}.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
-    print(json.dumps({key: report[key] for key in ("status", "total_rows", "check_count", "failed_check_count")}, indent=2))
+    print(json.dumps({key: report[key] for key in ("status", "total_rows", "check_count", "failed_check_count", "known_upstream_gap_units")}, indent=2))
     if failed:
         for check in failed:
             print(f"FAIL {check['name']}: {check['failure_count']:,}")

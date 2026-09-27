@@ -18,6 +18,7 @@ BASE_DIR = Path(__file__).resolve().parent
 OUTPUT_DIR = BASE_DIR / "local_outputs_20260320"
 DOCS_DIR = BASE_DIR.parent / "docs" / "operations"
 OUTPUT_HTML = DOCS_DIR / "MANUAL_QA_REVIEW.html"
+REVIEW_CASES = OUTPUT_DIR / "review_cases.csv"
 
 SCOPES = {
     "g10": "대전광역시",
@@ -51,7 +52,7 @@ def load_rows() -> list[dict[str, str]]:
                 row["sample_number"] = str(index)
                 row["row_type"] = "sample"
                 rows.append(row)
-    exception_path = OUTPUT_DIR / "review_cases.csv"
+    exception_path = REVIEW_CASES
     slug_by_label = {label: slug for slug, label in SCOPES.items() if slug != "q10-partial"}
     if exception_path.is_file():
         with exception_path.open(encoding="utf-8-sig", newline="") as handle:
