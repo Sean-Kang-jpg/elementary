@@ -76,16 +76,20 @@ def normalize_school_name(value: Any) -> str:
 def school_zone_label(value: Any) -> str:
     name = str(value or "")
     name = name.replace("초중학교", "초").replace("초등학교", "초").replace("초등", "초")
+    # Some offices append a year-by-year transition plan after an otherwise
+    # complete zone name, occasionally without a closing parenthesis.
+    name = re.sub(r"^(.+(?:통학구역|학구))\s*[\(\[].*$", r"\1", name)
     name = re.sub(r"\([^)]*\)|\[[^]]*\]", "", name)
     name = re.sub(r"^\d{4}\..*?월\s*", "", name)
     name = name.replace("소규모학교", "").replace("작업 후", "")
+    name = re.sub(r"관내(?:읍|면)?지역초", "", name)
     # Whitespace before the suffix, as in `공동(일방) 통학구역` in Gyeongbuk.
     name = re.sub(r"\s+", "", name)
     # Each office writes the zone suffix its own way: 공동 and 공동(일방) in the
     # capital, 일방향공동 / 양방향공동 in Daegu, 제한적공동 in Jeollanam-do,
     # 광역 in Gyeongnam, 공통 in Gangwon, and 학구 rather than 통학구역 in
     # Chungbuk.
-    name = re.sub(r"(?:제한적|일방향|양방향|광역)?(?:공동|공통)?(?:\(일방\))?(?:통학구역|학구)$", "", name)
+    name = re.sub(r"(?:제한적|일방향|양방향|광역)?(?:대)?(?:공동|공통)?(?:\(일방\))?(?:통학구역|학구)$", "", name)
     return re.sub(r"[^0-9A-Za-z가-힣]", "", name).lower()
 
 
@@ -122,7 +126,10 @@ def segment_school_zone(label: str, candidates: list[tuple[str, str]]) -> list[s
 def match_school_zone(value: Any, region: str, candidates: list[tuple[str, str]]) -> list[str]:
     cleaned_value = re.sub(r"\([^)]*\)|\[[^]]*\]", "", str(value or ""))
     # Some offices put several zone records in one field, comma separated.
-    parts = re.split(r"\||,|\s+및\s+", cleaned_value)
+    parts = re.split(
+        r"\||,|\s+및\s+|\s+(?=\S+초(?:등학교)?(?:통학구역|학구))",
+        cleaned_value,
+    )
     try:
         region_prefix = load_registry().get(region).school_name_prefix if region else None
     except RegionScopeError:
@@ -144,13 +151,19 @@ def match_school_zone(value: Any, region: str, candidates: list[tuple[str, str]]
         for label, school_id in candidate_variants
         if "초" in label and label.endswith("분교장")
     )
+    candidate_variants.extend(
+        (f"{label.removesuffix('초')}분교장", school_id)
+        for label, school_id in candidate_variants
+        if label.endswith("초")
+    )
     candidate_variants = sorted(set(candidate_variants), key=lambda item: (-len(item[0]), item[0], item[1]))
+    active_candidate_labels = {label for label, _ in candidate_variants}
 
     matches: list[str] = []
     for part in parts:
         label = school_zone_label(part)
         for inactive_label in INACTIVE_ZONE_SCHOOL_LABELS:
-            if label.startswith(inactive_label):
+            if label.startswith(inactive_label) and inactive_label not in active_candidate_labels:
                 label = label[len(inactive_label) :]
         labels = [label]
         if region_prefix:

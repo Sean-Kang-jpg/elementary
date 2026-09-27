@@ -14,6 +14,8 @@ class ManualQaReviewPageTest(unittest.TestCase):
         rows = review_page.load_rows()
         counts: dict[str, int] = {}
         for row in rows:
+            if row["row_type"] != "sample":
+                continue
             counts[row["scope_slug"]] = counts.get(row["scope_slug"], 0) + 1
 
         self.assertEqual(
@@ -26,9 +28,23 @@ class ManualQaReviewPageTest(unittest.TestCase):
                 "h10": 50,
                 "i10": 50,
                 "t10": 50,
+                "k10": 50,
+                "m10": 50,
+                "n10": 50,
+                "p10": 50,
+                "q10": 50,
+                "r10": 50,
+                "s10": 50,
                 "q10-partial": 30,
             },
         )
+
+    def test_exception_pool_is_included(self) -> None:
+        rows = review_page.load_rows()
+        exception_rows = [row for row in rows if row["row_type"] == "exception"]
+
+        self.assertEqual(len(exception_rows), 185)
+        self.assertTrue(all(row["stratum"].startswith("exception:") for row in exception_rows))
 
     def test_template_defaults_to_daejeon_without_duplicating_all_types(self) -> None:
         self.assertIn("localStorage.getItem(SCOPE_STORE)||'g10'", review_page.TEMPLATE)

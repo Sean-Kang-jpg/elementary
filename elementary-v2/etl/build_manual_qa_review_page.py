@@ -27,6 +27,13 @@ SCOPES = {
     "h10": "울산광역시",
     "i10": "세종특별자치시",
     "t10": "제주특별자치도",
+    "k10": "강원특별자치도",
+    "m10": "충청북도",
+    "n10": "충청남도",
+    "p10": "전북특별자치도",
+    "q10": "전라남도",
+    "r10": "경상북도",
+    "s10": "경상남도",
     "q10-partial": "전라남도 / 목포시",
 }
 
@@ -42,7 +49,34 @@ def load_rows() -> list[dict[str, str]]:
                 row["scope_slug"] = slug
                 row["scope_label"] = label
                 row["sample_number"] = str(index)
+                row["row_type"] = "sample"
                 rows.append(row)
+    exception_path = OUTPUT_DIR / "review_cases.csv"
+    slug_by_label = {label: slug for slug, label in SCOPES.items() if slug != "q10-partial"}
+    if exception_path.is_file():
+        with exception_path.open(encoding="utf-8-sig", newline="") as handle:
+            for index, case_row in enumerate(csv.DictReader(handle), start=1):
+                slug = slug_by_label.get(case_row["region"])
+                if not slug:
+                    continue
+                rows.append({
+                    "apt_cd": f"exception:{index}:{case_row['case_type']}:{case_row['subject']}",
+                    "scope_slug": slug,
+                    "scope_label": case_row["region"],
+                    "sample_number": f"E{index}",
+                    "row_type": "exception",
+                    "stratum": f"exception:{case_row['case_type']}",
+                    "complex_name": case_row["subject"],
+                    "road_address": case_row["detail"],
+                    "assigned_schools": case_row["what_to_check"],
+                    "school_zone_record": case_row["evidence"],
+                    "confidence": f"priority {case_row['priority']}",
+                    "map": case_row["map"],
+                    "households": "",
+                    "boundary_distance_m": "",
+                    "verdict": case_row["verdict"],
+                    "note": case_row["note"],
+                })
     return rows
 
 
@@ -84,7 +118,7 @@ TEMPLATE = r'''<!doctype html>
   </style>
 </head>
 <body>
-<header><div class="shell top"><div><h1>전국 학구 배정 수동 검수</h1><p>판정은 이 브라우저에 자동 저장됩니다. 완료 후 CSV를 내려받아 증빙으로 보관하세요.</p></div><div class="actions"><button id="reset">현재 범위 초기화</button><button id="export" class="primary">검수 CSV 내려받기</button></div></div></header>
+<header><div class="shell top"><div><h1>전국 학구 배정 수동 검수</h1><p>지역별 표본과 파이프라인 예외를 한곳에서 검수합니다. 판정은 이 브라우저에 자동 저장됩니다.</p></div><div class="actions"><button id="reset">현재 범위 초기화</button><button id="export" class="primary">검수 CSV 내려받기</button></div></div></header>
 <main class="shell">
   <section class="summary">
     <div class="metric"><strong id="total">0</strong><span>현재 표본</span></div><div class="metric"><strong id="reviewed">0</strong><span>검수 완료</span></div><div class="metric"><strong id="ok">0</strong><span>정상</span></div><div class="metric"><strong id="wrong">0</strong><span>오배정 / 보류</span></div><div class="metric"><strong id="gate" class="gate wait">대기</strong><span>업로드 게이트</span></div>
@@ -103,7 +137,7 @@ function filtered(){const q=$('search').value.trim().toLowerCase();return rows.f
 function summary(){const scopeRows=rows.filter(r=>!$('scope').value||r.scope_slug===$('scope').value), states=scopeRows.map(get), reviewed=states.filter(s=>s.verdict).length, ok=states.filter(s=>s.verdict==='ok').length, issue=states.filter(s=>s.verdict==='wrong'||s.verdict==='hold').length;$('total').textContent=scopeRows.length;$('reviewed').textContent=reviewed;$('ok').textContent=ok;$('wrong').textContent=issue;$('bar').style.width=`${scopeRows.length?reviewed/scopeRows.length*100:0}%`;const gate=$('gate');gate.className='gate '+(reviewed<scopeRows.length?'wait':issue?'fail':'pass');gate.textContent=reviewed<scopeRows.length?'검수 중':issue?'보류':'통과'}
 function setVerdict(r,v){saved[key(r)]={...get(r),verdict:v};persist();render()}
 function setNote(r,v){saved[key(r)]={...get(r),note:v};persist();summary()}
-function render(){summary();const data=filtered();$('list').innerHTML=data.length?data.map((r,i)=>{const s=get(r), cls=s.verdict||'';return `<article class="card ${cls}"><div><div class="eyebrow"><span class="tag">${esc(r.scope_label)}</span><span class="tag">${esc(r.stratum)}</span><span>#${esc(r.sample_number)}</span><span>${esc(r.households||'?')}세대</span><span>경계 ${r.boundary_distance_m?Math.round(Number(r.boundary_distance_m))+'m':'-'}</span></div><div class="name">${esc(r.complex_name)}</div><div class="address">${esc(r.road_address)}</div><div class="assignment">배정 학교: <b>${esc(r.assigned_schools||'미배정')}</b></div><div class="zone">학구도 원문: ${esc(r.school_zone_record||'-')} · ${esc(r.confidence)}</div><a class="map" href="${esc(r.map)}" target="_blank" rel="noopener">네이버 지도에서 확인 ↗</a></div><div class="review"><div class="verdicts">${[['ok','정상'],['wrong','오배정'],['hold','보류']].map(([v,l])=>`<button class="${s.verdict===v?'active':''}" data-v="${v}" onclick="setVerdict(rows[${rows.indexOf(r)}],'${v}')">${l}</button>`).join('')}</div><input class="note" value="${esc(s.note)}" placeholder="메모 (선택)" onchange="setNote(rows[${rows.indexOf(r)}],this.value)"></div></article>`}).join(''):'<div class="empty">조건에 맞는 표본이 없습니다.</div>'}
+function render(){summary();const data=filtered();$('list').innerHTML=data.length?data.map((r,i)=>{const s=get(r), cls=s.verdict||'', exception=r.row_type==='exception';return `<article class="card ${cls}"><div><div class="eyebrow"><span class="tag">${esc(r.scope_label)}</span><span class="tag">${esc(r.stratum)}</span><span>#${esc(r.sample_number)}</span>${r.households?`<span>${esc(r.households)}세대</span>`:''}${r.boundary_distance_m?`<span>경계 ${Math.round(Number(r.boundary_distance_m))}m</span>`:''}</div><div class="name">${esc(r.complex_name)}</div><div class="address">${esc(r.road_address)}</div><div class="assignment">${exception?'확인 사항':'배정 학교'}: <b>${esc(r.assigned_schools||'미배정')}</b></div><div class="zone">${exception?'근거':'학구도 원문'}: ${esc(r.school_zone_record||'-')} · ${esc(r.confidence)}</div>${r.map?`<a class="map" href="${esc(r.map)}" target="_blank" rel="noopener">네이버 지도에서 확인 ↗</a>`:''}</div><div class="review"><div class="verdicts">${[['ok','정상'],['wrong','오배정'],['hold','보류']].map(([v,l])=>`<button class="${s.verdict===v?'active':''}" data-v="${v}" onclick="setVerdict(rows[${rows.indexOf(r)}],'${v}')">${l}</button>`).join('')}</div><input class="note" value="${esc(s.note)}" placeholder="메모 (선택)" onchange="setNote(rows[${rows.indexOf(r)}],this.value)"></div></article>`}).join(''):'<div class="empty">조건에 맞는 표본이 없습니다.</div>'}
 function csvCell(v){const s=String(v??'');return /[",\n]/.test(s)?`"${s.replace(/"/g,'""')}"`:s}
 $('export').onclick=()=>{const cols=[...Object.keys(rows[0]),'reviewed_verdict','reviewed_note'];const body=[cols,...rows.map(r=>[...Object.values(r),get(r).verdict,get(r).note])].map(a=>a.map(csvCell).join(',')).join('\r\n');const blob=new Blob(['\ufeff'+body],{type:'text/csv;charset=utf-8'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=`manual_qa_review_${new Date().toISOString().slice(0,10)}.csv`;a.click();URL.revokeObjectURL(a.href)};
 $('reset').onclick=()=>{const scope=$('scope').value;if(!confirm(`${scope||'전체'} 판정을 초기화할까요?`))return;Object.keys(saved).forEach(k=>{if(!scope||k.startsWith(scope+':'))delete saved[k]});persist();render()};

@@ -75,6 +75,25 @@ def add_check(checks: list[dict[str, Any]], name: str, failures: list[Any], samp
     )
 
 
+def review_trace_ids(
+    review_rows: list[dict[str, Any]],
+    assignment_rows: list[dict[str, Any]],
+    active_unit_ids: set[str],
+) -> set[str]:
+    """Return review-required IDs traceable to a queue row or polygon no-hit."""
+    traced = {
+        row["apt_cd"]
+        for row in review_rows
+        if row.get("apt_cd") in active_unit_ids
+    }
+    traced.update(
+        row["apt_cd"]
+        for row in assignment_rows
+        if row.get("assignment_method") == "unassigned_point_nohit"
+    )
+    return traced
+
+
 def sql_columns(sql: str, table: str) -> set[str]:
     marker = f"CREATE TABLE IF NOT EXISTS {table} ("
     start = sql.index(marker) + len(marker)
@@ -333,9 +352,15 @@ def main(argv: list[str] | None = None) -> None:
         if row.get("hakgudo_name") and row["apt_cd"] not in link_units
     ]
     review_units = [row for row in datasets["apartment_assignment_units"] if row.get("review_required") is True]
-    review_source_ids = {
-        row["apt_cd"] for row in load(OUTPUT_DIR / "assignment_review_queue.csv") if row.get("apt_cd") in units
-    }
+    review_queue_path = OUTPUT_DIR / f"assignment_review_queue{suffix}.csv"
+    review_source_ids = review_trace_ids(
+        load(review_queue_path) if review_queue_path.is_file() else [],
+        datasets["apartment_assignment_units"],
+        units,
+    )
+    # A point outside every polygon is marked for review directly by the
+    # operational builder; it does not originate in the legacy building-level
+    # review queue. Regional waves commonly have only this kind of review row.
     add_check(checks, "named assignments without school link", named_without_link)
     add_check(
         checks,
