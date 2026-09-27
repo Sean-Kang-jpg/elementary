@@ -40,6 +40,7 @@ This directory contains the maintained product, architecture, UX, operations, de
 ## Operations
 
 - [Operation Plan](operations/OPERATION_PLAN.md)
+- [Deployment](operations/DEPLOYMENT.md): how the site actually ships, the check to run after every deploy, and the move to git-connected builds. Korean.
 - [ETL Scheduling](operations/ETL_SCHEDULING.md)
 - [Monitoring](operations/MONITORING.md)
 - [Region Scope Inventory](operations/REGION_SCOPE_INVENTORY.md): every capital-region assumption in the codebase, classified for the N0 generalization pass.

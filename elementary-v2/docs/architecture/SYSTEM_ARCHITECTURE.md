@@ -28,7 +28,7 @@ React 18 + TypeScript + Vite application
 
 ## Deployment boundary
 
-- Frontend builds from `src/` and deploys independently from ETL execution.
+- Frontend builds from `src/` and deploys independently from ETL execution. The procedure, the config file that actually applies, and the post-deploy check live in [`../operations/DEPLOYMENT.md`](../operations/DEPLOYMENT.md).
 - SQL migrations in `sql/` define the database contract and are applied in order.
 - The Windows scheduled task remains the production-write fallback.
 - GitHub Actions currently verifies portable read-only reproduction; scheduled database writes require separate approval.
