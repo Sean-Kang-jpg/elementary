@@ -56,7 +56,10 @@ const SchoolDetail: React.FC<SchoolDetailProps> = ({ school, isOpen, onClose }) 
   }, [school?.school_id])
 
   useEffect(() => {
-    if (selectedApartment) setCurrentView('apartment-detail')
+    setCurrentView((view) => {
+      if (selectedApartment) return 'apartment-detail'
+      return view === 'apartment-detail' ? 'school' : view
+    })
   }, [selectedApartment])
 
   useEffect(() => {
