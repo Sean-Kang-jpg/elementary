@@ -13,14 +13,15 @@ Owner: Operations
 
 | | 현재 방식 | 목표 방식 |
 | --- | --- | --- |
-| 실행 | 손으로 복사 후 CLI 배포 | `git push` |
-| 설정 파일 | 저장소 밖 사본의 것 | `elementary-v2/vercel.json` |
-| 추적 | 불가 | 커밋 단위 |
-| 미리보기 | 없음 | 브랜치마다 자동 |
-| 되돌리기 | 예전 폴더 찾아 재배포 | 대시보드 클릭 |
+| 운영 배포 실행 | 손으로 복사 후 CLI 배포 | `release`에 `git push` |
+| 무엇이 올라갔는지 | 추적 불가 | 커밋 단위로 추적 |
+| 설정 파일 | 저장소 밖 사본의 것 | 저장소에서 관리되는 것 |
+| 되돌리기 | 예전 폴더를 찾아 재배포 | 대시보드에서 이전 배포 승격 |
 
-**전환은 Vercel 대시보드 설정 한 번으로 끝난다.** 저장소 쪽 준비는 이미
-완료됐다.
+`master` 푸시는 지금도 미리보기 배포를 만든다. 달라지는 것은 **운영 배포를
+사람이 손으로 하느냐, `release` 브랜치가 하느냐**다.
+
+**남은 작업은 Vercel 설정값 하나다**(5절). 저장소 쪽 준비는 끝났다.
 
 ---
 
@@ -67,7 +68,34 @@ npm run browser:smoke:public -- https://elementary-lovat.vercel.app
 
 ---
 
-## 3. 현재 방식 (전환 전까지)
+## 3. 왜 수동 배포를 하게 됐는가 — 브랜치 이름 하나
+
+2026-09-28에 Vercel 프로젝트 설정을 직접 조회해 원인을 확인했다.
+
+```
+link.productionBranch : "main"     ← 저장소의 브랜치는 "master"
+rootDirectory         : null
+link.type             : "github"   ← GitHub는 이미 연결돼 있다
+```
+
+**GitHub 연결은 처음부터 되어 있었다.** 다만 Vercel이 운영 브랜치로 지정한
+`main`이 저장소에 존재하지 않는다. 그래서 `master`에 아무리 push해도 운영
+배포가 일어나지 않고, 미리보기만 쌓인다. `.deploy/` 수동 절차는 **이 불일치를
+우회하려고 생긴 것**이다.
+
+바꿔야 할 것은 사실상 **설정 한 줄**이다. `productionBranch`를 실제 존재하는
+브랜치로 지정하면 된다.
+
+### `rootDirectory`는 건드리지 않는다
+
+`elementary-v2`로 바꿔봤다가 되돌렸다. 그 값을 설정하면 CLI 배포가
+`elementary-v2/elementary-v2`를 찾다가 실패한다 — 즉 **수동 배포 경로가
+끊긴다.** `null`인 상태에서는 git 빌드가 저장소 루트의 `pjt_250826/vercel.json`을
+쓰고, CLI 배포는 업로드한 폴더의 `elementary-v2/vercel.json`을 쓴다. 두 파일
+모두 rewrite를 갖고 있으므로 **어느 경로로 나가든 안전하다.** 이것이 2절에서
+둘 다 유지하라고 한 이유다.
+
+## 4. 현재 방식의 실제 절차
 
 > **주의: 아래는 남아 있는 산출물에서 역추적한 것이다.** 이 절차를 만든
 > 사람에게 확인받기 전까지 정확하다고 가정하지 않는다. 자동화 스크립트는
@@ -106,43 +134,63 @@ npx vercel deploy --prod
 
 ---
 
-## 4. 목표 방식으로 전환하기
+## 5. 목표 방식으로 전환하기
 
-### 저장소 준비 — 완료됨
+운영 브랜치를 `release`로 두고, `master`는 미리보기로만 쓴다. 하루 열 몇 번씩
+`master`에 push하는 작업 속도에서 push마다 운영이 바뀌는 것은 맞지 않고,
+`OPERATION_PLAN`의 웨이브 릴리스 게이트와도 어긋난다.
+
+```
+master  → 미리보기        (지금도 이미 그렇게 동작한다)
+release → 운영
+```
+
+### 준비 — 완료됨
 
 - `elementary-v2/vercel.json`이 추적 대상이 되었고 `rewrites`를 갖췄다
 - public smoke가 깊은 경로를 검사한다
-- 환경변수는 이미 Vercel 프로젝트에 등록돼 있다. 지금도 빌드는 Vercel에서
-  일어나므로 **추가 등록이 필요 없다**
+- 환경변수 3종(`VITE_SUPABASE_URL`, `VITE_SUPABASE_ANON_KEY`,
+  `VITE_NAVER_MAPS_CLIENT_ID`)이 production·preview 양쪽에 등록돼 있다
+- GitHub 연결도 이미 되어 있다
+- `release` 브랜치를 현재 운영본 커밋 `f13a896`에서 만들어 push했다. 운영에
+  올라가 있는 내용과 브랜치가 일치한 상태로 시작한다
 
-### 대시보드 작업 — 사람이 해야 함
+### 남은 단 하나
 
 ```
-Vercel → elementary 프로젝트 → Settings
-  ├ Git           : GitHub 저장소 연결 (Sean-Kang-jpg/elementary)
-  └ Root Directory: elementary-v2        ← 핵심
+Vercel → elementary → Settings → Git → Production Branch
+  main  →  release
 ```
 
-`Root Directory`를 `elementary-v2`로 지정해야 `elementary-v2/vercel.json`이
-설정으로 인식되고, `buildCommand: npm run build` / `outputDirectory: dist`가
-맞아떨어진다.
+`main`은 저장소에 없는 브랜치다. 이 값만 바꾸면 전환이 끝난다.
+`Root Directory`는 `null` 그대로 둔다(3절 참조).
+
+설정을 바꿔도 **그 순간 배포가 일어나지는 않는다.** 다음에 `release`에 push할
+때부터 적용된다.
+
+### 전환 후 릴리스 방법
+
+```bash
+git checkout release
+git merge master          # 올릴 범위를 정해서 머지한다
+git push                  # 이 push가 곧 운영 배포다
+```
+
+배포가 끝나면 1절의 검증을 실행한다.
 
 ### 전환 순서
 
 | # | 할 일 | 실행 주체 |
 | --- | --- | --- |
-| 1 | **현재 방식으로 한 번 배포**해 I-27의 404가 사라지는지 확인 | 기존 담당자 |
-| 2 | 대시보드에서 Git 연결 + Root Directory 지정 | 대시보드 권한자 |
-| 3 | 브랜치를 푸시해 자동 배포와 미리보기 주소 확인 | — |
-| 4 | 네이버 지도 미리보기 도메인 결정 (5절) | — |
-| 5 | `.deploy/` 삭제, 문서 정리 | — |
-
-**1번을 건너뛰지 않는다.** 현재 방식에서 404가 해결되는 것을 먼저 봐야, 2번
-이후 문제가 생겼을 때 원인을 구분할 수 있다.
+| 1 | Production Branch를 `release`로 변경 | 대시보드 권한자 |
+| 2 | `release`에 push해 운영 배포가 도는지 확인 | — |
+| 3 | 1절 검증으로 I-27의 404가 사라졌는지 확인 | — |
+| 4 | 미리보기를 쓸지 결정 (6절) | — |
+| 5 | `.deploy/` 삭제, 이 문서의 4절 제거 | — |
 
 ---
 
-## 5. 전환 시 유일한 실질적 걸림돌 — 네이버 지도
+## 6. 미리보기를 쓸 것인가 — 네이버 지도와 SSO
 
 네이버 지도 API는 **등록된 도메인에서만 동작한다.** 자동 배포를 켜면 브랜치마다
 `elementary-xxxxx-….vercel.app` 형태의 **무작위 미리보기 주소**가 생기는데, 그
@@ -152,15 +200,22 @@ Vercel → elementary 프로젝트 → Settings
   영향 없다
 - 같은 성격의 제약이 이미 [I-08](OPERATION_PLAN.md)로 기록돼 있다
   (`localhost`는 허용, `127.0.0.1`은 아님)
+- **미리보기 배포는 Vercel SSO로 보호돼 있다.** 로그인 없이 열면
+  `vercel.com/sso-api`로 리다이렉트된다. 즉 네이버에 주소를 등록해도 링크를
+  공유해 남에게 보여줄 수는 없다. 보호를 끄는 것은 공개 URL을 만드는 별개
+  결정이다
 
 선택지:
 
 - 네이버 클라우드 콘솔에 미리보기 도메인을 추가 등록한다
 - 미리보기에서는 지도 외의 것만 확인하고, 지도는 운영 배포 후 확인한다
+- **또는 미리보기를 쓰지 않는다.** 일상 확인은 `npm run build && npm run preview`로
+  하면 localhost가 이미 네이버에 허용돼 있어 지도까지 그대로 보인다. 현재
+  선택한 방식이다
 
 ---
 
-## 6. 되돌리기
+## 7. 되돌리기
 
 전환 전에는 이전 `.deploy/<해시>/app/`에서 다시 배포한다. 전환 후에는 Vercel
 대시보드의 이전 배포에서 승격(Promote)한다.
