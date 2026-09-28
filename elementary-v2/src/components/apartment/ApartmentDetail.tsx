@@ -5,6 +5,7 @@ import { getApartmentAcademySummaries } from '../../services/dataService'
 import BottomSheet from '../ui/BottomSheet'
 import ApartmentCard from './ApartmentCard'
 import { apartmentFavorite, isFavorite as checkFavorite, toggleFavorite } from '../../utils/favorites'
+import { ACADEMY_DATA_PENDING_LABEL, hasAcademyData } from '../../utils/academyCoverage'
 
 interface ApartmentDetailProps {
   apartment: Apartment | null
@@ -23,7 +24,7 @@ const ApartmentDetail: React.FC<ApartmentDetailProps> = ({ apartment, isOpen, on
   useEffect(() => {
     setIsFavorite(apartment ? checkFavorite('apartment', apartment.id) : false)
     setAcademySummary(undefined)
-    if (!apartment?.id) return
+    if (!apartment?.id || !hasAcademyData(apartment.city)) return
     let active = true
     getApartmentAcademySummaries([apartment.id])
       .then((rows) => { if (active) setAcademySummary(rows[apartment.id]) })
@@ -36,6 +37,7 @@ const ApartmentDetail: React.FC<ApartmentDetailProps> = ({ apartment, isOpen, on
   const totalAcademies = academySummary
     ? academySummary.core_institution_count + academySummary.extended_institution_count
     : null
+  const academyDataAvailable = hasAcademyData(apartment.city)
   const parkingTotal = Math.max(apartment.parking_total || 0, 0)
   const undergroundShare = parkingTotal > 0 ? apartment.underground_parking / parkingTotal * 100 : 0
 
@@ -80,11 +82,13 @@ const ApartmentDetail: React.FC<ApartmentDetailProps> = ({ apartment, isOpen, on
 
           <section aria-labelledby="academy-title">
             <div className="mb-2 flex items-center justify-between"><h3 id="academy-title" className="inline-flex items-center gap-2 font-semibold text-gray-950"><GraduationCap size={18} aria-hidden="true" />주변 학원</h3>{totalAcademies != null ? <strong className="text-sm text-teal-800">{totalAcademies.toLocaleString()}곳</strong> : null}</div>
-            <div className="grid grid-cols-2 gap-2">
-              <div className="rounded-md bg-teal-50 p-3"><span className="text-xs text-teal-700">핵심 생활권 · 600m</span><strong className="mt-1 block text-xl text-teal-900">{academySummary?.core_institution_count.toLocaleString() ?? '-'}</strong></div>
-              <div className="rounded-md bg-gray-100 p-3"><span className="text-xs text-gray-600">확장 생활권 · 800m</span><strong className="mt-1 block text-xl text-gray-900">{academySummary?.extended_institution_count.toLocaleString() ?? '-'}</strong></div>
-            </div>
-            <button type="button" onClick={() => window.dispatchEvent(new CustomEvent('joinmap:show-academies'))} className="mt-2 inline-flex h-10 w-full items-center justify-center gap-2 rounded-md border border-teal-700 text-sm font-semibold text-teal-800 hover:bg-teal-50"><Map size={17} aria-hidden="true" />지도에서 학원 보기</button>
+            {academyDataAvailable ? <>
+              <div className="grid grid-cols-2 gap-2">
+                <div className="rounded-md bg-teal-50 p-3"><span className="text-xs text-teal-700">핵심 생활권 · 600m</span><strong className="mt-1 block text-xl text-teal-900">{academySummary?.core_institution_count.toLocaleString() ?? '-'}</strong></div>
+                <div className="rounded-md bg-gray-100 p-3"><span className="text-xs text-gray-600">확장 생활권 · 800m</span><strong className="mt-1 block text-xl text-gray-900">{academySummary?.extended_institution_count.toLocaleString() ?? '-'}</strong></div>
+              </div>
+              <button type="button" onClick={() => window.dispatchEvent(new CustomEvent('joinmap:show-academies'))} className="mt-2 inline-flex h-10 w-full items-center justify-center gap-2 rounded-md border border-teal-700 text-sm font-semibold text-teal-800 hover:bg-teal-50"><Map size={17} aria-hidden="true" />지도에서 학원 보기</button>
+            </> : <div className="rounded-md border border-gray-200 bg-gray-50 px-4 py-5 text-center text-sm font-medium text-gray-600">{ACADEMY_DATA_PENDING_LABEL}</div>}
             <p className="mt-2 text-[11px] leading-4 text-gray-500">단지 기준 직선거리로 집계한 주변 학원·교습소이며 공식 배정 관계가 아닙니다.</p>
           </section>
 

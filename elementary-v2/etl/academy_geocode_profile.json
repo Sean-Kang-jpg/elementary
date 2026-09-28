@@ -1,29 +1,20 @@
 {
-  "generated_at": "2026-09-18",
-  "snapshot": "acainsti_capital_20260916.json",
+  "generated_at": "2026-09-28",
+  "snapshot": "acainsti_scope_20260928.json",
   "mode": "all",
-  "selected_unique_addresses": 29664,
-  "matched": 29274,
-  "match_rate": 0.9869,
+  "selected_unique_addresses": 4208,
+  "matched": 3976,
+  "match_rate": 0.9449,
   "statuses": {
-    "matched": 29274,
-    "api_error": 390
+    "matched": 3976,
+    "api_error": 63,
+    "transport_error": 169
   },
   "regions": {
-    "서울특별시": {
-      "addresses": 12377,
-      "matched": 12362,
-      "match_rate": 0.9988
-    },
-    "경기도": {
-      "addresses": 14493,
-      "matched": 14288,
-      "match_rate": 0.9859
-    },
-    "인천광역시": {
-      "addresses": 2794,
-      "matched": 2624,
-      "match_rate": 0.9392
+    "부산광역시": {
+      "addresses": 4208,
+      "matched": 3976,
+      "match_rate": 0.9449
     }
   }
 }

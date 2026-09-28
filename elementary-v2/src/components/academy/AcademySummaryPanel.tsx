@@ -7,6 +7,7 @@ interface AcademySummaryPanelProps {
   loading?: boolean
   error?: string | null
   onShowMap?: () => void
+  dataAvailable?: boolean
 }
 
 const addCounts = (rows: AcademyAddress[], field: 'realm_counts' | 'institution_type_counts') => rows.reduce<Record<string, number>>((totals, row) => {
@@ -16,7 +17,7 @@ const addCounts = (rows: AcademyAddress[], field: 'realm_counts' | 'institution_
   return totals
 }, {})
 
-export default function AcademySummaryPanel({ academies, loading = false, error = null, onShowMap }: AcademySummaryPanelProps) {
+export default function AcademySummaryPanel({ academies, loading = false, error = null, onShowMap, dataAvailable = true }: AcademySummaryPanelProps) {
   const summary = useMemo(() => {
     const core = academies.filter((row) => row.distance_band === 'core')
     const extended = academies.filter((row) => row.distance_band === 'extended')
@@ -32,6 +33,7 @@ export default function AcademySummaryPanel({ academies, loading = false, error 
     }
   }, [academies])
 
+  if (!dataAvailable) return <div className="rounded-md border border-gray-200 bg-gray-50 px-4 py-10 text-center text-sm font-medium text-gray-600">학원 데이터 준비 중</div>
   if (loading) return <div className="py-10 text-center text-sm text-gray-500">주변 교육환경을 불러오는 중입니다.</div>
   if (error) return <div className="rounded-md border border-amber-200 bg-amber-50 p-4 text-sm text-amber-900">{error}</div>
   if (!academies.length) return <div className="py-10 text-center text-sm text-gray-500">현재 확인된 주변 학원·교습소가 없습니다.</div>

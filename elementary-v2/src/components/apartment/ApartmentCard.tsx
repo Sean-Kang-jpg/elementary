@@ -1,5 +1,6 @@
 import { Building2, CarFront, ChevronRight, GraduationCap } from 'lucide-react'
 import type { Apartment, ApartmentAcademySummary } from '../../types'
+import { ACADEMY_DATA_PENDING_LABEL, hasAcademyData } from '../../utils/academyCoverage'
 
 interface ApartmentCardProps {
   apartment: Apartment
@@ -31,6 +32,7 @@ export default function ApartmentCard({ apartment, academySummary, compact = fal
   const totalAcademies = academySummary
     ? academySummary.core_institution_count + academySummary.extended_institution_count
     : null
+  const academyDataAvailable = hasAcademyData(apartment.city)
 
   const content = (
     <>
@@ -59,6 +61,10 @@ export default function ApartmentCard({ apartment, academySummary, compact = fal
           {totalAcademies != null ? (
             <span className="inline-flex items-center gap-1 rounded bg-teal-50 px-2 py-1 text-[11px] font-semibold text-teal-800">
               <GraduationCap size={12} aria-hidden="true" />학원 {totalAcademies.toLocaleString()}곳
+            </span>
+          ) : !academyDataAvailable ? (
+            <span className="inline-flex items-center gap-1 rounded bg-gray-100 px-2 py-1 text-[11px] font-semibold text-gray-600">
+              <GraduationCap size={12} aria-hidden="true" />{ACADEMY_DATA_PENDING_LABEL}
             </span>
           ) : null}
         </span>
