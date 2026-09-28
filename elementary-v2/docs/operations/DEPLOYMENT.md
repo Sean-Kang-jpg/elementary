@@ -118,6 +118,17 @@ permission to create deployments`로 거부된다. 09-21 이후 기록을 보면
 배포 10건 중 7건이 BLOCKED이고, **git 빌드는 한 번도 실패하지 않았다.**
 `.deploy/` 사본이 10분 사이에 네 개 생긴 것은 재시도한 흔적이다.
 
+주의할 점은 **CLI가 이 사유를 알려주지 않는다**는 것이다. 터미널에는
+`Error: Not authorized`만 찍히고, 실제 사유는 배포 레코드에만 남는다.
+
+```bash
+npx vercel api "/v6/deployments?projectId=<id>&limit=5" --raw
+# readyState: BLOCKED, errorMessage: the commit author doesn't have permission…
+```
+
+`Not authorized`를 로그인 문제로 오해하면 원인을 찾을 수 없다. 이 문구가
+보이면 CLI 배포를 재시도하는 대신 `release`에 push한다.
+
 ## 4. 폐기된 수동 방식 (2026-09-28 제거)
 
 운영이 `release` push로 나가기 시작하면서 다음은 모두 사라졌다. 왜 그런
