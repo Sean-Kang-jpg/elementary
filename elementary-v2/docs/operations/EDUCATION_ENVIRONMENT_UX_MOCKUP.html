@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>교육환경 지도 Visual UX 시안</title>
+  <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
+  <style>html{color-scheme:light dark;background:light-dark(#f4f6f9,#101216)}body{margin:0;padding:24px 0}</style>
+</head>
+<body>
+<style>
+  .edu-mock {
+    --accent: #315efb;
+    --core: #315efb;
+    --extended: #91a7ff;
+    --surface: light-dark(#ffffff, #171a21);
+    --surface-2: light-dark(#f6f8fb, #20242d);
+    --ink: light-dark(#172033, #f3f5f8);
+    --muted: light-dark(#697386, #aeb6c5);
+    --line: light-dark(#e7eaf0, #313743);
+    --map: light-dark(#eef1ec, #1c2421);
+    --road: light-dark(#ffffff, #303a36);
+    --shadow: 0 18px 50px light-dark(rgb(29 39 61 / 13%), rgb(0 0 0 / 34%));
+    color: var(--ink);
+    font-family: Inter, Pretendard, "Noto Sans KR", system-ui, sans-serif;
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 18px;
+    box-sizing: border-box;
+  }
+  .edu-mock * { box-sizing: border-box; }
+  .edu-mock button { font: inherit; }
+  .edu-mock__head { display: flex; align-items: end; justify-content: space-between; gap: 18px; margin: 2px 2px 16px; }
+  .edu-mock__eyebrow { margin: 0 0 6px; color: var(--accent); font-size: 12px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+  .edu-mock h1 { margin: 0; font-size: clamp(22px, 3vw, 34px); line-height: 1.15; letter-spacing: -.04em; }
+  .edu-mock__sub { margin: 8px 0 0; color: var(--muted); font-size: 14px; }
+  .edu-mock__mode { display: flex; gap: 4px; padding: 4px; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); white-space: nowrap; }
+  .edu-mock__mode button { border: 0; border-radius: 9px; padding: 9px 12px; color: var(--muted); background: transparent; cursor: pointer; font-size: 13px; font-weight: 700; }
+  .edu-mock__mode button[aria-pressed="true"] { color: white; background: var(--accent); box-shadow: 0 5px 13px rgb(49 94 251 / 25%); }
+  .edu-mock__stage { position: relative; min-height: 690px; overflow: hidden; border: 1px solid var(--line); border-radius: 24px; background: var(--map); box-shadow: var(--shadow); }
+  .edu-map { position: absolute; inset: 0; overflow: hidden; background-color: var(--map); background-image: linear-gradient(28deg, transparent 46%, var(--road) 47%, var(--road) 51%, transparent 52%), linear-gradient(118deg, transparent 43%, var(--road) 44%, var(--road) 48%, transparent 49%), linear-gradient(4deg, transparent 62%, var(--road) 63%, var(--road) 66%, transparent 67%); background-size: 380px 300px, 440px 360px, 510px 410px; }
+  .edu-map::after { content: ""; position: absolute; inset: 0; background-image: radial-gradient(circle, light-dark(rgb(52 101 70 / 8%), rgb(119 180 140 / 5%)) 0 22%, transparent 23%); background-size: 290px 240px; pointer-events: none; }
+  .edu-map__label { position: absolute; z-index: 1; color: light-dark(#7c837d, #87918b); font-size: 11px; font-weight: 650; letter-spacing: .01em; }
+  .edu-map__school { position: absolute; left: 35%; top: 42%; z-index: 4; display: grid; place-items: center; width: 38px; height: 38px; border: 4px solid var(--surface); border-radius: 12px; color: white; background: #202a44; box-shadow: 0 5px 13px rgb(20 30 50 / 28%); }
+  .edu-map__school svg { width: 18px; height: 18px; }
+  .edu-radius { position: absolute; left: calc(35% + 19px); top: calc(42% + 19px); z-index: 1; border-radius: 50%; transform: translate(-50%, -50%); pointer-events: none; }
+  .edu-radius--extended { width: 420px; height: 420px; border: 1px dashed rgb(49 94 251 / 35%); background: rgb(49 94 251 / 4%); }
+  .edu-radius--core { width: 315px; height: 315px; border: 1px solid rgb(49 94 251 / 32%); background: rgb(49 94 251 / 5%); }
+  .edu-marker { position: absolute; z-index: 3; display: grid; place-items: center; border: 3px solid var(--surface); border-radius: 999px; color: white; background: var(--marker, var(--core)); box-shadow: 0 4px 10px rgb(25 43 90 / 23%); cursor: pointer; transform: translate(-50%, -50%); transition: transform .18s ease, opacity .18s ease, box-shadow .18s ease; }
+  .edu-marker:hover, .edu-marker.is-selected { transform: translate(-50%, -50%) scale(1.2); box-shadow: 0 0 0 5px rgb(49 94 251 / 16%), 0 6px 15px rgb(25 43 90 / 25%); }
+  .edu-marker[data-size="s"] { width: 14px; height: 14px; }
+  .edu-marker[data-size="m"] { width: 21px; height: 21px; }
+  .edu-marker[data-size="l"] { width: 29px; height: 29px; }
+  .edu-marker[data-band="extended"] { opacity: .55; }
+  .edu-marker svg { display: none; width: 15px; height: 15px; }
+  .edu-mock[data-style="hybrid"] .edu-marker { width: 31px; height: 31px; border-radius: 10px 10px 10px 3px; transform: translate(-50%, -50%) rotate(-45deg); }
+  .edu-mock[data-style="hybrid"] .edu-marker svg { display: block; transform: rotate(45deg); }
+  .edu-mock[data-style="hybrid"] .edu-marker:hover, .edu-mock[data-style="hybrid"] .edu-marker.is-selected { transform: translate(-50%, -50%) rotate(-45deg) scale(1.12); }
+  .edu-marker__plus { display: none; position: absolute; right: -8px; top: -8px; min-width: 17px; height: 17px; padding: 0 4px; align-items: center; justify-content: center; border: 2px solid var(--surface); border-radius: 99px; color: var(--ink); background: var(--surface); font-size: 11px; font-weight: 800; transform: rotate(45deg); box-shadow: 0 2px 5px rgb(20 30 50 / 18%); }
+  .edu-mock[data-style="hybrid"] .edu-marker__plus { display: flex; }
+  .edu-cluster { display: none; position: absolute; z-index: 5; place-items: center; width: 54px; height: 54px; border: 8px solid rgb(49 94 251 / 18%); border-radius: 50%; color: white; background: var(--accent); background-clip: padding-box; box-shadow: 0 4px 14px rgb(25 43 90 / 22%); font-size: 13px; font-weight: 800; transform: translate(-50%, -50%); }
+  .edu-mock[data-style="cluster"] .edu-marker { display: none; }
+  .edu-mock[data-style="cluster"] .edu-cluster { display: grid; }
+  .edu-popup { position: absolute; left: 19%; top: 20%; z-index: 8; width: 238px; padding: 14px; border: 1px solid var(--line); border-radius: 16px; background: var(--surface); box-shadow: var(--shadow); }
+  .edu-popup::after { content: ""; position: absolute; left: 36px; bottom: -7px; width: 12px; height: 12px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); background: var(--surface); transform: rotate(45deg); }
+  .edu-popup__top { display: flex; justify-content: space-between; gap: 8px; align-items: start; }
+  .edu-popup strong { font-size: 15px; }
+  .edu-popup__count { color: var(--accent); font-size: 13px; font-weight: 800; }
+  .edu-popup p { margin: 7px 0 0; color: var(--muted); font-size: 12px; line-height: 1.55; }
+  .edu-map__controls { position: absolute; z-index: 7; left: 18px; bottom: 18px; display: flex; gap: 8px; }
+  .edu-pill { display: flex; align-items: center; gap: 7px; padding: 9px 11px; border: 1px solid var(--line); border-radius: 999px; background: color-mix(in srgb, var(--surface) 91%, transparent); box-shadow: 0 3px 10px rgb(30 40 60 / 8%); font-size: 11px; font-weight: 700; }
+  .edu-pill i { width: 9px; height: 9px; border-radius: 50%; background: var(--core); }
+  .edu-pill--extended i { background: var(--extended); opacity: .65; }
+  .edu-sheet { position: absolute; z-index: 10; top: 16px; right: 16px; bottom: 16px; width: min(390px, calc(100% - 32px)); overflow: auto; padding: 20px; border: 1px solid var(--line); border-radius: 20px; background: color-mix(in srgb, var(--surface) 96%, transparent); box-shadow: var(--shadow); backdrop-filter: blur(16px); }
+  .edu-sheet__handle { display: none; width: 42px; height: 4px; margin: -7px auto 13px; border-radius: 9px; background: var(--line); }
+  .edu-sheet__title { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+  .edu-sheet__title h2 { margin: 0; font-size: 20px; letter-spacing: -.03em; }
+  .edu-sheet__title button { width: 32px; height: 32px; border: 1px solid var(--line); border-radius: 9px; color: var(--muted); background: var(--surface-2); }
+  .edu-context { margin: 6px 0 18px; color: var(--muted); font-size: 12px; }
+  .edu-kpis { display: grid; grid-template-columns: 1.2fr 1fr 1fr; gap: 8px; }
+  .edu-kpi { min-width: 0; padding: 12px; border: 1px solid var(--line); border-radius: 13px; background: var(--surface-2); }
+  .edu-kpi span { display: block; color: var(--muted); font-size: 10px; }
+  .edu-kpi strong { display: block; margin-top: 4px; font-size: 20px; letter-spacing: -.04em; }
+  .edu-kpi:first-child strong { color: var(--accent); }
+  .edu-section-title { margin: 20px 0 10px; font-size: 13px; font-weight: 800; }
+  .edu-categories { display: grid; gap: 8px; }
+  .edu-category { display: grid; grid-template-columns: 32px 1fr auto; align-items: center; gap: 10px; width: 100%; padding: 9px 10px; border: 1px solid transparent; border-radius: 12px; color: var(--ink); background: transparent; text-align: left; cursor: pointer; }
+  .edu-category:hover, .edu-category[aria-pressed="true"] { border-color: var(--line); background: var(--surface-2); }
+  .edu-category__icon { display: grid; place-items: center; width: 32px; height: 32px; border-radius: 9px; color: var(--cat); background: color-mix(in srgb, var(--cat) 13%, transparent); }
+  .edu-category__icon svg { width: 16px; height: 16px; }
+  .edu-category__name { display: flex; justify-content: space-between; gap: 8px; margin-bottom: 6px; font-size: 12px; font-weight: 700; }
+  .edu-category__bar { height: 5px; overflow: hidden; border-radius: 9px; background: var(--line); }
+  .edu-category__bar i { display: block; width: var(--share); height: 100%; border-radius: inherit; background: var(--cat); }
+  .edu-category__value { color: var(--muted); font-size: 12px; font-weight: 750; }
+  .edu-sheet__note { display: flex; gap: 9px; margin-top: 17px; padding: 11px; border-radius: 12px; color: var(--muted); background: var(--surface-2); font-size: 11px; line-height: 1.5; }
+  .edu-sheet__note svg { flex: 0 0 auto; width: 15px; height: 15px; margin-top: 1px; color: var(--accent); }
+  .edu-cta { width: 100%; margin-top: 14px; padding: 12px 14px; border: 0; border-radius: 12px; color: white; background: var(--accent); font-weight: 800; cursor: pointer; }
+  .edu-caption { margin: 13px 4px 0; color: var(--muted); font-size: 12px; line-height: 1.55; }
+  @media (max-width: 760px) {
+    .edu-mock { padding: 8px; }
+    .edu-mock__head { display: block; margin: 6px 4px 12px; }
+    .edu-mock__mode { margin-top: 12px; width: 100%; }
+    .edu-mock__mode button { flex: 1; padding-inline: 6px; }
+    .edu-mock__stage { min-height: 820px; border-radius: 18px; }
+    .edu-sheet { top: auto; left: 8px; right: 8px; bottom: 8px; width: auto; max-height: 58%; border-radius: 20px; padding: 17px; }
+    .edu-sheet__handle { display: block; }
+    .edu-radius--extended { width: 330px; height: 330px; }
+    .edu-radius--core { width: 245px; height: 245px; }
+    .edu-map__school { left: 48%; top: 27%; }
+    .edu-radius { left: calc(48% + 19px); top: calc(27% + 19px); }
+    .edu-popup { left: 4%; top: 7%; width: 215px; }
+    .edu-map__controls { left: 10px; bottom: calc(58% + 20px); }
+    .edu-kpis { grid-template-columns: repeat(3, 1fr); }
+    .edu-kpi { padding: 9px; }
+    .edu-kpi strong { font-size: 17px; }
+  }
+</style>
+
+<section class="edu-mock" id="edu-ux-mock" data-style="hybrid" aria-label="교육환경 지도 UX 시안">
+  <header class="edu-mock__head">
+    <div>
+      <p class="edu-mock__eyebrow">Education map concept</p>
+      <h1>교육환경 지도 시안</h1>
+      <p class="edu-mock__sub">대표 분야 아이콘으로 종류를 구분하고, 복합 상가는 숫자 배지로 정확한 학원 수를 표시합니다.</p>
+    </div>
+    <div class="edu-mock__mode" aria-label="마커 표현 방식">
+      <button type="button" data-mode="hybrid" aria-pressed="true">확대 · 혼합형 핀</button>
+      <button type="button" data-mode="cluster" aria-pressed="false">축소 · 클러스터</button>
+    </div>
+  </header>
+
+  <div class="edu-mock__stage">
+    <div class="edu-map" aria-label="교육시설 분포 지도">
+      <span class="edu-map__label" style="left:9%;top:11%">대치동</span>
+      <span class="edu-map__label" style="left:40%;top:16%">도곡동</span>
+      <span class="edu-map__label" style="left:12%;top:58%">개포동</span>
+      <span class="edu-map__label" style="left:47%;top:66%">양재천</span>
+      <div class="edu-radius edu-radius--extended"></div>
+      <div class="edu-radius edu-radius--core"></div>
+      <div class="edu-map__school" title="서울대도초등학교"><i data-lucide="school"></i></div>
+
+      <button class="edu-marker is-selected" data-size="l" data-band="core" data-cat="study" style="left:22%;top:34%;--marker:#315efb" aria-label="입시 보습 중심 복합 상가 14곳"><i data-lucide="book-open"></i><span class="edu-marker__plus">+14</span></button>
+      <button class="edu-marker" data-size="m" data-band="core" data-cat="language" style="left:31%;top:27%;--marker:#7c5ce5" aria-label="외국어 학원 3곳"><i data-lucide="languages"></i></button>
+      <button class="edu-marker" data-size="s" data-band="core" data-cat="art" style="left:43%;top:33%;--marker:#e45b88" aria-label="예능 학원 1곳"><i data-lucide="palette"></i></button>
+      <button class="edu-marker" data-size="l" data-band="core" data-cat="study" style="left:18%;top:50%;--marker:#315efb" aria-label="입시 보습 중심 복합 상가 8곳"><i data-lucide="book-open"></i><span class="edu-marker__plus">+8</span></button>
+      <button class="edu-marker" data-size="m" data-band="core" data-cat="sports" style="left:39%;top:54%;--marker:#13a779" aria-label="체육 학원 4곳"><i data-lucide="dumbbell"></i></button>
+      <button class="edu-marker" data-size="m" data-band="extended" data-cat="study" style="left:9%;top:38%;--marker:#315efb" aria-label="입시 보습 학원 3곳"><i data-lucide="book-open"></i></button>
+      <button class="edu-marker" data-size="s" data-band="extended" data-cat="art" style="left:28%;top:68%;--marker:#e45b88" aria-label="예능 학원 1곳"><i data-lucide="palette"></i></button>
+      <button class="edu-marker" data-size="m" data-band="extended" data-cat="language" style="left:50%;top:47%;--marker:#7c5ce5" aria-label="외국어 학원 4곳"><i data-lucide="languages"></i></button>
+      <button class="edu-marker" data-size="s" data-band="extended" data-cat="sports" style="left:52%;top:61%;--marker:#13a779" aria-label="체육 학원 1곳"><i data-lucide="dumbbell"></i></button>
+      <button class="edu-cluster" style="left:24%;top:39%" aria-label="교육시설 주소 18개 묶음">18</button>
+      <button class="edu-cluster" style="left:46%;top:55%" aria-label="교육시설 주소 9개 묶음">9</button>
+    </div>
+
+    <aside class="edu-popup" aria-label="선택한 교육시설 상세">
+      <div class="edu-popup__top"><strong>대치동 복합상가</strong><span class="edu-popup__count">14곳</span></div>
+      <p>입시·보습 9 · 외국어 3 · 예능 2<br>학교 기준 340m · 핵심권역</p>
+    </aside>
+
+    <div class="edu-map__controls" aria-label="거리 범례">
+      <span class="edu-pill"><i></i>핵심 600m</span>
+      <span class="edu-pill edu-pill--extended"><i></i>확장 800m</span>
+    </div>
+
+    <aside class="edu-sheet" aria-label="교육환경 요약 패널">
+      <div class="edu-sheet__handle"></div>
+      <div class="edu-sheet__title"><h2>교육환경</h2><button type="button" aria-label="닫기"><i data-lucide="x"></i></button></div>
+      <p class="edu-context">서울대도초등학교 · 배정 아파트 기준</p>
+      <div class="edu-kpis">
+        <div class="edu-kpi"><span>전체 교육시설</span><strong>1,028</strong></div>
+        <div class="edu-kpi"><span>핵심 600m</span><strong>621</strong></div>
+        <div class="edu-kpi"><span>확장 800m</span><strong>407</strong></div>
+      </div>
+      <p class="edu-section-title">분야별 분포 <span style="color:var(--muted);font-weight:500">· 선택하여 지도 강조</span></p>
+      <div class="edu-categories">
+        <button class="edu-category" data-filter="study" aria-pressed="false" style="--cat:#315efb;--share:100%"><span class="edu-category__icon"><i data-lucide="book-open"></i></span><span><span class="edu-category__name">입시·보습</span><span class="edu-category__bar"><i></i></span></span><span class="edu-category__value">690</span></button>
+        <button class="edu-category" data-filter="art" aria-pressed="false" style="--cat:#e45b88;--share:34%"><span class="edu-category__icon"><i data-lucide="palette"></i></span><span><span class="edu-category__name">예능</span><span class="edu-category__bar"><i></i></span></span><span class="edu-category__value">148</span></button>
+        <button class="edu-category" data-filter="language" aria-pressed="false" style="--cat:#7c5ce5;--share:25%"><span class="edu-category__icon"><i data-lucide="languages"></i></span><span><span class="edu-category__name">외국어</span><span class="edu-category__bar"><i></i></span></span><span class="edu-category__value">104</span></button>
+        <button class="edu-category" data-filter="sports" aria-pressed="false" style="--cat:#13a779;--share:18%"><span class="edu-category__icon"><i data-lucide="dumbbell"></i></span><span><span class="edu-category__name">체육</span><span class="edu-category__bar"><i></i></span></span><span class="edu-category__value">55</span></button>
+      </div>
+      <div class="edu-sheet__note"><i data-lucide="info"></i><span>핀 색·아이콘은 대표 분야를 뜻합니다. 복합 상가의 숫자 배지는 해당 주소의 전체 학원 수이며 최대 두 자리까지 표시합니다.</span></div>
+      <button class="edu-cta" type="button">교육시설 지도 보기</button>
+    </aside>
+  </div>
+  <p class="edu-caption"><strong>혼합형:</strong> 확대 시 대표 분야 핀과 복합 상가의 정확한 학원 수를 표시하고, 축소 시 주소 단위 핀을 클러스터로 묶습니다.</p>
+</section>
+
+<script>
+(() => {
+  const root = document.getElementById('edu-ux-mock');
+  if (!root) return;
+  const saved = globalThis.openai?.widgetState?.privateContent || {};
+  const state = { style: saved.style === 'cluster' ? 'cluster' : 'hybrid', accent: '#315efb', showDistanceBands: true };
+  const modeButtons = [...root.querySelectorAll('[data-mode]')];
+  const categoryButtons = [...root.querySelectorAll('[data-filter]')];
+  const markers = [...root.querySelectorAll('.edu-marker')];
+
+  function render() {
+    root.dataset.style = state.style;
+    root.style.setProperty('--accent', state.accent);
+    root.style.setProperty('--core', state.accent);
+    modeButtons.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.mode === state.style)));
+    root.querySelectorAll('.edu-radius, .edu-map__controls').forEach(el => el.style.display = state.showDistanceBands ? '' : 'none');
+  }
+  render();
+
+  modeButtons.forEach(button => button.addEventListener('click', () => { state.style = button.dataset.mode; render(); globalThis.openai?.setWidgetState?.({ modelContent: { educationMapStyle: 'hybrid' }, privateContent: { style: state.style } })?.catch(() => {}); }));
+  categoryButtons.forEach(button => button.addEventListener('click', () => {
+    const active = button.getAttribute('aria-pressed') !== 'true';
+    categoryButtons.forEach(item => item.setAttribute('aria-pressed', 'false'));
+    button.setAttribute('aria-pressed', String(active));
+    markers.forEach(marker => marker.style.opacity = !active || marker.dataset.cat === button.dataset.filter ? '' : '.14');
+  }));
+  markers.forEach(marker => marker.addEventListener('click', () => {
+    markers.forEach(item => item.classList.remove('is-selected'));
+    marker.classList.add('is-selected');
+  }));
+
+  if (globalThis.Tweak) {
+    const tweak = new Tweak({ container: root, onChange: render });
+    tweak.addSelect(state, 'style', { label: 'Map zoom state', options: [{ label: 'Hybrid pins', value: 'hybrid' }, { label: 'Clusters', value: 'cluster' }], reference: 'marker.style' });
+    tweak.addColorPicker(state, 'accent', { label: 'Primary color', reference: '--accent' });
+    tweak.addToggle(state, 'showDistanceBands', { label: 'Distance bands', reference: 'map.distance_bands' });
+  }
+})();
+</script>
+
+
+<script>if(globalThis.lucide)lucide.createIcons();</script>
+</body>
+</html>
+
