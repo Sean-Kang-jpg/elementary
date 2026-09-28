@@ -79,12 +79,30 @@ link.type             : "github"   ← GitHub는 이미 연결돼 있다
 ```
 
 **GitHub 연결은 처음부터 되어 있었다.** 다만 Vercel이 운영 브랜치로 지정한
-`main`이 저장소에 존재하지 않는다. 그래서 `master`에 아무리 push해도 운영
-배포가 일어나지 않고, 미리보기만 쌓인다. `.deploy/` 수동 절차는 **이 불일치를
-우회하려고 생긴 것**이다.
+`main`이 실제 작업 브랜치가 아니다. `master`가 트렁크이고, `main`은 프로젝트
+생성 직후의 스텁 그대로 남아 있다.
 
-바꿔야 할 것은 사실상 **설정 한 줄**이다. `productionBranch`를 실제 존재하는
-브랜치로 지정하면 된다.
+```
+main    9fe491a  "Add files via upload"   커밋 2개, 2025년 생성 시점 그대로
+master  0d42ca1  main보다 77커밋 앞섬      실제 작업 브랜치
+```
+
+그래서 `master`에 아무리 push해도 운영 배포가 일어나지 않고 미리보기만 쌓인다.
+`.deploy/` 수동 절차는 **이 불일치를 우회하려고 생긴 것**이다.
+
+### ⚠️ 방치하면 안 되는 위험
+
+**`main`에 push가 한 번 들어가면 사이트가 초기 커밋 상태로 교체된다.** 운영
+브랜치로 지정돼 있고 자동 배포가 살아 있기 때문이다. GitHub UI에서 실수로
+`main`을 대상으로 PR을 머지하는 것만으로도 발생한다. 지금까지 아무도 `main`을
+건드리지 않아 사고가 나지 않았을 뿐이다.
+
+해소는 아래 두 가지를 함께 하는 것이다.
+
+1. 운영 브랜치를 `release`로 바꾼다 (5절)
+2. 쓰지 않는 `main` 스텁을 삭제한다
+
+1번만 해도 위험은 사라진다. 2번은 혼란을 줄이기 위한 정리다.
 
 ### `rootDirectory`는 건드리지 않는다
 
@@ -155,18 +173,23 @@ release → 운영
 - `release` 브랜치를 현재 운영본 커밋 `f13a896`에서 만들어 push했다. 운영에
   올라가 있는 내용과 브랜치가 일치한 상태로 시작한다
 
-### 남은 단 하나
+### 남은 단 하나 — 대시보드에서만 가능하다
 
 ```
 Vercel → elementary → Settings → Git → Production Branch
   main  →  release
 ```
 
-`main`은 저장소에 없는 브랜치다. 이 값만 바꾸면 전환이 끝난다.
 `Root Directory`는 `null` 그대로 둔다(3절 참조).
 
 설정을 바꿔도 **그 순간 배포가 일어나지는 않는다.** 다음에 `release`에 push할
-때부터 적용된다.
+때부터 적용된다. 바꾼 뒤 `main` 스텁을 삭제하면 3절의 위험도 함께 없어진다.
+
+> **왜 자동화하지 않았나**: 공개 Vercel API에 운영 브랜치를 바꾸는 경로가 없다.
+> `PATCH /v9/projects/{id}`는 `link`도 `productionBranch`도 받지 않고
+> (`should NOT have additional property`), CLI에는 `git connect`/`disconnect`만
+> 있다. `git connect`는 GitHub 기본 브랜치인 `master`를 운영 브랜치로 잡으므로
+> 원하는 결과가 아니다. 대시보드가 유일한 경로다.
 
 ### 전환 후 릴리스 방법
 
