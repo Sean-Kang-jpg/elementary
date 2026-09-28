@@ -102,7 +102,16 @@ try {
     return 'apartment selected'
   })()`])
   run(['wait', '1800'])
-  assertPage("document.body.innerText.includes('총 세대수') && document.body.innerText.includes('동 수') && document.body.innerText.includes('배정학교:')", 'apartment search opened the assigned-school detail flow with building count')
+  // Checks the flow reached the apartment detail, not merely that some sheet
+  // opened. The previous version asserted '총 세대수', '동 수' and '배정학교:',
+  // labels removed back in 1960fef, so it failed before reaching anything real
+  // and hid a regression that had disabled assigned-apartment browsing outright.
+  assertPage(
+    "(() => { const sheet = document.querySelector('[data-testid=bottom-sheet]');"
+    + " if (!sheet) return false; const text = sheet.innerText;"
+    + " return text.includes('개 동') && text.includes('세대당 주차') && text.includes('배정 학교') })()",
+    'apartment search opened the apartment detail with building count, parking and its assigned school',
+  )
   run(['eval', `(() => {
     const close = document.querySelector('button[aria-label="상세 정보 닫기"]')
     if (!close) throw new Error('Apartment detail close button not found')

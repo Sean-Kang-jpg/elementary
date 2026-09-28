@@ -42,7 +42,11 @@ const SchoolDetail: React.FC<SchoolDetailProps> = ({ school, isOpen, onClose }) 
   const [academyError, setAcademyError] = useState<string | null>(null)
   const [academyLoaded, setAcademyLoaded] = useState(false)
   const academyDataAvailable = hasAcademyData(school?.region)
-  const isPublicElementarySchool = school?.establishment_type === '공립'
+  // 통학구역으로 배정되는 학교는 공립 초등학교뿐이다. 국립·사립 초등학교는
+  // 지원 입학이라 배정 단지가 없다 — 표본 대조에서 공립은 25개 중 22개가
+  // 배정 단지를 갖는 반면 국립은 17개 중 1개, 사립은 25개 중 1개였다.
+  // 서울교육대학교부설초등학교는 국립, 중앙대학교사범대학부속초등학교는 사립이다.
+  const assignsByZone = school?.establishment_type === '공립'
     && school.school_type === '초등학교'
   const hasSchoolInformation = Boolean(school?.student_data_status)
 
@@ -68,7 +72,7 @@ const SchoolDetail: React.FC<SchoolDetailProps> = ({ school, isOpen, onClose }) 
   }, [selectedApartment])
 
   useEffect(() => {
-    if (isPublicElementarySchool || !hasSchoolInformation || currentView !== 'education' || !school?.school_id || academyLoaded || !academyDataAvailable) return
+    if (!assignsByZone || !hasSchoolInformation || currentView !== 'education' || !school?.school_id || academyLoaded || !academyDataAvailable) return
     let active = true
     setAcademyLoading(true)
     setAcademyError(null)
@@ -85,10 +89,10 @@ const SchoolDetail: React.FC<SchoolDetailProps> = ({ school, isOpen, onClose }) 
         }
       })
     return () => { active = false }
-  }, [academyDataAvailable, academyLoaded, currentView, hasSchoolInformation, isPublicElementarySchool, school?.school_id])
+  }, [academyDataAvailable, academyLoaded, assignsByZone, currentView, hasSchoolInformation, school?.school_id])
 
   useEffect(() => {
-    if (!isOpen || !school?.school_id || isPublicElementarySchool || !hasSchoolInformation) {
+    if (!isOpen || !school?.school_id || !assignsByZone || !hasSchoolInformation) {
       dispatch({ type: 'SET_APARTMENTS', payload: [] })
       setAcademySummaries({})
       setLoading(false)
@@ -128,7 +132,7 @@ const SchoolDetail: React.FC<SchoolDetailProps> = ({ school, isOpen, onClose }) 
       })
       .finally(() => active && setLoading(false))
     return () => { active = false }
-  }, [dispatch, hasSchoolInformation, isOpen, isPublicElementarySchool, requestVersion, school?.school_id, state.filters])
+  }, [assignsByZone, dispatch, hasSchoolInformation, isOpen, requestVersion, school?.school_id, state.filters])
 
   const gradeData = useMemo(() => {
     if (!school) return []
@@ -163,7 +167,7 @@ const SchoolDetail: React.FC<SchoolDetailProps> = ({ school, isOpen, onClose }) 
     setIsFavorite(toggleSavedFavorite(schoolFavorite(school)))
   }
 
-  if (currentView === 'apartment-detail' && !isPublicElementarySchool && hasSchoolInformation) {
+  if (currentView === 'apartment-detail' && assignsByZone && hasSchoolInformation) {
     return (
       <ApartmentDetail
         apartment={selectedApartment}
@@ -232,7 +236,7 @@ const SchoolDetail: React.FC<SchoolDetailProps> = ({ school, isOpen, onClose }) 
         </div>
       ) : (
         <div className="mx-auto max-w-4xl space-y-4 px-4 py-3">
-          {!isPublicElementarySchool && hasSchoolInformation && (
+          {assignsByZone && hasSchoolInformation && (
             <nav className="grid grid-cols-3 gap-1 rounded-md bg-gray-100 p-1" aria-label="학교 상세 메뉴">
               <button type="button" className="rounded bg-white px-2 py-2 text-xs font-semibold text-gray-950 shadow-sm" aria-current="page">학교 현황</button>
               <button type="button" onClick={() => setCurrentView('apartments')} className="rounded px-2 py-2 text-xs font-semibold text-gray-600 hover:bg-white">배정 아파트 {apartments.length}</button>
@@ -240,8 +244,10 @@ const SchoolDetail: React.FC<SchoolDetailProps> = ({ school, isOpen, onClose }) 
             </nav>
           )}
           <section>
-            {isPublicElementarySchool && (
-              <span className="mb-2 inline-flex rounded-full bg-blue-50 px-2.5 py-1 text-xs font-semibold text-blue-700">공립초등학교</span>
+            {!assignsByZone && (
+              <span className="mb-2 inline-flex rounded-full bg-amber-50 px-2.5 py-1 text-xs font-semibold text-amber-800">
+                {school.establishment_type} · 통학구역 배정 없음
+              </span>
             )}
             <div className="flex items-start gap-2 text-sm text-gray-600">
               <MapPin className="mt-0.5 flex-none" size={16} aria-hidden="true" />
@@ -298,7 +304,7 @@ const SchoolDetail: React.FC<SchoolDetailProps> = ({ school, isOpen, onClose }) 
             </div>
           </section>
 
-          {!isPublicElementarySchool && <section aria-labelledby="apartments-title">
+          {assignsByZone && <section aria-labelledby="apartments-title">
             <div className="mb-2 flex items-center justify-between">
               <h3 id="apartments-title" className="font-semibold text-gray-950">주요 배정 아파트</h3>
               {loading ? (
