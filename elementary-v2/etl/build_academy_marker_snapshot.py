@@ -15,7 +15,9 @@ INCHEON_DISTRICT_MAP = {"검단구": "서구", "서해구": "서구", "영종구
 
 
 def latest_snapshot() -> Path:
-    files = sorted(RUNTIME_DIR.glob("acainsti_capital_*.json"))
+    files = sorted(RUNTIME_DIR.glob("acainsti_scope_*.json"))
+    if not files:
+        files = sorted(RUNTIME_DIR.glob("acainsti_capital_*.json"))
     if not files:
         raise SystemExit("academy snapshot missing")
     return files[-1]

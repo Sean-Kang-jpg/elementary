@@ -1,7 +1,7 @@
 import unittest
 
 from etl.fetch_schoolinfo_2026 import build_scopes, row_in_scope, scope_slug
-from etl.region_registry import load_registry
+from etl.region_registry import CAPITAL_REGIONS, load_registry
 
 
 def school_row(office: str = "", address: str = "") -> dict[str, str]:
@@ -16,14 +16,22 @@ class FetchSchoolinfoScopeTest(unittest.TestCase):
         return build_scopes(self.registry, (), ())
 
     def test_default_scope_is_the_current_production_regions(self) -> None:
+        """Follows the registry, which grows as waves are promoted."""
         scopes = self.default_scopes()
-        self.assertEqual(
-            [scope.label for scope in scopes], ["서울특별시", "경기도", "인천광역시"]
-        )
+        expected = [region.canonical_name for region in self.registry.production_regions]
+        self.assertEqual([scope.label for scope in scopes], expected)
+        self.assertIn("서울특별시", expected)
 
-    def test_default_scope_keeps_the_capital_file_name(self) -> None:
-        """The portable bundle manifest and locked baseline depend on this slug."""
-        self.assertEqual(scope_slug(self.default_scopes()), "capital")
+    def test_capital_slug_means_exactly_the_three_capital_regions(self) -> None:
+        """The portable bundle manifest and locked baseline depend on this slug.
+
+        It must not widen as regions are promoted, or a default run would write
+        a wider file over the one the baseline reproduces.
+        """
+        capital = build_scopes(self.registry, list(CAPITAL_REGIONS), ())
+        self.assertEqual(scope_slug(capital), "capital")
+        if len(self.registry.production_regions) > len(CAPITAL_REGIONS):
+            self.assertNotEqual(scope_slug(self.default_scopes()), "capital")
 
     def test_other_scopes_are_named_by_office_code(self) -> None:
         self.assertEqual(scope_slug(build_scopes(self.registry, ["대전광역시"], ())), "g10")
@@ -41,10 +49,16 @@ class FetchSchoolinfoScopeTest(unittest.TestCase):
         self.assertTrue(row_in_scope(school_row(office="인천광역시교육청"), scopes))
 
     def test_rows_outside_the_scope_are_rejected(self) -> None:
-        scopes = self.default_scopes()
-        self.assertFalse(row_in_scope(school_row(office="대전광역시교육청"), scopes))
-        self.assertFalse(row_in_scope(school_row(address="대전광역시 서구 둔산로 100"), scopes))
+        """"Outside" is relative to the scope asked for, not to promotion status:
+        every region is in production, so the default scope excludes nothing."""
+        scopes = build_scopes(self.registry, ["서울특별시"], ())
+        outside = self.registry.get("부산광역시")
+        self.assertFalse(row_in_scope(school_row(office=outside.education_office), scopes))
+        self.assertFalse(row_in_scope(school_row(address=f"{outside.canonical_name} 어딘가로 1"), scopes))
         self.assertFalse(row_in_scope(school_row(), scopes))
+
+    def test_a_row_with_neither_office_nor_address_is_rejected_by_any_scope(self) -> None:
+        self.assertFalse(row_in_scope(school_row(), self.default_scopes()))
 
     def test_daejeon_scope_selects_daejeon_rows_only(self) -> None:
         scopes = build_scopes(self.registry, ["대전광역시"], ())

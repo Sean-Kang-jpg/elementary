@@ -60,7 +60,26 @@ const swipeSheet = (startY, endY, scrollTop = null) => run(['eval', `(() => {
   return 'sheet swiped'
 })()`])
 
+// I-27: a deployment without an SPA rewrite serves `/` correctly and 404s
+// every other path, so opening only the base URL cannot see the failure.
+// Vite's dev server falls back to index.html, so this passes locally and only
+// fails where it matters: a deployed target that lost its rewrite rule.
+const assertDeepLinkResolves = async (deepPath) => {
+  const target = new URL(deepPath, baseUrl).toString()
+  const response = await fetch(target, { redirect: 'follow' })
+  const body = response.ok ? await response.text() : ''
+  if (!response.ok || !body.includes('<div id="root">')) {
+    throw new Error(
+      `Deep link ${deepPath} did not resolve to the application shell `
+      + `(HTTP ${response.status}). The SPA rewrite is missing from the deployed configuration.`,
+    )
+  }
+  process.stdout.write(`PASS: deep link ${deepPath} resolves to the application shell\n`)
+}
+
 try {
+  await assertDeepLinkResolves('/admin/etl')
+
   run(['set', 'viewport', '390', '844'])
   run(['open', baseUrl])
   run(['wait', '2500'])
@@ -71,7 +90,9 @@ try {
 
   run(['fill', 'input[role="combobox"]', '은마'])
   run(['wait', '900'])
-  assertPage("[...document.querySelectorAll('#map-search-results [role=option]')].filter((node) => node.textContent?.includes('은마')).length === new Set([...document.querySelectorAll('#map-search-results [role=option]')].filter((node) => node.textContent?.includes('은마')).map((node) => node.querySelector('.font-medium')?.textContent)).size", 'apartment search results are deduplicated')
+  // Keyed on name plus address, not name alone: 은마 exists in both 서울 and 대구,
+  // so two distinct complexes legitimately share a name once a region is promoted.
+  assertPage("[...document.querySelectorAll('#map-search-results [role=option]')].filter((node) => node.textContent?.includes('은마')).length === new Set([...document.querySelectorAll('#map-search-results [role=option]')].filter((node) => node.textContent?.includes('은마')).map((node) => [...node.querySelectorAll('span > span')].slice(0, 2).map((part) => part.textContent).join('|'))).size", 'apartment search results are deduplicated')
   assertPage("[...document.querySelectorAll('#map-search-results [role=option]')].some((node) => node.textContent?.includes('4,424세대'))", 'apartment search returned household data')
   run(['eval', `(() => {
     const result = [...document.querySelectorAll('#map-search-results [role=option]')]
@@ -81,7 +102,16 @@ try {
     return 'apartment selected'
   })()`])
   run(['wait', '1800'])
-  assertPage("document.body.innerText.includes('총 세대수') && document.body.innerText.includes('동 수') && document.body.innerText.includes('배정학교:')", 'apartment search opened the assigned-school detail flow with building count')
+  // Checks the flow reached the apartment detail, not merely that some sheet
+  // opened. The previous version asserted '총 세대수', '동 수' and '배정학교:',
+  // labels removed back in 1960fef, so it failed before reaching anything real
+  // and hid a regression that had disabled assigned-apartment browsing outright.
+  assertPage(
+    "(() => { const sheet = document.querySelector('[data-testid=bottom-sheet]');"
+    + " if (!sheet) return false; const text = sheet.innerText;"
+    + " return text.includes('개 동') && text.includes('세대당 주차') && text.includes('배정 학교') })()",
+    'apartment search opened the apartment detail with building count, parking and its assigned school',
+  )
   run(['eval', `(() => {
     const close = document.querySelector('button[aria-label="상세 정보 닫기"]')
     if (!close) throw new Error('Apartment detail close button not found')

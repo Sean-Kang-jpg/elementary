@@ -34,9 +34,15 @@ PRIOR_DONGS = (
     / "building_refined_dongs.csv"
 )
 NEW_DONGS = BASE / "runtime" / "apartment_buildings" / "trusted_large_complex_buildings.csv"
-ACADEMIES = RUNTIME / "academy_address_markers_20260916.csv"
 PROFILE = BASE / "academy_proximity_profile.json"
 PIPELINE_VERSION = "academy-proximity-v1"
+
+
+def latest_academy_markers() -> Path:
+    files = sorted(RUNTIME.glob("academy_address_markers_*.csv"))
+    if not files:
+        raise SystemExit("academy address markers missing")
+    return files[-1]
 
 
 def parse_json_field(value: str):
@@ -92,14 +98,19 @@ def main():
     parser.add_argument("--as-of", default=date.today().isoformat())
     parser.add_argument("--core-radius-m", type=float, default=600)
     parser.add_argument("--maximum-radius-m", type=float, default=800)
+    parser.add_argument("--complexes", type=Path, default=COMPLEXES)
+    parser.add_argument("--academies", type=Path, default=None)
+    parser.add_argument("--output-suffix", default="")
+    parser.add_argument("--profile", type=Path, default=PROFILE)
     args = parser.parse_args()
     if args.core_radius_m <= 0 or args.maximum_radius_m <= args.core_radius_m:
         raise SystemExit("radius contract must satisfy 0 < core < maximum")
 
-    complexes, apt_to_complex = load_complexes(COMPLEXES)
+    academy_path = args.academies or latest_academy_markers()
+    complexes, apt_to_complex = load_complexes(args.complexes)
     origins = trusted_origins(complexes, apt_to_complex)
-    academy_index, academy_count = load_academies(ACADEMIES)
-    academy_rows = load_academy_rows(ACADEMIES)
+    academy_index, academy_count = load_academies(academy_path)
+    academy_rows = load_academy_rows(academy_path)
     links = []
     linked_address_ids = set()
 
@@ -134,14 +145,16 @@ def main():
             "institution_type_counts": json.dumps(parse_json_field(row["institution_type_counts"]), ensure_ascii=False, sort_keys=True),
             "realm_counts": json.dumps(parse_json_field(row["realm_counts"]), ensure_ascii=False, sort_keys=True),
             "top_subjects": row["top_subjects"],
-            "source_as_of": "2026-09-16",
+            "source_as_of": args.as_of,
             "pipeline_version": PIPELINE_VERSION,
         })
 
-    link_path = RUNTIME / f"apartment_academy_proximity_{args.as_of.replace('-', '')}.csv"
-    serving_path = RUNTIME / f"academy_address_serving_{args.as_of.replace('-', '')}.csv"
-    origin_path = RUNTIME / f"apartment_academy_origins_{args.as_of.replace('-', '')}.csv"
-    summary_path = RUNTIME / f"apartment_academy_summary_{args.as_of.replace('-', '')}.csv"
+    suffix = f"_{args.output_suffix}" if args.output_suffix else ""
+    stamp = args.as_of.replace('-', '')
+    link_path = RUNTIME / f"apartment_academy_proximity_{stamp}{suffix}.csv"
+    serving_path = RUNTIME / f"academy_address_serving_{stamp}{suffix}.csv"
+    origin_path = RUNTIME / f"apartment_academy_origins_{stamp}{suffix}.csv"
+    summary_path = RUNTIME / f"apartment_academy_summary_{stamp}{suffix}.csv"
     write_csv(link_path, (
         "canonical_complex_id", "address_id", "straight_distance_m", "distance_band",
         "distance_origin_type", "institution_count", "pipeline_version",
@@ -201,6 +214,8 @@ def main():
             "complexes": len(complexes), "large_complexes": len(large),
             "trusted_large_complexes": trusted_large,
             "matched_academy_addresses": academy_count,
+            "complexes_path": str(args.complexes),
+            "academies_path": str(academy_path),
         },
         "outputs": {
             "linked_academy_addresses": len(serving),
@@ -231,7 +246,7 @@ def main():
         ],
         "pipeline_version": PIPELINE_VERSION,
     }
-    PROFILE.write_text(json.dumps(profile, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    args.profile.write_text(json.dumps(profile, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(json.dumps(profile, ensure_ascii=False, indent=2))
 
 

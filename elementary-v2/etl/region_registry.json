@@ -1,7 +1,7 @@
 {
   "registry_name": "elementary-region-registry",
   "registry_version": "region-registry-v1",
-  "updated": "2026-09-20",
+  "updated": "2026-09-27",
   "notes": [
     "Single source of truth for first-level administrative region scopes in the nationwide expansion (N0-N4).",
     "bounds are validation envelopes measured from the 2026-03-20 nationwide school standard data, widened by 0.05 degrees. They cover schools only; a scope's own EDA must confirm they also cover its apartments.",
@@ -151,7 +151,7 @@
       },
       "bounds_source": "measured_school_standard_data_20260320",
       "wave": "N1",
-      "status": "planned",
+      "status": "production",
       "address_prefixes": [
         "부산광역시"
       ],
@@ -189,7 +189,7 @@
       },
       "bounds_source": "measured_school_standard_data_20260320",
       "wave": "N1",
-      "status": "planned",
+      "status": "production",
       "region_notes": "군위군 was transferred from 경상북도 in 2023. Legal-dong codes and school office assignment for 군위 must be checked against the collection date.",
       "address_prefixes": [
         "대구광역시"
@@ -201,7 +201,9 @@
         "lat": 35.957,
         "lng": 128.5829
       },
-      "center_source": "bounds_midpoint"
+      "center_source": "bounds_midpoint",
+      "promoted_on": "2026-09-27",
+      "promotion_note": "N1 wave: 237 schools, 2,075 complexes, 2,259 serving rows uploaded and verified per region. Four schools publish no figures; none has an assigned apartment."
     },
     {
       "canonical_name": "대전광역시",
@@ -228,7 +230,7 @@
       },
       "bounds_source": "measured_school_standard_data_20260320",
       "wave": "N1",
-      "status": "planned",
+      "status": "production",
       "address_prefixes": [
         "대전광역시"
       ],
@@ -239,7 +241,9 @@
         "lat": 36.3417,
         "lng": 127.379
       },
-      "center_source": "bounds_midpoint"
+      "center_source": "bounds_midpoint",
+      "promoted_on": "2026-09-26",
+      "promotion_note": "First N1 wave: 155 schools, 1,035 complexes, 1,085 serving rows uploaded and verified per region."
     },
     {
       "canonical_name": "광주광역시",
@@ -266,7 +270,7 @@
       },
       "bounds_source": "measured_school_standard_data_20260320",
       "wave": "N1",
-      "status": "planned",
+      "status": "production",
       "region_notes": "경기도 광주시 shares the short name 광주. Alias resolution must never map '광주시' to this region from a 경기도 address.",
       "address_prefixes": [
         "광주광역시"
@@ -305,7 +309,7 @@
       },
       "bounds_source": "measured_school_standard_data_20260320",
       "wave": "N1",
-      "status": "planned",
+      "status": "production",
       "address_prefixes": [
         "울산광역시"
       ],
@@ -316,7 +320,9 @@
         "lat": 35.5109,
         "lng": 129.2715
       },
-      "center_source": "bounds_midpoint"
+      "center_source": "bounds_midpoint",
+      "promoted_on": "2026-09-26",
+      "promotion_note": "N1 wave: 124 schools, 1,631 complexes, 1,631 serving rows uploaded and verified per region."
     },
     {
       "canonical_name": "전라남도",
@@ -342,7 +348,7 @@
       },
       "bounds_source": "measured_school_standard_data_20260320",
       "wave": "N1",
-      "status": "planned",
+      "status": "production",
       "region_notes": "N1 loads only the 목포시 city scope. The province-wide load belongs to N3.",
       "address_prefixes": [
         "전라남도"
@@ -382,7 +388,7 @@
       },
       "bounds_source": "measured_school_standard_data_20260320",
       "wave": "N2",
-      "status": "planned",
+      "status": "production",
       "region_notes": "Addresses use 세종특별자치시 + 읍/면/동 with no district level. New-town school zones change frequently.",
       "address_prefixes": [
         "세종특별자치시"
@@ -422,7 +428,7 @@
       },
       "bounds_source": "measured_school_standard_data_20260320",
       "wave": "N2",
-      "status": "planned",
+      "status": "production",
       "region_notes": "제주시 and 서귀포시 are cities without districts. 추자도 belongs to 제주시 and sits near 33.95N, above the main island.",
       "address_prefixes": [
         "제주특별자치도"
@@ -434,7 +440,9 @@
         "lat": 33.5667,
         "lng": 126.5661
       },
-      "center_source": "bounds_midpoint"
+      "center_source": "bounds_midpoint",
+      "promoted_on": "2026-09-27",
+      "promotion_note": "N2 wave: 119 schools, 1,121 complexes, 1,169 serving rows uploaded and verified per region."
     },
     {
       "canonical_name": "강원특별자치도",
@@ -464,7 +472,7 @@
       },
       "bounds_source": "measured_school_standard_data_20260320",
       "wave": "N2",
-      "status": "planned",
+      "status": "production",
       "region_notes": "Renamed from 강원도 in 2023; older snapshots carry 강원도 and legal-dong prefix 42.",
       "address_prefixes": [
         "강원특별자치도",
@@ -503,7 +511,7 @@
       },
       "bounds_source": "measured_school_standard_data_20260320",
       "wave": "N2",
-      "status": "planned",
+      "status": "production",
       "region_notes": "청주시 has general-purpose districts, so addresses reach province → city → district → neighborhood.",
       "address_prefixes": [
         "충청북도"
@@ -541,7 +549,7 @@
       },
       "bounds_source": "measured_school_standard_data_20260320",
       "wave": "N2",
-      "status": "planned",
+      "status": "production",
       "address_prefixes": [
         "충청남도"
       ],
@@ -582,7 +590,7 @@
       },
       "bounds_source": "measured_school_standard_data_20260320",
       "wave": "N2",
-      "status": "planned",
+      "status": "production",
       "region_notes": "Renamed from 전라북도 in 2024; older snapshots carry 전라북도 and legal-dong prefix 45. 전주시 has general-purpose districts.",
       "address_prefixes": [
         "전북특별자치도",
@@ -621,7 +629,7 @@
       },
       "bounds_source": "measured_school_standard_data_20260320",
       "wave": "N2",
-      "status": "planned",
+      "status": "production",
       "region_notes": "울릉군 extends the longitude envelope well past the mainland. 군위군 left for 대구광역시 in 2023.",
       "address_prefixes": [
         "경상북도"
@@ -659,7 +667,7 @@
       },
       "bounds_source": "measured_school_standard_data_20260320",
       "wave": "N2",
-      "status": "planned",
+      "status": "production",
       "region_notes": "창원시 has general-purpose districts.",
       "address_prefixes": [
         "경상남도"

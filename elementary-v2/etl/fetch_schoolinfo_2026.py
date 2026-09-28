@@ -23,7 +23,7 @@ from urllib.request import urlopen
 if __package__ in (None, ""):  # `python etl/fetch_schoolinfo_2026.py`, as the runner invokes it
     sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
-from etl.region_registry import RegionScope, load_registry
+from etl.region_registry import CAPITAL_REGIONS, RegionScope, load_registry
 
 BASE_DIR = Path(__file__).resolve().parent
 OUTPUT_DIR = BASE_DIR / "local_outputs_20260320"
@@ -77,10 +77,12 @@ def scope_slug(scopes: Sequence[RegionScope]) -> str:
     city-filtered scope; the exact cities are recorded in the fetch report, not
     in the file name.
     """
-    registry = load_registry()
     selected = {scope.region.canonical_name for scope in scopes}
     if not any(scope.cities for scope in scopes):
-        if selected == {region.canonical_name for region in registry.production_regions}:
+        # `capital` means exactly the three capital regions, not "whatever is in
+        # production": once another region is promoted, reusing this slug would
+        # write a wider file over the one the portability baseline depends on.
+        if selected == set(CAPITAL_REGIONS):
             return "capital"
     parts = [
         scope.region.neis_office_code.lower() + ("-partial" if scope.cities else "")

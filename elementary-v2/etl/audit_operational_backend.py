@@ -14,6 +14,11 @@ from typing import Any
 if __package__ in (None, ""):  # `python etl/audit_operational_backend.py`
     sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
+from etl.build_operational_masters import (
+    UPSTREAM_GAPS_PATH,
+    school_zone_label,
+    upstream_school_gaps,
+)
 from etl.fetch_schoolinfo_2026 import build_scopes, scope_slug
 from etl.region_registry import RegionScopeError, load_registry
 
@@ -73,6 +78,26 @@ def add_check(checks: list[dict[str, Any]], name: str, failures: list[Any], samp
             "samples": failures[:sample_size],
         }
     )
+
+
+
+def review_trace_ids(
+    review_rows: list[dict[str, Any]],
+    assignment_rows: list[dict[str, Any]],
+    active_unit_ids: set[str],
+) -> set[str]:
+    """Return review-required IDs traceable to a queue row or polygon no-hit."""
+    traced = {
+        row["apt_cd"]
+        for row in review_rows
+        if row.get("apt_cd") in active_unit_ids
+    }
+    traced.update(
+        row["apt_cd"]
+        for row in assignment_rows
+        if row.get("assignment_method") == "unassigned_point_nohit"
+    )
+    return traced
 
 
 def sql_columns(sql: str, table: str) -> set[str]:
@@ -256,10 +281,31 @@ def main(argv: list[str] | None = None) -> None:
         for grade in range(1, 7)
         for metric in ("students", "classes", "per_class")
     )
+    # Three different situations, and only the last is a gap in our pipeline:
+    #  - no Schoolinfo code: not in the disclosure system at all, like the
+    #    international school in Jeju's English Education City;
+    #  - a code but no figures published: the disclosure lists the school and
+    #    carries no numbers, as with Daegu's four, two of which now report as
+    #    campuses of other schools after the 2023 Gunwi transfer;
+    #  - figures published but incomplete: something was lost on the way in.
+    undisclosed = [row["school_id"] for row in school_rows if not row.get("schoolinfo_code")]
+    unpublished = [
+        row["school_id"]
+        for row in school_rows
+        if row.get("schoolinfo_code") and not row.get("student_data_status")
+    ]
+    disclosed_rows = [
+        row for row in school_rows
+        if row.get("schoolinfo_code") and row.get("student_data_status")
+    ]
     add_check(
         checks,
         "school master: complete grade statistics",
-        [row["school_id"] for row in school_rows if any(row.get(field) is None for field in grade_fields)],
+        [
+            row["school_id"]
+            for row in disclosed_rows
+            if any(row.get(field) is None for field in grade_fields)
+        ],
     )
     add_check(
         checks,
@@ -306,16 +352,34 @@ def main(argv: list[str] | None = None) -> None:
         )
 
     link_units = {row["apt_cd"] for row in datasets["apartment_assignment_schools"]}
-    named_without_link = [
-        row["apt_cd"]
-        for row in datasets["apartment_assignment_units"]
-        if row.get("hakgudo_name") and row["apt_cd"] not in link_units
-    ]
+    # A unit is excused only when its whole zone names one reviewed upstream gap
+    # and that school is genuinely missing from this scope's master. A joint zone
+    # or a school that has since appeared keeps failing.
+    known_gaps = upstream_school_gaps()
+    master_names = {row["school_name"] for row in datasets["school_master"]}
+    named_without_link: list[str] = []
+    gap_units: list[dict[str, Any]] = []
+    for row in datasets["apartment_assignment_units"]:
+        if not row.get("hakgudo_name") or row["apt_cd"] in link_units:
+            continue
+        gap = known_gaps.get(school_zone_label(row["hakgudo_name"]))
+        if gap and gap["school_name"] not in master_names:
+            gap_units.append({"apt_cd": row["apt_cd"], "school_name": gap["school_name"]})
+        else:
+            named_without_link.append(row["apt_cd"])
     review_units = [row for row in datasets["apartment_assignment_units"] if row.get("review_required") is True]
-    review_source_ids = {
-        row["apt_cd"] for row in load(OUTPUT_DIR / "assignment_review_queue.csv") if row.get("apt_cd") in units
-    }
+    review_queue_path = OUTPUT_DIR / f"assignment_review_queue{suffix}.csv"
+    review_source_ids = review_trace_ids(
+        load(review_queue_path) if review_queue_path.is_file() else [],
+        datasets["apartment_assignment_units"],
+        units,
+    )
+    # A point outside every polygon is marked for review directly by the
+    # operational builder; it does not originate in the legacy building-level
+    # review queue. Regional waves commonly have only this kind of review row.
     add_check(checks, "named assignments without school link", named_without_link)
+    checks[-1]["known_upstream_gap_count"] = len(gap_units)
+    checks[-1]["known_upstream_gap_samples"] = gap_units[:10]
     add_check(
         checks,
         "review queue matches active operational units",
@@ -425,7 +489,10 @@ def main(argv: list[str] | None = None) -> None:
         "remote_blocker": remote_blocker,
         "row_counts": {table: len(rows) for table, rows in datasets.items()},
         "total_rows": sum(len(rows) for rows in datasets.values()),
+        "schools_outside_disclosure": len(undisclosed),
+        "schools_disclosed_without_figures": len(unpublished),
         "check_count": len(checks),
+        "known_upstream_gap_units": len(gap_units),
         "failed_check_count": len(failed),
         "review_required_units": len(review_units),
         "units_with_school_links": len(link_units),
@@ -443,6 +510,7 @@ def main(argv: list[str] | None = None) -> None:
         f"- Checks: **{report['check_count']}**, failed: **{report['failed_check_count']}**",
         f"- Assignment review queue: **{report['review_required_units']:,}**",
         f"- Units with school links: **{report['units_with_school_links']:,}**",
+        f"- Excused upstream school gaps: **{report['known_upstream_gap_units']:,}**",
         "",
         "## Remote Readiness",
         "",
@@ -464,7 +532,7 @@ def main(argv: list[str] | None = None) -> None:
             lines.append(json.dumps(check["samples"], ensure_ascii=False, indent=2))
             lines.append("```")
     (OUTPUT_DIR / f"{REPORT_MD_NAME}{suffix}.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
-    print(json.dumps({key: report[key] for key in ("status", "total_rows", "check_count", "failed_check_count")}, indent=2))
+    print(json.dumps({key: report[key] for key in ("status", "total_rows", "check_count", "failed_check_count", "known_upstream_gap_units")}, indent=2))
     if failed:
         for check in failed:
             print(f"FAIL {check['name']}: {check['failure_count']:,}")

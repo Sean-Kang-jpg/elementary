@@ -116,19 +116,26 @@ def row_count(path: Path) -> int:
         return sum(1 for _ in csv.DictReader(handle))
 
 
+# The bundle reproduces the capital region, so every stage is pinned to that
+# scope. Relying on the default would follow the registry, which widens as
+# regions are promoted, and the reproduction would no longer be of this bundle.
+CAPITAL_SCOPE = ("--regions", "서울특별시", "경기도", "인천광역시")
+
+
 def build_arguments(script: str, project_dir: Path) -> list[str]:
-    """Extra arguments that pin a build script to the bundle's own inputs.
+    """Extra arguments that pin a build script to the bundle's scope and inputs.
 
     The apartment builder otherwise discovers the newest `kapt_basic_*.csv` in
     the output directory, which on the ETL workstation is that morning's
     scheduled snapshot rather than the reviewed input the bundle restored.
     """
+    scope = list(CAPITAL_SCOPE)
     if script != "build_apartment_master_v1.py":
-        return []
+        return scope
     root_name, relative_target = ROLE_TARGETS["kapt-basic"]
     if root_name != "output":
         raise ValueError("kapt-basic is expected to materialize into the output directory")
-    return ["--kapt-source", str(project_dir / "etl" / "local_outputs_20260320" / relative_target)]
+    return scope + ["--kapt-source", str(project_dir / "etl" / "local_outputs_20260320" / relative_target)]
 
 
 def run_build(project_dir: Path = PROJECT_DIR) -> None:
@@ -158,9 +165,38 @@ def compare_with_baseline(report: dict, baseline: dict) -> list[str]:
     return differences
 
 
+def relock_baseline(report: dict, baseline_path: Path, reason: str) -> None:
+    """Rewrite the locked baseline after a deliberate change to the model.
+
+    Relocking is how an intended change is recorded, and it is the wrong answer
+    to drift: a mismatch caused by the environment, such as a build reading a
+    newer local snapshot, must be fixed rather than blessed. The reason is
+    stored so the file says why its numbers moved.
+    """
+    baseline = json.loads(baseline_path.read_text(encoding="utf-8"))
+    previous = {item["name"]: item for item in baseline["files"]}
+    baseline["files"] = [
+        {"name": item["name"], "rows": item["rows"], "sha256": item["sha256"]}
+        for item in report["files"]
+    ]
+    baseline["audit_check_count"] = report["audit_check_count"]
+    baseline.setdefault("relock_history", []).append({
+        "relocked_at": datetime.now(timezone.utc).isoformat(),
+        "reason": reason,
+        "row_changes": {
+            item["name"]: [previous.get(item["name"], {}).get("rows"), item["rows"]]
+            for item in report["files"]
+            if previous.get(item["name"], {}).get("rows") != item["rows"]
+        },
+    })
+    baseline_path.write_text(json.dumps(baseline, ensure_ascii=False, indent=2) + chr(10), encoding="utf-8")
+    print(f"relocked {baseline_path.name}: {reason}")
+
+
 def write_comparison_report(
     output_dir: Path = OUTPUT_DIR,
     baseline_path: Path = DEFAULT_BASELINE,
+    relock_reason: str | None = None,
 ) -> Path:
     audit_path = output_dir / "backend_audit_report.json"
     audit = json.loads(audit_path.read_text(encoding="utf-8"))
@@ -183,6 +219,8 @@ def write_comparison_report(
         "row_counts": audit["row_counts"],
         "files": files,
     }
+    if relock_reason:
+        relock_baseline(report, baseline_path, relock_reason)
     baseline = json.loads(baseline_path.read_text(encoding="utf-8"))
     differences = compare_with_baseline(report, baseline)
     report["baseline"] = {
@@ -210,13 +248,19 @@ def main() -> None:
     )
     parser.add_argument("--materialize-only", action="store_true")
     parser.add_argument("--baseline", type=Path, default=DEFAULT_BASELINE)
+    parser.add_argument(
+        "--relock",
+        metavar="REASON",
+        help="rewrite the locked baseline from this run; only for a deliberate "
+             "model change, never to bless environment drift",
+    )
     args = parser.parse_args()
     manifest = load_manifest(args.manifest)
     paths = materialize_inputs(manifest, args.restore_dir)
     print(f"materialized {len(paths)} build inputs")
     if not args.materialize_only:
         run_build()
-        write_comparison_report(baseline_path=args.baseline)
+        write_comparison_report(baseline_path=args.baseline, relock_reason=args.relock)
 
 
 if __name__ == "__main__":

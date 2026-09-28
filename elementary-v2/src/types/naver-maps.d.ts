@@ -1,5 +1,11 @@
 declare global {
   interface Window {
+    /**
+     * Called by the Naver Maps SDK when client-ID authentication fails, which
+     * is how an unregistered host reports itself. The SDK looks this up on
+     * `window` by name, so it has to be a global rather than a subscription.
+     */
+    navermap_authFailure?: () => void;
     naver: {
       maps: {
         Map: new (mapDiv: HTMLElement, mapOptions?: MapOptions) => NaverMap;

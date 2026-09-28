@@ -30,7 +30,11 @@ import shapefile
 from pyproj import Transformer
 from shapely.geometry import shape
 
-from etl.build_operational_masters import match_school_zone_scoped, school_zone_label
+from etl.build_operational_masters import (
+    match_school_zone_scoped,
+    school_label_variants,
+    school_zone_label,
+)
 from etl.region_registry import load_registry
 
 TO_WGS84 = Transformer.from_crs("EPSG:5186", "EPSG:4326", always_xy=True)
@@ -41,12 +45,26 @@ SCHOOL_SOURCE = BASE_DIR / "data" / "schoolzone" / "school_location_20260320.csv
 ELEMENTARY = "초등학교"
 
 
-def candidate_labels(rows: list[dict[str, str]], region: Any) -> list[tuple[str, str]]:
+def candidate_labels(
+    rows: list[dict[str, str]], region: Any, include_stripped: bool = False
+) -> list[tuple[str, str]]:
+    """Every spelling of every school, including the city prefix zones may use.
+
+    `include_stripped` belongs to the wider pool only, matching the builder: a
+    name with its city dropped is looser, and only a distance-validated match
+    may rely on it.
+    """
     return sorted(
         {
             (school_zone_label(variant), row["학교ID"])
             for row in rows
-            for variant in region.name_variants(row["학교명"])
+            for variant in school_label_variants(
+                {
+                    "school_name": row["학교명"],
+                    "road_address": row.get("소재지도로명주소") or row.get("소재지지번주소"),
+                },
+                include_stripped=include_stripped,
+            )
         },
         key=lambda item: (-len(item[0]), item[0], item[1]),
     )
@@ -109,7 +127,7 @@ def profile_region(region_name: str, shp_path: Path) -> dict[str, Any]:
         )
     ]
     candidates = candidate_labels(schools, region)
-    wider = candidate_labels(nearby_schools, region)
+    wider = candidate_labels(nearby_schools, region, include_stripped=True)
     school_points = {
         row["학교ID"]: (float(row["위도"]), float(row["경도"]))
         for row in all_schools
@@ -142,7 +160,11 @@ def profile_region(region_name: str, shp_path: Path) -> dict[str, Any]:
 
     by_id = {row["학교ID"]: row for row in schools}
     uncovered = [
-        (by_id[school_id]["학교명"], by_id[school_id].get("설립형태", ""))
+        (
+            by_id[school_id]["학교명"],
+            by_id[school_id].get("설립형태", ""),
+            by_id[school_id].get("소재지도로명주소") or by_id[school_id].get("소재지지번주소") or "",
+        )
         for school_id in by_id
         if school_id not in matched_schools
     ]
@@ -157,7 +179,7 @@ def profile_region(region_name: str, shp_path: Path) -> dict[str, Any]:
         "failures": failures,
         "cross_region_zones": cross_region,
         "schools_without_zone": uncovered,
-        "private_schools_without_zone": sum(1 for _, kind in uncovered if kind == "사립"),
+        "private_schools_without_zone": sum(1 for _, kind, _ in uncovered if kind == "사립"),
         "by_office": {
             office: {
                 "zones": counter["zones"],
@@ -198,7 +220,7 @@ def main(argv: list[str] | None = None) -> int:
         print(f"  schools with no zone: {len(uncovered)} "
               f"({profile['private_schools_without_zone']} 사립)")
         if uncovered:
-            print(f"    {[name for name, _ in uncovered][:8]}")
+            print(f"    {[name for name, _, _ in uncovered][:8]}")
 
     if args.json:
         args.json.parent.mkdir(parents=True, exist_ok=True)

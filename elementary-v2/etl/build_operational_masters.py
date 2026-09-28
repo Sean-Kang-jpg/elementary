@@ -31,6 +31,22 @@ NAME_HISTORY = OUTPUT_DIR / "apartment_name_history.csv"
 PROPERTY_HISTORY = OUTPUT_DIR / "apartment_property_history.csv"
 PIPELINE_VERSION = "operational-v1"
 INACTIVE_ZONE_SCHOOL_LABELS = {"대원초"}
+UPSTREAM_GAPS_PATH = BASE_DIR / "upstream_school_gaps.json"
+
+
+def upstream_school_gaps() -> dict[str, dict[str, Any]]:
+    """Reviewed upstream gaps, keyed by the normalized zone label.
+
+    A zone can name a school that the school standard data does not contain, so
+    the school has no `school_id` and cannot enter `school_master`. That is a
+    defect in the source, not in the matcher: the label parsed correctly and the
+    school simply is not there. Each one is listed explicitly with its evidence
+    so the release gate can pass without hiding a real regression.
+    """
+    if not UPSTREAM_GAPS_PATH.is_file():
+        return {}
+    payload = json.loads(UPSTREAM_GAPS_PATH.read_text(encoding="utf-8"))
+    return {school_zone_label(gap["zone_label"]): gap for gap in payload.get("gaps", [])}
 
 
 def read_csv(path: Path) -> list[dict[str, str]]:
@@ -76,16 +92,20 @@ def normalize_school_name(value: Any) -> str:
 def school_zone_label(value: Any) -> str:
     name = str(value or "")
     name = name.replace("초중학교", "초").replace("초등학교", "초").replace("초등", "초")
+    # Some offices append a year-by-year transition plan after an otherwise
+    # complete zone name, occasionally without a closing parenthesis.
+    name = re.sub(r"^(.+(?:통학구역|학구))\s*[\(\[].*$", r"\1", name)
     name = re.sub(r"\([^)]*\)|\[[^]]*\]", "", name)
     name = re.sub(r"^\d{4}\..*?월\s*", "", name)
     name = name.replace("소규모학교", "").replace("작업 후", "")
+    name = re.sub(r"관내(?:읍|면)?지역초", "", name)
     # Whitespace before the suffix, as in `공동(일방) 통학구역` in Gyeongbuk.
     name = re.sub(r"\s+", "", name)
     # Each office writes the zone suffix its own way: 공동 and 공동(일방) in the
     # capital, 일방향공동 / 양방향공동 in Daegu, 제한적공동 in Jeollanam-do,
     # 광역 in Gyeongnam, 공통 in Gangwon, and 학구 rather than 통학구역 in
     # Chungbuk.
-    name = re.sub(r"(?:제한적|일방향|양방향|광역)?(?:공동|공통)?(?:\(일방\))?(?:통학구역|학구)$", "", name)
+    name = re.sub(r"(?:제한적|일방향|양방향|광역)?(?:대)?(?:공동|공통)?(?:\(일방\))?(?:통학구역|학구)$", "", name)
     return re.sub(r"[^0-9A-Za-z가-힣]", "", name).lower()
 
 
@@ -119,10 +139,31 @@ def segment_school_zone(label: str, candidates: list[tuple[str, str]]) -> list[s
     return visit(0) or []
 
 
+def first_segmentation(
+    labels: list[str], candidates: list[tuple[str, str]]
+) -> list[str]:
+    for label in labels:
+        segmented = segment_school_zone(label, candidates)
+        if segmented:
+            return segmented
+    return []
+
+
+def strip_gap_labels(label: str, active_candidate_labels: set[str]) -> str:
+    """`label` without the names of schools confirmed missing from the source."""
+    for gap_label in upstream_school_gaps():
+        if gap_label in label and gap_label not in active_candidate_labels:
+            label = label.replace(gap_label, "")
+    return label
+
+
 def match_school_zone(value: Any, region: str, candidates: list[tuple[str, str]]) -> list[str]:
     cleaned_value = re.sub(r"\([^)]*\)|\[[^]]*\]", "", str(value or ""))
     # Some offices put several zone records in one field, comma separated.
-    parts = re.split(r"\||,|\s+및\s+", cleaned_value)
+    parts = re.split(
+        r"\||,|\s+및\s+|\s+(?=\S+초(?:등학교)?(?:통학구역|학구))",
+        cleaned_value,
+    )
     try:
         region_prefix = load_registry().get(region).school_name_prefix if region else None
     except RegionScopeError:
@@ -144,22 +185,41 @@ def match_school_zone(value: Any, region: str, candidates: list[tuple[str, str]]
         for label, school_id in candidate_variants
         if "초" in label and label.endswith("분교장")
     )
+    candidate_variants.extend(
+        (f"{label.removesuffix('초')}분교장", school_id)
+        for label, school_id in candidate_variants
+        if label.endswith("초")
+    )
     candidate_variants = sorted(set(candidate_variants), key=lambda item: (-len(item[0]), item[0], item[1]))
+    active_candidate_labels = {label for label, _ in candidate_variants}
 
     matches: list[str] = []
     for part in parts:
         label = school_zone_label(part)
         for inactive_label in INACTIVE_ZONE_SCHOOL_LABELS:
-            if label.startswith(inactive_label):
+            if label.startswith(inactive_label) and inactive_label not in active_candidate_labels:
                 label = label[len(inactive_label) :]
         labels = [label]
         if region_prefix:
             labels.append(label.replace(region_prefix, ""))
-        for candidate_label in labels:
-            segmented = segment_school_zone(candidate_label, candidate_variants)
-            if segmented:
-                matches.extend(segmented)
-                break
+        segmented = first_segmentation(labels, candidate_variants)
+        if not segmented:
+            # Segmentation needs full cover, so a joint zone naming a listed
+            # upstream gap loses the schools that do exist alongside it. Drop
+            # only those names, and only when no candidate carries them, then
+            # try once more. This runs solely on a label that matched nothing,
+            # so it can add an assignment but never change one.
+            reduced = [
+                stripped
+                for stripped in (
+                    strip_gap_labels(candidate_label, active_candidate_labels)
+                    for candidate_label in labels
+                )
+                if stripped
+            ]
+            if reduced != [label for label in labels if label]:
+                segmented = first_segmentation(reduced, candidate_variants)
+        matches.extend(segmented)
     return list(dict.fromkeys(matches))
 
 
@@ -212,6 +272,72 @@ def match_school_zone_scoped(
         if point is None or haversine_km(reference, point) > max_km:
             return [], False
     return matches, True
+
+
+def assignment_role(zone_name: Any, rank: int) -> str:
+    """Role of one school within a zone record.
+
+    A one-way joint zone (`공동(일방)`, `일방향공동`) is not a shared assignment:
+    the first school is where the address is assigned, and the rest are rural
+    schools the student may choose instead. Gyeongju names 17 schools that way
+    and Haman 9, so treating them all as assignments would put one apartment in
+    seventeen schools' assigned lists.
+    """
+    name = str(zone_name or "")
+    if rank == 1:
+        return "primary"
+    if "일방" in name:
+        return "optional_one_way"
+    return "shared_zone_active" if "공동" in name else "primary"
+
+
+
+def city_prefix_for(address: Any) -> str:
+    """City or county name a zone label may prefix a school name with.
+
+    Gangwon zones write 원주섬강초 and 고성동광초 where the school itself is
+    섬강초등학교 in 원주시 and 동광초등학교 in 고성군. Only provinces have this
+    level, so metropolitan districts are left alone.
+    """
+    registry = load_registry()
+    text = str(address or "").strip()
+    region = registry.region_for_address(text)
+    if region is None or not region.has_city_level:
+        return ""
+    parts = registry.canonicalize_address(text).split()
+    if len(parts) < 2:
+        return ""
+    city = parts[1]
+    return city[:-1] if city.endswith(("시", "군")) else ""
+
+
+def school_label_variants(school: dict[str, Any], include_stripped: bool = False) -> list[str]:
+    """Every spelling of one school that a zone label might use.
+
+    The city prefix goes both ways. Gangwon zones write 원주섬강초 for
+    섬강초등학교 in 원주시, so the prefixed form is always offered. A Gyeongbuk
+    zone writes 압량초 for the school recorded as 경산압량초등학교, so the
+    stripped form is needed too, but it is looser: dropping a city name can make
+    one school's name look like another's. It is therefore offered only in the
+    wider candidate pool, which validates a match by distance, and never in the
+    region's own pool.
+    """
+    name = str(school.get("school_name") or "")
+    address = school.get("road_address") or school.get("legal_address")
+    region = load_registry().region_for_address(str(address or ""))
+    variants = list(region.name_variants(name)) if region else [name]
+    city = city_prefix_for(address)
+    if city:
+        if not name.startswith(city):
+            variants.append(f"{city}{name}")
+        elif include_stripped:
+            stripped = name[len(city):]
+            # Keep it only when a real stem survives: 경산압량초 leaves 압량,
+            # while 성남초 in 성남시 would leave nothing at all.
+            if len(stripped.split("초")[0]) >= 2:
+                variants.append(stripped)
+    return variants
+
 
 
 def source_value(kapt_value: Any, base_value: Any, use_kapt: bool, kapt_as_of: Any) -> tuple[Any, str]:
@@ -379,13 +505,25 @@ def build_assignment_units(
     resolved_by_id = {row["apt_cd"]: row for row in resolved_rows if row.get("status") == "resolved"}
     schools_by_region: dict[str, list[tuple[str, str]]] = defaultdict(list)
     for school in schools:
-        label = school_zone_label(school["school_name"])
-        if label:
-            schools_by_region[school_region(school)].append((label, school["school_id"]))
+        for variant in school_label_variants(school):
+            label = school_zone_label(variant)
+            if label:
+                schools_by_region[school_region(school)].append((label, school["school_id"]))
     for region in schools_by_region:
-        schools_by_region[region].sort(key=lambda item: (-len(item[0]), item[0], item[1]))
+        schools_by_region[region] = sorted(
+            set(schools_by_region[region]),
+            key=lambda item: (-len(item[0]), item[0], item[1]),
+        )
+    # The wider pool adds the looser stripped spellings; every match through it
+    # is distance-validated, so a name that only looks similar cannot stick.
     all_school_candidates = sorted(
-        {item for candidates in schools_by_region.values() for item in candidates},
+        {item for candidates in schools_by_region.values() for item in candidates}
+        | {
+            (school_zone_label(variant), school["school_id"])
+            for school in schools
+            for variant in school_label_variants(school, include_stripped=True)
+            if school_zone_label(variant)
+        },
         key=lambda item: (-len(item[0]), item[0], item[1]),
     )
 
@@ -447,7 +585,7 @@ def build_assignment_units(
                 "apt_cd": apt_id,
                 "school_id": school_id,
                 "assignment_rank": rank,
-                "assignment_role": "shared_zone_active" if "공동" in str(hakgudo_name) else "primary",
+                "assignment_role": assignment_role(hakgudo_name, rank),
                 "match_method": "region_school_zone_segmentation_with_inactive_alias" if "대원초" in str(hakgudo_name) else "region_school_zone_segmentation",
                 "pipeline_version": PIPELINE_VERSION,
             })
@@ -506,6 +644,11 @@ def build_school_apartment_serving(
     confidence_rank = {"low": 0, "medium": 1, "high": 2}
 
     for link in links:
+        # Optional one-way choices are kept in the assignment tables but stay
+        # out of the published read model, which answers "which school is this
+        # apartment assigned to".
+        if link.get("assignment_role") == "optional_one_way":
+            continue
         unit = unit_by_id[link["apt_cd"]]
         key = (link["school_id"], unit["canonical_complex_id"])
         group = groups.setdefault(key, {"apt_cd_list": set(), "assignment_roles": set(), "links": []})

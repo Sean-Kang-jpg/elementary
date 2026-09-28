@@ -66,3 +66,4 @@ pip-delete-this-directory.txt
 
 # Vercel
 .vercel
+.env*.local

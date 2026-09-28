@@ -15,10 +15,18 @@ class RegionRegistrySqlTest(unittest.TestCase):
         for region in load_registry():
             self.assertIn(f"('{region.canonical_name}'", self.sql)
 
-    def test_only_capital_regions_start_in_production(self) -> None:
-        self.assertEqual(self.sql.count(", TRUE, 'capital')"), 3)
-        self.assertNotIn(", TRUE, 'N1')", self.sql)
-        self.assertNotIn(", TRUE, 'N2')", self.sql)
+    def test_seeded_production_flags_match_the_registry(self) -> None:
+        """The migration must say exactly what the registry says, not a fixed list."""
+        registry = load_registry()
+        production = {region.canonical_name for region in registry.production_regions}
+        for region in registry:
+            marker = f"('{region.canonical_name}', '{region.short_name}'"
+            line = next(row for row in self.sql.splitlines() if marker in row)
+            expected = "TRUE" if region.canonical_name in production else "FALSE"
+            self.assertTrue(
+                line.rstrip(",").endswith(f"{expected}, '{region.wave}')"),
+                f"{region.canonical_name}: expected is_production {expected} in {line.strip()[:80]}",
+            )
 
     def test_literal_region_checks_are_replaced_by_foreign_keys(self) -> None:
         self.assertIn("DROP CONSTRAINT IF EXISTS apartment_complex_region_check", self.sql)

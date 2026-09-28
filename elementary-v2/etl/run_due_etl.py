@@ -14,6 +14,12 @@ from datetime import date, datetime, timezone
 from pathlib import Path
 from typing import Any
 
+if __package__ in (None, ""):  # `python etl/run_due_etl.py`
+    sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+
+from etl.fetch_schoolinfo_2026 import build_scopes, scope_slug
+from etl.region_registry import CAPITAL_REGIONS, load_registry
+
 import run_recurring_etl as recurring
 import upload_operational_masters as uploader
 
@@ -108,11 +114,17 @@ def collect_apartment() -> list[dict[str, Any]]:
     ]
 
 
-def collect_school() -> list[dict[str, Any]]:
+def collect_school(region: str | None = None) -> list[dict[str, Any]]:
+    """Fetch Schoolinfo for one scope; the capital keeps its historical slug."""
     year = date.today().year
-    run_script(str(BASE_DIR / "fetch_schoolinfo_2026.py"), "--year", str(year))
-    basic_path = OUTPUT_DIR / f"schoolinfo_{year}_basic_capital.json"
-    grade_path = OUTPUT_DIR / f"schoolinfo_{year}_grade_students_capital.json"
+    arguments = ["--year", str(year)]
+    slug = "capital"
+    if region is not None:
+        arguments += ["--regions", region]
+        slug = scope_slug(list(build_scopes(load_registry(), [region], ())))
+    run_script(str(BASE_DIR / "fetch_schoolinfo_2026.py"), *arguments)
+    basic_path = OUTPUT_DIR / f"schoolinfo_{year}_basic_{slug}.json"
+    grade_path = OUTPUT_DIR / f"schoolinfo_{year}_grade_students_{slug}.json"
     return [
         {
             "source_name": "schoolinfo-basic",
@@ -131,22 +143,27 @@ def collect_school() -> list[dict[str, Any]]:
     ]
 
 
-def build_manifest(group: str) -> Path:
+def capital_scope() -> list[str]:
+    return [region.canonical_name for region in load_registry().production_regions
+            if region.canonical_name in CAPITAL_REGIONS]
+
+
+def build_manifest(group: str, regions: list[str], slug: str) -> Path:
+    """One manifest per scope, because Schoolinfo is collected per scope."""
     base = json.loads(BASE_MANIFEST.read_text(encoding="utf-8"))
-    collectors = {"apartment": collect_apartment, "school": collect_school}
-    snapshots = collectors[group]()
+    if group == "apartment":
+        snapshots = collect_apartment()
+    else:
+        snapshots = collect_school(None if slug == "capital" else regions[0])
     manifest = {
         "pipeline_name": base["pipeline_name"],
         "pipeline_version": base["pipeline_version"],
         "retention_days": base["retention_days"],
-        "scope": {
-            "regions": base.get("scope", {}).get("regions", []),
-            "domains": [group],
-        },
+        "scope": {"regions": regions, "domains": [group]},
         "snapshots": snapshots,
     }
     RUNTIME_DIR.mkdir(parents=True, exist_ok=True)
-    path = RUNTIME_DIR / f"recurring_{group}_{date.today().isoformat()}.json"
+    path = RUNTIME_DIR / f"recurring_{group}_{slug}_{date.today().isoformat()}.json"
     path.write_text(json.dumps(manifest, ensure_ascii=False, indent=2), encoding="utf-8")
     return path
 
@@ -241,16 +258,25 @@ def run_maintenance(url: str, key: str) -> None:
     )
 
 
-def execute_group(group: str, apply: bool, max_attempts: int, retry_delay: int) -> None:
+def execute_group(
+    group: str,
+    apply: bool,
+    max_attempts: int,
+    retry_delay: int,
+    regions: list[str] | None = None,
+    slug: str = "capital",
+) -> None:
+    regions = regions or capital_scope()
     for attempt in range(1, max_attempts + 1):
         trigger = "scheduled" if attempt == 1 else "retry"
         try:
-            manifest_path = build_manifest(group)
+            manifest_path = build_manifest(group, regions, slug)
             command = [
                 str(BASE_DIR / "run_recurring_etl.py"),
                 "--manifest",
                 str(manifest_path),
                 "--build",
+                *(["--regions", *regions] if slug != "capital" else []),
                 "--trigger-type",
                 trigger,
                 "--attempt-number",
@@ -310,8 +336,22 @@ def main() -> None:
         print("read-only due check complete; pass --apply to collect and update")
         return
     with RunLock():
+        # The capital runs as one scope, as it always has; every region promoted
+        # since then runs as its own, because Schoolinfo is collected per scope
+        # and each wave must stay separately attributable.
+        capital = capital_scope()
+        extra = [
+            region.canonical_name
+            for region in load_registry().production_regions
+            if region.canonical_name not in capital
+        ]
         for group in groups:
-            execute_group(group, True, args.max_attempts, args.retry_delay_seconds)
+            execute_group(group, True, args.max_attempts, args.retry_delay_seconds, capital, "capital")
+            for region in extra:
+                slug = scope_slug(list(build_scopes(load_registry(), [region], ())))
+                execute_group(
+                    group, True, args.max_attempts, args.retry_delay_seconds, [region], slug
+                )
         run_maintenance(url, key)
 
 

@@ -1,0 +1,39 @@
+{
+  "_comment": "Schools a school-zone polygon names that the school standard data does not contain, although the Schoolinfo API does. The standard data is the only source of `school_id`, so the school cannot enter `school_master` and its apartments get no serving row. Each entry is a reviewed upstream defect, not a matcher bug: the label matched, the school simply does not exist in the identity source. The audit excludes only these labels from `named assignments without school link` and counts them separately, so any new unmatched label still fails. Remove an entry once the source republishes and the school appears.",
+  "_recorded": "2026-09-27",
+  "_issue": "I-26",
+  "gaps": [
+    {
+      "zone_label": "천안중앙초",
+      "school_name": "천안중앙초등학교",
+      "region": "충청남도",
+      "schoolinfo_code": "S120000815",
+      "schoolinfo_address": "충청남도 천안시 동남구 영성로 73",
+      "hakgudo_id": "Z000103703",
+      "affected_units": 4,
+      "evidence": "Absent from school_location_20260320.csv; only 천안중앙고등학교 matches 천안중앙 there. Present in the Schoolinfo 2026 basic snapshot."
+    },
+    {
+      "zone_label": "참미르초",
+      "school_name": "참미르초등학교",
+      "region": "광주광역시",
+      "affected_units": 4,
+      "evidence": "Recorded under I-26 on 2026-09-27: present in the Schoolinfo API, absent from the school standard data the API re-serves unchanged (12,011 rows, reference date 2026-03-20)."
+    },
+    {
+      "zone_label": "신연초",
+      "school_name": "신연초등학교",
+      "region": "부산광역시",
+      "affected_units": 3,
+      "evidence": "Recorded under I-26 on 2026-09-27, same class as 참미르초."
+    },
+    {
+      "zone_label": "무안희망초",
+      "school_name": "무안희망초등학교",
+      "region": "전라남도",
+      "schoolinfo_address": "무안군 일로읍 오룡남로3길 20",
+      "affected_units": 2,
+      "evidence": "Absent from school_location_20260320.csv; present in the Schoolinfo 2026 basic snapshot. A new school in the 오룡 development. One further unit, in the joint zone 무안사랑초무안희망초공동통학구역, is not excused here: its primary 무안사랑초 does exist and the unit should link to it once segmentation can skip a listed gap."
+    }
+  ]
+}

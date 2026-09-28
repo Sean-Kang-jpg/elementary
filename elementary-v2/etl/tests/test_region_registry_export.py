@@ -23,9 +23,12 @@ class RegionRegistryExportTest(unittest.TestCase):
         ):
             self.assertIn(expected, rendered)
 
-    def test_only_capital_regions_are_marked_as_production(self) -> None:
+    def test_production_flags_match_the_registry(self) -> None:
+        """The generated module must follow the registry as waves are promoted."""
         rendered = render()
-        self.assertEqual(rendered.count("isProduction: true"), 3)
+        expected = len(load_registry().production_regions)
+        self.assertEqual(rendered.count("isProduction: true"), expected)
+        self.assertGreaterEqual(expected, 3)
 
     def test_city_level_flag_matches_the_registry(self) -> None:
         registry = load_registry()

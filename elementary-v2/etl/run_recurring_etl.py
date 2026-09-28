@@ -21,6 +21,7 @@ if __package__ in (None, ""):  # `python etl/run_recurring_etl.py`
 
 import upload_operational_masters as uploader
 
+from etl.fetch_schoolinfo_2026 import build_scopes, scope_slug
 from etl.region_registry import load_registry
 
 
@@ -29,7 +30,14 @@ PROJECT_DIR = BASE_DIR.parent
 DEFAULT_MANIFEST = BASE_DIR / "recurring_etl_manifest.json"
 AUDIT_REPORT = BASE_DIR / "local_outputs_20260320" / "backend_audit_report.json"
 SERVING_OUTPUT = BASE_DIR / "local_outputs_20260320" / "school_apartment_serving_v1.json"
-STAGED_TABLES = tuple(item for item in uploader.TABLES if item[0] != "school_apartment_serving")
+def staged_tables(suffix: str) -> tuple[tuple[str, Path, tuple[str, ...]], ...]:
+    """Tables staged for one scope; Serving is rebuilt in the database instead."""
+    return tuple(
+        item for item in uploader.scoped_tables(suffix) if item[0] != "school_apartment_serving"
+    )
+
+
+STAGED_TABLES = staged_tables("")
 BUILD_COMMANDS = (
     (BASE_DIR / "build_apartment_master_v1.py",),
     (BASE_DIR / "build_school_master_v2.py",),
@@ -117,7 +125,7 @@ def out_of_scope_regions(
 
 def load_manifest(path: Path) -> dict[str, Any]:
     manifest = json.loads(path.read_text(encoding="utf-8"))
-    required = {"pipeline_name", "pipeline_version", "retention_days", "snapshots"}
+    required = {"pipeline_name", "pipeline_version", "retention_days", "snapshots", "scope"}
     missing = sorted(required - manifest.keys())
     if missing:
         raise ValueError(f"manifest missing fields: {missing}")
@@ -148,12 +156,15 @@ def build_outputs() -> None:
         subprocess.run([sys.executable, str(script)], cwd=PROJECT_DIR, check=True)
 
 
-def validate_outputs() -> list[tuple[str, tuple[str, ...], list[dict[str, Any]]]]:
-    audit = json.loads(AUDIT_REPORT.read_text(encoding="utf-8"))
+def validate_outputs(suffix: str = "") -> list[tuple[str, tuple[str, ...], list[dict[str, Any]]]]:
+    audit_path = AUDIT_REPORT if not suffix else AUDIT_REPORT.with_name(
+        f"{AUDIT_REPORT.stem}{suffix}{AUDIT_REPORT.suffix}"
+    )
+    audit = json.loads(audit_path.read_text(encoding="utf-8"))
     if audit.get("status") != "pass":
-        raise RuntimeError("backend audit must pass before recurring ETL")
+        raise RuntimeError(f"backend audit must pass before recurring ETL: {audit_path.name}")
     loaded = []
-    for table, path, keys in STAGED_TABLES:
+    for table, path, keys in staged_tables(suffix):
         rows = uploader.load_rows(path)
         uploader.validate_rows(table, rows, keys)
         loaded.append((table, keys, rows))
@@ -459,7 +470,9 @@ def apply_run(
     keep_staging: bool,
     trigger_type: str,
     attempt_number: int,
+    suffix: str = "",
 ) -> None:
+    resolved_scope = manifest.get("resolved_scope") or resolve_scope(manifest)
     url, key = uploader.credentials()
     row_counts = {table: len(rows) for table, _, rows in loaded}
     run_id = create_run(url, key, manifest, row_counts, trigger_type, attempt_number)
@@ -471,18 +484,40 @@ def apply_run(
         for table, keys, rows in loaded:
             for start in range(0, len(rows), batch_size):
                 uploader.upsert_batch(url, key, table, keys, rows[start : start + batch_size])
-            remote_count = uploader.table_count(url, key, table)
-            if remote_count != len(rows):
-                raise RuntimeError(
-                    f"{table}: remote {remote_count:,} != staged {len(rows):,}; reconcile stale rows"
+            # Production holds every promoted region, so verify this run's scope
+            # rather than the whole table.
+            if table in uploader.REGION_COLUMN_TABLES:
+                remote_count = sum(
+                    uploader.region_count(url, key, table, region)
+                    for region in resolved_scope["regions"]
                 )
+                if remote_count != len(rows):
+                    raise RuntimeError(
+                        f"{table}: remote {remote_count:,} for {resolved_scope['regions']} "
+                        f"!= staged {len(rows):,}; reconcile stale rows"
+                    )
+            else:
+                remote_count = uploader.table_count(url, key, table)
+                if remote_count < len(rows):
+                    raise RuntimeError(
+                        f"{table}: remote {remote_count:,} < staged {len(rows):,}; rows are missing"
+                    )
             print(f"upserted {table}: {remote_count:,} rows")
-        expected_serving = len(uploader.load_rows(SERVING_OUTPUT))
-        inserted = uploader.refresh_serving(url, key)
-        remote_serving = uploader.table_count(url, key, "school_apartment_serving")
-        if inserted != expected_serving or remote_serving != expected_serving:
+        serving_path = SERVING_OUTPUT if not suffix else SERVING_OUTPUT.with_name(
+            f"{SERVING_OUTPUT.stem}{suffix}{SERVING_OUTPUT.suffix}"
+        )
+        expected_serving = len(uploader.load_rows(serving_path))
+        # The refresh rebuilds every region at once, so its own total covers more
+        # than this scope; the scope is what this run is accountable for.
+        uploader.refresh_serving(url, key)
+        remote_serving = sum(
+            uploader.region_count(url, key, "school_apartment_serving", region)
+            for region in resolved_scope["regions"]
+        )
+        if remote_serving != expected_serving:
             raise RuntimeError(
-                f"serving rows {inserted:,}/{remote_serving:,} != expected {expected_serving:,}"
+                f"serving rows for {resolved_scope['regions']} {remote_serving:,} "
+                f"!= expected {expected_serving:,}"
             )
         mark_snapshots(url, key, run_id, "validated")
         if not keep_staging:
@@ -514,6 +549,11 @@ def main() -> None:
     parser.add_argument("--apply", action="store_true", help="Archive, stage, and update Supabase")
     parser.add_argument("--batch-size", type=int, default=500)
     parser.add_argument("--keep-staging", action="store_true", help="Retain staged rows for debugging")
+    parser.add_argument(
+        "--regions", nargs="*", default=(),
+        help="registry region names; default is the manifest scope",
+    )
+    parser.add_argument("--cities", nargs="*", default=(), help="restrict a single region to these cities")
     parser.add_argument("--trigger-type", choices=("manual", "scheduled", "retry"), default="manual")
     parser.add_argument("--attempt-number", type=int, default=1)
     args = parser.parse_args()
@@ -523,12 +563,22 @@ def main() -> None:
         raise ValueError("attempt-number must be at least 1")
     manifest_path = args.manifest if args.manifest.is_absolute() else PROJECT_DIR / args.manifest
     manifest = load_manifest(manifest_path)
+    if args.regions or args.cities:
+        manifest["scope"] = {
+            **manifest.get("scope", {}),
+            "regions": (
+                [{"region": args.regions[0], "cities": list(args.cities)}]
+                if args.cities else list(args.regions)
+            ),
+        }
     resolved_scope = resolve_scope(manifest)
+    scope_slug_value = scope_slug(list(build_scopes(load_registry(), args.regions, args.cities)))
+    suffix = "" if scope_slug_value == "capital" else f"_{scope_slug_value}"
     manifest["resolved_scope"] = resolved_scope
     print(f"scope: {', '.join(resolved_scope['labels'])} (registry {resolved_scope['registry_version']})")
     if args.build:
         build_outputs()
-    loaded = validate_outputs()
+    loaded = validate_outputs(suffix)
     for table, per_region in region_row_counts(loaded).items():
         print(f"  {table}: " + ", ".join(f"{region} {count:,}" for region, count in per_region.items()))
     outside = out_of_scope_regions(loaded, resolved_scope)
@@ -550,6 +600,7 @@ def main() -> None:
         args.keep_staging,
         args.trigger_type,
         args.attempt_number,
+        suffix,
     )
 
 

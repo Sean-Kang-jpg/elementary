@@ -1,7 +1,7 @@
 # Elementary Documentation
 
 Status: **Active documentation index**  
-Last updated: 2026-09-17
+Last updated: 2026-09-27
 
 This directory contains the maintained product, architecture, UX, operations, decision, and reference documents for the active application. Pending work is authoritative only in the Operation Plan.
 
@@ -17,6 +17,8 @@ This directory contains the maintained product, architecture, UX, operations, de
 
 - [Product Brief](product/PRODUCT_BRIEF.md)
 - [Product Requirements](product/PRD.md)
+- [Product Concept v1.1](product/PRODUCT_CONCEPT.md): where the product is going — decision-tool framing, screen model, staged scope, brand. Korean. Forward-looking; the Brief and PRD govern what ships today.
+- [Measurement Plan](product/MEASUREMENT_PLAN.md): tooling, the seven events, and how the north-star metric is computed. Korean.
 - [User Journeys](product/USER_JOURNEYS.md)
 - [Information Architecture](product/INFORMATION_ARCHITECTURE.md)
 - [News Content Contract](product/NEWS_CONTENT_CONTRACT.md)
@@ -38,10 +40,12 @@ This directory contains the maintained product, architecture, UX, operations, de
 ## Operations
 
 - [Operation Plan](operations/OPERATION_PLAN.md)
+- [Deployment](operations/DEPLOYMENT.md): how the site actually ships, the check to run after every deploy, and the move to git-connected builds. Korean.
 - [ETL Scheduling](operations/ETL_SCHEDULING.md)
 - [Monitoring](operations/MONITORING.md)
 - [Region Scope Inventory](operations/REGION_SCOPE_INVENTORY.md): every capital-region assumption in the codebase, classified for the N0 generalization pass.
 - [Region EDA Findings](operations/REGION_EDA_FINDINGS.md): measured results of the per-region EDA gate, newest first.
+- [Manual QA Review](operations/MANUAL_QA_REVIEW.html): browser checklist for the current regional assignment samples; verdicts stay in this browser until exported as CSV.
 - [Project Progress](PROJECT_PROGRESS.html): summary dashboard; it is not the authoritative backlog.
 
 ## Decisions
@@ -49,10 +53,14 @@ This directory contains the maintained product, architecture, UX, operations, de
 - [ADR-001: Two-table public read model](decisions/ADR-001-serving-read-model.md)
 - [ADR-002: Official school-zone source](decisions/ADR-002-official-school-zone-source.md)
 - [ADR-003: Nationwide rollout](decisions/ADR-003-nationwide-rollout.md)
+- [ADR-004: Academy proximity distance](decisions/ADR-004-academy-proximity-distance.md)
+- [ADR-005: Apartment transaction linkage](decisions/ADR-005-apartment-transaction-linkage.md)
+- [ADR-006: Detail-page rendering](decisions/ADR-006-detail-page-rendering.md): serverless prerender for detail routes so Naver and Google can index them. Korean.
 
 ## Reference
 
 - [Pipeline validation evidence](reference/DATA_PIPELINE_VALIDATION_20260825.md)
+- [Concept preflight verification](reference/REPORT_CONCEPT_PREFLIGHT_20260926.md): measured region scope, identifier stability, and apartment source-date gaps behind the concept's phase 0. Korean.
 - [Station search source plan](reference/STATION_SEARCH_SOURCE_PLAN.md)
 - [Release history](RELEASES.md)
 

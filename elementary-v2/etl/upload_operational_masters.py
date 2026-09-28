@@ -9,9 +9,16 @@ import os
 import urllib.error
 import urllib.parse
 import urllib.request
+import sys
 from datetime import datetime
 from pathlib import Path
 from typing import Any
+
+if __package__ in (None, ""):  # `python etl/upload_operational_masters.py`
+    sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+
+from etl.fetch_schoolinfo_2026 import build_scopes, scope_slug
+from etl.region_registry import load_registry
 
 
 BASE_DIR = Path(__file__).resolve().parent
@@ -92,9 +99,11 @@ def upsert_batch(url: str, key: str, table: str, keys: tuple[str, ...], rows: li
         raise RuntimeError(f"{table}: HTTP {exc.code}: {detail}") from exc
 
 
-def table_count(url: str, key: str, table: str) -> int:
+def table_count(url: str, key: str, table: str, filters: str = "") -> int:
+    """Exact row count, optionally narrowed by a PostgREST filter fragment."""
+    query = f"select=*&limit=1&{filters}" if filters else "select=*&limit=1"
     request = urllib.request.Request(
-        f"{url}/rest/v1/{table}?select=*&limit=1",
+        f"{url}/rest/v1/{table}?{query}",
         headers={
             "apikey": key,
             "Authorization": f"Bearer {key}",
@@ -177,6 +186,28 @@ def finish_etl_run(url: str, key: str, run_id: str, status: str, error: str | No
         pass
 
 
+REGION_COLUMN_TABLES = {
+    "school_master",
+    "apartment_complex_master",
+    "apartment_assignment_units",
+    "school_apartment_serving",
+}
+
+
+def scoped_tables(suffix: str) -> tuple[tuple[str, Path, tuple[str, ...]], ...]:
+    """The same table list, reading a wave's own output files."""
+    if not suffix:
+        return TABLES
+    scoped = []
+    for table, path, keys in TABLES:
+        scoped.append((table, path.with_name(f"{path.stem}{suffix}{path.suffix}"), keys))
+    return tuple(scoped)
+
+
+def region_count(url: str, key: str, table: str, region: str) -> int:
+    return table_count(url, key, table, f"region=eq.{urllib.parse.quote(region)}")
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--apply", action="store_true", help="Perform remote upserts; default is validation only")
@@ -188,6 +219,14 @@ def main() -> None:
         help="Limit validation/upload to one or more tables; may be repeated",
     )
     parser.add_argument(
+        "--regions", nargs="*", default=(),
+        help="registry region names; default is the current production scope",
+    )
+    parser.add_argument(
+        "--cities", nargs="*", default=(),
+        help="restrict a single region to these cities",
+    )
+    parser.add_argument(
         "--refresh-serving",
         action="store_true",
         help="Rebuild school_apartment_serving in Supabase after loading normalized masters",
@@ -195,14 +234,27 @@ def main() -> None:
     args = parser.parse_args()
     if args.batch_size < 1 or args.batch_size > 1000:
         raise ValueError("--batch-size must be between 1 and 1000")
+    if args.refresh_serving and (args.regions or args.cities):
+        # refresh_school_apartment_serving() rebuilds the whole table from the
+        # masters in the database, so its expected count is every region's, not
+        # this scope's. A wave uploads its own serving rows instead.
+        raise ValueError("--refresh-serving rebuilds every region; do not combine it with --regions")
 
-    audit = json.loads(AUDIT_REPORT.read_text(encoding="utf-8"))
+    scopes = build_scopes(load_registry(), args.regions, args.cities)
+    slug = scope_slug(list(scopes))
+    suffix = "" if slug == "capital" else f"_{slug}"
+    scope_regions = sorted({scope.region.canonical_name for scope in scopes})
+    print(f"scope: {', '.join(scope.label for scope in scopes)} (slug {slug})")
+
+    audit_path = AUDIT_REPORT if not suffix else AUDIT_REPORT.with_name(f"{AUDIT_REPORT.stem}{suffix}{AUDIT_REPORT.suffix}")
+    audit = json.loads(audit_path.read_text(encoding="utf-8"))
     if audit.get("status") != "pass":
-        raise RuntimeError("backend audit must pass before upload")
+        raise RuntimeError(f"backend audit must pass before upload: {audit_path.name}")
 
-    selected_tables = set(args.table or (table for table, _, _ in TABLES))
+    tables = scoped_tables(suffix)
+    selected_tables = set(args.table or (table for table, _, _ in tables))
     loaded = []
-    for table, path, keys in TABLES:
+    for table, path, keys in tables:
         if table not in selected_tables:
             continue
         rows = load_rows(path)
@@ -215,9 +267,19 @@ def main() -> None:
         return
 
     url, key = credentials()
+    # Pre-upload counts are the rollback evidence the release gate asks for.
+    snapshot = {"scope": scope_regions, "tables": {}}
     for table, _, _ in loaded:
         existing = table_count(url, key, table)
-        print(f"preflight {table}: {existing:,} rows")
+        entry = {"total": existing}
+        if table in REGION_COLUMN_TABLES:
+            entry["by_region"] = {region: region_count(url, key, table, region) for region in scope_regions}
+        snapshot["tables"][table] = entry
+        print(f"preflight {table}: {existing:,} rows" + (
+            f", scope {sum(entry['by_region'].values()):,}" if "by_region" in entry else ""))
+    snapshot_path = OUTPUT_DIR / f"upload_preflight_snapshot{suffix or '_capital'}.json"
+    snapshot_path.write_text(json.dumps(snapshot, ensure_ascii=False, indent=2) + chr(10), encoding="utf-8")
+    print(f"wrote {snapshot_path.name}")
     table_count(url, key, "etl_runs")
 
     expected_counts = {table: len(rows) for table, _, rows in loaded}
@@ -226,12 +288,25 @@ def main() -> None:
         for table, keys, rows in loaded:
             for start in range(0, len(rows), args.batch_size):
                 upsert_batch(url, key, table, keys, rows[start : start + args.batch_size])
-            remote_count = table_count(url, key, table)
-            if remote_count != len(rows):
-                raise RuntimeError(
-                    f"{table}: remote row count {remote_count:,} != local snapshot {len(rows):,}; stale rows require explicit reconciliation"
-                )
-            print(f"upserted and verified {table}: {len(rows):,} rows")
+            if table in REGION_COLUMN_TABLES:
+                # A wave adds regions beside the existing ones, so verify the
+                # scope rather than the whole table.
+                remote_scope = sum(region_count(url, key, table, region) for region in scope_regions)
+                if remote_scope != len(rows):
+                    raise RuntimeError(
+                        f"{table}: remote rows for {scope_regions} {remote_scope:,} != local snapshot "
+                        f"{len(rows):,}; stale rows require explicit reconciliation"
+                    )
+                print(f"upserted and verified {table}: {len(rows):,} rows in scope")
+            else:
+                before = snapshot["tables"][table]["total"]
+                remote_count = table_count(url, key, table)
+                expected_total = before + len(rows) if suffix else len(rows)
+                if remote_count != expected_total:
+                    raise RuntimeError(
+                        f"{table}: remote row count {remote_count:,} != expected {expected_total:,}"
+                    )
+                print(f"upserted and verified {table}: {len(rows):,} rows")
         if args.refresh_serving:
             inserted = refresh_serving(url, key)
             expected = len(load_rows(OUTPUT_DIR / "school_apartment_serving_v1.json"))

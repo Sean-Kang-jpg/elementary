@@ -17,11 +17,12 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import date
 from pathlib import Path
 
+from region_registry import load_registry
+
 BASE_DIR = Path(__file__).resolve().parent
 PROJECT_DIR = BASE_DIR.parent
 RUNTIME_DIR = BASE_DIR / "runtime" / "academy"
 PROFILE_FILE = BASE_DIR / "academy_geocode_profile.json"
-REGIONS = ("서울특별시", "경기도", "인천광역시")
 
 
 def env_value(name: str) -> str:
@@ -37,20 +38,22 @@ def env_value(name: str) -> str:
 
 
 def latest_snapshot() -> Path:
-    files = sorted(RUNTIME_DIR.glob("acainsti_capital_*.json"))
+    files = sorted(RUNTIME_DIR.glob("acainsti_scope_*.json"))
+    if not files:
+        files = sorted(RUNTIME_DIR.glob("acainsti_capital_*.json"))
     if not files:
         raise SystemExit("academy snapshot missing")
     return files[-1]
 
 
-def select_addresses(rows: list[dict], sample_per_region: int | None) -> list[dict]:
+def select_addresses(rows: list[dict], regions: list[str], sample_per_region: int | None) -> list[dict]:
     grouped = defaultdict(lambda: defaultdict(int))
     for row in rows:
         address = " ".join((row.get("FA_RDNMA") or "").split())
         if address:
             grouped[row["_region"]][address] += 1
     selected = []
-    for region in REGIONS:
+    for region in regions:
         items = sorted(grouped[region].items(), key=lambda item: hashlib.sha256(item[0].encode()).hexdigest())
         for address, count in items[:sample_per_region] if sample_per_region else items:
             selected.append({"region": region, "address": address, "academy_count": count})
@@ -124,12 +127,16 @@ def main() -> None:
     parser.add_argument("--retry-failures", action="store_true")
     parser.add_argument("--retry-transport-errors", action="store_true")
     parser.add_argument("--delay", type=float, default=0.2)
+    parser.add_argument("--regions", nargs="+", help="Only geocode these canonical regions")
     args = parser.parse_args()
     key = env_value("VWORLD_API_KEY")
     if not key:
         raise SystemExit("VWORLD_API_KEY is not configured")
     snapshot = latest_snapshot()
-    selected = select_addresses(json.loads(snapshot.read_text(encoding="utf-8")), None if args.all else args.sample_per_region)
+    rows = json.loads(snapshot.read_text(encoding="utf-8"))
+    registry = load_registry()
+    regions = [registry.get(name).canonical_name for name in args.regions] if args.regions else sorted({row.get("_region") for row in rows if row.get("_region")})
+    selected = select_addresses(rows, regions, None if args.all else args.sample_per_region)
     mode = "all" if args.all else f"pilot_{args.sample_per_region}_per_region"
     cache_path = RUNTIME_DIR / f"academy_geocodes_{mode}.csv"
     cache = load_cache(cache_path)
@@ -165,7 +172,7 @@ def main() -> None:
 
     statuses = Counter(cache[item["address"]]["status"] for item in selected if item["address"] in cache)
     by_region = {}
-    for region in REGIONS:
+    for region in regions:
         items = [item for item in selected if item["region"] == region]
         counts = Counter(cache[item["address"]]["status"] for item in items if item["address"] in cache)
         by_region[region] = {"addresses": len(items), "matched": counts["matched"], "match_rate": round(counts["matched"] / len(items), 4)}
