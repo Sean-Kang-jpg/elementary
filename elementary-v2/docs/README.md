@@ -57,6 +57,7 @@ This directory contains the maintained product, architecture, UX, operations, de
 - [ADR-004: Academy proximity distance](decisions/ADR-004-academy-proximity-distance.md)
 - [ADR-005: Apartment transaction linkage](decisions/ADR-005-apartment-transaction-linkage.md)
 - [ADR-006: Detail-page rendering](decisions/ADR-006-detail-page-rendering.md): serverless prerender for detail routes so Naver and Google can index them. Korean.
+- [ADR-007: Immutable public identifiers](decisions/ADR-007-immutable-public-identifiers.md): why public URLs cannot carry `canonical_complex_id`, and the slug anchored to component atoms that replaces it. Korean.
 
 ## Reference
 
