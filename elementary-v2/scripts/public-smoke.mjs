@@ -24,6 +24,34 @@ const run = (args, { quiet = false } = {}) => {
   return result.stdout.trim()
 }
 
+const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
+
+// A fixed `wait` is long enough on localhost and sometimes short over the
+// network, which makes a run fail and then pass with nothing changed. A flaky
+// gate is worse than a slow one: the habit it teaches is to re-run, and a real
+// regression then reads as noise. So anything that waits on data polls for the
+// condition instead, and only fails once it truly has not arrived.
+const waitFor = async (condition, message, { timeoutMs = 15_000, intervalMs = 250 } = {}) => {
+  const deadline = Date.now() + timeoutMs
+  let checks = 0
+  for (;;) {
+    checks += 1
+    const probe = run(
+      ['eval', `(() => { try { return (${condition}) ? 'READY' : 'WAITING' } catch { return 'WAITING' } })()`],
+      { quiet: true },
+    )
+    if (probe.includes('READY')) {
+      process.stdout.write(`PASS: ${message} (${checks} check${checks === 1 ? '' : 's'})
+`)
+      return
+    }
+    if (Date.now() >= deadline) {
+      throw new Error(`${message} — still not true after ${timeoutMs}ms and ${checks} checks`)
+    }
+    await sleep(intervalMs)
+  }
+}
+
 const assertPage = (condition, message) => run([
   'eval',
   `(() => { if (!(${condition})) throw new Error(${JSON.stringify(message)}); return ${JSON.stringify(`PASS: ${message}`)} })()`,
@@ -82,18 +110,17 @@ try {
 
   run(['set', 'viewport', '390', '844'])
   run(['open', baseUrl])
-  run(['wait', '2500'])
+  await waitFor("document.title.includes('v2.2') && document.querySelector('.quick-filter-row')", 'application shell mounted')
   assertPage("document.title.includes('v2.2')", 'v2.2 application loaded')
   assertPage("document.documentElement.scrollWidth === window.innerWidth", '390px layout has no horizontal overflow')
   assertPage("document.querySelector('.quick-filter-row')?.textContent?.includes('학교') && document.querySelector('.quick-filter-row')?.textContent?.includes('아파트')", 'quick filters disclose school and apartment scope')
-  assertPage("(window.__ELEMENTARY_PERFORMANCE__ || []).some((metric) => metric.name === 'school-map-load' && metric.status === 'success' && metric.context.resultCount > 0)", 'district data loaded and measured')
+  await waitFor("(window.__ELEMENTARY_PERFORMANCE__ || []).some((metric) => metric.name === 'school-map-load' && metric.status === 'success' && metric.context.resultCount > 0)", 'district data loaded and measured')
 
   run(['fill', 'input[role="combobox"]', '은마'])
-  run(['wait', '900'])
+  await waitFor("[...document.querySelectorAll('#map-search-results [role=option]')].some((node) => node.textContent?.includes('4,424세대'))", 'apartment search returned household data')
   // Keyed on name plus address, not name alone: 은마 exists in both 서울 and 대구,
   // so two distinct complexes legitimately share a name once a region is promoted.
   assertPage("[...document.querySelectorAll('#map-search-results [role=option]')].filter((node) => node.textContent?.includes('은마')).length === new Set([...document.querySelectorAll('#map-search-results [role=option]')].filter((node) => node.textContent?.includes('은마')).map((node) => [...node.querySelectorAll('span > span')].slice(0, 2).map((part) => part.textContent).join('|'))).size", 'apartment search results are deduplicated')
-  assertPage("[...document.querySelectorAll('#map-search-results [role=option]')].some((node) => node.textContent?.includes('4,424세대'))", 'apartment search returned household data')
   run(['eval', `(() => {
     const result = [...document.querySelectorAll('#map-search-results [role=option]')]
       .find((node) => node.textContent?.includes('4,424세대'))
@@ -101,12 +128,11 @@ try {
     result.click()
     return 'apartment selected'
   })()`])
-  run(['wait', '1800'])
   // Checks the flow reached the apartment detail, not merely that some sheet
   // opened. The previous version asserted '총 세대수', '동 수' and '배정학교:',
   // labels removed back in 1960fef, so it failed before reaching anything real
   // and hid a regression that had disabled assigned-apartment browsing outright.
-  assertPage(
+  await waitFor(
     "(() => { const sheet = document.querySelector('[data-testid=bottom-sheet]');"
     + " if (!sheet) return false; const text = sheet.innerText;"
     + " return text.includes('개 동') && text.includes('세대당 주차') && text.includes('배정 학교') })()",
@@ -134,8 +160,7 @@ try {
     option.click()
     return 'student filter applied'
   })()`])
-  run(['wait', '900'])
-  assertPage("[...document.querySelectorAll('button')].some((node) => node.textContent?.trim() === '80명+')", 'quick filter applied')
+  await waitFor("[...document.querySelectorAll('button')].some((node) => node.textContent?.trim() === '80명+')", 'quick filter applied')
   run(['eval', `(() => {
     const button = [...document.querySelectorAll('button')]
       .find((node) => node.textContent?.trim() === '80명+')
@@ -150,15 +175,15 @@ try {
     option.click()
     return 'student filter reset'
   })()`])
-  run(['wait', '900'])
+  // Resetting the filter reissues the map query, so wait for the control to
+  // return to its unfiltered label rather than guessing how long that takes.
+  await waitFor("[...document.querySelectorAll('button')].some((node) => node.textContent?.trim() === '학생 수')", 'student filter reset to unrestricted')
 
   run(['fill', 'input[role="combobox"]', '서울방현'])
-  run(['wait', '900'])
-  assertPage("document.querySelectorAll('#map-search-results [role=option]').length > 0", 'school search returned results')
+  await waitFor("document.querySelectorAll('#map-search-results [role=option]').length > 0", 'school search returned results')
   run(['eval', "document.querySelector('#map-search-results [role=option]').click(); 'school selected'"])
-  run(['wait', '2500'])
-  assertPage("document.body.innerText.includes('서울방현초등학교')", 'school detail rendered')
-  assertPage("(window.__ELEMENTARY_PERFORMANCE__ || []).some((metric) => metric.name === 'school-apartment-load' && metric.status === 'success' && metric.context.resultCount > 0)", 'assigned apartments loaded and measured')
+  await waitFor("document.body.innerText.includes('서울방현초등학교')", 'school detail rendered')
+  await waitFor("(window.__ELEMENTARY_PERFORMANCE__ || []).some((metric) => metric.name === 'school-apartment-load' && metric.status === 'success' && metric.context.resultCount > 0)", 'assigned apartments loaded and measured')
   assertPage("document.querySelector('[data-testid=bottom-sheet]')?.dataset.snapIndex === '1'", 'school sheet opened at its default detail snap')
 
   swipeSheet(650, 470)
