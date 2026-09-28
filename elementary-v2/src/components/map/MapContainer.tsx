@@ -12,6 +12,14 @@ interface MapContainerProps {
 
 const DEFAULT_CENTER = { lat: 37.5665, lng: 126.9780 }
 
+// The SDK is loaded by a plain script tag in index.html, so the only way to
+// know it arrived is to look for it. Polling has to give up eventually: a
+// blocked, failed or unauthorized script never defines `window.naver`, and
+// without a deadline the map sits on its spinner forever instead of showing
+// the error state below.
+const MAPS_READY_POLL_MS = 100
+const MAPS_READY_TIMEOUT_MS = 15_000
+
 const MapContainer: React.FC<MapContainerProps> = ({ className = '' }) => {
   const mapRef = useRef<HTMLDivElement>(null)
   const naverMapRef = useRef<NaverMap | null>(null)
@@ -30,6 +38,18 @@ const MapContainer: React.FC<MapContainerProps> = ({ className = '' }) => {
     setShowAcademies(false)
     setAcademyCount(null)
   }, [state.selectedApartment?.id, state.selectedSchool?.school_id])
+
+  // An unregistered host is the usual cause, and it is invisible otherwise:
+  // the SDK reports it only through this global, so without it the map would
+  // simply never appear. Naming the cause saves the next person the hunt.
+  useEffect(() => {
+    window.navermap_authFailure = () => {
+      setMapError('이 주소는 네이버 지도 API에 등록되어 있지 않습니다. 등록된 주소에서 열어 주세요.')
+    }
+    return () => {
+      delete window.navermap_authFailure
+    }
+  }, [])
 
   useEffect(() => {
     const showAcademies = () => setShowAcademies(true)
@@ -145,13 +165,27 @@ const MapContainer: React.FC<MapContainerProps> = ({ className = '' }) => {
       window.clearTimeout(cleanupTimerRef.current)
       cleanupTimerRef.current = null
     }
+    let pollTimer: number | null = null
+    const giveUpAt = Date.now() + MAPS_READY_TIMEOUT_MS
     const checkNaverMaps = () => {
-      if (window.naver?.maps) initializeMap()
-      else window.setTimeout(checkNaverMaps, 100)
+      pollTimer = null
+      if (window.naver?.maps) {
+        initializeMap()
+        return
+      }
+      if (Date.now() >= giveUpAt) {
+        setMapError('네이버 지도를 불러오지 못했습니다. 네트워크 연결이나 광고 차단 설정을 확인해 주세요.')
+        return
+      }
+      pollTimer = window.setTimeout(checkNaverMaps, MAPS_READY_POLL_MS)
     }
     checkNaverMaps()
 
     return () => {
+      if (pollTimer !== null) {
+        window.clearTimeout(pollTimer)
+        pollTimer = null
+      }
       cleanupTimerRef.current = window.setTimeout(() => {
         const maps = window.naver?.maps
         if (maps?.Event) {
