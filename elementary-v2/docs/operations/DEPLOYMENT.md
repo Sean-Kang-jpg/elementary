@@ -1,6 +1,6 @@
 # 배포 절차
 
-Status: **Current — 전환 완료**
+Status: **Current**
 Last updated: 2026-09-28
 Owner: Operations
 
@@ -16,7 +16,7 @@ Owner: Operations
 
 ## 한눈에
 
-| | 현재 방식 | 목표 방식 |
+| | 2026-09-28 이전 | 현재 |
 | --- | --- | --- |
 | 운영 배포 실행 | 손으로 복사 후 CLI 배포 | `release`에 `git push` |
 | 무엇이 올라갔는지 | 추적 불가 | 커밋 단위로 추적 |
@@ -26,7 +26,7 @@ Owner: Operations
 `master` 푸시는 지금도 미리보기 배포를 만든다. 달라지는 것은 **운영 배포를
 사람이 손으로 하느냐, `release` 브랜치가 하느냐**다.
 
-**남은 작업은 Vercel 설정값 하나다**(5절). 저장소 쪽 준비는 끝났다.
+전환은 끝났다. 남은 것은 무엇을 언제 `release`에 머지할지 정하는 일뿐이다.
 
 ---
 
@@ -62,14 +62,14 @@ npm run browser:smoke:public -- https://elementary-lovat.vercel.app
 
 | 파일 | 언제 쓰이나 | `rewrites` |
 | --- | --- | --- |
-| `elementary-v2/vercel.json` | 앱 폴더가 배포 루트일 때 (현재 방식, 그리고 목표 방식) | 있음 |
-| `pjt_250826/vercel.json` | git 루트가 배포 루트일 때 (지금은 쓰이지 않음) | 있음 |
+| `pjt_250826/vercel.json` | **git 빌드 — 현재 운영 경로** | 있음 |
+| `elementary-v2/vercel.json` | CLI 배포에서 앱 폴더가 루트일 때 | 있음 |
 
 **둘 다 `rewrites`를 갖고 있어야 한다.** 하나라도 빠지면 그 경로로 나간 배포가
 조용히 깨진다. 설정을 고칠 때는 둘을 함께 본다.
 
-전환이 끝나면 `pjt_250826/vercel.json`은 불필요해지지만, 배포 루트를 되돌릴
-경우를 대비해 남겨둔다.
+지금 운영에 실제로 적용되는 것은 **저장소 루트의 것**이다. 앱 폴더의 것은
+CLI 배포용으로 남겨 둔다 — 둘 다 rewrite를 갖고 있어야 한다.
 
 ---
 
@@ -95,72 +95,48 @@ master  0d42ca1  main보다 77커밋 앞섬      실제 작업 브랜치
 그래서 `master`에 아무리 push해도 운영 배포가 일어나지 않고 미리보기만 쌓인다.
 `.deploy/` 수동 절차는 **이 불일치를 우회하려고 생긴 것**이다.
 
-### ⚠️ 방치하면 안 되는 위험
+### ⚠️ 이것이 실제 위험이었다 (해소됨)
 
-**`main`에 push가 한 번 들어가면 사이트가 초기 커밋 상태로 교체된다.** 운영
-브랜치로 지정돼 있고 자동 배포가 살아 있기 때문이다. GitHub UI에서 실수로
-`main`을 대상으로 PR을 머지하는 것만으로도 발생한다. 지금까지 아무도 `main`을
-건드리지 않아 사고가 나지 않았을 뿐이다.
+발견 당시 `main`에 push가 한 번만 들어가도 사이트가 그 프로토타입으로 교체될
+수 있었다. 운영 브랜치로 지정돼 있고 자동 배포가 살아 있었기 때문이다.
+GitHub UI에서 `main`을 대상으로 PR을 머지하는 것만으로도 발생한다. 아무도
+그 브랜치를 건드리지 않아 사고가 나지 않았을 뿐이다.
 
-해소는 아래 두 가지를 함께 하는 것이다.
+**2026-09-28에 해소했다.** 운영 브랜치를 `release`로 옮기고 `main`을 삭제했다.
 
-1. 운영 브랜치를 `release`로 바꾼다 (5절)
-2. 쓰지 않는 `main` 스텁을 삭제한다
-
-1번만 해도 위험은 사라진다. 2번은 혼란을 줄이기 위한 정리다.
-
-### `rootDirectory`는 건드리지 않는다
+### `rootDirectory`는 `null`로 둔다
 
 `elementary-v2`로 바꿔봤다가 되돌렸다. 그 값을 설정하면 CLI 배포가
-`elementary-v2/elementary-v2`를 찾다가 실패한다 — 즉 **수동 배포 경로가
-끊긴다.** `null`인 상태에서는 git 빌드가 저장소 루트의 `pjt_250826/vercel.json`을
-쓰고, CLI 배포는 업로드한 폴더의 `elementary-v2/vercel.json`을 쓴다. 두 파일
-모두 rewrite를 갖고 있으므로 **어느 경로로 나가든 안전하다.** 이것이 2절에서
-둘 다 유지하라고 한 이유다.
+`elementary-v2/elementary-v2`를 찾다가 실패한다. `null`이면 git 빌드가
+저장소 루트를 쓰고, 그곳의 `vercel.json`이 rewrite를 갖고 있다. **현재
+운영을 성립시키는 값이므로 바꾸지 않는다.**
 
-## 4. 현재 방식의 실제 절차
+### CLI 배포는 절반이 차단된다
 
-> **주의: 아래는 남아 있는 산출물에서 역추적한 것이다.** 이 절차를 만든
-> 사람에게 확인받기 전까지 정확하다고 가정하지 않는다. 자동화 스크립트는
-> 저장소 어디에도 없다.
+`gitForkProtection`이 켜져 있어 CLI 배포는 `the commit author doesn't have
+permission to create deployments`로 거부된다. 09-21 이후 기록을 보면 CLI
+배포 10건 중 7건이 BLOCKED이고, **git 빌드는 한 번도 실패하지 않았다.**
+`.deploy/` 사본이 10분 사이에 네 개 생긴 것은 재시도한 흔적이다.
 
-관찰된 사실:
+## 4. 폐기된 수동 방식 (2026-09-28 제거)
 
-- 배포는 git 연동 빌드가 아니라 **Vercel CLI 배포**다
-- 배포 루트는 워크스페이스 밖의 `.deploy/<커밋해시>/app/` — `elementary-v2/`
-  전체를 복사한 사본
-- `.vercel/project.json`의 `rootDirectory`는 `null`이고, 모든 사본이 같은
-  Vercel 프로젝트(`elementary`)를 가리킨다
-- 현재 운영본은 `.deploy/f13a896/app/`에서 나갔다 (2026-09-27 12:07)
+운영이 `release` push로 나가기 시작하면서 다음은 모두 사라졌다. 왜 그런
+방식이 존재했는지는 3절에 남겨 둔다.
 
-재구성한 절차:
+- 워크스페이스 밖 `.deploy/<커밋해시>/app/` 사본 4개 — 삭제했다 (250MB)
+- 그중 `school-switch-fix`는 등록된 git 워크트리였다 — 해제했다
+- `npx vercel deploy --prod`를 손으로 실행하는 절차 — 더 쓰지 않는다
+- `main` 브랜치 — 삭제했다. 내용은
+  `archive/netlify-prototype-20250729` 태그로 보존했다
 
-```bash
-# 1) 배포할 커밋의 앱 폴더를 사본으로 만든다
-#    (.vercelignore가 .env, node_modules, 대용량 데이터를 제외한다)
-# 2) 그 사본에서 배포한다
-cd .deploy/<커밋해시>/app
-npx vercel deploy --prod
-# 3) 1절의 검증을 실행한다
-```
-
-**이 방식의 함정**: 사본에 들어가는 `vercel.json`이 저장소의 것과 달라질 수
-있다. I-27이 바로 그 경우였다 — 저장소에는 올바른 설정이 있었지만 사본의
-설정에는 `rewrites`가 없었다. 사본을 만들 때 `elementary-v2/vercel.json`을
-**그대로** 가져가는지 확인한다.
-
-### 안전한 점
-
-`.vercelignore`(저장소에서 관리됨)가 `.env`와 `.env.*`를 제외하므로
-**비밀키는 업로드되지 않는다.** 남아 있는 사본들을 확인한 결과 실제 `.env`는
-없었고 빈 템플릿 `.env.example`만 있었다.
+**되돌릴 일이 생기면 7절을 따른다.** 예전 폴더를 찾을 필요가 없다.
 
 ---
 
-## 5. 목표 방식으로 전환하기
+## 5. 릴리스하는 방법
 
-운영 브랜치를 `release`로 두고, `master`는 미리보기로만 쓴다. 하루 열 몇 번씩
-`master`에 push하는 작업 속도에서 push마다 운영이 바뀌는 것은 맞지 않고,
+운영 브랜치는 `release`이고 `master`는 미리보기다. 하루 열 몇 번씩 `master`에
+push하는 속도에서 push마다 운영이 바뀌는 것은 맞지 않고,
 `OPERATION_PLAN`의 웨이브 릴리스 게이트와도 어긋난다.
 
 ```
@@ -168,35 +144,26 @@ master  → 미리보기        (지금도 이미 그렇게 동작한다)
 release → 운영
 ```
 
-### 준비 — 완료됨
+### 설정 (2026-09-28 적용 완료, 바꾸지 말 것)
 
-- `elementary-v2/vercel.json`이 추적 대상이 되었고 `rewrites`를 갖췄다
-- public smoke가 깊은 경로를 검사한다
-- 환경변수 3종(`VITE_SUPABASE_URL`, `VITE_SUPABASE_ANON_KEY`,
-  `VITE_NAVER_MAPS_CLIENT_ID`)이 production·preview 양쪽에 등록돼 있다
-- GitHub 연결도 이미 되어 있다
-- `release` 브랜치를 현재 운영본 커밋 `f13a896`에서 만들어 push했다. 운영에
-  올라가 있는 내용과 브랜치가 일치한 상태로 시작한다
+| 항목 | 값 |
+| --- | --- |
+| Production Branch | `release` |
+| Root Directory | (비움) |
+| 환경변수 | `VITE_SUPABASE_URL`, `VITE_SUPABASE_ANON_KEY`, `VITE_NAVER_MAPS_CLIENT_ID` — production·preview 양쪽 |
 
-### 남은 단 하나 — 대시보드에서만 가능하다
+Production Branch는 `Settings → Environments → Production → Branch Tracking`
+에 있다. `Settings → Git`이 아니다.
 
-```
-Vercel → elementary → Settings → Git → Production Branch
-  main  →  release
-```
+> 공개 Vercel API로는 이 값을 바꿀 수 없다. `PATCH /v9/projects/{id}`가 `link`도
+> `productionBranch`도 거부하고(`should NOT have additional property`), CLI에는
+> `git connect`/`disconnect`만 있다. **대시보드가 유일한 경로다.**
 
-`Root Directory`는 `null` 그대로 둔다(3절 참조).
+> Vercel은 해당 브랜치로 만들어진 배포가 없으면 Branch Tracking 설정을 거부한다
+> (`No deployments found for ...`). 새 브랜치를 운영으로 지정하려면 먼저 그
+> 브랜치에 push해 빌드를 한 번 돌려야 한다.
 
-설정을 바꿔도 **그 순간 배포가 일어나지는 않는다.** 다음에 `release`에 push할
-때부터 적용된다. 바꾼 뒤 `main` 스텁을 삭제하면 3절의 위험도 함께 없어진다.
-
-> **왜 자동화하지 않았나**: 공개 Vercel API에 운영 브랜치를 바꾸는 경로가 없다.
-> `PATCH /v9/projects/{id}`는 `link`도 `productionBranch`도 받지 않고
-> (`should NOT have additional property`), CLI에는 `git connect`/`disconnect`만
-> 있다. `git connect`는 GitHub 기본 브랜치인 `master`를 운영 브랜치로 잡으므로
-> 원하는 결과가 아니다. 대시보드가 유일한 경로다.
-
-### 전환 후 릴리스 방법
+### 릴리스 절차
 
 ```bash
 git checkout release
@@ -206,15 +173,18 @@ git push                  # 이 push가 곧 운영 배포다
 
 배포가 끝나면 1절의 검증을 실행한다.
 
-### 전환 순서
+### 2026-09-28 전환 기록
 
-| # | 할 일 | 실행 주체 |
-| --- | --- | --- |
-| 1 | Production Branch를 `release`로 변경 | 대시보드 권한자 |
-| 2 | `release`에 push해 운영 배포가 도는지 확인 | — |
-| 3 | 1절 검증으로 I-27의 404가 사라졌는지 확인 | — |
-| 4 | 미리보기를 쓸지 결정 (6절) | — |
-| 5 | `.deploy/` 삭제, 이 문서의 4절 제거 | — |
+| 한 일 | 결과 |
+| --- | --- |
+| Production Branch를 `release`로 변경 | 적용 |
+| `release`에 push | git 빌드가 운영으로 나감 (READY) |
+| 1절 검증 | `/admin/etl` 등 딥링크 200, I-27 해소 |
+| `main` 삭제 | 완료. 내용은 `archive/netlify-prototype-20250729` 태그 |
+| `.deploy/` 삭제 | 완료 (250MB) |
+
+첫 운영 배포는 `release`를 당시 운영본 커밋에서 만들고 빈 커밋 하나만 올린
+것이어서, **배포 내용이 이전과 완전히 동일했다.** 404만 사라졌다.
 
 ---
 
@@ -245,7 +215,8 @@ git push                  # 이 push가 곧 운영 배포다
 
 ## 7. 되돌리기
 
-전환 전에는 이전 `.deploy/<해시>/app/`에서 다시 배포한다. 전환 후에는 Vercel
-대시보드의 이전 배포에서 승격(Promote)한다.
+Vercel 대시보드의 Deployments에서 이전 운영 배포를 골라 **Promote to
+Production**을 누른다. 저장소를 건드리지 않고 즉시 되돌아간다.
 
-어느 쪽이든 되돌린 뒤 1절의 검증을 다시 실행한다.
+되돌린 뒤 1절의 검증을 다시 실행한다. 그리고 `release`가 되돌린 내용과
+어긋난 상태로 남으므로, 다음 릴리스 전에 브랜치를 맞춰 둔다.
