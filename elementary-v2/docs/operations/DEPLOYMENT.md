@@ -68,12 +68,12 @@ npm run browser:smoke:public -- https://elementary-lovat.vercel.app
 
 ---
 
-## 3. 왜 수동 배포를 하게 됐는가 — 브랜치 이름 하나
+## 3. 왜 수동 배포를 하게 됐는가 — 운영 브랜치가 엉뚱한 곳을 가리킨다
 
 2026-09-28에 Vercel 프로젝트 설정을 직접 조회해 원인을 확인했다.
 
 ```
-link.productionBranch : "main"     ← 저장소의 브랜치는 "master"
+link.productionBranch : "main"     ← 작업 브랜치는 "master"
 rootDirectory         : null
 link.type             : "github"   ← GitHub는 이미 연결돼 있다
 ```
