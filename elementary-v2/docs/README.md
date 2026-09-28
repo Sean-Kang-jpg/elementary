@@ -7,6 +7,7 @@ This directory contains the maintained product, architecture, UX, operations, de
 
 ## Start here
 
+- [Project Overview](PROJECT_OVERVIEW.md): the whole system in one read — sources, ETL, the two database layers, deployment, branch rules, verification gates, and the traps that have actually bitten. Written for a non-developer; start here if the project is new to you. Korean.
 - [Product Brief](product/PRODUCT_BRIEF.md): users, problem, value, and current boundary.
 - [Product Requirements](product/PRD.md): functional and non-functional requirements.
 - [Data Architecture](architecture/DATA_ARCHITECTURE.html): current DRD and preserved v2.0 measured baseline.
