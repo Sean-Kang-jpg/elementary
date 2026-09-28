@@ -2,19 +2,18 @@
   "generated_at": "2026-09-28",
   "snapshot": "acainsti_scope_20260928.json",
   "mode": "all",
-  "selected_unique_addresses": 4208,
-  "matched": 3976,
-  "match_rate": 0.9449,
+  "selected_unique_addresses": 1809,
+  "matched": 1807,
+  "match_rate": 0.9989,
   "statuses": {
-    "matched": 3976,
-    "api_error": 63,
-    "transport_error": 169
+    "matched": 1807,
+    "api_error": 2
   },
   "regions": {
-    "부산광역시": {
-      "addresses": 4208,
-      "matched": 3976,
-      "match_rate": 0.9449
+    "대전광역시": {
+      "addresses": 1809,
+      "matched": 1807,
+      "match_rate": 0.9989
     }
   }
 }
