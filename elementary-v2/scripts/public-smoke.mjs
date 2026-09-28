@@ -110,8 +110,11 @@ try {
 
   run(['set', 'viewport', '390', '844'])
   run(['open', baseUrl])
-  await waitFor("document.title.includes('v2.2') && document.querySelector('.quick-filter-row')", 'application shell mounted')
-  assertPage("document.title.includes('v2.2')", 'v2.2 application loaded')
+  // Matches a version shape rather than a literal one. A pinned version here
+  // has to be edited on every release, and an assertion that needs editing to
+  // keep passing is one that eventually gets edited without being read.
+  await waitFor("/v[0-9]+[.][0-9]+/.test(document.title) && document.querySelector('.quick-filter-row')", 'application shell mounted')
+  assertPage("/v[0-9]+[.][0-9]+/.test(document.title)", 'application reports a version in its title')
   assertPage("document.documentElement.scrollWidth === window.innerWidth", '390px layout has no horizontal overflow')
   assertPage("document.querySelector('.quick-filter-row')?.textContent?.includes('학교') && document.querySelector('.quick-filter-row')?.textContent?.includes('아파트')", 'quick filters disclose school and apartment scope')
   await waitFor("(window.__ELEMENTARY_PERFORMANCE__ || []).some((metric) => metric.name === 'school-map-load' && metric.status === 'success' && metric.context.resultCount > 0)", 'district data loaded and measured')
