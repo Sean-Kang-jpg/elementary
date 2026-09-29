@@ -43,7 +43,8 @@ const SCHOOL_SELECT_FIELDS = [
 ].join(',')
 
 const APARTMENT_SELECT_FIELDS = [
-  'school_id', 'school_name', 'canonical_complex_id', 'complex_name', 'road_address',
+  'school_id', 'school_name', 'canonical_complex_id', 'complex_public_key',
+  'complex_name', 'road_address',
   'region', 'district', 'latitude', 'longitude', 'households', 'building_count', 'use_approval_year',
   'parking_total', 'parking_ground', 'parking_underground', 'parking_per_household',
   'sale_households', 'rental_units_total', 'public_rental_units', 'private_rental_units',
@@ -478,6 +479,7 @@ const toApartment = (row: ApartmentServingRow): Apartment => {
   const builtYear = numberValue(row.use_approval_year)
   return {
     id: String(row.canonical_complex_id),
+    public_key: String(row.complex_public_key || ''),
     name: String(row.complex_name || ''),
     address: String(row.road_address || ''),
     district: String(row.district || ''),
