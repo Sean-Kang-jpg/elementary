@@ -65,6 +65,14 @@ def main() -> None:
             for row in rows
             for subject in split_subjects(row.get("LE_CRSE_LIST_NM") or row.get("LE_CRSE_NM") or "")
         )
+        institutions = sorted({
+            (
+                (row.get("ACA_NM") or "이름 없음").strip(),
+                (row.get("ACA_INSTI_SC_NM") or "미상").strip(),
+                (row.get("REALM_SC_NM") or "미상").strip(),
+            )
+            for row in rows
+        })
         markers.append({
             "address_id": hashlib.sha256(address.encode("utf-8")).hexdigest()[:24],
             "region": rows[0]["_region"],
@@ -76,6 +84,10 @@ def main() -> None:
             "academy_count": len(rows),
             "institution_type_counts": json.dumps(dict(institution_types.most_common()), ensure_ascii=False),
             "realm_counts": json.dumps(dict(realms.most_common()), ensure_ascii=False),
+            "institutions": json.dumps([
+                {"name": name, "type": institution_type, "realm": realm}
+                for name, institution_type, realm in institutions
+            ], ensure_ascii=False),
             "top_subjects": " | ".join(name for name, _ in subjects.most_common(5)),
             "source_snapshot": snapshot.name,
         })

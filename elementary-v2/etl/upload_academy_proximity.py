@@ -22,7 +22,7 @@ TABLES = (
         "academy_address_serving",
         RUNTIME_DIR / "academy_address_serving_20260920.csv",
         ("address_id",),
-        ("institution_type_counts", "realm_counts"),
+        ("institution_type_counts", "realm_counts", "institutions"),
         ("longitude", "latitude", "institution_count"),
     ),
     (

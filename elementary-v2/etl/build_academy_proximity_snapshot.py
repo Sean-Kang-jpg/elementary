@@ -144,6 +144,7 @@ def main():
             "institution_count": row["academy_count"],
             "institution_type_counts": json.dumps(parse_json_field(row["institution_type_counts"]), ensure_ascii=False, sort_keys=True),
             "realm_counts": json.dumps(parse_json_field(row["realm_counts"]), ensure_ascii=False, sort_keys=True),
+            "institutions": json.dumps(parse_json_field(row["institutions"]), ensure_ascii=False, sort_keys=True),
             "top_subjects": row["top_subjects"],
             "source_as_of": args.as_of,
             "pipeline_version": PIPELINE_VERSION,
@@ -161,7 +162,7 @@ def main():
     ), links)
     write_csv(serving_path, (
         "address_id", "region", "district", "longitude", "latitude", "institution_count",
-        "institution_type_counts", "realm_counts", "top_subjects", "source_as_of", "pipeline_version",
+        "institution_type_counts", "realm_counts", "institutions", "top_subjects", "source_as_of", "pipeline_version",
     ), serving)
     origin_rows = []
     summary_rows = []
@@ -233,7 +234,8 @@ def main():
         },
         "privacy": {
             "public_candidate_excludes_road_address": True,
-            "public_candidate_excludes_institution_names": True,
+            "public_candidate_excludes_institution_names": False,
+            "public_candidate_excludes_contact_and_fee_details": True,
             "raw_source_remains_private": True,
         },
         "serving_strategy": {

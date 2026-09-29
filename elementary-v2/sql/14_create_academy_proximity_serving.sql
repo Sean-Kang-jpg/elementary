@@ -1,6 +1,7 @@
 -- Academy proximity serving contract. Run after 10.
--- Raw academy rows and road addresses remain private. Public reads expose only
--- address-level aggregates, apartment summaries, and proximity origin points.
+-- Raw academy rows and road addresses remain private. Public reads expose
+-- address-level aggregates, academy names/classifications, apartment summaries,
+-- and proximity origin points.
 
 CREATE TABLE IF NOT EXISTS academy_address_serving (
     address_id TEXT PRIMARY KEY,
@@ -14,6 +15,8 @@ CREATE TABLE IF NOT EXISTS academy_address_serving (
         CHECK (jsonb_typeof(institution_type_counts) = 'object'),
     realm_counts JSONB NOT NULL DEFAULT '{}'::JSONB
         CHECK (jsonb_typeof(realm_counts) = 'object'),
+    institutions JSONB NOT NULL DEFAULT '[]'::JSONB
+        CHECK (jsonb_typeof(institutions) = 'array'),
     top_subjects TEXT,
     source_as_of DATE NOT NULL,
     pipeline_version TEXT NOT NULL,
@@ -90,6 +93,7 @@ RETURNS TABLE (
     institution_count INTEGER,
     institution_type_counts JSONB,
     realm_counts JSONB,
+    institutions JSONB,
     top_subjects TEXT,
     straight_distance_m INTEGER,
     distance_band TEXT,
@@ -117,6 +121,7 @@ AS $$
             academy.institution_count,
             academy.institution_type_counts,
             academy.realm_counts,
+            academy.institutions,
             academy.top_subjects,
             ROUND(MIN(public.ST_Distance(academy.location, origins.location)))::INTEGER AS straight_distance_m,
             MIN(origins.distance_origin_type) AS distance_origin_type
@@ -133,6 +138,7 @@ AS $$
             academy.institution_count,
             academy.institution_type_counts,
             academy.realm_counts,
+            academy.institutions,
             academy.top_subjects
     )
     SELECT
@@ -144,6 +150,7 @@ AS $$
         matched.institution_count,
         matched.institution_type_counts,
         matched.realm_counts,
+        matched.institutions,
         matched.top_subjects,
         matched.straight_distance_m,
         CASE WHEN matched.straight_distance_m <= 600 THEN 'core' ELSE 'extended' END,

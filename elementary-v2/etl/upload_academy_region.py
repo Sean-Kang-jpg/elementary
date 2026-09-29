@@ -24,7 +24,7 @@ TABLE_DEFINITIONS = (
         "academy_address_serving",
         "academy_address_serving",
         ("address_id",),
-        ("institution_type_counts", "realm_counts"),
+        ("institution_type_counts", "realm_counts", "institutions"),
         ("longitude", "latitude", "institution_count"),
     ),
     (
