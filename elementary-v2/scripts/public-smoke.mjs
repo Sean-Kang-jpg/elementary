@@ -201,10 +201,27 @@ try {
     'the page declares its canonical URL',
   )
 
+  // A URL nobody can copy is only half a feature, and the button carrying the
+  // wrong address would be invisible until someone shared it.
+  assertPage(
+    "(() => { const button = document.querySelector('[data-testid=share-button]');"
+    + " if (!button) return false;"
+    + " return decodeURIComponent(button.dataset.shareUrl || '')"
+    + ".endsWith('/apt/서울-강남구-은마--7A2EMR5J') })()",
+    'the apartment detail offers its canonical URL to share',
+  )
+
   run(['open', new URL('/school/서울-강남구-서울대현초등학교--B000002292', baseUrl).toString()])
   await waitFor(
     "document.body.innerText.includes('서울대현초등학교')",
     'school deep link restored the school it names',
+  )
+  assertPage(
+    "(() => { const button = document.querySelector('[data-testid=share-button]');"
+    + " if (!button) return false;"
+    + " return decodeURIComponent(button.dataset.shareUrl || '')"
+    + ".endsWith('/school/서울-강남구-서울대현초등학교--B000002292') })()",
+    'the school detail offers its canonical URL to share',
   )
 
   run(['fill', 'input[role="combobox"]', '서울방현'])

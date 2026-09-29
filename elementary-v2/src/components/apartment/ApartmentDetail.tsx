@@ -4,6 +4,8 @@ import type { Apartment, ApartmentAcademySummary } from '../../types'
 import { getApartmentAcademySummaries } from '../../services/dataService'
 import BottomSheet from '../ui/BottomSheet'
 import ApartmentCard from './ApartmentCard'
+import ShareButton from '../ui/ShareButton'
+import { apartmentPath } from '../../utils/urlState'
 import { apartmentFavorite, isFavorite as checkFavorite, toggleFavorite } from '../../utils/favorites'
 import { ACADEMY_DATA_PENDING_LABEL, hasAcademyData } from '../../utils/academyCoverage'
 
@@ -47,9 +49,16 @@ const ApartmentDetail: React.FC<ApartmentDetailProps> = ({ apartment, isOpen, on
       onClose={onClose}
       title={apartment.name}
       headerAction={(
-        <button type="button" onClick={() => setIsFavorite(toggleFavorite(apartmentFavorite(apartment)))} aria-label={isFavorite ? '즐겨찾기 해제' : '즐겨찾기 추가'} aria-pressed={isFavorite} className={`rounded-md p-2 transition-colors hover:bg-gray-100 ${isFavorite ? 'text-amber-500' : 'text-gray-500'}`}>
-          <Star size={21} fill={isFavorite ? 'currentColor' : 'none'} aria-hidden="true" />
-        </button>
+        <span className="flex items-center">
+          <ShareButton
+            path={apartmentPath(apartment)}
+            title={`${apartment.name} 배정 초등학교`}
+            text={`${apartment.city} ${apartment.district} ${apartment.name}의 배정 초등학교와 주거 정보를 확인하세요.`}
+          />
+          <button type="button" onClick={() => setIsFavorite(toggleFavorite(apartmentFavorite(apartment)))} aria-label={isFavorite ? '즐겨찾기 해제' : '즐겨찾기 추가'} aria-pressed={isFavorite} className={`rounded-md p-2 transition-colors hover:bg-gray-100 ${isFavorite ? 'text-amber-500' : 'text-gray-500'}`}>
+            <Star size={21} fill={isFavorite ? 'currentColor' : 'none'} aria-hidden="true" />
+          </button>
+        </span>
       )}
       snapPoints={[0.11, 0.45, 0.7, 0.88]}
       defaultSnap={1}
