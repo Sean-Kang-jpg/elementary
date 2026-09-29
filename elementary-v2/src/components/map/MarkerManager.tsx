@@ -384,7 +384,7 @@ const MarkerManager: React.FC<MarkerManagerProps> = ({ map }) => {
         </div>
       )}
 
-      {!loading && !error && hasLoaded && schools.length === 0 && clusters.length === 0 && (
+      {!loading && !error && hasLoaded && !state.selectedSchool && !state.selectedApartment && schools.length === 0 && clusters.length === 0 && (
         <div className="map-data-status absolute left-1/2 top-28 z-10 flex w-[min(92vw,360px)] -translate-x-1/2 items-center gap-3 rounded-md border border-gray-200 bg-white p-3 shadow-lg" role="status" data-testid="map-empty-state">
           <SearchX className="flex-none text-gray-400" size={19} aria-hidden="true" />
           <span className="min-w-0 flex-1 text-sm text-gray-700">현재 조건에 맞는 학교가 없습니다.</span>
