@@ -22,8 +22,12 @@ import argparse
 import ast
 import csv
 import json
+import os
 import secrets
 import sys
+import urllib.error
+import urllib.parse
+import urllib.request
 from collections import defaultdict
 from datetime import date
 from pathlib import Path
@@ -33,6 +37,7 @@ if __package__ in (None, ""):  # `python etl/issue_apartment_public_keys.py`
     sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 BASE_DIR = Path(__file__).resolve().parent
+PROJECT_DIR = BASE_DIR.parent
 OUTPUT_DIR = BASE_DIR / "local_outputs_20260320"
 COMPLEX_MASTER = OUTPUT_DIR / "apartment_complex_master_v1.csv"
 DEFAULT_REGISTRY = OUTPUT_DIR / "apartment_public_keys.json"
@@ -91,6 +96,54 @@ def canonical_rank(registry: Registry, public_key: str, covered: int) -> tuple:
     failure this design exists to prevent.
     """
     return (-covered, registry.keys[public_key]["issued_at"], public_key)
+
+
+def read_complexes_from_serving(url: str, key: str) -> list[Complex]:
+    """Read the complexes production actually publishes, with their atoms.
+
+    The per-scope master CSVs are the wrong input for this. There is one per
+    wave, some of them combined (`i10-m10-n10` is the union of three) and one
+    partial, so picking files by name double-counts or misses regions - which is
+    exactly what happened: keys were first issued from the capital file alone and
+    27,298 of 48,189 serving rows ended up with no key.
+
+    `school_apartment_serving` is the published set by definition, and its
+    `apt_cd_list` carries the same atoms. Reading it needs no service key.
+
+    One row per (school, complex), and `apt_cd_list` is aggregated within that
+    group - so a complex assigned to two schools shows only the atoms linked to
+    each one. The lists are unioned, not compared: the complex's atom set is
+    what its rows cover together.
+    """
+    seen: dict[str, set[str]] = {}
+    offset = 0
+    while True:
+        query = urllib.parse.urlencode({
+            "select": "canonical_complex_id,apt_cd_list",
+            "limit": 1000,
+            "offset": offset,
+        })
+        request = urllib.request.Request(
+            f"{url}/rest/v1/school_apartment_serving?{query}",
+            headers={"apikey": key, "Authorization": f"Bearer {key}"},
+        )
+        try:
+            with urllib.request.urlopen(request, timeout=60) as response:
+                page = json.loads(response.read().decode("utf-8"))
+        except urllib.error.HTTPError as error:
+            if error.code == 416:
+                break
+            raise
+        if not page:
+            break
+        for row in page:
+            atoms = set(row.get("apt_cd_list") or [])
+            cid = row["canonical_complex_id"]
+            if not atoms:
+                raise ValueError(f"{cid} has no apt_cd_list")
+            seen.setdefault(cid, set()).update(atoms)
+        offset += 1000
+    return [Complex(cid, frozenset(atoms)) for cid, atoms in sorted(seen.items())]
 
 
 def read_complexes(path: Path) -> list[Complex]:
@@ -189,22 +242,50 @@ def verify(registry: Registry, complexes: list[Complex], result: dict) -> list[s
     return problems
 
 
+def load_env(path: Path) -> None:
+    if not path.is_file():
+        return
+    for line in path.read_text(encoding="utf-8").splitlines():
+        stripped = line.strip()
+        if not stripped or stripped.startswith("#") or "=" not in stripped:
+            continue
+        name, value = stripped.split("=", 1)
+        os.environ.setdefault(name, value)
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__,
                                      formatter_class=argparse.RawDescriptionHelpFormatter)
-    parser.add_argument("--master", type=Path, default=COMPLEX_MASTER,
-                        help="apartment complex master CSV")
+    source = parser.add_mutually_exclusive_group()
+    source.add_argument("--master", type=Path,
+                        help="apartment complex master CSV for one scope")
+    source.add_argument("--from-serving", action="store_true",
+                        help="read the published complexes from Supabase instead. "
+                             "Preferred: it is the whole published set, not one wave's file")
     parser.add_argument("--registry", type=Path, default=DEFAULT_REGISTRY,
                         help="slug registry JSON; created on first run")
     parser.add_argument("--apply", action="store_true",
                         help="write the registry. Without this nothing is saved")
     args = parser.parse_args(argv)
 
-    if not args.master.is_file():
-        print(f"master not found: {args.master}", file=sys.stderr)
-        return 2
-
-    complexes = read_complexes(args.master)
+    if args.from_serving:
+        url = os.getenv("SUPABASE_URL")
+        key = os.getenv("SUPABASE_ANON_KEY") or os.getenv("VITE_SUPABASE_ANON_KEY")
+        if not url or not key:
+            load_env(PROJECT_DIR / ".env")
+            url = os.getenv("SUPABASE_URL") or os.getenv("VITE_SUPABASE_URL")
+            key = os.getenv("SUPABASE_ANON_KEY") or os.getenv("VITE_SUPABASE_ANON_KEY")
+        if not url or not key:
+            print("SUPABASE_URL and an anon key are required for --from-serving",
+                  file=sys.stderr)
+            return 2
+        complexes = read_complexes_from_serving(url.rstrip("/"), key)
+    else:
+        master = args.master or COMPLEX_MASTER
+        if not master.is_file():
+            print(f"master not found: {master}", file=sys.stderr)
+            return 2
+        complexes = read_complexes(master)
 
     # The invariant the design rests on, checked on the input before it can
     # corrupt the registry.
