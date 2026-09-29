@@ -49,6 +49,9 @@ etl/data/
 etl/runtime/
 etl/logs/
 *.csv
+# Reviewed verdicts are a decision record, not a data artifact: the sheet is
+# regenerated every run and would otherwise discard them.
+!etl/review_verdicts.csv
 *.xlsx
 *.json.bak
 

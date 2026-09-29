@@ -1,19 +1,19 @@
 {
-  "generated_at": "2026-09-28",
-  "snapshot": "acainsti_scope_20260928.json",
+  "generated_at": "2026-09-29",
+  "snapshot": "acainsti_scope_20260929.json",
   "mode": "all",
-  "selected_unique_addresses": 312,
-  "matched": 310,
-  "match_rate": 0.9936,
+  "selected_unique_addresses": 4105,
+  "matched": 4075,
+  "match_rate": 0.9927,
   "statuses": {
-    "matched": 310,
-    "api_error": 2
+    "matched": 4075,
+    "api_error": 30
   },
   "regions": {
-    "세종특별자치시": {
-      "addresses": 312,
-      "matched": 310,
-      "match_rate": 0.9936
+    "경상남도": {
+      "addresses": 4105,
+      "matched": 4075,
+      "match_rate": 0.9927
     }
   }
 }

@@ -46,6 +46,7 @@ This directory contains the maintained product, architecture, UX, operations, de
 - [Monitoring](operations/MONITORING.md)
 - [Region Scope Inventory](operations/REGION_SCOPE_INVENTORY.md): every capital-region assumption in the codebase, classified for the N0 generalization pass.
 - [Region EDA Findings](operations/REGION_EDA_FINDINGS.md): measured results of the per-region EDA gate, newest first.
+- [Held Review Cases](operations/REVIEW_HELD_CASES.md): the 20 complexes that fall in no school zone, the only pooled review cases still open.
 - [Manual QA Review](operations/MANUAL_QA_REVIEW.html): browser checklist for the current regional assignment samples; verdicts stay in this browser until exported as CSV.
 - [Project Progress](PROJECT_PROGRESS.html): summary dashboard; it is not the authoritative backlog.
 
@@ -57,6 +58,7 @@ This directory contains the maintained product, architecture, UX, operations, de
 - [ADR-004: Academy proximity distance](decisions/ADR-004-academy-proximity-distance.md)
 - [ADR-005: Apartment transaction linkage](decisions/ADR-005-apartment-transaction-linkage.md)
 - [ADR-006: Detail-page rendering](decisions/ADR-006-detail-page-rendering.md): serverless prerender for detail routes so Naver and Google can index them. Korean.
+- [ADR-007: Immutable public identifiers](decisions/ADR-007-immutable-public-identifiers.md): why public URLs cannot carry `canonical_complex_id`, and the slug anchored to component atoms that replaces it. Korean.
 
 ## Reference
 
