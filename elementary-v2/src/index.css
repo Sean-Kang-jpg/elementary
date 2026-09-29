@@ -474,6 +474,54 @@ body {
   font-size: 11px;
 }
 
+.academy-map-popup__table-wrap {
+  max-height: 210px;
+  margin: 10px 0 8px;
+  overflow: auto;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+}
+
+.academy-map-popup table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 11px;
+  text-align: left;
+}
+
+.academy-map-popup th,
+.academy-map-popup td {
+  padding: 7px 8px;
+  border-bottom: 1px solid #f1f5f9;
+  vertical-align: top;
+}
+
+.academy-map-popup thead th {
+  position: sticky;
+  top: 0;
+  color: #475569;
+  background: #f8fafc;
+  font-weight: 700;
+}
+
+.academy-map-popup tbody th {
+  min-width: 112px;
+  color: #172033;
+  font-weight: 650;
+}
+
+.academy-map-popup__empty {
+  color: #64748b;
+  text-align: center;
+}
+
+@media (min-width: 1024px) {
+  .quick-filter-row {
+    flex-wrap: wrap;
+    overflow-x: visible;
+  }
+}
+
 .academy-map-legend {
   z-index: var(--layer-map-ui);
 }

@@ -12,6 +12,8 @@ import GradeChart from '../charts/GradeChart'
 import { isFavorite as checkFavorite, schoolFavorite, toggleFavorite as toggleSavedFavorite } from '../../utils/favorites'
 import { recordPerformanceMetric } from '../../utils/performanceMetrics'
 import type { AcademyAddress, ApartmentAcademySummary } from '../../types'
+import ShareButton from '../ui/ShareButton'
+import { schoolPath } from '../../utils/urlState'
 import { hasAcademyData } from '../../utils/academyCoverage'
 
 interface SchoolDetailProps {
@@ -187,15 +189,22 @@ const SchoolDetail: React.FC<SchoolDetailProps> = ({ school, isOpen, onClose }) 
       onClose={close}
       title={title}
       headerAction={currentView === 'school' ? (
-        <button
-          type="button"
-          onClick={toggleFavorite}
-          aria-label={isFavorite ? '즐겨찾기 해제' : '즐겨찾기 추가'}
-          aria-pressed={isFavorite}
-          className={`rounded-md p-2 transition-colors hover:bg-gray-100 ${isFavorite ? 'text-amber-500' : 'text-gray-500'}`}
-        >
-          <Star size={21} fill={isFavorite ? 'currentColor' : 'none'} aria-hidden="true" />
-        </button>
+        <span className="flex items-center">
+          <ShareButton
+            path={school ? schoolPath(school) : null}
+            title={`${school?.school_name ?? ''} 배정 아파트`}
+            text={school ? `${school.region} ${school.district ?? ''} ${school.school_name}에 배정되는 아파트를 확인하세요.` : undefined}
+          />
+          <button
+            type="button"
+            onClick={toggleFavorite}
+            aria-label={isFavorite ? '즐겨찾기 해제' : '즐겨찾기 추가'}
+            aria-pressed={isFavorite}
+            className={`rounded-md p-2 transition-colors hover:bg-gray-100 ${isFavorite ? 'text-amber-500' : 'text-gray-500'}`}
+          >
+            <Star size={21} fill={isFavorite ? 'currentColor' : 'none'} aria-hidden="true" />
+          </button>
+        </span>
       ) : undefined}
       snapPoints={[0.11, 0.38, 0.68, 0.88]}
       defaultSnap={1}

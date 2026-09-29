@@ -69,9 +69,19 @@ const academyPopupContent = (academy: AcademyAddress) => {
     .map((category) => ({ ...category, count: getAcademyCategoryCounts(academy)[category.key] }))
     .filter(({ count }) => count > 0)
     .sort((a, b) => b.count - a.count)
+  const institutionRows = academy.institutions.length
+    ? academy.institutions.map((institution) => `<tr>
+        <th scope="row">${escapeHtml(institution.name)}</th>
+        <td>${escapeHtml(institution.type || '미상')}</td>
+        <td>${escapeHtml(institution.realm || '미상')}</td>
+      </tr>`).join('')
+    : `<tr><td colspan="3" class="academy-map-popup__empty">학원명 정보를 준비 중입니다.</td></tr>`
   return `<div class="academy-map-popup">
     <div class="academy-map-popup__header"><strong>교육시설 ${academy.institution_count.toLocaleString('ko-KR')}곳</strong><span>${academy.distance_band === 'core' ? '핵심권역' : '확장권역'}</span></div>
     <p>${categories.map(({ label, count }) => `${escapeHtml(label)} ${count.toLocaleString('ko-KR')}`).join(' · ') || '분야 정보 없음'}</p>
+    <div class="academy-map-popup__table-wrap">
+      <table><thead><tr><th>학원명</th><th>유형</th><th>분야</th></tr></thead><tbody>${institutionRows}</tbody></table>
+    </div>
     <small>직선거리 ${academy.straight_distance_m.toLocaleString('ko-KR')}m</small>
   </div>`
 }
@@ -124,6 +134,7 @@ export default function AcademyMarkerManager({ map, apartment, school, enabled, 
     if (!maps || !enabled) return
     let infoWindow: InfoWindow | null = null
     const listeners: unknown[] = []
+    listeners.push(maps.Event.addListener(map, 'click', () => infoWindow?.close()))
     const clusters = clusterRows(filteredAcademies, zoom)
     const markers = clusters.map((cluster) => {
       const isCluster = cluster.rows.length > 1 && zoom < 15

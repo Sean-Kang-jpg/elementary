@@ -718,6 +718,12 @@ export const getAcademiesNearApartment = async (canonicalComplexId: string): Pro
     institution_count: numberValue(row.institution_count),
     institution_type_counts: (row.institution_type_counts || {}) as Record<string, number>,
     realm_counts: (row.realm_counts || {}) as Record<string, number>,
+    institutions: Array.isArray(row.institutions)
+      ? row.institutions.map((institution) => {
+        const item = institution as Record<string, unknown>
+        return { name: String(item.name || ''), type: String(item.type || ''), realm: String(item.realm || '') }
+      })
+      : [],
     top_subjects: String(row.top_subjects || ''),
     straight_distance_m: numberValue(row.straight_distance_m),
     distance_band: row.distance_band === 'core' ? 'core' : 'extended',
@@ -736,6 +742,12 @@ const toAcademyAddress = (row: Record<string, unknown>): AcademyAddress => ({
   institution_count: numberValue(row.institution_count),
   institution_type_counts: (row.institution_type_counts || {}) as Record<string, number>,
   realm_counts: (row.realm_counts || {}) as Record<string, number>,
+  institutions: Array.isArray(row.institutions)
+    ? row.institutions.map((institution) => {
+      const item = institution as Record<string, unknown>
+      return { name: String(item.name || ''), type: String(item.type || ''), realm: String(item.realm || '') }
+    })
+    : [],
   top_subjects: String(row.top_subjects || ''),
   straight_distance_m: numberValue(row.straight_distance_m),
   distance_band: row.distance_band === 'core' ? 'core' : 'extended',

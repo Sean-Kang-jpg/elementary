@@ -200,6 +200,11 @@ export interface AcademyAddress {
   institution_count: number
   institution_type_counts: Record<string, number>
   realm_counts: Record<string, number>
+  institutions: Array<{
+    name: string
+    type: string
+    realm: string
+  }>
   top_subjects: string
   straight_distance_m: number
   distance_band: 'core' | 'extended'
