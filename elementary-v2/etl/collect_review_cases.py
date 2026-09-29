@@ -37,6 +37,7 @@ from etl.region_registry import load_registry
 BASE_DIR = Path(__file__).resolve().parent
 OUTPUT_DIR = BASE_DIR / "local_outputs_20260320"
 ZONE_PROFILE = BASE_DIR / "runtime" / "region_eda" / "zones_n1_20260922.json"
+VERDICTS = BASE_DIR / "review_verdicts.csv"
 
 GRADE_FIELDS = tuple(f"grade{grade}_students" for grade in range(1, 7))
 
@@ -95,6 +96,23 @@ def case(
         "verdict": "",
         "note": "",
     }
+
+
+def recorded_verdicts() -> dict[tuple[str, str, str], dict[str, str]]:
+    """Verdicts already reached, keyed by region, case type and subject.
+
+    The sheet is regenerated from the current build every time, so a verdict
+    written into it is lost on the next run. Keeping them in a committed file
+    means a case someone has already judged comes back judged, and only genuinely
+    new cases arrive blank.
+    """
+    if not VERDICTS.is_file():
+        return {}
+    with VERDICTS.open(encoding="utf-8-sig", newline="") as handle:
+        return {
+            (row["region"], row["case_type"], row["subject"]): row
+            for row in csv.DictReader(handle)
+        }
 
 
 def collect_region(
@@ -209,7 +227,14 @@ def main(argv: list[str] | None = None) -> int:
     group = tuple(args.regions) if args.group else ()
     for region_name in args.regions:
         rows.extend(collect_region(region_name, zone_profiles, tuple(args.cities), group))
-    rows.sort(key=lambda row: (row["priority"], row["region"], row["subject"]))
+    verdicts = recorded_verdicts()
+    for row in rows:
+        recorded = verdicts.get((row["region"], row["case_type"], row["subject"]))
+        if recorded:
+            row["verdict"] = recorded["verdict"]
+            row["note"] = recorded["note"]
+    # Unjudged first: a newly surfaced case is the only thing needing attention.
+    rows.sort(key=lambda row: (row["verdict"] != "", row["priority"], row["region"], row["subject"]))
 
     args.out.parent.mkdir(parents=True, exist_ok=True)
     with args.out.open("w", encoding="utf-8-sig", newline="") as handle:
