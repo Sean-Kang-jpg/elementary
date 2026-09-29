@@ -362,25 +362,120 @@ body {
 }
 
 .academy-map-marker {
+  position: relative;
   display: flex;
-  width: 36px;
-  height: 36px;
+  width: 32px;
+  height: 32px;
   align-items: center;
   justify-content: center;
   border: 2px solid #fff;
-  border-radius: 50%;
+  border-radius: 10px 10px 10px 3px;
   box-shadow: 0 2px 7px rgb(15 23 42 / 24%);
   color: #fff;
-  font-size: 12px;
+  background: var(--academy-color, #2563eb);
+  font-size: 11px;
   font-weight: 750;
+  transform: rotate(-45deg);
 }
 
-.academy-map-marker--core {
-  background: #047857;
+.academy-map-marker > strong {
+  transform: rotate(45deg);
 }
 
 .academy-map-marker--extended {
-  background: #64748b;
+  opacity: 0.58;
+}
+
+.academy-map-marker--small {
+  width: 27px;
+  height: 27px;
+}
+
+.academy-map-marker--large {
+  width: 37px;
+  height: 37px;
+}
+
+.academy-map-marker__count {
+  position: absolute;
+  top: -9px;
+  right: -12px;
+  min-width: 21px;
+  height: 19px;
+  padding: 0 4px;
+  border: 2px solid #fff;
+  border-radius: 999px;
+  box-shadow: 0 1px 4px rgb(15 23 42 / 24%);
+  color: #172033;
+  background: #fff;
+  font-size: 10px;
+  line-height: 15px;
+  text-align: center;
+  transform: rotate(45deg);
+}
+
+.academy-map-cluster {
+  display: flex;
+  width: 54px;
+  height: 54px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 7px solid rgb(37 99 235 / 20%);
+  border-radius: 50%;
+  box-shadow: 0 3px 10px rgb(15 23 42 / 25%);
+  color: #fff;
+  background: #2563eb;
+  background-clip: padding-box;
+}
+
+.academy-map-cluster strong {
+  font-size: 14px;
+  line-height: 1;
+}
+
+.academy-map-cluster span {
+  margin-top: 2px;
+  font-size: 9px;
+}
+
+.academy-map-popup {
+  min-width: 220px;
+  padding: 14px;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  box-shadow: 0 12px 30px rgb(15 23 42 / 20%);
+  color: #172033;
+  background: #fff;
+  font-family: inherit;
+}
+
+.academy-map-popup__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.academy-map-popup__header span {
+  color: #2563eb;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.academy-map-popup p {
+  margin: 7px 0 4px;
+  color: #475569;
+  font-size: 12px;
+}
+
+.academy-map-popup small {
+  color: #64748b;
+  font-size: 11px;
+}
+
+.academy-map-legend {
+  z-index: var(--layer-map-ui);
 }
 
 .map-floating-alert {

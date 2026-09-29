@@ -6,6 +6,7 @@ import ApartmentMarkerManager from './ApartmentMarkerManager'
 import AcademyMarkerManager from './AcademyMarkerManager'
 import '../../types/naver-maps.d.ts'
 import { ACADEMY_DATA_PENDING_LABEL, hasAcademyData } from '../../utils/academyCoverage'
+import type { AcademyCategoryKey } from '../../utils/academyCategories'
 
 interface MapContainerProps {
   className?: string
@@ -33,6 +34,7 @@ const MapContainer: React.FC<MapContainerProps> = ({ className = '' }) => {
   const [locationError, setLocationError] = useState<string | null>(null)
   const [showAcademies, setShowAcademies] = useState(false)
   const [academyCount, setAcademyCount] = useState<number | null>(null)
+  const [academyCategory, setAcademyCategory] = useState<AcademyCategoryKey | null>(null)
   const { state, dispatch } = useAppContext()
   const selectedAcademyRegion = state.selectedApartment?.city || state.selectedSchool?.region
   const academyDataAvailable = hasAcademyData(selectedAcademyRegion)
@@ -40,6 +42,7 @@ const MapContainer: React.FC<MapContainerProps> = ({ className = '' }) => {
   useEffect(() => {
     setShowAcademies(false)
     setAcademyCount(null)
+    setAcademyCategory(null)
   }, [state.selectedApartment?.id, state.selectedSchool?.school_id])
 
   // An unregistered host is the usual cause, and it is invisible otherwise:
@@ -57,11 +60,18 @@ const MapContainer: React.FC<MapContainerProps> = ({ className = '' }) => {
   useEffect(() => {
     const showAcademies = () => setShowAcademies(true)
     const showSchoolAcademies = () => setShowAcademies(true)
+    const filterAcademies = (event: Event) => {
+      const category = (event as CustomEvent<{ category: AcademyCategoryKey | null }>).detail?.category || null
+      setAcademyCategory(category)
+      setShowAcademies(true)
+    }
     window.addEventListener('joinmap:show-academies', showAcademies)
     window.addEventListener('joinmap:show-school-academies', showSchoolAcademies)
+    window.addEventListener('joinmap:filter-academies', filterAcademies)
     return () => {
       window.removeEventListener('joinmap:show-academies', showAcademies)
       window.removeEventListener('joinmap:show-school-academies', showSchoolAcademies)
+      window.removeEventListener('joinmap:filter-academies', filterAcademies)
     }
   }, [])
 
@@ -279,6 +289,8 @@ const MapContainer: React.FC<MapContainerProps> = ({ className = '' }) => {
           apartment={state.selectedApartment}
           school={state.selectedSchool}
           enabled={showAcademies}
+          selectedCategory={academyCategory}
+          onCategoryChange={setAcademyCategory}
           onCountChange={setAcademyCount}
         />
       )}
