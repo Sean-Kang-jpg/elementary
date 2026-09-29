@@ -1,4 +1,4 @@
-import { lazy, Suspense, useEffect, useState } from 'react'
+import { lazy, Suspense, useCallback, useEffect, useRef, useState } from 'react'
 import MainLayout from './components/layout/MainLayout'
 import type { AppTab } from './components/layout/BottomNavigation'
 import FilterPanel from './components/filters/FilterPanel'
@@ -9,8 +9,16 @@ import { useAppContext } from './contexts/AppContext'
 import { testSupabaseConnection } from './lib/supabase'
 import FavoritesPage from './components/navigation/FavoritesPage'
 import NewsPage from './components/navigation/NewsPage'
-import { getSchoolDetail } from './services/dataService'
+import { getApartmentByPublicKey, getSchoolDetail } from './services/dataService'
 import type { FavoriteRecord } from './utils/favorites'
+import {
+  apartmentPath,
+  parseRoute,
+  schoolPath,
+  setCanonical,
+  syncPath,
+  type Route,
+} from './utils/urlState'
 
 interface ConnectionStatus {
   supabase: 'connecting' | 'success' | 'error'
@@ -23,6 +31,63 @@ function MapApplication() {
     supabase: 'connecting'
   })
   const [activeTab, setActiveTab] = useState<AppTab>('map')
+  // 주소를 읽어 선택을 복원하는 동안에는 선택을 보고 주소를 쓰면 안 된다.
+  // 그러지 않으면 복원 도중의 중간 상태가 기록으로 쌓인다.
+  const restoring = useRef(false)
+
+  const applyRoute = useCallback(async (route: Route) => {
+    restoring.current = true
+    try {
+      // admin은 App이 따로 분기하므로 여기까지 오지 않는다.
+      if (route.kind === 'map' || route.kind === 'admin') {
+        dispatch({ type: 'SET_SELECTED_APARTMENT', payload: null })
+        dispatch({ type: 'SET_SELECTED_SCHOOL', payload: null })
+        return
+      }
+      if (route.kind === 'school') {
+        const school = await getSchoolDetail(route.key)
+        if (!school) return
+        dispatch({ type: 'SET_MAP_STATE', payload: { center: { lat: school.latitude, lng: school.longitude }, zoom: 14 } })
+        dispatch({ type: 'SET_SELECTED_SCHOOL', payload: school })
+        return
+      }
+      const found = await getApartmentByPublicKey(route.key)
+      if (!found) return
+      // 대표 배정 학교를 함께 연다. 아파트만 띄우면 이 제품이 답하는 질문,
+      // "어느 학교에 배정되나"가 화면에 없다.
+      const school = found.schoolIds[0] ? await getSchoolDetail(found.schoolIds[0]) : null
+      dispatch({ type: 'SET_MAP_STATE', payload: { center: { lat: found.apartment.latitude, lng: found.apartment.longitude }, zoom: 15 } })
+      if (school) dispatch({ type: 'OPEN_SEARCHED_APARTMENT', payload: { school, apartment: found.apartment } })
+      else dispatch({ type: 'SET_SELECTED_APARTMENT', payload: found.apartment })
+    } catch (error) {
+      console.error('Failed to restore the route:', error)
+    } finally {
+      restoring.current = false
+    }
+  }, [dispatch])
+
+  // 처음 열렸을 때, 그리고 뒤로 가기마다 주소를 선택으로 되돌린다.
+  useEffect(() => {
+    void applyRoute(parseRoute(window.location.pathname, window.location.search))
+    const onPopState = () => {
+      void applyRoute(parseRoute(window.location.pathname, window.location.search))
+    }
+    window.addEventListener('popstate', onPopState)
+    return () => window.removeEventListener('popstate', onPopState)
+  }, [applyRoute])
+
+  // 선택이 바뀌면 주소가 따라간다. 아파트가 학교보다 구체적이므로 먼저 본다.
+  useEffect(() => {
+    if (restoring.current || activeTab !== 'map') return
+    const apartment = state.selectedApartment ? apartmentPath(state.selectedApartment) : null
+    const path = apartment ?? (state.selectedSchool ? schoolPath(state.selectedSchool) : null)
+    syncPath(path, { push: true })
+  }, [activeTab, state.selectedApartment, state.selectedSchool])
+
+  // 지도 화면 자체는 색인 대상이 아니다. 목록만 무한히 색인되게 두지 않는다.
+  useEffect(() => {
+    if (!state.selectedApartment && !state.selectedSchool) setCanonical('/')
+  }, [state.selectedApartment, state.selectedSchool])
 
   // 선택된 학교 상세 정보 바텀시트 상태
   const handleCloseSchoolDetail = () => {

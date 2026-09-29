@@ -82,6 +82,12 @@ export interface School {
 // 🏠 아파트 관련 타입  
 export interface Apartment {
   id: string
+  /**
+   * 공개 URL에 쓰는 불변 슬러그. `id`(canonical_complex_id)는 K-apt 매칭
+   * 결과에 따라 바뀌므로 주소로 쓸 수 없다. ADR-007 참조.
+   * 아직 발급되지 않은 단지는 비어 있다.
+   */
+  public_key: string
   name: string
   address: string
   district: string

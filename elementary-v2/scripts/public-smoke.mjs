@@ -182,6 +182,31 @@ try {
   // return to its unfiltered label rather than guessing how long that takes.
   await waitFor("[...document.querySelectorAll('button')].some((node) => node.textContent?.trim() === '학생 수')", 'student filter reset to unrestricted')
 
+  // A shared link has to land on the thing it names, and the decorative part of
+  // the path has to be corrected rather than trusted. Both are what the whole
+  // slug design exists for, so neither should be able to break unnoticed.
+  run(['open', new URL('/apt/아무렇게나써도--7A2EMR5J', baseUrl).toString()])
+  await waitFor(
+    "(() => { const sheet = document.querySelector('[data-testid=bottom-sheet]');"
+    + " return !!sheet && sheet.innerText.includes('은마') && sheet.innerText.includes('개 동') })()",
+    'apartment deep link restored the complex it names',
+  )
+  assertPage(
+    "decodeURIComponent(location.pathname) === '/apt/서울-강남구-은마--7A2EMR5J'",
+    'a non-canonical decorative prefix was rewritten to the canonical path',
+  )
+  assertPage(
+    "decodeURIComponent(document.querySelector('link[rel=canonical]')?.href || '')"
+    + ".endsWith('/apt/서울-강남구-은마--7A2EMR5J')",
+    'the page declares its canonical URL',
+  )
+
+  run(['open', new URL('/school/서울-강남구-서울대현초등학교--B000002292', baseUrl).toString()])
+  await waitFor(
+    "document.body.innerText.includes('서울대현초등학교')",
+    'school deep link restored the school it names',
+  )
+
   run(['fill', 'input[role="combobox"]', '서울방현'])
   await waitFor("document.querySelectorAll('#map-search-results [role=option]').length > 0", 'school search returned results')
   run(['eval', "document.querySelector('#map-search-results [role=option]').click(); 'school selected'"])

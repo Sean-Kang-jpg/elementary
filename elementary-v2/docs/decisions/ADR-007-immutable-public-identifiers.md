@@ -339,7 +339,21 @@ https://…/school/서울-강남구-서울대현초등학교--B000002292
 | `sql/18_create_apartment_public_key.sql` | 작성 완료, **미적용** |
 | `etl/issue_apartment_public_keys.py` | 작성 완료, dry-run 검증 |
 | `etl/tests/test_issue_apartment_public_keys.py` | 13개 테스트 통과 |
-| 공개 계약 전달 (serving 컬럼) | 미착수 — 키 발급 후 별도 마이그레이션 |
+| `sql/18` 적용 · 20,164개 발급 · 업로드 | ✅ 완료 (2026-09-29) |
+| `sql/19_add_serving_public_key.sql` | 작성 완료, **미적용** |
+| 프론트엔드 계약 (타입·조회 필드·매핑) | 작성 완료, **19 적용 전 배포 금지** |
+
+> ⚠️ **순서 의존성.** 프론트엔드가 `complex_public_key`를 조회하는데 컬럼이
+> 없으면 PostgREST가 `42703`으로 거부하고 **아파트 조회가 전부 실패한다.**
+> 운영에서 실제로 확인했다.
+>
+> ```
+> {"code":"42703","message":"column school_apartment_serving.complex_public_key does not exist"}
+> HTTP 400
+> ```
+>
+> **`sql/19`를 적용한 뒤에 `release`로 머지한다.** 반대로 하면 사이트의 아파트
+> 기능이 멈춘다.
 
 실제 데이터로 확인한 것:
 
