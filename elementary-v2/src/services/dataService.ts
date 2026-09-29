@@ -577,6 +577,32 @@ export const getSchoolDetail = async (schoolId: string): Promise<School | null> 
   return data ? toSchool(data as unknown as SchoolMasterRow) : null
 }
 
+/**
+ * 공개 슬러그로 단지를 찾는다. 외부 링크나 검색 결과로 들어온 사람이 처음
+ * 도달하는 경로다.
+ *
+ * 한 단지가 여러 학교에 배정되면 serving에 행이 여러 개이므로, 대표 배정
+ * (`assignment_rank`가 가장 작은 행)을 아파트 정보의 출처로 삼고 나머지
+ * 학교는 함께 돌려준다. 배정이 하나뿐인 것처럼 보여주면 그 자체가 오해다.
+ */
+export const getApartmentByPublicKey = async (
+  publicKey: string,
+): Promise<{ apartment: Apartment; schoolIds: string[] } | null> => {
+  const { data, error } = await supabase
+    .from('school_apartment_serving')
+    .select(APARTMENT_SELECT_FIELDS)
+    .eq('complex_public_key', publicKey.toUpperCase())
+    .order('assignment_rank', { ascending: true })
+  if (error) throw error
+
+  const rows = (data || []) as unknown as ApartmentServingRow[]
+  if (!rows.length) return null
+  return {
+    apartment: toApartment(rows[0]),
+    schoolIds: [...new Set(rows.map((row) => String(row.school_id)).filter(Boolean))],
+  }
+}
+
 const loadReportScatterRows = async (): Promise<ReportScatterRow[]> => {
   const fetchAll = async (table: 'school_master' | 'school_apartment_serving', fields: string) => {
     const rows: Array<Record<string, unknown>> = []
