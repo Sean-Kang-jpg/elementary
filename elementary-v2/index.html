@@ -21,7 +21,16 @@
     <meta property="og:title" content="어디초 | 초등학교 배정 아파트 찾기">
     <meta property="og:description" content="전국 17개 시·도의 아파트 단지별 공식 배정 초등학교를 지도에서 확인하세요.">
     <meta property="og:url" content="{{SITE_ORIGIN}}/">
-    <meta name="twitter:card" content="summary">
+    <!--
+      상세 페이지도 이 이미지를 그대로 쓴다. api/detail.js는 title·description·url만
+      갈아끼우고 og:image는 건드리지 않는다. 원본은 docs/assets/og-image-source.png.
+      이미지 안에 도메인(wherecho.co.kr)이 찍혀 있으므로 도메인이 바뀌면 이미지도 바꾼다.
+    -->
+    <meta property="og:image" content="{{SITE_ORIGIN}}/og-image.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="어디초 - 우리 아이는 어디 초등학교 갈까? 초등학교 배정부터 입학 준비까지">
+    <meta name="twitter:card" content="summary_large_image">
     <script type="text/javascript" src="https://oapi.map.naver.com/openapi/v3/maps.js?ncpKeyId=8bhvq317xy"></script>
   </head>
   <body>
