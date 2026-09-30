@@ -75,12 +75,12 @@ const academyPopupContent = (academy: AcademyAddress) => {
         <td>${escapeHtml(institution.type || '미상')}</td>
         <td>${escapeHtml(institution.realm || '미상')}</td>
       </tr>`).join('')
-    : `<tr><td colspan="3" class="academy-map-popup__empty">학원명 정보를 준비 중입니다.</td></tr>`
+    : `<tr><td colspan="3" class="academy-map-popup__empty">기관명 정보를 준비 중입니다.</td></tr>`
   return `<div class="academy-map-popup">
     <div class="academy-map-popup__header"><strong>교육시설 ${academy.institution_count.toLocaleString('ko-KR')}곳</strong><span>${academy.distance_band === 'core' ? '핵심권역' : '확장권역'}</span></div>
     <p>${categories.map(({ label, count }) => `${escapeHtml(label)} ${count.toLocaleString('ko-KR')}`).join(' · ') || '분야 정보 없음'}</p>
     <div class="academy-map-popup__table-wrap">
-      <table><thead><tr><th>학원명</th><th>유형</th><th>분야</th></tr></thead><tbody>${institutionRows}</tbody></table>
+      <table><thead><tr><th>기관명</th><th>유형</th><th>분야</th></tr></thead><tbody>${institutionRows}</tbody></table>
     </div>
     <small>직선거리 ${academy.straight_distance_m.toLocaleString('ko-KR')}m</small>
   </div>`
@@ -186,7 +186,7 @@ export default function AcademyMarkerManager({ map, apartment, school, enabled, 
 
   const selectedLabel = selectedCategory ? getAcademyCategory(selectedCategory).label : '전체 분야'
   return (
-    <div className="academy-map-legend absolute bottom-4 left-3 rounded-lg border border-gray-200 bg-white/95 p-2.5 shadow-lg backdrop-blur sm:left-5" aria-label="학원 지도 범례">
+    <div className="academy-map-legend absolute bottom-4 left-3 rounded-lg border border-gray-200 bg-white/95 p-2.5 shadow-lg backdrop-blur sm:left-5" aria-label="교육시설 지도 범례">
       <div className="flex items-center justify-between gap-3">
         <strong className="text-xs text-gray-800">{selectedLabel}</strong>
         {selectedCategory ? <button type="button" onClick={() => onCategoryChange(null)} className="text-[11px] font-semibold text-blue-700 hover:text-blue-900">전체 보기</button> : null}

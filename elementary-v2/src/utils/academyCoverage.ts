@@ -21,4 +21,4 @@ const ACADEMY_DATA_REGIONS = new Set([
 export const hasAcademyData = (region?: string | null): boolean =>
   Boolean(region && ACADEMY_DATA_REGIONS.has(region))
 
-export const ACADEMY_DATA_PENDING_LABEL = '학원 데이터 준비 중'
+export const ACADEMY_DATA_PENDING_LABEL = '교육시설 데이터 준비 중'

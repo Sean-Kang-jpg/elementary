@@ -302,10 +302,10 @@ const MapContainer: React.FC<MapContainerProps> = ({ className = '' }) => {
           disabled={!academyDataAvailable}
           className={`academy-layer-toggle absolute right-3 inline-flex h-11 items-center gap-2 rounded-md border px-3 text-sm font-semibold shadow-md transition-colors sm:right-5 ${showAcademies ? 'border-emerald-700 bg-emerald-700 text-white' : 'border-gray-300 bg-white text-gray-800 hover:bg-gray-50'}`}
           aria-pressed={showAcademies}
-          aria-label={state.selectedApartment ? '선택한 아파트 주변 학원 표시' : '선택한 학교 생활권 학원 표시'}
+          aria-label={state.selectedApartment ? '선택한 아파트 주변 교육시설 표시' : '선택한 학교 생활권 교육시설 표시'}
         >
           {academyCount === -1 ? <LoaderCircle className="animate-spin" size={18} aria-hidden="true" /> : <GraduationCap size={18} aria-hidden="true" />}
-          <span>{!academyDataAvailable ? ACADEMY_DATA_PENDING_LABEL : showAcademies && academyCount != null && academyCount >= 0 ? `학원 ${academyCount}` : '주변 학원'}</span>
+          <span>{!academyDataAvailable ? ACADEMY_DATA_PENDING_LABEL : showAcademies && academyCount != null && academyCount >= 0 ? `교육시설 ${academyCount}` : '주변 교육시설'}</span>
         </button>
       )}
 
