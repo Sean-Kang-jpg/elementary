@@ -93,15 +93,24 @@ def fetch_page(
     if address_like:
         params["cond[ROAD_NM_ADDR::LIKE]"] = address_like
     query = urlencode(params)
-    try:
-        with urlopen(f"{ENDPOINT}?{query}", timeout=90) as response:
-            root = ET.fromstring(response.read().decode("utf-8"))
-    except HTTPError as exc:
-        raise RuntimeError(f"sports-dojo API HTTP {exc.code}") from None
-    except URLError as exc:
-        raise RuntimeError(f"sports-dojo API network error: {exc.reason}") from None
-    except (UnicodeDecodeError, ET.ParseError) as exc:
-        raise RuntimeError(f"sports-dojo API returned invalid XML: {exc}") from None
+    root = None
+    for attempt in range(5):
+        try:
+            with urlopen(f"{ENDPOINT}?{query}", timeout=90) as response:
+                root = ET.fromstring(response.read().decode("utf-8"))
+            break
+        except HTTPError as exc:
+            if exc.code not in {429, 500, 502, 503, 504} or attempt == 4:
+                raise RuntimeError(f"sports-dojo API HTTP {exc.code}") from None
+            time.sleep(2 ** attempt)
+        except URLError as exc:
+            if attempt == 4:
+                raise RuntimeError(f"sports-dojo API network error: {exc.reason}") from None
+            time.sleep(2 ** attempt)
+        except (UnicodeDecodeError, ET.ParseError) as exc:
+            raise RuntimeError(f"sports-dojo API returned invalid XML: {exc}") from None
+    if root is None:
+        raise RuntimeError("sports-dojo API exhausted retries")
     header_node = root.find("header")
     header = {child.tag: child.text or "" for child in header_node or []}
     if str(header.get("resultCode", "00")) not in {"0", "00"}:
@@ -163,25 +172,39 @@ def normalize(row: dict[str, Any], region: str) -> dict[str, Any]:
 
 def main(argv: list[str] | None = None) -> None:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--regions", nargs="+", default=["서울특별시", "대전광역시", "부산광역시"])
+    scope = parser.add_mutually_exclusive_group()
+    scope.add_argument("--regions", nargs="+", default=["서울특별시", "대전광역시", "부산광역시"])
+    scope.add_argument("--all-production", action="store_true")
     args = parser.parse_args(argv)
 
     registry = load_registry()
-    scopes = tuple(registry.scope(name) for name in args.regions)
+    scopes = (
+        tuple(registry.scope(region.canonical_name) for region in registry.production_regions)
+        if args.all_production
+        else tuple(registry.scope(name) for name in args.regions)
+    )
     api_key = os.getenv("DATA_GO_KR_DECODED_KEY") or load_env_value(
         PROJECT_DIR / ".env", "DATA_GO_KR_DECODED_KEY"
     )
     if not api_key or api_key.startswith("your_"):
         raise RuntimeError("DATA_GO_KR_DECODED_KEY is not configured")
 
-    all_rows_by_id: dict[str, dict[str, Any]] = {}
-    for scope in scopes:
-        # Query the API per canonical region instead of downloading all 32k+
-        # rows for a small pilot. Local filtering below remains the authority.
-        for row in fetch_all(api_key, scope.region.canonical_name):
-            source_id = str(row.get("MNG_NO") or "").strip()
-            all_rows_by_id[source_id or json.dumps(row, sort_keys=True)] = row
-    all_rows = list(all_rows_by_id.values())
+    if args.all_production:
+        # The gateway's ROAD_NM_ADDR LIKE filter is not complete across local
+        # governments. Download the authoritative nationwide result and apply
+        # the region registry locally so no municipality is silently missed.
+        all_rows = fetch_all(api_key)
+        print(f"nationwide source: {len(all_rows):,}")
+    else:
+        all_rows_by_id: dict[str, dict[str, Any]] = {}
+        for selected_scope in scopes:
+            for address_prefix in selected_scope.region.address_prefixes:
+                prefix_rows = fetch_all(api_key, address_prefix)
+                print(f"{address_prefix}: {len(prefix_rows):,}")
+                for row in prefix_rows:
+                    source_id = str(row.get("MNG_NO") or "").strip()
+                    all_rows_by_id[source_id or json.dumps(row, sort_keys=True)] = row
+        all_rows = list(all_rows_by_id.values())
     selected = [row for row in all_rows if row_in_scope(row, scopes)]
     normalized = []
     for row in selected:
@@ -192,7 +215,8 @@ def main(argv: list[str] | None = None) -> None:
 
     RUNTIME_DIR.mkdir(parents=True, exist_ok=True)
     stamp = date.today().strftime("%Y%m%d")
-    output = RUNTIME_DIR / f"sports_dojo_pilot_{stamp}.json"
+    label = "nationwide" if args.all_production else "pilot"
+    output = RUNTIME_DIR / f"sports_dojo_{label}_{stamp}.json"
     output.write_text(json.dumps(normalized, ensure_ascii=False, indent=2), encoding="utf-8")
     report = {
         "generated_at": datetime.now().isoformat(),
@@ -207,7 +231,7 @@ def main(argv: list[str] | None = None) -> None:
         "status_counts": dict(Counter(row["business_status"] for row in normalized)),
         "output": output.name,
     }
-    report_path = RUNTIME_DIR / f"sports_dojo_pilot_profile_{stamp}.json"
+    report_path = RUNTIME_DIR / f"sports_dojo_{label}_profile_{stamp}.json"
     report_path.write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8")
     print(json.dumps(report, ensure_ascii=False, indent=2))
 
