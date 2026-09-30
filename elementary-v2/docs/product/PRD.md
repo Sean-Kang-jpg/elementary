@@ -37,6 +37,13 @@ Owner: Product and Engineering
 - Desktop and 360/390/430-pixel mobile layouts must remain usable.
 - Regional releases require a reproducible read-only build and rollback evidence before database writes.
 
+## Next version
+
+A proposed next-version scope — pre-elementary admission preparation on top of the
+assignment map — is drafted in Korean in
+[`PRD_V2_ELEMENTARY_START.md`](PRD_V2_ELEMENTARY_START.md). It is not approved and does
+not change this contract until it is.
+
 ## Acceptance source
 
 Delivery status and pending work live only in [`../operations/OPERATION_PLAN.md`](../operations/OPERATION_PLAN.md). Detailed interaction behavior lives in [`../ux/FRONTEND_UX_SYSTEM_PLAN.md`](../ux/FRONTEND_UX_SYSTEM_PLAN.md).

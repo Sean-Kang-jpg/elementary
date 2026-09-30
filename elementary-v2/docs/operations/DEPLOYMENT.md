@@ -224,7 +224,56 @@ git push                  # 이 push가 곧 운영 배포다
 
 ---
 
-## 7. 되돌리기
+## 7. 도메인을 바꿀 때
+
+> **확정 도메인: `wherecho.co.kr`** (2026-10-01). 같은 날 DNS 조회 결과 아직 등록 전이다.
+> 아래 순서에서 **3번(`SITE_ORIGIN`)은 도메인이 Vercel에 연결되고 HTTPS로 응답한 뒤에만**
+> 한다. 먼저 바꾸면 모든 canonical·사이트맵이 응답하지 않는 주소를 가리킨다.
+> 공유 이미지(`public/og-image.jpg`)에도 이 도메인이 찍혀 있으므로, 도메인이 다시
+> 바뀌면 이미지도 바꿔야 한다.
+
+**색인이 쌓이기 전에 하는 편이 압도적으로 싸다.** 지금 사이트맵에 52,155개 주소가
+있고, 등록·색인 후에 옮기면 전부에 301 리다이렉트를 걸고 재색인을 기다려야 한다.
+슬러그를 URL 공개 전에 먼저 만든 것과 같은 이유다.
+
+### 순서
+
+1. **네이버 클라우드에 새 도메인을 먼저 등록한다.** 지도 키는 허용 도메인으로
+   보호되므로, 등록 전에 새 주소로 들어가면 페이지는 뜨고 지도만 죽는다.
+   [`index.html`](../../index.html)의 `navermap_authFailure` 핸들러가 이 경우
+   원인을 말해주므로, 증상이 아니라 원인을 보게 된다.
+2. Vercel 프로젝트에 도메인을 연결한다.
+3. Vercel 환경변수 `SITE_ORIGIN`을 새 origin으로 설정한다(후행 슬래시는 있어도
+   무해하게 제거된다). **production과 preview 양쪽에.**
+4. 재배포한다. 빌드 로그의 `origin` 줄이 새 값과 `(SITE_ORIGIN)`을 함께 찍는지
+   확인한다 — `(SITE_ORIGIN 미설정 - 기본값)`이면 변수가 안 걸린 것이다.
+5. `npm run browser:smoke:public -- https://<새 도메인>`을 돌린다. `published
+   addresses all name ...` 검사가 다섯 곳의 origin이 일치하는지 확인해준다.
+6. 옛 주소에서 새 주소로 301을 걸어둔다. 이미 공유된 링크가 있고, 검색엔진에도
+   이전을 알리는 정식 신호다.
+7. 그 **다음에** Search Console·네이버 서치어드바이저에 등록하고 사이트맵을 제출한다.
+
+### 무엇을 고쳐야 하는가 — 아무것도 없다
+
+절대 주소를 찍는 모든 곳이 한 출처를 읽는다.
+
+| 무엇 | 어디서 origin을 얻는가 |
+| --- | --- |
+| `index.html`의 canonical·og:url | 빌드 시 `vite.config.ts`의 `stampHtml` 플러그인이 채운다 |
+| `robots.txt`의 Sitemap 지시문 | 빌드 후 `scripts/build-seo-files.mjs`가 생성한다 |
+| 사이트맵 6개의 모든 `<loc>` | 같은 스크립트 |
+| 프리렌더의 canonical·og:url | `api/detail.js`가 같은 환경변수를 읽는다 |
+
+앞의 셋은 [`scripts/site-origin.mjs`](../../scripts/site-origin.mjs)를 쓴다.
+프리렌더는 저장소 루트에서 배포되어 그 파일을 import할 수 없으므로 같은 변수를
+읽고 같은 기본값을 들고 있다. **그건 약속이지 보장이 아니므로**, 공개 smoke가 네
+곳이 실제로 내보내는 값을 서로 비교한다. 하나만 옮겨진 상태는 배포할 수 없다.
+
+반대로 **손댈 필요가 없는 것**도 적어둔다. 공유 버튼과 클라이언트 canonical은
+`window.location.origin`을 읽으므로 도메인을 자동으로 따라간다. 관리자 로그인은
+`signInWithPassword`라서 Supabase redirect 허용목록과 무관하다.
+
+## 8. 되돌리기
 
 Vercel 대시보드의 Deployments에서 이전 운영 배포를 골라 **Promote to
 Production**을 누른다. 저장소를 건드리지 않고 즉시 되돌아간다.

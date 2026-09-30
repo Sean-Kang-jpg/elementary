@@ -145,6 +145,7 @@ const assertOriginsAgree = async () => {
 
   record('index.html canonical', (shell.match(/<link rel="canonical" href="([^"]*)"/) || [])[1])
   record('index.html og:url', (shell.match(/<meta property="og:url" content="([^"]*)"/) || [])[1])
+  record('index.html og:image', (shell.match(/<meta property="og:image" content="([^"]*)"/) || [])[1])
 
   const robots = await readTarget('/robots.txt')
   if (robots) record(`robots.txt (${robots.from})`, (robots.text.match(/Sitemap:\s*(\S+)/) || [])[1])
@@ -209,8 +210,25 @@ const assertFileServed = async (filePath, mustContain, { built = false } = {}) =
   throw new Error(`${filePath} did not serve as expected (HTTP ${response.status})`)
 }
 
+/**
+ * The share image has to arrive as an image. A missing file does not fail
+ * loudly: the SPA fallback answers 200 with HTML, the og:image tag still points
+ * at it, and every KakaoTalk preview shows a broken thumbnail. So this checks
+ * the content type and a plausible size, not the status code.
+ */
+const assertImageServed = async (filePath) => {
+  const response = await fetch(new URL(filePath, baseUrl).toString())
+  const type = response.headers.get('content-type') || ''
+  const bytes = response.ok ? (await response.arrayBuffer()).byteLength : 0
+  if (!response.ok || !type.startsWith('image/') || bytes < 10_000) {
+    throw new Error(`${filePath} is not served as an image (HTTP ${response.status}, ${type || 'no type'}, ${bytes} bytes)`)
+  }
+  process.stdout.write(`PASS: ${filePath} is served as ${type}, ${Math.round(bytes / 1024)} KB\n`)
+}
+
 try {
   await assertDeepLinkResolves('/admin/etl')
+  await assertImageServed('/og-image.jpg')
   await assertFileServed('/robots.txt', 'Sitemap:', { built: true })
   await assertFileServed('/sitemap.xml', '<sitemapindex', { built: true })
   await assertFileServed('/sitemap-schools-1.xml', '/school/', { built: true })
@@ -238,7 +256,7 @@ try {
   // every shared link. Asserted on the shell because the dev server has no
   // serverless function to prerender from.
   assertPage(
-    "['og:site_name', 'og:title', 'og:description', 'og:url', 'og:type'].every((property) => document.querySelector(`meta[property=\"${property}\"]`)?.content?.trim())",
+    "['og:site_name', 'og:title', 'og:description', 'og:url', 'og:type', 'og:image'].every((property) => document.querySelector(`meta[property=\"${property}\"]`)?.content?.trim())",
     'the shell declares the og: tags a shared link previews with',
   )
   // The published regions grew from three to seventeen while this line kept
