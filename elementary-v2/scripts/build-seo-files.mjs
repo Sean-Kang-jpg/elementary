@@ -1,5 +1,6 @@
 /**
- * Write the sitemaps into the build output.
+ * Write the crawler-facing files into the build output: robots.txt and the
+ * sitemaps.
  *
  * Generated at build time rather than served from a function: there are about
  * 52,000 URLs, so a request-time build would read tens of thousands of rows on
@@ -17,13 +18,13 @@
  */
 
 import { createRequire } from 'node:module'
+import { siteOrigin, siteOriginIsDefault } from './site-origin.mjs'
 import fs from 'node:fs/promises'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 const projectRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
 const outDir = path.join(projectRoot, 'dist')
-const DEFAULT_ORIGIN = 'https://elementary-lovat.vercel.app'
 /** Sitemaps allow 50,000 URLs each; well under it keeps each file small to fetch. */
 const URLS_PER_FILE = 10_000
 const PAGE = 1000
@@ -146,6 +147,22 @@ const sitemapIndex = (files, origin, lastmod) =>
     `  <sitemap><loc>${origin}/${file}</loc><lastmod>${lastmod}</lastmod></sitemap>\n`).join('')
   + '</sitemapindex>\n'
 
+/**
+ * robots.txt is generated rather than kept in public/, because its Sitemap
+ * directive must be an absolute address and a file copied verbatim would carry
+ * the old domain through a move.
+ */
+const robotsTxt = (origin) => `# ${origin}
+#
+# 학교·아파트 상세는 색인 대상이다. 관리자 화면은 아니다.
+
+User-agent: *
+Allow: /
+Disallow: /admin/
+
+Sitemap: ${origin}/sitemap.xml
+`
+
 const chunk = (items, size) => {
   const out = []
   for (let i = 0; i < items.length; i += size) out.push(items.slice(i, i + size))
@@ -154,9 +171,10 @@ const chunk = (items, size) => {
 
 const main = async () => {
   await readEnvFile()
-  const origin = (process.env.SITE_ORIGIN || DEFAULT_ORIGIN).replace(/\/$/, '')
+  const origin = siteOrigin()
   const creds = credentials()
   const regions = loadRegions()
+  console.log(`origin      ${origin}${siteOriginIsDefault() ? '  (SITE_ORIGIN 미설정 - 기본값)' : '  (SITE_ORIGIN)'}`)
   const shortName = (region) => regions.get(region)?.shortName || region
 
   const schools = await fetchAll(creds, 'school_master',
@@ -192,6 +210,9 @@ const main = async () => {
     }
     console.log(`${label.padEnd(11)} ${paths.length.toLocaleString()} URLs in ${pages.length} file(s)`)
   }
+
+  await fs.writeFile(path.join(outDir, 'robots.txt'), robotsTxt(origin), 'utf8')
+  console.log(`robots      Sitemap -> ${origin}/sitemap.xml`)
 
   await fs.writeFile(path.join(outDir, 'sitemap.xml'), sitemapIndex(files, origin, lastmod), 'utf8')
   console.log(`index       ${files.length} sitemaps at ${origin}/sitemap.xml`)

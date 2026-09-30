@@ -107,6 +107,78 @@ const assertDeepLinkResolves = async (deepPath) => {
 }
 
 
+/**
+ * Every absolute address the site publishes must name the same origin.
+ *
+ * Two deployment units print them: the app build, which stamps index.html and
+ * writes robots.txt and the sitemaps from scripts/site-origin.mjs, and the
+ * serverless prerender at ../../api/detail.js, which is deployed from the
+ * repository root and cannot import that resolver. They read the same variable
+ * and carry the same fallback, which is a promise rather than a guarantee - so
+ * this compares what they actually serve. A domain move that reaches one of them
+ * and not the other publishes 52,000 addresses pointing at the wrong host, and
+ * declares a canonical URL on a domain that is no longer the site.
+ */
+const originOf = (value) => {
+  try { return new URL(value).origin } catch { return null }
+}
+
+const readTarget = async (filePath) => {
+  const response = await fetch(new URL(filePath, baseUrl).toString())
+  const body = response.ok ? await response.text() : ''
+  if (body.includes('<div id="root">')) {
+    // The dev server answers for build-generated files with the SPA fallback.
+    const onDisk = path.join(projectRoot, 'dist', filePath.replace(/^\//, ''))
+    return fs.existsSync(onDisk) ? { text: fs.readFileSync(onDisk, 'utf8'), from: 'dist/' } : null
+  }
+  return response.ok ? { text: body, from: 'served' } : null
+}
+
+const assertOriginsAgree = async () => {
+  const shell = await (await fetch(new URL('/', baseUrl).toString())).text()
+  const found = new Map()
+
+  const record = (label, value) => {
+    const origin = originOf(value)
+    if (origin) found.set(label, origin)
+  }
+
+  record('index.html canonical', (shell.match(/<link rel="canonical" href="([^"]*)"/) || [])[1])
+  record('index.html og:url', (shell.match(/<meta property="og:url" content="([^"]*)"/) || [])[1])
+
+  const robots = await readTarget('/robots.txt')
+  if (robots) record(`robots.txt (${robots.from})`, (robots.text.match(/Sitemap:\s*(\S+)/) || [])[1])
+
+  const sitemap = await readTarget('/sitemap-schools-1.xml')
+  if (sitemap) record(`sitemap (${sitemap.from})`, (sitemap.text.match(/<loc>([^<]*)<\/loc>/) || [])[1])
+
+  // Only production routes /apt/* through the prerender, so this contributes the
+  // function's own origin where there is one and stays quiet where there is not.
+  const detail = await fetch(new URL('/apt/7A2EMR5J', baseUrl).toString())
+  const detailBody = detail.ok ? await detail.text() : ''
+  const prerendered = (detailBody.match(/<meta property="og:url" content="([^"]*)"/) || [])[1]
+  // The SPA fallback answers with the shell, whose og:url is the map page. Only
+  // a real prerender names the detail address, so that is what distinguishes it -
+  // otherwise this reports the shell twice and claims the function was checked.
+  if (prerendered && new URL(prerendered).pathname.startsWith('/apt/')) {
+    record('prerender og:url', prerendered)
+  }
+
+  const origins = [...new Set(found.values())]
+  if (found.size < 3) {
+    throw new Error(`could not read enough absolute addresses to compare (${found.size})`)
+  }
+  if (origins.length !== 1) {
+    const detail = [...found].map(([label, origin]) => `${label} -> ${origin}`).join('; ')
+    throw new Error(`the published absolute addresses name different origins: ${detail}`)
+  }
+  process.stdout.write(
+    `PASS: ${found.size} published addresses all name ${origins[0]}`
+    + `${found.has('prerender og:url') ? ', prerender included' : ', prerender not routed here'}
+`,
+  )
+}
+
 // A crawler reads these before it reads a page. They are static files, so a
 // deploy that drops them fails quietly: the site looks fine and nothing is
 // indexed.
@@ -139,18 +211,25 @@ const assertFileServed = async (filePath, mustContain, { built = false } = {}) =
 
 try {
   await assertDeepLinkResolves('/admin/etl')
-  await assertFileServed('/robots.txt', 'Sitemap:')
+  await assertFileServed('/robots.txt', 'Sitemap:', { built: true })
   await assertFileServed('/sitemap.xml', '<sitemapindex', { built: true })
   await assertFileServed('/sitemap-schools-1.xml', '/school/', { built: true })
   await assertFileServed('/favicon.svg', '<svg')
+  await assertOriginsAgree()
 
   run(['set', 'viewport', '390', '844'])
   run(['open', baseUrl])
   // Matches a version shape rather than a literal one. A pinned version here
   // has to be edited on every release, and an assertion that needs editing to
   // keep passing is one that eventually gets edited without being read.
-  await waitFor("/v[0-9]+[.][0-9]+/.test(document.title) && document.querySelector('.quick-filter-row')", 'application shell mounted')
-  assertPage("/v[0-9]+[.][0-9]+/.test(document.title)", 'application reports a version in its title')
+  // The mount signal is the rendered UI. It used to also require a version in
+  // the document title, which is why the version was stuck there: the title is
+  // the first line of every search result, and a release number is the least
+  // useful thing that could occupy it. The version moved to a meta tag and the
+  // freshness check moved with it, so both keep their point.
+  await waitFor("document.querySelector('.quick-filter-row')", 'application shell mounted')
+  assertPage("/^[0-9]+[.][0-9]+[.][0-9]+$/.test(document.querySelector('meta[name=app-version]')?.content || '')", 'application reports its release version')
+  assertPage("!/v[0-9]+[.][0-9]+/.test(document.title)", 'the document title spends no room on a release number')
   assertPage("document.documentElement.scrollWidth === window.innerWidth", '390px layout has no horizontal overflow')
 
   // The shell's own share metadata. Pasting an address into KakaoTalk shows only

@@ -21,7 +21,16 @@
  * CommonJS and `export default` would not load.
  */
 
-const ORIGIN = 'https://elementary-lovat.vercel.app'
+/**
+ * The site's public origin, for the canonical link and og:url.
+ *
+ * This function is deployed from the repository root, so it cannot import the
+ * app's resolver at elementary-v2/scripts/site-origin.mjs. It reads the same
+ * variable and keeps the same fallback, and public-smoke.mjs asserts that what
+ * the two of them actually serve agrees, so the pair cannot drift unnoticed.
+ */
+const ORIGIN = (process.env.SITE_ORIGIN || process.env.VITE_SITE_ORIGIN
+  || 'https://elementary-lovat.vercel.app').replace(/\/+$/, '')
 const SCHOOL_KEY = /^B\d+$/i
 const APARTMENT_KEY = /^[0-9ABCDEFGHJKMNPQRSTVWXYZ]{8}$/i
 /**
