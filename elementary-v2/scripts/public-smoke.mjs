@@ -1,4 +1,5 @@
 import { spawnSync } from 'node:child_process'
+import fs from 'node:fs'
 import { fileURLToPath } from 'node:url'
 import path from 'node:path'
 
@@ -109,20 +110,38 @@ const assertDeepLinkResolves = async (deepPath) => {
 // A crawler reads these before it reads a page. They are static files, so a
 // deploy that drops them fails quietly: the site looks fine and nothing is
 // indexed.
-const assertFileServed = async (filePath, mustContain) => {
+const assertFileServed = async (filePath, mustContain, { built = false } = {}) => {
   const response = await fetch(new URL(filePath, baseUrl).toString())
   const body = response.ok ? await response.text() : ''
-  if (!response.ok || !body.includes(mustContain)) {
-    throw new Error(`${filePath} did not serve as expected (HTTP ${response.status})`)
+  if (response.ok && body.includes(mustContain)) {
+    process.stdout.write(`PASS: ${filePath} is served\n`)
+    return
   }
-  process.stdout.write(`PASS: ${filePath} is served` + '\n')
+  // The sitemaps are written by the build, so a dev server answers for them with
+  // the SPA fallback. Checking the file on disk instead keeps the assertion
+  // meaningful locally, and naming which copy was checked keeps it honest - a
+  // check that can pass without looking at anything is the failure this whole
+  // script has been bitten by more than once.
+  if (built) {
+    const onDisk = path.join(projectRoot, 'dist', filePath.replace(/^\//, ''))
+    const text = fs.existsSync(onDisk) ? fs.readFileSync(onDisk, 'utf8') : ''
+    if (text.includes(mustContain)) {
+      process.stdout.write(`PASS: ${filePath} is not served here, but dist/ holds it\n`)
+      return
+    }
+    throw new Error(
+      `${filePath} was neither served (HTTP ${response.status}) nor found in dist/. `
+      + 'Run npm run build, which generates it.',
+    )
+  }
+  throw new Error(`${filePath} did not serve as expected (HTTP ${response.status})`)
 }
 
 try {
   await assertDeepLinkResolves('/admin/etl')
   await assertFileServed('/robots.txt', 'Sitemap:')
-  await assertFileServed('/sitemap.xml', '<sitemapindex')
-  await assertFileServed('/sitemap-schools-1.xml', '/school/')
+  await assertFileServed('/sitemap.xml', '<sitemapindex', { built: true })
+  await assertFileServed('/sitemap-schools-1.xml', '/school/', { built: true })
   await assertFileServed('/favicon.svg', '<svg')
 
   run(['set', 'viewport', '390', '844'])
@@ -133,6 +152,23 @@ try {
   await waitFor("/v[0-9]+[.][0-9]+/.test(document.title) && document.querySelector('.quick-filter-row')", 'application shell mounted')
   assertPage("/v[0-9]+[.][0-9]+/.test(document.title)", 'application reports a version in its title')
   assertPage("document.documentElement.scrollWidth === window.innerWidth", '390px layout has no horizontal overflow')
+
+  // The shell's own share metadata. Pasting an address into KakaoTalk shows only
+  // what these carry, and the prerender falls back to this shell whenever it
+  // cannot reach Supabase - so an empty preview here is an empty preview for
+  // every shared link. Asserted on the shell because the dev server has no
+  // serverless function to prerender from.
+  assertPage(
+    "['og:site_name', 'og:title', 'og:description', 'og:url', 'og:type'].every((property) => document.querySelector(`meta[property=\"${property}\"]`)?.content?.trim())",
+    'the shell declares the og: tags a shared link previews with',
+  )
+  // The published regions grew from three to seventeen while this line kept
+  // naming three. A stale description is worse than a generic one, because it
+  // tells a searcher the answer is not here.
+  assertPage(
+    "!(document.querySelector('meta[name=description]')?.content || 'unset').startsWith('서울/경기/인천')",
+    'the shell description does not name a stale subset of regions',
+  )
   assertPage("document.querySelector('.quick-filter-row')?.textContent?.includes('학교') && document.querySelector('.quick-filter-row')?.textContent?.includes('아파트')", 'quick filters disclose school and apartment scope')
   await waitFor("(window.__ELEMENTARY_PERFORMANCE__ || []).some((metric) => metric.name === 'school-map-load' && metric.status === 'success' && metric.context.resultCount > 0)", 'district data loaded and measured')
 
