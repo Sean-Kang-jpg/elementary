@@ -15,7 +15,7 @@ export const ACADEMY_CATEGORIES: AcademyCategoryDefinition[] = [
   { key: 'study', label: '입시·보습', shortLabel: '입', color: '#2563eb', softColor: '#dbeafe', keywords: ['입시', '보습', '종합', '교과', '독서'] },
   { key: 'arts', label: '예능', shortLabel: '예', color: '#db2777', softColor: '#fce7f3', keywords: ['예능', '음악', '미술', '무용', '연기'] },
   { key: 'language', label: '외국어', shortLabel: '외', color: '#7c3aed', softColor: '#ede9fe', keywords: ['국제화', '외국어', '영어', '중국어', '일본어', '어학'] },
-  { key: 'sports', label: '체육', shortLabel: '체', color: '#059669', softColor: '#d1fae5', keywords: ['체육', '무도', '태권도', '수영', '스포츠'] },
+  { key: 'sports', label: '체육', shortLabel: '체', color: '#059669', softColor: '#d1fae5', keywords: ['체육', '무도', '태권도', '검도', '유도', '합기도', '복싱', '권투', '우슈', '레슬링', '수영', '스포츠'] },
   { key: 'other', label: '기타', shortLabel: '기', color: '#64748b', softColor: '#f1f5f9', keywords: [] },
 ]
 

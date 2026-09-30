@@ -1,0 +1,9 @@
+# https://elementary-lovat.vercel.app
+#
+# 학교·아파트 상세는 색인 대상이다. 관리자 화면은 아니다.
+
+User-agent: *
+Allow: /
+Disallow: /admin/
+
+Sitemap: https://elementary-lovat.vercel.app/sitemap.xml

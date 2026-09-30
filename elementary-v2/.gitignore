@@ -7,7 +7,10 @@ yarn-error.log*
 # Production builds
 dist/
 build/
-public/
+# `public/` used to be the build output directory, back when vercel.json set
+# `outputDirectory: public`. It is now Vite's static-asset folder, so it must be
+# committed: robots.txt, the sitemap's own robots reference and the favicon all
+# live there, and ignoring it means they never reach a deployment.
 
 # Environment variables (보안)
 .env

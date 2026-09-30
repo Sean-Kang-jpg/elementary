@@ -60,7 +60,7 @@ export default function ApartmentCard({ apartment, academySummary, compact = fal
           {age > 0 ? <span className={`rounded px-2 py-1 text-[11px] font-semibold ${ageState.className}`}>{ageState.label}</span> : null}
           {totalAcademies != null ? (
             <span className="inline-flex items-center gap-1 rounded bg-teal-50 px-2 py-1 text-[11px] font-semibold text-teal-800">
-              <GraduationCap size={12} aria-hidden="true" />학원 {totalAcademies.toLocaleString()}곳
+              <GraduationCap size={12} aria-hidden="true" />교육시설 {totalAcademies.toLocaleString()}곳
             </span>
           ) : !academyDataAvailable ? (
             <span className="inline-flex items-center gap-1 rounded bg-gray-100 px-2 py-1 text-[11px] font-semibold text-gray-600">

@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="배정 지도">
+  <!-- 16px에서도 형태가 남도록 굵은 면으로만 그린다. -->
+  <rect width="32" height="32" rx="7" fill="#1d4ed8"/>
+  <!-- 통학구역 안의 학교: 지도 핀 안에 건물 -->
+  <path d="M16 5c-4.4 0-8 3.5-8 7.9 0 5.5 8 14.1 8 14.1s8-8.6 8-14.1C24 8.5 20.4 5 16 5z" fill="#fff"/>
+  <path d="M16 8.6l5 3.2v5.6h-3.4v-3.3h-3.2v3.3H11v-5.6l5-3.2z" fill="#1d4ed8"/>
+</svg>
