@@ -105,8 +105,25 @@ const assertDeepLinkResolves = async (deepPath) => {
   process.stdout.write(`PASS: deep link ${deepPath} resolves to the application shell\n`)
 }
 
+
+// A crawler reads these before it reads a page. They are static files, so a
+// deploy that drops them fails quietly: the site looks fine and nothing is
+// indexed.
+const assertFileServed = async (filePath, mustContain) => {
+  const response = await fetch(new URL(filePath, baseUrl).toString())
+  const body = response.ok ? await response.text() : ''
+  if (!response.ok || !body.includes(mustContain)) {
+    throw new Error(`${filePath} did not serve as expected (HTTP ${response.status})`)
+  }
+  process.stdout.write(`PASS: ${filePath} is served` + '\n')
+}
+
 try {
   await assertDeepLinkResolves('/admin/etl')
+  await assertFileServed('/robots.txt', 'Sitemap:')
+  await assertFileServed('/sitemap.xml', '<sitemapindex')
+  await assertFileServed('/sitemap-schools-1.xml', '/school/')
+  await assertFileServed('/favicon.svg', '<svg')
 
   run(['set', 'viewport', '390', '844'])
   run(['open', baseUrl])
