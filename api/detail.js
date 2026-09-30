@@ -252,13 +252,19 @@ const inject = (shell, page) => {
     `<meta property="og:title" content="${escapeHtml(page.title)}">`,
     `<meta property="og:description" content="${escapeHtml(page.description)}">`,
     `<meta property="og:url" content="${escapeHtml(canonical)}">`,
-    '<meta property="og:type" content="website">',
+    // og:type, og:site_name and og:locale stay as the shell set them: they are
+    // the same on every page, so repeating them here would only duplicate.
   ].join('\n    ')
 
   return shell
-    // The shell's own title and description describe the map, not this page.
+    // The shell carries its own title, description, canonical and og: tags, so
+    // that the map page and any fail-open response still preview correctly when
+    // shared. They describe the map, not this page, and leaving them in would give
+    // the page two canonicals and two of each og: tag - so they come out first.
     .replace(/<title>[\s\S]*?<\/title>\s*/i, '')
-    .replace(/<meta\s+name="description"[^>]*>\s*/i, '')
+    .replace(/<meta\s+name="description"[^>]*>\s*/gi, '')
+    .replace(/<link\s+rel="canonical"[^>]*>\s*/gi, '')
+    .replace(/<meta\s+property="og:(?:title|description|url)"[^>]*>\s*/gi, '')
     .replace('</head>', `  ${head}\n  </head>`)
     .replace('<div id="root"></div>', `<div id="root">${renderBody(page)}</div>`)
 }

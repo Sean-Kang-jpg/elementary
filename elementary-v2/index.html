@@ -5,8 +5,21 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>초등학교 배정 아파트 지도 v2.3</title>
-    <meta name="description" content="서울/경기/인천 초등학교 배정 아파트 정보를 지도에서 확인하세요">
-    <meta name="keywords" content="초등학교, 아파트, 학군, 배정, 서울, 경기, 인천">
+    <meta name="description" content="전국 17개 시·도의 아파트 단지별 공식 배정 초등학교를 지도에서 확인하세요. 학급 수, 학생 수, 주차·연식·세대수 조건으로 함께 비교할 수 있습니다.">
+    <meta name="keywords" content="초등학교, 배정, 통학구역, 학군, 아파트, 이사, 학교 배정 조회">
+    <link rel="canonical" href="https://elementary-lovat.vercel.app/">
+    <!--
+      공유 미리보기용. 상세 주소에서는 api/detail.js가 이 값들을 그 페이지의
+      것으로 갈아끼운다. 여기 있는 값은 지도 첫 화면과, 함수가 실패해 셸이
+      그대로 나갈 때 쓰인다 - 그때 미리보기가 비어 보이지 않게 하는 것이 목적이다.
+    -->
+    <meta property="og:site_name" content="어디초">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="ko_KR">
+    <meta property="og:title" content="어디초 - 아파트 배정 초등학교 지도">
+    <meta property="og:description" content="전국 17개 시·도의 아파트 단지별 공식 배정 초등학교를 지도에서 확인하세요.">
+    <meta property="og:url" content="https://elementary-lovat.vercel.app/">
+    <meta name="twitter:card" content="summary">
     <script type="text/javascript" src="https://oapi.map.naver.com/openapi/v3/maps.js?ncpKeyId=8bhvq317xy"></script>
   </head>
   <body>
