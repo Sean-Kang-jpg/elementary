@@ -11,6 +11,14 @@
   },
   "rewrites": [
     {
+      "source": "/school/(.*)",
+      "destination": "/api/detail?type=school&slug=$1"
+    },
+    {
+      "source": "/apt/(.*)",
+      "destination": "/api/detail?type=apt&slug=$1"
+    },
+    {
       "source": "/(.*)",
       "destination": "/index.html"
     }
