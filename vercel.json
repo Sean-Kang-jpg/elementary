@@ -4,6 +4,11 @@
   "installCommand": "cd elementary-v2 && npm ci",
   "buildCommand": "cd elementary-v2 && npm run build",
   "outputDirectory": "elementary-v2/dist",
+  "functions": {
+    "api/detail.js": {
+      "maxDuration": 15
+    }
+  },
   "rewrites": [
     {
       "source": "/(.*)",
