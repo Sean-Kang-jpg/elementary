@@ -24,8 +24,17 @@
 const ORIGIN = 'https://elementary-lovat.vercel.app'
 const SCHOOL_KEY = /^B\d+$/i
 const APARTMENT_KEY = /^[0-9ABCDEFGHJKMNPQRSTVWXYZ]{8}$/i
-/** Well under Vercel's limit, so a slow upstream fails open instead of timing out. */
-const UPSTREAM_TIMEOUT_MS = 4000
+/**
+ * Per-request budget for one upstream call.
+ *
+ * This is a **per-call** limit, so what matters is how many calls can stack up
+ * before the function itself is killed. Vercel allows 10s by default; the first
+ * version awaited the shell, then two queries, one after another, so a cold
+ * start could spend 12s and be killed before the fail-open `catch` could run.
+ * Everything below now runs concurrently, so the worst case is one budget plus
+ * overhead rather than three.
+ */
+const UPSTREAM_TIMEOUT_MS = 6000
 
 const escapeHtml = (value) =>
   String(value == null ? '' : value)
@@ -95,20 +104,24 @@ const keyFromSlug = (slug) => {
 }
 
 const schoolPage = async (key) => {
-  const schools = await query('school_master', {
-    select: 'school_id,school_name,region,road_address,legal_address,establishment_type,'
-      + 'grade1_students,grade1_classes,grade1_per_class,total_students,reference_date',
-    school_id: `eq.${key}`,
-    limit: '1',
-  })
+  // Both reads select on the same school_id, so the second does not wait for the
+  // first. Issued together they cost one round trip instead of two - which is
+  // what keeps a cold start inside the function's own time limit.
+  const [schools, complexes] = await Promise.all([
+    query('school_master', {
+      select: 'school_id,school_name,region,road_address,legal_address,establishment_type,'
+        + 'grade1_students,grade1_classes,grade1_per_class,total_students,reference_date',
+      school_id: `eq.${key}`,
+      limit: '1',
+    }),
+    query('school_apartment_serving', {
+      select: 'canonical_complex_id,complex_name,households,complex_public_key,region,district',
+      school_id: `eq.${key}`,
+      limit: '300',
+    }),
+  ])
   const school = schools[0]
   if (!school) return null
-
-  const complexes = await query('school_apartment_serving', {
-    select: 'canonical_complex_id,complex_name,households,complex_public_key,region,district',
-    school_id: `eq.${key}`,
-    limit: '300',
-  })
   const unique = new Map()
   for (const row of complexes) {
     if (!unique.has(row.canonical_complex_id)) unique.set(row.canonical_complex_id, row)
@@ -274,11 +287,15 @@ module.exports = async (req, res) => {
     const slug = url.searchParams.get('slug') || ''
     const key = keyFromSlug(slug)
 
-    shell = await fetchShell(req)
+    // The shell is a static file and the data comes from Supabase; neither needs
+    // the other. Awaiting them in turn was what pushed the school route over the
+    // limit, where it fell back to the bare shell on every cold start.
+    let lookup = Promise.resolve(null)
+    if (type === 'school' && SCHOOL_KEY.test(key)) lookup = schoolPage(key)
+    else if (type === 'apt' && APARTMENT_KEY.test(key)) lookup = apartmentPage(key)
 
-    let page = null
-    if (type === 'school' && SCHOOL_KEY.test(key)) page = await schoolPage(key)
-    else if (type === 'apt' && APARTMENT_KEY.test(key)) page = await apartmentPage(key)
+    const [fetchedShell, page] = await Promise.all([fetchShell(req), lookup])
+    shell = fetchedShell
 
     if (!page) {
       // An address that names nothing must not be indexed as though it did.
