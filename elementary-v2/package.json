@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build && npm run sitemap",
+    "build": "tsc -b && vite build && npm run seo",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "typecheck": "tsc -b --pretty false",
@@ -13,7 +13,7 @@
     "browser:smoke": "npm run browser:smoke:public",
     "browser:smoke:public": "node scripts/public-smoke.mjs",
     "browser:smoke:admin": "agent-browser --session elementary-admin-smoke open http://localhost:3001/admin/etl && agent-browser --session elementary-admin-smoke wait --load networkidle && agent-browser --session elementary-admin-smoke snapshot -i && agent-browser --session elementary-admin-smoke close",
-    "sitemap": "node scripts/generate-sitemap.mjs"
+    "seo": "node scripts/build-seo-files.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.57.4",

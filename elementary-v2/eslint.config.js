@@ -16,6 +16,18 @@ export default [
     ],
   },
   {
+    // The build config is TypeScript too. Without this it was parsed as plain
+    // JavaScript, so any type annotation in it failed lint - which is why it had
+    // none, and why the lint error looked like a syntax error in valid code.
+    files: ['*.ts'],
+    languageOptions: {
+      parser: tsParser,
+      parserOptions: { ecmaVersion: 'latest', sourceType: 'module' },
+    },
+    plugins: { '@typescript-eslint': tsPlugin },
+    rules: { ...tsPlugin.configs.recommended.rules },
+  },
+  {
     files: ['src/**/*.{ts,tsx}'],
     languageOptions: {
       parser: tsParser,
