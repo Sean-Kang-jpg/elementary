@@ -100,6 +100,12 @@ def main():
     parser.add_argument("--maximum-radius-m", type=float, default=800)
     parser.add_argument("--complexes", type=Path, default=COMPLEXES)
     parser.add_argument("--academies", type=Path, default=None)
+    parser.add_argument(
+        "--regions",
+        nargs="+",
+        default=(),
+        help="Restrict complexes to canonical region names without creating another master file",
+    )
     parser.add_argument("--output-suffix", default="")
     parser.add_argument("--profile", type=Path, default=PROFILE)
     args = parser.parse_args()
@@ -108,6 +114,15 @@ def main():
 
     academy_path = args.academies or latest_academy_markers()
     complexes, apt_to_complex = load_complexes(args.complexes)
+    if args.regions:
+        selected_regions = set(args.regions)
+        complexes = {
+            complex_id: row
+            for complex_id, row in complexes.items()
+            if row.get("region") in selected_regions
+        }
+        if not complexes:
+            raise SystemExit(f"no apartment complexes matched regions: {sorted(selected_regions)}")
     origins = trusted_origins(complexes, apt_to_complex)
     academy_index, academy_count = load_academies(academy_path)
     academy_rows = load_academy_rows(academy_path)
@@ -217,6 +232,7 @@ def main():
             "matched_academy_addresses": academy_count,
             "complexes_path": str(args.complexes),
             "academies_path": str(academy_path),
+            "regions": list(args.regions),
         },
         "outputs": {
             "linked_academy_addresses": len(serving),
