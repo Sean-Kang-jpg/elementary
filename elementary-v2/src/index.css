@@ -382,8 +382,13 @@ body {
   transform: rotate(45deg);
 }
 
+/* Colour is the category, so the band is carried by fill and outline:
+   core is solid, extended is hollow with a dashed outline. */
 .academy-map-marker--extended {
-  opacity: 0.58;
+  border: 2px dashed var(--academy-color, #2563eb);
+  box-shadow: 0 1px 4px rgb(15 23 42 / 16%);
+  color: var(--academy-color, #2563eb);
+  background: #fff;
 }
 
 .academy-map-marker--small {
@@ -427,6 +432,13 @@ body {
   color: #fff;
   background: #2563eb;
   background-clip: padding-box;
+}
+
+.academy-map-cluster--extended {
+  border: 2px dashed #2563eb;
+  box-shadow: 0 0 0 5px rgb(37 99 235 / 10%), 0 2px 6px rgb(15 23 42 / 16%);
+  color: #1d4ed8;
+  background: #fff;
 }
 
 .academy-map-cluster strong {
@@ -523,7 +535,24 @@ body {
 }
 
 .academy-map-legend {
+  /* Under the academy toggle rather than at the bottom, where the bottom sheet covers it. */
+  top: 178px;
   z-index: var(--layer-map-ui);
+}
+
+.academy-legend-swatch {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border: 2px solid #475467;
+  border-radius: 4px 4px 4px 1px;
+  background: #475467;
+  transform: rotate(-45deg);
+}
+
+.academy-legend-swatch--extended {
+  border-style: dashed;
+  background: #fff;
 }
 
 .map-floating-alert {
@@ -553,6 +582,10 @@ body {
 
   .academy-layer-toggle {
     top: 132px;
+  }
+
+  .academy-map-legend {
+    top: 184px;
   }
 
   .map-floating-alert {
