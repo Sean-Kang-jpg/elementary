@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-20T20:58:44.522515+09:00",
+  "generated_at": "2026-10-01T23:46:55.649485+09:00",
   "endpoint": "nearby_academy_addresses",
   "radius_m": 800,
   "results": [
@@ -7,48 +7,48 @@
       "tier": "sparse",
       "canonical_complex_id": "KAPT:A10026643",
       "expected_addresses": 14,
-      "returned_addresses": 14,
-      "runs": 5,
+      "returned_addresses": 25,
+      "runs": 2,
       "latency_ms": {
-        "min": 169.3,
-        "median": 189.6,
-        "max": 911.2
+        "min": 351.8,
+        "median": 375.1,
+        "max": 398.5
       }
     },
     {
       "tier": "median",
       "canonical_complex_id": "APT:APT4146144091120030000001",
       "expected_addresses": 46,
-      "returned_addresses": 46,
-      "runs": 5,
+      "returned_addresses": 56,
+      "runs": 2,
       "latency_ms": {
-        "min": 160.7,
-        "median": 182.1,
-        "max": 305.2
+        "min": 209.3,
+        "median": 240.5,
+        "max": 271.7
       }
     },
     {
       "tier": "dense",
       "canonical_complex_id": "APT:APT1123041151020031000001",
       "expected_addresses": 100,
-      "returned_addresses": 100,
-      "runs": 5,
+      "returned_addresses": 121,
+      "runs": 2,
       "latency_ms": {
-        "min": 239.8,
-        "median": 269.5,
-        "max": 299.5
+        "min": 200.9,
+        "median": 274.9,
+        "max": 348.8
       }
     },
     {
       "tier": "maximum",
       "canonical_complex_id": "APT:APT1168041664180037000001",
       "expected_addresses": 537,
-      "returned_addresses": 537,
-      "runs": 5,
+      "returned_addresses": 567,
+      "runs": 2,
       "latency_ms": {
-        "min": 260.2,
-        "median": 345.6,
-        "max": 696.6
+        "min": 363.4,
+        "median": 572.7,
+        "max": 781.9
       }
     }
   ],
