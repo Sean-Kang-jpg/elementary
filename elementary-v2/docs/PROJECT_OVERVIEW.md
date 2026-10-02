@@ -277,7 +277,7 @@ git push origin release   →   Vercel이 자동으로 빌드하고 사이트에
 ### 배포 후 항상 확인하는 한 줄
 
 ```bash
-curl -s -o /dev/null -w "%{http_code}\n" https://elementary-lovat.vercel.app/admin/etl
+curl -s -o /dev/null -w "%{http_code}\n" https://wherecho.co.kr/admin/etl
 ```
 
 `200`이면 정상, `404`면 배포 설정이 빠진 것이다.
