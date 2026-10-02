@@ -275,8 +275,25 @@ const inject = (shell, page) => {
     .replace(/<link\s+rel="canonical"[^>]*>\s*/gi, '')
     .replace(/<meta\s+property="og:(?:title|description|url)"[^>]*>\s*/gi, '')
     .replace('</head>', `  ${head}\n  </head>`)
-    .replace('<div id="root"></div>', `<div id="root">${renderBody(page)}</div>`)
+    // The shell's #root is empty. The home page's is not - it carries the home's
+    // own prerendered content between markers - and it is what fetchShell falls
+    // back to, so a detail page must replace that content rather than append to it.
+    .replace(ROOT, `<div id="root">${renderBody(page)}</div>`)
 }
+
+/** An empty #root, or one holding the home's marked prerendered content. */
+const ROOT = /<div id="root">(?:<!--prerender:home-->[\s\S]*?<!--\/prerender:home-->)?<\/div>/
+
+/**
+ * The application shell, as a static file.
+ *
+ * `app.html` is the shell (ADR-008 section 3); `index.html` is becoming the home.
+ * The home boots the same app, so it is a working shell too - only its head and
+ * #root describe the home, and inject() replaces both. Falling back to it means a
+ * deploy that lost app.html degrades to the old behaviour instead of failing every
+ * detail page, which is the one outcome this function exists to prevent.
+ */
+const SHELL_PATHS = ['/app.html', '/index.html']
 
 const fetchShell = async (req) => {
   const host = req.headers['x-forwarded-host'] || req.headers.host
@@ -284,11 +301,15 @@ const fetchShell = async (req) => {
   const controller = new AbortController()
   const timer = setTimeout(() => controller.abort(), UPSTREAM_TIMEOUT_MS)
   try {
-    // A static file wins over a rewrite, so this returns the real shell rather
-    // than looping back into this function.
-    const response = await fetch(`${proto}://${host}/index.html`, { signal: controller.signal })
-    if (!response.ok) throw new Error(`shell -> ${response.status}`)
-    return await response.text()
+    let lastStatus = null
+    for (const shellPath of SHELL_PATHS) {
+      // A static file wins over a rewrite, so this returns the real file rather
+      // than looping back into this function.
+      const response = await fetch(`${proto}://${host}${shellPath}`, { signal: controller.signal })
+      if (response.ok) return await response.text()
+      lastStatus = response.status
+    }
+    throw new Error(`shell -> ${lastStatus}`)
   } finally {
     clearTimeout(timer)
   }
@@ -340,4 +361,4 @@ module.exports = async (req, res) => {
 }
 
 // Exported for local verification without a deployment.
-module.exports.__test = { inject, renderBody, keyFromSlug, readable, districtFromAddress }
+module.exports.__test = { inject, renderBody, keyFromSlug, readable, districtFromAddress, fetchShell }
