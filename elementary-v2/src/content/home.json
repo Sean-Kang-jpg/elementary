@@ -1,0 +1,11 @@
+{
+  "_comment": "홈 문구의 단일 출처. HomePage.tsx와 scripts/build-shell-pages.mjs(빌드 시점 정적 HTML)가 함께 읽는다. 한쪽만 고치면 크롤러와 사람이 다른 홈을 본다.",
+  "brand": "어디초",
+  "title": "우리 아파트는 어느 초등학교에 배정될까요?",
+  "lead": "학교명이나 아파트명을 검색해 공식 배정 관계를 확인하세요.",
+  "mapCardTitle": "지도에서 찾아보기",
+  "mapCardBody": "지역을 옮겨 다니며 학교와 배정 아파트를 함께 봅니다.",
+  "noteBefore": "가까운 학교가 아니라 ",
+  "noteStrong": "배정되는 학교",
+  "noteAfter": "를 보여줍니다. 공식 통학구역(학구도) 자료 기준입니다."
+}

@@ -232,7 +232,45 @@ const assertImageServed = async (filePath) => {
   process.stdout.write(`PASS: ${filePath} is served as ${type}, ${Math.round(bytes / 1024)} KB\n`)
 }
 
+/**
+ * `/` and every other app path are different files since ADR-008 section 3.
+ *
+ * `/` is the home with its content prerendered for crawlers; the rest rewrite to
+ * app.html, the shell with no canonical. A status code cannot tell these apart -
+ * during the rollout, /app.html answered 200 from the old deploy's catch-all
+ * while the file itself did not exist yet - so these look at what was served.
+ */
+const assertHomeAndShellSplit = async () => {
+  const servedHome = await (await fetch(new URL('/', baseUrl).toString())).text()
+  const builtHome = path.join(projectRoot, 'dist', 'index.html')
+  const home = servedHome.includes('<!--prerender:home-->')
+    ? { text: servedHome, from: 'served' }
+    : fs.existsSync(builtHome) ? { text: fs.readFileSync(builtHome, 'utf8'), from: 'dist/' } : null
+  if (!home || !home.text.includes('<!--prerender:home-->') || !home.text.includes('id="home-title"')) {
+    throw new Error('/ does not carry the prerendered home content')
+  }
+  if ((home.text.match(/rel="canonical"/g) || []).length !== 1) throw new Error('/ must declare exactly one canonical')
+  process.stdout.write(`PASS: / carries the prerendered home and one canonical (${home.from})\n`)
+
+  const shell = await (await fetch(new URL(`/app.html?smoke=${Date.now()}`, baseUrl).toString())).text()
+  if (/rel="canonical"/.test(shell)) {
+    // The dev server answers every path with the source index.html, canonical
+    // included. There is no separate shell to check there, and saying so beats
+    // passing a check that looked at nothing.
+    process.stdout.write('PASS: app paths are not split here (no build served), checked on deploy only\n')
+    return
+  }
+  for (const appPath of ['/map', '/favorites', '/admin/etl']) {
+    const body = await (await fetch(new URL(appPath, baseUrl).toString())).text()
+    if (/rel="canonical"/.test(body) || !body.includes('<div id="root"></div>')) {
+      throw new Error(`${appPath} is not served the app shell - it names an address or carries prerendered content`)
+    }
+  }
+  process.stdout.write('PASS: /map, /favorites and /admin/etl are served the app shell, not the home\n')
+}
+
 try {
+  await assertHomeAndShellSplit()
   await assertDeepLinkResolves('/admin/etl')
   await assertImageServed('/og-image.jpg')
   await assertFileServed('/robots.txt', 'Sitemap:', { built: true })
@@ -418,6 +456,8 @@ try {
   run(['open', baseUrl])
   await waitFor("document.querySelector('#home-title') && document.querySelector('input[role=combobox]')", 'home opened with the assignment search on top')
   assertPage("!document.querySelector('.quick-filter-row') && !document.querySelector('[aria-label=\"주변 초등학교 지도\"]')", 'the home does not build the map')
+  // The static home is replaced, not doubled, when the app mounts.
+  assertPage("document.querySelectorAll('#home-title').length === 1 && !document.documentElement.innerHTML.includes('prerender:home')", 'the app replaced the prerendered home rather than adding to it')
   run(['fill', 'input[role="combobox"]', '은마'])
   await waitFor("[...document.querySelectorAll('#map-search-results [role=option]')].some((node) => node.textContent?.includes('4,424세대'))", 'home search returned the apartment')
   run(['eval', `(() => {
