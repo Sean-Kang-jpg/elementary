@@ -163,6 +163,12 @@ const assertOriginsAgree = async () => {
   // otherwise this reports the shell twice and claims the function was checked.
   if (prerendered && new URL(prerendered).pathname.startsWith('/apt/')) {
     record('prerender og:url', prerendered)
+    // The prerender wraps a shell that may itself name an address - the home, if
+    // it falls back to index.html. Two canonicals on one page let a search engine
+    // pick either, so the page must carry exactly its own.
+    const canonicals = (detailBody.match(/rel="canonical"/g) || []).length
+    if (canonicals !== 1) throw new Error(`the prerendered detail page declares ${canonicals} canonical links, not 1`)
+    process.stdout.write('PASS: the prerendered detail page declares exactly one canonical\n')
   }
 
   const origins = [...new Set(found.values())]
