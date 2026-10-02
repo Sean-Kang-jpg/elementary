@@ -236,7 +236,9 @@ try {
   await assertOriginsAgree()
 
   run(['set', 'viewport', '390', '844'])
-  run(['open', baseUrl])
+  // The map lives at /map since the home became its own page (ADR-008). The shell
+  // checks below hold for any path, so they run here with the map flow.
+  run(['open', new URL('/map', baseUrl).toString()])
   // Matches a version shape rather than a literal one. A pinned version here
   // has to be edited on every release, and an assertion that needs editing to
   // keep passing is one that eventually gets edited without being read.
@@ -403,6 +405,34 @@ try {
   swipeSheet(400, 570, 0)
   run(['wait', '400'])
   assertPage("document.querySelector('[data-testid=bottom-sheet]')?.dataset.snapIndex === '0'", 'downward swipe at minimum did not exit to the neighborhood')
+
+  // The home is the first screen and its top is the assignment search (PRD 6.5).
+  // A pick there has to land on the detail address with the map behind it, and
+  // the map must not be built for a visitor who never leaves the home.
+  run(['open', baseUrl])
+  await waitFor("document.querySelector('#home-title') && document.querySelector('input[role=combobox]')", 'home opened with the assignment search on top')
+  assertPage("!document.querySelector('.quick-filter-row') && !document.querySelector('[aria-label=\"주변 초등학교 지도\"]')", 'the home does not build the map')
+  run(['fill', 'input[role="combobox"]', '은마'])
+  await waitFor("[...document.querySelectorAll('#map-search-results [role=option]')].some((node) => node.textContent?.includes('4,424세대'))", 'home search returned the apartment')
+  run(['eval', `(() => {
+    const result = [...document.querySelectorAll('#map-search-results [role=option]')]
+      .find((node) => node.textContent?.includes('4,424세대'))
+    result.click()
+    return 'apartment selected from home'
+  })()`])
+  await waitFor(
+    "decodeURIComponent(location.pathname) === '/apt/서울-강남구-은마--7A2EMR5J'"
+    + " && document.querySelector('[data-testid=bottom-sheet]')?.innerText.includes('배정 학교')",
+    'a home search pick moved to the apartment address and opened its detail on the map',
+  )
+  run(['eval', 'history.back(); "back"'])
+  await waitFor("location.pathname === '/' && document.querySelector('#home-title')", 'back from the detail returned to the home')
+
+  // Every screen has an address now; none may exist only as in-memory tab state.
+  run(['open', new URL('/favorites', baseUrl).toString()])
+  await waitFor("document.querySelector('#favorites-title') && document.querySelector('.app-gnb__item--active')?.getAttribute('href') === '/favorites'", '/favorites opens the favorites screen')
+  run(['open', new URL('/news', baseUrl).toString()])
+  await waitFor("document.querySelector('.app-gnb__item--active')?.getAttribute('href') === '/news'", '/news opens the news screen')
 
   const interactionErrors = JSON.parse(run(['--json', 'errors', '--clear'], { quiet: true }))
   const unexpectedErrors = interactionErrors.data.errors.filter((error) => (

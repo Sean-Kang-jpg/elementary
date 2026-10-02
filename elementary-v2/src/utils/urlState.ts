@@ -2,13 +2,15 @@ import type { Apartment, School } from '../types'
 import { findRegion } from '../constants/regionRegistry'
 
 /**
- * URL이 선택 상태를 비추게 한다.
+ * 주소와 화면을 잇는다.
  *
- * 라우터를 쓰지 않는 이유: 이 앱은 화면을 갈아끼우지 않는다. 지도 하나 위에서
- * 선택이 바뀌고 바텀시트가 열린다. 라우터는 화면 교체를 위한 도구라 이 모델과
- * 맞지 않고, 주소만 선택을 따라가면 공유와 색인에 필요한 것은 전부 충족된다.
+ * 화면은 넷이다: 홈(`/`), 지도(`/map`과 상세), 소식, 즐겨찾기. 지도 쪽에서는
+ * 여전히 주소가 선택을 비춘다 — `/map`, `/school/…`, `/apt/…`는 같은 지도 위에서
+ * 선택만 다른 같은 화면이고, 셋 사이를 오갈 때 지도 인스턴스를 다시 만들지 않는다.
+ * 라우팅 라이브러리를 쓰지 않는 이유는 ADR-008 2절이다. 경로가 몇 개뿐이고 중첩이
+ * 없는데, 라이브러리를 넣으면 이 선택 동기화를 그 위에 다시 짜야 한다.
  *
- * 주소 모양 (ADR-007):
+ * 상세 주소 모양 (ADR-007):
  *
  *     /apt/서울-강남구-은마--7A2EMR5J
  *     /school/서울-강남구-서울대현초등학교--B000002292
@@ -19,10 +21,30 @@ import { findRegion } from '../constants/regionRegistry'
  */
 
 export type Route =
+  | { kind: 'home' }
   | { kind: 'map' }
+  | { kind: 'news' }
+  | { kind: 'favorites' }
   | { kind: 'admin' }
   | { kind: 'school'; key: string }
   | { kind: 'apartment'; key: string }
+
+/** 화면 단위. 상세 두 종류는 지도 화면 위의 선택이다. */
+export type AppView = 'home' | 'map' | 'news' | 'favorites'
+
+export const viewOf = (route: Route): AppView => {
+  if (route.kind === 'school' || route.kind === 'apartment' || route.kind === 'map') return 'map'
+  if (route.kind === 'news' || route.kind === 'favorites') return route.kind
+  return 'home'
+}
+
+/** 화면마다 하나인 주소. 상세는 선택에 따라 정해지므로 여기 없다. */
+export const VIEW_PATHS: Record<AppView, string> = {
+  home: '/',
+  map: '/map',
+  news: '/news',
+  favorites: '/favorites',
+}
 
 /** 교육부 학교 표준데이터가 부여하는 형태. 파이프라인이 만들지 않는다. */
 const SCHOOL_KEY = /^B\d+$/i
@@ -70,7 +92,13 @@ export const parseRoute = (pathname: string, search = ''): Route => {
   }
 
   const segments = pathname.split('/').filter(Boolean)
-  if (segments.length !== 2) return { kind: 'map' }
+  if (segments.length === 1) {
+    if (segments[0] === 'map') return { kind: 'map' }
+    if (segments[0] === 'news') return { kind: 'news' }
+    if (segments[0] === 'favorites') return { kind: 'favorites' }
+  }
+  // 모르는 주소는 홈으로 연다. 404 화면이 없으므로 가장 쓸모 있는 착지점이다.
+  if (segments.length !== 2) return { kind: 'home' }
 
   const [prefix, slug] = segments
   const key = keyOf(slug)
@@ -81,7 +109,7 @@ export const parseRoute = (pathname: string, search = ''): Route => {
   if (prefix === 'apt' && APARTMENT_KEY.test(key)) {
     return { kind: 'apartment', key: key.toUpperCase() }
   }
-  return { kind: 'map' }
+  return { kind: 'home' }
 }
 
 export const schoolPath = (school: School): string =>
@@ -132,13 +160,15 @@ export const currentPath = (): string =>
  * 뒤로 가기를 눌렀을 때 같은 페이지의 다른 철자로 돌아가면 갇힌다. 선택이
  * 실제로 달라졌을 때만 기록을 쌓는다.
  */
-export const syncPath = (path: string | null, { push }: { push: boolean }): void => {
-  const target = path ?? '/'
-  if (window.location.pathname === target.split('?')[0]) {
+export const syncPath = (path: string, { push }: { push: boolean }): void => {
+  // 브라우저의 pathname은 퍼센트 인코딩돼 있고 우리가 만든 주소는 한글 그대로다.
+  // 같은 형태로 맞춰 비교하지 않으면 같은 주소를 기록에 거듭 쌓아, 뒤로 가기가
+  // 제자리에서 맴돈다.
+  if (window.location.pathname === new URL(path, window.location.origin).pathname) {
     setCanonical(path)
     return
   }
-  if (push) window.history.pushState({}, '', target)
-  else window.history.replaceState({}, '', target)
+  if (push) window.history.pushState({}, '', path)
+  else window.history.replaceState({}, '', path)
   setCanonical(path)
 }
