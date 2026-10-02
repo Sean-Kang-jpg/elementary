@@ -9,6 +9,13 @@
  *
  *     dist/app.html    the shell. No canonical and no og:url - it is served at
  *                      many addresses, so it cannot name one of them.
+ *     dist/index.html  the home. Keeps the canonical `/` and gets the home's
+ *                      content in #root, so a crawler that runs no JavaScript
+ *                      reads the page (ADR-008 section 4).
+ *
+ * The home content sits between `<!--prerender:home-->` markers. api/detail.js
+ * falls back to index.html when app.html is missing and replaces exactly that
+ * span; React's createRoot replaces it for a visitor.
  *
  * Runs after `vite build` and before the sitemaps. It fails the build rather than
  * writing something wrong: every detail page and every non-home path depends on
@@ -36,5 +43,34 @@ if (!shell.includes('<div id="root"></div>')) fail('the shell has no empty #root
 if (!/<script type="module"[^>]+src="\/assets\//.test(shell)) fail('the shell does not load the app bundle')
 if (/rel="canonical"/.test(shell) || /og:url/.test(shell)) fail('the shell still names an address')
 
+const escapeHtml = (value) => String(value)
+  .replace(/&/g, '&amp;')
+  .replace(/</g, '&lt;')
+  .replace(/>/g, '&gt;')
+  .replace(/"/g, '&quot;')
+
+// The same file HomePage.tsx renders from, so the crawler's home and the
+// visitor's home cannot say different things. Class names match the component
+// so the page looks the same in the moment before the app takes over.
+const copy = JSON.parse(await fs.readFile(path.join(projectRoot, 'src/content/home.json'), 'utf8'))
+const homeBody = [
+  '<section class="app-destination app-page home-page" aria-labelledby="home-title"><div class="home-page__inner">',
+  `<p class="home-page__brand">${escapeHtml(copy.brand)}</p>`,
+  `<h1 id="home-title">${escapeHtml(copy.title)}</h1>`,
+  `<p class="home-page__lead">${escapeHtml(copy.lead)}</p>`,
+  `<a href="/map" class="home-page__card"><span class="min-w-0 flex-1"><strong>${escapeHtml(copy.mapCardTitle)}</strong><small>${escapeHtml(copy.mapCardBody)}</small></span></a>`,
+  `<p class="home-page__note">${escapeHtml(copy.noteBefore)}<b>${escapeHtml(copy.noteStrong)}</b>${escapeHtml(copy.noteAfter)}</p>`,
+  '</div></section>',
+].join('')
+
+const home = built.replace(
+  '<div id="root"></div>',
+  `<div id="root"><!--prerender:home-->${homeBody}<!--/prerender:home--></div>`,
+)
+if (!home.includes('<!--prerender:home-->')) fail('the home content was not placed in #root')
+if (!/<link rel="canonical" href="[^"]+\/">/.test(home)) fail('the home lost its canonical')
+
 await fs.writeFile(path.join(outDir, 'app.html'), shell, 'utf8')
+await fs.writeFile(path.join(outDir, 'index.html'), home, 'utf8')
 process.stdout.write('shell       dist/app.html (no canonical, no og:url)\n')
+process.stdout.write('home        dist/index.html (prerendered home content)\n')
