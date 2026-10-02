@@ -11,7 +11,7 @@
 - Stack: React 18, TypeScript, Vite, Tailwind CSS, Supabase, Naver Maps
 - Branch: `master`
 - Last pushed baseline: `d3e29f1` (`Make ETL portability baseline platform-independent`)
-- Production: `https://elementary-lovat.vercel.app`
+- Production: `https://wherecho.co.kr` (옛 주소 `elementary-lovat.vercel.app`은 301로 넘어온다)
 - Supabase project ref: `vsgeksumgvcrkzjwvlgs`
 
 세션 시작 시 아래부터 확인한다.

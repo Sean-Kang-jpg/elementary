@@ -16,7 +16,7 @@
  * the two of them actually serve agrees - a check beats a promise.
  */
 
-const FALLBACK = 'https://elementary-lovat.vercel.app'
+const FALLBACK = 'https://wherecho.co.kr'
 
 export const siteOrigin = () =>
   (process.env.SITE_ORIGIN || process.env.VITE_SITE_ORIGIN || FALLBACK).replace(/\/+$/, '')

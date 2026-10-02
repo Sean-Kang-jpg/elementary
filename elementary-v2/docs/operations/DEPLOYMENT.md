@@ -35,7 +35,7 @@ Owner: Operations
 방식과 무관하게 **배포할 때마다** 이것부터 확인한다.
 
 ```bash
-curl -s -o /dev/null -w "%{http_code}\n" https://elementary-lovat.vercel.app/admin/etl
+curl -s -o /dev/null -w "%{http_code}\n" https://wherecho.co.kr/admin/etl
 ```
 
 - `200` → 정상
@@ -45,7 +45,7 @@ curl -s -o /dev/null -w "%{http_code}\n" https://elementary-lovat.vercel.app/adm
 전체 검증은 다음 한 줄이며, 위 검사를 포함한다.
 
 ```bash
-npm run browser:smoke:public -- https://elementary-lovat.vercel.app
+npm run browser:smoke:public -- https://wherecho.co.kr
 ```
 
 > 이 검사가 왜 필요한가: I-27 당시 첫 화면은 정상이었고 아무도 이상을 느끼지
@@ -205,7 +205,7 @@ git push                  # 이 push가 곧 운영 배포다
 `elementary-xxxxx-….vercel.app` 형태의 **무작위 미리보기 주소**가 생기는데, 그
 주소는 등록돼 있지 않아 **미리보기에서 지도가 뜨지 않는다.**
 
-- 운영 주소 `elementary-lovat.vercel.app`은 등록돼 있으므로 실제 사이트는
+- 운영 주소 `wherecho.co.kr`(과 www)은 등록돼 있으므로 실제 사이트는
   영향 없다
 - 같은 성격의 제약이 이미 [I-08](OPERATION_PLAN.md)로 기록돼 있다
   (`localhost`는 허용, `127.0.0.1`은 아님)
@@ -226,7 +226,8 @@ git push                  # 이 push가 곧 운영 배포다
 
 ## 7. 도메인을 바꿀 때
 
-> **확정 도메인: `wherecho.co.kr`** (2026-10-01). 같은 날 DNS 조회 결과 아직 등록 전이다.
+> **2026-10-02 이전 완료. 운영 주소는 `https://wherecho.co.kr`이다.** 아래 순서 1~7을
+> 모두 마쳤고, 무엇이 어디에 설정돼 있는지는 7.1절에 적었다.
 > 아래 순서에서 **3번(`SITE_ORIGIN`)은 도메인이 Vercel에 연결되고 HTTPS로 응답한 뒤에만**
 > 한다. 먼저 바꾸면 모든 canonical·사이트맵이 응답하지 않는 주소를 가리킨다.
 > 공유 이미지(`public/og-image.jpg`)에도 이 도메인이 찍혀 있으므로, 도메인이 다시
@@ -272,6 +273,30 @@ git push                  # 이 push가 곧 운영 배포다
 반대로 **손댈 필요가 없는 것**도 적어둔다. 공유 버튼과 클라이언트 canonical은
 `window.location.origin`을 읽으므로 도메인을 자동으로 따라간다. 관리자 로그인은
 `signInWithPassword`라서 Supabase redirect 허용목록과 무관하다.
+
+### 7.1 현재 구성 — wherecho.co.kr
+
+**리다이렉트 두 개는 코드가 아니라 Vercel 설정에 있다.** `vercel.json`을 읽어서는
+보이지 않으므로 여기 적어 둔다.
+
+| 무엇 | 어디에 | 값 |
+| --- | --- | --- |
+| 도메인 등록·DNS | 가비아 (네임서버 `ns.gabia.co.kr`) | 루트 A `216.198.79.1`, `www` CNAME → Vercel이 지정한 값 |
+| `www` → 루트 | Vercel Domains | 308 |
+| 옛 주소 `elementary-lovat.vercel.app` → 새 주소 | Vercel Domains | 301, 경로 유지 |
+| `SITE_ORIGIN` | Vercel 환경변수 (Production·Preview) | `https://wherecho.co.kr` |
+| 지도 허용 도메인 | 네이버 클라우드 Maps Application | 루트와 `www` |
+| 검색엔진 | Search Console(도메인 속성, 가비아 TXT 인증)·네이버 서치어드바이저(`public/`의 HTML 파일 인증) | `sitemap.xml` 제출 완료 |
+
+`SITE_ORIGIN`이 없을 때의 기본값(`scripts/site-origin.mjs`, `api/detail.js`)도 새
+주소로 바꿨다. 옛 주소는 이제 301만 돌려주므로 기본값으로 둘 이유가 없다.
+
+**옛 주소로 검증하지 않는다.** 1절의 `curl`을 옛 주소로 돌리면 `301`이 나와서, 멀쩡한
+배포를 깨진 것으로 읽게 된다.
+
+**robots.txt에 네이버 전용 블록을 넣지 않는다.** 서치어드바이저가 `User-agent: Yeti`
+블록 생성을 권하지만, 검색로봇은 자기 이름의 블록이 있으면 `*` 블록을 무시한다. 그
+블록만 넣으면 네이버에게 `/admin/` 차단이 풀린다. `*`가 이미 Yeti를 포함한다.
 
 ## 8. 되돌리기
 

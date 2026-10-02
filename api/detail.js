@@ -30,7 +30,7 @@
  * the two of them actually serve agrees, so the pair cannot drift unnoticed.
  */
 const ORIGIN = (process.env.SITE_ORIGIN || process.env.VITE_SITE_ORIGIN
-  || 'https://elementary-lovat.vercel.app').replace(/\/+$/, '')
+  || 'https://wherecho.co.kr').replace(/\/+$/, '')
 const SCHOOL_KEY = /^B\d+$/i
 const APARTMENT_KEY = /^[0-9ABCDEFGHJKMNPQRSTVWXYZ]{8}$/i
 /**
