@@ -1,6 +1,5 @@
 import { lazy, Suspense, useCallback, useEffect, useRef, useState } from 'react'
 import MainLayout from './components/layout/MainLayout'
-import type { AppTab } from './components/layout/BottomNavigation'
 import FilterPanel from './components/filters/FilterPanel'
 import MapContainer from './components/map/MapContainer'
 import MapErrorBoundary from './components/map/MapErrorBoundary'
@@ -8,6 +7,7 @@ import SchoolDetail from './components/school/SchoolDetail'
 import { useAppContext } from './contexts/AppContext'
 import { testSupabaseConnection } from './lib/supabase'
 import FavoritesPage from './components/navigation/FavoritesPage'
+import HomePage from './components/navigation/HomePage'
 import NewsPage from './components/navigation/NewsPage'
 import { getApartmentByPublicKey, getSchoolDetail } from './services/dataService'
 import type { FavoriteRecord } from './utils/favorites'
@@ -17,6 +17,9 @@ import {
   schoolPath,
   setCanonical,
   syncPath,
+  VIEW_PATHS,
+  viewOf,
+  type AppView,
   type Route,
 } from './utils/urlState'
 
@@ -30,7 +33,11 @@ function MapApplication() {
   const [connectionStatus, setConnectionStatus] = useState<ConnectionStatus>({
     supabase: 'connecting'
   })
-  const [activeTab, setActiveTab] = useState<AppTab>('map')
+  // 화면은 주소에서 나온다. 탭 상태를 따로 두면 주소와 화면이 갈라진다.
+  const [view, setView] = useState<AppView>(() => viewOf(parseRoute(window.location.pathname, window.location.search)))
+  // 지도는 처음 필요할 때 만들고, 그 뒤로는 다른 화면 아래에 둔 채 유지한다.
+  // 지도 인스턴스와 마커는 React 바깥에서 관리되므로 다시 만드는 비용이 크다.
+  const [mapMounted, setMapMounted] = useState(view === 'map')
   // 주소를 읽어 선택을 복원하는 동안에는 선택을 보고 주소를 쓰면 안 된다.
   // 그러지 않으면 복원 도중의 중간 상태가 기록으로 쌓인다.
   const restoring = useRef(false)
@@ -38,8 +45,9 @@ function MapApplication() {
   const applyRoute = useCallback(async (route: Route) => {
     restoring.current = true
     try {
-      // admin은 App이 따로 분기하므로 여기까지 오지 않는다.
-      if (route.kind === 'map' || route.kind === 'admin') {
+      // 상세가 아닌 주소는 선택이 없는 상태다. admin은 App이 따로 분기하므로
+      // 여기까지 오지 않는다.
+      if (route.kind !== 'school' && route.kind !== 'apartment') {
         dispatch({ type: 'SET_SELECTED_APARTMENT', payload: null })
         dispatch({ type: 'SET_SELECTED_SCHOOL', payload: null })
         return
@@ -66,28 +74,45 @@ function MapApplication() {
     }
   }, [dispatch])
 
-  // 처음 열렸을 때, 그리고 뒤로 가기마다 주소를 선택으로 되돌린다.
+  // 처음 열렸을 때, 그리고 뒤로 가기마다 주소를 화면과 선택으로 되돌린다.
   useEffect(() => {
-    void applyRoute(parseRoute(window.location.pathname, window.location.search))
-    const onPopState = () => {
-      void applyRoute(parseRoute(window.location.pathname, window.location.search))
+    const restore = () => {
+      const route = parseRoute(window.location.pathname, window.location.search)
+      setView(viewOf(route))
+      void applyRoute(route)
     }
-    window.addEventListener('popstate', onPopState)
-    return () => window.removeEventListener('popstate', onPopState)
+    restore()
+    window.addEventListener('popstate', restore)
+    return () => window.removeEventListener('popstate', restore)
   }, [applyRoute])
 
-  // 선택이 바뀌면 주소가 따라간다. 아파트가 학교보다 구체적이므로 먼저 본다.
   useEffect(() => {
-    if (restoring.current || activeTab !== 'map') return
-    const apartment = state.selectedApartment ? apartmentPath(state.selectedApartment) : null
-    const path = apartment ?? (state.selectedSchool ? schoolPath(state.selectedSchool) : null)
-    syncPath(path, { push: true })
-  }, [activeTab, state.selectedApartment, state.selectedSchool])
+    if (view === 'map') setMapMounted(true)
+  }, [view])
 
-  // 지도 화면 자체는 색인 대상이 아니다. 목록만 무한히 색인되게 두지 않는다.
+  // 선택이 바뀌면 주소가 따라간다. 아파트가 학교보다 구체적이므로 먼저 본다.
+  // 홈에서 검색 결과를 고른 경우도 여기서 상세로 넘어간다 — 홈의 검색창은
+  // 지도 쪽과 같은 선택을 바꾸기 때문이다.
   useEffect(() => {
-    if (!state.selectedApartment && !state.selectedSchool) setCanonical('/')
-  }, [state.selectedApartment, state.selectedSchool])
+    if (restoring.current) return
+    const apartment = state.selectedApartment ? apartmentPath(state.selectedApartment) : null
+    const detail = apartment ?? (state.selectedSchool ? schoolPath(state.selectedSchool) : null)
+    if (view === 'map') {
+      syncPath(detail ?? VIEW_PATHS.map, { push: true })
+      return
+    }
+    if (view === 'home' && detail) {
+      syncPath(detail, { push: true })
+      setView('map')
+    }
+  }, [view, state.selectedApartment, state.selectedSchool])
+
+  // 지도 쪽 canonical은 syncPath가 맞춘다. 홈은 `/`이고, 소식·즐겨찾기는
+  // 기기마다 다른 화면이라 색인 대상이 아니다.
+  useEffect(() => {
+    if (view === 'home') setCanonical(VIEW_PATHS.home)
+    else if (view !== 'map') setCanonical(null)
+  }, [view])
 
   // 선택된 학교 상세 정보 바텀시트 상태
   const handleCloseSchoolDetail = () => {
@@ -97,12 +122,13 @@ function MapApplication() {
     })
   }
 
-  const handleTabChange = (tab: AppTab) => {
-    if (tab !== 'map') {
-      if (state.ui.sidebar_open) dispatch({ type: 'TOGGLE_SIDEBAR' })
-      dispatch({ type: 'SET_SELECTED_SCHOOL', payload: null })
-    }
-    setActiveTab(tab)
+  const navigate = (path: string) => {
+    const route = parseRoute(path)
+    const next = viewOf(route)
+    if (next !== 'map' && state.ui.sidebar_open) dispatch({ type: 'TOGGLE_SIDEBAR' })
+    if (window.location.pathname !== path) window.history.pushState({}, '', path)
+    setView(next)
+    void applyRoute(route)
   }
 
   const handleOpenFavorite = async (favorite: FavoriteRecord) => {
@@ -112,7 +138,8 @@ function MapApplication() {
       if (!school) return
       dispatch({ type: 'SET_MAP_STATE', payload: { center: { lat: favorite.latitude || school.latitude, lng: favorite.longitude || school.longitude }, zoom: 14 } })
       dispatch({ type: 'SET_SELECTED_SCHOOL', payload: school })
-      setActiveTab('map')
+      // 주소는 선택을 따라가는 효과가 학교 상세로 옮긴다.
+      setView('map')
     } catch (error) {
       console.error('Failed to open favorite:', error)
     }
@@ -133,13 +160,16 @@ function MapApplication() {
   }, [])
 
   return (
-    <MainLayout sidebar={<FilterPanel />} activeTab={activeTab} onTabChange={handleTabChange}>
-      <MapErrorBoundary>
-        <MapContainer className="h-full w-full" />
-      </MapErrorBoundary>
+    <MainLayout sidebar={<FilterPanel />} activeView={view} onNavigate={navigate}>
+      {mapMounted && (
+        <MapErrorBoundary>
+          <MapContainer className="h-full w-full" />
+        </MapErrorBoundary>
+      )}
 
-      {activeTab === 'news' && <NewsPage />}
-      {activeTab === 'favorites' && <FavoritesPage onOpen={handleOpenFavorite} />}
+      {view === 'home' && <HomePage onNavigate={navigate} />}
+      {view === 'news' && <NewsPage />}
+      {view === 'favorites' && <FavoritesPage onOpen={handleOpenFavorite} />}
       
       {connectionStatus.supabase === 'error' && (
         <div className="absolute top-4 right-4 z-10 max-w-xs">
@@ -166,7 +196,7 @@ function MapApplication() {
       {/* 학교 상세 정보 바텀시트 */}
       <SchoolDetail
         school={state.selectedSchool}
-        isOpen={activeTab === 'map' && !!state.selectedSchool}
+        isOpen={view === 'map' && !!state.selectedSchool}
         onClose={handleCloseSchoolDetail}
       />
     </MainLayout>
