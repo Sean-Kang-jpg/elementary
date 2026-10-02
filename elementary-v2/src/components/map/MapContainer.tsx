@@ -7,6 +7,7 @@ import AcademyMarkerManager from './AcademyMarkerManager'
 import '../../types/naver-maps.d.ts'
 import { ACADEMY_DATA_PENDING_LABEL, hasAcademyData } from '../../utils/academyCoverage'
 import type { AcademyCategoryKey } from '../../utils/academyCategories'
+import { loadNaverMaps } from '../../utils/naverMapsLoader'
 
 interface MapContainerProps {
   className?: string
@@ -14,8 +15,8 @@ interface MapContainerProps {
 
 const DEFAULT_CENTER = { lat: 37.5665, lng: 126.9780 }
 
-// The SDK is loaded by a plain script tag in index.html, so the only way to
-// know it arrived is to look for it. Polling has to give up eventually: a
+// The SDK is injected by loadNaverMaps() when this component mounts, and the
+// only way to know it is usable is to look for it. Polling has to give up eventually: a
 // blocked, failed or unauthorized script never defines `window.naver`, and
 // without a deadline the map sits on its spinner forever instead of showing
 // the error state below.
@@ -179,6 +180,9 @@ const MapContainer: React.FC<MapContainerProps> = ({ className = '' }) => {
       cleanupTimerRef.current = null
     }
     let pollTimer: number | null = null
+    // Starts the download; readiness is still decided by the polling below, so a
+    // failed or blocked script ends in the same timed error state as before.
+    loadNaverMaps().catch((error) => console.error(error))
     const giveUpAt = Date.now() + MAPS_READY_TIMEOUT_MS
     const checkNaverMaps = () => {
       pollTimer = null

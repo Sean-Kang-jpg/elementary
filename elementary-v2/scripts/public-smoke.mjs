@@ -250,6 +250,7 @@ const assertHomeAndShellSplit = async () => {
     throw new Error('/ does not carry the prerendered home content')
   }
   if ((home.text.match(/rel="canonical"/g) || []).length !== 1) throw new Error('/ must declare exactly one canonical')
+  if (home.text.includes('oapi.map.naver.com')) throw new Error('/ still loads the Naver Maps SDK in its HTML')
   process.stdout.write(`PASS: / carries the prerendered home and one canonical (${home.from})\n`)
 
   const shell = await (await fetch(new URL(`/app.html?smoke=${Date.now()}`, baseUrl).toString())).text()
@@ -301,8 +302,14 @@ try {
   // cannot reach Supabase - so an empty preview here is an empty preview for
   // every shared link. Asserted on the shell because the dev server has no
   // serverless function to prerender from.
+  //
+  // og:url is deliberately not required. The shell (app.html, ADR-008 section 3)
+  // is served at many addresses, so it cannot name one: when the prerender fails
+  // open, a shared detail link would advertise the home. Without og:url a
+  // previewer uses the address it fetched. The dev server serves the source
+  // index.html, which still has one, so this cannot assert its absence locally.
   assertPage(
-    "['og:site_name', 'og:title', 'og:description', 'og:url', 'og:type', 'og:image'].every((property) => document.querySelector(`meta[property=\"${property}\"]`)?.content?.trim())",
+    "['og:site_name', 'og:title', 'og:description', 'og:type', 'og:image'].every((property) => document.querySelector(`meta[property=\"${property}\"]`)?.content?.trim())",
     'the shell declares the og: tags a shared link previews with',
   )
   // The published regions grew from three to seventeen while this line kept
@@ -456,6 +463,9 @@ try {
   run(['open', baseUrl])
   await waitFor("document.querySelector('#home-title') && document.querySelector('input[role=combobox]')", 'home opened with the assignment search on top')
   assertPage("!document.querySelector('.quick-filter-row') && !document.querySelector('[aria-label=\"주변 초등학교 지도\"]')", 'the home does not build the map')
+  // The SDK is injected only when a map screen opens (ADR-008 section 5); the
+  // home is where most first visits that are not detail pages land.
+  assertPage("!document.querySelector('script[src*=oapi]')", 'the home does not load the Naver Maps SDK')
   // The static home is replaced, not doubled, when the app mounts.
   assertPage("document.querySelectorAll('#home-title').length === 1 && !document.documentElement.innerHTML.includes('prerender:home')", 'the app replaced the prerendered home rather than adding to it')
   run(['fill', 'input[role="combobox"]', '은마'])
