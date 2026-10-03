@@ -13,6 +13,7 @@ import { isFavorite as checkFavorite, schoolFavorite, toggleFavorite as toggleSa
 import { recordPerformanceMetric } from '../../utils/performanceMetrics'
 import type { AcademyAddress, ApartmentAcademySummary } from '../../types'
 import ShareButton from '../ui/ShareButton'
+import StartModule from '../content/StartModule'
 import { markEntry, track } from '../../utils/analytics'
 import { schoolPath } from '../../utils/urlState'
 import { hasAcademyData } from '../../utils/academyCoverage'
@@ -21,11 +22,13 @@ interface SchoolDetailProps {
   school: School | null
   isOpen: boolean
   onClose: () => void
+  /** Opens a guide from the start module; leaves the map for the guide screen. */
+  onOpenGuide: (path: string) => void
 }
 
 type SchoolMetric = 'students' | 'classes' | 'perClass'
 
-const SchoolDetail: React.FC<SchoolDetailProps> = ({ school, isOpen, onClose }) => {
+const SchoolDetail: React.FC<SchoolDetailProps> = ({ school, isOpen, onClose, onOpenGuide }) => {
   const { state, dispatch } = useAppContext()
   const apartments = useMemo(
     () => [...state.apartments].sort((a, b) => b.households - a.households || a.name.localeCompare(b.name, 'ko')),
@@ -302,6 +305,8 @@ const SchoolDetail: React.FC<SchoolDetailProps> = ({ school, isOpen, onClose }) 
               ))}
             </div>
           </section>
+
+          <StartModule school={school} onOpenGuide={onOpenGuide} />
 
           <section aria-labelledby="grade-title">
             <h3 id="grade-title" className="mb-2 font-semibold text-gray-950">학년별 학생 현황</h3>

@@ -26,7 +26,7 @@ const PRODUCTION_HOSTS = new Set(['wherecho.co.kr'])
  * `guides` and `nav` were added with the guides (section 8): the home's guide links,
  * the guide list, and the bottom navigation.
  */
-export type EntrySource = 'map' | 'search' | 'link' | 'related' | 'favorites' | 'home' | 'guides' | 'nav'
+export type EntrySource = 'map' | 'search' | 'link' | 'related' | 'favorites' | 'home' | 'guides' | 'nav' | 'detail'
 
 type Params = Record<string, string | number | undefined>
 
@@ -124,6 +124,15 @@ export const takeEntry = (fallback: EntrySource = 'map'): EntrySource => {
   pendingEntry = null
   return mark && Date.now() - mark.at < ENTRY_MARK_TTL_MS ? mark.source : fallback
 }
+
+let detailEntry: EntrySource | null = null
+
+/** Remembered when a detail view is recorded, so actions inside it can say how it was reached. */
+export const rememberDetailEntry = (source: EntrySource): void => {
+  detailEntry = source
+}
+
+export const currentDetailEntry = (): EntrySource | null => detailEntry
 
 /** The key after the last `--` in a detail path: a school_id or a complex public key. */
 export const itemOfPath = (path: string): { item_type: 'school' | 'apartment'; item_id: string } | null => {
