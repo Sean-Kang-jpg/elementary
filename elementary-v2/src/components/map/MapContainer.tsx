@@ -13,7 +13,6 @@ interface MapContainerProps {
   className?: string
 }
 
-const DEFAULT_CENTER = { lat: 37.5665, lng: 126.9780 }
 
 // The SDK is injected by loadNaverMaps() when this component mounts, and the
 // only way to know it is usable is to look for it. Polling has to give up eventually: a
@@ -37,6 +36,13 @@ const MapContainer: React.FC<MapContainerProps> = ({ className = '' }) => {
   const [academyCount, setAcademyCount] = useState<number | null>(null)
   const [academyCategory, setAcademyCategory] = useState<AcademyCategoryKey | null>(null)
   const { state, dispatch } = useAppContext()
+  // The map is built from the viewport already in state, not from a fixed default.
+  // The SDK now loads after mount (ADR-008 section 5), so a linked school or complex
+  // has usually set the viewport before the map exists; building at the default and
+  // then reporting it back, as initializeMap does, would overwrite that viewport
+  // and open a shared school link on a city-wide view.
+  const viewportRef = useRef(state.map)
+  viewportRef.current = state.map
   const selectedAcademyRegion = state.selectedApartment?.city || state.selectedSchool?.region
   const academyDataAvailable = hasAcademyData(selectedAcademyRegion)
 
@@ -84,9 +90,10 @@ const MapContainer: React.FC<MapContainerProps> = ({ className = '' }) => {
     }
 
     try {
+      const initial = viewportRef.current
       const map = new window.naver.maps.Map(mapRef.current, {
-        center: new window.naver.maps.LatLng(DEFAULT_CENTER.lat, DEFAULT_CENTER.lng),
-        zoom: 11,
+        center: new window.naver.maps.LatLng(initial.center.lat, initial.center.lng),
+        zoom: initial.zoom,
         minZoom: 8,
         maxZoom: 18,
         zoomControl: window.matchMedia('(min-width: 640px)').matches,
