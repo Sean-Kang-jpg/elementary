@@ -204,6 +204,8 @@ export interface AcademyAddress {
     name: string
     type: string
     realm: string
+    /** Name-derived categories from the ETL (etl/academy_subjects.py). Absent on rows published before it. */
+    subjects?: string[]
   }>
   top_subjects: string
   straight_distance_m: number

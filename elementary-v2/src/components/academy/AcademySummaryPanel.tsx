@@ -1,4 +1,4 @@
-import { BookOpen, Dumbbell, GraduationCap, Languages, Map, Palette, Shapes } from 'lucide-react'
+import { BookOpen, Calculator, Code, Dumbbell, FlaskConical, Globe, GraduationCap, Languages, Map, Palette, PenLine, Shapes } from 'lucide-react'
 import { useMemo, useState } from 'react'
 import type { AcademyAddress } from '../../types'
 import { ACADEMY_CATEGORIES, getAcademyCategoryCounts, type AcademyCategoryKey } from '../../utils/academyCategories'
@@ -12,9 +12,14 @@ interface AcademySummaryPanelProps {
 }
 
 const CATEGORY_ICONS = {
+  english: Languages,
+  math: Calculator,
+  writing: PenLine,
+  science: FlaskConical,
+  coding: Code,
   study: BookOpen,
+  language: Globe,
   arts: Palette,
-  language: Languages,
   sports: Dumbbell,
   other: Shapes,
 } as const
@@ -70,6 +75,7 @@ export default function AcademySummaryPanel({ academies, loading = false, error 
       {summary.categories.length ? (
         <section aria-labelledby="academy-category-title">
           <h3 id="academy-category-title" className="mb-2 font-semibold text-gray-950">분야별 분포 <span className="text-xs font-normal text-gray-500">· 선택하여 지도 강조</span></h3>
+          <p className="mb-2 text-[11px] leading-4 text-gray-500">분야는 학원 이름으로 나눴어요. 영어·수학을 함께 가르치는 곳은 두 분야에 모두 셉니다.</p>
           <div className="space-y-1">
             {summary.categories.map(({ key, label, count, color, softColor }) => {
               const Icon = CATEGORY_ICONS[key]

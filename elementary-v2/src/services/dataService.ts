@@ -731,7 +731,9 @@ export const getAcademiesNearApartment = async (canonicalComplexId: string): Pro
     institutions: Array.isArray(row.institutions)
       ? row.institutions.map((institution) => {
         const item = institution as Record<string, unknown>
-        return { name: String(item.name || ''), type: String(item.type || ''), realm: String(item.realm || '') }
+        // subjects: the ETL's name-derived categories (etl/academy_subjects.py).
+        const subjects = Array.isArray(item.subjects) ? item.subjects.filter((value): value is string => typeof value === 'string') : undefined
+        return { name: String(item.name || ''), type: String(item.type || ''), realm: String(item.realm || ''), subjects }
       })
       : [],
     top_subjects: String(row.top_subjects || ''),
@@ -755,7 +757,9 @@ const toAcademyAddress = (row: Record<string, unknown>): AcademyAddress => ({
   institutions: Array.isArray(row.institutions)
     ? row.institutions.map((institution) => {
       const item = institution as Record<string, unknown>
-      return { name: String(item.name || ''), type: String(item.type || ''), realm: String(item.realm || '') }
+      // subjects: the ETL's name-derived categories (etl/academy_subjects.py).
+        const subjects = Array.isArray(item.subjects) ? item.subjects.filter((value): value is string => typeof value === 'string') : undefined
+        return { name: String(item.name || ''), type: String(item.type || ''), realm: String(item.realm || ''), subjects }
     })
     : [],
   top_subjects: String(row.top_subjects || ''),

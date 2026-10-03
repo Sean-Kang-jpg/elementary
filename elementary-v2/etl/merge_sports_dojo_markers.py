@@ -61,6 +61,7 @@ def dojo_marker(row: dict[str, Any], source_name: str) -> dict[str, Any]:
             "name": row["institution_name"],
             "type": "체육도장업",
             "realm": row["sport_type"],
+            "subjects": ["sports"],
         }],
         "top_subjects": row["sport_type"],
         "source_snapshot": source_name,
