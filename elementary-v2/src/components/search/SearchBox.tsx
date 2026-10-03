@@ -3,6 +3,7 @@ import React, { Fragment, useCallback, useEffect, useRef, useState } from 'react
 import type { School, SearchResult } from '../../types'
 import { getSchoolDetail, searchMapEntities } from '../../services/dataService'
 import { useAppContext } from '../../contexts/AppContext'
+import { markEntry, track } from '../../utils/analytics'
 
 interface SearchBoxProps {
   onSchoolSelect?: (school: School) => void
@@ -70,6 +71,8 @@ const SearchBox: React.FC<SearchBoxProps> = ({
       try {
         const searchResults = await searchMapEntities(term)
         if (requestVersion.current !== version) return
+        // 학교와 아파트를 한 번에 찾는 통합 검색이라 범위는 하나다.
+        track('search', { search_term: term, search_scope: 'unified', result_count: searchResults.length })
         setResults(searchResults)
         setSelectedIndex(-1)
       } catch (reason) {
@@ -96,6 +99,13 @@ const SearchBox: React.FC<SearchBoxProps> = ({
   }
 
   const handleResultSelect = async (result: SearchResult) => {
+    const rank = results.indexOf(result)
+    track('select_search_result', {
+      result_type: result.type,
+      // 결과 목록이 아니라 최근 검색 기록에서 고른 경우 순위가 없다.
+      result_rank: rank >= 0 ? rank + 1 : undefined,
+    })
+    markEntry('search')
     if (result.type === 'school' && result.school) {
       const school = result.school
       if (school.latitude && school.longitude) {

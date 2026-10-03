@@ -60,6 +60,7 @@ const homeBody = [
   `<p class="home-page__lead">${escapeHtml(copy.lead)}</p>`,
   `<a href="/map" class="home-page__card"><span class="min-w-0 flex-1"><strong>${escapeHtml(copy.mapCardTitle)}</strong><small>${escapeHtml(copy.mapCardBody)}</small></span></a>`,
   `<p class="home-page__note">${escapeHtml(copy.noteBefore)}<b>${escapeHtml(copy.noteStrong)}</b>${escapeHtml(copy.noteAfter)}</p>`,
+  '<footer class="home-page__footer"><a href="/privacy">개인정보처리방침</a></footer>',
   '</div></section>',
 ].join('')
 

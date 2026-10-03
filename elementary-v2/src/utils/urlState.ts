@@ -4,7 +4,7 @@ import { findRegion } from '../constants/regionRegistry'
 /**
  * 주소와 화면을 잇는다.
  *
- * 화면은 넷이다: 홈(`/`), 지도(`/map`과 상세), 소식, 즐겨찾기. 지도 쪽에서는
+ * 화면은 다섯이다: 홈(`/`), 지도(`/map`과 상세), 소식, 즐겨찾기, 개인정보처리방침. 지도 쪽에서는
  * 여전히 주소가 선택을 비춘다 — `/map`, `/school/…`, `/apt/…`는 같은 지도 위에서
  * 선택만 다른 같은 화면이고, 셋 사이를 오갈 때 지도 인스턴스를 다시 만들지 않는다.
  * 라우팅 라이브러리를 쓰지 않는 이유는 ADR-008 2절이다. 경로가 몇 개뿐이고 중첩이
@@ -25,16 +25,17 @@ export type Route =
   | { kind: 'map' }
   | { kind: 'news' }
   | { kind: 'favorites' }
+  | { kind: 'privacy' }
   | { kind: 'admin' }
   | { kind: 'school'; key: string }
   | { kind: 'apartment'; key: string }
 
 /** 화면 단위. 상세 두 종류는 지도 화면 위의 선택이다. */
-export type AppView = 'home' | 'map' | 'news' | 'favorites'
+export type AppView = 'home' | 'map' | 'news' | 'favorites' | 'privacy'
 
 export const viewOf = (route: Route): AppView => {
   if (route.kind === 'school' || route.kind === 'apartment' || route.kind === 'map') return 'map'
-  if (route.kind === 'news' || route.kind === 'favorites') return route.kind
+  if (route.kind === 'news' || route.kind === 'favorites' || route.kind === 'privacy') return route.kind
   return 'home'
 }
 
@@ -44,6 +45,7 @@ export const VIEW_PATHS: Record<AppView, string> = {
   map: '/map',
   news: '/news',
   favorites: '/favorites',
+  privacy: '/privacy',
 }
 
 /** 교육부 학교 표준데이터가 부여하는 형태. 파이프라인이 만들지 않는다. */
@@ -96,6 +98,7 @@ export const parseRoute = (pathname: string, search = ''): Route => {
     if (segments[0] === 'map') return { kind: 'map' }
     if (segments[0] === 'news') return { kind: 'news' }
     if (segments[0] === 'favorites') return { kind: 'favorites' }
+    if (segments[0] === 'privacy') return { kind: 'privacy' }
   }
   // 모르는 주소는 홈으로 연다. 404 화면이 없으므로 가장 쓸모 있는 착지점이다.
   if (segments.length !== 2) return { kind: 'home' }
