@@ -115,12 +115,24 @@ migration은 Supabase 상태를 확인하지 않고 재설계하지 않는다.
 
 ## Next Priority
 
-### 1. 학원 분야를 학원명에서 세분하는 ETL (다음 첫 작업)
+### 1. 학원 과목 태그 백필 — 운영 DB 쓰기 승인 대기
 
-공시 교습계열이 '입시·검정 및 보습'으로 뭉뚱그려진 학원이 대부분이라 지도에서 '입시'가
-지나치게 많다. 학원명에서 '영어'·'수학'·'논술' 등 주요 키워드를 뽑아 분야를 나누는 ETL을
-추가한다(2026-10-03 사용자 요청). 학원 공개 데이터 경로(`academy_address_serving`, RPC
-`nearby_academy_addresses*`, 프런트 `utils/academyCategories.ts`)를 먼저 읽는다.
+학원명에서 과목(영어·수학·국어·논술·과학·코딩, 그 외 입시·종합)을 뽑는 ETL과 프런트는
+2026-10-03 배포됐다(`5e588e9`). 규칙은 `etl/academy_subjects.py`, 테스트는
+`etl/tests/test_academy_subjects.py`. 과목은 공개 `institutions` JSONB 안에 `subjects`로 들어가므로
+마이그레이션이 없다. 프런트는 `subjects`가 없으면 교습계열로 분류하므로 백필 전에도 동작한다.
+
+남은 것은 운영 DB 쓰기 한 번이다. dry-run 결과: 주소 78,820 · 기관 151,709, '입시.검정 및 보습'
+중 과목 없이 입시·종합으로 남는 비율 26.5%.
+
+```powershell
+cd F:\smibe\elementary\pjt_250826\elementary-v2\etl
+python backfill_academy_subjects.py          # dry-run
+python backfill_academy_subjects.py --apply  # 사용자 승인 후. 행 수 불변·전 기관 태그·anon RPC 확인까지 한다
+```
+
+되돌리기: 태그는 추가 필드라 프런트가 무시하면 이전과 같다. 필요하면 `subjects`를 뺀 institutions로
+같은 스크립트 패턴의 upsert를 다시 돌린다.
 
 ### 2. 사용자 몫·예약된 일
 
