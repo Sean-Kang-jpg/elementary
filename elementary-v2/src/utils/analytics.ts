@@ -21,7 +21,12 @@
 const MEASUREMENT_ID = 'G-NQT4XV9R00'
 const PRODUCTION_HOSTS = new Set(['wherecho.co.kr'])
 
-export type EntrySource = 'map' | 'search' | 'link' | 'related' | 'favorites'
+/**
+ * How a detail or guide was reached. The first five are MEASUREMENT_PLAN's; `home`,
+ * `guides` and `nav` were added with the guides (section 8): the home's guide links,
+ * the guide list, and the bottom navigation.
+ */
+export type EntrySource = 'map' | 'search' | 'link' | 'related' | 'favorites' | 'home' | 'guides' | 'nav'
 
 type Params = Record<string, string | number | undefined>
 
@@ -114,10 +119,10 @@ export const markEntry = (source: EntrySource): void => {
  * The source of the detail that just opened. An unmarked selection came from a
  * marker on the map, which is the one path with no other caller to mark it.
  */
-export const takeEntry = (): EntrySource => {
+export const takeEntry = (fallback: EntrySource = 'map'): EntrySource => {
   const mark = pendingEntry
   pendingEntry = null
-  return mark && Date.now() - mark.at < ENTRY_MARK_TTL_MS ? mark.source : 'map'
+  return mark && Date.now() - mark.at < ENTRY_MARK_TTL_MS ? mark.source : fallback
 }
 
 /** The key after the last `--` in a detail path: a school_id or a complex public key. */
