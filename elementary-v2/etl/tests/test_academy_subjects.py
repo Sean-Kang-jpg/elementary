@@ -22,6 +22,15 @@ class AcademySubjectsTest(unittest.TestCase):
         self.assertEqual(classify("하이메타수학교습소", STUDY), ["math"])
         self.assertEqual(classify("한우리독서토론논술교습소", STUDY), ["writing"])
         self.assertEqual(classify("MAX(맥스)과학전문학원", STUDY), ["science"])
+        # Named sciences, common among 대치 academies.
+        self.assertEqual(classify("유준형화학교습소", STUDY), ["science"])
+        self.assertEqual(classify("○○물리학원", STUDY), ["science"])
+        # 화학 inside 만화학원 and 영화학원 is not chemistry.
+        self.assertEqual(classify("인트로만화학원", "예능(대)"), ["arts"])
+        self.assertEqual(classify("삼화학원", STUDY), ["study"])
+        self.assertEqual(classify("두사이언스화학교습소", STUDY), ["science"])
+        self.assertEqual(classify("이원화학당영어교습소", STUDY), ["english"])
+        self.assertEqual(classify("범물리드웰영어학원", STUDY), ["english"])
 
     def test_latin_keywords_ignore_case(self):
         self.assertEqual(classify("ENGLISH TOWN", STUDY), ["english"])

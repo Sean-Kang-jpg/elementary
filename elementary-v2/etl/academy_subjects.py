@@ -50,7 +50,7 @@ SUBJECT_KEYWORDS: dict[str, tuple[str, ...]] = {
         "논술", "독서", "re:(?<![중외한])국어", "글쓰기", "문해", "한우리", "리딩클럽",
     ),
     "science": (
-        "과학", "사이언스", "science", "실험",
+        "과학", "사이언스", "science", "실험", "re:화학(?![원당])", "re:(?<!범)물리", "생명과학", "지구과학",
     ),
     "coding": (
         "코딩", "소프트웨어", "로봇", "컴퓨터",
@@ -91,7 +91,9 @@ SUBJECT_ORDER = (
 
 def _has(text: str, keyword: str) -> bool:
     # A few keywords sit inside other words and need a guard: 어학원 is inside
-    # 국어학원, so it must not follow 국; 국어 is inside 중국어·외국어·한국어.
+    # 국어학원, so it must not follow 국; 국어 is inside 중국어·외국어·한국어; 화학 is
+    # inside 만화학원·영화학원·강화학원 (→ 원) and 이원화학당 (→ 당); 물리 inside
+    # 범물리드웰 (대구 범물동).
     if keyword.startswith("re:"):
         return re.search(keyword[3:], text) is not None
     if re.fullmatch(r"[A-Za-z]+", keyword):
