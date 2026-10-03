@@ -53,7 +53,9 @@ The frontend degrades gracefully when this function is missing (`PGRST202`/`4288
 
 ### `nearby_academy_addresses(...)` and `nearby_academy_addresses_for_school(...)`
 
-Purpose: privacy-minimized academy address markers within a radius of a complex (SQL `14`) or of a school's assigned complexes (SQL `15`). Both return aggregated per-address counts, never institution names.
+Purpose: privacy-minimized academy address markers within a radius of a complex (SQL `14`) or of a school's assigned complexes (SQL `15`). Both return per-address counts and, since SQL `20`, an `institutions` array of public name, institution type and NEIS realm per academy. Contact, fee and raw-address details stay private.
+
+Each `institutions` item also carries `subjects` (2026-10-03): name-derived categories (`english`, `math`, `writing`, `science`, `coding`, `study`, `language`, `arts`, `sports`, `other`) from `etl/academy_subjects.py`, written in place by `etl/backfill_academy_subjects.py` and by the marker builder on rebuild. It lives inside the existing JSONB, so it needed no migration. An item may have several subjects. The frontend falls back to the realm when an item has none.
 
 Measured latency on 2026-09-27, five samples each: 0.193-0.316 s and 0.235-0.316 s.
 

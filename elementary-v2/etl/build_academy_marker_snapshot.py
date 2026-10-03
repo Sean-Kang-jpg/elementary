@@ -8,6 +8,8 @@ import json
 from collections import Counter, defaultdict
 from pathlib import Path
 
+from academy_subjects import classify
+
 BASE_DIR = Path(__file__).resolve().parent
 RUNTIME_DIR = BASE_DIR / "runtime" / "academy"
 PROFILE_FILE = BASE_DIR / "academy_marker_profile.json"
@@ -85,7 +87,9 @@ def main() -> None:
             "institution_type_counts": json.dumps(dict(institution_types.most_common()), ensure_ascii=False),
             "realm_counts": json.dumps(dict(realms.most_common()), ensure_ascii=False),
             "institutions": json.dumps([
-                {"name": name, "type": institution_type, "realm": realm}
+                # subjects: the name-derived categories the map colours and filters
+                # by (academy_subjects.py); realm alone files most academies as 입시.
+                {"name": name, "type": institution_type, "realm": realm, "subjects": classify(name, realm, institution_type)}
                 for name, institution_type, realm in institutions
             ], ensure_ascii=False),
             "top_subjects": " | ".join(name for name, _ in subjects.most_common(5)),
