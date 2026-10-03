@@ -7,6 +7,18 @@ stage: admission
 group: admission
 verifiedAt: 2026-10-03
 scope: 예비소집일은 시·도 교육감이 정하므로 지역마다 다릅니다. 아래 서울 일정은 2026학년도 입학생 기준 예시이며, 2027학년도 입학생은 2026년 12월 취학통지서와 학교 공지로 다시 확인해야 합니다.
+summary:
+  kind: steps
+  title: 예비소집 한눈에
+  items:
+    - title: 통지서에서 날짜 확인
+      text: 학교마다 다름
+    - title: 아이와 함께 학교 방문
+      text: 취학통지서 지참
+    - title: 갈 수 없다면 미리 연락
+      text: 비대면·별도 등록 협의
+    - title: 연락 없이 불참하면
+      text: 소재·안전 확인 절차 시작
 sources:
   - label: 경기도교육청, 「초등 학적 길라잡이」(2025) 6쪽·10~11쪽
     url: https://www.goe.go.kr/resource/old/BBSMSTR_000000030136/BBS_202501060143446932.pdf

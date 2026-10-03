@@ -274,7 +274,8 @@ const assertHomeAndShellSplit = async () => {
   for (const [pagePath, heading] of [['/guide', 'guides-title'], ['/guide/school-notice', 'guide-title'], ['/faq', 'faq-title'], ['/checklist', 'checklist-title']]) {
     const body = await (await fetch(new URL(pagePath, baseUrl).toString())).text()
     const canonicals = body.match(/<link rel="canonical" href="([^"]*)"/g) || []
-    if (canonicals.length !== 1 || !canonicals[0].endsWith(`${pagePath}"`) || !body.includes(`id="${heading}"`)) {
+    const needsSummary = pagePath.startsWith('/guide/') && !body.includes('class="guide-summary')
+    if (needsSummary || canonicals.length !== 1 || !canonicals[0].endsWith(`${pagePath}"`) || !body.includes(`id="${heading}"`)) {
       throw new Error(`${pagePath} is not served as its own static page with one canonical naming it`)
     }
   }
@@ -332,6 +333,34 @@ try {
   )
   assertPage("document.querySelector('.quick-filter-row')?.textContent?.includes('학교') && document.querySelector('.quick-filter-row')?.textContent?.includes('아파트')", 'quick filters disclose school and apartment scope')
   await waitFor("(window.__ELEMENTARY_PERFORMANCE__ || []).some((metric) => metric.name === 'school-map-load' && metric.status === 'success' && metric.context.resultCount > 0)", 'district data loaded and measured')
+
+  // Zoomed out past the districts, the map shows one marker per province. For ten
+  // days in production it showed nothing: the markers were fetched but a render
+  // guard returned before drawing them, and every check here ran at district zoom.
+  // Real wheel and pointer events, because Naver Maps ignores a synthetic click.
+  run(['mouse', 'move', '195', '300'], { quiet: true })
+  for (let step = 0; step < 6; step += 1) {
+    run(['mouse', 'wheel', '300'], { quiet: true })
+    await sleep(300)
+  }
+  await waitFor("document.querySelectorAll('.school-cluster-marker--region').length >= 10 && !document.querySelector('.school-cluster-marker:not(.school-cluster-marker--region)')", 'zooming out replaces the district markers with province markers')
+  assertPage("!document.querySelector('[data-testid=map-empty-state]')", 'the zoomed-out map does not claim no school matches')
+  const provinceAt = run(['eval', `(() => {
+    const visible = [...document.querySelectorAll('.school-cluster-marker--region')]
+      .map((node) => node.getBoundingClientRect())
+      .find((rect) => rect.top > 140 && rect.bottom < window.innerHeight * 0.6 && rect.left > 0 && rect.right < window.innerWidth)
+    if (!visible) throw new Error('No province marker is fully on screen to click')
+    return Math.round(visible.left + visible.width / 2) + ' ' + Math.round(visible.top + visible.height / 2)
+  })()`], { quiet: true }).replace(/"/g, '').split(' ')
+  run(['mouse', 'move', ...provinceAt], { quiet: true })
+  run(['mouse', 'down'], { quiet: true })
+  run(['mouse', 'up'], { quiet: true })
+  // A province click must land on district zoom, not on zoom 10, which is still
+  // province mode and only recentres.
+  await waitFor("!document.querySelector('.school-cluster-marker--region') && document.querySelectorAll('.school-cluster-marker').length > 0", 'a province marker opens its district markers')
+
+  run(['open', new URL('/map', baseUrl).toString()])
+  await waitFor("(window.__ELEMENTARY_PERFORMANCE__ || []).some((metric) => metric.name === 'school-map-load' && metric.status === 'success' && metric.context.resultCount > 0)", 'the map reloads at district zoom for the search flow')
 
   run(['fill', 'input[role="combobox"]', '은마'])
   await waitFor("[...document.querySelectorAll('#map-search-results [role=option]')].some((node) => node.textContent?.includes('4,424세대'))", 'apartment search returned household data')
@@ -536,6 +565,7 @@ try {
   run(['eval', "window.__smokeNoReload = true; document.querySelector('a.content-list__item[href=\"/guide/school-notice\"]').click(); 'guide'"])
   await waitFor("location.pathname === '/guide/school-notice' && document.querySelector('#guide-title') && document.querySelector('.content-sources')", 'a guide opens with its sources')
   assertPage("document.title.includes('취학통지서') && document.querySelector('link[rel=canonical]')?.href.endsWith('/guide/school-notice')", 'the guide names itself in the title and canonical')
+  assertPage("document.querySelectorAll('.guide-summary .guide-summary__item').length >= 2", 'the guide opens with its summary diagram')
   run(['eval', "document.querySelector('.content-body a[href=\"/guide/preliminary-call\"]').click(); 'inline link'"])
   await waitFor("location.pathname === '/guide/preliminary-call' && window.__smokeNoReload === true", 'a link inside a guide moved to the next guide without reloading')
   run(['open', new URL('/faq', baseUrl).toString()])

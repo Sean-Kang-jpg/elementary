@@ -7,6 +7,20 @@ stage: planning
 group: planning
 verifiedAt: 2026-10-03
 scope: 학교 정보는 학교알리미 공시를 기준으로 하며 해마다 갱신됩니다. 돌봄 제도는 2026년 기준입니다.
+summary:
+  kind: checks
+  title: 순위 대신 이 다섯 가지
+  items:
+    - title: 1학년 학생 수
+      text: 또래 규모
+    - title: 학급당 학생 수
+      text: 한 반 인원
+    - title: 배정 아파트
+      text: 함께 다닐 단지
+    - title: 통학 동선
+      text: 직접 걸어보기
+    - title: 돌봄 운영
+      text: 시간·프로그램
 sources:
   - label: 학교알리미 (한국교육학술정보원)
     url: https://www.schoolinfo.go.kr/

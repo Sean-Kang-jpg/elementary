@@ -130,6 +130,21 @@ const sourcesHtml = (sources, verifiedAt) => '<aside class="content-sources" ari
   + sources.map((source) => `<li><a href="${escapeHtml(source.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(source.label)}</a></li>`).join('')
   + `</ul><p>내용 확인일 ${escapeHtml(verifiedAt)}</p></aside>`
 
+// Same markup as src/components/content/GuideSummary.tsx.
+const summaryHtml = (summary) => {
+  if (!summary) return ''
+  const list = summary.kind === 'checks' ? 'ul' : 'ol'
+  return `<figure class="guide-summary guide-summary--${summary.kind}"><figcaption>${escapeHtml(summary.title)}</figcaption><${list} class="guide-summary__items">`
+    + summary.items.map((item, index) => '<li class="guide-summary__item">'
+      + `<span class="guide-summary__marker" aria-hidden="true">${summary.kind === 'checks' ? '✓' : index + 1}</span>`
+      + '<span class="guide-summary__body">'
+      + (item.when ? `<span class="guide-summary__when">${escapeHtml(item.when)}</span>` : '')
+      + `<strong>${escapeHtml(item.title)}</strong>`
+      + (item.text ? `<small>${escapeHtml(item.text)}</small>` : '')
+      + '</span></li>').join('')
+    + `</${list}></figure>`
+}
+
 const page = (inner, labelledBy) =>
   `<section class="app-destination app-page content-page" aria-labelledby="${labelledBy}"><article class="content-page__inner">${inner}</article></section>`
 
@@ -167,6 +182,7 @@ for (const guide of content.guides) {
       `<span class="stage-chip stage-chip--${guide.stage}">${escapeHtml(structure.stages[guide.stage].short)}</span>`,
       `<h1 id="guide-title">${escapeHtml(guide.title)}</h1>`,
       guide.scope ? `<p class="content-page__scope">${escapeHtml(guide.scope)}</p>` : '',
+      summaryHtml(guide.summary),
       `<div class="content-body">${guide.html}</div>`,
       sourcesHtml(guide.sources, guide.verifiedAt),
     ].join(''), 'guide-title'),

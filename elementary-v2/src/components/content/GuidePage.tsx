@@ -3,6 +3,7 @@ import type { Guide } from '../../content'
 import { VIEW_PATHS } from '../../utils/urlState'
 import { STAGE_LABELS } from '../../utils/entryYear'
 import SourceList from './SourceList'
+import GuideSummary from './GuideSummary'
 import { followInternalLink, followLink } from './contentLinks'
 
 interface GuidePageProps {
@@ -26,6 +27,7 @@ export default function GuidePage({ guide, onNavigate }: GuidePageProps) {
         {guide.scope ? (
           <p className="content-page__scope"><Info size={15} aria-hidden="true" /><span>{guide.scope}</span></p>
         ) : null}
+        {guide.summary ? <GuideSummary summary={guide.summary} /> : null}
         <div className="content-body" dangerouslySetInnerHTML={{ __html: guide.html }} />
         <SourceList sources={guide.sources} verifiedAt={guide.verifiedAt} />
       </article>

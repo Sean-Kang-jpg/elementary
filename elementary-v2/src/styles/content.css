@@ -731,6 +731,146 @@
   color: var(--warm-faint);
 }
 
+/* ---- Guide summary diagram ---------------------------------------------- */
+/* Vertical on phones: a line runs down through the markers. From 640px the
+   items sit in a row with arrows between them. */
+
+.guide-summary {
+  margin: 18px 0 6px;
+  border: 1px solid var(--warm-border);
+  border-radius: var(--warm-radius);
+  padding: 14px 14px 10px;
+  background: var(--warm-surface);
+  box-shadow: var(--warm-shadow);
+}
+
+.guide-summary figcaption {
+  margin: 0 0 10px;
+  color: var(--warm-accent-strong);
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.01em;
+}
+
+.guide-summary__items {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.guide-summary__item {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 0 0 14px;
+}
+
+.guide-summary--steps .guide-summary__item:not(:last-child)::after,
+.guide-summary--timeline .guide-summary__item:not(:last-child)::after {
+  position: absolute;
+  top: 30px;
+  bottom: 2px;
+  left: 13px;
+  width: 2px;
+  border-radius: 2px;
+  background: var(--warm-border-strong);
+  content: '';
+}
+
+.guide-summary__marker {
+  display: inline-flex;
+  width: 28px;
+  height: 28px;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  color: #fff;
+  background: var(--warm-accent);
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.guide-summary--timeline .guide-summary__marker {
+  color: var(--warm-peach);
+  background: var(--warm-peach-soft);
+  box-shadow: inset 0 0 0 2px #f4c7b3;
+}
+
+.guide-summary--checks .guide-summary__marker {
+  color: var(--warm-sage);
+  background: var(--warm-sage-soft);
+}
+
+.guide-summary__body {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  padding-top: 3px;
+  line-height: 1.45;
+}
+
+.guide-summary__when {
+  margin-bottom: 2px;
+  color: var(--warm-peach);
+  font-size: 12px;
+  font-weight: 750;
+}
+
+.guide-summary__body strong {
+  font-size: 14.5px;
+  font-weight: 750;
+}
+
+.guide-summary__body small {
+  margin-top: 2px;
+  color: var(--warm-muted);
+  font-size: 12.5px;
+}
+
+.guide-summary--checks .guide-summary__items {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px 12px;
+}
+
+.guide-summary--checks .guide-summary__item {
+  padding-bottom: 10px;
+}
+
+@media (min-width: 640px) {
+  .guide-summary--steps .guide-summary__items,
+  .guide-summary--timeline .guide-summary__items {
+    display: grid;
+    grid-auto-columns: minmax(0, 1fr);
+    grid-auto-flow: column;
+    gap: 22px;
+  }
+
+  .guide-summary--steps .guide-summary__item,
+  .guide-summary--timeline .guide-summary__item {
+    flex-direction: column;
+    gap: 8px;
+    padding-bottom: 4px;
+  }
+
+  .guide-summary--steps .guide-summary__item:not(:last-child)::after,
+  .guide-summary--timeline .guide-summary__item:not(:last-child)::after {
+    top: 13px;
+    right: -18px;
+    bottom: auto;
+    left: auto;
+    width: 14px;
+    height: 2px;
+  }
+
+  .guide-summary--checks .guide-summary__items {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
 /* ---- FAQ ------------------------------------------------------------------ */
 
 .faq-stage__title {

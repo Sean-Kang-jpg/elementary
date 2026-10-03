@@ -7,6 +7,22 @@ stage: admission
 group: admission
 verifiedAt: 2026-10-03
 scope: 일정은 2026학년도 입학생(2025년 가을) 기준 예시입니다. 2027학년도 입학생은 2026년 가을 공지를 다시 확인해야 합니다. 국립초와 서울 외 지역 사립초는 학교마다 일정이 다릅니다.
+summary:
+  kind: timeline
+  title: 사립·국립초 일정 (입학 전해)
+  items:
+    - when: 9월
+      title: 설명회·모집 요강
+      text: 지원 자격 확인
+    - when: 10~11월
+      title: 지원(원서)
+      text: 최대 3곳
+    - when: 11월
+      title: 추첨 → 등록
+      text: 합격한 곳 중 한 곳만 등록
+    - when: 12월
+      title: 떨어졌다면
+      text: 취학통지서의 공립 학교로
 sources:
   - label: 서울시교육청, 서울 38개 사립초 2026학년도 신입생 원서접수 실시 (2025-11)
     url: https://enews.sen.go.kr/news/view.do?bbsSn=190138&step1=3&step2=1

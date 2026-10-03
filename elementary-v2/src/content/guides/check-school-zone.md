@@ -7,6 +7,18 @@ stage: planning
 group: planning
 verifiedAt: 2026-10-03
 scope: 통학구역은 지역 교육지원청이 정합니다. 확인 방법은 전국 공통이지만 고시 시기와 방식은 지역마다 다릅니다.
+summary:
+  kind: steps
+  title: 배정 학교 확인 순서
+  items:
+    - title: 어디초 지도에서 검색
+      text: 공식 학구도 기준
+    - title: 학구도안내서비스
+      text: 주소로 한 번 더
+    - title: 교육지원청 고시·예고
+      text: 바뀔 예정인지
+    - title: 애매하면 문의
+      text: 경계·공동학구·신축
 sources:
   - label: 초·중등교육법 시행령 제16조(공동통학구역)·제17조
     url: https://www.law.go.kr/법령/초·중등교육법시행령
