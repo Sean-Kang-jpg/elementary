@@ -803,6 +803,286 @@
   margin-top: 18px;
 }
 
+/* ---- Roadmap (MVP 1b) ----------------------------------------------------- */
+
+.roadmap__dday {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.roadmap__dday svg {
+  flex: none;
+  margin-top: 4px;
+  color: var(--warm-accent);
+}
+
+.roadmap__dday h2 {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 750;
+}
+
+.roadmap__dday h2 b {
+  color: var(--warm-accent-strong);
+  font-size: 24px;
+  font-weight: 800;
+}
+
+.roadmap__dday p {
+  margin: 2px 0 0;
+  color: var(--warm-faint);
+  font-size: 12.5px;
+}
+
+.roadmap__prefs {
+  display: grid;
+  gap: 6px;
+  margin: 14px 0 4px;
+}
+
+.roadmap__pref-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.pref-chip {
+  border: 1px solid var(--warm-border-strong);
+  border-radius: 999px;
+  padding: 5px 11px;
+  color: var(--warm-muted);
+  background: var(--warm-bg);
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.pref-chip[aria-pressed='true'] {
+  border-color: var(--warm-accent);
+  color: var(--warm-accent-strong);
+  background: var(--warm-accent-soft);
+  font-weight: 700;
+}
+
+.roadmap__heading {
+  margin: 16px 0 4px;
+  font-size: 15px;
+  font-weight: 750;
+}
+
+.roadmap__heading--next {
+  color: var(--warm-muted);
+  font-size: 14px;
+}
+
+.roadmap__tasks {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.roadmap__tasks li a,
+.roadmap__tasks li > span {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  border-bottom: 1px dashed var(--warm-border);
+  padding: 10px 0 10px 18px;
+  color: var(--warm-text);
+  font-size: 14px;
+  text-decoration: none;
+  position: relative;
+}
+
+.roadmap__tasks li a::before,
+.roadmap__tasks li > span::before {
+  position: absolute;
+  top: 17px;
+  left: 2px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--warm-accent);
+  content: '';
+}
+
+.roadmap__heading--next + .roadmap__tasks li a::before {
+  background: var(--warm-border-strong);
+}
+
+.roadmap__tasks li a svg {
+  flex: none;
+  color: var(--warm-faint);
+}
+
+.roadmap__timeline ol {
+  position: relative;
+  margin: 6px 0 0;
+  padding: 0 0 0 4px;
+  list-style: none;
+}
+
+.roadmap__timeline > ol > li {
+  position: relative;
+  margin-bottom: 6px;
+  border-left: 2px solid var(--warm-border);
+  padding-left: 14px;
+}
+
+.roadmap__month {
+  display: inline-block;
+  margin: 6px 0 0;
+  border-radius: 999px;
+  padding: 1px 9px;
+  color: var(--warm-peach);
+  background: var(--warm-peach-soft);
+  font-size: 12px;
+  font-weight: 750;
+}
+
+.roadmap__timeline .roadmap__tasks li a,
+.roadmap__timeline .roadmap__tasks li > span {
+  color: var(--warm-muted);
+  font-size: 13.5px;
+}
+
+.roadmap__timeline .roadmap__tasks li a::before,
+.roadmap__timeline .roadmap__tasks li > span::before {
+  background: var(--warm-border-strong);
+}
+
+.roadmap__empty {
+  margin: 6px 0;
+  color: var(--warm-muted);
+  font-size: 13.5px;
+}
+
+.roadmap__checklist {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 14px;
+  border-radius: 14px;
+  padding: 11px 12px;
+  color: var(--warm-sage);
+  background: var(--warm-sage-soft);
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.roadmap__checklist span {
+  flex: 1;
+}
+
+/* ---- Checklist page ------------------------------------------------------- */
+
+.checklist-progress {
+  margin: 0 0 18px;
+}
+
+.checklist-progress__bar {
+  height: 10px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: #f1e5dc;
+}
+
+.checklist-progress__bar span {
+  display: block;
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #f3a27f, var(--warm-accent));
+  transition: width 0.2s;
+}
+
+.checklist-progress p {
+  margin: 6px 0 0;
+  color: var(--warm-muted);
+  font-size: 13px;
+}
+
+.checklist-group {
+  margin-bottom: 16px;
+  border: 1px solid var(--warm-border);
+  border-radius: var(--warm-radius);
+  padding: 12px 14px 4px;
+  background: var(--warm-surface);
+}
+
+.checklist-group h2 {
+  margin: 0 0 4px;
+  font-size: 15px;
+  font-weight: 750;
+}
+
+.checklist-group ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.checklist-group li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-top: 1px dashed var(--warm-border);
+}
+
+.checklist-group li:first-child {
+  border-top: 0;
+}
+
+.checklist-group label {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  gap: 10px;
+  padding: 11px 0;
+  cursor: pointer;
+  font-size: 14.5px;
+}
+
+.checklist-group input[type='checkbox'] {
+  width: 20px;
+  height: 20px;
+  flex: none;
+  accent-color: var(--warm-accent);
+}
+
+.checklist-note {
+  margin: -8px 0 16px;
+  color: var(--warm-faint);
+  font-size: 12.5px;
+}
+
+.checklist-group label span {
+  flex: 1;
+}
+
+.checklist-when {
+  flex: none;
+  border-radius: 999px;
+  padding: 2px 8px;
+  color: var(--warm-peach);
+  background: var(--warm-peach-soft);
+  font-size: 11.5px;
+  font-weight: 650;
+  white-space: nowrap;
+}
+
+.checklist-group li.is-done span {
+  color: var(--warm-faint);
+  text-decoration: line-through;
+}
+
+.checklist-group li a {
+  display: inline-flex;
+  padding: 8px 2px;
+  color: var(--warm-faint);
+}
+
 /* ---- School detail start module (W4) -------------------------------------- */
 
 .start-module {

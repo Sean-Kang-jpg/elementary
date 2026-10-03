@@ -183,6 +183,14 @@ GA4는 방문자 정보를 외부(Google)로 전송하므로 개인정보처리�
 | `save_candidate` | 후보 저장 | 즐겨찾기 **추가**에만. `item_id`는 학교 `school_id`, 아파트 공개 키 | 즐겨찾기 기록 자체는 `canonical_complex_id`를 들고 있어 호출 지점에서 공개 키로 보낸다 |
 | PRD v2 1a 이벤트 | `click_start_module`·`view_guide`·`view_faq` | **`view_guide`·`view_faq` 구현(W3), `click_start_module` 구현(W4).** | `view_guide`는 가이드를 열 때(`guide_id`=slug), `view_faq`는 **질문을 펼칠 때마다**(`faq_id`=질문 문구, 페이지 진입 경로를 함께) 보낸다. 어느 질문이 열리는지가 PRD v2 11절의 고객 리서치 신호다. 보고서에서 쪼개 보려면 `guide_id`·`faq_id`를 맞춤 측정기준으로 등록한다 |
 
+### MVP 1b 이벤트 (2026-10-03 구현)
+
+| 이벤트 | 파라미터 | 시점 |
+| --- | --- | --- |
+| `start_profile_created` | `entry_year`, `school_type_interest`(`public`·`private`, 쉼표 연결), `moving_plan` | 이 기기에서 처음 프로필이 저장될 때 한 번 |
+| `view_roadmap` | `days_to_admission`, `entry_year`, `stage`, `entry_source` | 홈에서 로드맵이 보일 때, 입학연도마다 한 번 |
+| `check_checklist_item` | `category`, `item_id` | 체크할 때만(해제는 보내지 않는다) |
+
 ### `select_entry_year` (2026-10-03 추가)
 
 홈·가이드·FAQ의 입학연도 칩을 고를 때 `entry_year`와 함께 보낸다. 어떤 입학연도가

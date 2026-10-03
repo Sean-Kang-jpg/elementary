@@ -1,0 +1,184 @@
+{
+  "_comment": "입학 로드맵의 월별 할 일. 기한은 법령(초·중등교육법 시행령 제15·16·17조)에 정해진 것과, 해마다 바뀌는 예시(사립초·예비소집)로 나뉜다. 예시는 가이드와 같이 12월 재확인 루틴(2026-12-03 1회 예약, trig_012czGSetkKiGzozEgdmU1KT)과 운영자 검수로 갱신한다(PRD v2 D3). 각 할 일은 근거를 가진 가이드로 연결한다.",
+  "verifiedAt": "2026-10-03",
+  "entryDay": {
+    "month": 3,
+    "day": 2,
+    "note": "입학식은 보통 3월 초입니다. 정확한 입학일은 취학통지서에 적혀 있습니다."
+  },
+  "planning": [
+    {
+      "id": "plan-zone",
+      "text": "관심 아파트의 배정 학교를 지도에서 확인하기",
+      "link": "/map"
+    },
+    {
+      "id": "plan-when",
+      "text": "언제 이사할지 시점별 차이 알아두기",
+      "link": "/guide/when-to-move"
+    },
+    {
+      "id": "plan-zone-change",
+      "text": "통학구역이 바뀔 수 있는지 교육지원청 공지 확인하기",
+      "link": "/guide/check-school-zone"
+    },
+    {
+      "id": "plan-compare",
+      "text": "학급당 학생 수·돌봄 등 학교 정보 비교하기",
+      "link": "/guide/compare-schools"
+    },
+    {
+      "id": "plan-early",
+      "text": "만 5세가 되는 해라면 조기입학 여부 생각해 보기",
+      "link": "/faq",
+      "onlyMonths": [
+        9,
+        10,
+        11,
+        12
+      ]
+    }
+  ],
+  "admission": {
+    "9": [
+      {
+        "id": "adm-09-private",
+        "text": "사립·국립초 설명회 일정과 모집 요강 확인하기",
+        "link": "/guide/private-national",
+        "only": "private"
+      },
+      {
+        "id": "adm-09-zone",
+        "text": "배정 예정 학교 다시 확인하기 (통학구역은 해마다 정해져요)",
+        "link": "/guide/check-school-zone"
+      }
+    ],
+    "10": [
+      {
+        "id": "adm-10-defer",
+        "text": "입학 연기·조기입학을 고민 중이면 결정하기 (신청 10월 1일~12월 31일)",
+        "link": "/guide/school-notice"
+      },
+      {
+        "id": "adm-10-private",
+        "text": "사립초 원서 접수 일정 확인하기",
+        "link": "/guide/private-national",
+        "only": "private"
+      },
+      {
+        "id": "adm-10-move",
+        "text": "[이사] 12월 20일 전에 이사·전입신고하면 새 주소 학교로 취학통지서가 나와요",
+        "link": "/guide/move-before-notice",
+        "only": "moving"
+      }
+    ],
+    "11": [
+      {
+        "id": "adm-11-private",
+        "text": "사립초 원서는 최대 3곳까지 지원 → 추첨 → 합격한 학교 중 한 곳에만 등록 (두 곳 이상 등록하면 모든 학교 입학 취소)",
+        "link": "/guide/private-national",
+        "only": "private"
+      },
+      {
+        "id": "adm-11-zone",
+        "text": "11월 30일까지 확정되는 통학구역 확인하기",
+        "link": "/guide/check-school-zone"
+      },
+      {
+        "id": "adm-11-move",
+        "text": "[이사] 취학통지 전에 이사한다면 12월 20일 전에 전입신고 마치기",
+        "link": "/guide/move-before-notice",
+        "only": "moving"
+      }
+    ],
+    "12": [
+      {
+        "id": "adm-12-notice",
+        "text": "취학통지서 받기 (12월 20일까지, 정부24 온라인 발급 가능)",
+        "link": "/guide/school-notice"
+      },
+      {
+        "id": "adm-12-check",
+        "text": "통지서의 배정 학교·예비소집일·입학일 확인하기",
+        "link": "/guide/school-notice"
+      },
+      {
+        "id": "adm-12-defer",
+        "text": "입학 연기·조기입학 신청 마감 (12월 31일)",
+        "link": "/faq"
+      },
+      {
+        "id": "adm-12-move-before",
+        "text": "[이사] 12월 20일 전 이사: 새 주소지 주민센터가 새 주소 기준으로 통지서를 보내요",
+        "link": "/guide/move-before-notice",
+        "only": "moving"
+      },
+      {
+        "id": "adm-12-move",
+        "text": "[이사] 통지서를 받은 뒤 이사: 전입신고 → 새 통지서 받기 → 원래 학교에 연락",
+        "link": "/guide/move-after-notice",
+        "only": "moving"
+      }
+    ],
+    "1": [
+      {
+        "id": "adm-01-call",
+        "text": "예비소집 참석하기 (아이와 함께, 취학통지서 지참)",
+        "link": "/guide/preliminary-call"
+      },
+      {
+        "id": "adm-01-move-before-call",
+        "text": "[이사] 예비소집 전에 이사: 새 통지서의 학교 예비소집에 참석하고 원래 학교에 알리기",
+        "link": "/guide/move-after-notice",
+        "only": "moving"
+      },
+      {
+        "id": "adm-01-move",
+        "text": "[이사] 예비소집 뒤에 이사: 다녀온 학교와 새 학교 양쪽에 연락하기",
+        "link": "/guide/move-after-call",
+        "only": "moving"
+      },
+      {
+        "id": "adm-01-care",
+        "text": "돌봄(온동네 초등돌봄·교육) 안내 확인하기",
+        "link": "/guide/compare-schools"
+      }
+    ],
+    "2": [
+      {
+        "id": "adm-02-care",
+        "text": "돌봄 신청과 방과후 일정 확인하기",
+        "link": "/checklist"
+      },
+      {
+        "id": "adm-02-items",
+        "text": "입학 준비물 챙기기",
+        "link": "/checklist"
+      },
+      {
+        "id": "adm-02-route",
+        "text": "아이와 등하굣길 미리 걸어보기",
+        "link": "/checklist"
+      },
+      {
+        "id": "adm-02-move",
+        "text": "[이사] 입학 전 이사는 2월 말까지 이사·전입신고를 마치면 새 학교로 입학해요",
+        "link": "/guide/move-after-call",
+        "only": "moving"
+      }
+    ],
+    "3": [
+      {
+        "id": "adm-03-entry",
+        "text": "입학! 첫 주 하교 시간과 돌봄 일정을 다시 확인하기",
+        "link": "/checklist"
+      },
+      {
+        "id": "adm-03-move",
+        "text": "[이사] 입학한 뒤 이사하면 전학 절차를 따라요",
+        "link": "/guide/move-after-call",
+        "only": "moving"
+      }
+    ]
+  }
+}

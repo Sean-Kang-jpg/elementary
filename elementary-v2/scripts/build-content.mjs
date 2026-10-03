@@ -173,6 +173,27 @@ const checkLinks = (file, html) => {
 guides.forEach((guide) => checkLinks(guide.file, guide.html))
 faqs.forEach((faq) => faq.sections.forEach((section) => section.items.forEach((item) => checkLinks(faq.file, item.html))))
 
+// The roadmap and checklist link to guides and screens too, from JSON.
+const APP_PATHS = new Set(['/', '/map', '/guide', '/faq', '/checklist'])
+const checkPath = (file, link) => {
+  if (!link) return
+  const guide = link.match(/^\/guide\/([^/?#]+)$/)
+  if (guide ? !slugs.has(guide[1]) : !APP_PATHS.has(link)) problem(file, `links to ${link}, which does not exist`)
+}
+for (const name of ['roadmap.json', 'checklist.json']) {
+  const file = path.join(contentDir, name)
+  const json = JSON.parse(await fs.readFile(file, 'utf8'))
+  const tasks = name === 'roadmap.json'
+    ? [...json.planning, ...Object.values(json.admission).flat()]
+    : json.groups.flatMap((group) => group.items)
+  const ids = new Set()
+  for (const task of tasks) {
+    checkPath(file, task.link)
+    if (ids.has(task.id)) problem(file, `id ${task.id} is used twice`)
+    ids.add(task.id)
+  }
+}
+
 if (problems.length) {
   throw new Error(`build-content: ${problems.length} problem(s)\n  ${problems.join('\n  ')}`)
 }

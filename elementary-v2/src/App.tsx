@@ -13,6 +13,9 @@ import PrivacyPage from './components/navigation/PrivacyPage'
 import GuideListPage from './components/content/GuideListPage'
 import GuidePage from './components/content/GuidePage'
 import FaqPage from './components/content/FaqPage'
+import ChecklistPage from './components/content/ChecklistPage'
+import checklistContent from './content/checklist.json'
+import { hasSavedProfile, readProfile, saveProfile, type Profile } from './utils/profile'
 import { FAQ_PAGE, findGuide } from './content'
 import { readEntryYear } from './utils/entryYear'
 import { getApartmentByPublicKey, getSchoolDetail } from './services/dataService'
@@ -52,9 +55,29 @@ function MapApplication() {
     return route.kind === 'guide' ? route.slug : null
   })
   // 아이의 입학연도. 주소(`?year=`)와 메모리에만 둔다 — 기기 저장이 필요 없다.
-  const [entryYear, setEntryYear] = useState<number | null>(() => readEntryYear())
+  // 입학 프로필은 이 기기에만 저장한다(PRD v2 D1 A안). 주소의 `?year=`가 있으면 그것이 우선이다.
+  const [profile, setProfile] = useState<Profile>(readProfile)
+  // 연달아 누른 설정이 서로 덮어쓰지 않도록, 바꿀 때는 렌더 시점의 값이 아니라
+  // 마지막으로 저장한 값에서 계산한다.
+  const latestProfile = useRef(profile)
+  const [entryYear, setEntryYear] = useState<number | null>(() => readEntryYear() ?? readProfile().entryYear)
+  const changeProfile = (update: (current: Profile) => Profile) => {
+    const next = update(latestProfile.current)
+    latestProfile.current = next
+    const first = !hasSavedProfile()
+    setProfile(next)
+    saveProfile(next)
+    if (first) {
+      track('start_profile_created', {
+        entry_year: next.entryYear ?? undefined,
+        school_type_interest: next.interest.join(','),
+        moving_plan: next.moving,
+      })
+    }
+  }
   const changeEntryYear = (year: number) => {
     setEntryYear(year)
+    changeProfile((current) => ({ ...current, entryYear: year }))
     // 어떤 입학연도가 고려되는지가 곧 아이 연령 분포다(PRD v2 11절의 리서치 신호).
     track('select_entry_year', { entry_year: year })
     if (view === 'guide' || view === 'faq') {
@@ -160,6 +183,7 @@ function MapApplication() {
   useEffect(() => {
     if (view === 'home') setCanonical(VIEW_PATHS.home)
     else if (view === 'faq') setCanonical(VIEW_PATHS.faq)
+    else if (view === 'checklist') setCanonical(VIEW_PATHS.checklist)
     else if (view === 'guide') {
       // 없는 가이드 주소는 목록을 보여주고 주소도 목록으로 고친다.
       if (guideSlug && !guide) window.history.replaceState({}, '', VIEW_PATHS.guide)
@@ -315,7 +339,16 @@ function MapApplication() {
         </MapErrorBoundary>
       )}
 
-      {view === 'home' && <HomePage onNavigate={(path) => navigate(path, 'home')} entryYear={entryYear} onEntryYearChange={changeEntryYear} />}
+      {view === 'home' && (
+        <HomePage
+          onNavigate={(path) => navigate(path, 'home')}
+          entryYear={entryYear}
+          onEntryYearChange={changeEntryYear}
+          profile={profile}
+          onProfileChange={changeProfile}
+        />
+      )}
+      {view === 'checklist' && <ChecklistPage onNavigate={(path) => navigate(path, 'related')} />}
       {view === 'guide' && (guide
         ? <GuidePage key={guide.slug} guide={guide} onNavigate={(path) => navigate(path, 'related')} />
         : <GuideListPage onNavigate={(path) => navigate(path, 'guides')} entryYear={entryYear} onEntryYearChange={changeEntryYear} />)}
@@ -367,6 +400,7 @@ const TITLES: Record<AppView, string> = {
   privacy: '개인정보처리방침 | 어디초',
   guide: '입학 준비 가이드 | 어디초',
   faq: `${FAQ_PAGE.title} | 어디초`,
+  checklist: `${checklistContent.title} | 어디초`,
 }
 
 const EtlMonitoringPage = lazy(() => import('./components/admin/EtlMonitoringPage'))

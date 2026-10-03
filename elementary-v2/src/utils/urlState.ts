@@ -29,17 +29,18 @@ export type Route =
   | { kind: 'privacy' }
   | { kind: 'guide'; slug: string | null }
   | { kind: 'faq' }
+  | { kind: 'checklist' }
   | { kind: 'admin' }
   | { kind: 'school'; key: string }
   | { kind: 'apartment'; key: string }
 
 /** 화면 단위. 상세 두 종류는 지도 화면 위의 선택이다. */
-export type AppView = 'home' | 'map' | 'guide' | 'faq' | 'news' | 'favorites' | 'privacy'
+export type AppView = 'home' | 'map' | 'guide' | 'faq' | 'checklist' | 'news' | 'favorites' | 'privacy'
 
 export const viewOf = (route: Route): AppView => {
   if (route.kind === 'school' || route.kind === 'apartment' || route.kind === 'map') return 'map'
   if (route.kind === 'news' || route.kind === 'favorites' || route.kind === 'privacy') return route.kind
-  if (route.kind === 'guide' || route.kind === 'faq') return route.kind
+  if (route.kind === 'guide' || route.kind === 'faq' || route.kind === 'checklist') return route.kind
   return 'home'
 }
 
@@ -52,6 +53,7 @@ export const VIEW_PATHS: Record<AppView, string> = {
   privacy: '/privacy',
   guide: '/guide',
   faq: '/faq',
+  checklist: '/checklist',
 }
 
 export const guidePath = (slug: string): string => `/guide/${slug}`
@@ -109,6 +111,7 @@ export const parseRoute = (pathname: string, search = ''): Route => {
     if (segments[0] === 'privacy') return { kind: 'privacy' }
     if (segments[0] === 'guide') return { kind: 'guide', slug: null }
     if (segments[0] === 'faq') return { kind: 'faq' }
+    if (segments[0] === 'checklist') return { kind: 'checklist' }
   }
   // 모르는 주소는 홈으로 연다. 404 화면이 없으므로 가장 쓸모 있는 착지점이다.
   if (segments.length !== 2) return { kind: 'home' }

@@ -31,6 +31,10 @@
       "destination": "/faq/index.html"
     },
     {
+      "source": "/checklist",
+      "destination": "/checklist/index.html"
+    },
+    {
       "source": "/(.*)",
       "destination": "/app.html"
     }
