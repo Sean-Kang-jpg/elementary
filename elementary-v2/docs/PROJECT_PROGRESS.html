@@ -126,13 +126,16 @@
       <table class="roadmap">
         <thead><tr><th>구간</th><th>상태</th><th>완료 범위</th><th>다음 게이트</th></tr></thead>
         <tbody>
-          <tr><td class="phase">DB · ETL 기반</td><td><span class="status done">완료</span></td><td>SQL 06~13, 운영 마스터, Serving, RLS, 모니터링 계약</td><td class="evidence">정기 실행 환경 이전</td></tr>
+          <tr><td class="phase">DB · ETL 기반</td><td><span class="status done">완료</span></td><td>SQL 06~20, 운영 마스터, Serving, RLS, 모니터링·학원·공개 키 계약</td><td class="evidence">정기 실행 환경 이전</td></tr>
           <tr><td class="phase">Frontend v2.0</td><td><span class="status done">완료</span></td><td>2개 공개 테이블 계약, 학교·배정 아파트 지도 UX</td><td class="evidence">유지보수 기준선</td></tr>
           <tr><td class="phase">Frontend v2.1</td><td><span class="status done">배포 완료</span></td><td>검색·필터·GNB·지역 드릴다운·즐겨찾기·반응형 QA</td><td class="evidence"><code>670b350</code></td></tr>
           <tr><td class="phase">Frontend v2.2 P0~P3</td><td><span class="status done">완료</span></td><td>바텀시트 제스처, 통합 검색, 필터 문맥, 아파트 동 수</td><td class="evidence">타이틀 최소화 UX 반영·배포 확인</td></tr>
           <tr><td class="phase">v2.2 P4</td><td><span class="status deferred">보류</span></td><td>역 데이터 소스·별칭·거리 검색 계약과 프로파일러 작성</td><td class="evidence">공식 원본 파일 확보 후 역/주소 검색 재개</td></tr>
           <tr><td class="phase">v2.2 P5</td><td><span class="status doing">쓰기 전환 대기</span></td><td>8개 입력 bundle v2, 로컬·Ubuntu 전체 재현, 52개 감사, 7개 산출물 비교 통과</td><td class="evidence">정기 DB 쓰기 별도 승인</td></tr>
-          <tr><td class="phase">P6 데이터 확장</td><td><span class="status waiting">검증 대기</span></td><td>학원·시간표·놀이터 후보와 승인 기준 정의</td><td class="evidence">수도권 표본 프로파일링과 go/no-go 판단</td></tr>
+          <tr><td class="phase">P6 데이터 확장</td><td><span class="status done">학원 운영 반영</span></td><td>학원 근접 집계·지도(핵심 600m/확장 800m). 시간표 보류, 놀이터 착수 불가</td><td class="evidence">다음: 학원명 키워드로 분야 세분 ETL</td></tr>
+          <tr><td class="phase">도메인 · 검색 등록</td><td><span class="status done">완료</span></td><td><code>wherecho.co.kr</code> 전환, 옛 주소 301, Search Console·서치어드바이저 사이트맵 제출</td><td class="evidence">2026-10-02, DEPLOYMENT.md 7.1</td></tr>
+          <tr><td class="phase">차기 버전 MVP 1a</td><td><span class="status done">배포 완료</span></td><td>라우팅(ADR-008), 셸 분리·SDK 지연 로드, GA4·처리방침, 가이드·FAQ, 학교 상세 입학 준비 모듈</td><td class="evidence">2026-10-03, PRD v2 13절</td></tr>
+          <tr><td class="phase">차기 버전 MVP 1b</td><td><span class="status done">일부 배포</span></td><td>입학 단계 분리(5~6세 가이드), 입학 프로필·D-Day 로드맵·체크리스트, 가이드 요약 도식</td><td class="evidence">남은 것: 큐레이션, 돌봄 정보(D4), UI 재검토</td></tr>
         </tbody>
       </table>
     </section>
