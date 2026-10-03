@@ -383,6 +383,249 @@ body {
   overflow-wrap: anywhere;
 }
 
+.home-page__guides {
+  margin-top: 28px;
+}
+
+.home-page__guides h2 {
+  margin: 0 0 8px;
+  font-size: 16px;
+  font-weight: 750;
+}
+
+.home-page__guides ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid #eceff1;
+}
+
+.home-page__guides li a {
+  display: block;
+  border-bottom: 1px solid #eceff1;
+  padding: 12px 2px;
+  color: #202124;
+  font-size: 14px;
+  text-decoration: none;
+}
+
+.home-page__guides li a:hover {
+  color: #2563eb;
+}
+
+.content-page {
+  background: #fff;
+}
+
+.content-page__inner {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 28px 16px 40px;
+  color: #202124;
+  font-size: 15px;
+  line-height: 1.7;
+  word-break: keep-all;
+}
+
+.content-page__inner h1 {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 800;
+  line-height: 1.4;
+}
+
+.content-page__lead {
+  margin: 8px 0 20px;
+  color: #475467;
+  font-size: 14px;
+}
+
+.content-page__back {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-bottom: 12px;
+  color: #475467;
+  font-size: 13px;
+  text-decoration: none;
+}
+
+.content-page__scope {
+  margin: 10px 0 0;
+  border-radius: 10px;
+  padding: 10px 12px;
+  color: #475467;
+  background: #f7f8fa;
+  font-size: 13px;
+}
+
+.content-body h2 {
+  margin: 28px 0 8px;
+  font-size: 17px;
+  font-weight: 750;
+}
+
+.content-body p,
+.content-body ul,
+.content-body ol {
+  margin: 8px 0;
+}
+
+.content-body ul,
+.content-body ol {
+  padding-left: 20px;
+}
+
+.content-body ul {
+  list-style: disc;
+}
+
+.content-body ol {
+  list-style: decimal;
+}
+
+.content-body li {
+  margin: 4px 0;
+}
+
+.content-body a {
+  color: #2563eb;
+  text-decoration: underline;
+}
+
+.content-body table {
+  display: block;
+  width: 100%;
+  margin: 10px 0;
+  overflow-x: auto;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.content-body th,
+.content-body td {
+  border: 1px solid #e4e7ec;
+  padding: 6px 8px;
+  text-align: left;
+  vertical-align: top;
+}
+
+.content-body th {
+  background: #f7f8fa;
+  font-weight: 700;
+}
+
+.content-body blockquote {
+  margin: 16px 0;
+  border-left: 3px solid #2563eb;
+  border-radius: 0 8px 8px 0;
+  padding: 8px 12px;
+  color: #344054;
+  background: #eff6ff;
+  font-size: 13px;
+}
+
+.content-body blockquote p {
+  margin: 0;
+}
+
+.content-sources {
+  margin-top: 32px;
+  border-top: 1px solid #eceff1;
+  padding-top: 14px;
+  color: #475467;
+  font-size: 13px;
+}
+
+.content-sources h2 {
+  margin: 0 0 6px;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.content-sources ul {
+  margin: 0;
+  padding-left: 18px;
+  list-style: disc;
+}
+
+.content-sources a {
+  color: #475467;
+  overflow-wrap: anywhere;
+}
+
+.content-sources p {
+  margin: 8px 0 0;
+}
+
+.content-list {
+  margin-top: 20px;
+}
+
+.content-list h2 {
+  margin: 0 0 6px;
+  font-size: 15px;
+  font-weight: 750;
+}
+
+.content-list__item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-bottom: 1px solid #eceff1;
+  padding: 12px 2px;
+  color: #202124;
+  text-decoration: none;
+}
+
+.content-list__item strong,
+.content-list__item small {
+  display: block;
+}
+
+.content-list__item strong {
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.content-list__item small {
+  margin-top: 2px;
+  color: #667085;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.content-list__icon {
+  flex: none;
+  color: #2563eb;
+}
+
+.faq-section h2 {
+  margin: 24px 0 4px;
+  font-size: 16px;
+  font-weight: 750;
+}
+
+.faq-item {
+  border-bottom: 1px solid #eceff1;
+}
+
+.faq-item summary {
+  cursor: pointer;
+  padding: 12px 2px;
+  font-weight: 650;
+}
+
+.faq-item .content-body {
+  padding: 0 2px 12px;
+  color: #344054;
+  font-size: 14px;
+}
+
+.content-page__note {
+  margin-top: 20px;
+}
+
 .home-page__footer {
   margin-top: 28px;
   font-size: 12px;
@@ -723,37 +966,51 @@ body {
   bottom: 16px;
 }
 
-@media (max-width: 639px) {
-  :root {
-    --app-bottom-inset: calc(var(--app-gnb-height) + env(safe-area-inset-bottom));
-  }
+/*
+ * The bottom navigation shows at every width (2026-10-03). It used to be mobile
+ * only, which left desktop with no way to reach favorites, news, or - once the
+ * home became its own page - back to the home. So the offsets that keep the sheet
+ * and the floating map controls clear of it apply everywhere too.
+ */
+:root {
+  --app-bottom-inset: calc(var(--app-gnb-height) + env(safe-area-inset-bottom));
+}
 
+.app-gnb {
+  display: grid;
+}
+
+.pb-app-gnb {
+  padding-bottom: var(--app-bottom-inset);
+}
+
+.map-floating-control {
+  bottom: calc(var(--app-gnb-height) + 14px);
+}
+
+.map-floating-alert {
+  bottom: calc(var(--app-gnb-height) + 68px);
+}
+
+.map-legend {
+  bottom: calc(var(--app-gnb-height) + 10px);
+}
+
+@media (min-width: 640px) {
+  /* Wide screens: keep the four items together rather than spread edge to edge. */
   .app-gnb {
-    display: grid;
+    padding-right: max(10px, calc((100% - 560px) / 2));
+    padding-left: max(10px, calc((100% - 560px) / 2));
   }
+}
 
-  .pb-app-gnb {
-    padding-bottom: var(--app-bottom-inset);
-  }
-
-  .map-floating-control {
-    bottom: calc(var(--app-gnb-height) + 14px);
-  }
-
+@media (max-width: 639px) {
   .academy-layer-toggle {
     top: 132px;
   }
 
   .academy-map-legend {
     top: 184px;
-  }
-
-  .map-floating-alert {
-    bottom: calc(var(--app-gnb-height) + 68px);
-  }
-
-  .map-legend {
-    bottom: calc(var(--app-gnb-height) + 10px);
   }
 }
 

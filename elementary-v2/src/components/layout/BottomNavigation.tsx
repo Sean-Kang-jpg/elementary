@@ -1,4 +1,4 @@
-import { Home, Map, Newspaper, Star } from 'lucide-react'
+import { BookOpen, Home, Map, Star } from 'lucide-react'
 import type { MouseEvent } from 'react'
 import { VIEW_PATHS, type AppView } from '../../utils/urlState'
 
@@ -10,7 +10,7 @@ interface BottomNavigationProps {
 const items = [
   { id: 'home', label: '홈', icon: Home },
   { id: 'map', label: '지도', icon: Map },
-  { id: 'news', label: '소식', icon: Newspaper },
+  { id: 'guide', label: '가이드', icon: BookOpen },
   { id: 'favorites', label: '즐겨찾기', icon: Star },
 ] as const
 
@@ -25,7 +25,8 @@ export default function BottomNavigation({ activeView, onNavigate }: BottomNavig
   return (
     <nav className="app-gnb" aria-label="주요 메뉴">
       {items.map(({ id, label, icon: Icon }) => {
-        const isActive = activeView === id
+        // FAQ는 가이드 목록 아래에 있으므로 가이드 탭이 켜진다.
+        const isActive = activeView === id || (id === 'guide' && activeView === 'faq')
         const path = VIEW_PATHS[id]
         return (
           <a

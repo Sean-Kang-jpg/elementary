@@ -19,6 +19,18 @@
       "destination": "/api/detail?type=apt&slug=$1"
     },
     {
+      "source": "/guide",
+      "destination": "/guide/index.html"
+    },
+    {
+      "source": "/guide/:slug",
+      "destination": "/guide/:slug/index.html"
+    },
+    {
+      "source": "/faq",
+      "destination": "/faq/index.html"
+    },
+    {
       "source": "/(.*)",
       "destination": "/app.html"
     }

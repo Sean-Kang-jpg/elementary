@@ -16,7 +16,7 @@ function MainLayoutContent({ children, sidebar, activeView, onNavigate }: MainLa
     <div className="relative h-[100dvh] w-full overflow-hidden">
       {activeView === 'map' && <Header />}
       {sidebar && <Sidebar>{sidebar}</Sidebar>}
-      <main className="absolute inset-0 pb-app-gnb sm:pb-0">{children}</main>
+      <main className="absolute inset-0 pb-app-gnb">{children}</main>
       <BottomNavigation activeView={activeView} onNavigate={onNavigate} />
     </div>
   )

@@ -1,7 +1,8 @@
 import { ChevronRight, Map } from 'lucide-react'
 import type { MouseEvent } from 'react'
 import SearchBox from '../search/SearchBox'
-import { VIEW_PATHS } from '../../utils/urlState'
+import { guidePath, VIEW_PATHS } from '../../utils/urlState'
+import { GUIDES } from '../../content'
 import copy from '../../content/home.json'
 
 interface HomePageProps {
@@ -40,6 +41,20 @@ export default function HomePage({ onNavigate }: HomePageProps) {
           </span>
           <ChevronRight size={18} aria-hidden="true" />
         </a>
+
+        <section className="home-page__guides" aria-labelledby="home-guides-title">
+          <h2 id="home-guides-title">입학 준비 가이드</h2>
+          <ul>
+            {GUIDES.map((guide) => (
+              <li key={guide.slug}>
+                <a href={guidePath(guide.slug)} onClick={(event) => follow(event, guidePath(guide.slug))}>{guide.title}</a>
+              </li>
+            ))}
+            <li>
+              <a href={VIEW_PATHS.faq} onClick={(event) => follow(event, VIEW_PATHS.faq)}>자주 묻는 질문</a>
+            </li>
+          </ul>
+        </section>
 
         <p className="home-page__note">
           {copy.noteBefore}<b>{copy.noteStrong}</b>{copy.noteAfter}

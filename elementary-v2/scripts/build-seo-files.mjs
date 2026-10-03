@@ -200,8 +200,14 @@ const main = async () => {
   const lastmod = new Date().toISOString().slice(0, 10)
   const files = []
 
+  // The home, the guides and the FAQ: the pages written as static HTML by
+  // build-shell-pages.mjs. Their own file, so their indexing can be read apart
+  // from the detail pages in Search Console.
+  const content = JSON.parse(await fs.readFile(path.join(projectRoot, 'src/content/generated/content.json'), 'utf8'))
+  const contentPaths = ['/', '/guide', ...content.guides.map((guide) => `/guide/${guide.slug}`), '/faq']
+
   await fs.mkdir(outDir, { recursive: true })
-  for (const [label, paths] of [['schools', schoolPaths], ['apartments', apartmentPaths]]) {
+  for (const [label, paths] of [['pages', contentPaths], ['schools', schoolPaths], ['apartments', apartmentPaths]]) {
     const pages = chunk(paths, URLS_PER_FILE)
     for (const [index, page] of pages.entries()) {
       const file = `sitemap-${label}-${index + 1}.xml`

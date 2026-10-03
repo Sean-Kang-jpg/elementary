@@ -7,6 +7,9 @@ yarn-error.log*
 # Production builds
 dist/
 build/
+# Written by scripts/build-content.mjs from the markdown beside it, on every dev,
+# build and typecheck. The markdown is the source.
+src/content/generated/
 # `public/` used to be the build output directory, back when vercel.json set
 # `outputDirectory: public`. It is now Vite's static-asset folder, so it must be
 # committed: robots.txt, the sitemap's own robots reference and the favicon all

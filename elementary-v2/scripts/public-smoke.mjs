@@ -268,6 +268,17 @@ const assertHomeAndShellSplit = async () => {
     }
   }
   process.stdout.write('PASS: /map, /favorites and /admin/etl are served the app shell, not the home\n')
+
+  // Guides and the FAQ are static pages with their own head and content, so a
+  // crawler that runs no JavaScript reads them (ADR-008 section 4).
+  for (const [pagePath, heading] of [['/guide', 'guides-title'], ['/guide/school-notice', 'guide-title'], ['/faq', 'faq-title']]) {
+    const body = await (await fetch(new URL(pagePath, baseUrl).toString())).text()
+    const canonicals = body.match(/<link rel="canonical" href="([^"]*)"/g) || []
+    if (canonicals.length !== 1 || !canonicals[0].endsWith(`${pagePath}"`) || !body.includes(`id="${heading}"`)) {
+      throw new Error(`${pagePath} is not served as its own static page with one canonical naming it`)
+    }
+  }
+  process.stdout.write('PASS: /guide, a guide and /faq are served as static pages with their own canonical\n')
 }
 
 try {
@@ -419,6 +430,22 @@ try {
     "document.body.innerText.includes('서울대현초등학교')",
     'school deep link restored the school it names',
   )
+  // The sheet opening is not enough: the map has to be at the school. When the
+  // SDK moved to load after mount, the map was built at its city-wide default and
+  // reported that back over the linked school's viewport - the sheet still opened,
+  // so every check above passed, while a shared link showed all of 서울. It only
+  // lost the race at desktop width, and the app's own metrics record the zoom it
+  // asked for rather than the one drawn, so this reads the map's scale label at
+  // 1280px: a school view is in metres, the city-wide default is 5km.
+  run(['set', 'viewport', '1280', '800'], { quiet: true })
+  run(['open', new URL('/school/서울-강남구-서울대현초등학교--B000002292', baseUrl).toString()])
+  await waitFor(
+    "(() => { const label = [...document.querySelectorAll('[aria-label=\"주변 초등학교 지도\"] *')].map((node) => node.textContent.trim()).find((text) => /^[0-9]+(m|km)$/.test(text)); return Boolean(label) && !label.endsWith('km') })()",
+    'the school link opened the map at the school, not at the city-wide default',
+  )
+  run(['set', 'viewport', '390', '844'], { quiet: true })
+  run(['open', new URL('/school/서울-강남구-서울대현초등학교--B000002292', baseUrl).toString()])
+  await waitFor("document.body.innerText.includes('서울대현초등학교')", 'school deep link reopened at mobile width for the checks below')
   assertPage(
     "(() => { const button = document.querySelector('[data-testid=share-button]');"
     + " if (!button) return false;"
@@ -488,7 +515,24 @@ try {
   run(['open', new URL('/favorites', baseUrl).toString()])
   await waitFor("document.querySelector('#favorites-title') && document.querySelector('.app-gnb__item--active')?.getAttribute('href') === '/favorites'", '/favorites opens the favorites screen')
   run(['open', new URL('/news', baseUrl).toString()])
-  await waitFor("document.querySelector('.app-gnb__item--active')?.getAttribute('href') === '/news'", '/news opens the news screen')
+  // News left the bottom navigation for a link under the guide list; the address stays.
+  await waitFor("document.querySelector('#news-title')", '/news opens the news screen')
+
+  // Guides (PRD v2 MVP 1a). A guide is reached from the list, its links move
+  // within the app without a reload, and the FAQ answers open in place.
+  run(['open', new URL('/guide', baseUrl).toString()])
+  await waitFor("document.querySelector('#guides-title') && document.querySelector('.app-gnb__item--active')?.getAttribute('href') === '/guide'", '/guide lists the guides with the guide tab active')
+  run(['eval', "window.__smokeNoReload = true; document.querySelector('a.content-list__item[href=\"/guide/school-notice\"]').click(); 'guide'"])
+  await waitFor("location.pathname === '/guide/school-notice' && document.querySelector('#guide-title') && document.querySelector('.content-sources')", 'a guide opens with its sources')
+  assertPage("document.title.includes('취학통지서') && document.querySelector('link[rel=canonical]')?.href.endsWith('/guide/school-notice')", 'the guide names itself in the title and canonical')
+  run(['eval', "document.querySelector('.content-body a[href=\"/guide/preliminary-call\"]').click(); 'inline link'"])
+  await waitFor("location.pathname === '/guide/preliminary-call' && window.__smokeNoReload === true", 'a link inside a guide moved to the next guide without reloading')
+  run(['open', new URL('/faq', baseUrl).toString()])
+  await waitFor("document.querySelectorAll('details.faq-item').length > 5 && document.querySelector('.app-gnb__item--active')?.getAttribute('href') === '/guide'", '/faq lists its questions under the guide tab')
+  run(['eval', "document.querySelector('details.faq-item summary').click(); 'opened'"])
+  assertPage("document.querySelector('details.faq-item').open && document.querySelector('details.faq-item .content-body').innerText.trim().length > 20", 'an FAQ answer opens in place')
+  run(['open', new URL('/guide/no-such-guide', baseUrl).toString()])
+  await waitFor("location.pathname === '/guide' && document.querySelector('#guides-title')", 'an unknown guide address falls back to the guide list')
 
   // This script runs against production after every release. If its headless
   // browser were measured, each release would add sessions that did nothing and
