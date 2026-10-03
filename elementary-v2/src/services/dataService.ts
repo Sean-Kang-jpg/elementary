@@ -307,6 +307,14 @@ export const fetchRegionData = async (
 }
 
 export const fetchRegionAggregatedData = async (filters: FilterState): Promise<RegionData[]> => {
+  // Region totals do not depend on the viewport, so panning must not re-read the whole table.
+  const cacheKey = `region-aggregate_${JSON.stringify({
+    cities: filters.selected_cities,
+    schoolTypes: filters.school_types,
+  })}`
+  const cached = dataCache.get(cacheKey)
+  if (cached) return cached as RegionData[]
+
   const rows: SchoolMasterRow[] = []
   for (let start = 0; ; start += 1000) {
     let query = supabase
@@ -329,7 +337,7 @@ export const fetchRegionAggregatedData = async (filters: FilterState): Promise<R
     stats.set(school.region, current)
   })
 
-  return Array.from(stats, ([region, value]) => ({
+  const regions = Array.from(stats, ([region, value]) => ({
     region,
     region_name: region,
     total_schools: value.schools,
@@ -338,6 +346,8 @@ export const fetchRegionAggregatedData = async (filters: FilterState): Promise<R
     keris_integration_rate: value.schools ? value.observed / value.schools * 100 : 0,
     center: getRegionCenter(region),
   }))
+  dataCache.set(cacheKey, regions)
+  return regions
 }
 
 export const fetchSchoolDetailData = async (bounds: MapBounds, filters: FilterState): Promise<School[]> => {
