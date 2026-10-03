@@ -454,6 +454,17 @@ try {
     'the school detail offers its canonical URL to share',
   )
 
+  // The start module (PRD v2 W4) is where a parent who searched the school on
+  // their notice is handed to the guides, and back has to return them to it.
+  assertPage("document.querySelectorAll('.start-module a[href^=\"/guide/\"]').length >= 4", 'the school detail offers the start module with guides for both stages')
+  run(['eval', "document.querySelector('.start-module a[href^=\"/guide/\"]').click(); 'start module'"])
+  await waitFor("location.pathname.startsWith('/guide/') && document.querySelector('#guide-title')", 'the start module opened a guide')
+  run(['eval', 'history.back(); "back"'])
+  await waitFor(
+    "location.pathname.includes('B000002292') && document.querySelector('[data-testid=bottom-sheet]')?.innerText.includes('서울대현초등학교')",
+    'back from the guide returned to the school detail',
+  )
+
   run(['fill', 'input[role="combobox"]', '서울방현'])
   await waitFor("document.querySelectorAll('#map-search-results [role=option]').length > 0", 'school search returned results')
   run(['eval', "document.querySelector('#map-search-results [role=option]').click(); 'school selected'"])

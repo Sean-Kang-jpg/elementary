@@ -181,7 +181,7 @@ GA4는 방문자 정보를 외부(Google)로 전송하므로 개인정보처리�
 | `search_scope` | school/apartment/region | **`unified`** 하나 | 검색이 학교·아파트를 한 번에 찾는 통합 검색으로 바뀌었다 |
 | `create_comparison` | 7종에 포함 | **미구현** | 비교 기능이 없다(PRD v2 부록 A-3, MVP 2 조건부) |
 | `save_candidate` | 후보 저장 | 즐겨찾기 **추가**에만. `item_id`는 학교 `school_id`, 아파트 공개 키 | 즐겨찾기 기록 자체는 `canonical_complex_id`를 들고 있어 호출 지점에서 공개 키로 보낸다 |
-| PRD v2 1a 이벤트 | `click_start_module`·`view_guide`·`view_faq` | **`view_guide`·`view_faq` 구현(W3).** `click_start_module`은 W4 | `view_guide`는 가이드를 열 때(`guide_id`=slug), `view_faq`는 **질문을 펼칠 때마다**(`faq_id`=질문 문구, 페이지 진입 경로를 함께) 보낸다. 어느 질문이 열리는지가 PRD v2 11절의 고객 리서치 신호다. 보고서에서 쪼개 보려면 `guide_id`·`faq_id`를 맞춤 측정기준으로 등록한다 |
+| PRD v2 1a 이벤트 | `click_start_module`·`view_guide`·`view_faq` | **`view_guide`·`view_faq` 구현(W3), `click_start_module` 구현(W4).** | `view_guide`는 가이드를 열 때(`guide_id`=slug), `view_faq`는 **질문을 펼칠 때마다**(`faq_id`=질문 문구, 페이지 진입 경로를 함께) 보낸다. 어느 질문이 열리는지가 PRD v2 11절의 고객 리서치 신호다. 보고서에서 쪼개 보려면 `guide_id`·`faq_id`를 맞춤 측정기준으로 등록한다 |
 
 ### `select_entry_year` (2026-10-03 추가)
 
@@ -206,6 +206,11 @@ GA4는 방문자 정보를 외부(Google)로 전송하므로 개인정보처리�
 | `home` | 홈의 가이드·FAQ 링크 (2026-10-03, W3) |
 | `guides` | 가이드 목록에서 선택 (W3) |
 | `nav` | 하단 메뉴. 가이드·FAQ 진입에 표시가 없을 때의 기본값이기도 하다 (W3) |
+| `detail` | 학교 상세의 "이 학교 입학을 준비한다면" 모듈에서 가이드로 (W4) |
+
+`click_start_module`은 `school_id`·`guide_id`와 함께, **그 학교 상세에 어떻게 들어왔는지**를
+`entry_source`로 보낸다(상세 조회 때 기억해 둔 값). "검색엔진으로 학교를 찾아온 부모가 가이드로
+넘어가는가"가 PRD v2 12절 선행 지표 2(상세 → 입학 준비 진입률)이고, 그 분자가 이 이벤트다.
 
 상세 조회 이벤트를 **보내지 않는** 경우: 뒤로·앞으로 가기로 되돌아온 상세, 아파트를 닫고
 같은 학교로 돌아온 것. 둘 다 새로 본 상세가 아니다.

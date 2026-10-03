@@ -803,6 +803,53 @@
   margin-top: 18px;
 }
 
+/* ---- School detail start module (W4) -------------------------------------- */
+
+.start-module {
+  border: 1px solid #f4d9cb;
+  border-radius: 16px;
+  padding: 14px 14px 6px;
+  color: var(--warm-text);
+  background: linear-gradient(180deg, #fff6f1 0%, #fffaf7 100%);
+}
+
+.start-module h3 {
+  margin: 0 0 8px;
+  font-size: 15px;
+  font-weight: 750;
+}
+
+.start-module__group {
+  margin-bottom: 8px;
+}
+
+.start-module__group ul {
+  margin: 4px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.start-module__group li a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  border-bottom: 1px dashed #f0dfd5;
+  padding: 9px 2px;
+  color: var(--warm-text);
+  font-size: 14px;
+  text-decoration: none;
+}
+
+.start-module__group li:last-child a {
+  border-bottom: 0;
+}
+
+.start-module__group li a svg {
+  flex: none;
+  color: var(--warm-faint);
+}
+
 /* ---- Privacy -------------------------------------------------------------- */
 
 .privacy-page__inner {

@@ -17,7 +17,7 @@ import { FAQ_PAGE, findGuide } from './content'
 import { readEntryYear } from './utils/entryYear'
 import { getApartmentByPublicKey, getSchoolDetail } from './services/dataService'
 import type { FavoriteRecord } from './utils/favorites'
-import { initAnalytics, markEntry, takeEntry, track, trackPageView, type EntrySource } from './utils/analytics'
+import { initAnalytics, markEntry, rememberDetailEntry, takeEntry, track, trackPageView, type EntrySource } from './utils/analytics'
 import {
   apartmentPath,
   guidePath,
@@ -223,17 +223,21 @@ function MapApplication() {
       return
     }
     if (apartment && apartmentChanged) {
+      const source = takeEntry()
+      rememberDetailEntry(source)
       track('view_apartment_detail', {
         complex_public_key: apartment.public_key || undefined,
         school_id: school?.school_id ?? apartment.assigned_school_id,
         region: apartment.city,
-        entry_source: takeEntry(),
+        entry_source: source,
       })
     } else if (!apartment && school && schoolChanged) {
+      const source = takeEntry()
+      rememberDetailEntry(source)
       track('view_school_detail', {
         school_id: school.school_id,
         region: school.region,
-        entry_source: takeEntry(),
+        entry_source: source,
       })
     }
   }, [state.selectedApartment, state.selectedSchool])
@@ -349,6 +353,7 @@ function MapApplication() {
         school={state.selectedSchool}
         isOpen={view === 'map' && !!state.selectedSchool}
         onClose={handleCloseSchoolDetail}
+        onOpenGuide={(path) => navigate(path, 'detail')}
       />
     </MainLayout>
   )
