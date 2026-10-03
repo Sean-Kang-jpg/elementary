@@ -1,0 +1,21 @@
+{
+  "_comment": "가이드·FAQ 화면의 구조 문구. 앱(src/content/index.ts, src/utils/entryYear.ts)과 빌드의 정적 페이지(scripts/build-shell-pages.mjs)가 함께 읽는다.",
+  "stages": {
+    "planning": { "short": "입학 1~2년 전", "long": "입학 1~2년 전 · 이사와 학교 알아보기", "homeTitle": "이사와 학교를 알아볼 때" },
+    "admission": { "short": "입학하는 해", "long": "입학하는 해 · 취학 절차와 준비", "homeTitle": "취학통지서부터 입학까지" }
+  },
+  "groups": [
+    { "id": "planning", "stage": "planning", "label": "이사와 학교 알아보기" },
+    { "id": "admission", "stage": "admission", "label": "입학 절차" },
+    { "id": "move", "stage": "admission", "label": "이사 시점별 안내" }
+  ],
+  "guideList": {
+    "title": "입학 준비 가이드",
+    "lead": "이사 계획부터 입학까지, 시기마다 할 일을 공식 자료를 근거로 정리했어요.",
+    "description": "이사 계획부터 취학통지서, 예비소집까지 아이 입학 시기별로 할 일을 공식 자료로 정리했습니다."
+  },
+  "faqPage": {
+    "title": "초등학교 입학 자주 묻는 질문",
+    "description": "이사 시기부터 취학통지서, 예비소집, 입학 연기까지 아이 입학 시기별로 자주 묻는 질문을 공식 근거로 정리했습니다."
+  }
+}

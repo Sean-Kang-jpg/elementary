@@ -3,6 +3,8 @@ slug: preliminary-call
 title: 예비소집, 꼭 가야 하나요
 description: 예비소집은 아이의 취학 여부와 안전을 확인하는 절차입니다. 준비물, 갈 수 없을 때 할 일, 불참하면 생기는 일을 정리했습니다.
 order: 2
+stage: admission
+group: admission
 verifiedAt: 2026-10-03
 scope: 예비소집일은 시·도 교육감이 정하므로 지역마다 다릅니다. 아래 서울 일정은 2026학년도 입학생 기준 예시이며, 2027학년도 입학생은 2026년 12월 취학통지서와 학교 공지로 다시 확인해야 합니다.
 sources:

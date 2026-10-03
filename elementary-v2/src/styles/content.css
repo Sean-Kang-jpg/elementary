@@ -1,0 +1,873 @@
+/*
+ * Home, guides, FAQ and privacy: the pages a parent reads rather than the map
+ * they explore. Warm and approachable - ivory ground, coral and peach accents,
+ * soft rounded cards - without leaving the trust the facts need.
+ *
+ * Two stage colours carry meaning everywhere they appear: sage for 입학 1~2년 전
+ * (planning a move), peach for 입학하는 해 (the admission procedure). The map's
+ * blue stays on the map, where it encodes data.
+ */
+
+:root {
+  --warm-bg: #fffaf6;
+  --warm-surface: #ffffff;
+  --warm-border: #f2e6dc;
+  --warm-border-strong: #e8d6c8;
+  --warm-text: #2d2926;
+  --warm-muted: #6e655f;
+  --warm-faint: #9a8f87;
+  --warm-accent: #e8664f;
+  --warm-accent-strong: #c94f3a;
+  --warm-accent-soft: #fff0eb;
+  --warm-sage: #3f7f6e;
+  --warm-sage-soft: #e9f4ef;
+  --warm-peach: #c2552f;
+  --warm-peach-soft: #fff1e8;
+  --warm-shadow: 0 6px 20px rgba(150, 100, 70, 0.08);
+  --warm-radius: 18px;
+}
+
+/* ---- Shared page frame ---------------------------------------------------- */
+
+/* Doubled class: index.css loads after this file and its .app-destination sets
+   a grey ground for the map-side pages. */
+.app-destination.home-page,
+.app-destination.content-page,
+.app-destination.privacy-page {
+  background: var(--warm-bg);
+  color: var(--warm-text);
+}
+
+.home-page__inner,
+.content-page__inner {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+.content-page__inner {
+  padding: 24px 16px 44px;
+  font-size: 15px;
+  line-height: 1.75;
+  word-break: keep-all;
+}
+
+/* ---- Stage chips and markers ---------------------------------------------- */
+
+.stage-chip {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  padding: 3px 10px;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.6;
+}
+
+.stage-chip--planning {
+  color: var(--warm-sage);
+  background: var(--warm-sage-soft);
+}
+
+.stage-chip--admission {
+  color: var(--warm-peach);
+  background: var(--warm-peach-soft);
+}
+
+.home-stage__mine {
+  margin-left: 6px;
+  color: var(--warm-accent);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+/* ---- Home ----------------------------------------------------------------- */
+
+.home-hero {
+  border-radius: 0 0 28px 28px;
+  padding: 28px 0 24px;
+  background: linear-gradient(180deg, #ffe9df 0%, #fff4ec 55%, var(--warm-bg) 100%);
+}
+
+.home-hero__art {
+  display: block;
+  width: 168px;
+  height: auto;
+  margin: 0 0 8px -6px;
+}
+
+.home-page__brand {
+  display: inline-block;
+  margin: 0 0 8px;
+  border-radius: 999px;
+  padding: 2px 10px;
+  color: var(--warm-accent-strong);
+  background: rgba(255, 255, 255, 0.7);
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.home-page h1 {
+  margin: 0;
+  color: var(--warm-text);
+  font-size: 25px;
+  font-weight: 800;
+  line-height: 1.38;
+  letter-spacing: -0.02em;
+  word-break: keep-all;
+}
+
+.home-page__lead {
+  margin: 10px 0 18px;
+  color: var(--warm-muted);
+  font-size: 15px;
+  line-height: 1.6;
+  word-break: keep-all;
+}
+
+.home-page__search {
+  width: 100%;
+}
+
+.home-page__search input {
+  border-radius: 16px;
+}
+
+.home-hero__trust {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  margin: 12px 0 0;
+  color: var(--warm-muted);
+  font-size: 12.5px;
+  line-height: 1.5;
+  word-break: keep-all;
+}
+
+.home-hero__trust svg {
+  flex: none;
+  margin-top: 2px;
+  color: var(--warm-sage);
+}
+
+.home-page__body {
+  padding-top: 18px;
+  padding-bottom: 32px;
+}
+
+.home-card {
+  margin: 0 0 16px;
+  border: 1px solid var(--warm-border);
+  border-radius: var(--warm-radius);
+  padding: 16px;
+  background: var(--warm-surface);
+  box-shadow: var(--warm-shadow);
+}
+
+.home-stage {
+  margin: 0 0 14px;
+  border: 1px solid var(--warm-border);
+  border-radius: var(--warm-radius);
+  padding: 16px 16px 6px;
+  background: var(--warm-surface);
+}
+
+.home-stage--mine.home-stage--planning {
+  border-color: #b9dccd;
+  box-shadow: 0 6px 20px rgba(63, 127, 110, 0.1);
+}
+
+.home-stage--mine.home-stage--admission {
+  border-color: #f4c7b3;
+  box-shadow: 0 6px 20px rgba(194, 85, 47, 0.1);
+}
+
+.home-stage h2 {
+  margin: 10px 0 4px;
+  font-size: 17px;
+  font-weight: 750;
+}
+
+.home-stage ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.home-stage li + li {
+  border-top: 1px dashed var(--warm-border);
+}
+
+.home-stage li a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 12px 0;
+  color: var(--warm-text);
+  font-size: 14.5px;
+  text-decoration: none;
+}
+
+.home-stage li a svg {
+  flex: none;
+  color: var(--warm-faint);
+}
+
+.home-stage li a:hover span {
+  color: var(--warm-accent-strong);
+}
+
+.home-links {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin: 4px 0 12px;
+}
+
+.home-link {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border: 1px solid var(--warm-border);
+  border-radius: var(--warm-radius);
+  padding: 14px;
+  color: var(--warm-text);
+  background: var(--warm-surface);
+  text-decoration: none;
+}
+
+.home-link strong,
+.home-link small {
+  display: block;
+}
+
+.home-link strong {
+  font-size: 14.5px;
+  font-weight: 750;
+}
+
+.home-link small {
+  margin-top: 2px;
+  color: var(--warm-muted);
+  font-size: 12.5px;
+  line-height: 1.45;
+}
+
+.home-link__icon {
+  display: inline-flex;
+  width: 38px;
+  height: 38px;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+}
+
+.home-link__icon--peach {
+  color: var(--warm-peach);
+  background: var(--warm-peach-soft);
+}
+
+.home-link__icon--sage {
+  color: var(--warm-sage);
+  background: var(--warm-sage-soft);
+}
+
+.home-page__card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border: 1px solid var(--warm-border);
+  border-radius: var(--warm-radius);
+  padding: 14px 14px 14px 16px;
+  color: var(--warm-text);
+  background: var(--warm-surface);
+  text-decoration: none;
+}
+
+.home-page__card strong,
+.home-page__card small {
+  display: block;
+}
+
+.home-page__card strong {
+  font-size: 15px;
+  font-weight: 750;
+}
+
+.home-page__card small {
+  margin-top: 2px;
+  color: var(--warm-muted);
+  font-size: 13px;
+}
+
+.home-page__card-icon {
+  display: inline-flex;
+  width: 40px;
+  height: 40px;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  color: #2563eb;
+  background: #eef4ff;
+}
+
+.home-page__note {
+  margin: 16px 0 0;
+  color: var(--warm-muted);
+  font-size: 12.5px;
+}
+
+.home-page__footer {
+  margin-top: 24px;
+  font-size: 12px;
+}
+
+.home-page__footer a {
+  color: var(--warm-faint);
+  text-decoration: underline;
+}
+
+/* Static home, before the app mounts: a flat list of guides. */
+.home-page__guides {
+  margin-top: 24px;
+}
+
+.home-page__guides h2 {
+  margin: 0 0 8px;
+  font-size: 16px;
+  font-weight: 750;
+}
+
+.home-page__guides ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.home-page__guides li a {
+  display: block;
+  border-bottom: 1px solid var(--warm-border);
+  padding: 11px 2px;
+  color: var(--warm-text);
+  font-size: 14px;
+  text-decoration: none;
+}
+
+/* ---- Entry-year picker ---------------------------------------------------- */
+
+.year-picker__label {
+  margin: 0 0 10px;
+  font-size: 15px;
+  font-weight: 750;
+}
+
+.year-picker__chips {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.year-chip {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1px;
+  border: 1.5px solid var(--warm-border-strong);
+  border-radius: 14px;
+  padding: 10px 4px;
+  color: var(--warm-text);
+  background: var(--warm-bg);
+  cursor: pointer;
+  transition: border-color 0.15s, background-color 0.15s;
+}
+
+.year-chip strong {
+  font-size: 14.5px;
+  font-weight: 750;
+}
+
+.year-chip small {
+  color: var(--warm-muted);
+  font-size: 12px;
+}
+
+.year-chip:hover {
+  border-color: var(--warm-accent);
+}
+
+.year-chip--selected {
+  border-color: var(--warm-accent);
+  color: var(--warm-accent-strong);
+  background: var(--warm-accent-soft);
+}
+
+.year-chip--selected small {
+  color: var(--warm-accent-strong);
+}
+
+.year-chip:focus-visible {
+  outline: 3px solid rgba(232, 102, 79, 0.35);
+  outline-offset: 2px;
+}
+
+.year-picker__stage {
+  margin: 12px 0 0;
+  border-radius: 12px;
+  padding: 9px 12px;
+  font-size: 13.5px;
+}
+
+.year-picker__stage--planning {
+  color: #2f6456;
+  background: var(--warm-sage-soft);
+}
+
+.year-picker__stage--admission {
+  color: #9c4322;
+  background: var(--warm-peach-soft);
+}
+
+/* ---- Guide list and timeline ---------------------------------------------- */
+
+.content-page__inner h1 {
+  margin: 8px 0 0;
+  font-size: 23px;
+  font-weight: 800;
+  line-height: 1.4;
+  letter-spacing: -0.02em;
+}
+
+.content-page__lead {
+  margin: 8px 0 18px;
+  color: var(--warm-muted);
+  font-size: 14.5px;
+}
+
+.guide-stage,
+.faq-stage {
+  margin: 0 0 22px;
+}
+
+.guide-stage__header {
+  display: flex;
+  align-items: center;
+  margin: 8px 0 2px;
+}
+
+.content-list {
+  margin-top: 14px;
+}
+
+.content-list h2 {
+  margin: 0 0 8px;
+  font-size: 15px;
+  font-weight: 750;
+}
+
+.guide-timeline {
+  position: relative;
+  margin: 0;
+  padding: 0 0 0 22px;
+  list-style: none;
+}
+
+.guide-timeline::before {
+  position: absolute;
+  top: 18px;
+  bottom: 18px;
+  left: 6px;
+  width: 2px;
+  border-radius: 2px;
+  background: var(--warm-border-strong);
+  content: '';
+}
+
+.guide-timeline li {
+  position: relative;
+  margin-bottom: 8px;
+}
+
+.guide-timeline li::before {
+  position: absolute;
+  top: 20px;
+  left: -21px;
+  width: 12px;
+  height: 12px;
+  border: 2.5px solid var(--warm-surface);
+  border-radius: 50%;
+  background: var(--warm-accent);
+  box-shadow: 0 0 0 1.5px var(--warm-border-strong);
+  content: '';
+}
+
+.guide-stage--planning .guide-timeline li::before {
+  background: var(--warm-sage);
+}
+
+.guide-stage--admission .guide-timeline li::before {
+  background: #ee8a5d;
+}
+
+.content-list__item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border: 1px solid var(--warm-border);
+  border-radius: 16px;
+  padding: 13px 12px 13px 15px;
+  color: var(--warm-text);
+  background: var(--warm-surface);
+  text-decoration: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.content-list__item:hover {
+  border-color: var(--warm-border-strong);
+  box-shadow: var(--warm-shadow);
+}
+
+.content-list__item--card {
+  margin-bottom: 8px;
+}
+
+.content-list__item strong,
+.content-list__item small {
+  display: block;
+}
+
+.content-list__item strong {
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.45;
+}
+
+.content-list__item small {
+  margin-top: 3px;
+  color: var(--warm-muted);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.content-list__item > svg {
+  flex: none;
+  color: var(--warm-faint);
+}
+
+/* ---- One guide ------------------------------------------------------------ */
+
+.content-page__back {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-bottom: 14px;
+  color: var(--warm-muted);
+  font-size: 13px;
+  text-decoration: none;
+}
+
+.content-page__inner > .stage-chip {
+  display: flex;
+  width: fit-content;
+}
+
+.content-page__scope {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin: 12px 0 0;
+  border-radius: 14px;
+  padding: 11px 13px;
+  color: var(--warm-muted);
+  background: #f8f1ea;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.content-page__scope svg {
+  flex: none;
+  margin-top: 3px;
+  color: var(--warm-faint);
+}
+
+.content-body h2 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 30px 0 10px;
+  font-size: 18px;
+  font-weight: 750;
+}
+
+.content-body h2::before {
+  width: 6px;
+  height: 18px;
+  border-radius: 3px;
+  background: var(--warm-accent);
+  content: '';
+}
+
+.content-body p,
+.content-body ul,
+.content-body ol {
+  margin: 10px 0;
+}
+
+.content-body ul,
+.content-body ol {
+  padding-left: 22px;
+}
+
+.content-body ul {
+  list-style: disc;
+}
+
+.content-body ul li::marker {
+  color: var(--warm-accent);
+}
+
+.content-body ol {
+  list-style: decimal;
+}
+
+.content-body ol li::marker {
+  color: var(--warm-accent-strong);
+  font-weight: 700;
+}
+
+.content-body li {
+  margin: 6px 0;
+}
+
+.content-body strong {
+  font-weight: 750;
+}
+
+.content-body a {
+  color: var(--warm-accent-strong);
+  text-decoration: underline;
+  text-decoration-color: rgba(201, 79, 58, 0.35);
+  text-underline-offset: 3px;
+}
+
+.content-body table {
+  display: block;
+  width: 100%;
+  margin: 12px 0;
+  overflow-x: auto;
+  border: 1px solid var(--warm-border);
+  border-radius: 14px;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: var(--warm-surface);
+  font-size: 13.5px;
+}
+
+.content-body th,
+.content-body td {
+  border-bottom: 1px solid var(--warm-border);
+  padding: 9px 11px;
+  text-align: left;
+  vertical-align: top;
+}
+
+.content-body tr:last-child td {
+  border-bottom: 0;
+}
+
+.content-body th {
+  color: var(--warm-muted);
+  background: #fbf3ec;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.content-body blockquote {
+  margin: 20px 0;
+  border-radius: 14px;
+  padding: 12px 14px;
+  color: #5a4a40;
+  background: var(--warm-accent-soft);
+  font-size: 13.5px;
+}
+
+.content-body blockquote p {
+  margin: 0;
+}
+
+.content-sources {
+  margin-top: 34px;
+  border-radius: 16px;
+  padding: 14px 16px;
+  color: var(--warm-muted);
+  background: #f8f1ea;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.content-sources h2 {
+  margin: 0 0 6px;
+  color: var(--warm-text);
+  font-size: 14px;
+  font-weight: 750;
+}
+
+.content-sources ul {
+  margin: 0;
+  padding-left: 18px;
+  list-style: disc;
+}
+
+.content-sources a {
+  color: var(--warm-muted);
+  overflow-wrap: anywhere;
+}
+
+.content-sources p {
+  margin: 8px 0 0;
+  color: var(--warm-faint);
+}
+
+/* ---- FAQ ------------------------------------------------------------------ */
+
+.faq-stage__title {
+  margin: 8px 0 4px;
+  font-size: 18px;
+  font-weight: 800;
+  line-height: 1.45;
+}
+
+.faq-section h3 {
+  margin: 20px 0 8px;
+  color: var(--warm-muted);
+  font-size: 14px;
+  font-weight: 750;
+}
+
+.faq-item {
+  margin-bottom: 8px;
+  border: 1px solid var(--warm-border);
+  border-radius: 14px;
+  background: var(--warm-surface);
+}
+
+.faq-item[open] {
+  border-color: var(--warm-border-strong);
+  box-shadow: var(--warm-shadow);
+}
+
+.faq-item summary {
+  position: relative;
+  padding: 13px 40px 13px 15px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 650;
+  line-height: 1.5;
+  list-style: none;
+}
+
+.faq-item summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq-item summary::after {
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  color: var(--warm-accent);
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1;
+  transform: translateY(-50%);
+  content: '+';
+}
+
+.faq-item[open] summary::after {
+  content: '−';
+}
+
+.faq-item .content-body {
+  padding: 0 15px 12px;
+  color: #4a413b;
+  font-size: 14.5px;
+}
+
+.faq-item .content-body p:first-child {
+  margin-top: 0;
+}
+
+.content-page__note {
+  margin-top: 18px;
+}
+
+/* ---- Privacy -------------------------------------------------------------- */
+
+.privacy-page__inner {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 32px 16px 40px;
+  font-size: 14px;
+  line-height: 1.75;
+  word-break: keep-all;
+}
+
+.privacy-page__inner h1 {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 800;
+}
+
+.privacy-page__meta {
+  margin: 4px 0 20px;
+  color: var(--warm-muted);
+  font-size: 13px;
+}
+
+.privacy-page__inner h2 {
+  margin: 24px 0 6px;
+  font-size: 16px;
+  font-weight: 750;
+}
+
+.privacy-page__inner p {
+  margin: 6px 0;
+}
+
+.privacy-page__inner ul {
+  margin: 6px 0;
+  padding-left: 20px;
+  list-style: disc;
+}
+
+.privacy-page__inner dl {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 4px 14px;
+  margin: 6px 0;
+}
+
+.privacy-page__inner dt {
+  color: var(--warm-muted);
+}
+
+.privacy-page__inner dd {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+@media (min-width: 640px) {
+  .home-hero {
+    padding-top: 40px;
+  }
+
+  .home-hero__art {
+    width: 200px;
+  }
+
+  .home-page h1 {
+    font-size: 30px;
+  }
+}

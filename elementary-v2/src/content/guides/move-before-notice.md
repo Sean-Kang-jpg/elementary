@@ -3,6 +3,7 @@ slug: move-before-notice
 title: 취학통지서 받기 전에 이사한다면 (10~12월)
 description: 12월 20일 취학통지 전에 이사하면, 전입신고한 새 주소를 기준으로 학교가 배정됩니다. 놓치기 쉬운 점을 정리했습니다.
 order: 3
+stage: admission
 group: move
 verifiedAt: 2026-10-03
 scope: 법령상 전국이 같은 절차입니다. 처리 시점은 지자체(주민센터)마다 다를 수 있어 별도 확인이 필요합니다.

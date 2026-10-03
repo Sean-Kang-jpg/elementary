@@ -25,7 +25,7 @@ module.exports = {
         }
       },
       fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
+        sans: ['Pretendard Variable', 'Pretendard', '-apple-system', 'system-ui', 'Apple SD Gothic Neo', 'Malgun Gothic', 'sans-serif'],
       },
     },
   },

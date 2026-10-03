@@ -531,6 +531,17 @@ try {
   await waitFor("document.querySelectorAll('details.faq-item').length > 5 && document.querySelector('.app-gnb__item--active')?.getAttribute('href') === '/guide'", '/faq lists its questions under the guide tab')
   run(['eval', "document.querySelector('details.faq-item summary').click(); 'opened'"])
   assertPage("document.querySelector('details.faq-item').open && document.querySelector('details.faq-item .content-body').innerText.trim().length > 20", 'an FAQ answer opens in place')
+  // The entry year decides which stage leads. 2-3 years out is planning a move;
+  // the year of entry is the admission procedure. Picking one puts it in the URL.
+  run(['open', new URL('/guide', baseUrl).toString()])
+  await waitFor("document.querySelectorAll('.year-chip').length === 3", 'the guide list offers three entry years')
+  run(['eval', "document.querySelectorAll('.year-chip')[2].click(); 'picked the furthest year'"])
+  await waitFor(
+    "new URLSearchParams(location.search).get('year') === document.querySelectorAll('.year-chip')[2].querySelector('strong').textContent.slice(0, 4)"
+    + " && document.querySelector('.guide-stage')?.classList.contains('guide-stage--planning')"
+    + " && document.querySelector('.guide-stage--mine')",
+    'a year two years out puts the planning guides first and records the year in the address',
+  )
   run(['open', new URL('/guide/no-such-guide', baseUrl).toString()])
   await waitFor("location.pathname === '/guide' && document.querySelector('#guides-title')", 'an unknown guide address falls back to the guide list')
 
