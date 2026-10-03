@@ -56,17 +56,31 @@ const escapeHtml = (value) => String(value)
 const copy = JSON.parse(await fs.readFile(path.join(projectRoot, 'src/content/home.json'), 'utf8'))
 const content = JSON.parse(await fs.readFile(path.join(projectRoot, 'src/content/generated/content.json'), 'utf8'))
 
-const homeGuidesHtml = () => '<section class="home-page__guides" aria-labelledby="home-guides-title"><h2 id="home-guides-title">입학 준비 가이드</h2><ul>'
-  + content.guides.map((guide) => `<li><a href="/guide/${guide.slug}">${escapeHtml(guide.title)}</a></li>`).join('')
-  + '<li><a href="/faq">자주 묻는 질문</a></li></ul></section>'
+const structure = JSON.parse(await fs.readFile(path.join(projectRoot, 'src/content/structure.json'), 'utf8'))
+const STAGE_ORDER = ['planning', 'admission']
+
+// The home's guides, one card per stage, as the app shows them before a year is picked.
+const homeStagesHtml = () => STAGE_ORDER.map((stage) => {
+  const guides = content.guides.filter((guide) => guide.stage === stage)
+  if (!guides.length) return ''
+  return `<section class="home-stage home-stage--${stage}"><header><span class="stage-chip stage-chip--${stage}">${escapeHtml(structure.stages[stage].short)}</span></header>`
+    + `<h2>${escapeHtml(structure.stages[stage].homeTitle)}</h2><ul>`
+    + guides.map((guide) => `<li><a href="/guide/${guide.slug}"><span>${escapeHtml(guide.title)}</span></a></li>`).join('')
+    + '</ul></section>'
+}).join('')
+
 const homeBody = [
-  '<section class="app-destination app-page home-page" aria-labelledby="home-title"><div class="home-page__inner">',
+  '<section class="app-destination app-page home-page" aria-labelledby="home-title">',
+  '<div class="home-hero"><div class="home-page__inner">',
   `<p class="home-page__brand">${escapeHtml(copy.brand)}</p>`,
   `<h1 id="home-title">${escapeHtml(copy.title)}</h1>`,
   `<p class="home-page__lead">${escapeHtml(copy.lead)}</p>`,
+  `<p class="home-hero__trust"><span>${escapeHtml(copy.noteBefore)}<b>${escapeHtml(copy.noteStrong)}</b>${escapeHtml(copy.noteAfter)}</span></p>`,
+  '</div></div>',
+  '<div class="home-page__inner home-page__body">',
+  homeStagesHtml(),
+  '<p><a href="/faq">자주 묻는 질문</a></p>',
   `<a href="/map" class="home-page__card"><span class="min-w-0 flex-1"><strong>${escapeHtml(copy.mapCardTitle)}</strong><small>${escapeHtml(copy.mapCardBody)}</small></span></a>`,
-  homeGuidesHtml(),
-  `<p class="home-page__note">${escapeHtml(copy.noteBefore)}<b>${escapeHtml(copy.noteStrong)}</b>${escapeHtml(copy.noteAfter)}</p>`,
   '<footer class="home-page__footer"><a href="/privacy">개인정보처리방침</a></footer>',
   '</div></section>',
 ].join('')
@@ -119,26 +133,27 @@ const sourcesHtml = (sources, verifiedAt) => '<aside class="content-sources" ari
 const page = (inner, labelledBy) =>
   `<section class="app-destination app-page content-page" aria-labelledby="${labelledBy}"><article class="content-page__inner">${inner}</article></section>`
 
-const GROUPS = [['admission', '입학 절차'], ['move', '이사 시점별 안내']]
 const listBody = page([
-  '<h1 id="guides-title">입학 준비 가이드</h1>',
-  '<p class="content-page__lead">취학통지서부터 입학까지, 시기마다 할 일을 공식 자료를 근거로 정리했습니다.</p>',
-  ...GROUPS.map(([id, label]) => {
-    const items = content.guides.filter((guide) => guide.group === id)
-    if (!items.length) return ''
-    return `<section class="content-list"><h2>${label}</h2>`
-      + items.map((guide) => `<a class="content-list__item" href="/guide/${guide.slug}"><span><strong>${escapeHtml(guide.title)}</strong><small>${escapeHtml(guide.description)}</small></span></a>`).join('')
-      + '</section>'
-  }),
+  `<h1 id="guides-title">${escapeHtml(structure.guideList.title)}</h1>`,
+  `<p class="content-page__lead">${escapeHtml(structure.guideList.lead)}</p>`,
+  ...STAGE_ORDER.map((stage) => `<section class="guide-stage guide-stage--${stage}"><header class="guide-stage__header"><span class="stage-chip stage-chip--${stage}">${escapeHtml(structure.stages[stage].short)}</span></header>`
+    + structure.groups.filter((group) => group.stage === stage).map((group) => {
+      const items = content.guides.filter((guide) => guide.group === group.id)
+      if (!items.length) return ''
+      return `<div class="content-list"><h2>${escapeHtml(group.label)}</h2><ol class="guide-timeline">`
+        + items.map((guide) => `<li><a class="content-list__item" href="/guide/${guide.slug}"><span><strong>${escapeHtml(guide.title)}</strong><small>${escapeHtml(guide.description)}</small></span></a></li>`).join('')
+        + '</ol></div>'
+    }).join('')
+    + '</section>'),
   '<section class="content-list"><h2>더 보기</h2>',
-  '<a class="content-list__item" href="/faq"><span><strong>자주 묻는 질문</strong><small>취학통지서, 예비소집, 배정 학교, 이사, 입학 연기</small></span></a>',
-  '<a class="content-list__item" href="/news"><span><strong>데이터 리포트</strong><small>학교별 배정 아파트의 세대수·연식·주차를 한눈에</small></span></a>',
+  '<a class="content-list__item content-list__item--card" href="/faq"><span><strong>자주 묻는 질문</strong><small>이사 시기, 배정 학교, 취학통지서, 예비소집, 입학 연기</small></span></a>',
+  '<a class="content-list__item content-list__item--card" href="/news"><span><strong>데이터 리포트</strong><small>학교별 배정 아파트의 세대수·연식·주차를 한눈에</small></span></a>',
   '</section>',
 ].join(''), 'guides-title')
 await writePage('/guide', contentPage({
   pagePath: '/guide',
-  title: '입학 준비 가이드 | 어디초',
-  description: '취학통지서부터 예비소집, 이사 시점별 절차까지 초등학교 입학 준비를 공식 자료로 정리했습니다.',
+  title: `${structure.guideList.title} | 어디초`,
+  description: structure.guideList.description,
   body: listBody,
 }))
 
@@ -149,6 +164,7 @@ for (const guide of content.guides) {
     description: guide.description,
     body: page([
       '<a class="content-page__back" href="/guide">입학 준비 가이드</a>',
+      `<span class="stage-chip stage-chip--${guide.stage}">${escapeHtml(structure.stages[guide.stage].short)}</span>`,
       `<h1 id="guide-title">${escapeHtml(guide.title)}</h1>`,
       guide.scope ? `<p class="content-page__scope">${escapeHtml(guide.scope)}</p>` : '',
       `<div class="content-body">${guide.html}</div>`,
@@ -157,19 +173,21 @@ for (const guide of content.guides) {
   }))
 }
 
-const faq = content.faq
 await writePage('/faq', contentPage({
   pagePath: '/faq',
-  title: `${faq.title} | 어디초`,
-  description: faq.description,
+  title: `${structure.faqPage.title} | 어디초`,
+  description: structure.faqPage.description,
   body: page([
-    `<h1 id="faq-title">${escapeHtml(faq.title)}</h1>`,
-    `<p class="content-page__lead">${escapeHtml(faq.description)}</p>`,
-    ...faq.sections.map((section) => `<section class="faq-section"><h2>${escapeHtml(section.heading)}</h2>`
-      + section.items.map((item) => `<details class="faq-item"><summary>${escapeHtml(item.question)}</summary><div class="content-body">${item.html}</div></details>`).join('')
+    `<h1 id="faq-title">${escapeHtml(structure.faqPage.title)}</h1>`,
+    `<p class="content-page__lead">${escapeHtml(structure.faqPage.description)}</p>`,
+    ...content.faqs.map((faq) => `<section class="faq-stage faq-stage--${faq.stage}"><header class="guide-stage__header"><span class="stage-chip stage-chip--${faq.stage}">${escapeHtml(structure.stages[faq.stage].short)}</span></header>`
+      + `<h2 class="faq-stage__title">${escapeHtml(faq.title)}</h2>`
+      + faq.sections.map((section) => `<section class="faq-section"><h3>${escapeHtml(section.heading)}</h3>`
+        + section.items.map((item) => `<details class="faq-item"><summary>${escapeHtml(item.question)}</summary><div class="content-body">${item.html}</div></details>`).join('')
+        + '</section>').join('')
+      + (faq.note ? `<div class="content-body content-page__note">${faq.note}</div>` : '')
+      + sourcesHtml(faq.sources, faq.verifiedAt)
       + '</section>'),
-    faq.note ? `<div class="content-body content-page__note">${faq.note}</div>` : '',
-    sourcesHtml(faq.sources, faq.verifiedAt),
   ].join(''), 'faq-title'),
 }))
 process.stdout.write(`content     dist/guide/ (list + ${content.guides.length}), dist/faq/\n`)

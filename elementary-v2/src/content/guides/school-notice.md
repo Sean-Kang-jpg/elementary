@@ -3,6 +3,8 @@ slug: school-notice
 title: 취학통지서, 언제 어떻게 받나요
 description: 취학통지서는 입학 전해 12월 20일까지 주소지 주민센터가 보냅니다. 온라인 발급 방법과 받으면 확인할 세 가지를 정리했습니다.
 order: 1
+stage: admission
+group: admission
 verifiedAt: 2026-10-03
 scope: 법령상 전국이 같은 절차입니다. 날짜가 적힌 예시는 2026학년도 입학생(2025년 12월) 기준이며, 2027학년도 입학생은 2026년 12월에 다시 확인해야 합니다.
 sources:

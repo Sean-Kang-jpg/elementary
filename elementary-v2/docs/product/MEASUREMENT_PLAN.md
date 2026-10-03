@@ -183,6 +183,13 @@ GA4는 방문자 정보를 외부(Google)로 전송하므로 개인정보처리�
 | `save_candidate` | 후보 저장 | 즐겨찾기 **추가**에만. `item_id`는 학교 `school_id`, 아파트 공개 키 | 즐겨찾기 기록 자체는 `canonical_complex_id`를 들고 있어 호출 지점에서 공개 키로 보낸다 |
 | PRD v2 1a 이벤트 | `click_start_module`·`view_guide`·`view_faq` | **`view_guide`·`view_faq` 구현(W3).** `click_start_module`은 W4 | `view_guide`는 가이드를 열 때(`guide_id`=slug), `view_faq`는 **질문을 펼칠 때마다**(`faq_id`=질문 문구, 페이지 진입 경로를 함께) 보낸다. 어느 질문이 열리는지가 PRD v2 11절의 고객 리서치 신호다. 보고서에서 쪼개 보려면 `guide_id`·`faq_id`를 맞춤 측정기준으로 등록한다 |
 
+### `select_entry_year` (2026-10-03 추가)
+
+홈·가이드·FAQ의 입학연도 칩을 고를 때 `entry_year`와 함께 보낸다. 어떤 입학연도가
+선택되는지가 곧 **방문 가족의 아이 연령 분포**다 — 5~6세 가족이 실제로 오는지가 PRD v2
+개정 2(단계 분리)의 전제이므로, 이 값이 그 가설을 판정한다. 보고서에서 보려면
+`entry_year`를 맞춤 측정기준으로 등록한다.
+
 ### `entry_source`를 정하는 규칙
 
 선택을 시작한 쪽이 디스패치 직전에 `markEntry()`로 표시하고, 상세가 열릴 때 App이

@@ -1,6 +1,7 @@
-import { ArrowLeft } from 'lucide-react'
+import { ArrowLeft, Info } from 'lucide-react'
 import type { Guide } from '../../content'
 import { VIEW_PATHS } from '../../utils/urlState'
+import { STAGE_LABELS } from '../../utils/entryYear'
 import SourceList from './SourceList'
 import { followInternalLink, followLink } from './contentLinks'
 
@@ -20,8 +21,11 @@ export default function GuidePage({ guide, onNavigate }: GuidePageProps) {
         <a href={VIEW_PATHS.guide} onClick={(event) => followLink(event, VIEW_PATHS.guide, onNavigate)} className="content-page__back">
           <ArrowLeft size={16} aria-hidden="true" />입학 준비 가이드
         </a>
+        <span className={`stage-chip stage-chip--${guide.stage}`}>{STAGE_LABELS[guide.stage].short}</span>
         <h1 id="guide-title">{guide.title}</h1>
-        {guide.scope ? <p className="content-page__scope">{guide.scope}</p> : null}
+        {guide.scope ? (
+          <p className="content-page__scope"><Info size={15} aria-hidden="true" /><span>{guide.scope}</span></p>
+        ) : null}
         <div className="content-body" dangerouslySetInnerHTML={{ __html: guide.html }} />
         <SourceList sources={guide.sources} verifiedAt={guide.verifiedAt} />
       </article>

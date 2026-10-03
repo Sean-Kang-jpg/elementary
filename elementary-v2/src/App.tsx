@@ -13,7 +13,8 @@ import PrivacyPage from './components/navigation/PrivacyPage'
 import GuideListPage from './components/content/GuideListPage'
 import GuidePage from './components/content/GuidePage'
 import FaqPage from './components/content/FaqPage'
-import { FAQ, findGuide } from './content'
+import { FAQ_PAGE, findGuide } from './content'
+import { readEntryYear } from './utils/entryYear'
 import { getApartmentByPublicKey, getSchoolDetail } from './services/dataService'
 import type { FavoriteRecord } from './utils/favorites'
 import { initAnalytics, markEntry, takeEntry, track, trackPageView, type EntrySource } from './utils/analytics'
@@ -50,6 +51,18 @@ function MapApplication() {
     const route = parseRoute(window.location.pathname, window.location.search)
     return route.kind === 'guide' ? route.slug : null
   })
+  // 아이의 입학연도. 주소(`?year=`)와 메모리에만 둔다 — 기기 저장이 필요 없다.
+  const [entryYear, setEntryYear] = useState<number | null>(() => readEntryYear())
+  const changeEntryYear = (year: number) => {
+    setEntryYear(year)
+    // 어떤 입학연도가 고려되는지가 곧 아이 연령 분포다(PRD v2 11절의 리서치 신호).
+    track('select_entry_year', { entry_year: year })
+    if (view === 'guide' || view === 'faq') {
+      const url = new URL(window.location.href)
+      url.searchParams.set('year', String(year))
+      window.history.replaceState({}, '', `${url.pathname}${url.search}`)
+    }
+  }
   const showRoute = (route: Route) => {
     setView(viewOf(route))
     setGuideSlug(route.kind === 'guide' ? route.slug : null)
@@ -247,11 +260,16 @@ function MapApplication() {
   }
 
   const navigate = (path: string, entry?: EntrySource) => {
-    const route = parseRoute(path)
+    const url = new URL(path, window.location.origin)
+    const route = parseRoute(url.pathname, url.search)
     const next = viewOf(route)
     if (entry) markEntry(entry)
     if (next !== 'map' && state.ui.sidebar_open) dispatch({ type: 'TOGGLE_SIDEBAR' })
-    if (window.location.pathname !== path) window.history.pushState({}, '', path)
+    const year = readEntryYear(url.search)
+    if (year) setEntryYear(year)
+    if (`${window.location.pathname}${window.location.search}` !== `${url.pathname}${url.search}`) {
+      window.history.pushState({}, '', `${url.pathname}${url.search}`)
+    }
     showRoute(route)
     void applyRoute(route)
   }
@@ -293,11 +311,13 @@ function MapApplication() {
         </MapErrorBoundary>
       )}
 
-      {view === 'home' && <HomePage onNavigate={(path) => navigate(path, 'home')} />}
+      {view === 'home' && <HomePage onNavigate={(path) => navigate(path, 'home')} entryYear={entryYear} onEntryYearChange={changeEntryYear} />}
       {view === 'guide' && (guide
         ? <GuidePage key={guide.slug} guide={guide} onNavigate={(path) => navigate(path, 'related')} />
-        : <GuideListPage onNavigate={(path) => navigate(path, 'guides')} />)}
-      {view === 'faq' && <FaqPage onNavigate={(path) => navigate(path, 'related')} onOpenQuestion={openFaqQuestion} />}
+        : <GuideListPage onNavigate={(path) => navigate(path, 'guides')} entryYear={entryYear} onEntryYearChange={changeEntryYear} />)}
+      {view === 'faq' && (
+        <FaqPage onNavigate={(path) => navigate(path, 'related')} entryYear={entryYear} onEntryYearChange={changeEntryYear} onOpenQuestion={openFaqQuestion} />
+      )}
       {view === 'news' && <NewsPage />}
       {view === 'favorites' && <FavoritesPage onOpen={handleOpenFavorite} />}
       {view === 'privacy' && <PrivacyPage />}
@@ -341,7 +361,7 @@ const TITLES: Record<AppView, string> = {
   favorites: '즐겨찾기 | 어디초',
   privacy: '개인정보처리방침 | 어디초',
   guide: '입학 준비 가이드 | 어디초',
-  faq: `${FAQ.title} | 어디초`,
+  faq: `${FAQ_PAGE.title} | 어디초`,
 }
 
 const EtlMonitoringPage = lazy(() => import('./components/admin/EtlMonitoringPage'))
