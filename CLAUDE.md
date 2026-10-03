@@ -9,8 +9,9 @@
 - Git root: `F:\sm\vibe\elementary\pjt_250826`
 - Active app: `F:\sm\vibe\elementary\pjt_250826\elementary-v2`
 - Stack: React 18, TypeScript, Vite, Tailwind CSS, Supabase, Naver Maps
-- Branch: `master`
-- Last pushed baseline: `d3e29f1` (`Make ETL portability baseline platform-independent`)
+- Branch: `master` (작업), `release` (운영 배포. push가 곧 운영 배포다)
+- Last pushed baseline (2026-10-03): `release` `5cc5157` = `master` `cf9c7b5`의 트리, 운영에
+  나가 있다. 그 위 `master`의 이 문서 갱신 커밋은 문서뿐이라 release하지 않았다
 - Production: `https://wherecho.co.kr` (옛 주소 `elementary-lovat.vercel.app`은 301로 넘어온다)
 - Supabase project ref: `vsgeksumgvcrkzjwvlgs`
 
@@ -48,16 +49,34 @@ npm run typecheck
 
 ## Uncommitted Work At Handoff
 
-2026-09-07 세션에서 ETL·분석·문서 작업은 커밋했다. 아래 frontend 변경만 미커밋으로
-남아 있으며, lint·typecheck·build·public smoke를 아직 돌리지 않았다.
-
-- `elementary-v2/src/components/map/MarkerManager.tsx`
-- `elementary-v2/src/components/navigation/NewsPage.tsx`
-- `elementary-v2/src/services/dataService.ts`
-
-`dataService.ts`는 세션 도중 사용자가 직접 수정한 파일이다. 되돌리지 않았다.
+2026-10-03 기준. 예전 목록의 `MarkerManager.tsx`·`dataService.ts`는 커밋·배포됐다
+(`1453663`). 같은 날 **다른 세션이 같은 작업 트리에서 동시에 작업**했다 — 가이드
+콘텐츠(`src/content/guides/*.md`), `GuidePage.tsx`, `GuideSummary.tsx`(신규),
+`build-content.mjs`, `build-shell-pages.mjs`, `content.css`가 그 세션의 미커밋 변경이다.
+내 것이 아니면 커밋에 섞지 않는다. 파일을 골라 `git add`한다.
 
 이 목록은 시점 기록이다. 실제 상태는 항상 `git status --short`로 다시 확인한다.
+
+### 2026-10-03: 줌아웃 시·도 마커 복구
+
+- 증상: 구 마커(줌 11)보다 더 줌아웃하면 지도에 아무것도 안 떴다.
+- 원인: `5bc5b05`(09-23)가 시·도 마커 조회·컴포넌트·CSS를 넣었지만
+  `MarkerManager`의 렌더 가드 `if (!map || !shouldShowMarkers) return null`을 그대로 둬서,
+  조회는 되는데 그리기 전에 반환했다. 열흘간 운영에서 빈 지도였다.
+- 수정(`1453663`): 가드가 `showRegionMarkers`도 통과시킨다. 시·도 마커가 있을 때
+  "조건에 맞는 학교가 없습니다" 안내를 띄우지 않는다. 시·도 클릭은 줌 10이 아니라 11로
+  간다(10도 시·도 모드라 중심만 옮겨졌다). 시·도 집계는 `school_master` 전체를 읽으므로
+  필터별로 캐시한다.
+- 줌 계층: 8–10 시·도 → 11–12 구 → 13 동 → 14+ 학교. 루트 `../CLAUDE.md`의
+  Zoom-driven granularity 절에 표로 적었다.
+- 배포: `release` `d263f2b`로 올렸고, 직후 다른 세션이 `b128cf0`을 `5d64ccb`로 릴리스해
+  운영에 둘 다 반영됐다.
+- smoke 보강: `public-smoke.mjs`가 지도 로드 직후 실제 휠로 줌아웃해 시·도 마커 10개
+  이상·구 마커 없음·빈 상태 안내 없음을 확인하고, 시·도 마커를 실제 포인터로 눌러 구
+  마커가 뜨는지 본 뒤 `/map`을 다시 열어 이후 흐름을 잇는다. 이 블록은 동시 작업하던
+  세션이 파일째 `git add`하면서 **그 세션의 커밋 `cf9c7b5`(가이드 요약 도식)에 함께
+  들어갔다.** 내용은 의도대로이고 push된 이력이라 고쳐 쓰지 않았다. 동시 작업 중에는
+  같은 파일을 건드리기 전에 서로 알리고, `git add`는 hunk 단위로 고른다.
 
 ## Data Contract
 
@@ -96,13 +115,8 @@ migration은 Supabase 상태를 확인하지 않고 재설계하지 않는다.
 
 ### 1. 미커밋 frontend 작업 정리
 
-1. MarkerManager, NewsPage, dataService diff를 검토한다.
-2. `npm run lint`, `typecheck`, `build`, `browser:smoke:public`을 돌린다.
-3. 검증 통과 후 commit/push 한다.
-
-콘텐츠·분석 쪽은 정리를 마쳤다. 두 검증 리포트를 현재 스냅샷으로 재생성했고,
-Instagram carousel 원고의 수치 5곳을 재생성 결과에 맞춰 고쳤다.
-`PROJECT_PROGRESS.html`에 read-only Actions 성공과 다음 승인 게이트를 반영했다.
+2026-09-07의 미커밋 frontend 작업은 정리됐다(위 절). 지금 작업 트리의 미커밋 변경은
+동시 작업 중인 다른 세션의 것이므로, 그 세션이 검증·커밋한다.
 
 ### 2. P5 ETL 쓰기 전환 검토
 
@@ -199,6 +213,24 @@ python -m py_compile etl/prepare_portable_inputs.py etl/profile_station_source.p
 
 `package.json`에는 일반 test runner가 없다. 존재하지 않는 npm test 명령을 가정하지
 않는다.
+
+운영 검증은 URL을 넘긴다: `npm run browser:smoke:public -- https://wherecho.co.kr`.
+작업 트리의 smoke 스크립트에 다른 세션의 미배포 검사가 섞여 있으면 운영에 대해 실패한다.
+그때는 배포된 판을 꺼내 돌린다:
+`git show origin/release:elementary-v2/scripts/public-smoke.mjs > scripts/.smoke-release.tmp.mjs`
+(같은 `scripts/`에 둬야 `node_modules` 경로가 맞는다. 실행 후 지운다.)
+
+2026-10-03 운영 검증:
+
+- `5d64ccb`: `/admin/etl` 200, 배포된 smoke 전체 통과(360·430·1280 overflow 없음,
+  지도 5초·아파트 3초 예산 안). 운영 지도에서 줌 8에 시·도 마커 17개, 대구 클릭 시 줌
+  11에서 구 마커 표시
+- `5cc5157`: 줌아웃 검사가 들어간 smoke를 운영에 3회 실행. 줌아웃·시·도 클릭 검사는
+  3회 모두 통과. 1회차는 한참 뒤 단계인 `school search returned results`(학교 딥링크 →
+  가이드 → 뒤로 → '서울방현' 검색)에서 15초 시간 초과로 실패했고 2·3회차는 전체 통과.
+  재현되지 않았고 원인은 확인하지 못했다. 다시 나오면 그 단계부터 본다
+- 깨끗한 worktree에서 lint·typecheck·vite build 통과. `seo` 단계는 `.env`가 없어
+  로컬에서 확인 못 했고 Vercel 빌드에서 생성됐다
 
 `1c87d49` 직전 검증 기록:
 
