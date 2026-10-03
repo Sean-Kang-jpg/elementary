@@ -204,7 +204,7 @@ const main = async () => {
   // build-shell-pages.mjs. Their own file, so their indexing can be read apart
   // from the detail pages in Search Console.
   const content = JSON.parse(await fs.readFile(path.join(projectRoot, 'src/content/generated/content.json'), 'utf8'))
-  const contentPaths = ['/', '/guide', ...content.guides.map((guide) => `/guide/${guide.slug}`), '/faq']
+  const contentPaths = ['/', '/guide', ...content.guides.map((guide) => `/guide/${guide.slug}`), '/faq', '/checklist']
 
   await fs.mkdir(outDir, { recursive: true })
   for (const [label, paths] of [['pages', contentPaths], ['schools', schoolPaths], ['apartments', apartmentPaths]]) {

@@ -190,4 +190,18 @@ await writePage('/faq', contentPage({
       + '</section>'),
   ].join(''), 'faq-title'),
 }))
-process.stdout.write(`content     dist/guide/ (list + ${content.guides.length}), dist/faq/\n`)
+// The checklist: the static page lists the items for a crawler; the boxes and
+// their saved state exist only once the app mounts.
+const checklist = JSON.parse(await fs.readFile(path.join(projectRoot, 'src/content/checklist.json'), 'utf8'))
+await writePage('/checklist', contentPage({
+  pagePath: '/checklist',
+  title: `${checklist.title} | 어디초`,
+  description: checklist.description,
+  body: `<section class="app-destination app-page content-page" aria-labelledby="checklist-title"><div class="content-page__inner">`
+    + `<h1 id="checklist-title">${escapeHtml(checklist.title)}</h1><p class="content-page__lead">${escapeHtml(checklist.description)}</p>`
+    + checklist.groups.map((group) => `<section class="checklist-group"><h2>${escapeHtml(group.label)}</h2><ul>`
+      + group.items.map((item) => `<li><label><span>${escapeHtml(item.text)}</span><small class="checklist-when">${escapeHtml(item.when)}</small></label></li>`).join('')
+      + '</ul></section>').join('')
+    + '</div></section>',
+}))
+process.stdout.write(`content     dist/guide/ (list + ${content.guides.length}), dist/faq/, dist/checklist/\n`)

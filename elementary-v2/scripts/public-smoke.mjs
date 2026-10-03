@@ -271,14 +271,14 @@ const assertHomeAndShellSplit = async () => {
 
   // Guides and the FAQ are static pages with their own head and content, so a
   // crawler that runs no JavaScript reads them (ADR-008 section 4).
-  for (const [pagePath, heading] of [['/guide', 'guides-title'], ['/guide/school-notice', 'guide-title'], ['/faq', 'faq-title']]) {
+  for (const [pagePath, heading] of [['/guide', 'guides-title'], ['/guide/school-notice', 'guide-title'], ['/faq', 'faq-title'], ['/checklist', 'checklist-title']]) {
     const body = await (await fetch(new URL(pagePath, baseUrl).toString())).text()
     const canonicals = body.match(/<link rel="canonical" href="([^"]*)"/g) || []
     if (canonicals.length !== 1 || !canonicals[0].endsWith(`${pagePath}"`) || !body.includes(`id="${heading}"`)) {
       throw new Error(`${pagePath} is not served as its own static page with one canonical naming it`)
     }
   }
-  process.stdout.write('PASS: /guide, a guide and /faq are served as static pages with their own canonical\n')
+  process.stdout.write('PASS: /guide, a guide, /faq and /checklist are served as static pages with their own canonical\n')
 }
 
 try {
@@ -555,6 +555,31 @@ try {
   )
   run(['open', new URL('/guide/no-such-guide', baseUrl).toString()])
   await waitFor("location.pathname === '/guide' && document.querySelector('#guides-title')", 'an unknown guide address falls back to the guide list')
+
+  // MVP 1b. The roadmap follows the profile: private-school steps appear only for
+  // a family that says it is considering one, in the months they apply to.
+  run(['open', baseUrl])
+  await waitFor("document.querySelectorAll('.year-chip').length === 3", 'the home offers the entry years')
+  run(['eval', "document.querySelectorAll('.year-chip')[0].click(); 'nearest year'"])
+  await waitFor("document.querySelector('.roadmap h2')?.textContent.includes('D-')", 'picking a year shows the days left and the tasks')
+  run(['eval', "document.querySelectorAll('.roadmap .pref-chip')[1].click(); 'private interest on'"])
+  await waitFor(
+    "(() => { const month = new Date().getMonth() + 1; const privateMonths = [9, 10, 11];"
+    + " const hasPrivate = Boolean(document.querySelector('.roadmap__tasks a[href=\"/guide/private-national\"]'));"
+    + " return privateMonths.includes(month) ? hasPrivate : true })()",
+    'choosing private schools adds their steps in the months they apply to',
+  )
+
+  // The checklist keeps its state on this device across a reload.
+  run(['open', new URL('/checklist', baseUrl).toString()])
+  await waitFor("document.querySelectorAll('.checklist-group input[type=checkbox]').length > 10", '/checklist lists its items')
+  run(['eval', "document.querySelector('.checklist-group input[type=checkbox]').click(); 'checked'"])
+  run(['open', new URL('/checklist', baseUrl).toString()])
+  await waitFor(
+    "document.querySelector('.checklist-group input[type=checkbox]')?.checked === true && document.querySelector('.checklist-progress b')?.textContent === '1'",
+    'a checked item survives a reload',
+  )
+  run(['eval', "document.querySelector('.checklist-group input[type=checkbox]').click(); localStorage.removeItem('wherecho:profile-v1'); 'cleaned up'"])
 
   // This script runs against production after every release. If its headless
   // browser were measured, each release would add sessions that did nothing and
