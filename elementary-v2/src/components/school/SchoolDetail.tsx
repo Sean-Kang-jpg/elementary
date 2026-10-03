@@ -13,6 +13,7 @@ import { isFavorite as checkFavorite, schoolFavorite, toggleFavorite as toggleSa
 import { recordPerformanceMetric } from '../../utils/performanceMetrics'
 import type { AcademyAddress, ApartmentAcademySummary } from '../../types'
 import ShareButton from '../ui/ShareButton'
+import { markEntry, track } from '../../utils/analytics'
 import { schoolPath } from '../../utils/urlState'
 import { hasAcademyData } from '../../utils/academyCoverage'
 
@@ -166,7 +167,9 @@ const SchoolDetail: React.FC<SchoolDetailProps> = ({ school, isOpen, onClose }) 
   }
 
   const toggleFavorite = () => {
-    setIsFavorite(toggleSavedFavorite(schoolFavorite(school)))
+    const saved = toggleSavedFavorite(schoolFavorite(school))
+    if (saved) track('save_candidate', { item_type: 'school', item_id: school.school_id })
+    setIsFavorite(saved)
   }
 
   if (currentView === 'apartment-detail' && assignsByZone && hasSchoolInformation) {
@@ -226,6 +229,7 @@ const SchoolDetail: React.FC<SchoolDetailProps> = ({ school, isOpen, onClose }) 
             academySummaries={academySummaries}
             onRetry={() => setRequestVersion((value) => value + 1)}
             onApartmentSelect={(apartment) => {
+              markEntry('related')
               dispatch({ type: 'SET_SELECTED_APARTMENT', payload: apartment })
             }}
           />
@@ -344,7 +348,10 @@ const SchoolDetail: React.FC<SchoolDetailProps> = ({ school, isOpen, onClose }) 
                       apartment={apartment}
                       academySummary={academySummaries[apartment.id]}
                       compact
-                      onClick={() => dispatch({ type: 'SET_SELECTED_APARTMENT', payload: apartment })}
+                      onClick={() => {
+                        markEntry('related')
+                        dispatch({ type: 'SET_SELECTED_APARTMENT', payload: apartment })
+                      }}
                     />
                   ))}
                 </div>

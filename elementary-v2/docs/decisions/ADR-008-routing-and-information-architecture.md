@@ -28,6 +28,7 @@ Context: [`../product/PRD_V2_ELEMENTARY_START.md`](../product/PRD_V2_ELEMENTARY_
 | `/guide/{slug}` | 상황형 가이드 | 빌드 시점 정적 HTML | 예 |
 | `/faq` | FAQ | 빌드 시점 정적 HTML | 예 |
 | `/favorites` | 즐겨찾기 (기기 저장) | 앱 셸 | 아니오 |
+| `/privacy` | 개인정보처리방침 (2026-10-03 추가, GA4와 함께) | 앱 셸 | 아니오 |
 | `/admin/etl` | 관리자 | 앱 셸 | 아니오 (`robots.txt`) |
 
 `/school/…`와 `/apt/…`는 **바꾸지 않는다.** 이미 공유된 링크가 있고, ADR-007이 이 주소를

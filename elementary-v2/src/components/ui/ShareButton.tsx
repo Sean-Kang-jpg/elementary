@@ -1,6 +1,7 @@
 import { Check, Link2, Share2 } from 'lucide-react'
 import React, { useEffect, useRef, useState } from 'react'
 import { absoluteUrl } from '../../utils/urlState'
+import { itemOfPath, track } from '../../utils/analytics'
 
 interface ShareButtonProps {
   /** 공유할 정규 경로. 아직 주소가 없는 대상이면 `null`을 넘긴다. */
@@ -68,6 +69,7 @@ const ShareButton: React.FC<ShareButtonProps> = ({ path, title, text }) => {
     if (canNativeShare) {
       try {
         await navigator.share({ title, text, url })
+        track('share_item', { ...itemOfPath(path), share_method: 'web_share' })
         return
       } catch (error) {
         // 사용자가 공유 시트를 닫은 것은 실패가 아니다.
@@ -77,6 +79,7 @@ const ShareButton: React.FC<ShareButtonProps> = ({ path, title, text }) => {
     }
     try {
       await copyToClipboard(url)
+      track('share_item', { ...itemOfPath(path), share_method: 'copy' })
       announce('copied')
     } catch {
       announce('failed')

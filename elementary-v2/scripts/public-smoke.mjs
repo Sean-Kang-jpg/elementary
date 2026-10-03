@@ -490,6 +490,18 @@ try {
   run(['open', new URL('/news', baseUrl).toString()])
   await waitFor("document.querySelector('.app-gnb__item--active')?.getAttribute('href') === '/news'", '/news opens the news screen')
 
+  // This script runs against production after every release. If its headless
+  // browser were measured, each release would add sessions that did nothing and
+  // skew every rate in MEASUREMENT_PLAN. analytics.ts skips automated browsers.
+  assertPage("!document.querySelector('script[src*=googletagmanager]') && typeof window.gtag === 'undefined'", 'the smoke browser is not measured by GA4')
+
+  // GA4 sends visit data to Google, so the notice has to ship with it, complete.
+  // privacy.json holds the values only the operator can give; a release that
+  // still shows 미정 in the policy is a release that measures without notice.
+  run(['open', new URL('/privacy', baseUrl).toString()])
+  await waitFor("document.querySelector('#privacy-title')", '/privacy opens the privacy policy')
+  assertPage("!document.querySelector('.privacy-page__inner').innerText.includes('미정')", 'the privacy policy has every operator value filled in')
+
   const interactionErrors = JSON.parse(run(['--json', 'errors', '--clear'], { quiet: true }))
   const unexpectedErrors = interactionErrors.data.errors.filter((error) => (
     !error.text.includes("Cannot read properties of null (reading 'LatLng')")

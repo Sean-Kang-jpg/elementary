@@ -17,10 +17,10 @@ interface HomePageProps {
  * 문구는 content/home.json에 있다. 빌드가 같은 파일로 `/`의 정적 HTML을 만든다.
  */
 export default function HomePage({ onNavigate }: HomePageProps) {
-  const openMap = (event: MouseEvent<HTMLAnchorElement>) => {
+  const follow = (event: MouseEvent<HTMLAnchorElement>, path: string) => {
     if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || event.button !== 0) return
     event.preventDefault()
-    onNavigate(VIEW_PATHS.map)
+    onNavigate(path)
   }
 
   return (
@@ -32,7 +32,7 @@ export default function HomePage({ onNavigate }: HomePageProps) {
 
         <SearchBox className="home-page__search" />
 
-        <a href={VIEW_PATHS.map} onClick={openMap} className="home-page__card">
+        <a href={VIEW_PATHS.map} onClick={(event) => follow(event, VIEW_PATHS.map)} className="home-page__card">
           <span className="home-page__card-icon"><Map size={20} aria-hidden="true" /></span>
           <span className="min-w-0 flex-1">
             <strong>{copy.mapCardTitle}</strong>
@@ -44,6 +44,10 @@ export default function HomePage({ onNavigate }: HomePageProps) {
         <p className="home-page__note">
           {copy.noteBefore}<b>{copy.noteStrong}</b>{copy.noteAfter}
         </p>
+
+        <footer className="home-page__footer">
+          <a href={VIEW_PATHS.privacy} onClick={(event) => follow(event, VIEW_PATHS.privacy)}>개인정보처리방침</a>
+        </footer>
       </div>
     </section>
   )
