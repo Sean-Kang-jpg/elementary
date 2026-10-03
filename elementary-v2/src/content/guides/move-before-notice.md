@@ -7,6 +7,18 @@ stage: admission
 group: move
 verifiedAt: 2026-10-03
 scope: 법령상 전국이 같은 절차입니다. 처리 시점은 지자체(주민센터)마다 다를 수 있어 별도 확인이 필요합니다.
+summary:
+  kind: steps
+  title: 취학통지 전 이사, 이 순서로
+  items:
+    - title: 이사
+      text: 10~12월
+    - title: 14일 안에 전입신고
+      text: 실제 사는 곳으로
+    - title: 새 주소로 명부 등재
+      text: 10월 이후 전입도 반영
+    - title: 새 주소 학교로 통지서
+      text: 12월 20일까지
 sources:
   - label: 초·중등교육법 시행령 제15조·제17조
     url: https://www.law.go.kr/법령/초·중등교육법시행령

@@ -11,6 +11,12 @@ export interface Source {
   url: string
 }
 
+export interface GuideSummary {
+  kind: 'steps' | 'timeline' | 'checks'
+  title: string
+  items: Array<{ title: string; text?: string; when?: string }>
+}
+
 export interface Guide {
   slug: string
   title: string
@@ -20,6 +26,7 @@ export interface Guide {
   group: string
   verifiedAt: string
   scope: string | null
+  summary: GuideSummary | null
   sources: Source[]
   html: string
 }

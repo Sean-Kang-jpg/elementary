@@ -7,6 +7,18 @@ stage: admission
 group: move
 verifiedAt: 2026-10-03
 scope: 법령상 전국이 같은 절차입니다. 세부 처리는 지자체(주민센터)·교육지원청마다 다를 수 있어 별도 확인이 필요합니다. 설명은 경기도교육청 안내를 기준으로 했습니다.
+summary:
+  kind: steps
+  title: 통지서를 받은 뒤 이사, 이 순서로
+  items:
+    - title: 이사·전입신고
+      text: 새 주소지 주민센터
+    - title: 새 취학통지서
+      text: 새 주소 기준 학교
+    - title: 원래 학교에 연락
+      text: 다른 학교 입학 안내
+    - title: 새 학교 예비소집
+      text: 지났다면 새 학교에 연락
 sources:
   - label: 경기도교육청, 「초등 학적 길라잡이」(2025) Q&A 07 (46쪽)
     url: https://www.goe.go.kr/resource/old/BBSMSTR_000000030136/BBS_202501060143446932.pdf

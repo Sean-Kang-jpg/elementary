@@ -35,6 +35,10 @@ const DESCRIPTION_LIMIT = 80
  */
 const STAGES = ['planning', 'admission']
 
+/** A guide's summary diagram: ordered steps, a dated timeline, or a set of checks. */
+const SUMMARY_KINDS = ['steps', 'timeline', 'checks']
+const SUMMARY_MAX_ITEMS = 6
+
 const problems = []
 const problem = (file, message) => problems.push(`${path.relative(projectRoot, file)}: ${message}`)
 
@@ -89,6 +93,17 @@ for (const file of guideFiles) {
   checkCommon(file, meta)
   const slug = path.basename(file, '.md')
   if (meta.slug && meta.slug !== slug) problem(file, `slug "${meta.slug}" does not match the file name`)
+  const summary = meta.summary ?? null
+  if (summary) {
+    if (!SUMMARY_KINDS.includes(summary.kind)) problem(file, `summary.kind must be one of ${SUMMARY_KINDS.join(', ')}`)
+    if (!summary.title) problem(file, 'summary needs a title')
+    const items = Array.isArray(summary.items) ? summary.items : []
+    if (items.length < 2 || items.length > SUMMARY_MAX_ITEMS) problem(file, `summary needs 2 to ${SUMMARY_MAX_ITEMS} items`)
+    items.forEach((item, index) => {
+      if (!item?.title) problem(file, `summary item ${index + 1} needs a title`)
+      if (summary.kind === 'timeline' && !item?.when) problem(file, `timeline item ${index + 1} needs a when`)
+    })
+  }
   guides.push({
     slug,
     title: meta.title,
@@ -98,6 +113,7 @@ for (const file of guideFiles) {
     group: meta.group ?? 'admission',
     verifiedAt: String(meta.verifiedAt),
     scope: meta.scope ?? null,
+    summary,
     sources: meta.sources ?? [],
     html: marked.parse(body),
     file,

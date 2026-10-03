@@ -7,6 +7,22 @@ stage: planning
 group: planning
 verifiedAt: 2026-10-03
 scope: 법령상 전국이 같은 절차입니다. 세부 처리는 지자체(주민센터)·교육지원청마다 다를 수 있어 별도 확인이 필요합니다.
+summary:
+  kind: timeline
+  title: 이사 시점에 따라 달라지는 것
+  items:
+    - when: 입학 1~2년 전
+      title: 새 주소로 배정
+      text: 통학구역 변동만 유의
+    - when: 12월 20일 전
+      title: 새 주소로 통지서
+      text: 전입신고 마치기
+    - when: 통지 후 ~ 입학 전
+      title: 새 통지서로 다시 지정
+      text: 2월 말까지 이사·전입
+    - when: 입학한 뒤
+      title: 전학
+      text: 학기 중 학교 옮김
 sources:
   - label: 초·중등교육법 시행령 제15조·제17조·제21조
     url: https://www.law.go.kr/법령/초·중등교육법시행령

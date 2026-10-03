@@ -7,6 +7,22 @@ stage: admission
 group: admission
 verifiedAt: 2026-10-03
 scope: 법령상 전국이 같은 절차입니다. 날짜가 적힌 예시는 2026학년도 입학생(2025년 12월) 기준이며, 2027학년도 입학생은 2026년 12월에 다시 확인해야 합니다.
+summary:
+  kind: timeline
+  title: 취학통지서가 나오기까지
+  items:
+    - when: 10월 1일
+      title: 취학 대상 조사
+      text: 이날 주소 기준
+    - when: 10월 31일까지
+      title: 취학아동명부 작성
+      text: 보호자 열람 가능
+    - when: 11월 30일까지
+      title: 통학구역 확정
+      text: 교육지원청이 결정
+    - when: 12월 20일까지
+      title: 취학통지서 발송
+      text: 배정 학교·예비소집일·입학일
 sources:
   - label: 초·중등교육법 시행령 제15조·제17조
     url: https://www.law.go.kr/법령/초·중등교육법시행령
