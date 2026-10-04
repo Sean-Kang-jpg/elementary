@@ -117,11 +117,11 @@ def collect_apartment() -> list[dict[str, Any]]:
 def collect_school(regions: list[str] | None = None) -> list[dict[str, Any]]:
     """Fetch Schoolinfo for one scope; the capital keeps its historical slug."""
     year = date.today().year
-    arguments = ["--year", str(year)]
-    slug = "capital"
-    if regions:
-        arguments += ["--regions", *regions]
-        slug = scope_slug(list(build_scopes(load_registry(), regions, ())))
+    # Always name the regions: with none, the fetcher defaults to every
+    # production region and writes a file the capital build never reads.
+    regions = list(regions or capital_scope())
+    arguments = ["--year", str(year), "--regions", *regions]
+    slug = scope_slug(list(build_scopes(load_registry(), regions, ())))
     run_script(str(BASE_DIR / "fetch_schoolinfo_2026.py"), *arguments)
     basic_path = OUTPUT_DIR / f"schoolinfo_{year}_basic_{slug}.json"
     grade_path = OUTPUT_DIR / f"schoolinfo_{year}_grade_students_{slug}.json"
@@ -148,6 +148,22 @@ def collect_school(regions: list[str] | None = None) -> list[dict[str, Any]]:
 # and built alone those zones match nothing. This is the scope they were
 # promoted in on 2026-09-27; a recurring run must use the same one.
 JOINT_SCOPES: tuple[tuple[str, ...], ...] = (("세종특별자치시", "충청북도", "충청남도"),)
+
+
+def ensure_schoolinfo(regions: list[str], slug: str) -> None:
+    """Fetch Schoolinfo for a scope that has no snapshot yet.
+
+    The school build reads the newest local snapshot even when only apartments
+    are due. The ETL workstation always has one; a remote runner starts empty,
+    and restoring a bundled copy would roll statistics back after each annual
+    refresh. So a missing snapshot is fetched fresh, and an existing one is left
+    exactly as the schedule last collected it.
+    """
+    pattern = f"schoolinfo_*_grade_students_{slug}.json"
+    if any(OUTPUT_DIR.glob(pattern)):
+        return
+    print(f"no Schoolinfo snapshot for {slug}; fetching")
+    collect_school(None if slug == "capital" else regions)
 
 
 def production_scopes() -> list[tuple[list[str], str]]:
@@ -371,6 +387,8 @@ def main() -> None:
         # since then runs as its own (or with the neighbours it shares zones
         # with), because Schoolinfo is collected per scope and each wave must
         # stay separately attributable.
+        for regions, slug in production_scopes():
+            ensure_schoolinfo(regions, slug)
         for group in groups:
             for regions, slug in production_scopes():
                 execute_group(

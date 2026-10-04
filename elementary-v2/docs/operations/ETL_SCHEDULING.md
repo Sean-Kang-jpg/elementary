@@ -41,8 +41,11 @@ because the source itself is published once a year.
   **Rebuild and re-upload the bundle whenever a region is promoted or a reviewed input changes**:
   `python etl/prepare_portable_inputs.py --manifest etl/recurring_inputs_manifest.json --package --upload --verify-anon-blocked`
   after regenerating the manifest entries.
-- **Secrets.** `SUPABASE_URL`, `SUPABASE_SERVICE_KEY`, and `KERIS_SCHOOLINFO_API_KEY` (the last
-  only for the school group). Nothing else in the chain reads the environment. A failed scheduled
+- **Secrets.** `SUPABASE_URL`, `SUPABASE_SERVICE_KEY`, and `KERIS_SCHOOLINFO_API_KEY`. The last
+  is needed **every** month on a runner: the school build reads a Schoolinfo snapshot even when only
+  apartments are due, and a runner has none, so `run_due_etl.ensure_schoolinfo()` fetches one per
+  scope. It is never bundled - a bundled copy would roll statistics back after each annual refresh.
+  The first Actions rehearsal (2026-10-04) confirmed K-apt is reachable from a GitHub runner. Nothing else in the chain reads the environment. A failed scheduled
   run is reported by GitHub's own failed-workflow email; `ETL_ALERT_WEBHOOK_URL` is optional.
 - **Rehearsal.** A manual run defaults to `mode: rehearse`, which is `run_due_etl.py --rehearse`:
   every scope is collected, built and validated exactly as in a real run, and nothing is written.

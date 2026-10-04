@@ -178,7 +178,7 @@ migration은 Supabase 상태를 확인하지 않고 재설계하지 않는다.
   `rehearse`(쓰기 없음). 입력 묶음 `etl/recurring_inputs_manifest.json` → 비공개 Storage
   `portable-inputs/elementary-recurring-inputs-v1/2026-10-04.2/bundle.zip` (익명 차단 확인)
 - **사용자 몫(권한 분류기가 막음)**: Actions 시크릿 `KERIS_SCHOOLINFO_API_KEY` 등록
-  (`gh secret set KERIS_SCHOOLINFO_API_KEY` 후 값 붙여넣기). 아파트 그룹만 도는 달은 없어도 된다
+  (`gh secret set KERIS_SCHOOLINFO_API_KEY` 후 값 붙여넣기). 원격 실행기는 매달 학교알리미 스냅샷을 새로 받아야 하므로 **이 시크릿 없이는 Actions 실행이 실패**한다. 등록 후 `gh workflow run etl-recurring.yml -f mode=rehearse -f force=apartment`로 리허설
 - **전환 절차**: Actions 리허설 통과 → 첫 정기 실행이 운영과 일치 → Windows 작업 비활성화
   (`Disable-ScheduledTask -TaskName "Elementary ETL Daily Check"`). 그 전까지 Windows 작업 유지
 
