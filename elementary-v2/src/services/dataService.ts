@@ -769,36 +769,30 @@ export const getApartmentsNearSchool = async (
   return ((data || []) as unknown as ApartmentServingRow[]).map(toApartment)
 }
 
-export const getAcademiesNearApartment = async (canonicalComplexId: string): Promise<AcademyAddress[]> => {
-  const { data, error } = await supabase.rpc('nearby_academy_addresses', {
-    p_canonical_complex_id: canonicalComplexId,
-    p_max_distance_m: 800,
-  })
-  if (error) throw error
-  return ((data || []) as Array<Record<string, unknown>>).map((row) => ({
-    address_id: String(row.address_id),
-    region: String(row.region || ''),
-    district: String(row.district || ''),
-    latitude: numberValue(row.latitude),
-    longitude: numberValue(row.longitude),
-    institution_count: numberValue(row.institution_count),
-    institution_type_counts: (row.institution_type_counts || {}) as Record<string, number>,
-    realm_counts: (row.realm_counts || {}) as Record<string, number>,
-    institutions: Array.isArray(row.institutions)
-      ? row.institutions.map((institution) => {
-        const item = institution as Record<string, unknown>
-        // subjects: the ETL's name-derived categories (etl/academy_subjects.py).
-        const subjects = Array.isArray(item.subjects) ? item.subjects.filter((value): value is string => typeof value === 'string') : undefined
-        return { name: String(item.name || ''), type: String(item.type || ''), realm: String(item.realm || ''), subjects }
-      })
-      : [],
-    top_subjects: String(row.top_subjects || ''),
-    straight_distance_m: numberValue(row.straight_distance_m),
-    distance_band: row.distance_band === 'core' ? 'core' : 'extended',
-    distance_origin_type: row.distance_origin_type === 'nearest_building_centroid'
-      ? 'nearest_building_centroid'
-      : 'complex_centroid',
-  }))
+// NEIS realm '직업기술' is adult vocational training (nursing, grooming, certificates,
+// online job courses), not something an elementary-school family looks for. Dropped
+// here rather than in the RPCs so it applies without waiting for the next academy ETL;
+// apartment_academy_summary counts still include them until that run.
+const EXCLUDED_ACADEMY_REALMS = new Set(['직업기술'])
+
+const withoutExcludedRealms = (academy: AcademyAddress): AcademyAddress => {
+  const excludedCount = Object.entries(academy.realm_counts)
+    .filter(([realm]) => EXCLUDED_ACADEMY_REALMS.has(realm))
+    .reduce((sum, [, count]) => sum + Number(count || 0), 0)
+  if (!excludedCount) return academy
+  const institutions = academy.institutions.filter((item) => !EXCLUDED_ACADEMY_REALMS.has(item.realm))
+  return {
+    ...academy,
+    institution_count: Math.max(0, academy.institution_count - excludedCount),
+    realm_counts: Object.fromEntries(Object.entries(academy.realm_counts).filter(([realm]) => !EXCLUDED_ACADEMY_REALMS.has(realm))),
+    institution_type_counts: academy.institutions.length
+      ? institutions.reduce<Record<string, number>>((counts, item) => {
+        counts[item.type] = (counts[item.type] || 0) + 1
+        return counts
+      }, {})
+      : academy.institution_type_counts,
+    institutions,
+  }
 }
 
 const toAcademyAddress = (row: Record<string, unknown>): AcademyAddress => ({
@@ -814,8 +808,8 @@ const toAcademyAddress = (row: Record<string, unknown>): AcademyAddress => ({
     ? row.institutions.map((institution) => {
       const item = institution as Record<string, unknown>
       // subjects: the ETL's name-derived categories (etl/academy_subjects.py).
-        const subjects = Array.isArray(item.subjects) ? item.subjects.filter((value): value is string => typeof value === 'string') : undefined
-        return { name: String(item.name || ''), type: String(item.type || ''), realm: String(item.realm || ''), subjects }
+      const subjects = Array.isArray(item.subjects) ? item.subjects.filter((value): value is string => typeof value === 'string') : undefined
+      return { name: String(item.name || ''), type: String(item.type || ''), realm: String(item.realm || ''), subjects }
     })
     : [],
   top_subjects: String(row.top_subjects || ''),
@@ -826,13 +820,27 @@ const toAcademyAddress = (row: Record<string, unknown>): AcademyAddress => ({
     : 'complex_centroid',
 })
 
+const toPublishedAcademies = (data: unknown): AcademyAddress[] => ((data || []) as Array<Record<string, unknown>>)
+  .map(toAcademyAddress)
+  .map(withoutExcludedRealms)
+  .filter((academy) => academy.institution_count > 0)
+
+export const getAcademiesNearApartment = async (canonicalComplexId: string): Promise<AcademyAddress[]> => {
+  const { data, error } = await supabase.rpc('nearby_academy_addresses', {
+    p_canonical_complex_id: canonicalComplexId,
+    p_max_distance_m: 800,
+  })
+  if (error) throw error
+  return toPublishedAcademies(data)
+}
+
 export const getAcademiesNearSchool = async (schoolId: string): Promise<AcademyAddress[]> => {
   const { data, error } = await supabase.rpc('nearby_academy_addresses_for_school', {
     p_school_id: schoolId,
     p_max_distance_m: 800,
   })
   if (error) throw error
-  return ((data || []) as Array<Record<string, unknown>>).map(toAcademyAddress)
+  return toPublishedAcademies(data)
 }
 
 export const getApartmentAcademySummaries = async (

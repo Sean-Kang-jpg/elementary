@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { HeartHandshake, X } from 'lucide-react'
 import type { CareCenter } from '../../types'
+import { closablePopup, keepPopupClearOfMapControls, POPUP_CLOSE_BUTTON } from '../../utils/mapPopup'
 
 interface CareCenterMarkerManagerProps {
   map: NaverMap
@@ -19,7 +20,7 @@ const hoursText = (value: string | null) => value ? value.replace('~', ' ~ ') : 
 
 const popupContent = (center: CareCenter) => `
   <div class="care-map-popup">
-    <strong>${escapeHtml(center.name)}</strong>
+    <div class="care-map-popup__header"><strong>${escapeHtml(center.name)}</strong>${POPUP_CLOSE_BUTTON}</div>
     <div>${escapeHtml(center.center_kind)} · ${center.straight_distance_m.toLocaleString('ko-KR')}m${center.capacity ? ` · 정원 ${center.capacity}명` : ''}</div>
     <div>학기 중 ${escapeHtml(hoursText(center.term_hours))}</div>
     <div>방학 중 ${escapeHtml(hoursText(center.vacation_hours))}</div>
@@ -50,8 +51,9 @@ export default function CareCenterMarkerManager({ map, centers, onClose }: CareC
       })
       listeners.push(maps.Event.addListener(marker, 'click', () => {
         infoWindow?.close()
+        const content = closablePopup(popupContent(center), () => infoWindow?.close())
         infoWindow = new maps.InfoWindow({
-          content: popupContent(center),
+          content,
           maxWidth: 280,
           backgroundColor: 'transparent',
           borderWidth: 0,
@@ -59,6 +61,7 @@ export default function CareCenterMarkerManager({ map, centers, onClose }: CareC
           pixelOffset: new maps.Point(0, -18),
         })
         infoWindow.open(map, marker)
+        keepPopupClearOfMapControls(map, content)
       }))
       return marker
     })

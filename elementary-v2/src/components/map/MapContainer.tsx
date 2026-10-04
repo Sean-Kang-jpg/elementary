@@ -333,7 +333,7 @@ const MapContainer: React.FC<MapContainerProps> = ({ className = '' }) => {
     // isolate: the SDK gives its controls and markers z-indexes of 100 and up, which
     // otherwise compete with the app layers and drew the logo and scale over the sheet.
     <div ref={surfaceRef} className={`relative isolate ${className}`}>
-      <div ref={mapRef} className="h-full w-full" aria-label="주변 초등학교 지도" />
+      <div ref={mapRef} className="h-full w-full" aria-label="주변 초등학교 지도" data-map-canvas />
       {isMapReady && <MarkerManager map={naverMapRef.current} />}
       {isMapReady && naverMapRef.current && <ApartmentMarkerManager map={naverMapRef.current} />}
       {isMapReady && naverMapRef.current && academyDataAvailable && (state.selectedApartment || state.selectedSchool) && (

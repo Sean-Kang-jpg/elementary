@@ -71,6 +71,26 @@ npm run typecheck
   핀치는 미확인
 - **같은 작업 트리의 `SchoolCarePanel.tsx` 변경(소규모 학교 돌봄 이용률)은 다른 세션 작업이라 이 커밋에서 뺐다**
 
+### 2026-10-05: 커리큘럼 공유 1단계 코드 (master, **운영 미배포**)
+
+- **기능 플래그 `VITE_CURRICULUM_ENABLED=1`일 때만 켜진다.** 기본은 꺼짐 — 주소는 홈으로, 개인정보처리방침은 이전
+  그대로(`privacy.json`의 `effectiveDate`). master를 release해도 이 기능은 나가지 않는다. 사용자가 입학 준비 탭과
+  성격이 달라 표출 위치·운영 방식을 다시 고민 중(2026-10-05)
+
+- 설계 `docs/product/PRD_CURRICULUM_SHARING.md`, C-1~C-9 확정. 카드·아이템은 **저장소 콘텐츠**
+  (`src/content/curriculum/{items,plans,taxonomy}.json`, `build-content`가 검증), DB는 따봉만(SQL `24`)
+- 화면 `/plans`, `/plans/…--KEY`, `/items/…--KEY`, `/ranking`(입학 준비 탭 활성). 입학 준비 화면의 진입 링크는
+  카드가 하나 이상일 때만 보인다 — 지금 콘텐츠가 비어 있어 숨겨져 있다
+- 투표: Supabase 익명 로그인(`src/lib/voter.ts`) + Turnstile(`VITE_TURNSTILE_SITE_KEY`가 있을 때). 따봉 키
+  `P:`·`PI:{카드}:{아이템}`·`I:`. 순위는 카드 맥락(연령·지역·영역)으로 세고, 투표자 30명 미만 칸은 비공개
+- 개인정보처리방침 7항 '따봉 기록' 추가(Supabase 싱가포르 — DB IP로 AWS ap-southeast-1 확인, Cloudflare 미국)
+- **운영 전 남은 것**: SQL `24` 적용 · 익명 로그인 켜기 · Turnstile 사이트 키(Vercel)와 비밀 키(Supabase) 함께 ·
+  아이템 사전·에디터 카드 작성 · `python etl/upload_curriculum_refs.py --apply` · 익명 세션으로 학교·아파트 조회가
+  되는지 확인(역할이 `authenticated`로 바뀐다) · 브라우저 화면 검증과 smoke
+- **검증 한계**: Windows 스마트 앱 컨트롤이 agent-browser 실행 파일을 막아(2026-10-05) 화면 확인·smoke를 못 돌렸다.
+  lint·typecheck·build, 임시 샘플 콘텐츠로 빌드·검증 실패 케이스, `/plans/…` 라우트 200까지만 확인
+- `.env.example`은 권한 규칙으로 읽기·쓰기가 막혀 `VITE_TURNSTILE_SITE_KEY`를 넣지 못했다 — 사용자 몫
+
 ### 2026-10-04: 돌봄 후속 — 필터·지도·프리렌더·측정·가이드
 
 - **필터** '저녁 돌봄 운영 학교만'(`FilterState.evening_care_only`): `school_care_statistics`에서
