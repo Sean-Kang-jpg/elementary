@@ -10,7 +10,7 @@ interface BottomNavigationProps {
 const items = [
   { id: 'home', label: '홈', icon: Home },
   { id: 'map', label: '지도', icon: Map },
-  { id: 'guide', label: '가이드', icon: BookOpen },
+  { id: 'guide', label: '입학 준비', icon: BookOpen },
   { id: 'favorites', label: '즐겨찾기', icon: Star },
 ] as const
 

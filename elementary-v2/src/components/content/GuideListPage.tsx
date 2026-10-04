@@ -1,21 +1,41 @@
-import { ChevronRight, HelpCircle, LineChart } from 'lucide-react'
+import { useEffect, useState } from 'react'
+import { BookOpenCheck, Check, ChevronRight, HelpCircle, LineChart } from 'lucide-react'
 import { GUIDE_GROUPS, GUIDE_LIST, GUIDES } from '../../content'
 import { guidePath, VIEW_PATHS } from '../../utils/urlState'
-import { STAGE_LABELS, stageOf, type Stage } from '../../utils/entryYear'
+import { birthYearOf, STAGE_LABELS, stageOf, type Stage } from '../../utils/entryYear'
+import { readGuides, subscribeProfile, type Profile } from '../../utils/profile'
 import EntryYearPicker from './EntryYearPicker'
+import RoadmapCard from './RoadmapCard'
+import ChecklistBanner from './ChecklistBanner'
 import { followLink } from './contentLinks'
 
 interface GuideListPageProps {
   onNavigate: (path: string) => void
   entryYear: number | null
   onEntryYearChange: (year: number) => void
+  profile: Profile
+  onProfileChange: (update: (current: Profile) => Profile) => void
 }
 
 const STAGE_ORDER: Stage[] = ['planning', 'admission']
 
-export default function GuideListPage({ onNavigate, entryYear, onEntryYearChange }: GuideListPageProps) {
+/**
+ * 입학 준비: the personal hub behind the bottom navigation (2026-10-04). The home is
+ * the front door - search first, a short summary of the child's stage - and this
+ * is where the family's own setup lives: the entry year and preferences, the
+ * whole roadmap to March, checklist progress, and the guides with what this
+ * device has already read. Everything personal stays on the device (D1 option A).
+ */
+export default function GuideListPage({ onNavigate, entryYear, onEntryYearChange, profile, onProfileChange }: GuideListPageProps) {
   const selectedStage = entryYear ? stageOf(entryYear) : null
   const stages = selectedStage ? [selectedStage, ...STAGE_ORDER.filter((stage) => stage !== selectedStage)] : STAGE_ORDER
+  const [editing, setEditing] = useState(false)
+  const [read, setRead] = useState<string[]>(readGuides)
+  useEffect(() => subscribeProfile(() => setRead(readGuides())), [])
+  const readCount = GUIDES.filter((guide) => read.includes(guide.slug)).length
+
+  const interestLabel = profile.interest.includes('private') ? '사립·국립 관심' : '공립'
+  const movingLabel = profile.moving === 'planned' ? '이사 예정' : profile.moving === 'considering' ? '이사 검토 중' : null
 
   return (
     <section className="app-destination app-page content-page" aria-labelledby="guides-title">
@@ -23,8 +43,32 @@ export default function GuideListPage({ onNavigate, entryYear, onEntryYearChange
         <h1 id="guides-title">{GUIDE_LIST.title}</h1>
         <p className="content-page__lead">{GUIDE_LIST.lead}</p>
 
-        <div className="home-card">
-          <EntryYearPicker value={entryYear} onChange={onEntryYearChange} />
+        {entryYear && !editing ? (
+          <div className="hub-profile">
+            <span className={`stage-chip stage-chip--${selectedStage}`}>{STAGE_LABELS[selectedStage!].short}</span>
+            <p>
+              <b>{entryYear}년 입학</b> · {birthYearOf(entryYear)}년생 · {interestLabel}{movingLabel ? ` · ${movingLabel}` : ''}
+            </p>
+            <button type="button" onClick={() => setEditing(true)} className="hub-profile__edit">바꾸기</button>
+          </div>
+        ) : (
+          <div className="home-card">
+            <EntryYearPicker
+              value={entryYear}
+              onChange={(year) => { onEntryYearChange(year); setEditing(false) }}
+            />
+          </div>
+        )}
+
+        {entryYear ? (
+          <RoadmapCard entryYear={entryYear} profile={profile} onProfileChange={onProfileChange} onNavigate={onNavigate} source="guides" />
+        ) : (
+          <ChecklistBanner onNavigate={onNavigate} />
+        )}
+
+        <div className="hub-guides-head">
+          <h2>시기별 가이드</h2>
+          <span><BookOpenCheck size={15} aria-hidden="true" /> {readCount}/{GUIDES.length} 읽음</span>
         </div>
 
         {stages.map((stage) => (
@@ -38,23 +82,27 @@ export default function GuideListPage({ onNavigate, entryYear, onEntryYearChange
               if (!guides.length) return null
               return (
                 <div key={group.id} className="content-list">
-                  <h2>{group.label}</h2>
+                  <h3 className="content-list__title">{group.label}</h3>
                   <ol className="guide-timeline">
-                    {guides.map((guide) => (
-                      <li key={guide.slug}>
-                        <a
-                          href={guidePath(guide.slug)}
-                          onClick={(event) => followLink(event, guidePath(guide.slug), onNavigate)}
-                          className="content-list__item"
-                        >
-                          <span className="min-w-0 flex-1">
-                            <strong>{guide.title}</strong>
-                            <small>{guide.description}</small>
-                          </span>
-                          <ChevronRight size={18} aria-hidden="true" />
-                        </a>
-                      </li>
-                    ))}
+                    {guides.map((guide) => {
+                      const isRead = read.includes(guide.slug)
+                      return (
+                        <li key={guide.slug} className={isRead ? 'is-read' : ''}>
+                          <a
+                            href={guidePath(guide.slug)}
+                            onClick={(event) => followLink(event, guidePath(guide.slug), onNavigate)}
+                            className="content-list__item"
+                          >
+                            <span className="min-w-0 flex-1">
+                              <strong>{guide.title}</strong>
+                              <small>{guide.description}</small>
+                            </span>
+                            {isRead ? <span className="content-list__read"><Check size={12} strokeWidth={3} aria-hidden="true" />읽음</span> : null}
+                            <ChevronRight size={18} aria-hidden="true" />
+                          </a>
+                        </li>
+                      )
+                    })}
                   </ol>
                 </div>
               )

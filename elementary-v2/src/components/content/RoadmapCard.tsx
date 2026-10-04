@@ -13,6 +13,8 @@ interface RoadmapCardProps {
   profile: Profile
   onProfileChange: (update: (current: Profile) => Profile) => void
   onNavigate: (path: string) => void
+  /** Where the card is shown, for view_roadmap: the home or the 입학 준비 hub. */
+  source?: 'home' | 'guides'
 }
 
 const MOVING: Array<{ value: MovingPlan; label: string }> = [
@@ -28,7 +30,7 @@ const TOTAL_ITEMS = checklist.groups.reduce((n, group) => n + group.items.length
  * family: private-school steps only when they are considering one, moving steps
  * only when a move is on the table.
  */
-export default function RoadmapCard({ entryYear, profile, onProfileChange, onNavigate }: RoadmapCardProps) {
+export default function RoadmapCard({ entryYear, profile, onProfileChange, onNavigate, source = 'home' }: RoadmapCardProps) {
   const days = daysToEntry(entryYear)
   const view = roadmapFor(entryYear, profile)
   const done = Object.values(readChecklist()).filter(Boolean).length
@@ -38,8 +40,8 @@ export default function RoadmapCard({ entryYear, profile, onProfileChange, onNav
   useEffect(() => {
     if (reported.current === entryYear) return
     reported.current = entryYear
-    track('view_roadmap', { days_to_admission: days, entry_year: entryYear, stage: view.stage, entry_source: 'home' })
-  }, [days, entryYear, view.stage])
+    track('view_roadmap', { days_to_admission: days, entry_year: entryYear, stage: view.stage, entry_source: source })
+  }, [days, entryYear, view.stage, source])
 
   const toggleInterest = (value: SchoolInterest) => onProfileChange((current) => {
     const has = current.interest.includes(value)

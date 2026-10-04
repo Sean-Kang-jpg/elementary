@@ -1,6 +1,8 @@
 import type { SyntheticEvent } from 'react'
 import { FAQ_PAGE, FAQS } from '../../content'
 import { STAGE_LABELS, stageOf } from '../../utils/entryYear'
+import { VIEW_PATHS } from '../../utils/urlState'
+import ShareButton from '../ui/ShareButton'
 import EntryYearPicker from './EntryYearPicker'
 import SourceList from './SourceList'
 import { followInternalLink } from './contentLinks'
@@ -31,7 +33,10 @@ export default function FaqPage({ onNavigate, entryYear, onEntryYearChange, onOp
   return (
     <section className="app-destination app-page content-page" aria-labelledby="faq-title">
       <article className="content-page__inner" onClick={(event) => followInternalLink(event, onNavigate)}>
-        <h1 id="faq-title">{FAQ_PAGE.title}</h1>
+        <div className="content-page__titlebar">
+          <h1 id="faq-title">{FAQ_PAGE.title}</h1>
+          <ShareButton path={VIEW_PATHS.faq} title={FAQ_PAGE.title} text={FAQ_PAGE.description} label="공유" />
+        </div>
         <p className="content-page__lead">{FAQ_PAGE.description}</p>
         <div className="home-card">
           <EntryYearPicker value={entryYear} onChange={onEntryYearChange} />

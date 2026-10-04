@@ -7,6 +7,8 @@ import checklist from '../../content/checklist.json'
 import { readChecklist, readProfile, saveChecklist, subscribeProfile } from '../../utils/profile'
 import { daysToEntry } from '../../utils/roadmap'
 import { track } from '../../utils/analytics'
+import { VIEW_PATHS } from '../../utils/urlState'
+import ShareButton from '../ui/ShareButton'
 import { followLink } from './contentLinks'
 
 interface ChecklistPageProps {
@@ -65,7 +67,11 @@ export default function ChecklistPage({ onNavigate }: ChecklistPageProps) {
   return (
     <section className="app-destination app-page content-page" aria-labelledby="checklist-title">
       <div className="content-page__inner">
-        <h1 id="checklist-title">{checklist.title}</h1>
+        <div className="content-page__titlebar">
+          <h1 id="checklist-title">{checklist.title}</h1>
+          {/* The address only: ticks stay on each device (decided 2026-10-04). */}
+          <ShareButton path={VIEW_PATHS.checklist} title={checklist.title} text={checklist.description} label="공유" />
+        </div>
         <p className="content-page__lead">{checklist.description}</p>
 
         <div className="checklist-hero" role="progressbar" aria-valuemin={0} aria-valuemax={TOTAL} aria-valuenow={done} aria-label="체크한 항목">
@@ -88,7 +94,10 @@ export default function ChecklistPage({ onNavigate }: ChecklistPageProps) {
           </div>
         </div>
 
-        <p className="checklist-note">시기는 참고용이에요. 취학통지서(12월 20일까지)를 빼면 학교마다 다르니 학교 안내를 함께 확인하세요.</p>
+        <p className="checklist-note">
+          시기는 참고용이에요. 취학통지서(12월 20일까지)를 빼면 학교마다 다르니 학교 안내를 함께 확인하세요.
+          체크한 내용은 이 기기에만 저장돼요. 링크를 공유하면 받는 분은 자기 기기에서 따로 체크해요.
+        </p>
 
         {GROUPS.map((group) => {
           const GroupIcon = iconOf(group.icon)
