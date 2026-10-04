@@ -191,19 +191,18 @@ migration은 Supabase 상태를 확인하지 않고 재설계하지 않는다.
   `portable-inputs/elementary-recurring-inputs-v1/2026-10-04.2/bundle.zip` (익명 차단 확인)
 - **사용자 몫(권한 분류기가 막음)**: Actions 시크릿 `KERIS_SCHOOLINFO_API_KEY` 등록
   (`gh secret set KERIS_SCHOOLINFO_API_KEY` 후 값 붙여넣기). 원격 실행기는 매달 학교알리미 스냅샷을 새로 받아야 하므로 **이 시크릿 없이는 Actions 실행이 실패**한다. 등록 후 `gh workflow run etl-recurring.yml -f mode=rehearse -f force=apartment`로 리허설
-- **전환 절차**: Actions 리허설 통과 → 첫 정기 실행이 운영과 일치 → Windows 작업 비활성화
-  (`Disable-ScheduledTask -TaskName "Elementary ETL Daily Check"`). 그 전까지 Windows 작업 유지
+- **Windows 작업은 2026-10-04 비활성화**(사용자 결정, Actions로 전환). 운영 데이터는 8/29 이후
+  갱신되지 않은 상태 — 시크릿 등록 → Actions 리허설 통과 → `mode=apply` 수동 실행(또는 11/2 정기
+  실행)이 10월 갱신이다. 되돌리려면 `Enable-ScheduledTask -TaskName "Elementary ETL Daily Check"`
 
 ### 3-1. 사용자 확인이 필요한 운영 변경
 
 - **인천 행정구역**: 학교 80곳 주소의 구 이름(서해구·검단구·영종구·제물포구)을 학교알리미
   값으로 바꾸는 백필 — 스크립트 작성 자체가 권한 분류기에서 두 번 막혔다. 허용 규칙을 추가하거나
   직접 실행할지 사용자 결정 대기
-- **SQL 22** `public_data_freshness()` — SQL 편집기에서 적용. 앱은 함수가 없으면 날짜를 안 보여줄
-  뿐이라 순서 무관
-- **관리자 smoke 계정**: `scripts/admin-smoke.mjs`(`npm run browser:smoke:admin -- <URL>`)는
-  준비됨. 비개인용 Auth 계정을 만들어 `etl_admin_users`에 등록하고 `ADMIN_SMOKE_EMAIL`·
-  `ADMIN_SMOKE_PASSWORD`를 `.env`에 넣는 것은 사용자 몫(`.env`는 에이전트 접근 불가)
+- ~~SQL 22~~ — 2026-10-04 사용자 적용, anon 호출로 3행 확인. 상세 화면 기준일 줄은 다음 릴리스에 나간다
+- ~~관리자 smoke 계정~~ — 2026-10-04 생성·등록 완료. `npm run browser:smoke:admin -- https://wherecho.co.kr`
+  운영에서 통과(로그인·4개 패널·RLS 조회). 자격 증명은 `.env`의 `ADMIN_SMOKE_*`
 
 ### 4. 이후 후보
 
