@@ -511,6 +511,7 @@ try {
     'the school detail shows its care-classroom disclosure',
   )
   await waitFor("Boolean(document.querySelector('[data-testid=care-centers]'))", 'the school detail lists nearby care centers')
+  assertPage("document.querySelector('[data-testid=care-guide-link]')?.getAttribute('href') === '/guide/care-afterschool'", 'the care block links to the care guide')
 
   run(['fill', 'input[role="combobox"]', '서울방현'])
   await waitFor("document.querySelectorAll('#map-search-results [role=option]').length > 0", 'school search returned results')

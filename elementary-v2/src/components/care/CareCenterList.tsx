@@ -1,13 +1,15 @@
-import { HeartHandshake, LoaderCircle, Phone } from 'lucide-react'
-import React, { useEffect, useState } from 'react'
+import { HeartHandshake, LoaderCircle, Map, Phone } from 'lucide-react'
+import React, { useEffect, useRef, useState } from 'react'
 import type { CareCenter } from '../../types'
 import { getCareCentersNear } from '../../services/dataService'
+import { track } from '../../utils/analytics'
+import { useSeenOnce } from './useSeenOnce'
 
 interface CareCenterListProps {
   latitude: number
   longitude: number
-  /** 기준점 이름 — "단지" 또는 "학교". 거리 설명에 쓴다. */
-  originLabel: string
+  /** 기준점. 이름("학교"/"단지")은 거리 설명에, id는 GA4 이벤트에 쓴다 — 단지는 공개 키(ADR-007). */
+  origin: { type: 'school' | 'apartment'; id: string }
   headingId: string
 }
 
@@ -22,9 +24,16 @@ const formatDistance = (meters: number) => meters < 1000 ? `${meters.toLocaleStr
  * 핵심이다 — 학교 돌봄이 끝나는 방학에 맞벌이 가정이 가장 먼저 찾는 정보다.
  * SQL 23이 없는 DB에서는 빈 목록이 오고, 그때는 아무것도 그리지 않는다.
  */
-const CareCenterList: React.FC<CareCenterListProps> = ({ latitude, longitude, originLabel, headingId }) => {
+const CareCenterList: React.FC<CareCenterListProps> = ({ latitude, longitude, origin, headingId }) => {
   const [centers, setCenters] = useState<CareCenter[] | null>(null)
   const [expanded, setExpanded] = useState(false)
+  const sectionRef = useRef<HTMLElement>(null)
+  const originLabel = origin.type === 'school' ? '학교' : '단지'
+  const eventBase = { item_type: origin.type, item_id: origin.id || undefined }
+
+  useSeenOnce(sectionRef, centers ? `${origin.type}:${origin.id}` : null, () => {
+    track('view_care', { ...eventBase, block: 'care_centers', center_count: centers?.length ?? 0 })
+  })
 
   useEffect(() => {
     setCenters(null)
@@ -53,7 +62,7 @@ const CareCenterList: React.FC<CareCenterListProps> = ({ latitude, longitude, or
   const visible = expanded ? centers : centers.slice(0, INITIAL_COUNT)
 
   return (
-    <section aria-labelledby={headingId} data-testid="care-centers">
+    <section ref={sectionRef} aria-labelledby={headingId} data-testid="care-centers">
       <div className="mb-2 flex items-center justify-between">
         <h3 id={headingId} className="inline-flex items-center gap-2 font-semibold text-gray-950"><HeartHandshake size={18} aria-hidden="true" />주변 돌봄센터</h3>
         <strong className="text-sm text-rose-800">{centers.length}곳</strong>
@@ -70,7 +79,7 @@ const CareCenterList: React.FC<CareCenterListProps> = ({ latitude, longitude, or
                   <span className="text-[11px] text-gray-500">{center.center_kind} · {formatDistance(center.straight_distance_m)}{center.capacity ? ` · 정원 ${center.capacity}명` : ''}</span>
                 </span>
                 {center.phone ? (
-                  <a href={`tel:${center.phone}`} className="flex-none rounded-md p-1.5 text-gray-500 hover:bg-gray-100" aria-label={`${center.name} 전화`}><Phone size={16} aria-hidden="true" /></a>
+                  <a href={`tel:${center.phone}`} onClick={() => track('call_care_center', { ...eventBase, center_id: center.center_id, distance_m: center.straight_distance_m })} className="flex-none rounded-md p-1.5 text-gray-500 hover:bg-gray-100" aria-label={`${center.name} 전화`}><Phone size={16} aria-hidden="true" /></a>
                 ) : null}
               </div>
               <dl className="mt-1.5 grid grid-cols-2 gap-2 text-xs">
@@ -81,6 +90,18 @@ const CareCenterList: React.FC<CareCenterListProps> = ({ latitude, longitude, or
           ))}
         </ul>
       )}
+      {centers.length > 0 ? (
+        <button
+          type="button"
+          onClick={() => {
+            track('show_care_map', { ...eventBase, center_count: centers.length })
+            window.dispatchEvent(new CustomEvent('joinmap:show-care-centers', { detail: { centers } }))
+          }}
+          className="mt-2 inline-flex h-10 w-full items-center justify-center gap-2 rounded-md border border-rose-700 text-sm font-semibold text-rose-800 hover:bg-rose-50"
+        >
+          <Map size={17} aria-hidden="true" />지도에서 돌봄센터 보기
+        </button>
+      ) : null}
       {centers.length > INITIAL_COUNT ? (
         <button type="button" onClick={() => setExpanded((value) => !value)} className="mt-2 h-9 w-full rounded-md border border-gray-200 text-sm font-medium text-gray-700 hover:bg-gray-50">
           {expanded ? '접기' : `${centers.length - INITIAL_COUNT}곳 더 보기`}

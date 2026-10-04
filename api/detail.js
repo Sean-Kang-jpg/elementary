@@ -113,10 +113,10 @@ const keyFromSlug = (slug) => {
 }
 
 const schoolPage = async (key) => {
-  // Both reads select on the same school_id, so the second does not wait for the
-  // first. Issued together they cost one round trip instead of two - which is
-  // what keeps a cold start inside the function's own time limit.
-  const [schools, complexes] = await Promise.all([
+  // The reads select on the same school_id, so none waits for another. Issued
+  // together they cost one round trip instead of three - which is what keeps a
+  // cold start inside the function's own time limit.
+  const [schools, complexes, care] = await Promise.all([
     query('school_master', {
       select: 'school_id,school_name,region,road_address,legal_address,establishment_type,'
         + 'grade1_students,grade1_classes,grade1_per_class,total_students,reference_date',
@@ -128,6 +128,14 @@ const schoolPage = async (key) => {
       school_id: `eq.${key}`,
       limit: '300',
     }),
+    // Care (SQL 23) is an extra, not the page: a failed read drops these facts
+    // and keeps the rest, rather than failing the page open to the bare shell.
+    query('school_care_statistics', {
+      select: 'statistics_year,afternoon_care_rooms,afternoon_care_students,evening_care_rooms,'
+        + 'afterschool_aptitude_programs,afterschool_curriculum_programs',
+      school_id: `eq.${key}`,
+      limit: '1',
+    }).catch(() => []),
   ])
   const school = schools[0]
   if (!school) return null
@@ -139,6 +147,12 @@ const schoolPage = async (key) => {
   const households = assigned.reduce((sum, row) => sum + (number(row.households) || 0), 0)
   const district = districtFromAddress(school.road_address || school.legal_address, school.region)
   const place = `${shortRegion(school.region)} ${district}`.trim()
+  const careRow = care[0]
+  const careRooms = careRow ? number(careRow.afternoon_care_rooms) : null
+  const eveningRooms = careRow ? number(careRow.evening_care_rooms) : null
+  const programs = careRow
+    ? (number(careRow.afterschool_aptitude_programs) || 0) + (number(careRow.afterschool_curriculum_programs) || 0)
+    : null
 
   return {
     canonical: `/school/${readable([shortRegion(school.region), district, school.school_name])}--${school.school_id}`,
@@ -164,6 +178,10 @@ const schoolPage = async (key) => {
       ['전교생', withCommas(school.total_students)],
       ['배정 아파트', `${withCommas(assigned.length)}개 단지`],
       ['배정 총세대수', households ? `${withCommas(households)}세대` : null],
+      ['오후 돌봄교실', careRooms ? `${careRooms}실 · ${withCommas(careRow.afternoon_care_students)}명 참여` : careRow ? '공시 없음' : null],
+      ['저녁 돌봄교실', careRow ? (eveningRooms ? `운영 ${eveningRooms}실` : '공시 없음') : null],
+      ['방과후 프로그램', programs ? `${withCommas(programs)}개` : null],
+      ['돌봄·방과후 출처', careRow ? `학교알리미 ${careRow.statistics_year}년 공시` : null],
       ['데이터 기준일', school.reference_date],
     ],
     links: assigned

@@ -6,6 +6,7 @@ export const DEFAULT_FILTERS: FilterState = {
   target_grade: 1,
   min_students: 0,
   school_types: ['public', 'private', 'national'],
+  evening_care_only: false,
   min_parking_ratio: 0,
   max_apartment_age: UNLIMITED_APARTMENT_AGE,
   max_public_rental_ratio: 100,

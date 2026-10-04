@@ -3,12 +3,14 @@ import {
   Check,
   GraduationCap,
   Landmark,
+  Moon,
   RotateCcw,
   School as SchoolIcon,
 } from 'lucide-react'
 import { useEffect, useMemo, useState, type CSSProperties } from 'react'
 import { DEFAULT_FILTERS, useFilters, useUI } from '../../contexts/AppContext'
 import { clearDataCache, getFilteredSchoolCount } from '../../services/dataService'
+import { track } from '../../utils/analytics'
 import type { FilterState } from '../../types'
 import { UNLIMITED_APARTMENT_AGE } from '../../types'
 
@@ -81,6 +83,7 @@ const activeFilterCount = (filters: FilterState) => [
   filters.target_grade !== DEFAULT_FILTERS.target_grade,
   filters.min_students !== DEFAULT_FILTERS.min_students,
   filters.school_types.length !== DEFAULT_FILTERS.school_types.length,
+  filters.evening_care_only,
   filters.min_households > 0,
   filters.min_parking_ratio > 0,
   filters.max_apartment_age < UNLIMITED_APARTMENT_AGE,
@@ -137,6 +140,8 @@ export default function FilterPanel() {
 
   const applyFilters = () => {
     clearDataCache()
+    // Only the switch on: the filter's use is what is measured, not every apply.
+    if (draft.evening_care_only && !filters.evening_care_only) track('filter_evening_care', { result_count: resultCount ?? undefined })
     setFilter(draft)
     toggleSidebar()
   }
@@ -220,6 +225,21 @@ export default function FilterPanel() {
                 })}
               </div>
             </div>
+
+            <button
+              type="button"
+              onClick={() => updateDraft({ evening_care_only: !draft.evening_care_only })}
+              aria-pressed={draft.evening_care_only}
+              data-testid="evening-care-filter"
+              className={`flex w-full items-center gap-3 rounded-md border px-3 py-3 text-left ${draft.evening_care_only ? 'border-blue-600 bg-blue-50' : 'border-gray-200 hover:bg-gray-50'}`}
+            >
+              <Moon size={19} className={draft.evening_care_only ? 'text-blue-700' : 'text-gray-500'} aria-hidden="true" />
+              <span className="min-w-0 flex-1">
+                <span className={`block text-sm font-semibold ${draft.evening_care_only ? 'text-blue-800' : 'text-gray-900'}`}>저녁 돌봄 운영 학교만</span>
+                <span className="block text-xs text-gray-500">학교알리미 공시에 저녁 돌봄교실이 있는 학교</span>
+              </span>
+              {draft.evening_care_only && <Check size={16} className="text-blue-700" aria-hidden="true" />}
+            </button>
           </div>
         </section>
 

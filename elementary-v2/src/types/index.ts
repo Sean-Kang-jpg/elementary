@@ -125,6 +125,7 @@ export interface FilterState {
   target_grade: number // 기준 학년 (기본: 1)
   min_students: number // 최소 학생수 (기본: 80)
   school_types: ('public' | 'private' | 'national')[]
+  evening_care_only: boolean // 저녁 돌봄 운영 학교만 (SQL 23 school_care_statistics)
   
   // 아파트 필터
   min_parking_ratio: number // 최소 주차비율 (기본: 0.5)

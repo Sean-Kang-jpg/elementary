@@ -311,9 +311,9 @@ const SchoolDetail: React.FC<SchoolDetailProps> = ({ school, isOpen, onClose, on
 
           <StartModule school={school} onOpenGuide={onOpenGuide} />
 
-          <SchoolCarePanel school={school} />
+          <SchoolCarePanel school={school} onOpenGuide={onOpenGuide} />
 
-          <CareCenterList latitude={school.latitude} longitude={school.longitude} originLabel="학교" headingId="school-care-centers-title" />
+          <CareCenterList latitude={school.latitude} longitude={school.longitude} origin={{ type: 'school', id: school.school_id }} headingId="school-care-centers-title" />
 
           <section aria-labelledby="grade-title">
             <h3 id="grade-title" className="mb-2 font-semibold text-gray-950">학년별 학생 현황</h3>

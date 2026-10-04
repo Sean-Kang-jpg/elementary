@@ -4,6 +4,8 @@ import { useAppContext } from '../../contexts/AppContext'
 import MarkerManager from './MarkerManager'
 import ApartmentMarkerManager from './ApartmentMarkerManager'
 import AcademyMarkerManager from './AcademyMarkerManager'
+import CareCenterMarkerManager from './CareCenterMarkerManager'
+import type { CareCenter } from '../../types'
 import '../../types/naver-maps.d.ts'
 import { ACADEMY_DATA_PENDING_LABEL, hasAcademyData } from '../../utils/academyCoverage'
 import type { AcademyCategoryKey } from '../../utils/academyCategories'
@@ -36,6 +38,7 @@ const MapContainer: React.FC<MapContainerProps> = ({ className = '' }) => {
   const [showAcademies, setShowAcademies] = useState(false)
   const [academyCount, setAcademyCount] = useState<number | null>(null)
   const [academyCategory, setAcademyCategory] = useState<AcademyCategoryKey | null>(null)
+  const [careCenters, setCareCenters] = useState<CareCenter[]>([])
   const { state, dispatch } = useAppContext()
   // The map is built from the viewport already in state, not from a fixed default.
   // The SDK now loads after mount (ADR-008 section 5), so a linked school or complex
@@ -51,6 +54,7 @@ const MapContainer: React.FC<MapContainerProps> = ({ className = '' }) => {
     setShowAcademies(false)
     setAcademyCount(null)
     setAcademyCategory(null)
+    setCareCenters([])
   }, [state.selectedApartment?.id, state.selectedSchool?.school_id])
 
   // An unregistered host is the usual cause, and it is invisible otherwise:
@@ -76,7 +80,12 @@ const MapContainer: React.FC<MapContainerProps> = ({ className = '' }) => {
     window.addEventListener('joinmap:show-academies', showAcademies)
     window.addEventListener('joinmap:show-school-academies', showSchoolAcademies)
     window.addEventListener('joinmap:filter-academies', filterAcademies)
+    const showCareCenters = (event: Event) => {
+      setCareCenters((event as CustomEvent<{ centers: CareCenter[] }>).detail?.centers || [])
+    }
+    window.addEventListener('joinmap:show-care-centers', showCareCenters)
     return () => {
+      window.removeEventListener('joinmap:show-care-centers', showCareCenters)
       window.removeEventListener('joinmap:show-academies', showAcademies)
       window.removeEventListener('joinmap:show-school-academies', showSchoolAcademies)
       window.removeEventListener('joinmap:filter-academies', filterAcademies)
@@ -337,6 +346,10 @@ const MapContainer: React.FC<MapContainerProps> = ({ className = '' }) => {
           onCategoryChange={setAcademyCategory}
           onCountChange={setAcademyCount}
         />
+      )}
+
+      {isMapReady && naverMapRef.current && careCenters.length > 0 && (
+        <CareCenterMarkerManager map={naverMapRef.current} centers={careCenters} onClose={() => setCareCenters([])} />
       )}
 
       {isMapReady && (state.selectedApartment || state.selectedSchool) && (
