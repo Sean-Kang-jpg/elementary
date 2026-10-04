@@ -72,7 +72,11 @@ npm run typecheck
 
 - `dataService.ts`: NEIS 분야 `직업기술`(성인 직무·자격 학원)을 RPC 응답에서 걸러 개수 재계산, 남는 학원이
   없는 주소는 버림. 두 RPC가 `toPublishedAcademies` 하나로 매핑. `build_academy_marker_snapshot.py`도 원천에서
-  제외 — **`apartment_academy_summary`(카드·상세의 "교육시설 N곳")는 다음 학원 ETL까지 직업기술 포함값**
+  제외 — **`apartment_academy_summary`(카드·상세의 "교육시설 N곳")는 아래 `--apply` 전까지 직업기술 포함값**
+- `etl/apply_academy_realm_exclusion.py`(`0411c7d`): 운영 학원 테이블을 제자리 수정(직업기술 기관 제거, 빈 주소 삭제,
+  800m 안 단지 요약 차감). 멱등이라 `run_due_etl.py`가 매 실행 끝에 돈다(리허설은 dry-run). dry-run: 주소 3,526
+  (갱신 969·삭제 2,557), 기관 3,752, 요약 31,537단지, 표본 25단지 RPC와 일치. **`--apply`는 자동 모드 권한 판단에
+  막혀 아직 안 돌렸다 — 사용자가 직접 실행하거나 다음 월간 실행(11/2 03:15 KST)에 적용된다**
 - `utils/mapPopup.ts`(신규): 학원·돌봄센터 팝업 X 버튼, 그리고 X가 검색창·우측 교육시설 버튼·범례(지도 캔버스
   밖 요소, `data-map-canvas`로 판별)에 가리면 지도를 내리는 `keepPopupClearOfMapControls`
 - 학원 팝업: 표 → 상호마다 마커 색과 같은 분류 칩(`getInstitutionCategories`), 분류 순 정렬, 상단 분류별 개수
