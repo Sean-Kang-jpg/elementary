@@ -57,6 +57,30 @@ npm run typecheck
 
 ## Uncommitted Work At Handoff
 
+### 2026-10-05: 단지 카드 연식·규모 일러스트 (커밋·운영 반영)
+
+- `components/apartment/ApartmentIllustration.tsx`(신규): 카드 왼쪽 68×76 칸의 건물 아이콘+막대를 SVG
+  일러스트로 교체. 연식으로 모양·색(10년 이하 탑상형 초록, 11~25년 중층 파랑, 26년 이상 저층 분홍 — 연식 칩과
+  같은 색), 세대수로 건물 수(300 미만 1, 1,000 미만 2, 3,000 미만 3, 이상 4). 연식 모름은 기존 청록
+- `ApartmentCard.tsx`에서 `Building2`·`buildingBars` 제거, `index.css`의 `.apartment-card__skyline` 규칙 삭제.
+  상세 시트는 이 카드를 그대로 쓰므로 시트 머리에는 따로 넣지 않았다
+- 결정 경위: 건설사 로고는 상표 문제로 제외, 브랜드 배지(1안)는 단지명과 중복·모바일 정보 과다로 제외.
+  브랜드명 매칭률은 수도권 21,228단지 기준 26.6%(옛 건설사명 포함 41%)
+- 검증: lint·typecheck·build, 로컬 public smoke 통과(전역 agent-browser 사본), 412px 학교·단지 상세 화면 확인
+
+### 2026-10-05: 학원 지도 — 직업기술 제외·팝업 X·상호별 분류 칩 (`d30bc8f`, 운영 `f542691`)
+
+- `dataService.ts`: NEIS 분야 `직업기술`(성인 직무·자격 학원)을 RPC 응답에서 걸러 개수 재계산, 남는 학원이
+  없는 주소는 버림. 두 RPC가 `toPublishedAcademies` 하나로 매핑. `build_academy_marker_snapshot.py`도 원천에서
+  제외 — **`apartment_academy_summary`(카드·상세의 "교육시설 N곳")는 다음 학원 ETL까지 직업기술 포함값**
+- `utils/mapPopup.ts`(신규): 학원·돌봄센터 팝업 X 버튼, 그리고 X가 검색창·우측 교육시설 버튼·범례(지도 캔버스
+  밖 요소, `data-map-canvas`로 판별)에 가리면 지도를 내리는 `keepPopupClearOfMapControls`
+- 학원 팝업: 표 → 상호마다 마커 색과 같은 분류 칩(`getInstitutionCategories`), 분류 순 정렬, 상단 분류별 개수
+- 검증: lint·typecheck·build, 로컬 390px 화면 확인(X 노출·닫힘·레이어 유지), 운영 public smoke 통과
+- **smoke 실행 주의**: 프로젝트 `node_modules/agent-browser`의 win32 exe가 `spawn UNKNOWN`으로 막힌다(스마트
+  앱 컨트롤). 전역 설치본(`%APPDATA%/npm/node_modules/agent-browser`)은 동작해, `public-smoke.mjs` 사본의 `cli`
+  경로만 전역으로 바꿔 돌렸다
+
 ### 2026-10-04: 지도 하단 간격·교육시설 범례 닫기·브라우저 확대 차단 (커밋·운영 반영)
 
 - `src/index.css`: 범례·"내 주변"·위치 안내의 bottom에서 GNB 높이 제거. `<main>`이 이미
@@ -71,7 +95,7 @@ npm run typecheck
   핀치는 미확인
 - **같은 작업 트리의 `SchoolCarePanel.tsx` 변경(소규모 학교 돌봄 이용률)은 다른 세션 작업이라 이 커밋에서 뺐다**
 
-### 2026-10-05: 커리큘럼 공유 1단계 코드 (master, **운영 미배포**)
+### 2026-10-05: 커리큘럼 공유 1단계 코드 (운영 `f542691`에 포함, **플래그 꺼짐이라 노출 안 됨**)
 
 - **기능 플래그 `VITE_CURRICULUM_ENABLED=1`일 때만 켜진다.** 기본은 꺼짐 — 주소는 홈으로, 개인정보처리방침은 이전
   그대로(`privacy.json`의 `effectiveDate`). master를 release해도 이 기능은 나가지 않는다. 사용자가 입학 준비 탭과
