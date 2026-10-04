@@ -308,6 +308,16 @@ try {
   assertPage("/^[0-9]+[.][0-9]+[.][0-9]+$/.test(document.querySelector('meta[name=app-version]')?.content || '')", 'application reports its release version')
   assertPage("!/v[0-9]+[.][0-9]+/.test(document.title)", 'the document title spends no room on a release number')
   assertPage("document.documentElement.scrollWidth === window.innerWidth", '390px layout has no horizontal overflow')
+  // On a phone 100vh is taller than the visible screen while the address bar shows.
+  // A body that centred the app inside min-height: 100vh left bands above and below
+  // and let the document scroll the search box under the address bar (2026-10-04).
+  // Headless 100vh equals the screen, so check the cause as well as the result.
+  assertPage(
+    "document.querySelector('#root > div').getBoundingClientRect().top === 0"
+    + " && document.documentElement.scrollHeight === window.innerHeight"
+    + " && getComputedStyle(document.body).display !== 'flex' && getComputedStyle(document.body).minHeight === '0px'",
+    'the app fills the screen from the top and the document does not scroll',
+  )
 
   // The shell's own share metadata. Pasting an address into KakaoTalk shows only
   // what these carry, and the prerender falls back to this shell whenever it
