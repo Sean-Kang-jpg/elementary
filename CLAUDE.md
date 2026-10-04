@@ -10,8 +10,8 @@
 - Active app: `F:\sm\vibe\elementary\pjt_250826\elementary-v2`
 - Stack: React 18, TypeScript, Vite, Tailwind CSS, Supabase, Naver Maps
 - Branch: `master` (작업), `release` (운영 배포. push가 곧 운영 배포다)
-- Last pushed baseline (2026-10-03 세션 종료): 운영 `release` `5cc5157`. 그 위 `master`의
-  커밋은 인수인계 문서뿐이라 release하지 않았다
+- Last pushed baseline (2026-10-04): 운영 `release` `476798d` = `master` `2d036f0`(MY 재편)의 트리.
+  그 위 `master`의 커밋은 인수인계 문서뿐이라 release하지 않았다
 - Production: `https://wherecho.co.kr` (옛 주소 `elementary-lovat.vercel.app`은 301로 넘어온다)
 - Supabase project ref: `vsgeksumgvcrkzjwvlgs`
 
@@ -60,7 +60,7 @@ npm run typecheck
 2026-10-03 세션 종료 시점에 **작업 트리는 깨끗하다.** 같은 날 두 세션이 같은 작업 트리에서
 동시에 작업했고, 둘 다 커밋·종료했다.
 
-### 2026-10-04: 즐겨찾기 → MY (커밋, 미배포)
+### 2026-10-04: 즐겨찾기 → MY (`2d036f0`, 운영 `476798d`)
 
 - 하단 탭 '즐겨찾기'를 'MY'로 바꾸고 `/guide`의 개인 허브 요소(프로필·전체 로드맵)를 `/my`로 옮겼다.
   `FavoritesPage.tsx` 삭제, `MyPage.tsx` 추가. `/favorites`는 앱이 `/my`로 `replaceState`
@@ -72,7 +72,10 @@ npm run typecheck
 - 검증: lint · typecheck · build 통과, `browser:smoke:public -- http://localhost:3000` 전체 통과
   (저장한 아파트가 그 단지로 열리는 검사, `/favorites` → `/my` 검사 추가). dev 서버는 `127.0.0.1`이
   아니라 `localhost`로만 응답했다
-- **운영 smoke 주의**: 이 smoke는 `/my`·MY 검사를 포함하므로 release 전 운영에 돌리면 실패한다
+- 운영 검증: release 후 `browser:smoke:public -- https://wherecho.co.kr` 전체 통과(MY 검사 포함)
+- 커밋할 때 같은 작업 트리의 다른 세션 변경(`DataFreshness`·SQL `22`·ETL 정기 실행)과 섞이지 않게
+  `ApartmentDetail.tsx`·`SchoolDetail.tsx`는 HEAD에 이 작업의 수정만 얹은 내용을 인덱스에 넣었다.
+  그 세션의 `DataFreshness` 네 줄은 작업 트리에 미커밋으로 남아 있다
 
 **동시 작업 교훈**: 한 세션이 파일째 `git add`해서 다른 세션의 hunk가 남의 커밋에 섞였다(아래
 줌아웃 smoke 블록). 동시 작업 중에는 같은 파일을 건드리기 전에 서로 알리고, `git add`는 파일이
