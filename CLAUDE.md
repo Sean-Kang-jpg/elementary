@@ -10,8 +10,10 @@
 - Active app: `F:\sm\vibe\elementary\pjt_250826\elementary-v2`
 - Stack: React 18, TypeScript, Vite, Tailwind CSS, Supabase, Naver Maps
 - Branch: `master` (작업), `release` (운영 배포. push가 곧 운영 배포다)
-- Last pushed baseline (2026-10-04): 운영 `release` `476798d` = `master` `2d036f0`(MY 재편)의 트리.
-  그 위 `master`의 커밋은 인수인계 문서뿐이라 release하지 않았다
+- Last pushed baseline (2026-10-04): 운영 `release` `05120ff`. **master 트리와 같지 않다** —
+  `476798d`(MY 재편 = `2d036f0`의 트리)에 모바일 화면 수정 `6f96125`의 세 파일만 얹었다.
+  master의 다른 세션 커밋 `1899418`(정기 ETL·데이터 기준일 표시, SQL `22` 필요)·`d36d84f`·`efd927c`는
+  아직 운영에 없다. 다음 release는 SQL `22` 운영 적용을 확인한 뒤 master 트리로 올린다
 - Production: `https://wherecho.co.kr` (옛 주소 `elementary-lovat.vercel.app`은 301로 넘어온다)
 - Supabase project ref: `vsgeksumgvcrkzjwvlgs`
 
@@ -59,6 +61,16 @@ npm run typecheck
 
 2026-10-03 세션 종료 시점에 **작업 트리는 깨끗하다.** 같은 날 두 세션이 같은 작업 트리에서
 동시에 작업했고, 둘 다 커밋·종료했다.
+
+### 2026-10-04: 모바일 화면 위아래 띠·검색창 가림 (`6f96125`, 운영 `05120ff`)
+
+- 원인: body에 남은 Vite 템플릿 `display:flex; place-items:center; min-height:100vh`. 모바일에서
+  100vh(주소창 숨김 높이) > 100dvh(앱)라서 앱이 가운데 정렬돼 위아래 띠(다크 모드 강제 브라우저에서 검정)가
+  생기고, 문서가 스크롤돼 지도 검색창이 주소창 밑으로 들어갔다
+- 수정: body 정렬·min-height 제거, 앱 높이 `.app-viewport`(100vh 대체 후 100dvh). smoke에 "앱이 화면을
+  맨 위부터 채우고 문서가 스크롤되지 않는다" 검사 추가. 운영 smoke 통과. 실기기 확인은 사용자 몫
+- dev 서버 주의: 네이버 지도 키는 `localhost:3000`(과 운영)만 허용한다. 다른 포트에서 smoke를 돌리면
+  지도가 "등록되어 있지 않습니다"로 막혀 시·도 마커 검사에서 실패한다
 
 ### 2026-10-04: 즐겨찾기 → MY (`2d036f0`, 운영 `476798d`)
 
