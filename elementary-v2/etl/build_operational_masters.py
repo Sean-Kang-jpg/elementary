@@ -56,6 +56,9 @@ def read_csv(path: Path) -> list[dict[str, str]]:
 
 def write_csv(path: Path, rows: list[dict[str, Any]]) -> None:
     if not rows:
+        # Truncate rather than skip: a skipped write left the previous run's file
+        # in place, which the audit then read as this run's output (2026-10-04).
+        path.write_text("", encoding="utf-8-sig")
         return
     with path.open("w", encoding="utf-8-sig", newline="") as handle:
         writer = csv.DictWriter(handle, fieldnames=list(rows[0]), extrasaction="ignore")

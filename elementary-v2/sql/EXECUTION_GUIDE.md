@@ -182,6 +182,15 @@ python etl/run_recurring_etl.py --apply
 
 Add `--build` after collecting newer source files. Successful runs archive the configured sources, stage six normalized datasets, verify exact remote counts, rebuild Serving, remove staging rows, and complete the `etl_runs` record. Failed runs retain staging for diagnosis and mark snapshots rejected.
 
+## 22: public data freshness (2026-10-04)
+
+`sql/22_public_data_freshness.sql` adds `public_data_freshness()`, a SECURITY DEFINER function
+granted to anon that returns each refreshed source's name, as-of date and load time - nothing
+else from the private ETL tables. The school and apartment detail screens show the dates under
+their content. The frontend treats a missing function as "no date", so the app can ship first.
+Apply in the SQL editor, then check with the anon key:
+`POST /rest/v1/rpc/public_data_freshness` returns three rows.
+
 ## Stop Conditions
 
 - Project hostname does not resolve or keys belong to another project.

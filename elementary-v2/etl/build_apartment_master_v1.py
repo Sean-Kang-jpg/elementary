@@ -126,9 +126,18 @@ def names_are_variants(left: Any, right: Any) -> bool:
 
 
 def address_candidates(value: Any) -> set[str]:
-    candidates = {normalize(part) for part in text(value).split(",") if normalize(part)}
-    if normalize(value):
-        candidates.add(normalize(value))
+    """Normalized address keys, with a merged region prefix rewritten first.
+
+    K-apt moved 광주 and 전남 to `전남광주통합특별시` from its 2026-09-22 file
+    while the apartment base still reads `전라남도 ...`/`광주광역시 ...`. Compared
+    raw, not one 광주·전남 complex matched K-apt (found 2026-10-04).
+    """
+    registry = load_registry()
+    parts = [registry.canonicalize_address(part) for part in text(value).split(",")]
+    candidates = {normalize(part) for part in parts if normalize(part)}
+    whole = registry.canonicalize_address(text(value))
+    if normalize(whole):
+        candidates.add(normalize(whole))
     return candidates
 
 
@@ -251,7 +260,9 @@ def main(argv: list[str] | None = None) -> None:
             road_index[candidate].add(code)
         for candidate in address_candidates(row.get("법정동주소")):
             legal_index[candidate].add(code)
-        name_index[(text(row.get("시도")), text(row.get("시군구")), normalize_name(row.get("단지명")))].add(code)
+        # Keyed by the resolved registry region, not the raw 시도 value, so a
+        # merged source value lines up with the apartment's own region.
+        name_index[(kapt_region(row), text(row.get("시군구")), normalize_name(row.get("단지명")))].add(code)
 
     ranked_by_apt: dict[str, list[dict[str, Any]]] = {}
     for apt in apartments:

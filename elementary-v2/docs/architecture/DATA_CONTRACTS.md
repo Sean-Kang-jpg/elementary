@@ -17,6 +17,7 @@ operational table returns an empty result under RLS rather than rows.
 | `filter_school_ids(...)` | function |
 | `nearby_academy_addresses(...)` | function |
 | `nearby_academy_addresses_for_school(...)` | function |
+| `public_data_freshness()` | function (SQL `22`, 2026-10-04; source name, as-of date and load time only) |
 
 Verified blocked in the same pass: `apartment_complex_master`,
 `apartment_name_history`, `apartment_property_history`, `etl_runs` return

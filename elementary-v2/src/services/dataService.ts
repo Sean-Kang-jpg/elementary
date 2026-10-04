@@ -800,6 +800,33 @@ export const getApartmentAcademySummaries = async (
 const getRegionCenter = (region: string): Coordinates =>
   regionCenter(region) || DEFAULT_CENTERS.ALL
 
+export interface DataFreshness {
+  source_name: string
+  source_as_of: string | null
+  refreshed_at: string | null
+}
+
+let freshnessRequest: Promise<DataFreshness[]> | null = null
+
+/**
+ * When each source was last refreshed (SQL 22). One request per visit: the dates
+ * move monthly at most. A database without the function yields no dates, and
+ * the detail screens simply omit the line - the same graceful path as the
+ * cross-filter RPC.
+ */
+export const getDataFreshness = (): Promise<DataFreshness[]> => {
+  if (!freshnessRequest) {
+    freshnessRequest = Promise.resolve(supabase.rpc('public_data_freshness')).then(({ data, error }) => {
+      if (error) {
+        if (error.code !== 'PGRST202' && error.code !== '42883') console.warn('data freshness unavailable', error.message)
+        return []
+      }
+      return (data ?? []) as DataFreshness[]
+    }, () => [])
+  }
+  return freshnessRequest
+}
+
 export const clearDataCache = () => {
   dataCache.clear()
   matchingSchoolCache.clear()

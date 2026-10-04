@@ -164,20 +164,35 @@ migration은 Supabase 상태를 확인하지 않고 재설계하지 않는다.
 - 콘텐츠 큐레이션(PRD 7.5) — 책·영상 선정은 사용자 몫
 - 학교 상세 돌봄·방과후 정보 — D4(학교알리미 공시 항목 실증)가 선행
 
-### 3. P5 ETL 쓰기 전환 검토
+### 3. ETL — 월 1회, GitHub Actions 이전 (2026-10-04)
 
-1. GitHub Actions secrets 등록과 read-only run `34242752216` 검증은 완료했다.
-2. Windows Task Scheduler를 fallback으로 유지한다.
-3. DB write와 정기 schedule 전환은 사용자 별도 승인 후에만 진행한다.
+- **9/27~10/4 정기 ETL 전부 실패**(DB 쓰기 없음, 데이터만 멈춤). 결함 3개 수정:
+  빌더에 범위 미전달, K-apt의 `전남광주통합특별시`로 광주·전남 K-apt 매칭 0건,
+  세종을 충북·충남과 분리해 접경 공동통학구역 실패. 상세는 `docs/operations/ETL_SCHEDULING.md`
+- **주기**: 사용자 결정으로 월 1회. `etl_schedules.kapt-basic`을 weekly→monthly로 바꿨다
+  (학교알리미는 원본이 연 1회라 annual 유지)
+- **Actions**: `.github/workflows/etl-recurring.yml` — 매월 2일 03:15 KST, 수동 실행은 기본
+  `rehearse`(쓰기 없음). 입력 묶음 `etl/recurring_inputs_manifest.json` → 비공개 Storage
+  `portable-inputs/elementary-recurring-inputs-v1/2026-10-04.2/bundle.zip` (익명 차단 확인)
+- **사용자 몫(권한 분류기가 막음)**: Actions 시크릿 `KERIS_SCHOOLINFO_API_KEY` 등록
+  (`gh secret set KERIS_SCHOOLINFO_API_KEY` 후 값 붙여넣기). 아파트 그룹만 도는 달은 없어도 된다
+- **전환 절차**: Actions 리허설 통과 → 첫 정기 실행이 운영과 일치 → Windows 작업 비활성화
+  (`Disable-ScheduledTask -TaskName "Elementary ETL Daily Check"`). 그 전까지 Windows 작업 유지
 
-Actions secrets는 영구 외부 설정이므로 사용자 승인 없이 등록하거나 변경하지 않는다.
+### 3-1. 사용자 확인이 필요한 운영 변경
+
+- **인천 행정구역**: 학교 80곳 주소의 구 이름(서해구·검단구·영종구·제물포구)을 학교알리미
+  값으로 바꾸는 백필 — 스크립트 작성 자체가 권한 분류기에서 두 번 막혔다. 허용 규칙을 추가하거나
+  직접 실행할지 사용자 결정 대기
+- **SQL 22** `public_data_freshness()` — SQL 편집기에서 적용. 앱은 함수가 없으면 날짜를 안 보여줄
+  뿐이라 순서 무관
+- **관리자 smoke 계정**: `scripts/admin-smoke.mjs`(`npm run browser:smoke:admin -- <URL>`)는
+  준비됨. 비개인용 Auth 계정을 만들어 `etl_admin_users`에 등록하고 `ADMIN_SMOKE_EMAIL`·
+  `ADMIN_SMOKE_PASSWORD`를 `.env`에 넣는 것은 사용자 몫(`.env`는 에이전트 접근 불가)
 
 ### 4. 이후 후보
 
-- 비개인용 인증 계정을 이용한 `/admin/etl` smoke 확장
-- Serving source timestamp 공개 후 freshness 표시
 - KRIC 공식 원본 확보 후 역/주소 검색 P4 재개
-- 학교 마스터의 인천 행정구역을 2026 개편 후 기준으로 갱신
 - 4컷 웹툰 파일럿(when-to-move 가이드, 인스타그램 겸용) — 사용자 결정 대기
 
 ## ETL Portability

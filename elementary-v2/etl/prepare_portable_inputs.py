@@ -216,6 +216,26 @@ def restore(manifest: dict[str, Any], files: list[dict[str, Any]], restore_dir: 
     print(f"restored and verified {len(files)} inputs to {restore_dir}")
 
 
+def materialize(files: list[dict[str, Any]], restore_dir: Path) -> None:
+    """Put each restored input where the builders read it - its `source_path`.
+
+    A remote runner starts from a bare checkout, so the reviewed inputs must land
+    in the same places they occupy on the ETL workstation (including the 2024-10
+    apartment base outside the repository). An existing file with different
+    content is never overwritten: that would mean the runner is not clean.
+    """
+    for item in files:
+        source = restore_dir / str(item["bundle_path"])
+        target = resolve_source(str(item["source_path"]))
+        if target.exists():
+            if sha256(target) != str(item["sha256"]):
+                raise ValueError(f"refusing to overwrite a different input: {target}")
+            continue
+        target.parent.mkdir(parents=True, exist_ok=True)
+        target.write_bytes(source.read_bytes())
+    print(f"materialized {len(files)} inputs at their source paths")
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--manifest", type=Path, default=DEFAULT_MANIFEST)
@@ -224,7 +244,13 @@ def main() -> None:
     parser.add_argument("--upload", action="store_true", help="Upload the package to private Supabase Storage and verify it")
     parser.add_argument("--restore-dir", type=Path, help="Restore the private bundle and verify every member")
     parser.add_argument("--verify-anon-blocked", action="store_true", help="Fail if the private bundle is anonymously readable")
+    parser.add_argument(
+        "--materialize", action="store_true",
+        help="With --restore-dir, also copy every input to its source_path (a remote runner's setup)",
+    )
     args = parser.parse_args()
+    if args.materialize and not args.restore_dir:
+        raise ValueError("--materialize needs --restore-dir")
     manifest_path = args.manifest if args.manifest.is_absolute() else (PROJECT_DIR / args.manifest).resolve()
     if args.package or args.upload or not args.restore_dir:
         manifest, files = validate(manifest_path)
@@ -240,6 +266,8 @@ def main() -> None:
         upload_and_verify(manifest, files, archive_path)
     if args.restore_dir:
         restore(manifest, files, args.restore_dir)
+        if args.materialize:
+            materialize(files, args.restore_dir)
     if args.verify_anon_blocked:
         verify_anonymous_access_blocked(manifest)
 

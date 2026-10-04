@@ -13,6 +13,7 @@ import { isFavorite as checkFavorite, schoolFavorite, toggleFavorite as toggleSa
 import { recordPerformanceMetric } from '../../utils/performanceMetrics'
 import type { AcademyAddress, ApartmentAcademySummary } from '../../types'
 import ShareButton from '../ui/ShareButton'
+import DataFreshness from '../ui/DataFreshness'
 import StartModule from '../content/StartModule'
 import { markEntry, track } from '../../utils/analytics'
 import { schoolPath } from '../../utils/urlState'
@@ -364,6 +365,7 @@ const SchoolDetail: React.FC<SchoolDetailProps> = ({ school, isOpen, onClose, on
             )}
           </section>}
 
+          <DataFreshness sources={['schoolinfo-grade-students', 'kapt-basic']} />
             </>
           )}
 
