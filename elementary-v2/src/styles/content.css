@@ -165,60 +165,6 @@
   box-shadow: var(--warm-shadow);
 }
 
-.home-stage {
-  margin: 0 0 14px;
-  border: 1px solid var(--warm-border);
-  border-radius: var(--warm-radius);
-  padding: 16px 16px 6px;
-  background: var(--warm-surface);
-}
-
-.home-stage--mine.home-stage--planning {
-  border-color: #b9dccd;
-  box-shadow: 0 6px 20px rgba(63, 127, 110, 0.1);
-}
-
-.home-stage--mine.home-stage--admission {
-  border-color: #f4c7b3;
-  box-shadow: 0 6px 20px rgba(194, 85, 47, 0.1);
-}
-
-.home-stage h2 {
-  margin: 10px 0 4px;
-  font-size: 17px;
-  font-weight: 750;
-}
-
-.home-stage ul {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.home-stage li + li {
-  border-top: 1px dashed var(--warm-border);
-}
-
-.home-stage li a {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-  padding: 12px 0;
-  color: var(--warm-text);
-  font-size: 14.5px;
-  text-decoration: none;
-}
-
-.home-stage li a svg {
-  flex: none;
-  color: var(--warm-faint);
-}
-
-.home-stage li a:hover span {
-  color: var(--warm-accent-strong);
-}
-
 .home-links {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -1088,6 +1034,121 @@
   cursor: pointer;
   font-size: 13px;
   font-weight: 700;
+}
+
+/* ---- MY ------------------------------------------------------------------ */
+
+.my-saved {
+  margin: 10px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.my-saved li {
+  display: flex;
+  align-items: stretch;
+  margin-bottom: 8px;
+  overflow: hidden;
+  border: 1px solid var(--warm-border);
+  border-radius: 16px;
+  background: var(--warm-surface);
+}
+
+.my-saved__open {
+  display: flex;
+  min-width: 0;
+  flex: 1;
+  align-items: center;
+  gap: 12px;
+  border: 0;
+  padding: 12px 8px 12px 14px;
+  color: var(--warm-text);
+  background: none;
+  text-align: left;
+  cursor: pointer;
+}
+
+.my-saved__open strong,
+.my-saved__open small {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.my-saved__open strong {
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.my-saved__open small {
+  margin-top: 2px;
+  color: var(--warm-muted);
+  font-size: 13px;
+}
+
+.my-saved__open > svg {
+  flex: none;
+  color: var(--warm-faint);
+}
+
+.my-saved__remove {
+  width: 48px;
+  flex: none;
+  border: 0;
+  border-left: 1px solid var(--warm-border);
+  color: var(--warm-faint);
+  background: none;
+  cursor: pointer;
+}
+
+.my-saved__empty {
+  margin: 10px 0 0;
+  border: 1px dashed var(--warm-border-strong);
+  border-radius: 16px;
+  padding: 16px;
+  color: var(--warm-muted);
+  font-size: 14px;
+}
+
+.my-saved__empty p {
+  margin: 0 0 10px;
+}
+
+.my-saved__empty p svg {
+  display: inline;
+  vertical-align: -2px;
+}
+
+.my-saved__empty a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--warm-accent-strong);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.my-saved + .roadmap,
+.my-saved__empty + .roadmap,
+.my-saved + .checklist-banner,
+.my-saved__empty + .checklist-banner {
+  margin-top: 22px;
+}
+
+.my-guides {
+  margin-top: 16px;
+}
+
+.my-note {
+  margin: 18px 0 0;
+  color: var(--warm-faint);
+  font-size: 12.5px;
+  line-height: 1.6;
+}
+
+.my-note a {
+  color: inherit;
 }
 
 .hub-guides-head {

@@ -1,41 +1,32 @@
 import { useEffect, useState } from 'react'
-import { BookOpenCheck, Check, ChevronRight, HelpCircle, LineChart } from 'lucide-react'
+import { BookOpenCheck, Check, ChevronRight, HelpCircle, LineChart, UserRound } from 'lucide-react'
 import { GUIDE_GROUPS, GUIDE_LIST, GUIDES } from '../../content'
 import { guidePath, VIEW_PATHS } from '../../utils/urlState'
-import { birthYearOf, STAGE_LABELS, stageOf, type Stage } from '../../utils/entryYear'
-import { readGuides, subscribeProfile, type Profile } from '../../utils/profile'
-import EntryYearPicker from './EntryYearPicker'
-import RoadmapCard from './RoadmapCard'
+import { STAGE_LABELS, stageOf, type Stage } from '../../utils/entryYear'
+import { readGuides, subscribeProfile } from '../../utils/profile'
 import ChecklistBanner from './ChecklistBanner'
 import { followLink } from './contentLinks'
 
 interface GuideListPageProps {
   onNavigate: (path: string) => void
   entryYear: number | null
-  onEntryYearChange: (year: number) => void
-  profile: Profile
-  onProfileChange: (update: (current: Profile) => Profile) => void
 }
 
 const STAGE_ORDER: Stage[] = ['planning', 'admission']
 
 /**
- * 입학 준비: the personal hub behind the bottom navigation (2026-10-04). The home is
- * the front door - search first, a short summary of the child's stage - and this
- * is where the family's own setup lives: the entry year and preferences, the
- * whole roadmap to March, checklist progress, and the guides with what this
- * device has already read. Everything personal stays on the device (D1 option A).
+ * 입학 준비: the public manual - guides by stage, the FAQ and the data report. It
+ * is the same list the static /guide page gives a crawler. The family's own setup
+ * (entry year, preferences, roadmap, saved places) moved to MY on 2026-10-04; this
+ * page only borrows the entry year to put the child's stage first and marks the
+ * guides this device has read.
  */
-export default function GuideListPage({ onNavigate, entryYear, onEntryYearChange, profile, onProfileChange }: GuideListPageProps) {
+export default function GuideListPage({ onNavigate, entryYear }: GuideListPageProps) {
   const selectedStage = entryYear ? stageOf(entryYear) : null
   const stages = selectedStage ? [selectedStage, ...STAGE_ORDER.filter((stage) => stage !== selectedStage)] : STAGE_ORDER
-  const [editing, setEditing] = useState(false)
   const [read, setRead] = useState<string[]>(readGuides)
   useEffect(() => subscribeProfile(() => setRead(readGuides())), [])
   const readCount = GUIDES.filter((guide) => read.includes(guide.slug)).length
-
-  const interestLabel = profile.interest.includes('private') ? '사립·국립 관심' : '공립'
-  const movingLabel = profile.moving === 'planned' ? '이사 예정' : profile.moving === 'considering' ? '이사 검토 중' : null
 
   return (
     <section className="app-destination app-page content-page" aria-labelledby="guides-title">
@@ -43,28 +34,17 @@ export default function GuideListPage({ onNavigate, entryYear, onEntryYearChange
         <h1 id="guides-title">{GUIDE_LIST.title}</h1>
         <p className="content-page__lead">{GUIDE_LIST.lead}</p>
 
-        {entryYear && !editing ? (
-          <div className="hub-profile">
-            <span className={`stage-chip stage-chip--${selectedStage}`}>{STAGE_LABELS[selectedStage!].short}</span>
-            <p>
-              <b>{entryYear}년 입학</b> · {birthYearOf(entryYear)}년생 · {interestLabel}{movingLabel ? ` · ${movingLabel}` : ''}
-            </p>
-            <button type="button" onClick={() => setEditing(true)} className="hub-profile__edit">바꾸기</button>
-          </div>
-        ) : (
-          <div className="home-card">
-            <EntryYearPicker
-              value={entryYear}
-              onChange={(year) => { onEntryYearChange(year); setEditing(false) }}
-            />
-          </div>
+        {entryYear ? null : (
+          <a href={VIEW_PATHS.my} onClick={(event) => followLink(event, VIEW_PATHS.my, onNavigate)} className="content-list__item content-list__item--card">
+            <span className="home-link__icon home-link__icon--sage"><UserRound size={19} aria-hidden="true" /></span>
+            <span className="min-w-0 flex-1">
+              <strong>우리 아이 입학연도 정하기</strong>
+              <small>MY에서 고르면 지금 볼 가이드가 먼저 나오고, 3월까지 할 일을 알려드려요</small>
+            </span>
+            <ChevronRight size={18} aria-hidden="true" />
+          </a>
         )}
-
-        {entryYear ? (
-          <RoadmapCard entryYear={entryYear} profile={profile} onProfileChange={onProfileChange} onNavigate={onNavigate} source="guides" />
-        ) : (
-          <ChecklistBanner onNavigate={onNavigate} />
-        )}
+        <ChecklistBanner onNavigate={onNavigate} />
 
         <div className="hub-guides-head">
           <h2>시기별 가이드</h2>

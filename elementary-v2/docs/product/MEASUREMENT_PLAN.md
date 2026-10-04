@@ -188,7 +188,7 @@ GA4는 방문자 정보를 외부(Google)로 전송하므로 개인정보처리�
 | 이벤트 | 파라미터 | 시점 |
 | --- | --- | --- |
 | `start_profile_created` | `entry_year`, `school_type_interest`(`public`·`private`, 쉼표 연결), `moving_plan` | 이 기기에서 처음 프로필이 저장될 때 한 번 |
-| `view_roadmap` | `days_to_admission`, `entry_year`, `stage`, `entry_source`(`home`·`guides`) | 홈의 요약 카드 또는 입학 준비 허브의 전체 로드맵이 보일 때, 입학연도마다 한 번 |
+| `view_roadmap` | `days_to_admission`, `entry_year`, `stage`, `entry_source`(`home`·`guides`·`my`) | 홈의 요약 카드 또는 전체 로드맵이 보일 때, 입학연도마다 한 번. 전체 로드맵은 2026-10-04부터 MY(`my`)에만 있다 — 그 전의 `guides`는 입학 준비 허브다 |
 | `check_checklist_item` | `category`, `item_id` | 체크할 때만(해제는 보내지 않는다) |
 
 ### 콘텐츠 공유 (2026-10-04 추가)
@@ -216,7 +216,7 @@ GA4는 방문자 정보를 외부(Google)로 전송하므로 개인정보처리�
 | `link` | 처음 열린 주소가 상세일 때 (검색엔진·공유 링크·북마크) |
 | `search` | 검색 결과 선택 (지도 위 검색창과 홈 검색창 모두) |
 | `related` | 학교 상세의 배정 아파트 목록에서 아파트 선택 |
-| `favorites` | 즐겨찾기에서 열기 |
+| `favorites` | MY의 저장 목록에서 열기 (2026-10-04 전에는 즐겨찾기 탭. 값은 그대로 둔다) |
 | `map` | 표시 없음 — 지도 마커 클릭이 유일하게 표시하는 쪽이 없는 경로다 |
 | `home` | 홈의 가이드·FAQ 링크 (2026-10-03, W3) |
 | `guides` | 가이드 목록에서 선택 (W3) |

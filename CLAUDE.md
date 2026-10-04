@@ -35,7 +35,7 @@ npm run typecheck
 
 - **도메인**: `wherecho.co.kr` 전환·검색엔진 등록 완료. 구성표는 `docs/operations/DEPLOYMENT.md` 7.1절
 - **라우팅(ADR-008)**: `/` 홈, `/map`, `/school/…`·`/apt/…`, `/guide`, `/guide/{slug}`, `/faq`,
-  `/checklist`, `/news`, `/favorites`, `/privacy`. 라우팅 라이브러리 없이 `urlState.ts`의 `parseRoute`
+  `/checklist`, `/news`, `/my`(옛 `/favorites`는 `/my`로 고친다), `/privacy`. 라우팅 라이브러리 없이 `urlState.ts`의 `parseRoute`
 - **셸 분리**: `dist/app.html`(셸), `dist/index.html`(정적 홈), 가이드·FAQ·체크리스트 정적 페이지,
   `dist/404.html`. 네이버 지도 SDK는 지도 화면에서만 읽는다(`naverMapsLoader.ts`)
 - **GA4** `G-NQT4XV9R00` + `/privacy`. 이벤트·진입경로 규칙은 `docs/product/MEASUREMENT_PLAN.md` 8절
@@ -44,9 +44,11 @@ npm run typecheck
 - **입학 단계**: 입학연도 칩(출생연도 병기)으로 planning/admission을 고른다. 프로필·체크리스트는
   기기 저장만(D1 A안)
 - **학교 상세 모듈** "이 학교 입학을 준비한다면"과 로드맵(3월 입학까지, 이사·사립 맞춤)
-- **홈 / 입학 준비 역할 분리(2026-10-04)**: 하단 탭 '가이드' → **'입학 준비'**(주소 `/guide` 그대로).
-  `/guide`는 개인 허브 — 프로필 요약(바꾸기), 3월까지 전체 로드맵·맞춤 설정, 시기별 가이드와 이 기기의
-  읽음 표시(`wherecho:read-guides-v1`). 홈은 검색 우선 + 요약 카드(D-Day·할 일 2개, `RoadmapSummary`)
+- **GNB 재편(2026-10-04)**: 하단 탭 **홈 · 지도 · 입학 준비 · MY**. 지도 = 데이터 탐색,
+  입학 준비(`/guide`) = 공개 매뉴얼(시기별 가이드·읽음 표시·FAQ·데이터 리포트, 앱과 정적 페이지가 같다),
+  MY(`/my`, `MyPage.tsx`) = 기기 저장 전부(프로필·저장한 학교·아파트·전체 로드맵·읽음 수).
+  즐겨찾기 탭은 MY에 흡수됐다. 홈은 검색 + 요약 카드(D-Day·할 일 2개, `RoadmapSummary` → `/my`)이고
+  시기별 가이드 목록은 홈에서 뺐다. 결정 기록은 ADR-008 구현 기록 마지막 항목
 - **공유**: 가이드·FAQ·체크리스트에 '공유' 버튼(주소만). 체크 상태는 기기별 — 부부 공유 체크리스트는 보류
 - **체크리스트 배너**: 모든 가이드 본문 아래(`ChecklistBanner`, 진행률 표시)
 - 화면 디자인은 사용자 평가로 "AI 전형 디자인" — 재검토 대기
@@ -57,6 +59,20 @@ npm run typecheck
 
 2026-10-03 세션 종료 시점에 **작업 트리는 깨끗하다.** 같은 날 두 세션이 같은 작업 트리에서
 동시에 작업했고, 둘 다 커밋·종료했다.
+
+### 2026-10-04: 즐겨찾기 → MY (커밋, 미배포)
+
+- 하단 탭 '즐겨찾기'를 'MY'로 바꾸고 `/guide`의 개인 허브 요소(프로필·전체 로드맵)를 `/my`로 옮겼다.
+  `FavoritesPage.tsx` 삭제, `MyPage.tsx` 추가. `/favorites`는 앱이 `/my`로 `replaceState`
+- 홈(앱·정적 `dist/index.html`)에서 시기별 가이드 목록 제거. 홈의 가이드 내부 링크 9개가 빠졌다
+- 버그 수정: 저장한 아파트를 열면 배정 학교만 열리던 것. 기록에 `publicKey`를 남기고
+  (`favorites.ts`), 옛 기록은 단지 상세를 다시 열 때 채운다(`refreshFavorite`)
+- ★ 버튼 라벨 'MY에 저장' / 'MY에서 빼기'. 저장소 키 `elementary-favorites-v1`, `entry_source=favorites`는 유지.
+  `view_roadmap`의 `entry_source`에 `my` 추가
+- 검증: lint · typecheck · build 통과, `browser:smoke:public -- http://localhost:3000` 전체 통과
+  (저장한 아파트가 그 단지로 열리는 검사, `/favorites` → `/my` 검사 추가). dev 서버는 `127.0.0.1`이
+  아니라 `localhost`로만 응답했다
+- **운영 smoke 주의**: 이 smoke는 `/my`·MY 검사를 포함하므로 release 전 운영에 돌리면 실패한다
 
 **동시 작업 교훈**: 한 세션이 파일째 `git add`해서 다른 세션의 hunk가 남의 커밋에 섞였다(아래
 줌아웃 smoke 블록). 동시 작업 중에는 같은 파일을 건드리기 전에 서로 알리고, `git add`는 파일이

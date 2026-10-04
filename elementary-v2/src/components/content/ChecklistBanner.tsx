@@ -9,7 +9,7 @@ const TOTAL = checklist.groups.reduce((n, group) => n + group.items.length, 0)
 
 /**
  * A slim link to the checklist with this device's progress. Placed under every
- * guide and in the 입학 준비 hub, so the checklist is one tap from wherever a
+ * guide, on the 입학 준비 list and in MY, so the checklist is one tap from wherever a
  * parent is reading.
  */
 export default function ChecklistBanner({ onNavigate }: { onNavigate: (path: string) => void }) {

@@ -59,16 +59,6 @@ const content = JSON.parse(await fs.readFile(path.join(projectRoot, 'src/content
 const structure = JSON.parse(await fs.readFile(path.join(projectRoot, 'src/content/structure.json'), 'utf8'))
 const STAGE_ORDER = ['planning', 'admission']
 
-// The home's guides, one card per stage, as the app shows them before a year is picked.
-const homeStagesHtml = () => STAGE_ORDER.map((stage) => {
-  const guides = content.guides.filter((guide) => guide.stage === stage)
-  if (!guides.length) return ''
-  return `<section class="home-stage home-stage--${stage}"><header><span class="stage-chip stage-chip--${stage}">${escapeHtml(structure.stages[stage].short)}</span></header>`
-    + `<h2>${escapeHtml(structure.stages[stage].homeTitle)}</h2><ul>`
-    + guides.map((guide) => `<li><a href="/guide/${guide.slug}"><span>${escapeHtml(guide.title)}</span></a></li>`).join('')
-    + '</ul></section>'
-}).join('')
-
 const homeBody = [
   '<section class="app-destination app-page home-page" aria-labelledby="home-title">',
   '<div class="home-hero"><div class="home-page__inner">',
@@ -78,8 +68,12 @@ const homeBody = [
   `<p class="home-hero__trust"><span>${escapeHtml(copy.noteBefore)}<b>${escapeHtml(copy.noteStrong)}</b>${escapeHtml(copy.noteAfter)}</span></p>`,
   '</div></div>',
   '<div class="home-page__inner home-page__body">',
-  homeStagesHtml(),
-  '<p><a href="/faq">자주 묻는 질문</a></p>',
+  // The guide list itself lives under /guide since 2026-10-04; the home links to it,
+  // as the app does, rather than repeat it.
+  '<div class="home-links">',
+  '<a href="/guide" class="home-link"><span><strong>입학 준비 가이드</strong><small>시기별로 할 일을 공식 자료로</small></span></a>',
+  '<a href="/faq" class="home-link"><span><strong>자주 묻는 질문</strong><small>이사·배정·취학통지서</small></span></a>',
+  '</div>',
   `<a href="/map" class="home-page__card"><span class="min-w-0 flex-1"><strong>${escapeHtml(copy.mapCardTitle)}</strong><small>${escapeHtml(copy.mapCardBody)}</small></span></a>`,
   '<footer class="home-page__footer"><a href="/privacy">개인정보처리방침</a></footer>',
   '</div></section>',

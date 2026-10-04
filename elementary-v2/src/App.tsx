@@ -6,7 +6,7 @@ import MapErrorBoundary from './components/map/MapErrorBoundary'
 import SchoolDetail from './components/school/SchoolDetail'
 import { useAppContext } from './contexts/AppContext'
 import { testSupabaseConnection } from './lib/supabase'
-import FavoritesPage from './components/navigation/FavoritesPage'
+import MyPage from './components/navigation/MyPage'
 import HomePage from './components/navigation/HomePage'
 import NewsPage from './components/navigation/NewsPage'
 import PrivacyPage from './components/navigation/PrivacyPage'
@@ -100,6 +100,19 @@ function MapApplication() {
   const historyTarget = useRef<string | null>(null)
   const historyGuide = useRef<string | null>(null)
 
+  // 공개 키로 단지를 찾아 지도 위에 연다. 주소로 들어온 경우와 MY에서 연 경우가 같은 길을 쓴다.
+  const openApartment = useCallback(async (key: string): Promise<boolean> => {
+    const found = await getApartmentByPublicKey(key)
+    if (!found) return false
+    // 대표 배정 학교를 함께 연다. 아파트만 띄우면 이 제품이 답하는 질문,
+    // "어느 학교에 배정되나"가 화면에 없다.
+    const school = found.schoolIds[0] ? await getSchoolDetail(found.schoolIds[0]) : null
+    dispatch({ type: 'SET_MAP_STATE', payload: { center: { lat: found.apartment.latitude, lng: found.apartment.longitude }, zoom: 15 } })
+    if (school) dispatch({ type: 'OPEN_SEARCHED_APARTMENT', payload: { school, apartment: found.apartment } })
+    else dispatch({ type: 'SET_SELECTED_APARTMENT', payload: found.apartment })
+    return true
+  }, [dispatch])
+
   const applyRoute = useCallback(async (route: Route) => {
     restoring.current = true
     try {
@@ -117,20 +130,13 @@ function MapApplication() {
         dispatch({ type: 'SET_SELECTED_SCHOOL', payload: school })
         return
       }
-      const found = await getApartmentByPublicKey(route.key)
-      if (!found) return
-      // 대표 배정 학교를 함께 연다. 아파트만 띄우면 이 제품이 답하는 질문,
-      // "어느 학교에 배정되나"가 화면에 없다.
-      const school = found.schoolIds[0] ? await getSchoolDetail(found.schoolIds[0]) : null
-      dispatch({ type: 'SET_MAP_STATE', payload: { center: { lat: found.apartment.latitude, lng: found.apartment.longitude }, zoom: 15 } })
-      if (school) dispatch({ type: 'OPEN_SEARCHED_APARTMENT', payload: { school, apartment: found.apartment } })
-      else dispatch({ type: 'SET_SELECTED_APARTMENT', payload: found.apartment })
+      await openApartment(route.key)
     } catch (error) {
       console.error('Failed to restore the route:', error)
     } finally {
       restoring.current = false
     }
-  }, [dispatch])
+  }, [dispatch, openApartment])
 
   // 처음 열렸을 때, 그리고 뒤로 가기마다 주소를 화면과 선택으로 되돌린다.
   useEffect(() => {
@@ -178,7 +184,7 @@ function MapApplication() {
   }, [view, state.selectedApartment, state.selectedSchool])
 
   // 지도 쪽 canonical은 syncPath가 맞춘다. 홈·가이드·FAQ는 색인 대상이고,
-  // 소식·즐겨찾기·처리방침은 아니다.
+  // 소식·MY·처리방침은 아니다.
   const guide = findGuide(guideSlug)
   useEffect(() => {
     if (view === 'home') setCanonical(VIEW_PATHS.home)
@@ -188,7 +194,11 @@ function MapApplication() {
       // 없는 가이드 주소는 목록을 보여주고 주소도 목록으로 고친다.
       if (guideSlug && !guide) window.history.replaceState({}, '', VIEW_PATHS.guide)
       setCanonical(guide ? guidePath(guide.slug) : VIEW_PATHS.guide)
-    } else if (view !== 'map') setCanonical(null)
+    } else {
+      // 옛 즐겨찾기 주소로 들어오면 MY의 주소로 고친다.
+      if (view === 'my' && window.location.pathname !== VIEW_PATHS.my) window.history.replaceState({}, '', VIEW_PATHS.my)
+      if (view !== 'map') setCanonical(null)
+    }
   }, [view, guideSlug, guide])
 
   // 문서 제목. 브라우저 탭과 GA4의 page_title이 화면을 구분하게 한다. 형식은
@@ -304,6 +314,15 @@ function MapApplication() {
 
   const handleOpenFavorite = async (favorite: FavoriteRecord) => {
     try {
+      // 2026-10-04 전에는 저장한 아파트를 눌러도 배정 학교가 열렸다. 공개 키가 있는
+      // 기록은 그 단지를 연다. 키 없는 옛 기록만 학교로 간다.
+      if (favorite.kind === 'apartment' && favorite.publicKey) {
+        markEntry('favorites')
+        if (await openApartment(favorite.publicKey)) {
+          setView('map')
+          return
+        }
+      }
       const schoolId = favorite.kind === 'school' ? favorite.id : favorite.schoolId
       const school = await getSchoolDetail(schoolId)
       if (!school) return
@@ -350,12 +369,21 @@ function MapApplication() {
       {view === 'checklist' && <ChecklistPage onNavigate={(path) => navigate(path, 'related')} />}
       {view === 'guide' && (guide
         ? <GuidePage key={guide.slug} guide={guide} onNavigate={(path) => navigate(path, 'related')} />
-        : <GuideListPage onNavigate={(path) => navigate(path, 'guides')} entryYear={entryYear} onEntryYearChange={changeEntryYear} profile={profile} onProfileChange={changeProfile} />)}
+        : <GuideListPage onNavigate={(path) => navigate(path, 'guides')} entryYear={entryYear} />)}
       {view === 'faq' && (
         <FaqPage onNavigate={(path) => navigate(path, 'related')} entryYear={entryYear} onEntryYearChange={changeEntryYear} onOpenQuestion={openFaqQuestion} />
       )}
       {view === 'news' && <NewsPage />}
-      {view === 'favorites' && <FavoritesPage onOpen={handleOpenFavorite} />}
+      {view === 'my' && (
+        <MyPage
+          onNavigate={(path) => navigate(path, 'related')}
+          onOpenSaved={handleOpenFavorite}
+          entryYear={entryYear}
+          onEntryYearChange={changeEntryYear}
+          profile={profile}
+          onProfileChange={changeProfile}
+        />
+      )}
       {view === 'privacy' && <PrivacyPage />}
       
       {connectionStatus.supabase === 'error' && (
@@ -395,7 +423,7 @@ const TITLES: Record<AppView, string> = {
   home: '어디초 | 초등학교 배정 아파트 찾기',
   map: '배정 지도 | 어디초',
   news: '소식 | 어디초',
-  favorites: '즐겨찾기 | 어디초',
+  my: 'MY | 어디초',
   privacy: '개인정보처리방침 | 어디초',
   guide: '입학 준비 가이드 | 어디초',
   faq: `${FAQ_PAGE.title} | 어디초`,

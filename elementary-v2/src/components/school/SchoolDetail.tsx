@@ -204,7 +204,7 @@ const SchoolDetail: React.FC<SchoolDetailProps> = ({ school, isOpen, onClose, on
           <button
             type="button"
             onClick={toggleFavorite}
-            aria-label={isFavorite ? '즐겨찾기 해제' : '즐겨찾기 추가'}
+            aria-label={isFavorite ? 'MY에서 빼기' : 'MY에 저장'}
             aria-pressed={isFavorite}
             className={`rounded-md p-2 transition-colors hover:bg-gray-100 ${isFavorite ? 'text-amber-500' : 'text-gray-500'}`}
           >

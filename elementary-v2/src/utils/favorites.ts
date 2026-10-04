@@ -6,7 +6,8 @@ const FAVORITES_EVENT = 'elementary-favorites-change'
 
 export type FavoriteRecord =
   | { kind: 'school'; id: string; name: string; address: string; latitude: number; longitude: number }
-  | { kind: 'apartment'; id: string; name: string; address: string; latitude: number; longitude: number; schoolId: string; schoolName: string; households: number }
+  // publicKey는 2026-10-04부터 기록한다. 그 전에 저장한 단지에는 없어서, 열면 배정 학교로 간다.
+  | { kind: 'apartment'; id: string; name: string; address: string; latitude: number; longitude: number; schoolId: string; schoolName: string; households: number; publicKey?: string }
 
 const isRecord = (value: unknown): value is FavoriteRecord => {
   if (!value || typeof value !== 'object') return false
@@ -58,6 +59,7 @@ export const apartmentFavorite = (apartment: Apartment): FavoriteRecord => ({
   schoolId: apartment.assigned_school_id,
   schoolName: apartment.assigned_school_name,
   households: apartment.households,
+  publicKey: apartment.public_key || undefined,
 })
 
 export const isFavorite = (kind: FavoriteRecord['kind'], id: string) => (
@@ -72,6 +74,15 @@ export const toggleFavorite = (record: FavoriteRecord) => {
     : [record, ...favorites]
   writeFavorites(next)
   return !exists
+}
+
+/** 이미 저장된 항목을 새 값으로 바꾼다. 옛 기록에 없던 필드를 채울 때 쓴다. */
+export const refreshFavorite = (record: FavoriteRecord) => {
+  const favorites = readFavorites()
+  const at = favorites.findIndex((item) => item.kind === record.kind && item.id === record.id)
+  if (at === -1 || JSON.stringify(favorites[at]) === JSON.stringify(record)) return
+  favorites[at] = record
+  writeFavorites(favorites)
 }
 
 export const removeFavorite = (record: FavoriteRecord) => {

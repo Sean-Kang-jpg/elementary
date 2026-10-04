@@ -13,8 +13,8 @@ interface RoadmapCardProps {
   profile: Profile
   onProfileChange: (update: (current: Profile) => Profile) => void
   onNavigate: (path: string) => void
-  /** Where the card is shown, for view_roadmap: the home or the 입학 준비 hub. */
-  source?: 'home' | 'guides'
+  /** Where the card is shown, for view_roadmap. Only MY shows the full card since 2026-10-04. */
+  source?: 'home' | 'guides' | 'my'
 }
 
 const MOVING: Array<{ value: MovingPlan; label: string }> = [
