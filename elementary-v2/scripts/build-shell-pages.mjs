@@ -215,8 +215,8 @@ await writePage('/checklist', contentPage({
   description: checklist.description,
   body: `<section class="app-destination app-page content-page" aria-labelledby="checklist-title"><div class="content-page__inner">`
     + `<h1 id="checklist-title">${escapeHtml(checklist.title)}</h1><p class="content-page__lead">${escapeHtml(checklist.description)}</p>`
-    + checklist.groups.map((group) => `<section class="checklist-group"><h2>${escapeHtml(group.label)}</h2><ul>`
-      + group.items.map((item) => `<li><label><span>${escapeHtml(item.text)}</span><small class="checklist-when">${escapeHtml(item.when)}</small></label></li>`).join('')
+    + checklist.groups.map((group) => `<section class="checklist-card checklist-card--${group.id}"><header class="checklist-card__header"><span class="min-w-0 flex-1"><h2>${escapeHtml(group.label)}</h2><small>${escapeHtml(group.hint)}</small></span></header><ul class="checklist-rows">`
+      + group.items.map((item) => `<li><label><span class="checklist-rows__text"><span>${escapeHtml(item.text)}</span><small>${escapeHtml(item.when)}</small></span></label></li>`).join('')
       + '</ul></section>').join('')
     + '</div></section>',
 }))

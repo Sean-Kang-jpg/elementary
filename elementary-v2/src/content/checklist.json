@@ -1,5 +1,5 @@
 {
-  "_comment": "입학 준비 체크리스트 (PRD v2 7.4절). 항목 id는 기기에 저장된 체크 상태의 키이므로 바꾸지 않는다 — 바꾸면 이미 체크한 항목이 풀린다. 문구는 바꿔도 된다. `when`은 권장 시기다. 법령 기한(취학통지 12월 20일)을 빼면 학교마다 다르므로 화면에 '참고'로 표시한다.",
+  "_comment": "입학 준비 체크리스트 (PRD v2 7.4절). 항목 id는 기기에 저장된 체크 상태의 키이므로 바꾸지 않는다 — 바꾸면 이미 체크한 항목이 풀린다. 문구는 바꿔도 된다. `when`은 권장 시기다. 법령 기한(취학통지 12월 20일)을 빼면 학교마다 다르므로 화면에 '참고'로 표시한다. icon은 src/components/content/ChecklistPage.tsx의 ICONS에 있는 이름만 쓴다. layout: tiles는 준비물처럼 짧은 항목을 아이콘 타일로 보여준다.",
   "title": "입학 준비 체크리스트",
   "description": "입학 전에 챙길 것을 권장 시기와 함께 정리했어요. 체크한 내용은 이 기기에만 저장됩니다.",
   "groups": [
@@ -11,25 +11,32 @@
           "id": "admin-notice",
           "text": "취학통지서 받고 배정 학교 확인",
           "link": "/guide/school-notice",
-          "when": "12월 20일까지"
+          "when": "12월 20일까지",
+          "icon": "FileText"
         },
         {
           "id": "admin-call",
           "text": "예비소집 참석 (아이와 함께)",
           "link": "/guide/preliminary-call",
-          "when": "1월 (통지서의 날짜)"
+          "when": "1월 (통지서의 날짜)",
+          "icon": "School"
         },
         {
           "id": "admin-homepage",
           "text": "학교 홈페이지·알림 앱 가입",
-          "when": "2월 입학 안내 후"
+          "when": "2월 입학 안내 후",
+          "icon": "Smartphone"
         },
         {
           "id": "admin-documents",
           "text": "학교가 안내한 제출 서류 내기",
-          "when": "2월~입학 첫 주"
+          "when": "2월~입학 첫 주",
+          "icon": "ClipboardList"
         }
-      ]
+      ],
+      "icon": "ClipboardList",
+      "hint": "행정 서류와 학교 절차",
+      "layout": "list"
     },
     {
       "id": "care",
@@ -39,19 +46,25 @@
           "id": "care-program",
           "text": "돌봄(온동네 초등돌봄·교육) 안내 확인",
           "link": "/guide/compare-schools",
-          "when": "1월"
+          "when": "1월",
+          "icon": "HeartHandshake"
         },
         {
           "id": "care-apply",
           "text": "돌봄교실 신청",
-          "when": "2월 (학교 안내 기간)"
+          "when": "2월 (학교 안내 기간)",
+          "icon": "PencilLine"
         },
         {
           "id": "care-afterschool",
           "text": "방과후 프로그램 일정 확인",
-          "when": "2월 말~3월 초"
+          "when": "2월 말~3월 초",
+          "icon": "Sun"
         }
-      ]
+      ],
+      "icon": "HeartHandshake",
+      "hint": "방과 후 아이를 맡길 곳",
+      "layout": "list"
     },
     {
       "id": "life",
@@ -60,19 +73,25 @@
         {
           "id": "life-route",
           "text": "아이와 등하굣길 미리 걸어보기",
-          "when": "2월"
+          "when": "2월",
+          "icon": "Route"
         },
         {
           "id": "life-after",
           "text": "하교 후 돌봄 계획 세우기",
-          "when": "1~2월"
+          "when": "1~2월",
+          "icon": "House"
         },
         {
           "id": "life-contact",
           "text": "비상 연락 방법 정하기",
-          "when": "2월"
+          "when": "2월",
+          "icon": "Phone"
         }
-      ]
+      ],
+      "icon": "Route",
+      "hint": "등하교와 하루 생활",
+      "layout": "list"
     },
     {
       "id": "items",
@@ -81,39 +100,49 @@
         {
           "id": "items-bag",
           "text": "책가방",
-          "when": "2월 중순까지"
+          "when": "2월 중순까지",
+          "icon": "Backpack"
         },
         {
           "id": "items-shoes",
           "text": "실내화와 실내화 주머니",
-          "when": "2월 중순까지"
+          "when": "2월 중순까지",
+          "icon": "Footprints"
         },
         {
           "id": "items-pencil",
           "text": "필통과 연필",
-          "when": "2월 중순까지"
+          "when": "2월 중순까지",
+          "icon": "Pencil"
         },
         {
           "id": "items-bottle",
           "text": "물통",
-          "when": "2월 중순까지"
+          "when": "2월 중순까지",
+          "icon": "CupSoda"
         },
         {
           "id": "items-umbrella",
           "text": "우산",
-          "when": "2월 중순까지"
+          "when": "2월 중순까지",
+          "icon": "Umbrella"
         },
         {
           "id": "items-names",
           "text": "네임스티커",
-          "when": "2월 중순까지"
+          "when": "2월 중순까지",
+          "icon": "Tag"
         },
         {
           "id": "items-desk",
           "text": "책상·수납 정리",
-          "when": "2월"
+          "when": "2월",
+          "icon": "LampDesk"
         }
-      ]
+      ],
+      "icon": "Backpack",
+      "hint": "입학 전에 사 둘 것",
+      "layout": "tiles"
     }
   ]
 }

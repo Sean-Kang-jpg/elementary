@@ -602,14 +602,14 @@ try {
 
   // The checklist keeps its state on this device across a reload.
   run(['open', new URL('/checklist', baseUrl).toString()])
-  await waitFor("document.querySelectorAll('.checklist-group input[type=checkbox]').length > 10", '/checklist lists its items')
-  run(['eval', "document.querySelector('.checklist-group input[type=checkbox]').click(); 'checked'"])
+  await waitFor("document.querySelectorAll('.checklist-rows input[type=checkbox]').length >= 10 && document.querySelectorAll('.checklist-tile').length >= 5", '/checklist lists its items')
+  run(['eval', "document.querySelector('.checklist-rows input[type=checkbox]').click(); 'checked'"])
   run(['open', new URL('/checklist', baseUrl).toString()])
   await waitFor(
-    "document.querySelector('.checklist-group input[type=checkbox]')?.checked === true && document.querySelector('.checklist-progress b')?.textContent === '1'",
+    "document.querySelector('.checklist-rows input[type=checkbox]')?.checked === true && document.querySelector('.checklist-hero__count b')?.textContent === '1'",
     'a checked item survives a reload',
   )
-  run(['eval', "document.querySelector('.checklist-group input[type=checkbox]').click(); localStorage.removeItem('wherecho:profile-v1'); 'cleaned up'"])
+  run(['eval', "document.querySelector('.checklist-rows input[type=checkbox]').click(); localStorage.removeItem('wherecho:profile-v1'); 'cleaned up'"])
 
   // This script runs against production after every release. If its headless
   // browser were measured, each release would add sessions that did nothing and
