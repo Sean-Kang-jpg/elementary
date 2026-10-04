@@ -191,6 +191,22 @@ their content. The frontend treats a missing function as "no date", so the app c
 Apply in the SQL editor, then check with the anon key:
 `POST /rest/v1/rpc/public_data_freshness` returns three rows.
 
+## 23: care serving (2026-10-04)
+
+`sql/23_create_care_serving.sql` adds two public tables, `school_care_statistics`
+(Schoolinfo apiType=59) and `care_centers` (다함께돌봄 center list), and the
+`nearby_care_centers(lat, lng, radius)` function. It needs `14` (it reuses
+`set_academy_proximity_location()`) and is independent of `22`. Apply in the SQL
+editor, then load and verify:
+
+```bash
+python etl/collect_care_data.py            # dry run: snapshots under etl/runtime/care/
+python etl/collect_care_data.py --apply    # upsert, drop older snapshots, anon read + RPC check
+```
+
+The loader refuses to shrink either table by more than 20% in one run. Run it
+monthly; the school disclosure changes yearly, the center list whenever centers edit it.
+
 ## Stop Conditions
 
 - Project hostname does not resolve or keys belong to another project.

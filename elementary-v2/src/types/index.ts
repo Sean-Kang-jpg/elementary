@@ -223,6 +223,39 @@ export interface ApartmentAcademySummary {
   updated_at?: string
 }
 
+// SQL 23 school_care_statistics: 학교알리미 apiType=59 (방과후학교·돌봄교실 공시).
+// 신청·대기 인원은 공시되지 않는다.
+export interface SchoolCareStatistics {
+  school_id: string
+  statistics_year: number
+  afternoon_care_rooms: number | null
+  afternoon_care_students: number | null
+  evening_care_rooms: number | null
+  evening_care_students: number | null
+  linked_care_rooms: number | null
+  linked_care_students: number | null
+  afterschool_aptitude_programs: number | null
+  afterschool_curriculum_programs: number | null
+  afterschool_participants: number | null
+}
+
+// SQL 23 nearby_care_centers(): 다함께돌봄센터(서울 우리동네키움센터 포함).
+export interface CareCenter {
+  center_id: string
+  center_kind: '다함께돌봄센터' | '우리동네키움센터'
+  name: string
+  address: string
+  address_detail: string | null
+  phone: string | null
+  capacity: number | null
+  term_hours: string | null
+  vacation_hours: string | null
+  latitude: number
+  longitude: number
+  source_updated_on: string | null
+  straight_distance_m: number
+}
+
 // 💾 캐시 관련 타입
 export interface CacheEntry<T> {
   data: T

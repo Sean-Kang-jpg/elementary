@@ -60,11 +60,11 @@ def select_addresses(rows: list[dict], regions: list[str], sample_per_region: in
     return selected
 
 
-def geocode(key: str, address: str, retries: int = 3) -> dict:
+def geocode(key: str, address: str, retries: int = 3, address_type: str = "road") -> dict:
     query = urllib.parse.urlencode({
         "service": "address", "request": "getcoord", "version": "2.0",
         "crs": "EPSG:4326", "address": address, "refine": "true",
-        "simple": "false", "format": "json", "type": "road", "key": key,
+        "simple": "false", "format": "json", "type": address_type, "key": key,
     })
     payload = None
     last_error: Exception | None = None

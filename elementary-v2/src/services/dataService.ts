@@ -1,6 +1,6 @@
 import { supabase } from '../lib/supabase'
 import { UNLIMITED_APARTMENT_AGE } from '../types'
-import type { AcademyAddress, Apartment, ApartmentAcademySummary, Coordinates, FilterState, MapBounds, School, SearchResult } from '../types'
+import type { AcademyAddress, Apartment, ApartmentAcademySummary, CareCenter, Coordinates, FilterState, MapBounds, School, SchoolCareStatistics, SearchResult } from '../types'
 import { regionCenter, regionHasCityLevel, regionsIntersectingBounds } from '../constants/regionRegistry'
 import { getSchoolNeighborhoodLabel } from '../utils/clusterUtils'
 import { DEFAULT_CENTERS, generateCacheKey, getDisplayMode } from '../utils/mapUtils'
@@ -795,6 +795,50 @@ export const getApartmentAcademySummaries = async (
     result[row.canonical_complex_id] = row
     return result
   }, {})
+}
+
+// A database without SQL 23 answers "no such table/function"; the care sections
+// then render nothing, so the app can ship before the migration.
+const CARE_NOT_DEPLOYED = new Set(['PGRST202', 'PGRST205', '42883', '42P01'])
+
+export const getSchoolCareStatistics = async (schoolId: string): Promise<SchoolCareStatistics | null> => {
+  const { data, error } = await supabase
+    .from('school_care_statistics')
+    .select('school_id,statistics_year,afternoon_care_rooms,afternoon_care_students,evening_care_rooms,evening_care_students,linked_care_rooms,linked_care_students,afterschool_aptitude_programs,afterschool_curriculum_programs,afterschool_participants')
+    .eq('school_id', schoolId)
+    .maybeSingle()
+  if (error) {
+    if (CARE_NOT_DEPLOYED.has(error.code)) return null
+    throw error
+  }
+  return data as SchoolCareStatistics | null
+}
+
+export const getCareCentersNear = async (latitude: number, longitude: number, maxDistanceM = 1000): Promise<CareCenter[]> => {
+  const { data, error } = await supabase.rpc('nearby_care_centers', {
+    p_latitude: latitude,
+    p_longitude: longitude,
+    p_max_distance_m: maxDistanceM,
+  })
+  if (error) {
+    if (CARE_NOT_DEPLOYED.has(error.code)) return []
+    throw error
+  }
+  return ((data || []) as Array<Record<string, unknown>>).map((row) => ({
+    center_id: String(row.center_id),
+    center_kind: row.center_kind === '우리동네키움센터' ? '우리동네키움센터' : '다함께돌봄센터',
+    name: String(row.name || ''),
+    address: String(row.address || ''),
+    address_detail: row.address_detail ? String(row.address_detail) : null,
+    phone: row.phone ? String(row.phone) : null,
+    capacity: row.capacity == null ? null : numberValue(row.capacity),
+    term_hours: row.term_hours ? String(row.term_hours) : null,
+    vacation_hours: row.vacation_hours ? String(row.vacation_hours) : null,
+    latitude: numberValue(row.latitude),
+    longitude: numberValue(row.longitude),
+    source_updated_on: row.source_updated_on ? String(row.source_updated_on) : null,
+    straight_distance_m: numberValue(row.straight_distance_m),
+  }))
 }
 
 const getRegionCenter = (region: string): Coordinates =>
