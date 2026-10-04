@@ -10,10 +10,8 @@
 - Active app: `F:\sm\vibe\elementary\pjt_250826\elementary-v2`
 - Stack: React 18, TypeScript, Vite, Tailwind CSS, Supabase, Naver Maps
 - Branch: `master` (작업), `release` (운영 배포. push가 곧 운영 배포다)
-- Last pushed baseline (2026-10-04): 운영 `release` `05120ff`. **master 트리와 같지 않다** —
-  `476798d`(MY 재편 = `2d036f0`의 트리)에 모바일 화면 수정 `6f96125`의 세 파일만 얹었다.
-  master의 다른 세션 커밋 `1899418`(정기 ETL·데이터 기준일 표시, SQL `22` 필요)·`d36d84f`·`efd927c`는
-  아직 운영에 없다. 다음 release는 SQL `22` 운영 적용을 확인한 뒤 master 트리로 올린다
+- Last pushed baseline (2026-10-04): 운영 `release` `f75f3cf` = master `9cf7ae5`의 트리.
+  돌봄(SQL `23`)과 데이터 기준일 표시(SQL `22`)가 함께 나갔다. 두 SQL 모두 운영 적용 확인
 - Production: `https://wherecho.co.kr` (옛 주소 `elementary-lovat.vercel.app`은 301로 넘어온다)
 - Supabase project ref: `vsgeksumgvcrkzjwvlgs`
 
@@ -58,6 +56,23 @@ npm run typecheck
 이전 단계(v2.0~v2.2, P4~P6)의 기록은 `elementary-v2/docs/PROJECT_PROGRESS.html`에 있다.
 
 ## Uncommitted Work At Handoff
+
+### 2026-10-04: 학교 돌봄·방과후와 주변 돌봄센터 (`9cf7ae5`, 운영 `f75f3cf`)
+
+- PRD D4 해소. 학교알리미 **apiType=59**(방과후·돌봄 공시) → `school_care_statistics`,
+  다함께돌봄 지원단 센터 목록(`dadol.or.kr/board/center/list`, 서울 우리동네키움센터 포함) →
+  `care_centers`, 반경 검색 `nearby_care_centers()`. SQL `23`(사용자가 SQL 편집기로 적용)
+- 적재: `python etl/collect_care_data.py --apply`(기본 dry-run). 운영 6,266개교 · 센터 1,483곳
+  (승인 1,489 중 좌표 실패 6). **월 1회 수동 실행** — 정기 ETL·Actions에는 아직 넣지 않았다
+- 화면: 학교 상세 "돌봄·방과후"(오후 돌봄 실·인원, 1·2학년 100명당, 교실당, 저녁 돌봄, 방과후 수),
+  학교·아파트 상세 "주변 돌봄센터"(1km, 학기·방학 운영시간). 신청·탈락 인원은 공시에 없어 간접 지표만,
+  점수 합산 없음. 센터의 이용료·현원은 공개 페이지에 없고 단위가 불분명해 싣지 않았다
+- 센터 목록 JSON에 담당자 이름·이메일이 섞여 온다. 수집기가 읽는 즉시 버린다 — 바꿀 때 유지할 것
+- 지오코딩: 인천 2026 구 개편(중·동·서구 → 제물포·영종·서해·검단구), 면→읍, 지번 주소를 변형으로 재시도.
+  `geocode_academy_addresses.geocode()`에 `address_type`(기본 road) 인자 추가
+- 검증: lint · typecheck · build, 로컬 public smoke 전체 통과(돌봄 검사 2개 추가). 배포 후
+  `browser:smoke:public -- https://wherecho.co.kr` 전체 통과(돌봄 검사 포함)
+- 사용자가 돌봄 이용비율을 경쟁률 proxy로 채택. 지역아동센터는 취약계층 대상이라 제외
 
 2026-10-03 세션 종료 시점에 **작업 트리는 깨끗하다.** 같은 날 두 세션이 같은 작업 트리에서
 동시에 작업했고, 둘 다 커밋·종료했다.
@@ -139,8 +154,8 @@ anon 키로 운영 DB에 직접 확인했다.
 현재 운영 규모 (2026-09-30 실측, 시점 기록이므로 판단 전 재확인한다):
 
 - 운영 공개 지역: 17개 시·도 전부
-- 적용 완료 SQL `06`~`20`. 공개 계약은 테이블 3개(`school_master`,
-  `school_apartment_serving`, `apartment_academy_summary`)와 함수 3개
+- 적용 완료 SQL `06`~`23`. 공개 계약은 위 6개에 SQL `22` `public_data_freshness()`,
+  SQL `23` `school_care_statistics`·`care_centers`·`nearby_care_centers()`가 더해졌다
 - 학교 6,302 · serving 48,189행 · 공개 키를 가진 단지 45,853
 
 행 수는 지역 승격 때마다 바뀌므로 여기에 적지 않는다.
@@ -177,7 +192,7 @@ migration은 Supabase 상태를 확인하지 않고 재설계하지 않는다.
   예비소집·사립초 일정을 찾아 `master` 대상 PR을 연다. 검수 후 병합·릴리스한다
 - UI 재검토 — 참고 사이트나 무드를 받은 뒤
 - 콘텐츠 큐레이션(PRD 7.5) — 책·영상 선정은 사용자 몫
-- 학교 상세 돌봄·방과후 정보 — D4(학교알리미 공시 항목 실증)가 선행
+- 돌봄 데이터 월 1회 갱신(`etl/collect_care_data.py --apply`) — 정기 ETL 편입 전까지 수동
 
 ### 3. ETL — 월 1회, GitHub Actions 이전 (2026-10-04)
 
@@ -208,6 +223,9 @@ migration은 Supabase 상태를 확인하지 않고 재설계하지 않는다.
 
 - KRIC 공식 원본 확보 후 역/주소 검색 P4 재개
 - 4컷 웹툰 파일럿(when-to-move 가이드, 인스타그램 겸용) — 사용자 결정 대기
+- **커리큘럼 공유(오늘의집형)** — 플랜(카드) > 모듈 > 아이템 구조, 아이템 단위 투표·인기도.
+  DB부터 프런트까지 설계 논의 중(2026-10-04). 계정이 필요해 D1(기기 저장만) 재검토가 걸린다
+- 방학 틈새돌봄 지정센터(국가아동권리보장원, 방학마다 게시) 수집 — 12월 겨울방학 전
 
 ## ETL Portability
 
