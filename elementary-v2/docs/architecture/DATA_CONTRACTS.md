@@ -21,6 +21,8 @@ operational table returns an empty result under RLS rather than rows.
 | `school_care_statistics` | table (SQL `23`, 2026-10-04; per-school care and after-school disclosure) |
 | `care_centers` | table (SQL `23`; community care centers, public-page fields only) |
 | `nearby_care_centers(...)` | function (SQL `23`) |
+| `curriculum_like_counts(...)`, `curriculum_item_ranking(...)` | functions (SQL `24`; counts only) |
+| `curriculum_likes` | table (SQL `24`) — **`authenticated` only, own rows only**. Anonymous voters are Supabase anonymous users |
 
 Verified blocked in the same pass: `apartment_complex_master`,
 `apartment_name_history`, `apartment_property_history`, `etl_runs` return

@@ -33,14 +33,20 @@ export type Route =
   | { kind: 'admin' }
   | { kind: 'school'; key: string }
   | { kind: 'apartment'; key: string }
+  // 커리큘럼 공유 (PRD_CURRICULUM_SHARING). 카드·아이템 주소도 ADR-007 모양이다.
+  | { kind: 'plans' }
+  | { kind: 'plan'; key: string }
+  | { kind: 'item'; key: string }
+  | { kind: 'ranking' }
 
 /** 화면 단위. 상세 두 종류는 지도 화면 위의 선택이다. */
-export type AppView = 'home' | 'map' | 'guide' | 'faq' | 'checklist' | 'news' | 'my' | 'privacy'
+export type AppView = 'home' | 'map' | 'guide' | 'faq' | 'checklist' | 'news' | 'my' | 'privacy' | 'curriculum'
 
 export const viewOf = (route: Route): AppView => {
   if (route.kind === 'school' || route.kind === 'apartment' || route.kind === 'map') return 'map'
   if (route.kind === 'news' || route.kind === 'my' || route.kind === 'privacy') return route.kind
   if (route.kind === 'guide' || route.kind === 'faq' || route.kind === 'checklist') return route.kind
+  if (route.kind === 'plans' || route.kind === 'plan' || route.kind === 'item' || route.kind === 'ranking') return 'curriculum'
   return 'home'
 }
 
@@ -54,6 +60,7 @@ export const VIEW_PATHS: Record<AppView, string> = {
   guide: '/guide',
   faq: '/faq',
   checklist: '/checklist',
+  curriculum: '/plans',
 }
 
 export const guidePath = (slug: string): string => `/guide/${slug}`
@@ -62,6 +69,8 @@ export const guidePath = (slug: string): string => `/guide/${slug}`
 const SCHOOL_KEY = /^B\d+$/i
 /** Crockford Base32 8자. I·L·O·U가 없어 사람이 옮겨 적어도 헷갈리지 않는다. */
 const APARTMENT_KEY = /^[0-9ABCDEFGHJKMNPQRSTVWXYZ]{8}$/i
+/** 커리큘럼 카드·아이템 키도 같은 글자 집합이다(src/content/curriculum/items.json). */
+const CURRICULUM_KEY = APARTMENT_KEY
 
 const KEY_SEPARATOR = '--'
 
@@ -114,6 +123,8 @@ export const parseRoute = (pathname: string, search = ''): Route => {
     if (segments[0] === 'guide') return { kind: 'guide', slug: null }
     if (segments[0] === 'faq') return { kind: 'faq' }
     if (segments[0] === 'checklist') return { kind: 'checklist' }
+    if (segments[0] === 'plans') return { kind: 'plans' }
+    if (segments[0] === 'ranking') return { kind: 'ranking' }
   }
   // 모르는 주소는 홈으로 연다. 404 화면이 없으므로 가장 쓸모 있는 착지점이다.
   if (segments.length !== 2) return { kind: 'home' }
@@ -129,6 +140,8 @@ export const parseRoute = (pathname: string, search = ''): Route => {
   if (prefix === 'apt' && APARTMENT_KEY.test(key)) {
     return { kind: 'apartment', key: key.toUpperCase() }
   }
+  if (prefix === 'plans' && CURRICULUM_KEY.test(key)) return { kind: 'plan', key: key.toUpperCase() }
+  if (prefix === 'items' && CURRICULUM_KEY.test(key)) return { kind: 'item', key: key.toUpperCase() }
   return { kind: 'home' }
 }
 

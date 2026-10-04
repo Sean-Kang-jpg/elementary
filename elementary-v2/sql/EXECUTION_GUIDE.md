@@ -207,6 +207,22 @@ python etl/collect_care_data.py --apply    # upsert, drop older snapshots, anon 
 The loader refuses to shrink either table by more than 20% in one run. Run it
 monthly; the school disclosure changes yearly, the center list whenever centers edit it.
 
+## 24: curriculum likes (2026-10-05)
+
+`sql/24_create_curriculum_likes.sql` adds `curriculum_refs` (private; the keys a like may
+point at, with each card's age band, region and domain), `curriculum_likes` (one row per
+anonymous voter per target, readable only by that voter) and two public functions,
+`curriculum_like_counts(keys)` and `curriculum_item_ranking(age, region, domain, days)`.
+Independent of `22`/`23`. Before likes work in production:
+
+1. Apply the file in the SQL editor.
+2. Supabase dashboard → Authentication → enable **anonymous sign-ins**.
+3. Cloudflare Turnstile: create a site, put the site key in Vercel as
+   `VITE_TURNSTILE_SITE_KEY` (public), and the secret in Supabase → Authentication →
+   Attack Protection → captcha. Turn both on together — a site key with captcha off is
+   harmless, captcha on without a site key blocks every new voter.
+4. `python etl/upload_curriculum_refs.py` (dry run), then `--apply` after every content change.
+
 ## Stop Conditions
 
 - Project hostname does not resolve or keys belong to another project.

@@ -1,0 +1,38 @@
+{
+  "_comment": "커리큘럼 공유의 분류 (PRD_CURRICULUM_SHARING C-6, C-7). 바꾸면 기존 카드·아이템과 DB의 age_band 제약(SQL 24)을 함께 본다.",
+  "types": [
+    { "id": "video_series", "label": "영상 시리즈" },
+    { "id": "youtube_channel", "label": "유튜브 채널" },
+    { "id": "book", "label": "책" },
+    { "id": "toy", "label": "장난감·교구" },
+    { "id": "workbook_app", "label": "학습지·앱" },
+    { "id": "class", "label": "수업·학원" },
+    { "id": "activity", "label": "활동" }
+  ],
+  "domains": [
+    { "id": "math", "label": "수학" },
+    { "id": "english", "label": "영어" },
+    { "id": "korean", "label": "한글·독서" },
+    { "id": "science", "label": "과학" },
+    { "id": "art", "label": "미술" },
+    { "id": "music", "label": "음악" },
+    { "id": "sports", "label": "체육" },
+    { "id": "life", "label": "생활·습관" }
+  ],
+  "ageBands": [
+    { "id": "4", "label": "4세" },
+    { "id": "5", "label": "5세" },
+    { "id": "6", "label": "6세" },
+    { "id": "7", "label": "7세" },
+    { "id": "g1", "label": "초1" },
+    { "id": "g2", "label": "초2" }
+  ],
+  "costBands": [
+    { "id": "free", "label": "무료" },
+    { "id": "under50k", "label": "월 5만 원 미만" },
+    { "id": "under150k", "label": "월 5~15만 원" },
+    { "id": "under300k", "label": "월 15~30만 원" },
+    { "id": "over300k", "label": "월 30만 원 이상" }
+  ],
+  "sampleThreshold": 30
+}

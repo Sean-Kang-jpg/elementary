@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react'
-import { BookOpenCheck, Check, ChevronRight, HelpCircle, LineChart, UserRound } from 'lucide-react'
+import { BookOpenCheck, Check, ChevronRight, HelpCircle, LineChart, ThumbsUp, UserRound } from 'lucide-react'
 import { GUIDE_GROUPS, GUIDE_LIST, GUIDES } from '../../content'
 import { guidePath, VIEW_PATHS } from '../../utils/urlState'
 import { STAGE_LABELS, stageOf, type Stage } from '../../utils/entryYear'
 import { readGuides, subscribeProfile } from '../../utils/profile'
 import ChecklistBanner from './ChecklistBanner'
 import { followLink } from './contentLinks'
+import { CURRICULUM_PATHS, PLANS } from '../../content/curriculum'
 
 interface GuideListPageProps {
   onNavigate: (path: string) => void
@@ -45,6 +46,16 @@ export default function GuideListPage({ onNavigate, entryYear }: GuideListPagePr
           </a>
         )}
         <ChecklistBanner onNavigate={onNavigate} />
+        {PLANS.length ? (
+          <a href={CURRICULUM_PATHS.plans} onClick={(event) => followLink(event, CURRICULUM_PATHS.plans, onNavigate)} className="content-list__item content-list__item--card" data-testid="curriculum-entry">
+            <span className="home-link__icon home-link__icon--sage"><ThumbsUp size={19} aria-hidden="true" /></span>
+            <span className="min-w-0 flex-1">
+              <strong>우리 아이 커리큘럼</strong>
+              <small>또래 아이들이 보고 읽고 노는 것, 연령별 카드와 따봉 순위</small>
+            </span>
+            <ChevronRight size={18} aria-hidden="true" />
+          </a>
+        ) : null}
 
         <div className="hub-guides-head">
           <h2>시기별 가이드</h2>

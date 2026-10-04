@@ -211,6 +211,16 @@ SQL `23`의 돌봄·방과후 블록과 주변 돌봄센터. "봤다"는 렌더�
 | `filter_evening_care` | `result_count` | 필터에서 '저녁 돌봄 운영 학교만'을 켜고 적용할 때(끌 때는 보내지 않는다) |
 | `click_care_guide` | `school_id`, `guide_id`(`care-afterschool`), `entry_source` | 학교 돌봄 블록의 가이드 링크. `click_start_module`과 같은 모양 |
 
+### 커리큘럼 이벤트 (2026-10-05 추가)
+
+| 이벤트 | 파라미터 | 시점 |
+| --- | --- | --- |
+| `view_plan` | `plan_key`, `age_band` | 카드 상세가 열릴 때 |
+| `view_item` | `item_key` | 아이템 상세가 열릴 때 |
+| `view_ranking` | — | 순위 화면 |
+| `like_plan` | `plan_key`, `age_band`, `region` | 카드 따봉이 저장됐을 때(취소는 보내지 않는다) |
+| `like_item` | `item_key`, `plan_key`(아이템 상세에서 누르면 `none`), `age_band`, `region`, `domain` | 아이템 따봉이 저장됐을 때 |
+
 ### `select_entry_year` (2026-10-03 추가)
 
 홈·가이드·FAQ의 입학연도 칩을 고를 때 `entry_year`와 함께 보낸다. 어떤 입학연도가

@@ -210,6 +210,66 @@ for (const name of ['roadmap.json', 'checklist.json']) {
   }
 }
 
+// Curriculum ----------------------------------------------------------------
+// Editor cards and the item dictionary (PRD_CURRICULUM_SHARING). Keys become
+// public addresses and like targets (SQL 24), so a duplicate, a malformed key or
+// a card naming an item that does not exist must not ship.
+
+const curriculumDir = path.join(contentDir, 'curriculum')
+const readJson = async (file) => JSON.parse(await fs.readFile(file, 'utf8'))
+const taxonomy = await readJson(path.join(curriculumDir, 'taxonomy.json'))
+const itemsFile = path.join(curriculumDir, 'items.json')
+const plansFile = path.join(curriculumDir, 'plans.json')
+const { items: curriculumItems } = await readJson(itemsFile)
+const { plans: curriculumPlans } = await readJson(plansFile)
+const registry = await readJson(path.join(projectRoot, 'etl', 'region_registry.json'))
+const REGIONS = new Set(registry.regions.map((region) => region.canonical_name))
+/** Crockford Base32, 8 characters: the apartment key's alphabet (ADR-007). */
+const CURRICULUM_KEY = /^[0-9ABCDEFGHJKMNPQRSTVWXYZ]{8}$/
+const ids = (list) => new Set(list.map((entry) => entry.id))
+const TYPES = ids(taxonomy.types)
+const DOMAINS = ids(taxonomy.domains)
+const AGE_BANDS = ids(taxonomy.ageBands)
+const COST_BANDS = ids(taxonomy.costBands)
+
+const curriculumKeys = new Set()
+const claimKey = (file, key, what) => {
+  if (!CURRICULUM_KEY.test(key ?? '')) problem(file, `${what} key "${key}" is not 8 Crockford Base32 characters`)
+  else if (curriculumKeys.has(key)) problem(file, `${what} key ${key} is used twice (items and cards share one key space)`)
+  curriculumKeys.add(key)
+}
+const itemKeys = new Set()
+for (const item of curriculumItems) {
+  claimKey(itemsFile, item.key, `item "${item.name}"`)
+  itemKeys.add(item.key)
+  if (!item.name) problem(itemsFile, `item ${item.key} needs a name`)
+  if (!TYPES.has(item.type)) problem(itemsFile, `item ${item.key} has unknown type "${item.type}"`)
+  if (!Array.isArray(item.domains) || !item.domains.length || item.domains.some((domain) => !DOMAINS.has(domain))) {
+    problem(itemsFile, `item ${item.key} needs domains from the taxonomy`)
+  }
+  if (!/^https?:\/\//.test(item.url ?? '')) problem(itemsFile, `item ${item.key} needs an official url`)
+  if (!item.verifiedAt) problem(itemsFile, `item ${item.key} needs verifiedAt`)
+}
+for (const plan of curriculumPlans) {
+  claimKey(plansFile, plan.key, `card "${plan.title}"`)
+  if (!plan.title || !plan.summary) problem(plansFile, `card ${plan.key} needs a title and a summary`)
+  if (plan.author !== 'editor') problem(plansFile, `card ${plan.key}: only editor cards exist in phase 1`)
+  if (!AGE_BANDS.has(plan.ageBand)) problem(plansFile, `card ${plan.key} has unknown ageBand "${plan.ageBand}"`)
+  if (plan.region != null && !REGIONS.has(plan.region)) problem(plansFile, `card ${plan.key} region must be a full 시·도 name or null`)
+  if (plan.monthlyCost != null && !COST_BANDS.has(plan.monthlyCost)) problem(plansFile, `card ${plan.key} has unknown monthlyCost "${plan.monthlyCost}"`)
+  if (!plan.publishedAt) problem(plansFile, `card ${plan.key} needs publishedAt`)
+  const seen = new Set()
+  if (!Array.isArray(plan.modules) || !plan.modules.length) problem(plansFile, `card ${plan.key} needs modules`)
+  for (const module of plan.modules ?? []) {
+    if (!DOMAINS.has(module.domain)) problem(plansFile, `card ${plan.key} has a module with unknown domain "${module.domain}"`)
+    for (const entry of module.items ?? []) {
+      if (!itemKeys.has(entry.item)) problem(plansFile, `card ${plan.key} names item ${entry.item}, which is not in items.json`)
+      if (seen.has(entry.item)) problem(plansFile, `card ${plan.key} lists item ${entry.item} twice; its like key would collide`)
+      seen.add(entry.item)
+    }
+  }
+}
+
 if (problems.length) {
   throw new Error(`build-content: ${problems.length} problem(s)\n  ${problems.join('\n  ')}`)
 }
@@ -221,3 +281,4 @@ await fs.writeFile(outFile, JSON.stringify({
 }, null, 2), 'utf8')
 const answers = faqs.reduce((n, faq) => n + faq.sections.reduce((m, section) => m + section.items.length, 0), 0)
 process.stdout.write(`content     ${guides.length} guides, ${answers} FAQ answers in ${faqs.length} stage(s) -> ${path.relative(projectRoot, outFile)}\n`)
+process.stdout.write(`curriculum  ${curriculumItems.length} items, ${curriculumPlans.length} cards (validated; the app reads src/content/curriculum directly)\n`)
