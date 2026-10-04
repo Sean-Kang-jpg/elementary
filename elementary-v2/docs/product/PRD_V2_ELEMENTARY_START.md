@@ -156,7 +156,7 @@ Elementary Start. 입학 프로필 · D-Day 로드맵 · 상황형 가이드 · 
 ```
 
 GNB는 입학 준비 · 배정 지도 · 가이드(+ 즐겨찾기)로 구성한다. 사용자 화면에 쓸 이름은
-D8에서 정한다. 라우팅과 렌더링 방식은 [ADR-008](../decisions/ADR-008-routing-and-information-architecture.md)이다.
+D8에서 정한다. *(2026-10-04 구현: 홈 · 지도 · 입학 준비 · MY. 즐겨찾기는 MY에 흡수 — ADR-008 구현 기록)* 라우팅과 렌더링 방식은 [ADR-008](../decisions/ADR-008-routing-and-information-architecture.md)이다.
 
 ### 왜 캘린더가 아니라 검색창이 맨 위인가
 

@@ -14,8 +14,8 @@ interface RoadmapSummaryProps {
 
 /**
  * The home's short version of the roadmap (2026-10-04): D-day and the next two
- * things to do. The whole timeline and the preferences that shape it live in the
- * 입학 준비 hub, so the home stays a front door with search on top.
+ * things to do. The whole timeline and the preferences that shape it live in MY,
+ * so the home stays a front door with search on top.
  */
 export default function RoadmapSummary({ entryYear, profile, onNavigate }: RoadmapSummaryProps) {
   const days = daysToEntry(entryYear)
@@ -26,7 +26,7 @@ export default function RoadmapSummary({ entryYear, profile, onNavigate }: Roadm
   const heading = view.now.length
     ? (view.stage === 'planning' ? '지금 해두면 좋은 일' : `${view.month}월에 할 일`)
     : nextMonth ? `${nextMonth.month}월에 할 일` : null
-  const hub = `${VIEW_PATHS.guide}?year=${entryYear}`
+  const hub = VIEW_PATHS.my
 
   const reported = useRef<number | null>(null)
   useEffect(() => {

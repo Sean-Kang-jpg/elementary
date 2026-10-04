@@ -5,9 +5,7 @@ import RoadmapSummary from '../content/RoadmapSummary'
 import type { Profile } from '../../utils/profile'
 import SchoolIllustration from '../content/SchoolIllustration'
 import { followLink } from '../content/contentLinks'
-import { guidePath, VIEW_PATHS } from '../../utils/urlState'
-import { STAGE_LABELS, stageOf, type Stage } from '../../utils/entryYear'
-import { guidesOf } from '../../content'
+import { VIEW_PATHS } from '../../utils/urlState'
 import copy from '../../content/home.json'
 
 interface HomePageProps {
@@ -17,11 +15,10 @@ interface HomePageProps {
   profile: Profile
 }
 
-const STAGE_ORDER: Stage[] = ['planning', 'admission']
-
 /**
  * 첫 화면. 맨 위는 배정 검색창이다 (PRD 6.5절, ADR-008). 그 아래에서 아이의
- * 입학연도를 고르면 그 단계의 가이드가 앞으로 나온다.
+ * 입학연도를 고르면 D-Day와 할 일 두 개가 보인다. 가이드 목록은 입학 준비 탭에,
+ * 전체 로드맵은 MY에 있다(2026-10-04) — 같은 목록을 두 곳에 두지 않는다.
  *
  * 검색 결과를 고르면 선택이 바뀌고, App이 그 선택을 보고 상세 주소로 옮긴다.
  * 여기서는 지도를 그리지 않는다 — 지도는 처음 필요할 때 만들어진다.
@@ -29,8 +26,6 @@ const STAGE_ORDER: Stage[] = ['planning', 'admission']
  * 문구는 content/home.json에 있다. 빌드가 같은 파일로 `/`의 정적 HTML을 만든다.
  */
 export default function HomePage({ onNavigate, entryYear, onEntryYearChange, profile }: HomePageProps) {
-  const selectedStage = entryYear ? stageOf(entryYear) : null
-  const stages = selectedStage ? [selectedStage, ...STAGE_ORDER.filter((stage) => stage !== selectedStage)] : STAGE_ORDER
   const guideList = entryYear ? `${VIEW_PATHS.guide}?year=${entryYear}` : VIEW_PATHS.guide
 
   return (
@@ -55,31 +50,6 @@ export default function HomePage({ onNavigate, entryYear, onEntryYearChange, pro
         </section>
 
         {entryYear ? <RoadmapSummary entryYear={entryYear} profile={profile} onNavigate={onNavigate} /> : null}
-
-        {stages.map((stage) => {
-          const guides = guidesOf(stage)
-          if (!guides.length) return null
-          const isMine = stage === selectedStage
-          return (
-            <section key={stage} className={`home-stage home-stage--${stage} ${isMine ? 'home-stage--mine' : ''}`} aria-labelledby={`home-stage-${stage}`}>
-              <header>
-                <span className={`stage-chip stage-chip--${stage}`}>{STAGE_LABELS[stage].short}</span>
-                {isMine ? <span className="home-stage__mine">우리 아이 단계</span> : null}
-              </header>
-              <h2 id={`home-stage-${stage}`}>{STAGE_LABELS[stage].homeTitle}</h2>
-              <ul>
-                {guides.map((guide) => (
-                  <li key={guide.slug}>
-                    <a href={guidePath(guide.slug)} onClick={(event) => followLink(event, guidePath(guide.slug), onNavigate)}>
-                      <span>{guide.title}</span>
-                      <ChevronRight size={17} aria-hidden="true" />
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </section>
-          )
-        })}
 
         <div className="home-links">
           <a href={guideList} onClick={(event) => followLink(event, guideList, onNavigate)} className="home-link">

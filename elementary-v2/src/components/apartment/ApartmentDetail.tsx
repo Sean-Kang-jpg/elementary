@@ -6,7 +6,7 @@ import BottomSheet from '../ui/BottomSheet'
 import ApartmentCard from './ApartmentCard'
 import ShareButton from '../ui/ShareButton'
 import { apartmentPath } from '../../utils/urlState'
-import { apartmentFavorite, isFavorite as checkFavorite, toggleFavorite } from '../../utils/favorites'
+import { apartmentFavorite, isFavorite as checkFavorite, refreshFavorite, toggleFavorite } from '../../utils/favorites'
 import { track } from '../../utils/analytics'
 import { ACADEMY_DATA_PENDING_LABEL, hasAcademyData } from '../../utils/academyCoverage'
 
@@ -25,7 +25,10 @@ const ApartmentDetail: React.FC<ApartmentDetailProps> = ({ apartment, isOpen, on
   const [academySummary, setAcademySummary] = useState<ApartmentAcademySummary | undefined>()
 
   useEffect(() => {
-    setIsFavorite(apartment ? checkFavorite('apartment', apartment.id) : false)
+    const saved = apartment ? checkFavorite('apartment', apartment.id) : false
+    setIsFavorite(saved)
+    // 공개 키 없이 저장된 옛 기록을 다시 볼 때 채운다. 그래야 MY에서 이 단지가 열린다.
+    if (apartment && saved) refreshFavorite(apartmentFavorite(apartment))
     setAcademySummary(undefined)
     if (!apartment?.id || !hasAcademyData(apartment.city)) return
     let active = true
@@ -61,7 +64,7 @@ const ApartmentDetail: React.FC<ApartmentDetailProps> = ({ apartment, isOpen, on
             // 공개 키로 기록한다. canonical_complex_id는 재빌드 때 움직인다(ADR-007).
             if (saved) track('save_candidate', { item_type: 'apartment', item_id: apartment.public_key || undefined })
             setIsFavorite(saved)
-          }} aria-label={isFavorite ? '즐겨찾기 해제' : '즐겨찾기 추가'} aria-pressed={isFavorite} className={`rounded-md p-2 transition-colors hover:bg-gray-100 ${isFavorite ? 'text-amber-500' : 'text-gray-500'}`}>
+          }} aria-label={isFavorite ? 'MY에서 빼기' : 'MY에 저장'} aria-pressed={isFavorite} className={`rounded-md p-2 transition-colors hover:bg-gray-100 ${isFavorite ? 'text-amber-500' : 'text-gray-500'}`}>
             <Star size={21} fill={isFavorite ? 'currentColor' : 'none'} aria-hidden="true" />
           </button>
         </span>

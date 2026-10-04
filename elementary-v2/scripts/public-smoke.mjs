@@ -261,13 +261,13 @@ const assertHomeAndShellSplit = async () => {
     process.stdout.write('PASS: app paths are not split here (no build served), checked on deploy only\n')
     return
   }
-  for (const appPath of ['/map', '/favorites', '/admin/etl']) {
+  for (const appPath of ['/map', '/my', '/favorites', '/admin/etl']) {
     const body = await (await fetch(new URL(appPath, baseUrl).toString())).text()
     if (/rel="canonical"/.test(body) || !body.includes('<div id="root"></div>')) {
       throw new Error(`${appPath} is not served the app shell - it names an address or carries prerendered content`)
     }
   }
-  process.stdout.write('PASS: /map, /favorites and /admin/etl are served the app shell, not the home\n')
+  process.stdout.write('PASS: /map, /my, /favorites and /admin/etl are served the app shell, not the home\n')
 
   // Guides and the FAQ are static pages with their own head and content, so a
   // crawler that runs no JavaScript reads them (ADR-008 section 4).
@@ -548,12 +548,25 @@ try {
     + " && document.querySelector('[data-testid=bottom-sheet]')?.innerText.includes('배정 학교')",
     'a home search pick moved to the apartment address and opened its detail on the map',
   )
+  // Save it for MY. Opening it from there must reopen this apartment, not its school.
+  run(['eval', "localStorage.removeItem('elementary-favorites-v1'); document.querySelector('[data-testid=bottom-sheet] button[aria-label=\"MY에 저장\"]').click(); 'saved'"])
   run(['eval', 'history.back(); "back"'])
   await waitFor("location.pathname === '/' && document.querySelector('#home-title')", 'back from the detail returned to the home')
 
   // Every screen has an address now; none may exist only as in-memory tab state.
+  // 즐겨찾기 became MY on 2026-10-04; its old address is corrected, not lost.
   run(['open', new URL('/favorites', baseUrl).toString()])
-  await waitFor("document.querySelector('#favorites-title') && document.querySelector('.app-gnb__item--active')?.getAttribute('href') === '/favorites'", '/favorites opens the favorites screen')
+  await waitFor(
+    "location.pathname === '/my' && document.querySelector('#my-title') && document.querySelector('.app-gnb__item--active')?.getAttribute('href') === '/my'",
+    'the old /favorites address opens MY at /my with the MY tab active',
+  )
+  await waitFor("document.querySelectorAll('.my-saved li').length === 1", 'MY lists the apartment saved from its detail')
+  run(['eval', "document.querySelector('.my-saved__open').click(); 'open saved'"])
+  await waitFor(
+    "decodeURIComponent(location.pathname) === '/apt/서울-강남구-은마--7A2EMR5J' && document.querySelector('[data-testid=bottom-sheet]')?.innerText.includes('배정 학교')",
+    'a saved apartment opens that apartment, not only its school',
+  )
+  run(['eval', "localStorage.removeItem('elementary-favorites-v1'); 'cleaned up'"])
   run(['open', new URL('/news', baseUrl).toString()])
   // News left the bottom navigation for a link under the guide list; the address stays.
   await waitFor("document.querySelector('#news-title')", '/news opens the news screen')
@@ -580,25 +593,28 @@ try {
   run(['eval', "document.querySelector('details.faq-item summary').click(); 'opened'"])
   assertPage("document.querySelector('details.faq-item').open && document.querySelector('details.faq-item .content-body').innerText.trim().length > 20", 'an FAQ answer opens in place')
   // The entry year decides which stage leads. 2-3 years out is planning a move;
-  // the year of entry is the admission procedure. Picking one puts it in the URL.
-  // The hub folds the picker away once a year is saved; 바꾸기 brings it back.
-  run(['open', new URL('/guide', baseUrl).toString()])
-  await waitFor("document.querySelector('#guides-title')", 'the 입학 준비 hub opens')
+  // the year of entry is the admission procedure. The family's setup lives in MY
+  // (2026-10-04); it folds the picker away once a year is saved and 바꾸기 brings it back.
+  run(['open', new URL('/my', baseUrl).toString()])
+  await waitFor("document.querySelector('#my-title')", 'MY opens')
   run(['eval', "document.querySelector('.hub-profile__edit')?.click(); 'picker shown'"])
-  await waitFor("document.querySelectorAll('.year-chip').length === 3", 'the guide list offers three entry years')
+  await waitFor("document.querySelectorAll('.year-chip').length === 3", 'MY offers three entry years')
   run(['eval', "const chip = document.querySelectorAll('.year-chip')[2]; sessionStorage.setItem('smoke-year', chip.querySelector('strong').textContent.slice(0, 4)); chip.click(); 'picked the furthest year'"])
   await waitFor(
-    "new URLSearchParams(location.search).get('year') === sessionStorage.getItem('smoke-year')"
+    "document.querySelector('.hub-profile')?.textContent.includes(sessionStorage.getItem('smoke-year'))"
+    + " && document.querySelector('.roadmap h2')?.textContent.includes('D-')",
+    'MY keeps the chosen year and shows the roadmap',
+  )
+  // 입학 준비 is the public manual: no profile or roadmap, only the stage order and read marks.
+  run(['eval', "document.querySelector('.app-gnb__item[href=\"/guide\"]').click(); 'to guides'"])
+  await waitFor(
+    "location.pathname === '/guide'"
     + " && document.querySelector('.guide-stage')?.classList.contains('guide-stage--planning')"
     + " && document.querySelector('.guide-stage--mine')"
-    + " && document.querySelector('.hub-profile')?.textContent.includes(sessionStorage.getItem('smoke-year'))",
-    'a year two years out puts the planning guides first and records the year in the address',
-  )
-  assertPage(
-    "document.querySelector('.roadmap h2')?.textContent.includes('D-')"
     + " && document.querySelector('.guide-timeline li.is-read a[href=\"/guide/school-notice\"]')",
-    'the hub carries the roadmap and marks the guides this device has read',
+    'a year two years out puts the planning guides first and the list marks the guides this device has read',
   )
+  assertPage("!document.querySelector('.roadmap') && !document.querySelector('.hub-profile')", 'the 입학 준비 list carries no personal setup')
   run(['open', new URL('/guide/no-such-guide', baseUrl).toString()])
   await waitFor("location.pathname === '/guide' && document.querySelector('#guides-title')", 'an unknown guide address falls back to the guide list')
 
@@ -608,12 +624,12 @@ try {
   await waitFor("document.querySelectorAll('.year-chip').length === 3", 'the home offers the entry years')
   run(['eval', "document.querySelectorAll('.year-chip')[0].click(); 'nearest year'"])
   await waitFor(
-    "document.querySelector('.roadmap-summary h2')?.textContent.includes('D-') && document.querySelector('.roadmap-summary__more')?.getAttribute('href').startsWith('/guide?year=')",
+    "document.querySelector('.roadmap-summary h2')?.textContent.includes('D-') && document.querySelector('.roadmap-summary__more')?.getAttribute('href') === '/my'",
     'picking a year on the home shows the days left and a way to the full roadmap',
   )
-  assertPage("!document.querySelector('.roadmap .pref-chip')", 'the home keeps the full roadmap in the hub')
+  assertPage("!document.querySelector('.roadmap .pref-chip') && !document.querySelector('.guide-stage')", 'the home keeps the full roadmap in MY and the guides under 입학 준비')
   run(['eval', "document.querySelector('.roadmap-summary__more').click(); 'to the hub'"])
-  await waitFor("location.pathname === '/guide' && document.querySelectorAll('.roadmap .pref-chip').length >= 2", 'the summary opens the roadmap in the hub')
+  await waitFor("location.pathname === '/my' && document.querySelectorAll('.roadmap .pref-chip').length >= 2", 'the summary opens the roadmap in MY')
   run(['eval', "document.querySelectorAll('.roadmap .pref-chip')[1].click(); 'private interest on'"])
   await waitFor(
     "(() => { const month = new Date().getMonth() + 1; const privateMonths = [9, 10, 11];"
