@@ -55,7 +55,15 @@ export const normalizeAcademyRealm = (name: string): AcademyCategoryKey => {
   return category?.key || 'other'
 }
 
-const emptyCounts = () => Object.fromEntries(ACADEMY_CATEGORIES.map(({ key }) => [key, 0])) as Record<AcademyCategoryKey, number>
+/** One institution's categories: its ETL subjects, or its realm when it has none. */
+export const getInstitutionCategories = (institution: AcademyAddress['institutions'][number]): AcademyCategoryDefinition[] => {
+  const keys = institution.subjects?.length
+    ? [...new Set(institution.subjects.map((subject) => (KEYS.has(subject as AcademyCategoryKey) ? subject as AcademyCategoryKey : 'other')))]
+    : [normalizeAcademyRealm(institution.realm)]
+  return ACADEMY_CATEGORIES.filter((category) => keys.includes(category.key))
+}
+
+const emptyCounts =() => Object.fromEntries(ACADEMY_CATEGORIES.map(({ key }) => [key, 0])) as Record<AcademyCategoryKey, number>
 
 export const getAcademyCategoryCounts = (academy: AcademyAddress) => {
   const counts = emptyCounts()

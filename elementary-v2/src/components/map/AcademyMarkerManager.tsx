@@ -8,8 +8,10 @@ import {
   getAcademyCategory,
   getAcademyCategoryCounts,
   getDominantAcademyCategory,
+  getInstitutionCategories,
   type AcademyCategoryKey,
 } from '../../utils/academyCategories'
+import { closablePopup, keepPopupClearOfMapControls, POPUP_CLOSE_BUTTON } from '../../utils/mapPopup'
 
 interface AcademyMarkerManagerProps {
   map: NaverMap
@@ -70,24 +72,32 @@ const clusterRows = (rows: AcademyAddress[], zoom: number): AcademyCluster[] => 
   }))
 }
 
+// Each institution leads with the category chip its marker colour comes from, so a
+// mixed building reads at a glance; the list is ordered by category to group the colours.
+const categoryChip = ({ label, color, softColor }: { label: string, color: string, softColor: string }, count?: number) => (
+  `<span class="academy-chip" style="--academy-color:${color};--academy-soft:${softColor}">${escapeHtml(label)}${count === undefined ? '' : ` <b>${count.toLocaleString('ko-KR')}</b>`}</span>`
+)
+
 const academyPopupContent = (academy: AcademyAddress) => {
+  const counts = getAcademyCategoryCounts(academy)
   const categories = ACADEMY_CATEGORIES
-    .map((category) => ({ ...category, count: getAcademyCategoryCounts(academy)[category.key] }))
+    .map((category) => ({ ...category, count: counts[category.key] }))
     .filter(({ count }) => count > 0)
     .sort((a, b) => b.count - a.count)
-  const institutionRows = academy.institutions.length
-    ? academy.institutions.map((institution) => `<tr>
-        <th scope="row">${escapeHtml(institution.name)}</th>
-        <td>${escapeHtml(institution.type || '미상')}</td>
-        <td>${escapeHtml(institution.realm || '미상')}</td>
-      </tr>`).join('')
-    : `<tr><td colspan="3" class="academy-map-popup__empty">기관명 정보를 준비 중입니다.</td></tr>`
+  const order = (key: AcademyCategoryKey) => ACADEMY_CATEGORIES.findIndex((category) => category.key === key)
+  const institutions = academy.institutions
+    .map((institution) => ({ ...institution, categories: getInstitutionCategories(institution) }))
+    .sort((a, b) => order(a.categories[0].key) - order(b.categories[0].key) || a.name.localeCompare(b.name, 'ko'))
+  const institutionRows = institutions.length
+    ? institutions.map((institution) => `<li>
+        <span class="academy-map-popup__chips">${institution.categories.map((category) => categoryChip(category)).join('')}</span>
+        <span class="academy-map-popup__name"><strong>${escapeHtml(institution.name)}</strong><small>${escapeHtml([institution.type, institution.realm].filter(Boolean).join(' · ') || '미상')}</small></span>
+      </li>`).join('')
+    : '<li class="academy-map-popup__empty">기관명 정보를 준비 중입니다.</li>'
   return `<div class="academy-map-popup">
-    <div class="academy-map-popup__header"><strong>교육시설 ${academy.institution_count.toLocaleString('ko-KR')}곳</strong><span>${bandLabel(academy.distance_band)}</span></div>
-    <p>${categories.map(({ label, count }) => `${escapeHtml(label)} ${count.toLocaleString('ko-KR')}`).join(' · ') || '분야 정보 없음'}</p>
-    <div class="academy-map-popup__table-wrap">
-      <table><thead><tr><th>기관명</th><th>유형</th><th>분야</th></tr></thead><tbody>${institutionRows}</tbody></table>
-    </div>
+    <div class="academy-map-popup__header"><strong>교육시설 ${academy.institution_count.toLocaleString('ko-KR')}곳</strong><span>${bandLabel(academy.distance_band)}</span>${POPUP_CLOSE_BUTTON}</div>
+    <div class="academy-map-popup__summary">${categories.map((category) => categoryChip(category, category.count)).join('') || '<span>분야 정보 없음</span>'}</div>
+    <ul class="academy-map-popup__list">${institutionRows}</ul>
     <small>직선거리 ${academy.straight_distance_m.toLocaleString('ko-KR')}m</small>
   </div>`
 }
@@ -172,15 +182,17 @@ export default function AcademyMarkerManager({ map, apartment, school, enabled, 
           return
         }
         infoWindow?.close()
+        const content = closablePopup(academyPopupContent(cluster.rows[0]), () => infoWindow?.close())
         infoWindow = new maps.InfoWindow({
-          content: academyPopupContent(cluster.rows[0]),
-          maxWidth: 280,
+          content,
+          maxWidth: 300,
           backgroundColor: 'transparent',
           borderWidth: 0,
           anchorSize: new maps.Size(0, 0),
           pixelOffset: new maps.Point(0, -18),
         })
         infoWindow.open(map, marker)
+        keepPopupClearOfMapControls(map, content)
       }))
       return marker
     })

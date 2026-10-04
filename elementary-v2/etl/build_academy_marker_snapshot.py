@@ -13,6 +13,9 @@ from academy_subjects import classify
 BASE_DIR = Path(__file__).resolve().parent
 RUNTIME_DIR = BASE_DIR / "runtime" / "academy"
 PROFILE_FILE = BASE_DIR / "academy_marker_profile.json"
+# Adult vocational training (nursing, grooming, certificates) is not published; the
+# frontend drops the same realm from rows built before this (dataService.ts).
+EXCLUDED_REALMS = {"직업기술"}
 INCHEON_DISTRICT_MAP = {"검단구": "서구", "서해구": "서구", "영종구": "중구", "제물포구": "중구"}
 
 
@@ -47,7 +50,8 @@ def main() -> None:
     geocode_file = RUNTIME_DIR / "academy_geocodes_all.csv"
     if not geocode_file.exists():
         raise SystemExit("academy_geocodes_all.csv missing")
-    academies = json.loads(snapshot.read_text(encoding="utf-8"))
+    source_rows = json.loads(snapshot.read_text(encoding="utf-8"))
+    academies = [row for row in source_rows if (row.get("REALM_SC_NM") or "").strip() not in EXCLUDED_REALMS]
     with geocode_file.open(encoding="utf-8-sig", newline="") as handle:
         geocodes = {row["address"]: row for row in csv.DictReader(handle)}
 
@@ -106,7 +110,9 @@ def main() -> None:
     status_counts = Counter(row["geocode_status"] for row in markers)
     profile = {
         "snapshot": snapshot.name,
-        "source_institutions": len(academies),
+        "source_institutions": len(source_rows),
+        "excluded_institutions": len(source_rows) - len(academies),
+        "excluded_realms": sorted(EXCLUDED_REALMS),
         "address_markers": len(markers),
         "geocoded_markers": status_counts["matched"],
         "geocode_coverage": round(status_counts["matched"] / len(markers), 4),
