@@ -73,6 +73,10 @@ npm run typecheck
 
 ### 2026-10-05: 커리큘럼 공유 1단계 코드 (master, **운영 미배포**)
 
+- **기능 플래그 `VITE_CURRICULUM_ENABLED=1`일 때만 켜진다.** 기본은 꺼짐 — 주소는 홈으로, 개인정보처리방침은 이전
+  그대로(`privacy.json`의 `effectiveDate`). master를 release해도 이 기능은 나가지 않는다. 사용자가 입학 준비 탭과
+  성격이 달라 표출 위치·운영 방식을 다시 고민 중(2026-10-05)
+
 - 설계 `docs/product/PRD_CURRICULUM_SHARING.md`, C-1~C-9 확정. 카드·아이템은 **저장소 콘텐츠**
   (`src/content/curriculum/{items,plans,taxonomy}.json`, `build-content`가 검증), DB는 따봉만(SQL `24`)
 - 화면 `/plans`, `/plans/…--KEY`, `/items/…--KEY`, `/ranking`(입학 준비 탭 활성). 입학 준비 화면의 진입 링크는

@@ -6,7 +6,7 @@ import { STAGE_LABELS, stageOf, type Stage } from '../../utils/entryYear'
 import { readGuides, subscribeProfile } from '../../utils/profile'
 import ChecklistBanner from './ChecklistBanner'
 import { followLink } from './contentLinks'
-import { CURRICULUM_PATHS, PLANS } from '../../content/curriculum'
+import { CURRICULUM_ENABLED, CURRICULUM_PATHS, PLANS } from '../../content/curriculum'
 
 interface GuideListPageProps {
   onNavigate: (path: string) => void
@@ -46,7 +46,7 @@ export default function GuideListPage({ onNavigate, entryYear }: GuideListPagePr
           </a>
         )}
         <ChecklistBanner onNavigate={onNavigate} />
-        {PLANS.length ? (
+        {CURRICULUM_ENABLED && PLANS.length ? (
           <a href={CURRICULUM_PATHS.plans} onClick={(event) => followLink(event, CURRICULUM_PATHS.plans, onNavigate)} className="content-list__item content-list__item--card" data-testid="curriculum-entry">
             <span className="home-link__icon home-link__icon--sage"><ThumbsUp size={19} aria-hidden="true" /></span>
             <span className="min-w-0 flex-1">

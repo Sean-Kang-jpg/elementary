@@ -1,5 +1,6 @@
 import type { Apartment, School } from '../types'
 import { findRegion } from '../constants/regionRegistry'
+import { CURRICULUM_ENABLED } from '../content/curriculum'
 
 /**
  * 주소와 화면을 잇는다.
@@ -123,8 +124,8 @@ export const parseRoute = (pathname: string, search = ''): Route => {
     if (segments[0] === 'guide') return { kind: 'guide', slug: null }
     if (segments[0] === 'faq') return { kind: 'faq' }
     if (segments[0] === 'checklist') return { kind: 'checklist' }
-    if (segments[0] === 'plans') return { kind: 'plans' }
-    if (segments[0] === 'ranking') return { kind: 'ranking' }
+    if (CURRICULUM_ENABLED && segments[0] === 'plans') return { kind: 'plans' }
+    if (CURRICULUM_ENABLED && segments[0] === 'ranking') return { kind: 'ranking' }
   }
   // 모르는 주소는 홈으로 연다. 404 화면이 없으므로 가장 쓸모 있는 착지점이다.
   if (segments.length !== 2) return { kind: 'home' }
@@ -140,8 +141,8 @@ export const parseRoute = (pathname: string, search = ''): Route => {
   if (prefix === 'apt' && APARTMENT_KEY.test(key)) {
     return { kind: 'apartment', key: key.toUpperCase() }
   }
-  if (prefix === 'plans' && CURRICULUM_KEY.test(key)) return { kind: 'plan', key: key.toUpperCase() }
-  if (prefix === 'items' && CURRICULUM_KEY.test(key)) return { kind: 'item', key: key.toUpperCase() }
+  if (CURRICULUM_ENABLED && prefix === 'plans' && CURRICULUM_KEY.test(key)) return { kind: 'plan', key: key.toUpperCase() }
+  if (CURRICULUM_ENABLED && prefix === 'items' && CURRICULUM_KEY.test(key)) return { kind: 'item', key: key.toUpperCase() }
   return { kind: 'home' }
 }
 

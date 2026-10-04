@@ -1,6 +1,7 @@
 {
   "_comment": "개인정보처리방침에서 운영자가 정해야 하는 값. 비어 있으면(null) public-smoke가 실패해 배포를 막는다. retentionMonths는 GA4 관리 > 데이터 설정 > 데이터 보관의 값과 같아야 한다 — 그 설정을 바꾸면 여기도 바꾸고 시행일을 갱신한다.",
-  "effectiveDate": "2026년 10월 5일 (7항 따봉 기록 추가)",
+  "effectiveDate": "2026년 10월 3일 (6항 기기 저장 항목 추가)",
+  "curriculumEffectiveDate": "2026년 10월 5일 (7항 따봉 기록 추가)",
   "officerName": "어디초 관리자",
   "officerEmail": "scalealpha0@gmail.com",
   "retentionMonths": 2

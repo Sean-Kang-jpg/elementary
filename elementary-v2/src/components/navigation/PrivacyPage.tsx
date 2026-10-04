@@ -1,4 +1,5 @@
 import policy from '../../content/privacy.json'
+import { CURRICULUM_ENABLED } from '../../content/curriculum'
 
 /**
  * 개인정보처리방침 (MEASUREMENT_PLAN 5절).
@@ -16,7 +17,7 @@ export default function PrivacyPage() {
     <section className="app-destination app-page privacy-page" aria-labelledby="privacy-title">
       <article className="privacy-page__inner">
         <h1 id="privacy-title">개인정보처리방침</h1>
-        <p className="privacy-page__meta">시행일 {value(policy.effectiveDate)}</p>
+        <p className="privacy-page__meta">시행일 {value(CURRICULUM_ENABLED ? policy.curriculumEffectiveDate : policy.effectiveDate)}</p>
 
         <p>
           어디초는 회원가입이 없으며, 이름·전화번호·이메일처럼 개인을 직접 알아볼 수 있는 정보를 받지 않습니다.
@@ -61,6 +62,7 @@ export default function PrivacyPage() {
           브라우저의 사이트 데이터 삭제로 언제든 지울 수 있습니다. 아이의 이름이나 생년월일은 묻지 않습니다.
         </p>
 
+        {CURRICULUM_ENABLED && <>
         <h2>7. 따봉 기록</h2>
         <p>
           '우리 아이 커리큘럼'에서 따봉을 처음 누르면, 이름·연락처 없이 무작위로 만든 익명 식별자가 이 브라우저에
@@ -75,12 +77,13 @@ export default function PrivacyPage() {
           <dt>보유 기간</dt><dd>따봉을 취소하면 그 기록은 바로 지워집니다. 나머지는 서비스 운영 기간 동안 보관하며, 아래 연락처로 삭제를 요청할 수 있습니다.</dd>
           <dt>거부 방법과 효과</dt><dd>따봉을 누르지 않으면 아무것도 만들어지거나 전송되지 않습니다. 따봉 외의 모든 기능은 그대로 쓸 수 있습니다.</dd>
         </dl>
+        </>}
 
-        <h2>8. 개인정보 보호책임자</h2>
+        <h2>{CURRICULUM_ENABLED ? 8 : 7}. 개인정보 보호책임자</h2>
         <p>{value(policy.officerName)} · {value(policy.officerEmail)}</p>
         <p>개인정보 관련 문의와 열람·삭제 요청은 위 연락처로 보내 주세요.</p>
 
-        <h2>9. 변경</h2>
+        <h2>{CURRICULUM_ENABLED ? 9 : 8}. 변경</h2>
         <p>이 방침이 바뀌면 이 페이지에 시행일과 함께 게시합니다.</p>
       </article>
     </section>

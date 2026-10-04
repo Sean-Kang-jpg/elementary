@@ -48,6 +48,15 @@ export interface CurriculumPlan {
 
 type Labeled = { id: string; label: string }
 
+/**
+ * Off unless VITE_CURRICULUM_ENABLED=1 at build time. The feature is on master
+ * but held from production (2026-10-05) while its placement is reconsidered;
+ * with the flag off its addresses open the home and the privacy policy does
+ * not describe likes, so a release of master ships none of it.
+ */
+const env = (import.meta as ImportMeta & { env: Record<string, string | undefined> }).env
+export const CURRICULUM_ENABLED = env.VITE_CURRICULUM_ENABLED === '1'
+
 export const ITEMS = (itemsFile as { items: CurriculumItem[] }).items
 export const PLANS = (plansFile as { plans: CurriculumPlan[] }).plans
 export const TYPES = taxonomy.types as Labeled[]
