@@ -905,41 +905,13 @@ button.apartment-card:hover {
 }
 
 .apartment-card__visual {
-  position: relative;
   display: flex;
   width: 68px;
   height: 76px;
   flex: none;
-  align-items: center;
-  justify-content: center;
   overflow: hidden;
   border-radius: 7px;
-  background: #e7f5f2;
-  color: #0f766e;
 }
-
-.apartment-card__skyline {
-  position: absolute;
-  right: 7px;
-  bottom: 7px;
-  left: 7px;
-  display: flex;
-  height: 24px;
-  align-items: flex-end;
-  justify-content: center;
-  gap: 3px;
-}
-
-.apartment-card__skyline i {
-  display: block;
-  width: 10px;
-  height: 18px;
-  border: 1px solid #5fb3a9;
-  background: rgba(255, 255, 255, 0.72);
-}
-
-.apartment-card__skyline i:nth-child(2) { height: 24px; }
-.apartment-card__skyline i:nth-child(3) { height: 14px; }
 
 .apartment-map-marker--dot {
   --marker-width: 24px;

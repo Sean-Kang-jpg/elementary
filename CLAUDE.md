@@ -57,6 +57,17 @@ npm run typecheck
 
 ## Uncommitted Work At Handoff
 
+### 2026-10-05: 단지 카드 연식·규모 일러스트 (커밋·운영 반영)
+
+- `components/apartment/ApartmentIllustration.tsx`(신규): 카드 왼쪽 68×76 칸의 건물 아이콘+막대를 SVG
+  일러스트로 교체. 연식으로 모양·색(10년 이하 탑상형 초록, 11~25년 중층 파랑, 26년 이상 저층 분홍 — 연식 칩과
+  같은 색), 세대수로 건물 수(300 미만 1, 1,000 미만 2, 3,000 미만 3, 이상 4). 연식 모름은 기존 청록
+- `ApartmentCard.tsx`에서 `Building2`·`buildingBars` 제거, `index.css`의 `.apartment-card__skyline` 규칙 삭제.
+  상세 시트는 이 카드를 그대로 쓰므로 시트 머리에는 따로 넣지 않았다
+- 결정 경위: 건설사 로고는 상표 문제로 제외, 브랜드 배지(1안)는 단지명과 중복·모바일 정보 과다로 제외.
+  브랜드명 매칭률은 수도권 21,228단지 기준 26.6%(옛 건설사명 포함 41%)
+- 검증: lint·typecheck·build, 로컬 public smoke 통과(전역 agent-browser 사본), 412px 학교·단지 상세 화면 확인
+
 ### 2026-10-05: 학원 지도 — 직업기술 제외·팝업 X·상호별 분류 칩 (`d30bc8f`, 운영 `f542691`)
 
 - `dataService.ts`: NEIS 분야 `직업기술`(성인 직무·자격 학원)을 RPC 응답에서 걸러 개수 재계산, 남는 학원이

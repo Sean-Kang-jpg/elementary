@@ -1,6 +1,7 @@
-import { Building2, CarFront, ChevronRight, GraduationCap } from 'lucide-react'
+import { CarFront, ChevronRight, GraduationCap } from 'lucide-react'
 import type { Apartment, ApartmentAcademySummary } from '../../types'
 import { ACADEMY_DATA_PENDING_LABEL, hasAcademyData } from '../../utils/academyCoverage'
+import ApartmentIllustration from './ApartmentIllustration'
 
 interface ApartmentCardProps {
   apartment: Apartment
@@ -22,8 +23,6 @@ const scaleLabel = (households: number) => {
   return '소규모 단지'
 }
 
-const buildingBars = (households: number) => households >= 1000 ? 3 : households >= 500 ? 2 : 1
-
 export default function ApartmentCard({ apartment, academySummary, compact = false, onClick }: ApartmentCardProps) {
   const age = Math.max(apartment.age || (apartment.built_year ? new Date().getFullYear() - apartment.built_year : 0), 0)
   const ageState = ageTone(age)
@@ -37,10 +36,7 @@ export default function ApartmentCard({ apartment, academySummary, compact = fal
   const content = (
     <>
       <span className="apartment-card__visual" aria-hidden="true">
-        <Building2 size={20} />
-        <span className="apartment-card__skyline">
-          {Array.from({ length: buildingBars(apartment.households) }, (_, index) => <i key={index} />)}
-        </span>
+        <ApartmentIllustration households={apartment.households} age={age} />
       </span>
       <span className="min-w-0 flex-1">
         <span className="flex items-start justify-between gap-2">
