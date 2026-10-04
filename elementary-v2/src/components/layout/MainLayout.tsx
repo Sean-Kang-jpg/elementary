@@ -13,7 +13,7 @@ interface MainLayoutProps {
 
 function MainLayoutContent({ children, sidebar, activeView, onNavigate }: MainLayoutProps) {
   return (
-    <div className="relative h-[100dvh] w-full overflow-hidden">
+    <div className="app-viewport relative w-full overflow-hidden">
       {activeView === 'map' && <Header />}
       {sidebar && <Sidebar>{sidebar}</Sidebar>}
       <main className="absolute inset-0 pb-app-gnb">{children}</main>

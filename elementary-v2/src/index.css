@@ -34,17 +34,31 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+/*
+ * The app is exactly 100dvh tall (MainLayout) and scrolls inside its own panes, so
+ * the body takes its height from the app and nothing else. This used to be the
+ * Vite template's `display: flex; place-items: center; min-height: 100vh`. On a
+ * phone 100vh is the height with the address bar hidden, taller than the 100dvh
+ * app, so the app sat centred with a band above and below (black in browsers
+ * that force dark mode) and the document scrolled, sliding the map's search box
+ * under the address bar. The admin page sets its own min-height and still
+ * scrolls the document.
+ */
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
   min-width: 320px;
-  min-height: 100vh;
 }
 
 #root {
   width: 100%;
   margin: 0 auto;
+}
+
+/* The visible viewport. 100vh first for browsers without dvh (iOS before 15.4,
+   older in-app webviews), where the dvh line alone would leave no height at all. */
+.app-viewport {
+  height: 100vh;
+  height: 100dvh;
 }
 
 .app-header {
