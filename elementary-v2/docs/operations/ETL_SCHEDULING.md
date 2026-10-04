@@ -77,6 +77,20 @@ Three defects, all found by the first full rehearsals:
    and `production_scopes()` is the single list of scopes that both the runner and the input
    bundle use. Schoolinfo for a multi-region scope is fetched for all of its regions.
 
+### District reorganizations (인천, 2026-07-01)
+
+School addresses come from the national school-location standard data, which still carried
+인천's old districts (중구·동구·서구) on 2026-10-04 while Schoolinfo already had 제물포구·영종구·
+서해구·검단구. `build_school_master_v2.current_district()` adopts Schoolinfo's district for a
+matched school in a metropolitan region when the street part of both addresses is the same
+(spacing and anything after a comma ignored), and the build report counts the changes under
+`district_updates_from_schoolinfo` - 80 for the capital. A one-off database backfill was
+considered and rejected: every monthly run upserts `school_master` from the build, so it would
+have been reverted. The portability baseline was relocked for this change; only
+`school_master_operational_v1` moved. Follow-up: `build_academy_marker_snapshot.py` still maps
+the new names back to the old (`INCHEON_DISTRICT_MAP`); academy districts are not joined to
+school districts anywhere, so it is cosmetic, but it should be inverted on the next academy upload.
+
 ## Manual Checks
 
 Run from `elementary-v2/`:

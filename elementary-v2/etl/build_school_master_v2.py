@@ -124,6 +124,55 @@ def candidate_score(school: dict[str, Any], basic: dict[str, Any]) -> tuple[int,
     return 0, "no_match", distance
 
 
+def current_district(row: dict[str, Any], basic: dict[str, Any] | None) -> str | None:
+    """The district Schoolinfo gives for this school, when the base names an older one.
+
+    The base master comes from the national school-location standard data, which
+    lags district reorganizations: 인천's 2026-07-01 reform (중구·동구 -> 제물포구·
+    영종구, 서구 -> 서해구·검단구) was still missing from it on 2026-10-04 while
+    Schoolinfo already carried it. The reform split districts along 동 lines, so
+    the new name cannot be inferred from the old one; it is read per school.
+
+    Adopted only for a matched school in the same region, and - when the base has a
+    road address - only if everything after the district token is identical, so
+    a mismatched or moved school never borrows another address's district.
+    """
+    if not basic:
+        return None
+    registry = load_registry()
+    source = registry.canonicalize_address(text(basic.get("SCHUL_RDNMA"))).split()
+    if len(source) < 3:
+        return None
+    road = registry.canonicalize_address(text(row.get("address"))).split()
+    legal = registry.canonicalize_address(text(row.get("address_old"))).split()
+    reference = road or legal
+    if len(reference) < 2 or reference[0] != source[0] or reference[1] == source[1]:
+        return None
+    # Province addresses put a city in this position; only districts are renamed here.
+    region = registry.region_for_address(" ".join(source))
+    if region is None or region.has_city_level:
+        return None
+    if road and street_key(road[2:]) != street_key(source[2:]):
+        return None
+    return source[1]
+
+
+def street_key(parts: list[str]) -> str:
+    """The street part of an address, ignoring spacing and anything after a comma.
+
+    Schoolinfo writes `승학로 599번길 45` and `두미포로 100, 인천중산초` where the
+    standard data writes `승학로599번길 45` and `두미포로 100`.
+    """
+    return "".join(" ".join(parts).split(",")[0].split())
+
+
+def with_district(address: Any, district: str) -> Any:
+    parts = text(address).split()
+    if len(parts) < 2:
+        return address
+    return " ".join([parts[0], district, *parts[2:]])
+
+
 def write_csv(path: Path, rows: list[dict[str, Any]], fieldnames: list[str]) -> None:
     with path.open("w", encoding="utf-8-sig", newline="") as handle:
         writer = csv.DictWriter(handle, fieldnames=fieldnames, extrasaction="ignore")
@@ -253,12 +302,18 @@ def main(argv: list[str] | None = None) -> None:
     crosswalk_by_id = {row["school_id"]: row for row in crosswalk}
     basic_by_code = {text(row.get("SCHUL_CODE")): row for row in basic_rows if text(row.get("SCHUL_CODE"))}
     enriched: list[dict[str, Any]] = []
+    district_updates: Counter[str] = Counter()
     for original in master:
         row = dict(original)
         link = crosswalk_by_id[row["school_id"]]
         code = text(link.get("schoolinfo_code"))
         basic = basic_by_code.get(code)
         grade = grade_by_code.get(code)
+        district = current_district(row, basic)
+        if district:
+            row["address"] = with_district(row.get("address"), district) if row.get("address") else row.get("address")
+            row["address_old"] = with_district(row.get("address_old"), district) if row.get("address_old") else row.get("address_old")
+            district_updates[district] += 1
         row.update({
             "schoolinfo_code": code or None,
             "schoolinfo_match_status": link["match_status"],
@@ -310,6 +365,7 @@ def main(argv: list[str] | None = None) -> None:
         "schoolinfo_basic_source": basic_source.name,
         "schoolinfo_grade_source": grade_source.name,
         "schools": len(enriched),
+        "district_updates_from_schoolinfo": dict(sorted(district_updates.items())),
         "schoolinfo_basic_rows": len(basic_rows),
         "schoolinfo_grade_rows": len(grade_rows),
         "crosswalk_status_counts": sorted_counts(match_counts),

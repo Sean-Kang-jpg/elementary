@@ -7,7 +7,7 @@
     {
       "name": "school_master_operational_v1.json",
       "rows": 2260,
-      "sha256": "4287df12253fb114157e247af378bb7d8d2780fea0d714927e35fff111944971"
+      "sha256": "2e8fd97ef4e88ea19cd6be0148551e1546b1e519135bd371ceb7cce7ff370603"
     },
     {
       "name": "apartment_complex_master_v1.json",
@@ -50,6 +50,11 @@
           20850
         ]
       }
+    },
+    {
+      "relocked_at": "2026-10-04T11:46:13.812695+00:00",
+      "reason": "2026-10-04: school addresses adopt Schoolinfo's district for 인천's 2026-07-01 reform (80 schools); only school_master_operational_v1 changes",
+      "row_changes": {}
     }
   ]
 }

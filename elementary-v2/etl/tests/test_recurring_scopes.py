@@ -11,6 +11,7 @@ ETL_DIR = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ETL_DIR))
 
 import build_apartment_master_v1 as apartments  # noqa: E402
+from etl.build_school_master_v2 import current_district  # noqa: E402
 import run_due_etl as due  # noqa: E402
 import run_recurring_etl as recurring  # noqa: E402
 
@@ -59,6 +60,38 @@ class MergedRegionMatchingTest(unittest.TestCase):
             apartments.address_candidates("서울특별시 강남구 테헤란로 1"),
             {apartments.normalize("서울특별시 강남구 테헤란로 1")},
         )
+
+
+class DistrictReformTest(unittest.TestCase):
+    """인천's 2026-07-01 reform reaches school addresses through Schoolinfo."""
+
+    def school(self, address: str, address_old: str = "") -> dict:
+        return {"address": address, "address_old": address_old}
+
+    def test_adopts_the_new_district_for_the_same_street(self) -> None:
+        row = self.school("인천광역시 서구 승학로599번길 45")
+        basic = {"SCHUL_RDNMA": "인천광역시 서해구 승학로 599번길 45"}
+        self.assertEqual(current_district(row, basic), "서해구")
+
+    def test_ignores_a_trailing_note_after_a_comma(self) -> None:
+        row = self.school("인천광역시 중구 두미포로 100")
+        basic = {"SCHUL_RDNMA": "인천광역시 영종구 두미포로 100, 인천중산초"}
+        self.assertEqual(current_district(row, basic), "영종구")
+
+    def test_never_borrows_a_district_for_a_different_street(self) -> None:
+        row = self.school("인천광역시 서구 승학로599번길 45")
+        basic = {"SCHUL_RDNMA": "인천광역시 서해구 다른로 1"}
+        self.assertIsNone(current_district(row, basic))
+
+    def test_leaves_province_city_positions_alone(self) -> None:
+        row = self.school("경기도 화성시 동탄대로 1")
+        basic = {"SCHUL_RDNMA": "경기도 오산시 동탄대로 1"}
+        self.assertIsNone(current_district(row, basic))
+
+    def test_uses_the_lot_address_when_there_is_no_road_address(self) -> None:
+        row = self.school("", "인천광역시 서구 마전동 1")
+        basic = {"SCHUL_RDNMA": "인천광역시 검단구 검단로 1"}
+        self.assertEqual(current_district(row, basic), "검단구")
 
 
 if __name__ == "__main__":
