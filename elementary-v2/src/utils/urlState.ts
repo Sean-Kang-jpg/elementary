@@ -39,6 +39,8 @@ export type Route =
   | { kind: 'plan'; key: string }
   | { kind: 'item'; key: string }
   | { kind: 'ranking' }
+  // 1학년 미리보기 (docs/product/LEARNING_CONTENT_PRINCIPLES.md)
+  | { kind: 'grade1' }
 
 /** 화면 단위. 상세 두 종류는 지도 화면 위의 선택이다. */
 export type AppView = 'home' | 'map' | 'guide' | 'faq' | 'checklist' | 'news' | 'my' | 'privacy' | 'curriculum'
@@ -47,7 +49,7 @@ export const viewOf = (route: Route): AppView => {
   if (route.kind === 'school' || route.kind === 'apartment' || route.kind === 'map') return 'map'
   if (route.kind === 'news' || route.kind === 'my' || route.kind === 'privacy') return route.kind
   if (route.kind === 'guide' || route.kind === 'faq' || route.kind === 'checklist') return route.kind
-  if (route.kind === 'plans' || route.kind === 'plan' || route.kind === 'item' || route.kind === 'ranking') return 'curriculum'
+  if (route.kind === 'plans' || route.kind === 'plan' || route.kind === 'item' || route.kind === 'ranking' || route.kind === 'grade1') return 'curriculum'
   return 'home'
 }
 
@@ -126,6 +128,7 @@ export const parseRoute = (pathname: string, search = ''): Route => {
     if (segments[0] === 'checklist') return { kind: 'checklist' }
     if (CURRICULUM_ENABLED && segments[0] === 'plans') return { kind: 'plans' }
     if (CURRICULUM_ENABLED && segments[0] === 'ranking') return { kind: 'ranking' }
+    if (CURRICULUM_ENABLED && segments[0] === 'grade1') return { kind: 'grade1' }
   }
   // 모르는 주소는 홈으로 연다. 404 화면이 없으므로 가장 쓸모 있는 착지점이다.
   if (segments.length !== 2) return { kind: 'home' }

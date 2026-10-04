@@ -99,6 +99,19 @@ npm run typecheck
   핀치는 미확인
 - **같은 작업 트리의 `SchoolCarePanel.tsx` 변경(소규모 학교 돌봄 이용률)은 다른 세션 작업이라 이 커밋에서 뺐다**
 
+### 2026-10-05: 1학년 미리보기 (master, 플래그 뒤 — 운영 노출 안 됨)
+
+- 방향 전환: 따봉·순위 대신 **초1 교과서를 기준점으로** 과목·단계별 "언제 배우나"와 근거 있는 콘텐츠.
+  원칙 `docs/product/LEARNING_CONTENT_PRINCIPLES.md`, 단계표 `src/content/learning/stages.json`(국어 6·수학 5·영어 5단계),
+  콘텐츠 `src/content/learning/items.json`(공공 추천 국어 5개), 파일럿 후보·후기 양식 `docs/research/LEARNING_PILOT_CANDIDATES.md`
+- 화면 `/grade1` — 입학 준비 탭 진입 링크와 함께 `VITE_CURRICULUM_ENABLED=1`일 때만. 지금 수준 선택은 기기 저장
+  (`wherecho:grade1-level-v1`). `build-content`가 단계·콘텐츠·후기(본문 인용 금지, 협찬 표기 글 금지)를 검증
+- 공식 근거: 교육부 고시 2022-33호 [별책 2]·[별책 5] 원문, 경남교육청 도움자료(2024-12, 현장검토본 기준 — 2027-03 교과서로 재확인)
+- **네이버 검색·블로그와 NCIC는 robots.txt로 AI·봇 수집 금지.** 후기는 사람이 읽고 양식에 기록한다.
+  확인 중 네이버 검색 결과 페이지를 한 번 받았다가 지웠다. 찬찬한글 옛 주소(basics.re.kr)는 DNS가 없어 서울학습진단성장센터로 바꿨다
+- 검증: lint·typecheck·build, 플래그 켠 dev 서버(3005)에서 전역 agent-browser로 국어·수학 화면·수준 저장 확인
+- 따봉(SQL 24)·카드·순위 코드는 그대로 플래그 뒤에 남아 있다 — 정리할지 결정 필요
+
 ### 2026-10-05: 커리큘럼 공유 1단계 코드 (운영 `f542691`에 포함, **플래그 꺼짐이라 노출 안 됨**)
 
 - **기능 플래그 `VITE_CURRICULUM_ENABLED=1`일 때만 켜진다.** 기본은 꺼짐 — 주소는 홈으로, 개인정보처리방침은 이전

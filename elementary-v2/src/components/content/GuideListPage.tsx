@@ -1,12 +1,13 @@
 import { useEffect, useState } from 'react'
-import { BookOpenCheck, Check, ChevronRight, HelpCircle, LineChart, ThumbsUp, UserRound } from 'lucide-react'
+import { BookOpenCheck, Check, ChevronRight, GraduationCap, HelpCircle, LineChart, UserRound } from 'lucide-react'
 import { GUIDE_GROUPS, GUIDE_LIST, GUIDES } from '../../content'
 import { guidePath, VIEW_PATHS } from '../../utils/urlState'
 import { STAGE_LABELS, stageOf, type Stage } from '../../utils/entryYear'
 import { readGuides, subscribeProfile } from '../../utils/profile'
 import ChecklistBanner from './ChecklistBanner'
 import { followLink } from './contentLinks'
-import { CURRICULUM_ENABLED, CURRICULUM_PATHS, PLANS } from '../../content/curriculum'
+import { CURRICULUM_ENABLED } from '../../content/curriculum'
+import { LEARNING_PATH } from '../../content/learning'
 
 interface GuideListPageProps {
   onNavigate: (path: string) => void
@@ -46,12 +47,12 @@ export default function GuideListPage({ onNavigate, entryYear }: GuideListPagePr
           </a>
         )}
         <ChecklistBanner onNavigate={onNavigate} />
-        {CURRICULUM_ENABLED && PLANS.length ? (
-          <a href={CURRICULUM_PATHS.plans} onClick={(event) => followLink(event, CURRICULUM_PATHS.plans, onNavigate)} className="content-list__item content-list__item--card" data-testid="curriculum-entry">
-            <span className="home-link__icon home-link__icon--sage"><ThumbsUp size={19} aria-hidden="true" /></span>
+        {CURRICULUM_ENABLED ? (
+          <a href={LEARNING_PATH} onClick={(event) => followLink(event, LEARNING_PATH, onNavigate)} className="content-list__item content-list__item--card" data-testid="curriculum-entry">
+            <span className="home-link__icon home-link__icon--sage"><GraduationCap size={19} aria-hidden="true" /></span>
             <span className="min-w-0 flex-1">
-              <strong>우리 아이 커리큘럼</strong>
-              <small>또래 아이들이 보고 읽고 노는 것, 연령별 카드와 따봉 순위</small>
+              <strong>1학년 미리보기</strong>
+              <small>국어·수학을 언제 배우는지 교과서 기준으로, 단계마다 도움이 되는 것까지</small>
             </span>
             <ChevronRight size={18} aria-hidden="true" />
           </a>

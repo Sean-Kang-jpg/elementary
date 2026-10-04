@@ -18,6 +18,8 @@ import CurriculumListPage from './components/curriculum/CurriculumListPage'
 import PlanPage from './components/curriculum/PlanPage'
 import ItemPage from './components/curriculum/ItemPage'
 import RankingPage from './components/curriculum/RankingPage'
+import Grade1PreviewPage from './components/learning/Grade1PreviewPage'
+import { LEARNING_PATH } from './content/learning'
 import { CURRICULUM_PATHS, findItem, findPlan, itemPath, planPath } from './content/curriculum'
 import checklistContent from './content/checklist.json'
 import { hasSavedProfile, readProfile, saveProfile, type Profile } from './utils/profile'
@@ -201,7 +203,8 @@ function MapApplication() {
     // 없는 카드·아이템 주소는 목록으로, 장식만 다른 주소는 정규 주소로 고친다.
     const canonical = plan ? planPath(plan)
       : item ? itemPath(item)
-        : curriculumRoute.kind === 'ranking' ? CURRICULUM_PATHS.ranking : CURRICULUM_PATHS.plans
+        : curriculumRoute.kind === 'ranking' ? CURRICULUM_PATHS.ranking
+          : curriculumRoute.kind === 'grade1' ? LEARNING_PATH : CURRICULUM_PATHS.plans
     if (decodeURIComponent(window.location.pathname) !== canonical) window.history.replaceState({}, '', canonical)
     setCanonical(canonical)
   }, [view, curriculumRoute, plan, item])
@@ -238,7 +241,9 @@ function MapApplication() {
               ? `${item.name} | 우리 아이 커리큘럼 | 어디초`
               : view === 'curriculum' && curriculumRoute.kind === 'ranking'
                 ? '아이템 순위 | 우리 아이 커리큘럼 | 어디초'
-                : TITLES[view]
+                : view === 'curriculum' && curriculumRoute.kind === 'grade1'
+                  ? '1학년 미리보기 | 어디초'
+                  : TITLES[view]
   }, [view, state.selectedApartment, state.selectedSchool, guide, plan, item, curriculumRoute])
 
   // 커리큘럼 조회 (PRD_CURRICULUM_SHARING 4절). 같은 화면을 다시 그리는 것은 새 조회가 아니다.
@@ -427,6 +432,8 @@ function MapApplication() {
         ? <PlanPage key={plan.key} plan={plan} onNavigate={(path) => navigate(path, 'related')} />
         : item
           ? <ItemPage key={item.key} item={item} onNavigate={(path) => navigate(path, 'related')} />
+          : curriculumRoute.kind === 'grade1'
+            ? <Grade1PreviewPage />
           : curriculumRoute.kind === 'ranking'
             ? <RankingPage onNavigate={(path) => navigate(path, 'related')} />
             : <CurriculumListPage onNavigate={(path) => navigate(path, 'related')} />)}
