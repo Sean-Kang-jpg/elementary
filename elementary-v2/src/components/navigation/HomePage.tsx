@@ -1,7 +1,7 @@
 import { BookOpen, ChevronRight, HelpCircle, Map, ShieldCheck } from 'lucide-react'
 import SearchBox from '../search/SearchBox'
 import EntryYearPicker from '../content/EntryYearPicker'
-import RoadmapCard from '../content/RoadmapCard'
+import RoadmapSummary from '../content/RoadmapSummary'
 import type { Profile } from '../../utils/profile'
 import SchoolIllustration from '../content/SchoolIllustration'
 import { followLink } from '../content/contentLinks'
@@ -15,7 +15,6 @@ interface HomePageProps {
   entryYear: number | null
   onEntryYearChange: (year: number) => void
   profile: Profile
-  onProfileChange: (update: (current: Profile) => Profile) => void
 }
 
 const STAGE_ORDER: Stage[] = ['planning', 'admission']
@@ -29,7 +28,7 @@ const STAGE_ORDER: Stage[] = ['planning', 'admission']
  *
  * 문구는 content/home.json에 있다. 빌드가 같은 파일로 `/`의 정적 HTML을 만든다.
  */
-export default function HomePage({ onNavigate, entryYear, onEntryYearChange, profile, onProfileChange }: HomePageProps) {
+export default function HomePage({ onNavigate, entryYear, onEntryYearChange, profile }: HomePageProps) {
   const selectedStage = entryYear ? stageOf(entryYear) : null
   const stages = selectedStage ? [selectedStage, ...STAGE_ORDER.filter((stage) => stage !== selectedStage)] : STAGE_ORDER
   const guideList = entryYear ? `${VIEW_PATHS.guide}?year=${entryYear}` : VIEW_PATHS.guide
@@ -55,7 +54,7 @@ export default function HomePage({ onNavigate, entryYear, onEntryYearChange, pro
           <EntryYearPicker value={entryYear} onChange={onEntryYearChange} />
         </section>
 
-        {entryYear ? <RoadmapCard entryYear={entryYear} profile={profile} onProfileChange={onProfileChange} onNavigate={onNavigate} /> : null}
+        {entryYear ? <RoadmapSummary entryYear={entryYear} profile={profile} onNavigate={onNavigate} /> : null}
 
         {stages.map((stage) => {
           const guides = guidesOf(stage)

@@ -345,13 +345,12 @@ function MapApplication() {
           entryYear={entryYear}
           onEntryYearChange={changeEntryYear}
           profile={profile}
-          onProfileChange={changeProfile}
         />
       )}
       {view === 'checklist' && <ChecklistPage onNavigate={(path) => navigate(path, 'related')} />}
       {view === 'guide' && (guide
         ? <GuidePage key={guide.slug} guide={guide} onNavigate={(path) => navigate(path, 'related')} />
-        : <GuideListPage onNavigate={(path) => navigate(path, 'guides')} entryYear={entryYear} onEntryYearChange={changeEntryYear} />)}
+        : <GuideListPage onNavigate={(path) => navigate(path, 'guides')} entryYear={entryYear} onEntryYearChange={changeEntryYear} profile={profile} onProfileChange={changeProfile} />)}
       {view === 'faq' && (
         <FaqPage onNavigate={(path) => navigate(path, 'related')} entryYear={entryYear} onEntryYearChange={changeEntryYear} onOpenQuestion={openFaqQuestion} />
       )}

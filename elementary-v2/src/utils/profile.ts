@@ -61,3 +61,22 @@ export const subscribeProfile = (listener: () => void): (() => void) => {
   window.addEventListener(CHANGE_EVENT, listener)
   return () => window.removeEventListener(CHANGE_EVENT, listener)
 }
+
+const READ_GUIDES_KEY = 'wherecho:read-guides-v1'
+
+/** Guides opened on this device, for the hub's "n/9 읽음". Same storage rules as above. */
+export const readGuides = (): string[] => {
+  try {
+    const raw = window.localStorage.getItem(READ_GUIDES_KEY)
+    const parsed = raw ? JSON.parse(raw) : []
+    return Array.isArray(parsed) ? parsed.filter((value): value is string => typeof value === 'string') : []
+  } catch {
+    return []
+  }
+}
+
+export const markGuideRead = (slug: string): void => {
+  const current = readGuides()
+  if (current.includes(slug)) return
+  write(READ_GUIDES_KEY, [...current, slug])
+}

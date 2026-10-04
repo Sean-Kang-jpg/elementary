@@ -562,26 +562,42 @@ try {
   // within the app without a reload, and the FAQ answers open in place.
   run(['open', new URL('/guide', baseUrl).toString()])
   await waitFor("document.querySelector('#guides-title') && document.querySelector('.app-gnb__item--active')?.getAttribute('href') === '/guide'", '/guide lists the guides with the guide tab active')
+  assertPage("document.querySelector('.app-gnb__item--active')?.textContent.includes('입학 준비')", 'the tab is named for the hub it opens')
   run(['eval', "window.__smokeNoReload = true; document.querySelector('a.content-list__item[href=\"/guide/school-notice\"]').click(); 'guide'"])
   await waitFor("location.pathname === '/guide/school-notice' && document.querySelector('#guide-title') && document.querySelector('.content-sources')", 'a guide opens with its sources')
   assertPage("document.title.includes('취학통지서') && document.querySelector('link[rel=canonical]')?.href.endsWith('/guide/school-notice')", 'the guide names itself in the title and canonical')
   assertPage("document.querySelectorAll('.guide-summary .guide-summary__item').length >= 2", 'the guide opens with its summary diagram')
+  assertPage(
+    "(document.querySelector('.content-page__topbar [data-testid=share-button]')?.dataset.shareUrl || '').endsWith('/guide/school-notice')"
+    + " && document.querySelector('a.checklist-banner[href=\"/checklist\"]')",
+    'the guide offers its own address to share and a way to the checklist',
+  )
   run(['eval', "document.querySelector('.content-body a[href=\"/guide/preliminary-call\"]').click(); 'inline link'"])
   await waitFor("location.pathname === '/guide/preliminary-call' && window.__smokeNoReload === true", 'a link inside a guide moved to the next guide without reloading')
   run(['open', new URL('/faq', baseUrl).toString()])
   await waitFor("document.querySelectorAll('details.faq-item').length > 5 && document.querySelector('.app-gnb__item--active')?.getAttribute('href') === '/guide'", '/faq lists its questions under the guide tab')
+  assertPage("(document.querySelector('.content-page__titlebar [data-testid=share-button]')?.dataset.shareUrl || '').endsWith('/faq')", 'the FAQ can be shared')
   run(['eval', "document.querySelector('details.faq-item summary').click(); 'opened'"])
   assertPage("document.querySelector('details.faq-item').open && document.querySelector('details.faq-item .content-body').innerText.trim().length > 20", 'an FAQ answer opens in place')
   // The entry year decides which stage leads. 2-3 years out is planning a move;
   // the year of entry is the admission procedure. Picking one puts it in the URL.
+  // The hub folds the picker away once a year is saved; 바꾸기 brings it back.
   run(['open', new URL('/guide', baseUrl).toString()])
+  await waitFor("document.querySelector('#guides-title')", 'the 입학 준비 hub opens')
+  run(['eval', "document.querySelector('.hub-profile__edit')?.click(); 'picker shown'"])
   await waitFor("document.querySelectorAll('.year-chip').length === 3", 'the guide list offers three entry years')
-  run(['eval', "document.querySelectorAll('.year-chip')[2].click(); 'picked the furthest year'"])
+  run(['eval', "const chip = document.querySelectorAll('.year-chip')[2]; sessionStorage.setItem('smoke-year', chip.querySelector('strong').textContent.slice(0, 4)); chip.click(); 'picked the furthest year'"])
   await waitFor(
-    "new URLSearchParams(location.search).get('year') === document.querySelectorAll('.year-chip')[2].querySelector('strong').textContent.slice(0, 4)"
+    "new URLSearchParams(location.search).get('year') === sessionStorage.getItem('smoke-year')"
     + " && document.querySelector('.guide-stage')?.classList.contains('guide-stage--planning')"
-    + " && document.querySelector('.guide-stage--mine')",
+    + " && document.querySelector('.guide-stage--mine')"
+    + " && document.querySelector('.hub-profile')?.textContent.includes(sessionStorage.getItem('smoke-year'))",
     'a year two years out puts the planning guides first and records the year in the address',
+  )
+  assertPage(
+    "document.querySelector('.roadmap h2')?.textContent.includes('D-')"
+    + " && document.querySelector('.guide-timeline li.is-read a[href=\"/guide/school-notice\"]')",
+    'the hub carries the roadmap and marks the guides this device has read',
   )
   run(['open', new URL('/guide/no-such-guide', baseUrl).toString()])
   await waitFor("location.pathname === '/guide' && document.querySelector('#guides-title')", 'an unknown guide address falls back to the guide list')
@@ -591,7 +607,13 @@ try {
   run(['open', baseUrl])
   await waitFor("document.querySelectorAll('.year-chip').length === 3", 'the home offers the entry years')
   run(['eval', "document.querySelectorAll('.year-chip')[0].click(); 'nearest year'"])
-  await waitFor("document.querySelector('.roadmap h2')?.textContent.includes('D-')", 'picking a year shows the days left and the tasks')
+  await waitFor(
+    "document.querySelector('.roadmap-summary h2')?.textContent.includes('D-') && document.querySelector('.roadmap-summary__more')?.getAttribute('href').startsWith('/guide?year=')",
+    'picking a year on the home shows the days left and a way to the full roadmap',
+  )
+  assertPage("!document.querySelector('.roadmap .pref-chip')", 'the home keeps the full roadmap in the hub')
+  run(['eval', "document.querySelector('.roadmap-summary__more').click(); 'to the hub'"])
+  await waitFor("location.pathname === '/guide' && document.querySelectorAll('.roadmap .pref-chip').length >= 2", 'the summary opens the roadmap in the hub')
   run(['eval', "document.querySelectorAll('.roadmap .pref-chip')[1].click(); 'private interest on'"])
   await waitFor(
     "(() => { const month = new Date().getMonth() + 1; const privateMonths = [9, 10, 11];"
@@ -603,13 +625,14 @@ try {
   // The checklist keeps its state on this device across a reload.
   run(['open', new URL('/checklist', baseUrl).toString()])
   await waitFor("document.querySelectorAll('.checklist-rows input[type=checkbox]').length >= 10 && document.querySelectorAll('.checklist-tile').length >= 5", '/checklist lists its items')
+  assertPage("(document.querySelector('.content-page__titlebar [data-testid=share-button]')?.dataset.shareUrl || '').endsWith('/checklist')", 'the checklist can be shared by its address')
   run(['eval', "document.querySelector('.checklist-rows input[type=checkbox]').click(); 'checked'"])
   run(['open', new URL('/checklist', baseUrl).toString()])
   await waitFor(
     "document.querySelector('.checklist-rows input[type=checkbox]')?.checked === true && document.querySelector('.checklist-hero__count b')?.textContent === '1'",
     'a checked item survives a reload',
   )
-  run(['eval', "document.querySelector('.checklist-rows input[type=checkbox]').click(); localStorage.removeItem('wherecho:profile-v1'); 'cleaned up'"])
+  run(['eval', "document.querySelector('.checklist-rows input[type=checkbox]').click(); localStorage.removeItem('wherecho:profile-v1'); localStorage.removeItem('wherecho:read-guides-v1'); 'cleaned up'"])
 
   // This script runs against production after every release. If its headless
   // browser were measured, each release would add sessions that did nothing and
