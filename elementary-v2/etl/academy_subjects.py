@@ -17,7 +17,8 @@ Rules, in order:
 
 - Academies in a study-type realm ('입시.검정 및 보습', '종합(대)', '인문사회(대)',
   '국제화') get every subject whose keywords appear in the name. '영수' means
-  English and maths. A study-realm name with no subject keyword is 'study' -
+  English and maths. A name with no subject keyword but a well-known single-
+  subject chain ('생각하는황소', '리드인') gets that chain's subject. A study-realm name with no subject keyword is 'study' -
   names like '이투스' or '○○학원' do not say, and guessing would be worse than
   saying so.
 - '국제화' with no English keyword but another language is 'language'.
@@ -62,6 +63,35 @@ COMBINED_SHORTHAND: dict[str, tuple[str, ...]] = {
     "국영수": ("writing", "english", "math"),
     "영수": ("english", "math"),
 }
+
+# Well-known chains whose names do not say the subject. Applied only when the
+# name carries no subject keyword, so '○○CMS영어' stays English. Each mapping was
+# checked against the 2026-09-29 snapshot: among the chain's branches that do
+# name a subject, that subject dominates (e.g. 소마 116/122 maths, 리드인 786/891
+# writing). Multi-subject or general chains - 눈높이, 웅진씽크빅, 엠베스트,
+# 에듀플렉스, 푸르넷, 이투스, 시대인재, 메가스터디, 아소비, 비상 - are left as study.
+BRAND_SUBJECTS: tuple[tuple[str, tuple[str, ...]], ...] = (
+    ("생각하는황소", ("math",)),
+    ("필즈", ("math",)),
+    ("강의하는아이들", ("math",)),
+    ("폴리아", ("math",)),
+    ("소마", ("math",)),
+    ("페르마", ("math",)),
+    ("깊은생각", ("math",)),
+    ("re:팩토(?!리)", ("math",)),
+    ("씨엠에스", ("math",)),
+    ("cms", ("math",)),
+    ("기탄사고력", ("math",)),
+    ("와이즈만", ("math", "science")),
+    ("지앤비", ("english",)),
+    ("아발론", ("english",)),
+    ("이보영", ("english",)),
+    ("책나무", ("writing",)),
+    ("리드인", ("writing",)),
+    ("책통", ("writing",)),
+    ("플라톤", ("writing",)),
+    ("예설라", ("writing",)),
+)
 
 OTHER_LANGUAGES: tuple[str, ...] = (
     "중국어", "일본어", "스페인어", "프랑스어", "독일어", "러시아어", "베트남어", "아랍어",
@@ -119,6 +149,11 @@ def classify(name: str, realm: str, institution_type: str = "") -> list[str]:
         for subject, keywords in SUBJECT_KEYWORDS.items():
             if any(_has(name, keyword) for keyword in keywords):
                 found.add(subject)
+        if not found:
+            for brand, subjects in BRAND_SUBJECTS:
+                if _has(name, brand):
+                    found.update(subjects)
+                    break
         if not found and realm == "국제화":
             found.add("language" if any(word in name for word in OTHER_LANGUAGES) else "english")
         if not found and any(word in name for word in OTHER_LANGUAGES):

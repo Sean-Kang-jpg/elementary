@@ -46,9 +46,25 @@ class AcademySubjectsTest(unittest.TestCase):
         self.assertEqual(classify("서일영수전문학원", STUDY), ["english", "math"])
         self.assertEqual(classify("팰릭스어셈블리보습학원", STUDY), ["study"])
         self.assertEqual(classify("언어산책학원", STUDY), ["study"])
-        # 개념폴리아 is a maths brand, not 폴리어학원.
-        self.assertEqual(classify("개념폴리아학원", STUDY), ["study"])
+        # 개념폴리아 is the maths chain, not 폴리어학원.
+        self.assertEqual(classify("개념폴리아학원", STUDY), ["math"])
         self.assertEqual(classify("강동폴리어학원", STUDY), ["english"])
+
+    def test_single_subject_chains(self):
+        self.assertEqual(classify("생각하는황소3관학원", STUDY), ["math"])
+        self.assertEqual(classify("개념폴리아학원", STUDY), ["math"])
+        self.assertEqual(classify("씨엠에스(CMS)대치영재1관학원", STUDY), ["math"])
+        self.assertEqual(classify("와이즈만영재교육대치학원", STUDY), ["math", "science"])
+        self.assertEqual(classify("우이지앤비학원", STUDY), ["english"])
+        self.assertEqual(classify("예설라향동학원", STUDY), ["writing"])
+        # A subject in the name wins over the chain.
+        self.assertEqual(classify("○○CMS영어학원", STUDY), ["english"])
+        # 팩토 inside 팩토리 is not the maths chain.
+        self.assertEqual(classify("아이팩토리원격학원", STUDY), ["study"])
+
+    def test_general_chains_stay_study(self):
+        self.assertEqual(classify("눈높이러닝센터강동학원", STUDY), ["study"])
+        self.assertEqual(classify("에듀플렉스에듀코치개별지도개포학원", STUDY), ["study"])
 
     def test_names_without_a_subject_stay_study(self):
         self.assertEqual(classify("이투스247학원", STUDY), ["study"])
