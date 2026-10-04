@@ -7,6 +7,12 @@ const LABELS: Record<string, string> = {
   'kapt-basic': '아파트 정보',
 }
 
+/** Who publishes each source, credited only where that source is shown. */
+const PUBLISHERS: Record<string, string> = {
+  'schoolinfo-grade-students': '학교알리미',
+  'kapt-basic': '공동주택관리정보시스템',
+}
+
 const formatDate = (value: string) => value.replace(/-/g, '.')
 
 /**
@@ -29,10 +35,11 @@ const DataFreshness: React.FC<{ sources: string[] }> = ({ sources }) => {
     })
     .filter(Boolean)
   if (!parts.length) return null
+  const publishers = [...new Set(sources.map((name) => PUBLISHERS[name]).filter(Boolean))]
 
   return (
     <p className="mt-4 text-[11px] leading-4 text-gray-400" data-testid="data-freshness">
-      {parts.join(' · ')} 기준 · 출처 학교알리미·공동주택관리정보시스템
+      {parts.join(' · ')} 기준 · 출처 {publishers.join('·')}
     </p>
   )
 }
