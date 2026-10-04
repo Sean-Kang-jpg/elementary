@@ -5,13 +5,18 @@ import { getSchoolCareStatistics } from '../../services/dataService'
 
 const count = (value: number | null | undefined) => value ?? 0
 
+// 전교생이 이보다 적은 학교는 돌봄을 전 학년에 여는 경우가 흔해, 1·2학년 대비
+// 이용률이 뜻을 잃는다. 운영 데이터(2026-10-04)에서 100%를 넘는 학교 1,473곳은
+// 거의 전부 이 구간이었다(60명 미만 75%, 60~120명 42%, 300명 이상 1% 이하).
+const SMALL_SCHOOL_STUDENTS = 120
+
 /**
  * 학교 돌봄·방과후 (학교알리미 공시, SQL 23).
  *
- * 공시에는 신청·탈락 인원이 없다. 돌봄은 신청 후 선정되는 구조라, 1·2학년
- * 학생 수 대비 참여 인원("100명당")과 교실당 인원을 들어가기 쉬운 정도의
- * 간접 지표로 보여준다. 둘을 점수로 합치지 않는다 — 학교 순위를 만들지 않는다는
- * 신뢰 원칙 때문이다.
+ * 공시에는 신청·탈락 인원도, 돌봄 참여의 학년 구분도 없다. 돌봄은 신청 후
+ * 선정되는 구조라, 1·2학년 학생 수 대비 참여 인원(이용률)과 교실당 인원을
+ * 들어가기 쉬운 정도의 간접 지표로 보여준다. 둘을 점수로 합치지 않는다 — 학교
+ * 순위를 만들지 않는다는 신뢰 원칙 때문이다.
  */
 const SchoolCarePanel: React.FC<{ school: School }> = ({ school }) => {
   const [stats, setStats] = useState<SchoolCareStatistics | null>(null)
@@ -30,7 +35,11 @@ const SchoolCarePanel: React.FC<{ school: School }> = ({ school }) => {
   const careRooms = count(stats.afternoon_care_rooms)
   const careStudents = count(stats.afternoon_care_students)
   const lowerGrades = count(school.grade1_students) + count(school.grade2_students)
-  const per100 = lowerGrades > 0 && careStudents > 0 ? Math.round(careStudents / lowerGrades * 100) : null
+  const allGrades = [1, 2, 3, 4, 5, 6].reduce((sum, grade) => sum + count(school[`grade${grade}_students` as keyof School] as number), 0)
+  const usageRate = lowerGrades > 0 && careStudents > 0 ? Math.round(careStudents / lowerGrades * 100) : null
+  // 100%를 넘는다는 것 자체가 다른 학년이 섞였다는 뜻이다. 1·2학년이 많아서는
+  // 넘을 수 없다 — 그들은 분모다.
+  const allGradeCare = (allGrades > 0 && allGrades < SMALL_SCHOOL_STUDENTS) || (usageRate != null && usageRate > 100)
   const perRoom = careRooms > 0 ? Math.round(careStudents / careRooms) : null
   const eveningRooms = count(stats.evening_care_rooms)
   const programs = count(stats.afterschool_aptitude_programs) + count(stats.afterschool_curriculum_programs)
@@ -50,8 +59,13 @@ const SchoolCarePanel: React.FC<{ school: School }> = ({ school }) => {
             <strong className="mt-0.5 block text-base text-rose-950">{careRooms}실 · {careStudents.toLocaleString()}명</strong>
           </div>
           <div className="rounded-md bg-gray-100 p-2.5 text-center">
-            <span className="block text-[11px] text-gray-600">1·2학년 100명당</span>
-            <strong className="mt-0.5 block text-base text-gray-950">{per100 != null ? `${per100}명` : '-'}</strong>
+            {allGradeCare ? <>
+              <span className="block text-[11px] text-gray-600">{usageRate != null && usageRate > 100 ? '참여 학년' : '소규모 학교'}</span>
+              <strong className="mt-0.5 block text-base text-gray-950">{usageRate != null && usageRate > 100 ? '전 학년 포함' : '전 학년 흔함'}</strong>
+            </> : <>
+              <span className="block text-[11px] text-gray-600">1·2학년 대비 이용률</span>
+              <strong className="mt-0.5 block text-base text-gray-950">{usageRate != null ? `${usageRate}%` : '-'}</strong>
+            </>}
           </div>
           <div className="rounded-md bg-gray-100 p-2.5 text-center">
             <span className="block text-[11px] text-gray-600">교실당</span>
@@ -70,7 +84,9 @@ const SchoolCarePanel: React.FC<{ school: School }> = ({ school }) => {
         </div>
       </dl>
       <p className="mt-2 text-[11px] leading-4 text-gray-500">
-        돌봄 신청·탈락 인원은 공시되지 않습니다. 1·2학년 학생 대비 참여 인원이 적고 교실당 인원이 많을수록 자리가 빠듯한 편입니다. 참여 인원에 다른 학년이 포함될 수 있습니다.
+        {allGradeCare
+          ? '돌봄 신청·탈락 인원은 공시되지 않습니다. 학생이 적은 학교는 돌봄을 전 학년에 여는 경우가 흔해 1·2학년 대비 이용률을 계산하지 않습니다.'
+          : '돌봄 신청·탈락 인원은 공시되지 않습니다. 이용률은 오후 돌봄 참여 인원을 1·2학년 학생 수로 나눈 값으로, 낮고 교실당 인원이 많을수록 자리가 빠듯한 편입니다. 참여 인원에 3학년 이상이 섞이면 실제보다 높게 나옵니다.'}
       </p>
     </section>
   )
