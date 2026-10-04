@@ -1117,110 +1117,329 @@
 }
 
 /* ---- Checklist page ------------------------------------------------------- */
+/* A ring for the share done, a card per area with its own colour and count,
+   and the supplies as tiles. Area colours: 행정 peach, 돌봄 sage, 생활 sky,
+   준비물 coral. */
 
-.checklist-progress {
-  margin: 0 0 18px;
-}
-
-.checklist-progress__bar {
-  height: 10px;
-  overflow: hidden;
-  border-radius: 999px;
-  background: #f1e5dc;
-}
-
-.checklist-progress__bar span {
-  display: block;
-  height: 100%;
-  border-radius: 999px;
-  background: linear-gradient(90deg, #f3a27f, var(--warm-accent));
-  transition: width 0.2s;
-}
-
-.checklist-progress p {
-  margin: 6px 0 0;
-  color: var(--warm-muted);
-  font-size: 13px;
-}
-
-.checklist-group {
-  margin-bottom: 16px;
+.checklist-hero {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin: 0 0 10px;
   border: 1px solid var(--warm-border);
   border-radius: var(--warm-radius);
-  padding: 12px 14px 4px;
+  padding: 16px;
+  background: linear-gradient(135deg, #fff3ec 0%, #ffffff 70%);
+  box-shadow: var(--warm-shadow);
+}
+
+.checklist-hero__ring {
+  width: 84px;
+  height: 84px;
+  flex: none;
+  transform: rotate(-90deg);
+}
+
+.checklist-hero__track,
+.checklist-hero__value {
+  fill: none;
+  stroke-width: 8;
+}
+
+.checklist-hero__track {
+  stroke: #f3e4da;
+}
+
+.checklist-hero__value {
+  stroke: var(--warm-accent);
+  stroke-linecap: round;
+  transition: stroke-dashoffset 0.3s ease;
+}
+
+.checklist-hero__percent {
+  fill: var(--warm-text);
+  font-size: 17px;
+  font-weight: 800;
+  transform: rotate(90deg);
+  transform-origin: 40px 40px;
+}
+
+.checklist-hero__text p {
+  margin: 0;
+}
+
+.checklist-hero__count {
+  font-size: 15px;
+}
+
+.checklist-hero__count b {
+  color: var(--warm-accent-strong);
+  font-size: 22px;
+}
+
+.checklist-hero__text .checklist-hero__dday {
+  margin-top: 2px;
+  color: var(--warm-peach);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.checklist-hero__text .checklist-hero__next {
+  margin-top: 6px;
+  color: var(--warm-muted);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.checklist-hero__next b {
+  color: var(--warm-text);
+}
+
+.checklist-hero__next span {
+  white-space: nowrap;
+  color: var(--warm-faint);
+}
+
+.checklist-note {
+  margin: 0 0 16px;
+  color: var(--warm-faint);
+  font-size: 12.5px;
+}
+
+.checklist-card {
+  --area: #e8664f;
+  --area-soft: #fff0eb;
+  margin-bottom: 14px;
+  border: 1px solid var(--warm-border);
+  border-radius: var(--warm-radius);
+  padding: 14px;
   background: var(--warm-surface);
 }
 
-.checklist-group h2 {
-  margin: 0 0 4px;
-  font-size: 15px;
+.checklist-card--admin { --area: #c2552f; --area-soft: #fff1e8; }
+.checklist-card--care { --area: #3f7f6e; --area-soft: #e9f4ef; }
+.checklist-card--life { --area: #2f6f9f; --area-soft: #e8f2fa; }
+.checklist-card--items { --area: #e8664f; --area-soft: #fff0eb; }
+
+.checklist-card__header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.checklist-card__icon {
+  display: inline-flex;
+  width: 42px;
+  height: 42px;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  border-radius: 14px;
+  color: var(--area);
+  background: var(--area-soft);
+}
+
+.checklist-card__header h2 {
+  margin: 0;
+  font-size: 16px;
   font-weight: 750;
 }
 
-.checklist-group ul {
+.checklist-card__header small {
+  color: var(--warm-muted);
+  font-size: 12.5px;
+}
+
+.checklist-card__count {
+  border-radius: 999px;
+  padding: 3px 10px;
+  color: var(--area);
+  background: var(--area-soft);
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.checklist-card__count.is-complete {
+  color: #fff;
+  background: var(--area);
+}
+
+.checklist-rows {
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
-.checklist-group li {
+.checklist-rows li {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
   border-top: 1px dashed var(--warm-border);
 }
 
-.checklist-group li:first-child {
-  border-top: 0;
-}
-
-.checklist-group label {
+.checklist-rows label {
+  position: relative;
   display: flex;
   flex: 1;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
   padding: 11px 0;
   cursor: pointer;
+}
+
+/* The real checkbox stays for keyboards and screen readers; the box beside it
+   is what is drawn. */
+.checklist-rows input[type="checkbox"] {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+
+.checklist-rows__box {
+  display: inline-flex;
+  width: 30px;
+  height: 30px;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  border: 1.5px solid var(--warm-border-strong);
+  border-radius: 10px;
+  color: var(--warm-faint);
+  background: var(--warm-bg);
+  transition: background-color 0.15s, border-color 0.15s;
+}
+
+.checklist-rows input:focus-visible + .checklist-rows__box {
+  outline: 3px solid rgba(232, 102, 79, 0.35);
+  outline-offset: 2px;
+}
+
+.checklist-rows li.is-done .checklist-rows__box {
+  border-color: var(--area);
+  color: #fff;
+  background: var(--area);
+}
+
+.checklist-rows__text {
+  display: flex;
+  min-width: 0;
+  flex: 1;
+  flex-direction: column;
+}
+
+.checklist-rows__text span {
   font-size: 14.5px;
 }
 
-.checklist-group input[type='checkbox'] {
-  width: 20px;
-  height: 20px;
-  flex: none;
-  accent-color: var(--warm-accent);
-}
-
-.checklist-note {
-  margin: -8px 0 16px;
-  color: var(--warm-faint);
-  font-size: 12.5px;
-}
-
-.checklist-group label span {
-  flex: 1;
-}
-
-.checklist-when {
-  flex: none;
-  border-radius: 999px;
-  padding: 2px 8px;
-  color: var(--warm-peach);
-  background: var(--warm-peach-soft);
-  font-size: 11.5px;
+.checklist-rows__text small {
+  margin-top: 1px;
+  color: var(--area);
+  font-size: 12px;
   font-weight: 650;
-  white-space: nowrap;
 }
 
-.checklist-group li.is-done span {
+.checklist-rows li.is-done .checklist-rows__text span {
   color: var(--warm-faint);
   text-decoration: line-through;
 }
 
-.checklist-group li a {
+.checklist-rows li a {
   display: inline-flex;
   padding: 8px 2px;
   color: var(--warm-faint);
+}
+
+.checklist-tiles {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  margin: 4px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.checklist-tile {
+  position: relative;
+  display: flex;
+  width: 100%;
+  min-height: 92px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: 1.5px solid var(--warm-border);
+  border-radius: 16px;
+  padding: 12px 6px;
+  color: var(--warm-text);
+  background: var(--warm-bg);
+  cursor: pointer;
+  transition: border-color 0.15s, background-color 0.15s, transform 0.1s;
+}
+
+.checklist-tile:active {
+  transform: scale(0.97);
+}
+
+.checklist-tile:focus-visible {
+  outline: 3px solid rgba(232, 102, 79, 0.35);
+  outline-offset: 2px;
+}
+
+.checklist-tile__icon {
+  display: inline-flex;
+  width: 44px;
+  height: 44px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  color: var(--area);
+  background: var(--area-soft);
+}
+
+.checklist-tile__label {
+  font-size: 13px;
+  font-weight: 650;
+  line-height: 1.35;
+  text-align: center;
+  word-break: keep-all;
+}
+
+.checklist-tile.is-done {
+  border-color: var(--area);
+  background: var(--area-soft);
+}
+
+.checklist-tile.is-done .checklist-tile__icon {
+  color: #fff;
+  background: var(--area);
+}
+
+.checklist-tile__check {
+  position: absolute;
+  top: 7px;
+  right: 7px;
+  display: inline-flex;
+  width: 20px;
+  height: 20px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  color: #fff;
+  background: var(--area);
+}
+
+.checklist-tiles-note {
+  margin: 0 0 8px;
+  color: var(--warm-muted);
+  font-size: 12.5px;
+}
+
+@media (min-width: 640px) {
+  .checklist-tiles {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
 }
 
 /* ---- School detail start module (W4) -------------------------------------- */
