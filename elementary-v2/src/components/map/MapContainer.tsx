@@ -24,6 +24,7 @@ const MAPS_READY_TIMEOUT_MS = 15_000
 
 const MapContainer: React.FC<MapContainerProps> = ({ className = '' }) => {
   const mapRef = useRef<HTMLDivElement>(null)
+  const surfaceRef = useRef<HTMLDivElement>(null)
   const naverMapRef = useRef<NaverMap | null>(null)
   const locationMarkerRef = useRef<Marker | null>(null)
   const mapListenersRef = useRef<unknown[]>([])
@@ -81,6 +82,36 @@ const MapContainer: React.FC<MapContainerProps> = ({ className = '' }) => {
       window.removeEventListener('joinmap:filter-academies', filterAcademies)
     }
   }, [])
+
+  // Naver Maps leaves touch-action at auto and only cancels the touches it handles
+  // itself, so a pinch that starts on a marker, the legend or a control fell
+  // through to the browser's page zoom. The page then scaled while the map zoomed
+  // on its own, and markers stopped matching the tiles. Over the map, zooming
+  // belongs to the map: the browser's pinch, ctrl+wheel (trackpad pinch on
+  // desktop) and Safari's gesture events are cancelled here without stopping
+  // propagation, so the SDK still receives every event. Single-finger moves are
+  // left alone so the academy popup's table can still scroll.
+  useEffect(() => {
+    const surface = surfaceRef.current
+    if (!surface) return
+    const blockMultiTouch = (event: TouchEvent) => {
+      if (event.touches.length > 1 && event.cancelable) event.preventDefault()
+    }
+    const blockPageZoomWheel = (event: WheelEvent) => {
+      if (event.ctrlKey) event.preventDefault()
+    }
+    const blockGesture = (event: Event) => event.preventDefault()
+    surface.addEventListener('touchmove', blockMultiTouch, { passive: false })
+    surface.addEventListener('wheel', blockPageZoomWheel, { passive: false })
+    surface.addEventListener('gesturestart', blockGesture)
+    surface.addEventListener('gesturechange', blockGesture)
+    return () => {
+      surface.removeEventListener('touchmove', blockMultiTouch)
+      surface.removeEventListener('wheel', blockPageZoomWheel)
+      surface.removeEventListener('gesturestart', blockGesture)
+      surface.removeEventListener('gesturechange', blockGesture)
+    }
+  }, [mapError])
 
   const initializeMap = useCallback(() => {
     if (!mapRef.current || naverMapRef.current) return
@@ -290,7 +321,9 @@ const MapContainer: React.FC<MapContainerProps> = ({ className = '' }) => {
   }
 
   return (
-    <div className={`relative ${className}`}>
+    // isolate: the SDK gives its controls and markers z-indexes of 100 and up, which
+    // otherwise compete with the app layers and drew the logo and scale over the sheet.
+    <div ref={surfaceRef} className={`relative isolate ${className}`}>
       <div ref={mapRef} className="h-full w-full" aria-label="주변 초등학교 지도" />
       {isMapReady && <MarkerManager map={naverMapRef.current} />}
       {isMapReady && naverMapRef.current && <ApartmentMarkerManager map={naverMapRef.current} />}

@@ -57,6 +57,20 @@ npm run typecheck
 
 ## Uncommitted Work At Handoff
 
+### 2026-10-04: 지도 하단 간격·교육시설 범례 닫기·브라우저 확대 차단 (커밋·운영 반영)
+
+- `src/index.css`: 범례·"내 주변"·위치 안내의 bottom에서 GNB 높이 제거. `<main>`이 이미
+  `pb-app-gnb`로 GNB 위에서 끝나므로 64px가 이중으로 더해져 있었다(2026-10-03 GNB 전 폭 노출 때 생김)
+- `AcademyMarkerManager.tsx`: 교육시설 범례에 X(범례만 닫힘, 마커 유지). 레이어 재토글·선택 변경 시 다시 표시
+- `MapContainer.tsx`: 지도 영역에서 멀티터치 touchmove, ctrl+wheel, Safari gesture 이벤트의 기본
+  동작(페이지 확대)을 취소. 네이버 지도는 touch-action이 auto라 마커·범례 위에서 시작한 핀치가
+  브라우저 확대로 새어 지도와 마커 크기가 어긋났다. 전파는 막지 않아 SDK 확대는 그대로
+- `MapContainer.tsx`: 지도 래퍼에 `isolate`. SDK 컨트롤·마커의 z-index(100~)가 앱 레이어와 경쟁해
+  네이버 로고·축척이 상세 시트(50) 위에 그려졌다
+- 검증: lint · typecheck · build, 로컬 public smoke 통과, 390/1280px 화면 확인. 실기기(iOS/Android)
+  핀치는 미확인
+- **같은 작업 트리의 `SchoolCarePanel.tsx` 변경(소규모 학교 돌봄 이용률)은 다른 세션 작업이라 이 커밋에서 뺐다**
+
 ### 2026-10-04: 학교 돌봄·방과후와 주변 돌봄센터 (`9cf7ae5`, 운영 `f75f3cf`)
 
 - PRD D4 해소. 학교알리미 **apiType=59**(방과후·돌봄 공시) → `school_care_statistics`,

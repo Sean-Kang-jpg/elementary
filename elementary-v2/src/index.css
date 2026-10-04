@@ -598,16 +598,22 @@ body {
   padding-bottom: var(--app-bottom-inset);
 }
 
+/*
+ * The map's own controls need no GNB offset: <main> already stops at the GNB
+ * (pb-app-gnb), so the map ends there. Adding the GNB height again left the
+ * legend and "내 주변" floating 64px above the scale and logo row.
+ * "내 주변" sits on the right, above Naver's scale and logo (about 26px tall).
+ */
 .map-floating-control {
-  bottom: calc(var(--app-gnb-height) + 14px);
+  bottom: 34px;
 }
 
 .map-floating-alert {
-  bottom: calc(var(--app-gnb-height) + 68px);
+  bottom: 88px;
 }
 
 .map-legend {
-  bottom: calc(var(--app-gnb-height) + 10px);
+  bottom: 10px;
 }
 
 @media (min-width: 640px) {
