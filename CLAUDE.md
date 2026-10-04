@@ -207,8 +207,13 @@ migration은 Supabase 상태를 확인하지 않고 재설계하지 않는다.
 - **사용자 몫(권한 분류기가 막음)**: Actions 시크릿 `KERIS_SCHOOLINFO_API_KEY` 등록
   (`gh secret set KERIS_SCHOOLINFO_API_KEY` 후 값 붙여넣기). 원격 실행기는 매달 학교알리미 스냅샷을 새로 받아야 하므로 **이 시크릿 없이는 Actions 실행이 실패**한다. 등록 후 `gh workflow run etl-recurring.yml -f mode=rehearse -f force=apartment`로 리허설
 - **Windows 작업은 2026-10-04 비활성화**(사용자 결정, Actions로 전환). 운영 데이터는 8/29 이후
-  갱신되지 않은 상태 — 시크릿 등록 → Actions 리허설 통과 → `mode=apply` 수동 실행(또는 11/2 정기
-  실행)이 10월 갱신이다. 되돌리려면 `Enable-ScheduledTask -TaskName "Elementary ETL Daily Check"`
+  갱신되지 않은 상태. 시크릿 등록 완료, Actions 리허설 통과(run 37199555940, 13개 범위·쓰기 없음).
+  **첫 쓰기는 2026-11-02 03:15 KST 정기 실행**(사용자 결정 — 10월 수동 apply는 하지 않음).
+  인천 구 이름 80곳과 광주·전남 K-apt 매칭도 이때 운영에 들어간다.
+  **11/2 이후 확인할 것**: `gh run list --workflow etl-recurring.yml`로 성공 여부, `/admin/etl`의
+  최근 실행·검증 지표(`npm run browser:smoke:admin -- https://wherecho.co.kr`), 인천 학교가
+  새 구로 묶이는지, 상세 화면 기준일 줄(릴리스 후)이 아파트 2026-10-xx로 바뀌는지.
+  실패하면 GitHub가 메일로 알린다. Windows 작업 복구는 `Enable-ScheduledTask -TaskName "Elementary ETL Daily Check"`
 
 ### 3-1. 사용자 확인이 필요한 운영 변경
 
