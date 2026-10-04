@@ -504,6 +504,14 @@ try {
     'back from the guide returned to the school detail',
   )
 
+  // Care (SQL 23). Both blocks render nothing when their reads fail, so a
+  // missing grant or an empty load would pass silently without this.
+  await waitFor(
+    "document.querySelector('[data-testid=school-care]')?.innerText.includes('오후 돌봄')",
+    'the school detail shows its care-classroom disclosure',
+  )
+  await waitFor("Boolean(document.querySelector('[data-testid=care-centers]'))", 'the school detail lists nearby care centers')
+
   run(['fill', 'input[role="combobox"]', '서울방현'])
   await waitFor("document.querySelectorAll('#map-search-results [role=option]').length > 0", 'school search returned results')
   run(['eval', "document.querySelector('#map-search-results [role=option]').click(); 'school selected'"])

@@ -10,8 +10,10 @@
 - Active app: `F:\sm\vibe\elementary\pjt_250826\elementary-v2`
 - Stack: React 18, TypeScript, Vite, Tailwind CSS, Supabase, Naver Maps
 - Branch: `master` (작업), `release` (운영 배포. push가 곧 운영 배포다)
-- Last pushed baseline (2026-10-03 세션 종료): 운영 `release` `5cc5157`. 그 위 `master`의
-  커밋은 인수인계 문서뿐이라 release하지 않았다
+- Last pushed baseline (2026-10-04): 운영 `release` `05120ff`. **master 트리와 같지 않다** —
+  `476798d`(MY 재편 = `2d036f0`의 트리)에 모바일 화면 수정 `6f96125`의 세 파일만 얹었다.
+  master의 다른 세션 커밋 `1899418`(정기 ETL·데이터 기준일 표시, SQL `22` 필요)·`d36d84f`·`efd927c`는
+  아직 운영에 없다. 다음 release는 SQL `22` 운영 적용을 확인한 뒤 master 트리로 올린다
 - Production: `https://wherecho.co.kr` (옛 주소 `elementary-lovat.vercel.app`은 301로 넘어온다)
 - Supabase project ref: `vsgeksumgvcrkzjwvlgs`
 
@@ -60,7 +62,17 @@ npm run typecheck
 2026-10-03 세션 종료 시점에 **작업 트리는 깨끗하다.** 같은 날 두 세션이 같은 작업 트리에서
 동시에 작업했고, 둘 다 커밋·종료했다.
 
-### 2026-10-04: 즐겨찾기 → MY (커밋, 미배포)
+### 2026-10-04: 모바일 화면 위아래 띠·검색창 가림 (`6f96125`, 운영 `05120ff`)
+
+- 원인: body에 남은 Vite 템플릿 `display:flex; place-items:center; min-height:100vh`. 모바일에서
+  100vh(주소창 숨김 높이) > 100dvh(앱)라서 앱이 가운데 정렬돼 위아래 띠(다크 모드 강제 브라우저에서 검정)가
+  생기고, 문서가 스크롤돼 지도 검색창이 주소창 밑으로 들어갔다
+- 수정: body 정렬·min-height 제거, 앱 높이 `.app-viewport`(100vh 대체 후 100dvh). smoke에 "앱이 화면을
+  맨 위부터 채우고 문서가 스크롤되지 않는다" 검사 추가. 운영 smoke 통과. 실기기 확인은 사용자 몫
+- dev 서버 주의: 네이버 지도 키는 `localhost:3000`(과 운영)만 허용한다. 다른 포트에서 smoke를 돌리면
+  지도가 "등록되어 있지 않습니다"로 막혀 시·도 마커 검사에서 실패한다
+
+### 2026-10-04: 즐겨찾기 → MY (`2d036f0`, 운영 `476798d`)
 
 - 하단 탭 '즐겨찾기'를 'MY'로 바꾸고 `/guide`의 개인 허브 요소(프로필·전체 로드맵)를 `/my`로 옮겼다.
   `FavoritesPage.tsx` 삭제, `MyPage.tsx` 추가. `/favorites`는 앱이 `/my`로 `replaceState`
@@ -72,7 +84,10 @@ npm run typecheck
 - 검증: lint · typecheck · build 통과, `browser:smoke:public -- http://localhost:3000` 전체 통과
   (저장한 아파트가 그 단지로 열리는 검사, `/favorites` → `/my` 검사 추가). dev 서버는 `127.0.0.1`이
   아니라 `localhost`로만 응답했다
-- **운영 smoke 주의**: 이 smoke는 `/my`·MY 검사를 포함하므로 release 전 운영에 돌리면 실패한다
+- 운영 검증: release 후 `browser:smoke:public -- https://wherecho.co.kr` 전체 통과(MY 검사 포함)
+- 커밋할 때 같은 작업 트리의 다른 세션 변경(`DataFreshness`·SQL `22`·ETL 정기 실행)과 섞이지 않게
+  `ApartmentDetail.tsx`·`SchoolDetail.tsx`는 HEAD에 이 작업의 수정만 얹은 내용을 인덱스에 넣었다.
+  그 세션의 `DataFreshness` 네 줄은 작업 트리에 미커밋으로 남아 있다
 
 **동시 작업 교훈**: 한 세션이 파일째 `git add`해서 다른 세션의 hunk가 남의 커밋에 섞였다(아래
 줌아웃 smoke 블록). 동시 작업 중에는 같은 파일을 건드리기 전에 서로 알리고, `git add`는 파일이
@@ -164,20 +179,34 @@ migration은 Supabase 상태를 확인하지 않고 재설계하지 않는다.
 - 콘텐츠 큐레이션(PRD 7.5) — 책·영상 선정은 사용자 몫
 - 학교 상세 돌봄·방과후 정보 — D4(학교알리미 공시 항목 실증)가 선행
 
-### 3. P5 ETL 쓰기 전환 검토
+### 3. ETL — 월 1회, GitHub Actions 이전 (2026-10-04)
 
-1. GitHub Actions secrets 등록과 read-only run `34242752216` 검증은 완료했다.
-2. Windows Task Scheduler를 fallback으로 유지한다.
-3. DB write와 정기 schedule 전환은 사용자 별도 승인 후에만 진행한다.
+- **9/27~10/4 정기 ETL 전부 실패**(DB 쓰기 없음, 데이터만 멈춤). 결함 3개 수정:
+  빌더에 범위 미전달, K-apt의 `전남광주통합특별시`로 광주·전남 K-apt 매칭 0건,
+  세종을 충북·충남과 분리해 접경 공동통학구역 실패. 상세는 `docs/operations/ETL_SCHEDULING.md`
+- **주기**: 사용자 결정으로 월 1회. `etl_schedules.kapt-basic`을 weekly→monthly로 바꿨다
+  (학교알리미는 원본이 연 1회라 annual 유지)
+- **Actions**: `.github/workflows/etl-recurring.yml` — 매월 2일 03:15 KST, 수동 실행은 기본
+  `rehearse`(쓰기 없음). 입력 묶음 `etl/recurring_inputs_manifest.json` → 비공개 Storage
+  `portable-inputs/elementary-recurring-inputs-v1/2026-10-04.2/bundle.zip` (익명 차단 확인)
+- **사용자 몫(권한 분류기가 막음)**: Actions 시크릿 `KERIS_SCHOOLINFO_API_KEY` 등록
+  (`gh secret set KERIS_SCHOOLINFO_API_KEY` 후 값 붙여넣기). 원격 실행기는 매달 학교알리미 스냅샷을 새로 받아야 하므로 **이 시크릿 없이는 Actions 실행이 실패**한다. 등록 후 `gh workflow run etl-recurring.yml -f mode=rehearse -f force=apartment`로 리허설
+- **Windows 작업은 2026-10-04 비활성화**(사용자 결정, Actions로 전환). 운영 데이터는 8/29 이후
+  갱신되지 않은 상태 — 시크릿 등록 → Actions 리허설 통과 → `mode=apply` 수동 실행(또는 11/2 정기
+  실행)이 10월 갱신이다. 되돌리려면 `Enable-ScheduledTask -TaskName "Elementary ETL Daily Check"`
 
-Actions secrets는 영구 외부 설정이므로 사용자 승인 없이 등록하거나 변경하지 않는다.
+### 3-1. 사용자 확인이 필요한 운영 변경
+
+- **인천 행정구역** — DB 백필 대신 ETL에서 해결(2026-10-04). 학교 주소의 구 이름을 학교알리미 값으로
+  맞추는 규칙을 `build_school_master_v2`에 넣었다(수도권 80곳, 다른 지역 0곳). 백필은 매달 ETL이
+  `school_master`를 다시 쓰므로 되돌려졌을 것이다. **운영 반영은 다음 `mode=apply` 실행 때**
+- ~~SQL 22~~ — 2026-10-04 사용자 적용, anon 호출로 3행 확인. 상세 화면 기준일 줄은 다음 릴리스에 나간다
+- ~~관리자 smoke 계정~~ — 2026-10-04 생성·등록 완료. `npm run browser:smoke:admin -- https://wherecho.co.kr`
+  운영에서 통과(로그인·4개 패널·RLS 조회). 자격 증명은 `.env`의 `ADMIN_SMOKE_*`
 
 ### 4. 이후 후보
 
-- 비개인용 인증 계정을 이용한 `/admin/etl` smoke 확장
-- Serving source timestamp 공개 후 freshness 표시
 - KRIC 공식 원본 확보 후 역/주소 검색 P4 재개
-- 학교 마스터의 인천 행정구역을 2026 개편 후 기준으로 갱신
 - 4컷 웹툰 파일럿(when-to-move 가이드, 인스타그램 겸용) — 사용자 결정 대기
 
 ## ETL Portability

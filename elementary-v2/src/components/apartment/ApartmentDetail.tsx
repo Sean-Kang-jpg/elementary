@@ -5,6 +5,8 @@ import { getApartmentAcademySummaries } from '../../services/dataService'
 import BottomSheet from '../ui/BottomSheet'
 import ApartmentCard from './ApartmentCard'
 import ShareButton from '../ui/ShareButton'
+import DataFreshness from '../ui/DataFreshness'
+import CareCenterList from '../care/CareCenterList'
 import { apartmentPath } from '../../utils/urlState'
 import { apartmentFavorite, isFavorite as checkFavorite, refreshFavorite, toggleFavorite } from '../../utils/favorites'
 import { track } from '../../utils/analytics'
@@ -110,7 +112,10 @@ const ApartmentDetail: React.FC<ApartmentDetailProps> = ({ apartment, isOpen, on
             <p className="mt-2 text-[11px] leading-4 text-gray-500">단지 기준 직선거리로 집계한 주변 학원·교습소·체육도장이며 공식 배정 관계가 아닙니다.</p>
           </section>
 
+          <CareCenterList latitude={apartment.latitude} longitude={apartment.longitude} originLabel="단지" headingId="apartment-care-centers-title" />
+
           {apartment.public_rental_ratio > 0 ? <section className="flex items-center gap-3 border-t border-gray-200 py-3"><span className="flex h-9 w-9 items-center justify-center rounded-md bg-orange-50 text-orange-700"><Building2 size={18} aria-hidden="true" /></span><span className="text-sm text-gray-700">공공임대 <b>{apartment.public_rental_units.toLocaleString()}세대</b> · 전체의 {apartment.public_rental_ratio}%</span></section> : null}
+          <DataFreshness sources={['kapt-basic']} />
         </div>
       )}
     </BottomSheet>

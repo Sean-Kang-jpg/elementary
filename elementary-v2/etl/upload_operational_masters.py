@@ -37,6 +37,9 @@ AUDIT_REPORT = OUTPUT_DIR / "backend_audit_report.json"
 
 
 def load_env(path: Path) -> None:
+    # A remote runner has no .env; its variables come from the environment.
+    if not path.is_file():
+        return
     for line in path.read_text(encoding="utf-8").splitlines():
         stripped = line.strip()
         if not stripped or stripped.startswith("#") or "=" not in stripped:

@@ -17,6 +17,10 @@ operational table returns an empty result under RLS rather than rows.
 | `filter_school_ids(...)` | function |
 | `nearby_academy_addresses(...)` | function |
 | `nearby_academy_addresses_for_school(...)` | function |
+| `public_data_freshness()` | function (SQL `22`, 2026-10-04; source name, as-of date and load time only) |
+| `school_care_statistics` | table (SQL `23`, 2026-10-04; per-school care and after-school disclosure) |
+| `care_centers` | table (SQL `23`; community care centers, public-page fields only) |
+| `nearby_care_centers(...)` | function (SQL `23`) |
 
 Verified blocked in the same pass: `apartment_complex_master`,
 `apartment_name_history`, `apartment_property_history`, `etl_runs` return
@@ -60,6 +64,34 @@ Each `institutions` item also carries `subjects` (2026-10-03): name-derived cate
 Measured latency on 2026-09-27, five samples each: 0.193-0.316 s and 0.235-0.316 s.
 
 **Neither call degrades gracefully** — both `throw` on error, unlike `filter_school_ids`. If either migration is ever rolled back, the academy surfaces will error rather than disappear quietly.
+
+### `school_care_statistics`, `care_centers` and `nearby_care_centers(...)` (SQL `23`)
+
+Purpose: the school detail's 돌봄·방과후 block and the "주변 돌봄센터" list on school
+and apartment detail. Loaded by `etl/collect_care_data.py` (dry-run by default,
+`--apply` to write; monthly). Kept out of `school_master` so the recurring master
+ETL and its portable baseline are untouched.
+
+- `school_care_statistics` — Schoolinfo `apiType=59`, joined through
+  `school_master.schoolinfo_code`. Afternoon/evening/linked care rooms and
+  participants, after-school program counts and participants. **The disclosure
+  has no applicant, waitlist or rejection counts**, so the frontend shows
+  participants per 100 grade-1–2 students and per room as a proxy, never a score.
+  `statistics_year` is the publication year (`pbanYr`), not a verified school year.
+- `care_centers` — the 다함께돌봄 support team's public center list
+  (`dadol.or.kr/board/center/list`), approved centers only; Seoul's
+  우리동네키움센터 are in it. Only the fields its own public center page shows:
+  name, capacity, term and vacation hours, address, phone. The source JSON also
+  returns staff names and e-mails; the collector drops them on read. Fees and
+  current enrollment are not loaded — the public page does not show them and
+  their units are unclear. Entries are self-reported; `source_updated_on` says
+  when the center last edited its own entry.
+- `nearby_care_centers(p_latitude, p_longitude, p_max_distance_m)` — straight-line,
+  radius capped at 2,000 m, nearest 30.
+
+**Both degrade gracefully**: a database without SQL `23` makes the frontend render
+nothing for these blocks (`PGRST202`/`PGRST205`/`42883`/`42P01`), so the app can
+ship before the migration.
 
 ## Private operational contracts
 

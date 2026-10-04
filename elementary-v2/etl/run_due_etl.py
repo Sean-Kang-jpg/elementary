@@ -114,14 +114,14 @@ def collect_apartment() -> list[dict[str, Any]]:
     ]
 
 
-def collect_school(region: str | None = None) -> list[dict[str, Any]]:
+def collect_school(regions: list[str] | None = None) -> list[dict[str, Any]]:
     """Fetch Schoolinfo for one scope; the capital keeps its historical slug."""
     year = date.today().year
-    arguments = ["--year", str(year)]
-    slug = "capital"
-    if region is not None:
-        arguments += ["--regions", region]
-        slug = scope_slug(list(build_scopes(load_registry(), [region], ())))
+    # Always name the regions: with none, the fetcher defaults to every
+    # production region and writes a file the capital build never reads.
+    regions = list(regions or capital_scope())
+    arguments = ["--year", str(year), "--regions", *regions]
+    slug = scope_slug(list(build_scopes(load_registry(), regions, ())))
     run_script(str(BASE_DIR / "fetch_schoolinfo_2026.py"), *arguments)
     basic_path = OUTPUT_DIR / f"schoolinfo_{year}_basic_{slug}.json"
     grade_path = OUTPUT_DIR / f"schoolinfo_{year}_grade_students_{slug}.json"
@@ -143,6 +143,47 @@ def collect_school(region: str | None = None) -> list[dict[str, Any]]:
     ]
 
 
+# Regions built together because their school zones cross the border between
+# them: 세종's joint zones name schools in 충북 and 충남 (미르초공주봉황초공동통학구역),
+# and built alone those zones match nothing. This is the scope they were
+# promoted in on 2026-09-27; a recurring run must use the same one.
+JOINT_SCOPES: tuple[tuple[str, ...], ...] = (("세종특별자치시", "충청북도", "충청남도"),)
+
+
+def ensure_schoolinfo(regions: list[str], slug: str) -> None:
+    """Fetch Schoolinfo for a scope that has no snapshot yet.
+
+    The school build reads the newest local snapshot even when only apartments
+    are due. The ETL workstation always has one; a remote runner starts empty,
+    and restoring a bundled copy would roll statistics back after each annual
+    refresh. So a missing snapshot is fetched fresh, and an existing one is left
+    exactly as the schedule last collected it.
+    """
+    pattern = f"schoolinfo_*_grade_students_{slug}.json"
+    if any(OUTPUT_DIR.glob(pattern)):
+        return
+    print(f"no Schoolinfo snapshot for {slug}; fetching")
+    collect_school(None if slug == "capital" else regions)
+
+
+def production_scopes() -> list[tuple[list[str], str]]:
+    """Every scope a recurring run covers, as (regions, slug), capital first."""
+    registry = load_registry()
+    capital = capital_scope()
+    production = [region.canonical_name for region in registry.production_regions]
+    scopes: list[tuple[list[str], str]] = [(capital, "capital")]
+    grouped: set[str] = set(capital)
+    for joint in JOINT_SCOPES:
+        if all(name in production for name in joint):
+            regions = list(joint)
+            scopes.append((regions, scope_slug(list(build_scopes(registry, regions, ())))))
+            grouped.update(joint)
+    for name in production:
+        if name not in grouped:
+            scopes.append(([name], scope_slug(list(build_scopes(registry, [name], ())))))
+    return scopes
+
+
 def capital_scope() -> list[str]:
     return [region.canonical_name for region in load_registry().production_regions
             if region.canonical_name in CAPITAL_REGIONS]
@@ -154,7 +195,7 @@ def build_manifest(group: str, regions: list[str], slug: str) -> Path:
     if group == "apartment":
         snapshots = collect_apartment()
     else:
-        snapshots = collect_school(None if slug == "capital" else regions[0])
+        snapshots = collect_school(None if slug == "capital" else regions)
     manifest = {
         "pipeline_name": base["pipeline_name"],
         "pipeline_version": base["pipeline_version"],
@@ -314,6 +355,10 @@ class RunLock:
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--apply", action="store_true", help="Write validated data to Supabase")
+    parser.add_argument(
+        "--rehearse", action="store_true",
+        help="Collect, build and validate every scope like a real run, but write nothing to Supabase",
+    )
     parser.add_argument("--force", action="append", choices=("apartment", "school", "all"), default=[])
     parser.add_argument("--max-attempts", type=int, default=3)
     parser.add_argument("--retry-delay-seconds", type=int, default=300)
@@ -332,27 +377,27 @@ def main() -> None:
                 run_maintenance(url, key)
         return
     print("due source groups: " + ", ".join(groups))
-    if not args.apply:
-        print("read-only due check complete; pass --apply to collect and update")
+    if args.apply and args.rehearse:
+        raise ValueError("--rehearse and --apply are exclusive")
+    if not args.apply and not args.rehearse:
+        print("read-only due check complete; pass --apply to collect and update, or --rehearse to dry-run it")
         return
     with RunLock():
         # The capital runs as one scope, as it always has; every region promoted
-        # since then runs as its own, because Schoolinfo is collected per scope
-        # and each wave must stay separately attributable.
-        capital = capital_scope()
-        extra = [
-            region.canonical_name
-            for region in load_registry().production_regions
-            if region.canonical_name not in capital
-        ]
+        # since then runs as its own (or with the neighbours it shares zones
+        # with), because Schoolinfo is collected per scope and each wave must
+        # stay separately attributable.
+        for regions, slug in production_scopes():
+            ensure_schoolinfo(regions, slug)
         for group in groups:
-            execute_group(group, True, args.max_attempts, args.retry_delay_seconds, capital, "capital")
-            for region in extra:
-                slug = scope_slug(list(build_scopes(load_registry(), [region], ())))
+            for regions, slug in production_scopes():
                 execute_group(
-                    group, True, args.max_attempts, args.retry_delay_seconds, [region], slug
+                    group, args.apply, args.max_attempts, args.retry_delay_seconds, regions, slug
                 )
-        run_maintenance(url, key)
+        if args.apply:
+            run_maintenance(url, key)
+        else:
+            print("rehearsal complete: every scope collected, built and validated; nothing written")
 
 
 if __name__ == "__main__":

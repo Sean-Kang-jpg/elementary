@@ -150,10 +150,19 @@ def load_manifest(path: Path) -> dict[str, Any]:
     return manifest
 
 
-def build_outputs() -> None:
+def build_outputs(regions: list[str], cities: list[str]) -> None:
+    """Rebuild this run's scope, and only it.
+
+    Every builder defaults to the whole production scope when given no regions.
+    That was the capital until other regions were promoted; from 2026-09-27 the
+    default became all seventeen, for which no base master exists, and every
+    scheduled run failed in build_school_master_v2 until the scope was passed
+    explicitly (fixed 2026-10-04).
+    """
+    scope_args = ["--regions", *regions, *(["--cities", *cities] if cities else [])]
     for (script,) in BUILD_COMMANDS:
-        print(f"running {script.name}")
-        subprocess.run([sys.executable, str(script)], cwd=PROJECT_DIR, check=True)
+        print(f"running {script.name} for {', '.join(regions)}")
+        subprocess.run([sys.executable, str(script), *scope_args], cwd=PROJECT_DIR, check=True)
 
 
 def validate_outputs(suffix: str = "") -> list[tuple[str, tuple[str, ...], list[dict[str, Any]]]]:
@@ -572,12 +581,19 @@ def main() -> None:
             ),
         }
     resolved_scope = resolve_scope(manifest)
-    scope_slug_value = scope_slug(list(build_scopes(load_registry(), args.regions, args.cities)))
+    # The scope comes from the manifest when no regions are given - the capital
+    # manifest names its three regions. Falling back to the registry default here
+    # would silently mean every production region.
+    scope_regions = list(args.regions) or list(resolved_scope["regions"])
+    scope_cities = list(args.cities) or [
+        city for cities in resolved_scope.get("cities", {}).values() for city in cities
+    ]
+    scope_slug_value = scope_slug(list(build_scopes(load_registry(), scope_regions, scope_cities)))
     suffix = "" if scope_slug_value == "capital" else f"_{scope_slug_value}"
     manifest["resolved_scope"] = resolved_scope
     print(f"scope: {', '.join(resolved_scope['labels'])} (registry {resolved_scope['registry_version']})")
     if args.build:
-        build_outputs()
+        build_outputs(scope_regions, scope_cities)
     loaded = validate_outputs(suffix)
     for table, per_region in region_row_counts(loaded).items():
         print(f"  {table}: " + ", ".join(f"{region} {count:,}" for region, count in per_region.items()))

@@ -1,0 +1,77 @@
+name: Recurring ETL
+
+# Monthly refresh of every production region (decided 2026-10-04: once a month is
+# enough). Replaces the Windows Task Scheduler job once a scheduled run here has
+# completed and matched production. etl_schedules still decides what is due:
+# K-apt is monthly, Schoolinfo annual, so most months refresh apartments only.
+#
+# A manual run defaults to a rehearsal - collect, build and validate every scope
+# with no database writes. Choose `apply` only to write.
+
+on:
+  schedule:
+    # 18:15 UTC on the 1st = 03:15 KST on the 2nd.
+    - cron: "15 18 1 * *"
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "rehearse writes nothing; apply updates Supabase"
+        type: choice
+        options: [rehearse, apply]
+        default: rehearse
+      force:
+        description: "run a source group even if it is not due"
+        type: choice
+        options: [none, apartment, school, all]
+        default: none
+
+permissions:
+  contents: read
+
+concurrency:
+  group: recurring-etl
+  cancel-in-progress: false
+
+jobs:
+  recurring-etl:
+    runs-on: ubuntu-latest
+    timeout-minutes: 240
+    defaults:
+      run:
+        working-directory: elementary-v2
+    env:
+      SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+      SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+      KERIS_SCHOOLINFO_API_KEY: ${{ secrets.KERIS_SCHOOLINFO_API_KEY }}
+      PYTHONIOENCODING: utf-8
+      PYTHONUTF8: "1"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Restore reviewed inputs for every scope
+        run: >
+          python etl/prepare_portable_inputs.py
+          --manifest etl/recurring_inputs_manifest.json
+          --restore-dir etl/runtime/recurring-inputs
+          --materialize
+      - name: Run due ETL groups
+        env:
+          MODE: ${{ github.event_name == 'schedule' && 'apply' || inputs.mode }}
+          FORCE: ${{ inputs.force || 'none' }}
+        run: |
+          args=()
+          if [ "$MODE" = "apply" ]; then args+=(--apply); else args+=(--rehearse); fi
+          if [ "$FORCE" != "none" ]; then args+=(--force "$FORCE"); fi
+          python etl/run_due_etl.py "${args[@]}"
+      - name: Keep the run's reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: recurring-etl-reports
+          path: |
+            elementary-v2/etl/runtime/recurring_*.json
+            elementary-v2/etl/local_outputs_20260320/*report*.json
+          if-no-files-found: warn
+          retention-days: 30

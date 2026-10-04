@@ -182,6 +182,31 @@ python etl/run_recurring_etl.py --apply
 
 Add `--build` after collecting newer source files. Successful runs archive the configured sources, stage six normalized datasets, verify exact remote counts, rebuild Serving, remove staging rows, and complete the `etl_runs` record. Failed runs retain staging for diagnosis and mark snapshots rejected.
 
+## 22: public data freshness (2026-10-04)
+
+`sql/22_public_data_freshness.sql` adds `public_data_freshness()`, a SECURITY DEFINER function
+granted to anon that returns each refreshed source's name, as-of date and load time - nothing
+else from the private ETL tables. The school and apartment detail screens show the dates under
+their content. The frontend treats a missing function as "no date", so the app can ship first.
+Apply in the SQL editor, then check with the anon key:
+`POST /rest/v1/rpc/public_data_freshness` returns three rows.
+
+## 23: care serving (2026-10-04)
+
+`sql/23_create_care_serving.sql` adds two public tables, `school_care_statistics`
+(Schoolinfo apiType=59) and `care_centers` (다함께돌봄 center list), and the
+`nearby_care_centers(lat, lng, radius)` function. It needs `14` (it reuses
+`set_academy_proximity_location()`) and is independent of `22`. Apply in the SQL
+editor, then load and verify:
+
+```bash
+python etl/collect_care_data.py            # dry run: snapshots under etl/runtime/care/
+python etl/collect_care_data.py --apply    # upsert, drop older snapshots, anon read + RPC check
+```
+
+The loader refuses to shrink either table by more than 20% in one run. Run it
+monthly; the school disclosure changes yearly, the center list whenever centers edit it.
+
 ## Stop Conditions
 
 - Project hostname does not resolve or keys belong to another project.

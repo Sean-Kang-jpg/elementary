@@ -12,7 +12,7 @@
     "browser:install": "agent-browser install",
     "browser:smoke": "npm run browser:smoke:public",
     "browser:smoke:public": "node scripts/public-smoke.mjs",
-    "browser:smoke:admin": "agent-browser --session elementary-admin-smoke open http://localhost:3001/admin/etl && agent-browser --session elementary-admin-smoke wait --load networkidle && agent-browser --session elementary-admin-smoke snapshot -i && agent-browser --session elementary-admin-smoke close",
+    "browser:smoke:admin": "node scripts/admin-smoke.mjs",
     "content": "node scripts/build-content.mjs",
     "shell": "node scripts/build-shell-pages.mjs",
     "seo": "node scripts/build-seo-files.mjs"

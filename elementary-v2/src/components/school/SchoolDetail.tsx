@@ -13,7 +13,10 @@ import { isFavorite as checkFavorite, schoolFavorite, toggleFavorite as toggleSa
 import { recordPerformanceMetric } from '../../utils/performanceMetrics'
 import type { AcademyAddress, ApartmentAcademySummary } from '../../types'
 import ShareButton from '../ui/ShareButton'
+import DataFreshness from '../ui/DataFreshness'
 import StartModule from '../content/StartModule'
+import SchoolCarePanel from '../care/SchoolCarePanel'
+import CareCenterList from '../care/CareCenterList'
 import { markEntry, track } from '../../utils/analytics'
 import { schoolPath } from '../../utils/urlState'
 import { hasAcademyData } from '../../utils/academyCoverage'
@@ -308,6 +311,10 @@ const SchoolDetail: React.FC<SchoolDetailProps> = ({ school, isOpen, onClose, on
 
           <StartModule school={school} onOpenGuide={onOpenGuide} />
 
+          <SchoolCarePanel school={school} />
+
+          <CareCenterList latitude={school.latitude} longitude={school.longitude} originLabel="학교" headingId="school-care-centers-title" />
+
           <section aria-labelledby="grade-title">
             <h3 id="grade-title" className="mb-2 font-semibold text-gray-950">학년별 학생 현황</h3>
             <GradeChart school={school} metric={selectedMetric} />
@@ -364,6 +371,7 @@ const SchoolDetail: React.FC<SchoolDetailProps> = ({ school, isOpen, onClose, on
             )}
           </section>}
 
+          <DataFreshness sources={['schoolinfo-grade-students', 'kapt-basic']} />
             </>
           )}
 

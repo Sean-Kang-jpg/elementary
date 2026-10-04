@@ -1,0 +1,229 @@
+{
+  "bundle_name": "elementary-recurring-inputs-v1",
+  "bundle_version": "2026-10-04.2",
+  "description": "Reviewed inputs the recurring ETL reads but does not fetch, for every production scope. Sources (K-apt, Schoolinfo) are fetched fresh by each run.",
+  "scopes": [
+    "capital",
+    "i10-m10-n10",
+    "c10",
+    "d10",
+    "g10",
+    "f10",
+    "h10",
+    "q10",
+    "t10",
+    "k10",
+    "p10",
+    "r10",
+    "s10"
+  ],
+  "storage": {
+    "bucket": "etl-source-snapshots",
+    "archive_path": "portable-inputs/elementary-recurring-inputs-v1/2026-10-04.2/bundle.zip"
+  },
+  "files": [
+    {
+      "role": "apartment-base",
+      "source_path": "../../archive/GAS/GAS/임시/apt_mst_info_202410.csv",
+      "bundle_path": "apartment/apt_mst_info_202410.csv",
+      "byte_size": 13060240,
+      "sha256": "9092f884b008d701349e6652d2e1f8453034302d95378d600a22442225a51853"
+    },
+    {
+      "role": "school-baseline:capital",
+      "source_path": "etl/local_outputs_20260320/school_master_v1_20260320.json",
+      "bundle_path": "school/school_master_v1_20260320.json",
+      "byte_size": 3744850,
+      "sha256": "0a9c64e7be89c347ebf547eff32daba9fa5c7d2dd6c1f57f25050a0b7532a5cb"
+    },
+    {
+      "role": "point-assignments:capital",
+      "source_path": "etl/local_outputs_20260320/apartment_point_assignments.csv",
+      "bundle_path": "assignment/apartment_point_assignments.csv",
+      "byte_size": 6156474,
+      "sha256": "58526d7111e9445e208212f5577b734fcccb7c5735bc0a30fffd818bf00ddafe"
+    },
+    {
+      "role": "assignment-review-queue:capital",
+      "source_path": "etl/local_outputs_20260320/assignment_review_queue.csv",
+      "bundle_path": "assignment/assignment_review_queue.csv",
+      "byte_size": 75977,
+      "sha256": "e26ba05bf897a342e1214592cf1827042c2da06d8cbabf92c181478d2636c43e"
+    },
+    {
+      "role": "p1-resolved-cases:capital",
+      "source_path": "etl/local_outputs_20260320/p1_resolved_cases.csv",
+      "bundle_path": "assignment/p1_resolved_cases.csv",
+      "byte_size": 5209,
+      "sha256": "ef81589a9d651a5662fd650dc2bc1fdd83faefb83a55dfbe256166e0031e86eb"
+    },
+    {
+      "role": "school-baseline:i10-m10-n10",
+      "source_path": "etl/local_outputs_20260320/school_master_v1_i10-m10-n10.json",
+      "bundle_path": "school/school_master_v1_i10-m10-n10.json",
+      "byte_size": 1211177,
+      "sha256": "c9515c1b0a5e246052fb786af1bc3cadba35e2e5746db7e80f2440a63353a4c4"
+    },
+    {
+      "role": "point-assignments:i10-m10-n10",
+      "source_path": "etl/local_outputs_20260320/apartment_point_assignments_i10-m10-n10.csv",
+      "bundle_path": "assignment/apartment_point_assignments_i10-m10-n10.csv",
+      "byte_size": 1002656,
+      "sha256": "133644da11d0f947ef9d0046e8160f1607d4d8ecf37601e193ec3e46636fb13f"
+    },
+    {
+      "role": "school-baseline:c10",
+      "source_path": "etl/local_outputs_20260320/school_master_v1_c10.json",
+      "bundle_path": "school/school_master_v1_c10.json",
+      "byte_size": 493406,
+      "sha256": "438af53b5da82a9a8b139d2a24376baac899f7e80b8ff8cbf705e426599c7a9f"
+    },
+    {
+      "role": "point-assignments:c10",
+      "source_path": "etl/local_outputs_20260320/apartment_point_assignments_c10.csv",
+      "bundle_path": "assignment/apartment_point_assignments_c10.csv",
+      "byte_size": 1483811,
+      "sha256": "f14284ddfd7f91c89603abc78293128b94a6d6b4794772d45169bf1e2966ec03"
+    },
+    {
+      "role": "school-baseline:d10",
+      "source_path": "etl/local_outputs_20260320/school_master_v1_d10.json",
+      "bundle_path": "school/school_master_v1_d10.json",
+      "byte_size": 388041,
+      "sha256": "8df9acaeeb61f4f5cedd66f52531de83e4582f4d21f4205ac9bf52f1726dfa70"
+    },
+    {
+      "role": "point-assignments:d10",
+      "source_path": "etl/local_outputs_20260320/apartment_point_assignments_d10.csv",
+      "bundle_path": "assignment/apartment_point_assignments_d10.csv",
+      "byte_size": 662992,
+      "sha256": "11e1a070bffeb80a69ea05267c61d5bdc5e5b5dc6499b26215014a927d3011f7"
+    },
+    {
+      "role": "school-baseline:g10",
+      "source_path": "etl/local_outputs_20260320/school_master_v1_g10.json",
+      "bundle_path": "school/school_master_v1_g10.json",
+      "byte_size": 253111,
+      "sha256": "a417068bc0fb5d25c811769aa210f7b619e3a504e17ea5188b4009f141f4134a"
+    },
+    {
+      "role": "point-assignments:g10",
+      "source_path": "etl/local_outputs_20260320/apartment_point_assignments_g10.csv",
+      "bundle_path": "assignment/apartment_point_assignments_g10.csv",
+      "byte_size": 335718,
+      "sha256": "6f2cbd68a307b37e8cadcce196d1e7e02f4aa04fef418af8ecaf448563a73446"
+    },
+    {
+      "role": "school-baseline:f10",
+      "source_path": "etl/local_outputs_20260320/school_master_v1_f10.json",
+      "bundle_path": "school/school_master_v1_f10.json",
+      "byte_size": 252539,
+      "sha256": "e0fbd4031be5067d46f507af656acbc5ec1a70b5bbc33fe55ee6d029894ace8d"
+    },
+    {
+      "role": "point-assignments:f10",
+      "source_path": "etl/local_outputs_20260320/apartment_point_assignments_f10.csv",
+      "bundle_path": "assignment/apartment_point_assignments_f10.csv",
+      "byte_size": 396983,
+      "sha256": "f3c9affde0a9bc4159ef7ee77cfdec5a711a85505f97914b17cf7a97c053f2fe"
+    },
+    {
+      "role": "school-baseline:h10",
+      "source_path": "etl/local_outputs_20260320/school_master_v1_h10.json",
+      "bundle_path": "school/school_master_v1_h10.json",
+      "byte_size": 202103,
+      "sha256": "540e20c9111ff2337da6d96c030dbe115bcb651faa4f926080bd4515b8eb773b"
+    },
+    {
+      "role": "point-assignments:h10",
+      "source_path": "etl/local_outputs_20260320/apartment_point_assignments_h10.csv",
+      "bundle_path": "assignment/apartment_point_assignments_h10.csv",
+      "byte_size": 496833,
+      "sha256": "f78d9ea3d8c9fb616c2b45c1aa1591b620e009ac5e9fb7433584feeb8173b96b"
+    },
+    {
+      "role": "school-baseline:q10",
+      "source_path": "etl/local_outputs_20260320/school_master_v1_q10.json",
+      "bundle_path": "school/school_master_v1_q10.json",
+      "byte_size": 724766,
+      "sha256": "c4d92a042f7be8f267473fe3bd2523cb26a42d8b7f3343051db80c2a2dcce044"
+    },
+    {
+      "role": "point-assignments:q10",
+      "source_path": "etl/local_outputs_20260320/apartment_point_assignments_q10.csv",
+      "bundle_path": "assignment/apartment_point_assignments_q10.csv",
+      "byte_size": 450563,
+      "sha256": "1527751a0640a7878d07f74deaee1251d421c94b445a20fe3122055e2d1764f4"
+    },
+    {
+      "role": "school-baseline:t10",
+      "source_path": "etl/local_outputs_20260320/school_master_v1_t10.json",
+      "bundle_path": "school/school_master_v1_t10.json",
+      "byte_size": 199004,
+      "sha256": "730b853329d388acf44bbac9dec68bcb4057c9b10bfef4db721b51df3798e1bd"
+    },
+    {
+      "role": "point-assignments:t10",
+      "source_path": "etl/local_outputs_20260320/apartment_point_assignments_t10.csv",
+      "bundle_path": "assignment/apartment_point_assignments_t10.csv",
+      "byte_size": 355415,
+      "sha256": "7982901f9009f01b8ae8d9261d4c4ac3fe07f2948823897e39f4c67274a3ccb6"
+    },
+    {
+      "role": "school-baseline:k10",
+      "source_path": "etl/local_outputs_20260320/school_master_v1_k10.json",
+      "bundle_path": "school/school_master_v1_k10.json",
+      "byte_size": 593798,
+      "sha256": "f12c58491d0477396523cdfc10d444698a723dc49529d9c63e6d2e46da03e850"
+    },
+    {
+      "role": "point-assignments:k10",
+      "source_path": "etl/local_outputs_20260320/apartment_point_assignments_k10.csv",
+      "bundle_path": "assignment/apartment_point_assignments_k10.csv",
+      "byte_size": 465576,
+      "sha256": "8280c9917ad6a216d0566b4ed91868a8b5d866afe255122e1612bf0eaa8d21e4"
+    },
+    {
+      "role": "school-baseline:p10",
+      "source_path": "etl/local_outputs_20260320/school_master_v1_p10.json",
+      "bundle_path": "school/school_master_v1_p10.json",
+      "byte_size": 679870,
+      "sha256": "cf6390fab11f22d29c95957fe4d5f0e17edbd61d6c4e942c6ffe49a8de09f2e5"
+    },
+    {
+      "role": "point-assignments:p10",
+      "source_path": "etl/local_outputs_20260320/apartment_point_assignments_p10.csv",
+      "bundle_path": "assignment/apartment_point_assignments_p10.csv",
+      "byte_size": 503455,
+      "sha256": "d1f964fb1eda752d2527e7c31fb0427c4e3a44abb0f476ab13e56f0912c8f8a7"
+    },
+    {
+      "role": "school-baseline:r10",
+      "source_path": "etl/local_outputs_20260320/school_master_v1_r10.json",
+      "bundle_path": "school/school_master_v1_r10.json",
+      "byte_size": 782870,
+      "sha256": "bb01e7c7964667dd07a58db93aa75463c8840c4a12a5a02c6c41b7a7f3866825"
+    },
+    {
+      "role": "point-assignments:r10",
+      "source_path": "etl/local_outputs_20260320/apartment_point_assignments_r10.csv",
+      "bundle_path": "assignment/apartment_point_assignments_r10.csv",
+      "byte_size": 1024134,
+      "sha256": "fd64e89b853de0b448969bd0a3a7b58fe35f4bf76d315a2814f23b5253b5336a"
+    },
+    {
+      "role": "school-baseline:s10",
+      "source_path": "etl/local_outputs_20260320/school_master_v1_s10.json",
+      "bundle_path": "school/school_master_v1_s10.json",
+      "byte_size": 856963,
+      "sha256": "39b6eb7b572c5d5df8ad73bb4c59e21660f433a936d81d599106dfeb21d351d0"
+    },
+    {
+      "role": "point-assignments:s10",
+      "source_path": "etl/local_outputs_20260320/apartment_point_assignments_s10.csv",
+      "bundle_path": "assignment/apartment_point_assignments_s10.csv",
+      "byte_size": 1120589,
+      "sha256": "f764c23e755a354d957f9e07a4eb3a5a668806ce7cbbab9f61f407bc181b9479"
+    }
+  ]
+}
