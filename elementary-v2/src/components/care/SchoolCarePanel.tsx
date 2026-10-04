@@ -1,7 +1,9 @@
-import { Baby } from 'lucide-react'
-import React, { useEffect, useState } from 'react'
+import { Baby, ChevronRight } from 'lucide-react'
+import React, { useEffect, useRef, useState } from 'react'
 import type { School, SchoolCareStatistics } from '../../types'
 import { getSchoolCareStatistics } from '../../services/dataService'
+import { currentDetailEntry, track } from '../../utils/analytics'
+import { useSeenOnce } from './useSeenOnce'
 
 const count = (value: number | null | undefined) => value ?? 0
 
@@ -18,8 +20,20 @@ const SMALL_SCHOOL_STUDENTS = 120
  * 들어가기 쉬운 정도의 간접 지표로 보여준다. 둘을 점수로 합치지 않는다 — 학교
  * 순위를 만들지 않는다는 신뢰 원칙 때문이다.
  */
-const SchoolCarePanel: React.FC<{ school: School }> = ({ school }) => {
+const CARE_GUIDE_PATH = '/guide/care-afterschool'
+
+const SchoolCarePanel: React.FC<{ school: School; onOpenGuide: (path: string) => void }> = ({ school, onOpenGuide }) => {
   const [stats, setStats] = useState<SchoolCareStatistics | null>(null)
+  const sectionRef = useRef<HTMLElement>(null)
+
+  useSeenOnce(sectionRef, stats ? school.school_id : null, () => {
+    track('view_care', {
+      item_type: 'school',
+      item_id: school.school_id,
+      block: 'school_care',
+      has_evening_care: stats && count(stats.evening_care_rooms) > 0 ? 'yes' : 'no',
+    })
+  })
 
   useEffect(() => {
     setStats(null)
@@ -45,7 +59,7 @@ const SchoolCarePanel: React.FC<{ school: School }> = ({ school }) => {
   const programs = count(stats.afterschool_aptitude_programs) + count(stats.afterschool_curriculum_programs)
 
   return (
-    <section aria-labelledby="school-care-title" data-testid="school-care">
+    <section ref={sectionRef} aria-labelledby="school-care-title" data-testid="school-care">
       <div className="mb-2 flex items-baseline justify-between">
         <h3 id="school-care-title" className="inline-flex items-center gap-2 font-semibold text-gray-950"><Baby size={18} aria-hidden="true" />돌봄·방과후</h3>
         <span className="text-xs text-gray-500">학교알리미 {stats.statistics_year}년 공시</span>
@@ -88,6 +102,19 @@ const SchoolCarePanel: React.FC<{ school: School }> = ({ school }) => {
           ? '돌봄 신청·탈락 인원은 공시되지 않습니다. 학생이 적은 학교는 돌봄을 전 학년에 여는 경우가 흔해 1·2학년 대비 이용률을 계산하지 않습니다.'
           : '돌봄 신청·탈락 인원은 공시되지 않습니다. 이용률은 오후 돌봄 참여 인원을 1·2학년 학생 수로 나눈 값으로, 낮고 교실당 인원이 많을수록 자리가 빠듯한 편입니다. 참여 인원에 3학년 이상이 섞이면 실제보다 높게 나옵니다.'}
       </p>
+      <a
+        href={CARE_GUIDE_PATH}
+        onClick={(event) => {
+          event.preventDefault()
+          track('click_care_guide', { school_id: school.school_id, guide_id: 'care-afterschool', entry_source: currentDetailEntry() ?? undefined })
+          onOpenGuide(CARE_GUIDE_PATH)
+        }}
+        className="mt-2 flex items-center justify-between rounded-md border border-gray-200 px-3 py-2.5 text-sm font-semibold text-blue-700 hover:bg-blue-50"
+        data-testid="care-guide-link"
+      >
+        늘봄·돌봄, 무엇을 언제 신청하나요
+        <ChevronRight size={16} aria-hidden="true" />
+      </a>
     </section>
   )
 }

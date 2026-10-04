@@ -71,6 +71,20 @@ npm run typecheck
   핀치는 미확인
 - **같은 작업 트리의 `SchoolCarePanel.tsx` 변경(소규모 학교 돌봄 이용률)은 다른 세션 작업이라 이 커밋에서 뺐다**
 
+### 2026-10-04: 돌봄 후속 — 필터·지도·프리렌더·측정·가이드
+
+- **필터** '저녁 돌봄 운영 학교만'(`FilterState.evening_care_only`): `school_care_statistics`에서
+  저녁 돌봄 학교 ID를 한 번 읽어(약 900) 모든 학교 목록 경로(`applyMatchingSchoolFilter`, 시·도 집계)에 적용.
+  결과 수는 교차 필터 RPC가 돌봄을 모르므로 RPC id 집합과의 교집합으로 센다. 전체 6,302 → 888
+- **지도**: 상세의 '지도에서 돌봄센터 보기' → `joinmap:show-care-centers` 이벤트로 목록 그대로 전달,
+  `CareCenterMarkerManager`가 마커·팝업·왼쪽 칩('돌봄센터 N곳 ×'). 지도는 따로 조회하지 않는다
+- **프리렌더** `api/detail.js` 학교 페이지에 오후·저녁 돌봄·방과후 사실 4줄. 돌봄 조회 실패는 그 줄만 빠진다
+- **GA4** `view_care`(블록 절반이 보일 때), `call_care_center`, `show_care_map`, `filter_evening_care`,
+  `click_care_guide`. `MEASUREMENT_PLAN.md` 8절
+- **가이드** `care-afterschool` "늘봄·돌봄, 무엇을 언제 신청하나요"(입학하는 해, 10번째). 2026학년도 기준이라
+  2027 정책 발표(2027년 초) 뒤 재확인 필요. 학교 사례는 인천계양초 2026 운영계획
+- 이용률은 `1·2학년 대비 이용률 %`, 전교생 120명 미만·100% 초과 학교는 '전 학년' 표기(`b258f48`)
+
 ### 2026-10-04: 학교 돌봄·방과후와 주변 돌봄센터 (`9cf7ae5`, 운영 `f75f3cf`)
 
 - PRD D4 해소. 학교알리미 **apiType=59**(방과후·돌봄 공시) → `school_care_statistics`,

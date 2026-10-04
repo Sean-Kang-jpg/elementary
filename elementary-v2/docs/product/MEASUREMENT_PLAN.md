@@ -198,6 +198,19 @@ GA4는 방문자 정보를 외부(Google)로 전송하므로 개인정보처리�
 사람은 자기 기기에서 따로 체크한다(공유 체크리스트는 사용자 결정으로 보류). 공유율 분모(상세
 조회 세션)에는 콘텐츠 조회가 들어 있지 않으므로, 콘텐츠 공유는 `item_type`으로 나눠 본다.
 
+### 돌봄 이벤트 (2026-10-04 추가)
+
+SQL `23`의 돌봄·방과후 블록과 주변 돌봄센터. "봤다"는 렌더가 아니라 블록의 절반이 화면에 들어온
+때다(`useSeenOnce`) — 바텀시트 아래쪽이라 렌더로 세면 상세를 연 모든 세션이 잡힌다.
+
+| 이벤트 | 파라미터 | 시점 |
+| --- | --- | --- |
+| `view_care` | `item_type`(`school`·`apartment`), `item_id`(학교 ID·단지 공개 키), `block`(`school_care`·`care_centers`), `has_evening_care`(`yes`·`no`, 학교 블록만), `center_count`(센터 목록만) | 대상마다 한 번 |
+| `call_care_center` | `item_type`, `item_id`, `center_id`, `distance_m` | 센터 전화 버튼 |
+| `show_care_map` | `item_type`, `item_id`, `center_count` | '지도에서 돌봄센터 보기' |
+| `filter_evening_care` | `result_count` | 필터에서 '저녁 돌봄 운영 학교만'을 켜고 적용할 때(끌 때는 보내지 않는다) |
+| `click_care_guide` | `school_id`, `guide_id`(`care-afterschool`), `entry_source` | 학교 돌봄 블록의 가이드 링크. `click_start_module`과 같은 모양 |
+
 ### `select_entry_year` (2026-10-03 추가)
 
 홈·가이드·FAQ의 입학연도 칩을 고를 때 `entry_year`와 함께 보낸다. 어떤 입학연도가

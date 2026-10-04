@@ -78,6 +78,10 @@ const dataCache = new DataCache()
 const matchingSchoolCache = new Map<string, { ids: Set<string>; count: number; timestamp: number }>()
 let crossFilterRpcAvailable: boolean | null = null
 
+// A database without SQL 23 answers "no such table/function"; the care sections
+// then render nothing, so the app can ship before the migration.
+const CARE_NOT_DEPLOYED = new Set(['PGRST202', 'PGRST205', '42883', '42P01'])
+
 const SCHOOL_TYPE_VALUES: Record<FilterState['school_types'][number], string> = {
   public: '공립',
   private: '사립',
@@ -150,6 +154,14 @@ const fetchMatchingSchoolSet = async (filters: FilterState) => {
 }
 
 export const getFilteredSchoolCount = async (filters: FilterState): Promise<number | null> => {
+  if (filters.evening_care_only) {
+    // The cross-filter RPC does not know about care, so count its ids that also run evening care.
+    const [matching, evening] = await Promise.all([fetchMatchingSchoolSet(filters), getEveningCareSchoolIds()])
+    if (!matching || !evening) return null
+    let count = 0
+    matching.ids.forEach((id) => { if (evening.has(id)) count += 1 })
+    return count
+  }
   const cached = matchingSchoolCache.get(matchingSchoolKey(filters))
   if (cached && Date.now() - cached.timestamp < 5 * 60 * 1000) return cached.count
   if (crossFilterRpcAvailable === false) return null
@@ -174,10 +186,49 @@ export const getFilteredSchoolCount = async (filters: FilterState): Promise<numb
   }
 }
 
+let eveningCareRequest: Promise<Set<string> | null> | null = null
+
+/**
+ * Schools whose disclosure shows an evening care room (SQL 23, about 900). One
+ * read per visit: the disclosure changes yearly. A database without SQL 23
+ * yields null, and the filter then leaves the list as it is rather than empty.
+ */
+const getEveningCareSchoolIds = (): Promise<Set<string> | null> => {
+  if (!eveningCareRequest) {
+    eveningCareRequest = (async () => {
+      const ids = new Set<string>()
+      for (let start = 0; ; start += 1000) {
+        const { data, error } = await supabase
+          .from('school_care_statistics')
+          .select('school_id')
+          .gt('evening_care_rooms', 0)
+          .range(start, start + 999)
+        if (error) {
+          if (!CARE_NOT_DEPLOYED.has(error.code)) console.warn('저녁 돌봄 학교 조회 실패:', error.message)
+          eveningCareRequest = null
+          return null
+        }
+        data?.forEach((row) => ids.add(String(row.school_id)))
+        if (!data || data.length < 1000) return ids
+      }
+    })()
+  }
+  return eveningCareRequest
+}
+
+const applyEveningCareFilter = async (schools: School[], filters: FilterState) => {
+  if (!filters.evening_care_only) return schools
+  const evening = await getEveningCareSchoolIds()
+  return evening ? schools.filter((school) => evening.has(school.school_id)) : schools
+}
+
 const applyMatchingSchoolFilter = async (schools: School[], filters: FilterState) => {
-  const districtFilteredSchools = filters.selected_districts.length
-    ? schools.filter((school) => filters.selected_districts.includes(school.district || ''))
-    : schools
+  const districtFilteredSchools = await applyEveningCareFilter(
+    filters.selected_districts.length
+      ? schools.filter((school) => filters.selected_districts.includes(school.district || ''))
+      : schools,
+    filters,
+  )
   if (!needsMatchingSchoolSet(filters)) return districtFilteredSchools
   const matching = await fetchMatchingSchoolSet(filters)
   return matching
@@ -286,6 +337,7 @@ export const fetchRegionData = async (
     filters.min_students,
     JSON.stringify({
       schoolTypes: filters.school_types,
+      eveningCare: filters.evening_care_only,
       cities: filters.selected_cities,
       districts: filters.selected_districts,
       apartments: {
@@ -311,6 +363,7 @@ export const fetchRegionAggregatedData = async (filters: FilterState): Promise<R
   const cacheKey = `region-aggregate_${JSON.stringify({
     cities: filters.selected_cities,
     schoolTypes: filters.school_types,
+    eveningCare: filters.evening_care_only,
   })}`
   const cached = dataCache.get(cacheKey)
   if (cached) return cached as RegionData[]
@@ -329,7 +382,8 @@ export const fetchRegionAggregatedData = async (filters: FilterState): Promise<R
   }
 
   const stats = new Map<string, { schools: number; students: number; observed: number }>()
-  rows.map(toSchool).filter((school) => establishmentTypeAllowed(school, filters)).forEach((school) => {
+  const regionSchools = await applyEveningCareFilter(rows.map(toSchool).filter((school) => establishmentTypeAllowed(school, filters)), filters)
+  regionSchools.forEach((school) => {
     const current = stats.get(school.region) || { schools: 0, students: 0, observed: 0 }
     current.schools += 1
     current.students += school.total_students
@@ -394,6 +448,7 @@ export const fetchDistrictOverviewData = async (
     grade: filters.target_grade,
     minStudents: filters.min_students,
     schoolTypes: filters.school_types,
+    eveningCare: filters.evening_care_only,
     cities: regions,
     districts: filters.selected_districts,
     minHouseholds: filters.min_households,
@@ -674,6 +729,7 @@ export const getAllRegionsSummary = async (): Promise<RegionData[]> => fetchRegi
   target_grade: 1,
   min_students: 0,
   school_types: ['public', 'private', 'national'],
+  evening_care_only: false,
   min_parking_ratio: 0,
   max_apartment_age: UNLIMITED_APARTMENT_AGE,
   max_public_rental_ratio: 100,
@@ -796,10 +852,6 @@ export const getApartmentAcademySummaries = async (
     return result
   }, {})
 }
-
-// A database without SQL 23 answers "no such table/function"; the care sections
-// then render nothing, so the app can ship before the migration.
-const CARE_NOT_DEPLOYED = new Set(['PGRST202', 'PGRST205', '42883', '42P01'])
 
 export const getSchoolCareStatistics = async (schoolId: string): Promise<SchoolCareStatistics | null> => {
   const { data, error } = await supabase
