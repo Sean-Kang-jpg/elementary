@@ -57,6 +57,15 @@ npm run typecheck
 
 ## Uncommitted Work At Handoff
 
+### 2026-10-05: 데스크톱 지도 레이아웃 — 왼쪽 패널 (미커밋)
+
+- 1024px 이상에서만 바뀐다. 하단 탭은 왼쪽 레일(72px), 지도 화면은 레일 옆 400px 패널에 검색·빠른 필터·상세를 담고
+  지도는 그 오른쪽 전체를 쓴다(네이버 지도·리치고 방식). 이전엔 시트가 전체 폭이라 좌우 여백이 컸고 올리면 지도가 가려졌다
+- `layout/panelSlot.ts`(신규): 패널 자리 컨텍스트와 `useIsDesktop`. `MainLayout`이 `.app-map-panel`(모바일에선 `display: contents`)을
+  그리고, `BottomSheet`는 데스크톱이면 그 자리에 펼친 채로 포털한다(드래그 없음, `data-snap-index`는 맨 위 단계)
+- `App.tsx`: 지도를 `.app-map-area`로 감싸 데스크톱에서 패널 폭만큼 비킨다. CSS는 `index.css` 끝 블록
+- 검증: lint·typecheck·build, 로컬 public smoke 통과, 1440px 학교·단지·빈 지도·홈과 390px 학교 화면 확인
+
 ### 2026-10-05: 단지 카드 연식·규모 일러스트 (커밋·운영 반영)
 
 - `components/apartment/ApartmentIllustration.tsx`(신규): 카드 왼쪽 68×76 칸의 건물 아이콘+막대를 SVG
@@ -72,7 +81,11 @@ npm run typecheck
 
 - `dataService.ts`: NEIS 분야 `직업기술`(성인 직무·자격 학원)을 RPC 응답에서 걸러 개수 재계산, 남는 학원이
   없는 주소는 버림. 두 RPC가 `toPublishedAcademies` 하나로 매핑. `build_academy_marker_snapshot.py`도 원천에서
-  제외 — **`apartment_academy_summary`(카드·상세의 "교육시설 N곳")는 다음 학원 ETL까지 직업기술 포함값**
+  제외 — **`apartment_academy_summary`(카드·상세의 "교육시설 N곳")는 아래 `--apply` 전까지 직업기술 포함값**
+- `etl/apply_academy_realm_exclusion.py`(`0411c7d`): 운영 학원 테이블을 제자리 수정(직업기술 기관 제거, 빈 주소 삭제,
+  800m 안 단지 요약 차감). 멱등이라 `run_due_etl.py`가 매 실행 끝에 돈다(리허설은 dry-run). dry-run: 주소 3,526
+  (갱신 969·삭제 2,557), 기관 3,752, 요약 31,537단지, 표본 25단지 RPC와 일치. **`--apply`는 자동 모드 권한 판단에
+  막혀 아직 안 돌렸다 — 사용자가 직접 실행하거나 다음 월간 실행(11/2 03:15 KST)에 적용된다**
 - `utils/mapPopup.ts`(신규): 학원·돌봄센터 팝업 X 버튼, 그리고 X가 검색창·우측 교육시설 버튼·범례(지도 캔버스
   밖 요소, `data-map-canvas`로 판별)에 가리면 지도를 내리는 `keepPopupClearOfMapControls`
 - 학원 팝업: 표 → 상호마다 마커 색과 같은 분류 칩(`getInstitutionCategories`), 분류 순 정렬, 상단 분류별 개수
@@ -94,6 +107,19 @@ npm run typecheck
 - 검증: lint · typecheck · build, 로컬 public smoke 통과, 390/1280px 화면 확인. 실기기(iOS/Android)
   핀치는 미확인
 - **같은 작업 트리의 `SchoolCarePanel.tsx` 변경(소규모 학교 돌봄 이용률)은 다른 세션 작업이라 이 커밋에서 뺐다**
+
+### 2026-10-05: 1학년 미리보기 (master, 플래그 뒤 — 운영 노출 안 됨)
+
+- 방향 전환: 따봉·순위 대신 **초1 교과서를 기준점으로** 과목·단계별 "언제 배우나"와 근거 있는 콘텐츠.
+  원칙 `docs/product/LEARNING_CONTENT_PRINCIPLES.md`, 단계표 `src/content/learning/stages.json`(국어 6·수학 5·영어 5단계),
+  콘텐츠 `src/content/learning/items.json`(공공 추천 국어 5개), 파일럿 후보·후기 양식 `docs/research/LEARNING_PILOT_CANDIDATES.md`
+- 화면 `/grade1` — 입학 준비 탭 진입 링크와 함께 `VITE_CURRICULUM_ENABLED=1`일 때만. 지금 수준 선택은 기기 저장
+  (`wherecho:grade1-level-v1`). `build-content`가 단계·콘텐츠·후기(본문 인용 금지, 협찬 표기 글 금지)를 검증
+- 공식 근거: 교육부 고시 2022-33호 [별책 2]·[별책 5] 원문, 경남교육청 도움자료(2024-12, 현장검토본 기준 — 2027-03 교과서로 재확인)
+- **네이버 검색·블로그와 NCIC는 robots.txt로 AI·봇 수집 금지.** 후기는 사람이 읽고 양식에 기록한다.
+  확인 중 네이버 검색 결과 페이지를 한 번 받았다가 지웠다. 찬찬한글 옛 주소(basics.re.kr)는 DNS가 없어 서울학습진단성장센터로 바꿨다
+- 검증: lint·typecheck·build, 플래그 켠 dev 서버(3005)에서 전역 agent-browser로 국어·수학 화면·수준 저장 확인
+- 따봉(SQL 24)·카드·순위 코드는 그대로 플래그 뒤에 남아 있다 — 정리할지 결정 필요
 
 ### 2026-10-05: 커리큘럼 공유 1단계 코드 (운영 `f542691`에 포함, **플래그 꺼짐이라 노출 안 됨**)
 

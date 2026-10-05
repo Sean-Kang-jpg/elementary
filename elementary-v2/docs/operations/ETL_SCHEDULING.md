@@ -91,6 +91,18 @@ have been reverted. The portability baseline was relocked for this change; only
 the new names back to the old (`INCHEON_DISTRICT_MAP`); academy districts are not joined to
 school districts anywhere, so it is cosmetic, but it should be inverted on the next academy upload.
 
+## Academy Data in the Monthly Run
+
+The academy layer is **not refreshed** by the monthly run. Its serving tables were built by
+hand, region by region, then merged with sports-dojo permits and backfilled with names and
+subjects, and a refresh needs `NEIS_CLASS_API_KEY` and `VWORLD_API_KEY`, which are not Actions
+secrets. What the monthly run does is a guard: `run_due_etl.py` ends every run, due or not, with
+`etl/apply_academy_realm_exclusion.py` (`--apply` on an apply run, dry-run on a rehearsal), which
+removes NEIS realm `직업기술` (adult vocational training, excluded 2026-10-05) from
+`academy_address_serving` and takes those institutions out of `apartment_academy_summary`. It is
+idempotent, so once applied a run reports zero; its report is `runtime/recurring_academy_realm_exclusion.json`.
+The marker builder drops the same realm at the source for the next manual refresh.
+
 ## Manual Checks
 
 Run from `elementary-v2/`:

@@ -1,0 +1,159 @@
+{
+  "_comment": "1학년 미리보기의 콘텐츠 (docs/product/LEARNING_CONTENT_PRINCIPLES.md). schoolLink는 direct·foundation·extension·outside 중 하나이고 schoolLinkBasis에 근거 단원·성취기준을 적는다. evidence.public은 공공 추천(P), evidence.reviews는 사람이 읽고 기록한 후기(A·B·C) — 본문 인용 금지. 후기가 없으면 빈 배열로 두고 화면이 '수집 중'으로 표시한다.",
+  "items": [
+    {
+      "key": "K1",
+      "name": "찬찬한글",
+      "type": "activity",
+      "subject": "korean",
+      "stages": [
+        "ko-hangul",
+        "ko-batchim"
+      ],
+      "schoolLink": "direct",
+      "schoolLinkBasis": "1-1 '한글 놀이'·'1. 글자를 만들어요' — [2국04-01]",
+      "forWhom": "글자를 익히는 중인 아이",
+      "role": "훈민정음 제자 원리에 따른 발음 중심 한글 해득 교재. '이해하기-비교하기-읽기-쓰기-확인하기' 단계로 구성되고, 34강 지도 영상이 함께 있습니다.",
+      "parentInvolvement": "보통",
+      "cost": "무료",
+      "url": "https://s-iam.sen.go.kr/threeRs/getList.do",
+      "extraLinks": [
+        {
+          "label": "찬찬한글 지도 영상 1~34강",
+          "url": "https://www.youtube.com/watch?v=pbjngNFGgqM&list=PL2O2xGme1MdteTkq4nC6jouVJAboYciiv"
+        }
+      ],
+      "evidence": {
+        "public": [
+          {
+            "label": "경상남도교육청, 2022 개정 교과 교육과정 도움자료(초등 1,2학년군) 부록 1",
+            "url": "https://www.gne.go.kr/user/bbs/BD_selectBbs.do?q_bbsSn=1464&q_bbsDocNo=20241216195551898",
+            "page": "91~93쪽"
+          }
+        ],
+        "reviews": []
+      },
+      "verifiedAt": "2026-10-05",
+      "urlLabel": "서울시교육청 서울학습진단성장센터 기초학습 자료"
+    },
+    {
+      "key": "K2",
+      "name": "EBS 한글이 야호 2",
+      "type": "video",
+      "subject": "korean",
+      "stages": [
+        "ko-hangul",
+        "ko-words"
+      ],
+      "schoolLink": "direct",
+      "schoolLinkBasis": "1-1 '한글 놀이' — [2국04-01]",
+      "forWhom": "글자를 익히는 중이거나 낱말을 막 읽기 시작한 아이",
+      "role": "낱자별 그림책으로 반복되는 낱말과 문장을 들으며 한글을 익히는 영상입니다. 한 편 15분 내외.",
+      "parentInvolvement": "낮음",
+      "cost": "무료",
+      "url": "https://www.youtube.com/watch?v=OpukrvJ14mE&list=PL8mxKPQ7WNj_P4_oVr7yAIGxQSiFGMgVf",
+      "evidence": {
+        "public": [
+          {
+            "label": "경상남도교육청, 2022 개정 교과 교육과정 도움자료(초등 1,2학년군) 부록 1",
+            "url": "https://www.gne.go.kr/user/bbs/BD_selectBbs.do?q_bbsSn=1464&q_bbsDocNo=20241216195551898",
+            "page": "93쪽"
+          }
+        ],
+        "reviews": []
+      },
+      "verifiedAt": "2026-10-05"
+    },
+    {
+      "key": "K3",
+      "name": "EBS 한글 용사 아이야",
+      "type": "video",
+      "subject": "korean",
+      "stages": [
+        "ko-hangul",
+        "ko-batchim",
+        "ko-words"
+      ],
+      "schoolLink": "direct",
+      "schoolLinkBasis": "1-1 '한글 놀이'·'2. 받침이 있는 글자를 만들어요'·'3. 낱말과 친해져요' — [2국04-01]·[2국04-02]",
+      "forWhom": "자모를 익히고 받침·낱말로 넘어가는 아이",
+      "role": "기본편은 자모음(1~20편)과 이중모음·받침(21~60편), 어휘편(1~183편)은 받침을 바꾸거나 빼도 낱말이 되는 말, 흉내 내는 말 등을 다룹니다. 한 편 12분 내외.",
+      "parentInvolvement": "낮음",
+      "cost": "무료",
+      "url": "https://www.youtube.com/watch?v=MxuakKVYMVM&list=PLaV_uwyj3Mzl7ojdF-1H4_6VUrwWWF4TH",
+      "extraLinks": [
+        {
+          "label": "어휘편",
+          "url": "https://www.youtube.com/watch?v=53Pm2QfynwM&list=PLKDPDirFfxZTHLLUXUB3egfrVzfMTJ8bU"
+        }
+      ],
+      "evidence": {
+        "public": [
+          {
+            "label": "경상남도교육청, 2022 개정 교과 교육과정 도움자료(초등 1,2학년군) 부록 1",
+            "url": "https://www.gne.go.kr/user/bbs/BD_selectBbs.do?q_bbsSn=1464&q_bbsDocNo=20241216195551898",
+            "page": "93~94쪽"
+          }
+        ],
+        "reviews": []
+      },
+      "verifiedAt": "2026-10-05"
+    },
+    {
+      "key": "K4",
+      "name": "숨바꼭질 ㄱㄴㄷ · 숨바꼭질 ㅏㅑㅓㅕ (김재영, 현북스)",
+      "type": "book",
+      "subject": "korean",
+      "stages": [
+        "ko-hangul"
+      ],
+      "schoolLink": "foundation",
+      "schoolLinkBasis": "1-1 '한글 놀이'의 자음자·모음자 놀이로 이어짐",
+      "forWhom": "글자를 처음 접하는 아이",
+      "role": "책장 구멍으로 숨은 동물을 찾으며 자음과 모음을 익히는 놀이 그림책입니다.",
+      "parentInvolvement": "보통",
+      "cost": "구입",
+      "url": "https://www.gne.go.kr/user/bbs/BD_selectBbs.do?q_bbsSn=1464&q_bbsDocNo=20241216195551898",
+      "evidence": {
+        "public": [
+          {
+            "label": "경상남도교육청, 2022 개정 교과 교육과정 도움자료(초등 1,2학년군) 부록 1",
+            "url": "https://www.gne.go.kr/user/bbs/BD_selectBbs.do?q_bbsSn=1464&q_bbsDocNo=20241216195551898",
+            "page": "92쪽 한글 교육 그림책 목록"
+          }
+        ],
+        "reviews": []
+      },
+      "verifiedAt": "2026-10-05",
+      "urlLabel": "교육청 한글 그림책 목록"
+    },
+    {
+      "key": "K5",
+      "name": "생각하는 ㄱㄴㄷ (이지원, 논장)",
+      "type": "book",
+      "subject": "korean",
+      "stages": [
+        "ko-hangul"
+      ],
+      "schoolLink": "foundation",
+      "schoolLinkBasis": "1-1 '한글 놀이'의 글자 모양 찾기로 이어짐",
+      "forWhom": "글자 모양에 관심을 보이는 아이",
+      "role": "자모 ㄱㄴㄷ의 낱자 모양대로 단어를 표현한 그림책입니다. 한글 디자인하기 활동과 함께 쓰입니다.",
+      "parentInvolvement": "보통",
+      "cost": "구입",
+      "url": "https://www.gne.go.kr/user/bbs/BD_selectBbs.do?q_bbsSn=1464&q_bbsDocNo=20241216195551898",
+      "evidence": {
+        "public": [
+          {
+            "label": "경상남도교육청, 2022 개정 교과 교육과정 도움자료(초등 1,2학년군) 부록 1",
+            "url": "https://www.gne.go.kr/user/bbs/BD_selectBbs.do?q_bbsSn=1464&q_bbsDocNo=20241216195551898",
+            "page": "92쪽 한글 교육 그림책 목록"
+          }
+        ],
+        "reviews": []
+      },
+      "verifiedAt": "2026-10-05",
+      "urlLabel": "교육청 한글 그림책 목록"
+    }
+  ]
+}

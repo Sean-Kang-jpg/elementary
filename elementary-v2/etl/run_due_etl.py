@@ -250,6 +250,17 @@ def delete_storage_objects(url: str, key: str, bucket: str, paths: list[str]) ->
         pass
 
 
+def run_academy_guard(apply: bool) -> None:
+    # Academy serving is refreshed by hand, not here; this keeps it inside the
+    # published contract (no 직업기술 institutions) whatever was last uploaded.
+    # Idempotent, so most months it reports zero and writes nothing.
+    run_script(
+        "etl/apply_academy_realm_exclusion.py",
+        *(["--apply"] if apply else []),
+        "--report", str(RUNTIME_DIR / "recurring_academy_realm_exclusion.json"),
+    )
+
+
 def run_maintenance(url: str, key: str) -> None:
     # Each call clears a bounded number of runs, so repeat until it reports
     # nothing left. A single call cannot drain a backlog.
@@ -375,6 +386,9 @@ def main() -> None:
         if args.apply:
             with RunLock():
                 run_maintenance(url, key)
+                run_academy_guard(apply=True)
+        elif args.rehearse:
+            run_academy_guard(apply=False)
         return
     print("due source groups: " + ", ".join(groups))
     if args.apply and args.rehearse:
@@ -396,7 +410,8 @@ def main() -> None:
                 )
         if args.apply:
             run_maintenance(url, key)
-        else:
+        run_academy_guard(apply=args.apply)
+        if not args.apply:
             print("rehearsal complete: every scope collected, built and validated; nothing written")
 
 
