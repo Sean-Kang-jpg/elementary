@@ -1149,3 +1149,117 @@ button.apartment-card:hover {
     background-color: #242424;
   }
 }
+
+/*
+ * Desktop map layout (2026-10-05). Like Naver Map: the bottom tabs become a rail
+ * on the left, and on the map screen the search, quick filters and every detail
+ * sheet live in a fixed panel beside it. Before this the sheet spanned the whole
+ * width with its content capped in the middle, so a selection showed wide empty
+ * margins and dragging it up hid the map. Phones keep the floating search and the
+ * bottom sheet: there the panel takes no box and its body is not shown.
+ */
+.app-map-panel {
+  display: contents;
+}
+
+.app-map-panel__body {
+  display: none;
+}
+
+/* Height, not inset: <main> stops at the phone's bottom tabs through its padding. */
+.app-map-area {
+  height: 100%;
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --app-rail-width: 72px;
+    --app-panel-width: 400px;
+    --app-bottom-inset: 0px;
+  }
+
+  .app-gnb {
+    top: 0;
+    right: auto;
+    width: var(--app-rail-width);
+    height: auto;
+    grid-template-columns: none;
+    grid-auto-rows: 64px;
+    align-content: start;
+    gap: 4px;
+    border-top: 0;
+    border-right: 1px solid #dadce0;
+    padding: 12px 6px;
+    box-shadow: none;
+  }
+
+  .app-gnb__item {
+    flex-direction: column;
+    gap: 3px;
+    border-radius: 10px;
+  }
+
+  .app-gnb__item:hover {
+    background: #f3f4f6;
+  }
+
+  .app-main {
+    left: var(--app-rail-width);
+  }
+
+  .app-map-panel {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: var(--app-rail-width);
+    z-index: var(--layer-header);
+    display: flex;
+    width: var(--app-panel-width);
+    flex-direction: column;
+    border-right: 1px solid #dadce0;
+    background: #fff;
+    box-shadow: 2px 0 10px rgba(32, 33, 36, 0.08);
+  }
+
+  .app-map-panel .app-header {
+    position: static;
+    flex: none;
+    border-bottom: 1px solid #e5e7eb;
+    padding: 12px 12px 4px;
+  }
+
+  .app-map-panel .quick-filter-button {
+    box-shadow: none;
+  }
+
+  .app-map-panel__body {
+    position: relative;
+    display: block;
+    min-height: 0;
+    flex: 1;
+  }
+
+  .app-map-panel__empty {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 24px;
+    color: #98a2b3;
+    text-align: center;
+    font-size: 13px;
+    line-height: 1.6;
+  }
+
+  /* The map starts beside the panel, so a selection centres in what is visible. */
+  .app-map-area {
+    margin-left: var(--app-panel-width);
+  }
+
+  /* Map controls no longer need to clear a floating search box. */
+  .care-map-chip {
+    top: 16px;
+  }
+}

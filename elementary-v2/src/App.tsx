@@ -396,9 +396,11 @@ function MapApplication() {
   return (
     <MainLayout sidebar={<FilterPanel />} activeView={view} onNavigate={(path) => navigate(path, 'nav')}>
       {mapMounted && (
-        <MapErrorBoundary>
-          <MapContainer className="h-full w-full" />
-        </MapErrorBoundary>
+        <div className="app-map-area">
+          <MapErrorBoundary>
+            <MapContainer className="h-full w-full" />
+          </MapErrorBoundary>
+        </div>
       )}
 
       {view === 'home' && (

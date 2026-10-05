@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
 import { X } from 'lucide-react'
+import { usePanelSlot } from '../layout/panelSlot'
 
 interface BottomSheetProps {
   isOpen: boolean
@@ -56,6 +57,10 @@ const BottomSheet: React.FC<BottomSheetProps> = ({
   const contentRef = useRef<HTMLDivElement>(null)
   const dragRef = useRef<DragSession | null>(null)
   const dragHeightRef = useRef<number | null>(null)
+  // 데스크톱 지도 화면에서는 왼쪽 패널 안에 펼친 채로 그린다. 높이 조절이 없으니
+  // 내용을 숨기는 접힌 단계(0)가 아니라 맨 위 단계로 알린다.
+  const panelSlot = usePanelSlot()
+  const topSnap = snapPoints.length - 1
 
   const heightForSnap = useCallback((index: number) => {
     const safeIndex = Math.min(Math.max(index, 0), snapPoints.length - 1)
@@ -205,12 +210,13 @@ const BottomSheet: React.FC<BottomSheetProps> = ({
 
   useEffect(() => {
     if (isOpen) {
-      setCurrentSnap(defaultSnap)
+      const snap = panelSlot ? topSnap : defaultSnap
+      setCurrentSnap(snap)
       setDragHeight(null)
       setDragTranslate(0)
-      onSnapChange?.(defaultSnap)
+      onSnapChange?.(snap)
     }
-  }, [defaultSnap, isOpen, onSnapChange])
+  }, [defaultSnap, isOpen, onSnapChange, panelSlot, topSnap])
 
   useEffect(() => {
     if (!isDragging || !dragRef.current) return
@@ -245,6 +251,40 @@ const BottomSheet: React.FC<BottomSheetProps> = ({
 
   if (!isOpen) return null
 
+  const header = title && (
+    <div className={`flex items-center justify-between gap-3 border-b border-gray-200 px-4 ${panelSlot ? 'py-2' : 'pb-3'}`}>
+      <h2 className="min-w-0 truncate text-lg font-semibold text-gray-900">{title}</h2>
+      <div className="flex flex-none items-center gap-1" data-bottom-sheet-no-drag>
+        {headerAction}
+        <button
+          type="button"
+          onClick={onClose}
+          aria-label={closeLabel}
+          className="rounded-md p-2 transition-colors hover:bg-gray-100"
+        >
+          <X className="text-gray-500" size={20} aria-hidden="true" />
+        </button>
+      </div>
+    </div>
+  )
+
+  if (panelSlot) {
+    return createPortal(
+      <div
+        ref={sheetRef}
+        data-testid="bottom-sheet"
+        data-snap-index={currentSnap}
+        className={`app-panel-sheet absolute inset-0 flex flex-col bg-white ${className}`}
+      >
+        {header}
+        <div ref={contentRef} data-testid="bottom-sheet-scroll" className="min-h-0 flex-1 overflow-auto overscroll-contain">
+          {children}
+        </div>
+      </div>,
+      panelSlot,
+    )
+  }
+
   return createPortal(
     <div className="app-sheet-layer pointer-events-none fixed inset-0">
       <div
@@ -273,22 +313,7 @@ const BottomSheet: React.FC<BottomSheetProps> = ({
           <div className="h-1 w-10 rounded-full bg-gray-300" />
         </div>
 
-        {title && (
-          <div className="flex items-center justify-between gap-3 border-b border-gray-200 px-4 pb-3">
-            <h2 className="min-w-0 truncate text-lg font-semibold text-gray-900">{title}</h2>
-            <div className="flex flex-none items-center gap-1" data-bottom-sheet-no-drag>
-              {headerAction}
-              <button
-                type="button"
-                onClick={onClose}
-                aria-label={closeLabel}
-                className="rounded-md p-2 transition-colors hover:bg-gray-100"
-              >
-                <X className="text-gray-500" size={20} aria-hidden="true" />
-              </button>
-            </div>
-          </div>
-        )}
+        {header}
 
         <div ref={contentRef} data-testid="bottom-sheet-scroll" className="min-h-0 flex-1 overflow-auto overscroll-contain">
           {children}

@@ -57,6 +57,15 @@ npm run typecheck
 
 ## Uncommitted Work At Handoff
 
+### 2026-10-05: 데스크톱 지도 레이아웃 — 왼쪽 패널 (미커밋)
+
+- 1024px 이상에서만 바뀐다. 하단 탭은 왼쪽 레일(72px), 지도 화면은 레일 옆 400px 패널에 검색·빠른 필터·상세를 담고
+  지도는 그 오른쪽 전체를 쓴다(네이버 지도·리치고 방식). 이전엔 시트가 전체 폭이라 좌우 여백이 컸고 올리면 지도가 가려졌다
+- `layout/panelSlot.ts`(신규): 패널 자리 컨텍스트와 `useIsDesktop`. `MainLayout`이 `.app-map-panel`(모바일에선 `display: contents`)을
+  그리고, `BottomSheet`는 데스크톱이면 그 자리에 펼친 채로 포털한다(드래그 없음, `data-snap-index`는 맨 위 단계)
+- `App.tsx`: 지도를 `.app-map-area`로 감싸 데스크톱에서 패널 폭만큼 비킨다. CSS는 `index.css` 끝 블록
+- 검증: lint·typecheck·build, 로컬 public smoke 통과, 1440px 학교·단지·빈 지도·홈과 390px 학교 화면 확인
+
 ### 2026-10-05: 단지 카드 연식·규모 일러스트 (커밋·운영 반영)
 
 - `components/apartment/ApartmentIllustration.tsx`(신규): 카드 왼쪽 68×76 칸의 건물 아이콘+막대를 SVG
