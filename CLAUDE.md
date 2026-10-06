@@ -57,6 +57,23 @@ npm run typecheck
 
 ## Uncommitted Work At Handoff
 
+### 2026-10-06: 학원 데이터 월간 자동 갱신 (`f905ac7`, 운영 데이터 반영)
+
+- 계획 `docs/operations/ACADEMY_REFRESH_PLAN.md`(D1~D3 권고안 확정). 구현은 `etl/run_academy_refresh.py` 하나:
+  NEIS·체육도장 수집 → 새 주소만 VWorld → 마커 → 지역별 근접도 → 운영 3테이블 **전체 교체**(빠진 행 삭제).
+  한 지역이라도 15% 넘게 줄면 전체를 쓰지 않는다(계획의 "그 지역만 제외"에서 바꿈 — 주소가 지역을 넘어 걸려서)
+- Actions 비밀값 `NEIS_CLASS_API_KEY`·`VWORLD_API_KEY`·`DATA_GO_KR_DECODED_KEY` 등록(2026-10-06, `gh secret set`)
+- Storage `etl-source-snapshots/academy-refresh/`에 지오코딩 캐시·건물 기준점 2종 시드(익명 읽기 400 확인)
+- **운영 적용 완료** run `34ebb91f`: 주소 78,820 → 76,300(+202, −2,722), 기준점 80,641 → 80,220, 요약 46,927 → 46,929,
+  지역별 −1.7~−4.2%. 직업기술 0건(가드 dry-run), 익명 RPC 정상. 앞서 막혔던 `apply_academy_realm_exclusion --apply`는 이 적용으로 대체됨
+- **남은 것**: ① **SQL 25를 SQL 편집기에서 적용**(사용자 — psql·CLI 없음). 적용 전에는 월간 실행이 academy를 due로 보지 않는다
+  ② **러너에서 VWorld가 안 되는 것으로 보인다**: Actions 리허설(`37458058875`, 성공)에서 재시도 698곳이 전부 `transport_error`
+  (이 PC에서는 `api_error`). 매칭 61,668곳은 Storage 캐시 덕분 — 이대로면 매월 폐원만 반영되고 신규 주소는 빠진다.
+  대안: 카카오 로컬 API(권장, 키 필요)·이 PC에서 지오코딩만·그대로 — 사용자 결정 대기
+  ③ 11/2 정기 실행 확인 ④ `/admin/etl`의 '학원' 라벨은 다음 release에 나간다
+- 첫 Actions 리허설(`37457087619`) 실패 원인: `collect_academy_snapshot.py`가 키를 `.env`에서만 읽음 → `14fe2ff`에서 환경변수 우선
+- 계획서의 "요약 고아 1,072행"은 오판이었다(운영 단지 마스터 기준 고아 없음) — 문서 정정함
+
 ### 2026-10-06: 가이드·FAQ 취소선·`**` 노출 수정과 굵게 정리 (커밋·운영 반영)
 
 - 원인 1: `marked`의 GFM이 물결표 한 쌍을 취소선으로 읽어 `10~1월 … 12~2월` 사이가 그어졌다(돌봄 가이드 2곳, 1곳 더).
