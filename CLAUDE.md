@@ -66,11 +66,14 @@ npm run typecheck
 - Storage `etl-source-snapshots/academy-refresh/`에 지오코딩 캐시·건물 기준점 2종 시드(익명 읽기 400 확인)
 - **운영 적용 완료** run `34ebb91f`: 주소 78,820 → 76,300(+202, −2,722), 기준점 80,641 → 80,220, 요약 46,927 → 46,929,
   지역별 −1.7~−4.2%. 직업기술 0건(가드 dry-run), 익명 RPC 정상. 앞서 막혔던 `apply_academy_realm_exclusion --apply`는 이 적용으로 대체됨
-- **남은 것**: ① **SQL 25를 SQL 편집기에서 적용**(사용자 — psql·CLI 없음). 적용 전에는 월간 실행이 academy를 due로 보지 않는다
-  ② **러너에서 VWorld가 안 되는 것으로 보인다**: Actions 리허설(`37458058875`, 성공)에서 재시도 698곳이 전부 `transport_error`
-  (이 PC에서는 `api_error`). 매칭 61,668곳은 Storage 캐시 덕분 — 이대로면 매월 폐원만 반영되고 신규 주소는 빠진다.
-  대안: 카카오 로컬 API(권장, 키 필요)·이 PC에서 지오코딩만·그대로 — 사용자 결정 대기
-  ③ 11/2 정기 실행 확인 ④ `/admin/etl`의 '학원' 라벨은 다음 release에 나간다
+- **진행 기록**: ① SQL 25는 사용자가 SQL 편집기로 적용(psql·CLI 없음)
+  ② **지오코딩은 이 PC의 Windows 작업**(`eedd96b`): VWorld가 해외 IP를 막고(러너 재시도 698곳 전부 `transport_error`),
+  카카오 Local API는 결과 저장 금지라 대안이 아니다(운영팀 답변). 작업 `Elementary Academy Geocode`가 매월 1일 21:00
+  `run_academy_refresh.py --geocode-only`(NEIS·체육도장 수집 → 새 주소 변환 → 캐시·체육도장 사본을 Storage로) 실행,
+  러너는 지오코딩을 건너뛴다. **이 PC가 그 무렵 켜져 있고 로그인돼 있어야 한다**(StartWhenAvailable). 시험 실행 2회 성공
+  ③ 체육도장 API가 러너에서 가끔 시간 초과(`37466238434` 실패) → 재시도 강화 + Storage 사본 대체(`3eb6e99`).
+  Actions 리허설 `37470629136` 성공 ④ SQL 25 적용 확인(2026-10-06), 일정 `next_due_at` 비워 둠 → 11/2 정기 실행에 포함
+  ⑤ 11/2 정기 실행 결과 확인 ⑥ `/admin/etl`의 '학원' 라벨은 다음 release에 나간다
 - 첫 Actions 리허설(`37457087619`) 실패 원인: `collect_academy_snapshot.py`가 키를 `.env`에서만 읽음 → `14fe2ff`에서 환경변수 우선
 - 계획서의 "요약 고아 1,072행"은 오판이었다(운영 단지 마스터 기준 고아 없음) — 문서 정정함
 
