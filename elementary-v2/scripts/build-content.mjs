@@ -44,6 +44,14 @@ const problem = (file, message) => problems.push(`${path.relative(projectRoot, f
 
 const marked = new Marked({
   gfm: true,
+  // GFM reads a pair of single tildes as strikethrough, and Korean writes ranges
+  // with a tilde: "10~1월에 ... 12~2월" came out crossed through between the two.
+  // Nothing here is ever struck through, so a tilde is always just a tilde.
+  tokenizer: {
+    del() {
+      return undefined
+    },
+  },
   renderer: {
     // External sources open in a new tab; links inside the site stay in place so
     // the app can route them without a reload.
@@ -188,6 +196,22 @@ const checkLinks = (file, html) => {
 }
 guides.forEach((guide) => checkLinks(guide.file, guide.html))
 faqs.forEach((faq) => faq.sections.forEach((section) => section.items.forEach((item) => checkLinks(faq.file, item.html))))
+
+// Bold that did not render. CommonMark will not close ** when it follows
+// punctuation and runs straight into a Korean particle - "**통학구역(학구도)**을",
+// "**'돌봄·방과후'**에서" - and the reader sees the asterisks. End the bold on a
+// letter instead: "**통학구역**(학구도)을".
+const checkMarkup = (file, html) => {
+  const text = html.replace(/<[^>]+>/g, '')
+  for (const match of text.matchAll(/\*\*/g)) {
+    problem(file, `unrendered ** near "${text.slice(Math.max(0, match.index - 20), match.index + 22).replace(/\s+/g, ' ')}"`)
+  }
+}
+guides.forEach((guide) => checkMarkup(guide.file, guide.html))
+faqs.forEach((faq) => {
+  if (faq.note) checkMarkup(faq.file, faq.note)
+  faq.sections.forEach((section) => section.items.forEach((item) => checkMarkup(faq.file, item.html)))
+})
 
 // The roadmap and checklist link to guides and screens too, from JSON.
 const APP_PATHS = new Set(['/', '/map', '/guide', '/faq', '/checklist'])
