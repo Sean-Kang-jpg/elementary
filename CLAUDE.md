@@ -57,6 +57,22 @@ npm run typecheck
 
 ## Uncommitted Work At Handoff
 
+### 2026-10-07: 전체 ETL 점검과 후속 (2·3·4번)
+
+- 점검 결과(사용자 결정: 아파트 K-apt 반영은 11/2 정기 실행까지 기다림): K-apt는 8/21 자료에 멈춤, **단지 목록이
+  2024-10 기준 파일에 고정돼 신축이 못 들어옴**(K-apt 미사용 2,521곳, 2025+ 승인 583곳·약 40만 세대), 학구도 자동화
+  없음(2026-09-20판 10/02 공개, 우리는 03-20판), 실패 알림 없음, 1~5월 학교알리미 당해연도 빈 데이터 위험
+- **실패 알림**: GitHub 이슈 라벨 `etl-failure`. Actions 예약·apply 실패 시 이슈 생성/댓글, Windows 작업도 `gh`로 같은 방식.
+  시험 이슈 #1 생성·닫음
+- **Windows 작업 개편**: `Elementary Academy Geocode` → `Elementary Local Monthly ETL`(`install_local_monthly_task.ps1`,
+  `run_local_monthly_etl.ps1`), 단계 = 학원 지오코딩 + **돌봄 `collect_care_data.py --apply`**. 단계별 로그
+  `etl/logs/local-monthly-etl-<시각>-<단계>.log`(transcript가 Python 출력을 놓쳐서). 2026-10-07 시험 실행 성공(돌봄 6,266행)
+- **학교알리미 연도 대체**(`run_due_etl.collect_school`): 학년 행이 학교 행의 70% 미만이면 전년도 사용. 2027-01 실행 대비
+- **학구도**: `etl/compare_school_zone_release.py`(새 판으로 전 범위 점 배정 재생성 → 현재와 비교, 운영 파일 안 건드림).
+  현재 판 자기 시험 13개 범위 변경 0. 사이트가 스크립트 다운로드를 막아 **9월판은 사용자가 브라우저로 내려받아야 함**
+  (`etl/data/hakgudo/20260920/`, 학교 위치도 함께). `build_local_assignment_etl.SHP` 기본값을 03-20판으로 정정
+- **신축 단지 유입**: 계획 `docs/operations/NEW_COMPLEX_INTAKE_PLAN.md`, 결정 D1~D4 대기
+
 ### 2026-10-06: 학원·체육도장 기관 키 (커밋 — 아래 커밋 메시지 참고)
 
 - 실측: 학원 `ACA_ASNUM`·체육도장 `MNG_NO`는 단독으로 전국에서 유일하지 않다. 유일한 키는
@@ -82,7 +98,7 @@ npm run typecheck
   지역별 −1.7~−4.2%. 직업기술 0건(가드 dry-run), 익명 RPC 정상. 앞서 막혔던 `apply_academy_realm_exclusion --apply`는 이 적용으로 대체됨
 - **진행 기록**: ① SQL 25는 사용자가 SQL 편집기로 적용(psql·CLI 없음)
   ② **지오코딩은 이 PC의 Windows 작업**(`eedd96b`): VWorld가 해외 IP를 막고(러너 재시도 698곳 전부 `transport_error`),
-  카카오 Local API는 결과 저장 금지라 대안이 아니다(운영팀 답변). 작업 `Elementary Academy Geocode`가 매월 1일 21:00
+  카카오 Local API는 결과 저장 금지라 대안이 아니다(운영팀 답변). 작업 `Elementary Local Monthly ETL`이 매월 1일 21:00
   `run_academy_refresh.py --geocode-only`(NEIS·체육도장 수집 → 새 주소 변환 → 캐시·체육도장 사본을 Storage로) 실행,
   러너는 지오코딩을 건너뛴다. **이 PC가 그 무렵 켜져 있고 로그인돼 있어야 한다**(StartWhenAvailable). 시험 실행 2회 성공
   ③ 체육도장 API가 러너에서 가끔 시간 초과(`37466238434` 실패) → 재시도 강화 + Storage 사본 대체(`3eb6e99`).

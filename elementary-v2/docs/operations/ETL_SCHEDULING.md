@@ -108,14 +108,14 @@ academy serving tables, deleting what the build no longer has. The plan and its 
   its addresses or institutions. Last month's data then stays and the job fails.
 - **Geocoding does not run on GitHub.** VWorld refuses foreign IPs (2026-10-06: every retry from
   the runner was a `transport_error`), and Kakao's Local API forbids storing results, so it is no
-  substitute. The Windows task `Elementary Academy Geocode` (`etl/install_academy_geocode_task.ps1`,
+  substitute. The Windows task `Elementary Local Monthly ETL` (`etl/install_local_monthly_task.ps1`,
   1st of each month 21:00 KST, StartWhenAvailable) runs `run_academy_refresh.py --geocode-only`:
   collect NEIS and sports-dojo permits, geocode new and failed addresses, write the cache and a
   copy of the dojo snapshot to Storage. If the runner's own dojo collection fails (data.go.kr
   stalls now and then from GitHub), it uses that copy when it is at most ten days old. The runner skips
   geocoding and uses that cache, so an address that opens after the task ran waits a month. The
   task refuses to upload if more than 5% of its lookups fail to connect. Logs:
-  `etl/logs/academy-geocode-*.log`.
+  `etl/logs/local-monthly-etl-*.log`.
 - A failure there does not stop maintenance or the realm guard; the job still fails afterwards.
 - Every run, due or not, still ends with `etl/apply_academy_realm_exclusion.py`, which keeps NEIS
   realm `직업기술` out of the serving tables. After a refresh it reports zero.
@@ -124,6 +124,52 @@ academy serving tables, deleting what the build no longer has. The plan and its 
 
 First applied by hand 2026-10-06 (run `34ebb91f`): addresses 78,820 -> 76,300 (+202, -2,722),
 origin points 80,641 -> 80,220, summaries 46,927 -> 46,929; every region within -1.7% to -4.2%.
+
+## This Machine's Monthly Task
+
+`Elementary Local Monthly ETL` (registered by `etl/install_local_monthly_task.ps1`, runner
+`etl/run_local_monthly_etl.ps1`) runs on the 1st at 21:00 KST, StartWhenAvailable, only while this
+Windows user is logged in. It holds the steps that need a Korean IP (VWorld):
+
+1. `run_academy_refresh.py --geocode-only` - academy geocode cache and the sports-dojo copy, to Storage
+2. `collect_care_data.py --apply` - school care disclosure (Schoolinfo apiType 59, published each May)
+   and the 다함께돌봄 center list. It refuses to shrink either table by more than a fifth.
+
+Each step runs even if the one before failed.
+
+## Failure Alerts
+
+Both halves report to one place: a GitHub issue labelled `etl-failure` in this repository.
+A scheduled or `apply` Actions run that fails opens one ("월간 ETL 실패 (Actions)") or comments on
+the open one; the Windows task does the same through the `gh` CLI logged in on this machine
+("월간 ETL 실패 (Windows 작업)"). GitHub notifies the repository owner. Close the issue after the
+rerun succeeds. `ETL_ALERT_WEBHOOK_URL` (a chat webhook) is still read by `run_due_etl.py` if set.
+
+## Schoolinfo Year
+
+A runner starts without Schoolinfo snapshots, so every run fetches them. Grade statistics are
+disclosed in May; from January until then the current year is empty or partial. `collect_school`
+takes the current year only when its grade rows reach 70% of its school rows (2026: 81-100%), and
+otherwise deletes those files and uses the year before.
+
+## School Zones (학구도), Twice a Year
+
+학구도 is released every March and September (`schoolzone.emac.kr` → 공공데이터 목록,
+"초등학교 통학구역 및 공동통학구역(YYYY.MM.DD.)"), with a matching 초중고 학교 위치 file. The site
+refuses scripted downloads, so:
+
+1. Download both in a browser into `etl/data/hakgudo/<YYYYMMDD>/` and
+   `etl/data/schoolzone/<YYYYMMDD>/`, and unzip the shapefile into `extracted/`.
+2. `python etl/compare_school_zone_release.py --shp <new .shp> --release <YYYYMMDD>` rebuilds every
+   scope's point assignments into `etl/runtime/school_zone_<release>/` and reports, per scope, how
+   many apartments change zone. It writes nothing the ETL reads.
+3. Review the moved apartments (`comparison.json`, `moved`). Then copy the new
+   `apartment_point_assignments*.csv` over `etl/local_outputs_20260320/`, point
+   `build_local_assignment_etl.SHP` at the release, publish a new inputs bundle
+   (`recurring_inputs_manifest.json` version bump, `prepare_portable_inputs.py --package --upload`),
+   and let the next monthly run apply it.
+
+In use: the 2026-03-20 release. The 2026-09-20 release was published 2026-10-02.
 
 ## Manual Checks
 

@@ -1,17 +1,18 @@
 param(
-    [string]$TaskName = "Elementary Academy Geocode",
+    [string]$TaskName = "Elementary Local Monthly ETL",
     [int]$DayOfMonth = 1,
     [string]$StartTime = "21:00",
     [string]$PythonPath = "python"
 )
 
 # Monthly, the evening before the GitHub monthly ETL (2nd, 03:15 KST), so the runner
-# restores a cache that already holds this month's new academy addresses.
+# restores a cache that already holds this month's new academy addresses. The steps
+# are in run_local_monthly_etl.ps1 (academy geocoding, care data).
 # StartWhenAvailable: if this machine is off at that time, the task runs at the next
 # start; a run after the 2nd simply serves the following month.
 
 $ErrorActionPreference = "Stop"
-$Runner = Join-Path $PSScriptRoot "run_academy_geocode.ps1"
+$Runner = Join-Path $PSScriptRoot "run_local_monthly_etl.ps1"
 $PowerShellPath = "$env:SystemRoot\System32\WindowsPowerShell\v1.0\powershell.exe"
 if ($PythonPath -eq "python") {
     $PythonPath = (Get-Command python -ErrorAction Stop).Source
@@ -27,8 +28,8 @@ $settings = New-ScheduledTaskSettingsSet `
     -AllowStartIfOnBatteries `
     -DontStopIfGoingOnBatteries `
     -MultipleInstances IgnoreNew `
-    -ExecutionTimeLimit (New-TimeSpan -Hours 2)
+    -ExecutionTimeLimit (New-TimeSpan -Hours 3)
 Set-ScheduledTask -TaskName $TaskName -Settings $settings | Out-Null
 
 Write-Host "Registered '$TaskName': day $DayOfMonth of every month at $StartTime."
-Write-Host "It runs only while this Windows user is logged in; logs go to etl/logs/academy-geocode-*.log."
+Write-Host "It runs only while this Windows user is logged in; logs go to etl/logs/local-monthly-etl-*.log."

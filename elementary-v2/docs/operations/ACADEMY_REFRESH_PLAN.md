@@ -43,7 +43,7 @@ D1의 비밀값 3개는 2026-10-06에 `gh secret set`으로 로컬 `.env` 값을
 
 - **지오코딩은 GitHub 러너가 아니라 이 PC의 Windows 작업이 한다(2026-10-06).** Actions 리허설에서 VWorld 재시도가
   전부 접속 오류였고, VWorld가 해외 IP를 막는다는 사례가 여럿 보고돼 있다. 카카오 Local API는 결과 저장을
-  금지해(운영팀 답변 2026-08) 대안이 못 된다. 매월 1일 21:00 `Elementary Academy Geocode` 작업이 NEIS를
+  금지해(운영팀 답변 2026-08) 대안이 못 된다. 매월 1일 21:00 `Elementary Local Monthly ETL` 작업이 NEIS를
   수집해 새 주소만 변환하고 캐시를 Storage에 올린다. 러너는 지오코딩을 건너뛰고 그 캐시를 쓴다.
   이 PC가 꺼져 있으면 켜질 때 실행되고, 그사이 생긴 주소는 한 달 늦게 나온다.
 

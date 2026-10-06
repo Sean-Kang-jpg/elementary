@@ -27,6 +27,7 @@ on:
 
 permissions:
   contents: read
+  issues: write   # the failure issue below
 
 concurrency:
   group: recurring-etl
@@ -84,3 +85,19 @@ jobs:
             elementary-v2/etl/local_outputs_20260320/*report*.json
           if-no-files-found: warn
           retention-days: 30
+      - name: Open or update the failure issue
+        # Scheduled and apply runs only; a failed rehearsal is someone watching already.
+        # One open issue per failure stream: later failures comment on it.
+        if: failure() && (github.event_name == 'schedule' || inputs.mode == 'apply')
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          body="월간 ETL(Actions)이 실패했습니다. 실행 로그: $RUN_URL
+          지난달 데이터는 그대로 남아 있습니다. 원인을 고친 뒤 workflow_dispatch(apply)로 다시 돌리고 이 이슈를 닫으세요."
+          open=$(gh issue list --repo "$GITHUB_REPOSITORY" --label etl-failure --state open --search "Actions" --json number --jq '.[0].number')
+          if [ -n "$open" ]; then
+            gh issue comment "$open" --repo "$GITHUB_REPOSITORY" --body "$body"
+          else
+            gh issue create --repo "$GITHUB_REPOSITORY" --label etl-failure --title "월간 ETL 실패 (Actions) $(date -u +%Y-%m-%d)" --body "$body"
+          fi

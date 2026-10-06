@@ -117,30 +117,55 @@ def collect_apartment() -> list[dict[str, Any]]:
     ]
 
 
+# Grade-student rows against basic rows in a published year: 0.81-1.0 in 2026
+# (closed and branch schools have no grade data). Under this, the year is not out yet.
+SCHOOLINFO_COMPLETE_RATIO = 0.7
+
+
+def schoolinfo_complete(basic_rows: int, grade_rows: int) -> bool:
+    return basic_rows > 0 and grade_rows >= basic_rows * SCHOOLINFO_COMPLETE_RATIO
+
+
 def collect_school(regions: list[str] | None = None) -> list[dict[str, Any]]:
-    """Fetch Schoolinfo for one scope; the capital keeps its historical slug."""
-    year = date.today().year
+    """Fetch Schoolinfo for one scope; the capital keeps its historical slug.
+
+    The current year first. Grade statistics are disclosed in May, so from January
+    until then the current year is empty or partial; the builder takes the newest
+    year that has both files, so an incomplete year is deleted and the previous
+    year fetched instead. Without this the January run would publish schools with
+    no student numbers.
+    """
     # Always name the regions: with none, the fetcher defaults to every
     # production region and writes a file the capital build never reads.
     regions = list(regions or capital_scope())
-    arguments = ["--year", str(year), "--regions", *regions]
     slug = scope_slug(list(build_scopes(load_registry(), regions, ())))
-    run_script(str(BASE_DIR / "fetch_schoolinfo_2026.py"), *arguments)
-    basic_path = OUTPUT_DIR / f"schoolinfo_{year}_basic_{slug}.json"
-    grade_path = OUTPUT_DIR / f"schoolinfo_{year}_grade_students_{slug}.json"
+    today = date.today()
+    for year in (today.year, today.year - 1):
+        run_script(str(BASE_DIR / "fetch_schoolinfo_2026.py"), "--year", str(year), "--regions", *regions)
+        basic_path = OUTPUT_DIR / f"schoolinfo_{year}_basic_{slug}.json"
+        grade_path = OUTPUT_DIR / f"schoolinfo_{year}_grade_students_{slug}.json"
+        basic_rows, grade_rows = json_row_count(basic_path), json_row_count(grade_path)
+        if schoolinfo_complete(basic_rows, grade_rows):
+            break
+        print(f"Schoolinfo {year} for {slug} is incomplete ({grade_rows:,} grade rows for {basic_rows:,} schools); "
+              "trying the year before")
+        basic_path.unlink()
+        grade_path.unlink()
+    else:
+        raise RuntimeError(f"no complete Schoolinfo year for {slug}")
     return [
         {
             "source_name": "schoolinfo-basic",
-            "source_as_of": date.today().isoformat(),
+            "source_as_of": today.isoformat(),
             "path": basic_path.relative_to(PROJECT_DIR).as_posix(),
-            "row_count": json_row_count(basic_path),
+            "row_count": basic_rows,
             "schema_version": f"schoolinfo-{year}-v1",
         },
         {
             "source_name": "schoolinfo-grade-students",
-            "source_as_of": date.today().isoformat(),
+            "source_as_of": today.isoformat(),
             "path": grade_path.relative_to(PROJECT_DIR).as_posix(),
-            "row_count": json_row_count(grade_path),
+            "row_count": grade_rows,
             "schema_version": f"schoolinfo-{year}-v1",
         },
     ]
