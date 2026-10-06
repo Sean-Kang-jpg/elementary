@@ -21,6 +21,11 @@ a partial NEIS response must not empty part of the map.
 --apply records an etl_runs row, archives the raw sources, writes, verifies, and
 moves the neis-academy schedule. --seed-storage uploads this machine's cache and
 origin files once, so a runner can start.
+
+--geocode-only is the half that cannot run on GitHub: VWorld refuses foreign IPs, so
+a runner's geocoding only ever fails. A Windows task on a machine in Korea runs it the
+day before the monthly run (install_academy_geocode_task.ps1): collect NEIS, geocode
+new and failed addresses, write the cache back to Storage. The runner then finds them.
 """
 
 from __future__ import annotations
@@ -71,6 +76,7 @@ COMPLETENESS_FLOOR = 0.90   # a region's NEIS rows against the last completed ru
 SHRINK_LIMIT = 0.15         # D3: a region may lose at most this share in one run
 PAGE = 1000
 BATCH = 500
+ON_RUNNER = os.getenv("GITHUB_ACTIONS") == "true"
 
 TABLES = {
     "academy_address_serving": ("address_id",),
@@ -348,6 +354,29 @@ def archive_sources(url: str, key: str, run_id: str, sources: list[tuple[str, Pa
     recurring.archive_snapshots(url, key, run_id, manifest)
 
 
+def geocode_only(url: str, key: str, reuse_sources: bool) -> None:
+    report: dict[str, Any] = {"mode": "geocode-only", "as_of": date.today().isoformat()}
+    try:
+        report["inputs"] = restore_inputs(url, key)
+        if not reuse_sources:
+            run_step("etl/collect_academy_snapshot.py", "--all-production")
+        run_step("etl/geocode_academy_addresses.py", "--all", "--retry-failures")
+        profile = json.loads((BASE_DIR / "academy_geocode_profile.json").read_text(encoding="utf-8"))
+        report["geocode"] = {k: profile[k] for k in ("snapshot", "selected_unique_addresses", "matched", "match_rate", "statuses")}
+        if profile["statuses"].get("transport_error", 0) > profile["selected_unique_addresses"] * 0.05:
+            # Reaching VWorld at all is the point of running here; do not overwrite a good cache with a failed pass.
+            raise RuntimeError(f"VWorld unreachable: {profile['statuses']['transport_error']:,} transport errors")
+        storage_put(url, key, "academy_geocodes_all.csv.gz", GEOCODE_CACHE)
+        report["result"] = "cache written to Storage"
+    except Exception as error:
+        report["result"] = f"failed: {error}"
+        raise
+    finally:
+        path = BASE_DIR / "runtime" / "academy_geocode_local.json"
+        path.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+        print(f"report: {path} - {report.get('result')}")
+
+
 # --- main ---------------------------------------------------------------------------
 
 def main() -> None:
@@ -356,6 +385,8 @@ def main() -> None:
     mode.add_argument("--apply", action="store_true")
     mode.add_argument("--rehearse", action="store_true", help="the default: build and plan, write nothing")
     mode.add_argument("--seed-storage", action="store_true", help="upload this machine's cache and origin files")
+    mode.add_argument("--geocode-only", action="store_true",
+                      help="collect NEIS, geocode new addresses, write the cache back (a machine in Korea)")
     parser.add_argument("--reuse-sources", action="store_true",
                         help="skip collection and use today's snapshots already on disk (local iteration)")
     args = parser.parse_args()
@@ -365,6 +396,10 @@ def main() -> None:
         for object_path, path in STORAGE_INPUTS.items():
             storage_put(url, key, object_path, path)
             print(f"seeded {STORAGE_PREFIX}/{object_path} from {path}")
+        return
+
+    if args.geocode_only:
+        geocode_only(url, key, args.reuse_sources)
         return
 
     today = date.today()
@@ -386,8 +421,13 @@ def main() -> None:
         if short:
             raise RuntimeError("NEIS returned too few rows for: " + ", ".join(short))
 
-        run_step("etl/geocode_academy_addresses.py", "--all", "--retry-failures")
-        report["geocode"] = json.loads((BASE_DIR / "academy_geocode_profile.json").read_text(encoding="utf-8"))
+        if ON_RUNNER:
+            # VWorld refuses foreign IPs; the Windows task geocoded new addresses into
+            # the restored cache the day before. Addresses newer than that wait a month.
+            report["geocode"] = "skipped on the runner; cache from the --geocode-only task"
+        else:
+            run_step("etl/geocode_academy_addresses.py", "--all", "--retry-failures")
+            report["geocode"] = json.loads((BASE_DIR / "academy_geocode_profile.json").read_text(encoding="utf-8"))
         run_step("etl/build_academy_marker_snapshot.py")
         report["markers"] = json.loads((BASE_DIR / "academy_marker_profile.json").read_text(encoding="utf-8"))
 
@@ -440,7 +480,8 @@ def main() -> None:
         )
         archive_sources(url, key, run_id, [(SOURCE_NAME, snapshot, sum(current.values())),
                                            ("sports-dojo", dojos, int(dojo_profile["normalized_rows"]))], as_of)
-        storage_put(url, key, "academy_geocodes_all.csv.gz", GEOCODE_CACHE)
+        if not ON_RUNNER:
+            storage_put(url, key, "academy_geocodes_all.csv.gz", GEOCODE_CACHE)
         apply_build(url, key, build, plan, as_of)
         recurring.mark_snapshots(url, key, run_id, "validated")
         recurring.update_schedules(url, key, run_id, {"snapshots": [{"source_name": SOURCE_NAME}]})

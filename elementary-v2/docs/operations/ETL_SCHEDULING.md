@@ -106,6 +106,14 @@ academy serving tables, deleting what the build no longer has. The plan and its 
 - It writes nothing if NEIS returns under 90% of the last completed run's rows for any region,
   if the sports-dojo source shrank by more than 15%, or if any region would lose more than 15% of
   its addresses or institutions. Last month's data then stays and the job fails.
+- **Geocoding does not run on GitHub.** VWorld refuses foreign IPs (2026-10-06: every retry from
+  the runner was a `transport_error`), and Kakao's Local API forbids storing results, so it is no
+  substitute. The Windows task `Elementary Academy Geocode` (`etl/install_academy_geocode_task.ps1`,
+  1st of each month 21:00 KST, StartWhenAvailable) runs `run_academy_refresh.py --geocode-only`:
+  collect NEIS, geocode new and failed addresses, write the cache to Storage. The runner skips
+  geocoding and uses that cache, so an address that opens after the task ran waits a month. The
+  task refuses to upload if more than 5% of its lookups fail to connect. Logs:
+  `etl/logs/academy-geocode-*.log`.
 - A failure there does not stop maintenance or the realm guard; the job still fails afterwards.
 - Every run, due or not, still ends with `etl/apply_academy_realm_exclusion.py`, which keeps NEIS
   realm `직업기술` out of the serving tables. After a refresh it reports zero.
