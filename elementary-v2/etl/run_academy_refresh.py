@@ -6,7 +6,9 @@ Stages (docs/operations/ACADEMY_REFRESH_PLAN.md):
 2. collect    NEIS academies nationwide; every region checked against the last run
 3. geocode    only new addresses and earlier failures (VWorld)
 4. markers    address markers (drops 직업기술, classifies subjects)
-5. dojos      sports-dojo permits collected and merged into the markers
+5. dojos      sports-dojo permits collected and merged into the markers; the private
+              per-institution list is written and diffed against the last applied
+              month (academy_institutions.py), stored only after a successful apply
 6. complexes  apartment complexes exported from the live master
 7. proximity  links and summaries, one region at a time (memory)
 8. plan       what changes against the live tables, and the shrink limit per region
@@ -47,6 +49,7 @@ from typing import Any
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
+import academy_institutions  # noqa: E402
 import run_recurring_etl as recurring  # noqa: E402
 from build_academy_proximity_snapshot import NEW_DONGS, PRIOR_DONGS  # noqa: E402
 from region_registry import load_registry  # noqa: E402
@@ -70,6 +73,9 @@ STORAGE_INPUTS = {
 
 DOJO_OBJECT = "sports_dojo_nationwide.json.gz"
 DOJO_PROFILE_OBJECT = "sports_dojo_nationwide_profile.json.gz"
+# Per-institution list (academy_institutions.py): one copy per applied month, and
+# "latest" as the next run's baseline. Written only after a successful apply.
+INSTITUTIONS_LATEST = "institutions/latest.csv.gz"
 
 PIPELINE_NAME = "elementary-academy-refresh"
 PIPELINE_VERSION = "academy-refresh-v1"
@@ -373,6 +379,24 @@ def restore_dojo_copy(url: str, key: str, stamp: str) -> str:
     return f"storage copy from {collected}"
 
 
+def institution_changes(url: str, key: str, snapshot: Path, dojos: Path, output: Path) -> dict[str, Any]:
+    """Write this month's institution list and compare it with the last applied one.
+
+    Observation only: a failure here is reported and never stops the refresh.
+    """
+    entries = academy_institutions.build_entries(
+        json.loads(snapshot.read_text(encoding="utf-8")),
+        json.loads(dojos.read_text(encoding="utf-8")),
+    )
+    academy_institutions.write_entries(output, entries)
+    body = storage_get(url, key, INSTITUTIONS_LATEST)
+    if body is None:
+        return {"current": len(entries), "baseline": "none; the first applied run sets it"}
+    previous_path = output.with_name(output.stem + "_previous.csv")
+    previous_path.write_bytes(gzip.decompress(body))
+    return academy_institutions.diff_entries(academy_institutions.read_entries(previous_path), entries)
+
+
 def geocode_only(url: str, key: str, reuse_sources: bool) -> None:
     report: dict[str, Any] = {"mode": "geocode-only", "as_of": date.today().isoformat()}
     try:
@@ -468,6 +492,12 @@ def main() -> None:
         report["dojos"] = {"active": active_dojos, "baseline": previous_dojos, "source": dojo_source}
         if previous_dojos and active_dojos < previous_dojos * (1 - SHRINK_LIMIT):
             raise RuntimeError(f"sports-dojo source shrank {previous_dojos:,} -> {active_dojos:,}")
+        institutions = ACADEMY_DIR / f"academy_institutions_{stamp}.csv"
+        try:
+            report["institutions"] = institution_changes(url, key, snapshot, dojos, institutions)
+        except Exception as error:  # noqa: BLE001 - observation must not block the map refresh
+            report["institutions"] = {"error": str(error)[:500]}
+            institutions = None
         run_step("etl/merge_sports_dojo_markers.py",
                  "--academy-markers", str(ACADEMY_DIR / f"academy_address_markers_{stamp}.csv"),
                  "--sports-dojos", str(dojos), "--as-of", stamp)
@@ -516,6 +546,13 @@ def main() -> None:
         recurring.update_schedules(url, key, run_id, {"snapshots": [{"source_name": SOURCE_NAME}]})
         rest(url, key, "PATCH", f"etl_runs?run_id=eq.{run_id}",
              {"status": "completed", "completed_at": datetime.now().astimezone().isoformat()}, "return=minimal")
+        if institutions is not None:
+            try:
+                storage_put(url, key, f"institutions/{stamp}.csv.gz", institutions)
+                storage_put(url, key, INSTITUTIONS_LATEST, institutions)
+                report["institutions"]["stored"] = f"{STORAGE_PREFIX}/institutions/{stamp}.csv.gz"
+            except Exception as error:  # noqa: BLE001 - the tables are already written
+                report["institutions"]["store_error"] = str(error)[:500]
         report["result"] = f"applied; run {run_id}"
     except Exception as error:
         report["result"] = f"failed: {error}"

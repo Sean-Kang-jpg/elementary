@@ -153,10 +153,20 @@ def fetch_all(api_key: str, address_like: str | None = None) -> list[dict[str, A
     return rows
 
 
+def source_key(row: dict[str, Any]) -> str:
+    # MNG_NO is numbered per local government: 32,882 nationwide rows carried only
+    # 1,571 distinct values on 2026-10-06, while (OPN_ATMY_GRP_CD, MNG_NO) had none repeated.
+    local_gov = str(row.get("OPN_ATMY_GRP_CD") or "").strip()
+    number = str(row.get("MNG_NO") or "").strip()
+    return f"{local_gov}-{number}" if local_gov and number else ""
+
+
 def normalize(row: dict[str, Any], region: str) -> dict[str, Any]:
     latitude, longitude = coordinates(row)
     return {
-        "source_id": str(row.get("MNG_NO") or "").strip(),
+        "source_id": source_key(row),
+        "local_gov_code": str(row.get("OPN_ATMY_GRP_CD") or "").strip(),
+        "management_number": str(row.get("MNG_NO") or "").strip(),
         "source_type": "sports_dojo",
         "region": region,
         "district": "",
@@ -206,7 +216,7 @@ def main(argv: list[str] | None = None) -> None:
                 prefix_rows = fetch_all(api_key, address_prefix)
                 print(f"{address_prefix}: {len(prefix_rows):,}")
                 for row in prefix_rows:
-                    source_id = str(row.get("MNG_NO") or "").strip()
+                    source_id = source_key(row)
                     all_rows_by_id[source_id or json.dumps(row, sort_keys=True)] = row
         all_rows = list(all_rows_by_id.values())
     selected = [row for row in all_rows if row_in_scope(row, scopes)]

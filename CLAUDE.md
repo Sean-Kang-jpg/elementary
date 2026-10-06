@@ -57,6 +57,19 @@ npm run typecheck
 
 ## Uncommitted Work At Handoff
 
+### 2026-10-06: 학원·체육도장 기관 키 (커밋 — 아래 커밋 메시지 참고)
+
+- 실측: 학원 `ACA_ASNUM`·체육도장 `MNG_NO`는 단독으로 전국에서 유일하지 않다. 유일한 키는
+  `(교육청코드, 지정번호)`·`(지자체코드, 관리번호)` 복합키(각각 중복 0). 상세는 `ACADEMY_REFRESH_PLAN.md` 7절
+- `OPERATION_PLAN.md` 학원 절의 "ACA_ASNUM 단독 키" 문구 정정(한 줄, 같은 파일의 다른 미커밋 변경과 섞지 말 것)
+- `etl/collect_sports_dojo_snapshot.py`: `source_id`를 `{지자체코드}-{관리번호}`로, `local_gov_code`·`management_number` 추가.
+  파일럿 경로의 `MNG_NO` 단독 중복 제거 결함 수정. 원본 32,882행으로 유일성 확인, py_compile 통과
+- K2 `etl/academy_institutions.py`(신규): 학원·체육도장 기관 키 목록(비공개 CSV)과 월간 비교. 10/6 원본 151,256곳, 키 중복 0
+- K3 `run_academy_refresh.py`: 5단계 뒤 목록 작성·Storage `academy-refresh/institutions/latest.csv.gz`와 비교해 보고서
+  `institutions`에 기록. `--apply` 성공 뒤에만 Storage에 쓴다. 이 단계 실패는 갱신을 막지 않는다
+- 검증: `etl.tests.test_academy_institutions`(8개) 포함 학원 관련 테스트 20개 통과, 실 Storage 읽기 경로(기준 없음)·옛 형식 거부 확인
+- **11/2 전에 커밋·push 필요**(정기 실행은 master 코드). 기준 목록 시드 여부는 사용자 결정 대기 — 안 넣으면 첫 비교는 12월
+
 ### 2026-10-06: 학원 데이터 월간 자동 갱신 (`f905ac7`, 운영 데이터 반영)
 
 - 계획 `docs/operations/ACADEMY_REFRESH_PLAN.md`(D1~D3 권고안 확정). 구현은 `etl/run_academy_refresh.py` 하나:
