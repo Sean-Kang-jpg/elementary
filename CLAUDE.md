@@ -68,7 +68,8 @@ npm run typecheck
 - K3 `run_academy_refresh.py`: 5단계 뒤 목록 작성·Storage `academy-refresh/institutions/latest.csv.gz`와 비교해 보고서
   `institutions`에 기록. `--apply` 성공 뒤에만 Storage에 쓴다. 이 단계 실패는 갱신을 막지 않는다
 - 검증: `etl.tests.test_academy_institutions`(8개) 포함 학원 관련 테스트 20개 통과, 실 Storage 읽기 경로(기준 없음)·옛 형식 거부 확인
-- **11/2 전에 커밋·push 필요**(정기 실행은 master 코드). 기준 목록 시드 여부는 사용자 결정 대기 — 안 넣으면 첫 비교는 12월
+- push `92e0b2e`(임시 인덱스로 이 작업 파일만 커밋 — 인덱스의 `.ps1` 이름 변경 2건은 다른 세션 것이라 남겨 둠).
+  기준 목록 Storage 시드 2026-10-07(151,256곳, 익명 400). **11/2 실행 보고서의 `institutions`에서 첫 월간 비교 확인**
 
 ### 2026-10-06: 학원 데이터 월간 자동 갱신 (`f905ac7`, 운영 데이터 반영)
 
