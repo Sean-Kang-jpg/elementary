@@ -110,7 +110,9 @@ academy serving tables, deleting what the build no longer has. The plan and its 
   the runner was a `transport_error`), and Kakao's Local API forbids storing results, so it is no
   substitute. The Windows task `Elementary Academy Geocode` (`etl/install_academy_geocode_task.ps1`,
   1st of each month 21:00 KST, StartWhenAvailable) runs `run_academy_refresh.py --geocode-only`:
-  collect NEIS, geocode new and failed addresses, write the cache to Storage. The runner skips
+  collect NEIS and sports-dojo permits, geocode new and failed addresses, write the cache and a
+  copy of the dojo snapshot to Storage. If the runner's own dojo collection fails (data.go.kr
+  stalls now and then from GitHub), it uses that copy when it is at most ten days old. The runner skips
   geocoding and uses that cache, so an address that opens after the task ran waits a month. The
   task refuses to upload if more than 5% of its lookups fail to connect. Logs:
   `etl/logs/academy-geocode-*.log`.

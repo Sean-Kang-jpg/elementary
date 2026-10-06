@@ -94,19 +94,23 @@ def fetch_page(
         params["cond[ROAD_NM_ADDR::LIKE]"] = address_like
     query = urlencode(params)
     root = None
-    for attempt in range(5):
+    # The gateway stalls now and then from GitHub runners (2026-10-06: one page timed
+    # out five times in a row), so keep trying for a few minutes before giving up.
+    attempts = 8
+    for attempt in range(attempts):
+        last = attempt == attempts - 1
         try:
             with urlopen(f"{ENDPOINT}?{query}", timeout=90) as response:
                 root = ET.fromstring(response.read().decode("utf-8"))
             break
         except HTTPError as exc:
-            if exc.code not in {429, 500, 502, 503, 504} or attempt == 4:
+            if exc.code not in {429, 500, 502, 503, 504} or last:
                 raise RuntimeError(f"sports-dojo API HTTP {exc.code}") from None
-            time.sleep(2 ** attempt)
-        except URLError as exc:
-            if attempt == 4:
-                raise RuntimeError(f"sports-dojo API network error: {exc.reason}") from None
-            time.sleep(2 ** attempt)
+            time.sleep(min(60, 2 ** (attempt + 1)))
+        except (URLError, TimeoutError, ConnectionError) as exc:
+            if last:
+                raise RuntimeError(f"sports-dojo API network error: {getattr(exc, 'reason', exc)}") from None
+            time.sleep(min(60, 2 ** (attempt + 1)))
         except (UnicodeDecodeError, ET.ParseError) as exc:
             raise RuntimeError(f"sports-dojo API returned invalid XML: {exc}") from None
     if root is None:

@@ -68,6 +68,9 @@ STORAGE_INPUTS = {
     "trusted_large_complex_buildings.csv.gz": NEW_DONGS,
 }
 
+DOJO_OBJECT = "sports_dojo_nationwide.json.gz"
+DOJO_PROFILE_OBJECT = "sports_dojo_nationwide_profile.json.gz"
+
 PIPELINE_NAME = "elementary-academy-refresh"
 PIPELINE_VERSION = "academy-refresh-v1"
 SOURCE_NAME = "neis-academy"
@@ -354,12 +357,34 @@ def archive_sources(url: str, key: str, run_id: str, sources: list[tuple[str, Pa
     recurring.archive_snapshots(url, key, run_id, manifest)
 
 
+def restore_dojo_copy(url: str, key: str, stamp: str) -> str:
+    """The sports-dojo snapshot the --geocode-only task stored, under today's names."""
+    body, profile = storage_get(url, key, DOJO_OBJECT), storage_get(url, key, DOJO_PROFILE_OBJECT)
+    if body is None or profile is None:
+        raise RuntimeError("sports-dojo collection failed and Storage holds no copy")
+    profile_data = json.loads(gzip.decompress(profile))
+    collected = str(profile_data.get("generated_at", ""))[:10]
+    if not collected or date.fromisoformat(collected) < date.today() - timedelta(days=10):
+        raise RuntimeError(f"sports-dojo collection failed and the stored copy is stale ({collected or 'undated'})")
+    DOJO_DIR.mkdir(parents=True, exist_ok=True)
+    (DOJO_DIR / f"sports_dojo_nationwide_{stamp}.json").write_bytes(gzip.decompress(body))
+    (DOJO_DIR / f"sports_dojo_nationwide_profile_{stamp}.json").write_bytes(gzip.decompress(profile))
+    print(f"sports-dojo collection failed; using the stored copy from {collected}")
+    return f"storage copy from {collected}"
+
+
 def geocode_only(url: str, key: str, reuse_sources: bool) -> None:
     report: dict[str, Any] = {"mode": "geocode-only", "as_of": date.today().isoformat()}
     try:
         report["inputs"] = restore_inputs(url, key)
         if not reuse_sources:
             run_step("etl/collect_academy_snapshot.py", "--all-production")
+            # A copy for the runner, whose calls to data.go.kr sometimes stall.
+            run_step("etl/collect_sports_dojo_snapshot.py", "--all-production")
+            stamp = f"{date.today():%Y%m%d}"
+            storage_put(url, key, DOJO_OBJECT, DOJO_DIR / f"sports_dojo_nationwide_{stamp}.json")
+            storage_put(url, key, DOJO_PROFILE_OBJECT, DOJO_DIR / f"sports_dojo_nationwide_profile_{stamp}.json")
+            report["dojos"] = "collected and copied to Storage"
         run_step("etl/geocode_academy_addresses.py", "--all", "--retry-failures")
         profile = json.loads((BASE_DIR / "academy_geocode_profile.json").read_text(encoding="utf-8"))
         report["geocode"] = {k: profile[k] for k in ("snapshot", "selected_unique_addresses", "matched", "match_rate", "statuses")}
@@ -432,11 +457,15 @@ def main() -> None:
         report["markers"] = json.loads((BASE_DIR / "academy_marker_profile.json").read_text(encoding="utf-8"))
 
         dojos = DOJO_DIR / f"sports_dojo_nationwide_{stamp}.json"
+        dojo_source = "collected"
         if not args.reuse_sources:
-            run_step("etl/collect_sports_dojo_snapshot.py", "--all-production")
+            try:
+                run_step("etl/collect_sports_dojo_snapshot.py", "--all-production")
+            except subprocess.CalledProcessError:
+                dojo_source = restore_dojo_copy(url, key, stamp)
         dojo_profile = json.loads((DOJO_DIR / f"sports_dojo_nationwide_profile_{stamp}.json").read_text(encoding="utf-8"))
         active_dojos = int(dojo_profile["active_rows"])
-        report["dojos"] = {"active": active_dojos, "baseline": previous_dojos}
+        report["dojos"] = {"active": active_dojos, "baseline": previous_dojos, "source": dojo_source}
         if previous_dojos and active_dojos < previous_dojos * (1 - SHRINK_LIMIT):
             raise RuntimeError(f"sports-dojo source shrank {previous_dojos:,} -> {active_dojos:,}")
         run_step("etl/merge_sports_dojo_markers.py",
