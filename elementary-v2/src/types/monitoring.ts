@@ -2,7 +2,7 @@ export interface EtlSchedule {
   schedule_id: string
   source_name: string
   display_name: string
-  data_domain: 'school' | 'apartment' | 'school_zone'
+  data_domain: 'school' | 'apartment' | 'school_zone' | 'academy'
   cadence_unit: 'daily' | 'weekly' | 'monthly' | 'annual' | 'manual'
   cadence_value: number
   max_age_hours: number

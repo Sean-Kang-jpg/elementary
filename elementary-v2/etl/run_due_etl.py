@@ -33,6 +33,9 @@ BASE_MANIFEST = BASE_DIR / "recurring_etl_manifest.json"
 SOURCE_GROUPS = {
     "apartment": {"kapt-basic"},
     "school": {"schoolinfo-basic", "schoolinfo-grade-students"},
+    # Nationwide in one run, not per scope: run_academy_refresh.py replaces the
+    # academy serving tables as a whole (docs/operations/ACADEMY_REFRESH_PLAN.md).
+    "academy": {"neis-academy"},
 }
 
 
@@ -370,7 +373,7 @@ def main() -> None:
         "--rehearse", action="store_true",
         help="Collect, build and validate every scope like a real run, but write nothing to Supabase",
     )
-    parser.add_argument("--force", action="append", choices=("apartment", "school", "all"), default=[])
+    parser.add_argument("--force", action="append", choices=("apartment", "school", "academy", "all"), default=[])
     parser.add_argument("--max-attempts", type=int, default=3)
     parser.add_argument("--retry-delay-seconds", type=int, default=300)
     args = parser.parse_args()
@@ -403,14 +406,26 @@ def main() -> None:
         # stay separately attributable.
         for regions, slug in production_scopes():
             ensure_schoolinfo(regions, slug)
-        for group in groups:
+        for group in (name for name in groups if name != "academy"):
             for regions, slug in production_scopes():
                 execute_group(
                     group, args.apply, args.max_attempts, args.retry_delay_seconds, regions, slug
                 )
+        academy_error = None
+        if "academy" in groups:
+            # After the apartment group, so proximity reads this month's complexes.
+            # A failure here leaves last month's academy data in place; maintenance
+            # still runs and the job still fails.
+            try:
+                run_script("etl/run_academy_refresh.py", "--apply" if args.apply else "--rehearse")
+            except subprocess.CalledProcessError as error:
+                academy_error = error
+                notify_failure("academy", 1, error)
         if args.apply:
             run_maintenance(url, key)
         run_academy_guard(apply=args.apply)
+        if academy_error:
+            raise academy_error
         if not args.apply:
             print("rehearsal complete: every scope collected, built and validated; nothing written")
 

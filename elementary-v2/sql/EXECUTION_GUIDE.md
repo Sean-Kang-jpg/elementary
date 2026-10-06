@@ -223,6 +223,13 @@ Independent of `22`/`23`. Before likes work in production:
    harmless, captcha on without a site key blocks every new voter.
 4. `python etl/upload_curriculum_refs.py` (dry run), then `--apply` after every content change.
 
+## 25: academy ETL schedule (2026-10-06)
+
+`sql/25_add_academy_etl_schedule.sql` widens `etl_schedules.data_domain` to allow `academy`,
+adds the monthly `neis-academy` schedule, and lists that source in `public_data_freshness()`.
+No table or grant changes on the public serving tables. Apply in the SQL editor before the first
+`run_academy_refresh.py --apply`; until then `run_due_etl.py` never sees the academy group as due.
+
 ## Stop Conditions
 
 - Project hostname does not resolve or keys belong to another project.

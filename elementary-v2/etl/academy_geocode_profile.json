@@ -1,19 +1,99 @@
 {
-  "generated_at": "2026-09-29",
-  "snapshot": "acainsti_scope_20260929.json",
+  "generated_at": "2026-10-06",
+  "snapshot": "acainsti_scope_20261006.json",
   "mode": "all",
-  "selected_unique_addresses": 4105,
-  "matched": 4075,
-  "match_rate": 0.9927,
+  "selected_unique_addresses": 65103,
+  "matched": 64381,
+  "match_rate": 0.9889,
   "statuses": {
-    "matched": 4075,
-    "api_error": 30
+    "matched": 64381,
+    "api_error": 722
   },
   "regions": {
+    "강원특별자치도": {
+      "addresses": 2056,
+      "matched": 2056,
+      "match_rate": 1.0
+    },
+    "경기도": {
+      "addresses": 14502,
+      "matched": 14298,
+      "match_rate": 0.9859
+    },
     "경상남도": {
       "addresses": 4105,
       "matched": 4075,
       "match_rate": 0.9927
+    },
+    "경상북도": {
+      "addresses": 3630,
+      "matched": 3565,
+      "match_rate": 0.9821
+    },
+    "광주광역시": {
+      "addresses": 2645,
+      "matched": 2642,
+      "match_rate": 0.9989
+    },
+    "대구광역시": {
+      "addresses": 3763,
+      "matched": 3729,
+      "match_rate": 0.991
+    },
+    "대전광역시": {
+      "addresses": 1808,
+      "matched": 1806,
+      "match_rate": 0.9989
+    },
+    "부산광역시": {
+      "addresses": 4208,
+      "matched": 4144,
+      "match_rate": 0.9848
+    },
+    "서울특별시": {
+      "addresses": 12380,
+      "matched": 12366,
+      "match_rate": 0.9989
+    },
+    "세종특별자치시": {
+      "addresses": 312,
+      "matched": 310,
+      "match_rate": 0.9936
+    },
+    "울산광역시": {
+      "addresses": 2140,
+      "matched": 2131,
+      "match_rate": 0.9958
+    },
+    "인천광역시": {
+      "addresses": 2782,
+      "matched": 2614,
+      "match_rate": 0.9396
+    },
+    "전라남도": {
+      "addresses": 2316,
+      "matched": 2312,
+      "match_rate": 0.9983
+    },
+    "전북특별자치도": {
+      "addresses": 2972,
+      "matched": 2969,
+      "match_rate": 0.999
+    },
+    "제주특별자치도": {
+      "addresses": 1237,
+      "matched": 1236,
+      "match_rate": 0.9992
+    },
+    "충청남도": {
+      "addresses": 2349,
+      "matched": 2240,
+      "match_rate": 0.9536
+    },
+    "충청북도": {
+      "addresses": 1898,
+      "matched": 1888,
+      "match_rate": 0.9947
     }
   }
 }

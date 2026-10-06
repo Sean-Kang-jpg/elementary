@@ -93,15 +93,27 @@ school districts anywhere, so it is cosmetic, but it should be inverted on the n
 
 ## Academy Data in the Monthly Run
 
-The academy layer is **not refreshed** by the monthly run. Its serving tables were built by
-hand, region by region, then merged with sports-dojo permits and backfilled with names and
-subjects, and a refresh needs `NEIS_CLASS_API_KEY` and `VWORLD_API_KEY`, which are not Actions
-secrets. What the monthly run does is a guard: `run_due_etl.py` ends every run, due or not, with
-`etl/apply_academy_realm_exclusion.py` (`--apply` on an apply run, dry-run on a rehearsal), which
-removes NEIS realm `직업기술` (adult vocational training, excluded 2026-10-05) from
-`academy_address_serving` and takes those institutions out of `apartment_academy_summary`. It is
-idempotent, so once applied a run reports zero; its report is `runtime/recurring_academy_realm_exclusion.json`.
-The marker builder drops the same realm at the source for the next manual refresh.
+From 2026-10-06 the academy layer is a monthly group of its own, `academy` (schedule
+`neis-academy`, `sql/25`). `run_due_etl.py` runs it once, nationwide, after the per-scope groups:
+`etl/run_academy_refresh.py` collects NEIS academies and sports-dojo permits, geocodes only new
+addresses (VWorld), rebuilds markers and proximity region by region, and **replaces** the three
+academy serving tables, deleting what the build no longer has. The plan and its decisions are
+`docs/operations/ACADEMY_REFRESH_PLAN.md`.
+
+- Inputs the runner cannot fetch - the geocode cache and the two building-origin files - live in
+  the private bucket under `etl-source-snapshots/academy-refresh/`. The run restores them first,
+  and an apply run writes the cache back.
+- It writes nothing if NEIS returns under 90% of the last completed run's rows for any region,
+  if the sports-dojo source shrank by more than 15%, or if any region would lose more than 15% of
+  its addresses or institutions. Last month's data then stays and the job fails.
+- A failure there does not stop maintenance or the realm guard; the job still fails afterwards.
+- Every run, due or not, still ends with `etl/apply_academy_realm_exclusion.py`, which keeps NEIS
+  realm `직업기술` out of the serving tables. After a refresh it reports zero.
+- The report is `runtime/recurring_academy_refresh.json`; `etl_runs.pipeline_name` is
+  `elementary-academy-refresh`.
+
+First applied by hand 2026-10-06 (run `34ebb91f`): addresses 78,820 -> 76,300 (+202, -2,722),
+origin points 80,641 -> 80,220, summaries 46,927 -> 46,929; every region within -1.7% to -4.2%.
 
 ## Manual Checks
 
