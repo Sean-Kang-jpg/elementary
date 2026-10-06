@@ -1,6 +1,6 @@
 # 1학년 미리보기 — 파일럿 후보 15개와 후기 기록 양식
 
-Status: **후보 (2026-10-05)** · 원칙: [`../product/LEARNING_CONTENT_PRINCIPLES.md`](../product/LEARNING_CONTENT_PRINCIPLES.md)
+Status: **폐기 — 참고 자료 (2026-10-06)**. 개편 계획 P2 seed 조사에 재사용할 수 있다 · 원칙: [`../product/LEARNING_CONTENT_PRINCIPLES.md`](../product/LEARNING_CONTENT_PRINCIPLES.md)
 
 과목별 5개. **공공 추천(P)이 있는 것부터** 채웠다 — 후기 없이도 근거가 서고, 광고 의심이 없다.
 `확인` 열이 비어 있는 항목은 이름·대상 연령·공식 주소를 아직 1차 자료로 확인하지 않았다. 공개 전에 채운다.

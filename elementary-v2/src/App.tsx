@@ -14,13 +14,6 @@ import GuideListPage from './components/content/GuideListPage'
 import GuidePage from './components/content/GuidePage'
 import FaqPage from './components/content/FaqPage'
 import ChecklistPage from './components/content/ChecklistPage'
-import CurriculumListPage from './components/curriculum/CurriculumListPage'
-import PlanPage from './components/curriculum/PlanPage'
-import ItemPage from './components/curriculum/ItemPage'
-import RankingPage from './components/curriculum/RankingPage'
-import Grade1PreviewPage from './components/learning/Grade1PreviewPage'
-import { LEARNING_PATH } from './content/learning'
-import { CURRICULUM_PATHS, findItem, findPlan, itemPath, planPath } from './content/curriculum'
 import checklistContent from './content/checklist.json'
 import { hasSavedProfile, readProfile, saveProfile, type Profile } from './utils/profile'
 import { FAQ_PAGE, findGuide } from './content'
@@ -93,12 +86,9 @@ function MapApplication() {
       window.history.replaceState({}, '', `${url.pathname}${url.search}`)
     }
   }
-  // 커리큘럼 화면 안에서 무엇을 보는지. 목록·카드·아이템·순위.
-  const [curriculumRoute, setCurriculumRoute] = useState<Route>(() => parseRoute(window.location.pathname, window.location.search))
   const showRoute = (route: Route) => {
     setView(viewOf(route))
     setGuideSlug(route.kind === 'guide' ? route.slug : null)
-    if (viewOf(route) === 'curriculum') setCurriculumRoute(route)
   }
   // 주소를 읽어 선택을 복원하는 동안에는 선택을 보고 주소를 쓰면 안 된다.
   // 그러지 않으면 복원 도중의 중간 상태가 기록으로 쌓인다.
@@ -196,20 +186,7 @@ function MapApplication() {
   // 지도 쪽 canonical은 syncPath가 맞춘다. 홈·가이드·FAQ는 색인 대상이고,
   // 소식·MY·처리방침은 아니다.
   const guide = findGuide(guideSlug)
-  const plan = view === 'curriculum' && curriculumRoute.kind === 'plan' ? findPlan(curriculumRoute.key) : null
-  const item = view === 'curriculum' && curriculumRoute.kind === 'item' ? findItem(curriculumRoute.key) : null
   useEffect(() => {
-    if (view !== 'curriculum') return
-    // 없는 카드·아이템 주소는 목록으로, 장식만 다른 주소는 정규 주소로 고친다.
-    const canonical = plan ? planPath(plan)
-      : item ? itemPath(item)
-        : curriculumRoute.kind === 'ranking' ? CURRICULUM_PATHS.ranking
-          : curriculumRoute.kind === 'grade1' ? LEARNING_PATH : CURRICULUM_PATHS.plans
-    if (decodeURIComponent(window.location.pathname) !== canonical) window.history.replaceState({}, '', canonical)
-    setCanonical(canonical)
-  }, [view, curriculumRoute, plan, item])
-  useEffect(() => {
-    if (view === 'curriculum') return
     if (view === 'home') setCanonical(VIEW_PATHS.home)
     else if (view === 'faq') setCanonical(VIEW_PATHS.faq)
     else if (view === 'checklist') setCanonical(VIEW_PATHS.checklist)
@@ -235,28 +212,8 @@ function MapApplication() {
         ? `${school.school_name} 배정 아파트 | 어디초`
         : view === 'guide' && guide
           ? `${guide.title} | 어디초`
-          : plan
-            ? `${plan.title} | 우리 아이 커리큘럼 | 어디초`
-            : item
-              ? `${item.name} | 우리 아이 커리큘럼 | 어디초`
-              : view === 'curriculum' && curriculumRoute.kind === 'ranking'
-                ? '아이템 순위 | 우리 아이 커리큘럼 | 어디초'
-                : view === 'curriculum' && curriculumRoute.kind === 'grade1'
-                  ? '1학년 미리보기 | 어디초'
-                  : TITLES[view]
-  }, [view, state.selectedApartment, state.selectedSchool, guide, plan, item, curriculumRoute])
-
-  // 커리큘럼 조회 (PRD_CURRICULUM_SHARING 4절). 같은 화면을 다시 그리는 것은 새 조회가 아니다.
-  const lastCurriculum = useRef<string | null>(null)
-  useEffect(() => {
-    const shown = view !== 'curriculum' ? null
-      : plan ? `plan:${plan.key}` : item ? `item:${item.key}` : curriculumRoute.kind === 'ranking' ? 'ranking' : 'plans'
-    if (shown === lastCurriculum.current) return
-    lastCurriculum.current = shown
-    if (plan) track('view_plan', { plan_key: plan.key, age_band: plan.ageBand })
-    else if (item) track('view_item', { item_key: item.key })
-    else if (shown === 'ranking') track('view_ranking', {})
-  }, [view, plan, item, curriculumRoute])
+          : TITLES[view]
+  }, [view, state.selectedApartment, state.selectedSchool, guide])
 
   // 가이드 조회와 FAQ 질문 열람 (PRD v2 12절의 1a 이벤트). 뒤로 가기로 돌아온
   // 가이드는 새 조회가 아니다.
@@ -430,15 +387,6 @@ function MapApplication() {
         />
       )}
       {view === 'privacy' && <PrivacyPage />}
-      {view === 'curriculum' && (plan
-        ? <PlanPage key={plan.key} plan={plan} onNavigate={(path) => navigate(path, 'related')} />
-        : item
-          ? <ItemPage key={item.key} item={item} onNavigate={(path) => navigate(path, 'related')} />
-          : curriculumRoute.kind === 'grade1'
-            ? <Grade1PreviewPage />
-          : curriculumRoute.kind === 'ranking'
-            ? <RankingPage onNavigate={(path) => navigate(path, 'related')} />
-            : <CurriculumListPage onNavigate={(path) => navigate(path, 'related')} />)}
       
       {connectionStatus.supabase === 'error' && (
         <div className="absolute top-4 right-4 z-10 max-w-xs">
@@ -482,7 +430,6 @@ const TITLES: Record<AppView, string> = {
   guide: '입학 준비 가이드 | 어디초',
   faq: `${FAQ_PAGE.title} | 어디초`,
   checklist: `${checklistContent.title} | 어디초`,
-  curriculum: '우리 아이 커리큘럼 | 어디초',
 }
 
 const EtlMonitoringPage = lazy(() => import('./components/admin/EtlMonitoringPage'))

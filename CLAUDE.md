@@ -122,7 +122,17 @@ npm run typecheck
   핀치는 미확인
 - **같은 작업 트리의 `SchoolCarePanel.tsx` 변경(소규모 학교 돌봄 이용률)은 다른 세션 작업이라 이 커밋에서 뺐다**
 
-### 2026-10-05: 1학년 미리보기 (master, 플래그 뒤 — 운영 노출 안 됨)
+### 2026-10-06: 커리큘럼·1학년 미리보기 검토안 폐기, 화면 코드 삭제
+
+- 사용자 결정으로 기존 검토안을 폐기하고 개편 계획(`PLATFORM_EXPANSION_PLAN.md`)을 따른다. 적용할 포인트는
+  `docs/product/PLATFORM_EXPANSION_LEARNING_INPUTS.md`(A2~A8, B9·B11·B12)
+- 삭제: `/plans`·`/items`·`/ranking`·`/grade1` 화면과 따봉 UI, 라우트, 입학 준비 진입 링크, 처리방침 7항 코드,
+  `src/content/curriculum.ts`·`learning.ts`, `build-content`의 1학년 검증. 플래그 `VITE_CURRICULUM_ENABLED`도 더 읽지 않는다
+- 보존(개편 Audit 2 §10 '보존/보류', P0-04·P3 결정 때 정리): SQL `24`(운영 미적용, EXECUTION_GUIDE에 '적용 보류'),
+  `src/lib/voter.ts`, `src/services/curriculumService.ts`, `src/content/curriculum/*.json`, `etl/upload_curriculum_refs.py`
+- 참고 자료로 이동: `docs/research/learning/stages.json`, `public-recommended-items.json`. 원칙·후보 문서는 '폐기 — 참고 자료'로 표시
+
+### 2026-10-05: 1학년 미리보기 (master, 플래그 뒤 — 운영 노출 안 됨) — 2026-10-06 폐기
 
 - 방향 전환: 따봉·순위 대신 **초1 교과서를 기준점으로** 과목·단계별 "언제 배우나"와 근거 있는 콘텐츠.
   원칙 `docs/product/LEARNING_CONTENT_PRINCIPLES.md`, 단계표 `src/content/learning/stages.json`(국어 6·수학 5·영어 5단계),

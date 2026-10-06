@@ -28,7 +28,7 @@
 
 **단서**: 경남교육청 도움자료는 국정 교과서 **현장검토본**을 참고했다고 밝힌다. 2027년 3월 배포 교과서로 단원명을 다시 확인한다.
 
-1~2학년군 국어·수학 성취기준 원문은 검토안의 단계표(`src/content/learning/stages.json`)에 코드와 문장 그대로 정리돼 있다. 화면 코드는 폐기하지만 이 자료는 seed 작성 때 그대로 인용할 수 있다.
+1~2학년군 국어·수학 성취기준 원문은 [`docs/research/learning/stages.json`](../research/learning/stages.json)에 코드와 문장 그대로 정리돼 있다(화면 코드는 2026-10-06 삭제). 공공 추천 국어 5개는 `docs/research/learning/public-recommended-items.json`.
 
 ## A4 — 출처 신호에 "공공 추천" 유형 추가 → P2-04, P2-05
 

@@ -207,7 +207,10 @@ python etl/collect_care_data.py --apply    # upsert, drop older snapshots, anon 
 The loader refuses to shrink either table by more than 20% in one run. Run it
 monthly; the school disclosure changes yearly, the center list whenever centers edit it.
 
-## 24: curriculum likes (2026-10-05)
+## 24: curriculum likes (2026-10-05) — 적용 보류
+
+**적용하지 않는다(2026-10-06).** 이 기능의 화면은 삭제됐고, 참여 기능은 개편 계획 P3·P4의 로그인·Poll 설계로 다시 정한다.
+파일은 개편 감사(Audit 2 §10)에 따라 보존한다.
 
 `sql/24_create_curriculum_likes.sql` adds `curriculum_refs` (private; the keys a like may
 point at, with each card's age band, region and domain), `curriculum_likes` (one row per

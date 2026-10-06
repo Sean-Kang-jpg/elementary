@@ -1,5 +1,4 @@
 import policy from '../../content/privacy.json'
-import { CURRICULUM_ENABLED } from '../../content/curriculum'
 
 /**
  * 개인정보처리방침 (MEASUREMENT_PLAN 5절).
@@ -17,7 +16,7 @@ export default function PrivacyPage() {
     <section className="app-destination app-page privacy-page" aria-labelledby="privacy-title">
       <article className="privacy-page__inner">
         <h1 id="privacy-title">개인정보처리방침</h1>
-        <p className="privacy-page__meta">시행일 {value(CURRICULUM_ENABLED ? policy.curriculumEffectiveDate : policy.effectiveDate)}</p>
+        <p className="privacy-page__meta">시행일 {value(policy.effectiveDate)}</p>
 
         <p>
           어디초는 회원가입이 없으며, 이름·전화번호·이메일처럼 개인을 직접 알아볼 수 있는 정보를 받지 않습니다.
@@ -62,28 +61,11 @@ export default function PrivacyPage() {
           브라우저의 사이트 데이터 삭제로 언제든 지울 수 있습니다. 아이의 이름이나 생년월일은 묻지 않습니다.
         </p>
 
-        {CURRICULUM_ENABLED && <>
-        <h2>7. 따봉 기록</h2>
-        <p>
-          '우리 아이 커리큘럼'에서 따봉을 처음 누르면, 이름·연락처 없이 무작위로 만든 익명 식별자가 이 브라우저에
-          만들어집니다. 서버에는 그 식별자, 따봉을 누른 카드·아이템, 누른 시각만 저장되며, 로그인 처리 과정에서
-          접속 IP 주소가 기록될 수 있습니다. 같은 사람이 같은 대상에 두 번 누르지 못하게 하고 따봉 수를 세는 데에만
-          씁니다. 누가 무엇에 눌렀는지는 공개하지 않고 합계만 보여줍니다.
-        </p>
-        <dl>
-          <dt>받는 자</dt><dd>Supabase Inc. (데이터 보관: 싱가포르) · 따봉 기록 저장</dd>
-          <dt>받는 자</dt><dd>Cloudflare, Inc. (미국) · 자동 등록(로봇) 확인을 위해 브라우저 정보와 IP 주소를 처리</dd>
-          <dt>이전 시기와 방법</dt><dd>따봉을 누르는 시점에 인터넷을 통해 전송</dd>
-          <dt>보유 기간</dt><dd>따봉을 취소하면 그 기록은 바로 지워집니다. 나머지는 서비스 운영 기간 동안 보관하며, 아래 연락처로 삭제를 요청할 수 있습니다.</dd>
-          <dt>거부 방법과 효과</dt><dd>따봉을 누르지 않으면 아무것도 만들어지거나 전송되지 않습니다. 따봉 외의 모든 기능은 그대로 쓸 수 있습니다.</dd>
-        </dl>
-        </>}
-
-        <h2>{CURRICULUM_ENABLED ? 8 : 7}. 개인정보 보호책임자</h2>
+        <h2>7. 개인정보 보호책임자</h2>
         <p>{value(policy.officerName)} · {value(policy.officerEmail)}</p>
         <p>개인정보 관련 문의와 열람·삭제 요청은 위 연락처로 보내 주세요.</p>
 
-        <h2>{CURRICULUM_ENABLED ? 9 : 8}. 변경</h2>
+        <h2>8. 변경</h2>
         <p>이 방침이 바뀌면 이 페이지에 시행일과 함께 게시합니다.</p>
       </article>
     </section>

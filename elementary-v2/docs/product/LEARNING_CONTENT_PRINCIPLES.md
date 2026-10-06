@@ -1,6 +1,7 @@
 # 어디초 학습 콘텐츠 편집 원칙 v1.0
 
-Status: **확정 (2026-10-05)** · 대상: 2027학년도 초등학교 입학생 · 다음 확인: 2027년 3월(교과서 배포 후)
+Status: **폐기 — 참고 자료 (2026-10-06)** · 개편 계획에 적용할 부분은 [`PLATFORM_EXPANSION_LEARNING_INPUTS.md`](PLATFORM_EXPANSION_LEARNING_INPUTS.md)에 있다.
+`/grade1` 화면은 삭제했고 단계표·공공 추천 자료는 `docs/research/learning/`로 옮겼다. 아래 본문은 작성 당시 그대로다.
 
 입학 준비 탭의 "1학년 미리보기"가 따르는 원칙이다. 커리큘럼 공유 설계
 ([`PRD_CURRICULUM_SHARING.md`](PRD_CURRICULUM_SHARING.md))는 따봉·순위 중심이었고, 이 문서가 그
@@ -44,7 +45,7 @@ Status: **확정 (2026-10-05)** · 대상: 2027학년도 초등학교 입학생 
 
 ## 3. 과목과 단계
 
-단계의 공식 근거와 단원 매핑은 `src/content/learning/stages.json`이 원본이다. 요약:
+단계의 공식 근거와 단원 매핑은 `docs/research/learning/stages.json`이 원본이다. 요약:
 
 - **국어** 한글 해득 → 받침 있는 글자 → 낱말 읽기·쓰기 → 문장 읽기·쓰기 → 내용 이해 → 간단한 쓰기(그림일기)
 - **수학** 수 감각 → 덧셈·뺄셈 → 비교·측정 → 모양·공간 → 규칙
