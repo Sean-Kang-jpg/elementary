@@ -206,6 +206,7 @@ SQL `23`의 돌봄·방과후 블록과 주변 돌봄센터. "봤다"는 렌더�
 | 이벤트 | 파라미터 | 시점 |
 | --- | --- | --- |
 | `view_care` | `item_type`(`school`·`apartment`), `item_id`(학교 ID·단지 공개 키), `block`(`school_care`·`care_centers`), `has_evening_care`(`yes`·`no`, 학교 블록만), `center_count`(센터 목록만) | 대상마다 한 번 |
+| `view_school_day_estimate` | `item_type`(`school`), `item_id`(학교 ID), `has_day`(`yes`·`no`, 요일별 예상 하교 유무), `care_status`(`stated`·`school_check_needed`·`none`) | 학교마다 한 번, 카드 절반이 화면에 들어올 때 (Audit 2 A2-R04, SQL 26 적용 후 발생) |
 | `call_care_center` | `item_type`, `item_id`, `center_id`, `distance_m` | 센터 전화 버튼 |
 | `show_care_map` | `item_type`, `item_id`, `center_count` | '지도에서 돌봄센터 보기' |
 | `filter_evening_care` | `result_count` | 필터에서 '저녁 돌봄 운영 학교만'을 켜고 적용할 때(끌 때는 보내지 않는다) |

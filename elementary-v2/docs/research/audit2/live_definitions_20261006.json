@@ -1,0 +1,2784 @@
+{
+  "columns": [
+    {
+      "type": "text",
+      "table": "academy_address_serving",
+      "column": "address_id",
+      "default": null,
+      "nullable": false
+    },
+    {
+      "type": "text",
+      "table": "academy_address_serving",
+      "column": "region",
+      "default": null,
+      "nullable": false
+    },
+    {
+      "type": "text",
+      "table": "academy_address_serving",
+      "column": "district",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "double precision",
+      "table": "academy_address_serving",
+      "column": "latitude",
+      "default": null,
+      "nullable": false
+    },
+    {
+      "type": "double precision",
+      "table": "academy_address_serving",
+      "column": "longitude",
+      "default": null,
+      "nullable": false
+    },
+    {
+      "type": "geography(Point,4326)",
+      "table": "academy_address_serving",
+      "column": "location",
+      "default": null,
+      "nullable": false
+    },
+    {
+      "type": "integer",
+      "table": "academy_address_serving",
+      "column": "institution_count",
+      "default": null,
+      "nullable": false
+    },
+    {
+      "type": "jsonb",
+      "table": "academy_address_serving",
+      "column": "institution_type_counts",
+      "default": "'{}'::jsonb",
+      "nullable": false
+    },
+    {
+      "type": "jsonb",
+      "table": "academy_address_serving",
+      "column": "realm_counts",
+      "default": "'{}'::jsonb",
+      "nullable": false
+    },
+    {
+      "type": "text",
+      "table": "academy_address_serving",
+      "column": "top_subjects",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "date",
+      "table": "academy_address_serving",
+      "column": "source_as_of",
+      "default": null,
+      "nullable": false
+    },
+    {
+      "type": "text",
+      "table": "academy_address_serving",
+      "column": "pipeline_version",
+      "default": null,
+      "nullable": false
+    },
+    {
+      "type": "timestamp with time zone",
+      "table": "academy_address_serving",
+      "column": "updated_at",
+      "default": "now()",
+      "nullable": false
+    },
+    {
+      "type": "jsonb",
+      "table": "academy_address_serving",
+      "column": "institutions",
+      "default": "'[]'::jsonb",
+      "nullable": false
+    },
+    {
+      "type": "text",
+      "table": "apartment_academy_origin_points",
+      "column": "canonical_complex_id",
+      "default": null,
+      "nullable": false
+    },
+    {
+      "type": "integer",
+      "table": "apartment_academy_origin_points",
+      "column": "origin_sequence",
+      "default": null,
+      "nullable": false
+    },
+    {
+      "type": "double precision",
+      "table": "apartment_academy_origin_points",
+      "column": "latitude",
+      "default": null,
+      "nullable": false
+    },
+    {
+      "type": "double precision",
+      "table": "apartment_academy_origin_points",
+      "column": "longitude",
+      "default": null,
+      "nullable": false
+    },
+    {
+      "type": "geography(Point,4326)",
+      "table": "apartment_academy_origin_points",
+      "column": "location",
+      "default": null,
+      "nullable": false
+    },
+    {
+      "type": "text",
+      "table": "apartment_academy_origin_points",
+      "column": "distance_origin_type",
+      "default": null,
+      "nullable": false
+    },
+    {
+      "type": "text",
+      "table": "apartment_academy_origin_points",
+      "column": "pipeline_version",
+      "default": null,
+      "nullable": false
+    },
+    {
+      "type": "timestamp with time zone",
+      "table": "apartment_academy_origin_points",
+      "column": "updated_at",
+      "default": "now()",
+      "nullable": false
+    },
+    {
+      "type": "text",
+      "table": "apartment_academy_summary",
+      "column": "canonical_complex_id",
+      "default": null,
+      "nullable": false
+    },
+    {
+      "type": "integer",
+      "table": "apartment_academy_summary",
+      "column": "core_address_count",
+      "default": null,
+      "nullable": false
+    },
+    {
+      "type": "integer",
+      "table": "apartment_academy_summary",
+      "column": "extended_address_count",
+      "default": null,
+      "nullable": false
+    },
+    {
+      "type": "integer",
+      "table": "apartment_academy_summary",
+      "column": "core_institution_count",
+      "default": null,
+      "nullable": false
+    },
+    {
+      "type": "integer",
+      "table": "apartment_academy_summary",
+      "column": "extended_institution_count",
+      "default": null,
+      "nullable": false
+    },
+    {
+      "type": "text",
+      "table": "apartment_academy_summary",
+      "column": "distance_origin_type",
+      "default": null,
+      "nullable": false
+    },
+    {
+      "type": "text",
+      "table": "apartment_academy_summary",
+      "column": "pipeline_version",
+      "default": null,
+      "nullable": false
+    },
+    {
+      "type": "timestamp with time zone",
+      "table": "apartment_academy_summary",
+      "column": "updated_at",
+      "default": "now()",
+      "nullable": false
+    },
+    {
+      "type": "text",
+      "table": "apartment_assignment_schools",
+      "column": "apt_cd",
+      "default": null,
+      "nullable": false
+    },
+    {
+      "type": "text",
+      "table": "apartment_assignment_schools",
+      "column": "school_id",
+      "default": null,
+      "nullable": false
+    },
+    {
+      "type": "integer",
+      "table": "apartment_assignment_schools",
+      "column": "assignment_rank",
+      "default": "1",
+      "nullable": false
+    },
+    {
+      "type": "text",
+      "table": "apartment_assignment_schools",
+      "column": "assignment_role",
+      "default": null,
+      "nullable": false
+    },
+    {
+      "type": "text",
+      "table": "apartment_assignment_schools",
+      "column": "match_method",
+      "default": null,
+      "nullable": false
+    },
+    {
+      "type": "text",
+      "table": "apartment_assignment_schools",
+      "column": "pipeline_version",
+      "default": null,
+      "nullable": false
+    },
+    {
+      "type": "timestamp with time zone",
+      "table": "apartment_assignment_schools",
+      "column": "updated_at",
+      "default": "now()",
+      "nullable": false
+    },
+    {
+      "type": "text",
+      "table": "apartment_assignment_units",
+      "column": "apt_cd",
+      "default": null,
+      "nullable": false
+    },
+    {
+      "type": "text",
+      "table": "apartment_assignment_units",
+      "column": "canonical_complex_id",
+      "default": null,
+      "nullable": false
+    },
+    {
+      "type": "text",
+      "table": "apartment_assignment_units",
+      "column": "apt_name",
+      "default": null,
+      "nullable": false
+    },
+    {
+      "type": "text",
+      "table": "apartment_assignment_units",
+      "column": "road_address",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "text",
+      "table": "apartment_assignment_units",
+      "column": "region",
+      "default": null,
+      "nullable": false
+    },
+    {
+      "type": "double precision",
+      "table": "apartment_assignment_units",
+      "column": "latitude",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "double precision",
+      "table": "apartment_assignment_units",
+      "column": "longitude",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "geography(Point,4326)",
+      "table": "apartment_assignment_units",
+      "column": "location",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "text",
+      "table": "apartment_assignment_units",
+      "column": "hakgudo_id",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "text",
+      "table": "apartment_assignment_units",
+      "column": "hakgudo_name",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "text",
+      "table": "apartment_assignment_units",
+      "column": "school_id",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "text",
+      "table": "apartment_assignment_units",
+      "column": "education_office",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "text",
+      "table": "apartment_assignment_units",
+      "column": "assignment_method",
+      "default": null,
+      "nullable": false
+    },
+    {
+      "type": "text",
+      "table": "apartment_assignment_units",
+      "column": "confidence",
+      "default": null,
+      "nullable": false
+    },
+    {
+      "type": "boolean",
+      "table": "apartment_assignment_units",
+      "column": "review_required",
+      "default": "false",
+      "nullable": false
+    },
+    {
+      "type": "text",
+      "table": "apartment_assignment_units",
+      "column": "review_reason",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "date",
+      "table": "apartment_assignment_units",
+      "column": "hakgudo_reference_date",
+      "default": null,
+      "nullable": false
+    },
+    {
+      "type": "text",
+      "table": "apartment_assignment_units",
+      "column": "pipeline_version",
+      "default": null,
+      "nullable": false
+    },
+    {
+      "type": "timestamp with time zone",
+      "table": "apartment_assignment_units",
+      "column": "updated_at",
+      "default": "now()",
+      "nullable": false
+    },
+    {
+      "type": "text",
+      "table": "apartment_complex_master",
+      "column": "canonical_complex_id",
+      "default": null,
+      "nullable": false
+    },
+    {
+      "type": "text",
+      "table": "apartment_complex_master",
+      "column": "kapt_code",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "text",
+      "table": "apartment_complex_master",
+      "column": "complex_name",
+      "default": null,
+      "nullable": false
+    },
+    {
+      "type": "text",
+      "table": "apartment_complex_master",
+      "column": "name_source",
+      "default": null,
+      "nullable": false
+    },
+    {
+      "type": "text",
+      "table": "apartment_complex_master",
+      "column": "road_address",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "text",
+      "table": "apartment_complex_master",
+      "column": "legal_address",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "text",
+      "table": "apartment_complex_master",
+      "column": "region",
+      "default": null,
+      "nullable": false
+    },
+    {
+      "type": "text",
+      "table": "apartment_complex_master",
+      "column": "district",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "double precision",
+      "table": "apartment_complex_master",
+      "column": "latitude",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "double precision",
+      "table": "apartment_complex_master",
+      "column": "longitude",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "geography(Point,4326)",
+      "table": "apartment_complex_master",
+      "column": "location",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "integer",
+      "table": "apartment_complex_master",
+      "column": "households",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "text",
+      "table": "apartment_complex_master",
+      "column": "households_source",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "integer",
+      "table": "apartment_complex_master",
+      "column": "building_count",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "text",
+      "table": "apartment_complex_master",
+      "column": "building_count_source",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "integer",
+      "table": "apartment_complex_master",
+      "column": "use_approval_year",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "text",
+      "table": "apartment_complex_master",
+      "column": "use_approval_year_source",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "integer",
+      "table": "apartment_complex_master",
+      "column": "parking_total",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "text",
+      "table": "apartment_complex_master",
+      "column": "parking_source",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "integer",
+      "table": "apartment_complex_master",
+      "column": "component_count",
+      "default": "1",
+      "nullable": false
+    },
+    {
+      "type": "jsonb",
+      "table": "apartment_complex_master",
+      "column": "component_apt_ids",
+      "default": "'[]'::jsonb",
+      "nullable": false
+    },
+    {
+      "type": "text",
+      "table": "apartment_complex_master",
+      "column": "group_type",
+      "default": null,
+      "nullable": false
+    },
+    {
+      "type": "boolean",
+      "table": "apartment_complex_master",
+      "column": "review_required",
+      "default": "false",
+      "nullable": false
+    },
+    {
+      "type": "date",
+      "table": "apartment_complex_master",
+      "column": "source_as_of",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "text",
+      "table": "apartment_complex_master",
+      "column": "pipeline_version",
+      "default": null,
+      "nullable": false
+    },
+    {
+      "type": "timestamp with time zone",
+      "table": "apartment_complex_master",
+      "column": "updated_at",
+      "default": "now()",
+      "nullable": false
+    },
+    {
+      "type": "integer",
+      "table": "apartment_complex_master",
+      "column": "parking_ground",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "integer",
+      "table": "apartment_complex_master",
+      "column": "parking_underground",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "integer",
+      "table": "apartment_complex_master",
+      "column": "sale_households",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "integer",
+      "table": "apartment_complex_master",
+      "column": "rental_units_total",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "integer",
+      "table": "apartment_complex_master",
+      "column": "public_rental_units",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "integer",
+      "table": "apartment_complex_master",
+      "column": "private_rental_units",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "numeric(6,3)",
+      "table": "apartment_complex_master",
+      "column": "public_rental_ratio",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "text",
+      "table": "apartment_complex_master",
+      "column": "rental_source",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "text",
+      "table": "apartment_name_history",
+      "column": "apt_cd",
+      "default": null,
+      "nullable": false
+    },
+    {
+      "type": "text",
+      "table": "apartment_name_history",
+      "column": "canonical_complex_id",
+      "default": null,
+      "nullable": false
+    },
+    {
+      "type": "text",
+      "table": "apartment_name_history",
+      "column": "name",
+      "default": null,
+      "nullable": false
+    },
+    {
+      "type": "text",
+      "table": "apartment_name_history",
+      "column": "source",
+      "default": null,
+      "nullable": false
+    },
+    {
+      "type": "date",
+      "table": "apartment_name_history",
+      "column": "observed_as_of",
+      "default": null,
+      "nullable": false
+    },
+    {
+      "type": "text",
+      "table": "apartment_name_history",
+      "column": "name_role",
+      "default": null,
+      "nullable": false
+    },
+    {
+      "type": "timestamp with time zone",
+      "table": "apartment_name_history",
+      "column": "updated_at",
+      "default": "now()",
+      "nullable": false
+    },
+    {
+      "type": "text",
+      "table": "apartment_property_history",
+      "column": "apt_cd",
+      "default": null,
+      "nullable": false
+    },
+    {
+      "type": "text",
+      "table": "apartment_property_history",
+      "column": "canonical_complex_id",
+      "default": null,
+      "nullable": false
+    },
+    {
+      "type": "text",
+      "table": "apartment_property_history",
+      "column": "field_name",
+      "default": null,
+      "nullable": false
+    },
+    {
+      "type": "text",
+      "table": "apartment_property_history",
+      "column": "base_value",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "date",
+      "table": "apartment_property_history",
+      "column": "base_as_of",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "text",
+      "table": "apartment_property_history",
+      "column": "latest_observed_value",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "date",
+      "table": "apartment_property_history",
+      "column": "latest_observed_as_of",
+      "default": null,
+      "nullable": false
+    },
+    {
+      "type": "text",
+      "table": "apartment_property_history",
+      "column": "canonical_value",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "text",
+      "table": "apartment_property_history",
+      "column": "resolution",
+      "default": null,
+      "nullable": false
+    },
+    {
+      "type": "timestamp with time zone",
+      "table": "apartment_property_history",
+      "column": "updated_at",
+      "default": "now()",
+      "nullable": false
+    },
+    {
+      "type": "text",
+      "table": "apartment_public_key",
+      "column": "public_key",
+      "default": null,
+      "nullable": false
+    },
+    {
+      "type": "date",
+      "table": "apartment_public_key",
+      "column": "issued_at",
+      "default": "CURRENT_DATE",
+      "nullable": false
+    },
+    {
+      "type": "text",
+      "table": "apartment_public_key",
+      "column": "superseded_by",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "timestamp with time zone",
+      "table": "apartment_public_key",
+      "column": "updated_at",
+      "default": "now()",
+      "nullable": false
+    },
+    {
+      "type": "text",
+      "table": "apartment_public_key_atom",
+      "column": "public_key",
+      "default": null,
+      "nullable": false
+    },
+    {
+      "type": "text",
+      "table": "apartment_public_key_atom",
+      "column": "apt_cd",
+      "default": null,
+      "nullable": false
+    },
+    {
+      "type": "date",
+      "table": "apartment_public_key_atom",
+      "column": "first_seen_at",
+      "default": "CURRENT_DATE",
+      "nullable": false
+    },
+    {
+      "type": "integer",
+      "table": "apartment_school_mappings",
+      "column": "mapping_id",
+      "default": "nextval('apartment_school_mappings_mapping_id_seq'::regclass)",
+      "nullable": false
+    },
+    {
+      "type": "integer",
+      "table": "apartment_school_mappings",
+      "column": "apartment_id",
+      "default": null,
+      "nullable": false
+    },
+    {
+      "type": "integer",
+      "table": "apartment_school_mappings",
+      "column": "school_id",
+      "default": null,
+      "nullable": false
+    },
+    {
+      "type": "integer",
+      "table": "apartment_school_mappings",
+      "column": "mapping_rank",
+      "default": "1",
+      "nullable": true
+    },
+    {
+      "type": "boolean",
+      "table": "apartment_school_mappings",
+      "column": "is_primary",
+      "default": "false",
+      "nullable": true
+    },
+    {
+      "type": "numeric(4,3)",
+      "table": "apartment_school_mappings",
+      "column": "confidence_score",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "character varying(30)",
+      "table": "apartment_school_mappings",
+      "column": "matching_method",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "boolean",
+      "table": "apartment_school_mappings",
+      "column": "is_verified",
+      "default": "false",
+      "nullable": true
+    },
+    {
+      "type": "timestamp with time zone",
+      "table": "apartment_school_mappings",
+      "column": "created_at",
+      "default": "CURRENT_TIMESTAMP",
+      "nullable": true
+    },
+    {
+      "type": "integer",
+      "table": "apartments",
+      "column": "apartment_id",
+      "default": "nextval('apartments_apartment_id_seq'::regclass)",
+      "nullable": false
+    },
+    {
+      "type": "character varying(100)",
+      "table": "apartments",
+      "column": "apartment_name",
+      "default": null,
+      "nullable": false
+    },
+    {
+      "type": "text",
+      "table": "apartments",
+      "column": "address_road",
+      "default": null,
+      "nullable": false
+    },
+    {
+      "type": "text",
+      "table": "apartments",
+      "column": "address_jibun",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "character varying(10)",
+      "table": "apartments",
+      "column": "postal_code",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "character varying(20)",
+      "table": "apartments",
+      "column": "region",
+      "default": null,
+      "nullable": false
+    },
+    {
+      "type": "numeric(10,7)",
+      "table": "apartments",
+      "column": "latitude",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "numeric(10,7)",
+      "table": "apartments",
+      "column": "longitude",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "geography(Point,4326)",
+      "table": "apartments",
+      "column": "coordinates",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "integer",
+      "table": "apartments",
+      "column": "total_households",
+      "default": "0",
+      "nullable": true
+    },
+    {
+      "type": "integer",
+      "table": "apartments",
+      "column": "building_count",
+      "default": "0",
+      "nullable": true
+    },
+    {
+      "type": "integer",
+      "table": "apartments",
+      "column": "construction_year",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "integer",
+      "table": "apartments",
+      "column": "apartment_age",
+      "default": "0",
+      "nullable": true
+    },
+    {
+      "type": "integer",
+      "table": "apartments",
+      "column": "parking_total",
+      "default": "0",
+      "nullable": true
+    },
+    {
+      "type": "numeric(4,2)",
+      "table": "apartments",
+      "column": "parking_per_household",
+      "default": "0.0",
+      "nullable": true
+    },
+    {
+      "type": "integer",
+      "table": "apartments",
+      "column": "public_rental_households",
+      "default": "0",
+      "nullable": true
+    },
+    {
+      "type": "numeric(5,2)",
+      "table": "apartments",
+      "column": "public_rental_ratio",
+      "default": "0.0",
+      "nullable": true
+    },
+    {
+      "type": "integer",
+      "table": "apartments",
+      "column": "primary_school_id",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "character varying(100)",
+      "table": "apartments",
+      "column": "primary_school_name",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "text[]",
+      "table": "apartments",
+      "column": "data_sources",
+      "default": "ARRAY['kapt'::text, 'geomarket'::text]",
+      "nullable": true
+    },
+    {
+      "type": "timestamp with time zone",
+      "table": "apartments",
+      "column": "last_updated",
+      "default": "CURRENT_TIMESTAMP",
+      "nullable": true
+    },
+    {
+      "type": "timestamp with time zone",
+      "table": "apartments",
+      "column": "created_at",
+      "default": "CURRENT_TIMESTAMP",
+      "nullable": true
+    },
+    {
+      "type": "text",
+      "table": "care_centers",
+      "column": "center_id",
+      "default": null,
+      "nullable": false
+    },
+    {
+      "type": "text",
+      "table": "care_centers",
+      "column": "center_kind",
+      "default": null,
+      "nullable": false
+    },
+    {
+      "type": "text",
+      "table": "care_centers",
+      "column": "name",
+      "default": null,
+      "nullable": false
+    },
+    {
+      "type": "text",
+      "table": "care_centers",
+      "column": "region",
+      "default": null,
+      "nullable": false
+    },
+    {
+      "type": "text",
+      "table": "care_centers",
+      "column": "district",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "text",
+      "table": "care_centers",
+      "column": "address",
+      "default": null,
+      "nullable": false
+    },
+    {
+      "type": "text",
+      "table": "care_centers",
+      "column": "address_detail",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "text",
+      "table": "care_centers",
+      "column": "phone",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "integer",
+      "table": "care_centers",
+      "column": "capacity",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "text",
+      "table": "care_centers",
+      "column": "term_hours",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "text",
+      "table": "care_centers",
+      "column": "vacation_hours",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "double precision",
+      "table": "care_centers",
+      "column": "latitude",
+      "default": null,
+      "nullable": false
+    },
+    {
+      "type": "double precision",
+      "table": "care_centers",
+      "column": "longitude",
+      "default": null,
+      "nullable": false
+    },
+    {
+      "type": "geography(Point,4326)",
+      "table": "care_centers",
+      "column": "location",
+      "default": null,
+      "nullable": false
+    },
+    {
+      "type": "date",
+      "table": "care_centers",
+      "column": "source_updated_on",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "date",
+      "table": "care_centers",
+      "column": "snapshot_date",
+      "default": null,
+      "nullable": false
+    },
+    {
+      "type": "timestamp with time zone",
+      "table": "care_centers",
+      "column": "updated_at",
+      "default": "now()",
+      "nullable": false
+    },
+    {
+      "type": "uuid",
+      "table": "etl_admin_users",
+      "column": "user_id",
+      "default": null,
+      "nullable": false
+    },
+    {
+      "type": "text",
+      "table": "etl_admin_users",
+      "column": "display_name",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "timestamp with time zone",
+      "table": "etl_admin_users",
+      "column": "created_at",
+      "default": "now()",
+      "nullable": false
+    },
+    {
+      "type": "uuid",
+      "table": "etl_run_checks",
+      "column": "run_id",
+      "default": null,
+      "nullable": false
+    },
+    {
+      "type": "text",
+      "table": "etl_run_checks",
+      "column": "check_name",
+      "default": null,
+      "nullable": false
+    },
+    {
+      "type": "text",
+      "table": "etl_run_checks",
+      "column": "scope_name",
+      "default": "'global'::text",
+      "nullable": false
+    },
+    {
+      "type": "text",
+      "table": "etl_run_checks",
+      "column": "status",
+      "default": null,
+      "nullable": false
+    },
+    {
+      "type": "numeric",
+      "table": "etl_run_checks",
+      "column": "metric_value",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "text",
+      "table": "etl_run_checks",
+      "column": "metric_unit",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "jsonb",
+      "table": "etl_run_checks",
+      "column": "details",
+      "default": "'{}'::jsonb",
+      "nullable": false
+    },
+    {
+      "type": "timestamp with time zone",
+      "table": "etl_run_checks",
+      "column": "checked_at",
+      "default": "now()",
+      "nullable": false
+    },
+    {
+      "type": "uuid",
+      "table": "etl_runs",
+      "column": "run_id",
+      "default": "gen_random_uuid()",
+      "nullable": false
+    },
+    {
+      "type": "text",
+      "table": "etl_runs",
+      "column": "pipeline_name",
+      "default": null,
+      "nullable": false
+    },
+    {
+      "type": "text",
+      "table": "etl_runs",
+      "column": "pipeline_version",
+      "default": null,
+      "nullable": false
+    },
+    {
+      "type": "text",
+      "table": "etl_runs",
+      "column": "status",
+      "default": null,
+      "nullable": false
+    },
+    {
+      "type": "jsonb",
+      "table": "etl_runs",
+      "column": "source_as_of",
+      "default": "'{}'::jsonb",
+      "nullable": false
+    },
+    {
+      "type": "jsonb",
+      "table": "etl_runs",
+      "column": "row_counts",
+      "default": "'{}'::jsonb",
+      "nullable": false
+    },
+    {
+      "type": "jsonb",
+      "table": "etl_runs",
+      "column": "error_summary",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "timestamp with time zone",
+      "table": "etl_runs",
+      "column": "started_at",
+      "default": "now()",
+      "nullable": false
+    },
+    {
+      "type": "timestamp with time zone",
+      "table": "etl_runs",
+      "column": "completed_at",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "jsonb",
+      "table": "etl_runs",
+      "column": "scope",
+      "default": "'{}'::jsonb",
+      "nullable": false
+    },
+    {
+      "type": "text",
+      "table": "etl_runs",
+      "column": "trigger_type",
+      "default": "'manual'::text",
+      "nullable": false
+    },
+    {
+      "type": "integer",
+      "table": "etl_runs",
+      "column": "attempt_number",
+      "default": "1",
+      "nullable": false
+    },
+    {
+      "type": "text",
+      "table": "etl_schedules",
+      "column": "schedule_id",
+      "default": null,
+      "nullable": false
+    },
+    {
+      "type": "text",
+      "table": "etl_schedules",
+      "column": "source_name",
+      "default": null,
+      "nullable": false
+    },
+    {
+      "type": "text",
+      "table": "etl_schedules",
+      "column": "display_name",
+      "default": null,
+      "nullable": false
+    },
+    {
+      "type": "text",
+      "table": "etl_schedules",
+      "column": "data_domain",
+      "default": null,
+      "nullable": false
+    },
+    {
+      "type": "text",
+      "table": "etl_schedules",
+      "column": "cadence_unit",
+      "default": null,
+      "nullable": false
+    },
+    {
+      "type": "integer",
+      "table": "etl_schedules",
+      "column": "cadence_value",
+      "default": "1",
+      "nullable": false
+    },
+    {
+      "type": "integer",
+      "table": "etl_schedules",
+      "column": "max_age_hours",
+      "default": null,
+      "nullable": false
+    },
+    {
+      "type": "jsonb",
+      "table": "etl_schedules",
+      "column": "scope_regions",
+      "default": "'[]'::jsonb",
+      "nullable": false
+    },
+    {
+      "type": "boolean",
+      "table": "etl_schedules",
+      "column": "enabled",
+      "default": "true",
+      "nullable": false
+    },
+    {
+      "type": "uuid",
+      "table": "etl_schedules",
+      "column": "last_run_id",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "timestamp with time zone",
+      "table": "etl_schedules",
+      "column": "last_success_at",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "timestamp with time zone",
+      "table": "etl_schedules",
+      "column": "next_due_at",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "text",
+      "table": "etl_schedules",
+      "column": "owner_note",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "timestamp with time zone",
+      "table": "etl_schedules",
+      "column": "updated_at",
+      "default": "now()",
+      "nullable": false
+    },
+    {
+      "type": "uuid",
+      "table": "etl_source_snapshots",
+      "column": "snapshot_id",
+      "default": "gen_random_uuid()",
+      "nullable": false
+    },
+    {
+      "type": "uuid",
+      "table": "etl_source_snapshots",
+      "column": "run_id",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "text",
+      "table": "etl_source_snapshots",
+      "column": "source_name",
+      "default": null,
+      "nullable": false
+    },
+    {
+      "type": "date",
+      "table": "etl_source_snapshots",
+      "column": "source_as_of",
+      "default": null,
+      "nullable": false
+    },
+    {
+      "type": "text",
+      "table": "etl_source_snapshots",
+      "column": "bucket_id",
+      "default": "'etl-source-snapshots'::text",
+      "nullable": false
+    },
+    {
+      "type": "text",
+      "table": "etl_source_snapshots",
+      "column": "object_path",
+      "default": null,
+      "nullable": false
+    },
+    {
+      "type": "text",
+      "table": "etl_source_snapshots",
+      "column": "original_filename",
+      "default": null,
+      "nullable": false
+    },
+    {
+      "type": "text",
+      "table": "etl_source_snapshots",
+      "column": "content_sha256",
+      "default": null,
+      "nullable": false
+    },
+    {
+      "type": "bigint",
+      "table": "etl_source_snapshots",
+      "column": "byte_size",
+      "default": null,
+      "nullable": false
+    },
+    {
+      "type": "integer",
+      "table": "etl_source_snapshots",
+      "column": "row_count",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "text",
+      "table": "etl_source_snapshots",
+      "column": "schema_version",
+      "default": null,
+      "nullable": false
+    },
+    {
+      "type": "text",
+      "table": "etl_source_snapshots",
+      "column": "compression",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "text",
+      "table": "etl_source_snapshots",
+      "column": "status",
+      "default": "'archived'::text",
+      "nullable": false
+    },
+    {
+      "type": "date",
+      "table": "etl_source_snapshots",
+      "column": "retain_until",
+      "default": null,
+      "nullable": false
+    },
+    {
+      "type": "jsonb",
+      "table": "etl_source_snapshots",
+      "column": "metadata",
+      "default": "'{}'::jsonb",
+      "nullable": false
+    },
+    {
+      "type": "timestamp with time zone",
+      "table": "etl_source_snapshots",
+      "column": "created_at",
+      "default": "now()",
+      "nullable": false
+    },
+    {
+      "type": "uuid",
+      "table": "etl_staging_rows",
+      "column": "run_id",
+      "default": null,
+      "nullable": false
+    },
+    {
+      "type": "text",
+      "table": "etl_staging_rows",
+      "column": "target_table",
+      "default": null,
+      "nullable": false
+    },
+    {
+      "type": "text",
+      "table": "etl_staging_rows",
+      "column": "row_key",
+      "default": null,
+      "nullable": false
+    },
+    {
+      "type": "jsonb",
+      "table": "etl_staging_rows",
+      "column": "payload",
+      "default": null,
+      "nullable": false
+    },
+    {
+      "type": "text",
+      "table": "etl_staging_rows",
+      "column": "payload_sha256",
+      "default": null,
+      "nullable": false
+    },
+    {
+      "type": "timestamp with time zone",
+      "table": "etl_staging_rows",
+      "column": "staged_at",
+      "default": "now()",
+      "nullable": false
+    },
+    {
+      "type": "text",
+      "table": "region_registry",
+      "column": "canonical_name",
+      "default": null,
+      "nullable": false
+    },
+    {
+      "type": "text",
+      "table": "region_registry",
+      "column": "short_name",
+      "default": null,
+      "nullable": false
+    },
+    {
+      "type": "text",
+      "table": "region_registry",
+      "column": "legal_dong_code",
+      "default": null,
+      "nullable": false
+    },
+    {
+      "type": "text[]",
+      "table": "region_registry",
+      "column": "legacy_legal_dong_codes",
+      "default": "'{}'::text[]",
+      "nullable": false
+    },
+    {
+      "type": "text",
+      "table": "region_registry",
+      "column": "neis_office_code",
+      "default": null,
+      "nullable": false
+    },
+    {
+      "type": "text",
+      "table": "region_registry",
+      "column": "education_office",
+      "default": null,
+      "nullable": false
+    },
+    {
+      "type": "text[]",
+      "table": "region_registry",
+      "column": "address_prefixes",
+      "default": null,
+      "nullable": false
+    },
+    {
+      "type": "boolean",
+      "table": "region_registry",
+      "column": "has_city_level",
+      "default": null,
+      "nullable": false
+    },
+    {
+      "type": "boolean",
+      "table": "region_registry",
+      "column": "is_production",
+      "default": "false",
+      "nullable": false
+    },
+    {
+      "type": "text",
+      "table": "region_registry",
+      "column": "wave",
+      "default": null,
+      "nullable": false
+    },
+    {
+      "type": "text",
+      "table": "region_registry",
+      "column": "registry_version",
+      "default": null,
+      "nullable": false
+    },
+    {
+      "type": "timestamp with time zone",
+      "table": "region_registry",
+      "column": "updated_at",
+      "default": "now()",
+      "nullable": false
+    },
+    {
+      "type": "text",
+      "table": "school_apartment_serving",
+      "column": "school_id",
+      "default": null,
+      "nullable": false
+    },
+    {
+      "type": "text",
+      "table": "school_apartment_serving",
+      "column": "school_name",
+      "default": null,
+      "nullable": false
+    },
+    {
+      "type": "text",
+      "table": "school_apartment_serving",
+      "column": "canonical_complex_id",
+      "default": null,
+      "nullable": false
+    },
+    {
+      "type": "jsonb",
+      "table": "school_apartment_serving",
+      "column": "apt_cd_list",
+      "default": "'[]'::jsonb",
+      "nullable": false
+    },
+    {
+      "type": "text",
+      "table": "school_apartment_serving",
+      "column": "complex_name",
+      "default": null,
+      "nullable": false
+    },
+    {
+      "type": "text",
+      "table": "school_apartment_serving",
+      "column": "road_address",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "text",
+      "table": "school_apartment_serving",
+      "column": "region",
+      "default": null,
+      "nullable": false
+    },
+    {
+      "type": "text",
+      "table": "school_apartment_serving",
+      "column": "district",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "double precision",
+      "table": "school_apartment_serving",
+      "column": "latitude",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "double precision",
+      "table": "school_apartment_serving",
+      "column": "longitude",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "integer",
+      "table": "school_apartment_serving",
+      "column": "households",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "integer",
+      "table": "school_apartment_serving",
+      "column": "building_count",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "integer",
+      "table": "school_apartment_serving",
+      "column": "use_approval_year",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "integer",
+      "table": "school_apartment_serving",
+      "column": "parking_total",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "numeric(6,3)",
+      "table": "school_apartment_serving",
+      "column": "parking_per_household",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "integer",
+      "table": "school_apartment_serving",
+      "column": "assignment_rank",
+      "default": "1",
+      "nullable": false
+    },
+    {
+      "type": "jsonb",
+      "table": "school_apartment_serving",
+      "column": "assignment_roles",
+      "default": "'[]'::jsonb",
+      "nullable": false
+    },
+    {
+      "type": "text",
+      "table": "school_apartment_serving",
+      "column": "confidence",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "boolean",
+      "table": "school_apartment_serving",
+      "column": "review_required",
+      "default": "false",
+      "nullable": false
+    },
+    {
+      "type": "text",
+      "table": "school_apartment_serving",
+      "column": "pipeline_version",
+      "default": null,
+      "nullable": false
+    },
+    {
+      "type": "timestamp with time zone",
+      "table": "school_apartment_serving",
+      "column": "updated_at",
+      "default": "now()",
+      "nullable": false
+    },
+    {
+      "type": "integer",
+      "table": "school_apartment_serving",
+      "column": "parking_ground",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "integer",
+      "table": "school_apartment_serving",
+      "column": "parking_underground",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "integer",
+      "table": "school_apartment_serving",
+      "column": "sale_households",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "integer",
+      "table": "school_apartment_serving",
+      "column": "rental_units_total",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "integer",
+      "table": "school_apartment_serving",
+      "column": "public_rental_units",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "integer",
+      "table": "school_apartment_serving",
+      "column": "private_rental_units",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "numeric(6,3)",
+      "table": "school_apartment_serving",
+      "column": "public_rental_ratio",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "text",
+      "table": "school_apartment_serving",
+      "column": "complex_public_key",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "text",
+      "table": "school_care_statistics",
+      "column": "school_id",
+      "default": null,
+      "nullable": false
+    },
+    {
+      "type": "integer",
+      "table": "school_care_statistics",
+      "column": "statistics_year",
+      "default": null,
+      "nullable": false
+    },
+    {
+      "type": "integer",
+      "table": "school_care_statistics",
+      "column": "afternoon_care_rooms",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "integer",
+      "table": "school_care_statistics",
+      "column": "afternoon_care_students",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "integer",
+      "table": "school_care_statistics",
+      "column": "evening_care_rooms",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "integer",
+      "table": "school_care_statistics",
+      "column": "evening_care_students",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "integer",
+      "table": "school_care_statistics",
+      "column": "linked_care_rooms",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "integer",
+      "table": "school_care_statistics",
+      "column": "linked_care_students",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "integer",
+      "table": "school_care_statistics",
+      "column": "afterschool_aptitude_programs",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "integer",
+      "table": "school_care_statistics",
+      "column": "afterschool_curriculum_programs",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "integer",
+      "table": "school_care_statistics",
+      "column": "afterschool_participants",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "date",
+      "table": "school_care_statistics",
+      "column": "snapshot_date",
+      "default": null,
+      "nullable": false
+    },
+    {
+      "type": "timestamp with time zone",
+      "table": "school_care_statistics",
+      "column": "updated_at",
+      "default": "now()",
+      "nullable": false
+    },
+    {
+      "type": "text",
+      "table": "school_master",
+      "column": "school_id",
+      "default": null,
+      "nullable": false
+    },
+    {
+      "type": "text",
+      "table": "school_master",
+      "column": "schoolinfo_code",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "text",
+      "table": "school_master",
+      "column": "school_name",
+      "default": null,
+      "nullable": false
+    },
+    {
+      "type": "text",
+      "table": "school_master",
+      "column": "school_type",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "text",
+      "table": "school_master",
+      "column": "establishment_type",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "text",
+      "table": "school_master",
+      "column": "campus_type",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "text",
+      "table": "school_master",
+      "column": "operation_status",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "text",
+      "table": "school_master",
+      "column": "road_address",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "text",
+      "table": "school_master",
+      "column": "legal_address",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "text",
+      "table": "school_master",
+      "column": "education_office",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "text",
+      "table": "school_master",
+      "column": "education_support_office",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "double precision",
+      "table": "school_master",
+      "column": "latitude",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "double precision",
+      "table": "school_master",
+      "column": "longitude",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "geography(Point,4326)",
+      "table": "school_master",
+      "column": "location",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "integer",
+      "table": "school_master",
+      "column": "total_students",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "integer",
+      "table": "school_master",
+      "column": "teachers",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "text",
+      "table": "school_master",
+      "column": "student_data_status",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "text",
+      "table": "school_master",
+      "column": "student_data_source",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "date",
+      "table": "school_master",
+      "column": "reference_date",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "text",
+      "table": "school_master",
+      "column": "homepage",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "text",
+      "table": "school_master",
+      "column": "phone",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "text",
+      "table": "school_master",
+      "column": "pipeline_version",
+      "default": null,
+      "nullable": false
+    },
+    {
+      "type": "timestamp with time zone",
+      "table": "school_master",
+      "column": "updated_at",
+      "default": "now()",
+      "nullable": false
+    },
+    {
+      "type": "date",
+      "table": "school_master",
+      "column": "establishment_date",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "text",
+      "table": "school_master",
+      "column": "region",
+      "default": null,
+      "nullable": false
+    },
+    {
+      "type": "integer",
+      "table": "school_master",
+      "column": "grade1_students",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "integer",
+      "table": "school_master",
+      "column": "grade2_students",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "integer",
+      "table": "school_master",
+      "column": "grade3_students",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "integer",
+      "table": "school_master",
+      "column": "grade4_students",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "integer",
+      "table": "school_master",
+      "column": "grade5_students",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "integer",
+      "table": "school_master",
+      "column": "grade6_students",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "integer",
+      "table": "school_master",
+      "column": "grade1_classes",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "integer",
+      "table": "school_master",
+      "column": "grade2_classes",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "integer",
+      "table": "school_master",
+      "column": "grade3_classes",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "integer",
+      "table": "school_master",
+      "column": "grade4_classes",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "integer",
+      "table": "school_master",
+      "column": "grade5_classes",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "integer",
+      "table": "school_master",
+      "column": "grade6_classes",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "numeric(5,1)",
+      "table": "school_master",
+      "column": "grade1_per_class",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "numeric(5,1)",
+      "table": "school_master",
+      "column": "grade2_per_class",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "numeric(5,1)",
+      "table": "school_master",
+      "column": "grade3_per_class",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "numeric(5,1)",
+      "table": "school_master",
+      "column": "grade4_per_class",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "numeric(5,1)",
+      "table": "school_master",
+      "column": "grade5_per_class",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "numeric(5,1)",
+      "table": "school_master",
+      "column": "grade6_per_class",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "integer",
+      "table": "school_master",
+      "column": "grade1_6_students_sum",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "integer",
+      "table": "school_master",
+      "column": "other_students",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "integer",
+      "table": "school_master",
+      "column": "student_statistics_year",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "integer",
+      "table": "schools",
+      "column": "id",
+      "default": "nextval('schools_id_seq'::regclass)",
+      "nullable": false
+    },
+    {
+      "type": "character varying(50)",
+      "table": "schools",
+      "column": "school_code",
+      "default": null,
+      "nullable": false
+    },
+    {
+      "type": "character varying(100)",
+      "table": "schools",
+      "column": "school_name",
+      "default": null,
+      "nullable": false
+    },
+    {
+      "type": "character varying(100)",
+      "table": "schools",
+      "column": "school_name_eng",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "character varying(20)",
+      "table": "schools",
+      "column": "region",
+      "default": null,
+      "nullable": false
+    },
+    {
+      "type": "text",
+      "table": "schools",
+      "column": "address_road",
+      "default": null,
+      "nullable": false
+    },
+    {
+      "type": "text",
+      "table": "schools",
+      "column": "address_jibun",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "character varying(10)",
+      "table": "schools",
+      "column": "postal_code",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "numeric(10,7)",
+      "table": "schools",
+      "column": "latitude",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "numeric(10,7)",
+      "table": "schools",
+      "column": "longitude",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "geography(Point,4326)",
+      "table": "schools",
+      "column": "coordinates",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "character varying(50)",
+      "table": "schools",
+      "column": "phone",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "character varying(50)",
+      "table": "schools",
+      "column": "fax",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "character varying(200)",
+      "table": "schools",
+      "column": "website",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "character varying(20)",
+      "table": "schools",
+      "column": "school_type",
+      "default": "'초등학교'::character varying",
+      "nullable": true
+    },
+    {
+      "type": "character varying(20)",
+      "table": "schools",
+      "column": "establishment_type",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "character varying(20)",
+      "table": "schools",
+      "column": "operation_type",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "date",
+      "table": "schools",
+      "column": "establishment_date",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "date",
+      "table": "schools",
+      "column": "founding_anniversary",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "text",
+      "table": "schools",
+      "column": "education_office",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "text",
+      "table": "schools",
+      "column": "education_support_office",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "character varying(200)",
+      "table": "schools",
+      "column": "homepage",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "character varying(20)",
+      "table": "schools",
+      "column": "coeducation_type",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "character varying(20)",
+      "table": "schools",
+      "column": "day_night_type",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "integer",
+      "table": "schools",
+      "column": "grade_1_students",
+      "default": "0",
+      "nullable": true
+    },
+    {
+      "type": "integer",
+      "table": "schools",
+      "column": "grade_1_classes",
+      "default": "0",
+      "nullable": true
+    },
+    {
+      "type": "numeric(4,1)",
+      "table": "schools",
+      "column": "grade_1_per_class_avg",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "integer",
+      "table": "schools",
+      "column": "grade_2_students",
+      "default": "0",
+      "nullable": true
+    },
+    {
+      "type": "integer",
+      "table": "schools",
+      "column": "grade_2_classes",
+      "default": "0",
+      "nullable": true
+    },
+    {
+      "type": "numeric(4,1)",
+      "table": "schools",
+      "column": "grade_2_per_class_avg",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "integer",
+      "table": "schools",
+      "column": "grade_3_students",
+      "default": "0",
+      "nullable": true
+    },
+    {
+      "type": "integer",
+      "table": "schools",
+      "column": "grade_3_classes",
+      "default": "0",
+      "nullable": true
+    },
+    {
+      "type": "numeric(4,1)",
+      "table": "schools",
+      "column": "grade_3_per_class_avg",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "integer",
+      "table": "schools",
+      "column": "grade_4_students",
+      "default": "0",
+      "nullable": true
+    },
+    {
+      "type": "integer",
+      "table": "schools",
+      "column": "grade_4_classes",
+      "default": "0",
+      "nullable": true
+    },
+    {
+      "type": "numeric(4,1)",
+      "table": "schools",
+      "column": "grade_4_per_class_avg",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "integer",
+      "table": "schools",
+      "column": "grade_5_students",
+      "default": "0",
+      "nullable": true
+    },
+    {
+      "type": "integer",
+      "table": "schools",
+      "column": "grade_5_classes",
+      "default": "0",
+      "nullable": true
+    },
+    {
+      "type": "numeric(4,1)",
+      "table": "schools",
+      "column": "grade_5_per_class_avg",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "integer",
+      "table": "schools",
+      "column": "grade_6_students",
+      "default": "0",
+      "nullable": true
+    },
+    {
+      "type": "integer",
+      "table": "schools",
+      "column": "grade_6_classes",
+      "default": "0",
+      "nullable": true
+    },
+    {
+      "type": "numeric(4,1)",
+      "table": "schools",
+      "column": "grade_6_per_class_avg",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "integer",
+      "table": "schools",
+      "column": "total_students",
+      "default": "0",
+      "nullable": true
+    },
+    {
+      "type": "integer",
+      "table": "schools",
+      "column": "total_classes",
+      "default": "0",
+      "nullable": true
+    },
+    {
+      "type": "integer",
+      "table": "schools",
+      "column": "teachers",
+      "default": "0",
+      "nullable": true
+    },
+    {
+      "type": "integer",
+      "table": "schools",
+      "column": "grade_1_students_count",
+      "default": "0",
+      "nullable": true
+    },
+    {
+      "type": "boolean",
+      "table": "schools",
+      "column": "keris_integrated",
+      "default": "false",
+      "nullable": true
+    },
+    {
+      "type": "character varying(50)",
+      "table": "schools",
+      "column": "keris_school_code",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "date",
+      "table": "schools",
+      "column": "data_reference_date",
+      "default": null,
+      "nullable": true
+    },
+    {
+      "type": "character varying(50)",
+      "table": "schools",
+      "column": "data_source",
+      "default": "'data.go.kr + KERIS'::character varying",
+      "nullable": true
+    },
+    {
+      "type": "timestamp with time zone",
+      "table": "schools",
+      "column": "last_updated",
+      "default": "CURRENT_TIMESTAMP",
+      "nullable": true
+    },
+    {
+      "type": "timestamp with time zone",
+      "table": "schools",
+      "column": "created_at",
+      "default": "CURRENT_TIMESTAMP",
+      "nullable": true
+    }
+  ],
+  "functions": [
+    {
+      "body": "\r\nDECLARE\r\n    target_run UUID;\r\n    deleted_now BIGINT;\r\n    deleted_total BIGINT := 0;\r\n    expired_total BIGINT := 0;\r\nBEGIN\r\n    -- Oldest runs first, one DELETE per run against the primary key.\r\n    FOR target_run IN\r\n        SELECT run_id\r\n        FROM etl_runs\r\n        WHERE started_at < staging_before\r\n        ORDER BY started_at\r\n        LIMIT GREATEST(max_runs, 1)\r\n    LOOP\r\n        DELETE FROM etl_staging_rows WHERE run_id = target_run;\r\n        GET DIAGNOSTICS deleted_now = ROW_COUNT;\r\n        deleted_total := deleted_total + deleted_now;\r\n    END LOOP;\r\n\r\n    UPDATE etl_source_snapshots\r\n    SET status = 'expired'\r\n    WHERE retain_until < CURRENT_DATE\r\n      AND status <> 'expired';\r\n    GET DIAGNOSTICS expired_total = ROW_COUNT;\r\n\r\n    staging_rows_deleted := deleted_total;\r\n    snapshots_marked_expired := expired_total;\r\n    RETURN NEXT;\r\nEND ",
+      "name": "cleanup_recurring_etl",
+      "config": [
+        "search_path=public, pg_temp"
+      ],
+      "result": "TABLE(staging_rows_deleted bigint, snapshots_marked_expired bigint)",
+      "language": "plpgsql",
+      "arguments": "staging_before timestamp with time zone DEFAULT (now() - '2 days'::interval), max_runs integer DEFAULT 5",
+      "volatility": "v",
+      "security_definer": true,
+      "identity_arguments": "staging_before timestamp with time zone, max_runs integer"
+    },
+    {
+      "body": "\r\n    SELECT\r\n        GREATEST(c.reltuples, 0)::BIGINT AS estimated_rows,\r\n        pg_total_relation_size('public.etl_staging_rows')::BIGINT AS total_bytes,\r\n        (SELECT COUNT(DISTINCT run_id) FROM etl_staging_rows)::BIGINT AS runs_with_rows\r\n    FROM pg_class c\r\n    JOIN pg_namespace n ON n.oid = c.relnamespace\r\n    WHERE n.nspname = 'public' AND c.relname = 'etl_staging_rows';\r\n",
+      "name": "etl_staging_depth",
+      "config": [
+        "search_path=public, pg_temp"
+      ],
+      "result": "TABLE(estimated_rows bigint, total_bytes bigint, runs_with_rows bigint)",
+      "language": "sql",
+      "arguments": "",
+      "volatility": "s",
+      "security_definer": true,
+      "identity_arguments": ""
+    },
+    {
+      "body": "\r\n    WITH matched AS (\r\n        SELECT schools.school_id\r\n        FROM public.school_master AS schools\r\n        WHERE CASE p_target_grade\r\n                WHEN 1 THEN COALESCE(schools.grade1_students, 0)\r\n                WHEN 2 THEN COALESCE(schools.grade2_students, 0)\r\n                WHEN 3 THEN COALESCE(schools.grade3_students, 0)\r\n                WHEN 4 THEN COALESCE(schools.grade4_students, 0)\r\n                WHEN 5 THEN COALESCE(schools.grade5_students, 0)\r\n                WHEN 6 THEN COALESCE(schools.grade6_students, 0)\r\n                ELSE 0\r\n              END >= GREATEST(COALESCE(p_min_students, 0), 0)\r\n          AND (p_school_types IS NULL OR schools.establishment_type = ANY(p_school_types))\r\n          AND (p_regions IS NULL OR schools.region = ANY(p_regions))\r\n          AND (\r\n              p_districts IS NULL\r\n              OR EXISTS (\r\n                  SELECT 1\r\n                  FROM unnest(p_districts) AS district_name\r\n                  WHERE COALESCE(schools.road_address, schools.legal_address, '')\r\n                      ILIKE '%' || district_name || '%'\r\n              )\r\n          )\r\n          AND (\r\n              NOT COALESCE(p_apply_apartment_filters, FALSE)\r\n              OR EXISTS (\r\n                  SELECT 1\r\n                  FROM public.school_apartment_serving AS apartments\r\n                  WHERE apartments.school_id = schools.school_id\r\n                    AND (\r\n                        COALESCE(p_min_households, 0) <= 0\r\n                        OR apartments.households >= p_min_households\r\n                    )\r\n                    AND (\r\n                        COALESCE(p_min_parking_ratio, 0) <= 0\r\n                        OR apartments.parking_per_household >= p_min_parking_ratio\r\n                    )\r\n                    AND (\r\n                        p_min_use_approval_year IS NULL\r\n                        OR apartments.use_approval_year >= p_min_use_approval_year\r\n                    )\r\n                    AND (\r\n                        COALESCE(p_max_public_rental_ratio, 100) >= 100\r\n                        OR apartments.public_rental_ratio <= LEAST(\r\n                            GREATEST(p_max_public_rental_ratio, 0),\r\n                            100\r\n                        )\r\n                    )\r\n              )\r\n          )\r\n    )\r\n    SELECT matched.school_id, COUNT(*) OVER() AS total_count\r\n    FROM matched\r\n    ORDER BY matched.school_id;\r\n",
+      "name": "filter_school_ids",
+      "config": [
+        "search_path=\"\""
+      ],
+      "result": "TABLE(school_id text, total_count bigint)",
+      "language": "sql",
+      "arguments": "p_target_grade integer DEFAULT 1, p_min_students integer DEFAULT 0, p_school_types text[] DEFAULT NULL::text[], p_regions text[] DEFAULT NULL::text[], p_districts text[] DEFAULT NULL::text[], p_apply_apartment_filters boolean DEFAULT false, p_min_households integer DEFAULT 0, p_min_parking_ratio numeric DEFAULT 0, p_min_use_approval_year integer DEFAULT NULL::integer, p_max_public_rental_ratio numeric DEFAULT 100",
+      "volatility": "s",
+      "security_definer": false,
+      "identity_arguments": "p_target_grade integer, p_min_students integer, p_school_types text[], p_regions text[], p_districts text[], p_apply_apartment_filters boolean, p_min_households integer, p_min_parking_ratio numeric, p_min_use_approval_year integer, p_max_public_rental_ratio numeric"
+    },
+    {
+      "body": "\r\n    SELECT EXISTS (\r\n        SELECT 1 FROM etl_admin_users\r\n        WHERE user_id = auth.uid()\r\n    );\r\n",
+      "name": "is_etl_admin",
+      "config": [
+        "search_path=public, pg_temp"
+      ],
+      "result": "boolean",
+      "language": "sql",
+      "arguments": "",
+      "volatility": "s",
+      "security_definer": true,
+      "identity_arguments": ""
+    },
+    {
+      "body": "\r\n    WITH parameters AS (\r\n        SELECT LEAST(GREATEST(COALESCE(p_max_distance_m, 800), 1), 800)::DOUBLE PRECISION AS radius_m\r\n    ), origins AS (\r\n        SELECT origin.location, origin.distance_origin_type\r\n        FROM public.apartment_academy_origin_points AS origin\r\n        WHERE origin.canonical_complex_id = p_canonical_complex_id\r\n    ), matched AS (\r\n        SELECT\r\n            academy.address_id,\r\n            academy.region,\r\n            academy.district,\r\n            academy.latitude,\r\n            academy.longitude,\r\n            academy.institution_count,\r\n            academy.institution_type_counts,\r\n            academy.realm_counts,\r\n            academy.institutions,\r\n            academy.top_subjects,\r\n            ROUND(MIN(public.ST_Distance(academy.location, origins.location)))::INTEGER AS straight_distance_m,\r\n            MIN(origins.distance_origin_type) AS distance_origin_type\r\n        FROM public.academy_address_serving AS academy\r\n        CROSS JOIN origins\r\n        CROSS JOIN parameters\r\n        WHERE public.ST_DWithin(academy.location, origins.location, parameters.radius_m)\r\n        GROUP BY\r\n            academy.address_id,\r\n            academy.region,\r\n            academy.district,\r\n            academy.latitude,\r\n            academy.longitude,\r\n            academy.institution_count,\r\n            academy.institution_type_counts,\r\n            academy.realm_counts,\r\n            academy.institutions,\r\n            academy.top_subjects\r\n    )\r\n    SELECT\r\n        matched.address_id,\r\n        matched.region,\r\n        matched.district,\r\n        matched.latitude,\r\n        matched.longitude,\r\n        matched.institution_count,\r\n        matched.institution_type_counts,\r\n        matched.realm_counts,\r\n        matched.institutions,\r\n        matched.top_subjects,\r\n        matched.straight_distance_m,\r\n        CASE WHEN matched.straight_distance_m <= 600 THEN 'core' ELSE 'extended' END,\r\n        matched.distance_origin_type,\r\n        COUNT(*) OVER()\r\n    FROM matched\r\n    ORDER BY matched.straight_distance_m, matched.address_id\r\n    LIMIT 600;\r\n",
+      "name": "nearby_academy_addresses",
+      "config": [
+        "search_path=\"\""
+      ],
+      "result": "TABLE(address_id text, region text, district text, latitude double precision, longitude double precision, institution_count integer, institution_type_counts jsonb, realm_counts jsonb, institutions jsonb, top_subjects text, straight_distance_m integer, distance_band text, distance_origin_type text, total_count bigint)",
+      "language": "sql",
+      "arguments": "p_canonical_complex_id text, p_max_distance_m integer DEFAULT 800",
+      "volatility": "s",
+      "security_definer": false,
+      "identity_arguments": "p_canonical_complex_id text, p_max_distance_m integer"
+    },
+    {
+      "body": "\r\n    WITH parameters AS (\r\n        SELECT LEAST(GREATEST(COALESCE(p_max_distance_m, 800), 1), 800)::DOUBLE PRECISION AS radius_m\r\n    ), assigned_complexes AS (\r\n        SELECT DISTINCT serving.canonical_complex_id\r\n        FROM public.school_apartment_serving AS serving\r\n        WHERE serving.school_id = p_school_id\r\n    ), origins AS MATERIALIZED (\r\n        SELECT origin.location, origin.distance_origin_type\r\n        FROM public.apartment_academy_origin_points AS origin\r\n        JOIN assigned_complexes\r\n          ON assigned_complexes.canonical_complex_id = origin.canonical_complex_id\r\n    ), candidates AS (\r\n        SELECT\r\n            academy.address_id,\r\n            academy.region,\r\n            academy.district,\r\n            academy.latitude,\r\n            academy.longitude,\r\n            academy.institution_count,\r\n            academy.institution_type_counts,\r\n            academy.realm_counts,\r\n            academy.institutions,\r\n            academy.top_subjects,\r\n            public.ST_Distance(academy.location, origins.location) AS distance_m,\r\n            origins.distance_origin_type\r\n        FROM origins\r\n        CROSS JOIN parameters\r\n        CROSS JOIN LATERAL (\r\n            SELECT serving.*\r\n            FROM public.academy_address_serving AS serving\r\n            WHERE public.ST_DWithin(serving.location, origins.location, parameters.radius_m)\r\n        ) AS academy\r\n    ), matched AS (\r\n        SELECT\r\n            candidates.address_id,\r\n            candidates.region,\r\n            candidates.district,\r\n            candidates.latitude,\r\n            candidates.longitude,\r\n            candidates.institution_count,\r\n            candidates.institution_type_counts,\r\n            candidates.realm_counts,\r\n            candidates.institutions,\r\n            candidates.top_subjects,\r\n            ROUND(MIN(candidates.distance_m))::INTEGER AS straight_distance_m,\r\n            CASE\r\n                WHEN BOOL_OR(candidates.distance_origin_type = 'nearest_building_centroid')\r\n                THEN 'nearest_building_centroid'\r\n                ELSE 'complex_centroid'\r\n            END AS distance_origin_type\r\n        FROM candidates\r\n        GROUP BY\r\n            candidates.address_id,\r\n            candidates.region,\r\n            candidates.district,\r\n            candidates.latitude,\r\n            candidates.longitude,\r\n            candidates.institution_count,\r\n            candidates.institution_type_counts,\r\n            candidates.realm_counts,\r\n            candidates.institutions,\r\n            candidates.top_subjects\r\n    )\r\n    SELECT\r\n        matched.address_id,\r\n        matched.region,\r\n        matched.district,\r\n        matched.latitude,\r\n        matched.longitude,\r\n        matched.institution_count,\r\n        matched.institution_type_counts,\r\n        matched.realm_counts,\r\n        matched.institutions,\r\n        matched.top_subjects,\r\n        matched.straight_distance_m,\r\n        CASE WHEN matched.straight_distance_m <= 600 THEN 'core' ELSE 'extended' END,\r\n        matched.distance_origin_type,\r\n        COUNT(*) OVER()\r\n    FROM matched\r\n    ORDER BY matched.straight_distance_m, matched.address_id\r\n    LIMIT 1000;\r\n",
+      "name": "nearby_academy_addresses_for_school",
+      "config": [
+        "search_path=\"\""
+      ],
+      "result": "TABLE(address_id text, region text, district text, latitude double precision, longitude double precision, institution_count integer, institution_type_counts jsonb, realm_counts jsonb, institutions jsonb, top_subjects text, straight_distance_m integer, distance_band text, distance_origin_type text, total_count bigint)",
+      "language": "sql",
+      "arguments": "p_school_id text, p_max_distance_m integer DEFAULT 800",
+      "volatility": "s",
+      "security_definer": false,
+      "identity_arguments": "p_school_id text, p_max_distance_m integer"
+    },
+    {
+      "body": "\r\n    WITH origin AS (\r\n        SELECT\r\n            public.ST_SetSRID(public.ST_MakePoint(p_longitude, p_latitude), 4326)::public.GEOGRAPHY AS location,\r\n            LEAST(GREATEST(COALESCE(p_max_distance_m, 1000), 1), 2000)::DOUBLE PRECISION AS radius_m\r\n    )\r\n    SELECT\r\n        center.center_id,\r\n        center.center_kind,\r\n        center.name,\r\n        center.address,\r\n        center.address_detail,\r\n        center.phone,\r\n        center.capacity,\r\n        center.term_hours,\r\n        center.vacation_hours,\r\n        center.latitude,\r\n        center.longitude,\r\n        center.source_updated_on,\r\n        ROUND(public.ST_Distance(center.location, origin.location))::INTEGER\r\n    FROM public.care_centers AS center\r\n    CROSS JOIN origin\r\n    WHERE public.ST_DWithin(center.location, origin.location, origin.radius_m)\r\n    ORDER BY 13, center.center_id\r\n    LIMIT 30;\r\n",
+      "name": "nearby_care_centers",
+      "config": [
+        "search_path=\"\""
+      ],
+      "result": "TABLE(center_id text, center_kind text, name text, address text, address_detail text, phone text, capacity integer, term_hours text, vacation_hours text, latitude double precision, longitude double precision, source_updated_on date, straight_distance_m integer)",
+      "language": "sql",
+      "arguments": "p_latitude double precision, p_longitude double precision, p_max_distance_m integer DEFAULT 1000",
+      "volatility": "s",
+      "security_definer": false,
+      "identity_arguments": "p_latitude double precision, p_longitude double precision, p_max_distance_m integer"
+    },
+    {
+      "body": "\r\n    SELECT\r\n        schedules.source_name,\r\n        (\r\n            SELECT max(snapshots.source_as_of)\r\n            FROM etl_source_snapshots AS snapshots\r\n            WHERE snapshots.source_name = schedules.source_name\r\n              -- expired rows keep their metadata after the object is deleted\r\n              AND snapshots.status IN ('validated', 'expired')\r\n        ) AS source_as_of,\r\n        schedules.last_success_at AS refreshed_at\r\n    FROM etl_schedules AS schedules\r\n    WHERE schedules.enabled\r\n      AND schedules.source_name IN ('kapt-basic', 'schoolinfo-basic', 'schoolinfo-grade-students');\r\n",
+      "name": "public_data_freshness",
+      "config": [
+        "search_path=public"
+      ],
+      "result": "TABLE(source_name text, source_as_of date, refreshed_at timestamp with time zone)",
+      "language": "sql",
+      "arguments": "",
+      "volatility": "s",
+      "security_definer": true,
+      "identity_arguments": ""
+    },
+    {
+      "body": "\r\n    SELECT\r\n        c.relname::TEXT,\r\n        pg_total_relation_size(c.oid)::BIGINT,\r\n        pg_relation_size(c.oid)::BIGINT,\r\n        pg_indexes_size(c.oid)::BIGINT\r\n    FROM pg_class c\r\n    JOIN pg_namespace n ON n.oid = c.relnamespace\r\n    WHERE n.nspname = 'public' AND c.relkind = 'r'\r\n    ORDER BY pg_total_relation_size(c.oid) DESC;\r\n",
+      "name": "public_table_sizes",
+      "config": [
+        "search_path=public, pg_temp"
+      ],
+      "result": "TABLE(table_name text, total_bytes bigint, heap_bytes bigint, index_bytes bigint)",
+      "language": "sql",
+      "arguments": "",
+      "volatility": "s",
+      "security_definer": true,
+      "identity_arguments": ""
+    },
+    {
+      "body": "\r\nDECLARE\r\n    inserted_rows INTEGER;\r\nBEGIN\r\n    PERFORM pg_advisory_xact_lock(hashtext('refresh_school_apartment_serving'));\r\n\r\n    -- Supabase's safe-update guard requires an explicit predicate.\r\n    DELETE FROM school_apartment_serving WHERE TRUE;\r\n\r\n    INSERT INTO school_apartment_serving (\r\n        school_id,\r\n        school_name,\r\n        canonical_complex_id,\r\n        complex_public_key,\r\n        apt_cd_list,\r\n        complex_name,\r\n        road_address,\r\n        region,\r\n        district,\r\n        latitude,\r\n        longitude,\r\n        households,\r\n        building_count,\r\n        use_approval_year,\r\n        parking_total,\r\n        parking_ground,\r\n        parking_underground,\r\n        parking_per_household,\r\n        sale_households,\r\n        rental_units_total,\r\n        public_rental_units,\r\n        private_rental_units,\r\n        public_rental_ratio,\r\n        assignment_rank,\r\n        assignment_roles,\r\n        confidence,\r\n        review_required,\r\n        pipeline_version,\r\n        updated_at\r\n    )\r\n    SELECT\r\n        links.school_id,\r\n        schools.school_name,\r\n        units.canonical_complex_id,\r\n        -- Every atom of a complex maps to the same key by construction, so any\r\n        -- one of them answers. A superseded key resolves to its successor:\r\n        -- the old key still exists to redirect, but pages are built on the\r\n        -- canonical one.\r\n        MIN(COALESCE(slug_keys.superseded_by, slug_keys.public_key)),\r\n        jsonb_agg(DISTINCT links.apt_cd ORDER BY links.apt_cd),\r\n        complexes.complex_name,\r\n        complexes.road_address,\r\n        complexes.region,\r\n        complexes.district,\r\n        complexes.latitude,\r\n        complexes.longitude,\r\n        complexes.households,\r\n        complexes.building_count,\r\n        complexes.use_approval_year,\r\n        complexes.parking_total,\r\n        complexes.parking_ground,\r\n        complexes.parking_underground,\r\n        CASE\r\n            WHEN complexes.households > 0 AND complexes.parking_total IS NOT NULL\r\n            THEN ROUND(complexes.parking_total::NUMERIC / complexes.households, 3)\r\n            ELSE NULL\r\n        END,\r\n        complexes.sale_households,\r\n        complexes.rental_units_total,\r\n        complexes.public_rental_units,\r\n        complexes.private_rental_units,\r\n        complexes.public_rental_ratio,\r\n        MIN(links.assignment_rank),\r\n        jsonb_agg(DISTINCT links.assignment_role ORDER BY links.assignment_role),\r\n        CASE MIN(\r\n            CASE units.confidence\r\n                WHEN 'low' THEN 0\r\n                WHEN 'medium' THEN 1\r\n                WHEN 'high' THEN 2\r\n                ELSE -1\r\n            END\r\n        )\r\n            WHEN 0 THEN 'low'\r\n            WHEN 1 THEN 'medium'\r\n            WHEN 2 THEN 'high'\r\n            ELSE 'unknown'\r\n        END,\r\n        BOOL_OR(units.review_required),\r\n        MAX(units.pipeline_version),\r\n        NOW()\r\n    FROM apartment_assignment_schools AS links\r\n    JOIN apartment_assignment_units AS units\r\n      ON units.apt_cd = links.apt_cd\r\n    JOIN school_master AS schools\r\n      ON schools.school_id = links.school_id\r\n    JOIN apartment_complex_master AS complexes\r\n      ON complexes.canonical_complex_id = units.canonical_complex_id\r\n    -- LEFT so a complex whose key has not been issued yet still publishes its\r\n    -- assignment. Losing an apartment from the map would be a worse failure\r\n    -- than it temporarily having no shareable URL; the audit reports the gap.\r\n    LEFT JOIN apartment_public_key_atom AS slug_atoms\r\n      ON slug_atoms.apt_cd = units.apt_cd\r\n    LEFT JOIN apartment_public_key AS slug_keys\r\n      ON slug_keys.public_key = slug_atoms.public_key\r\n    GROUP BY\r\n        links.school_id,\r\n        schools.school_name,\r\n        units.canonical_complex_id,\r\n        complexes.complex_name,\r\n        complexes.road_address,\r\n        complexes.region,\r\n        complexes.district,\r\n        complexes.latitude,\r\n        complexes.longitude,\r\n        complexes.households,\r\n        complexes.building_count,\r\n        complexes.use_approval_year,\r\n        complexes.parking_total,\r\n        complexes.parking_ground,\r\n        complexes.parking_underground,\r\n        complexes.sale_households,\r\n        complexes.rental_units_total,\r\n        complexes.public_rental_units,\r\n        complexes.private_rental_units,\r\n        complexes.public_rental_ratio;\r\n\r\n    GET DIAGNOSTICS inserted_rows = ROW_COUNT;\r\n    RETURN inserted_rows;\r\nEND;\r\n",
+      "name": "refresh_school_apartment_serving",
+      "config": [
+        "search_path=public, pg_temp"
+      ],
+      "result": "integer",
+      "language": "plpgsql",
+      "arguments": "",
+      "volatility": "v",
+      "security_definer": true,
+      "identity_arguments": ""
+    },
+    {
+      "body": "\r\n    SELECT registry.canonical_name\r\n    FROM region_registry AS registry,\r\n         LATERAL UNNEST(registry.address_prefixes) AS prefix\r\n    WHERE address LIKE prefix || ' %'\r\n    ORDER BY LENGTH(prefix) DESC\r\n    LIMIT 1;\r\n",
+      "name": "region_from_address",
+      "config": [
+        "search_path=public"
+      ],
+      "result": "text",
+      "language": "sql",
+      "arguments": "address text",
+      "volatility": "s",
+      "security_definer": false,
+      "identity_arguments": "address text"
+    },
+    {
+      "body": "\r\nBEGIN\r\n    NEW.location = ST_SetSRID(ST_MakePoint(NEW.longitude, NEW.latitude), 4326)::GEOGRAPHY;\r\n    RETURN NEW;\r\nEND;\r\n",
+      "name": "set_academy_proximity_location",
+      "config": [
+        "search_path=public, pg_temp"
+      ],
+      "result": "trigger",
+      "language": "plpgsql",
+      "arguments": "",
+      "volatility": "v",
+      "security_definer": false,
+      "identity_arguments": ""
+    },
+    {
+      "body": "\r\nBEGIN\r\n    IF NEW.latitude IS NOT NULL AND NEW.longitude IS NOT NULL THEN\r\n        NEW.location = ST_SetSRID(ST_MakePoint(NEW.longitude, NEW.latitude), 4326)::GEOGRAPHY;\r\n    ELSE\r\n        NEW.location = NULL;\r\n    END IF;\r\n    NEW.updated_at = NOW();\r\n    RETURN NEW;\r\nEND;\r\n",
+      "name": "set_master_location_and_timestamp",
+      "config": null,
+      "result": "trigger",
+      "language": "plpgsql",
+      "arguments": "",
+      "volatility": "v",
+      "security_definer": false,
+      "identity_arguments": ""
+    }
+  ]
+}

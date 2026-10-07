@@ -1,0 +1,15 @@
+{
+  "query": "select rolname, rolsuper, rolbypassrls from pg_roles where rolname in ('anon','authenticated') order by rolname;",
+  "results": [
+    {
+      "rolname": "anon",
+      "rolsuper": false,
+      "rolbypassrls": false
+    },
+    {
+      "rolname": "authenticated",
+      "rolsuper": false,
+      "rolbypassrls": false
+    }
+  ]
+}

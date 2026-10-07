@@ -233,6 +233,21 @@ adds the monthly `neis-academy` schedule, and lists that source in `public_data_
 No table or grant changes on the public serving tables. Apply in the SQL editor before the first
 `run_academy_refresh.py --apply`; until then `run_due_etl.py` never sees the academy group as due.
 
+## 26: school day estimates (2026-10-08) — 운영 적용·적재 완료
+
+`sql/26_create_school_day_estimates.sql` adds three public read-only tables for the "초1 하루
+예상" card: `school_day_estimates`, `school_day_estimate_weekdays`, `school_care_hours`. Nothing
+existing changes. It revokes the default anon/authenticated write grants before granting SELECT.
+Impact, checks and rollback: `docs/research/audit2/SCHOOL_DAY_CARD_CONTRACT_20261008.md`.
+
+1. Apply in the SQL editor only after the user approves.
+2. As anon: GET returns rows; POST/PATCH/DELETE return 401/403.
+3. `python -m etl.load_school_day_estimates` (dry run, 35 / 175 / 60 rows, no violations), then `--apply`.
+4. When it is live, add the three tables to `docs/architecture/DATA_CONTRACTS.md` and the git-root `CLAUDE.md` list.
+
+Applied 2026-10-08 by the user in the SQL editor. Anon GET 200; anon POST/PATCH/DELETE `42501` on all
+three tables; `--apply` loaded 35 / 175 / 60 rows (snapshot 2026-10-08).
+
 ## Stop Conditions
 
 - Project hostname does not resolve or keys belong to another project.

@@ -1,0 +1,2436 @@
+{
+  "scope": "restricted SQL contract comparison, not runtime/role verification",
+  "columns": [
+    {
+      "key": "school_master.school_id",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "school_master.schoolinfo_code",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "school_master.school_name",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "school_master.school_type",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "school_master.establishment_date",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "school_master.establishment_type",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "school_master.campus_type",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "school_master.operation_status",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "school_master.road_address",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "school_master.legal_address",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "school_master.region",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "school_master.education_office",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "school_master.education_support_office",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "school_master.latitude",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "school_master.longitude",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "school_master.location",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "school_master.grade1_students",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "school_master.grade2_students",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "school_master.grade3_students",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "school_master.grade4_students",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "school_master.grade5_students",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "school_master.grade6_students",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "school_master.grade1_classes",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "school_master.grade2_classes",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "school_master.grade3_classes",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "school_master.grade4_classes",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "school_master.grade5_classes",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "school_master.grade6_classes",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "school_master.grade1_per_class",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "school_master.grade2_per_class",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "school_master.grade3_per_class",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "school_master.grade4_per_class",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "school_master.grade5_per_class",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "school_master.grade6_per_class",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "school_master.grade1_6_students_sum",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "school_master.other_students",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "school_master.total_students",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "school_master.teachers",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "school_master.student_statistics_year",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "school_master.student_data_status",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "school_master.student_data_source",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "school_master.reference_date",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "school_master.homepage",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "school_master.phone",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "school_master.pipeline_version",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "school_master.updated_at",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "apartment_complex_master.canonical_complex_id",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "apartment_complex_master.kapt_code",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "apartment_complex_master.complex_name",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "apartment_complex_master.name_source",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "apartment_complex_master.road_address",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "apartment_complex_master.legal_address",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "apartment_complex_master.region",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "apartment_complex_master.district",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "apartment_complex_master.latitude",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "apartment_complex_master.longitude",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "apartment_complex_master.location",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "apartment_complex_master.households",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "apartment_complex_master.households_source",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "apartment_complex_master.building_count",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "apartment_complex_master.building_count_source",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "apartment_complex_master.use_approval_year",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "apartment_complex_master.use_approval_year_source",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "apartment_complex_master.parking_total",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "apartment_complex_master.parking_ground",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "apartment_complex_master.parking_underground",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "apartment_complex_master.parking_source",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "apartment_complex_master.sale_households",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "apartment_complex_master.rental_units_total",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "apartment_complex_master.public_rental_units",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "apartment_complex_master.private_rental_units",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "apartment_complex_master.public_rental_ratio",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "apartment_complex_master.rental_source",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "apartment_complex_master.component_count",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "apartment_complex_master.component_apt_ids",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "apartment_complex_master.group_type",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "apartment_complex_master.review_required",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "apartment_complex_master.source_as_of",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "apartment_complex_master.pipeline_version",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "apartment_complex_master.updated_at",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "apartment_assignment_units.apt_cd",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "apartment_assignment_units.canonical_complex_id",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "apartment_assignment_units.apt_name",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "apartment_assignment_units.road_address",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "apartment_assignment_units.region",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "apartment_assignment_units.latitude",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "apartment_assignment_units.longitude",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "apartment_assignment_units.location",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "apartment_assignment_units.hakgudo_id",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "apartment_assignment_units.hakgudo_name",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "apartment_assignment_units.school_id",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "apartment_assignment_units.education_office",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "apartment_assignment_units.assignment_method",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "apartment_assignment_units.confidence",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "apartment_assignment_units.review_required",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "apartment_assignment_units.review_reason",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "apartment_assignment_units.hakgudo_reference_date",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "apartment_assignment_units.pipeline_version",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "apartment_assignment_units.updated_at",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "apartment_assignment_schools.apt_cd",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "apartment_assignment_schools.school_id",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "apartment_assignment_schools.assignment_rank",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "apartment_assignment_schools.assignment_role",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "apartment_assignment_schools.match_method",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "apartment_assignment_schools.pipeline_version",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "apartment_assignment_schools.updated_at",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "school_apartment_serving.school_id",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "school_apartment_serving.school_name",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "school_apartment_serving.canonical_complex_id",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "school_apartment_serving.apt_cd_list",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "school_apartment_serving.complex_name",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "school_apartment_serving.road_address",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "school_apartment_serving.region",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "school_apartment_serving.district",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "school_apartment_serving.latitude",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "school_apartment_serving.longitude",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "school_apartment_serving.households",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "school_apartment_serving.building_count",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "school_apartment_serving.use_approval_year",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "school_apartment_serving.parking_total",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "school_apartment_serving.parking_ground",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "school_apartment_serving.parking_underground",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "school_apartment_serving.parking_per_household",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "school_apartment_serving.sale_households",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "school_apartment_serving.rental_units_total",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "school_apartment_serving.public_rental_units",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "school_apartment_serving.private_rental_units",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "school_apartment_serving.public_rental_ratio",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "school_apartment_serving.assignment_rank",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "school_apartment_serving.assignment_roles",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "school_apartment_serving.confidence",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "school_apartment_serving.review_required",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "school_apartment_serving.pipeline_version",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "school_apartment_serving.updated_at",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "apartment_name_history.apt_cd",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "apartment_name_history.canonical_complex_id",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "apartment_name_history.name",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "apartment_name_history.source",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "apartment_name_history.observed_as_of",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "apartment_name_history.name_role",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "apartment_name_history.updated_at",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "apartment_property_history.apt_cd",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "apartment_property_history.canonical_complex_id",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "apartment_property_history.field_name",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "apartment_property_history.base_value",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "apartment_property_history.base_as_of",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "apartment_property_history.latest_observed_value",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "apartment_property_history.latest_observed_as_of",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "apartment_property_history.canonical_value",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "apartment_property_history.resolution",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "apartment_property_history.updated_at",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "etl_runs.run_id",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "etl_runs.pipeline_name",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "etl_runs.pipeline_version",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "etl_runs.status",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "etl_runs.source_as_of",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "etl_runs.row_counts",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "etl_runs.error_summary",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "etl_runs.started_at",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "etl_runs.completed_at",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "key": "etl_source_snapshots.snapshot_id",
+      "file": "11_create_recurring_etl_contract.sql",
+      "differences": []
+    },
+    {
+      "key": "etl_source_snapshots.run_id",
+      "file": "11_create_recurring_etl_contract.sql",
+      "differences": []
+    },
+    {
+      "key": "etl_source_snapshots.source_name",
+      "file": "11_create_recurring_etl_contract.sql",
+      "differences": []
+    },
+    {
+      "key": "etl_source_snapshots.source_as_of",
+      "file": "11_create_recurring_etl_contract.sql",
+      "differences": []
+    },
+    {
+      "key": "etl_source_snapshots.bucket_id",
+      "file": "11_create_recurring_etl_contract.sql",
+      "differences": []
+    },
+    {
+      "key": "etl_source_snapshots.object_path",
+      "file": "11_create_recurring_etl_contract.sql",
+      "differences": []
+    },
+    {
+      "key": "etl_source_snapshots.original_filename",
+      "file": "11_create_recurring_etl_contract.sql",
+      "differences": []
+    },
+    {
+      "key": "etl_source_snapshots.content_sha256",
+      "file": "11_create_recurring_etl_contract.sql",
+      "differences": []
+    },
+    {
+      "key": "etl_source_snapshots.byte_size",
+      "file": "11_create_recurring_etl_contract.sql",
+      "differences": []
+    },
+    {
+      "key": "etl_source_snapshots.row_count",
+      "file": "11_create_recurring_etl_contract.sql",
+      "differences": []
+    },
+    {
+      "key": "etl_source_snapshots.schema_version",
+      "file": "11_create_recurring_etl_contract.sql",
+      "differences": []
+    },
+    {
+      "key": "etl_source_snapshots.compression",
+      "file": "11_create_recurring_etl_contract.sql",
+      "differences": []
+    },
+    {
+      "key": "etl_source_snapshots.status",
+      "file": "11_create_recurring_etl_contract.sql",
+      "differences": []
+    },
+    {
+      "key": "etl_source_snapshots.retain_until",
+      "file": "11_create_recurring_etl_contract.sql",
+      "differences": []
+    },
+    {
+      "key": "etl_source_snapshots.metadata",
+      "file": "11_create_recurring_etl_contract.sql",
+      "differences": []
+    },
+    {
+      "key": "etl_source_snapshots.created_at",
+      "file": "11_create_recurring_etl_contract.sql",
+      "differences": []
+    },
+    {
+      "key": "etl_staging_rows.run_id",
+      "file": "11_create_recurring_etl_contract.sql",
+      "differences": []
+    },
+    {
+      "key": "etl_staging_rows.target_table",
+      "file": "11_create_recurring_etl_contract.sql",
+      "differences": []
+    },
+    {
+      "key": "etl_staging_rows.row_key",
+      "file": "11_create_recurring_etl_contract.sql",
+      "differences": []
+    },
+    {
+      "key": "etl_staging_rows.payload",
+      "file": "11_create_recurring_etl_contract.sql",
+      "differences": []
+    },
+    {
+      "key": "etl_staging_rows.payload_sha256",
+      "file": "11_create_recurring_etl_contract.sql",
+      "differences": []
+    },
+    {
+      "key": "etl_staging_rows.staged_at",
+      "file": "11_create_recurring_etl_contract.sql",
+      "differences": []
+    },
+    {
+      "key": "etl_admin_users.user_id",
+      "file": "12_create_etl_monitoring_dashboard.sql",
+      "differences": []
+    },
+    {
+      "key": "etl_admin_users.display_name",
+      "file": "12_create_etl_monitoring_dashboard.sql",
+      "differences": []
+    },
+    {
+      "key": "etl_admin_users.created_at",
+      "file": "12_create_etl_monitoring_dashboard.sql",
+      "differences": []
+    },
+    {
+      "key": "etl_schedules.schedule_id",
+      "file": "12_create_etl_monitoring_dashboard.sql",
+      "differences": []
+    },
+    {
+      "key": "etl_schedules.source_name",
+      "file": "12_create_etl_monitoring_dashboard.sql",
+      "differences": []
+    },
+    {
+      "key": "etl_schedules.display_name",
+      "file": "12_create_etl_monitoring_dashboard.sql",
+      "differences": []
+    },
+    {
+      "key": "etl_schedules.data_domain",
+      "file": "12_create_etl_monitoring_dashboard.sql",
+      "differences": []
+    },
+    {
+      "key": "etl_schedules.cadence_unit",
+      "file": "12_create_etl_monitoring_dashboard.sql",
+      "differences": []
+    },
+    {
+      "key": "etl_schedules.cadence_value",
+      "file": "12_create_etl_monitoring_dashboard.sql",
+      "differences": []
+    },
+    {
+      "key": "etl_schedules.max_age_hours",
+      "file": "12_create_etl_monitoring_dashboard.sql",
+      "differences": []
+    },
+    {
+      "key": "etl_schedules.scope_regions",
+      "file": "12_create_etl_monitoring_dashboard.sql",
+      "differences": []
+    },
+    {
+      "key": "etl_schedules.enabled",
+      "file": "12_create_etl_monitoring_dashboard.sql",
+      "differences": []
+    },
+    {
+      "key": "etl_schedules.last_run_id",
+      "file": "12_create_etl_monitoring_dashboard.sql",
+      "differences": []
+    },
+    {
+      "key": "etl_schedules.last_success_at",
+      "file": "12_create_etl_monitoring_dashboard.sql",
+      "differences": []
+    },
+    {
+      "key": "etl_schedules.next_due_at",
+      "file": "12_create_etl_monitoring_dashboard.sql",
+      "differences": []
+    },
+    {
+      "key": "etl_schedules.owner_note",
+      "file": "12_create_etl_monitoring_dashboard.sql",
+      "differences": []
+    },
+    {
+      "key": "etl_schedules.updated_at",
+      "file": "12_create_etl_monitoring_dashboard.sql",
+      "differences": []
+    },
+    {
+      "key": "etl_run_checks.run_id",
+      "file": "12_create_etl_monitoring_dashboard.sql",
+      "differences": []
+    },
+    {
+      "key": "etl_run_checks.check_name",
+      "file": "12_create_etl_monitoring_dashboard.sql",
+      "differences": []
+    },
+    {
+      "key": "etl_run_checks.scope_name",
+      "file": "12_create_etl_monitoring_dashboard.sql",
+      "differences": []
+    },
+    {
+      "key": "etl_run_checks.status",
+      "file": "12_create_etl_monitoring_dashboard.sql",
+      "differences": []
+    },
+    {
+      "key": "etl_run_checks.metric_value",
+      "file": "12_create_etl_monitoring_dashboard.sql",
+      "differences": []
+    },
+    {
+      "key": "etl_run_checks.metric_unit",
+      "file": "12_create_etl_monitoring_dashboard.sql",
+      "differences": []
+    },
+    {
+      "key": "etl_run_checks.details",
+      "file": "12_create_etl_monitoring_dashboard.sql",
+      "differences": []
+    },
+    {
+      "key": "etl_run_checks.checked_at",
+      "file": "12_create_etl_monitoring_dashboard.sql",
+      "differences": []
+    },
+    {
+      "key": "etl_runs.scope",
+      "file": "12_create_etl_monitoring_dashboard.sql",
+      "differences": []
+    },
+    {
+      "key": "etl_runs.trigger_type",
+      "file": "12_create_etl_monitoring_dashboard.sql",
+      "differences": []
+    },
+    {
+      "key": "etl_runs.attempt_number",
+      "file": "12_create_etl_monitoring_dashboard.sql",
+      "differences": []
+    },
+    {
+      "key": "academy_address_serving.address_id",
+      "file": "14_create_academy_proximity_serving.sql",
+      "differences": []
+    },
+    {
+      "key": "academy_address_serving.region",
+      "file": "14_create_academy_proximity_serving.sql",
+      "differences": []
+    },
+    {
+      "key": "academy_address_serving.district",
+      "file": "14_create_academy_proximity_serving.sql",
+      "differences": []
+    },
+    {
+      "key": "academy_address_serving.latitude",
+      "file": "14_create_academy_proximity_serving.sql",
+      "differences": []
+    },
+    {
+      "key": "academy_address_serving.longitude",
+      "file": "14_create_academy_proximity_serving.sql",
+      "differences": []
+    },
+    {
+      "key": "academy_address_serving.location",
+      "file": "14_create_academy_proximity_serving.sql",
+      "differences": []
+    },
+    {
+      "key": "academy_address_serving.institution_count",
+      "file": "14_create_academy_proximity_serving.sql",
+      "differences": []
+    },
+    {
+      "key": "academy_address_serving.institution_type_counts",
+      "file": "14_create_academy_proximity_serving.sql",
+      "differences": []
+    },
+    {
+      "key": "academy_address_serving.realm_counts",
+      "file": "14_create_academy_proximity_serving.sql",
+      "differences": []
+    },
+    {
+      "key": "academy_address_serving.institutions",
+      "file": "14_create_academy_proximity_serving.sql",
+      "differences": []
+    },
+    {
+      "key": "academy_address_serving.top_subjects",
+      "file": "14_create_academy_proximity_serving.sql",
+      "differences": []
+    },
+    {
+      "key": "academy_address_serving.source_as_of",
+      "file": "14_create_academy_proximity_serving.sql",
+      "differences": []
+    },
+    {
+      "key": "academy_address_serving.pipeline_version",
+      "file": "14_create_academy_proximity_serving.sql",
+      "differences": []
+    },
+    {
+      "key": "academy_address_serving.updated_at",
+      "file": "14_create_academy_proximity_serving.sql",
+      "differences": []
+    },
+    {
+      "key": "apartment_academy_origin_points.canonical_complex_id",
+      "file": "14_create_academy_proximity_serving.sql",
+      "differences": []
+    },
+    {
+      "key": "apartment_academy_origin_points.origin_sequence",
+      "file": "14_create_academy_proximity_serving.sql",
+      "differences": []
+    },
+    {
+      "key": "apartment_academy_origin_points.latitude",
+      "file": "14_create_academy_proximity_serving.sql",
+      "differences": []
+    },
+    {
+      "key": "apartment_academy_origin_points.longitude",
+      "file": "14_create_academy_proximity_serving.sql",
+      "differences": []
+    },
+    {
+      "key": "apartment_academy_origin_points.location",
+      "file": "14_create_academy_proximity_serving.sql",
+      "differences": []
+    },
+    {
+      "key": "apartment_academy_origin_points.distance_origin_type",
+      "file": "14_create_academy_proximity_serving.sql",
+      "differences": []
+    },
+    {
+      "key": "apartment_academy_origin_points.pipeline_version",
+      "file": "14_create_academy_proximity_serving.sql",
+      "differences": []
+    },
+    {
+      "key": "apartment_academy_origin_points.updated_at",
+      "file": "14_create_academy_proximity_serving.sql",
+      "differences": []
+    },
+    {
+      "key": "apartment_academy_summary.canonical_complex_id",
+      "file": "14_create_academy_proximity_serving.sql",
+      "differences": []
+    },
+    {
+      "key": "apartment_academy_summary.core_address_count",
+      "file": "14_create_academy_proximity_serving.sql",
+      "differences": []
+    },
+    {
+      "key": "apartment_academy_summary.extended_address_count",
+      "file": "14_create_academy_proximity_serving.sql",
+      "differences": []
+    },
+    {
+      "key": "apartment_academy_summary.core_institution_count",
+      "file": "14_create_academy_proximity_serving.sql",
+      "differences": []
+    },
+    {
+      "key": "apartment_academy_summary.extended_institution_count",
+      "file": "14_create_academy_proximity_serving.sql",
+      "differences": []
+    },
+    {
+      "key": "apartment_academy_summary.distance_origin_type",
+      "file": "14_create_academy_proximity_serving.sql",
+      "differences": []
+    },
+    {
+      "key": "apartment_academy_summary.pipeline_version",
+      "file": "14_create_academy_proximity_serving.sql",
+      "differences": []
+    },
+    {
+      "key": "apartment_academy_summary.updated_at",
+      "file": "14_create_academy_proximity_serving.sql",
+      "differences": []
+    },
+    {
+      "key": "region_registry.canonical_name",
+      "file": "16_create_region_registry_contract.sql",
+      "differences": []
+    },
+    {
+      "key": "region_registry.short_name",
+      "file": "16_create_region_registry_contract.sql",
+      "differences": []
+    },
+    {
+      "key": "region_registry.legal_dong_code",
+      "file": "16_create_region_registry_contract.sql",
+      "differences": []
+    },
+    {
+      "key": "region_registry.legacy_legal_dong_codes",
+      "file": "16_create_region_registry_contract.sql",
+      "differences": []
+    },
+    {
+      "key": "region_registry.neis_office_code",
+      "file": "16_create_region_registry_contract.sql",
+      "differences": []
+    },
+    {
+      "key": "region_registry.education_office",
+      "file": "16_create_region_registry_contract.sql",
+      "differences": []
+    },
+    {
+      "key": "region_registry.address_prefixes",
+      "file": "16_create_region_registry_contract.sql",
+      "differences": []
+    },
+    {
+      "key": "region_registry.has_city_level",
+      "file": "16_create_region_registry_contract.sql",
+      "differences": []
+    },
+    {
+      "key": "region_registry.is_production",
+      "file": "16_create_region_registry_contract.sql",
+      "differences": []
+    },
+    {
+      "key": "region_registry.wave",
+      "file": "16_create_region_registry_contract.sql",
+      "differences": []
+    },
+    {
+      "key": "region_registry.registry_version",
+      "file": "16_create_region_registry_contract.sql",
+      "differences": []
+    },
+    {
+      "key": "region_registry.updated_at",
+      "file": "16_create_region_registry_contract.sql",
+      "differences": []
+    },
+    {
+      "key": "apartment_public_key.public_key",
+      "file": "18_create_apartment_public_key.sql",
+      "differences": []
+    },
+    {
+      "key": "apartment_public_key.issued_at",
+      "file": "18_create_apartment_public_key.sql",
+      "differences": []
+    },
+    {
+      "key": "apartment_public_key.superseded_by",
+      "file": "18_create_apartment_public_key.sql",
+      "differences": []
+    },
+    {
+      "key": "apartment_public_key.updated_at",
+      "file": "18_create_apartment_public_key.sql",
+      "differences": []
+    },
+    {
+      "key": "apartment_public_key_atom.public_key",
+      "file": "18_create_apartment_public_key.sql",
+      "differences": []
+    },
+    {
+      "key": "apartment_public_key_atom.apt_cd",
+      "file": "18_create_apartment_public_key.sql",
+      "differences": []
+    },
+    {
+      "key": "apartment_public_key_atom.first_seen_at",
+      "file": "18_create_apartment_public_key.sql",
+      "differences": []
+    },
+    {
+      "key": "school_apartment_serving.complex_public_key",
+      "file": "19_add_serving_public_key.sql",
+      "differences": []
+    },
+    {
+      "key": "school_care_statistics.school_id",
+      "file": "23_create_care_serving.sql",
+      "differences": []
+    },
+    {
+      "key": "school_care_statistics.statistics_year",
+      "file": "23_create_care_serving.sql",
+      "differences": []
+    },
+    {
+      "key": "school_care_statistics.afternoon_care_rooms",
+      "file": "23_create_care_serving.sql",
+      "differences": []
+    },
+    {
+      "key": "school_care_statistics.afternoon_care_students",
+      "file": "23_create_care_serving.sql",
+      "differences": []
+    },
+    {
+      "key": "school_care_statistics.evening_care_rooms",
+      "file": "23_create_care_serving.sql",
+      "differences": []
+    },
+    {
+      "key": "school_care_statistics.evening_care_students",
+      "file": "23_create_care_serving.sql",
+      "differences": []
+    },
+    {
+      "key": "school_care_statistics.linked_care_rooms",
+      "file": "23_create_care_serving.sql",
+      "differences": []
+    },
+    {
+      "key": "school_care_statistics.linked_care_students",
+      "file": "23_create_care_serving.sql",
+      "differences": []
+    },
+    {
+      "key": "school_care_statistics.afterschool_aptitude_programs",
+      "file": "23_create_care_serving.sql",
+      "differences": []
+    },
+    {
+      "key": "school_care_statistics.afterschool_curriculum_programs",
+      "file": "23_create_care_serving.sql",
+      "differences": []
+    },
+    {
+      "key": "school_care_statistics.afterschool_participants",
+      "file": "23_create_care_serving.sql",
+      "differences": []
+    },
+    {
+      "key": "school_care_statistics.snapshot_date",
+      "file": "23_create_care_serving.sql",
+      "differences": []
+    },
+    {
+      "key": "school_care_statistics.updated_at",
+      "file": "23_create_care_serving.sql",
+      "differences": []
+    },
+    {
+      "key": "care_centers.center_id",
+      "file": "23_create_care_serving.sql",
+      "differences": []
+    },
+    {
+      "key": "care_centers.center_kind",
+      "file": "23_create_care_serving.sql",
+      "differences": []
+    },
+    {
+      "key": "care_centers.name",
+      "file": "23_create_care_serving.sql",
+      "differences": []
+    },
+    {
+      "key": "care_centers.region",
+      "file": "23_create_care_serving.sql",
+      "differences": []
+    },
+    {
+      "key": "care_centers.district",
+      "file": "23_create_care_serving.sql",
+      "differences": []
+    },
+    {
+      "key": "care_centers.address",
+      "file": "23_create_care_serving.sql",
+      "differences": []
+    },
+    {
+      "key": "care_centers.address_detail",
+      "file": "23_create_care_serving.sql",
+      "differences": []
+    },
+    {
+      "key": "care_centers.phone",
+      "file": "23_create_care_serving.sql",
+      "differences": []
+    },
+    {
+      "key": "care_centers.capacity",
+      "file": "23_create_care_serving.sql",
+      "differences": []
+    },
+    {
+      "key": "care_centers.term_hours",
+      "file": "23_create_care_serving.sql",
+      "differences": []
+    },
+    {
+      "key": "care_centers.vacation_hours",
+      "file": "23_create_care_serving.sql",
+      "differences": []
+    },
+    {
+      "key": "care_centers.latitude",
+      "file": "23_create_care_serving.sql",
+      "differences": []
+    },
+    {
+      "key": "care_centers.longitude",
+      "file": "23_create_care_serving.sql",
+      "differences": []
+    },
+    {
+      "key": "care_centers.location",
+      "file": "23_create_care_serving.sql",
+      "differences": []
+    },
+    {
+      "key": "care_centers.source_updated_on",
+      "file": "23_create_care_serving.sql",
+      "differences": []
+    },
+    {
+      "key": "care_centers.snapshot_date",
+      "file": "23_create_care_serving.sql",
+      "differences": []
+    },
+    {
+      "key": "care_centers.updated_at",
+      "file": "23_create_care_serving.sql",
+      "differences": []
+    },
+    {
+      "key": "curriculum_refs.target_key",
+      "file": "24_create_curriculum_likes.sql",
+      "differences": [
+        "missing"
+      ],
+      "expected": {
+        "column": "target_key",
+        "type": "TEXT",
+        "nullable": false,
+        "default": null,
+        "file": "24_create_curriculum_likes.sql"
+      },
+      "live": null
+    },
+    {
+      "key": "curriculum_refs.target_type",
+      "file": "24_create_curriculum_likes.sql",
+      "differences": [
+        "missing"
+      ],
+      "expected": {
+        "column": "target_type",
+        "type": "TEXT",
+        "nullable": false,
+        "default": null,
+        "file": "24_create_curriculum_likes.sql"
+      },
+      "live": null
+    },
+    {
+      "key": "curriculum_refs.plan_key",
+      "file": "24_create_curriculum_likes.sql",
+      "differences": [
+        "missing"
+      ],
+      "expected": {
+        "column": "plan_key",
+        "type": "TEXT",
+        "nullable": true,
+        "default": null,
+        "file": "24_create_curriculum_likes.sql"
+      },
+      "live": null
+    },
+    {
+      "key": "curriculum_refs.item_key",
+      "file": "24_create_curriculum_likes.sql",
+      "differences": [
+        "missing"
+      ],
+      "expected": {
+        "column": "item_key",
+        "type": "TEXT",
+        "nullable": true,
+        "default": null,
+        "file": "24_create_curriculum_likes.sql"
+      },
+      "live": null
+    },
+    {
+      "key": "curriculum_refs.age_band",
+      "file": "24_create_curriculum_likes.sql",
+      "differences": [
+        "missing"
+      ],
+      "expected": {
+        "column": "age_band",
+        "type": "TEXT",
+        "nullable": true,
+        "default": null,
+        "file": "24_create_curriculum_likes.sql"
+      },
+      "live": null
+    },
+    {
+      "key": "curriculum_refs.region",
+      "file": "24_create_curriculum_likes.sql",
+      "differences": [
+        "missing"
+      ],
+      "expected": {
+        "column": "region",
+        "type": "TEXT",
+        "nullable": true,
+        "default": null,
+        "file": "24_create_curriculum_likes.sql"
+      },
+      "live": null
+    },
+    {
+      "key": "curriculum_refs.domain",
+      "file": "24_create_curriculum_likes.sql",
+      "differences": [
+        "missing"
+      ],
+      "expected": {
+        "column": "domain",
+        "type": "TEXT",
+        "nullable": true,
+        "default": null,
+        "file": "24_create_curriculum_likes.sql"
+      },
+      "live": null
+    },
+    {
+      "key": "curriculum_refs.active",
+      "file": "24_create_curriculum_likes.sql",
+      "differences": [
+        "missing"
+      ],
+      "expected": {
+        "column": "active",
+        "type": "BOOLEAN",
+        "nullable": false,
+        "default": "TRUE",
+        "file": "24_create_curriculum_likes.sql"
+      },
+      "live": null
+    },
+    {
+      "key": "curriculum_refs.updated_at",
+      "file": "24_create_curriculum_likes.sql",
+      "differences": [
+        "missing"
+      ],
+      "expected": {
+        "column": "updated_at",
+        "type": "TIMESTAMPTZ",
+        "nullable": false,
+        "default": "NOW ( )",
+        "file": "24_create_curriculum_likes.sql"
+      },
+      "live": null
+    },
+    {
+      "key": "curriculum_likes.voter_id",
+      "file": "24_create_curriculum_likes.sql",
+      "differences": [
+        "missing"
+      ],
+      "expected": {
+        "column": "voter_id",
+        "type": "UUID",
+        "nullable": false,
+        "default": "auth . uid ( )",
+        "file": "24_create_curriculum_likes.sql"
+      },
+      "live": null
+    },
+    {
+      "key": "curriculum_likes.target_key",
+      "file": "24_create_curriculum_likes.sql",
+      "differences": [
+        "missing"
+      ],
+      "expected": {
+        "column": "target_key",
+        "type": "TEXT",
+        "nullable": false,
+        "default": null,
+        "file": "24_create_curriculum_likes.sql"
+      },
+      "live": null
+    },
+    {
+      "key": "curriculum_likes.created_at",
+      "file": "24_create_curriculum_likes.sql",
+      "differences": [
+        "missing"
+      ],
+      "expected": {
+        "column": "created_at",
+        "type": "TIMESTAMPTZ",
+        "nullable": false,
+        "default": "NOW ( )",
+        "file": "24_create_curriculum_likes.sql"
+      },
+      "live": null
+    }
+  ],
+  "functions": [
+    {
+      "name": "set_master_location_and_timestamp",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": [],
+      "argument_identity_matches": true,
+      "argument_default_tokens_match": true
+    },
+    {
+      "name": "refresh_school_apartment_serving",
+      "file": "19_add_serving_public_key.sql",
+      "differences": [],
+      "argument_identity_matches": true,
+      "argument_default_tokens_match": true
+    },
+    {
+      "name": "cleanup_recurring_etl",
+      "file": "17_fix_staging_retention.sql",
+      "differences": [
+        "arguments"
+      ],
+      "argument_identity_matches": true,
+      "argument_default_tokens_match": false,
+      "expected": {
+        "file": "17_fix_staging_retention.sql",
+        "arguments": " staging_before TIMESTAMPTZ DEFAULT NOW ( ) - INTERVAL '2 days' , max_runs INTEGER DEFAULT 5 ",
+        "result": "TABLE ( staging_rows_deleted BIGINT , snapshots_marked_expired BIGINT )",
+        "language": "plpgsql",
+        "volatility": "v",
+        "security_definer": true,
+        "search_path": "public , pg_temp"
+      },
+      "live": {
+        "name": "cleanup_recurring_etl",
+        "config": [
+          "search_path=public, pg_temp"
+        ],
+        "result": "TABLE(staging_rows_deleted bigint, snapshots_marked_expired bigint)",
+        "language": "plpgsql",
+        "arguments": "staging_before timestamp with time zone DEFAULT (now() - '2 days'::interval), max_runs integer DEFAULT 5",
+        "volatility": "v",
+        "security_definer": true,
+        "identity_arguments": "staging_before timestamp with time zone, max_runs integer"
+      }
+    },
+    {
+      "name": "is_etl_admin",
+      "file": "12_create_etl_monitoring_dashboard.sql",
+      "differences": [],
+      "argument_identity_matches": true,
+      "argument_default_tokens_match": true
+    },
+    {
+      "name": "filter_school_ids",
+      "file": "13_create_school_apartment_cross_filter.sql",
+      "differences": [
+        "arguments"
+      ],
+      "argument_identity_matches": true,
+      "argument_default_tokens_match": true,
+      "expected": {
+        "file": "13_create_school_apartment_cross_filter.sql",
+        "arguments": " p_target_grade INTEGER DEFAULT 1 , p_min_students INTEGER DEFAULT 0 , p_school_types TEXT [ ] DEFAULT NULL , p_regions TEXT [ ] DEFAULT NULL , p_districts TEXT [ ] DEFAULT NULL , p_apply_apartment_filters BOOLEAN DEFAULT FALSE , p_min_households INTEGER DEFAULT 0 , p_min_parking_ratio NUMERIC DEFAULT 0 , p_min_use_approval_year INTEGER DEFAULT NULL , p_max_public_rental_ratio NUMERIC DEFAULT 100 ",
+        "result": "TABLE ( school_id TEXT , total_count BIGINT )",
+        "language": "sql",
+        "volatility": "s",
+        "security_definer": false,
+        "search_path": "''"
+      },
+      "live": {
+        "name": "filter_school_ids",
+        "config": [
+          "search_path=\"\""
+        ],
+        "result": "TABLE(school_id text, total_count bigint)",
+        "language": "sql",
+        "arguments": "p_target_grade integer DEFAULT 1, p_min_students integer DEFAULT 0, p_school_types text[] DEFAULT NULL::text[], p_regions text[] DEFAULT NULL::text[], p_districts text[] DEFAULT NULL::text[], p_apply_apartment_filters boolean DEFAULT false, p_min_households integer DEFAULT 0, p_min_parking_ratio numeric DEFAULT 0, p_min_use_approval_year integer DEFAULT NULL::integer, p_max_public_rental_ratio numeric DEFAULT 100",
+        "volatility": "s",
+        "security_definer": false,
+        "identity_arguments": "p_target_grade integer, p_min_students integer, p_school_types text[], p_regions text[], p_districts text[], p_apply_apartment_filters boolean, p_min_households integer, p_min_parking_ratio numeric, p_min_use_approval_year integer, p_max_public_rental_ratio numeric"
+      }
+    },
+    {
+      "name": "set_academy_proximity_location",
+      "file": "14_create_academy_proximity_serving.sql",
+      "differences": [],
+      "argument_identity_matches": true,
+      "argument_default_tokens_match": true
+    },
+    {
+      "name": "nearby_academy_addresses",
+      "file": "20_expose_academy_names.sql",
+      "differences": [],
+      "argument_identity_matches": true,
+      "argument_default_tokens_match": true
+    },
+    {
+      "name": "nearby_academy_addresses_for_school",
+      "file": "21_optimize_school_education_facility_rpc.sql",
+      "differences": [],
+      "argument_identity_matches": true,
+      "argument_default_tokens_match": true
+    },
+    {
+      "name": "region_from_address",
+      "file": "16_create_region_registry_contract.sql",
+      "differences": [],
+      "argument_identity_matches": true,
+      "argument_default_tokens_match": true
+    },
+    {
+      "name": "etl_staging_depth",
+      "file": "17_fix_staging_retention.sql",
+      "differences": [],
+      "argument_identity_matches": true,
+      "argument_default_tokens_match": true
+    },
+    {
+      "name": "public_table_sizes",
+      "file": "17_fix_staging_retention.sql",
+      "differences": [],
+      "argument_identity_matches": true,
+      "argument_default_tokens_match": true
+    },
+    {
+      "name": "public_data_freshness",
+      "file": "22_public_data_freshness.sql",
+      "differences": [],
+      "argument_identity_matches": true,
+      "argument_default_tokens_match": true
+    },
+    {
+      "name": "nearby_care_centers",
+      "file": "23_create_care_serving.sql",
+      "differences": [],
+      "argument_identity_matches": true,
+      "argument_default_tokens_match": true
+    },
+    {
+      "name": "curriculum_ref_is_active",
+      "file": "24_create_curriculum_likes.sql",
+      "differences": [
+        "missing"
+      ],
+      "expected": {
+        "file": "24_create_curriculum_likes.sql",
+        "arguments": " p_target_key TEXT ",
+        "result": "BOOLEAN",
+        "language": "sql",
+        "volatility": "s",
+        "security_definer": true,
+        "search_path": "''"
+      },
+      "live": {}
+    },
+    {
+      "name": "curriculum_like_counts",
+      "file": "24_create_curriculum_likes.sql",
+      "differences": [
+        "missing"
+      ],
+      "expected": {
+        "file": "24_create_curriculum_likes.sql",
+        "arguments": " p_keys TEXT [ ] ",
+        "result": "TABLE ( target_key TEXT , likes BIGINT )",
+        "language": "sql",
+        "volatility": "s",
+        "security_definer": true,
+        "search_path": "''"
+      },
+      "live": {}
+    },
+    {
+      "name": "curriculum_item_ranking",
+      "file": "24_create_curriculum_likes.sql",
+      "differences": [
+        "missing"
+      ],
+      "expected": {
+        "file": "24_create_curriculum_likes.sql",
+        "arguments": " p_age_band TEXT DEFAULT NULL , p_region TEXT DEFAULT NULL , p_domain TEXT DEFAULT NULL , p_days INTEGER DEFAULT NULL ",
+        "result": "TABLE ( item_key TEXT , voters BIGINT , cell_voters BIGINT )",
+        "language": "sql",
+        "volatility": "s",
+        "security_definer": true,
+        "search_path": "''"
+      },
+      "live": {}
+    }
+  ],
+  "indexes": [
+    {
+      "name": "school_master_location_idx",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "name": "school_master_name_idx",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "name": "school_master_name_trgm_idx",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "name": "school_master_viewport_idx",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "name": "school_master_region_grade1_idx",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "name": "apartment_complex_location_idx",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "name": "apartment_complex_kapt_idx",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "name": "apartment_complex_review_idx",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "name": "apartment_assignment_location_idx",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "name": "apartment_assignment_hakgudo_idx",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "name": "apartment_assignment_school_idx",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "name": "apartment_assignment_review_idx",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "name": "apartment_assignment_schools_school_idx",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "name": "school_apartment_serving_school_idx",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "name": "school_apartment_serving_complex_idx",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "name": "school_apartment_serving_filter_idx",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "name": "school_apartment_serving_query_idx",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "name": "apartment_name_history_complex_idx",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "name": "apartment_property_history_complex_idx",
+      "file": "06_create_operational_master_tables.sql",
+      "differences": []
+    },
+    {
+      "name": "school_master_grade1_students_idx",
+      "file": "07_add_school_grade_statistics.sql",
+      "differences": []
+    },
+    {
+      "name": "etl_source_snapshots_retention_idx",
+      "file": "11_create_recurring_etl_contract.sql",
+      "differences": []
+    },
+    {
+      "name": "etl_staging_rows_run_idx",
+      "file": "11_create_recurring_etl_contract.sql",
+      "differences": []
+    },
+    {
+      "name": "etl_runs_monitoring_idx",
+      "file": "12_create_etl_monitoring_dashboard.sql",
+      "differences": []
+    },
+    {
+      "name": "etl_schedules_due_idx",
+      "file": "12_create_etl_monitoring_dashboard.sql",
+      "differences": []
+    },
+    {
+      "name": "etl_run_checks_status_idx",
+      "file": "12_create_etl_monitoring_dashboard.sql",
+      "differences": []
+    },
+    {
+      "name": "school_master_region_grade2_idx",
+      "file": "13_create_school_apartment_cross_filter.sql",
+      "differences": []
+    },
+    {
+      "name": "school_master_region_grade3_idx",
+      "file": "13_create_school_apartment_cross_filter.sql",
+      "differences": []
+    },
+    {
+      "name": "school_master_region_grade4_idx",
+      "file": "13_create_school_apartment_cross_filter.sql",
+      "differences": []
+    },
+    {
+      "name": "school_master_region_grade5_idx",
+      "file": "13_create_school_apartment_cross_filter.sql",
+      "differences": []
+    },
+    {
+      "name": "school_master_region_grade6_idx",
+      "file": "13_create_school_apartment_cross_filter.sql",
+      "differences": []
+    },
+    {
+      "name": "school_apartment_serving_households_idx",
+      "file": "13_create_school_apartment_cross_filter.sql",
+      "differences": []
+    },
+    {
+      "name": "school_apartment_serving_parking_ratio_idx",
+      "file": "13_create_school_apartment_cross_filter.sql",
+      "differences": []
+    },
+    {
+      "name": "school_apartment_serving_approval_year_idx",
+      "file": "13_create_school_apartment_cross_filter.sql",
+      "differences": []
+    },
+    {
+      "name": "school_apartment_serving_rental_ratio_idx",
+      "file": "13_create_school_apartment_cross_filter.sql",
+      "differences": []
+    },
+    {
+      "name": "academy_address_serving_location_idx",
+      "file": "14_create_academy_proximity_serving.sql",
+      "differences": []
+    },
+    {
+      "name": "academy_address_serving_region_idx",
+      "file": "14_create_academy_proximity_serving.sql",
+      "differences": []
+    },
+    {
+      "name": "apartment_public_key_atom_unique_atom",
+      "file": "18_create_apartment_public_key.sql",
+      "differences": []
+    },
+    {
+      "name": "apartment_public_key_superseded_idx",
+      "file": "18_create_apartment_public_key.sql",
+      "differences": []
+    },
+    {
+      "name": "school_apartment_serving_public_key_idx",
+      "file": "19_add_serving_public_key.sql",
+      "differences": []
+    },
+    {
+      "name": "care_centers_location_idx",
+      "file": "23_create_care_serving.sql",
+      "differences": []
+    },
+    {
+      "name": "curriculum_likes_target_idx",
+      "file": "24_create_curriculum_likes.sql",
+      "differences": [
+        "missing"
+      ],
+      "expected": {
+        "file": "24_create_curriculum_likes.sql",
+        "unique": false,
+        "definition": "curriculum_likes USING btree ( target_key )"
+      },
+      "live": null
+    },
+    {
+      "name": "curriculum_refs_item_idx",
+      "file": "24_create_curriculum_likes.sql",
+      "differences": [
+        "missing"
+      ],
+      "expected": {
+        "file": "24_create_curriculum_likes.sql",
+        "unique": false,
+        "definition": "curriculum_refs USING btree ( item_key ) WHERE active"
+      },
+      "live": null
+    }
+  ],
+  "policies": [
+    {
+      "key": "school_master.public read school master",
+      "file": "10_finalize_frontend_data_contract.sql",
+      "differences": []
+    },
+    {
+      "key": "school_apartment_serving.public read school apartment serving",
+      "file": "10_finalize_frontend_data_contract.sql",
+      "differences": []
+    },
+    {
+      "key": "etl_admin_users.admin read own etl role",
+      "file": "12_create_etl_monitoring_dashboard.sql",
+      "differences": []
+    },
+    {
+      "key": "etl_schedules.admin read etl schedules",
+      "file": "12_create_etl_monitoring_dashboard.sql",
+      "differences": [
+        "qual"
+      ],
+      "expected": {
+        "file": "12_create_etl_monitoring_dashboard.sql",
+        "cmd": "SELECT",
+        "roles": [
+          "authenticated"
+        ],
+        "qual": " ( SELECT is_etl_admin ( ) ) ",
+        "with_check": null
+      },
+      "live": {
+        "cmd": "SELECT",
+        "qual": "is_etl_admin()",
+        "roles": [
+          "authenticated"
+        ],
+        "tablename": "etl_schedules",
+        "permissive": "PERMISSIVE",
+        "policyname": "admin read etl schedules",
+        "schemaname": "public",
+        "with_check": null
+      }
+    },
+    {
+      "key": "etl_run_checks.admin read etl run checks",
+      "file": "12_create_etl_monitoring_dashboard.sql",
+      "differences": [
+        "qual"
+      ],
+      "expected": {
+        "file": "12_create_etl_monitoring_dashboard.sql",
+        "cmd": "SELECT",
+        "roles": [
+          "authenticated"
+        ],
+        "qual": " ( SELECT is_etl_admin ( ) ) ",
+        "with_check": null
+      },
+      "live": {
+        "cmd": "SELECT",
+        "qual": "is_etl_admin()",
+        "roles": [
+          "authenticated"
+        ],
+        "tablename": "etl_run_checks",
+        "permissive": "PERMISSIVE",
+        "policyname": "admin read etl run checks",
+        "schemaname": "public",
+        "with_check": null
+      }
+    },
+    {
+      "key": "etl_runs.admin read etl runs",
+      "file": "12_create_etl_monitoring_dashboard.sql",
+      "differences": [
+        "qual"
+      ],
+      "expected": {
+        "file": "12_create_etl_monitoring_dashboard.sql",
+        "cmd": "SELECT",
+        "roles": [
+          "authenticated"
+        ],
+        "qual": " ( SELECT is_etl_admin ( ) ) ",
+        "with_check": null
+      },
+      "live": {
+        "cmd": "SELECT",
+        "qual": "is_etl_admin()",
+        "roles": [
+          "authenticated"
+        ],
+        "tablename": "etl_runs",
+        "permissive": "PERMISSIVE",
+        "policyname": "admin read etl runs",
+        "schemaname": "public",
+        "with_check": null
+      }
+    },
+    {
+      "key": "etl_source_snapshots.admin read etl snapshots",
+      "file": "12_create_etl_monitoring_dashboard.sql",
+      "differences": [
+        "qual"
+      ],
+      "expected": {
+        "file": "12_create_etl_monitoring_dashboard.sql",
+        "cmd": "SELECT",
+        "roles": [
+          "authenticated"
+        ],
+        "qual": " ( SELECT is_etl_admin ( ) ) ",
+        "with_check": null
+      },
+      "live": {
+        "cmd": "SELECT",
+        "qual": "is_etl_admin()",
+        "roles": [
+          "authenticated"
+        ],
+        "tablename": "etl_source_snapshots",
+        "permissive": "PERMISSIVE",
+        "policyname": "admin read etl snapshots",
+        "schemaname": "public",
+        "with_check": null
+      }
+    },
+    {
+      "key": "academy_address_serving.public read academy address serving",
+      "file": "14_create_academy_proximity_serving.sql",
+      "differences": []
+    },
+    {
+      "key": "apartment_academy_origin_points.public read apartment academy origins",
+      "file": "14_create_academy_proximity_serving.sql",
+      "differences": []
+    },
+    {
+      "key": "apartment_academy_summary.public read apartment academy summary",
+      "file": "14_create_academy_proximity_serving.sql",
+      "differences": []
+    },
+    {
+      "key": "school_care_statistics.public read school care statistics",
+      "file": "23_create_care_serving.sql",
+      "differences": []
+    },
+    {
+      "key": "care_centers.public read care centers",
+      "file": "23_create_care_serving.sql",
+      "differences": []
+    },
+    {
+      "key": "curriculum_likes.own likes read",
+      "file": "24_create_curriculum_likes.sql",
+      "differences": [
+        "missing"
+      ],
+      "expected": {
+        "file": "24_create_curriculum_likes.sql",
+        "cmd": "SELECT",
+        "roles": [
+          "authenticated"
+        ],
+        "qual": " voter_id = auth . uid ( ) ",
+        "with_check": null
+      },
+      "live": null
+    },
+    {
+      "key": "curriculum_likes.own likes remove",
+      "file": "24_create_curriculum_likes.sql",
+      "differences": [
+        "missing"
+      ],
+      "expected": {
+        "file": "24_create_curriculum_likes.sql",
+        "cmd": "DELETE",
+        "roles": [
+          "authenticated"
+        ],
+        "qual": " voter_id = auth . uid ( ) ",
+        "with_check": null
+      },
+      "live": null
+    },
+    {
+      "key": "curriculum_likes.own likes add",
+      "file": "24_create_curriculum_likes.sql",
+      "differences": [
+        "missing"
+      ],
+      "expected": {
+        "file": "24_create_curriculum_likes.sql",
+        "cmd": "INSERT",
+        "roles": [
+          "authenticated"
+        ],
+        "qual": null,
+        "with_check": " voter_id = auth . uid ( ) AND public . curriculum_ref_is_active ( target_key ) "
+      },
+      "live": null
+    }
+  ],
+  "foreign_keys": [
+    {
+      "table": "apartment_academy_origin_points",
+      "definition": "foreign key ( canonical_complex_id ) references apartment_complex_master ( canonical_complex_id ) on update cascade on delete cascade",
+      "matches": true
+    },
+    {
+      "table": "apartment_academy_summary",
+      "definition": "foreign key ( canonical_complex_id ) references apartment_complex_master ( canonical_complex_id ) on update cascade on delete cascade",
+      "matches": true
+    },
+    {
+      "table": "apartment_assignment_schools",
+      "definition": "foreign key ( apt_cd ) references apartment_assignment_units ( apt_cd ) on update cascade on delete cascade",
+      "matches": true
+    },
+    {
+      "table": "apartment_assignment_schools",
+      "definition": "foreign key ( school_id ) references school_master ( school_id ) on update cascade",
+      "matches": true
+    },
+    {
+      "table": "apartment_assignment_units",
+      "definition": "foreign key ( canonical_complex_id ) references apartment_complex_master ( canonical_complex_id ) on update cascade",
+      "matches": true
+    },
+    {
+      "table": "apartment_assignment_units",
+      "definition": "foreign key ( region ) references region_registry ( canonical_name ) on update cascade",
+      "matches": true
+    },
+    {
+      "table": "apartment_assignment_units",
+      "definition": "foreign key ( school_id ) references school_master ( school_id ) on update cascade",
+      "matches": true
+    },
+    {
+      "table": "apartment_complex_master",
+      "definition": "foreign key ( region ) references region_registry ( canonical_name ) on update cascade",
+      "matches": true
+    },
+    {
+      "table": "apartment_name_history",
+      "definition": "foreign key ( apt_cd ) references apartment_assignment_units ( apt_cd ) on update cascade on delete cascade",
+      "matches": true
+    },
+    {
+      "table": "apartment_name_history",
+      "definition": "foreign key ( canonical_complex_id ) references apartment_complex_master ( canonical_complex_id ) on update cascade on delete cascade",
+      "matches": true
+    },
+    {
+      "table": "apartment_property_history",
+      "definition": "foreign key ( apt_cd ) references apartment_assignment_units ( apt_cd ) on update cascade on delete cascade",
+      "matches": true
+    },
+    {
+      "table": "apartment_property_history",
+      "definition": "foreign key ( canonical_complex_id ) references apartment_complex_master ( canonical_complex_id ) on update cascade on delete cascade",
+      "matches": true
+    },
+    {
+      "table": "apartment_public_key",
+      "definition": "foreign key ( superseded_by ) references apartment_public_key ( public_key )",
+      "matches": true
+    },
+    {
+      "table": "apartment_public_key_atom",
+      "definition": "foreign key ( public_key ) references apartment_public_key ( public_key )",
+      "matches": true
+    },
+    {
+      "table": "curriculum_likes",
+      "definition": "foreign key ( target_key ) references curriculum_refs ( target_key ) on update cascade on delete cascade",
+      "matches": false
+    },
+    {
+      "table": "curriculum_likes",
+      "definition": "foreign key ( voter_id ) references auth . users ( id ) on delete cascade",
+      "matches": false
+    },
+    {
+      "table": "etl_admin_users",
+      "definition": "foreign key ( user_id ) references auth . users ( id ) on delete cascade",
+      "matches": true
+    },
+    {
+      "table": "etl_run_checks",
+      "definition": "foreign key ( run_id ) references etl_runs ( run_id ) on delete cascade",
+      "matches": true
+    },
+    {
+      "table": "etl_schedules",
+      "definition": "foreign key ( last_run_id ) references etl_runs ( run_id ) on delete set null",
+      "matches": true
+    },
+    {
+      "table": "etl_source_snapshots",
+      "definition": "foreign key ( run_id ) references etl_runs ( run_id ) on delete set null",
+      "matches": true
+    },
+    {
+      "table": "etl_staging_rows",
+      "definition": "foreign key ( run_id ) references etl_runs ( run_id ) on delete cascade",
+      "matches": true
+    },
+    {
+      "table": "school_apartment_serving",
+      "definition": "foreign key ( canonical_complex_id ) references apartment_complex_master ( canonical_complex_id ) on update cascade on delete cascade",
+      "matches": true
+    },
+    {
+      "table": "school_apartment_serving",
+      "definition": "foreign key ( school_id ) references school_master ( school_id ) on update cascade on delete cascade",
+      "matches": true
+    },
+    {
+      "table": "school_care_statistics",
+      "definition": "foreign key ( school_id ) references school_master ( school_id ) on update cascade on delete cascade",
+      "matches": true
+    },
+    {
+      "table": "school_master",
+      "definition": "foreign key ( region ) references region_registry ( canonical_name ) on update cascade",
+      "matches": true
+    }
+  ],
+  "summary": {
+    "columns": {
+      "checked": 302,
+      "different": 12
+    },
+    "functions": {
+      "checked": 16,
+      "different": 5
+    },
+    "indexes": {
+      "checked": 42,
+      "different": 2
+    },
+    "policies": {
+      "checked": 15,
+      "different": 7
+    },
+    "foreign_keys": {
+      "checked": 25,
+      "different": 2
+    }
+  },
+  "sql_sha256": {
+    "06_create_operational_master_tables.sql": "1a33a940cc551e9b99138aa7063a10bb4e8f1a46579b9d6531488cbd9212b73d",
+    "07_add_school_grade_statistics.sql": "c534c0129b7cccceb159351d6c6d7a3550b71b1d3aceaf41f82d060c6ebd857c",
+    "08_create_school_apartment_serving.sql": "b7e20d446a4db80213ed499438bfe4d262bca262cfe2c4c217e7c7abfbe63142",
+    "09_create_serving_refresh_function.sql": "303b77a06c9c76922e070267c23512bb8ec427cf0281bb182669539bfeed2e44",
+    "10_finalize_frontend_data_contract.sql": "f5a5b6a6a024ac7c9e787742eea8b2d6c8f1b9c7400cc36a0406b33b4c455d44",
+    "11_create_recurring_etl_contract.sql": "cf6bfd192b8085c6b95d80a76f40ba07b58dc5a5bc02fe7ec26ced4c1387f61b",
+    "12_create_etl_monitoring_dashboard.sql": "7a4c78e9e1e48f817bbba2fc290499aff7362a0a414785e9e887d75ec68238e7",
+    "13_create_school_apartment_cross_filter.sql": "147a316ebb7888de1f3911777cbe08281d5739242bf52057e773bcd8f47402b5",
+    "14_create_academy_proximity_serving.sql": "ef3c065b616b4c983c3ce928c52176622aee1c94ad03fbbd4bfd638e05457844",
+    "15_create_school_academy_proximity.sql": "a91a4da13bb9f4494656da36316571c16f56c6b23140279326eabfd4397ef9eb",
+    "16_create_region_registry_contract.sql": "7585b2dfbd58eabfd1c440453e8cae010dfa878ad2b94046a62e5b7a5e97e96c",
+    "17_fix_staging_retention.sql": "1ff2f812385a753b1bf1199873c88cc7117f86689487d8ee81adaec86cac79e4",
+    "18_create_apartment_public_key.sql": "c9325a3d54bcca964ae479f7c32816380d65ef907c409a4e7f19a6741d2b7640",
+    "19_add_serving_public_key.sql": "cd8749428d160fe5a2f9ded25b82b6fa8b5dc97299eb2d79b8f606fd36747870",
+    "20_expose_academy_names.sql": "d0b76c72ddf8fc3105e0e7053b2403c833a9fae72af71e0def95b8a51211657d",
+    "21_optimize_school_education_facility_rpc.sql": "8ddb1f4888aec51ae84f583410f470743ca926821875beea947a3a607be34201",
+    "22_public_data_freshness.sql": "5c7024a0de787fc55fd8f675ad95ad2d06cb9d8728eb4b1b5ec3abd4370aea09",
+    "23_create_care_serving.sql": "3e2603f8e79f5f64b1618c4c0a8294c80d72e6d962871d1cd65644d8d80c5c0d",
+    "24_create_curriculum_likes.sql": "d6dc1450072c139b251c2617d0b838331d39009eef0802ce8ab144993da7da1f"
+  },
+  "limitations": [
+    "Known migration grammar only; not an AST/semantic equivalence proof",
+    "No CHECK/UNIQUE/PK expression or trigger equivalence test",
+    "No storage bucket, migration history or seed data equivalence",
+    "No actual owner/non-owner write tests or API exposed-schema confirmation",
+    "Unexpected live-only columns/indexes/functions/policies are not removed",
+    "No SQL applied and no automatic remediation"
+  ]
+}

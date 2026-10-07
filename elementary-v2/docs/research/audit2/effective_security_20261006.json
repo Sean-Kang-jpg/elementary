@@ -1,0 +1,530 @@
+{
+  "views": [
+    {
+      "name": "index_usage_stats",
+      "options": null,
+      "definition": " SELECT schemaname,\n    relname AS tablename,\n    indexrelname AS indexname,\n    idx_tup_read,\n    idx_tup_fetch,\n    idx_scan,\n        CASE\n            WHEN idx_scan = 0 THEN 'Never used'::text\n            WHEN idx_scan < 100 THEN 'Rarely used'::text\n            WHEN idx_scan < 1000 THEN 'Moderately used'::text\n            ELSE 'Heavily used'::text\n        END AS usage_level\n   FROM pg_stat_user_indexes\n  WHERE schemaname = 'public'::name AND (relname = ANY (ARRAY['schools'::name, 'apartments'::name, 'apartment_school_mappings'::name]))\n  ORDER BY idx_scan DESC;"
+    }
+  ],
+  "column_acls": [],
+  "default_acls": [
+    {
+      "acl": [
+        "postgres=arwdDxtm/postgres",
+        "anon=arwdDxtm/postgres",
+        "authenticated=arwdDxtm/postgres",
+        "service_role=arwdDxtm/postgres"
+      ],
+      "owner": "postgres",
+      "namespace": "public",
+      "object_type": "r"
+    },
+    {
+      "acl": [
+        "postgres=X/postgres",
+        "anon=X/postgres",
+        "authenticated=X/postgres",
+        "service_role=X/postgres"
+      ],
+      "owner": "postgres",
+      "namespace": "public",
+      "object_type": "f"
+    },
+    {
+      "acl": [
+        "postgres=rwU/postgres",
+        "anon=rwU/postgres",
+        "authenticated=rwU/postgres",
+        "service_role=rwU/postgres"
+      ],
+      "owner": "postgres",
+      "namespace": "public",
+      "object_type": "S"
+    },
+    {
+      "acl": [
+        "postgres=rwU/supabase_admin",
+        "anon=rwU/supabase_admin",
+        "authenticated=rwU/supabase_admin",
+        "service_role=rwU/supabase_admin"
+      ],
+      "owner": "supabase_admin",
+      "namespace": "public",
+      "object_type": "S"
+    },
+    {
+      "acl": [
+        "postgres=arwdDxtm/supabase_admin",
+        "anon=arwdDxtm/supabase_admin",
+        "authenticated=arwdDxtm/supabase_admin",
+        "service_role=arwdDxtm/supabase_admin"
+      ],
+      "owner": "supabase_admin",
+      "namespace": "public",
+      "object_type": "r"
+    },
+    {
+      "acl": [
+        "postgres=X/supabase_admin",
+        "anon=X/supabase_admin",
+        "authenticated=X/supabase_admin",
+        "service_role=X/supabase_admin"
+      ],
+      "owner": "supabase_admin",
+      "namespace": "public",
+      "object_type": "f"
+    }
+  ],
+  "effective_table_grants": [
+    {
+      "role": "anon",
+      "table": "academy_address_serving",
+      "delete": true,
+      "insert": true,
+      "select": true,
+      "update": true,
+      "truncate": true
+    },
+    {
+      "role": "authenticated",
+      "table": "academy_address_serving",
+      "delete": true,
+      "insert": true,
+      "select": true,
+      "update": true,
+      "truncate": true
+    },
+    {
+      "role": "anon",
+      "table": "apartment_academy_origin_points",
+      "delete": true,
+      "insert": true,
+      "select": true,
+      "update": true,
+      "truncate": true
+    },
+    {
+      "role": "authenticated",
+      "table": "apartment_academy_origin_points",
+      "delete": true,
+      "insert": true,
+      "select": true,
+      "update": true,
+      "truncate": true
+    },
+    {
+      "role": "anon",
+      "table": "apartment_academy_summary",
+      "delete": true,
+      "insert": true,
+      "select": true,
+      "update": true,
+      "truncate": true
+    },
+    {
+      "role": "authenticated",
+      "table": "apartment_academy_summary",
+      "delete": true,
+      "insert": true,
+      "select": true,
+      "update": true,
+      "truncate": true
+    },
+    {
+      "role": "anon",
+      "table": "apartment_assignment_schools",
+      "delete": true,
+      "insert": true,
+      "select": true,
+      "update": true,
+      "truncate": true
+    },
+    {
+      "role": "authenticated",
+      "table": "apartment_assignment_schools",
+      "delete": true,
+      "insert": true,
+      "select": true,
+      "update": true,
+      "truncate": true
+    },
+    {
+      "role": "anon",
+      "table": "apartment_assignment_units",
+      "delete": true,
+      "insert": true,
+      "select": true,
+      "update": true,
+      "truncate": true
+    },
+    {
+      "role": "authenticated",
+      "table": "apartment_assignment_units",
+      "delete": true,
+      "insert": true,
+      "select": true,
+      "update": true,
+      "truncate": true
+    },
+    {
+      "role": "anon",
+      "table": "apartment_complex_master",
+      "delete": true,
+      "insert": true,
+      "select": true,
+      "update": true,
+      "truncate": true
+    },
+    {
+      "role": "authenticated",
+      "table": "apartment_complex_master",
+      "delete": true,
+      "insert": true,
+      "select": true,
+      "update": true,
+      "truncate": true
+    },
+    {
+      "role": "anon",
+      "table": "apartment_name_history",
+      "delete": true,
+      "insert": true,
+      "select": true,
+      "update": true,
+      "truncate": true
+    },
+    {
+      "role": "authenticated",
+      "table": "apartment_name_history",
+      "delete": true,
+      "insert": true,
+      "select": true,
+      "update": true,
+      "truncate": true
+    },
+    {
+      "role": "anon",
+      "table": "apartment_property_history",
+      "delete": true,
+      "insert": true,
+      "select": true,
+      "update": true,
+      "truncate": true
+    },
+    {
+      "role": "authenticated",
+      "table": "apartment_property_history",
+      "delete": true,
+      "insert": true,
+      "select": true,
+      "update": true,
+      "truncate": true
+    },
+    {
+      "role": "anon",
+      "table": "apartment_public_key",
+      "delete": false,
+      "insert": false,
+      "select": false,
+      "update": false,
+      "truncate": false
+    },
+    {
+      "role": "authenticated",
+      "table": "apartment_public_key",
+      "delete": false,
+      "insert": false,
+      "select": false,
+      "update": false,
+      "truncate": false
+    },
+    {
+      "role": "anon",
+      "table": "apartment_public_key_atom",
+      "delete": false,
+      "insert": false,
+      "select": false,
+      "update": false,
+      "truncate": false
+    },
+    {
+      "role": "authenticated",
+      "table": "apartment_public_key_atom",
+      "delete": false,
+      "insert": false,
+      "select": false,
+      "update": false,
+      "truncate": false
+    },
+    {
+      "role": "anon",
+      "table": "apartment_school_mappings",
+      "delete": true,
+      "insert": true,
+      "select": true,
+      "update": true,
+      "truncate": true
+    },
+    {
+      "role": "authenticated",
+      "table": "apartment_school_mappings",
+      "delete": true,
+      "insert": true,
+      "select": true,
+      "update": true,
+      "truncate": true
+    },
+    {
+      "role": "anon",
+      "table": "apartments",
+      "delete": true,
+      "insert": true,
+      "select": true,
+      "update": true,
+      "truncate": true
+    },
+    {
+      "role": "authenticated",
+      "table": "apartments",
+      "delete": true,
+      "insert": true,
+      "select": true,
+      "update": true,
+      "truncate": true
+    },
+    {
+      "role": "anon",
+      "table": "care_centers",
+      "delete": true,
+      "insert": true,
+      "select": true,
+      "update": true,
+      "truncate": true
+    },
+    {
+      "role": "authenticated",
+      "table": "care_centers",
+      "delete": true,
+      "insert": true,
+      "select": true,
+      "update": true,
+      "truncate": true
+    },
+    {
+      "role": "anon",
+      "table": "etl_admin_users",
+      "delete": false,
+      "insert": false,
+      "select": false,
+      "update": false,
+      "truncate": false
+    },
+    {
+      "role": "authenticated",
+      "table": "etl_admin_users",
+      "delete": true,
+      "insert": true,
+      "select": true,
+      "update": true,
+      "truncate": true
+    },
+    {
+      "role": "anon",
+      "table": "etl_run_checks",
+      "delete": false,
+      "insert": false,
+      "select": false,
+      "update": false,
+      "truncate": false
+    },
+    {
+      "role": "authenticated",
+      "table": "etl_run_checks",
+      "delete": true,
+      "insert": true,
+      "select": true,
+      "update": true,
+      "truncate": true
+    },
+    {
+      "role": "anon",
+      "table": "etl_runs",
+      "delete": true,
+      "insert": true,
+      "select": true,
+      "update": true,
+      "truncate": true
+    },
+    {
+      "role": "authenticated",
+      "table": "etl_runs",
+      "delete": true,
+      "insert": true,
+      "select": true,
+      "update": true,
+      "truncate": true
+    },
+    {
+      "role": "anon",
+      "table": "etl_schedules",
+      "delete": false,
+      "insert": false,
+      "select": false,
+      "update": false,
+      "truncate": false
+    },
+    {
+      "role": "authenticated",
+      "table": "etl_schedules",
+      "delete": true,
+      "insert": true,
+      "select": true,
+      "update": true,
+      "truncate": true
+    },
+    {
+      "role": "anon",
+      "table": "etl_source_snapshots",
+      "delete": false,
+      "insert": false,
+      "select": false,
+      "update": false,
+      "truncate": false
+    },
+    {
+      "role": "authenticated",
+      "table": "etl_source_snapshots",
+      "delete": false,
+      "insert": false,
+      "select": true,
+      "update": false,
+      "truncate": false
+    },
+    {
+      "role": "anon",
+      "table": "etl_staging_rows",
+      "delete": false,
+      "insert": false,
+      "select": false,
+      "update": false,
+      "truncate": false
+    },
+    {
+      "role": "authenticated",
+      "table": "etl_staging_rows",
+      "delete": false,
+      "insert": false,
+      "select": false,
+      "update": false,
+      "truncate": false
+    },
+    {
+      "role": "anon",
+      "table": "index_usage_stats",
+      "delete": true,
+      "insert": true,
+      "select": true,
+      "update": true,
+      "truncate": true
+    },
+    {
+      "role": "authenticated",
+      "table": "index_usage_stats",
+      "delete": true,
+      "insert": true,
+      "select": true,
+      "update": true,
+      "truncate": true
+    },
+    {
+      "role": "anon",
+      "table": "region_registry",
+      "delete": false,
+      "insert": false,
+      "select": false,
+      "update": false,
+      "truncate": false
+    },
+    {
+      "role": "authenticated",
+      "table": "region_registry",
+      "delete": false,
+      "insert": false,
+      "select": false,
+      "update": false,
+      "truncate": false
+    },
+    {
+      "role": "anon",
+      "table": "school_apartment_serving",
+      "delete": true,
+      "insert": true,
+      "select": true,
+      "update": true,
+      "truncate": true
+    },
+    {
+      "role": "authenticated",
+      "table": "school_apartment_serving",
+      "delete": true,
+      "insert": true,
+      "select": true,
+      "update": true,
+      "truncate": true
+    },
+    {
+      "role": "anon",
+      "table": "school_care_statistics",
+      "delete": true,
+      "insert": true,
+      "select": true,
+      "update": true,
+      "truncate": true
+    },
+    {
+      "role": "authenticated",
+      "table": "school_care_statistics",
+      "delete": true,
+      "insert": true,
+      "select": true,
+      "update": true,
+      "truncate": true
+    },
+    {
+      "role": "anon",
+      "table": "school_master",
+      "delete": true,
+      "insert": true,
+      "select": true,
+      "update": true,
+      "truncate": true
+    },
+    {
+      "role": "authenticated",
+      "table": "school_master",
+      "delete": true,
+      "insert": true,
+      "select": true,
+      "update": true,
+      "truncate": true
+    },
+    {
+      "role": "anon",
+      "table": "schools",
+      "delete": true,
+      "insert": true,
+      "select": true,
+      "update": true,
+      "truncate": true
+    },
+    {
+      "role": "authenticated",
+      "table": "schools",
+      "delete": true,
+      "insert": true,
+      "select": true,
+      "update": true,
+      "truncate": true
+    }
+  ]
+}

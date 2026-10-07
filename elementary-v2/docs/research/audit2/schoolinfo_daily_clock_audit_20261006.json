@@ -1,0 +1,4517 @@
+{
+  "schema_version": "schoolinfo-daily-clock-audit-v1",
+  "checked_at": "2026-10-06T22:32:54+00:00",
+  "source": "학교알리미 2-가 2026년 4월 공시 첨부 (연간학사일정 파일 제외)",
+  "method": "local HWP/HWPX/PDF text extraction + regex; candidates, not reviewed values",
+  "no_operational_upload": true,
+  "school_count": 60,
+  "summary": {
+    "no_clock_detected": 23,
+    "clock_found": 35,
+    "clock_heading_only": 1,
+    "no_attachment": 1
+  },
+  "schools": [
+    {
+      "school_id": "B000002597",
+      "school_name": "연일초등학교",
+      "region": "부산광역시",
+      "files": [
+        {
+          "name": "2026 학교교육과정 편성 운영 및 평가 계획(연일초).hwp",
+          "bytes_source": "archive",
+          "sha256": "eb2ee58eccf38c655e630a4e637d6e649249c7469b11194987fcf856563fe4c2",
+          "format": "hwp",
+          "bytes": 139776,
+          "text_chars": 17704,
+          "clock_blocks": [],
+          "clock_block_count": 0,
+          "clock_first_line": null,
+          "grade1_weekday_periods": [],
+          "clock_heading": null,
+          "status": "no_clock_detected"
+        }
+      ],
+      "status": "no_clock_detected"
+    },
+    {
+      "school_id": "B000002558",
+      "school_name": "안락초등학교",
+      "region": "부산광역시",
+      "files": [
+        {
+          "name": "2026학년도 안락초 학교교육과정 편성, 운영, 평가 계획.hwp",
+          "bytes_source": "archive",
+          "sha256": "e5cddfcb2fbf96fb886e4a2ac41566333fd773ec8acd8a9f8f8d99b9fa36c584",
+          "format": "hwp",
+          "bytes": 231424,
+          "text_chars": 64372,
+          "clock_blocks": [],
+          "clock_block_count": 0,
+          "clock_first_line": null,
+          "grade1_weekday_periods": [],
+          "clock_heading": null,
+          "status": "no_clock_detected"
+        }
+      ],
+      "status": "no_clock_detected"
+    },
+    {
+      "school_id": "B000002704",
+      "school_name": "반안초등학교",
+      "region": "부산광역시",
+      "files": [
+        {
+          "name": "2026학년도 반안초등학교 교육계획서(최종).hwpx",
+          "bytes_source": "archive",
+          "sha256": "9861ef366e0026652e17ce415794a22b37d262744d0585a379f882c1667082cb",
+          "format": "hwpx",
+          "bytes": 3617554,
+          "text_chars": 168470,
+          "clock_blocks": [
+            [
+              {
+                "label": "등교",
+                "start": "08:20",
+                "end": "08:40"
+              },
+              {
+                "label": "아침",
+                "start": "08:40",
+                "end": "09:00"
+              },
+              {
+                "label": "1교시",
+                "start": "09:00",
+                "end": "09:40"
+              },
+              {
+                "label": "2교시",
+                "start": "09:50",
+                "end": "10:30"
+              },
+              {
+                "label": "3교시",
+                "start": "10:40",
+                "end": "11:20"
+              },
+              {
+                "label": "4교시",
+                "start": "11:30",
+                "end": "12:10"
+              },
+              {
+                "label": "점심",
+                "start": "12:10",
+                "end": "13:00"
+              },
+              {
+                "label": "5교시",
+                "start": "13:00",
+                "end": "13:40"
+              },
+              {
+                "label": "6교시",
+                "start": "13:50",
+                "end": "14:30"
+              },
+              {
+                "label": "등교",
+                "start": "08:20",
+                "end": "08:40"
+              },
+              {
+                "label": "아침",
+                "start": "08:40",
+                "end": "09:00"
+              },
+              {
+                "label": "1교시",
+                "start": "09:00",
+                "end": "09:40"
+              },
+              {
+                "label": "2교시",
+                "start": "09:50",
+                "end": "10:30"
+              },
+              {
+                "label": "3교시",
+                "start": "10:40",
+                "end": "11:20"
+              },
+              {
+                "label": "4교시",
+                "start": "11:30",
+                "end": "12:10"
+              },
+              {
+                "label": "5교시",
+                "start": "12:20",
+                "end": "13:00"
+              },
+              {
+                "label": "점심",
+                "start": "13:00",
+                "end": "13:50"
+              },
+              {
+                "label": "6교시",
+                "start": "13:50",
+                "end": "14:30"
+              }
+            ]
+          ],
+          "clock_block_count": 1,
+          "clock_first_line": 919,
+          "grade1_weekday_periods": [
+            [
+              5,
+              4,
+              5,
+              5,
+              4
+            ]
+          ],
+          "clock_heading": null,
+          "status": "clock_found"
+        }
+      ],
+      "status": "clock_found"
+    },
+    {
+      "school_id": "B000002573",
+      "school_name": "부곡초등학교",
+      "region": "부산광역시",
+      "files": [
+        {
+          "name": "2026학년도 부곡초 학교교육과정 편성?운영?평가 계획.pdf",
+          "bytes_source": "archive",
+          "sha256": "7933d5fc066a69a81226a4b11900a456caacea5149786739be1a231a383d4f6d",
+          "format": "pdf",
+          "bytes": 623930,
+          "text_chars": 26726,
+          "clock_blocks": [],
+          "clock_block_count": 0,
+          "clock_first_line": null,
+          "grade1_weekday_periods": [],
+          "clock_heading": null,
+          "status": "no_clock_detected"
+        }
+      ],
+      "status": "no_clock_detected"
+    },
+    {
+      "school_id": "B000002620",
+      "school_name": "양천초등학교",
+      "region": "부산광역시",
+      "files": [
+        {
+          "name": "2026학년도 양천초 학교교육과정 편성 운영 및 평가 계획.hwp",
+          "bytes_source": "archive",
+          "sha256": "0030b0f4c555923d392438f820154a7af4057dede85717f50cae8174b3e8ddad",
+          "format": "hwp",
+          "bytes": 6710784,
+          "text_chars": 146969,
+          "clock_blocks": [
+            [
+              {
+                "label": "아침",
+                "start": "08:10",
+                "end": "08:30"
+              },
+              {
+                "label": "아침",
+                "start": "08:35",
+                "end": "08:55"
+              },
+              {
+                "label": "1교시",
+                "start": "09:00",
+                "end": "09:40"
+              },
+              {
+                "label": "쉬는시간",
+                "start": "09:40",
+                "end": "09:50"
+              },
+              {
+                "label": "2교시",
+                "start": "09:50",
+                "end": "10:30"
+              },
+              {
+                "label": "쉬는시간",
+                "start": "10:30",
+                "end": "10:40"
+              },
+              {
+                "label": "3교시",
+                "start": "10:40",
+                "end": "11:20"
+              },
+              {
+                "label": "쉬는시간",
+                "start": "11:20",
+                "end": "11:30"
+              },
+              {
+                "label": "4교시",
+                "start": "11:30",
+                "end": "12:10"
+              },
+              {
+                "label": "점심",
+                "start": "12:10",
+                "end": "13:00"
+              },
+              {
+                "label": "5교시",
+                "start": "13:00",
+                "end": "13:40"
+              },
+              {
+                "label": "쉬는시간",
+                "start": "13:40",
+                "end": "13:50"
+              },
+              {
+                "label": "6교시",
+                "start": "13:50",
+                "end": "14:30"
+              },
+              {
+                "label": "등교",
+                "start": "08:10",
+                "end": "08:30"
+              }
+            ]
+          ],
+          "clock_block_count": 1,
+          "clock_first_line": 1121,
+          "grade1_weekday_periods": [
+            [
+              4,
+              5,
+              5,
+              5,
+              4
+            ]
+          ],
+          "clock_heading": "일과 운영 계획 46 |  5. 학년 및 학급 교육과정 설계ㆍ운영의 기본",
+          "status": "clock_found"
+        }
+      ],
+      "status": "clock_found"
+    },
+    {
+      "school_id": "B000002556",
+      "school_name": "명륜초등학교",
+      "region": "부산광역시",
+      "files": [
+        {
+          "name": "2026 학교 교육과정 편성 운영 및 평가에 관한 사항.hwpx",
+          "bytes_source": "archive",
+          "sha256": "1910b9fe2f17ea281cdd6ce2972dba698d2f75f96f29dbcc156a416deed0baaa",
+          "format": "hwpx",
+          "bytes": 1300064,
+          "text_chars": 58957,
+          "clock_blocks": [
+            [
+              {
+                "label": "아침",
+                "start": "08:20",
+                "end": "08:40"
+              },
+              {
+                "label": "아침",
+                "start": "08:40",
+                "end": "08:50"
+              },
+              {
+                "label": "1교시",
+                "start": "08:50",
+                "end": "09:30"
+              },
+              {
+                "label": "2교시",
+                "start": "09:40",
+                "end": "10:20"
+              },
+              {
+                "label": "3교시",
+                "start": "10:30",
+                "end": "11:10"
+              },
+              {
+                "label": "4교시",
+                "start": "11:20",
+                "end": "12:00"
+              },
+              {
+                "label": "점심",
+                "start": "12:00",
+                "end": "12:50"
+              },
+              {
+                "label": "5교시",
+                "start": "12:50",
+                "end": "13:30"
+              },
+              {
+                "label": "아침",
+                "start": "08:20",
+                "end": "08:40"
+              },
+              {
+                "label": "아침",
+                "start": "08:40",
+                "end": "08:50"
+              },
+              {
+                "label": "1교시",
+                "start": "08:50",
+                "end": "09:30"
+              },
+              {
+                "label": "2교시",
+                "start": "09:40",
+                "end": "10:20"
+              },
+              {
+                "label": "3교시",
+                "start": "10:30",
+                "end": "11:10"
+              },
+              {
+                "label": "4교시",
+                "start": "11:20",
+                "end": "12:00"
+              },
+              {
+                "label": "5교시",
+                "start": "12:10",
+                "end": "12:50"
+              },
+              {
+                "label": "점심",
+                "start": "12:50",
+                "end": "13:40"
+              },
+              {
+                "label": "6교시",
+                "start": "13:40",
+                "end": "14:20"
+              }
+            ]
+          ],
+          "clock_block_count": 1,
+          "clock_first_line": 393,
+          "grade1_weekday_periods": [
+            [
+              4,
+              5,
+              4,
+              5,
+              5
+            ]
+          ],
+          "clock_heading": null,
+          "status": "clock_found"
+        }
+      ],
+      "status": "clock_found"
+    },
+    {
+      "school_id": "B000002498",
+      "school_name": "부산진초등학교",
+      "region": "부산광역시",
+      "files": [
+        {
+          "name": "2026학년도 부산진초 학교교육과정 편성·운영 및 평가계획.hwpx",
+          "bytes_source": "archive",
+          "sha256": "caa0dd227dab71728fef30eb34745bf5c69bd4f2dc2b23f9b10ffae69221bb56",
+          "format": "hwpx",
+          "bytes": 155325,
+          "text_chars": 14306,
+          "clock_blocks": [],
+          "clock_block_count": 0,
+          "clock_first_line": null,
+          "grade1_weekday_periods": [],
+          "clock_heading": null,
+          "status": "no_clock_detected"
+        }
+      ],
+      "status": "no_clock_detected"
+    },
+    {
+      "school_id": "B000002512",
+      "school_name": "당감초등학교",
+      "region": "부산광역시",
+      "files": [
+        {
+          "name": "2026학년도 당감초 학교교육과정 편성운영평가 계획.hwpx",
+          "bytes_source": "archive",
+          "sha256": "ad1de70a669aca8d842b33360ef8441debb3f940e03d80737c1f8adf94ae3b67",
+          "format": "hwpx",
+          "bytes": 335002,
+          "text_chars": 41881,
+          "clock_blocks": [],
+          "clock_block_count": 0,
+          "clock_first_line": null,
+          "grade1_weekday_periods": [],
+          "clock_heading": null,
+          "status": "no_clock_detected"
+        }
+      ],
+      "status": "no_clock_detected"
+    },
+    {
+      "school_id": "B000002469",
+      "school_name": "서천초등학교",
+      "region": "부산광역시",
+      "files": [
+        {
+          "name": "2026학년도 서천초 학교교육과정 편성 운영 평가 계획.hwp",
+          "bytes_source": "archive",
+          "sha256": "972c2c2af20d7f891e01c94a5345f751664bff0240f4b8adf68ff10ee133e3ba",
+          "format": "hwp",
+          "bytes": 332288,
+          "text_chars": 80575,
+          "clock_blocks": [
+            [
+              {
+                "label": "등교",
+                "start": "08:20",
+                "end": "08:40"
+              },
+              {
+                "label": "아침",
+                "start": "08:40",
+                "end": "09:00"
+              },
+              {
+                "label": "1교시",
+                "start": "09:00",
+                "end": "09:40"
+              },
+              {
+                "label": "2교시",
+                "start": "09:50",
+                "end": "10:30"
+              },
+              {
+                "label": "3교시",
+                "start": "10:40",
+                "end": "11:20"
+              },
+              {
+                "label": "4교시",
+                "start": "11:30",
+                "end": "12:10"
+              },
+              {
+                "label": "점심",
+                "start": "12:10",
+                "end": "13:00"
+              },
+              {
+                "label": "5교시",
+                "start": "13:00",
+                "end": "13:40"
+              },
+              {
+                "label": "6교시",
+                "start": "13:50",
+                "end": "14:30"
+              }
+            ]
+          ],
+          "clock_block_count": 1,
+          "clock_first_line": 537,
+          "grade1_weekday_periods": [
+            [
+              4,
+              5,
+              5,
+              5,
+              4
+            ]
+          ],
+          "clock_heading": "일과 운영계획 구분 | 시정표 | 주간행사 | 비고 | 시작 | 마침 |",
+          "status": "clock_found"
+        }
+      ],
+      "status": "clock_found"
+    },
+    {
+      "school_id": "B000030754",
+      "school_name": "금사초등학교",
+      "region": "부산광역시",
+      "files": [
+        {
+          "name": "2026학년도 금사초등학교 학교교육과정 편성 운영 및 평가 계획.pdf",
+          "bytes_source": "archive",
+          "sha256": "b9099e6b637da2e93254b8802933868261036b25b1be10b45cd8f7669639ccbd",
+          "format": "pdf",
+          "bytes": 1139312,
+          "text_chars": 17478,
+          "clock_blocks": [],
+          "clock_block_count": 0,
+          "clock_first_line": null,
+          "grade1_weekday_periods": [],
+          "clock_heading": null,
+          "status": "no_clock_detected"
+        }
+      ],
+      "status": "no_clock_detected"
+    },
+    {
+      "school_id": "B000003765",
+      "school_name": "한솔초등학교",
+      "region": "경기도",
+      "files": [
+        {
+          "name": "2026학년도 한솔초 학교교육과정 편성 운영 평가 계획.pdf",
+          "bytes_source": "archive",
+          "sha256": "97f959864cd3239c09419a45d8ad6e6b5690455680d2c9237b5a2b6e0f636aac",
+          "format": "pdf",
+          "bytes": 309301,
+          "text_chars": 13961,
+          "clock_blocks": [],
+          "clock_block_count": 0,
+          "clock_first_line": null,
+          "grade1_weekday_periods": [],
+          "clock_heading": null,
+          "status": "no_clock_detected"
+        }
+      ],
+      "status": "no_clock_detected"
+    },
+    {
+      "school_id": "B000003759",
+      "school_name": "양영초등학교",
+      "region": "경기도",
+      "files": [
+        {
+          "name": "학교교육과정 편성 운영 및 평가에 관한 사항.hwpx",
+          "bytes_source": "archive",
+          "sha256": "9b450909f1110c5bf6c00f25d7fd48de236cc58d0db0c268be3768f6588e44c9",
+          "format": "hwpx",
+          "bytes": 496509,
+          "text_chars": 40634,
+          "clock_blocks": [
+            [
+              {
+                "label": "아침",
+                "start": "08:50",
+                "end": "09:00"
+              },
+              {
+                "label": "1교시",
+                "start": "09:00",
+                "end": "09:40"
+              },
+              {
+                "label": "쉬는시간",
+                "start": "09:40",
+                "end": "09:50"
+              },
+              {
+                "label": "2교시",
+                "start": "09:50",
+                "end": "10:30"
+              },
+              {
+                "label": "쉬는시간",
+                "start": "10:30",
+                "end": "10:40"
+              },
+              {
+                "label": "3교시",
+                "start": "10:40",
+                "end": "11:20"
+              },
+              {
+                "label": "쉬는시간",
+                "start": "11:20",
+                "end": "11:30"
+              },
+              {
+                "label": "4교시",
+                "start": "11:30",
+                "end": "12:10"
+              },
+              {
+                "label": "점심",
+                "start": "12:10",
+                "end": "13:00"
+              },
+              {
+                "label": "5교시",
+                "start": "13:00",
+                "end": "13:40"
+              },
+              {
+                "label": "쉬는시간",
+                "start": "13:40",
+                "end": "13:50"
+              },
+              {
+                "label": "6교시",
+                "start": "13:50",
+                "end": "14:30"
+              }
+            ]
+          ],
+          "clock_block_count": 1,
+          "clock_first_line": 313,
+          "grade1_weekday_periods": [],
+          "clock_heading": null,
+          "status": "clock_found"
+        }
+      ],
+      "status": "clock_found"
+    },
+    {
+      "school_id": "B000003741",
+      "school_name": "상탑초등학교",
+      "region": "경기도",
+      "files": [
+        {
+          "name": "2026 상탑초 학교교육과정_최종0312수정.hwpx",
+          "bytes_source": "archive",
+          "sha256": "ac8fe42b1918881aea64906a82d53294b3b3431550ef526d6436d93a5a9e4471",
+          "format": "hwpx",
+          "bytes": 2561502,
+          "text_chars": 75634,
+          "clock_blocks": [
+            [
+              {
+                "label": "아침",
+                "start": "08:40",
+                "end": "09:00"
+              },
+              {
+                "label": "2교시",
+                "start": "09:00",
+                "end": "10:25"
+              },
+              {
+                "label": "해피타임",
+                "start": "10:25",
+                "end": "10:45"
+              },
+              {
+                "label": "4교시",
+                "start": "10:45",
+                "end": "12:10"
+              },
+              {
+                "label": "점심",
+                "start": "12:10",
+                "end": "13:00"
+              },
+              {
+                "label": "6교시",
+                "start": "13:00",
+                "end": "13:40"
+              }
+            ]
+          ],
+          "clock_block_count": 1,
+          "clock_first_line": 933,
+          "grade1_weekday_periods": [
+            [
+              5,
+              5,
+              4,
+              5,
+              4
+            ]
+          ],
+          "clock_heading": null,
+          "status": "clock_found"
+        }
+      ],
+      "status": "clock_found"
+    },
+    {
+      "school_id": "B000003752",
+      "school_name": "불곡초등학교",
+      "region": "경기도",
+      "files": [
+        {
+          "name": "2026학년도 불곡초 학교교육과정 편성·운영·평가 계획.hwp",
+          "bytes_source": "archive",
+          "sha256": "ac66592c9ba3b6c393879bb4eb34fde93a0523545c95f700344e00ebdbac3a96",
+          "format": "hwp",
+          "bytes": 1381888,
+          "text_chars": 11982,
+          "clock_blocks": [],
+          "clock_block_count": 0,
+          "clock_first_line": null,
+          "grade1_weekday_periods": [],
+          "clock_heading": null,
+          "status": "no_clock_detected"
+        }
+      ],
+      "status": "no_clock_detected"
+    },
+    {
+      "school_id": "B000003744",
+      "school_name": "판교초등학교",
+      "region": "경기도",
+      "files": [
+        {
+          "name": "학교교육과정 편성운영 및 평가(판교초).hwpx",
+          "bytes_source": "archive",
+          "sha256": "f823996c66cc9646d19ebe3656d94cbb1fe4fffa6114e1a0144a263eff9a8d03",
+          "format": "hwpx",
+          "bytes": 283194,
+          "text_chars": 38781,
+          "clock_blocks": [
+            [
+              {
+                "label": "아침",
+                "start": "08:40",
+                "end": "09:00"
+              },
+              {
+                "label": "아침",
+                "start": "08:40",
+                "end": "09:00"
+              },
+              {
+                "label": "아침",
+                "start": "08:40",
+                "end": "09:00"
+              },
+              {
+                "label": "2교시",
+                "start": "09:00",
+                "end": "10:20"
+              },
+              {
+                "label": "2교시",
+                "start": "09:00",
+                "end": "10:20"
+              },
+              {
+                "label": "2교시",
+                "start": "09:00",
+                "end": "10:20"
+              },
+              {
+                "label": "중간놀이",
+                "start": "10:20",
+                "end": "10:40"
+              },
+              {
+                "label": "중간놀이",
+                "start": "10:20",
+                "end": "10:40"
+              },
+              {
+                "label": "중간놀이",
+                "start": "10:20",
+                "end": "10:40"
+              },
+              {
+                "label": "4교시",
+                "start": "10:40",
+                "end": "12:00"
+              },
+              {
+                "label": "4교시",
+                "start": "10:40",
+                "end": "12:00"
+              },
+              {
+                "label": "4교시",
+                "start": "10:40",
+                "end": "12:00"
+              },
+              {
+                "label": "점심",
+                "start": "12:00",
+                "end": "12:50"
+              },
+              {
+                "label": "쉬는시간",
+                "start": "12:00",
+                "end": "12:10"
+              },
+              {
+                "label": "점심",
+                "start": "12:00",
+                "end": "12:50"
+              },
+              {
+                "label": "5교시",
+                "start": "12:50",
+                "end": "13:30"
+              },
+              {
+                "label": "5교시",
+                "start": "12:10",
+                "end": "12:50"
+              },
+              {
+                "label": "6교시",
+                "start": "12:50",
+                "end": "14:10"
+              },
+              {
+                "label": "점심",
+                "start": "12:50",
+                "end": "13:30"
+              },
+              {
+                "label": "6교시",
+                "start": "13:30",
+                "end": "14:10"
+              }
+            ]
+          ],
+          "clock_block_count": 1,
+          "clock_first_line": 158,
+          "grade1_weekday_periods": [],
+          "clock_heading": null,
+          "status": "clock_found"
+        }
+      ],
+      "status": "clock_found"
+    },
+    {
+      "school_id": "B000003754",
+      "school_name": "성남미금초등학교",
+      "region": "경기도",
+      "files": [
+        {
+          "name": "2026학년도 성남미금초 학교교육과정 편성·운영·평가 계획.hwpx",
+          "bytes_source": "archive",
+          "sha256": "c28bce060aa6c2b0c16f8afa2271ac7a345e540d81efeb292fcc2f150830c27d",
+          "format": "hwpx",
+          "bytes": 209003,
+          "text_chars": 10381,
+          "clock_blocks": [],
+          "clock_block_count": 0,
+          "clock_first_line": null,
+          "grade1_weekday_periods": [],
+          "clock_heading": null,
+          "status": "no_clock_detected"
+        }
+      ],
+      "status": "no_clock_detected"
+    },
+    {
+      "school_id": "B000003740",
+      "school_name": "안말초등학교",
+      "region": "경기도",
+      "files": [
+        {
+          "name": "★2026학년도 3학년 학교자율시간 운영 계획(안말초)(정보공시용).hwpx",
+          "bytes_source": "archive",
+          "sha256": "01c9580bc13b18a60e61de1a98d2678491c08dd4abdd29c793dbf9d2da96d2c2",
+          "format": "hwpx",
+          "bytes": 96486,
+          "text_chars": 4752,
+          "clock_blocks": [],
+          "clock_block_count": 0,
+          "clock_first_line": null,
+          "grade1_weekday_periods": [],
+          "clock_heading": null,
+          "status": "no_clock_detected"
+        },
+        {
+          "name": "★2026학년도 안말초 학교 교육과정(정보공시용).hwp",
+          "bytes_source": "archive",
+          "sha256": "de4338eb03be00c97265ac0d815c97dcfc8b7d09c4adac525a8028b9df60e0f4",
+          "format": "hwp",
+          "bytes": 5180928,
+          "text_chars": 210389,
+          "clock_blocks": [
+            [
+              {
+                "label": "아침",
+                "start": "08:40",
+                "end": "09:00"
+              },
+              {
+                "label": "1교시",
+                "start": "09:00",
+                "end": "09:40"
+              },
+              {
+                "label": "쉬는시간",
+                "start": "09:40",
+                "end": "09:50"
+              },
+              {
+                "label": "2교시",
+                "start": "09:50",
+                "end": "10:30"
+              },
+              {
+                "label": "쉬는시간",
+                "start": "10:30",
+                "end": "10:40"
+              },
+              {
+                "label": "3교시",
+                "start": "10:40",
+                "end": "11:20"
+              },
+              {
+                "label": "쉬는시간",
+                "start": "11:20",
+                "end": "11:30"
+              },
+              {
+                "label": "4교시",
+                "start": "11:30",
+                "end": "12:10"
+              },
+              {
+                "label": "점심",
+                "start": "12:10",
+                "end": "13:00"
+              },
+              {
+                "label": "5교시",
+                "start": "13:00",
+                "end": "13:40"
+              },
+              {
+                "label": "쉬는시간",
+                "start": "13:40",
+                "end": "13:50"
+              },
+              {
+                "label": "6교시",
+                "start": "13:50",
+                "end": "14:30"
+              }
+            ],
+            [
+              {
+                "label": "아침",
+                "start": "08:40",
+                "end": "09:00"
+              },
+              {
+                "label": "1교시",
+                "start": "09:00",
+                "end": "09:40"
+              },
+              {
+                "label": "놀이시간",
+                "start": "09:40",
+                "end": "09:50"
+              },
+              {
+                "label": "2교시",
+                "start": "09:50",
+                "end": "10:30"
+              },
+              {
+                "label": "놀이시간",
+                "start": "10:30",
+                "end": "10:40"
+              },
+              {
+                "label": "3교시",
+                "start": "10:40",
+                "end": "11:20"
+              },
+              {
+                "label": "놀이시간",
+                "start": "11:20",
+                "end": "11:30"
+              },
+              {
+                "label": "4교시",
+                "start": "11:30",
+                "end": "12:10"
+              },
+              {
+                "label": "점심",
+                "start": "12:10",
+                "end": "13:00"
+              },
+              {
+                "label": "5교시",
+                "start": "13:00",
+                "end": "13:40"
+              },
+              {
+                "label": "놀이시간",
+                "start": "13:40",
+                "end": "13:50"
+              },
+              {
+                "label": "6교시",
+                "start": "13:50",
+                "end": "14:30"
+              }
+            ]
+          ],
+          "clock_block_count": 2,
+          "clock_first_line": 971,
+          "grade1_weekday_periods": [],
+          "clock_heading": null,
+          "status": "clock_found"
+        }
+      ],
+      "status": "clock_found"
+    },
+    {
+      "school_id": "B000024167",
+      "school_name": "성남화랑초등학교",
+      "region": "경기도",
+      "files": [
+        {
+          "name": "2026학년도 성남화랑초등학교 학교교육과정(정보공시).pdf",
+          "bytes_source": "archive",
+          "sha256": "e7f0d0c7862e69b2a494eb08363b4971dbb24fc8c03eac5098b1b73f26439f64",
+          "format": "pdf",
+          "bytes": 2404245,
+          "text_chars": 39546,
+          "clock_blocks": [
+            [
+              {
+                "label": "아침",
+                "start": "08:40",
+                "end": "09:00"
+              },
+              {
+                "label": "1교시",
+                "start": "09:00",
+                "end": "09:40"
+              },
+              {
+                "label": "쉬는시간",
+                "start": "09:40",
+                "end": "09:50"
+              },
+              {
+                "label": "2교시",
+                "start": "09:50",
+                "end": "10:30"
+              },
+              {
+                "label": "쉬는시간",
+                "start": "10:30",
+                "end": "10:40"
+              },
+              {
+                "label": "3교시",
+                "start": "10:40",
+                "end": "11:20"
+              },
+              {
+                "label": "쉬는시간",
+                "start": "11:20",
+                "end": "11:30"
+              },
+              {
+                "label": "4교시",
+                "start": "11:30",
+                "end": "12:10"
+              },
+              {
+                "label": "점심",
+                "start": "12:10",
+                "end": "13:00"
+              },
+              {
+                "label": "5교시",
+                "start": "13:00",
+                "end": "13:40"
+              },
+              {
+                "label": "쉬는시간",
+                "start": "13:40",
+                "end": "13:50"
+              },
+              {
+                "label": "6교시",
+                "start": "13:50",
+                "end": "14:30"
+              },
+              {
+                "label": "아침",
+                "start": "08:40",
+                "end": "09:00"
+              },
+              {
+                "label": "1교시",
+                "start": "09:00",
+                "end": "09:40"
+              },
+              {
+                "label": "쉬는시간",
+                "start": "09:40",
+                "end": "09:50"
+              },
+              {
+                "label": "2교시",
+                "start": "09:50",
+                "end": "10:30"
+              },
+              {
+                "label": "쉬는시간",
+                "start": "10:30",
+                "end": "10:40"
+              },
+              {
+                "label": "3교시",
+                "start": "10:40",
+                "end": "11:20"
+              },
+              {
+                "label": "쉬는시간",
+                "start": "11:20",
+                "end": "11:30"
+              },
+              {
+                "label": "4교시",
+                "start": "11:30",
+                "end": "12:10"
+              },
+              {
+                "label": "쉬는시간",
+                "start": "12:10",
+                "end": "12:20"
+              },
+              {
+                "label": "5교시",
+                "start": "12:20",
+                "end": "13:00"
+              },
+              {
+                "label": "점심",
+                "start": "13:00",
+                "end": "13:50"
+              },
+              {
+                "label": "6교시",
+                "start": "13:50",
+                "end": "14:30"
+              },
+              {
+                "label": "4교시",
+                "start": "14:30",
+                "end": "14:40"
+              }
+            ]
+          ],
+          "clock_block_count": 1,
+          "clock_first_line": 199,
+          "grade1_weekday_periods": [],
+          "clock_heading": "시정표 시간구분1~4학년 시 정 운 영시작마침시량등교 및 아침 활동08:",
+          "status": "clock_found"
+        }
+      ],
+      "status": "clock_found"
+    },
+    {
+      "school_id": "B000003757",
+      "school_name": "탄천초등학교",
+      "region": "경기도",
+      "files": [
+        {
+          "name": "2026학년도 탄천초등학교 학교교육과정 운영 계획(정보공시).pdf",
+          "bytes_source": "archive",
+          "sha256": "ada8ba96b309d2a35ac5bdef9ac98b93053bd0639ec63f40e65670cc56535985",
+          "format": "pdf",
+          "bytes": 5459961,
+          "text_chars": 122519,
+          "clock_blocks": [
+            [
+              {
+                "label": "1블럭",
+                "start": "08:50",
+                "end": "10:10"
+              },
+              {
+                "label": "중간놀이",
+                "start": "10:10",
+                "end": "10:40"
+              },
+              {
+                "label": "2블럭",
+                "start": "10:40",
+                "end": "12:00"
+              },
+              {
+                "label": "점심",
+                "start": "12:00",
+                "end": "12:50"
+              },
+              {
+                "label": "3블럭",
+                "start": "12:50",
+                "end": "14:10"
+              },
+              {
+                "label": "1블럭",
+                "start": "08:50",
+                "end": "10:10"
+              },
+              {
+                "label": "중간놀이",
+                "start": "10:10",
+                "end": "10:40"
+              },
+              {
+                "label": "2블럭",
+                "start": "10:40",
+                "end": "12:00"
+              },
+              {
+                "label": "점심",
+                "start": "12:00",
+                "end": "12:50"
+              },
+              {
+                "label": "3블럭",
+                "start": "12:50",
+                "end": "14:10"
+              }
+            ],
+            [
+              {
+                "label": "1교시",
+                "start": "09:30",
+                "end": "09:40"
+              },
+              {
+                "label": "2교시",
+                "start": "09:40",
+                "end": "10:30"
+              },
+              {
+                "label": "3교시",
+                "start": "10:30",
+                "end": "11:00"
+              },
+              {
+                "label": "4교시",
+                "start": "11:00",
+                "end": "11:30"
+              },
+              {
+                "label": "1블럭",
+                "start": "08:50",
+                "end": "10:10"
+              },
+              {
+                "label": "2블럭",
+                "start": "10:50",
+                "end": "12:00"
+              },
+              {
+                "label": "점심",
+                "start": "12:00",
+                "end": "12:50"
+              },
+              {
+                "label": "3블럭",
+                "start": "12:50",
+                "end": "14:10"
+              },
+              {
+                "label": "1블럭",
+                "start": "08:50",
+                "end": "10:10"
+              },
+              {
+                "label": "2블럭",
+                "start": "10:50",
+                "end": "12:00"
+              }
+            ]
+          ],
+          "clock_block_count": 2,
+          "clock_first_line": 132,
+          "grade1_weekday_periods": [],
+          "clock_heading": "시정표1블럭08:50~10:10(80′)◐중간놀이, 점심시간, 필로티 사",
+          "status": "clock_found"
+        }
+      ],
+      "status": "clock_found"
+    },
+    {
+      "school_id": "B000003753",
+      "school_name": "성남매송초등학교",
+      "region": "경기도",
+      "files": [
+        {
+          "name": "2026학년도 성남매송초 학교교육과정 편성 운영 및 평가 사항.pdf",
+          "bytes_source": "archive",
+          "sha256": "25a04182563d037fe3e6d3b9b24e8720ad9d20a6ccd1d48b21e244f8fd495d46",
+          "format": "pdf",
+          "bytes": 3204196,
+          "text_chars": 79609,
+          "clock_blocks": [],
+          "clock_block_count": 0,
+          "clock_first_line": null,
+          "grade1_weekday_periods": [],
+          "clock_heading": null,
+          "status": "no_clock_detected"
+        }
+      ],
+      "status": "no_clock_detected"
+    },
+    {
+      "school_id": "B000003758",
+      "school_name": "서당초등학교",
+      "region": "경기도",
+      "files": [
+        {
+          "name": "2026학년도 서당초 현장체험학습 운영계획.hwp",
+          "bytes_source": "archive",
+          "sha256": "c6b56a557db554d28ec6cb35ca6597c800f2c68c6c27b766ba1c598785674311",
+          "format": "hwp",
+          "bytes": 155648,
+          "text_chars": 11654,
+          "clock_blocks": [],
+          "clock_block_count": 0,
+          "clock_first_line": null,
+          "grade1_weekday_periods": [],
+          "clock_heading": null,
+          "status": "no_clock_detected"
+        },
+        {
+          "name": "2026 서당초 학교교육과정 v2.pdf",
+          "bytes_source": "archive",
+          "sha256": "20bb035acf58a8673dc3a8809a560ac421da297fcf26e7b72489dee3e7d14dcc",
+          "format": "pdf",
+          "bytes": 2064755,
+          "text_chars": 67051,
+          "clock_blocks": [
+            [
+              {
+                "label": "아침",
+                "start": "08:50",
+                "end": "09:00"
+              },
+              {
+                "label": "1교시",
+                "start": "09:00",
+                "end": "09:40"
+              },
+              {
+                "label": "2교시",
+                "start": "09:40",
+                "end": "09:50"
+              },
+              {
+                "label": "2교시",
+                "start": "09:50",
+                "end": "10:30"
+              },
+              {
+                "label": "3교시",
+                "start": "10:30",
+                "end": "10:40"
+              },
+              {
+                "label": "3교시",
+                "start": "10:40",
+                "end": "11:20"
+              },
+              {
+                "label": "4교시",
+                "start": "11:20",
+                "end": "11:30"
+              },
+              {
+                "label": "4교시",
+                "start": "11:30",
+                "end": "12:10"
+              },
+              {
+                "label": "점심",
+                "start": "12:10",
+                "end": "13:00"
+              },
+              {
+                "label": "5교시",
+                "start": "13:00",
+                "end": "13:40"
+              },
+              {
+                "label": "6교시",
+                "start": "13:40",
+                "end": "13:50"
+              },
+              {
+                "label": "6교시",
+                "start": "13:50",
+                "end": "14:30"
+              },
+              {
+                "label": "아침",
+                "start": "08:50",
+                "end": "09:00"
+              },
+              {
+                "label": "1교시",
+                "start": "09:00",
+                "end": "09:40"
+              },
+              {
+                "label": "2교시",
+                "start": "09:40",
+                "end": "09:50"
+              },
+              {
+                "label": "2교시",
+                "start": "09:50",
+                "end": "10:30"
+              },
+              {
+                "label": "3교시",
+                "start": "10:30",
+                "end": "10:40"
+              },
+              {
+                "label": "3교시",
+                "start": "10:40",
+                "end": "11:20"
+              },
+              {
+                "label": "점심",
+                "start": "11:20",
+                "end": "12:10"
+              },
+              {
+                "label": "4교시",
+                "start": "12:10",
+                "end": "12:50"
+              },
+              {
+                "label": "5교시",
+                "start": "12:50",
+                "end": "13:00"
+              },
+              {
+                "label": "5교시",
+                "start": "13:00",
+                "end": "13:40"
+              },
+              {
+                "label": "6교시",
+                "start": "13:40",
+                "end": "13:50"
+              },
+              {
+                "label": "6교시",
+                "start": "13:50",
+                "end": "14:30"
+              }
+            ],
+            [
+              {
+                "label": "아침",
+                "start": "08:50",
+                "end": "09:00"
+              },
+              {
+                "label": "1교시",
+                "start": "09:00",
+                "end": "09:40"
+              },
+              {
+                "label": "2교시",
+                "start": "09:40",
+                "end": "09:50"
+              },
+              {
+                "label": "2교시",
+                "start": "09:50",
+                "end": "10:30"
+              },
+              {
+                "label": "3교시",
+                "start": "10:30",
+                "end": "10:40"
+              },
+              {
+                "label": "3교시",
+                "start": "10:40",
+                "end": "11:20"
+              },
+              {
+                "label": "4교시",
+                "start": "11:20",
+                "end": "11:30"
+              },
+              {
+                "label": "4교시",
+                "start": "11:30",
+                "end": "12:10"
+              },
+              {
+                "label": "점심",
+                "start": "12:10",
+                "end": "13:00"
+              },
+              {
+                "label": "5교시",
+                "start": "13:00",
+                "end": "13:40"
+              },
+              {
+                "label": "6교시",
+                "start": "13:40",
+                "end": "13:50"
+              },
+              {
+                "label": "6교시",
+                "start": "13:50",
+                "end": "14:30"
+              },
+              {
+                "label": "아침",
+                "start": "08:50",
+                "end": "09:00"
+              },
+              {
+                "label": "1교시",
+                "start": "09:00",
+                "end": "09:40"
+              },
+              {
+                "label": "2교시",
+                "start": "09:40",
+                "end": "09:50"
+              },
+              {
+                "label": "2교시",
+                "start": "09:50",
+                "end": "10:30"
+              },
+              {
+                "label": "3교시",
+                "start": "10:30",
+                "end": "10:40"
+              },
+              {
+                "label": "3교시",
+                "start": "10:40",
+                "end": "11:20"
+              },
+              {
+                "label": "점심",
+                "start": "11:20",
+                "end": "12:10"
+              },
+              {
+                "label": "4교시",
+                "start": "12:10",
+                "end": "12:50"
+              },
+              {
+                "label": "5교시",
+                "start": "12:50",
+                "end": "13:00"
+              },
+              {
+                "label": "5교시",
+                "start": "13:00",
+                "end": "13:40"
+              },
+              {
+                "label": "6교시",
+                "start": "13:40",
+                "end": "13:50"
+              },
+              {
+                "label": "6교시",
+                "start": "13:50",
+                "end": "14:30"
+              }
+            ]
+          ],
+          "clock_block_count": 2,
+          "clock_first_line": 300,
+          "grade1_weekday_periods": [],
+          "clock_heading": "시정표    A [2 · 5 · 6학년]교시시간비고시작끝소요시간아침독서0",
+          "status": "clock_found"
+        }
+      ],
+      "status": "clock_found"
+    },
+    {
+      "school_id": "B000003742",
+      "school_name": "성남송현초등학교",
+      "region": "경기도",
+      "files": [
+        {
+          "name": "정보공시2-가. 학교교육과정 편성·운영 및 평가에 관한 사항.pdf",
+          "bytes_source": "archive",
+          "sha256": "ecd3bb864370b3cf51faa2c9fd59e713072bb5a7d2dd62344fdaf67948245522",
+          "format": "pdf",
+          "bytes": 1320174,
+          "text_chars": 56841,
+          "clock_blocks": [],
+          "clock_block_count": 0,
+          "clock_first_line": null,
+          "grade1_weekday_periods": [],
+          "clock_heading": null,
+          "status": "no_clock_detected"
+        }
+      ],
+      "status": "no_clock_detected"
+    },
+    {
+      "school_id": "B000003747",
+      "school_name": "산운초등학교",
+      "region": "경기도",
+      "files": [
+        {
+          "name": "★2026학년도 산운초등학교 교육과정 운영 계획 0331.pdf",
+          "bytes_source": "archive",
+          "sha256": "a16e196a00e3bfea09549bab57220e815331af1181ae33ca30b9e4178091e1e2",
+          "format": "pdf",
+          "bytes": 2118358,
+          "text_chars": 92319,
+          "clock_blocks": [
+            [
+              {
+                "label": "2교시",
+                "start": "09:00",
+                "end": "10:20"
+              },
+              {
+                "label": "중간놀이",
+                "start": "10:20",
+                "end": "10:40"
+              },
+              {
+                "label": "4교시",
+                "start": "10:40",
+                "end": "12:00"
+              },
+              {
+                "label": "점심",
+                "start": "12:00",
+                "end": "12:50"
+              },
+              {
+                "label": "5교시",
+                "start": "12:50",
+                "end": "13:30"
+              },
+              {
+                "label": "2교시",
+                "start": "09:00",
+                "end": "10:20"
+              },
+              {
+                "label": "중간놀이",
+                "start": "10:20",
+                "end": "10:40"
+              },
+              {
+                "label": "4교시",
+                "start": "10:40",
+                "end": "12:00"
+              },
+              {
+                "label": "쉬는시간",
+                "start": "12:00",
+                "end": "12:10"
+              },
+              {
+                "label": "5교시",
+                "start": "12:10",
+                "end": "12:50"
+              },
+              {
+                "label": "점심",
+                "start": "12:50",
+                "end": "13:40"
+              },
+              {
+                "label": "점심",
+                "start": "12:50",
+                "end": "13:30"
+              },
+              {
+                "label": "6교시",
+                "start": "13:30",
+                "end": "14:10"
+              },
+              {
+                "label": "2교시",
+                "start": "09:00",
+                "end": "10:20"
+              },
+              {
+                "label": "중간놀이",
+                "start": "10:20",
+                "end": "10:40"
+              },
+              {
+                "label": "4교시",
+                "start": "10:40",
+                "end": "12:00"
+              },
+              {
+                "label": "점심",
+                "start": "12:00",
+                "end": "12:50"
+              },
+              {
+                "label": "6교시",
+                "start": "12:50",
+                "end": "14:10"
+              }
+            ]
+          ],
+          "clock_block_count": 1,
+          "clock_first_line": 175,
+          "grade1_weekday_periods": [],
+          "clock_heading": "시정표 1-2학년군교시 시정시간(분) 교육 활동 내용블록 1(1,2교시)",
+          "status": "clock_found"
+        }
+      ],
+      "status": "clock_found"
+    },
+    {
+      "school_id": "B000003769",
+      "school_name": "하탑초등학교",
+      "region": "경기도",
+      "files": [
+        {
+          "name": "2026학년도 하탑초 학교교육과정.hwpx",
+          "bytes_source": "archive",
+          "sha256": "5cde1b6551af60a0369fdbd75a0651d7e996e616e4db10c8c45ecdda02c8eb2f",
+          "format": "hwpx",
+          "bytes": 1578528,
+          "text_chars": 86803,
+          "clock_blocks": [
+            [
+              {
+                "label": "아침",
+                "start": "08:30",
+                "end": "08:50"
+              },
+              {
+                "label": "등교",
+                "start": "08:50",
+                "end": "09:00"
+              },
+              {
+                "label": "교시",
+                "start": "09:00",
+                "end": "09:40"
+              },
+              {
+                "label": "교시",
+                "start": "09:50",
+                "end": "10:30"
+              },
+              {
+                "label": "교시",
+                "start": "10:40",
+                "end": "11:20"
+              },
+              {
+                "label": "교시",
+                "start": "11:30",
+                "end": "12:10"
+              },
+              {
+                "label": "점심",
+                "start": "12:10",
+                "end": "13:00"
+              },
+              {
+                "label": "교시",
+                "start": "13:00",
+                "end": "13:40"
+              },
+              {
+                "label": "교시",
+                "start": "13:50",
+                "end": "14:30"
+              }
+            ]
+          ],
+          "clock_block_count": 1,
+          "clock_first_line": 623,
+          "grade1_weekday_periods": [
+            [
+              4,
+              5,
+              4,
+              5,
+              5
+            ]
+          ],
+          "clock_heading": null,
+          "status": "clock_found"
+        }
+      ],
+      "status": "clock_found"
+    },
+    {
+      "school_id": "B000003760",
+      "school_name": "서현초등학교",
+      "region": "경기도",
+      "files": [
+        {
+          "name": "2026 서현초등학교 교육과정(26.3.11.).pdf",
+          "bytes_source": "archive",
+          "sha256": "43ff6b12ffd759d3ca8aac5f2ac8b8b112d7185474024b4f8f8330effbba5e5f",
+          "format": "pdf",
+          "bytes": 1558096,
+          "text_chars": 77721,
+          "clock_blocks": [
+            [
+              {
+                "label": "교시",
+                "start": "08:30",
+                "end": "09:00"
+              },
+              {
+                "label": "1교시",
+                "start": "08:30",
+                "end": "09:00"
+              },
+              {
+                "label": "1교시",
+                "start": "08:30",
+                "end": "09:00"
+              },
+              {
+                "label": "1교시",
+                "start": "09:00",
+                "end": "09:40"
+              },
+              {
+                "label": "쉬는시간",
+                "start": "09:00",
+                "end": "09:40"
+              },
+              {
+                "label": "쉬는시간",
+                "start": "09:00",
+                "end": "09:40"
+              },
+              {
+                "label": "쉬는시간",
+                "start": "09:40",
+                "end": "09:50"
+              },
+              {
+                "label": "2교시",
+                "start": "09:40",
+                "end": "09:50"
+              },
+              {
+                "label": "2교시",
+                "start": "09:40",
+                "end": "09:50"
+              },
+              {
+                "label": "2교시",
+                "start": "09:50",
+                "end": "10:30"
+              },
+              {
+                "label": "쉬는시간",
+                "start": "09:50",
+                "end": "10:30"
+              },
+              {
+                "label": "쉬는시간",
+                "start": "09:50",
+                "end": "10:30"
+              },
+              {
+                "label": "쉬는시간",
+                "start": "10:30",
+                "end": "10:40"
+              },
+              {
+                "label": "3교시",
+                "start": "10:30",
+                "end": "10:40"
+              },
+              {
+                "label": "3교시",
+                "start": "10:30",
+                "end": "10:40"
+              },
+              {
+                "label": "3교시",
+                "start": "10:40",
+                "end": "11:20"
+              },
+              {
+                "label": "쉬는시간",
+                "start": "10:40",
+                "end": "11:20"
+              },
+              {
+                "label": "쉬는시간",
+                "start": "10:40",
+                "end": "11:20"
+              },
+              {
+                "label": "쉬는시간",
+                "start": "11:20",
+                "end": "11:30"
+              },
+              {
+                "label": "4교시",
+                "start": "11:20",
+                "end": "11:30"
+              },
+              {
+                "label": "4교시",
+                "start": "11:20",
+                "end": "11:30"
+              },
+              {
+                "label": "4교시",
+                "start": "11:30",
+                "end": "12:10"
+              },
+              {
+                "label": "점심",
+                "start": "11:30",
+                "end": "12:10"
+              },
+              {
+                "label": "점심",
+                "start": "11:30",
+                "end": "12:10"
+              },
+              {
+                "label": "점심",
+                "start": "12:10",
+                "end": "13:00"
+              },
+              {
+                "label": "5교시",
+                "start": "12:10",
+                "end": "13:00"
+              },
+              {
+                "label": "5교시",
+                "start": "12:10",
+                "end": "13:00"
+              },
+              {
+                "label": "5교시",
+                "start": "13:00",
+                "end": "13:40"
+              },
+              {
+                "label": "쉬는시간",
+                "start": "13:00",
+                "end": "13:40"
+              },
+              {
+                "label": "쉬는시간",
+                "start": "13:00",
+                "end": "13:40"
+              },
+              {
+                "label": "쉬는시간",
+                "start": "13:40",
+                "end": "13:50"
+              },
+              {
+                "label": "6교시",
+                "start": "13:40",
+                "end": "13:50"
+              },
+              {
+                "label": "6교시",
+                "start": "13:50",
+                "end": "14:30"
+              }
+            ]
+          ],
+          "clock_block_count": 1,
+          "clock_first_line": 19,
+          "grade1_weekday_periods": [],
+          "clock_heading": "시정표 교시1·2학년3·4학년5·6학년08:30~09:0008:30~09",
+          "status": "clock_found"
+        }
+      ],
+      "status": "clock_found"
+    },
+    {
+      "school_id": "B000003738",
+      "school_name": "초림초등학교",
+      "region": "경기도",
+      "files": [
+        {
+          "name": "2026학년도 초림초등학교 학교교육과정.hwp",
+          "bytes_source": "archive",
+          "sha256": "0d55f3a1d723b3018a327b2a16036dea6f9e05f155b51823177b3313db58879a",
+          "format": "hwp",
+          "bytes": 2997760,
+          "text_chars": 119137,
+          "clock_blocks": [
+            [
+              {
+                "label": "아침",
+                "start": "08:30",
+                "end": "08:40"
+              },
+              {
+                "label": "아침",
+                "start": "08:40",
+                "end": "09:00"
+              },
+              {
+                "label": "1교시",
+                "start": "09:00",
+                "end": "09:40"
+              },
+              {
+                "label": "쉬는시간",
+                "start": "09:40",
+                "end": "09:50"
+              },
+              {
+                "label": "2교시",
+                "start": "09:50",
+                "end": "10:30"
+              },
+              {
+                "label": "쉬는시간",
+                "start": "10:30",
+                "end": "10:40"
+              },
+              {
+                "label": "3교시",
+                "start": "10:40",
+                "end": "11:20"
+              },
+              {
+                "label": "쉬는시간",
+                "start": "11:20",
+                "end": "11:30"
+              },
+              {
+                "label": "4교시",
+                "start": "11:30",
+                "end": "12:10"
+              },
+              {
+                "label": "점심",
+                "start": "12:10",
+                "end": "13:00"
+              },
+              {
+                "label": "5교시",
+                "start": "13:00",
+                "end": "13:40"
+              },
+              {
+                "label": "쉬는시간",
+                "start": "13:40",
+                "end": "13:50"
+              },
+              {
+                "label": "6교시",
+                "start": "13:50",
+                "end": "14:30"
+              }
+            ]
+          ],
+          "clock_block_count": 1,
+          "clock_first_line": 550,
+          "grade1_weekday_periods": [
+            [
+              5,
+              5,
+              4,
+              5,
+              4
+            ]
+          ],
+          "clock_heading": "일과운영계획 |  |  |  |  |  |  |  |  |  |  |  ",
+          "status": "clock_found"
+        }
+      ],
+      "status": "clock_found"
+    },
+    {
+      "school_id": "B000026906",
+      "school_name": "판교대장초등학교",
+      "region": "경기도",
+      "files": [
+        {
+          "name": "2026학년도 판교대장초등학교 학교교육과정 편성, 운영, 평가계획.hwpx",
+          "bytes_source": "archive",
+          "sha256": "44f0a409f6c2f53f42d698da2d5c2dc9faa6e8589686a60e5ebdbe25c67d9270",
+          "format": "hwpx",
+          "bytes": 1366435,
+          "text_chars": 38384,
+          "clock_blocks": [],
+          "clock_block_count": 0,
+          "clock_first_line": null,
+          "grade1_weekday_periods": [],
+          "clock_heading": null,
+          "status": "no_clock_detected"
+        }
+      ],
+      "status": "no_clock_detected"
+    },
+    {
+      "school_id": "B000003770",
+      "school_name": "내정초등학교",
+      "region": "경기도",
+      "files": [
+        {
+          "name": "2026학년도 내정초등학교 학교교육과정.pdf",
+          "bytes_source": "archive",
+          "sha256": "0125c885eb127d725a47068818f4aaa68321c01d4353a2ada70fd88489445cff",
+          "format": "pdf",
+          "bytes": 2353467,
+          "text_chars": 89931,
+          "clock_blocks": [
+            [
+              {
+                "label": "아침",
+                "start": "08:40",
+                "end": "08:50"
+              },
+              {
+                "label": "1교시",
+                "start": "08:50",
+                "end": "09:30"
+              },
+              {
+                "label": "2교시",
+                "start": "09:30",
+                "end": "09:40"
+              },
+              {
+                "label": "2교시",
+                "start": "09:40",
+                "end": "10:20"
+              },
+              {
+                "label": "3교시",
+                "start": "10:20",
+                "end": "10:30"
+              },
+              {
+                "label": "3교시",
+                "start": "10:30",
+                "end": "11:10"
+              },
+              {
+                "label": "4교시",
+                "start": "11:10",
+                "end": "11:20"
+              },
+              {
+                "label": "4교시",
+                "start": "11:20",
+                "end": "12:00"
+              },
+              {
+                "label": "점심",
+                "start": "12:00",
+                "end": "12:50"
+              },
+              {
+                "label": "5교시",
+                "start": "12:50",
+                "end": "13:30"
+              },
+              {
+                "label": "점심",
+                "start": "12:50",
+                "end": "13:30"
+              },
+              {
+                "label": "점심",
+                "start": "13:30",
+                "end": "13:40"
+              },
+              {
+                "label": "6교시",
+                "start": "13:40",
+                "end": "14:20"
+              }
+            ],
+            [
+              {
+                "label": "아침",
+                "start": "08:40",
+                "end": "08:50"
+              },
+              {
+                "label": "아침",
+                "start": "08:40",
+                "end": "08:50"
+              },
+              {
+                "label": "아침",
+                "start": "08:40",
+                "end": "08:50"
+              },
+              {
+                "label": "1교시",
+                "start": "08:50",
+                "end": "09:30"
+              },
+              {
+                "label": "1교시",
+                "start": "08:50",
+                "end": "09:30"
+              },
+              {
+                "label": "1교시",
+                "start": "08:50",
+                "end": "09:30"
+              },
+              {
+                "label": "2교시",
+                "start": "09:35",
+                "end": "10:15"
+              },
+              {
+                "label": "2교시",
+                "start": "09:35",
+                "end": "10:15"
+              },
+              {
+                "label": "2교시",
+                "start": "09:40",
+                "end": "10:20"
+              },
+              {
+                "label": "3교시",
+                "start": "10:20",
+                "end": "11:00"
+              },
+              {
+                "label": "3교시",
+                "start": "10:20",
+                "end": "11:00"
+              },
+              {
+                "label": "3교시",
+                "start": "10:30",
+                "end": "11:10"
+              },
+              {
+                "label": "4교시",
+                "start": "11:05",
+                "end": "11:45"
+              },
+              {
+                "label": "4교시",
+                "start": "11:05",
+                "end": "11:45"
+              },
+              {
+                "label": "4교시",
+                "start": "11:20",
+                "end": "12:00"
+              },
+              {
+                "label": "5교시",
+                "start": "11:50",
+                "end": "12:30"
+              },
+              {
+                "label": "점심",
+                "start": "11:50",
+                "end": "12:30"
+              },
+              {
+                "label": "6교시",
+                "start": "12:35",
+                "end": "13:15"
+              }
+            ]
+          ],
+          "clock_block_count": 2,
+          "clock_first_line": 316,
+          "grade1_weekday_periods": [],
+          "clock_heading": "일과 운영 계획· · · · · · · · · · · · · · · · ",
+          "status": "clock_found"
+        }
+      ],
+      "status": "clock_found"
+    },
+    {
+      "school_id": "B000003746",
+      "school_name": "신백현초등학교",
+      "region": "경기도",
+      "files": [
+        {
+          "name": "2026학년도 신백현초 학교교육과정 편성운영평가계획.hwp",
+          "bytes_source": "archive",
+          "sha256": "8961ec38940da30f1530ff53abb94fdcebc8a4e81d8f4844776e63281e99443c",
+          "format": "hwp",
+          "bytes": 116736,
+          "text_chars": 17361,
+          "clock_blocks": [],
+          "clock_block_count": 0,
+          "clock_first_line": null,
+          "grade1_weekday_periods": [],
+          "clock_heading": null,
+          "status": "no_clock_detected"
+        }
+      ],
+      "status": "no_clock_detected"
+    },
+    {
+      "school_id": "B000003750",
+      "school_name": "오리초등학교",
+      "region": "경기도",
+      "files": [
+        {
+          "name": "2026 안전한 현장체험학습 운영 계획.pdf",
+          "bytes_source": "archive",
+          "sha256": "b026a63377b2f29bde46679cfadda7ff44dbf797bf78bb8b4e60e5e7e89261a2",
+          "format": "pdf",
+          "bytes": 483526,
+          "text_chars": 13702,
+          "clock_blocks": [],
+          "clock_block_count": 0,
+          "clock_first_line": null,
+          "grade1_weekday_periods": [],
+          "clock_heading": null,
+          "status": "no_clock_detected"
+        },
+        {
+          "name": "2026 오리초 학교 교육과정.pdf",
+          "bytes_source": "archive",
+          "sha256": "13318a05088262b5d3dae4a7883651e934d2ac9cff213cb7e52191d16adc5fa2",
+          "format": "pdf",
+          "bytes": 1938642,
+          "text_chars": 72112,
+          "clock_blocks": [
+            [
+              {
+                "label": "1교시",
+                "start": "09:00",
+                "end": "09:40"
+              },
+              {
+                "label": "2교시",
+                "start": "09:50",
+                "end": "10:30"
+              },
+              {
+                "label": "3교시",
+                "start": "10:40",
+                "end": "11:20"
+              },
+              {
+                "label": "4교시",
+                "start": "11:30",
+                "end": "12:10"
+              },
+              {
+                "label": "점심",
+                "start": "12:10",
+                "end": "12:50"
+              },
+              {
+                "label": "5교시",
+                "start": "12:50",
+                "end": "13:30"
+              },
+              {
+                "label": "6교시",
+                "start": "13:40",
+                "end": "14:20"
+              },
+              {
+                "label": "쉬는시간",
+                "start": "13:30",
+                "end": "13:40"
+              },
+              {
+                "label": "쉬는시간",
+                "start": "13:40",
+                "end": "14:20"
+              },
+              {
+                "label": "5교시",
+                "start": "09:00",
+                "end": "13:00"
+              },
+              {
+                "label": "5교시",
+                "start": "12:50",
+                "end": "13:30"
+              },
+              {
+                "label": "5교시",
+                "start": "13:30",
+                "end": "13:40"
+              },
+              {
+                "label": "쉬는시간",
+                "start": "13:40",
+                "end": "14:20"
+              },
+              {
+                "label": "쉬는시간",
+                "start": "14:20",
+                "end": "14:30"
+              },
+              {
+                "label": "쉬는시간",
+                "start": "14:30",
+                "end": "15:10"
+              }
+            ]
+          ],
+          "clock_block_count": 1,
+          "clock_first_line": 272,
+          "grade1_weekday_periods": [],
+          "clock_heading": null,
+          "status": "clock_found"
+        }
+      ],
+      "status": "clock_found"
+    },
+    {
+      "school_id": "B000003109",
+      "school_name": "인천효성초등학교",
+      "region": "인천광역시",
+      "files": [
+        {
+          "name": "붙임1. 2026학년도 인천효성초등학교 학교교육과정 편성,운영,평가,계획.pdf",
+          "bytes_source": "archive",
+          "sha256": "0ee17b890964b71d6c66e145a8172fbf98792bd71f72495069de46f53cdd3ac2",
+          "format": "pdf",
+          "bytes": 4183694,
+          "text_chars": 70979,
+          "clock_blocks": [],
+          "clock_block_count": 0,
+          "clock_first_line": null,
+          "grade1_weekday_periods": [],
+          "clock_heading": "1일 시간 운영 계획  ○ 교육과정 일과표(기본) - 1학기     ##",
+          "status": "clock_heading_only"
+        }
+      ],
+      "status": "clock_heading_only"
+    },
+    {
+      "school_id": "B000025256",
+      "school_name": "인천송원초등학교",
+      "region": "인천광역시",
+      "files": [
+        {
+          "name": "2026학년도 학교 교육 계획서.hwp",
+          "bytes_source": "archive",
+          "sha256": "07b27202803fa4b9ad88c5e710acc16a6ff8dbe18b66b7ebd990cb3a465d1d8d",
+          "format": "hwp",
+          "bytes": 9070080,
+          "text_chars": 28945,
+          "clock_blocks": [
+            [
+              {
+                "label": "등교",
+                "start": "08:40",
+                "end": "08:50"
+              },
+              {
+                "label": "등교",
+                "start": "08:40",
+                "end": "08:50"
+              },
+              {
+                "label": "1교시",
+                "start": "08:50",
+                "end": "09:30"
+              },
+              {
+                "label": "1교시",
+                "start": "08:50",
+                "end": "09:30"
+              },
+              {
+                "label": "2교시",
+                "start": "09:40",
+                "end": "10:20"
+              },
+              {
+                "label": "2교시",
+                "start": "09:40",
+                "end": "10:20"
+              },
+              {
+                "label": "3교시",
+                "start": "10:30",
+                "end": "11:10"
+              },
+              {
+                "label": "3교시",
+                "start": "10:30",
+                "end": "11:10"
+              },
+              {
+                "label": "4교시",
+                "start": "11:20",
+                "end": "12:00"
+              },
+              {
+                "label": "4교시",
+                "start": "11:20",
+                "end": "12:00"
+              },
+              {
+                "label": "점심",
+                "start": "12:00",
+                "end": "12:50"
+              },
+              {
+                "label": "5교시",
+                "start": "12:10",
+                "end": "12:50"
+              },
+              {
+                "label": "5교시",
+                "start": "12:50",
+                "end": "13:30"
+              },
+              {
+                "label": "점심",
+                "start": "12:50",
+                "end": "13:40"
+              },
+              {
+                "label": "6교시",
+                "start": "13:40",
+                "end": "14:20"
+              },
+              {
+                "label": "6교시",
+                "start": "13:40",
+                "end": "14:20"
+              }
+            ]
+          ],
+          "clock_block_count": 1,
+          "clock_first_line": 687,
+          "grade1_weekday_periods": [],
+          "clock_heading": "시정표 (수업시간 40분, 쉬는시간 10분 운영)   1, 2, 4학년 ",
+          "status": "clock_found"
+        }
+      ],
+      "status": "clock_found"
+    },
+    {
+      "school_id": "B000003095",
+      "school_name": "인천구월초등학교",
+      "region": "인천광역시",
+      "files": [
+        {
+          "name": "2026 구월초 학교교육과정 편성·운영·평가계획.hwp",
+          "bytes_source": "archive",
+          "sha256": "48c1869008f78e23e02c7632261820658690e19e1d7a6ca8caf8185ce8f34d79",
+          "format": "hwp",
+          "bytes": 164352,
+          "text_chars": 18225,
+          "clock_blocks": [],
+          "clock_block_count": 0,
+          "clock_first_line": null,
+          "grade1_weekday_periods": [],
+          "clock_heading": null,
+          "status": "no_clock_detected"
+        }
+      ],
+      "status": "no_clock_detected"
+    },
+    {
+      "school_id": "B000003015",
+      "school_name": "인천구산초등학교",
+      "region": "인천광역시",
+      "files": [
+        {
+          "name": "2026학년도 구산초 학교교육과정 편성 운영 및 평가 계획.pdf",
+          "bytes_source": "archive",
+          "sha256": "87449bec81b849686a3b51af9110192779d31db2ddac4cb1d88bc88a1e5e78e3",
+          "format": "pdf",
+          "bytes": 2228522,
+          "text_chars": 46346,
+          "clock_blocks": [],
+          "clock_block_count": 0,
+          "clock_first_line": null,
+          "grade1_weekday_periods": [],
+          "clock_heading": null,
+          "status": "no_clock_detected"
+        }
+      ],
+      "status": "no_clock_detected"
+    },
+    {
+      "school_id": "B000024924",
+      "school_name": "인천하늘초등학교",
+      "region": "인천광역시",
+      "files": [
+        {
+          "name": "학교 교육과정 편성 운영 및 평가에 관한 사항(정보공시).pdf",
+          "bytes_source": "archive",
+          "sha256": "31544bfda5481c899143295bf201d632569ebc1252d1d27d34f7f95e7678f331",
+          "format": "pdf",
+          "bytes": 1444852,
+          "text_chars": 22137,
+          "clock_blocks": [
+            [
+              {
+                "label": "아침",
+                "start": "08:40",
+                "end": "09:00"
+              },
+              {
+                "label": "1교시",
+                "start": "09:00",
+                "end": "09:40"
+              },
+              {
+                "label": "2교시",
+                "start": "09:00",
+                "end": "09:40"
+              },
+              {
+                "label": "2교시",
+                "start": "09:00",
+                "end": "09:40"
+              },
+              {
+                "label": "2교시",
+                "start": "09:00",
+                "end": "09:40"
+              },
+              {
+                "label": "2교시",
+                "start": "09:50",
+                "end": "10:30"
+              },
+              {
+                "label": "3교시",
+                "start": "09:50",
+                "end": "10:30"
+              },
+              {
+                "label": "3교시",
+                "start": "09:50",
+                "end": "10:30"
+              },
+              {
+                "label": "3교시",
+                "start": "09:50",
+                "end": "10:30"
+              },
+              {
+                "label": "3교시",
+                "start": "10:40",
+                "end": "11:20"
+              },
+              {
+                "label": "점심",
+                "start": "10:40",
+                "end": "11:20"
+              },
+              {
+                "label": "점심",
+                "start": "10:40",
+                "end": "11:20"
+              },
+              {
+                "label": "점심",
+                "start": "10:40",
+                "end": "11:20"
+              },
+              {
+                "label": "점심",
+                "start": "11:20",
+                "end": "12:00"
+              },
+              {
+                "label": "4교시",
+                "start": "11:20",
+                "end": "12:00"
+              },
+              {
+                "label": "4교시",
+                "start": "12:10",
+                "end": "12:50"
+              },
+              {
+                "label": "점심",
+                "start": "12:10",
+                "end": "12:50"
+              },
+              {
+                "label": "점심",
+                "start": "12:10",
+                "end": "12:50"
+              },
+              {
+                "label": "점심",
+                "start": "11:30",
+                "end": "12:10"
+              },
+              {
+                "label": "점심",
+                "start": "12:10",
+                "end": "12:50"
+              },
+              {
+                "label": "5교시",
+                "start": "12:10",
+                "end": "12:50"
+              },
+              {
+                "label": "5교시",
+                "start": "13:00",
+                "end": "13:40"
+              },
+              {
+                "label": "점심",
+                "start": "13:00",
+                "end": "13:40"
+              },
+              {
+                "label": "점심",
+                "start": "12:20",
+                "end": "13:00"
+              },
+              {
+                "label": "점심",
+                "start": "12:20",
+                "end": "13:00"
+              },
+              {
+                "label": "점심",
+                "start": "13:00",
+                "end": "13:40"
+              },
+              {
+                "label": "6교시",
+                "start": "13:00",
+                "end": "13:40"
+              },
+              {
+                "label": "6교시",
+                "start": "13:50",
+                "end": "14:30"
+              },
+              {
+                "label": "점심",
+                "start": "13:50",
+                "end": "14:30"
+              }
+            ]
+          ],
+          "clock_block_count": 1,
+          "clock_first_line": 122,
+          "grade1_weekday_periods": [],
+          "clock_heading": null,
+          "status": "clock_found"
+        }
+      ],
+      "status": "clock_found"
+    },
+    {
+      "school_id": "B000003155",
+      "school_name": "인천목향초등학교",
+      "region": "인천광역시",
+      "files": [
+        {
+          "name": "인천목향초등학교 학교교육과정 편성·운영·평가 계획.hwpx",
+          "bytes_source": "archive",
+          "sha256": "8daefe2409a51a8a8514174377a7c9e1c416ce2f77d80a218c65e102cc1231aa",
+          "format": "hwpx",
+          "bytes": 2012378,
+          "text_chars": 73845,
+          "clock_blocks": [],
+          "clock_block_count": 0,
+          "clock_first_line": null,
+          "grade1_weekday_periods": [],
+          "clock_heading": null,
+          "status": "no_clock_detected"
+        }
+      ],
+      "status": "no_clock_detected"
+    },
+    {
+      "school_id": "B000003101",
+      "school_name": "인천인동초등학교",
+      "region": "인천광역시",
+      "files": [
+        {
+          "name": "2026학년도 인천인동초등학교 학교교육과정 편성운영 평가 계획.hwp",
+          "bytes_source": "archive",
+          "sha256": "2bf0e0bdc69024b1ab307b2122e6622881b8dfd43c82bb4f29a60b65bad438ad",
+          "format": "hwp",
+          "bytes": 5133824,
+          "text_chars": 77314,
+          "clock_blocks": [
+            [
+              {
+                "label": "아침",
+                "start": "08:40",
+                "end": "08:50"
+              },
+              {
+                "label": "1교시",
+                "start": "08:50",
+                "end": "09:30"
+              },
+              {
+                "label": "2교시",
+                "start": "09:40",
+                "end": "10:20"
+              },
+              {
+                "label": "3교시",
+                "start": "10:30",
+                "end": "11:10"
+              },
+              {
+                "label": "4교시",
+                "start": "11:20",
+                "end": "12:00"
+              },
+              {
+                "label": "점심",
+                "start": "12:10",
+                "end": "12:50"
+              },
+              {
+                "label": "점심",
+                "start": "12:00",
+                "end": "12:50"
+              },
+              {
+                "label": "점심",
+                "start": "12:00",
+                "end": "12:50"
+              },
+              {
+                "label": "5교시",
+                "start": "12:50",
+                "end": "13:30"
+              },
+              {
+                "label": "6교시",
+                "start": "13:40",
+                "end": "14:20"
+              },
+              {
+                "label": "점심",
+                "start": "11:40",
+                "end": "12:10"
+              }
+            ]
+          ],
+          "clock_block_count": 1,
+          "clock_first_line": 330,
+          "grade1_weekday_periods": [],
+          "clock_heading": "1일 시간 운영 계획 구분 | 시간 | 1-2학년 | 3-4학년 | 5-",
+          "status": "clock_found"
+        }
+      ],
+      "status": "clock_found"
+    },
+    {
+      "school_id": "B000002957",
+      "school_name": "인천공항초등학교",
+      "region": "인천광역시",
+      "files": [
+        {
+          "name": "2026학년도 인천공항초등학교 학교교육계획.hwp",
+          "bytes_source": "archive",
+          "sha256": "af8923ba0cfdf3c0c993307bc7ea98a73bfe16fb8bf6ace5c4d324d37b1a571e",
+          "format": "hwp",
+          "bytes": 3385856,
+          "text_chars": 62886,
+          "clock_blocks": [],
+          "clock_block_count": 0,
+          "clock_first_line": null,
+          "grade1_weekday_periods": [],
+          "clock_heading": null,
+          "status": "no_clock_detected"
+        },
+        {
+          "name": "2026학년도 인천공항초 현장체험학습 운영계획.hwp",
+          "bytes_source": "archive",
+          "sha256": "9dc4b3d5829a12539128bcbc298441016281615ab833568758dfba0a0a110974",
+          "format": "hwp",
+          "bytes": 84480,
+          "text_chars": 3507,
+          "clock_blocks": [],
+          "clock_block_count": 0,
+          "clock_first_line": null,
+          "grade1_weekday_periods": [],
+          "clock_heading": null,
+          "status": "no_clock_detected"
+        }
+      ],
+      "status": "no_clock_detected"
+    },
+    {
+      "school_id": "B000003027",
+      "school_name": "인천부원초등학교",
+      "region": "인천광역시",
+      "files": [
+        {
+          "name": "2026학년도 학사 운영 계획.hwp",
+          "bytes_source": "archive",
+          "sha256": "00fe24cc670c64147d75f4fbfa2b26179d905e3b4feb45a9f11c1e8f1445bbe8",
+          "format": "hwp",
+          "bytes": 68096,
+          "text_chars": 5615,
+          "clock_blocks": [],
+          "clock_block_count": 0,
+          "clock_first_line": null,
+          "grade1_weekday_periods": [],
+          "clock_heading": null,
+          "status": "no_clock_detected"
+        },
+        {
+          "name": "2026학교교육과정 편성·운영 및 평가 계획.hwp",
+          "bytes_source": "archive",
+          "sha256": "cec05eda0fe917be37b3439e6204571f4d7732a5b1528211506a6cc06861aeec",
+          "format": "hwp",
+          "bytes": 1581056,
+          "text_chars": 33816,
+          "clock_blocks": [
+            [
+              {
+                "label": "1교시",
+                "start": "09:00",
+                "end": "09:40"
+              },
+              {
+                "label": "2교시",
+                "start": "09:50",
+                "end": "10:30"
+              },
+              {
+                "label": "3교시",
+                "start": "10:40",
+                "end": "11:20"
+              },
+              {
+                "label": "4교시",
+                "start": "11:30",
+                "end": "12:10"
+              },
+              {
+                "label": "점심",
+                "start": "12:10",
+                "end": "13:00"
+              },
+              {
+                "label": "5교시",
+                "start": "13:00",
+                "end": "13:40"
+              },
+              {
+                "label": "6교시",
+                "start": "13:50",
+                "end": "14:30"
+              }
+            ]
+          ],
+          "clock_block_count": 1,
+          "clock_first_line": 230,
+          "grade1_weekday_periods": [
+            [
+              5,
+              5,
+              4,
+              5,
+              4
+            ]
+          ],
+          "clock_heading": null,
+          "status": "clock_found"
+        }
+      ],
+      "status": "clock_found"
+    },
+    {
+      "school_id": "B000025189",
+      "school_name": "인천송명초등학교",
+      "region": "인천광역시",
+      "files": [
+        {
+          "name": "2026 송명초 학교교육과정 편성 운영 및 평가에 관한 사항(정보공시).pdf",
+          "bytes_source": "archive",
+          "sha256": "6f541c8202e7205a72b2019574ac408dcacc7c3d48530d829e8279f5479f310f",
+          "format": "pdf",
+          "bytes": 285662,
+          "text_chars": 6513,
+          "clock_blocks": [],
+          "clock_block_count": 0,
+          "clock_first_line": null,
+          "grade1_weekday_periods": [],
+          "clock_heading": null,
+          "status": "no_clock_detected"
+        }
+      ],
+      "status": "no_clock_detected"
+    },
+    {
+      "school_id": "B000006819",
+      "school_name": "청산초등학교",
+      "region": "전라남도",
+      "files": [
+        {
+          "name": "2026학년도 학교교육과정 편성운영 및 평가에 관한 사항.hwp",
+          "bytes_source": "archive",
+          "sha256": "c8ac2af458c6752b86f0248ccf91ddceb8d2664f2da7ba28d6cc605866a40891",
+          "format": "hwp",
+          "bytes": 966144,
+          "text_chars": 70006,
+          "clock_blocks": [
+            [
+              {
+                "label": "아침",
+                "start": "08:25",
+                "end": "08:50"
+              },
+              {
+                "label": "2교시",
+                "start": "08:40",
+                "end": "10:00"
+              },
+              {
+                "label": "4교시",
+                "start": "10:10",
+                "end": "11:30"
+              },
+              {
+                "label": "5교시",
+                "start": "11:40",
+                "end": "12:20"
+              },
+              {
+                "label": "6교시",
+                "start": "13:30",
+                "end": "14:10"
+              },
+              {
+                "label": "1블럭",
+                "start": "09:00",
+                "end": "10:20"
+              },
+              {
+                "label": "중간놀이",
+                "start": "10:20",
+                "end": "10:50"
+              },
+              {
+                "label": "2블럭",
+                "start": "10:50",
+                "end": "12:10"
+              },
+              {
+                "label": "점심",
+                "start": "12:10",
+                "end": "13:30"
+              },
+              {
+                "label": "6교시",
+                "start": "13:30",
+                "end": "14:10"
+              },
+              {
+                "label": "등교",
+                "start": "07:45",
+                "end": "08:25"
+              }
+            ]
+          ],
+          "clock_block_count": 1,
+          "clock_first_line": 282,
+          "grade1_weekday_periods": [],
+          "clock_heading": null,
+          "status": "clock_found"
+        }
+      ],
+      "status": "clock_found"
+    },
+    {
+      "school_id": "B000006780",
+      "school_name": "영광중앙초등학교",
+      "region": "전라남도",
+      "files": [
+        {
+          "name": "학교교육과정 편성.운영.평가 계획.hwp",
+          "bytes_source": "archive",
+          "sha256": "69122b522919a34ea391e23502b1b1ba943fe061dff79d787613dfe9d2ab4273",
+          "format": "hwp",
+          "bytes": 247808,
+          "text_chars": 46428,
+          "clock_blocks": [
+            [
+              {
+                "label": "1교시",
+                "start": "09:00",
+                "end": "09:40"
+              },
+              {
+                "label": "1교시",
+                "start": "09:00",
+                "end": "09:40"
+              },
+              {
+                "label": "2교시",
+                "start": "09:50",
+                "end": "10:30"
+              },
+              {
+                "label": "3교시",
+                "start": "10:40",
+                "end": "11:20"
+              },
+              {
+                "label": "4교시",
+                "start": "11:30",
+                "end": "12:10"
+              },
+              {
+                "label": "5교시",
+                "start": "12:20",
+                "end": "13:00"
+              },
+              {
+                "label": "2교시",
+                "start": "09:50",
+                "end": "10:30"
+              },
+              {
+                "label": "놀이시간",
+                "start": "10:30",
+                "end": "10:50"
+              },
+              {
+                "label": "3교시",
+                "start": "10:50",
+                "end": "11:30"
+              },
+              {
+                "label": "4교시",
+                "start": "11:40",
+                "end": "12:20"
+              },
+              {
+                "label": "점심",
+                "start": "11:30",
+                "end": "12:30"
+              },
+              {
+                "label": "점심",
+                "start": "12:20",
+                "end": "13:20"
+              },
+              {
+                "label": "4교시",
+                "start": "12:30",
+                "end": "13:10"
+              },
+              {
+                "label": "5교시",
+                "start": "13:20",
+                "end": "14:00"
+              },
+              {
+                "label": "6교시",
+                "start": "14:10",
+                "end": "14:50"
+              }
+            ]
+          ],
+          "clock_block_count": 1,
+          "clock_first_line": 327,
+          "grade1_weekday_periods": [],
+          "clock_heading": null,
+          "status": "clock_found"
+        }
+      ],
+      "status": "clock_found"
+    },
+    {
+      "school_id": "B000006822",
+      "school_name": "노화북초등학교",
+      "region": "전라남도",
+      "files": [
+        {
+          "name": "2026학년도 노화북초 학교교육과정 편성·운영·평가 계획.hwp",
+          "bytes_source": "archive",
+          "sha256": "46ab6f534d24ad3d7285f3488872e8d4129f7ef14051adddc6981cc7bbd3febe",
+          "format": "hwp",
+          "bytes": 4055552,
+          "text_chars": 121070,
+          "clock_blocks": [
+            [
+              {
+                "label": "아침",
+                "start": "08:10",
+                "end": "08:35"
+              },
+              {
+                "label": "1교시",
+                "start": "09:00",
+                "end": "09:40"
+              },
+              {
+                "label": "2교시",
+                "start": "09:50",
+                "end": "10:30"
+              },
+              {
+                "label": "중간놀이",
+                "start": "10:30",
+                "end": "11:00"
+              },
+              {
+                "label": "3교시",
+                "start": "11:00",
+                "end": "11:40"
+              },
+              {
+                "label": "4교시",
+                "start": "11:50",
+                "end": "12:30"
+              },
+              {
+                "label": "점심",
+                "start": "11:20",
+                "end": "12:00"
+              },
+              {
+                "label": "점심",
+                "start": "12:30",
+                "end": "13:20"
+              },
+              {
+                "label": "5교시",
+                "start": "13:20",
+                "end": "14:00"
+              },
+              {
+                "label": "6교시",
+                "start": "14:10",
+                "end": "14:50"
+              },
+              {
+                "label": "6교시",
+                "start": "14:00",
+                "end": "14:40"
+              }
+            ]
+          ],
+          "clock_block_count": 1,
+          "clock_first_line": 832,
+          "grade1_weekday_periods": [],
+          "clock_heading": "일과 운영 계획 44    6. 교과 전담 시간표 및 특별실 이용 시간표",
+          "status": "clock_found"
+        }
+      ],
+      "status": "clock_found"
+    },
+    {
+      "school_id": "B000006546",
+      "school_name": "문평초등학교",
+      "region": "전라남도",
+      "files": [
+        {
+          "name": "2026학년도문평초등학교 학교교육과정 편성 운영 및 평가계획.hwp",
+          "bytes_source": "archive",
+          "sha256": "3c4926de571c48d46e71376898bbf7fad5d97125095b80fbacab8eda1113408d",
+          "format": "hwp",
+          "bytes": 4878848,
+          "text_chars": 189871,
+          "clock_blocks": [
+            [
+              {
+                "label": "아침",
+                "start": "08:30",
+                "end": "08:50"
+              },
+              {
+                "label": "2교시",
+                "start": "09:00",
+                "end": "10:30"
+              },
+              {
+                "label": "4교시",
+                "start": "11:00",
+                "end": "12:30"
+              },
+              {
+                "label": "점심",
+                "start": "12:30",
+                "end": "13:20"
+              },
+              {
+                "label": "5교시",
+                "start": "13:20",
+                "end": "14:00"
+              },
+              {
+                "label": "6교시",
+                "start": "14:10",
+                "end": "14:50"
+              },
+              {
+                "label": "교시",
+                "start": "15:00",
+                "end": "15:40"
+              },
+              {
+                "label": "5교시",
+                "start": "13:20",
+                "end": "14:00"
+              },
+              {
+                "label": "6교시",
+                "start": "14:10",
+                "end": "14:50"
+              },
+              {
+                "label": "7교시",
+                "start": "15:00",
+                "end": "15:40"
+              },
+              {
+                "label": "교시",
+                "start": "15:50",
+                "end": "16:30"
+              }
+            ]
+          ],
+          "clock_block_count": 1,
+          "clock_first_line": 903,
+          "grade1_weekday_periods": [
+            [
+              5,
+              4,
+              5,
+              4,
+              5
+            ]
+          ],
+          "clock_heading": null,
+          "status": "clock_found"
+        }
+      ],
+      "status": "clock_found"
+    },
+    {
+      "school_id": "B000006872",
+      "school_name": "가거도초등학교",
+      "region": "전라남도",
+      "files": [
+        {
+          "name": "2026. 가거도교육(개인정보제외).hwp",
+          "bytes_source": "archive",
+          "sha256": "de348cebd94ce64ba4e03749adf2de9691e4fa5c625e58c10b0b8444f81fd0ea",
+          "format": "hwp",
+          "bytes": 2208256,
+          "text_chars": 263850,
+          "clock_blocks": [
+            [
+              {
+                "label": "아침",
+                "start": "08:30",
+                "end": "08:50"
+              },
+              {
+                "label": "1교시",
+                "start": "09:00",
+                "end": "09:40"
+              },
+              {
+                "label": "2교시",
+                "start": "09:40",
+                "end": "10:20"
+              },
+              {
+                "label": "3교시",
+                "start": "11:00",
+                "end": "11:40"
+              },
+              {
+                "label": "4교시",
+                "start": "11:40",
+                "end": "12:20"
+              },
+              {
+                "label": "점심",
+                "start": "12:20",
+                "end": "13:10"
+              },
+              {
+                "label": "5교시",
+                "start": "13:10",
+                "end": "13:50"
+              },
+              {
+                "label": "6교시",
+                "start": "13:50",
+                "end": "14:30"
+              },
+              {
+                "label": "7교시",
+                "start": "14:40",
+                "end": "15:20"
+              },
+              {
+                "label": "교시",
+                "start": "15:20",
+                "end": "16:00"
+              },
+              {
+                "label": "교시",
+                "start": "16:00",
+                "end": "16:40"
+              }
+            ]
+          ],
+          "clock_block_count": 1,
+          "clock_first_line": 867,
+          "grade1_weekday_periods": [],
+          "clock_heading": null,
+          "status": "clock_found"
+        }
+      ],
+      "status": "clock_found"
+    },
+    {
+      "school_id": "B000006457",
+      "school_name": "소라초등학교소라남분교장",
+      "region": "전라남도",
+      "files": [],
+      "status": "no_attachment"
+    },
+    {
+      "school_id": "B000006702",
+      "school_name": "마량초등학교",
+      "region": "전라남도",
+      "files": [
+        {
+          "name": "2026.마량초 학교교육과정 편성운영평가 계획.hwp",
+          "bytes_source": "archive",
+          "sha256": "1021a9620f34ffcef9a901057fa24882732c47819aa3ebcca3993e6d245ea63c",
+          "format": "hwp",
+          "bytes": 220672,
+          "text_chars": 40576,
+          "clock_blocks": [
+            [
+              {
+                "label": "아침",
+                "start": "08:30",
+                "end": "08:50"
+              },
+              {
+                "label": "1교시",
+                "start": "09:00",
+                "end": "09:40"
+              },
+              {
+                "label": "1블럭",
+                "start": "09:00",
+                "end": "10:20"
+              },
+              {
+                "label": "2교시",
+                "start": "09:50",
+                "end": "10:30"
+              },
+              {
+                "label": "중간놀이",
+                "start": "10:30",
+                "end": "11:00"
+              },
+              {
+                "label": "2블럭",
+                "start": "10:30",
+                "end": "11:50"
+              },
+              {
+                "label": "3교시",
+                "start": "11:00",
+                "end": "11:40"
+              },
+              {
+                "label": "4교시",
+                "start": "11:50",
+                "end": "12:30"
+              },
+              {
+                "label": "5교시",
+                "start": "12:00",
+                "end": "12:40"
+              },
+              {
+                "label": "점심",
+                "start": "12:30",
+                "end": "13:20"
+              },
+              {
+                "label": "점심",
+                "start": "12:40",
+                "end": "13:30"
+              },
+              {
+                "label": "5교시",
+                "start": "13:20",
+                "end": "14:00"
+              },
+              {
+                "label": "6교시",
+                "start": "14:10",
+                "end": "14:50"
+              },
+              {
+                "label": "교시",
+                "start": "15:00",
+                "end": "16:20"
+              }
+            ]
+          ],
+          "clock_block_count": 1,
+          "clock_first_line": 292,
+          "grade1_weekday_periods": [
+            [
+              4,
+              5,
+              5,
+              4,
+              5
+            ]
+          ],
+          "clock_heading": "일과표 요일 학년 시간․교시 | 월 | 화 | 수 | 목 | 금 | 1~",
+          "status": "clock_found"
+        }
+      ],
+      "status": "clock_found"
+    },
+    {
+      "school_id": "B000006749",
+      "school_name": "일로동초등학교",
+      "region": "전라남도",
+      "files": [
+        {
+          "name": "2026. 일로동초 학교교육계획.pdf",
+          "bytes_source": "archive",
+          "sha256": "965e4cf130f058f0aeb4ede72c885f42dcc1b9644db80b8cd7105a1753f37499",
+          "format": "pdf",
+          "bytes": 4481381,
+          "text_chars": 181444,
+          "clock_blocks": [
+            [
+              {
+                "label": "아침",
+                "start": "08:30",
+                "end": "08:50"
+              },
+              {
+                "label": "아침",
+                "start": "08:50",
+                "end": "09:00"
+              },
+              {
+                "label": "1교시",
+                "start": "09:00",
+                "end": "09:40"
+              },
+              {
+                "label": "쉬는시간",
+                "start": "09:40",
+                "end": "09:50"
+              },
+              {
+                "label": "2교시",
+                "start": "09:50",
+                "end": "10:30"
+              },
+              {
+                "label": "중간놀이",
+                "start": "10:30",
+                "end": "10:50"
+              },
+              {
+                "label": "3교시",
+                "start": "10:50",
+                "end": "11:30"
+              },
+              {
+                "label": "쉬는시간",
+                "start": "11:30",
+                "end": "11:40"
+              },
+              {
+                "label": "4교시",
+                "start": "11:40",
+                "end": "12:20"
+              },
+              {
+                "label": "점심",
+                "start": "12:20",
+                "end": "13:00"
+              },
+              {
+                "label": "5교시",
+                "start": "13:00",
+                "end": "13:40"
+              },
+              {
+                "label": "쉬는시간",
+                "start": "13:40",
+                "end": "13:50"
+              },
+              {
+                "label": "6교시",
+                "start": "13:50",
+                "end": "14:30"
+              },
+              {
+                "label": "6교시",
+                "start": "14:35",
+                "end": "16:00"
+              }
+            ]
+          ],
+          "clock_block_count": 1,
+          "clock_first_line": 343,
+          "grade1_weekday_periods": [],
+          "clock_heading": null,
+          "status": "clock_found"
+        }
+      ],
+      "status": "clock_found"
+    },
+    {
+      "school_id": "B000006755",
+      "school_name": "삼향초등학교",
+      "region": "전라남도",
+      "files": [
+        {
+          "name": "2026. 삼향초 학교교육과정 편성 운영 평가 계획.hwpx",
+          "bytes_source": "archive",
+          "sha256": "1d20a796f558ec30ce4f4f61ca3dbb85649f76a11e8306118bbb9b72a6cf9c95",
+          "format": "hwpx",
+          "bytes": 2114027,
+          "text_chars": 58941,
+          "clock_blocks": [
+            [
+              {
+                "label": "아침",
+                "start": "08:30",
+                "end": "08:50"
+              },
+              {
+                "label": "2교시",
+                "start": "09:00",
+                "end": "10:30"
+              },
+              {
+                "label": "점심",
+                "start": "10:30",
+                "end": "10:50"
+              },
+              {
+                "label": "4교시",
+                "start": "10:50",
+                "end": "12:20"
+              },
+              {
+                "label": "점심",
+                "start": "12:20",
+                "end": "13:10"
+              },
+              {
+                "label": "6교시",
+                "start": "13:10",
+                "end": "14:40"
+              }
+            ]
+          ],
+          "clock_block_count": 1,
+          "clock_first_line": 359,
+          "grade1_weekday_periods": [
+            [
+              4,
+              5,
+              4,
+              5,
+              5
+            ]
+          ],
+          "clock_heading": null,
+          "status": "clock_found"
+        }
+      ],
+      "status": "clock_found"
+    },
+    {
+      "school_id": "B000006701",
+      "school_name": "신전초등학교",
+      "region": "전라남도",
+      "files": [
+        {
+          "name": "2026.학교교육과정 편성·운영 및 평가(신전초).hwp",
+          "bytes_source": "archive",
+          "sha256": "b59cce2c7cb3017b325ad862329137e8646d6da78b6f2f426db5170826c38bca",
+          "format": "hwp",
+          "bytes": 3289600,
+          "text_chars": 82325,
+          "clock_blocks": [
+            [
+              {
+                "label": "아침",
+                "start": "08:40",
+                "end": "08:55"
+              },
+              {
+                "label": "2교시",
+                "start": "09:00",
+                "end": "10:30"
+              },
+              {
+                "label": "중간놀이",
+                "start": "10:30",
+                "end": "10:50"
+              },
+              {
+                "label": "4교시",
+                "start": "10:50",
+                "end": "12:20"
+              },
+              {
+                "label": "점심",
+                "start": "12:20",
+                "end": "13:10"
+              },
+              {
+                "label": "6교시",
+                "start": "13:10",
+                "end": "14:40"
+              },
+              {
+                "label": "7교시",
+                "start": "14:45",
+                "end": "15:25"
+              },
+              {
+                "label": "교시",
+                "start": "15:30",
+                "end": "16:10"
+              }
+            ]
+          ],
+          "clock_block_count": 1,
+          "clock_first_line": 417,
+          "grade1_weekday_periods": [
+            [
+              5,
+              4,
+              4,
+              5,
+              5
+            ]
+          ],
+          "clock_heading": null,
+          "status": "clock_found"
+        }
+      ],
+      "status": "clock_found"
+    },
+    {
+      "school_id": "B000002211",
+      "school_name": "서울지향초등학교",
+      "region": "서울특별시",
+      "files": [
+        {
+          "name": "2026학년도 학교교육과정 편성 운영에 관한 사항.pdf",
+          "bytes_source": "archive",
+          "sha256": "c51601a99a800d2ad7f2bdde6c93d34cf3de912d5ca48118703369a10a99109a",
+          "format": "pdf",
+          "bytes": 1143268,
+          "text_chars": 63014,
+          "clock_blocks": [
+            [
+              {
+                "label": "등교",
+                "start": "08:40",
+                "end": "08:50"
+              },
+              {
+                "label": "1교시",
+                "start": "09:00",
+                "end": "09:40"
+              },
+              {
+                "label": "쉬는시간",
+                "start": "09:40",
+                "end": "09:50"
+              },
+              {
+                "label": "2교시",
+                "start": "09:50",
+                "end": "10:30"
+              },
+              {
+                "label": "쉬는시간",
+                "start": "10:30",
+                "end": "10:40"
+              },
+              {
+                "label": "3교시",
+                "start": "10:40",
+                "end": "11:20"
+              },
+              {
+                "label": "쉬는시간",
+                "start": "11:20",
+                "end": "11:30"
+              },
+              {
+                "label": "4교시",
+                "start": "11:30",
+                "end": "12:10"
+              },
+              {
+                "label": "점심",
+                "start": "12:10",
+                "end": "13:00"
+              },
+              {
+                "label": "5교시",
+                "start": "13:00",
+                "end": "13:40"
+              },
+              {
+                "label": "쉬는시간",
+                "start": "13:40",
+                "end": "13:50"
+              },
+              {
+                "label": "6교시",
+                "start": "13:50",
+                "end": "14:30"
+              },
+              {
+                "label": "1교시",
+                "start": "12:50",
+                "end": "13:35"
+              },
+              {
+                "label": "2교시",
+                "start": "13:45",
+                "end": "14:30"
+              },
+              {
+                "label": "3교시",
+                "start": "14:40",
+                "end": "15:25"
+              },
+              {
+                "label": "4교시",
+                "start": "15:35",
+                "end": "16:20"
+              }
+            ]
+          ],
+          "clock_block_count": 1,
+          "clock_first_line": 17,
+          "grade1_weekday_periods": [],
+          "clock_heading": "일과표구분시작끝소요시간등교08:4008:5010분1교시09:0009:40",
+          "status": "clock_found"
+        }
+      ],
+      "status": "clock_found"
+    },
+    {
+      "school_id": "B000001882",
+      "school_name": "서울신도초등학교",
+      "region": "서울특별시",
+      "files": [
+        {
+          "name": "2026학년도 신도초 학교교육과정 편성 운영 평가 계획.hwp",
+          "bytes_source": "archive",
+          "sha256": "d94aff178b926c5ea617d560161a995f8e1e008c7b1c106a89c3c5876902f9f7",
+          "format": "hwp",
+          "bytes": 220672,
+          "text_chars": 45314,
+          "clock_blocks": [],
+          "clock_block_count": 0,
+          "clock_first_line": null,
+          "grade1_weekday_periods": [
+            [
+              4,
+              5,
+              4,
+              5,
+              5
+            ]
+          ],
+          "clock_heading": null,
+          "status": "no_clock_detected"
+        }
+      ],
+      "status": "no_clock_detected"
+    },
+    {
+      "school_id": "B000002151",
+      "school_name": "서울거여초등학교",
+      "region": "서울특별시",
+      "files": [
+        {
+          "name": "(정보공시)2026 서울거여초등학교 학년별 현장체험학습 운영 계획.hwp",
+          "bytes_source": "archive",
+          "sha256": "5290803cf16570be3a98e1fcf2a83c97f7d86ca0079fc26ae5722a6787a33958",
+          "format": "hwp",
+          "bytes": 43520,
+          "text_chars": 504,
+          "clock_blocks": [],
+          "clock_block_count": 0,
+          "clock_first_line": null,
+          "grade1_weekday_periods": [],
+          "clock_heading": null,
+          "status": "no_clock_detected"
+        },
+        {
+          "name": "(정보공시)2026학년도 서울거여초등학교 학교교육과정 편성?운영?평가 계획.hwpx",
+          "bytes_source": "archive",
+          "sha256": "5376cd08f746c8e7a67174113ebd83c3e4f31a53ae3188fdd058ad2f3af39e48",
+          "format": "hwpx",
+          "bytes": 460586,
+          "text_chars": 42780,
+          "clock_blocks": [],
+          "clock_block_count": 0,
+          "clock_first_line": null,
+          "grade1_weekday_periods": [],
+          "clock_heading": null,
+          "status": "no_clock_detected"
+        }
+      ],
+      "status": "no_clock_detected"
+    },
+    {
+      "school_id": "B000002280",
+      "school_name": "서울양전초등학교",
+      "region": "서울특별시",
+      "files": [
+        {
+          "name": "(학교교육과정)2026양전 행복자람 교육과정.pdf",
+          "bytes_source": "archive",
+          "sha256": "f0127854b7aafce7e4ffc00769d9bc00bda8d4f708bd565ce0262b21a4a0efce",
+          "format": "pdf",
+          "bytes": 7153635,
+          "text_chars": 342848,
+          "clock_blocks": [
+            [
+              {
+                "label": "1교시",
+                "start": "09:00",
+                "end": "09:40"
+              },
+              {
+                "label": "쉬는시간",
+                "start": "09:40",
+                "end": "09:50"
+              },
+              {
+                "label": "2교시",
+                "start": "09:50",
+                "end": "10:30"
+              },
+              {
+                "label": "쉬는시간",
+                "start": "10:30",
+                "end": "10:40"
+              },
+              {
+                "label": "3교시",
+                "start": "10:40",
+                "end": "11:20"
+              },
+              {
+                "label": "쉬는시간",
+                "start": "11:20",
+                "end": "11:30"
+              },
+              {
+                "label": "4교시",
+                "start": "11:30",
+                "end": "12:10"
+              },
+              {
+                "label": "점심",
+                "start": "12:10",
+                "end": "12:50"
+              },
+              {
+                "label": "5교시",
+                "start": "12:50",
+                "end": "13:30"
+              },
+              {
+                "label": "쉬는시간",
+                "start": "13:30",
+                "end": "13:40"
+              },
+              {
+                "label": "6교시",
+                "start": "13:40",
+                "end": "14:20"
+              }
+            ]
+          ],
+          "clock_block_count": 1,
+          "clock_first_line": 3058,
+          "grade1_weekday_periods": [],
+          "clock_heading": "시정표   교시 시작 시각 종료 시각 시간 비고 1 교 시 09 : 00",
+          "status": "clock_found"
+        }
+      ],
+      "status": "clock_found"
+    },
+    {
+      "school_id": "B000001871",
+      "school_name": "서울묵현초등학교",
+      "region": "서울특별시",
+      "files": [
+        {
+          "name": "2026학년도 학교교육과정 편성·운영·평가.hwp",
+          "bytes_source": "archive",
+          "sha256": "4231772ab284174af39f5483d1f30edcf89ed6d038aa54717e9114a01e094b93",
+          "format": "hwp",
+          "bytes": 371712,
+          "text_chars": 113472,
+          "clock_blocks": [
+            [
+              {
+                "label": "아침",
+                "start": "08:40",
+                "end": "09:00"
+              },
+              {
+                "label": "아침",
+                "start": "08:40",
+                "end": "09:00"
+              },
+              {
+                "label": "1교시",
+                "start": "09:00",
+                "end": "09:40"
+              },
+              {
+                "label": "1교시",
+                "start": "09:00",
+                "end": "09:40"
+              },
+              {
+                "label": "쉬는시간",
+                "start": "09:40",
+                "end": "09:50"
+              },
+              {
+                "label": "쉬는시간",
+                "start": "09:40",
+                "end": "09:50"
+              },
+              {
+                "label": "2교시",
+                "start": "09:50",
+                "end": "10:30"
+              },
+              {
+                "label": "2교시",
+                "start": "09:50",
+                "end": "10:30"
+              },
+              {
+                "label": "중간놀이",
+                "start": "10:30",
+                "end": "10:50"
+              },
+              {
+                "label": "중간놀이",
+                "start": "10:30",
+                "end": "10:50"
+              },
+              {
+                "label": "3교시",
+                "start": "10:50",
+                "end": "11:30"
+              },
+              {
+                "label": "3교시",
+                "start": "10:50",
+                "end": "11:30"
+              },
+              {
+                "label": "점심",
+                "start": "11:30",
+                "end": "12:10"
+              },
+              {
+                "label": "쉬는시간",
+                "start": "11:30",
+                "end": "11:40"
+              },
+              {
+                "label": "4교시",
+                "start": "11:40",
+                "end": "12:20"
+              },
+              {
+                "label": "4교시",
+                "start": "12:10",
+                "end": "12:50"
+              },
+              {
+                "label": "점심",
+                "start": "12:20",
+                "end": "13:00"
+              },
+              {
+                "label": "쉬는시간",
+                "start": "12:50",
+                "end": "13:00"
+              },
+              {
+                "label": "5교시",
+                "start": "13:00",
+                "end": "13:40"
+              },
+              {
+                "label": "5교시",
+                "start": "13:00",
+                "end": "13:40"
+              },
+              {
+                "label": "쉬는시간",
+                "start": "13:40",
+                "end": "13:50"
+              },
+              {
+                "label": "쉬는시간",
+                "start": "13:40",
+                "end": "13:50"
+              },
+              {
+                "label": "6교시",
+                "start": "13:50",
+                "end": "14:30"
+              },
+              {
+                "label": "6교시",
+                "start": "13:50",
+                "end": "14:30"
+              }
+            ]
+          ],
+          "clock_block_count": 1,
+          "clock_first_line": 354,
+          "grade1_weekday_periods": [],
+          "clock_heading": null,
+          "status": "clock_found"
+        }
+      ],
+      "status": "clock_found"
+    },
+    {
+      "school_id": "B000002329",
+      "school_name": "서울조원초등학교",
+      "region": "서울특별시",
+      "files": [
+        {
+          "name": "(4월정보공시)2026학년도 조원초 학교교육과정 편성·운영·평가 계획.pdf",
+          "bytes_source": "archive",
+          "sha256": "3c38e51c8257dd8d4737e008f1f88462e894e1463fd75f31cee8fa4af31050e1",
+          "format": "pdf",
+          "bytes": 2078728,
+          "text_chars": 116066,
+          "clock_blocks": [
+            [
+              {
+                "label": "1교시",
+                "start": "08:50",
+                "end": "09:30"
+              },
+              {
+                "label": "2교시",
+                "start": "09:40",
+                "end": "10:20"
+              },
+              {
+                "label": "3교시",
+                "start": "10:30",
+                "end": "11:10"
+              },
+              {
+                "label": "4교시",
+                "start": "11:20",
+                "end": "12:00"
+              },
+              {
+                "label": "점심",
+                "start": "12:00",
+                "end": "12:40"
+              },
+              {
+                "label": "5교시",
+                "start": "12:40",
+                "end": "13:20"
+              },
+              {
+                "label": "6교시",
+                "start": "13:30",
+                "end": "14:10"
+              }
+            ]
+          ],
+          "clock_block_count": 1,
+          "clock_first_line": 236,
+          "grade1_weekday_periods": [],
+          "clock_heading": null,
+          "status": "clock_found"
+        }
+      ],
+      "status": "clock_found"
+    },
+    {
+      "school_id": "B000002327",
+      "school_name": "서울신우초등학교",
+      "region": "서울특별시",
+      "files": [
+        {
+          "name": "2026학년도 서울신우초 학교교육과정 편성·운영·평가 계획.hwp",
+          "bytes_source": "archive",
+          "sha256": "1278b8c65c2d8789109cd3675416d3673a8693294fa59941c0bca2573320e765",
+          "format": "hwp",
+          "bytes": 658944,
+          "text_chars": 67806,
+          "clock_blocks": [],
+          "clock_block_count": 0,
+          "clock_first_line": null,
+          "grade1_weekday_periods": [],
+          "clock_heading": null,
+          "status": "no_clock_detected"
+        }
+      ],
+      "status": "no_clock_detected"
+    },
+    {
+      "school_id": "B000002017",
+      "school_name": "서울초당초등학교",
+      "region": "서울특별시",
+      "files": [
+        {
+          "name": "2026학년도 초당초 학교교육과정 편성운영평가 계획.hwp",
+          "bytes_source": "archive",
+          "sha256": "e3b15d63b2deaab49f581ea60646c9638cf6f0b9c2db319b9906992ce4db7adf",
+          "format": "hwp",
+          "bytes": 172032,
+          "text_chars": 32450,
+          "clock_blocks": [
+            [
+              {
+                "label": "등교",
+                "start": "08:40",
+                "end": "09:00"
+              },
+              {
+                "label": "1교시",
+                "start": "09:00",
+                "end": "09:40"
+              },
+              {
+                "label": "2교시",
+                "start": "09:50",
+                "end": "10:30"
+              },
+              {
+                "label": "3교시",
+                "start": "10:40",
+                "end": "11:20"
+              },
+              {
+                "label": "4교시",
+                "start": "11:30",
+                "end": "12:10"
+              },
+              {
+                "label": "점심",
+                "start": "12:10",
+                "end": "12:50"
+              },
+              {
+                "label": "5교시",
+                "start": "12:50",
+                "end": "13:30"
+              },
+              {
+                "label": "6교시",
+                "start": "13:40",
+                "end": "14:20"
+              }
+            ],
+            [
+              {
+                "label": "등교",
+                "start": "08:40",
+                "end": "09:00"
+              },
+              {
+                "label": "1교시",
+                "start": "09:00",
+                "end": "09:40"
+              },
+              {
+                "label": "2교시",
+                "start": "09:40",
+                "end": "10:20"
+              },
+              {
+                "label": "3교시",
+                "start": "10:30",
+                "end": "11:10"
+              },
+              {
+                "label": "4교시",
+                "start": "11:10",
+                "end": "11:50"
+              },
+              {
+                "label": "5교시",
+                "start": "12:00",
+                "end": "12:40"
+              },
+              {
+                "label": "점심",
+                "start": "12:40",
+                "end": "13:10"
+              },
+              {
+                "label": "등교",
+                "start": "08:40",
+                "end": "09:00"
+              },
+              {
+                "label": "1교시",
+                "start": "09:00",
+                "end": "09:40"
+              },
+              {
+                "label": "2교시",
+                "start": "09:40",
+                "end": "10:20"
+              },
+              {
+                "label": "3교시",
+                "start": "10:30",
+                "end": "11:10"
+              },
+              {
+                "label": "4교시",
+                "start": "11:10",
+                "end": "11:50"
+              },
+              {
+                "label": "점심",
+                "start": "12:00",
+                "end": "12:30"
+              },
+              {
+                "label": "5교시",
+                "start": "12:30",
+                "end": "13:10"
+              },
+              {
+                "label": "6교시",
+                "start": "13:10",
+                "end": "13:50"
+              }
+            ]
+          ],
+          "clock_block_count": 2,
+          "clock_first_line": 80,
+          "grade1_weekday_periods": [
+            [
+              4,
+              5,
+              5,
+              5,
+              4
+            ]
+          ],
+          "clock_heading": "시정표  일  과 | 시량(분) | 시  간 | 주  교  육  활  동",
+          "status": "clock_found"
+        }
+      ],
+      "status": "clock_found"
+    },
+    {
+      "school_id": "B000002346",
+      "school_name": "서울신성초등학교",
+      "region": "서울특별시",
+      "files": [
+        {
+          "name": "2026학년도 신성초 학교교육과정 편성운영평가계획.pdf",
+          "bytes_source": "archive",
+          "sha256": "73175dd82873fb612be88249756e92a5401ce3d22dafa2225605f2f8f14be232",
+          "format": "pdf",
+          "bytes": 759337,
+          "text_chars": 62451,
+          "clock_blocks": [],
+          "clock_block_count": 0,
+          "clock_first_line": null,
+          "grade1_weekday_periods": [],
+          "clock_heading": null,
+          "status": "no_clock_detected"
+        }
+      ],
+      "status": "no_clock_detected"
+    },
+    {
+      "school_id": "B000002186",
+      "school_name": "서울신은초등학교",
+      "region": "서울특별시",
+      "files": [
+        {
+          "name": "2026학년도 신은초 학교교육과정 편성·운영·평가 계획.pdf",
+          "bytes_source": "archive",
+          "sha256": "44d20fa898f3d971d349da4d2fe67998b2d03d3ab982d8a6d2126ed5230f51af",
+          "format": "pdf",
+          "bytes": 515083,
+          "text_chars": 17692,
+          "clock_blocks": [],
+          "clock_block_count": 0,
+          "clock_first_line": null,
+          "grade1_weekday_periods": [],
+          "clock_heading": null,
+          "status": "no_clock_detected"
+        }
+      ],
+      "status": "no_clock_detected"
+    }
+  ]
+}

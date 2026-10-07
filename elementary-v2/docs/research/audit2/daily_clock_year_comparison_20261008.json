@@ -1,0 +1,746 @@
+{
+  "schema_version": "daily-clock-year-comparison-v1",
+  "compared": "2025 vs reviewed 2026 grade-1 key times",
+  "no_operational_upload": true,
+  "summary": {
+    "same_key_times": 23,
+    "no_2025_clock_detected": 9,
+    "differs_or_unread": 3
+  },
+  "schools": [
+    {
+      "school_id": "B000002704",
+      "school_name": "반안초",
+      "keys_2026": {
+        "p4_end": "12:10",
+        "lunch_start": "12:10",
+        "lunch_end": "13:00",
+        "p5_end": "13:40"
+      },
+      "files_2025": [
+        {
+          "name": "2025학년도 반안초등학교 학교교육계획(탑재용).hwpx",
+          "sha256": "ce96356ead8d1a9e151077fcd988f387cded9fb1019d491687d0e31d58aacc4b",
+          "format": "hwpx",
+          "clock_rows": 18
+        }
+      ],
+      "missing_2026_times": {},
+      "status": "same_key_times"
+    },
+    {
+      "school_id": "B000002620",
+      "school_name": "양천초",
+      "keys_2026": {
+        "p4_end": "12:10",
+        "lunch_start": "12:10",
+        "lunch_end": "13:00",
+        "p5_end": "13:40"
+      },
+      "files_2025": [
+        {
+          "name": "2025학년도 양천초등학교 학교교육과정 편성 운영 및 평가 계획.hwp",
+          "sha256": "a0817d3376af7a06ba16db32c0f762c984355a4683a718580516de4bb09130d2",
+          "format": "hwp",
+          "clock_rows": 14
+        }
+      ],
+      "missing_2026_times": {},
+      "status": "same_key_times"
+    },
+    {
+      "school_id": "B000002556",
+      "school_name": "명륜초",
+      "keys_2026": {
+        "p4_end": "12:00",
+        "lunch_start": "12:00",
+        "lunch_end": "12:50",
+        "p5_end": "13:30"
+      },
+      "files_2025": [
+        {
+          "name": "학교 교육과정 편성 운영 및 평가에 관한 사항.hwpx",
+          "sha256": "187d2f5f46bc19f881cdd70432e8f9b6dc4578aa04637b0f5e305bc662c51fcd",
+          "format": "hwpx",
+          "clock_rows": 18
+        }
+      ],
+      "missing_2026_times": {},
+      "status": "same_key_times"
+    },
+    {
+      "school_id": "B000002469",
+      "school_name": "서천초",
+      "keys_2026": {
+        "p4_end": "12:10",
+        "lunch_start": "12:10",
+        "lunch_end": "13:00",
+        "p5_end": "13:40"
+      },
+      "files_2025": [
+        {
+          "name": "2025학년도 서천초 학교교육과정 편성 운영 평가 계획.hwp",
+          "sha256": "4a25f0e5fc062211361f933fac2658ed98214049756193e18d6de18e656d1a37",
+          "format": "hwp",
+          "clock_rows": 10
+        }
+      ],
+      "missing_2026_times": {},
+      "status": "same_key_times"
+    },
+    {
+      "school_id": "B000003759",
+      "school_name": "양영초",
+      "keys_2026": {
+        "p4_end": "12:10",
+        "lunch_start": "12:10",
+        "lunch_end": "13:00",
+        "p5_end": "13:40"
+      },
+      "files_2025": [
+        {
+          "name": "2025학년도 양영초 학교교육과정 편성운영 및 평가계획.hwp",
+          "sha256": "eb9cc19cc3e47001e409ab12718222199a029c6630d742df8b7877351d6ba43a",
+          "format": "hwp",
+          "clock_rows": 0
+        }
+      ],
+      "status": "no_2025_clock_detected"
+    },
+    {
+      "school_id": "B000003741",
+      "school_name": "상탑초",
+      "keys_2026": {
+        "p4_end": "12:10",
+        "lunch_start": "12:10",
+        "lunch_end": "13:00",
+        "p5_end": "13:40"
+      },
+      "files_2025": [
+        {
+          "name": "2025 상탑초 학교교육과정0307.hwpx",
+          "sha256": "cb7b2a19d602e99f1135b7e73ff61d133dee82da05dd186b440448ee4a9cdf91",
+          "format": "hwpx",
+          "clock_rows": 7
+        }
+      ],
+      "missing_2026_times": {},
+      "status": "same_key_times"
+    },
+    {
+      "school_id": "B000003744",
+      "school_name": "판교초",
+      "keys_2026": {
+        "p4_end": "12:00",
+        "lunch_start": "12:00",
+        "lunch_end": "12:50",
+        "p5_end": "13:30"
+      },
+      "files_2025": [
+        {
+          "name": "학교교육과정 편성(판교초).hwpx",
+          "sha256": "d32cfa1800a4f96e17942cc1d1c825e88af11f7e6eb4108c76efd44ad3693e33",
+          "format": "hwpx",
+          "clock_rows": 20
+        }
+      ],
+      "missing_2026_times": {},
+      "status": "same_key_times"
+    },
+    {
+      "school_id": "B000003740",
+      "school_name": "안말초",
+      "keys_2026": {
+        "p4_end": "12:10",
+        "lunch_start": "12:10",
+        "lunch_end": "13:00",
+        "p5_end": "13:40"
+      },
+      "files_2025": [
+        {
+          "name": "2025학년도 3,4학년 학교자율시간 운영 계획(안말초).hwpx",
+          "sha256": "c3ad5d0b9b85efa86199b5de0c16e7f16e35b8450c8b3f0d317f45d88ab4a442",
+          "format": "hwpx",
+          "clock_rows": 0
+        },
+        {
+          "name": "2025학년도 안말초 학교 교육과정 (2025.3.5.).hwp",
+          "sha256": "03ca14e090fb070b6bbf4d3167a63eb6faffc539b4f5ea9cc0aa2dbb192f9f2f",
+          "format": "hwp",
+          "clock_rows": 24
+        }
+      ],
+      "missing_2026_times": {},
+      "status": "same_key_times"
+    },
+    {
+      "school_id": "B000024167",
+      "school_name": "성남화랑초",
+      "keys_2026": {
+        "p4_end": "12:10",
+        "lunch_start": "12:10",
+        "lunch_end": "13:00",
+        "p5_end": "13:40"
+      },
+      "files_2025": [
+        {
+          "name": "2025학년도 성남화랑초등학교 학교교육과정_정보공시.pdf",
+          "sha256": "6998a4c58bc46f852d2bc46363a3162338b18920131fc5786e9722d48684f54e",
+          "format": "pdf",
+          "clock_rows": 25
+        }
+      ],
+      "missing_2026_times": {},
+      "status": "same_key_times"
+    },
+    {
+      "school_id": "B000003757",
+      "school_name": "탄천초",
+      "keys_2026": {
+        "p4_end": "12:00",
+        "lunch_start": "12:00",
+        "lunch_end": "12:50",
+        "p5_end": "13:30"
+      },
+      "files_2025": [
+        {
+          "name": "2025학년도 탄천초등학교 학교교육과정 운영 계획(정보공시).hwp",
+          "sha256": "d59339041438696c48ee74c4c4a0b7aee4b123faa10b186afbd7e6a32c1434fc",
+          "format": "hwp",
+          "clock_rows": 10
+        }
+      ],
+      "missing_2026_times": {
+        "p5_end": "13:30"
+      },
+      "status": "differs_or_unread"
+    },
+    {
+      "school_id": "B000003758",
+      "school_name": "서당초",
+      "keys_2026": {
+        "p4_end": "12:50",
+        "lunch_start": "11:20",
+        "lunch_end": "12:10",
+        "p5_end": "13:40"
+      },
+      "files_2025": [
+        {
+          "name": "2025 서당초 학교교육과정 운영 계획_v2..pdf",
+          "sha256": "06e308d2a70adb01aa97d7de2cb7a7d998d108f4ff9bec00ac955047d1c2534d",
+          "format": "pdf",
+          "clock_rows": 48
+        }
+      ],
+      "missing_2026_times": {},
+      "status": "same_key_times"
+    },
+    {
+      "school_id": "B000003747",
+      "school_name": "산운초",
+      "keys_2026": {
+        "p4_end": "12:00",
+        "lunch_start": "12:00",
+        "lunch_end": "12:50",
+        "p5_end": "13:30"
+      },
+      "files_2025": [
+        {
+          "name": "2-가)2025학년도 산운초등학교 교육과정 편성·운영·평가계획.pdf",
+          "sha256": "492bef64e12fdb666aa7edbee41230ac1a251f721000f9a8a11d5b867080ba92",
+          "format": "pdf",
+          "clock_rows": 0
+        }
+      ],
+      "status": "no_2025_clock_detected"
+    },
+    {
+      "school_id": "B000003769",
+      "school_name": "하탑초",
+      "keys_2026": {
+        "p4_end": "12:10",
+        "lunch_start": "12:10",
+        "lunch_end": "13:00",
+        "p5_end": "13:40"
+      },
+      "files_2025": [
+        {
+          "name": "2025학년도 하탑초 학교교육과정.hwp",
+          "sha256": "8b3b3a61dcd00d817be7713dff2be112792293e1b5f3e8eacdbe71f089f8283a",
+          "format": "hwp",
+          "clock_rows": 9
+        }
+      ],
+      "missing_2026_times": {},
+      "status": "same_key_times"
+    },
+    {
+      "school_id": "B000003760",
+      "school_name": "서현초",
+      "keys_2026": {
+        "p4_end": "12:10",
+        "lunch_start": "12:10",
+        "lunch_end": "13:00",
+        "p5_end": "13:40"
+      },
+      "files_2025": [
+        {
+          "name": "2025 서현초등학교 교육과정(수정-정보공시용.).pdf",
+          "sha256": "d7144df86785584452865c62ee45077ee862b10bc489a19e7c279c16ce6ab891",
+          "format": "pdf",
+          "clock_rows": 33
+        }
+      ],
+      "missing_2026_times": {},
+      "status": "same_key_times"
+    },
+    {
+      "school_id": "B000003738",
+      "school_name": "초림초",
+      "keys_2026": {
+        "p4_end": "12:10",
+        "lunch_start": "12:10",
+        "lunch_end": "13:00",
+        "p5_end": "13:40"
+      },
+      "files_2025": [
+        {
+          "name": "2025학년도 초림초등학교 학교교육과정-편성운영평가계획.hwp",
+          "sha256": "a6cd9312431d095d514e5db0a2f6b6fe03fc4eb11d1ba8d015407030328a5238",
+          "format": "hwp",
+          "clock_rows": 0
+        }
+      ],
+      "status": "no_2025_clock_detected"
+    },
+    {
+      "school_id": "B000003770",
+      "school_name": "내정초",
+      "keys_2026": {
+        "p4_end": "12:00",
+        "lunch_start": "12:00",
+        "lunch_end": "12:50",
+        "p5_end": "13:30"
+      },
+      "files_2025": [
+        {
+          "name": "2025학년도 내정초등학교 학교교육과정 편성운영평가 계획.pdf",
+          "sha256": "4b3951a27f2edd8f357d71d81d2cbdea90acfe8d3e8b672cf6b6bda52843f278",
+          "format": "pdf",
+          "clock_rows": 0
+        }
+      ],
+      "status": "no_2025_clock_detected"
+    },
+    {
+      "school_id": "B000003750",
+      "school_name": "오리초",
+      "keys_2026": {
+        "p4_end": "12:10",
+        "lunch_start": "12:10",
+        "lunch_end": "12:50",
+        "p5_end": "13:30"
+      },
+      "files_2025": [
+        {
+          "name": "정보공시-2025 학교교육과정 편성운영 및 평가.pdf",
+          "sha256": "8f51eb41cbfe9b391c5947bc1c25666ee13df821ba403aa289fb7b067d179d78",
+          "format": "pdf",
+          "clock_rows": 18
+        }
+      ],
+      "missing_2026_times": {},
+      "status": "same_key_times"
+    },
+    {
+      "school_id": "B000025256",
+      "school_name": "인천송원초",
+      "keys_2026": {
+        "p4_end": "12:00",
+        "lunch_start": "12:00",
+        "lunch_end": "12:50",
+        "p5_end": "13:30"
+      },
+      "files_2025": [
+        {
+          "name": "학년별 창의적 체험활동 계획.hwp",
+          "sha256": "466d436e2cbdc62a5bbd8916cd714801720f3cef1bcf23f86036b88510384525",
+          "format": "hwp",
+          "clock_rows": 0
+        },
+        {
+          "name": "2025학년도 교육과정 편성표.pdf",
+          "sha256": "4492ce8130dbd0a7db2d3df474f7a37706666f3338cf7002fcd674bd98920b27",
+          "format": "pdf",
+          "clock_rows": 0
+        },
+        {
+          "name": "2025학년도 학교 교육 계획서(홈페이지탑재용).pdf",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "format": "unknown",
+          "clock_rows": 0
+        }
+      ],
+      "status": "no_2025_clock_detected"
+    },
+    {
+      "school_id": "B000024924",
+      "school_name": "인천하늘초",
+      "keys_2026": {
+        "p4_end": "12:50",
+        "lunch_start": "11:20",
+        "lunch_end": "12:00",
+        "p5_end": "13:40"
+      },
+      "files_2025": [
+        {
+          "name": "2025학년도 인천하늘초등학교 학교교육계획서(0306안)고품질.pdf",
+          "sha256": "d959e36bb3fe02512948a4936994deecb0998bd5e2d149f32bc3248693589670",
+          "format": "pdf",
+          "clock_rows": 29
+        }
+      ],
+      "missing_2026_times": {},
+      "status": "same_key_times"
+    },
+    {
+      "school_id": "B000003101",
+      "school_name": "인천인동초",
+      "keys_2026": {
+        "p4_end": "12:00",
+        "lunch_start": "12:00",
+        "lunch_end": "12:50",
+        "p5_end": "13:30"
+      },
+      "files_2025": [
+        {
+          "name": "2025학년도 인천인동초등학교 학교교육과정 편성운영 평가 계획.hwp",
+          "sha256": "bf11c69877d967f1183064cb3d91ee0df7040efe7c8300664fed236e5f15b886",
+          "format": "hwp",
+          "clock_rows": 11
+        }
+      ],
+      "missing_2026_times": {},
+      "status": "same_key_times"
+    },
+    {
+      "school_id": "B000003027",
+      "school_name": "인천부원초",
+      "keys_2026": {
+        "p4_end": "12:10",
+        "lunch_start": "12:10",
+        "lunch_end": "13:00",
+        "p5_end": "13:40"
+      },
+      "files_2025": [
+        {
+          "name": "2025학년도 학사 운영 계획.hwp",
+          "sha256": "cb13515eb003b818213528d6e4ffb818e077bcfb2d40d24f7ee67ab545e8126c",
+          "format": "hwp",
+          "clock_rows": 0
+        },
+        {
+          "name": "2025학년도 부원 학교교육과정 편성 운영 평가 계획.hwp",
+          "sha256": "ac5b070982219eb3fe96e13e67ab724fb09d42a4751bb39c61b5efcc71985021",
+          "format": "hwp",
+          "clock_rows": 0
+        }
+      ],
+      "status": "no_2025_clock_detected"
+    },
+    {
+      "school_id": "B000006819",
+      "school_name": "청산초",
+      "keys_2026": {
+        "p4_end": "12:10",
+        "lunch_start": "12:10",
+        "lunch_end": "13:30",
+        "p5_end": "14:10"
+      },
+      "files_2025": [
+        {
+          "name": "2025. 학교교육계획(청산초 교육계획).pdf",
+          "sha256": "b9f0783ebce77a132035374e540746bd818df02f389bd4cabbb7536c36b382aa",
+          "format": "pdf",
+          "clock_rows": 12
+        }
+      ],
+      "missing_2026_times": {},
+      "status": "same_key_times"
+    },
+    {
+      "school_id": "B000006780",
+      "school_name": "영광중앙초",
+      "keys_2026": {
+        "p4_end": "13:10",
+        "lunch_start": "11:30",
+        "lunch_end": "12:30",
+        "p5_end": "14:00"
+      },
+      "files_2025": [
+        {
+          "name": "2025.교육과정평가.hwp",
+          "sha256": "24e3d270e5598e450f590c608bc79ac6c9499dd1897f4914150aa3bfad93dab3",
+          "format": "hwp",
+          "clock_rows": 0
+        },
+        {
+          "name": "2025.교육과정편성운영.hwp",
+          "sha256": "e2a6419f590ae56ba59cd63a38d6a2acd893c3cc7aeb4b72c5eadd6c3f9a9882",
+          "format": "hwp",
+          "clock_rows": 14
+        }
+      ],
+      "missing_2026_times": {
+        "p4_end": "13:10",
+        "p5_end": "14:00"
+      },
+      "status": "differs_or_unread"
+    },
+    {
+      "school_id": "B000006822",
+      "school_name": "노화북초",
+      "keys_2026": {
+        "p4_end": "12:30",
+        "lunch_start": "12:35",
+        "lunch_end": "13:20",
+        "p5_end": "14:00"
+      },
+      "files_2025": [
+        {
+          "name": "2025학년도 노화북초 학교교육과정 편성·운영·평가 계획.hwp",
+          "sha256": "82c9a1d79899a2fafcbfa5c39511d788cc886ae81436fcf3ddcf9a460c4d2a9f",
+          "format": "hwp",
+          "clock_rows": 0
+        }
+      ],
+      "status": "no_2025_clock_detected"
+    },
+    {
+      "school_id": "B000006546",
+      "school_name": "문평초",
+      "keys_2026": {
+        "p4_end": "12:30",
+        "lunch_start": "12:30",
+        "lunch_end": "13:20",
+        "p5_end": "14:00"
+      },
+      "files_2025": [
+        {
+          "name": "2025학년도 문평초 학교교육과정 편성 운영 평가 계획.hwp",
+          "sha256": "2622dbe96a3e75e27bc7bc3b75ec458509869dfed0c8ba118429bfaede0988de",
+          "format": "hwp",
+          "clock_rows": 0
+        }
+      ],
+      "status": "no_2025_clock_detected"
+    },
+    {
+      "school_id": "B000006872",
+      "school_name": "가거도초",
+      "keys_2026": {
+        "p4_end": "12:20",
+        "lunch_start": "12:20",
+        "lunch_end": "13:10",
+        "p5_end": "13:50"
+      },
+      "files_2025": [
+        {
+          "name": "2025.가거도교육(완)-1.hwp",
+          "sha256": "d612facda8836cc3ecd8ed129d5bbd1ca9e3bc22d15f23b03e2d6905369de571",
+          "format": "hwp",
+          "clock_rows": 11
+        }
+      ],
+      "missing_2026_times": {},
+      "status": "same_key_times"
+    },
+    {
+      "school_id": "B000006702",
+      "school_name": "마량초",
+      "keys_2026": {
+        "p4_end": "12:30",
+        "lunch_start": "12:30",
+        "lunch_end": "13:20",
+        "p5_end": "14:00"
+      },
+      "files_2025": [
+        {
+          "name": "2025학년도 마량초 학교교육과정 편성운영평가 계획.hwp",
+          "sha256": "42913290a4d1861950c552375f49cd0bdef034289b5409958773a0cf2c3f3240",
+          "format": "hwp",
+          "clock_rows": 14
+        }
+      ],
+      "missing_2026_times": {},
+      "status": "same_key_times"
+    },
+    {
+      "school_id": "B000006749",
+      "school_name": "일로동초",
+      "keys_2026": {
+        "p4_end": "12:20",
+        "lunch_start": "12:20",
+        "lunch_end": "13:00",
+        "p5_end": "13:40"
+      },
+      "files_2025": [
+        {
+          "name": "학교교육과정 편성 운영과 평가에 관한 사항.pdf",
+          "sha256": "4404792ea177964aee074a1c57795764609b293fa514f8867c9f14f23fc4c2ff",
+          "format": "pdf",
+          "clock_rows": 0
+        }
+      ],
+      "status": "no_2025_clock_detected"
+    },
+    {
+      "school_id": "B000006755",
+      "school_name": "삼향초",
+      "keys_2026": {
+        "p4_end": "12:20",
+        "lunch_start": "12:20",
+        "lunch_end": "13:10",
+        "p5_end": "13:50"
+      },
+      "files_2025": [
+        {
+          "name": "2025. 삼향초 학교교육과정 편성운영평가 계획.hwpx",
+          "sha256": "b6b6bceca6df7463e198c92d5a2ac5046cc5e41186af0d312cc622d90480631a",
+          "format": "hwpx",
+          "clock_rows": 8
+        }
+      ],
+      "missing_2026_times": {},
+      "status": "same_key_times"
+    },
+    {
+      "school_id": "B000006701",
+      "school_name": "신전초",
+      "keys_2026": {
+        "p4_end": "12:20",
+        "lunch_start": "12:20",
+        "lunch_end": "13:10",
+        "p5_end": "13:50"
+      },
+      "files_2025": [
+        {
+          "name": "2025학년도 신전초 현장체험학습계획.hwp",
+          "sha256": "0b16ab91b0df3148a3741c37ecad703481a94ed801fcca05a907135a7f0a435b",
+          "format": "hwp",
+          "clock_rows": 0
+        },
+        {
+          "name": "2025학년도 신전초 학교교육과정 편성·운영·평가 계획.pdf",
+          "sha256": "d089d20ec20f937ee0d825ec97af4b4a335770431b35173cfbd2ad38a7d0b193",
+          "format": "pdf",
+          "clock_rows": 8
+        }
+      ],
+      "missing_2026_times": {
+        "p5_end": "13:50"
+      },
+      "status": "differs_or_unread"
+    },
+    {
+      "school_id": "B000002211",
+      "school_name": "서울지향초",
+      "keys_2026": {
+        "p4_end": "12:10",
+        "lunch_start": "12:10",
+        "lunch_end": "13:00",
+        "p5_end": "13:40"
+      },
+      "files_2025": [
+        {
+          "name": "2025학년도 학교교육과정 편성 운영에 관한 사항.pdf",
+          "sha256": "8b5704c3b15df132b9526c2a188977327d46797e219ee346eaca6610e3c58e1c",
+          "format": "pdf",
+          "clock_rows": 16
+        }
+      ],
+      "missing_2026_times": {},
+      "status": "same_key_times"
+    },
+    {
+      "school_id": "B000002280",
+      "school_name": "서울양전초",
+      "keys_2026": {
+        "p4_end": "12:10",
+        "lunch_start": "12:10",
+        "lunch_end": "12:50",
+        "p5_end": "13:30"
+      },
+      "files_2025": [
+        {
+          "name": "(학교교육과정)2025양전 행복자람 교육과정.pdf",
+          "sha256": "bd3148c53dc373174d8ec130a83448e6aad03318bcd562ae14594facfe785f8d",
+          "format": "pdf",
+          "clock_rows": 13
+        }
+      ],
+      "missing_2026_times": {},
+      "status": "same_key_times"
+    },
+    {
+      "school_id": "B000001871",
+      "school_name": "서울묵현초",
+      "keys_2026": {
+        "p4_end": "12:50",
+        "lunch_start": "11:30",
+        "lunch_end": "12:10",
+        "p5_end": "13:40"
+      },
+      "files_2025": [
+        {
+          "name": "(묵현초)2025학년도 학교교육과정 편성·운영·평가.hwp",
+          "sha256": "16df754f5de45f5914703097900b49e82b467e5253ff46040c36f3dcb9cc7e77",
+          "format": "hwp",
+          "clock_rows": 24
+        }
+      ],
+      "missing_2026_times": {},
+      "status": "same_key_times"
+    },
+    {
+      "school_id": "B000002329",
+      "school_name": "서울조원초",
+      "keys_2026": {
+        "p4_end": "12:00",
+        "lunch_start": "12:00",
+        "lunch_end": "12:40",
+        "p5_end": "13:20"
+      },
+      "files_2025": [
+        {
+          "name": "(2-가)2025학년도 서울조원초등학교 학교교육과정 편성·운영·평가 계획.pdf",
+          "sha256": "b3f53ac05ccbb73ce2f873933f548de003b50a544ad881cc753a0ee31c0f2ebd",
+          "format": "pdf",
+          "clock_rows": 7
+        }
+      ],
+      "missing_2026_times": {},
+      "status": "same_key_times"
+    },
+    {
+      "school_id": "B000002017",
+      "school_name": "서울초당초",
+      "keys_2026": {
+        "p4_end": "12:10",
+        "lunch_start": "12:10",
+        "lunch_end": "12:50",
+        "p5_end": "13:30"
+      },
+      "files_2025": [
+        {
+          "name": "2025학년도 초당초 학교교육과정 편성운영평가 계획.hwp",
+          "sha256": "1a82ed0ca4b8413240aed5f56b0a11b74e44d4920d2ba4ffacf205b46583acd6",
+          "format": "hwp",
+          "clock_rows": 23
+        }
+      ],
+      "missing_2026_times": {},
+      "status": "same_key_times"
+    }
+  ]
+}

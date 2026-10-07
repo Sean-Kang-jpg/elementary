@@ -1,0 +1,140 @@
+{
+  "schema_version": "document-review-v1",
+  "reviewed_at": "2026-10-06",
+  "reviewed_by": "manual read of archived bytes (pypdf text + page image); no OCR model, no LLM extraction",
+  "pilot_record": "document_attachment_pilot_20261006.json",
+  "no_operational_upload": true,
+  "publish_status": "not_approved",
+  "excluded_fields": "instructor names, staff names and personal phone numbers are present in the sources and deliberately not copied",
+  "evidence_status_vocabulary": {
+    "school-plan": "stated in an official school plan or notice for the stated academic year; not proof of what actually ran",
+    "school-notice-current": "stated in the school's own notice for the term that is running on reviewed_at",
+    "source_conflict": "the source contradicts itself or another source; not usable until a human resolves it",
+    "not_in_document": "the document does not contain the field"
+  },
+  "documents": [
+    {
+      "school_id": "B000003765",
+      "school_name": "한솔초등학교",
+      "post_id": "1911782",
+      "title": "2026학년도 선택형 교육(방과후학교) 운영 계획(안)",
+      "sha256": "2050977760ffc589447f686aebba9c39c94ead2c2d40af92690a9a875298e3b3",
+      "format": "pdf (Hancom PDF from Hwp 2024), 11 pages, text layer present",
+      "pdf_created": "2026-03-20T16:24:39+09:00",
+      "document_academic_year": 2026,
+      "academic_year_basis": "title states 2026학년도; operating period 2026-03-03..2027-02-12; filename carries draft date (2.13)",
+      "document_type": "annual_plan_draft",
+      "currentness": "superseded_in_part",
+      "currentness_basis": "the term-3 notice (post 1952083) lists 4 of the 6 planned courses with different fees",
+      "is_current": false,
+      "target_entry_year_2027_usable": false,
+      "fields": [
+        { "field": "afterschool_term_hours", "value": "13:50-17:00", "page": 2, "evidence_status": "school-plan" },
+        { "field": "afterschool_vacation_hours", "value": "09:00-12:10", "page": 2, "evidence_status": "school-plan" },
+        { "field": "afterschool_block_length_minutes", "value": 90, "page": 1, "evidence_status": "school-plan" },
+        { "field": "afterschool_blocks_term", "value": [{ "slot": "A", "grades": "1-2 (1-3 for 컴퓨터, 음악줄넘기)", "start": "13:50", "end": "15:20" }, { "slot": "B", "grades": "3-6 (4-6 for 컴퓨터, 음악줄넘기)", "start": "15:30", "end": "17:00" }], "page": 3, "evidence_status": "school-plan" },
+        { "field": "term_periods", "value": "1기 03-03..05-22, 2기 05-26..08-21, 3기 08-24..11-13, 4기 11-16..2027-02-12", "page": 1, "evidence_status": "school-plan", "caveat": "the document itself marks this table '예시로 운영 기간은 학교 실정에 맞게 조정 가능함'" },
+        { "field": "regular_class_end_time", "value": null, "evidence_status": "not_in_document" },
+        { "field": "bell_schedule", "value": null, "evidence_status": "not_in_document" }
+      ],
+      "issues": [
+        { "type": "source_conflict", "detail": "컴퓨터 A반 is grades 1-3 in the term table (p3) but 1-2 in the vacation table (p11); room also differs (4층 멀티미디어실 vs 꿈솔마당)" },
+        { "type": "unconfirmed_course", "detail": "음악줄넘기 and 방송댄스 list the instructor as 모집중 (p3, p11)" },
+        { "type": "template_text", "detail": "term-period table is labelled an example (p1)" }
+      ]
+    },
+    {
+      "school_id": "B000003765",
+      "school_name": "한솔초등학교",
+      "post_id": "1952083",
+      "title": "2026학년도 제3기 8/24(월) ~ 11/13(금) 방과후 교육프로그램 수강 신청 안내",
+      "sha256": "945e68bfac842dc8e7368f341d0612d380cf808d3b3b6e15563fcb42405c7979",
+      "format": "png 992x1403 pasted into the post body (no attachment); read visually",
+      "notice_date": "2026-08-14",
+      "post_registered": "2026-09-01",
+      "document_academic_year": 2026,
+      "academic_year_basis": "title states 2026학년도; 8/24(월), 8/19(수), 11/13(금) all fall on the stated weekdays in 2026",
+      "document_type": "term_notice",
+      "currentness": "current_term",
+      "currentness_basis": "term 3 runs 2026-08-24..2026-11-13 and reviewed_at 2026-10-06 is inside it",
+      "is_current": true,
+      "target_entry_year_2027_usable": false,
+      "fields": [
+        { "field": "courses_open", "value": [{ "course": "과학실험", "day": "월" }, { "course": "컴퓨터", "day": "화" }, { "course": "미술", "day": "수" }, { "course": "생활체육", "day": "목" }], "evidence_status": "school-notice-current" },
+        { "field": "afterschool_blocks", "value": [{ "slot": "A", "grades": "1-2", "start": "13:50", "end": "15:20", "days": ["월", "수", "목"] }, { "slot": "B", "grades": "3-6", "start": "15:30", "end": "17:00", "days": ["월", "화", "수", "목"] }], "evidence_status": "school-notice-current" },
+        { "field": "afterschool_block_tue_A", "value": "15:30-15:20 as printed", "evidence_status": "source_conflict", "caveat": "end precedes start; the other three days read 13:50-15:20, but the value is not corrected automatically" },
+        { "field": "friday_courses", "value": [], "evidence_status": "school-notice-current", "caveat": "the annual plan listed two Friday courses" },
+        { "field": "min_enrolment_to_run", "value": 5, "evidence_status": "school-notice-current" },
+        { "field": "regular_class_end_time", "value": null, "evidence_status": "not_in_document" }
+      ],
+      "plan_vs_notice_diff": [
+        "Friday 음악줄넘기 and 방송댄스 are absent",
+        "과학실험 fee 96,000 -> 88,000 and material 60,000 -> 55,000",
+        "생활체육 fee 96,000 -> 88,000",
+        "컴퓨터 A반 grades 1-3 -> 1-2; material 교재 개별 구입 -> 12,600"
+      ]
+    },
+    {
+      "school_id": "B000003765",
+      "school_name": "한솔초등학교",
+      "post_id": "1959114",
+      "title": "10월 돌봄교실 학습 안내",
+      "sha256": "af8b5208ad15c8c39a05043abe4631c6d990556b1a2308e8a6042552738d94de",
+      "format": "pdf (Hancom PDF from Hwp 2024), 1 page, text layer present",
+      "pdf_created": "2026-09-30T18:22:12+09:00",
+      "document_academic_year": 2026,
+      "academic_year_basis": "attachment filename 2026학년도; body dates 10/1(목), 10/26(월), 10/30(금) match 2026 weekdays; the body itself never prints the year",
+      "document_type": "monthly_care_notice",
+      "currentness": "current_month",
+      "is_current": true,
+      "target_entry_year_2027_usable": false,
+      "fields": [
+        { "field": "care_day_blocks", "value": [{ "start": null, "end": "13:00", "activity": "방과후 도착, 인원·건강 확인" }, { "start": "13:00", "end": "14:00", "activity": "인성교육/독서" }, { "start": "14:00", "end": "14:50", "activity": "외부강사 특기적성" }, { "start": "14:50", "end": "15:10", "activity": "간식·휴식" }, { "start": "15:10", "end": "16:30", "activity": "학년별 학습" }, { "start": "16:30", "end": "19:00", "activity": "자유 선택 활동, 보호자 동행 귀가" }], "evidence_status": "school-notice-current" },
+        { "field": "care_end_time", "value": "19:00", "evidence_status": "school-notice-current" },
+        { "field": "care_target_grades", "value": "1-3 (학습 블록이 1학년, 2·3학년을 나눔)", "evidence_status": "school-notice-current" },
+        { "field": "regular_class_end_time", "value": null, "evidence_status": "not_in_document", "caveat": "the first block starts at '방과후', i.e. whenever class ends; it does not say when that is" }
+      ]
+    },
+    {
+      "school_id": "B000003759",
+      "school_name": "양영초등학교",
+      "post_id": "1918506",
+      "title": "2026학년도 방과후・돌봄 운영 계획(안)",
+      "sha256": "bd4e12a357cce2fa59e4c96ca45715795a78bf3bacf37e109442977728f8aa8f",
+      "format": "pdf (Hancom PDF from Hwp 2022), 18 pages, text layer present",
+      "pdf_created": "2026-04-09T13:34:38+09:00",
+      "document_academic_year": 2026,
+      "academic_year_basis": "title states 2026학년도; all 15 weekday-labelled dates on p4 match 2026/2027 weekdays",
+      "document_type": "annual_plan_draft",
+      "currentness": "plan_with_post_enrolment_update",
+      "currentness_basis": "p2 records that 5 of 10 courses were closed after March enrolment; no later term notice was collected",
+      "is_current": null,
+      "target_entry_year_2027_usable": false,
+      "fields": [
+        { "field": "afterschool_term_hours", "value": "13:00-16:40", "page": 4, "evidence_status": "school-plan" },
+        { "field": "afterschool_vacation_hours", "value": "09:30-12:30 (협의 조정 가능)", "page": 4, "evidence_status": "school-plan" },
+        { "field": "afterschool_blocks", "value": [{ "days": ["월", "화", "목", "금"], "A": "13:50-15:10", "B": "15:15-16:35" }, { "days": ["수"], "A": "13:00-14:20", "B": "14:25-15:45" }], "page": 5, "evidence_status": "school-plan", "caveat": "A/B are not tied to grades in this document" },
+        { "field": "courses_running", "value": ["컴퓨터(월)", "컴퓨터(목)", "생명과학(화)", "디지털애니&웹툰(수)", "탁구(금)"], "page": 5, "evidence_status": "school-plan" },
+        { "field": "care_term_hours", "value": "12:30-19:00", "page": 9, "evidence_status": "school-plan" },
+        { "field": "care_vacation_hours", "value": "09:00-15:30", "page": 9, "evidence_status": "school-plan" },
+        { "field": "care_closed", "value": ["2026-08-03..2026-08-07", "2027-02-01..2027-02-05"], "page": 9, "evidence_status": "school-plan" },
+        { "field": "care_capacity", "value": "1학급 20명, 1-2학년", "page": 9, "evidence_status": "school-plan" },
+        { "field": "care_day_blocks", "value": [{ "start": "12:30", "end": "14:00" }, { "start": "14:00", "end": "15:30" }, { "start": "15:30", "end": "16:00" }, { "start": "16:00", "end": "16:30" }, { "start": "16:30", "end": "17:00" }, { "start": "17:00", "end": "19:00" }], "page": 10, "evidence_status": "school-plan" },
+        { "field": "lesson_unit_minutes", "value": 40, "page": 2, "evidence_status": "school-plan", "caveat": "stated as the afterschool unit 'like the regular curriculum'; not a bell schedule" },
+        { "field": "grade1_2_customised_program", "value": "매일 2차시 무상 맞춤형", "page": 1, "evidence_status": "school-plan", "caveat": "no times given" },
+        { "field": "regular_class_end_time", "value": null, "evidence_status": "not_in_document" }
+      ],
+      "issues": [
+        { "type": "source_conflict", "detail": "3기 period printed as '2025년 8월 17일 ~ 2026년 11월 06일'; 2025-08-17 is a Sunday and 8.17 is also listed as a 2026 대체공휴일 미운영일" },
+        { "type": "source_conflict", "detail": "1학기 ends 7.27 in the 세부 추진 table, while 2기 runs to 8.14 with only 7.27-7.31 off" },
+        { "type": "closed_courses", "detail": "요리교실, 음악줄넘기, 3D펜, 로봇과학, 바둑체스 marked 폐강" }
+      ]
+    }
+  ],
+  "conclusions": {
+    "attachments_obtainable": "yes for both development schools: 3 PDFs + 1 body image, public GET, same bytes on two fetches 2026-10-06",
+    "academic_year_determinable": "yes, 2026 for all four, from title or weekday consistency; none is a 2027 document",
+    "regular_school_day_times": "not found in any of the four documents; bell schedule and 하교 time remain unknown for both schools",
+    "derived_upper_bounds_not_promoted": "afterschool/care start times (한솔 13:50 A-slot, 양영 care 12:30) bound the end of class for some days but are not recorded as a 하교 time"
+  }
+}

@@ -16,6 +16,7 @@ import ShareButton from '../ui/ShareButton'
 import DataFreshness from '../ui/DataFreshness'
 import StartModule from '../content/StartModule'
 import SchoolCarePanel from '../care/SchoolCarePanel'
+import SchoolDayEstimateCard from './SchoolDayEstimateCard'
 import NearbySchools from './NearbySchools'
 import CareCenterList from '../care/CareCenterList'
 import { markEntry, track } from '../../utils/analytics'
@@ -314,6 +315,8 @@ const SchoolDetail: React.FC<SchoolDetailProps> = ({ school, isOpen, onClose, on
           </section>
 
           <StartModule school={school} onOpenGuide={onOpenGuide} />
+
+          <SchoolDayEstimateCard school={school} />
 
           <SchoolCarePanel school={school} onOpenGuide={onOpenGuide} />
 

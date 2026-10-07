@@ -1,0 +1,17 @@
+{
+  "captured_date": "2026-10-06",
+  "project_id": "vsgeksumgvcrkzjwvlgs",
+  "source": "GET /auth/v1/settings with public anon key; safe boolean subset only",
+  "status": "ok",
+  "external": {
+    "anonymous_users": false,
+    "google": false,
+    "kakao": false,
+    "email": true,
+    "phone": false
+  },
+  "disable_signup": false,
+  "mailer_autoconfirm": false,
+  "phone_autoconfirm": false,
+  "unknown": ["site_url", "redirect_allow_list", "manual_identity_linking", "OAuth client/secret configuration", "real callback and account-linking behaviour"]
+}

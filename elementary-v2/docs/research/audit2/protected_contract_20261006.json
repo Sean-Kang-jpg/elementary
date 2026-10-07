@@ -1,0 +1,334 @@
+{
+  "captured_date": "2026-10-06",
+  "origin": "https://wherecho.co.kr",
+  "scope": "minimum compatibility baseline; synthetic in-memory storage only; QA samples are existing records not newly reviewed",
+  "routes": [
+    {
+      "path": "/",
+      "expected": {
+        "kind": "home"
+      }
+    },
+    {
+      "path": "/map",
+      "expected": {
+        "kind": "map"
+      }
+    },
+    {
+      "path": "/my",
+      "expected": {
+        "kind": "my"
+      }
+    },
+    {
+      "path": "/favorites",
+      "expected": {
+        "kind": "my"
+      }
+    },
+    {
+      "path": "/guide",
+      "expected": {
+        "kind": "guide",
+        "slug": null
+      }
+    },
+    {
+      "path": "/guide/school-notice",
+      "expected": {
+        "kind": "guide",
+        "slug": "school-notice"
+      }
+    },
+    {
+      "path": "/faq",
+      "expected": {
+        "kind": "faq"
+      }
+    },
+    {
+      "path": "/checklist",
+      "expected": {
+        "kind": "checklist"
+      }
+    },
+    {
+      "path": "/news",
+      "expected": {
+        "kind": "news"
+      }
+    },
+    {
+      "path": "/privacy",
+      "expected": {
+        "kind": "privacy"
+      }
+    },
+    {
+      "path": "/admin/etl",
+      "expected": {
+        "kind": "admin"
+      }
+    },
+    {
+      "path": "/",
+      "search": "?view=etl",
+      "expected": {
+        "kind": "admin"
+      }
+    },
+    {
+      "path": "/school/decorative--b000002292",
+      "expected": {
+        "kind": "school",
+        "key": "B000002292"
+      }
+    },
+    {
+      "path": "/apt/decorative--7a2emr5j",
+      "expected": {
+        "kind": "apartment",
+        "key": "7A2EMR5J"
+      }
+    },
+    {
+      "path": "/apt/decorative--INVALIDI",
+      "expected": {
+        "kind": "home"
+      }
+    },
+    {
+      "path": "/school/%E0%A4%A",
+      "expected": {
+        "kind": "home"
+      }
+    }
+  ],
+  "storage": {
+    "profile_key": "wherecho:profile-v1",
+    "checklist_key": "wherecho:checklist-v1",
+    "read_guides_key": "wherecho:read-guides-v1",
+    "favorites_key": "elementary-favorites-v1",
+    "legacy_school_ids_key": "favorite-school-ids",
+    "profile": {
+      "entryYear": 2027,
+      "interest": [
+        "public",
+        "private"
+      ],
+      "moving": "planned"
+    },
+    "favorites": [
+      {
+        "kind": "school",
+        "id": "B000002292",
+        "name": "학교 fixture",
+        "address": "",
+        "latitude": 0,
+        "longitude": 0
+      },
+      {
+        "kind": "apartment",
+        "id": "internal-complex-fixture",
+        "name": "단지 fixture",
+        "address": "",
+        "latitude": 0,
+        "longitude": 0,
+        "schoolId": "B000002292",
+        "schoolName": "학교 fixture",
+        "households": 100,
+        "publicKey": "7A2EMR5J"
+      }
+    ]
+  },
+  "checklist_ids": [
+    "admin-notice",
+    "admin-call",
+    "admin-homepage",
+    "admin-documents",
+    "care-program",
+    "care-apply",
+    "care-afterschool",
+    "life-route",
+    "life-after",
+    "life-contact",
+    "items-bag",
+    "items-shoes",
+    "items-pencil",
+    "items-bottle",
+    "items-umbrella",
+    "items-names",
+    "items-desk"
+  ],
+  "guide_slugs": [
+    "care-afterschool",
+    "check-school-zone",
+    "compare-schools",
+    "move-after-call",
+    "move-after-notice",
+    "move-before-notice",
+    "preliminary-call",
+    "private-national",
+    "school-notice",
+    "when-to-move"
+  ],
+  "qa": {
+    "source": "docs/operations/MANUAL_QA_REVIEW.html",
+    "total_rows": 912,
+    "scopes": [
+      "c10",
+      "d10",
+      "f10",
+      "g10",
+      "h10",
+      "i10",
+      "k10",
+      "m10",
+      "n10",
+      "p10",
+      "q10",
+      "q10-partial",
+      "r10",
+      "s10",
+      "t10"
+    ],
+    "samples": [
+      {
+        "scope_slug": "c10",
+        "scope_label": "부산광역시",
+        "apt_cd": "APT2671031400400009000001",
+        "sample_number": "1",
+        "complex_name": "EGthe12차",
+        "assigned_schools": "모전초등학교",
+        "row_type": "sample"
+      },
+      {
+        "scope_slug": "d10",
+        "scope_label": "대구광역시",
+        "apt_cd": "APT2729030070130132000001",
+        "sample_number": "1",
+        "complex_name": "대금로얄",
+        "assigned_schools": "대구월배초등학교",
+        "row_type": "sample"
+      },
+      {
+        "scope_slug": "f10",
+        "scope_label": "광주광역시",
+        "apt_cd": "APT2911042771480016000001",
+        "sample_number": "1",
+        "complex_name": "NK 아이리스 1차",
+        "assigned_schools": "광주남초등학교",
+        "row_type": "sample"
+      },
+      {
+        "scope_slug": "g10",
+        "scope_label": "대전광역시",
+        "apt_cd": "APT3020031670150151000001",
+        "sample_number": "1",
+        "complex_name": "가나파로스빌2차",
+        "assigned_schools": "대전상지초등학교",
+        "row_type": "sample"
+      },
+      {
+        "scope_slug": "h10",
+        "scope_label": "울산광역시",
+        "apt_cd": "APT3117020110010497000001",
+        "sample_number": "1",
+        "complex_name": "강산드림빌",
+        "assigned_schools": "화진초등학교",
+        "row_type": "sample"
+      },
+      {
+        "scope_slug": "i10",
+        "scope_label": "세종특별자치시",
+        "apt_cd": "APT3611032581080322000001",
+        "sample_number": "1",
+        "complex_name": "가락마을 22단지 아파트",
+        "assigned_schools": "두루초등학교",
+        "row_type": "sample"
+      },
+      {
+        "scope_slug": "k10",
+        "scope_label": "강원특별자치도",
+        "apt_cd": "APT5123020000234122002701",
+        "sample_number": "1",
+        "complex_name": "강부2차아파트",
+        "assigned_schools": "삼척초등학교",
+        "row_type": "sample"
+      },
+      {
+        "scope_slug": "m10",
+        "scope_label": "충청북도",
+        "apt_cd": "APT4311332370020158000001",
+        "sample_number": "1",
+        "complex_name": "가경형석1차아파트",
+        "assigned_schools": "풍광초등학교",
+        "row_type": "sample"
+      },
+      {
+        "scope_slug": "n10",
+        "scope_label": "충청남도",
+        "apt_cd": "APT4413345502780011000001",
+        "sample_number": "1",
+        "complex_name": "경동",
+        "assigned_schools": "천안일봉초등학교",
+        "row_type": "sample"
+      },
+      {
+        "scope_slug": "p10",
+        "scope_label": "전북특별자치도",
+        "apt_cd": "APT5213046046750014000001",
+        "sample_number": "1",
+        "complex_name": "금호1차",
+        "assigned_schools": "군산나운초등학교",
+        "row_type": "sample"
+      },
+      {
+        "scope_slug": "q10",
+        "scope_label": "전라남도",
+        "apt_cd": "APT4623032850410273000001",
+        "sample_number": "1",
+        "complex_name": "광양마동 영무예다음 아파트",
+        "assigned_schools": "광양중앙초등학교",
+        "row_type": "sample"
+      },
+      {
+        "scope_slug": "q10-partial",
+        "scope_label": "전라남도 / 목포시",
+        "apt_cd": "APT4611032810320268000301",
+        "sample_number": "1",
+        "complex_name": "근화그린",
+        "assigned_schools": "목포동초등학교",
+        "row_type": "sample"
+      },
+      {
+        "scope_slug": "r10",
+        "scope_label": "경상북도",
+        "apt_cd": "APT4729033130040271000001",
+        "sample_number": "1",
+        "complex_name": "경산세광아파트",
+        "assigned_schools": "정평초등학교",
+        "row_type": "sample"
+      },
+      {
+        "scope_slug": "s10",
+        "scope_label": "경상남도",
+        "apt_cd": "APT4831048116330023000001",
+        "sample_number": "1",
+        "complex_name": "대한1차아파트",
+        "assigned_schools": "장평초등학교",
+        "row_type": "sample"
+      },
+      {
+        "scope_slug": "t10",
+        "scope_label": "제주특별자치도",
+        "apt_cd": "APT5011048482560016000201",
+        "sample_number": "1",
+        "complex_name": "가나 휘닉스 Ⅱ",
+        "assigned_schools": "한라초등학교",
+        "row_type": "sample"
+      }
+    ]
+  }
+}

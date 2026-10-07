@@ -1,0 +1,152 @@
+{
+  "captured_at": "2026-10-06T11:54:08.734Z",
+  "denominator": 60,
+  "verified": 47,
+  "pending": 13,
+  "rule_version": "exact-name-road-v1",
+  "holds": [
+    {
+      "school_id": "B000024924",
+      "school_name": "인천하늘초등학교",
+      "source_road_address": "인천광역시 중구 은하수로 294",
+      "neis_candidate_road_address": [
+        "인천광역시 영종구 은하수로 294"
+      ],
+      "status": "hold_address_mismatch",
+      "decision": "not_approved",
+      "required_evidence": "Verify administrative-name/address revision independently; no fuzzy name-only acceptance; do not change operational master."
+    },
+    {
+      "school_id": "B000003155",
+      "school_name": "인천목향초등학교",
+      "source_road_address": "인천광역시 서구 고산후로 377",
+      "neis_candidate_road_address": [
+        "인천광역시 검단구 고산후로 377"
+      ],
+      "status": "hold_address_mismatch",
+      "decision": "not_approved",
+      "required_evidence": "Verify administrative-name/address revision independently; no fuzzy name-only acceptance; do not change operational master."
+    },
+    {
+      "school_id": "B000002957",
+      "school_name": "인천공항초등학교",
+      "source_road_address": "인천광역시 중구 신도시남로 43",
+      "neis_candidate_road_address": [
+        "인천광역시 영종구 신도시남로 43"
+      ],
+      "status": "hold_address_mismatch",
+      "decision": "not_approved",
+      "required_evidence": "Verify administrative-name/address revision independently; no fuzzy name-only acceptance; do not change operational master."
+    },
+    {
+      "school_id": "B000006819",
+      "school_name": "청산초등학교",
+      "source_road_address": "전라남도 완도군 청산면 청산로 1602-1",
+      "neis_candidate_road_address": [
+        "전남광주통합특별시 완도군 청산면 청산로 1602-1"
+      ],
+      "status": "hold_address_mismatch",
+      "decision": "not_approved",
+      "required_evidence": "Verify administrative-name/address revision independently; no fuzzy name-only acceptance; do not change operational master."
+    },
+    {
+      "school_id": "B000006780",
+      "school_name": "영광중앙초등학교",
+      "source_road_address": "전라남도 영광군 영광읍 천년로13길 57-9",
+      "neis_candidate_road_address": [
+        "전남광주통합특별시 영광군 영광읍 천년로13길 57-9"
+      ],
+      "status": "hold_address_mismatch",
+      "decision": "not_approved",
+      "required_evidence": "Verify administrative-name/address revision independently; no fuzzy name-only acceptance; do not change operational master."
+    },
+    {
+      "school_id": "B000006822",
+      "school_name": "노화북초등학교",
+      "source_road_address": "전라남도 완도군 노화읍 신목길 102",
+      "neis_candidate_road_address": [
+        "전남광주통합특별시 완도군 노화읍 신목길 102"
+      ],
+      "status": "hold_address_mismatch",
+      "decision": "not_approved",
+      "required_evidence": "Verify administrative-name/address revision independently; no fuzzy name-only acceptance; do not change operational master."
+    },
+    {
+      "school_id": "B000006546",
+      "school_name": "문평초등학교",
+      "source_road_address": "전라남도 나주시 문평면 문평로 15",
+      "neis_candidate_road_address": [
+        "전남광주통합특별시 나주시 문평면 문평로 15"
+      ],
+      "status": "hold_address_mismatch",
+      "decision": "not_approved",
+      "required_evidence": "Verify administrative-name/address revision independently; no fuzzy name-only acceptance; do not change operational master."
+    },
+    {
+      "school_id": "B000006872",
+      "school_name": "가거도초등학교",
+      "source_road_address": "전라남도 신안군 흑산면 가거도길 18-31",
+      "neis_candidate_road_address": [
+        "전남광주통합특별시 신안군 흑산면 가거도길 18-31"
+      ],
+      "status": "hold_address_mismatch",
+      "decision": "not_approved",
+      "required_evidence": "Verify administrative-name/address revision independently; no fuzzy name-only acceptance; do not change operational master."
+    },
+    {
+      "school_id": "B000006457",
+      "school_name": "소라초등학교소라남분교장",
+      "source_road_address": "전라남도 여수시 소라면 중촌1길 11",
+      "neis_candidate_road_address": [
+        "전남광주통합특별시 여수시 소라면 중촌1길 11"
+      ],
+      "status": "hold_address_mismatch",
+      "decision": "not_approved",
+      "required_evidence": "Verify administrative-name/address revision independently; no fuzzy name-only acceptance; do not change operational master."
+    },
+    {
+      "school_id": "B000006702",
+      "school_name": "마량초등학교",
+      "source_road_address": "전라남도 강진군 마량면 서중길 42",
+      "neis_candidate_road_address": [
+        "전남광주통합특별시 강진군 마량면 서중길 42"
+      ],
+      "status": "hold_address_mismatch",
+      "decision": "not_approved",
+      "required_evidence": "Verify administrative-name/address revision independently; no fuzzy name-only acceptance; do not change operational master."
+    },
+    {
+      "school_id": "B000006749",
+      "school_name": "일로동초등학교",
+      "source_road_address": "전라남도 무안군 일로읍 광암길 81-7",
+      "neis_candidate_road_address": [
+        "전남광주통합특별시 무안군 일로읍 광암길 81-7"
+      ],
+      "status": "hold_address_mismatch",
+      "decision": "not_approved",
+      "required_evidence": "Verify administrative-name/address revision independently; no fuzzy name-only acceptance; do not change operational master."
+    },
+    {
+      "school_id": "B000006755",
+      "school_name": "삼향초등학교",
+      "source_road_address": "전라남도 무안군 삼향읍 삼향중앙로 84",
+      "neis_candidate_road_address": [
+        "전남광주통합특별시 무안군 삼향읍 삼향중앙로 84"
+      ],
+      "status": "hold_address_mismatch",
+      "decision": "not_approved",
+      "required_evidence": "Verify administrative-name/address revision independently; no fuzzy name-only acceptance; do not change operational master."
+    },
+    {
+      "school_id": "B000006701",
+      "school_name": "신전초등학교",
+      "source_road_address": "전라남도 강진군 신전면 백도로 1341",
+      "neis_candidate_road_address": [
+        "전남광주통합특별시 강진군 신전면 백도로 1341"
+      ],
+      "status": "hold_address_mismatch",
+      "decision": "not_approved",
+      "required_evidence": "Verify administrative-name/address revision independently; no fuzzy name-only acceptance; do not change operational master."
+    }
+  ]
+}

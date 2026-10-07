@@ -1,0 +1,145 @@
+{
+  "schema_version": "document-pilot-v1",
+  "checked_at": "2026-10-06T14:13:14.772Z",
+  "school_count": 2,
+  "post_count": 4,
+  "no_operational_upload": true,
+  "results": [
+    {
+      "school_id": "B000003765",
+      "kind": "afterschool_plan",
+      "post_id": "1911782",
+      "source_id": "B000003765-afterschool_plan",
+      "post_url": "https://hs-e.goesn.kr/hs-e/na/ntt/selectNttInfo.do?mi=15066&bbsId=12782&nttSn=1911782",
+      "post_title": "2026학년도 방과후학교 운영 계획안",
+      "last_checked": "2026-10-06T14:13:13.433Z",
+      "currentness": "unknown",
+      "is_current": null,
+      "target_entry_year": 2027,
+      "document_academic_year": null,
+      "publish_status": "not_approved",
+      "attachments": [
+        {
+          "url": "https://hs-e.goesn.kr/dext5editordata/2026/03/20260320_162545680_96598.pdf",
+          "title": "2026학년도 방과후학교 운영계획(안)(2.13).pdf",
+          "status": "bytes_archived_not_reviewed",
+          "currentness": "unknown",
+          "is_current": null,
+          "document_academic_year": null,
+          "evidence_state": "not_reviewed",
+          "bytes": 200163,
+          "content_type": "application/pdf",
+          "magic_format": "pdf",
+          "sha256": "2050977760ffc589447f686aebba9c39c94ead2c2d40af92690a9a875298e3b3",
+          "version_id": "2050977760ffc589447f686aebba9c39c94ead2c2d40af92690a9a875298e3b3",
+          "archive_path": "etl/runtime/audit2-documents/2050977760ffc589447f686aebba9c39c94ead2c2d40af92690a9a875298e3b3.pdf"
+        }
+      ],
+      "post_response_sha256": "6126b2e6fbe62789e8db6971517f1a559d28669d33f31a86af9d8f0bf3ab60af",
+      "post_snapshot_path": "etl/runtime/audit2-documents/6126b2e6fbe62789e8db6971517f1a559d28669d33f31a86af9d8f0bf3ab60af.html",
+      "status": "attachment_links_found"
+    },
+    {
+      "school_id": "B000003765",
+      "kind": "afterschool_plan",
+      "post_id": "1952083",
+      "source_id": "B000003765-afterschool_plan",
+      "post_url": "https://hs-e.goesn.kr/hs-e/na/ntt/selectNttInfo.do?mi=15066&bbsId=12782&nttSn=1952083",
+      "post_title": "2026학년도 제3기 방과후 교육프로그램 수강 신청 가정통신문",
+      "last_checked": "2026-10-06T14:13:13.912Z",
+      "currentness": "unknown",
+      "is_current": null,
+      "target_entry_year": 2027,
+      "document_academic_year": null,
+      "publish_status": "not_approved",
+      "attachments": [
+        {
+          "title": "2026학년도 제3기 수강 신청 가정통신문001",
+          "url": "https://hs-e.goesn.kr/dext5editordata/2026/09/20260901_153626466_04651.png",
+          "status": "bytes_archived_not_reviewed",
+          "currentness": "unknown",
+          "is_current": null,
+          "document_academic_year": null,
+          "evidence_state": "not_reviewed",
+          "bytes": 125785,
+          "content_type": "image/png",
+          "magic_format": "png",
+          "sha256": "945e68bfac842dc8e7368f341d0612d380cf808d3b3b6e15563fcb42405c7979",
+          "version_id": "945e68bfac842dc8e7368f341d0612d380cf808d3b3b6e15563fcb42405c7979",
+          "archive_path": "etl/runtime/audit2-documents/945e68bfac842dc8e7368f341d0612d380cf808d3b3b6e15563fcb42405c7979.png"
+        }
+      ],
+      "post_response_sha256": "4e8b773ba9d0e7b075fd60419878a24b31fe384b067c429b003f1a5bd68f4427",
+      "post_snapshot_path": "etl/runtime/audit2-documents/4e8b773ba9d0e7b075fd60419878a24b31fe384b067c429b003f1a5bd68f4427.html",
+      "status": "body_images_found"
+    },
+    {
+      "school_id": "B000003765",
+      "kind": "care_plan",
+      "post_id": "1959114",
+      "source_id": "B000003765-care_plan",
+      "post_url": "https://hs-e.goesn.kr/hs-e/na/ntt/selectNttInfo.do?mi=15079&bbsId=12790&nttSn=1959114",
+      "post_title": "돌봄교실 10월 월간학습 안내",
+      "last_checked": "2026-10-06T14:13:14.121Z",
+      "currentness": "unknown",
+      "is_current": null,
+      "target_entry_year": 2027,
+      "document_academic_year": null,
+      "publish_status": "not_approved",
+      "attachments": [
+        {
+          "title": "2026학년도 10월 돌봄교실 학습 안내.pdf",
+          "url": "https://hs-e.goesn.kr/upload/hs-e/na/bbs_12790/2026/09/880A03BE-5088-6480-FA9A-4139956BD14B.pdf",
+          "status": "bytes_archived_not_reviewed",
+          "currentness": "unknown",
+          "is_current": null,
+          "document_academic_year": null,
+          "evidence_state": "not_reviewed",
+          "bytes": 60095,
+          "content_type": "application/pdf",
+          "magic_format": "pdf",
+          "sha256": "af8b5208ad15c8c39a05043abe4631c6d990556b1a2308e8a6042552738d94de",
+          "version_id": "af8b5208ad15c8c39a05043abe4631c6d990556b1a2308e8a6042552738d94de",
+          "archive_path": "etl/runtime/audit2-documents/af8b5208ad15c8c39a05043abe4631c6d990556b1a2308e8a6042552738d94de.pdf"
+        }
+      ],
+      "post_response_sha256": "cb73cf7cb7f178cb8a3681a9618ef8eb6f0c5be779a786b4fe6a3c330d84e346",
+      "post_snapshot_path": "etl/runtime/audit2-documents/cb73cf7cb7f178cb8a3681a9618ef8eb6f0c5be779a786b4fe6a3c330d84e346.html",
+      "status": "attachment_links_found"
+    },
+    {
+      "school_id": "B000003759",
+      "kind": "afterschool_plan",
+      "post_id": "1918506",
+      "source_id": "B000003759-afterschool_plan",
+      "post_url": "https://yy-e.goesn.kr/yy-e/na/ntt/selectNttInfo.do?mi=15932&bbsId=13266&nttSn=1918506",
+      "post_title": "2026학년도 방과후・돌봄 운영 계획",
+      "last_checked": "2026-10-06T14:13:14.332Z",
+      "currentness": "unknown",
+      "is_current": null,
+      "target_entry_year": 2027,
+      "document_academic_year": null,
+      "publish_status": "not_approved",
+      "attachments": [
+        {
+          "title": "2026학년도 양영초 방과후돌봄 운영 계획(안).pdf",
+          "url": "https://yy-e.goesn.kr/upload/yy-e/na/bbs_13266/2026/04/C4F89DE1-CB15-4453-2DE3-D64D6310DB4B.pdf",
+          "status": "bytes_archived_not_reviewed",
+          "currentness": "unknown",
+          "is_current": null,
+          "document_academic_year": null,
+          "evidence_state": "not_reviewed",
+          "bytes": 528834,
+          "content_type": "application/pdf",
+          "magic_format": "pdf",
+          "sha256": "bd4e12a357cce2fa59e4c96ca45715795a78bf3bacf37e109442977728f8aa8f",
+          "version_id": "bd4e12a357cce2fa59e4c96ca45715795a78bf3bacf37e109442977728f8aa8f",
+          "archive_path": "etl/runtime/audit2-documents/bd4e12a357cce2fa59e4c96ca45715795a78bf3bacf37e109442977728f8aa8f.pdf"
+        }
+      ],
+      "post_response_sha256": "fc95c676099088c2465fbe26429ca758e67ed3aaa518562513005bd6aa80cace",
+      "post_snapshot_path": "etl/runtime/audit2-documents/fc95c676099088c2465fbe26429ca758e67ed3aaa518562513005bd6aa80cace.html",
+      "status": "attachment_links_found"
+    }
+  ]
+}
