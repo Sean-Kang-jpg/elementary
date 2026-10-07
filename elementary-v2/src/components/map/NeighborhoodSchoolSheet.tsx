@@ -55,6 +55,7 @@ export default function NeighborhoodSchoolSheet({
     <BottomSheet
       isOpen={isOpen}
       onClose={onClear}
+      historyKey="neighborhood"
       title={title}
       snapPoints={[0.09, 0.34, 0.88]}
       defaultSnap={1}

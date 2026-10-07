@@ -10,6 +10,7 @@ import MyPage from './components/navigation/MyPage'
 import HomePage from './components/navigation/HomePage'
 import NewsPage from './components/navigation/NewsPage'
 import PrivacyPage from './components/navigation/PrivacyPage'
+import LearnPage from './components/navigation/LearnPage'
 import GuideListPage from './components/content/GuideListPage'
 import GuidePage from './components/content/GuidePage'
 import FaqPage from './components/content/FaqPage'
@@ -34,6 +35,18 @@ import {
   type AppView,
   type Route,
 } from './utils/urlState'
+
+// 지도 위 상세 기록에 남기는 값: 지도 기록 위로 상세가 몇 겹 쌓였는지. 상세를 X로
+// 닫으면 그만큼 뒤로 가서, 닫은 상세가 앞으로 가기 쪽에 남고 뒤로 가기가 그 상세를
+// 다시 열지 않는다. 링크·홈 검색·MY처럼 지도 기록 없이 열린 상세는 0이다 — 뒤로
+// 가면 지도가 아니라 사이트 밖이나 다른 화면으로 가므로, 그때는 주소만 지도로 바꿔 쓴다.
+const detailDepthOf = (state: unknown): number => {
+  const depth = (state as { detailDepth?: unknown } | null)?.detailDepth
+  return typeof depth === 'number' && depth > 0 ? depth : 0
+}
+
+const detailKeyOf = (route: Route): string | null =>
+  route.kind === 'school' || route.kind === 'apartment' ? route.key : null
 
 interface ConnectionStatus {
   supabase: 'connecting' | 'success' | 'error'
@@ -106,6 +119,11 @@ function MapApplication() {
   // 되돌아온 대상 자체를 기억했다가 그 선택만 건너뛴다.
   const historyTarget = useRef<string | null>(null)
   const historyGuide = useRef<string | null>(null)
+  // 마지막으로 화면에 반영한 주소. 시트를 닫는 뒤로 가기(useCloseOnBack)는 주소가
+  // 그대로라 복원할 것이 없다 — 복원하면 학교를 다시 불러와 지도를 옮긴다.
+  const shownUrl = useRef<string | null>(null)
+  // 되돌아갈 지도 기록이 없는 상세를 닫을 때, 다음 주소 동기화를 쌓지 않고 바꿔 쓴다.
+  const closeInPlace = useRef(false)
 
   // 공개 키로 단지를 찾아 지도 위에 연다. 주소로 들어온 경우와 MY에서 연 경우가 같은 길을 쓴다.
   const openApartment = useCallback(async (key: string): Promise<boolean> => {
@@ -158,7 +176,10 @@ function MapApplication() {
       historyGuide.current = !fromLink && route.kind === 'guide' ? route.slug : null
       await applyRoute(route)
     }
-    const onPopState = () => { void restore(false) }
+    const onPopState = () => {
+      if (`${window.location.pathname}${window.location.search}` === shownUrl.current) return
+      void restore(false)
+    }
     void restore(true)
     window.addEventListener('popstate', onPopState)
     return () => window.removeEventListener('popstate', onPopState)
@@ -180,7 +201,22 @@ function MapApplication() {
     const apartment = state.selectedApartment ? apartmentPath(state.selectedApartment) : null
     const detail = apartment ?? (state.selectedSchool ? schoolPath(state.selectedSchool) : null)
     if (view === 'map') {
-      syncPath(detail ?? VIEW_PATHS.map, { push: true })
+      const target = detail ?? VIEW_PATHS.map
+      if (closeInPlace.current) {
+        closeInPlace.current = false
+        syncPath(target, { push: false })
+        return
+      }
+      const here = parseRoute(window.location.pathname, window.location.search)
+      const hereKey = detailKeyOf(here)
+      const depth = detailDepthOf(window.history.state)
+      // 같은 상세의 다른 철자(이름이 바뀐 옛 링크)는 기록을 쌓지 않고 바꿔 쓴다.
+      if (hereKey && detail && detailKeyOf(parseRoute(target, '')) === hereKey) {
+        syncPath(target, { push: false, state: { detailDepth: depth } })
+        return
+      }
+      const nextDepth = !detail ? 0 : hereKey ? (depth ? depth + 1 : 0) : (here.kind === 'map' ? 1 : 0)
+      syncPath(target, { push: true, state: detail ? { detailDepth: nextDepth } : {} })
       return
     }
     if (view === 'home' && detail) {
@@ -287,6 +323,11 @@ function MapApplication() {
   }, [state.selectedApartment, state.selectedSchool])
 
   // 주소가 바뀔 때마다 page_view. 위의 효과들이 주소와 제목을 맞춘 뒤에 돌도록
+  // 주소를 쓰는 효과들 뒤에 둔다.
+  useEffect(() => {
+    shownUrl.current = `${window.location.pathname}${window.location.search}`
+  })
+
   // 맨 뒤에 둔다 — GA4가 스스로 보내게 두면 제목이 바뀌기 전에 기록된다.
   const lastPageView = useRef<string | null>(null)
   useEffect(() => {
@@ -301,6 +342,14 @@ function MapApplication() {
 
   // 선택된 학교 상세 정보 바텀시트 상태
   const handleCloseSchoolDetail = () => {
+    const depth = detailDepthOf(window.history.state)
+    if (depth) {
+      // 선택은 뒤로 가기의 복원이 비운다. 여기서 먼저 비우면 주소 동기화가 지도
+      // 주소를 새로 쌓아 버린다.
+      window.history.go(-depth)
+      return
+    }
+    closeInPlace.current = true
     dispatch({
       type: 'SET_SELECTED_SCHOOL',
       payload: null
@@ -397,6 +446,7 @@ function MapApplication() {
           onProfileChange={changeProfile}
         />
       )}
+      {view === 'learn' && <LearnPage onNavigate={(path) => navigate(path, 'related')} />}
       {view === 'privacy' && <PrivacyPage />}
       
       {connectionStatus.supabase === 'error' && (
@@ -441,6 +491,7 @@ const TITLES: Record<AppView, string> = {
   guide: '입학 준비 가이드 | 어디초',
   faq: `${FAQ_PAGE.title} | 어디초`,
   checklist: `${checklistContent.title} | 어디초`,
+  learn: '학습 준비 | 어디초',
   area: '지역별 초등학교 배정 현황 | 어디초',
 }
 

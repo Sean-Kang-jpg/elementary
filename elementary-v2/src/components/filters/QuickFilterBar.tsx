@@ -1,5 +1,5 @@
 import { Building2, CarFront, ChevronDown, GraduationCap, SlidersHorizontal, Users } from 'lucide-react'
-import { Fragment, useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
 import { DEFAULT_FILTERS, useFilters, useUI } from '../../contexts/AppContext'
 import { clearDataCache } from '../../services/dataService'
@@ -101,19 +101,23 @@ export default function QuickFilterBar() {
     setOpenFilter(key)
   }
 
+  const groups = (['학교', '아파트'] as FilterScope[]).map((scope) => ({
+    scope,
+    items: items.filter((item) => item.scope === scope),
+  }))
+
   return (
     <div ref={rootRef} className="quick-filter-shell">
+      <button type="button" onClick={toggleSidebar} className="quick-filter-button quick-filter-button--all" aria-label="전체 필터 열기">
+        <SlidersHorizontal size={17} aria-hidden="true" />
+      </button>
       <div className="quick-filter-row" aria-label="빠른 필터">
-        <button type="button" onClick={toggleSidebar} className="quick-filter-button quick-filter-button--all" aria-label="전체 필터 열기">
-          <SlidersHorizontal size={17} aria-hidden="true" />
-        </button>
-        {items.map(({ key, scope, label, active, icon: Icon }, index) => (
-          <Fragment key={key}>
-            {(index === 0 || items[index - 1].scope !== scope) && (
-              <span className="flex-none px-1 text-[11px] font-bold text-gray-500">{scope}</span>
-            )}
-            <div className="relative flex-none">
+        {groups.map(({ scope, items: groupItems }) => (
+          <div key={scope} className="quick-filter-group" role="group" aria-label={`${scope} 필터`}>
+            <span className="quick-filter-scope" aria-hidden="true">{scope}</span>
+            {groupItems.map(({ key, label, active, icon: Icon }) => (
               <button
+                key={key}
                 type="button"
                 onClick={(event) => toggleMenu(key, event.currentTarget)}
                 aria-expanded={openFilter === key}
@@ -123,8 +127,8 @@ export default function QuickFilterBar() {
                 <span>{label}</span>
                 <ChevronDown size={14} aria-hidden="true" />
               </button>
-            </div>
-          </Fragment>
+            ))}
+          </div>
         ))}
       </div>
       {activeItem && createPortal(
