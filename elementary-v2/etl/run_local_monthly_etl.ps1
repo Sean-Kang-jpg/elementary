@@ -9,6 +9,7 @@
 #   1. supplement build_apartment_supplement.py --fetch-kapt --upload  (new complexes to Storage)
 #   2. academy    run_academy_refresh.py --geocode-only  (cache + dojo copy to Storage)
 #   3. care       collect_care_data.py --apply           (school care disclosure, care centers)
+#   4. hakgudo    check_school_zone_release.py           (new 학구도 release: issue, or download + compare)
 #
 # Each step runs even if the one before failed. Any failure opens (or comments on)
 # a GitHub issue labelled etl-failure, the same channel the Actions run uses.
@@ -25,7 +26,8 @@ $Repository = "Sean-Kang-jpg/elementary"
 $Steps = @(
     @{ Name = "supplement"; Arguments = @((Join-Path $PSScriptRoot "build_apartment_supplement.py"), "--fetch-kapt", "--upload") },
     @{ Name = "academy"; Arguments = @((Join-Path $PSScriptRoot "run_academy_refresh.py"), "--geocode-only") },
-    @{ Name = "care"; Arguments = @((Join-Path $PSScriptRoot "collect_care_data.py"), "--apply") }
+    @{ Name = "care"; Arguments = @((Join-Path $PSScriptRoot "collect_care_data.py"), "--apply") },
+    @{ Name = "hakgudo"; Arguments = @((Join-Path $PSScriptRoot "check_school_zone_release.py")) }
 )
 
 New-Item -ItemType Directory -Force -Path $LogDirectory | Out-Null

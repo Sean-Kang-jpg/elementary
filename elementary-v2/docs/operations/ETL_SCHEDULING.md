@@ -163,6 +163,13 @@ otherwise deletes those files and uses the year before.
 "초등학교 통학구역 및 공동통학구역(YYYY.MM.DD.)"), with a matching 초중고 학교 위치 file. The site
 refuses scripted downloads, so:
 
+Detection is automatic: step 4 of this machine's monthly task (`etl/check_school_zone_release.py`)
+reads the list page, and when a release newer than the one in use appears it opens a GitHub issue
+("학구도 새 판 YYYY.MM.DD", label `school-zone-release`). If the attachment downloads, it also unzips
+both files into the folders below and runs the comparison, putting the counts in the issue; if the
+site still answers with its error page (every attachment, October 2026, including in a browser), it
+comments monthly until it does. Promotion (step 3) stays a reviewed, manual step.
+
 1. Download both in a browser into `etl/data/hakgudo/<YYYYMMDD>/` and
    `etl/data/schoolzone/<YYYYMMDD>/`, and unzip the shapefile into `extracted/`.
 2. `python etl/compare_school_zone_release.py --shp <new .shp> --release <YYYYMMDD>` rebuilds every
@@ -174,7 +181,8 @@ refuses scripted downloads, so:
    (`recurring_inputs_manifest.json` version bump, `prepare_portable_inputs.py --package --upload`),
    and let the next monthly run apply it.
 
-In use: the 2026-03-20 release. The 2026-09-20 release was published 2026-10-02.
+In use: the 2026-03-20 release. The 2026-09-20 release was published 2026-10-02; its attachment
+did not download from the site at all, in a browser either (owner, 2026-10-08).
 
 ## Manual Checks
 
