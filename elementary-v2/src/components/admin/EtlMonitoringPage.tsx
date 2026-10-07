@@ -20,6 +20,7 @@ const domainLabels: Record<EtlSchedule['data_domain'], string> = {
   school: '학교',
   apartment: '아파트',
   school_zone: '학구도',
+  academy: '학원',
 }
 
 const shortRegion = (region: string) => region.replace('특별시', '').replace('광역시', '').replace('도', '')

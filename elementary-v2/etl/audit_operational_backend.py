@@ -17,6 +17,7 @@ if __package__ in (None, ""):  # `python etl/audit_operational_backend.py`
 from etl.build_operational_masters import (
     UPSTREAM_GAPS_PATH,
     school_zone_label,
+    supplement_assignments,
     upstream_school_gaps,
 )
 from etl.fetch_schoolinfo_2026 import build_scopes, scope_slug
@@ -370,7 +371,9 @@ def main(argv: list[str] | None = None) -> None:
     review_units = [row for row in datasets["apartment_assignment_units"] if row.get("review_required") is True]
     review_queue_path = OUTPUT_DIR / f"assignment_review_queue{suffix}.csv"
     review_source_ids = review_trace_ids(
-        load(review_queue_path) if review_queue_path.is_file() else [],
+        # New complexes the point test could not settle are queued by the builder
+        # itself (build_operational_masters.supplement_assignments).
+        (load(review_queue_path) if review_queue_path.is_file() else []) + supplement_assignments()[1],
         datasets["apartment_assignment_units"],
         units,
     )

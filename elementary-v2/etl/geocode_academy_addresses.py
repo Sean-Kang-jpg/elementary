@@ -99,7 +99,14 @@ def geocode(key: str, address: str, retries: int = 3, address_type: str = "road"
     point = result.get("point") or {}
     if not point.get("x") or not point.get("y"):
         return {"status": "no_result", "error_code": "EMPTY_POINT"}
-    return {"status": "matched", "longitude": float(point["x"]), "latitude": float(point["y"]), "refined_address": (result.get("refined") or {}).get("text", "")}
+    refined = result.get("refined") or {}
+    return {
+        "status": "matched", "longitude": float(point["x"]), "latitude": float(point["y"]),
+        "refined_address": refined.get("text", ""),
+        # Administrative dong code; build_apartment_supplement.py keeps its region-free tail.
+        # The academy cache writes a fixed field list and ignores it.
+        "admin_dong_code": (refined.get("structure") or {}).get("level4AC", ""),
+    }
 
 
 FIELDS = ("region", "address", "academy_count", "status", "longitude", "latitude", "refined_address", "error_code", "error_text", "checked_at")

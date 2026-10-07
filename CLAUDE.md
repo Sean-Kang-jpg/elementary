@@ -57,6 +57,56 @@ npm run typecheck
 
 ## Uncommitted Work At Handoff
 
+### 2026-10-07: 전체 ETL 점검과 후속 (2·3·4번)
+
+- 점검 결과(사용자 결정: 아파트 K-apt 반영은 11/2 정기 실행까지 기다림): K-apt는 8/21 자료에 멈춤, **단지 목록이
+  2024-10 기준 파일에 고정돼 신축이 못 들어옴**(K-apt 미사용 2,521곳, 2025+ 승인 583곳·약 40만 세대), 학구도 자동화
+  없음(2026-09-20판 10/02 공개, 우리는 03-20판), 실패 알림 없음, 1~5월 학교알리미 당해연도 빈 데이터 위험
+- **실패 알림**: GitHub 이슈 라벨 `etl-failure`. Actions 예약·apply 실패 시 이슈 생성/댓글, Windows 작업도 `gh`로 같은 방식.
+  시험 이슈 #1 생성·닫음
+- **Windows 작업 개편**: `Elementary Academy Geocode` → `Elementary Local Monthly ETL`(`install_local_monthly_task.ps1`,
+  `run_local_monthly_etl.ps1`), 단계 = 학원 지오코딩 + **돌봄 `collect_care_data.py --apply`**. 단계별 로그
+  `etl/logs/local-monthly-etl-<시각>-<단계>.log`(transcript가 Python 출력을 놓쳐서). 2026-10-07 시험 실행 성공(돌봄 6,266행)
+- **학교알리미 연도 대체**(`run_due_etl.collect_school`): 학년 행이 학교 행의 70% 미만이면 전년도 사용. 2027-01 실행 대비
+- **학구도**: `etl/compare_school_zone_release.py`(새 판으로 전 범위 점 배정 재생성 → 현재와 비교, 운영 파일 안 건드림).
+  현재 판 자기 시험 13개 범위 변경 0. 사이트가 스크립트 다운로드를 막아 **9월판은 사용자가 브라우저로 내려받아야 함**
+  (`etl/data/hakgudo/20260920/`, 학교 위치도 함께). `build_local_assignment_etl.SHP` 기본값을 03-20판으로 정정
+- **신축 단지 유입**: 계획 `docs/operations/NEW_COMPLEX_INTAKE_PLAN.md`, 결정 D1~D4 대기
+
+### 2026-10-06: 학원·체육도장 기관 키 (커밋 — 아래 커밋 메시지 참고)
+
+- 실측: 학원 `ACA_ASNUM`·체육도장 `MNG_NO`는 단독으로 전국에서 유일하지 않다. 유일한 키는
+  `(교육청코드, 지정번호)`·`(지자체코드, 관리번호)` 복합키(각각 중복 0). 상세는 `ACADEMY_REFRESH_PLAN.md` 7절
+- `OPERATION_PLAN.md` 학원 절의 "ACA_ASNUM 단독 키" 문구 정정(한 줄, 같은 파일의 다른 미커밋 변경과 섞지 말 것)
+- `etl/collect_sports_dojo_snapshot.py`: `source_id`를 `{지자체코드}-{관리번호}`로, `local_gov_code`·`management_number` 추가.
+  파일럿 경로의 `MNG_NO` 단독 중복 제거 결함 수정. 원본 32,882행으로 유일성 확인, py_compile 통과
+- K2 `etl/academy_institutions.py`(신규): 학원·체육도장 기관 키 목록(비공개 CSV)과 월간 비교. 10/6 원본 151,256곳, 키 중복 0
+- K3 `run_academy_refresh.py`: 5단계 뒤 목록 작성·Storage `academy-refresh/institutions/latest.csv.gz`와 비교해 보고서
+  `institutions`에 기록. `--apply` 성공 뒤에만 Storage에 쓴다. 이 단계 실패는 갱신을 막지 않는다
+- 검증: `etl.tests.test_academy_institutions`(8개) 포함 학원 관련 테스트 20개 통과, 실 Storage 읽기 경로(기준 없음)·옛 형식 거부 확인
+- push `92e0b2e`(임시 인덱스로 이 작업 파일만 커밋 — 인덱스의 `.ps1` 이름 변경 2건은 다른 세션 것이라 남겨 둠).
+  기준 목록 Storage 시드 2026-10-07(151,256곳, 익명 400). **11/2 실행 보고서의 `institutions`에서 첫 월간 비교 확인**
+
+### 2026-10-06: 학원 데이터 월간 자동 갱신 (`f905ac7`, 운영 데이터 반영)
+
+- 계획 `docs/operations/ACADEMY_REFRESH_PLAN.md`(D1~D3 권고안 확정). 구현은 `etl/run_academy_refresh.py` 하나:
+  NEIS·체육도장 수집 → 새 주소만 VWorld → 마커 → 지역별 근접도 → 운영 3테이블 **전체 교체**(빠진 행 삭제).
+  한 지역이라도 15% 넘게 줄면 전체를 쓰지 않는다(계획의 "그 지역만 제외"에서 바꿈 — 주소가 지역을 넘어 걸려서)
+- Actions 비밀값 `NEIS_CLASS_API_KEY`·`VWORLD_API_KEY`·`DATA_GO_KR_DECODED_KEY` 등록(2026-10-06, `gh secret set`)
+- Storage `etl-source-snapshots/academy-refresh/`에 지오코딩 캐시·건물 기준점 2종 시드(익명 읽기 400 확인)
+- **운영 적용 완료** run `34ebb91f`: 주소 78,820 → 76,300(+202, −2,722), 기준점 80,641 → 80,220, 요약 46,927 → 46,929,
+  지역별 −1.7~−4.2%. 직업기술 0건(가드 dry-run), 익명 RPC 정상. 앞서 막혔던 `apply_academy_realm_exclusion --apply`는 이 적용으로 대체됨
+- **진행 기록**: ① SQL 25는 사용자가 SQL 편집기로 적용(psql·CLI 없음)
+  ② **지오코딩은 이 PC의 Windows 작업**(`eedd96b`): VWorld가 해외 IP를 막고(러너 재시도 698곳 전부 `transport_error`),
+  카카오 Local API는 결과 저장 금지라 대안이 아니다(운영팀 답변). 작업 `Elementary Local Monthly ETL`이 매월 1일 21:00
+  `run_academy_refresh.py --geocode-only`(NEIS·체육도장 수집 → 새 주소 변환 → 캐시·체육도장 사본을 Storage로) 실행,
+  러너는 지오코딩을 건너뛴다. **이 PC가 그 무렵 켜져 있고 로그인돼 있어야 한다**(StartWhenAvailable). 시험 실행 2회 성공
+  ③ 체육도장 API가 러너에서 가끔 시간 초과(`37466238434` 실패) → 재시도 강화 + Storage 사본 대체(`3eb6e99`).
+  Actions 리허설 `37470629136` 성공 ④ SQL 25 적용 확인(2026-10-06), 일정 `next_due_at` 비워 둠 → 11/2 정기 실행에 포함
+  ⑤ 11/2 정기 실행 결과 확인 ⑥ `/admin/etl`의 '학원' 라벨은 다음 release에 나간다
+- 첫 Actions 리허설(`37457087619`) 실패 원인: `collect_academy_snapshot.py`가 키를 `.env`에서만 읽음 → `14fe2ff`에서 환경변수 우선
+- 계획서의 "요약 고아 1,072행"은 오판이었다(운영 단지 마스터 기준 고아 없음) — 문서 정정함
+
 ### 2026-10-06: 가이드·FAQ 취소선·`**` 노출 수정과 굵게 정리 (커밋·운영 반영)
 
 - 원인 1: `marked`의 GFM이 물결표 한 쌍을 취소선으로 읽어 `10~1월 … 12~2월` 사이가 그어졌다(돌봄 가이드 2곳, 1곳 더).
@@ -122,7 +172,17 @@ npm run typecheck
   핀치는 미확인
 - **같은 작업 트리의 `SchoolCarePanel.tsx` 변경(소규모 학교 돌봄 이용률)은 다른 세션 작업이라 이 커밋에서 뺐다**
 
-### 2026-10-05: 1학년 미리보기 (master, 플래그 뒤 — 운영 노출 안 됨)
+### 2026-10-06: 커리큘럼·1학년 미리보기 검토안 폐기, 화면 코드 삭제
+
+- 사용자 결정으로 기존 검토안을 폐기하고 개편 계획(`PLATFORM_EXPANSION_PLAN.md`)을 따른다. 적용할 포인트는
+  `docs/product/PLATFORM_EXPANSION_LEARNING_INPUTS.md`(A2~A8, B9·B11·B12)
+- 삭제: `/plans`·`/items`·`/ranking`·`/grade1` 화면과 따봉 UI, 라우트, 입학 준비 진입 링크, 처리방침 7항 코드,
+  `src/content/curriculum.ts`·`learning.ts`, `build-content`의 1학년 검증. 플래그 `VITE_CURRICULUM_ENABLED`도 더 읽지 않는다
+- 보존(개편 Audit 2 §10 '보존/보류', P0-04·P3 결정 때 정리): SQL `24`(운영 미적용, EXECUTION_GUIDE에 '적용 보류'),
+  `src/lib/voter.ts`, `src/services/curriculumService.ts`, `src/content/curriculum/*.json`, `etl/upload_curriculum_refs.py`
+- 참고 자료로 이동: `docs/research/learning/stages.json`, `public-recommended-items.json`. 원칙·후보 문서는 '폐기 — 참고 자료'로 표시
+
+### 2026-10-05: 1학년 미리보기 (master, 플래그 뒤 — 운영 노출 안 됨) — 2026-10-06 폐기
 
 - 방향 전환: 따봉·순위 대신 **초1 교과서를 기준점으로** 과목·단계별 "언제 배우나"와 근거 있는 콘텐츠.
   원칙 `docs/product/LEARNING_CONTENT_PRINCIPLES.md`, 단계표 `src/content/learning/stages.json`(국어 6·수학 5·영어 5단계),

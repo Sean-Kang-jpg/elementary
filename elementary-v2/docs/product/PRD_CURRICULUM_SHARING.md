@@ -1,6 +1,9 @@
 # 커리큘럼 공유 — 따봉과 아이템 인기 (설계 초안)
 
-Status: **1단계 구현 중** · 2026-10-05 · C-5~C-9 확정, 코드는 master에 있고 콘텐츠·운영 설정 대기
+Status: **폐기 (2026-10-06)** — 개편 계획([`PLATFORM_EXPANSION_PLAN.md`](PLATFORM_EXPANSION_PLAN.md))의 입학 준비 4분류와 P4 Poll로 대체.
+화면(`/plans`·`/items`·`/ranking`)과 따봉 UI는 삭제했다. SQL `24`(운영 미적용), `src/lib/voter.ts`, `src/services/curriculumService.ts`,
+`src/content/curriculum/*.json`, `etl/upload_curriculum_refs.py`는 개편 감사(Audit 2 §10 '보존/보류')에 따라 P0-04·P3 결정 때까지 남긴다.
+적용할 만한 포인트는 [`PLATFORM_EXPANSION_LEARNING_INPUTS.md`](PLATFORM_EXPANSION_LEARNING_INPUTS.md)로 옮겼다.
 
 부모가 준비하는 아이의 커리큘럼(책, 영상·유튜브 채널, 장난감·교구, 학습지·앱, 수업)을
 카드로 공유하고, **카드 안의 아이템 하나하나에 따봉**을 모아 "서울 5세 수학 1위 넘버블럭스" 같은

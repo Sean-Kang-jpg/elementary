@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import time
 import urllib.parse
 import urllib.request
@@ -59,7 +60,8 @@ def main() -> None:
 
     registry = load_registry()
     selected = list(registry.production_regions) if args.all_production else [registry.get(name) for name in args.regions]
-    key = load_env_value(PROJECT_DIR / ".env", "NEIS_CLASS_API_KEY")
+    # The environment first: a GitHub runner has no .env, only Actions secrets.
+    key = os.getenv("NEIS_CLASS_API_KEY") or load_env_value(PROJECT_DIR / ".env", "NEIS_CLASS_API_KEY")
     if not key:
         raise SystemExit("NEIS_CLASS_API_KEY is not configured")
 

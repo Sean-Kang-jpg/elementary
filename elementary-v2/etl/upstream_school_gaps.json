@@ -34,6 +34,26 @@
       "schoolinfo_address": "무안군 일로읍 오룡남로3길 20",
       "affected_units": 2,
       "evidence": "Absent from school_location_20260320.csv; present in the Schoolinfo 2026 basic snapshot. A new school in the 오룡 development. One further unit, in the joint zone 무안사랑초무안희망초공동통학구역, is not excused here: its primary 무안사랑초 does exist and the unit should link to it once segmentation can skip a listed gap."
+    },
+    {
+      "zone_label": "서울반포초",
+      "school_name": "서울반포초등학교",
+      "region": "서울특별시",
+      "schoolinfo_code": "S010000754",
+      "schoolinfo_address": "서울특별시 서초구 신반포로 55-4",
+      "hakgudo_id": "",
+      "affected_units": 1,
+      "evidence": "2026-10-07: 반포래미안트리니원(KAPT:A10019966, 신축 보충) lies outside every 2026-03-20 polygon; the official 학구도 map names 서울반포초통학구역. Absent from school_location_20260320.csv, present in the Schoolinfo 2026 basic snapshot. Check again against the 2026-09-20 school location release."
+    },
+    {
+      "zone_label": "신문초",
+      "school_name": "신문초등학교",
+      "region": "경상남도",
+      "schoolinfo_code": "S160004102",
+      "schoolinfo_address": "경상남도 김해시 신문1로 10",
+      "hakgudo_id": "",
+      "affected_units": 1,
+      "evidence": "2026-10-07: opened 2025-09-01 (Schoolinfo FOND_YMD); absent from school_location_20260320.csv, present in the Schoolinfo 2026 basic snapshot. Its zone holds the new 율하 더스카이시티 제니스&프라우 (KAPT:A10020807, 신축 보충). Check again against the 2026-09-20 school location release."
     }
   ]
 }

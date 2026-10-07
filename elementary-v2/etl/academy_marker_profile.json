@@ -1,13 +1,17 @@
 {
-  "snapshot": "acainsti_scope_20260929.json",
-  "source_institutions": 138541,
-  "address_markers": 65078,
-  "geocoded_markers": 64352,
+  "snapshot": "acainsti_scope_20261006.json",
+  "source_institutions": 138542,
+  "excluded_institutions": 3938,
+  "excluded_realms": [
+    "직업기술"
+  ],
+  "address_markers": 62366,
+  "geocoded_markers": 61668,
   "geocode_coverage": 0.9888,
   "geocode_statuses": {
-    "matched": 64352,
-    "api_error": 726
+    "matched": 61668,
+    "api_error": 698
   },
-  "institutions_per_marker": 2.13,
-  "output": "academy_address_markers_20260929.csv"
+  "institutions_per_marker": 2.16,
+  "output": "academy_address_markers_20261006.csv"
 }

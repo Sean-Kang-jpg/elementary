@@ -294,72 +294,6 @@ for (const plan of curriculumPlans) {
   }
 }
 
-// 1학년 미리보기 -------------------------------------------------------------
-// docs/product/LEARNING_CONTENT_PRINCIPLES.md. Every stage rests on official
-// sources; every item names its school link with a basis and carries evidence.
-// A review that copies text or lacks its disclosure check does not ship.
-
-const learningDir = path.join(contentDir, 'learning')
-const stagesFile = path.join(learningDir, 'stages.json')
-const learningItemsFile = path.join(learningDir, 'items.json')
-const learningStages = await readJson(stagesFile)
-const { items: learningItems } = await readJson(learningItemsFile)
-const SCHOOL_LINKS = new Set(['direct', 'foundation', 'extension', 'outside'])
-const ITEM_TYPES = new Set(['video', 'workbook', 'book', 'toy', 'activity'])
-const REVIEW_GRADES = new Set(['A', 'B', 'C'])
-const sourceIds = new Set((learningStages.sources ?? []).map((source) => source.id))
-for (const source of learningStages.sources ?? []) {
-  if (!/^https?:\/\//.test(source.url ?? '')) problem(stagesFile, `source ${source.id} needs a url`)
-}
-if (!learningStages.verifiedAt) problem(stagesFile, 'needs verifiedAt')
-const stageSubject = new Map()
-for (const subject of learningStages.subjects ?? []) {
-  if (!subject.sourceIds?.length || subject.sourceIds.some((id) => !sourceIds.has(id))) problem(stagesFile, `subject ${subject.id} needs known sourceIds`)
-  const ids = new Set(subject.stages.map((stage) => stage.id))
-  for (const stage of subject.stages) {
-    if (stageSubject.has(stage.id)) problem(stagesFile, `stage ${stage.id} is used twice`)
-    stageSubject.set(stage.id, subject.id)
-    if (!subject.outsideSchool && !stage.units?.length) problem(stagesFile, `stage ${stage.id} needs grade-1 units`)
-    if (!subject.outsideSchool && !stage.standards?.length) problem(stagesFile, `stage ${stage.id} needs standards`)
-  }
-  for (const level of subject.levels ?? []) {
-    if (!ids.has(level.startStage)) problem(stagesFile, `level "${level.label}" starts at unknown stage ${level.startStage}`)
-  }
-}
-const learningKeys = new Set()
-for (const item of learningItems) {
-  const at = `item ${item.key}`
-  if (learningKeys.has(item.key)) problem(learningItemsFile, `${at} is used twice`)
-  learningKeys.add(item.key)
-  if (!ITEM_TYPES.has(item.type)) problem(learningItemsFile, `${at} has unknown type "${item.type}"`)
-  if (!SCHOOL_LINKS.has(item.schoolLink)) problem(learningItemsFile, `${at} has unknown schoolLink "${item.schoolLink}"`)
-  if (!item.schoolLinkBasis) problem(learningItemsFile, `${at} needs schoolLinkBasis (principles 4절)`)
-  for (const field of ['name', 'forWhom', 'role', 'parentInvolvement', 'verifiedAt']) {
-    if (!item[field]) problem(learningItemsFile, `${at} needs ${field}`)
-  }
-  if (!/^https?:\/\//.test(item.url ?? '')) problem(learningItemsFile, `${at} needs a url`)
-  if (!item.stages?.length || item.stages.some((stage) => stageSubject.get(stage) !== item.subject)) {
-    problem(learningItemsFile, `${at} stages must belong to its subject ${item.subject}`)
-  }
-  const evidence = item.evidence ?? {}
-  if (!(evidence.public?.length || evidence.reviews?.length)) problem(learningItemsFile, `${at} needs public or review evidence`)
-  for (const entry of evidence.public ?? []) {
-    if (!entry.label || !/^https?:\/\//.test(entry.url ?? '')) problem(learningItemsFile, `${at} public evidence needs a label and url`)
-  }
-  for (const review of evidence.reviews ?? []) {
-    if (!REVIEW_GRADES.has(review.grade)) problem(learningItemsFile, `${at} review grade must be A, B or C`)
-    if (!/^https?:\/\//.test(review.url ?? '')) problem(learningItemsFile, `${at} review needs its source url`)
-    if (review.disclosure !== '확인되지 않음') problem(learningItemsFile, `${at} review with a sponsorship disclosure must be dropped, not stored`)
-    if (!review.checkedAt) problem(learningItemsFile, `${at} review needs checkedAt`)
-    for (const field of ['good', 'bad']) {
-      if (review[field] && [...review[field]].length > 60) problem(learningItemsFile, `${at} review ${field} is over 60 characters - summarise, do not quote`)
-    }
-  }
-}
-if (learningItems.some((item) => item.subject === 'english' && item.schoolLink !== 'outside')) {
-  problem(learningItemsFile, 'english items are outside the grade-1 curriculum (principles 3절)')
-}
-
 if (problems.length) {
   throw new Error(`build-content: ${problems.length} problem(s)\n  ${problems.join('\n  ')}`)
 }
@@ -371,6 +305,4 @@ await fs.writeFile(outFile, JSON.stringify({
 }, null, 2), 'utf8')
 const answers = faqs.reduce((n, faq) => n + faq.sections.reduce((m, section) => m + section.items.length, 0), 0)
 process.stdout.write(`content     ${guides.length} guides, ${answers} FAQ answers in ${faqs.length} stage(s) -> ${path.relative(projectRoot, outFile)}\n`)
-process.stdout.write(`grade 1     ${learningStages.subjects.reduce((n, subject) => n + subject.stages.length, 0)} stages, ${learningItems.length} items (validated)
-`)
 process.stdout.write(`curriculum  ${curriculumItems.length} items, ${curriculumPlans.length} cards (validated; the app reads src/content/curriculum directly)\n`)

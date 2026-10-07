@@ -27,7 +27,10 @@ from shapely.strtree import STRtree
 sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
 BASE = Path(__file__).parent
-SHP = BASE / "data" / "hakgudo" / "elem_hakgudo_20250922.shp"
+# The release production assignments were built from. Every operational build
+# passed --shp explicitly; the default pointed at 2025-09-22 until 2026-10-07.
+# A new release (March and September) goes through compare_school_zone_release.py.
+SHP = BASE / "data" / "hakgudo" / "20260320" / "extracted" / "초등학교통학구역.shp"
 APT_MST = Path(r"F:/sm/vibe/elementary/archive/GAS/GAS/임시/apt_mst_info_202410.csv")
 # Legacy region slugs for the capital scope. New scopes use the canonical name,
 # which is what the operational builder and the audits read.

@@ -19,6 +19,14 @@
       "destination": "/api/detail?type=apt&slug=$1"
     },
     {
+      "source": "/area",
+      "destination": "/api/detail?type=area&slug="
+    },
+    {
+      "source": "/area/(.*)",
+      "destination": "/api/detail?type=area&slug=$1"
+    },
+    {
       "source": "/guide",
       "destination": "/guide/index.html"
     },

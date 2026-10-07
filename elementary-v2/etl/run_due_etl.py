@@ -33,6 +33,9 @@ BASE_MANIFEST = BASE_DIR / "recurring_etl_manifest.json"
 SOURCE_GROUPS = {
     "apartment": {"kapt-basic"},
     "school": {"schoolinfo-basic", "schoolinfo-grade-students"},
+    # Nationwide in one run, not per scope: run_academy_refresh.py replaces the
+    # academy serving tables as a whole (docs/operations/ACADEMY_REFRESH_PLAN.md).
+    "academy": {"neis-academy"},
 }
 
 
@@ -114,30 +117,55 @@ def collect_apartment() -> list[dict[str, Any]]:
     ]
 
 
+# Grade-student rows against basic rows in a published year: 0.81-1.0 in 2026
+# (closed and branch schools have no grade data). Under this, the year is not out yet.
+SCHOOLINFO_COMPLETE_RATIO = 0.7
+
+
+def schoolinfo_complete(basic_rows: int, grade_rows: int) -> bool:
+    return basic_rows > 0 and grade_rows >= basic_rows * SCHOOLINFO_COMPLETE_RATIO
+
+
 def collect_school(regions: list[str] | None = None) -> list[dict[str, Any]]:
-    """Fetch Schoolinfo for one scope; the capital keeps its historical slug."""
-    year = date.today().year
+    """Fetch Schoolinfo for one scope; the capital keeps its historical slug.
+
+    The current year first. Grade statistics are disclosed in May, so from January
+    until then the current year is empty or partial; the builder takes the newest
+    year that has both files, so an incomplete year is deleted and the previous
+    year fetched instead. Without this the January run would publish schools with
+    no student numbers.
+    """
     # Always name the regions: with none, the fetcher defaults to every
     # production region and writes a file the capital build never reads.
     regions = list(regions or capital_scope())
-    arguments = ["--year", str(year), "--regions", *regions]
     slug = scope_slug(list(build_scopes(load_registry(), regions, ())))
-    run_script(str(BASE_DIR / "fetch_schoolinfo_2026.py"), *arguments)
-    basic_path = OUTPUT_DIR / f"schoolinfo_{year}_basic_{slug}.json"
-    grade_path = OUTPUT_DIR / f"schoolinfo_{year}_grade_students_{slug}.json"
+    today = date.today()
+    for year in (today.year, today.year - 1):
+        run_script(str(BASE_DIR / "fetch_schoolinfo_2026.py"), "--year", str(year), "--regions", *regions)
+        basic_path = OUTPUT_DIR / f"schoolinfo_{year}_basic_{slug}.json"
+        grade_path = OUTPUT_DIR / f"schoolinfo_{year}_grade_students_{slug}.json"
+        basic_rows, grade_rows = json_row_count(basic_path), json_row_count(grade_path)
+        if schoolinfo_complete(basic_rows, grade_rows):
+            break
+        print(f"Schoolinfo {year} for {slug} is incomplete ({grade_rows:,} grade rows for {basic_rows:,} schools); "
+              "trying the year before")
+        basic_path.unlink()
+        grade_path.unlink()
+    else:
+        raise RuntimeError(f"no complete Schoolinfo year for {slug}")
     return [
         {
             "source_name": "schoolinfo-basic",
-            "source_as_of": date.today().isoformat(),
+            "source_as_of": today.isoformat(),
             "path": basic_path.relative_to(PROJECT_DIR).as_posix(),
-            "row_count": json_row_count(basic_path),
+            "row_count": basic_rows,
             "schema_version": f"schoolinfo-{year}-v1",
         },
         {
             "source_name": "schoolinfo-grade-students",
-            "source_as_of": date.today().isoformat(),
+            "source_as_of": today.isoformat(),
             "path": grade_path.relative_to(PROJECT_DIR).as_posix(),
-            "row_count": json_row_count(grade_path),
+            "row_count": grade_rows,
             "schema_version": f"schoolinfo-{year}-v1",
         },
     ]
@@ -248,6 +276,47 @@ def delete_storage_objects(url: str, key: str, bucket: str, paths: list[str]) ->
     )
     with urllib.request.urlopen(request, timeout=60):
         pass
+
+
+SUPPLEMENT_DIR = RUNTIME_DIR / "apartment_supplement"
+SUPPLEMENT_FILES = ("apartment_base_supplement.csv", "apartment_point_assignments_supplement.csv", "supplement_report.json")
+
+
+def restore_apartment_supplement(url: str, key: str) -> bool:
+    """Complexes newer than the apartment base, from Storage, before the apartment build.
+
+    build_apartment_supplement.py writes them on the ETL workstation (geocoding needs
+    a Korean IP). Without them the build is what it was before 2026-10-07: the
+    builders read the supplement only when the files exist.
+    """
+    import gzip
+    import urllib.error
+    bodies = {}
+    for name in SUPPLEMENT_FILES:
+        request = urllib.request.Request(
+            f"{url}/storage/v1/object/etl-source-snapshots/apartment-supplement/{name}.gz",
+            headers={"apikey": key, "Authorization": f"Bearer {key}"},
+        )
+        try:
+            with urllib.request.urlopen(request, timeout=120) as response:
+                bodies[name] = gzip.decompress(response.read())
+        except urllib.error.HTTPError as exc:
+            if exc.code in (400, 404):
+                print(f"no apartment supplement in Storage ({name}); building from the base alone")
+                return False
+            raise
+    SUPPLEMENT_DIR.mkdir(parents=True, exist_ok=True)
+    for name, body in bodies.items():
+        (SUPPLEMENT_DIR / name).write_bytes(body)
+    report = json.loads(bodies["supplement_report.json"])
+    print(f"apartment supplement restored: {report['added']:,} complexes from {report['kapt']} ({report['generated_at']})")
+    return True
+
+
+def publish_public_keys(apply: bool) -> None:
+    # New complexes reach serving without a public key; issue theirs from the
+    # database registry and rejoin serving (publish_apartment_public_keys.py).
+    run_script("etl/publish_apartment_public_keys.py", *(["--apply"] if apply else []))
 
 
 def run_academy_guard(apply: bool) -> None:
@@ -370,7 +439,7 @@ def main() -> None:
         "--rehearse", action="store_true",
         help="Collect, build and validate every scope like a real run, but write nothing to Supabase",
     )
-    parser.add_argument("--force", action="append", choices=("apartment", "school", "all"), default=[])
+    parser.add_argument("--force", action="append", choices=("apartment", "school", "academy", "all"), default=[])
     parser.add_argument("--max-attempts", type=int, default=3)
     parser.add_argument("--retry-delay-seconds", type=int, default=300)
     args = parser.parse_args()
@@ -403,14 +472,30 @@ def main() -> None:
         # stay separately attributable.
         for regions, slug in production_scopes():
             ensure_schoolinfo(regions, slug)
-        for group in groups:
+        if "apartment" in groups:
+            restore_apartment_supplement(url, key)
+        for group in (name for name in groups if name != "academy"):
             for regions, slug in production_scopes():
                 execute_group(
                     group, args.apply, args.max_attempts, args.retry_delay_seconds, regions, slug
                 )
+        if "apartment" in groups:
+            publish_public_keys(args.apply)
+        academy_error = None
+        if "academy" in groups:
+            # After the apartment group, so proximity reads this month's complexes.
+            # A failure here leaves last month's academy data in place; maintenance
+            # still runs and the job still fails.
+            try:
+                run_script("etl/run_academy_refresh.py", "--apply" if args.apply else "--rehearse")
+            except subprocess.CalledProcessError as error:
+                academy_error = error
+                notify_failure("academy", 1, error)
         if args.apply:
             run_maintenance(url, key)
         run_academy_guard(apply=args.apply)
+        if academy_error:
+            raise academy_error
         if not args.apply:
             print("rehearsal complete: every scope collected, built and validated; nothing written")
 

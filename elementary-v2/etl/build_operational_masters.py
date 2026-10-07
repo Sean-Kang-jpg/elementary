@@ -495,6 +495,28 @@ def build_complex_master(apartments: list[dict[str, str]]) -> list[dict[str, Any
     return output
 
 
+SUPPLEMENT_POINTS = BASE_DIR / "runtime" / "apartment_supplement" / "apartment_point_assignments_supplement.csv"
+
+
+def supplement_assignments() -> tuple[list[dict[str, str]], list[dict[str, str]]]:
+    """Assignments for complexes newer than the apartment base (build_apartment_supplement.py).
+
+    Rows for complexes outside this scope are harmless: build_assignment_units walks
+    the scope's apartments and looks points up by apt_cd. A new complex the point
+    test could not settle (near a boundary, or between zones) goes to review, which
+    publishes it as provisional with review_required - the screen says 배정 확인 필요.
+    """
+    if not SUPPLEMENT_POINTS.is_file():
+        return [], []
+    points = read_csv(SUPPLEMENT_POINTS)
+    review = [
+        {"apt_cd": row["apt_cd"], "review_reasons": row.get("building_check_reasons") or "new_complex_point_assignment"}
+        for row in points
+        if row.get("confidence") != "high" and row.get("primary_hakgudo_id")
+    ]
+    return points, review
+
+
 def build_assignment_units(
     apartments: list[dict[str, str]],
     points: list[dict[str, str]],
@@ -729,10 +751,13 @@ def main(argv: list[str] | None = None) -> None:
     school_source = read_csv(OUTPUT_DIR / f"school_master_v2{input_suffix}.csv")
     school_master = build_school_master(school_source)
     complex_master = build_complex_master(apartments)
+    points = read_csv(OUTPUT_DIR / f"apartment_point_assignments{scope_suffix}.csv")
+    review_rows = read_optional_csv(OUTPUT_DIR / f"assignment_review_queue{scope_suffix}.csv")
+    supplement_points, supplement_review = supplement_assignments()
     assignment_units, assignment_school_links = build_assignment_units(
         apartments,
-        read_csv(OUTPUT_DIR / f"apartment_point_assignments{scope_suffix}.csv"),
-        read_optional_csv(OUTPUT_DIR / f"assignment_review_queue{scope_suffix}.csv"),
+        points + supplement_points,
+        review_rows + supplement_review,
         read_optional_csv(OUTPUT_DIR / f"p1_resolved_cases{scope_suffix}.csv"),
         school_master,
     )

@@ -225,7 +225,7 @@ This section incorporates the final decisions previously maintained in `FUTURE_D
 
 ### Academy and tutoring centers — proceed after geocoding gate
 
-Discovery established that `acaInsTiInfo` returns 71,690 capital-region institutions, `ACA_ASNUM` is a stable one-row-per-institution key, and school-district joins cover 100%. Elementary-course classification is not viable because only 14.7% explicitly identify an elementary audience; use density and subject composition instead of claiming elementary eligibility.
+Discovery established that `acaInsTiInfo` returns 71,690 capital-region institutions, `(ATPT_OFCDC_SC_CODE, ACA_ASNUM)` is a one-row-per-institution key (corrected 2026-10-06: `ACA_ASNUM` alone repeats across education offices — 75,034 distinct values in 138,542 nationwide rows; see `ACADEMY_REFRESH_PLAN.md` section 7), and school-district joins cover 100%. Elementary-course classification is not viable because only 14.7% explicitly identify an elementary audience; use density and subject composition instead of claiming elementary eligibility.
 
 - [x] Renew the VWORLD credential outside the repository and verify address geocoding (2026-09-16 to 2026-09-18).
 - [x] Geocode a stratified 300-address sample: 291/300 matched (97.0%); all nine failures were `NOT_FOUND`, not authentication errors.

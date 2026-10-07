@@ -14,13 +14,7 @@ import GuideListPage from './components/content/GuideListPage'
 import GuidePage from './components/content/GuidePage'
 import FaqPage from './components/content/FaqPage'
 import ChecklistPage from './components/content/ChecklistPage'
-import CurriculumListPage from './components/curriculum/CurriculumListPage'
-import PlanPage from './components/curriculum/PlanPage'
-import ItemPage from './components/curriculum/ItemPage'
-import RankingPage from './components/curriculum/RankingPage'
-import Grade1PreviewPage from './components/learning/Grade1PreviewPage'
-import { LEARNING_PATH } from './content/learning'
-import { CURRICULUM_PATHS, findItem, findPlan, itemPath, planPath } from './content/curriculum'
+import AreaPage from './components/content/AreaPage'
 import checklistContent from './content/checklist.json'
 import { hasSavedProfile, readProfile, saveProfile, type Profile } from './utils/profile'
 import { FAQ_PAGE, findGuide } from './content'
@@ -61,6 +55,11 @@ function MapApplication() {
     const route = parseRoute(window.location.pathname, window.location.search)
     return route.kind === 'guide' ? route.slug : null
   })
+  // 지역 허브 화면 안에서 어느 지역인지. 허브 주소가 아니면 쓰지 않는다.
+  const [areaRoute, setAreaRoute] = useState<string>(() => {
+    const route = parseRoute(window.location.pathname, window.location.search)
+    return route.kind === 'area' ? route.path : VIEW_PATHS.area
+  })
   // 아이의 입학연도. 주소(`?year=`)와 메모리에만 둔다 — 기기 저장이 필요 없다.
   // 입학 프로필은 이 기기에만 저장한다(PRD v2 D1 A안). 주소의 `?year=`가 있으면 그것이 우선이다.
   const [profile, setProfile] = useState<Profile>(readProfile)
@@ -93,12 +92,10 @@ function MapApplication() {
       window.history.replaceState({}, '', `${url.pathname}${url.search}`)
     }
   }
-  // 커리큘럼 화면 안에서 무엇을 보는지. 목록·카드·아이템·순위.
-  const [curriculumRoute, setCurriculumRoute] = useState<Route>(() => parseRoute(window.location.pathname, window.location.search))
   const showRoute = (route: Route) => {
     setView(viewOf(route))
     setGuideSlug(route.kind === 'guide' ? route.slug : null)
-    if (viewOf(route) === 'curriculum') setCurriculumRoute(route)
+    if (route.kind === 'area') setAreaRoute(route.path)
   }
   // 주소를 읽어 선택을 복원하는 동안에는 선택을 보고 주소를 쓰면 안 된다.
   // 그러지 않으면 복원 도중의 중간 상태가 기록으로 쌓인다.
@@ -155,7 +152,7 @@ function MapApplication() {
       showRoute(route)
       // 처음 열린 주소가 상세나 가이드라면 바깥(검색엔진·공유 링크·북마크)에서 온
       // 것이다. ADR-006의 성패가 이 값으로 판정된다.
-      const entryPage = route.kind === 'school' || route.kind === 'apartment' || route.kind === 'guide' || route.kind === 'faq'
+      const entryPage = route.kind === 'school' || route.kind === 'apartment' || route.kind === 'guide' || route.kind === 'faq' || route.kind === 'area'
       if (fromLink && entryPage) markEntry('link')
       historyTarget.current = !fromLink && (route.kind === 'school' || route.kind === 'apartment') ? route.key : null
       historyGuide.current = !fromLink && route.kind === 'guide' ? route.slug : null
@@ -196,23 +193,11 @@ function MapApplication() {
   // 지도 쪽 canonical은 syncPath가 맞춘다. 홈·가이드·FAQ는 색인 대상이고,
   // 소식·MY·처리방침은 아니다.
   const guide = findGuide(guideSlug)
-  const plan = view === 'curriculum' && curriculumRoute.kind === 'plan' ? findPlan(curriculumRoute.key) : null
-  const item = view === 'curriculum' && curriculumRoute.kind === 'item' ? findItem(curriculumRoute.key) : null
   useEffect(() => {
-    if (view !== 'curriculum') return
-    // 없는 카드·아이템 주소는 목록으로, 장식만 다른 주소는 정규 주소로 고친다.
-    const canonical = plan ? planPath(plan)
-      : item ? itemPath(item)
-        : curriculumRoute.kind === 'ranking' ? CURRICULUM_PATHS.ranking
-          : curriculumRoute.kind === 'grade1' ? LEARNING_PATH : CURRICULUM_PATHS.plans
-    if (decodeURIComponent(window.location.pathname) !== canonical) window.history.replaceState({}, '', canonical)
-    setCanonical(canonical)
-  }, [view, curriculumRoute, plan, item])
-  useEffect(() => {
-    if (view === 'curriculum') return
     if (view === 'home') setCanonical(VIEW_PATHS.home)
     else if (view === 'faq') setCanonical(VIEW_PATHS.faq)
     else if (view === 'checklist') setCanonical(VIEW_PATHS.checklist)
+    else if (view === 'area') setCanonical(areaRoute)
     else if (view === 'guide') {
       // 없는 가이드 주소는 목록을 보여주고 주소도 목록으로 고친다.
       if (guideSlug && !guide) window.history.replaceState({}, '', VIEW_PATHS.guide)
@@ -222,11 +207,13 @@ function MapApplication() {
       if (view === 'my' && window.location.pathname !== VIEW_PATHS.my) window.history.replaceState({}, '', VIEW_PATHS.my)
       if (view !== 'map') setCanonical(null)
     }
-  }, [view, guideSlug, guide])
+  }, [view, guideSlug, guide, areaRoute])
 
   // 문서 제목. 브라우저 탭과 GA4의 page_title이 화면을 구분하게 한다. 형식은
   // 프리렌더(api/detail.js)의 제목과 맞추되, 거기에만 있는 수치는 넣지 않는다.
   useEffect(() => {
+    // 지역 허브는 서버가 지은 제목(학교 수가 들어 있다)을 AreaPage가 쓴다.
+    if (view === 'area') return
     const apartment = state.selectedApartment
     const school = state.selectedSchool
     document.title = view === 'map' && apartment
@@ -235,28 +222,8 @@ function MapApplication() {
         ? `${school.school_name} 배정 아파트 | 어디초`
         : view === 'guide' && guide
           ? `${guide.title} | 어디초`
-          : plan
-            ? `${plan.title} | 우리 아이 커리큘럼 | 어디초`
-            : item
-              ? `${item.name} | 우리 아이 커리큘럼 | 어디초`
-              : view === 'curriculum' && curriculumRoute.kind === 'ranking'
-                ? '아이템 순위 | 우리 아이 커리큘럼 | 어디초'
-                : view === 'curriculum' && curriculumRoute.kind === 'grade1'
-                  ? '1학년 미리보기 | 어디초'
-                  : TITLES[view]
-  }, [view, state.selectedApartment, state.selectedSchool, guide, plan, item, curriculumRoute])
-
-  // 커리큘럼 조회 (PRD_CURRICULUM_SHARING 4절). 같은 화면을 다시 그리는 것은 새 조회가 아니다.
-  const lastCurriculum = useRef<string | null>(null)
-  useEffect(() => {
-    const shown = view !== 'curriculum' ? null
-      : plan ? `plan:${plan.key}` : item ? `item:${item.key}` : curriculumRoute.kind === 'ranking' ? 'ranking' : 'plans'
-    if (shown === lastCurriculum.current) return
-    lastCurriculum.current = shown
-    if (plan) track('view_plan', { plan_key: plan.key, age_band: plan.ageBand })
-    else if (item) track('view_item', { item_key: item.key })
-    else if (shown === 'ranking') track('view_ranking', {})
-  }, [view, plan, item, curriculumRoute])
+          : TITLES[view]
+  }, [view, state.selectedApartment, state.selectedSchool, guide])
 
   // 가이드 조회와 FAQ 질문 열람 (PRD v2 12절의 1a 이벤트). 뒤로 가기로 돌아온
   // 가이드는 새 조회가 아니다.
@@ -418,6 +385,7 @@ function MapApplication() {
       {view === 'faq' && (
         <FaqPage onNavigate={(path) => navigate(path, 'related')} entryYear={entryYear} onEntryYearChange={changeEntryYear} onOpenQuestion={openFaqQuestion} />
       )}
+      {view === 'area' && <AreaPage key={areaRoute} path={areaRoute} onNavigate={(path) => navigate(path, 'related')} />}
       {view === 'news' && <NewsPage />}
       {view === 'my' && (
         <MyPage
@@ -430,15 +398,6 @@ function MapApplication() {
         />
       )}
       {view === 'privacy' && <PrivacyPage />}
-      {view === 'curriculum' && (plan
-        ? <PlanPage key={plan.key} plan={plan} onNavigate={(path) => navigate(path, 'related')} />
-        : item
-          ? <ItemPage key={item.key} item={item} onNavigate={(path) => navigate(path, 'related')} />
-          : curriculumRoute.kind === 'grade1'
-            ? <Grade1PreviewPage />
-          : curriculumRoute.kind === 'ranking'
-            ? <RankingPage onNavigate={(path) => navigate(path, 'related')} />
-            : <CurriculumListPage onNavigate={(path) => navigate(path, 'related')} />)}
       
       {connectionStatus.supabase === 'error' && (
         <div className="absolute top-4 right-4 z-10 max-w-xs">
@@ -482,7 +441,7 @@ const TITLES: Record<AppView, string> = {
   guide: '입학 준비 가이드 | 어디초',
   faq: `${FAQ_PAGE.title} | 어디초`,
   checklist: `${checklistContent.title} | 어디초`,
-  curriculum: '우리 아이 커리큘럼 | 어디초',
+  area: '지역별 초등학교 배정 현황 | 어디초',
 }
 
 const EtlMonitoringPage = lazy(() => import('./components/admin/EtlMonitoringPage'))

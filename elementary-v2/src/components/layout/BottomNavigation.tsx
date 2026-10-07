@@ -25,8 +25,11 @@ export default function BottomNavigation({ activeView, onNavigate }: BottomNavig
   return (
     <nav className="app-gnb" aria-label="주요 메뉴">
       {items.map(({ id, label, icon: Icon }) => {
-        // FAQ는 가이드 목록 아래에 있으므로 가이드 탭이 켜진다.
-        const isActive = activeView === id || (id === 'guide' && (activeView === 'faq' || activeView === 'checklist' || activeView === 'curriculum'))
+        // FAQ는 가이드 목록 아래에 있으므로 가이드 탭이 켜진다. 지역 허브는 학교를
+        // 찾는 다른 길이므로 지도 탭이 켜진다.
+        const isActive = activeView === id
+          || (id === 'guide' && (activeView === 'faq' || activeView === 'checklist'))
+          || (id === 'map' && activeView === 'area')
         const path = VIEW_PATHS[id]
         return (
           <a

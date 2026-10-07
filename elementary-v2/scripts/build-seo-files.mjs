@@ -94,6 +94,9 @@ const districtOf = (address, regions) => {
   return [city, subDistrict].filter(Boolean).join(' ')
 }
 
+/** Mirrors NO_DISTRICTS in api/detail.js: Sejong's hub lists its schools directly. */
+const NO_DISTRICTS = new Set(['세종특별자치시'])
+
 /** Mirrors `readable()` in src/utils/urlState.ts. Keep the two in step. */
 const readable = (parts) =>
   parts
@@ -102,6 +105,22 @@ const readable = (parts) =>
     .replace(/[\\/?#%&+\s]+/g, '-')
     .replace(/-{2,}/g, '-')
     .replace(/^-|-$/g, '')
+
+/**
+ * Mirrors `buildingGroupKey()` and `byBuilding()` in api/detail.js, which says
+ * why: a complex registered one building at a time (이현로29번길 72-1 ... 72-41)
+ * is one page with its buildings' pages pointing at it as canonical.
+ */
+const addressBase = (address) => String(address || '').trim().replace(/(\d+)-\d+$/, '$1')
+const addressSub = (address) => {
+  const match = String(address || '').trim().match(/\d+-(\d+)$/)
+  return match ? Number(match[1]) : 0
+}
+const buildingGroupKey = (complex, schoolIds) => (complex.road_address
+  ? [complex.region, complex.district, complex.complex_name, addressBase(complex.road_address), [...schoolIds].sort().join(',')].join('|')
+  : null)
+const byBuilding = (a, b) => addressSub(a.road_address) - addressSub(b.road_address)
+  || String(a.complex_public_key).localeCompare(String(b.complex_public_key))
 
 const credentials = () => {
   const url = process.env.VITE_SUPABASE_URL || process.env.SUPABASE_URL
@@ -179,6 +198,17 @@ const main = async () => {
 
   const schools = await fetchAll(creds, 'school_master',
     'school_id,school_name,region,road_address,legal_address')
+
+  // The area hubs (api/detail.js): one per 시·도 and one per 시·군·구 that has a
+  // school. Sejong has no district level, so it stops at the region.
+  const areaPaths = new Set(['/area'])
+  for (const row of schools) {
+    if (!row.region) continue
+    areaPaths.add(`/area/${shortName(row.region)}`)
+    const district = districtOf(row.road_address || row.legal_address, regions)
+    if (district && !NO_DISTRICTS.has(row.region)) areaPaths.add(`/area/${shortName(row.region)}/${readable([district])}`)
+  }
+
   const schoolPaths = schools
     .filter((row) => row.school_id && row.school_name)
     .map((row) =>
@@ -187,14 +217,25 @@ const main = async () => {
   // Serving holds one row per (school, complex), so a complex assigned to two
   // schools appears twice. A sitemap must list each page once.
   const serving = await fetchAll(creds, 'school_apartment_serving',
-    'complex_public_key,complex_name,region,district')
+    'complex_public_key,complex_name,region,district,road_address,school_id')
   const byKey = new Map()
   for (const row of serving) {
-    if (!row.complex_public_key || byKey.has(row.complex_public_key)) continue
-    byKey.set(row.complex_public_key, row)
+    if (!row.complex_public_key) continue
+    const entry = byKey.get(row.complex_public_key) || { ...row, schoolIds: new Set() }
+    entry.schoolIds.add(row.school_id)
+    byKey.set(row.complex_public_key, entry)
   }
-  const apartmentPaths = [...byKey.entries()].map(([key, row]) =>
-    `/apt/${readable([shortName(row.region), row.district, row.complex_name])}--${key}`)
+  // A complex registered building by building is one page in the sitemap: the
+  // representative its other buildings name as canonical (api/detail.js).
+  const representatives = new Map()
+  for (const row of byKey.values()) {
+    const group = buildingGroupKey(row, row.schoolIds) ?? `key:${row.complex_public_key}`
+    const current = representatives.get(group)
+    if (!current || byBuilding(row, current) < 0) representatives.set(group, row)
+  }
+  const apartmentPaths = [...representatives.values()].map((row) =>
+    `/apt/${readable([shortName(row.region), row.district, row.complex_name])}--${row.complex_public_key}`)
+  const groupedAway = byKey.size - representatives.size
 
   const withoutKey = serving.filter((row) => !row.complex_public_key).length
   const lastmod = new Date().toISOString().slice(0, 10)
@@ -207,7 +248,7 @@ const main = async () => {
   const contentPaths = ['/', '/guide', ...content.guides.map((guide) => `/guide/${guide.slug}`), '/faq', '/checklist']
 
   await fs.mkdir(outDir, { recursive: true })
-  for (const [label, paths] of [['pages', contentPaths], ['schools', schoolPaths], ['apartments', apartmentPaths]]) {
+  for (const [label, paths] of [['pages', contentPaths], ['areas', [...areaPaths]], ['schools', schoolPaths], ['apartments', apartmentPaths]]) {
     const pages = chunk(paths, URLS_PER_FILE)
     for (const [index, page] of pages.entries()) {
       const file = `sitemap-${label}-${index + 1}.xml`
@@ -216,6 +257,7 @@ const main = async () => {
     }
     console.log(`${label.padEnd(11)} ${paths.length.toLocaleString()} URLs in ${pages.length} file(s)`)
   }
+  console.log(`grouped     ${groupedAway.toLocaleString()} building records left to their complex's representative`)
 
   await fs.writeFile(path.join(outDir, 'robots.txt'), robotsTxt(origin), 'utf8')
   console.log(`robots      Sitemap -> ${origin}/sitemap.xml`)

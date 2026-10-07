@@ -21,8 +21,7 @@ operational table returns an empty result under RLS rather than rows.
 | `school_care_statistics` | table (SQL `23`, 2026-10-04; per-school care and after-school disclosure) |
 | `care_centers` | table (SQL `23`; community care centers, public-page fields only) |
 | `nearby_care_centers(...)` | function (SQL `23`) |
-| `curriculum_like_counts(...)`, `curriculum_item_ranking(...)` | functions (SQL `24`; counts only) |
-| `curriculum_likes` | table (SQL `24`) — **`authenticated` only, own rows only**. Anonymous voters are Supabase anonymous users |
+| `curriculum_like_counts(...)`, `curriculum_item_ranking(...)`, `curriculum_likes` | SQL `24` — **운영 미적용, 프런트 호출 없음**(2026-10-06 화면 삭제). 개편 P3·P4 결정 전까지 보류 |
 
 Verified blocked in the same pass: `apartment_complex_master`,
 `apartment_name_history`, `apartment_property_history`, `etl_runs` return

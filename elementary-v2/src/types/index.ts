@@ -117,6 +117,8 @@ export interface Apartment {
   // 비정규화: 배정 학교 정보
   assigned_school_id: string
   assigned_school_name: string
+  /** serving.review_required: 학구 경계 근처 등 점 배정만으로 확정하지 못한 단지 */
+  assignment_review_required?: boolean
 }
 
 // 🎛️ 필터 관련 타입

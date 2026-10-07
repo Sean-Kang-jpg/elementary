@@ -207,7 +207,10 @@ python etl/collect_care_data.py --apply    # upsert, drop older snapshots, anon 
 The loader refuses to shrink either table by more than 20% in one run. Run it
 monthly; the school disclosure changes yearly, the center list whenever centers edit it.
 
-## 24: curriculum likes (2026-10-05)
+## 24: curriculum likes (2026-10-05) — 적용 보류
+
+**적용하지 않는다(2026-10-06).** 이 기능의 화면은 삭제됐고, 참여 기능은 개편 계획 P3·P4의 로그인·Poll 설계로 다시 정한다.
+파일은 개편 감사(Audit 2 §10)에 따라 보존한다.
 
 `sql/24_create_curriculum_likes.sql` adds `curriculum_refs` (private; the keys a like may
 point at, with each card's age band, region and domain), `curriculum_likes` (one row per
@@ -222,6 +225,13 @@ Independent of `22`/`23`. Before likes work in production:
    Attack Protection → captcha. Turn both on together — a site key with captcha off is
    harmless, captcha on without a site key blocks every new voter.
 4. `python etl/upload_curriculum_refs.py` (dry run), then `--apply` after every content change.
+
+## 25: academy ETL schedule (2026-10-06)
+
+`sql/25_add_academy_etl_schedule.sql` widens `etl_schedules.data_domain` to allow `academy`,
+adds the monthly `neis-academy` schedule, and lists that source in `public_data_freshness()`.
+No table or grant changes on the public serving tables. Apply in the SQL editor before the first
+`run_academy_refresh.py --apply`; until then `run_due_etl.py` never sees the academy group as due.
 
 ## Stop Conditions
 

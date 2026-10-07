@@ -1,4 +1,4 @@
-import { BookOpen, ChevronRight, HelpCircle, Map, ShieldCheck } from 'lucide-react'
+import { BookOpen, ChevronRight, HelpCircle, Map, MapPinned, ShieldCheck } from 'lucide-react'
 import SearchBox from '../search/SearchBox'
 import EntryYearPicker from '../content/EntryYearPicker'
 import RoadmapSummary from '../content/RoadmapSummary'
@@ -67,6 +67,15 @@ export default function HomePage({ onNavigate, entryYear, onEntryYearChange, pro
           <span className="min-w-0 flex-1">
             <strong>{copy.mapCardTitle}</strong>
             <small>{copy.mapCardBody}</small>
+          </span>
+          <ChevronRight size={18} aria-hidden="true" />
+        </a>
+
+        <a href={VIEW_PATHS.area} onClick={(event) => followLink(event, VIEW_PATHS.area, onNavigate)} className="home-page__card">
+          <span className="home-page__card-icon"><MapPinned size={20} aria-hidden="true" /></span>
+          <span className="min-w-0 flex-1">
+            <strong>{copy.areaCardTitle}</strong>
+            <small>{copy.areaCardBody}</small>
           </span>
           <ChevronRight size={18} aria-hidden="true" />
         </a>

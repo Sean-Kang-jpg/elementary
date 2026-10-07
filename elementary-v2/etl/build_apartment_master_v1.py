@@ -29,6 +29,19 @@ ROOT_DIR = BASE_DIR.parents[2]
 OUTPUT_DIR = BASE_DIR / "local_outputs_20260320"
 APT_SOURCE = ROOT_DIR / "archive" / "GAS" / "GAS" / "임시" / "apt_mst_info_202410.csv"
 LEGACY_KAPT_SOURCE = ROOT_DIR / "archive" / "legacy-v1" / "etl" / "data" / "kapt" / "20250801_apt_data.csv"
+# Complexes built after the base file (build_apartment_supplement.py), read after it.
+# Optional: without the file the build is exactly what it was before 2026-10-07.
+APT_SUPPLEMENT = BASE_DIR / "runtime" / "apartment_supplement" / "apartment_base_supplement.csv"
+
+
+def base_origin(apt: dict[str, str]) -> tuple[str, str]:
+    """Where a base row came from and as of when: the 2024-10 file, or, for a
+    supplement row (`source` = kapt_supplement:kapt_basic_YYYYMMDD.csv), that K-apt file."""
+    source = (apt.get("source") or "").strip()
+    match = re.search(r"kapt_basic_(\d{4})(\d{2})(\d{2})", source)
+    if match:
+        return source.split(":", 1)[-1], "-".join(match.groups())
+    return APT_SOURCE.name, APARTMENT_BASE_AS_OF
 
 
 def kapt_source_metadata(path: Path) -> tuple[Path, str, str]:
@@ -227,22 +240,26 @@ def main(argv: list[str] | None = None) -> None:
 
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
     apartments: list[dict[str, str]] = []
-    with APT_SOURCE.open(encoding="cp949", newline="") as handle:
-        for row in csv.DictReader(handle):
-            region_code = text(row.get("legaldong_cd"))[:2]
-            expected_region = TARGET_CODES.get(region_code)
-            addresses = (text(row.get("rdnmadr")), text(row.get("lnmadr")), text(row.get("lnno_adres")))
-            if not expected_region or not any(address.startswith(expected_region) for address in addresses):
-                continue
-            city_scopes = [scope for scope in scopes if scope.cities]
-            if city_scopes and not any(
-                scope.includes_address(address)
-                for scope in city_scopes
-                for address in addresses
-                if address
-            ):
-                continue
-            apartments.append(row)
+    sources = [(APT_SOURCE, "cp949")]
+    if APT_SUPPLEMENT.is_file():
+        sources.append((APT_SUPPLEMENT, "utf-8-sig"))
+    for source_path, source_encoding in sources:
+        with source_path.open(encoding=source_encoding, newline="") as handle:
+            for row in csv.DictReader(handle):
+                region_code = text(row.get("legaldong_cd"))[:2]
+                expected_region = TARGET_CODES.get(region_code)
+                addresses = (text(row.get("rdnmadr")), text(row.get("lnmadr")), text(row.get("lnno_adres")))
+                if not expected_region or not any(address.startswith(expected_region) for address in addresses):
+                    continue
+                city_scopes = [scope for scope in scopes if scope.cities]
+                if city_scopes and not any(
+                    scope.includes_address(address)
+                    for scope in city_scopes
+                    for address in addresses
+                    if address
+                ):
+                    continue
+                apartments.append(row)
 
     kapt_rows: list[dict[str, str]] = []
     with KAPT_SOURCE.open(encoding=KAPT_ENCODING, newline="") as handle:
@@ -449,7 +466,7 @@ def main(argv: list[str] | None = None) -> None:
             "latest_known_name": latest_known_name,
             "name_resolution_status": name_resolution_status,
             "name_aliases": json.dumps(list(dict.fromkeys(name for name in (base_name, kapt_name) if name)), ensure_ascii=False),
-            "apartment_base_as_of": APARTMENT_BASE_AS_OF,
+            "apartment_base_as_of": base_origin(apt)[1],
             "kapt_as_of": KAPT_AS_OF if match else None,
             "region": TARGET_CODES[legal_code[:2]],
             "district": district_from_address(apt.get("rdnmadr")),
@@ -495,15 +512,15 @@ def main(argv: list[str] | None = None) -> None:
             "kapt_public_rental_units": integer(kapt.get("임대세대수(공공)")) if kapt else None,
             "kapt_private_rental_units": integer(kapt.get("임대세대수(민간)")) if kapt else None,
             "kapt_management_type": text(kapt.get("관리방식")) if kapt else None,
-            "apartment_base_source": APT_SOURCE.name,
+            "apartment_base_source": text(apt.get("source")) or APT_SOURCE.name,
             "kapt_source": KAPT_SOURCE.name if match else None,
         }
         name_history.append({
             "apt_cd": apt_id,
             "canonical_complex_id": row["canonical_complex_id"],
             "name": base_name,
-            "source": APT_SOURCE.name,
-            "observed_as_of": APARTMENT_BASE_AS_OF,
+            "source": base_origin(apt)[0],
+            "observed_as_of": base_origin(apt)[1],
             "name_role": "component_or_historical_name" if match and not same_normalized_name else "confirmed_name",
         })
         if kapt_name and not same_normalized_name:
@@ -585,7 +602,7 @@ def main(argv: list[str] | None = None) -> None:
                         "canonical_complex_id": row["canonical_complex_id"],
                         "field_name": field_name,
                         "base_value": base_value,
-                        "base_as_of": APARTMENT_BASE_AS_OF,
+                        "base_as_of": base_origin(apt)[1],
                         "latest_observed_value": kapt_value,
                         "latest_observed_as_of": KAPT_AS_OF,
                         "canonical_value": canonical_value,
