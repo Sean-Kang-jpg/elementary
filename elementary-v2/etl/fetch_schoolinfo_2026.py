@@ -13,6 +13,7 @@ import argparse
 import json
 import os
 import sys
+import time
 from datetime import date, datetime
 from pathlib import Path
 from typing import Any, Sequence
@@ -124,15 +125,23 @@ def fetch(api_key: str, api_type: str, year: int) -> tuple[list[dict[str, Any]],
             "sidoCode": "00",
         }
     )
-    try:
-        with urlopen(f"{ENDPOINT}?{query}", timeout=90) as response:
-            payload = json.loads(response.read().decode("utf-8"))
-    except HTTPError as exc:
-        raise RuntimeError(f"Schoolinfo apiType={api_type} HTTP {exc.code}") from None
-    except URLError as exc:
-        raise RuntimeError(f"Schoolinfo apiType={api_type} network error: {exc.reason}") from None
-    except (UnicodeDecodeError, json.JSONDecodeError) as exc:
-        raise RuntimeError(f"Schoolinfo apiType={api_type} returned invalid JSON: {exc}") from None
+    # The nationwide answer is large and the API stalls now and then from GitHub
+    # runners (2026-10-07: a read timeout stopped the monthly rehearsal), so retry.
+    attempts = 4
+    for attempt in range(attempts):
+        try:
+            with urlopen(f"{ENDPOINT}?{query}", timeout=180) as response:
+                payload = json.loads(response.read().decode("utf-8"))
+            break
+        except HTTPError as exc:
+            if exc.code not in {429, 500, 502, 503, 504} or attempt == attempts - 1:
+                raise RuntimeError(f"Schoolinfo apiType={api_type} HTTP {exc.code}") from None
+        except (URLError, TimeoutError, ConnectionError) as exc:
+            if attempt == attempts - 1:
+                raise RuntimeError(f"Schoolinfo apiType={api_type} network error: {getattr(exc, 'reason', exc)}") from None
+        except (UnicodeDecodeError, json.JSONDecodeError) as exc:
+            raise RuntimeError(f"Schoolinfo apiType={api_type} returned invalid JSON: {exc}") from None
+        time.sleep(15 * (attempt + 1))
     if payload.get("resultCode") != "success":
         raise RuntimeError(f"Schoolinfo apiType={api_type} failed: {payload.get('resultMsg')}")
     rows = payload.get("list") or []
