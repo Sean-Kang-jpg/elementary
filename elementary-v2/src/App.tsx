@@ -14,6 +14,7 @@ import GuideListPage from './components/content/GuideListPage'
 import GuidePage from './components/content/GuidePage'
 import FaqPage from './components/content/FaqPage'
 import ChecklistPage from './components/content/ChecklistPage'
+import AreaPage from './components/content/AreaPage'
 import checklistContent from './content/checklist.json'
 import { hasSavedProfile, readProfile, saveProfile, type Profile } from './utils/profile'
 import { FAQ_PAGE, findGuide } from './content'
@@ -54,6 +55,11 @@ function MapApplication() {
     const route = parseRoute(window.location.pathname, window.location.search)
     return route.kind === 'guide' ? route.slug : null
   })
+  // 지역 허브 화면 안에서 어느 지역인지. 허브 주소가 아니면 쓰지 않는다.
+  const [areaRoute, setAreaRoute] = useState<string>(() => {
+    const route = parseRoute(window.location.pathname, window.location.search)
+    return route.kind === 'area' ? route.path : VIEW_PATHS.area
+  })
   // 아이의 입학연도. 주소(`?year=`)와 메모리에만 둔다 — 기기 저장이 필요 없다.
   // 입학 프로필은 이 기기에만 저장한다(PRD v2 D1 A안). 주소의 `?year=`가 있으면 그것이 우선이다.
   const [profile, setProfile] = useState<Profile>(readProfile)
@@ -89,6 +95,7 @@ function MapApplication() {
   const showRoute = (route: Route) => {
     setView(viewOf(route))
     setGuideSlug(route.kind === 'guide' ? route.slug : null)
+    if (route.kind === 'area') setAreaRoute(route.path)
   }
   // 주소를 읽어 선택을 복원하는 동안에는 선택을 보고 주소를 쓰면 안 된다.
   // 그러지 않으면 복원 도중의 중간 상태가 기록으로 쌓인다.
@@ -145,7 +152,7 @@ function MapApplication() {
       showRoute(route)
       // 처음 열린 주소가 상세나 가이드라면 바깥(검색엔진·공유 링크·북마크)에서 온
       // 것이다. ADR-006의 성패가 이 값으로 판정된다.
-      const entryPage = route.kind === 'school' || route.kind === 'apartment' || route.kind === 'guide' || route.kind === 'faq'
+      const entryPage = route.kind === 'school' || route.kind === 'apartment' || route.kind === 'guide' || route.kind === 'faq' || route.kind === 'area'
       if (fromLink && entryPage) markEntry('link')
       historyTarget.current = !fromLink && (route.kind === 'school' || route.kind === 'apartment') ? route.key : null
       historyGuide.current = !fromLink && route.kind === 'guide' ? route.slug : null
@@ -190,6 +197,7 @@ function MapApplication() {
     if (view === 'home') setCanonical(VIEW_PATHS.home)
     else if (view === 'faq') setCanonical(VIEW_PATHS.faq)
     else if (view === 'checklist') setCanonical(VIEW_PATHS.checklist)
+    else if (view === 'area') setCanonical(areaRoute)
     else if (view === 'guide') {
       // 없는 가이드 주소는 목록을 보여주고 주소도 목록으로 고친다.
       if (guideSlug && !guide) window.history.replaceState({}, '', VIEW_PATHS.guide)
@@ -199,11 +207,13 @@ function MapApplication() {
       if (view === 'my' && window.location.pathname !== VIEW_PATHS.my) window.history.replaceState({}, '', VIEW_PATHS.my)
       if (view !== 'map') setCanonical(null)
     }
-  }, [view, guideSlug, guide])
+  }, [view, guideSlug, guide, areaRoute])
 
   // 문서 제목. 브라우저 탭과 GA4의 page_title이 화면을 구분하게 한다. 형식은
   // 프리렌더(api/detail.js)의 제목과 맞추되, 거기에만 있는 수치는 넣지 않는다.
   useEffect(() => {
+    // 지역 허브는 서버가 지은 제목(학교 수가 들어 있다)을 AreaPage가 쓴다.
+    if (view === 'area') return
     const apartment = state.selectedApartment
     const school = state.selectedSchool
     document.title = view === 'map' && apartment
@@ -375,6 +385,7 @@ function MapApplication() {
       {view === 'faq' && (
         <FaqPage onNavigate={(path) => navigate(path, 'related')} entryYear={entryYear} onEntryYearChange={changeEntryYear} onOpenQuestion={openFaqQuestion} />
       )}
+      {view === 'area' && <AreaPage key={areaRoute} path={areaRoute} onNavigate={(path) => navigate(path, 'related')} />}
       {view === 'news' && <NewsPage />}
       {view === 'my' && (
         <MyPage
@@ -430,6 +441,7 @@ const TITLES: Record<AppView, string> = {
   guide: '입학 준비 가이드 | 어디초',
   faq: `${FAQ_PAGE.title} | 어디초`,
   checklist: `${checklistContent.title} | 어디초`,
+  area: '지역별 초등학교 배정 현황 | 어디초',
 }
 
 const EtlMonitoringPage = lazy(() => import('./components/admin/EtlMonitoringPage'))

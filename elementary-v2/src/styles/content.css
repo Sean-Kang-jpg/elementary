@@ -1850,3 +1850,215 @@
     font-size: 30px;
   }
 }
+
+/* ---- Area hubs (/area, /area/서울, /area/서울/강남구) ----------------------
+ * The markup comes from api/detail.js, which a crawler reads too; the app shows
+ * it as it is (AreaPage.tsx). Plain selectors, not utilities, because Tailwind
+ * cannot see class names that only exist in a server response. */
+
+.area-page h1 {
+  margin: 4px 0 0;
+  font-size: 24px;
+  font-weight: 800;
+  line-height: 1.35;
+}
+
+.area-page h2 {
+  margin: 28px 0 10px;
+  font-size: 17px;
+  font-weight: 750;
+}
+
+.area-trail ol {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px 0;
+  margin: 0 0 10px;
+  padding: 0;
+  list-style: none;
+  color: var(--warm-muted);
+  font-size: 13px;
+}
+
+.area-trail li + li::before {
+  margin: 0 6px;
+  color: var(--warm-faint);
+  content: '›';
+}
+
+.area-trail a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.area-trail a:hover {
+  color: var(--warm-accent-strong);
+  text-decoration: underline;
+}
+
+.area-facts {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  margin: 0;
+}
+
+.area-facts dt,
+.area-facts dd {
+  margin: 0;
+}
+
+.area-facts > div {
+  border: 1px solid var(--warm-border);
+  border-radius: 14px;
+  padding: 10px 12px;
+  background: var(--warm-surface);
+}
+
+.area-facts dt {
+  color: var(--warm-muted);
+  font-size: 12px;
+}
+
+.area-facts dd {
+  margin-top: 2px;
+  font-size: 16px;
+  font-weight: 750;
+}
+
+.area-table-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--warm-border);
+  border-radius: 14px;
+  background: var(--warm-surface);
+}
+
+.area-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13.5px;
+  line-height: 1.45;
+  font-variant-numeric: tabular-nums;
+}
+
+.area-table th,
+.area-table td {
+  border-bottom: 1px solid var(--warm-border);
+  padding: 9px 10px;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.area-table th[scope='row'],
+.area-table thead th:first-child {
+  text-align: left;
+  white-space: normal;
+}
+
+.area-table thead th {
+  color: var(--warm-muted);
+  font-size: 12px;
+  font-weight: 650;
+}
+
+.area-table tbody tr:last-child > * {
+  border-bottom: 0;
+}
+
+.area-table th[scope='row'] {
+  font-weight: 650;
+}
+
+.area-table a {
+  color: var(--warm-text);
+  text-decoration: none;
+}
+
+.area-table a:hover {
+  color: var(--warm-accent-strong);
+  text-decoration: underline;
+}
+
+.area-table small {
+  color: var(--warm-faint);
+  font-weight: 500;
+}
+
+.area-links {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.area-links a {
+  display: block;
+  border: 1px solid var(--warm-border);
+  border-radius: 14px;
+  padding: 12px;
+  background: var(--warm-surface);
+  color: var(--warm-text);
+  font-weight: 700;
+  text-align: center;
+  text-decoration: none;
+}
+
+.area-links a:hover {
+  border-color: var(--warm-border-strong);
+  box-shadow: var(--warm-shadow);
+}
+
+.area-school {
+  border-bottom: 1px solid var(--warm-border);
+  padding: 10px 0 12px;
+}
+
+.area-school h3 {
+  margin: 0 0 4px;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.area-school h3 a,
+.area-school li a {
+  color: var(--warm-text);
+  text-decoration: none;
+}
+
+.area-school h3 a:hover,
+.area-school li a:hover {
+  color: var(--warm-accent-strong);
+  text-decoration: underline;
+}
+
+.area-school ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px 14px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 13.5px;
+}
+
+.area-school small {
+  color: var(--warm-faint);
+}
+
+.area-school__more {
+  margin: 4px 0 0;
+  font-size: 13px;
+}
+
+.area-school__more a {
+  color: var(--warm-accent-strong);
+}
+
+.area-note {
+  margin: 20px 0 0;
+  color: var(--warm-faint);
+  font-size: 12.5px;
+  line-height: 1.6;
+}

@@ -16,6 +16,7 @@ import ShareButton from '../ui/ShareButton'
 import DataFreshness from '../ui/DataFreshness'
 import StartModule from '../content/StartModule'
 import SchoolCarePanel from '../care/SchoolCarePanel'
+import NearbySchools from './NearbySchools'
 import CareCenterList from '../care/CareCenterList'
 import { markEntry, track } from '../../utils/analytics'
 import { schoolPath } from '../../utils/urlState'
@@ -25,7 +26,10 @@ interface SchoolDetailProps {
   school: School | null
   isOpen: boolean
   onClose: () => void
-  /** Opens a guide from the start module; leaves the map for the guide screen. */
+  /**
+   * Opens another screen through the app: a guide from the start module, or a
+   * neighbouring school or the district hub from the comparison.
+   */
   onOpenGuide: (path: string) => void
 }
 
@@ -328,6 +332,8 @@ const SchoolDetail: React.FC<SchoolDetailProps> = ({ school, isOpen, onClose, on
               ))}
             </div>
           </section>
+
+          <NearbySchools school={school} onNavigate={onOpenGuide} />
 
           {assignsByZone && <section aria-labelledby="apartments-title">
             <div className="mb-2 flex items-center justify-between">

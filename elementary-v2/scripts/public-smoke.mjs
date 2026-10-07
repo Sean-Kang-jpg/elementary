@@ -169,6 +169,30 @@ const assertOriginsAgree = async () => {
     const canonicals = (detailBody.match(/rel="canonical"/g) || []).length
     if (canonicals !== 1) throw new Error(`the prerendered detail page declares ${canonicals} canonical links, not 1`)
     process.stdout.write('PASS: the prerendered detail page declares exactly one canonical\n')
+
+    // A complex registered building by building names its first building as
+    // canonical (성호샤인힐즈아파트, 이현로29번길 72-1 ... 72-41). The sitemap lists
+    // only that one, so a page pointing at itself here would be an unlisted duplicate.
+    const member = await fetch(new URL('/apt/D1YND6ZS', baseUrl).toString())
+    const memberBody = member.ok ? await member.text() : ''
+    const memberCanonical = (memberBody.match(/<link rel="canonical" href="([^"]*)"/) || [])[1] || ''
+    if (!memberCanonical.endsWith('--DG8B1CFV')) {
+      throw new Error(`a building of a grouped complex declares ${memberCanonical || 'no canonical'}, not its representative`)
+    }
+    process.stdout.write('PASS: a building of a grouped complex names its representative as canonical\n')
+  }
+
+  // The area hubs go through the same function. A visitor reads this markup as
+  // it is (AreaPage.tsx), so a hub that falls open to the shell is a blank page.
+  const hub = await fetch(new URL('/area/서울/강남구', baseUrl).toString())
+  const hubBody = hub.ok ? await hub.text() : ''
+  if (hubBody.includes('data-area-page')) {
+    const canonicals = (hubBody.match(/rel="canonical"/g) || []).length
+    if (canonicals !== 1) throw new Error(`the area hub declares ${canonicals} canonical links, not 1`)
+    if (!/<table class="area-table">[\s\S]*href="\/school\//.test(hubBody)) throw new Error('the area hub lists no school links')
+    process.stdout.write('PASS: the area hub is prerendered with one canonical and links to its schools\n')
+  } else {
+    process.stdout.write('SKIP: /area is not routed to the prerender here\n')
   }
 
   const origins = [...new Set(found.values())]

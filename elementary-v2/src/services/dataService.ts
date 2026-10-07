@@ -4,6 +4,7 @@ import type { AcademyAddress, Apartment, ApartmentAcademySummary, CareCenter, Co
 import { regionCenter, regionHasCityLevel, regionsIntersectingBounds } from '../constants/regionRegistry'
 import { getSchoolNeighborhoodLabel } from '../utils/clusterUtils'
 import { DEFAULT_CENTERS, generateCacheKey, getDisplayMode } from '../utils/mapUtils'
+import { distanceKm, type NearbySchool } from '../utils/nearbySchools'
 
 export interface RegionData {
   region: string
@@ -641,6 +642,38 @@ export const getSchoolDetail = async (schoolId: string): Promise<School | null> 
   const { data, error } = await supabase.from('school_master').select(SCHOOL_SELECT_FIELDS).eq('school_id', schoolId).maybeSingle()
   if (error) throw error
   return data ? toSchool(data as unknown as SchoolMasterRow) : null
+}
+
+const NEARBY_SCHOOL_FIELDS = 'school_id,school_name,school_type,region,road_address,legal_address,establishment_type,'
+  + 'latitude,longitude,grade1_students,grade1_classes,grade1_per_class,total_students'
+const nearbySchoolCache = new Map<string, NearbySchool[]>()
+
+/**
+ * 가장 가까운 학교 몇 곳. 프리렌더의 `nearbySchools()`(api/detail.js)와 같은
+ * 범위·개수다. PostgREST는 거리로 정렬하지 못하므로 사방 약 5km 상자를 읽어
+ * 여기서 정렬한다 — 서울에서도 백 곳 남짓이다.
+ */
+export const getNearbySchools = async (school: School, count = 5): Promise<NearbySchool[]> => {
+  const cached = nearbySchoolCache.get(school.school_id)
+  if (cached) return cached
+  if (!school.latitude || !school.longitude) return []
+  const { data, error } = await supabase
+    .from('school_master')
+    .select(NEARBY_SCHOOL_FIELDS)
+    .gte('latitude', school.latitude - 0.05)
+    .lte('latitude', school.latitude + 0.05)
+    .gte('longitude', school.longitude - 0.06)
+    .lte('longitude', school.longitude + 0.06)
+    .limit(400)
+  if (error) throw error
+  const nearby = ((data || []) as unknown as SchoolMasterRow[])
+    .map(toSchool)
+    .filter((other) => other.school_id !== school.school_id && other.latitude && other.longitude)
+    .map((other) => ({ school: other, distanceKm: distanceKm(school, other) }))
+    .sort((a, b) => a.distanceKm - b.distanceKm)
+    .slice(0, count)
+  nearbySchoolCache.set(school.school_id, nearby)
+  return nearby
 }
 
 /**
