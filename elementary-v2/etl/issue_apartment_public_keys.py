@@ -269,14 +269,16 @@ def main(argv: list[str] | None = None) -> int:
     args = parser.parse_args(argv)
 
     if args.from_serving:
+        # Anon is enough to read serving; a GitHub runner has only the service key.
         url = os.getenv("SUPABASE_URL")
-        key = os.getenv("SUPABASE_ANON_KEY") or os.getenv("VITE_SUPABASE_ANON_KEY")
+        key = os.getenv("SUPABASE_ANON_KEY") or os.getenv("VITE_SUPABASE_ANON_KEY") or os.getenv("SUPABASE_SERVICE_KEY")
         if not url or not key:
             load_env(PROJECT_DIR / ".env")
             url = os.getenv("SUPABASE_URL") or os.getenv("VITE_SUPABASE_URL")
-            key = os.getenv("SUPABASE_ANON_KEY") or os.getenv("VITE_SUPABASE_ANON_KEY")
+            key = (os.getenv("SUPABASE_ANON_KEY") or os.getenv("VITE_SUPABASE_ANON_KEY")
+                   or os.getenv("SUPABASE_SERVICE_KEY"))
         if not url or not key:
-            print("SUPABASE_URL and an anon key are required for --from-serving",
+            print("SUPABASE_URL and an anon or service key are required for --from-serving",
                   file=sys.stderr)
             return 2
         complexes = read_complexes_from_serving(url.rstrip("/"), key)

@@ -131,8 +131,13 @@ origin points 80,641 -> 80,220, summaries 46,927 -> 46,929; every region within 
 `etl/run_local_monthly_etl.ps1`) runs on the 1st at 21:00 KST, StartWhenAvailable, only while this
 Windows user is logged in. It holds the steps that need a Korean IP (VWorld):
 
-1. `run_academy_refresh.py --geocode-only` - academy geocode cache and the sports-dojo copy, to Storage
-2. `collect_care_data.py --apply` - school care disclosure (Schoolinfo apiType 59, published each May)
+1. `build_apartment_supplement.py --fetch-kapt --upload` - complexes newer than the 2024-10 apartment
+   base (docs/operations/NEW_COMPLEX_INTAKE_PLAN.md), to Storage `apartment-supplement/`. The monthly
+   run restores them before the apartment build (`run_due_etl.restore_apartment_supplement`), and
+   after it `publish_apartment_public_keys.py` issues keys for new complexes from the database's
+   key tables and refreshes serving
+2. `run_academy_refresh.py --geocode-only` - academy geocode cache and the sports-dojo copy, to Storage
+3. `collect_care_data.py --apply` - school care disclosure (Schoolinfo apiType 59, published each May)
    and the 다함께돌봄 center list. It refuses to shrink either table by more than a fifth.
 
 Each step runs even if the one before failed.

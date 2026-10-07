@@ -278,6 +278,47 @@ def delete_storage_objects(url: str, key: str, bucket: str, paths: list[str]) ->
         pass
 
 
+SUPPLEMENT_DIR = RUNTIME_DIR / "apartment_supplement"
+SUPPLEMENT_FILES = ("apartment_base_supplement.csv", "apartment_point_assignments_supplement.csv", "supplement_report.json")
+
+
+def restore_apartment_supplement(url: str, key: str) -> bool:
+    """Complexes newer than the apartment base, from Storage, before the apartment build.
+
+    build_apartment_supplement.py writes them on the ETL workstation (geocoding needs
+    a Korean IP). Without them the build is what it was before 2026-10-07: the
+    builders read the supplement only when the files exist.
+    """
+    import gzip
+    import urllib.error
+    bodies = {}
+    for name in SUPPLEMENT_FILES:
+        request = urllib.request.Request(
+            f"{url}/storage/v1/object/etl-source-snapshots/apartment-supplement/{name}.gz",
+            headers={"apikey": key, "Authorization": f"Bearer {key}"},
+        )
+        try:
+            with urllib.request.urlopen(request, timeout=120) as response:
+                bodies[name] = gzip.decompress(response.read())
+        except urllib.error.HTTPError as exc:
+            if exc.code in (400, 404):
+                print(f"no apartment supplement in Storage ({name}); building from the base alone")
+                return False
+            raise
+    SUPPLEMENT_DIR.mkdir(parents=True, exist_ok=True)
+    for name, body in bodies.items():
+        (SUPPLEMENT_DIR / name).write_bytes(body)
+    report = json.loads(bodies["supplement_report.json"])
+    print(f"apartment supplement restored: {report['added']:,} complexes from {report['kapt']} ({report['generated_at']})")
+    return True
+
+
+def publish_public_keys(apply: bool) -> None:
+    # New complexes reach serving without a public key; issue theirs from the
+    # database registry and rejoin serving (publish_apartment_public_keys.py).
+    run_script("etl/publish_apartment_public_keys.py", *(["--apply"] if apply else []))
+
+
 def run_academy_guard(apply: bool) -> None:
     # Academy serving is refreshed by hand, not here; this keeps it inside the
     # published contract (no 직업기술 institutions) whatever was last uploaded.
@@ -431,11 +472,15 @@ def main() -> None:
         # stay separately attributable.
         for regions, slug in production_scopes():
             ensure_schoolinfo(regions, slug)
+        if "apartment" in groups:
+            restore_apartment_supplement(url, key)
         for group in (name for name in groups if name != "academy"):
             for regions, slug in production_scopes():
                 execute_group(
                     group, args.apply, args.max_attempts, args.retry_delay_seconds, regions, slug
                 )
+        if "apartment" in groups:
+            publish_public_keys(args.apply)
         academy_error = None
         if "academy" in groups:
             # After the apartment group, so proximity reads this month's complexes.

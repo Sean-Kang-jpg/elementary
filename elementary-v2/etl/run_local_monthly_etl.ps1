@@ -6,8 +6,9 @@
 # IPs, so GitHub runners cannot geocode. Registered by install_local_monthly_task.ps1
 # for the evening before the GitHub monthly run.
 #
-#   1. academy   run_academy_refresh.py --geocode-only  (cache + dojo copy to Storage)
-#   2. care      collect_care_data.py --apply           (school care disclosure, care centers)
+#   1. supplement build_apartment_supplement.py --fetch-kapt --upload  (new complexes to Storage)
+#   2. academy    run_academy_refresh.py --geocode-only  (cache + dojo copy to Storage)
+#   3. care       collect_care_data.py --apply           (school care disclosure, care centers)
 #
 # Each step runs even if the one before failed. Any failure opens (or comments on)
 # a GitHub issue labelled etl-failure, the same channel the Actions run uses.
@@ -22,6 +23,7 @@ $env:PYTHONUTF8 = "1"
 $Repository = "Sean-Kang-jpg/elementary"
 
 $Steps = @(
+    @{ Name = "supplement"; Arguments = @((Join-Path $PSScriptRoot "build_apartment_supplement.py"), "--fetch-kapt", "--upload") },
     @{ Name = "academy"; Arguments = @((Join-Path $PSScriptRoot "run_academy_refresh.py"), "--geocode-only") },
     @{ Name = "care"; Arguments = @((Join-Path $PSScriptRoot "collect_care_data.py"), "--apply") }
 )

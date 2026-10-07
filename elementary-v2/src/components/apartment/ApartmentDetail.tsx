@@ -87,6 +87,11 @@ const ApartmentDetail: React.FC<ApartmentDetailProps> = ({ apartment, isOpen, on
               <span className="flex h-10 w-10 flex-none items-center justify-center rounded-md bg-blue-50 text-blue-700"><School size={20} aria-hidden="true" /></span>
               <span className="min-w-0 flex-1"><span id="assigned-school-title" className="block text-xs font-medium text-gray-500">배정 학교</span><strong className="mt-0.5 block truncate text-base text-gray-950">{apartment.assigned_school_name || '학교 정보 확인 중'}</strong></span>
             </div>
+            {apartment.assignment_review_required ? (
+              <p className="mt-2 rounded bg-amber-50 px-2.5 py-1.5 text-xs leading-5 text-amber-800" data-testid="assignment-review-note">
+                <strong className="font-semibold">배정 확인 필요</strong> · 학구 경계 가까이 있어 실제 배정이 다를 수 있습니다. 관할 교육지원청에 확인하세요.
+              </p>
+            ) : null}
           </section>
 
           <section aria-labelledby="parking-title">

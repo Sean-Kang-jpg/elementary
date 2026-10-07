@@ -29,6 +29,9 @@ ROOT_DIR = BASE_DIR.parents[2]
 OUTPUT_DIR = BASE_DIR / "local_outputs_20260320"
 APT_SOURCE = ROOT_DIR / "archive" / "GAS" / "GAS" / "임시" / "apt_mst_info_202410.csv"
 LEGACY_KAPT_SOURCE = ROOT_DIR / "archive" / "legacy-v1" / "etl" / "data" / "kapt" / "20250801_apt_data.csv"
+# Complexes built after the base file (build_apartment_supplement.py), read after it.
+# Optional: without the file the build is exactly what it was before 2026-10-07.
+APT_SUPPLEMENT = BASE_DIR / "runtime" / "apartment_supplement" / "apartment_base_supplement.csv"
 
 
 def kapt_source_metadata(path: Path) -> tuple[Path, str, str]:
@@ -227,22 +230,26 @@ def main(argv: list[str] | None = None) -> None:
 
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
     apartments: list[dict[str, str]] = []
-    with APT_SOURCE.open(encoding="cp949", newline="") as handle:
-        for row in csv.DictReader(handle):
-            region_code = text(row.get("legaldong_cd"))[:2]
-            expected_region = TARGET_CODES.get(region_code)
-            addresses = (text(row.get("rdnmadr")), text(row.get("lnmadr")), text(row.get("lnno_adres")))
-            if not expected_region or not any(address.startswith(expected_region) for address in addresses):
-                continue
-            city_scopes = [scope for scope in scopes if scope.cities]
-            if city_scopes and not any(
-                scope.includes_address(address)
-                for scope in city_scopes
-                for address in addresses
-                if address
-            ):
-                continue
-            apartments.append(row)
+    sources = [(APT_SOURCE, "cp949")]
+    if APT_SUPPLEMENT.is_file():
+        sources.append((APT_SUPPLEMENT, "utf-8-sig"))
+    for source_path, source_encoding in sources:
+        with source_path.open(encoding=source_encoding, newline="") as handle:
+            for row in csv.DictReader(handle):
+                region_code = text(row.get("legaldong_cd"))[:2]
+                expected_region = TARGET_CODES.get(region_code)
+                addresses = (text(row.get("rdnmadr")), text(row.get("lnmadr")), text(row.get("lnno_adres")))
+                if not expected_region or not any(address.startswith(expected_region) for address in addresses):
+                    continue
+                city_scopes = [scope for scope in scopes if scope.cities]
+                if city_scopes and not any(
+                    scope.includes_address(address)
+                    for scope in city_scopes
+                    for address in addresses
+                    if address
+                ):
+                    continue
+                apartments.append(row)
 
     kapt_rows: list[dict[str, str]] = []
     with KAPT_SOURCE.open(encoding=KAPT_ENCODING, newline="") as handle:
@@ -495,7 +502,7 @@ def main(argv: list[str] | None = None) -> None:
             "kapt_public_rental_units": integer(kapt.get("임대세대수(공공)")) if kapt else None,
             "kapt_private_rental_units": integer(kapt.get("임대세대수(민간)")) if kapt else None,
             "kapt_management_type": text(kapt.get("관리방식")) if kapt else None,
-            "apartment_base_source": APT_SOURCE.name,
+            "apartment_base_source": text(apt.get("source")) or APT_SOURCE.name,
             "kapt_source": KAPT_SOURCE.name if match else None,
         }
         name_history.append({

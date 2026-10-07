@@ -30,7 +30,12 @@ Outputs, in etl/runtime/apartment_supplement/:
   apartment_point_assignments_supplement.csv point-assignment columns
   supplement_report.json                     counts, dropped duplicates, the review band
 
-Writes nothing to Supabase. Reads the published complexes with the service key.
+Reads the published complexes with the service key and writes nothing to the
+tables. --fetch-kapt collects this month's K-apt first; --upload puts the two
+supplement files and the report in private Storage (etl-source-snapshots/
+apartment-supplement/), where the monthly run restores them before the apartment
+build. The upload refuses if the supplement lost more than SHRINK_LIMIT of the
+complexes the last upload had: the list only grows, so a drop means a broken source.
 """
 
 from __future__ import annotations
@@ -57,12 +62,18 @@ from evaluate_academy_distance_origins import haversine_m  # noqa: E402
 from geocode_academy_addresses import env_value, geocode  # noqa: E402
 from run_academy_refresh import credentials, fetch_all  # noqa: E402
 from verify_p1_schoolzone_browser import query_schoolzone  # noqa: E402
+import gzip  # noqa: E402
+import run_recurring_etl as recurring  # noqa: E402
 
 
 BASE_DIR = Path(__file__).resolve().parent
 OUTPUT_DIR = BASE_DIR / "runtime" / "apartment_supplement"
 KAPT_DIR = BASE_DIR / "local_outputs_20260320"
 GEOCODE_CACHE = OUTPUT_DIR / "geocode_cache.json"
+BUCKET = "etl-source-snapshots"
+STORAGE_PREFIX = "apartment-supplement"
+STORAGE_FILES = ("apartment_base_supplement.csv", "apartment_point_assignments_supplement.csv", "supplement_report.json")
+SHRINK_LIMIT = 0.10
 
 APPROVED_FROM = "20240701"        # D1: three months before the base file's 2024-10
 DUPLICATE_RADIUS_M = 100
@@ -167,8 +178,13 @@ def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--kapt", type=Path, default=None, help="K-apt CSV; the newest local snapshot by default")
     parser.add_argument("--shp", type=Path, default=SHP)
+    parser.add_argument("--fetch-kapt", action="store_true", help="collect this month's K-apt first")
+    parser.add_argument("--upload", action="store_true", help="write the supplement to private Storage")
     args = parser.parse_args()
 
+    if args.fetch_kapt:
+        from run_due_etl import collect_apartment
+        collect_apartment()
     kapt_path = args.kapt or latest_kapt()
     with kapt_path.open(encoding="utf-8-sig", newline="") as handle:
         kapt_rows = list(csv.DictReader(handle))
@@ -282,6 +298,45 @@ def main() -> None:
     print(json.dumps({k: v for k, v in report.items() if k not in ("review_band", "dropped", "failures", "replacements")},
                      ensure_ascii=False, indent=2))
     print(f"review band {len(review):,}, dropped {len(dropped):,}, failed {len(failed):,} -> {OUTPUT_DIR / 'supplement_report.json'}")
+    if args.upload:
+        upload(url, key, len(base_rows))
+
+
+def upload(url: str, key: str, added: int) -> None:
+    previous = storage_get_object(url, key, "supplement_report.json")
+    if previous is not None:
+        before = json.loads(previous)["added"]
+        if before and added < before * (1 - SHRINK_LIMIT):
+            raise SystemExit(f"supplement shrank {before:,} -> {added:,}; not uploading")
+    for name in STORAGE_FILES:
+        body = gzip.compress((OUTPUT_DIR / name).read_bytes(), compresslevel=6)
+        recurring.upload_storage_object(url, key, BUCKET, f"{STORAGE_PREFIX}/{name}.gz", body)
+    print(f"uploaded {len(STORAGE_FILES)} files to {BUCKET}/{STORAGE_PREFIX}/")
+
+
+def storage_get_object(url: str, key: str, name: str) -> bytes | None:
+    import urllib.error
+    import urllib.request
+    request = urllib.request.Request(f"{url}/storage/v1/object/{BUCKET}/{STORAGE_PREFIX}/{name}.gz",
+                                     headers={"apikey": key, "Authorization": f"Bearer {key}"})
+    try:
+        with urllib.request.urlopen(request, timeout=120) as response:
+            return gzip.decompress(response.read())
+    except urllib.error.HTTPError as exc:
+        if exc.code in (400, 404):
+            return None
+        raise
+
+
+def restore(url: str, key: str) -> bool:
+    """For the monthly run: put the stored supplement where the builders read it."""
+    bodies = {name: storage_get_object(url, key, name) for name in STORAGE_FILES}
+    if any(body is None for body in bodies.values()):
+        return False
+    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+    for name, body in bodies.items():
+        (OUTPUT_DIR / name).write_bytes(body)
+    return True
 
 
 if __name__ == "__main__":

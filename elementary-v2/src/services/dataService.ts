@@ -48,7 +48,7 @@ const APARTMENT_SELECT_FIELDS = [
   'region', 'district', 'latitude', 'longitude', 'households', 'building_count', 'use_approval_year',
   'parking_total', 'parking_ground', 'parking_underground', 'parking_per_household',
   'sale_households', 'rental_units_total', 'public_rental_units', 'private_rental_units',
-  'public_rental_ratio', 'assignment_rank',
+  'public_rental_ratio', 'assignment_rank', 'review_required',
 ].join(',')
 
 class DataCache {
@@ -566,6 +566,7 @@ const toApartment = (row: ApartmentServingRow): Apartment => {
     sale_households: numberValue(row.sale_households),
     assigned_school_id: String(row.school_id || ''),
     assigned_school_name: String(row.school_name || ''),
+    assignment_review_required: row.review_required === true,
   }
 }
 
