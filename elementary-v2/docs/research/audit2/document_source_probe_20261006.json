@@ -1,0 +1,173 @@
+{
+  "checked_at": "2026-10-06T12:48:43.076Z",
+  "scope": "two_development_schools_only",
+  "no_operational_upload": true,
+  "observations": [
+    {
+      "source_id": "B000003765-afterschool_plan",
+      "last_checked": "2026-10-06T12:48:42.484Z",
+      "status": "html_received_attachment_not_fetched",
+      "http_status": 200,
+      "content_type": "text/html;charset=UTF-8",
+      "bytes": 66824,
+      "board_response_sha256": "4ebda1136d6e4084e0a0bf956b5c11aabd3f19aafa9e8bc9fe007e642a6b4768",
+      "observed_links": [
+        {
+          "url": "https://hs-e.goesn.kr/hs-e/na/ntt/selectNttInfo.do?mi=15066&bbsId=12782&nttSn=1952083",
+          "title": "2026학년도 제3기 방과후 교육프로그램 수강 신청 가정통신문"
+        },
+        {
+          "url": "https://hs-e.goesn.kr/hs-e/na/ntt/selectNttInfo.do?mi=15066&bbsId=12782&nttSn=1952081",
+          "title": "2026- 2기 방과후 학교 수익자부담 경비 집행"
+        },
+        {
+          "url": "https://hs-e.goesn.kr/hs-e/na/ntt/selectNttInfo.do?mi=15066&bbsId=12782&nttSn=1936896",
+          "title": "경기교육 방과후학교분야 투명사회협약서"
+        },
+        {
+          "url": "https://hs-e.goesn.kr/hs-e/na/ntt/selectNttInfo.do?mi=15066&bbsId=12782&nttSn=1933655",
+          "title": "2026- 1기 방과후 프로그램 수익자부담 경비 집행"
+        },
+        {
+          "url": "https://hs-e.goesn.kr/hs-e/na/ntt/selectNttInfo.do?mi=15066&bbsId=12782&nttSn=1929028",
+          "title": "2026학년도 방과후 돌봄 1학기 학부모 공개 수업 가정통신문"
+        },
+        {
+          "url": "https://hs-e.goesn.kr/hs-e/na/ntt/selectNttInfo.do?mi=15066&bbsId=12782&nttSn=1929024",
+          "title": "2026학년도 제2기 방과후 교육프로그램 수강 신청 가정통신문"
+        },
+        {
+          "url": "https://hs-e.goesn.kr/hs-e/na/ntt/selectNttInfo.do?mi=15066&bbsId=12782&nttSn=1911782",
+          "title": "2026학년도 방과후학교 운영 계획안"
+        },
+        {
+          "url": "https://hs-e.goesn.kr/hs-e/na/ntt/selectNttInfo.do?mi=15066&bbsId=12782&nttSn=1911773",
+          "title": "2026학년도 제1기 방과후 교육프로그램 수강 신청 가정통신문"
+        },
+        {
+          "url": "https://hs-e.goesn.kr/hs-e/na/ntt/selectNttInfo.do?mi=15066&bbsId=12782&nttSn=1911768",
+          "title": "2025-4기 선택형프로그램 수익자부담 경비 집행"
+        },
+        {
+          "url": "https://hs-e.goesn.kr/hs-e/na/ntt/selectNttInfo.do?mi=15066&bbsId=12782&nttSn=1897947",
+          "title": "2026학년도 방과후 외부강사 채용공고(방송댄스, 음악줄넘기)"
+        }
+      ],
+      "currentness": "unknown",
+      "document_sha256": null,
+      "document_format": null
+    },
+    {
+      "source_id": "B000003765-care_plan",
+      "last_checked": "2026-10-06T12:48:42.749Z",
+      "status": "html_received_attachment_not_fetched",
+      "http_status": 200,
+      "content_type": "text/html;charset=UTF-8",
+      "bytes": 66626,
+      "board_response_sha256": "9ccff857427f309c62bf29e67a7800336c5ff3c98cb2e917ac454b438110a4af",
+      "observed_links": [
+        {
+          "url": "https://hs-e.goesn.kr/hs-e/na/ntt/selectNttInfo.do?mi=15079&bbsId=12790&nttSn=1959114",
+          "title": "돌봄교실 10월 월간학습 안내"
+        },
+        {
+          "url": "https://hs-e.goesn.kr/hs-e/na/ntt/selectNttInfo.do?mi=15079&bbsId=12790&nttSn=1959113",
+          "title": "돌봄교실 10월 간식표"
+        },
+        {
+          "url": "https://hs-e.goesn.kr/hs-e/na/ntt/selectNttInfo.do?mi=15079&bbsId=12790&nttSn=1954006",
+          "title": "돌봄교실 9월 월간학습 안내"
+        },
+        {
+          "url": "https://hs-e.goesn.kr/hs-e/na/ntt/selectNttInfo.do?mi=15079&bbsId=12790&nttSn=1953696",
+          "title": "2026학년도 돌봄교실 7~8월 수익자 부담금 간식비 정산 안내"
+        },
+        {
+          "url": "https://hs-e.goesn.kr/hs-e/na/ntt/selectNttInfo.do?mi=15079&bbsId=12790&nttSn=1952503",
+          "title": "돌봄교실 9월 간식표"
+        },
+        {
+          "url": "https://hs-e.goesn.kr/hs-e/na/ntt/selectNttInfo.do?mi=15079&bbsId=12790&nttSn=1950000",
+          "title": "돌봄교실 여름방학 수익자 부담금 급식비 정산 안내"
+        },
+        {
+          "url": "https://hs-e.goesn.kr/hs-e/na/ntt/selectNttInfo.do?mi=15079&bbsId=12790&nttSn=1947112",
+          "title": "돌봄교실 8월 학습 안내"
+        },
+        {
+          "url": "https://hs-e.goesn.kr/hs-e/na/ntt/selectNttInfo.do?mi=15079&bbsId=12790&nttSn=1947044",
+          "title": "돌봄교실 8월 간식표"
+        },
+        {
+          "url": "https://hs-e.goesn.kr/hs-e/na/ntt/selectNttInfo.do?mi=15079&bbsId=12790&nttSn=1947043",
+          "title": "돌봄교실 여름방학 급식 식단표"
+        },
+        {
+          "url": "https://hs-e.goesn.kr/hs-e/na/ntt/selectNttInfo.do?mi=15079&bbsId=12790&nttSn=1947042",
+          "title": "돌봄교실 여름방학 학습 안내"
+        }
+      ],
+      "currentness": "unknown",
+      "document_sha256": null,
+      "document_format": null
+    },
+    {
+      "source_id": "B000003759-afterschool_plan",
+      "last_checked": "2026-10-06T12:48:42.895Z",
+      "status": "html_received_attachment_not_fetched",
+      "http_status": 200,
+      "content_type": "text/html;charset=UTF-8",
+      "bytes": 70771,
+      "board_response_sha256": "19a358f3bb478a267e34de1d7cd1f28f22e1fbb3fb9020137a6a6272da7e98e5",
+      "observed_links": [
+        {
+          "url": "https://yy-e.goesn.kr/yy-e/na/ntt/selectNttInfo.do?mi=15932&bbsId=13266&nttSn=1844097",
+          "title": "방과후학교 취소(환불) 요청서 양식입니다."
+        },
+        {
+          "url": "https://yy-e.goesn.kr/yy-e/na/ntt/selectNttInfo.do?mi=15932&bbsId=13266&nttSn=1948475",
+          "title": "2026학년도 3분기 방과후학교 수강인원 현황 및 개강·폐강 강좌 목록 안내"
+        },
+        {
+          "url": "https://yy-e.goesn.kr/yy-e/na/ntt/selectNttInfo.do?mi=15932&bbsId=13266&nttSn=1946768",
+          "title": "2026학년도 3분기 방과후학교 수강생 모집 안내문입니다."
+        },
+        {
+          "url": "https://yy-e.goesn.kr/yy-e/na/ntt/selectNttInfo.do?mi=15932&bbsId=13266&nttSn=1943379",
+          "title": "2026학년 방과후 학교 만족도 조사 결과(1학기)"
+        },
+        {
+          "url": "https://yy-e.goesn.kr/yy-e/na/ntt/selectNttInfo.do?mi=15932&bbsId=13266&nttSn=1934993",
+          "title": "2026 경기교육 방과후학교 분야 투명사회협약서 안내입니다."
+        },
+        {
+          "url": "https://yy-e.goesn.kr/yy-e/na/ntt/selectNttInfo.do?mi=15932&bbsId=13266&nttSn=1932540",
+          "title": "2026학년도 2분기 방과후학교 수강인원 현황 및 개강·폐강 강좌 목록 안내"
+        },
+        {
+          "url": "https://yy-e.goesn.kr/yy-e/na/ntt/selectNttInfo.do?mi=15932&bbsId=13266&nttSn=1927719",
+          "title": "2026학년도 2분기 방과후학교 수강생 모집(5.18~20) 안내문입니다."
+        },
+        {
+          "url": "https://yy-e.goesn.kr/yy-e/na/ntt/selectNttInfo.do?mi=15932&bbsId=13266&nttSn=1919655",
+          "title": "2026 방과후학교 연간 활동 계획(안)입니다."
+        },
+        {
+          "url": "https://yy-e.goesn.kr/yy-e/na/ntt/selectNttInfo.do?mi=15932&bbsId=13266&nttSn=1918506",
+          "title": "2026학년도 방과후・돌봄 운영 계획"
+        },
+        {
+          "url": "https://yy-e.goesn.kr/yy-e/na/ntt/selectNttInfo.do?mi=15932&bbsId=13266&nttSn=1902138",
+          "title": "2026학년도 1분기 방과후학교 수강모집 결과 개강·폐강 강좌 목록 안내"
+        },
+        {
+          "url": "https://yy-e.goesn.kr/yy-e/na/ntt/selectNttInfo.do?mi=15932&bbsId=13266&nttSn=1899605",
+          "title": "2025학년도 방과후학교 수익자부담금 정산 내역"
+        }
+      ],
+      "currentness": "unknown",
+      "document_sha256": null,
+      "document_format": null
+    }
+  ]
+}

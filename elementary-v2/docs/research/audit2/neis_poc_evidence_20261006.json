@@ -1,0 +1,2744 @@
+{
+  "captured_at": "2026-10-06T11:54:08.734Z",
+  "denominator": 60,
+  "rule_version": "exact-name-road-v1",
+  "no_operational_upload": true,
+  "school_info_pages": [
+    {
+      "endpoint": "https://open.neis.go.kr/hub/schoolInfo",
+      "params": {
+        "ATPT_OFCDC_SC_CODE": "B10",
+        "SCHUL_KND_SC_NM": "초등학교"
+      },
+      "pages": [
+        {
+          "page": 1,
+          "row_count": 611,
+          "total": 611,
+          "code": "INFO-000",
+          "response_sha256": "ce956dbe5d2600a92d45f7a43dd1f19890e6d6181e8db452c94ec7712911b9f4"
+        }
+      ],
+      "total": 611
+    },
+    {
+      "endpoint": "https://open.neis.go.kr/hub/schoolInfo",
+      "params": {
+        "ATPT_OFCDC_SC_CODE": "C10",
+        "SCHUL_KND_SC_NM": "초등학교"
+      },
+      "pages": [
+        {
+          "page": 1,
+          "row_count": 306,
+          "total": 306,
+          "code": "INFO-000",
+          "response_sha256": "96ab7119c35a73b54c48cd4471b098d1cd101e3195d3823e72bc0db84d2c34eb"
+        }
+      ],
+      "total": 306
+    },
+    {
+      "endpoint": "https://open.neis.go.kr/hub/schoolInfo",
+      "params": {
+        "ATPT_OFCDC_SC_CODE": "E10",
+        "SCHUL_KND_SC_NM": "초등학교"
+      },
+      "pages": [
+        {
+          "page": 1,
+          "row_count": 278,
+          "total": 278,
+          "code": "INFO-000",
+          "response_sha256": "6ce4a7f406cbe13353be8a96154fc704bd20eabb64bc95fb66d5951fc5829c02"
+        }
+      ],
+      "total": 278
+    },
+    {
+      "endpoint": "https://open.neis.go.kr/hub/schoolInfo",
+      "params": {
+        "ATPT_OFCDC_SC_CODE": "J10",
+        "SCHUL_KND_SC_NM": "초등학교"
+      },
+      "pages": [
+        {
+          "page": 1,
+          "row_count": 1000,
+          "total": 1387,
+          "code": "INFO-000",
+          "response_sha256": "3dd3dc1e590e0446dbc1c15dd20d10b7e28f8091ba1eedb13a5de0b0bea45c0b"
+        },
+        {
+          "page": 2,
+          "row_count": 387,
+          "total": 1387,
+          "code": "INFO-000",
+          "response_sha256": "527d93793e9fc6600be177ce4ef69079ff78f771c01f7d0df0847bc93a475ad9"
+        }
+      ],
+      "total": 1387
+    },
+    {
+      "endpoint": "https://open.neis.go.kr/hub/schoolInfo",
+      "params": {
+        "ATPT_OFCDC_SC_CODE": "Q10",
+        "SCHUL_KND_SC_NM": "초등학교"
+      },
+      "pages": [
+        {
+          "page": 1,
+          "row_count": 457,
+          "total": 457,
+          "code": "INFO-000",
+          "response_sha256": "cab6ddf53332b76a367192d4a3dc4966003b91767709bb21c969b6fe8cc3c778"
+        }
+      ],
+      "total": 457
+    }
+  ],
+  "crosswalk": [
+    {
+      "school_id": "B000002597",
+      "schoolinfo_code": "S020001026",
+      "school_name": "연일초등학교",
+      "neis_office_code": "C10",
+      "status": "verified_exact_name_address",
+      "neis_school_code": "7191088",
+      "rule": "same office + primary school + exact NFC/whitespace-normalized name + road-address identity (parenthetical/commas/spaces removed; hyphens/digits preserved) + seven-digit NEIS code",
+      "candidates": [
+        {
+          "ATPT_OFCDC_SC_CODE": "C10",
+          "SD_SCHUL_CODE": "7191088",
+          "SCHUL_NM": "연일초등학교",
+          "SCHUL_KND_SC_NM": "초등학교",
+          "ORG_RDNMA": "부산광역시 연제구 고분로 126-4",
+          "JU_ORG_NM": "부산광역시동래교육지원청",
+          "HMPG_ADRES": "http://www.yonil.es.kr"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002558",
+      "schoolinfo_code": "S020000828",
+      "school_name": "안락초등학교",
+      "neis_office_code": "C10",
+      "status": "verified_exact_name_address",
+      "neis_school_code": "7191079",
+      "rule": "same office + primary school + exact NFC/whitespace-normalized name + road-address identity (parenthetical/commas/spaces removed; hyphens/digits preserved) + seven-digit NEIS code",
+      "candidates": [
+        {
+          "ATPT_OFCDC_SC_CODE": "C10",
+          "SD_SCHUL_CODE": "7191079",
+          "SCHUL_NM": "안락초등학교",
+          "SCHUL_KND_SC_NM": "초등학교",
+          "ORG_RDNMA": "부산광역시 동래구 명안로53번길 22",
+          "JU_ORG_NM": "부산광역시동래교육지원청",
+          "HMPG_ADRES": "anrak.es.kr"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002704",
+      "schoolinfo_code": "S020001660",
+      "school_name": "반안초등학교",
+      "neis_office_code": "C10",
+      "status": "verified_exact_name_address",
+      "neis_school_code": "7211087",
+      "rule": "same office + primary school + exact NFC/whitespace-normalized name + road-address identity (parenthetical/commas/spaces removed; hyphens/digits preserved) + seven-digit NEIS code",
+      "candidates": [
+        {
+          "ATPT_OFCDC_SC_CODE": "C10",
+          "SD_SCHUL_CODE": "7211087",
+          "SCHUL_NM": "반안초등학교",
+          "SCHUL_KND_SC_NM": "초등학교",
+          "ORG_RDNMA": "부산광역시 해운대구 명장로67번길 40-42",
+          "JU_ORG_NM": "부산광역시해운대교육지원청",
+          "HMPG_ADRES": "http://www.banan.es.kr"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002573",
+      "schoolinfo_code": "S020000821",
+      "school_name": "부곡초등학교",
+      "neis_office_code": "C10",
+      "status": "verified_exact_name_address",
+      "neis_school_code": "7191072",
+      "rule": "same office + primary school + exact NFC/whitespace-normalized name + road-address identity (parenthetical/commas/spaces removed; hyphens/digits preserved) + seven-digit NEIS code",
+      "candidates": [
+        {
+          "ATPT_OFCDC_SC_CODE": "C10",
+          "SD_SCHUL_CODE": "7191072",
+          "SCHUL_NM": "부곡초등학교",
+          "SCHUL_KND_SC_NM": "초등학교",
+          "ORG_RDNMA": "부산광역시 금정구 기찰로22번길 15",
+          "JU_ORG_NM": "부산광역시동래교육지원청",
+          "HMPG_ADRES": "http://www.pugok.es.kr"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002620",
+      "schoolinfo_code": "S020001283",
+      "school_name": "양천초등학교",
+      "neis_office_code": "C10",
+      "status": "verified_exact_name_address",
+      "neis_school_code": "7201093",
+      "rule": "same office + primary school + exact NFC/whitespace-normalized name + road-address identity (parenthetical/commas/spaces removed; hyphens/digits preserved) + seven-digit NEIS code",
+      "candidates": [
+        {
+          "ATPT_OFCDC_SC_CODE": "C10",
+          "SD_SCHUL_CODE": "7201093",
+          "SCHUL_NM": "양천초등학교",
+          "SCHUL_KND_SC_NM": "초등학교",
+          "ORG_RDNMA": "부산광역시 북구 덕천로 132",
+          "JU_ORG_NM": "부산광역시북부교육지원청",
+          "HMPG_ADRES": "http://busanyangchun.es.kr"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002556",
+      "schoolinfo_code": "S020000817",
+      "school_name": "명륜초등학교",
+      "neis_office_code": "C10",
+      "status": "verified_exact_name_address",
+      "neis_school_code": "7191068",
+      "rule": "same office + primary school + exact NFC/whitespace-normalized name + road-address identity (parenthetical/commas/spaces removed; hyphens/digits preserved) + seven-digit NEIS code",
+      "candidates": [
+        {
+          "ATPT_OFCDC_SC_CODE": "C10",
+          "SD_SCHUL_CODE": "7191068",
+          "SCHUL_NM": "명륜초등학교",
+          "SCHUL_KND_SC_NM": "초등학교",
+          "ORG_RDNMA": "부산광역시 동래구 동래로 91",
+          "JU_ORG_NM": "부산광역시동래교육지원청",
+          "HMPG_ADRES": "http://school.busanedu.net/myeongryun-e/main.do"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002498",
+      "schoolinfo_code": "S020001010",
+      "school_name": "부산진초등학교",
+      "neis_office_code": "C10",
+      "status": "verified_exact_name_address",
+      "neis_school_code": "7181033",
+      "rule": "same office + primary school + exact NFC/whitespace-normalized name + road-address identity (parenthetical/commas/spaces removed; hyphens/digits preserved) + seven-digit NEIS code",
+      "candidates": [
+        {
+          "ATPT_OFCDC_SC_CODE": "C10",
+          "SD_SCHUL_CODE": "7181033",
+          "SCHUL_NM": "부산진초등학교",
+          "SCHUL_KND_SC_NM": "초등학교",
+          "ORG_RDNMA": "부산광역시 부산진구 범천로 30",
+          "JU_ORG_NM": "부산광역시남부교육지원청",
+          "HMPG_ADRES": "http://pusanjin.es.kr"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002512",
+      "schoolinfo_code": "S020001003",
+      "school_name": "당감초등학교",
+      "neis_office_code": "C10",
+      "status": "verified_exact_name_address",
+      "neis_school_code": "7181019",
+      "rule": "same office + primary school + exact NFC/whitespace-normalized name + road-address identity (parenthetical/commas/spaces removed; hyphens/digits preserved) + seven-digit NEIS code",
+      "candidates": [
+        {
+          "ATPT_OFCDC_SC_CODE": "C10",
+          "SD_SCHUL_CODE": "7181019",
+          "SCHUL_NM": "당감초등학교",
+          "SCHUL_KND_SC_NM": "초등학교",
+          "ORG_RDNMA": "부산광역시 부산진구 당감로 22-5",
+          "JU_ORG_NM": "부산광역시남부교육지원청",
+          "HMPG_ADRES": "www.danggam.es.kr"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002469",
+      "schoolinfo_code": "S020001470",
+      "school_name": "서천초등학교",
+      "neis_office_code": "C10",
+      "status": "verified_exact_name_address",
+      "neis_school_code": "7171067",
+      "rule": "same office + primary school + exact NFC/whitespace-normalized name + road-address identity (parenthetical/commas/spaces removed; hyphens/digits preserved) + seven-digit NEIS code",
+      "candidates": [
+        {
+          "ATPT_OFCDC_SC_CODE": "C10",
+          "SD_SCHUL_CODE": "7171067",
+          "SCHUL_NM": "서천초등학교",
+          "SCHUL_KND_SC_NM": "초등학교",
+          "ORG_RDNMA": "부산광역시 사하구 감천로105번길 10",
+          "JU_ORG_NM": "부산광역시서부교육지원청",
+          "HMPG_ADRES": "http://seocheon.es.kr"
+        }
+      ]
+    },
+    {
+      "school_id": "B000030754",
+      "schoolinfo_code": "S020000804",
+      "school_name": "금사초등학교",
+      "neis_office_code": "C10",
+      "status": "verified_exact_name_address",
+      "neis_school_code": "7191052",
+      "rule": "same office + primary school + exact NFC/whitespace-normalized name + road-address identity (parenthetical/commas/spaces removed; hyphens/digits preserved) + seven-digit NEIS code",
+      "candidates": [
+        {
+          "ATPT_OFCDC_SC_CODE": "C10",
+          "SD_SCHUL_CODE": "7191052",
+          "SCHUL_NM": "금사초등학교",
+          "SCHUL_KND_SC_NM": "초등학교",
+          "ORG_RDNMA": "부산광역시 금정구 금사로57번길 24",
+          "JU_ORG_NM": "부산광역시동래교육지원청",
+          "HMPG_ADRES": "www.kumsa.es.kr"
+        }
+      ]
+    },
+    {
+      "school_id": "B000003765",
+      "schoolinfo_code": "S090002277",
+      "school_name": "한솔초등학교",
+      "neis_office_code": "J10",
+      "status": "verified_exact_name_address",
+      "neis_school_code": "7551101",
+      "rule": "same office + primary school + exact NFC/whitespace-normalized name + road-address identity (parenthetical/commas/spaces removed; hyphens/digits preserved) + seven-digit NEIS code",
+      "candidates": [
+        {
+          "ATPT_OFCDC_SC_CODE": "J10",
+          "SD_SCHUL_CODE": "7551101",
+          "SCHUL_NM": "한솔초등학교",
+          "SCHUL_KND_SC_NM": "초등학교",
+          "ORG_RDNMA": "경기도 성남시 분당구 돌마로 303",
+          "JU_ORG_NM": "경기도성남교육지원청",
+          "HMPG_ADRES": "hs-e.goesn.kr"
+        }
+      ]
+    },
+    {
+      "school_id": "B000003759",
+      "schoolinfo_code": "S090002258",
+      "school_name": "양영초등학교",
+      "neis_office_code": "J10",
+      "status": "verified_exact_name_address",
+      "neis_school_code": "7551089",
+      "rule": "same office + primary school + exact NFC/whitespace-normalized name + road-address identity (parenthetical/commas/spaces removed; hyphens/digits preserved) + seven-digit NEIS code",
+      "candidates": [
+        {
+          "ATPT_OFCDC_SC_CODE": "J10",
+          "SD_SCHUL_CODE": "7551089",
+          "SCHUL_NM": "양영초등학교",
+          "SCHUL_KND_SC_NM": "초등학교",
+          "ORG_RDNMA": "경기도 성남시 분당구 불정로406번길 17",
+          "JU_ORG_NM": "경기도성남교육지원청",
+          "HMPG_ADRES": "http://yy-e.goesn.kr"
+        }
+      ]
+    },
+    {
+      "school_id": "B000003741",
+      "schoolinfo_code": "S090002235",
+      "school_name": "상탑초등학교",
+      "neis_office_code": "J10",
+      "status": "verified_exact_name_address",
+      "neis_school_code": "7551069",
+      "rule": "same office + primary school + exact NFC/whitespace-normalized name + road-address identity (parenthetical/commas/spaces removed; hyphens/digits preserved) + seven-digit NEIS code",
+      "candidates": [
+        {
+          "ATPT_OFCDC_SC_CODE": "J10",
+          "SD_SCHUL_CODE": "7551069",
+          "SCHUL_NM": "상탑초등학교",
+          "SCHUL_KND_SC_NM": "초등학교",
+          "ORG_RDNMA": "경기도 성남시 분당구 판교로 647",
+          "JU_ORG_NM": "경기도성남교육지원청",
+          "HMPG_ADRES": "https://sangtap-e.goesn.kr/sangtap-e/main.do"
+        }
+      ]
+    },
+    {
+      "school_id": "B000003752",
+      "schoolinfo_code": "S090002230",
+      "school_name": "불곡초등학교",
+      "neis_office_code": "J10",
+      "status": "verified_exact_name_address",
+      "neis_school_code": "7551065",
+      "rule": "same office + primary school + exact NFC/whitespace-normalized name + road-address identity (parenthetical/commas/spaces removed; hyphens/digits preserved) + seven-digit NEIS code",
+      "candidates": [
+        {
+          "ATPT_OFCDC_SC_CODE": "J10",
+          "SD_SCHUL_CODE": "7551065",
+          "SCHUL_NM": "불곡초등학교",
+          "SCHUL_KND_SC_NM": "초등학교",
+          "ORG_RDNMA": "경기도 성남시 분당구 무지개로 129",
+          "JU_ORG_NM": "경기도성남교육지원청",
+          "HMPG_ADRES": "bulgok-e.goesn.kr"
+        }
+      ]
+    },
+    {
+      "school_id": "B000003744",
+      "schoolinfo_code": "S090005702",
+      "school_name": "판교초등학교",
+      "neis_office_code": "J10",
+      "status": "verified_exact_name_address",
+      "neis_school_code": "7551234",
+      "rule": "same office + primary school + exact NFC/whitespace-normalized name + road-address identity (parenthetical/commas/spaces removed; hyphens/digits preserved) + seven-digit NEIS code",
+      "candidates": [
+        {
+          "ATPT_OFCDC_SC_CODE": "J10",
+          "SD_SCHUL_CODE": "7551234",
+          "SCHUL_NM": "판교초등학교",
+          "SCHUL_KND_SC_NM": "초등학교",
+          "ORG_RDNMA": "경기도 성남시 분당구 판교원로 231",
+          "JU_ORG_NM": "경기도성남교육지원청",
+          "HMPG_ADRES": "https://pangyo-e.goesn.kr"
+        }
+      ]
+    },
+    {
+      "school_id": "B000003754",
+      "schoolinfo_code": "S090002240",
+      "school_name": "성남미금초등학교",
+      "neis_office_code": "J10",
+      "status": "verified_exact_name_address",
+      "neis_school_code": "7551075",
+      "rule": "same office + primary school + exact NFC/whitespace-normalized name + road-address identity (parenthetical/commas/spaces removed; hyphens/digits preserved) + seven-digit NEIS code",
+      "candidates": [
+        {
+          "ATPT_OFCDC_SC_CODE": "J10",
+          "SD_SCHUL_CODE": "7551075",
+          "SCHUL_NM": "성남미금초등학교",
+          "SCHUL_KND_SC_NM": "초등학교",
+          "ORG_RDNMA": "경기도 성남시 분당구 미금로 151",
+          "JU_ORG_NM": "경기도성남교육지원청",
+          "HMPG_ADRES": "https://snmg-e.goesn.kr/"
+        }
+      ]
+    },
+    {
+      "school_id": "B000003740",
+      "schoolinfo_code": "S090002256",
+      "school_name": "안말초등학교",
+      "neis_office_code": "J10",
+      "status": "verified_exact_name_address",
+      "neis_school_code": "7551087",
+      "rule": "same office + primary school + exact NFC/whitespace-normalized name + road-address identity (parenthetical/commas/spaces removed; hyphens/digits preserved) + seven-digit NEIS code",
+      "candidates": [
+        {
+          "ATPT_OFCDC_SC_CODE": "J10",
+          "SD_SCHUL_CODE": "7551087",
+          "SCHUL_NM": "안말초등학교",
+          "SCHUL_KND_SC_NM": "초등학교",
+          "ORG_RDNMA": "경기도 성남시 분당구 양현로 104",
+          "JU_ORG_NM": "경기도성남교육지원청",
+          "HMPG_ADRES": "anmal-e.goesn.kr"
+        }
+      ]
+    },
+    {
+      "school_id": "B000024167",
+      "schoolinfo_code": "S090006433",
+      "school_name": "성남화랑초등학교",
+      "neis_office_code": "J10",
+      "status": "verified_exact_name_address",
+      "neis_school_code": "7551233",
+      "rule": "same office + primary school + exact NFC/whitespace-normalized name + road-address identity (parenthetical/commas/spaces removed; hyphens/digits preserved) + seven-digit NEIS code",
+      "candidates": [
+        {
+          "ATPT_OFCDC_SC_CODE": "J10",
+          "SD_SCHUL_CODE": "7551233",
+          "SCHUL_NM": "성남화랑초등학교",
+          "SCHUL_KND_SC_NM": "초등학교",
+          "ORG_RDNMA": "경기도 성남시 분당구 동판교로 77",
+          "JU_ORG_NM": "경기도성남교육지원청",
+          "HMPG_ADRES": "hwarang-e.goesn.kr"
+        }
+      ]
+    },
+    {
+      "school_id": "B000003757",
+      "schoolinfo_code": "S090002273",
+      "school_name": "탄천초등학교",
+      "neis_office_code": "J10",
+      "status": "verified_exact_name_address",
+      "neis_school_code": "7551097",
+      "rule": "same office + primary school + exact NFC/whitespace-normalized name + road-address identity (parenthetical/commas/spaces removed; hyphens/digits preserved) + seven-digit NEIS code",
+      "candidates": [
+        {
+          "ATPT_OFCDC_SC_CODE": "J10",
+          "SD_SCHUL_CODE": "7551097",
+          "SCHUL_NM": "탄천초등학교",
+          "SCHUL_KND_SC_NM": "초등학교",
+          "ORG_RDNMA": "경기도 성남시 분당구 내정로 20",
+          "JU_ORG_NM": "경기도성남교육지원청",
+          "HMPG_ADRES": "https://tanchun-e.goesn.kr/tanchun-e/main.do"
+        }
+      ]
+    },
+    {
+      "school_id": "B000003753",
+      "schoolinfo_code": "S090002239",
+      "school_name": "성남매송초등학교",
+      "neis_office_code": "J10",
+      "status": "verified_exact_name_address",
+      "neis_school_code": "7551074",
+      "rule": "same office + primary school + exact NFC/whitespace-normalized name + road-address identity (parenthetical/commas/spaces removed; hyphens/digits preserved) + seven-digit NEIS code",
+      "candidates": [
+        {
+          "ATPT_OFCDC_SC_CODE": "J10",
+          "SD_SCHUL_CODE": "7551074",
+          "SCHUL_NM": "성남매송초등학교",
+          "SCHUL_KND_SC_NM": "초등학교",
+          "ORG_RDNMA": "경기도 성남시 분당구 탄천로 97",
+          "JU_ORG_NM": "경기도성남교육지원청",
+          "HMPG_ADRES": "snms-e.goesn.kr"
+        }
+      ]
+    },
+    {
+      "school_id": "B000003758",
+      "schoolinfo_code": "S090002236",
+      "school_name": "서당초등학교",
+      "neis_office_code": "J10",
+      "status": "verified_exact_name_address",
+      "neis_school_code": "7551070",
+      "rule": "same office + primary school + exact NFC/whitespace-normalized name + road-address identity (parenthetical/commas/spaces removed; hyphens/digits preserved) + seven-digit NEIS code",
+      "candidates": [
+        {
+          "ATPT_OFCDC_SC_CODE": "J10",
+          "SD_SCHUL_CODE": "7551070",
+          "SCHUL_NM": "서당초등학교",
+          "SCHUL_KND_SC_NM": "초등학교",
+          "ORG_RDNMA": "경기도 성남시 분당구 돌마로476번길 30",
+          "JU_ORG_NM": "경기도성남교육지원청",
+          "HMPG_ADRES": "https://seodang-e.goesn.kr/seodang-e/main.do"
+        }
+      ]
+    },
+    {
+      "school_id": "B000003742",
+      "schoolinfo_code": "S090005692",
+      "school_name": "성남송현초등학교",
+      "neis_office_code": "J10",
+      "status": "verified_exact_name_address",
+      "neis_school_code": "7551154",
+      "rule": "same office + primary school + exact NFC/whitespace-normalized name + road-address identity (parenthetical/commas/spaces removed; hyphens/digits preserved) + seven-digit NEIS code",
+      "candidates": [
+        {
+          "ATPT_OFCDC_SC_CODE": "J10",
+          "SD_SCHUL_CODE": "7551154",
+          "SCHUL_NM": "성남송현초등학교",
+          "SCHUL_KND_SC_NM": "초등학교",
+          "ORG_RDNMA": "경기도 성남시 분당구 동판교로 258",
+          "JU_ORG_NM": "경기도성남교육지원청",
+          "HMPG_ADRES": "https://snsonghyeon-e.goesn.kr"
+        }
+      ]
+    },
+    {
+      "school_id": "B000003747",
+      "schoolinfo_code": "S090005703",
+      "school_name": "산운초등학교",
+      "neis_office_code": "J10",
+      "status": "verified_exact_name_address",
+      "neis_school_code": "7551153",
+      "rule": "same office + primary school + exact NFC/whitespace-normalized name + road-address identity (parenthetical/commas/spaces removed; hyphens/digits preserved) + seven-digit NEIS code",
+      "candidates": [
+        {
+          "ATPT_OFCDC_SC_CODE": "J10",
+          "SD_SCHUL_CODE": "7551153",
+          "SCHUL_NM": "산운초등학교",
+          "SCHUL_KND_SC_NM": "초등학교",
+          "ORG_RDNMA": "경기도 성남시 분당구 판교원로117번길 11",
+          "JU_ORG_NM": "경기도성남교육지원청",
+          "HMPG_ADRES": "http://sanun-e.goesn.kr "
+        }
+      ]
+    },
+    {
+      "school_id": "B000003769",
+      "schoolinfo_code": "S090002276",
+      "school_name": "하탑초등학교",
+      "neis_office_code": "J10",
+      "status": "verified_exact_name_address",
+      "neis_school_code": "7551100",
+      "rule": "same office + primary school + exact NFC/whitespace-normalized name + road-address identity (parenthetical/commas/spaces removed; hyphens/digits preserved) + seven-digit NEIS code",
+      "candidates": [
+        {
+          "ATPT_OFCDC_SC_CODE": "J10",
+          "SD_SCHUL_CODE": "7551100",
+          "SCHUL_NM": "하탑초등학교",
+          "SCHUL_KND_SC_NM": "초등학교",
+          "ORG_RDNMA": "경기도 성남시 분당구 양현로 262",
+          "JU_ORG_NM": "경기도성남교육지원청",
+          "HMPG_ADRES": "https://hatap-e.goesn.kr"
+        }
+      ]
+    },
+    {
+      "school_id": "B000003760",
+      "schoolinfo_code": "S090002237",
+      "school_name": "서현초등학교",
+      "neis_office_code": "J10",
+      "status": "verified_exact_name_address",
+      "neis_school_code": "7551071",
+      "rule": "same office + primary school + exact NFC/whitespace-normalized name + road-address identity (parenthetical/commas/spaces removed; hyphens/digits preserved) + seven-digit NEIS code",
+      "candidates": [
+        {
+          "ATPT_OFCDC_SC_CODE": "J10",
+          "SD_SCHUL_CODE": "7551071",
+          "SCHUL_NM": "서현초등학교",
+          "SCHUL_KND_SC_NM": "초등학교",
+          "ORG_RDNMA": "경기도 성남시 분당구 중앙공원로39번길 12",
+          "JU_ORG_NM": "경기도성남교육지원청",
+          "HMPG_ADRES": "seohyeon-e.goesn.kr"
+        }
+      ]
+    },
+    {
+      "school_id": "B000003738",
+      "schoolinfo_code": "S090002272",
+      "school_name": "초림초등학교",
+      "neis_office_code": "J10",
+      "status": "verified_exact_name_address",
+      "neis_school_code": "7551095",
+      "rule": "same office + primary school + exact NFC/whitespace-normalized name + road-address identity (parenthetical/commas/spaces removed; hyphens/digits preserved) + seven-digit NEIS code",
+      "candidates": [
+        {
+          "ATPT_OFCDC_SC_CODE": "J10",
+          "SD_SCHUL_CODE": "7551095",
+          "SCHUL_NM": "초림초등학교",
+          "SCHUL_KND_SC_NM": "초등학교",
+          "ORG_RDNMA": "경기도 성남시 분당구 수내로90번길 26",
+          "JU_ORG_NM": "경기도성남교육지원청",
+          "HMPG_ADRES": "chorim-e.goesn.kr"
+        }
+      ]
+    },
+    {
+      "school_id": "B000026906",
+      "schoolinfo_code": "S090007517",
+      "school_name": "판교대장초등학교",
+      "neis_office_code": "J10",
+      "status": "verified_exact_name_address",
+      "neis_school_code": "7551298",
+      "rule": "same office + primary school + exact NFC/whitespace-normalized name + road-address identity (parenthetical/commas/spaces removed; hyphens/digits preserved) + seven-digit NEIS code",
+      "candidates": [
+        {
+          "ATPT_OFCDC_SC_CODE": "J10",
+          "SD_SCHUL_CODE": "7551298",
+          "SCHUL_NM": "판교대장초등학교",
+          "SCHUL_KND_SC_NM": "초등학교",
+          "ORG_RDNMA": "경기도 성남시 분당구 판교대장로5길 71",
+          "JU_ORG_NM": "경기도성남교육지원청",
+          "HMPG_ADRES": "https://pangyodaejang-e.goesn.kr"
+        }
+      ]
+    },
+    {
+      "school_id": "B000003770",
+      "schoolinfo_code": "S090002217",
+      "school_name": "내정초등학교",
+      "neis_office_code": "J10",
+      "status": "verified_exact_name_address",
+      "neis_school_code": "7551054",
+      "rule": "same office + primary school + exact NFC/whitespace-normalized name + road-address identity (parenthetical/commas/spaces removed; hyphens/digits preserved) + seven-digit NEIS code",
+      "candidates": [
+        {
+          "ATPT_OFCDC_SC_CODE": "J10",
+          "SD_SCHUL_CODE": "7551054",
+          "SCHUL_NM": "내정초등학교",
+          "SCHUL_KND_SC_NM": "초등학교",
+          "ORG_RDNMA": "경기도 성남시 분당구 내정로174번길 19",
+          "JU_ORG_NM": "경기도성남교육지원청",
+          "HMPG_ADRES": "naejeong-e.goesn.kr"
+        }
+      ]
+    },
+    {
+      "school_id": "B000003746",
+      "schoolinfo_code": "S090006439",
+      "school_name": "신백현초등학교",
+      "neis_office_code": "J10",
+      "status": "verified_exact_name_address",
+      "neis_school_code": "7551232",
+      "rule": "same office + primary school + exact NFC/whitespace-normalized name + road-address identity (parenthetical/commas/spaces removed; hyphens/digits preserved) + seven-digit NEIS code",
+      "candidates": [
+        {
+          "ATPT_OFCDC_SC_CODE": "J10",
+          "SD_SCHUL_CODE": "7551232",
+          "SCHUL_NM": "신백현초등학교",
+          "SCHUL_KND_SC_NM": "초등학교",
+          "ORG_RDNMA": "경기도 성남시 분당구 판교역로14번길 42",
+          "JU_ORG_NM": "경기도성남교육지원청",
+          "HMPG_ADRES": "https://shinbh-e.goesn.kr/shinbh-e/main.do"
+        }
+      ]
+    },
+    {
+      "school_id": "B000003750",
+      "schoolinfo_code": "S090002259",
+      "school_name": "오리초등학교",
+      "neis_office_code": "J10",
+      "status": "verified_exact_name_address",
+      "neis_school_code": "7551090",
+      "rule": "same office + primary school + exact NFC/whitespace-normalized name + road-address identity (parenthetical/commas/spaces removed; hyphens/digits preserved) + seven-digit NEIS code",
+      "candidates": [
+        {
+          "ATPT_OFCDC_SC_CODE": "J10",
+          "SD_SCHUL_CODE": "7551090",
+          "SCHUL_NM": "오리초등학교",
+          "SCHUL_KND_SC_NM": "초등학교",
+          "ORG_RDNMA": "경기도 성남시 분당구 미금로 121",
+          "JU_ORG_NM": "경기도성남교육지원청",
+          "HMPG_ADRES": "https://ori-e.goesn.kr"
+        }
+      ]
+    },
+    {
+      "school_id": "B000003109",
+      "schoolinfo_code": "S040000887",
+      "school_name": "인천효성초등학교",
+      "neis_office_code": "E10",
+      "status": "verified_exact_name_address",
+      "neis_school_code": "7331210",
+      "rule": "same office + primary school + exact NFC/whitespace-normalized name + road-address identity (parenthetical/commas/spaces removed; hyphens/digits preserved) + seven-digit NEIS code",
+      "candidates": [
+        {
+          "ATPT_OFCDC_SC_CODE": "E10",
+          "SD_SCHUL_CODE": "7331210",
+          "SCHUL_NM": "인천효성초등학교",
+          "SCHUL_KND_SC_NM": "초등학교",
+          "ORG_RDNMA": "인천광역시 계양구 안남로 601",
+          "JU_ORG_NM": "인천광역시북부교육지원청",
+          "HMPG_ADRES": "hyosung.icees.kr"
+        }
+      ]
+    },
+    {
+      "school_id": "B000025256",
+      "schoolinfo_code": "S040002065",
+      "school_name": "인천송원초등학교",
+      "neis_office_code": "E10",
+      "status": "verified_exact_name_address",
+      "neis_school_code": "7341243",
+      "rule": "same office + primary school + exact NFC/whitespace-normalized name + road-address identity (parenthetical/commas/spaces removed; hyphens/digits preserved) + seven-digit NEIS code",
+      "candidates": [
+        {
+          "ATPT_OFCDC_SC_CODE": "E10",
+          "SD_SCHUL_CODE": "7341243",
+          "SCHUL_NM": "인천송원초등학교",
+          "SCHUL_KND_SC_NM": "초등학교",
+          "ORG_RDNMA": "인천광역시 연수구 송도과학로51번길 60",
+          "JU_ORG_NM": "인천광역시동부교육지원청",
+          "HMPG_ADRES": "http://songwon.icees.kr"
+        }
+      ]
+    },
+    {
+      "school_id": "B000003095",
+      "schoolinfo_code": "S040000643",
+      "school_name": "인천구월초등학교",
+      "neis_office_code": "E10",
+      "status": "verified_exact_name_address",
+      "neis_school_code": "7341016",
+      "rule": "same office + primary school + exact NFC/whitespace-normalized name + road-address identity (parenthetical/commas/spaces removed; hyphens/digits preserved) + seven-digit NEIS code",
+      "candidates": [
+        {
+          "ATPT_OFCDC_SC_CODE": "E10",
+          "SD_SCHUL_CODE": "7341016",
+          "SCHUL_NM": "인천구월초등학교",
+          "SCHUL_KND_SC_NM": "초등학교",
+          "ORG_RDNMA": "인천광역시 남동구 인주대로 721번길 49",
+          "JU_ORG_NM": "인천광역시동부교육지원청",
+          "HMPG_ADRES": "ikw.icees.kr/"
+        }
+      ]
+    },
+    {
+      "school_id": "B000003015",
+      "schoolinfo_code": "S040000815",
+      "school_name": "인천구산초등학교",
+      "neis_office_code": "E10",
+      "status": "verified_exact_name_address",
+      "neis_school_code": "7331014",
+      "rule": "same office + primary school + exact NFC/whitespace-normalized name + road-address identity (parenthetical/commas/spaces removed; hyphens/digits preserved) + seven-digit NEIS code",
+      "candidates": [
+        {
+          "ATPT_OFCDC_SC_CODE": "E10",
+          "SD_SCHUL_CODE": "7331014",
+          "SCHUL_NM": "인천구산초등학교",
+          "SCHUL_KND_SC_NM": "초등학교",
+          "ORG_RDNMA": "인천광역시 부평구 부개로 93",
+          "JU_ORG_NM": "인천광역시북부교육지원청",
+          "HMPG_ADRES": "igusan.icees.kr"
+        }
+      ]
+    },
+    {
+      "school_id": "B000024924",
+      "schoolinfo_code": "S040002081",
+      "school_name": "인천하늘초등학교",
+      "neis_office_code": "E10",
+      "status": "hold_address_mismatch",
+      "neis_school_code": null,
+      "rule": "same office + primary school + exact NFC/whitespace-normalized name + road-address identity (parenthetical/commas/spaces removed; hyphens/digits preserved) + seven-digit NEIS code",
+      "candidates": [
+        {
+          "ATPT_OFCDC_SC_CODE": "E10",
+          "SD_SCHUL_CODE": "7321196",
+          "SCHUL_NM": "인천하늘초등학교",
+          "SCHUL_KND_SC_NM": "초등학교",
+          "ORG_RDNMA": "인천광역시 영종구 은하수로 294",
+          "JU_ORG_NM": "인천광역시남부교육지원청",
+          "HMPG_ADRES": "http://sky.icees.kr/"
+        }
+      ]
+    },
+    {
+      "school_id": "B000003155",
+      "schoolinfo_code": "S040000827",
+      "school_name": "인천목향초등학교",
+      "neis_office_code": "E10",
+      "status": "hold_address_mismatch",
+      "neis_school_code": null,
+      "rule": "same office + primary school + exact NFC/whitespace-normalized name + road-address identity (parenthetical/commas/spaces removed; hyphens/digits preserved) + seven-digit NEIS code",
+      "candidates": [
+        {
+          "ATPT_OFCDC_SC_CODE": "E10",
+          "SD_SCHUL_CODE": "7361065",
+          "SCHUL_NM": "인천목향초등학교",
+          "SCHUL_KND_SC_NM": "초등학교",
+          "ORG_RDNMA": "인천광역시 검단구 고산후로 377",
+          "JU_ORG_NM": "인천광역시서부교육지원청",
+          "HMPG_ADRES": "mokhyang.icees.kr "
+        }
+      ]
+    },
+    {
+      "school_id": "B000003101",
+      "schoolinfo_code": "S040000671",
+      "school_name": "인천인동초등학교",
+      "neis_office_code": "E10",
+      "status": "verified_exact_name_address",
+      "neis_school_code": "7341052",
+      "rule": "same office + primary school + exact NFC/whitespace-normalized name + road-address identity (parenthetical/commas/spaces removed; hyphens/digits preserved) + seven-digit NEIS code",
+      "candidates": [
+        {
+          "ATPT_OFCDC_SC_CODE": "E10",
+          "SD_SCHUL_CODE": "7341052",
+          "SCHUL_NM": "인천인동초등학교",
+          "SCHUL_KND_SC_NM": "초등학교",
+          "ORG_RDNMA": "인천광역시 남동구 백범로248번길 38",
+          "JU_ORG_NM": "인천광역시동부교육지원청",
+          "HMPG_ADRES": "indong.icees.kr/"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002957",
+      "schoolinfo_code": "S040000471",
+      "school_name": "인천공항초등학교",
+      "neis_office_code": "E10",
+      "status": "hold_address_mismatch",
+      "neis_school_code": null,
+      "rule": "same office + primary school + exact NFC/whitespace-normalized name + road-address identity (parenthetical/commas/spaces removed; hyphens/digits preserved) + seven-digit NEIS code",
+      "candidates": [
+        {
+          "ATPT_OFCDC_SC_CODE": "E10",
+          "SD_SCHUL_CODE": "7321019",
+          "SCHUL_NM": "인천공항초등학교",
+          "SCHUL_KND_SC_NM": "초등학교",
+          "ORG_RDNMA": "인천광역시 영종구 신도시남로 43",
+          "JU_ORG_NM": "인천광역시남부교육지원청",
+          "HMPG_ADRES": "gonghang-e.icees.kr"
+        }
+      ]
+    },
+    {
+      "school_id": "B000003027",
+      "schoolinfo_code": "S040000839",
+      "school_name": "인천부원초등학교",
+      "neis_office_code": "E10",
+      "status": "verified_exact_name_address",
+      "neis_school_code": "7331030",
+      "rule": "same office + primary school + exact NFC/whitespace-normalized name + road-address identity (parenthetical/commas/spaces removed; hyphens/digits preserved) + seven-digit NEIS code",
+      "candidates": [
+        {
+          "ATPT_OFCDC_SC_CODE": "E10",
+          "SD_SCHUL_CODE": "7331030",
+          "SCHUL_NM": "인천부원초등학교",
+          "SCHUL_KND_SC_NM": "초등학교",
+          "ORG_RDNMA": "인천광역시 부평구 원적로472번길 29",
+          "JU_ORG_NM": "인천광역시북부교육지원청",
+          "HMPG_ADRES": "pwe.icees.kr"
+        }
+      ]
+    },
+    {
+      "school_id": "B000025189",
+      "schoolinfo_code": "S040002064",
+      "school_name": "인천송명초등학교",
+      "neis_office_code": "E10",
+      "status": "verified_exact_name_address",
+      "neis_school_code": "7341253",
+      "rule": "same office + primary school + exact NFC/whitespace-normalized name + road-address identity (parenthetical/commas/spaces removed; hyphens/digits preserved) + seven-digit NEIS code",
+      "candidates": [
+        {
+          "ATPT_OFCDC_SC_CODE": "E10",
+          "SD_SCHUL_CODE": "7341253",
+          "SCHUL_NM": "인천송명초등학교",
+          "SCHUL_KND_SC_NM": "초등학교",
+          "ORG_RDNMA": "인천광역시 연수구 송도교육로 19",
+          "JU_ORG_NM": "인천광역시동부교육지원청",
+          "HMPG_ADRES": "ism.icees.kr"
+        }
+      ]
+    },
+    {
+      "school_id": "B000006819",
+      "schoolinfo_code": "S140001874",
+      "school_name": "청산초등학교",
+      "neis_office_code": "Q10",
+      "status": "hold_address_mismatch",
+      "neis_school_code": null,
+      "rule": "same office + primary school + exact NFC/whitespace-normalized name + road-address identity (parenthetical/commas/spaces removed; hyphens/digits preserved) + seven-digit NEIS code",
+      "candidates": [
+        {
+          "ATPT_OFCDC_SC_CODE": "Q10",
+          "SD_SCHUL_CODE": "8702030",
+          "SCHUL_NM": "청산초등학교",
+          "SCHUL_KND_SC_NM": "초등학교",
+          "ORG_RDNMA": "전남광주통합특별시 완도군 청산면 청산로 1602-1",
+          "JU_ORG_NM": "전남광주통합특별시완도교육지원청",
+          "HMPG_ADRES": "wd-cheongsan.ms.jne.kr"
+        }
+      ]
+    },
+    {
+      "school_id": "B000006780",
+      "schoolinfo_code": "S140001693",
+      "school_name": "영광중앙초등학교",
+      "neis_office_code": "Q10",
+      "status": "hold_address_mismatch",
+      "neis_school_code": null,
+      "rule": "same office + primary school + exact NFC/whitespace-normalized name + road-address identity (parenthetical/commas/spaces removed; hyphens/digits preserved) + seven-digit NEIS code",
+      "candidates": [
+        {
+          "ATPT_OFCDC_SC_CODE": "Q10",
+          "SD_SCHUL_CODE": "8682013",
+          "SCHUL_NM": "영광중앙초등학교",
+          "SCHUL_KND_SC_NM": "초등학교",
+          "ORG_RDNMA": "전남광주통합특별시 영광군 영광읍 천년로13길 57-9",
+          "JU_ORG_NM": "전남광주통합특별시영광교육지원청",
+          "HMPG_ADRES": null
+        }
+      ]
+    },
+    {
+      "school_id": "B000006822",
+      "schoolinfo_code": "S140001844",
+      "school_name": "노화북초등학교",
+      "neis_office_code": "Q10",
+      "status": "hold_address_mismatch",
+      "neis_school_code": null,
+      "rule": "same office + primary school + exact NFC/whitespace-normalized name + road-address identity (parenthetical/commas/spaces removed; hyphens/digits preserved) + seven-digit NEIS code",
+      "candidates": [
+        {
+          "ATPT_OFCDC_SC_CODE": "Q10",
+          "SD_SCHUL_CODE": "8702034",
+          "SCHUL_NM": "노화북초등학교",
+          "SCHUL_KND_SC_NM": "초등학교",
+          "ORG_RDNMA": "전남광주통합특별시 완도군 노화읍 신목길 102",
+          "JU_ORG_NM": "전남광주통합특별시완도교육지원청",
+          "HMPG_ADRES": "http://nohwabuk.es.jne.kr"
+        }
+      ]
+    },
+    {
+      "school_id": "B000006546",
+      "schoolinfo_code": "S140000718",
+      "school_name": "문평초등학교",
+      "neis_office_code": "Q10",
+      "status": "hold_address_mismatch",
+      "neis_school_code": null,
+      "rule": "same office + primary school + exact NFC/whitespace-normalized name + road-address identity (parenthetical/commas/spaces removed; hyphens/digits preserved) + seven-digit NEIS code",
+      "candidates": [
+        {
+          "ATPT_OFCDC_SC_CODE": "Q10",
+          "SD_SCHUL_CODE": "8532030",
+          "SCHUL_NM": "문평초등학교",
+          "SCHUL_KND_SC_NM": "초등학교",
+          "ORG_RDNMA": "전남광주통합특별시 나주시 문평면 문평로 15",
+          "JU_ORG_NM": "전남광주통합특별시나주교육지원청",
+          "HMPG_ADRES": "http://munpyeong.es.jne.kr"
+        }
+      ]
+    },
+    {
+      "school_id": "B000006872",
+      "schoolinfo_code": "S140001241",
+      "school_name": "가거도초등학교",
+      "neis_office_code": "Q10",
+      "status": "hold_address_mismatch",
+      "neis_school_code": null,
+      "rule": "same office + primary school + exact NFC/whitespace-normalized name + road-address identity (parenthetical/commas/spaces removed; hyphens/digits preserved) + seven-digit NEIS code",
+      "candidates": [
+        {
+          "ATPT_OFCDC_SC_CODE": "Q10",
+          "SD_SCHUL_CODE": "8722030",
+          "SCHUL_NM": "가거도초등학교",
+          "SCHUL_KND_SC_NM": "초등학교",
+          "ORG_RDNMA": "전남광주통합특별시 신안군 흑산면 가거도길 18-31",
+          "JU_ORG_NM": "전남광주통합특별시신안교육지원청",
+          "HMPG_ADRES": "http://gageodo.es.jne.kr/"
+        }
+      ]
+    },
+    {
+      "school_id": "B000006457",
+      "schoolinfo_code": "S140003453",
+      "school_name": "소라초등학교소라남분교장",
+      "neis_office_code": "Q10",
+      "status": "hold_address_mismatch",
+      "neis_school_code": null,
+      "rule": "same office + primary school + exact NFC/whitespace-normalized name + road-address identity (parenthetical/commas/spaces removed; hyphens/digits preserved) + seven-digit NEIS code",
+      "candidates": [
+        {
+          "ATPT_OFCDC_SC_CODE": "Q10",
+          "SD_SCHUL_CODE": "8512052",
+          "SCHUL_NM": "소라초등학교소라남분교장",
+          "SCHUL_KND_SC_NM": "초등학교",
+          "ORG_RDNMA": "전남광주통합특별시 여수시 소라면 중촌1길 11",
+          "JU_ORG_NM": "전남광주통합특별시여수교육지원청",
+          "HMPG_ADRES": "www.sola.es.kr"
+        }
+      ]
+    },
+    {
+      "school_id": "B000006702",
+      "schoolinfo_code": "S140000358",
+      "school_name": "마량초등학교",
+      "neis_office_code": "Q10",
+      "status": "hold_address_mismatch",
+      "neis_school_code": null,
+      "rule": "same office + primary school + exact NFC/whitespace-normalized name + road-address identity (parenthetical/commas/spaces removed; hyphens/digits preserved) + seven-digit NEIS code",
+      "candidates": [
+        {
+          "ATPT_OFCDC_SC_CODE": "Q10",
+          "SD_SCHUL_CODE": "8632017",
+          "SCHUL_NM": "마량초등학교",
+          "SCHUL_KND_SC_NM": "초등학교",
+          "ORG_RDNMA": "전남광주통합특별시 강진군 마량면 서중길 42",
+          "JU_ORG_NM": "전남광주통합특별시강진교육지원청",
+          "HMPG_ADRES": null
+        }
+      ]
+    },
+    {
+      "school_id": "B000006749",
+      "schoolinfo_code": "S140000948",
+      "school_name": "일로동초등학교",
+      "neis_office_code": "Q10",
+      "status": "hold_address_mismatch",
+      "neis_school_code": null,
+      "rule": "same office + primary school + exact NFC/whitespace-normalized name + road-address identity (parenthetical/commas/spaces removed; hyphens/digits preserved) + seven-digit NEIS code",
+      "candidates": [
+        {
+          "ATPT_OFCDC_SC_CODE": "Q10",
+          "SD_SCHUL_CODE": "8662016",
+          "SCHUL_NM": "일로동초등학교",
+          "SCHUL_KND_SC_NM": "초등학교",
+          "ORG_RDNMA": "전남광주통합특별시 무안군 일로읍 광암길 81-7",
+          "JU_ORG_NM": "전남광주통합특별시무안교육지원청",
+          "HMPG_ADRES": "http://illodong.es.jne.kr"
+        }
+      ]
+    },
+    {
+      "school_id": "B000006755",
+      "schoolinfo_code": "S140000943",
+      "school_name": "삼향초등학교",
+      "neis_office_code": "Q10",
+      "status": "hold_address_mismatch",
+      "neis_school_code": null,
+      "rule": "same office + primary school + exact NFC/whitespace-normalized name + road-address identity (parenthetical/commas/spaces removed; hyphens/digits preserved) + seven-digit NEIS code",
+      "candidates": [
+        {
+          "ATPT_OFCDC_SC_CODE": "Q10",
+          "SD_SCHUL_CODE": "8662020",
+          "SCHUL_NM": "삼향초등학교",
+          "SCHUL_KND_SC_NM": "초등학교",
+          "ORG_RDNMA": "전남광주통합특별시 무안군 삼향읍 삼향중앙로 84",
+          "JU_ORG_NM": "전남광주통합특별시무안교육지원청",
+          "HMPG_ADRES": "http://samhyang.es.jne.kr"
+        }
+      ]
+    },
+    {
+      "school_id": "B000006701",
+      "schoolinfo_code": "S140000362",
+      "school_name": "신전초등학교",
+      "neis_office_code": "Q10",
+      "status": "hold_address_mismatch",
+      "neis_school_code": null,
+      "rule": "same office + primary school + exact NFC/whitespace-normalized name + road-address identity (parenthetical/commas/spaces removed; hyphens/digits preserved) + seven-digit NEIS code",
+      "candidates": [
+        {
+          "ATPT_OFCDC_SC_CODE": "Q10",
+          "SD_SCHUL_CODE": "8632021",
+          "SCHUL_NM": "신전초등학교",
+          "SCHUL_KND_SC_NM": "초등학교",
+          "ORG_RDNMA": "전남광주통합특별시 강진군 신전면 백도로 1341",
+          "JU_ORG_NM": "전남광주통합특별시강진교육지원청",
+          "HMPG_ADRES": "http://sinjeon.es.jne.kr"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002211",
+      "schoolinfo_code": "S010001057",
+      "school_name": "서울지향초등학교",
+      "neis_office_code": "B10",
+      "status": "verified_exact_name_address",
+      "neis_school_code": "7081477",
+      "rule": "same office + primary school + exact NFC/whitespace-normalized name + road-address identity (parenthetical/commas/spaces removed; hyphens/digits preserved) + seven-digit NEIS code",
+      "candidates": [
+        {
+          "ATPT_OFCDC_SC_CODE": "B10",
+          "SD_SCHUL_CODE": "7081477",
+          "SCHUL_NM": "서울지향초등학교",
+          "SCHUL_KND_SC_NM": "초등학교",
+          "ORG_RDNMA": "서울특별시 양천구 신정로11길 74",
+          "JU_ORG_NM": "서울특별시강서양천교육지원청",
+          "HMPG_ADRES": "http://jihyang.sen.es.kr"
+        }
+      ]
+    },
+    {
+      "school_id": "B000001882",
+      "schoolinfo_code": "S010001994",
+      "school_name": "서울신도초등학교",
+      "neis_office_code": "B10",
+      "status": "verified_exact_name_address",
+      "neis_school_code": "7031141",
+      "rule": "same office + primary school + exact NFC/whitespace-normalized name + road-address identity (parenthetical/commas/spaces removed; hyphens/digits preserved) + seven-digit NEIS code",
+      "candidates": [
+        {
+          "ATPT_OFCDC_SC_CODE": "B10",
+          "SD_SCHUL_CODE": "7031141",
+          "SCHUL_NM": "서울신도초등학교",
+          "SCHUL_KND_SC_NM": "초등학교",
+          "ORG_RDNMA": "서울특별시 은평구 진관1로 77-23",
+          "JU_ORG_NM": "서울특별시서부교육지원청",
+          "HMPG_ADRES": "http://sindo.sen.es.kr"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002151",
+      "schoolinfo_code": "S010000904",
+      "school_name": "서울거여초등학교",
+      "neis_office_code": "B10",
+      "status": "verified_exact_name_address",
+      "neis_school_code": "7130110",
+      "rule": "same office + primary school + exact NFC/whitespace-normalized name + road-address identity (parenthetical/commas/spaces removed; hyphens/digits preserved) + seven-digit NEIS code",
+      "candidates": [
+        {
+          "ATPT_OFCDC_SC_CODE": "B10",
+          "SD_SCHUL_CODE": "7130110",
+          "SCHUL_NM": "서울거여초등학교",
+          "SCHUL_KND_SC_NM": "초등학교",
+          "ORG_RDNMA": "서울특별시 송파구 마천로25길 18",
+          "JU_ORG_NM": "서울특별시강동송파교육지원청",
+          "HMPG_ADRES": "http://geo-yeo.sen.es.kr"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002280",
+      "schoolinfo_code": "S010000771",
+      "school_name": "서울양전초등학교",
+      "neis_office_code": "B10",
+      "status": "verified_exact_name_address",
+      "neis_school_code": "7091403",
+      "rule": "same office + primary school + exact NFC/whitespace-normalized name + road-address identity (parenthetical/commas/spaces removed; hyphens/digits preserved) + seven-digit NEIS code",
+      "candidates": [
+        {
+          "ATPT_OFCDC_SC_CODE": "B10",
+          "SD_SCHUL_CODE": "7091403",
+          "SCHUL_NM": "서울양전초등학교",
+          "SCHUL_KND_SC_NM": "초등학교",
+          "ORG_RDNMA": "서울특별시 강남구 개포로 513",
+          "JU_ORG_NM": "서울특별시강남서초교육지원청",
+          "HMPG_ADRES": "http://yangjeon.sen.es.kr"
+        }
+      ]
+    },
+    {
+      "school_id": "B000001871",
+      "schoolinfo_code": "S010005236",
+      "school_name": "서울묵현초등학교",
+      "neis_office_code": "B10",
+      "status": "verified_exact_name_address",
+      "neis_school_code": "7021094",
+      "rule": "same office + primary school + exact NFC/whitespace-normalized name + road-address identity (parenthetical/commas/spaces removed; hyphens/digits preserved) + seven-digit NEIS code",
+      "candidates": [
+        {
+          "ATPT_OFCDC_SC_CODE": "B10",
+          "SD_SCHUL_CODE": "7021094",
+          "SCHUL_NM": "서울묵현초등학교",
+          "SCHUL_KND_SC_NM": "초등학교",
+          "ORG_RDNMA": "서울특별시 중랑구 동일로157길 75",
+          "JU_ORG_NM": "서울특별시동부교육지원청",
+          "HMPG_ADRES": "http://mh.sen.es.kr"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002329",
+      "schoolinfo_code": "S010005257",
+      "school_name": "서울조원초등학교",
+      "neis_office_code": "B10",
+      "status": "verified_exact_name_address",
+      "neis_school_code": "7132118",
+      "rule": "same office + primary school + exact NFC/whitespace-normalized name + road-address identity (parenthetical/commas/spaces removed; hyphens/digits preserved) + seven-digit NEIS code",
+      "candidates": [
+        {
+          "ATPT_OFCDC_SC_CODE": "B10",
+          "SD_SCHUL_CODE": "7132118",
+          "SCHUL_NM": "서울조원초등학교",
+          "SCHUL_KND_SC_NM": "초등학교",
+          "ORG_RDNMA": "서울특별시 관악구 조원로 67",
+          "JU_ORG_NM": "서울특별시동작관악교육지원청",
+          "HMPG_ADRES": "http://jowon.sen.es.kr"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002327",
+      "schoolinfo_code": "S010001602",
+      "school_name": "서울신우초등학교",
+      "neis_office_code": "B10",
+      "status": "verified_exact_name_address",
+      "neis_school_code": "7132110",
+      "rule": "same office + primary school + exact NFC/whitespace-normalized name + road-address identity (parenthetical/commas/spaces removed; hyphens/digits preserved) + seven-digit NEIS code",
+      "candidates": [
+        {
+          "ATPT_OFCDC_SC_CODE": "B10",
+          "SD_SCHUL_CODE": "7132110",
+          "SCHUL_NM": "서울신우초등학교",
+          "SCHUL_KND_SC_NM": "초등학교",
+          "ORG_RDNMA": "서울특별시 관악구 호암로 498",
+          "JU_ORG_NM": "서울특별시동작관악교육지원청",
+          "HMPG_ADRES": "http://seoulsinwoo.sen.es.kr"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002017",
+      "schoolinfo_code": "S010001788",
+      "school_name": "서울초당초등학교",
+      "neis_office_code": "B10",
+      "status": "verified_exact_name_address",
+      "neis_school_code": "7051166",
+      "rule": "same office + primary school + exact NFC/whitespace-normalized name + road-address identity (parenthetical/commas/spaces removed; hyphens/digits preserved) + seven-digit NEIS code",
+      "candidates": [
+        {
+          "ATPT_OFCDC_SC_CODE": "B10",
+          "SD_SCHUL_CODE": "7051166",
+          "SCHUL_NM": "서울초당초등학교",
+          "SCHUL_KND_SC_NM": "초등학교",
+          "ORG_RDNMA": "서울특별시 도봉구 해등로32길 11",
+          "JU_ORG_NM": "서울특별시북부교육지원청",
+          "HMPG_ADRES": "http://chodang.sen.es.kr"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002346",
+      "schoolinfo_code": "S010001601",
+      "school_name": "서울신성초등학교",
+      "neis_office_code": "B10",
+      "status": "verified_exact_name_address",
+      "neis_school_code": "7132109",
+      "rule": "same office + primary school + exact NFC/whitespace-normalized name + road-address identity (parenthetical/commas/spaces removed; hyphens/digits preserved) + seven-digit NEIS code",
+      "candidates": [
+        {
+          "ATPT_OFCDC_SC_CODE": "B10",
+          "SD_SCHUL_CODE": "7132109",
+          "SCHUL_NM": "서울신성초등학교",
+          "SCHUL_KND_SC_NM": "초등학교",
+          "ORG_RDNMA": "서울특별시 관악구 신림로 114",
+          "JU_ORG_NM": "서울특별시동작관악교육지원청",
+          "HMPG_ADRES": "http://sss.sen.es.kr"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002186",
+      "schoolinfo_code": "S010005548",
+      "school_name": "서울신은초등학교",
+      "neis_office_code": "B10",
+      "status": "verified_exact_name_address",
+      "neis_school_code": "7081482",
+      "rule": "same office + primary school + exact NFC/whitespace-normalized name + road-address identity (parenthetical/commas/spaces removed; hyphens/digits preserved) + seven-digit NEIS code",
+      "candidates": [
+        {
+          "ATPT_OFCDC_SC_CODE": "B10",
+          "SD_SCHUL_CODE": "7081482",
+          "SCHUL_NM": "서울신은초등학교",
+          "SCHUL_KND_SC_NM": "초등학교",
+          "ORG_RDNMA": "서울특별시 양천구 신정이펜2로 30",
+          "JU_ORG_NM": "서울특별시강서양천교육지원청",
+          "HMPG_ADRES": "http://se.sen.es.kr"
+        }
+      ]
+    }
+  ],
+  "samples": [
+    {
+      "school_id": "B000002597",
+      "stratum": "busan_coverage",
+      "endpoint": "https://open.neis.go.kr/hub/elsTimetable",
+      "params": {
+        "ATPT_OFCDC_SC_CODE": "C10",
+        "SD_SCHUL_CODE": "7191088",
+        "AY": "2026",
+        "GRADE": "1",
+        "TI_FROM_YMD": "20260914",
+        "TI_TO_YMD": "20260918"
+      },
+      "pages": [
+        {
+          "page": 1,
+          "row_count": 23,
+          "total": 23,
+          "code": "INFO-000",
+          "response_sha256": "4b8e59a4231712ede92d0789864820b8c74233de59cf2368b87fe3f0fad21ac5"
+        }
+      ],
+      "total": 23,
+      "rows": [
+        {
+          "ATPT_OFCDC_SC_CODE": "C10",
+          "SD_SCHUL_CODE": "7191088",
+          "SCHUL_NM": "연일초등학교",
+          "AY": "2026",
+          "SEM": "2",
+          "ALL_TI_YMD": "20260914",
+          "GRADE": "1",
+          "CLASS_NM": "1",
+          "PERIO": "1",
+          "ITRT_CNTNT": "국어",
+          "LOAD_DTM": "20260920"
+        },
+        {
+          "ATPT_OFCDC_SC_CODE": "C10",
+          "SD_SCHUL_CODE": "7191088",
+          "SCHUL_NM": "연일초등학교",
+          "AY": "2026",
+          "SEM": "2",
+          "ALL_TI_YMD": "20260914",
+          "GRADE": "1",
+          "CLASS_NM": "1",
+          "PERIO": "2",
+          "ITRT_CNTNT": "슬기로운생활",
+          "LOAD_DTM": "20260920"
+        },
+        {
+          "ATPT_OFCDC_SC_CODE": "C10",
+          "SD_SCHUL_CODE": "7191088",
+          "SCHUL_NM": "연일초등학교",
+          "AY": "2026",
+          "SEM": "2",
+          "ALL_TI_YMD": "20260914",
+          "GRADE": "1",
+          "CLASS_NM": "1",
+          "PERIO": "3",
+          "ITRT_CNTNT": "바른생활",
+          "LOAD_DTM": "20260920"
+        },
+        {
+          "ATPT_OFCDC_SC_CODE": "C10",
+          "SD_SCHUL_CODE": "7191088",
+          "SCHUL_NM": "연일초등학교",
+          "AY": "2026",
+          "SEM": "2",
+          "ALL_TI_YMD": "20260914",
+          "GRADE": "1",
+          "CLASS_NM": "1",
+          "PERIO": "4",
+          "ITRT_CNTNT": "즐거운생활",
+          "LOAD_DTM": "20260920"
+        },
+        {
+          "ATPT_OFCDC_SC_CODE": "C10",
+          "SD_SCHUL_CODE": "7191088",
+          "SCHUL_NM": "연일초등학교",
+          "AY": "2026",
+          "SEM": "2",
+          "ALL_TI_YMD": "20260914",
+          "GRADE": "1",
+          "CLASS_NM": "1",
+          "PERIO": "5",
+          "ITRT_CNTNT": "수학",
+          "LOAD_DTM": "20260920"
+        },
+        {
+          "ATPT_OFCDC_SC_CODE": "C10",
+          "SD_SCHUL_CODE": "7191088",
+          "SCHUL_NM": "연일초등학교",
+          "AY": "2026",
+          "SEM": "2",
+          "ALL_TI_YMD": "20260915",
+          "GRADE": "1",
+          "CLASS_NM": "1",
+          "PERIO": "1",
+          "ITRT_CNTNT": "바른생활",
+          "LOAD_DTM": "20260920"
+        },
+        {
+          "ATPT_OFCDC_SC_CODE": "C10",
+          "SD_SCHUL_CODE": "7191088",
+          "SCHUL_NM": "연일초등학교",
+          "AY": "2026",
+          "SEM": "2",
+          "ALL_TI_YMD": "20260915",
+          "GRADE": "1",
+          "CLASS_NM": "1",
+          "PERIO": "2",
+          "ITRT_CNTNT": "슬기로운생활",
+          "LOAD_DTM": "20260920"
+        },
+        {
+          "ATPT_OFCDC_SC_CODE": "C10",
+          "SD_SCHUL_CODE": "7191088",
+          "SCHUL_NM": "연일초등학교",
+          "AY": "2026",
+          "SEM": "2",
+          "ALL_TI_YMD": "20260915",
+          "GRADE": "1",
+          "CLASS_NM": "1",
+          "PERIO": "3",
+          "ITRT_CNTNT": "국어",
+          "LOAD_DTM": "20260920"
+        },
+        {
+          "ATPT_OFCDC_SC_CODE": "C10",
+          "SD_SCHUL_CODE": "7191088",
+          "SCHUL_NM": "연일초등학교",
+          "AY": "2026",
+          "SEM": "2",
+          "ALL_TI_YMD": "20260915",
+          "GRADE": "1",
+          "CLASS_NM": "1",
+          "PERIO": "4",
+          "ITRT_CNTNT": "국어",
+          "LOAD_DTM": "20260920"
+        },
+        {
+          "ATPT_OFCDC_SC_CODE": "C10",
+          "SD_SCHUL_CODE": "7191088",
+          "SCHUL_NM": "연일초등학교",
+          "AY": "2026",
+          "SEM": "2",
+          "ALL_TI_YMD": "20260916",
+          "GRADE": "1",
+          "CLASS_NM": "1",
+          "PERIO": "1",
+          "ITRT_CNTNT": "수학",
+          "LOAD_DTM": "20260920"
+        },
+        {
+          "ATPT_OFCDC_SC_CODE": "C10",
+          "SD_SCHUL_CODE": "7191088",
+          "SCHUL_NM": "연일초등학교",
+          "AY": "2026",
+          "SEM": "2",
+          "ALL_TI_YMD": "20260916",
+          "GRADE": "1",
+          "CLASS_NM": "1",
+          "PERIO": "2",
+          "ITRT_CNTNT": "동아리활동",
+          "LOAD_DTM": "20260920"
+        },
+        {
+          "ATPT_OFCDC_SC_CODE": "C10",
+          "SD_SCHUL_CODE": "7191088",
+          "SCHUL_NM": "연일초등학교",
+          "AY": "2026",
+          "SEM": "2",
+          "ALL_TI_YMD": "20260916",
+          "GRADE": "1",
+          "CLASS_NM": "1",
+          "PERIO": "3",
+          "ITRT_CNTNT": "즐거운생활",
+          "LOAD_DTM": "20260920"
+        }
+      ],
+      "captured_sample_rows": 12,
+      "sample_is_truncated": true,
+      "start_time": null,
+      "end_time": null,
+      "absolute_clock_source": "not_collected",
+      "evidence_state": "source_reported_2026_not_2027_confirmed"
+    },
+    {
+      "school_id": "B000002597",
+      "stratum": "busan_coverage",
+      "endpoint": "https://open.neis.go.kr/hub/SchoolSchedule",
+      "params": {
+        "ATPT_OFCDC_SC_CODE": "C10",
+        "SD_SCHUL_CODE": "7191088",
+        "AA_FROM_YMD": "20260901",
+        "AA_TO_YMD": "20261031"
+      },
+      "pages": [
+        {
+          "page": 1,
+          "row_count": 26,
+          "total": 26,
+          "code": "INFO-000",
+          "response_sha256": "24b01e6b5bf6a3fd724e6714f5bc8fb0049fde2a8a1bed4a05923421b82cca06"
+        }
+      ],
+      "total": 26,
+      "rows": [
+        {
+          "ATPT_OFCDC_SC_CODE": "C10",
+          "SD_SCHUL_CODE": "7191088",
+          "SCHUL_NM": "연일초등학교",
+          "AY": "2026",
+          "AA_YMD": "20260901",
+          "EVENT_NM": "정보통신윤리교육 주간",
+          "EVENT_CNTNT": "",
+          "SBTR_DD_SC_NM": "해당없음",
+          "ONE_GRADE_EVENT_YN": "N",
+          "LOAD_DTM": "20261006"
+        },
+        {
+          "ATPT_OFCDC_SC_CODE": "C10",
+          "SD_SCHUL_CODE": "7191088",
+          "SCHUL_NM": "연일초등학교",
+          "AY": "2026",
+          "AA_YMD": "20260905",
+          "EVENT_NM": "토요휴업일",
+          "EVENT_CNTNT": "",
+          "SBTR_DD_SC_NM": "휴업일",
+          "ONE_GRADE_EVENT_YN": "Y",
+          "LOAD_DTM": "20261006"
+        },
+        {
+          "ATPT_OFCDC_SC_CODE": "C10",
+          "SD_SCHUL_CODE": "7191088",
+          "SCHUL_NM": "연일초등학교",
+          "AY": "2026",
+          "AA_YMD": "20260907",
+          "EVENT_NM": "생명존중교육 주간",
+          "EVENT_CNTNT": "",
+          "SBTR_DD_SC_NM": "해당없음",
+          "ONE_GRADE_EVENT_YN": "N",
+          "LOAD_DTM": "20261006"
+        },
+        {
+          "ATPT_OFCDC_SC_CODE": "C10",
+          "SD_SCHUL_CODE": "7191088",
+          "SCHUL_NM": "연일초등학교",
+          "AY": "2026",
+          "AA_YMD": "20260912",
+          "EVENT_NM": "토요휴업일",
+          "EVENT_CNTNT": "",
+          "SBTR_DD_SC_NM": "휴업일",
+          "ONE_GRADE_EVENT_YN": "Y",
+          "LOAD_DTM": "20261006"
+        },
+        {
+          "ATPT_OFCDC_SC_CODE": "C10",
+          "SD_SCHUL_CODE": "7191088",
+          "SCHUL_NM": "연일초등학교",
+          "AY": "2026",
+          "AA_YMD": "20260914",
+          "EVENT_NM": "학부모상담주간",
+          "EVENT_CNTNT": "",
+          "SBTR_DD_SC_NM": "해당없음",
+          "ONE_GRADE_EVENT_YN": "Y",
+          "LOAD_DTM": "20261006"
+        },
+        {
+          "ATPT_OFCDC_SC_CODE": "C10",
+          "SD_SCHUL_CODE": "7191088",
+          "SCHUL_NM": "연일초등학교",
+          "AY": "2026",
+          "AA_YMD": "20260919",
+          "EVENT_NM": "토요휴업일",
+          "EVENT_CNTNT": "",
+          "SBTR_DD_SC_NM": "휴업일",
+          "ONE_GRADE_EVENT_YN": "Y",
+          "LOAD_DTM": "20261006"
+        },
+        {
+          "ATPT_OFCDC_SC_CODE": "C10",
+          "SD_SCHUL_CODE": "7191088",
+          "SCHUL_NM": "연일초등학교",
+          "AY": "2026",
+          "AA_YMD": "20260921",
+          "EVENT_NM": "학생인권교육주간",
+          "EVENT_CNTNT": "",
+          "SBTR_DD_SC_NM": "해당없음",
+          "ONE_GRADE_EVENT_YN": "N",
+          "LOAD_DTM": "20261006"
+        },
+        {
+          "ATPT_OFCDC_SC_CODE": "C10",
+          "SD_SCHUL_CODE": "7191088",
+          "SCHUL_NM": "연일초등학교",
+          "AY": "2026",
+          "AA_YMD": "20260922",
+          "EVENT_NM": "체험학습",
+          "EVENT_CNTNT": "",
+          "SBTR_DD_SC_NM": "해당없음",
+          "ONE_GRADE_EVENT_YN": "N",
+          "LOAD_DTM": "20261006"
+        },
+        {
+          "ATPT_OFCDC_SC_CODE": "C10",
+          "SD_SCHUL_CODE": "7191088",
+          "SCHUL_NM": "연일초등학교",
+          "AY": "2026",
+          "AA_YMD": "20260924",
+          "EVENT_NM": "추석",
+          "EVENT_CNTNT": "",
+          "SBTR_DD_SC_NM": "공휴일",
+          "ONE_GRADE_EVENT_YN": "Y",
+          "LOAD_DTM": "20261006"
+        },
+        {
+          "ATPT_OFCDC_SC_CODE": "C10",
+          "SD_SCHUL_CODE": "7191088",
+          "SCHUL_NM": "연일초등학교",
+          "AY": "2026",
+          "AA_YMD": "20260925",
+          "EVENT_NM": "추석",
+          "EVENT_CNTNT": "",
+          "SBTR_DD_SC_NM": "공휴일",
+          "ONE_GRADE_EVENT_YN": "Y",
+          "LOAD_DTM": "20261006"
+        },
+        {
+          "ATPT_OFCDC_SC_CODE": "C10",
+          "SD_SCHUL_CODE": "7191088",
+          "SCHUL_NM": "연일초등학교",
+          "AY": "2026",
+          "AA_YMD": "20260926",
+          "EVENT_NM": "추석",
+          "EVENT_CNTNT": "",
+          "SBTR_DD_SC_NM": "공휴일",
+          "ONE_GRADE_EVENT_YN": "Y",
+          "LOAD_DTM": "20261006"
+        },
+        {
+          "ATPT_OFCDC_SC_CODE": "C10",
+          "SD_SCHUL_CODE": "7191088",
+          "SCHUL_NM": "연일초등학교",
+          "AY": "2026",
+          "AA_YMD": "20260926",
+          "EVENT_NM": "토요휴업일",
+          "EVENT_CNTNT": "",
+          "SBTR_DD_SC_NM": "휴업일",
+          "ONE_GRADE_EVENT_YN": "Y",
+          "LOAD_DTM": "20261006"
+        }
+      ],
+      "captured_sample_rows": 12,
+      "sample_is_truncated": true,
+      "start_time": null,
+      "end_time": null,
+      "absolute_clock_source": "not_collected",
+      "evidence_state": "source_reported_2026_not_2027_confirmed"
+    },
+    {
+      "school_id": "B000003765",
+      "stratum": "dense_development",
+      "endpoint": "https://open.neis.go.kr/hub/elsTimetable",
+      "params": {
+        "ATPT_OFCDC_SC_CODE": "J10",
+        "SD_SCHUL_CODE": "7551101",
+        "AY": "2026",
+        "GRADE": "1",
+        "TI_FROM_YMD": "20260914",
+        "TI_TO_YMD": "20260918"
+      },
+      "pages": [
+        {
+          "page": 1,
+          "row_count": 23,
+          "total": 23,
+          "code": "INFO-000",
+          "response_sha256": "59a6f74fb94f3f8c27a83dd3d591b3ae5dee5085808c3f76eaa1ea09a06b00a4"
+        }
+      ],
+      "total": 23,
+      "rows": [
+        {
+          "ATPT_OFCDC_SC_CODE": "J10",
+          "SD_SCHUL_CODE": "7551101",
+          "SCHUL_NM": "한솔초등학교",
+          "AY": "2026",
+          "SEM": "2",
+          "ALL_TI_YMD": "20260914",
+          "GRADE": "1",
+          "CLASS_NM": "1",
+          "PERIO": "1",
+          "ITRT_CNTNT": "바른생활",
+          "LOAD_DTM": "20260920"
+        },
+        {
+          "ATPT_OFCDC_SC_CODE": "J10",
+          "SD_SCHUL_CODE": "7551101",
+          "SCHUL_NM": "한솔초등학교",
+          "AY": "2026",
+          "SEM": "2",
+          "ALL_TI_YMD": "20260914",
+          "GRADE": "1",
+          "CLASS_NM": "1",
+          "PERIO": "2",
+          "ITRT_CNTNT": "슬기로운생활",
+          "LOAD_DTM": "20260920"
+        },
+        {
+          "ATPT_OFCDC_SC_CODE": "J10",
+          "SD_SCHUL_CODE": "7551101",
+          "SCHUL_NM": "한솔초등학교",
+          "AY": "2026",
+          "SEM": "2",
+          "ALL_TI_YMD": "20260914",
+          "GRADE": "1",
+          "CLASS_NM": "1",
+          "PERIO": "3",
+          "ITRT_CNTNT": "자율·자치활동",
+          "LOAD_DTM": "20260920"
+        },
+        {
+          "ATPT_OFCDC_SC_CODE": "J10",
+          "SD_SCHUL_CODE": "7551101",
+          "SCHUL_NM": "한솔초등학교",
+          "AY": "2026",
+          "SEM": "2",
+          "ALL_TI_YMD": "20260914",
+          "GRADE": "1",
+          "CLASS_NM": "1",
+          "PERIO": "4",
+          "ITRT_CNTNT": "국어",
+          "LOAD_DTM": "20260920"
+        },
+        {
+          "ATPT_OFCDC_SC_CODE": "J10",
+          "SD_SCHUL_CODE": "7551101",
+          "SCHUL_NM": "한솔초등학교",
+          "AY": "2026",
+          "SEM": "2",
+          "ALL_TI_YMD": "20260915",
+          "GRADE": "1",
+          "CLASS_NM": "1",
+          "PERIO": "1",
+          "ITRT_CNTNT": "슬기로운생활",
+          "LOAD_DTM": "20260920"
+        },
+        {
+          "ATPT_OFCDC_SC_CODE": "J10",
+          "SD_SCHUL_CODE": "7551101",
+          "SCHUL_NM": "한솔초등학교",
+          "AY": "2026",
+          "SEM": "2",
+          "ALL_TI_YMD": "20260915",
+          "GRADE": "1",
+          "CLASS_NM": "1",
+          "PERIO": "2",
+          "ITRT_CNTNT": "국어",
+          "LOAD_DTM": "20260920"
+        },
+        {
+          "ATPT_OFCDC_SC_CODE": "J10",
+          "SD_SCHUL_CODE": "7551101",
+          "SCHUL_NM": "한솔초등학교",
+          "AY": "2026",
+          "SEM": "2",
+          "ALL_TI_YMD": "20260915",
+          "GRADE": "1",
+          "CLASS_NM": "1",
+          "PERIO": "3",
+          "ITRT_CNTNT": "국어",
+          "LOAD_DTM": "20260920"
+        },
+        {
+          "ATPT_OFCDC_SC_CODE": "J10",
+          "SD_SCHUL_CODE": "7551101",
+          "SCHUL_NM": "한솔초등학교",
+          "AY": "2026",
+          "SEM": "2",
+          "ALL_TI_YMD": "20260915",
+          "GRADE": "1",
+          "CLASS_NM": "1",
+          "PERIO": "4",
+          "ITRT_CNTNT": "수학",
+          "LOAD_DTM": "20260920"
+        },
+        {
+          "ATPT_OFCDC_SC_CODE": "J10",
+          "SD_SCHUL_CODE": "7551101",
+          "SCHUL_NM": "한솔초등학교",
+          "AY": "2026",
+          "SEM": "2",
+          "ALL_TI_YMD": "20260915",
+          "GRADE": "1",
+          "CLASS_NM": "1",
+          "PERIO": "5",
+          "ITRT_CNTNT": "즐거운생활",
+          "LOAD_DTM": "20260920"
+        },
+        {
+          "ATPT_OFCDC_SC_CODE": "J10",
+          "SD_SCHUL_CODE": "7551101",
+          "SCHUL_NM": "한솔초등학교",
+          "AY": "2026",
+          "SEM": "2",
+          "ALL_TI_YMD": "20260916",
+          "GRADE": "1",
+          "CLASS_NM": "1",
+          "PERIO": "1",
+          "ITRT_CNTNT": "바른생활",
+          "LOAD_DTM": "20260920"
+        },
+        {
+          "ATPT_OFCDC_SC_CODE": "J10",
+          "SD_SCHUL_CODE": "7551101",
+          "SCHUL_NM": "한솔초등학교",
+          "AY": "2026",
+          "SEM": "2",
+          "ALL_TI_YMD": "20260916",
+          "GRADE": "1",
+          "CLASS_NM": "1",
+          "PERIO": "2",
+          "ITRT_CNTNT": "즐거운생활",
+          "LOAD_DTM": "20260920"
+        },
+        {
+          "ATPT_OFCDC_SC_CODE": "J10",
+          "SD_SCHUL_CODE": "7551101",
+          "SCHUL_NM": "한솔초등학교",
+          "AY": "2026",
+          "SEM": "2",
+          "ALL_TI_YMD": "20260916",
+          "GRADE": "1",
+          "CLASS_NM": "1",
+          "PERIO": "3",
+          "ITRT_CNTNT": "국어",
+          "LOAD_DTM": "20260920"
+        }
+      ],
+      "captured_sample_rows": 12,
+      "sample_is_truncated": true,
+      "start_time": null,
+      "end_time": null,
+      "absolute_clock_source": "not_collected",
+      "evidence_state": "source_reported_2026_not_2027_confirmed"
+    },
+    {
+      "school_id": "B000003765",
+      "stratum": "dense_development",
+      "endpoint": "https://open.neis.go.kr/hub/SchoolSchedule",
+      "params": {
+        "ATPT_OFCDC_SC_CODE": "J10",
+        "SD_SCHUL_CODE": "7551101",
+        "AA_FROM_YMD": "20260901",
+        "AA_TO_YMD": "20261031"
+      },
+      "pages": [
+        {
+          "page": 1,
+          "row_count": 15,
+          "total": 15,
+          "code": "INFO-000",
+          "response_sha256": "2963bdbcedbe52cba57211abb1d266827d3d0b547881205fc6ed31412bca9569"
+        }
+      ],
+      "total": 15,
+      "rows": [
+        {
+          "ATPT_OFCDC_SC_CODE": "J10",
+          "SD_SCHUL_CODE": "7551101",
+          "SCHUL_NM": "한솔초등학교",
+          "AY": "2026",
+          "AA_YMD": "20260905",
+          "EVENT_NM": "토요휴업일",
+          "EVENT_CNTNT": "",
+          "SBTR_DD_SC_NM": "휴업일",
+          "ONE_GRADE_EVENT_YN": "Y",
+          "LOAD_DTM": "20261006"
+        },
+        {
+          "ATPT_OFCDC_SC_CODE": "J10",
+          "SD_SCHUL_CODE": "7551101",
+          "SCHUL_NM": "한솔초등학교",
+          "AY": "2026",
+          "AA_YMD": "20260912",
+          "EVENT_NM": "토요휴업일",
+          "EVENT_CNTNT": "",
+          "SBTR_DD_SC_NM": "휴업일",
+          "ONE_GRADE_EVENT_YN": "Y",
+          "LOAD_DTM": "20261006"
+        },
+        {
+          "ATPT_OFCDC_SC_CODE": "J10",
+          "SD_SCHUL_CODE": "7551101",
+          "SCHUL_NM": "한솔초등학교",
+          "AY": "2026",
+          "AA_YMD": "20260919",
+          "EVENT_NM": "토요휴업일",
+          "EVENT_CNTNT": "",
+          "SBTR_DD_SC_NM": "휴업일",
+          "ONE_GRADE_EVENT_YN": "Y",
+          "LOAD_DTM": "20261006"
+        },
+        {
+          "ATPT_OFCDC_SC_CODE": "J10",
+          "SD_SCHUL_CODE": "7551101",
+          "SCHUL_NM": "한솔초등학교",
+          "AY": "2026",
+          "AA_YMD": "20260924",
+          "EVENT_NM": "추석연휴",
+          "EVENT_CNTNT": "",
+          "SBTR_DD_SC_NM": "공휴일",
+          "ONE_GRADE_EVENT_YN": "Y",
+          "LOAD_DTM": "20261006"
+        },
+        {
+          "ATPT_OFCDC_SC_CODE": "J10",
+          "SD_SCHUL_CODE": "7551101",
+          "SCHUL_NM": "한솔초등학교",
+          "AY": "2026",
+          "AA_YMD": "20260925",
+          "EVENT_NM": "추석연휴",
+          "EVENT_CNTNT": "",
+          "SBTR_DD_SC_NM": "공휴일",
+          "ONE_GRADE_EVENT_YN": "Y",
+          "LOAD_DTM": "20261006"
+        },
+        {
+          "ATPT_OFCDC_SC_CODE": "J10",
+          "SD_SCHUL_CODE": "7551101",
+          "SCHUL_NM": "한솔초등학교",
+          "AY": "2026",
+          "AA_YMD": "20260925",
+          "EVENT_NM": "추석",
+          "EVENT_CNTNT": "",
+          "SBTR_DD_SC_NM": "공휴일",
+          "ONE_GRADE_EVENT_YN": "Y",
+          "LOAD_DTM": "20261006"
+        },
+        {
+          "ATPT_OFCDC_SC_CODE": "J10",
+          "SD_SCHUL_CODE": "7551101",
+          "SCHUL_NM": "한솔초등학교",
+          "AY": "2026",
+          "AA_YMD": "20260926",
+          "EVENT_NM": "추석연휴",
+          "EVENT_CNTNT": "",
+          "SBTR_DD_SC_NM": "공휴일",
+          "ONE_GRADE_EVENT_YN": "Y",
+          "LOAD_DTM": "20261006"
+        },
+        {
+          "ATPT_OFCDC_SC_CODE": "J10",
+          "SD_SCHUL_CODE": "7551101",
+          "SCHUL_NM": "한솔초등학교",
+          "AY": "2026",
+          "AA_YMD": "20260926",
+          "EVENT_NM": "토요휴업일",
+          "EVENT_CNTNT": "",
+          "SBTR_DD_SC_NM": "휴업일",
+          "ONE_GRADE_EVENT_YN": "Y",
+          "LOAD_DTM": "20261006"
+        },
+        {
+          "ATPT_OFCDC_SC_CODE": "J10",
+          "SD_SCHUL_CODE": "7551101",
+          "SCHUL_NM": "한솔초등학교",
+          "AY": "2026",
+          "AA_YMD": "20261003",
+          "EVENT_NM": "개천절",
+          "EVENT_CNTNT": "",
+          "SBTR_DD_SC_NM": "공휴일",
+          "ONE_GRADE_EVENT_YN": "Y",
+          "LOAD_DTM": "20261006"
+        },
+        {
+          "ATPT_OFCDC_SC_CODE": "J10",
+          "SD_SCHUL_CODE": "7551101",
+          "SCHUL_NM": "한솔초등학교",
+          "AY": "2026",
+          "AA_YMD": "20261005",
+          "EVENT_NM": "대체공휴일",
+          "EVENT_CNTNT": "",
+          "SBTR_DD_SC_NM": "공휴일",
+          "ONE_GRADE_EVENT_YN": "Y",
+          "LOAD_DTM": "20261006"
+        },
+        {
+          "ATPT_OFCDC_SC_CODE": "J10",
+          "SD_SCHUL_CODE": "7551101",
+          "SCHUL_NM": "한솔초등학교",
+          "AY": "2026",
+          "AA_YMD": "20261009",
+          "EVENT_NM": "한글날",
+          "EVENT_CNTNT": "",
+          "SBTR_DD_SC_NM": "공휴일",
+          "ONE_GRADE_EVENT_YN": "Y",
+          "LOAD_DTM": "20261006"
+        },
+        {
+          "ATPT_OFCDC_SC_CODE": "J10",
+          "SD_SCHUL_CODE": "7551101",
+          "SCHUL_NM": "한솔초등학교",
+          "AY": "2026",
+          "AA_YMD": "20261010",
+          "EVENT_NM": "토요휴업일",
+          "EVENT_CNTNT": "",
+          "SBTR_DD_SC_NM": "휴업일",
+          "ONE_GRADE_EVENT_YN": "Y",
+          "LOAD_DTM": "20261006"
+        }
+      ],
+      "captured_sample_rows": 12,
+      "sample_is_truncated": true,
+      "start_time": null,
+      "end_time": null,
+      "absolute_clock_source": "not_collected",
+      "evidence_state": "source_reported_2026_not_2027_confirmed"
+    },
+    {
+      "school_id": "B000003109",
+      "stratum": "incheon_holdout",
+      "endpoint": "https://open.neis.go.kr/hub/elsTimetable",
+      "params": {
+        "ATPT_OFCDC_SC_CODE": "E10",
+        "SD_SCHUL_CODE": "7331210",
+        "AY": "2026",
+        "GRADE": "1",
+        "TI_FROM_YMD": "20260914",
+        "TI_TO_YMD": "20260918"
+      },
+      "pages": [
+        {
+          "page": 1,
+          "row_count": 24,
+          "total": 24,
+          "code": "INFO-000",
+          "response_sha256": "7cd554c90d0457b2c172699a5c5daaf1d17a43963b17509663065ad80264dfaf"
+        }
+      ],
+      "total": 24,
+      "rows": [
+        {
+          "ATPT_OFCDC_SC_CODE": "E10",
+          "SD_SCHUL_CODE": "7331210",
+          "SCHUL_NM": "인천효성초등학교",
+          "AY": "2026",
+          "SEM": "2",
+          "ALL_TI_YMD": "20260914",
+          "GRADE": "1",
+          "CLASS_NM": "1",
+          "PERIO": "1",
+          "ITRT_CNTNT": "즐거운생활",
+          "LOAD_DTM": "20260920"
+        },
+        {
+          "ATPT_OFCDC_SC_CODE": "E10",
+          "SD_SCHUL_CODE": "7331210",
+          "SCHUL_NM": "인천효성초등학교",
+          "AY": "2026",
+          "SEM": "2",
+          "ALL_TI_YMD": "20260914",
+          "GRADE": "1",
+          "CLASS_NM": "1",
+          "PERIO": "2",
+          "ITRT_CNTNT": "즐거운생활",
+          "LOAD_DTM": "20260920"
+        },
+        {
+          "ATPT_OFCDC_SC_CODE": "E10",
+          "SD_SCHUL_CODE": "7331210",
+          "SCHUL_NM": "인천효성초등학교",
+          "AY": "2026",
+          "SEM": "2",
+          "ALL_TI_YMD": "20260914",
+          "GRADE": "1",
+          "CLASS_NM": "1",
+          "PERIO": "3",
+          "ITRT_CNTNT": "국어",
+          "LOAD_DTM": "20260920"
+        },
+        {
+          "ATPT_OFCDC_SC_CODE": "E10",
+          "SD_SCHUL_CODE": "7331210",
+          "SCHUL_NM": "인천효성초등학교",
+          "AY": "2026",
+          "SEM": "2",
+          "ALL_TI_YMD": "20260914",
+          "GRADE": "1",
+          "CLASS_NM": "1",
+          "PERIO": "4",
+          "ITRT_CNTNT": "동아리활동",
+          "LOAD_DTM": "20260920"
+        },
+        {
+          "ATPT_OFCDC_SC_CODE": "E10",
+          "SD_SCHUL_CODE": "7331210",
+          "SCHUL_NM": "인천효성초등학교",
+          "AY": "2026",
+          "SEM": "2",
+          "ALL_TI_YMD": "20260914",
+          "GRADE": "1",
+          "CLASS_NM": "1",
+          "PERIO": "5",
+          "ITRT_CNTNT": "수학",
+          "LOAD_DTM": "20260920"
+        },
+        {
+          "ATPT_OFCDC_SC_CODE": "E10",
+          "SD_SCHUL_CODE": "7331210",
+          "SCHUL_NM": "인천효성초등학교",
+          "AY": "2026",
+          "SEM": "2",
+          "ALL_TI_YMD": "20260915",
+          "GRADE": "1",
+          "CLASS_NM": "1",
+          "PERIO": "1",
+          "ITRT_CNTNT": "즐거운생활",
+          "LOAD_DTM": "20260920"
+        },
+        {
+          "ATPT_OFCDC_SC_CODE": "E10",
+          "SD_SCHUL_CODE": "7331210",
+          "SCHUL_NM": "인천효성초등학교",
+          "AY": "2026",
+          "SEM": "2",
+          "ALL_TI_YMD": "20260915",
+          "GRADE": "1",
+          "CLASS_NM": "1",
+          "PERIO": "2",
+          "ITRT_CNTNT": "즐거운생활",
+          "LOAD_DTM": "20260920"
+        },
+        {
+          "ATPT_OFCDC_SC_CODE": "E10",
+          "SD_SCHUL_CODE": "7331210",
+          "SCHUL_NM": "인천효성초등학교",
+          "AY": "2026",
+          "SEM": "2",
+          "ALL_TI_YMD": "20260915",
+          "GRADE": "1",
+          "CLASS_NM": "1",
+          "PERIO": "3",
+          "ITRT_CNTNT": "바른생활",
+          "LOAD_DTM": "20260920"
+        },
+        {
+          "ATPT_OFCDC_SC_CODE": "E10",
+          "SD_SCHUL_CODE": "7331210",
+          "SCHUL_NM": "인천효성초등학교",
+          "AY": "2026",
+          "SEM": "2",
+          "ALL_TI_YMD": "20260915",
+          "GRADE": "1",
+          "CLASS_NM": "1",
+          "PERIO": "4",
+          "ITRT_CNTNT": "국어",
+          "LOAD_DTM": "20260920"
+        },
+        {
+          "ATPT_OFCDC_SC_CODE": "E10",
+          "SD_SCHUL_CODE": "7331210",
+          "SCHUL_NM": "인천효성초등학교",
+          "AY": "2026",
+          "SEM": "2",
+          "ALL_TI_YMD": "20260915",
+          "GRADE": "1",
+          "CLASS_NM": "1",
+          "PERIO": "5",
+          "ITRT_CNTNT": "수학",
+          "LOAD_DTM": "20260920"
+        },
+        {
+          "ATPT_OFCDC_SC_CODE": "E10",
+          "SD_SCHUL_CODE": "7331210",
+          "SCHUL_NM": "인천효성초등학교",
+          "AY": "2026",
+          "SEM": "2",
+          "ALL_TI_YMD": "20260916",
+          "GRADE": "1",
+          "CLASS_NM": "1",
+          "PERIO": "1",
+          "ITRT_CNTNT": "즐거운생활",
+          "LOAD_DTM": "20260920"
+        },
+        {
+          "ATPT_OFCDC_SC_CODE": "E10",
+          "SD_SCHUL_CODE": "7331210",
+          "SCHUL_NM": "인천효성초등학교",
+          "AY": "2026",
+          "SEM": "2",
+          "ALL_TI_YMD": "20260916",
+          "GRADE": "1",
+          "CLASS_NM": "1",
+          "PERIO": "2",
+          "ITRT_CNTNT": "슬기로운생활",
+          "LOAD_DTM": "20260920"
+        }
+      ],
+      "captured_sample_rows": 12,
+      "sample_is_truncated": true,
+      "start_time": null,
+      "end_time": null,
+      "absolute_clock_source": "not_collected",
+      "evidence_state": "source_reported_2026_not_2027_confirmed"
+    },
+    {
+      "school_id": "B000003109",
+      "stratum": "incheon_holdout",
+      "endpoint": "https://open.neis.go.kr/hub/SchoolSchedule",
+      "params": {
+        "ATPT_OFCDC_SC_CODE": "E10",
+        "SD_SCHUL_CODE": "7331210",
+        "AA_FROM_YMD": "20260901",
+        "AA_TO_YMD": "20261031"
+      },
+      "pages": [
+        {
+          "page": 1,
+          "row_count": 13,
+          "total": 13,
+          "code": "INFO-000",
+          "response_sha256": "28c32449db399b310de2c4d6ba3572ab11971956b5855fadd4f353188a136cf4"
+        }
+      ],
+      "total": 13,
+      "rows": [
+        {
+          "ATPT_OFCDC_SC_CODE": "E10",
+          "SD_SCHUL_CODE": "7331210",
+          "SCHUL_NM": "인천효성초등학교",
+          "AY": "2026",
+          "AA_YMD": "20260905",
+          "EVENT_NM": "토요휴업일",
+          "EVENT_CNTNT": "",
+          "SBTR_DD_SC_NM": "휴업일",
+          "ONE_GRADE_EVENT_YN": "Y",
+          "LOAD_DTM": "20261006"
+        },
+        {
+          "ATPT_OFCDC_SC_CODE": "E10",
+          "SD_SCHUL_CODE": "7331210",
+          "SCHUL_NM": "인천효성초등학교",
+          "AY": "2026",
+          "AA_YMD": "20260912",
+          "EVENT_NM": "토요휴업일",
+          "EVENT_CNTNT": "",
+          "SBTR_DD_SC_NM": "휴업일",
+          "ONE_GRADE_EVENT_YN": "Y",
+          "LOAD_DTM": "20261006"
+        },
+        {
+          "ATPT_OFCDC_SC_CODE": "E10",
+          "SD_SCHUL_CODE": "7331210",
+          "SCHUL_NM": "인천효성초등학교",
+          "AY": "2026",
+          "AA_YMD": "20260919",
+          "EVENT_NM": "토요휴업일",
+          "EVENT_CNTNT": "",
+          "SBTR_DD_SC_NM": "휴업일",
+          "ONE_GRADE_EVENT_YN": "Y",
+          "LOAD_DTM": "20261006"
+        },
+        {
+          "ATPT_OFCDC_SC_CODE": "E10",
+          "SD_SCHUL_CODE": "7331210",
+          "SCHUL_NM": "인천효성초등학교",
+          "AY": "2026",
+          "AA_YMD": "20260924",
+          "EVENT_NM": "대체공휴일",
+          "EVENT_CNTNT": "",
+          "SBTR_DD_SC_NM": "공휴일",
+          "ONE_GRADE_EVENT_YN": "Y",
+          "LOAD_DTM": "20261006"
+        },
+        {
+          "ATPT_OFCDC_SC_CODE": "E10",
+          "SD_SCHUL_CODE": "7331210",
+          "SCHUL_NM": "인천효성초등학교",
+          "AY": "2026",
+          "AA_YMD": "20260925",
+          "EVENT_NM": "추석",
+          "EVENT_CNTNT": "",
+          "SBTR_DD_SC_NM": "공휴일",
+          "ONE_GRADE_EVENT_YN": "Y",
+          "LOAD_DTM": "20261006"
+        },
+        {
+          "ATPT_OFCDC_SC_CODE": "E10",
+          "SD_SCHUL_CODE": "7331210",
+          "SCHUL_NM": "인천효성초등학교",
+          "AY": "2026",
+          "AA_YMD": "20260926",
+          "EVENT_NM": "토요휴업일",
+          "EVENT_CNTNT": "",
+          "SBTR_DD_SC_NM": "휴업일",
+          "ONE_GRADE_EVENT_YN": "Y",
+          "LOAD_DTM": "20261006"
+        },
+        {
+          "ATPT_OFCDC_SC_CODE": "E10",
+          "SD_SCHUL_CODE": "7331210",
+          "SCHUL_NM": "인천효성초등학교",
+          "AY": "2026",
+          "AA_YMD": "20261003",
+          "EVENT_NM": "개천절",
+          "EVENT_CNTNT": "",
+          "SBTR_DD_SC_NM": "공휴일",
+          "ONE_GRADE_EVENT_YN": "Y",
+          "LOAD_DTM": "20261006"
+        },
+        {
+          "ATPT_OFCDC_SC_CODE": "E10",
+          "SD_SCHUL_CODE": "7331210",
+          "SCHUL_NM": "인천효성초등학교",
+          "AY": "2026",
+          "AA_YMD": "20261005",
+          "EVENT_NM": "대체공휴일",
+          "EVENT_CNTNT": "",
+          "SBTR_DD_SC_NM": "공휴일",
+          "ONE_GRADE_EVENT_YN": "Y",
+          "LOAD_DTM": "20261006"
+        },
+        {
+          "ATPT_OFCDC_SC_CODE": "E10",
+          "SD_SCHUL_CODE": "7331210",
+          "SCHUL_NM": "인천효성초등학교",
+          "AY": "2026",
+          "AA_YMD": "20261009",
+          "EVENT_NM": "한글날",
+          "EVENT_CNTNT": "",
+          "SBTR_DD_SC_NM": "공휴일",
+          "ONE_GRADE_EVENT_YN": "Y",
+          "LOAD_DTM": "20261006"
+        },
+        {
+          "ATPT_OFCDC_SC_CODE": "E10",
+          "SD_SCHUL_CODE": "7331210",
+          "SCHUL_NM": "인천효성초등학교",
+          "AY": "2026",
+          "AA_YMD": "20261010",
+          "EVENT_NM": "토요휴업일",
+          "EVENT_CNTNT": "",
+          "SBTR_DD_SC_NM": "휴업일",
+          "ONE_GRADE_EVENT_YN": "Y",
+          "LOAD_DTM": "20261006"
+        },
+        {
+          "ATPT_OFCDC_SC_CODE": "E10",
+          "SD_SCHUL_CODE": "7331210",
+          "SCHUL_NM": "인천효성초등학교",
+          "AY": "2026",
+          "AA_YMD": "20261017",
+          "EVENT_NM": "토요휴업일",
+          "EVENT_CNTNT": "",
+          "SBTR_DD_SC_NM": "휴업일",
+          "ONE_GRADE_EVENT_YN": "Y",
+          "LOAD_DTM": "20261006"
+        },
+        {
+          "ATPT_OFCDC_SC_CODE": "E10",
+          "SD_SCHUL_CODE": "7331210",
+          "SCHUL_NM": "인천효성초등학교",
+          "AY": "2026",
+          "AA_YMD": "20261024",
+          "EVENT_NM": "토요휴업일",
+          "EVENT_CNTNT": "",
+          "SBTR_DD_SC_NM": "휴업일",
+          "ONE_GRADE_EVENT_YN": "Y",
+          "LOAD_DTM": "20261006"
+        }
+      ],
+      "captured_sample_rows": 12,
+      "sample_is_truncated": true,
+      "start_time": null,
+      "end_time": null,
+      "absolute_clock_source": "not_collected",
+      "evidence_state": "source_reported_2026_not_2027_confirmed"
+    },
+    {
+      "school_id": "B000002211",
+      "stratum": "seoul_holdout",
+      "endpoint": "https://open.neis.go.kr/hub/elsTimetable",
+      "params": {
+        "ATPT_OFCDC_SC_CODE": "B10",
+        "SD_SCHUL_CODE": "7081477",
+        "AY": "2026",
+        "GRADE": "1",
+        "TI_FROM_YMD": "20260914",
+        "TI_TO_YMD": "20260918"
+      },
+      "pages": [
+        {
+          "page": 1,
+          "row_count": 115,
+          "total": 115,
+          "code": "INFO-000",
+          "response_sha256": "f24cd4a9657616f18d5d1337a746472f301de99daaf28265ddcd92ff3220023e"
+        }
+      ],
+      "total": 115,
+      "rows": [
+        {
+          "ATPT_OFCDC_SC_CODE": "B10",
+          "SD_SCHUL_CODE": "7081477",
+          "SCHUL_NM": "서울지향초등학교",
+          "AY": "2026",
+          "SEM": "2",
+          "ALL_TI_YMD": "20260914",
+          "GRADE": "1",
+          "CLASS_NM": "1",
+          "PERIO": "1",
+          "ITRT_CNTNT": "바른생활",
+          "LOAD_DTM": "20260920"
+        },
+        {
+          "ATPT_OFCDC_SC_CODE": "B10",
+          "SD_SCHUL_CODE": "7081477",
+          "SCHUL_NM": "서울지향초등학교",
+          "AY": "2026",
+          "SEM": "2",
+          "ALL_TI_YMD": "20260914",
+          "GRADE": "1",
+          "CLASS_NM": "1",
+          "PERIO": "2",
+          "ITRT_CNTNT": "자율·자치활동",
+          "LOAD_DTM": "20260920"
+        },
+        {
+          "ATPT_OFCDC_SC_CODE": "B10",
+          "SD_SCHUL_CODE": "7081477",
+          "SCHUL_NM": "서울지향초등학교",
+          "AY": "2026",
+          "SEM": "2",
+          "ALL_TI_YMD": "20260914",
+          "GRADE": "1",
+          "CLASS_NM": "1",
+          "PERIO": "3",
+          "ITRT_CNTNT": "국어",
+          "LOAD_DTM": "20260920"
+        },
+        {
+          "ATPT_OFCDC_SC_CODE": "B10",
+          "SD_SCHUL_CODE": "7081477",
+          "SCHUL_NM": "서울지향초등학교",
+          "AY": "2026",
+          "SEM": "2",
+          "ALL_TI_YMD": "20260914",
+          "GRADE": "1",
+          "CLASS_NM": "1",
+          "PERIO": "4",
+          "ITRT_CNTNT": "수학",
+          "LOAD_DTM": "20260920"
+        },
+        {
+          "ATPT_OFCDC_SC_CODE": "B10",
+          "SD_SCHUL_CODE": "7081477",
+          "SCHUL_NM": "서울지향초등학교",
+          "AY": "2026",
+          "SEM": "2",
+          "ALL_TI_YMD": "20260914",
+          "GRADE": "1",
+          "CLASS_NM": "2",
+          "PERIO": "1",
+          "ITRT_CNTNT": "자율·자치활동",
+          "LOAD_DTM": "20260920"
+        },
+        {
+          "ATPT_OFCDC_SC_CODE": "B10",
+          "SD_SCHUL_CODE": "7081477",
+          "SCHUL_NM": "서울지향초등학교",
+          "AY": "2026",
+          "SEM": "2",
+          "ALL_TI_YMD": "20260914",
+          "GRADE": "1",
+          "CLASS_NM": "2",
+          "PERIO": "2",
+          "ITRT_CNTNT": "즐거운생활",
+          "LOAD_DTM": "20260920"
+        },
+        {
+          "ATPT_OFCDC_SC_CODE": "B10",
+          "SD_SCHUL_CODE": "7081477",
+          "SCHUL_NM": "서울지향초등학교",
+          "AY": "2026",
+          "SEM": "2",
+          "ALL_TI_YMD": "20260914",
+          "GRADE": "1",
+          "CLASS_NM": "2",
+          "PERIO": "3",
+          "ITRT_CNTNT": "국어",
+          "LOAD_DTM": "20260920"
+        },
+        {
+          "ATPT_OFCDC_SC_CODE": "B10",
+          "SD_SCHUL_CODE": "7081477",
+          "SCHUL_NM": "서울지향초등학교",
+          "AY": "2026",
+          "SEM": "2",
+          "ALL_TI_YMD": "20260914",
+          "GRADE": "1",
+          "CLASS_NM": "2",
+          "PERIO": "4",
+          "ITRT_CNTNT": "수학",
+          "LOAD_DTM": "20260920"
+        },
+        {
+          "ATPT_OFCDC_SC_CODE": "B10",
+          "SD_SCHUL_CODE": "7081477",
+          "SCHUL_NM": "서울지향초등학교",
+          "AY": "2026",
+          "SEM": "2",
+          "ALL_TI_YMD": "20260914",
+          "GRADE": "1",
+          "CLASS_NM": "3",
+          "PERIO": "1",
+          "ITRT_CNTNT": "국어",
+          "LOAD_DTM": "20260920"
+        },
+        {
+          "ATPT_OFCDC_SC_CODE": "B10",
+          "SD_SCHUL_CODE": "7081477",
+          "SCHUL_NM": "서울지향초등학교",
+          "AY": "2026",
+          "SEM": "2",
+          "ALL_TI_YMD": "20260914",
+          "GRADE": "1",
+          "CLASS_NM": "3",
+          "PERIO": "2",
+          "ITRT_CNTNT": "즐거운생활",
+          "LOAD_DTM": "20260920"
+        },
+        {
+          "ATPT_OFCDC_SC_CODE": "B10",
+          "SD_SCHUL_CODE": "7081477",
+          "SCHUL_NM": "서울지향초등학교",
+          "AY": "2026",
+          "SEM": "2",
+          "ALL_TI_YMD": "20260914",
+          "GRADE": "1",
+          "CLASS_NM": "3",
+          "PERIO": "3",
+          "ITRT_CNTNT": "수학",
+          "LOAD_DTM": "20260920"
+        },
+        {
+          "ATPT_OFCDC_SC_CODE": "B10",
+          "SD_SCHUL_CODE": "7081477",
+          "SCHUL_NM": "서울지향초등학교",
+          "AY": "2026",
+          "SEM": "2",
+          "ALL_TI_YMD": "20260914",
+          "GRADE": "1",
+          "CLASS_NM": "3",
+          "PERIO": "4",
+          "ITRT_CNTNT": "자율·자치활동",
+          "LOAD_DTM": "20260920"
+        }
+      ],
+      "captured_sample_rows": 12,
+      "sample_is_truncated": true,
+      "start_time": null,
+      "end_time": null,
+      "absolute_clock_source": "not_collected",
+      "evidence_state": "source_reported_2026_not_2027_confirmed"
+    },
+    {
+      "school_id": "B000002211",
+      "stratum": "seoul_holdout",
+      "endpoint": "https://open.neis.go.kr/hub/SchoolSchedule",
+      "params": {
+        "ATPT_OFCDC_SC_CODE": "B10",
+        "SD_SCHUL_CODE": "7081477",
+        "AA_FROM_YMD": "20260901",
+        "AA_TO_YMD": "20261031"
+      },
+      "pages": [
+        {
+          "page": 1,
+          "row_count": 31,
+          "total": 31,
+          "code": "INFO-000",
+          "response_sha256": "511439a610dab4549d1979fe5359bf1e4065b1c69683147de9f1cb8b6479c203"
+        }
+      ],
+      "total": 31,
+      "rows": [
+        {
+          "ATPT_OFCDC_SC_CODE": "B10",
+          "SD_SCHUL_CODE": "7081477",
+          "SCHUL_NM": "서울지향초등학교",
+          "AY": "2026",
+          "AA_YMD": "20260905",
+          "EVENT_NM": "토요휴업일",
+          "EVENT_CNTNT": "",
+          "SBTR_DD_SC_NM": "휴업일",
+          "ONE_GRADE_EVENT_YN": "Y",
+          "LOAD_DTM": "20261006"
+        },
+        {
+          "ATPT_OFCDC_SC_CODE": "B10",
+          "SD_SCHUL_CODE": "7081477",
+          "SCHUL_NM": "서울지향초등학교",
+          "AY": "2026",
+          "AA_YMD": "20260909",
+          "EVENT_NM": "임원소양교육",
+          "EVENT_CNTNT": "",
+          "SBTR_DD_SC_NM": "해당없음",
+          "ONE_GRADE_EVENT_YN": "N",
+          "LOAD_DTM": "20261006"
+        },
+        {
+          "ATPT_OFCDC_SC_CODE": "B10",
+          "SD_SCHUL_CODE": "7081477",
+          "SCHUL_NM": "서울지향초등학교",
+          "AY": "2026",
+          "AA_YMD": "20260912",
+          "EVENT_NM": "토요휴업일",
+          "EVENT_CNTNT": "",
+          "SBTR_DD_SC_NM": "휴업일",
+          "ONE_GRADE_EVENT_YN": "Y",
+          "LOAD_DTM": "20261006"
+        },
+        {
+          "ATPT_OFCDC_SC_CODE": "B10",
+          "SD_SCHUL_CODE": "7081477",
+          "SCHUL_NM": "서울지향초등학교",
+          "AY": "2026",
+          "AA_YMD": "20260919",
+          "EVENT_NM": "토요휴업일",
+          "EVENT_CNTNT": "",
+          "SBTR_DD_SC_NM": "휴업일",
+          "ONE_GRADE_EVENT_YN": "Y",
+          "LOAD_DTM": "20261006"
+        },
+        {
+          "ATPT_OFCDC_SC_CODE": "B10",
+          "SD_SCHUL_CODE": "7081477",
+          "SCHUL_NM": "서울지향초등학교",
+          "AY": "2026",
+          "AA_YMD": "20260924",
+          "EVENT_NM": "추석연휴",
+          "EVENT_CNTNT": "",
+          "SBTR_DD_SC_NM": "공휴일",
+          "ONE_GRADE_EVENT_YN": "Y",
+          "LOAD_DTM": "20261006"
+        },
+        {
+          "ATPT_OFCDC_SC_CODE": "B10",
+          "SD_SCHUL_CODE": "7081477",
+          "SCHUL_NM": "서울지향초등학교",
+          "AY": "2026",
+          "AA_YMD": "20260924",
+          "EVENT_NM": "추석",
+          "EVENT_CNTNT": "",
+          "SBTR_DD_SC_NM": "공휴일",
+          "ONE_GRADE_EVENT_YN": "Y",
+          "LOAD_DTM": "20261006"
+        },
+        {
+          "ATPT_OFCDC_SC_CODE": "B10",
+          "SD_SCHUL_CODE": "7081477",
+          "SCHUL_NM": "서울지향초등학교",
+          "AY": "2026",
+          "AA_YMD": "20260925",
+          "EVENT_NM": "추석",
+          "EVENT_CNTNT": "",
+          "SBTR_DD_SC_NM": "공휴일",
+          "ONE_GRADE_EVENT_YN": "Y",
+          "LOAD_DTM": "20261006"
+        },
+        {
+          "ATPT_OFCDC_SC_CODE": "B10",
+          "SD_SCHUL_CODE": "7081477",
+          "SCHUL_NM": "서울지향초등학교",
+          "AY": "2026",
+          "AA_YMD": "20260926",
+          "EVENT_NM": "추석",
+          "EVENT_CNTNT": "",
+          "SBTR_DD_SC_NM": "공휴일",
+          "ONE_GRADE_EVENT_YN": "Y",
+          "LOAD_DTM": "20261006"
+        },
+        {
+          "ATPT_OFCDC_SC_CODE": "B10",
+          "SD_SCHUL_CODE": "7081477",
+          "SCHUL_NM": "서울지향초등학교",
+          "AY": "2026",
+          "AA_YMD": "20260926",
+          "EVENT_NM": "토요휴업일",
+          "EVENT_CNTNT": "",
+          "SBTR_DD_SC_NM": "휴업일",
+          "ONE_GRADE_EVENT_YN": "Y",
+          "LOAD_DTM": "20261006"
+        },
+        {
+          "ATPT_OFCDC_SC_CODE": "B10",
+          "SD_SCHUL_CODE": "7081477",
+          "SCHUL_NM": "서울지향초등학교",
+          "AY": "2026",
+          "AA_YMD": "20261003",
+          "EVENT_NM": "개천절",
+          "EVENT_CNTNT": "",
+          "SBTR_DD_SC_NM": "공휴일",
+          "ONE_GRADE_EVENT_YN": "Y",
+          "LOAD_DTM": "20261006"
+        },
+        {
+          "ATPT_OFCDC_SC_CODE": "B10",
+          "SD_SCHUL_CODE": "7081477",
+          "SCHUL_NM": "서울지향초등학교",
+          "AY": "2026",
+          "AA_YMD": "20261005",
+          "EVENT_NM": "대체공휴일",
+          "EVENT_CNTNT": "",
+          "SBTR_DD_SC_NM": "공휴일",
+          "ONE_GRADE_EVENT_YN": "Y",
+          "LOAD_DTM": "20261006"
+        },
+        {
+          "ATPT_OFCDC_SC_CODE": "B10",
+          "SD_SCHUL_CODE": "7081477",
+          "SCHUL_NM": "서울지향초등학교",
+          "AY": "2026",
+          "AA_YMD": "20261009",
+          "EVENT_NM": "한글날",
+          "EVENT_CNTNT": "",
+          "SBTR_DD_SC_NM": "공휴일",
+          "ONE_GRADE_EVENT_YN": "Y",
+          "LOAD_DTM": "20261006"
+        }
+      ],
+      "captured_sample_rows": 12,
+      "sample_is_truncated": true,
+      "start_time": null,
+      "end_time": null,
+      "absolute_clock_source": "not_collected",
+      "evidence_state": "source_reported_2026_not_2027_confirmed"
+    }
+  ]
+}

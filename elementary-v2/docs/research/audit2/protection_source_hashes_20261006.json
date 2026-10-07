@@ -1,0 +1,14 @@
+{
+  "captured_date": "2026-10-06",
+  "scope": "reference source fingerprint, not a ban on future compatible edits",
+  "sha256": {
+    "src/utils/urlState.ts": "da47be4fc260c264b6608de74e5e1ce70fb220df1ea2e9e160b82d72f24c06bd",
+    "src/utils/profile.ts": "f145a8a455a9dcf552e0f054c5c767a0c4dac870ae061b3dc5c827da1998623c",
+    "src/utils/favorites.ts": "5928932e8d188a2714f8d04dd5c0c8e34c5b32718579f3cd9ca1142e14d96cd5",
+    "src/content/checklist.json": "40f0488297705b86eb2d685f3a783ffcf34c739143efa89a96448882f04df5ae",
+    "src/constants/regionRegistry.ts": "9f8be281dbf0baccfd20d5388e6264c230e82e3ee44122faf75f37aa4c8097c3",
+    "../vercel.json": "e7a899f6c3ed517e6a5d529572c1bdebeb13951c973874eb4a5601835c8d8e16",
+    "../api/detail.js": "5528dce5c70c7b78b50f4086735585886292b3548b20abd370092659e01eaa3b",
+    "docs/operations/MANUAL_QA_REVIEW.html": "e08ac61afd434d0e0c1641b50eccd6e0093e7d23c6fe54ecd07eff4b44921a05"
+  }
+}

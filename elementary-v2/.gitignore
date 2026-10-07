@@ -76,3 +76,6 @@ pip-delete-this-directory.txt
 # Vercel
 .vercel
 .env*.local
+
+# local-only fixture for the 초1 하루 예상 card before SQL 26 (etl.load_school_day_estimates --write-fixture)
+src/dev-fixtures/

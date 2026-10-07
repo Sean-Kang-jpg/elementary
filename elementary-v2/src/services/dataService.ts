@@ -1,6 +1,6 @@
 import { supabase } from '../lib/supabase'
 import { UNLIMITED_APARTMENT_AGE } from '../types'
-import type { AcademyAddress, Apartment, ApartmentAcademySummary, CareCenter, Coordinates, FilterState, MapBounds, School, SchoolCareStatistics, SearchResult } from '../types'
+import type { AcademyAddress, Apartment, ApartmentAcademySummary, CareCenter, Coordinates, FilterState, MapBounds, School, SchoolCareHours, SchoolCareStatistics, SchoolDayEstimate, SchoolDayEstimateWeekday, SearchResult } from '../types'
 import { regionCenter, regionHasCityLevel, regionsIntersectingBounds } from '../constants/regionRegistry'
 import { getSchoolNeighborhoodLabel } from '../utils/clusterUtils'
 import { DEFAULT_CENTERS, generateCacheKey, getDisplayMode } from '../utils/mapUtils'
@@ -906,6 +906,66 @@ export const getSchoolCareStatistics = async (schoolId: string): Promise<SchoolC
     throw error
   }
   return data as SchoolCareStatistics | null
+}
+
+// Dev only: before SQL 26 exists, `python -m etl.load_school_day_estimates --write-fixture`
+// writes the reviewed rows to src/dev-fixtures/ (git-ignored) so the card can be checked
+// locally. import.meta.glob yields nothing when the file is absent, and production never calls it.
+// Typed by inline casts like src/lib/supabase.ts. They must stay inline: esbuild drops the cast and
+// leaves the literal `import.meta.glob(...)` / `import.meta.env.DEV` that Vite rewrites. Aliasing
+// import.meta to a variable would hide them and break the production build at runtime.
+type ViteMeta = ImportMeta & {
+  env: { DEV?: boolean }
+  glob: (pattern: string, options: { import: string }) => Record<string, () => Promise<unknown>>
+}
+const devFixtures = (import.meta as ViteMeta).glob('../dev-fixtures/school-day-estimates.json', { import: 'default' })
+const devSchoolDayFixture = async (schoolId: string): Promise<{ day: SchoolDayEstimate | null; care: SchoolCareHours | null }> => {
+  const load = Object.values(devFixtures)[0]
+  if (!load) return { day: null, care: null }
+  const rows = await load() as {
+    school_day_estimates: Array<Omit<SchoolDayEstimate, 'weekdays'>>
+    school_day_estimate_weekdays: Array<SchoolDayEstimateWeekday & { school_id: string }>
+    school_care_hours: SchoolCareHours[]
+  }
+  const row = rows.school_day_estimates.find((item) => item.school_id === schoolId)
+  return {
+    day: row ? { ...row, weekdays: rows.school_day_estimate_weekdays.filter((item) => item.school_id === schoolId).sort((a, b) => a.weekday - b.weekday) } : null,
+    care: rows.school_care_hours.find((item) => item.school_id === schoolId) ?? null,
+  }
+}
+
+/**
+ * "초1 하루 예상" (SQL 26): reviewed grade-1 day and school care hours for one school.
+ * Either part may be missing; a database without SQL 26 yields both null, so the card
+ * simply does not render — the same graceful path as the care tables before SQL 23.
+ */
+export const getSchoolDayEstimate = async (schoolId: string): Promise<{ day: SchoolDayEstimate | null; care: SchoolCareHours | null }> => {
+  const [day, care] = await Promise.all([
+    supabase
+      .from('school_day_estimates')
+      .select('school_id,source_year,applies_to_entry_year,lunch_position,lunch_start,lunch_end,clock_source,periods_source,reviewed_on,school_day_estimate_weekdays(weekday,periods,dismissal,note)')
+      .eq('school_id', schoolId)
+      .maybeSingle(),
+    supabase
+      .from('school_care_hours')
+      .select('school_id,source_year,status,afternoon_end,extended_end,extended_condition,morning_hours,grades,source')
+      .eq('school_id', schoolId)
+      .maybeSingle(),
+  ])
+  for (const result of [day, care]) {
+    if (result.error && !CARE_NOT_DEPLOYED.has(result.error.code)) throw result.error
+  }
+  if ((import.meta as ViteMeta).env.DEV && day.error && care.error) return devSchoolDayFixture(schoolId)
+  const dayRow = day.error ? null : (day.data as (Omit<SchoolDayEstimate, 'weekdays'> & { school_day_estimate_weekdays: SchoolDayEstimateWeekday[] }) | null)
+  let dayEstimate: SchoolDayEstimate | null = null
+  if (dayRow) {
+    const { school_day_estimate_weekdays: weekdays, ...rest } = dayRow
+    dayEstimate = { ...rest, weekdays: [...(weekdays || [])].sort((a, b) => a.weekday - b.weekday) }
+  }
+  return {
+    day: dayEstimate,
+    care: care.error ? null : (care.data as SchoolCareHours | null),
+  }
 }
 
 export const getCareCentersNear = async (latitude: number, longitude: number, maxDistanceM = 1000): Promise<CareCenter[]> => {

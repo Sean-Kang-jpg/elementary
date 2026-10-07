@@ -1,0 +1,20 @@
+{
+  "schema_version": "schoolinfo-clock-sample-v1",
+  "checked_at": "2026-10-06",
+  "source": "학교알리미 2-가 학교교육과정 편성ㆍ운영 및 평가에 관한 사항, 2026년 4월(1차) 공시 첨부, public GET /servlets/EiFileDownLoad.do",
+  "method": "pypdf text layer, regex for 시정표/일과표/등교/하교/HH:MM~ then manual read of the hit page; PDF only (HWP/HWPX not read)",
+  "selection": "8 full-plan PDFs chosen by size across all five regions + 한솔초 short plan as a control; not a random sample",
+  "no_operational_upload": true,
+  "files": [
+    { "school_id": "B000003765", "school_name": "한솔초등학교", "pages": 8, "sha256": "97f959864cd3239c09419a45d8ad6e6b5690455680d2c9237b5a2b6e0f636aac", "daily_clock": "absent", "note": "편성·운영·평가 발췌본; 학년별 시간 배당만" },
+    { "school_id": "B000003757", "school_name": "탄천초등학교", "pages": 124, "sha256": "ada8ba96b309d2a35ac5bdef9ac98b93053bd0639ec63f40e65670cc56535985", "daily_clock": "present", "page": 26, "excerpt": "나. 시정표: 1블럭 08:50~10:10, 중간놀이 10:10~10:40, 2블럭 10:40~12:00, 점심 12:00~12:50, 3블럭 12:50~14:10" },
+    { "school_id": "B000003747", "school_name": "산운초등학교", "pages": 81, "sha256": "a16e196a00e3bfea09549bab57220e815331af1181ae33ca30b9e4178091e1e2", "daily_clock": "present_by_grade_band", "page": 32, "excerpt": "1-2학년군: 블록1 09:00-10:20, 중간놀이 10:20-10:40, 블록2 10:40-12:00, 점심 12:00-12:50(4교시는 급식 후 하교), 5교시 12:50-13:30 주3회" },
+    { "school_id": "B000003750", "school_name": "오리초등학교", "pages": 71, "sha256": "13318a05088262b5d3dae4a7883651e934d2ac9cff213cb7e52191d16adc5fa2", "daily_clock": "present", "page": 43, "excerpt": "1교시 9:00~9:40 … 4교시 11:30~12:10, 점심 12:10~12:50, 5교시 12:50~13:30, 6교시 13:40~14:20" },
+    { "school_id": "B000003109", "school_name": "인천효성초등학교", "pages": 80, "sha256": "0ee17b890964b71d6c66e145a8172fbf98792bd71f72495069de46f53cdd3ac2", "daily_clock": "present", "page": 42, "excerpt": "자. 1일 시간 운영 계획 — 교육과정 일과표(기본) 1학기 (표 본문은 다음 쪽, 텍스트 추출 순서 미검증)" },
+    { "school_id": "B000003015", "school_name": "인천구산초등학교", "pages": 54, "sha256": "87449bec81b849686a3b51af9110192779d31db2ddac4cb1d88bc88a1e5e78e3", "daily_clock": "not_found", "note": "hit was the 돌봄 schedule (아침돌봄 08:00~08:40, 오후돌봄 방과후~19:00)" },
+    { "school_id": "B000006749", "school_name": "일로동초등학교", "pages": 190, "sha256": "965e4cf130f058f0aeb4ede72c885f42dcc1b9644db80b8cd7105a1753f37499", "daily_clock": "present", "page": 52, "excerpt": "아침독서 08:30~08:50, 1교시 09:00~09:40 … 4교시 11:40~12:20, 점심 12:20~13:00, 5교시 13:00~13:40" },
+    { "school_id": "B000002280", "school_name": "서울양전초등학교", "pages": 320, "sha256": "f0127854b7aafce7e4ffc00769d9bc00bda8d4f708bd565ce0262b21a4a0efce", "daily_clock": "implied", "page": 59, "note": "체육관 시간표 rows 9:00~9:40 … 13:40~14:20 imply the period clock; a dedicated 시정표 page not confirmed" },
+    { "school_id": "B000002346", "school_name": "서울신성초등학교", "pages": 41, "sha256": "73175dd82873fb612be88249756e92a5401ce3d22dafa2225605f2f8f14be232", "daily_clock": "not_found" }
+  ],
+  "summary": { "full_plans_checked": 8, "explicit_clock": 5, "implied_clock": 1, "not_found": 2, "short_plan_control": "absent" }
+}

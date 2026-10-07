@@ -1,0 +1,3803 @@
+{
+  "schema_version": "schoolinfo-care-plan-audit-v1",
+  "checked_at": "2026-10-07T11:45:12+00:00",
+  "source": "학교알리미 15-라 2026년 5월 공시 첨부",
+  "method": "local text extraction + regex on 돌봄/늘봄 lines; candidates, not reviewed",
+  "no_operational_upload": true,
+  "school_count": 60,
+  "summary": {
+    "care_hours_found": 43,
+    "no_care_hours_detected": 17
+  },
+  "schools": [
+    {
+      "school_id": "B000002597",
+      "school_name": "연일초등학교",
+      "region": "부산광역시",
+      "files": [
+        {
+          "name": "2026학년도 연일초 방과후.돌봄 운영 계획서(연일초).hwp",
+          "file_academic_year": 2026,
+          "sha256": "8c22a4278120b739b2baabde31a93b0533c54e22bb8574158add6532b1e16b20",
+          "format": "hwp",
+          "bytes": 501760,
+          "bytes_source": "download",
+          "text_chars": 31827,
+          "afternoon_end_candidates": {
+            "17:00": 2,
+            "17:30": 1,
+            "16:30": 1,
+            "16:00": 1
+          },
+          "morning_candidates": {
+            "07:00-08:30": 1
+          },
+          "evening_mentions": [
+            {
+              "range": "17:30-20:00",
+              "line": 35
+            }
+          ],
+          "grade_mentions": {
+            "1~3": 1,
+            "1~2": 1
+          },
+          "evidence": [
+            {
+              "line": 31,
+              "range": "방과후-17:30",
+              "context": "가) 오후돌봄(방과후~17:30), 틈새돌봄(방과후~16:30)으로"
+            },
+            {
+              "line": 31,
+              "range": "방과후-16:30",
+              "context": "가) 오후돌봄(방과후~17:30), 틈새돌봄(방과후~16:30)으로 운영한다."
+            },
+            {
+              "line": 35,
+              "range": "07:00-08:30",
+              "context": "라) 오전돌봄(7:00~8:30)과 저녁돌봄(17:30~20:00)"
+            },
+            {
+              "line": 35,
+              "range": "17:30-20:00",
+              "context": "라) 오전돌봄(7:00~8:30)과 저녁돌봄(17:30~20:00)은 수요자 발생 시 다양한 인력을"
+            },
+            {
+              "line": 468,
+              "range": "14:00-17:00",
+              "context": "돌봄교실 1실 | 시니어 지원단 박O선 | 학생 귀가 지도 | 월~금 (14:00~17:00) |"
+            },
+            {
+              "line": 470,
+              "range": "13:00-16:00",
+              "context": "봄교실 1실 | 시니어 지원단 김O순 | 틈새돌봄교실 운영 | 학기중  13:00~16:00 방학증  09:00~12:00 |"
+            },
+            {
+              "line": 471,
+              "range": "14:00-17:00",
+              "context": "시니어 지원단 한O엽 | 틈새돌봄교실 운영 | 학기중  14:00~17:00 방학중  10:00~13:00 |"
+            }
+          ],
+          "status": "care_hours_found"
+        }
+      ],
+      "status": "care_hours_found",
+      "stale_file_year": false
+    },
+    {
+      "school_id": "B000002558",
+      "school_name": "안락초등학교",
+      "region": "부산광역시",
+      "files": [
+        {
+          "name": "2026학년도 안락초 방과후·돌봄 운영 계획(2차 수정).hwp",
+          "file_academic_year": 2026,
+          "sha256": "f18c4f54756eb6efacc03d858e028a68ec5b08ea5c55e7804a558752023e5497",
+          "format": "hwp",
+          "bytes": 1191424,
+          "bytes_source": "download",
+          "text_chars": 44123,
+          "afternoon_end_candidates": {
+            "19:00": 1,
+            "16:30": 1
+          },
+          "morning_candidates": {},
+          "evening_mentions": [
+            {
+              "range": "17:00-19:00",
+              "line": 26
+            },
+            {
+              "range": "12:30-17:00",
+              "line": 36
+            },
+            {
+              "range": "17:00-20:00",
+              "line": 36
+            }
+          ],
+          "grade_mentions": {
+            "1~3": 4
+          },
+          "evidence": [
+            {
+              "line": 26,
+              "range": "17:00-19:00",
+              "context": "저녁 돌봄 | 17:00~19:00 (희망 시 20:00) | 미소반"
+            },
+            {
+              "line": 36,
+              "range": "12:30-17:00",
+              "context": "가) 아침돌봄( ~9:00), 오후돌봄(12:30~17:00), 저녁돌봄(17:00~20:00)"
+            },
+            {
+              "line": 36,
+              "range": "17:00-20:00",
+              "context": ") 아침돌봄( ~9:00), 오후돌봄(12:30~17:00), 저녁돌봄(17:00~20:00)으로 운영한다."
+            },
+            {
+              "line": 43,
+              "range": "08:30-19:00",
+              "context": "※ 방학 중 방과후·돌봄 운영은 8:30~19:00(희망시 20:00까지)으로 시간 변"
+            },
+            {
+              "line": 711,
+              "range": "12:30-16:30",
+              "context": "| 2026. 4. 6. ~ 2027. 2. 26. | 학기 중 월~금 12:30~16:30 | 돌봄 미소반 | 방과후, 돌봄교"
+            }
+          ],
+          "status": "care_hours_found"
+        }
+      ],
+      "status": "care_hours_found",
+      "stale_file_year": false
+    },
+    {
+      "school_id": "B000002704",
+      "school_name": "반안초등학교",
+      "region": "부산광역시",
+      "files": [
+        {
+          "name": "2026학년도 방과후 돌봄 운영 계획(안).hwpx",
+          "file_academic_year": 2026,
+          "sha256": "bfb7479da878219f0413de1c25fa864ebbcbc862e635d3d9d235270fad75d7d8",
+          "format": "hwpx",
+          "bytes": 518087,
+          "bytes_source": "download",
+          "text_chars": 29726,
+          "afternoon_end_candidates": {
+            "17:00": 1
+          },
+          "morning_candidates": {
+            "07:40-08:40": 1
+          },
+          "evening_mentions": [
+            {
+              "range": "17:00-19:00",
+              "line": 32
+            }
+          ],
+          "grade_mentions": {
+            "1~3": 1,
+            "1~2": 1
+          },
+          "evidence": [
+            {
+              "line": 32,
+              "range": "07:40-08:40",
+              "context": "가) 아침돌봄(07:40~08:40), 오후돌봄(방과 후~17:00),"
+            },
+            {
+              "line": 32,
+              "range": "17:00-19:00",
+              "context": "돌봄(07:40~08:40), 오후돌봄(방과 후~17:00), 저녁돌봄(17:00~19:00)으로 운영한다."
+            },
+            {
+              "line": 32,
+              "range": "방과후-17:00",
+              "context": "가) 아침돌봄(07:40~08:40), 오후돌봄(방과 후~17:00), 저녁돌봄(17:00~19:00)"
+            }
+          ],
+          "status": "care_hours_found"
+        }
+      ],
+      "status": "care_hours_found",
+      "stale_file_year": false
+    },
+    {
+      "school_id": "B000002573",
+      "school_name": "부곡초등학교",
+      "region": "부산광역시",
+      "files": [
+        {
+          "name": "2026학년도 방과후·돌봄 운영 계획.hwp",
+          "file_academic_year": 2026,
+          "sha256": "c4fe1c56881f4a50c9b491e4efa526b26948a8021046e447691948478e6f7a95",
+          "format": "hwp",
+          "bytes": 150528,
+          "bytes_source": "download",
+          "text_chars": 33908,
+          "afternoon_end_candidates": {},
+          "morning_candidates": {},
+          "evening_mentions": [
+            {
+              "range": "12:50-17:00",
+              "line": 33
+            },
+            {
+              "range": "17:00-19:00",
+              "line": 33
+            }
+          ],
+          "grade_mentions": {
+            "1~2": 5
+          },
+          "evidence": [
+            {
+              "line": 33,
+              "range": "12:50-17:00",
+              "context": "가) 오후돌봄(12:50~17:00), 저녁돌봄(17:00~19:00)"
+            },
+            {
+              "line": 33,
+              "range": "17:00-19:00",
+              "context": "가) 오후돌봄(12:50~17:00), 저녁돌봄(17:00~19:00)으로 운영한다."
+            }
+          ],
+          "status": "no_care_hours_detected"
+        }
+      ],
+      "status": "no_care_hours_detected",
+      "stale_file_year": false
+    },
+    {
+      "school_id": "B000002620",
+      "school_name": "양천초등학교",
+      "region": "부산광역시",
+      "files": [
+        {
+          "name": "2026학년도 방과후학교 운영계획.hwp",
+          "file_academic_year": 2026,
+          "sha256": "8197bed63b34704b68ef9397fe623dbfee4dbd11d455e8ef52ca8b306e1ec2ae",
+          "format": "hwp",
+          "bytes": 273920,
+          "bytes_source": "download",
+          "text_chars": 35727,
+          "afternoon_end_candidates": {
+            "17:00": 5,
+            "19:00": 1,
+            "16:30": 1
+          },
+          "morning_candidates": {},
+          "evening_mentions": [
+            {
+              "range": "17:00-19:00",
+              "line": 34
+            }
+          ],
+          "grade_mentions": {
+            "1~3": 1,
+            "1~2": 1
+          },
+          "evidence": [
+            {
+              "line": 34,
+              "range": "17:00-19:00",
+              "context": "가) 오후돌봄(방과후~17:00), 저녁돌봄(17:00~19:00)으로 운영한다."
+            },
+            {
+              "line": 34,
+              "range": "방과후-17:00",
+              "context": "가) 오후돌봄(방과후~17:00), 저녁돌봄(17:00~19:00)"
+            },
+            {
+              "line": 163,
+              "range": "09:00-17:00",
+              "context": "늘봄 실무사 (변○숙) | 일 8시간  09:00~17:00 | 일 8시간 09:00~17:00"
+            },
+            {
+              "line": 163,
+              "range": "09:00-17:00",
+              "context": "실무사 (변○숙) | 일 8시간  09:00~17:00 | 일 8시간 09:00~17:00 | • 초등 방과후·돌봄 기획·편성"
+            },
+            {
+              "line": 168,
+              "range": "11:00-19:00",
+              "context": "전일제 전담사 (주○영) | 일 8시간 11:00~19:00 ※휴게 시간 12:00~12:30"
+            },
+            {
+              "line": 168,
+              "range": "09:00-17:00",
+              "context": "11:00~19:00 ※휴게 시간 12:00~12:30 | 일 8시간 09:00~17:00 ※휴게 시간 12:00~12:30"
+            },
+            {
+              "line": 169,
+              "range": "12:00-17:00",
+              "context": "시간제 전담사 (이○선) | 일 5시간 12:00~17:00 ※휴게 시간 14:00~14:30"
+            },
+            {
+              "line": 418,
+              "range": "12:30-16:30",
+              "context": "연계형 돌봄교실 3실 | 자원봉사자 정○자 | 월-금 12:30~16:30 (4시간) | 2026.3월~202"
+            }
+          ],
+          "status": "care_hours_found"
+        }
+      ],
+      "status": "care_hours_found",
+      "stale_file_year": false
+    },
+    {
+      "school_id": "B000002556",
+      "school_name": "명륜초등학교",
+      "region": "부산광역시",
+      "files": [
+        {
+          "name": "2026학년도 명륜초 방과후·돌봄 운영 계획(2차).hwp",
+          "file_academic_year": 2026,
+          "sha256": "f506ca956fe66aedffdc7b907cc1c203089d20c816235fe9e37aeabef4216086",
+          "format": "hwp",
+          "bytes": 718848,
+          "bytes_source": "download",
+          "text_chars": 61612,
+          "afternoon_end_candidates": {
+            "16:30": 1,
+            "16:20": 1
+          },
+          "morning_candidates": {
+            "07:40-08:20": 2,
+            "07:30-08:30": 1
+          },
+          "evening_mentions": [
+            {
+              "range": "12:45-17:00",
+              "line": 44
+            },
+            {
+              "range": "17:00-20:00",
+              "line": 44
+            }
+          ],
+          "grade_mentions": {
+            "1~2": 12,
+            "1~3": 5
+          },
+          "evidence": [
+            {
+              "line": 27,
+              "range": "07:40-08:20",
+              "context": "아침돌봄 | 7:40 ~ 8:20 | 돌봄1실 (풀잎반) | 1~3학"
+            },
+            {
+              "line": 31,
+              "range": "12:30-16:30",
+              "context": "12:30 ~ 16:30 | 틈새돌봄1실 (도서관) | 1~"
+            },
+            {
+              "line": 44,
+              "range": "07:40-08:20",
+              "context": "가) 아침돌봄(07:40~08:20), 오후돌봄(12:45~17:00)"
+            },
+            {
+              "line": 44,
+              "range": "12:45-17:00",
+              "context": "가) 아침돌봄(07:40~08:20), 오후돌봄(12:45~17:00), 저녁돌봄(17:00~20:00)"
+            },
+            {
+              "line": 44,
+              "range": "17:00-20:00",
+              "context": "봄(07:40~08:20), 오후돌봄(12:45~17:00), 저녁돌봄(17:00~20:00)으로 운영한다."
+            },
+            {
+              "line": 416,
+              "range": "08:20-16:20",
+              "context": "본인이 직접 제출해야 최종 접수로 인정함 ※ 제출처: 늘봄지원실(2층) 08:20~16:20(점심시간 11:30~12:30 접수"
+            },
+            {
+              "line": 931,
+              "range": "07:30-08:30",
+              "context": "돌봄1실(풀잎반) | 자원봉사자 | 07:30~08:30 | 10,000*20일*12개월=2"
+            }
+          ],
+          "status": "care_hours_found"
+        }
+      ],
+      "status": "care_hours_found",
+      "stale_file_year": false
+    },
+    {
+      "school_id": "B000002498",
+      "school_name": "부산진초등학교",
+      "region": "부산광역시",
+      "files": [
+        {
+          "name": "2026학년도 방과후·돌봄 운영 계획서_(5.7.).hwp",
+          "file_academic_year": 2026,
+          "sha256": "824368944af726d56293ca704b7270c639581b739b91b4f54dac67fb1c509366",
+          "format": "hwp",
+          "bytes": 182272,
+          "bytes_source": "download",
+          "text_chars": 49650,
+          "afternoon_end_candidates": {
+            "19:00": 5,
+            "17:00": 2,
+            "16:30": 1,
+            "17:30": 1
+          },
+          "morning_candidates": {},
+          "evening_mentions": [],
+          "grade_mentions": {
+            "1~2": 1
+          },
+          "evidence": [
+            {
+              "line": 608,
+              "range": "방과후-19:00",
+              "context": "돌봄교실1실 (1‧2학년) | 학기 중 | 방과후 ~ 19:00 | 1층 돌봄교실1 |"
+            },
+            {
+              "line": 610,
+              "range": "방과후-19:00",
+              "context": "돌봄교실2실 (1‧2학년) | 학기 중 | 방과후 ~ 19:00 | 2층 돌봄교실2 |"
+            },
+            {
+              "line": 612,
+              "range": "방과후-17:00",
+              "context": "돌봄교실3실 (2‧3학년) | 학기 중 | 방과후 ~ 17:00 | 2층 돌봄교실3 |"
+            },
+            {
+              "line": 647,
+              "range": "15:30-16:30",
+              "context": "15:30~16:30 | 돌봄전담사 | 창의 활동 및 교"
+            },
+            {
+              "line": 648,
+              "range": "16:30-17:30",
+              "context": "16:30~17:30 | 돌봄전담사 | 휴식시간/자유선택"
+            },
+            {
+              "line": 649,
+              "range": "17:30-18:30",
+              "context": "17:30~18:30 | 돌봄전담사 | 안전지도/시청각"
+            },
+            {
+              "line": 650,
+              "range": "18:30-19:00",
+              "context": "18:30~19:00 | 돌봄전담사 | 정리 정돈 및 귀"
+            },
+            {
+              "line": 699,
+              "range": "11:00-19:00",
+              "context": "돌봄1실 | 김*영 | 11:00~19:00(전일제) | 돌봄교실 기획‧ 운영‧"
+            },
+            {
+              "line": 700,
+              "range": "11:00-19:00",
+              "context": "돌봄2실 | 신*영 | 11:00~19:00(전일제) | 무상 방과후 기획‧ 운"
+            },
+            {
+              "line": 701,
+              "range": "12:00-17:00",
+              "context": "돌봄3실 | 김*희 | 12:00~17:00(시간제) | 돌봄교실 운영‧관리"
+            }
+          ],
+          "status": "care_hours_found"
+        }
+      ],
+      "status": "care_hours_found",
+      "stale_file_year": false
+    },
+    {
+      "school_id": "B000002512",
+      "school_name": "당감초등학교",
+      "region": "부산광역시",
+      "files": [
+        {
+          "name": "★2026학년도 당감초등학교 방과후돌봄 운영계획(2차)-제출용.hwpx",
+          "file_academic_year": 2026,
+          "sha256": "e3e0b2ec983e42964232825960f549cdb68244f52133a230f89337c2b1887ae6",
+          "format": "hwpx",
+          "bytes": 302308,
+          "bytes_source": "download",
+          "text_chars": 38383,
+          "afternoon_end_candidates": {
+            "17:00": 1
+          },
+          "morning_candidates": {},
+          "evening_mentions": [
+            {
+              "range": "17:00-20:00",
+              "line": 32
+            }
+          ],
+          "grade_mentions": {
+            "1~3": 1
+          },
+          "evidence": [
+            {
+              "line": 32,
+              "range": "17:00-20:00",
+              "context": "가) 오후돌봄(방과후~17:00), 저녁돌봄(17:00~20:00)으로 운영한다."
+            },
+            {
+              "line": 32,
+              "range": "방과후-17:00",
+              "context": "가) 오후돌봄(방과후~17:00), 저녁돌봄(17:00~20:00)"
+            }
+          ],
+          "status": "care_hours_found"
+        }
+      ],
+      "status": "care_hours_found",
+      "stale_file_year": false
+    },
+    {
+      "school_id": "B000002469",
+      "school_name": "서천초등학교",
+      "region": "부산광역시",
+      "files": [
+        {
+          "name": "2026학년도 서천초등학교 방과후학교 및 초등돌봄교실 운영계획.hwp",
+          "file_academic_year": 2026,
+          "sha256": "54568e0d2b174d04de967188a98ae737f33949bb621d26045ee362511caed65d",
+          "format": "hwp",
+          "bytes": 143360,
+          "bytes_source": "download",
+          "text_chars": 31927,
+          "afternoon_end_candidates": {},
+          "morning_candidates": {},
+          "evening_mentions": [],
+          "grade_mentions": {},
+          "evidence": [],
+          "status": "no_care_hours_detected"
+        }
+      ],
+      "status": "no_care_hours_detected",
+      "stale_file_year": false
+    },
+    {
+      "school_id": "B000030754",
+      "school_name": "금사초등학교",
+      "region": "부산광역시",
+      "files": [
+        {
+          "name": "2026학년도 방과후 돌봄 운영 계획서(금사초).hwp",
+          "file_academic_year": 2026,
+          "sha256": "ccdc880c3ed89a8135497bf0cfbe59dac8a1fb133a6369bcfaa0d71180bf04de",
+          "format": "hwp",
+          "bytes": 124928,
+          "bytes_source": "download",
+          "text_chars": 27884,
+          "afternoon_end_candidates": {
+            "17:00": 1
+          },
+          "morning_candidates": {},
+          "evening_mentions": [],
+          "grade_mentions": {
+            "4~6": 2,
+            "1~3": 1
+          },
+          "evidence": [
+            {
+              "line": 448,
+              "range": "방과후-17:00",
+              "context": "학기 중 | 연계형 돌봄교실 | 방과후 ~17:00 | 어울림 1, 2실 | 󰋯4 ~"
+            }
+          ],
+          "status": "care_hours_found"
+        }
+      ],
+      "status": "care_hours_found",
+      "stale_file_year": false
+    },
+    {
+      "school_id": "B000003765",
+      "school_name": "한솔초등학교",
+      "region": "경기도",
+      "files": [
+        {
+          "name": "2026학년도 한솔초 선택형돌봄 운영 계획.hwp",
+          "file_academic_year": 2026,
+          "sha256": "c66efd097d7f0ca452b06806eb3bcf9f24278cd3d53ce4256ef89a31971fa75f",
+          "format": "hwp",
+          "bytes": 76800,
+          "bytes_source": "download",
+          "text_chars": 15195,
+          "afternoon_end_candidates": {},
+          "morning_candidates": {},
+          "evening_mentions": [],
+          "grade_mentions": {
+            "1~2": 2
+          },
+          "evidence": [],
+          "status": "no_care_hours_detected"
+        },
+        {
+          "name": "2026학년도 방과후학교 운영계획(한솔초).hwpx",
+          "file_academic_year": 2026,
+          "sha256": "a93f9cd8c3e72b3045bdd2ea668bbc803719db396f10ca2c8da38eccd07e8609",
+          "format": "hwpx",
+          "bytes": 132398,
+          "bytes_source": "download",
+          "text_chars": 14156,
+          "afternoon_end_candidates": {},
+          "morning_candidates": {},
+          "evening_mentions": [],
+          "grade_mentions": {},
+          "evidence": [],
+          "status": "no_care_hours_detected"
+        }
+      ],
+      "status": "no_care_hours_detected",
+      "stale_file_year": false
+    },
+    {
+      "school_id": "B000003759",
+      "school_name": "양영초등학교",
+      "region": "경기도",
+      "files": [
+        {
+          "name": "2026학년도 양영초 방과후돌봄 운영 계획(안).pdf",
+          "file_academic_year": 2026,
+          "sha256": "bd4e12a357cce2fa59e4c96ca45715795a78bf3bacf37e109442977728f8aa8f",
+          "format": "pdf",
+          "bytes": 528834,
+          "bytes_source": "download",
+          "text_chars": 19879,
+          "afternoon_end_candidates": {
+            "19:00": 4,
+            "16:40": 1,
+            "16:00": 1,
+            "16:30": 1
+          },
+          "morning_candidates": {},
+          "evening_mentions": [],
+          "grade_mentions": {
+            "1~2": 5,
+            "1~6": 4
+          },
+          "evidence": [
+            {
+              "line": 23,
+              "range": "13:00-16:40",
+              "context": "학기8.19.~ 12.30.겨울방학12.31.~27.2.28운영시간학기중13:00 ~ 16:40방학중9:30 ~ 12:30(협의 조"
+            },
+            {
+              "line": 54,
+              "range": "12:30-19:00",
+              "context": "학기내용1학기 2학기구분1학기여름 방학2학기겨울 방학운영 시간12:30~19:0009:00~15:30 12:30~19"
+            },
+            {
+              "line": 54,
+              "range": "12:30-19:00",
+              "context": "름 방학2학기겨울 방학운영 시간12:30~19:0009:00~15:30 12:30~19:00 09:00~15:30간식희망 인원수"
+            },
+            {
+              "line": 54,
+              "range": "방과후-19:00",
+              "context": "영유형운영 시간장소대상기간인원비용 부담비고오후돌봄수업 종료후~19:00돌봄교실(1층)1~2학년 중 희망자("
+            },
+            {
+              "line": 59,
+              "range": "15:30-16:00",
+              "context": ":00~15:3090특기적성프로그램체육종이접기 및 클레이책놀이창의활동체육15:30~16:0030간식 및 개별활동개별간식개별간식개"
+            },
+            {
+              "line": 59,
+              "range": "16:00-16:30",
+              "context": ":30~16:0030간식 및 개별활동개별간식개별간식개별간식개별간식개별간식16:00~16:3030학습지개별학습지도개별학습지도개별학"
+            },
+            {
+              "line": 59,
+              "range": "16:30-17:00",
+              "context": "16:3030학습지개별학습지도개별학습지도개별학습지도개별학습지도개별학습지도16:30~17:0030창의 활동자유선택활동자유선택활동자"
+            },
+            {
+              "line": 59,
+              "range": "17:00-19:00",
+              "context": ":0030창의 활동자유선택활동자유선택활동자유선택활동자유선택활동자유선택활동17:00~19:00120귀가지도 및 정리정돈개인별 활동"
+            }
+          ],
+          "status": "care_hours_found"
+        }
+      ],
+      "status": "care_hours_found",
+      "stale_file_year": false
+    },
+    {
+      "school_id": "B000003741",
+      "school_name": "상탑초등학교",
+      "region": "경기도",
+      "files": [
+        {
+          "name": "2026학년도 상탑초 방과후돌봄 운영 계획.hwpx",
+          "file_academic_year": 2026,
+          "sha256": "8e9251ff2a4539b233b8b544e0789605d55ed9ae24653818c80639cb5306c0d4",
+          "format": "hwpx",
+          "bytes": 129183,
+          "bytes_source": "download",
+          "text_chars": 19310,
+          "afternoon_end_candidates": {
+            "18:00": 1
+          },
+          "morning_candidates": {},
+          "evening_mentions": [],
+          "grade_mentions": {
+            "1~2": 2,
+            "1~6": 1
+          },
+          "evidence": [
+            {
+              "line": 160,
+              "range": "17:00-18:00",
+              "context": "17:00~18:00 | 돌봄1반 추가 돌봄 |"
+            }
+          ],
+          "status": "care_hours_found"
+        }
+      ],
+      "status": "care_hours_found",
+      "stale_file_year": false
+    },
+    {
+      "school_id": "B000003752",
+      "school_name": "불곡초등학교",
+      "region": "경기도",
+      "files": [
+        {
+          "name": "2026학년도 불곡초 방과후·돌봄 운영 계획.pdf",
+          "file_academic_year": 2026,
+          "sha256": "4380b63cdc0bd7d72af16ffde1574d7d3a5b9e6834804c5dcacd081f2a9ceb5a",
+          "format": "pdf",
+          "bytes": 1213538,
+          "bytes_source": "download",
+          "text_chars": 23147,
+          "afternoon_end_candidates": {
+            "19:00": 3,
+            "18:30": 2,
+            "16:30": 1
+          },
+          "morning_candidates": {},
+          "evening_mentions": [],
+          "grade_mentions": {
+            "1~2": 10,
+            "1~6": 8,
+            "2~6": 1
+          },
+          "evidence": [
+            {
+              "line": 16,
+              "range": "13:00-16:30",
+              "context": "일정운영기간2026년 3월 3일 ~ 2026년 12월 11일운영시간주중13:00 ~16:30휴일미운영방학09:00~12:00구분"
+            },
+            {
+              "line": 27,
+              "range": "방과후-19:00",
+              "context": "만 폐강) 다. 돌봄교실  1) 운영 시간: 학기 중 방과 후~19:00  2) 운영 기간: 2026년 3월"
+            },
+            {
+              "line": 32,
+              "range": "15:40-18:30",
+              "context": "림바 바른글쓰기체육(택견) 바른글쓰기미술 한자쓰기클레이(토탈공예)독서활동15:40~18:30  받아쓰기. 과제지도. 독서활동."
+            },
+            {
+              "line": 32,
+              "range": "18:30-19:00",
+              "context": ")독서활동15:40~18:30  받아쓰기. 과제지도. 독서활동. 자율활동18:30~19:00 정리정돈 및 귀가지도      (돌"
+            },
+            {
+              "line": 32,
+              "range": "15:40-18:30",
+              "context": "자쓰기클레이(토탈공예)종이접기 보드게임수학연산 칼림바바른글쓰기체육(택견)15:40~18:30  받아쓰기. 과제지도. 독서활동."
+            },
+            {
+              "line": 32,
+              "range": "18:30-19:00",
+              "context": "육(택견)15:40~18:30  받아쓰기. 과제지도. 독서활동. 자율활동18:30~19:00 정리정돈 및 귀가지도    3. 인"
+            }
+          ],
+          "status": "care_hours_found"
+        }
+      ],
+      "status": "care_hours_found",
+      "stale_file_year": false
+    },
+    {
+      "school_id": "B000003744",
+      "school_name": "판교초등학교",
+      "region": "경기도",
+      "files": [
+        {
+          "name": "2026학년도 판교초 방과후 프로그램 운영 계획.hwp",
+          "file_academic_year": 2026,
+          "sha256": "35a0afc8ae1ad89b49fef2c98536587d39dc9318c43c395def31e8c2b7881c09",
+          "format": "hwp",
+          "bytes": 5608960,
+          "bytes_source": "download",
+          "text_chars": 28711,
+          "afternoon_end_candidates": {},
+          "morning_candidates": {},
+          "evening_mentions": [],
+          "grade_mentions": {},
+          "evidence": [],
+          "status": "no_care_hours_detected"
+        }
+      ],
+      "status": "no_care_hours_detected",
+      "stale_file_year": false
+    },
+    {
+      "school_id": "B000003754",
+      "school_name": "성남미금초등학교",
+      "region": "경기도",
+      "files": [
+        {
+          "name": "2025 성남미금초 돌봄교실 주간학습안내(8월 4주).hwp",
+          "file_academic_year": 2025,
+          "sha256": "491cd6061c0a357d8cf3b842a0f8c25ebeee56901a61d2bb67b857144df5ebb3",
+          "format": "hwp",
+          "bytes": 100352,
+          "bytes_source": "download",
+          "text_chars": 1842,
+          "afternoon_end_candidates": {
+            "16:20": 4,
+            "16:30": 1
+          },
+          "morning_candidates": {},
+          "evening_mentions": [],
+          "grade_mentions": {},
+          "evidence": [
+            {
+              "line": 11,
+              "range": "15:30-16:20",
+              "context": "돌봄2반 (15:30~16:20) | 돌봄3반 (15:30~16:2"
+            },
+            {
+              "line": 11,
+              "range": "15:30-16:20",
+              "context": "돌봄2반 (15:30~16:20) | 돌봄3반 (15:30~16:20) | 돌봄 1반 (15:30~16:"
+            },
+            {
+              "line": 11,
+              "range": "15:30-16:20",
+              "context": "30~16:20) | 돌봄3반 (15:30~16:20) | 돌봄 1반 (15:30~16:20) | 돌봄1반 (14:40~15:3"
+            },
+            {
+              "line": 11,
+              "range": "15:30-16:20",
+              "context": "0~15:30) | 돌봄2반 (14:40~15:30) | 돌봄 1반  (15:30~16:20) | 돌봄1반 (14:40~15:3"
+            },
+            {
+              "line": 12,
+              "range": "15:30-16:30",
+              "context": "15:30 ~ 16:30 | 학습활동 |  숙제 지도 & 자"
+            }
+          ],
+          "status": "care_hours_found"
+        },
+        {
+          "name": "2025 성남미금초 돌봄교실 주간학습안내(5월 3주).hwp",
+          "file_academic_year": 2025,
+          "sha256": "561f62da3980616791d7503abe9b044d196ce578f20e652eda093d0cf20deac5",
+          "format": "hwp",
+          "bytes": 112640,
+          "bytes_source": "download",
+          "text_chars": 1766,
+          "afternoon_end_candidates": {
+            "16:20": 6,
+            "16:30": 1
+          },
+          "morning_candidates": {},
+          "evening_mentions": [],
+          "grade_mentions": {},
+          "evidence": [
+            {
+              "line": 11,
+              "range": "15:30-16:20",
+              "context": "돌봄2반 (15:30~16:20) | 돌봄3반 (15:30~16:2"
+            },
+            {
+              "line": 11,
+              "range": "15:30-16:20",
+              "context": "돌봄2반 (15:30~16:20) | 돌봄3반 (15:30~16:20) | 돌봄 2반 (15:30~16:"
+            },
+            {
+              "line": 11,
+              "range": "15:30-16:20",
+              "context": "30~16:20) | 돌봄3반 (15:30~16:20) | 돌봄 2반 (15:30~16:20) | 돌봄2반 (15:30~16:2"
+            },
+            {
+              "line": 11,
+              "range": "15:30-16:20",
+              "context": "30~16:20) | 돌봄 2반 (15:30~16:20) | 돌봄2반 (15:30~16:20) | 돌봄3반 (15:30~16:2"
+            },
+            {
+              "line": 11,
+              "range": "15:30-16:20",
+              "context": ":30~16:20) | 돌봄2반 (15:30~16:20) | 돌봄3반 (15:30~16:20) | 돌봄 2반  (15:30~16"
+            },
+            {
+              "line": 11,
+              "range": "15:30-16:20",
+              "context": "0~16:20) | 돌봄3반 (15:30~16:20) | 돌봄 2반  (15:30~16:20) | 돌봄2반 (14:40~15:3"
+            },
+            {
+              "line": 12,
+              "range": "15:30-16:30",
+              "context": "15:30 ~ 16:30 | 학습활동 |  숙제 지도 & 자"
+            }
+          ],
+          "status": "care_hours_found"
+        },
+        {
+          "name": "2025 성남미금초 돌봄교실 주간학습안내(3월1주).hwp",
+          "file_academic_year": 2025,
+          "sha256": "d0a3c44cd1812c284831fb32233de047ad9079532dde23db3a5b5051951508db",
+          "format": "hwp",
+          "bytes": 269824,
+          "bytes_source": "download",
+          "text_chars": 1314,
+          "afternoon_end_candidates": {},
+          "morning_candidates": {},
+          "evening_mentions": [],
+          "grade_mentions": {},
+          "evidence": [],
+          "status": "no_care_hours_detected"
+        },
+        {
+          "name": "2026학년도 1분기 수익자 방과후 교육 징수명단.xls",
+          "file_academic_year": 2026,
+          "status": "failed",
+          "error": "OSError"
+        },
+        {
+          "name": "[가정통신문]2025학년도 늘봄학교 1~4분기 선택형교육(수익자 부담) 정산서 공개_(2.19).hwp",
+          "file_academic_year": 2025,
+          "sha256": "d03c8082157c84c9ceb7a63a522682736763889a1240c09b129ca5442bc12931",
+          "format": "hwp",
+          "bytes": 86016,
+          "bytes_source": "download",
+          "text_chars": 1262,
+          "afternoon_end_candidates": {},
+          "morning_candidates": {},
+          "evening_mentions": [],
+          "grade_mentions": {},
+          "evidence": [],
+          "status": "no_care_hours_detected"
+        },
+        {
+          "name": "2026학년도성남미금초 돌봄교실 운영 계획_.hwp",
+          "file_academic_year": 2026,
+          "sha256": "0075370405d2cbe64553825e19e59c2aaadc002be309294679c1fc2eef2eb698",
+          "format": "hwp",
+          "bytes": 76800,
+          "bytes_source": "download",
+          "text_chars": 9295,
+          "afternoon_end_candidates": {},
+          "morning_candidates": {},
+          "evening_mentions": [],
+          "grade_mentions": {
+            "1~2": 2
+          },
+          "evidence": [],
+          "status": "no_care_hours_detected"
+        },
+        {
+          "name": "2026학년도 성남미금초 방과후돌봄학교 통합 운영 계획(안)_.hwp",
+          "file_academic_year": 2026,
+          "sha256": "6265ac1b183a923c6377dfb042de3932399a047d3c545eba0727b1968c5f9a6f",
+          "format": "hwp",
+          "bytes": 260608,
+          "bytes_source": "download",
+          "text_chars": 41775,
+          "afternoon_end_candidates": {},
+          "morning_candidates": {},
+          "evening_mentions": [],
+          "grade_mentions": {
+            "1~2": 7,
+            "1~6": 4,
+            "1~3": 1
+          },
+          "evidence": [],
+          "status": "no_care_hours_detected"
+        }
+      ],
+      "status": "care_hours_found",
+      "stale_file_year": true
+    },
+    {
+      "school_id": "B000003740",
+      "school_name": "안말초등학교",
+      "region": "경기도",
+      "files": [
+        {
+          "name": "2026학년도 방과후학교 운영계획.pdf",
+          "file_academic_year": 2026,
+          "sha256": "f2dd0995f8be25f44b5216aab380272d1f64d4cc49951eb3642eb0510829330f",
+          "format": "pdf",
+          "bytes": 388619,
+          "bytes_source": "download",
+          "text_chars": 18396,
+          "afternoon_end_candidates": {},
+          "morning_candidates": {},
+          "evening_mentions": [],
+          "grade_mentions": {
+            "1~2": 3,
+            "1~6": 3
+          },
+          "evidence": [],
+          "status": "no_care_hours_detected"
+        }
+      ],
+      "status": "no_care_hours_detected",
+      "stale_file_year": false
+    },
+    {
+      "school_id": "B000024167",
+      "school_name": "성남화랑초등학교",
+      "region": "경기도",
+      "files": [
+        {
+          "name": "2026 성남화랑초 방과후·돌봄 통합 운영 계획 계획(난타 개설 및 환불규정 개정).hwp",
+          "file_academic_year": 2026,
+          "sha256": "dfa24de1c1d8c3408ff3c0558dc260b3dfcdef6a16011b14aab7c382e829b943",
+          "format": "hwp",
+          "bytes": 219136,
+          "bytes_source": "download",
+          "text_chars": 54507,
+          "afternoon_end_candidates": {
+            "17:00": 1,
+            "19:00": 1
+          },
+          "morning_candidates": {
+            "08:30-09:00": 1
+          },
+          "evening_mentions": [],
+          "grade_mentions": {
+            "1~2": 5,
+            "1~6": 3
+          },
+          "evidence": [
+            {
+              "line": 537,
+              "range": "방과후-17:00",
+              "context": "돌봄1 (전용교실) | 방과후~ 17:00 | 사랑반 (1층) | 1.2학년"
+            },
+            {
+              "line": 538,
+              "range": "방과후-19:00",
+              "context": "돌봄2 (전용교실) | 방과후~ 19:00 | 희망반 (2층) | 초등보육전담"
+            },
+            {
+              "line": 643,
+              "range": "08:30-09:00",
+              "context": "운영 시간 | • 오전돌봄  8:30~9:00 (희망반) *9:00 이전등원학생은"
+            }
+          ],
+          "status": "care_hours_found"
+        }
+      ],
+      "status": "care_hours_found",
+      "stale_file_year": false
+    },
+    {
+      "school_id": "B000003757",
+      "school_name": "탄천초등학교",
+      "region": "경기도",
+      "files": [
+        {
+          "name": "2026학년도  돌봄교실 연간 운영 계획.hwp",
+          "file_academic_year": 2026,
+          "sha256": "01bb31409493b4cc3753b09956a5a858a2039322fc288388eaef2796c92b5ddd",
+          "format": "hwp",
+          "bytes": 205312,
+          "bytes_source": "download",
+          "text_chars": 11030,
+          "afternoon_end_candidates": {
+            "18:00": 2
+          },
+          "morning_candidates": {},
+          "evening_mentions": [],
+          "grade_mentions": {
+            "1~2": 2
+          },
+          "evidence": [
+            {
+              "line": 16,
+              "range": "방과후-18:00",
+              "context": "오후돌봄 전용교실 | 방과후 ~ 18:00 | 1층 돌봄교실 | 맞벌이·저소득"
+            },
+            {
+              "line": 23,
+              "range": "방과후-18:00",
+              "context": "오후 돌봄교실 (방과후~ 18:00) | 1~2학년 학생 중 돌봄이 꼭"
+            }
+          ],
+          "status": "care_hours_found"
+        },
+        {
+          "name": "2026학년도 방과후학교 연간운영계획.hwp",
+          "file_academic_year": 2026,
+          "sha256": "8c22718ff502c1c81baaacf23a235678649667a18f976df6dd64ee46a61e8210",
+          "format": "hwp",
+          "bytes": 232960,
+          "bytes_source": "download",
+          "text_chars": 14170,
+          "afternoon_end_candidates": {},
+          "morning_candidates": {},
+          "evening_mentions": [],
+          "grade_mentions": {},
+          "evidence": [],
+          "status": "no_care_hours_detected"
+        }
+      ],
+      "status": "care_hours_found",
+      "stale_file_year": false
+    },
+    {
+      "school_id": "B000003753",
+      "school_name": "성남매송초등학교",
+      "region": "경기도",
+      "files": [
+        {
+          "name": "2026학년도 성남매송초 방과후돌봄 운영 계획.hwpx",
+          "file_academic_year": 2026,
+          "sha256": "11895609a2a3bd03f6ab80cc613b65c2a71f078e82afc48631cc5d4c12b7843f",
+          "format": "hwpx",
+          "bytes": 269631,
+          "bytes_source": "download",
+          "text_chars": 13620,
+          "afternoon_end_candidates": {},
+          "morning_candidates": {},
+          "evening_mentions": [],
+          "grade_mentions": {},
+          "evidence": [],
+          "status": "no_care_hours_detected"
+        },
+        {
+          "name": "26.1. 2026.성남매송초 초등돌봄교실 운영계획.hwp",
+          "file_academic_year": 2026,
+          "sha256": "bb4f3323b069469115dc3e8e8ed01fc5452b2bc05b6b73424e8b8698dea7a9f9",
+          "format": "hwp",
+          "bytes": 159744,
+          "bytes_source": "download",
+          "text_chars": 13550,
+          "afternoon_end_candidates": {},
+          "morning_candidates": {},
+          "evening_mentions": [],
+          "grade_mentions": {
+            "1~2": 4
+          },
+          "evidence": [],
+          "status": "no_care_hours_detected"
+        }
+      ],
+      "status": "no_care_hours_detected",
+      "stale_file_year": false
+    },
+    {
+      "school_id": "B000003758",
+      "school_name": "서당초등학교",
+      "region": "경기도",
+      "files": [
+        {
+          "name": "1분기 수업료(3학년포함).xls",
+          "file_academic_year": null,
+          "status": "failed",
+          "error": "OSError"
+        },
+        {
+          "name": "2026학년도 서당초 돌봄교실 운영 계획.hwp",
+          "file_academic_year": 2026,
+          "sha256": "f1b330c152b9fdf23521210e41b489d07de1660f0daa05ccfb06813489b4d6a6",
+          "format": "hwp",
+          "bytes": 478208,
+          "bytes_source": "download",
+          "text_chars": 17741,
+          "afternoon_end_candidates": {
+            "19:00": 2,
+            "17:00": 2,
+            "16:30": 1
+          },
+          "morning_candidates": {},
+          "evening_mentions": [],
+          "grade_mentions": {
+            "1~2": 4
+          },
+          "evidence": [
+            {
+              "line": 47,
+              "range": "방과후-19:00",
+              "context": "1) 돌봄1실 : 방과후 ~ 19:00"
+            },
+            {
+              "line": 48,
+              "range": "방과후-17:00",
+              "context": "2) 돌봄2실 : 방과후 ~ 17:00"
+            },
+            {
+              "line": 49,
+              "range": "11:00-19:00",
+              "context": "* 돌봄1교실 초등보육 전담사 근무시간 : 11:00 ~ 19:00"
+            },
+            {
+              "line": 50,
+              "range": "11:00-17:00",
+              "context": "* 돌봄2교실 초등보육 전담사 근무시간 : 11:00 ~ 17:00"
+            },
+            {
+              "line": 55,
+              "range": "08:30-16:30",
+              "context": "* 돌봄1교실 초등보육 전담사 근무시간 : 8:30 ~ 16:30"
+            }
+          ],
+          "status": "care_hours_found"
+        }
+      ],
+      "status": "care_hours_found",
+      "stale_file_year": false
+    },
+    {
+      "school_id": "B000003742",
+      "school_name": "성남송현초등학교",
+      "region": "경기도",
+      "files": [
+        {
+          "name": "2026?성남송현초 방과후학교?운영?계획.hwp",
+          "file_academic_year": 2026,
+          "sha256": "b8c2753b933aad2da693834442fca25e455f75cd5309ba999fc2d59f8b2898a4",
+          "format": "hwp",
+          "bytes": 207360,
+          "bytes_source": "download",
+          "text_chars": 37553,
+          "afternoon_end_candidates": {},
+          "morning_candidates": {},
+          "evening_mentions": [],
+          "grade_mentions": {
+            "1~2": 2,
+            "1~6": 1
+          },
+          "evidence": [],
+          "status": "no_care_hours_detected"
+        }
+      ],
+      "status": "no_care_hours_detected",
+      "stale_file_year": false
+    },
+    {
+      "school_id": "B000003747",
+      "school_name": "산운초등학교",
+      "region": "경기도",
+      "files": [
+        {
+          "name": "2026학년도 산운초 늘봄학교(선택형교육) 운영 계획.hwp",
+          "file_academic_year": 2026,
+          "sha256": "19596bd5c35f788c6d73b5552b52bbe0e0c053cd4ca0c7d4eae7c4361b41da22",
+          "format": "hwp",
+          "bytes": 181760,
+          "bytes_source": "download",
+          "text_chars": 15203,
+          "afternoon_end_candidates": {},
+          "morning_candidates": {},
+          "evening_mentions": [],
+          "grade_mentions": {},
+          "evidence": [],
+          "status": "no_care_hours_detected"
+        },
+        {
+          "name": "2026년 돌봄교실운영 계획.hwp",
+          "file_academic_year": 2026,
+          "sha256": "9b735e117035c2cfd5561f288f9077cb052ba74c599bc67f28f6ed72420091fd",
+          "format": "hwp",
+          "bytes": 90624,
+          "bytes_source": "download",
+          "text_chars": 9228,
+          "afternoon_end_candidates": {
+            "19:00": 1
+          },
+          "morning_candidates": {},
+          "evening_mentions": [],
+          "grade_mentions": {},
+          "evidence": [
+            {
+              "line": 21,
+              "range": "12:00-19:00",
+              "context": "운영시간 | ‧ 오후돌봄(방과 후 12:00~19:00까지) |  |"
+            }
+          ],
+          "status": "care_hours_found"
+        }
+      ],
+      "status": "care_hours_found",
+      "stale_file_year": false
+    },
+    {
+      "school_id": "B000003769",
+      "school_name": "하탑초등학교",
+      "region": "경기도",
+      "files": [
+        {
+          "name": "2026학년도 하탑초 돌봄교실 운영계획.hwp",
+          "file_academic_year": 2026,
+          "sha256": "bf3f6afd710e1b496b61cb364e4aa099e9a779209e305ed11705f1c0cfc661a9",
+          "format": "hwp",
+          "bytes": 282112,
+          "bytes_source": "download",
+          "text_chars": 11046,
+          "afternoon_end_candidates": {},
+          "morning_candidates": {},
+          "evening_mentions": [],
+          "grade_mentions": {
+            "1~2": 1
+          },
+          "evidence": [],
+          "status": "no_care_hours_detected"
+        },
+        {
+          "name": "2026학년도 하탑초 방과후돌봄 운영 계획.hwp",
+          "file_academic_year": 2026,
+          "sha256": "c6798b7db2ccb417ac5f325e73f4f21ec723ca317664a08808ef942cfb2e8617",
+          "format": "hwp",
+          "bytes": 278016,
+          "bytes_source": "download",
+          "text_chars": 14492,
+          "afternoon_end_candidates": {},
+          "morning_candidates": {},
+          "evening_mentions": [],
+          "grade_mentions": {},
+          "evidence": [],
+          "status": "no_care_hours_detected"
+        }
+      ],
+      "status": "no_care_hours_detected",
+      "stale_file_year": false
+    },
+    {
+      "school_id": "B000003760",
+      "school_name": "서현초등학교",
+      "region": "경기도",
+      "files": [
+        {
+          "name": "2026학년도 돌봄교실 운영계획.pdf",
+          "file_academic_year": 2026,
+          "sha256": "f9f0bad595b5f78ba68c517b9226cef6ce64703d73da54e541c066225c489fb1",
+          "format": "pdf",
+          "bytes": 254741,
+          "bytes_source": "download",
+          "text_chars": 12216,
+          "afternoon_end_candidates": {
+            "16:00": 2,
+            "19:00": 2,
+            "17:00": 2,
+            "16:30": 1
+          },
+          "morning_candidates": {
+            "09:00-09:10": 1
+          },
+          "evening_mentions": [],
+          "grade_mentions": {
+            "1~2": 4
+          },
+          "evidence": [
+            {
+              "line": 11,
+              "range": "09:00-16:00",
+              "context": "1일 6,500원   간식 1일 2,000원방 학  중 (전 용 교 실)9:00 ~ 16:00(추후 변동가능)돌봄1,2교실학기 중"
+            },
+            {
+              "line": 11,
+              "range": "방과후-19:00",
+              "context": "소대상인력인원비용부담오 후 돌 봄(1)(전 용 교 실)방과 후 ~ 19:00돌봄 1반(1학년) 법정 저소득층,"
+            },
+            {
+              "line": 11,
+              "range": "방과후-17:00",
+              "context": "식 1일 2,000원오 후 돌 봄(2)(전 용 교 실)방과 후 ~ 17:00돌봄 2반(2학년)  급⦁간 식  수"
+            },
+            {
+              "line": 24,
+              "range": "09:00-09:10",
+              "context": "2) 방학 중 예시         월화수목금9:00-9:10등교 및 출결 확인 9:10-10:0"
+            },
+            {
+              "line": 24,
+              "range": "15:00-16:00",
+              "context": ":001,2학년 특기적성수업 및 자유선택 활동(교구활동, 개별학습 활동)15:00-16:00 손씻기 및 간식시간, 개별과제 및"
+            },
+            {
+              "line": 26,
+              "range": "11:00-19:00",
+              "context": "구분인원근무시간학기 중돌봄 1반 전담 (1명) 11:00~19:00 (8시간)돌봄 2반 전담 (1명)"
+            },
+            {
+              "line": 26,
+              "range": "11:00-17:00",
+              "context": "전담 (1명) 11:00~19:00 (8시간)돌봄 2반 전담 (1명) 11:00~17:00 (6시간)방학 중돌봄 1반 전담 ("
+            },
+            {
+              "line": 26,
+              "range": "08:30-16:30",
+              "context": "(1명) 11:00~17:00 (6시간)방학 중돌봄 1반 전담 (1명) 8:30~16:30 (8시간)돌봄 2반 전담 (1명)"
+            }
+          ],
+          "status": "care_hours_found"
+        },
+        {
+          "name": "(서현초등학교-3013 (첨부)) 2026학년도 수익자 방과후교육 운영 계획.pdf",
+          "file_academic_year": 2026,
+          "sha256": "7da46fb9d19783e443392fd80a4894f85779bb90e19a4b468a36c3c416ab4478",
+          "format": "pdf",
+          "bytes": 395447,
+          "bytes_source": "download",
+          "text_chars": 21271,
+          "afternoon_end_candidates": {},
+          "morning_candidates": {},
+          "evening_mentions": [],
+          "grade_mentions": {
+            "1~6": 2
+          },
+          "evidence": [],
+          "status": "no_care_hours_detected"
+        }
+      ],
+      "status": "care_hours_found",
+      "stale_file_year": false
+    },
+    {
+      "school_id": "B000003738",
+      "school_name": "초림초등학교",
+      "region": "경기도",
+      "files": [
+        {
+          "name": "2026학년도 초림초 방과후돌봄 운영 계획.pdf",
+          "file_academic_year": 2026,
+          "sha256": "a672dfdfe3c8f428ec0c0c69cc96669ef2389c670b841b99d0c91666626d8f3c",
+          "format": "pdf",
+          "bytes": 410126,
+          "bytes_source": "download",
+          "text_chars": 18331,
+          "afternoon_end_candidates": {
+            "16:30": 12,
+            "16:00": 2,
+            "16:10": 1,
+            "16:25": 1
+          },
+          "morning_candidates": {},
+          "evening_mentions": [],
+          "grade_mentions": {
+            "1~6": 5,
+            "1~2": 4
+          },
+          "evidence": [
+            {
+              "line": 15,
+              "range": "15:10-16:30",
+              "context": "고방송댄스월A1-213:50~15:1031,600202층 다목적실B1-615:10~16:30영재로봇제작월A1-213:50~15:"
+            },
+            {
+              "line": 15,
+              "range": "15:10-16:30",
+              "context": "재로봇제작월A1-213:50~15:1029,600204층 AI교실B1-615:10~16:30주산암산월A1-413:50~15:10"
+            },
+            {
+              "line": 15,
+              "range": "15:10-16:30",
+              "context": "16:30주산암산월A1-413:50~15:1031,600202-4B2-615:10~16:30생명과학화A1-213:50~15:10"
+            },
+            {
+              "line": 15,
+              "range": "15:10-16:30",
+              "context": "0생명과학화A1-213:50~15:1029,600204층 AI교실B2-615:10~16:30사고력수학화A1-213:50~15:1"
+            },
+            {
+              "line": 15,
+              "range": "15:10-16:30",
+              "context": "6:30사고력수학화A1-213:50~15:1031,600201-2B2-615:10~16:30음악줄넘기화A1-213:50~15:1"
+            },
+            {
+              "line": 15,
+              "range": "15:10-16:30",
+              "context": "음악줄넘기화A1-213:50~15:1029,60020운동장/체육관B1-615:10~16:30수C1-413:00~14:20D1-6"
+            },
+            {
+              "line": 15,
+              "range": "15:10-16:30",
+              "context": "15:50건축교실목A1-213:50~15:1029,600201-4B1-615:10~16:30드론항공과학목A1-213:50~15:"
+            },
+            {
+              "line": 15,
+              "range": "15:10-16:30",
+              "context": "론항공과학목A1-213:50~15:1029,600204층 AI교실B1-615:10~16:30인공지능코딩목A1-213:50~15:"
+            },
+            {
+              "line": 15,
+              "range": "15:10-16:30",
+              "context": "213:50~15:1031,600202-1(1학기)1-1(2학기)B1-615:10~16:30배드민턴목A3-614:40-16:00"
+            },
+            {
+              "line": 15,
+              "range": "14:40-16:00",
+              "context": "2-1(1학기)1-1(2학기)B1-615:10~16:30배드민턴목A3-614:40-16:0031,60025체육관미술금A1-213"
+            },
+            {
+              "line": 15,
+              "range": "14:50-16:10",
+              "context": "0025체육관미술금A1-213:00~14:2031,600201-3B3-614:50~16:10클라리넷금A2-413:50~15:10"
+            },
+            {
+              "line": 15,
+              "range": "14:40-16:00",
+              "context": "16:10클라리넷금A2-413:50~15:1051,600172-3B2-614:40~16:00컴퓨터월코딩스쿨3-413:50~15:"
+            }
+          ],
+          "status": "care_hours_found"
+        }
+      ],
+      "status": "care_hours_found",
+      "stale_file_year": false
+    },
+    {
+      "school_id": "B000026906",
+      "school_name": "판교대장초등학교",
+      "region": "경기도",
+      "files": [
+        {
+          "name": "2026학년도 초등 방과후, 돌봄 운영 계획.hwp",
+          "file_academic_year": 2026,
+          "sha256": "38f70909f8b0e98195808d0bd11d828172da4a31bd75102c60e9008ec487f6fd",
+          "format": "hwp",
+          "bytes": 131072,
+          "bytes_source": "download",
+          "text_chars": 32628,
+          "afternoon_end_candidates": {},
+          "morning_candidates": {},
+          "evening_mentions": [],
+          "grade_mentions": {},
+          "evidence": [],
+          "status": "no_care_hours_detected"
+        }
+      ],
+      "status": "no_care_hours_detected",
+      "stale_file_year": false
+    },
+    {
+      "school_id": "B000003770",
+      "school_name": "내정초등학교",
+      "region": "경기도",
+      "files": [
+        {
+          "name": "2026학년도 내정초등학교 초등돌봄교실 운영 계획.hwp",
+          "file_academic_year": 2026,
+          "sha256": "c83dc4341f8a1310367ad67747324a978d29293e33cfcbe6f85d0bb5c9f74905",
+          "format": "hwp",
+          "bytes": 69632,
+          "bytes_source": "download",
+          "text_chars": 8710,
+          "afternoon_end_candidates": {
+            "19:00": 1
+          },
+          "morning_candidates": {},
+          "evening_mentions": [],
+          "grade_mentions": {},
+          "evidence": [
+            {
+              "line": 26,
+              "range": "방과후-19:00",
+              "context": "가) 돌봄 : 수업 종료 후 방과후 ∼ 19:00"
+            }
+          ],
+          "status": "care_hours_found"
+        },
+        {
+          "name": "2026학년도 내정초등학교 방과후학교 운영 계획.hwpx",
+          "file_academic_year": 2026,
+          "sha256": "4295f89ba5f7c40e56093a3750f53e2233e011bbbcaa25c0d0acdc3d93240955",
+          "format": "hwpx",
+          "bytes": 253603,
+          "bytes_source": "download",
+          "text_chars": 22898,
+          "afternoon_end_candidates": {},
+          "morning_candidates": {},
+          "evening_mentions": [],
+          "grade_mentions": {
+            "1~2": 2
+          },
+          "evidence": [],
+          "status": "no_care_hours_detected"
+        }
+      ],
+      "status": "care_hours_found",
+      "stale_file_year": false
+    },
+    {
+      "school_id": "B000003746",
+      "school_name": "신백현초등학교",
+      "region": "경기도",
+      "files": [
+        {
+          "name": "2026 신백현초 방과후·돌봄 통합 운영 계획 계획(환불 규정 개정).hwp",
+          "file_academic_year": 2026,
+          "sha256": "3007f65ce6a28c67fda6b664931fc81509f24c49f890f212c1118088de3746e3",
+          "format": "hwp",
+          "bytes": 230912,
+          "bytes_source": "download",
+          "text_chars": 58941,
+          "afternoon_end_candidates": {
+            "18:00": 1
+          },
+          "morning_candidates": {},
+          "evening_mentions": [],
+          "grade_mentions": {
+            "1~2": 4,
+            "1~6": 2
+          },
+          "evidence": [
+            {
+              "line": 837,
+              "range": "12:00-18:00",
+              "context": "오후 돌봄 | 12:00 ~18:00 내외 | 돌봄교실 (2실) | 1~"
+            }
+          ],
+          "status": "care_hours_found"
+        }
+      ],
+      "status": "care_hours_found",
+      "stale_file_year": false
+    },
+    {
+      "school_id": "B000003750",
+      "school_name": "오리초등학교",
+      "region": "경기도",
+      "files": [
+        {
+          "name": "2026학년도 오리초 방과후돌봄 운영 계획(안)(2.13.).hwpx",
+          "file_academic_year": 2026,
+          "sha256": "f2f1d878fa29ec3a944f95baa0259c5381a1d31fb1c93015e8afa30eb5ddce56",
+          "format": "hwpx",
+          "bytes": 139189,
+          "bytes_source": "download",
+          "text_chars": 18306,
+          "afternoon_end_candidates": {},
+          "morning_candidates": {},
+          "evening_mentions": [],
+          "grade_mentions": {},
+          "evidence": [],
+          "status": "no_care_hours_detected"
+        }
+      ],
+      "status": "no_care_hours_detected",
+      "stale_file_year": false
+    },
+    {
+      "school_id": "B000003109",
+      "school_name": "인천효성초등학교",
+      "region": "인천광역시",
+      "files": [
+        {
+          "name": "2025학년도 인천효성초등학교 선택형돌봄프로그램 운영계획(초등돌봄교실, 늘품꿈터).hwp",
+          "file_academic_year": 2025,
+          "sha256": "5c41996b757d2f06f098d1be26186f1ba9f2e5273c59d86cffcf6a2cbd470f9f",
+          "format": "hwp",
+          "bytes": 689152,
+          "bytes_source": "download",
+          "text_chars": 37275,
+          "afternoon_end_candidates": {
+            "18:00": 1,
+            "19:00": 1
+          },
+          "morning_candidates": {},
+          "evening_mentions": [],
+          "grade_mentions": {
+            "1~2": 3
+          },
+          "evidence": [
+            {
+              "line": 43,
+              "range": "방과후-18:00",
+              "context": "오후 돌봄 | 방과후~18:00 | 별빛반 | 1~2학년학생중  저"
+            },
+            {
+              "line": 44,
+              "range": "방과후-19:00",
+              "context": "오후 돌봄 | 방과후~19:00    | 꿈빛반 |"
+            }
+          ],
+          "status": "care_hours_found"
+        },
+        {
+          "name": "2025학년도 인천효성초등학교 방과후학교 운영계획(아침늘봄, 맞춤형, 방과후학교).hwpx",
+          "file_academic_year": 2025,
+          "sha256": "347dd8865c63eb0fab7da2c92bc7a17bab8b21437bb1f7e965127f1b8c6f2785",
+          "format": "hwpx",
+          "bytes": 248454,
+          "bytes_source": "download",
+          "text_chars": 37960,
+          "afternoon_end_candidates": {},
+          "morning_candidates": {
+            "07:50-08:30": 1
+          },
+          "evening_mentions": [],
+          "grade_mentions": {
+            "1~6": 2,
+            "1~2": 1
+          },
+          "evidence": [
+            {
+              "line": 81,
+              "range": "07:50-08:30",
+              "context": "아침 늘봄 | 07:50 ~ 08:30 | 내용 | 신나는 교실 (스포츠)"
+            }
+          ],
+          "status": "no_care_hours_detected"
+        },
+        {
+          "name": "2026학년도 인천효성초등학교 초등 방과후.돌봄 운영계획.hwpx",
+          "file_academic_year": 2026,
+          "sha256": "3dd48d497fbdb5f69f045e3c4d4dff9d67878b497e0ac594db75986590d83a3f",
+          "format": "hwpx",
+          "bytes": 396930,
+          "bytes_source": "download",
+          "text_chars": 47425,
+          "afternoon_end_candidates": {
+            "16:30": 2,
+            "18:00": 1,
+            "19:00": 1
+          },
+          "morning_candidates": {
+            "07:50-08:30": 1
+          },
+          "evening_mentions": [],
+          "grade_mentions": {
+            "1~2": 4,
+            "1~6": 2
+          },
+          "evidence": [
+            {
+              "line": 149,
+              "range": "07:50-08:30",
+              "context": "026.3.~2026.12. (매주 화목) | 내부교원 | 늘봄교실 | 07:50 ~08:30 | 보드게임 등 창의놀이 수업 |"
+            },
+            {
+              "line": 539,
+              "range": "방과후-18:00",
+              "context": "오후 돌봄 | 방과후~18:00 | 별빛반 | 1~2학년 중 돌봄이"
+            },
+            {
+              "line": 540,
+              "range": "방과후-19:00",
+              "context": "오후 돌봄 | 방과후~19:00 | 꿈빛반 |"
+            },
+            {
+              "line": 830,
+              "range": "08:30-16:30",
+              "context": "바. 방학중 오후돌봄교실 운영시간 : 08:30 ~ 16:30 (16:00~16:30 방역 및 청"
+            },
+            {
+              "line": 830,
+              "range": "16:00-16:30",
+              "context": "바. 방학중 오후돌봄교실 운영시간 : 08:30 ~ 16:30 (16:00~16:30 방역 및 청소)"
+            }
+          ],
+          "status": "care_hours_found"
+        }
+      ],
+      "status": "care_hours_found",
+      "stale_file_year": true
+    },
+    {
+      "school_id": "B000025256",
+      "school_name": "인천송원초등학교",
+      "region": "인천광역시",
+      "files": [
+        {
+          "name": "2026학년도 송원초 초등 방과후·돌봄(늘봄학교) 운영 계획.pdf",
+          "file_academic_year": 2026,
+          "sha256": "0cee6c9c6e86c72b7e10905a759084a20e871fd7fc69765fdd9b773e6d458427",
+          "format": "pdf",
+          "bytes": 636169,
+          "bytes_source": "download",
+          "text_chars": 56304,
+          "afternoon_end_candidates": {
+            "16:30": 7,
+            "16:00": 6,
+            "17:00": 3,
+            "16:10": 2
+          },
+          "morning_candidates": {
+            "08:00-08:40": 2
+          },
+          "evening_mentions": [],
+          "grade_mentions": {
+            "1~2": 12,
+            "4~6": 4,
+            "1~6": 3,
+            "3~4": 2
+          },
+          "evidence": [
+            {
+              "line": 23,
+              "range": "08:00-08:40",
+              "context": "~ 2027. 1. 6.(방학 중 미운영)  4) 운영 시간: 학기 중 8:00~8:40  5) 운영 장소: 도서관  6)"
+            },
+            {
+              "line": 23,
+              "range": "08:00-08:40",
+              "context": "태로 운영하여 비정기· 일시적 수요에도 대응 가능구분월화수목금비고아침늘봄08:00~08:40내용따스한 교실(자율활동) 운영시간조"
+            },
+            {
+              "line": 38,
+              "range": "13:00-17:00",
+              "context": "변동 가능   2. 교육활동 운영 시간학기 중(월~금) 방학 중(월~금)13:00~17:0009:00~17:00  3. 초등 방"
+            },
+            {
+              "line": 38,
+              "range": "09:00-17:00",
+              "context": "교육활동 운영 시간학기 중(월~금) 방학 중(월~금)13:00~17:0009:00~17:00  3. 초등 방과후·돌봄 교육 과정"
+            },
+            {
+              "line": 47,
+              "range": "14:50-16:10",
+              "context": ":50)컴박사(1,2학년)(13:40~14:40)오피스마스터(3,4학년)14:50~16:10(80분) 자격A(4~6학년)자격B("
+            },
+            {
+              "line": 47,
+              "range": "14:40-16:00",
+              "context": "년)14:50~16:10(80분) 자격A(4~6학년)자격B(4~6학년)(14:40~16:00)자격B(4~6학년)(14:40~16"
+            },
+            {
+              "line": 47,
+              "range": "14:40-16:00",
+              "context": "4~6학년)자격B(4~6학년)(14:40~16:00)자격B(4~6학년)(14:40~16:00)자격A(4~6학년)     ※ 시간"
+            },
+            {
+              "line": 50,
+              "range": "방과후-19:00",
+              "context": "담2026. 3. 3. ~2027. 2. 23.오후돌봄방과 후 ~ 19:00돌봄 교실1, 2학년 중 희망자20명"
+            },
+            {
+              "line": 51,
+              "range": "11:00-19:00",
+              "context": "간 주 40시간 범위 내에서 탄력적으로 운영한다.    가) 학기 중: 11:00~19:00(휴게시간 30분 포함/전담사 및 학"
+            },
+            {
+              "line": 51,
+              "range": "08:30-16:30",
+              "context": "및 학교사정에 따라 변경 가능)   나) 방학 중, 학교 재량휴업일: 8:30~16:30(휴게시간 30분 포함/수요 조사 결"
+            },
+            {
+              "line": 81,
+              "range": "방과후-16:30",
+              "context": "3. 장소: 본교 2층 꿈벗누리   4. 운영시간: 하교 후 ~ 16:30    5. 운영기간: 법정 공휴일을"
+            },
+            {
+              "line": 83,
+              "range": "13:50-16:00",
+              "context": "요일  시간(월) (화) (수) (목) (금)~13:50입실 확인 13:50~16:00 맞춤형, 방과후 프로그램 참여 및"
+            }
+          ],
+          "status": "care_hours_found"
+        }
+      ],
+      "status": "care_hours_found",
+      "stale_file_year": false
+    },
+    {
+      "school_id": "B000003095",
+      "school_name": "인천구월초등학교",
+      "region": "인천광역시",
+      "files": [
+        {
+          "name": "2026학년도 구월초 초등 방과후·돌봄 운영계획.hwp",
+          "file_academic_year": 2026,
+          "sha256": "19514b98d713371d035fe1c860f3a902206a018e4a2e5e737d5b6c7da48ca763",
+          "format": "hwp",
+          "bytes": 174592,
+          "bytes_source": "download",
+          "text_chars": 24821,
+          "afternoon_end_candidates": {},
+          "morning_candidates": {},
+          "evening_mentions": [],
+          "grade_mentions": {
+            "1~2": 2,
+            "1~3": 1,
+            "1~6": 1,
+            "2~3": 1
+          },
+          "evidence": [],
+          "status": "no_care_hours_detected"
+        }
+      ],
+      "status": "no_care_hours_detected",
+      "stale_file_year": false
+    },
+    {
+      "school_id": "B000003015",
+      "school_name": "인천구산초등학교",
+      "region": "인천광역시",
+      "files": [
+        {
+          "name": "2026학년도 구산초 초등돌봄교실 운영 계획.hwp",
+          "file_academic_year": 2026,
+          "sha256": "d0abd176eaa83eee3029dd0956d6abbc00516f8069628a4b4528482b910ce100",
+          "format": "hwp",
+          "bytes": 349184,
+          "bytes_source": "download",
+          "text_chars": 22434,
+          "afternoon_end_candidates": {
+            "16:00": 2,
+            "19:00": 1,
+            "16:30": 1
+          },
+          "morning_candidates": {},
+          "evening_mentions": [],
+          "grade_mentions": {
+            "1~2": 2,
+            "1~6": 1
+          },
+          "evidence": [
+            {
+              "line": 17,
+              "range": "방과후-19:00",
+              "context": "초등 돌봄 교실 | 학기중 | 방과후~19:00 | 전용 교실 (2실) | 1～2학"
+            },
+            {
+              "line": 18,
+              "range": "08:30-16:00",
+              "context": "방학 휴업일 |  08:30 ~ 16:00 | 돌봄학생 중 참여 신청 학생 |"
+            },
+            {
+              "line": 258,
+              "range": "08:30-16:00",
+              "context": "라. 방학중 오후돌봄교실 운영시간 : 08:30~16:00 (16:00~16:30 청소 및 정"
+            },
+            {
+              "line": 258,
+              "range": "16:00-16:30",
+              "context": "라. 방학중 오후돌봄교실 운영시간 : 08:30~16:00 (16:00~16:30 청소 및 정리)"
+            }
+          ],
+          "status": "care_hours_found"
+        },
+        {
+          "name": "2026학년도 인천구산초등학교 방과후학교 운영 계획.hwp",
+          "file_academic_year": 2026,
+          "sha256": "60b490b1dd28a820294a40f5287e960268b7ce98d4d80e39f89cd32fc83d3bf1",
+          "format": "hwp",
+          "bytes": 156160,
+          "bytes_source": "download",
+          "text_chars": 24670,
+          "afternoon_end_candidates": {},
+          "morning_candidates": {
+            "08:00-08:40": 1
+          },
+          "evening_mentions": [],
+          "grade_mentions": {},
+          "evidence": [
+            {
+              "line": 41,
+              "range": "08:00-08:40",
+              "context": "늘봄행정실무사 | 1명 | 8:00 ~ 8:40 | - | 별도 사업비 |"
+            }
+          ],
+          "status": "no_care_hours_detected"
+        }
+      ],
+      "status": "care_hours_found",
+      "stale_file_year": false
+    },
+    {
+      "school_id": "B000024924",
+      "school_name": "인천하늘초등학교",
+      "region": "인천광역시",
+      "files": [
+        {
+          "name": "2026학년도 인천하늘초 방과후·돌봄(늘봄학교) 운영 계획서.pdf",
+          "file_academic_year": 2026,
+          "sha256": "eee3c4d7e97a76101edefd350bd475d9e31ae49c2d40b920ddc43650ba379c7e",
+          "format": "pdf",
+          "bytes": 414053,
+          "bytes_source": "download",
+          "text_chars": 26786,
+          "afternoon_end_candidates": {
+            "19:00": 3,
+            "16:45": 1,
+            "16:30": 1,
+            "16:00": 1
+          },
+          "morning_candidates": {
+            "08:00-08:40": 3
+          },
+          "evening_mentions": [],
+          "grade_mentions": {
+            "1~2": 8,
+            "1~6": 4
+          },
+          "evidence": [
+            {
+              "line": 5,
+              "range": "08:00-08:40",
+              "context": "보장이 어려운 경우 즉시 운영 중단 가능4. 아침 늘봄은 정규수업 전(8:00~8:40), 초1~2학년 대상의 맞춤형 프로"
+            },
+            {
+              "line": 12,
+              "range": "08:00-08:40",
+              "context": "26년 12월 31일 (방학 기간 중 미운영)    3. 운영 시간 : 8:00 ~ 8:40    4. 운영 장소 : 돌봄교실1"
+            },
+            {
+              "line": 12,
+              "range": "08:00-08:40",
+              "context": "과후·돌봄은 학교 여건에 따라 시간을 변경하여 운영 가능구분월화수목금비고08:00~08:40내용아침이 신나는 교실아침이 신나는"
+            },
+            {
+              "line": 20,
+              "range": "13:00-16:45",
+              "context": "3월 16일 ~ 2027년 1월 29일 (보강주 포함 46주)운영시간주중13:00 ~16:45휴일재량휴업일휴강주미운영방학09:30"
+            },
+            {
+              "line": 45,
+              "range": "08:30-16:30",
+              "context": "및 운영 시간      가. 학기 중(방과 후~19:00), 방학 중(8:30~16:30)으로 구분하여 운영한다."
+            },
+            {
+              "line": 45,
+              "range": "13:00-16:00",
+              "context": "0~15:00간식 및 휴식, 창의 활동/방과후 프로그램 참여(개인선택) 13:00~16:00(특기·적성 활동)보드게임(특기·적성"
+            },
+            {
+              "line": 45,
+              "range": "16:00-17:30",
+              "context": ")책놀이(특기·적성 활동)음악(특기·적성 활동)과학(특기·적성 활동)공예16:00~17:30(개인활동 및 자율활동) 개별 놀이"
+            },
+            {
+              "line": 45,
+              "range": "17:30-19:00",
+              "context": "놀이 활동, 숙제하기, 자기주도적 활동(독서, 그림 그리기, 글쓰기) 17:30~19:00자유 활동 시간/귀가 준비 및 귀가"
+            },
+            {
+              "line": 45,
+              "range": "방과후-19:00",
+              "context": "3. 운영 내용 및 운영 시간      가. 학기 중(방과 후~19:00), 방학 중(8:30~16:30)으"
+            },
+            {
+              "line": 71,
+              "range": "17:00-19:00",
+              "context": "나. 늘봄 교육프로그램에 참여 후, 대부분의 교직원이 귀가한 시간대(17:00~19:00)에 소수의 학생이 귀가하는 경우에는"
+            }
+          ],
+          "status": "care_hours_found"
+        },
+        {
+          "name": "2026학년도 초등돌봄교육 초등돌봄교실 운영 계획.pdf",
+          "file_academic_year": 2026,
+          "sha256": "0f1c2b34248fbe008367eb7f8d11f342045770c0eb6074a39d503822a11c46e9",
+          "format": "pdf",
+          "bytes": 551132,
+          "bytes_source": "download",
+          "text_chars": 32179,
+          "afternoon_end_candidates": {
+            "16:00": 6,
+            "19:00": 5,
+            "16:30": 2,
+            "17:00": 1
+          },
+          "morning_candidates": {},
+          "evening_mentions": [
+            {
+              "range": "11:00-17:00",
+              "line": 13
+            },
+            {
+              "range": "17:00-19:00",
+              "line": 13
+            }
+          ],
+          "grade_mentions": {
+            "1~2": 16,
+            "3~6": 7
+          },
+          "evidence": [
+            {
+              "line": 6,
+              "range": "11:00-19:00",
+              "context": ".  2027학년도 신학기 준비기간)구 분 학기 중 방학 중돌봄 운영시간11:00~19:00 (8시간) 수요에 따른 운영 시간0"
+            },
+            {
+              "line": 6,
+              "range": "08:30-16:30",
+              "context": "학 중돌봄 운영시간11:00~19:00 (8시간) 수요에 따른 운영 시간08:30~16:30(8시간)나. 시작일 및 활동 장소"
+            },
+            {
+              "line": 13,
+              "range": "11:00-17:00",
+              "context": "사 근무시간(현 전일제 근무) 구분주중 비고오후 돌봄저녁 돌봄8시간근로자11:00~17:00(6시간) 17:00~19:00(2시"
+            },
+            {
+              "line": 13,
+              "range": "17:00-19:00",
+              "context": "구분주중 비고오후 돌봄저녁 돌봄8시간근로자11:00~17:00(6시간) 17:00~19:00(2시간) 주당 근로시간: 40시간근"
+            },
+            {
+              "line": 13,
+              "range": "11:00-19:00",
+              "context": "간) 17:00~19:00(2시간) 주당 근로시간: 40시간근무시간 : 11:00~19:00(7.5 근로, 0.5 휴게)   ※"
+            },
+            {
+              "line": 14,
+              "range": "10:00-16:00",
+              "context": "기 간2026. 1. 6.(화) ~2026. 1. 12.(월)    10:00~16:00   ⦁2026학년도 입반 서류 직접"
+            },
+            {
+              "line": 16,
+              "range": "11:00-19:00",
+              "context": ") 후관 1층(전용교실) 후관 1층(전용교실) 본관 2층(전용교실)시간 11:00 ~ 19:00 차. 오후돌봄 세부 프로그램"
+            },
+            {
+              "line": 19,
+              "range": "15:40-17:00",
+              "context": "프로그램 간식은 반별로 진행4교시- 15:40  * 간식단 참조 5교시15:40 - 17:00 돌봄 활동 진행  * 활동 계획안"
+            },
+            {
+              "line": 19,
+              "range": "17:00-18:00",
+              "context": "시15:40 - 17:00 돌봄 활동 진행  * 활동 계획안 참조 6교시17:00 - 18:00 개인별 자율 선택 활동7교시18:0"
+            },
+            {
+              "line": 19,
+              "range": "18:00-19:00",
+              "context": "계획안 참조 6교시17:00 - 18:00 개인별 자율 선택 활동7교시18:00 - 19:00 자유놀이. 일기쓰기, EBS 등정리"
+            },
+            {
+              "line": 23,
+              "range": "08:30-16:30",
+              "context": "학기 중에 이루어지는 방학(여름, 학기말 방학)의 운영은 8시간 운영 (8:30-16:30 수요조사)을 원칙으     로 하되"
+            },
+            {
+              "line": 29,
+              "range": "12:30-16:00",
+              "context": "간: 학기 중(방학 제외) 총 15시간 미만       요일월화수목금시간12:30~16:0012:30~16:0012:30~16:"
+            }
+          ],
+          "status": "care_hours_found"
+        }
+      ],
+      "status": "care_hours_found",
+      "stale_file_year": false
+    },
+    {
+      "school_id": "B000003155",
+      "school_name": "인천목향초등학교",
+      "region": "인천광역시",
+      "files": [
+        {
+          "name": "인천목향초 2026학년도 초등 방과후.돌봄 운영 계획서_탑재용.hwpx",
+          "file_academic_year": 2026,
+          "sha256": "69fd2676c928923b16ab4df8300acbd000615b76bf6238bcdcec2b28eb16ab94",
+          "format": "hwpx",
+          "bytes": 591316,
+          "bytes_source": "download",
+          "text_chars": 49823,
+          "afternoon_end_candidates": {
+            "19:00": 2,
+            "16:30": 2
+          },
+          "morning_candidates": {},
+          "evening_mentions": [],
+          "grade_mentions": {
+            "1~2": 7,
+            "1~6": 4
+          },
+          "evidence": [
+            {
+              "line": 189,
+              "range": "방과후-19:00",
+              "context": "초등돌봄 교실 | <학기중> 방과후~19:00 | *돌봄교실 전용 3실 | * 1"
+            },
+            {
+              "line": 196,
+              "range": "11:00-19:00",
+              "context": "1) 학기 중 운영시간: 돌봄전담사 주 5일 11:00~19:00 (휴게시간:12:00~12:30)"
+            },
+            {
+              "line": 197,
+              "range": "08:30-16:30",
+              "context": "2) 방학 중 초등돌봄교실실 운영시간 : 08:30~16:30 (휴게시간:13:00~13:30),"
+            },
+            {
+              "line": 354,
+              "range": "08:30-16:30",
+              "context": "2 | 돌봄교실 프로그램 | 1~2학년 | 월~금 | 08:30~16:30 | 여름방학, 겨울방학 증 5일 미"
+            }
+          ],
+          "status": "care_hours_found"
+        }
+      ],
+      "status": "care_hours_found",
+      "stale_file_year": false
+    },
+    {
+      "school_id": "B000003101",
+      "school_name": "인천인동초등학교",
+      "region": "인천광역시",
+      "files": [
+        {
+          "name": "2026학년도 인천인동초등학교 초등 방과후·돌봄 운영계획.hwpx",
+          "file_academic_year": 2026,
+          "sha256": "6ac726ab2ba0ccedf2621a736173390ccbab3abd0af40f1f21a9258670f0858b",
+          "format": "hwpx",
+          "bytes": 505447,
+          "bytes_source": "download",
+          "text_chars": 44429,
+          "afternoon_end_candidates": {
+            "16:00": 2,
+            "18:00": 1
+          },
+          "morning_candidates": {},
+          "evening_mentions": [],
+          "grade_mentions": {
+            "1~2": 8,
+            "3~6": 2,
+            "1~5": 1
+          },
+          "evidence": [
+            {
+              "line": 67,
+              "range": "09:00-16:00",
+              "context": "~ 2027년 2월 23일 운영시간 주중 정규수업 후 ~18:00 방학 09:00~16:00 <늘품꿈터> 대상 오후돌봄교실을 이"
+            },
+            {
+              "line": 67,
+              "range": "방과후-18:00",
+              "context": "월 3일 ~ 2027년 2월 23일 운영시간 주중 정규수업 후 ~18:00 방학 09:00~16:00 <늘품꿈"
+            },
+            {
+              "line": 67,
+              "range": "방과후-16:00",
+              "context": "월 3일 ~ 2027년 2월 23일 운영시간 주중 정규수업 후 ~16:00 방학 09:00~12:00 ※ 미운"
+            }
+          ],
+          "status": "care_hours_found"
+        }
+      ],
+      "status": "care_hours_found",
+      "stale_file_year": false
+    },
+    {
+      "school_id": "B000002957",
+      "school_name": "인천공항초등학교",
+      "region": "인천광역시",
+      "files": [
+        {
+          "name": "2026학년도 공항초 초등 방과후·돌봄(늘봄학교) 운영 계획.pdf",
+          "file_academic_year": 2026,
+          "sha256": "4e27b77044110625bc52d3b58b1c39514e9d19139fd460738928828a833601a3",
+          "format": "pdf",
+          "bytes": 3347220,
+          "bytes_source": "download",
+          "text_chars": 114360,
+          "afternoon_end_candidates": {
+            "16:00": 4,
+            "18:00": 4,
+            "16:20": 4,
+            "17:00": 3
+          },
+          "morning_candidates": {
+            "07:50-08:30": 3
+          },
+          "evening_mentions": [],
+          "grade_mentions": {
+            "1~2": 21,
+            "1~6": 4,
+            "3~6": 1
+          },
+          "evidence": [
+            {
+              "line": 10,
+              "range": "07:50-08:30",
+              "context": "4) 운영 시간: 7:50~8:30    5) 운영 장소: 늘봄교실,"
+            },
+            {
+              "line": 15,
+              "range": "07:50-08:30",
+              "context": "프로그램명기간장소시간내용비고1미술26.3.16.~26.12.18.늘봄교실7:50~8:30미술 활동을 통한 창의력 향상2체육2"
+            },
+            {
+              "line": 15,
+              "range": "07:50-08:30",
+              "context": "0미술 활동을 통한 창의력 향상2체육26.3.16.~26.12.18.강당7:50~8:30체육 활동을 통한 협동력 향상"
+            },
+            {
+              "line": 261,
+              "range": "13:00-16:40",
+              "context": "부운영운영운영 중지(강사 희망시 실시간 쌍방향 원격학습만 운영)운영 시간13:00~16:40(시간변동 불가) 13:00~16:4"
+            },
+            {
+              "line": 261,
+              "range": "13:00-16:40",
+              "context": "쌍방향 원격학습만 운영)운영 시간13:00~16:40(시간변동 불가) 13:00~16:40(단축수업시 시간변동 가능) -수강생"
+            },
+            {
+              "line": 263,
+              "range": "14:00-16:00",
+              "context": "- 실외활동 자제 시간대 준수: 하루 중 직사광선이 가장 강한 시간대(14:00-16:00), 폭염 특보 및 오존 경보 발령"
+            },
+            {
+              "line": 341,
+              "range": "08:30-16:30",
+              "context": "명운영시간학기중: 방과후~18:00(수요가 있을 시 19시까지)방학중: 08:30~16:30학기중: 방과후~16:00학교사정 및"
+            },
+            {
+              "line": 341,
+              "range": "방과후-18:00",
+              "context": "인력초등돌봄전담사 3명 자원봉사자 1명운영시간학기중: 방과후~18:00(수요가 있을 시 19시까지)방학중:"
+            },
+            {
+              "line": 341,
+              "range": "방과후-16:00",
+              "context": "시 19시까지)방학중: 08:30~16:30학기중: 방과후~16:00학교사정 및 수요에 따라 변경 가능운"
+            },
+            {
+              "line": 363,
+              "range": "13:50-16:20",
+              "context": "및 선택활동간식(개인 일정에 맞춤), 개인선택활동13:00~15:30(13:50~16:20)단체활동① * 돌봄교실 특기적성프로"
+            },
+            {
+              "line": 363,
+              "range": "15:30-17:00",
+              "context": "기적성프로그램 * 방과후 프로그램참여 (개인선택/유료)단체활동②단체활동③15:30~17:00(16:20~17:00)개인자율활동영"
+            },
+            {
+              "line": 363,
+              "range": "16:20-17:00",
+              "context": "후 프로그램참여 (개인선택/유료)단체활동②단체활동③15:30~17:00(16:20~17:00)개인자율활동영역별 자유 선택활동(퍼"
+            }
+          ],
+          "status": "care_hours_found"
+        }
+      ],
+      "status": "care_hours_found",
+      "stale_file_year": false
+    },
+    {
+      "school_id": "B000003027",
+      "school_name": "인천부원초등학교",
+      "region": "인천광역시",
+      "files": [
+        {
+          "name": "2026학년도 초등돌봄교실 운영 계획.hwp",
+          "file_academic_year": 2026,
+          "sha256": "adab281ef99169c3e3ee53cc0caef1e6d37ebd5254b3555c47a5e0fb2277fd4f",
+          "format": "hwp",
+          "bytes": 208896,
+          "bytes_source": "download",
+          "text_chars": 29137,
+          "afternoon_end_candidates": {
+            "19:00": 2,
+            "17:00": 2,
+            "16:00": 1,
+            "16:30": 1
+          },
+          "morning_candidates": {},
+          "evening_mentions": [],
+          "grade_mentions": {
+            "1~2": 2,
+            "1~6": 2
+          },
+          "evidence": [
+            {
+              "line": 24,
+              "range": "방과후-19:00",
+              "context": "오후 돌봄교실 | 방과후 ~19:00 | 전용교실 (3실) | 맞벌이 가"
+            },
+            {
+              "line": 25,
+              "range": "방과후-17:00",
+              "context": "늘품꿈터 | 방과후 ~17:00 | 전용교실 (1실) | 1~6학년"
+            },
+            {
+              "line": 134,
+              "range": "13:00-16:00",
+              "context": "13:00~16:00 | 오후돌봄교실 단체 프로그램 참여"
+            },
+            {
+              "line": 392,
+              "range": "11:00-19:00",
+              "context": "여름방학, 겨울방학 | 11:00 ~ 19:00 8시간 (휴게시간 30분 포함) |"
+            },
+            {
+              "line": 392,
+              "range": "08:30-16:30",
+              "context": "~ 19:00 8시간 (휴게시간 30분 포함) | 방학 중 수요 반영 8:30 ~16:30  또는 9:00 ~ 17:00"
+            },
+            {
+              "line": 392,
+              "range": "09:00-17:00",
+              "context": "시간 30분 포함) | 방학 중 수요 반영 8:30 ~16:30  또는 9:00 ~ 17:00   8시간(휴게시간 30분 포함)"
+            }
+          ],
+          "status": "care_hours_found"
+        },
+        {
+          "name": "2026학년도 늘봄학교(방과후 및 맞춤형 프로그램) 운영 계획.hwp",
+          "file_academic_year": 2026,
+          "sha256": "4aecce49fd0146278b03f06580739edd014aaabf0331cecba56ea96d85c2939f",
+          "format": "hwp",
+          "bytes": 143360,
+          "bytes_source": "download",
+          "text_chars": 26033,
+          "afternoon_end_candidates": {},
+          "morning_candidates": {
+            "08:30-08:40": 1
+          },
+          "evening_mentions": [],
+          "grade_mentions": {},
+          "evidence": [
+            {
+              "line": 306,
+              "range": "08:30-08:40",
+              "context": "(1) 등교 권장시간(8:30~8:40) 이전에 등교가 필요한 학생을 위하"
+            }
+          ],
+          "status": "no_care_hours_detected"
+        }
+      ],
+      "status": "care_hours_found",
+      "stale_file_year": false
+    },
+    {
+      "school_id": "B000025189",
+      "school_name": "인천송명초등학교",
+      "region": "인천광역시",
+      "files": [
+        {
+          "name": "송명_2026년 초등방과후돌봄 통합 운영계획(안).hwp",
+          "file_academic_year": 2026,
+          "sha256": "aee5c429e7204eef9198605fd1db0ca9794d51d0d5bec12da10c2faa8ea0176f",
+          "format": "hwp",
+          "bytes": 6205952,
+          "bytes_source": "download",
+          "text_chars": 87886,
+          "afternoon_end_candidates": {
+            "16:30": 4,
+            "19:00": 2,
+            "16:45": 2,
+            "16:00": 1
+          },
+          "morning_candidates": {},
+          "evening_mentions": [],
+          "grade_mentions": {
+            "1~2": 8,
+            "1~6": 4
+          },
+          "evidence": [
+            {
+              "line": 800,
+              "range": "방과후-19:00",
+              "context": "오후 돌봄 | 방과 후  ~ 19:00 | 도담1,,도담2 도담3, 도담4"
+            },
+            {
+              "line": 801,
+              "range": "방과후-16:00",
+              "context": "늘품꿈터 | 방과후 ~16:00 | 늘품꿈터 1실 | 1~6학년:늘"
+            },
+            {
+              "line": 802,
+              "range": "08:30-16:30",
+              "context": "방학 중 돌봄 | 8:30 ~16:30 | 전용교실 | 학기중 돌봄교실에"
+            },
+            {
+              "line": 873,
+              "range": "11:00-19:00",
+              "context": "- 돌봄전담사 전원 근무시간 11:00~19:00 (주 40시간, 휴게시간 30분 포"
+            },
+            {
+              "line": 1097,
+              "range": "08:30-16:30",
+              "context": "- 오후돌봄 운영 시간: 8:30 ~ 16:30 (변경 가능) *방학 전 수요조사를"
+            },
+            {
+              "line": 1158,
+              "range": "12:00-16:45",
+              "context": "터 교실  -여름방학 특강: 9:00 ~ 11:50  - 분기별 강좌: 12:00 ~ 16:45 ‣오후돌봄교실: 8:30 ~ 16:"
+            },
+            {
+              "line": 1158,
+              "range": "08:30-16:30",
+              "context": "11:50  - 분기별 강좌: 12:00 ~ 16:45 ‣오후돌봄교실: 8:30 ~ 16:30 ‣늘품꿈터 8:30 ~ 10:30"
+            },
+            {
+              "line": 1158,
+              "range": "12:00-16:45",
+              "context": "터 교실  -겨울방학 특강: 9:00 ~ 11:50  - 분기별 강좌: 12:00 ~ 16:45 ‣오후돌봄교실 8:30 ~ 16:3"
+            },
+            {
+              "line": 1158,
+              "range": "08:30-16:30",
+              "context": "11:50  - 분기별 강좌: 12:00 ~ 16:45 ‣오후돌봄교실 8:30 ~ 16:30 ‣늘품꿈터 8:30 ~ 10:30"
+            }
+          ],
+          "status": "care_hours_found"
+        }
+      ],
+      "status": "care_hours_found",
+      "stale_file_year": false
+    },
+    {
+      "school_id": "B000006819",
+      "school_name": "청산초등학교",
+      "region": "전라남도",
+      "files": [
+        {
+          "name": "2026학년도 청산초등학교 방과후학교 운영계획.hwpx",
+          "file_academic_year": 2026,
+          "sha256": "54677c95600b4647e3b8ae1c68b0e189f865a8fecb743e77836727752eaff57a",
+          "format": "hwpx",
+          "bytes": 96659,
+          "bytes_source": "download",
+          "text_chars": 8810,
+          "afternoon_end_candidates": {
+            "16:20": 1
+          },
+          "morning_candidates": {},
+          "evening_mentions": [],
+          "grade_mentions": {
+            "1~2": 1
+          },
+          "evidence": [
+            {
+              "line": 77,
+              "range": "15:40-16:20",
+              "context": "우쿠렐레 | 월 | 1~2학년 | 15:40~16:20 | 돌봄교실 |"
+            }
+          ],
+          "status": "care_hours_found"
+        },
+        {
+          "name": "2026학년도 청산초등학교 초등돌봄교실 운영 계획.hwp",
+          "file_academic_year": 2026,
+          "sha256": "296caef71cda5d66806021cbe63d78ba73a258332285b7ed164a6ec6808398e3",
+          "format": "hwp",
+          "bytes": 190464,
+          "bytes_source": "download",
+          "text_chars": 16824,
+          "afternoon_end_candidates": {},
+          "morning_candidates": {},
+          "evening_mentions": [],
+          "grade_mentions": {
+            "1~2": 1,
+            "1~6": 1
+          },
+          "evidence": [],
+          "status": "no_care_hours_detected"
+        }
+      ],
+      "status": "care_hours_found",
+      "stale_file_year": false
+    },
+    {
+      "school_id": "B000006780",
+      "school_name": "영광중앙초등학교",
+      "region": "전라남도",
+      "files": [
+        {
+          "name": "2026학년도 방과후학교 운영계획.hwp",
+          "file_academic_year": 2026,
+          "sha256": "31e0f64f16333b371f38433f559993c2f245abfd410650e9b84714ffdd3f81d1",
+          "format": "hwp",
+          "bytes": 103936,
+          "bytes_source": "download",
+          "text_chars": 11018,
+          "afternoon_end_candidates": {},
+          "morning_candidates": {},
+          "evening_mentions": [],
+          "grade_mentions": {
+            "1~2": 2
+          },
+          "evidence": [],
+          "status": "no_care_hours_detected"
+        }
+      ],
+      "status": "no_care_hours_detected",
+      "stale_file_year": false
+    },
+    {
+      "school_id": "B000006822",
+      "school_name": "노화북초등학교",
+      "region": "전라남도",
+      "files": [
+        {
+          "name": "2026학년도 초등돌봄교실 운영 계획.hwp",
+          "file_academic_year": 2026,
+          "sha256": "391dab4bd4bb4ec445482d052da6f24c9a964141a57291fc1731d974e680f337",
+          "format": "hwp",
+          "bytes": 81408,
+          "bytes_source": "download",
+          "text_chars": 4132,
+          "afternoon_end_candidates": {
+            "17:00": 2,
+            "16:00": 1,
+            "16:30": 1
+          },
+          "morning_candidates": {},
+          "evening_mentions": [
+            {
+              "range": "17:00-19:00",
+              "line": 14
+            },
+            {
+              "range": "17:00-19:00",
+              "line": 20
+            },
+            {
+              "range": "17:00-19:00",
+              "line": 58
+            }
+          ],
+          "grade_mentions": {
+            "1~4": 1,
+            "1~2": 1,
+            "3~4": 1
+          },
+          "evidence": [
+            {
+              "line": 13,
+              "range": "방과후-17:00",
+              "context": "오후돌봄 | 방과후 ~ 17:00 | 1~4학년 희망 학생 중  맞벌"
+            },
+            {
+              "line": 14,
+              "range": "17:00-19:00",
+              "context": "저녁돌봄 | 17:00 ~ 19:00 | 오후돌봄교실 신청자에 한함 |"
+            },
+            {
+              "line": 19,
+              "range": "방과후-17:00",
+              "context": "1) 오후돌봄: 주5일 방과후 ~ 17:00"
+            },
+            {
+              "line": 20,
+              "range": "17:00-19:00",
+              "context": "2) 저녁돌봄: 주5일 17:00 ~ 19:00"
+            },
+            {
+              "line": 21,
+              "range": "09:00-16:00",
+              "context": "3) 방학 중 돌봄: 주5일 09:00 ~ 16:00"
+            },
+            {
+              "line": 58,
+              "range": "17:00-19:00",
+              "context": "저녁 돌봄 | 17:00~19:00 | 개별 놀이 활동, 과제, 자기"
+            },
+            {
+              "line": 69,
+              "range": "16:00-16:30",
+              "context": "16:00~16:30 | 돌봄 행정 업무 및 정리정돈 |"
+            }
+          ],
+          "status": "care_hours_found"
+        },
+        {
+          "name": "2026학년도 방과후학교 운영 계획.hwp",
+          "file_academic_year": 2026,
+          "sha256": "fd804356b3d38ecff54b6f656cc9c7546fdf3f664da96cb7ef68002df394c5a1",
+          "format": "hwp",
+          "bytes": 268800,
+          "bytes_source": "download",
+          "text_chars": 6207,
+          "afternoon_end_candidates": {},
+          "morning_candidates": {},
+          "evening_mentions": [],
+          "grade_mentions": {},
+          "evidence": [],
+          "status": "no_care_hours_detected"
+        }
+      ],
+      "status": "care_hours_found",
+      "stale_file_year": false
+    },
+    {
+      "school_id": "B000006546",
+      "school_name": "문평초등학교",
+      "region": "전라남도",
+      "files": [
+        {
+          "name": "2026. 초등돌봄교실 운영 계획.hwp",
+          "file_academic_year": 2026,
+          "sha256": "cd32910076269e048d2d6d7c7297627a43ac8a9103474f41b9fcf591e61de045",
+          "format": "hwp",
+          "bytes": 108032,
+          "bytes_source": "download",
+          "text_chars": 6406,
+          "afternoon_end_candidates": {},
+          "morning_candidates": {},
+          "evening_mentions": [],
+          "grade_mentions": {
+            "1~2": 1
+          },
+          "evidence": [],
+          "status": "no_care_hours_detected"
+        },
+        {
+          "name": "2026학년도 방과후학교 (연간)운영계획.hwp",
+          "file_academic_year": 2026,
+          "sha256": "425c365618bb80e245498669a97dfae5e641a4e90671cf831c0320c47955ff20",
+          "format": "hwp",
+          "bytes": 157184,
+          "bytes_source": "download",
+          "text_chars": 16363,
+          "afternoon_end_candidates": {
+            "16:30": 1
+          },
+          "morning_candidates": {},
+          "evening_mentions": [],
+          "grade_mentions": {},
+          "evidence": [
+            {
+              "line": 54,
+              "range": "15:50-16:30",
+              "context": "8교시 15:50~ 16:30 | 돌봄 | 돌봄 | 방과후 학력"
+            }
+          ],
+          "status": "care_hours_found"
+        }
+      ],
+      "status": "care_hours_found",
+      "stale_file_year": false
+    },
+    {
+      "school_id": "B000006872",
+      "school_name": "가거도초등학교",
+      "region": "전라남도",
+      "files": [
+        {
+          "name": "2026학년도 방과후학교 운영 계획.hwp",
+          "file_academic_year": 2026,
+          "sha256": "c18df6bd00051f83c768d0d963626593eea33bbb1d163863354aa14cca466f99",
+          "format": "hwp",
+          "bytes": 108032,
+          "bytes_source": "download",
+          "text_chars": 11359,
+          "afternoon_end_candidates": {
+            "16:00": 1,
+            "16:40": 1
+          },
+          "morning_candidates": {},
+          "evening_mentions": [],
+          "grade_mentions": {},
+          "evidence": [
+            {
+              "line": 192,
+              "range": "15:20-16:00",
+              "context": "스피치(1,3) | 창의수학(1,3) 전통놀이(5,6) | / 8교시 (15:20~16:00) | 창의수학(5,6) 전통놀이(1"
+            },
+            {
+              "line": 192,
+              "range": "16:00-16:40",
+              "context": "스피치(1,3) | 창의수학(5,6) 전통놀이(1,3) | / 9교시 (16:00~16:40) | 한자(1,3) |  | 자신감"
+            }
+          ],
+          "status": "care_hours_found"
+        }
+      ],
+      "status": "care_hours_found",
+      "stale_file_year": false
+    },
+    {
+      "school_id": "B000006457",
+      "school_name": "소라초등학교소라남분교장",
+      "region": "전라남도",
+      "files": [
+        {
+          "name": "2026학년도 소라초 방과후학교 운영 계획.pdf",
+          "file_academic_year": 2026,
+          "sha256": "13b00462471714908bb854cae174ca893d14a557c8f36621361e774a9ea7cf9a",
+          "format": "pdf",
+          "bytes": 265893,
+          "bytes_source": "download",
+          "text_chars": 7900,
+          "afternoon_end_candidates": {},
+          "morning_candidates": {},
+          "evening_mentions": [],
+          "grade_mentions": {},
+          "evidence": [],
+          "status": "no_care_hours_detected"
+        }
+      ],
+      "status": "no_care_hours_detected",
+      "stale_file_year": false
+    },
+    {
+      "school_id": "B000006702",
+      "school_name": "마량초등학교",
+      "region": "전라남도",
+      "files": [
+        {
+          "name": "2026. 돌봄교실 운영계획.hwp",
+          "file_academic_year": 2026,
+          "sha256": "0b8afc39eb8ee59af6046a3815553fce5ca528f884a381c1227db8801c130235",
+          "format": "hwp",
+          "bytes": 131584,
+          "bytes_source": "download",
+          "text_chars": 20190,
+          "afternoon_end_candidates": {
+            "17:00": 1
+          },
+          "morning_candidates": {},
+          "evening_mentions": [
+            {
+              "range": "17:00-19:00",
+              "line": 28
+            },
+            {
+              "range": "17:00-19:00",
+              "line": 42
+            },
+            {
+              "range": "17:00-19:00",
+              "line": 323
+            }
+          ],
+          "grade_mentions": {
+            "1~4": 5
+          },
+          "evidence": [
+            {
+              "line": 28,
+              "range": "17:00-19:00",
+              "context": "- 오후 돌봄 : 13:20～17:00  - 저녁 돌봄 : 17:00 ~ 19:00"
+            },
+            {
+              "line": 41,
+              "range": "13:20-17:00",
+              "context": "오후 돌봄 | 13:20~17:00 | 돌봄교실  | 1~4학년 중 저"
+            },
+            {
+              "line": 42,
+              "range": "17:00-19:00",
+              "context": "저녁 돌봄 | 17:00~19:00 | 돌봄교실  | 오후 돌봄 참여"
+            },
+            {
+              "line": 323,
+              "range": "17:00-19:00",
+              "context": "저녁돌봄 참여 *17:00~19:00 | □ 희망  □ 미희망  | 저녁"
+            }
+          ],
+          "status": "care_hours_found"
+        },
+        {
+          "name": "2026.방과후학교 운영계획.hwp",
+          "file_academic_year": 2026,
+          "sha256": "9d25bf021f97f3d2d8e302dc8e201605ed1cd61fe8d0cdaf7e20a393e045bee4",
+          "format": "hwp",
+          "bytes": 181760,
+          "bytes_source": "download",
+          "text_chars": 13211,
+          "afternoon_end_candidates": {},
+          "morning_candidates": {},
+          "evening_mentions": [],
+          "grade_mentions": {},
+          "evidence": [],
+          "status": "no_care_hours_detected"
+        }
+      ],
+      "status": "care_hours_found",
+      "stale_file_year": false
+    },
+    {
+      "school_id": "B000006749",
+      "school_name": "일로동초등학교",
+      "region": "전라남도",
+      "files": [
+        {
+          "name": "2026. 일로동초등학교 방과후학교 운영계획.hwp",
+          "file_academic_year": 2026,
+          "sha256": "bb07c8b63652b0b4200c2275b0c7cd6c6ac0fc2626c504aa71558a5eabf32159",
+          "format": "hwp",
+          "bytes": 128512,
+          "bytes_source": "download",
+          "text_chars": 14581,
+          "afternoon_end_candidates": {},
+          "morning_candidates": {},
+          "evening_mentions": [],
+          "grade_mentions": {},
+          "evidence": [],
+          "status": "no_care_hours_detected"
+        }
+      ],
+      "status": "no_care_hours_detected",
+      "stale_file_year": false
+    },
+    {
+      "school_id": "B000006755",
+      "school_name": "삼향초등학교",
+      "region": "전라남도",
+      "files": [
+        {
+          "name": "2026학년도 삼향초 초등 돌봄.방과후학교 운영 계획.hwp",
+          "file_academic_year": 2026,
+          "sha256": "85fac7874dd8129fdeaf41948a24cafc3261bc291c583faa1c15a60bbd4ed949",
+          "format": "hwp",
+          "bytes": 209408,
+          "bytes_source": "download",
+          "text_chars": 22785,
+          "afternoon_end_candidates": {
+            "17:00": 2,
+            "16:10": 2,
+            "19:00": 1,
+            "16:00": 1
+          },
+          "morning_candidates": {},
+          "evening_mentions": [],
+          "grade_mentions": {
+            "1~2": 2
+          },
+          "evidence": [
+            {
+              "line": 110,
+              "range": "11:00-19:00",
+              "context": "돌봄교실 (주 40시간) | 11:00 ~ 19:00 (휴게시간 : 12:00 ~ 12:"
+            },
+            {
+              "line": 110,
+              "range": "09:00-17:00",
+              "context": "11:00 ~ 19:00 (휴게시간 : 12:00 ~ 12:30) | 09:00~17:00 (휴게시간: 15:30~16:00)"
+            },
+            {
+              "line": 110,
+              "range": "15:30-16:00",
+              "context": "간 : 12:00 ~ 12:30) | 09:00~17:00 (휴게시간: 15:30~16:00)  (업무시간 : 16:00~17:"
+            },
+            {
+              "line": 110,
+              "range": "16:00-17:00",
+              "context": "9:00~17:00 (휴게시간: 15:30~16:00)  (업무시간 : 16:00~17:00) |"
+            },
+            {
+              "line": 148,
+              "range": "15:30-16:10",
+              "context": ", 수 (주2회) | 돌봄1(화) 14:40 ~ 15:20 돌봄2(화) 15:30 ~ 16:10 돌봄1(수) 13:10 ~ 13:5"
+            },
+            {
+              "line": 149,
+              "range": "15:30-16:10",
+              "context": ":10 ~ 13:50 돌봄2(수) 14:00 ~ 14:40 돌봄1(금) 15:30 ~ 16:10 돌봄2(금) 14:40 ~ 15:2"
+            }
+          ],
+          "status": "care_hours_found"
+        }
+      ],
+      "status": "care_hours_found",
+      "stale_file_year": false
+    },
+    {
+      "school_id": "B000006701",
+      "school_name": "신전초등학교",
+      "region": "전라남도",
+      "files": [
+        {
+          "name": "2026. 초등돌봄교실 운영 계획(안).hwp",
+          "file_academic_year": 2026,
+          "sha256": "f680f07eb28384fdd7b99d3cd225742a77222ace1e600354062322cf41805819",
+          "format": "hwp",
+          "bytes": 114688,
+          "bytes_source": "download",
+          "text_chars": 21020,
+          "afternoon_end_candidates": {
+            "18:30": 1,
+            "16:00": 1,
+            "16:10": 1,
+            "16:20": 1
+          },
+          "morning_candidates": {
+            "07:30-08:00": 1
+          },
+          "evening_mentions": [
+            {
+              "range": "17:00-18:20",
+              "line": 114
+            }
+          ],
+          "grade_mentions": {
+            "1~2": 5,
+            "3~6": 2
+          },
+          "evidence": [
+            {
+              "line": 23,
+              "range": "방과후-18:30",
+              "context": "학기중 | 오후  및 저녁 돌봄 | 매일(월-금) | 방과후~18:30 통학차운영 *16:20경출발이후 개"
+            },
+            {
+              "line": 95,
+              "range": "14:40-16:00",
+              "context": "5 | 돌봄 영어독서 | 학기중(화) | 14:40-16:00 | 주당 총2시수 | 방과후 외부강"
+            },
+            {
+              "line": 111,
+              "range": "15:30-16:10",
+              "context": "4교시 15:30~16:10 | 교구활동 | 돌봄영어독서 | 교"
+            },
+            {
+              "line": 112,
+              "range": "16:10-16:20",
+              "context": "16:10 –16:20 1차귀가지도 | 오후돌봄 정리정돈"
+            },
+            {
+              "line": 114,
+              "range": "17:00-18:20",
+              "context": "17:00 – 18:20 개별활동 | ※저녁돌봄 희망시간 수"
+            },
+            {
+              "line": 118,
+              "range": "07:30-08:00",
+              "context": "7:30~8:00 | 돌봄교실 운영업무  |"
+            }
+          ],
+          "status": "care_hours_found"
+        },
+        {
+          "name": "2026학년도 방과후학교 프로그램 운영 계획 .hwp",
+          "file_academic_year": 2026,
+          "sha256": "ce4a552efd471ebf156da952f4c496f58bec772023a2e226cbfaa6462f13a532",
+          "format": "hwp",
+          "bytes": 80896,
+          "bytes_source": "download",
+          "text_chars": 12291,
+          "afternoon_end_candidates": {},
+          "morning_candidates": {},
+          "evening_mentions": [],
+          "grade_mentions": {
+            "1~2": 2
+          },
+          "evidence": [],
+          "status": "no_care_hours_detected"
+        }
+      ],
+      "status": "care_hours_found",
+      "stale_file_year": false
+    },
+    {
+      "school_id": "B000002211",
+      "school_name": "서울지향초등학교",
+      "region": "서울특별시",
+      "files": [
+        {
+          "name": "2026학년도 지향초 초등돌봄교실 운영 계획.hwp",
+          "file_academic_year": 2026,
+          "sha256": "b5cc7db78cd303b3168c3c6a206190ea4e178519e624e83972c9eaa96622ba05",
+          "format": "hwp",
+          "bytes": 214528,
+          "bytes_source": "download",
+          "text_chars": 11536,
+          "afternoon_end_candidates": {
+            "18:00": 1
+          },
+          "morning_candidates": {
+            "07:30-09:00": 1
+          },
+          "evening_mentions": [
+            {
+              "range": "18:00-19:00",
+              "line": 27
+            }
+          ],
+          "grade_mentions": {
+            "1~6": 1
+          },
+          "evidence": [
+            {
+              "line": 25,
+              "range": "07:30-09:00",
+              "context": "1) 아침돌봄: 07:30 ~ 09:00"
+            },
+            {
+              "line": 26,
+              "range": "방과후-18:00",
+              "context": "2) 오후돌봄: 하교 후 ~ 18:00"
+            },
+            {
+              "line": 27,
+              "range": "18:00-19:00",
+              "context": "3) 저녁돌봄: 18:00 ~ 19:00"
+            }
+          ],
+          "status": "care_hours_found"
+        },
+        {
+          "name": "2026학년도 지향초 방과후학교 운영계획.hwp",
+          "file_academic_year": 2026,
+          "sha256": "9711d55dacd510369c8b10b5cac3c9e39c2cd75261c7ed91b8729a468e8f9f0b",
+          "format": "hwp",
+          "bytes": 108544,
+          "bytes_source": "download",
+          "text_chars": 15381,
+          "afternoon_end_candidates": {},
+          "morning_candidates": {},
+          "evening_mentions": [],
+          "grade_mentions": {},
+          "evidence": [],
+          "status": "no_care_hours_detected"
+        }
+      ],
+      "status": "care_hours_found",
+      "stale_file_year": false
+    },
+    {
+      "school_id": "B000001882",
+      "school_name": "서울신도초등학교",
+      "region": "서울특별시",
+      "files": [
+        {
+          "name": "신도초_25학년도_늘봄학교_운영결과보고서_최종.hwp",
+          "file_academic_year": null,
+          "sha256": "a100b06bf5002be2dadc0822d9b7153e143604b46ddbccfa6d8bcf9e9813d5bf",
+          "format": "hwp",
+          "bytes": 123392,
+          "bytes_source": "download",
+          "text_chars": 9904,
+          "afternoon_end_candidates": {},
+          "morning_candidates": {},
+          "evening_mentions": [],
+          "grade_mentions": {},
+          "evidence": [],
+          "status": "no_care_hours_detected"
+        },
+        {
+          "name": "(학운위 추가)2026학년도 방과후돌봄 운영계획 변경사항 및 확정강사료 심의(안).hwp",
+          "file_academic_year": 2026,
+          "sha256": "c5e5bc06dfae1ab5e73621df00010b78e0f315977a8f52cbdf00e082cf5ad86c",
+          "format": "hwp",
+          "bytes": 161792,
+          "bytes_source": "download",
+          "text_chars": 43729,
+          "afternoon_end_candidates": {},
+          "morning_candidates": {},
+          "evening_mentions": [],
+          "grade_mentions": {
+            "1~6": 2,
+            "1~2": 1
+          },
+          "evidence": [],
+          "status": "no_care_hours_detected"
+        },
+        {
+          "name": "방과후학교 과목별 운영 현황.xlsx",
+          "file_academic_year": null,
+          "sha256": "a9c4244ed6c92483df5570a9fce49deb2ab24eec8ceecd257a913f494b62a2ab",
+          "format": "hwpx",
+          "bytes": 10838,
+          "bytes_source": "download",
+          "text_chars": 0,
+          "afternoon_end_candidates": {},
+          "morning_candidates": {},
+          "evening_mentions": [],
+          "grade_mentions": {},
+          "evidence": [],
+          "status": "unreadable"
+        }
+      ],
+      "status": "no_care_hours_detected",
+      "stale_file_year": false
+    },
+    {
+      "school_id": "B000002151",
+      "school_name": "서울거여초등학교",
+      "region": "서울특별시",
+      "files": [
+        {
+          "name": "(거여초)2026학년도 방과후 운영계획(안).hwp",
+          "file_academic_year": 2026,
+          "sha256": "5480cab2be41c0d87b047d786df595062da5526226331a78f87acd5aacb29fb2",
+          "format": "hwp",
+          "bytes": 74240,
+          "bytes_source": "download",
+          "text_chars": 9784,
+          "afternoon_end_candidates": {},
+          "morning_candidates": {},
+          "evening_mentions": [],
+          "grade_mentions": {},
+          "evidence": [],
+          "status": "no_care_hours_detected"
+        },
+        {
+          "name": "(거여초)2025학년도 늘봄학교 운영 계획안.hwp",
+          "file_academic_year": 2025,
+          "sha256": "2ffdf4dafb3f15b4224ad51fa3e425bb62e855e5a8360f5b533a50ffc3929ee1",
+          "format": "hwp",
+          "bytes": 64000,
+          "bytes_source": "download",
+          "text_chars": 10588,
+          "afternoon_end_candidates": {},
+          "morning_candidates": {},
+          "evening_mentions": [],
+          "grade_mentions": {
+            "1~2": 1
+          },
+          "evidence": [],
+          "status": "no_care_hours_detected"
+        }
+      ],
+      "status": "no_care_hours_detected",
+      "stale_file_year": true
+    },
+    {
+      "school_id": "B000002280",
+      "school_name": "서울양전초등학교",
+      "region": "서울특별시",
+      "files": [
+        {
+          "name": "2026학년도 양전초등학교 초등돌봄교실 운영 계획.hwp",
+          "file_academic_year": 2026,
+          "sha256": "f11f979c9b4f5505eba3f492877091df91e23090ec8fb9ae3618efb8c7a2adac",
+          "format": "hwp",
+          "bytes": 110080,
+          "bytes_source": "download",
+          "text_chars": 2566,
+          "afternoon_end_candidates": {
+            "19:00": 1
+          },
+          "morning_candidates": {},
+          "evening_mentions": [],
+          "grade_mentions": {
+            "1~2": 2
+          },
+          "evidence": [
+            {
+              "line": 38,
+              "range": "08:00-19:00",
+              "context": "1) 돌봄교실: 08:00 ~ 19:00"
+            }
+          ],
+          "status": "care_hours_found"
+        },
+        {
+          "name": "2026학년도 양전초등학교 방과후학교 운영 계획.hwpx",
+          "file_academic_year": 2026,
+          "sha256": "b980e1fa5d456fdc978b01f702bbc0ff3fca3c5c33be5e36a313697b430c3908",
+          "format": "hwpx",
+          "bytes": 115631,
+          "bytes_source": "download",
+          "text_chars": 17722,
+          "afternoon_end_candidates": {
+            "16:50": 1
+          },
+          "morning_candidates": {},
+          "evening_mentions": [],
+          "grade_mentions": {
+            "1~6": 2,
+            "1~2": 1
+          },
+          "evidence": [
+            {
+              "line": 61,
+              "range": "15:40-16:50",
+              "context": "15:40~16:50 | 방과후학교 또는 돌봄교실 | 방"
+            }
+          ],
+          "status": "care_hours_found"
+        }
+      ],
+      "status": "care_hours_found",
+      "stale_file_year": false
+    },
+    {
+      "school_id": "B000001871",
+      "school_name": "서울묵현초등학교",
+      "region": "서울특별시",
+      "files": [
+        {
+          "name": "2026학년도 묵현초 초등돌봄교실 운영 계획.hwp",
+          "file_academic_year": 2026,
+          "sha256": "6cfd0ad0471a4382d57c0c7cdc70b06f71c0d780b5d453cc9b59c4a261b162c5",
+          "format": "hwp",
+          "bytes": 103936,
+          "bytes_source": "download",
+          "text_chars": 11313,
+          "afternoon_end_candidates": {
+            "17:00": 2,
+            "16:10": 1,
+            "18:00": 1
+          },
+          "morning_candidates": {
+            "07:00-09:00": 2
+          },
+          "evening_mentions": [
+            {
+              "range": "17:00-19:00",
+              "line": 23
+            },
+            {
+              "range": "17:00-19:00",
+              "line": 29
+            },
+            {
+              "range": "13:00-19:00",
+              "line": 76
+            }
+          ],
+          "grade_mentions": {
+            "1~3": 4,
+            "1~6": 2,
+            "3~6": 2
+          },
+          "evidence": [
+            {
+              "line": 20,
+              "range": "07:00-09:00",
+              "context": "아침돌봄 | 07:00 ~09:00 | 돌봄3반 | 1~6학년 | 1개"
+            },
+            {
+              "line": 22,
+              "range": "방과후-17:00",
+              "context": "오후돌봄 | 방과후 ~ 17:00 | 돌봄 1반, 2반, 3반 | 돌"
+            },
+            {
+              "line": 23,
+              "range": "17:00-19:00",
+              "context": "저녁돌봄 | 17:00 ~19:00 | 돌봄 1반, 3반 | 돌봄학생"
+            },
+            {
+              "line": 24,
+              "range": "방과후-16:10",
+              "context": "틈새(연계형)돌봄 | 방과후 ~ 16:10 | 연계형돌봄교실 | 3~6학년 |"
+            },
+            {
+              "line": 26,
+              "range": "07:00-09:00",
+              "context": "가. 아침돌봄 : 07:00 ~ 09:00(학기중 운영)"
+            },
+            {
+              "line": 28,
+              "range": "방과후-17:00",
+              "context": "다. 오후돌봄 : 방과후 ~ 17:00(연중 운영)"
+            },
+            {
+              "line": 29,
+              "range": "17:00-19:00",
+              "context": "라. 저녁돌봄 : 17:00 ~ 19:00(연중 운영)"
+            },
+            {
+              "line": 75,
+              "range": "10:00-18:00",
+              "context": "1) 돌봄전담사(전일제) : 1명(오후돌봄 : 10:00~18:00 /1일 8시간 근무) 주임전담사"
+            },
+            {
+              "line": 76,
+              "range": "13:00-19:00",
+              "context": "2) 돌봄전담사(시간제) : 2명(오후돌봄 : 13:00~19:00 /1일 6시간 근무) 저녁돌봄 학생"
+            }
+          ],
+          "status": "care_hours_found"
+        },
+        {
+          "name": "2026학년도 묵현초 방과후·맞춤형교실 프로그램 운영계획(수강료 및 교재 재료비).hwp",
+          "file_academic_year": 2026,
+          "sha256": "2d1a48a8e22b86f1a0a4713672fb690a8c03bfd4436bacac43f8af66ad7138ef",
+          "format": "hwp",
+          "bytes": 71680,
+          "bytes_source": "download",
+          "text_chars": 7006,
+          "afternoon_end_candidates": {},
+          "morning_candidates": {},
+          "evening_mentions": [],
+          "grade_mentions": {},
+          "evidence": [],
+          "status": "no_care_hours_detected"
+        },
+        {
+          "name": "2026학년도 묵현초 방과후·맞춤형교실 연간 운영 계획(안).hwp",
+          "file_academic_year": 2026,
+          "sha256": "0853cfc34bc2dd1c5b73c8ea1e168a3774688379ca36e61d28cfe0c82150326b",
+          "format": "hwp",
+          "bytes": 93696,
+          "bytes_source": "download",
+          "text_chars": 21552,
+          "afternoon_end_candidates": {},
+          "morning_candidates": {},
+          "evening_mentions": [],
+          "grade_mentions": {},
+          "evidence": [],
+          "status": "no_care_hours_detected"
+        }
+      ],
+      "status": "care_hours_found",
+      "stale_file_year": false
+    },
+    {
+      "school_id": "B000002329",
+      "school_name": "서울조원초등학교",
+      "region": "서울특별시",
+      "files": [
+        {
+          "name": "(학운위) 2026학년도 방과후 및 맞춤형 프로그램  운영 계획(안).hwp",
+          "file_academic_year": 2026,
+          "sha256": "f05cbbccf627dec98e5ed9ce4370efe977496f618e518a92ba837a2d52cee781",
+          "format": "hwp",
+          "bytes": 119296,
+          "bytes_source": "download",
+          "text_chars": 22625,
+          "afternoon_end_candidates": {},
+          "morning_candidates": {},
+          "evening_mentions": [],
+          "grade_mentions": {},
+          "evidence": [],
+          "status": "no_care_hours_detected"
+        }
+      ],
+      "status": "no_care_hours_detected",
+      "stale_file_year": false
+    },
+    {
+      "school_id": "B000002327",
+      "school_name": "서울신우초등학교",
+      "region": "서울특별시",
+      "files": [
+        {
+          "name": "2026학년도 돌봄교실 운영 계획 및 안전관리 계획(정보공시).hwp",
+          "file_academic_year": 2026,
+          "sha256": "f4dcde4a1f8db056922849b4de8a3ae498b59b2ceae47a5534f0a1da9b2b6c7c",
+          "format": "hwp",
+          "bytes": 112128,
+          "bytes_source": "download",
+          "text_chars": 18174,
+          "afternoon_end_candidates": {
+            "19:00": 5,
+            "18:00": 3,
+            "17:00": 1
+          },
+          "morning_candidates": {
+            "07:20-08:50": 1
+          },
+          "evening_mentions": [],
+          "grade_mentions": {
+            "1~3": 4,
+            "1~6": 3,
+            "2~3": 1,
+            "1~2": 1
+          },
+          "evidence": [
+            {
+              "line": 23,
+              "range": "07:20-08:50",
+              "context": "아침돌봄 | 07:20∼08:50 | ‣ 1~6학년 희망 학생 | ‣"
+            },
+            {
+              "line": 24,
+              "range": "방과후-19:00",
+              "context": "오후돌봄 (학기중) | 방과후∼19:00 | ‣ 1~3학년  맞벌이 가정 위"
+            },
+            {
+              "line": 25,
+              "range": "08:00-17:00",
+              "context": "자율휴업일   | 08:00~17:00 | ‣ 오후돌봄(학기 중) 입급 학"
+            },
+            {
+              "line": 26,
+              "range": "08:00-19:00",
+              "context": "오전 및 오후돌봄 (방학중) | 08:00∼19:00 | ‣ 오후돌봄(학기중) 입급 학생"
+            },
+            {
+              "line": 48,
+              "range": "방과후-19:00",
+              "context": "오후돌봄 | 방과후 ~ 19:00 | 전용 돌봄교실 (3학급) | ("
+            },
+            {
+              "line": 84,
+              "range": "10:00-18:00",
+              "context": "해오름반 | 전일제 돌봄전담사 | 10:00 ~ 18:00 (8시간) | -별, 달반: (월별"
+            },
+            {
+              "line": 85,
+              "range": "13:00-19:00",
+              "context": "별오름반 | 시간제 돌봄전담사 | 13:00 ~ 19:00 12:00~18:00 (6시간) |"
+            },
+            {
+              "line": 85,
+              "range": "12:00-18:00",
+              "context": "별오름반 | 시간제 돌봄전담사 | 13:00 ~ 19:00 12:00~18:00 (6시간) |"
+            },
+            {
+              "line": 86,
+              "range": "13:00-19:00",
+              "context": "달오름반 | 시간제 돌봄전담사 | 13:00 ~ 19:00 12:00~18:00 (6시간) |"
+            },
+            {
+              "line": 86,
+              "range": "12:00-18:00",
+              "context": "달오름반 | 시간제 돌봄전담사 | 13:00 ~ 19:00 12:00~18:00 (6시간) |"
+            }
+          ],
+          "status": "care_hours_found"
+        },
+        {
+          "name": "2026 방과후맞춤형 교실 연간 운영계획(정보공시).hwp",
+          "file_academic_year": 2026,
+          "sha256": "5a0814d68b3013adb8ec57afa79518964505657f2329694f93f290937048d290",
+          "format": "hwp",
+          "bytes": 1334784,
+          "bytes_source": "download",
+          "text_chars": 33054,
+          "afternoon_end_candidates": {},
+          "morning_candidates": {},
+          "evening_mentions": [],
+          "grade_mentions": {},
+          "evidence": [],
+          "status": "no_care_hours_detected"
+        }
+      ],
+      "status": "care_hours_found",
+      "stale_file_year": false
+    },
+    {
+      "school_id": "B000002017",
+      "school_name": "서울초당초등학교",
+      "region": "서울특별시",
+      "files": [
+        {
+          "name": "2026학년도 특수교육대상학생 방과후교실 운영 계획(안).hwp",
+          "file_academic_year": 2026,
+          "sha256": "44d946c1ce824bb75ac12e4a0cf60715fe9bdf1acf811f1bb070db5e6c684cdd",
+          "format": "hwp",
+          "bytes": 76288,
+          "bytes_source": "download",
+          "text_chars": 4078,
+          "afternoon_end_candidates": {},
+          "morning_candidates": {},
+          "evening_mentions": [],
+          "grade_mentions": {},
+          "evidence": [],
+          "status": "no_care_hours_detected"
+        },
+        {
+          "name": "2026학년도 초등돌봄교실 운영계획(안).hwp",
+          "file_academic_year": 2026,
+          "sha256": "e56a24bc0324a6c9cc679d6c0877167b42457eb21143ea1a8700bff1c5738c07",
+          "format": "hwp",
+          "bytes": 116224,
+          "bytes_source": "download",
+          "text_chars": 4920,
+          "afternoon_end_candidates": {
+            "17:00": 1,
+            "16:20": 1,
+            "19:00": 1
+          },
+          "morning_candidates": {},
+          "evening_mentions": [
+            {
+              "range": "17:00-19:00",
+              "line": 23
+            }
+          ],
+          "grade_mentions": {
+            "1~2": 1,
+            "3~6": 1
+          },
+          "evidence": [
+            {
+              "line": 17,
+              "range": "방과후-17:00",
+              "context": "오후돌봄 | 방과후∼17:00 | 행복의 교실 | 1~2학년 25"
+            },
+            {
+              "line": 20,
+              "range": "방과후-16:20",
+              "context": "틈새돌봄 | 방과후~16:20 -요일별 상이- | 틈새 1반 |"
+            },
+            {
+              "line": 23,
+              "range": "17:00-19:00",
+              "context": "저녁돌봄 | 17:00~19:00 (오후돌봄연장) | 전용 (3실)"
+            },
+            {
+              "line": 29,
+              "range": "11:00-19:00",
+              "context": "전일제 | 11:00∼19:00 (8시간) | 유･초･중등 교원자격"
+            }
+          ],
+          "status": "care_hours_found"
+        },
+        {
+          "name": "2026학년도 방과후·맞춤형교실 연간 운영 계획(안).hwp",
+          "file_academic_year": 2026,
+          "sha256": "11945c92beaafcc5a64895ae5148f7d49891c6b51ee3c22d3b295ac7b90b7e9a",
+          "format": "hwp",
+          "bytes": 213504,
+          "bytes_source": "download",
+          "text_chars": 16484,
+          "afternoon_end_candidates": {},
+          "morning_candidates": {},
+          "evening_mentions": [],
+          "grade_mentions": {},
+          "evidence": [],
+          "status": "no_care_hours_detected"
+        }
+      ],
+      "status": "care_hours_found",
+      "stale_file_year": false
+    },
+    {
+      "school_id": "B000002346",
+      "school_name": "서울신성초등학교",
+      "region": "서울특별시",
+      "files": [
+        {
+          "name": "신성초_방과후학교 지원 현황.xlsx",
+          "file_academic_year": null,
+          "sha256": "5fcdaa00b10c882d843ccc7e62a7384a4f53d09983edc2e82fa0ae9b93030b19",
+          "format": "hwpx",
+          "bytes": 123449,
+          "bytes_source": "download",
+          "text_chars": 0,
+          "afternoon_end_candidates": {},
+          "morning_candidates": {},
+          "evening_mentions": [],
+          "grade_mentions": {},
+          "evidence": [],
+          "status": "unreadable"
+        },
+        {
+          "name": "신성초_방과후학교 운영 현황.xlsx",
+          "file_academic_year": null,
+          "sha256": "b585c360d73c8d54cda10f1a68ce438356ef1644d9252e2f522b24c7e3606eb1",
+          "format": "hwpx",
+          "bytes": 33209,
+          "bytes_source": "download",
+          "text_chars": 0,
+          "afternoon_end_candidates": {},
+          "morning_candidates": {},
+          "evening_mentions": [],
+          "grade_mentions": {},
+          "evidence": [],
+          "status": "unreadable"
+        },
+        {
+          "name": "2026학년도 신성초 초등돌봄교실 운영 계획.hwp",
+          "file_academic_year": 2026,
+          "sha256": "bca925afcd507254bd2cc5bd9e1cccb772379afe3f4c8d8b1e8ab1776e187854",
+          "format": "hwp",
+          "bytes": 340480,
+          "bytes_source": "download",
+          "text_chars": 11432,
+          "afternoon_end_candidates": {
+            "17:00": 2,
+            "19:00": 1
+          },
+          "morning_candidates": {
+            "07:30-09:00": 2
+          },
+          "evening_mentions": [
+            {
+              "range": "17:00-19:00",
+              "line": 30
+            },
+            {
+              "range": "17:00-19:00",
+              "line": 40
+            }
+          ],
+          "grade_mentions": {
+            "1~2": 1,
+            "1~6": 1,
+            "1~3": 1
+          },
+          "evidence": [
+            {
+              "line": 28,
+              "range": "07:30-09:00",
+              "context": "아침돌봄 | 07:30 ~ 09:00 | 희망하는 모든 학생(1~6) |"
+            },
+            {
+              "line": 29,
+              "range": "13:00-17:00",
+              "context": "오후돌봄 | 13:00 ~ 17:00 | -저소득층.맞벌이.한부모.담임추"
+            },
+            {
+              "line": 30,
+              "range": "17:00-19:00",
+              "context": "저녁돌봄 | 17:00~19:00 |  | 없음 | 전용교실(1실)"
+            },
+            {
+              "line": 38,
+              "range": "07:30-09:00",
+              "context": "- 아침돌봄: 주5일 07:30~09:00"
+            },
+            {
+              "line": 39,
+              "range": "13:00-17:00",
+              "context": "- 오후돌봄: 주5일 13:00~17:00"
+            },
+            {
+              "line": 40,
+              "range": "17:00-19:00",
+              "context": "- 저녁돌봄: 주5일 17:00~19:00"
+            },
+            {
+              "line": 185,
+              "range": "16:00-19:00",
+              "context": "16:00 ~ 19:00 |  자유선택놀이 ( 레고, 자석블"
+            }
+          ],
+          "status": "care_hours_found"
+        },
+        {
+          "name": "2026학년도 신성초 방과후학교 프로그램 운영 계획.hwp",
+          "file_academic_year": 2026,
+          "sha256": "eb881a0ee78802822992a5926e16c2a240f9a471bf1e5d31878e2c4548f56e85",
+          "format": "hwp",
+          "bytes": 131072,
+          "bytes_source": "download",
+          "text_chars": 8417,
+          "afternoon_end_candidates": {},
+          "morning_candidates": {},
+          "evening_mentions": [],
+          "grade_mentions": {},
+          "evidence": [],
+          "status": "no_care_hours_detected"
+        }
+      ],
+      "status": "care_hours_found",
+      "stale_file_year": false
+    },
+    {
+      "school_id": "B000002186",
+      "school_name": "서울신은초등학교",
+      "region": "서울특별시",
+      "files": [
+        {
+          "name": "2026학년도 초등돌봄교실 운영계획(안).hwp",
+          "file_academic_year": 2026,
+          "sha256": "d965598bf0937ef9714e6cb96c391cb825c98f6862c0dca9f1882d6e56c40655",
+          "format": "hwp",
+          "bytes": 249856,
+          "bytes_source": "download",
+          "text_chars": 21358,
+          "afternoon_end_candidates": {
+            "17:30": 1
+          },
+          "morning_candidates": {
+            "07:00-09:00": 1
+          },
+          "evening_mentions": [],
+          "grade_mentions": {
+            "1~2": 3,
+            "3~5": 3,
+            "1~5": 2
+          },
+          "evidence": [
+            {
+              "line": 66,
+              "range": "09:30-17:30",
+              "context": "돌봄교실 | 돌봄전담사 | 다솜반(전일제): 09:30~17:30 | 방학 및 학교 일정에 따라 협의"
+            },
+            {
+              "line": 69,
+              "range": "07:00-09:00",
+              "context": "아침돌봄 | 봉사직 위촉 | 07:00~09:00 | 학기 중 운영 |"
+            }
+          ],
+          "status": "care_hours_found"
+        },
+        {
+          "name": "2026학년도 신은초 맞춤형교실&amp;amp;방과후교실(위탁+민참) 프로그램 연간운영계획.hwp",
+          "file_academic_year": 2026,
+          "sha256": "5349e96ca512892a6957583b72d7e2b14f0000faf5bb1d562290f49635255046",
+          "format": "hwp",
+          "bytes": 101376,
+          "bytes_source": "download",
+          "text_chars": 25583,
+          "afternoon_end_candidates": {},
+          "morning_candidates": {},
+          "evening_mentions": [],
+          "grade_mentions": {
+            "1~2": 1
+          },
+          "evidence": [],
+          "status": "no_care_hours_detected"
+        }
+      ],
+      "status": "care_hours_found",
+      "stale_file_year": false
+    }
+  ]
+}

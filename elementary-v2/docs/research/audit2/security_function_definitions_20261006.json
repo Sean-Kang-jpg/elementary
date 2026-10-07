@@ -1,0 +1,26 @@
+[
+  {
+    "name": "create_apartment_school_mapping",
+    "definition": "CREATE OR REPLACE FUNCTION public.create_apartment_school_mapping(apartment_id integer, school_id integer, mapping_rank integer DEFAULT 1, is_primary boolean DEFAULT false, confidence_score numeric DEFAULT NULL::numeric, matching_method character varying DEFAULT 'manual'::character varying, is_verified boolean DEFAULT false)\n RETURNS integer\n LANGUAGE plpgsql\nAS $function$\r\nDECLARE\r\n    mapping_id INTEGER;\r\nBEGIN\r\n    -- 매핑 생성 (UPSERT)\r\n    INSERT INTO apartment_school_mappings (\r\n        apartment_id, school_id, mapping_rank, is_primary,\r\n        confidence_score, matching_method, is_verified\r\n    )\r\n    VALUES (\r\n        apartment_id, school_id, mapping_rank, is_primary,\r\n        confidence_score, matching_method, is_verified\r\n    )\r\n    ON CONFLICT (apartment_id, school_id)\r\n    DO UPDATE SET\r\n        mapping_rank = EXCLUDED.mapping_rank,\r\n        is_primary = EXCLUDED.is_primary,\r\n        confidence_score = EXCLUDED.confidence_score,\r\n        matching_method = EXCLUDED.matching_method,\r\n        is_verified = EXCLUDED.is_verified\r\n    RETURNING mapping_id INTO mapping_id;\r\n\r\n    -- Primary 매핑 업데이트 (한 아파트당 하나의 primary만)\r\n    IF is_primary = TRUE THEN\r\n        UPDATE apartment_school_mappings\r\n        SET is_primary = FALSE\r\n        WHERE apartment_id = create_apartment_school_mapping.apartment_id\r\n        AND school_id != create_apartment_school_mapping.school_id;\r\n    END IF;\r\n\r\n    RETURN mapping_id;\r\nEND;\r\n$function$\n"
+  },
+  {
+    "name": "etl_staging_depth",
+    "definition": "CREATE OR REPLACE FUNCTION public.etl_staging_depth()\n RETURNS TABLE(estimated_rows bigint, total_bytes bigint, runs_with_rows bigint)\n LANGUAGE sql\n STABLE SECURITY DEFINER\n SET search_path TO 'public', 'pg_temp'\nAS $function$\r\n    SELECT\r\n        GREATEST(c.reltuples, 0)::BIGINT AS estimated_rows,\r\n        pg_total_relation_size('public.etl_staging_rows')::BIGINT AS total_bytes,\r\n        (SELECT COUNT(DISTINCT run_id) FROM etl_staging_rows)::BIGINT AS runs_with_rows\r\n    FROM pg_class c\r\n    JOIN pg_namespace n ON n.oid = c.relnamespace\r\n    WHERE n.nspname = 'public' AND c.relname = 'etl_staging_rows';\r\n$function$\n"
+  },
+  {
+    "name": "is_etl_admin",
+    "definition": "CREATE OR REPLACE FUNCTION public.is_etl_admin()\n RETURNS boolean\n LANGUAGE sql\n STABLE SECURITY DEFINER\n SET search_path TO 'public', 'pg_temp'\nAS $function$\r\n    SELECT EXISTS (\r\n        SELECT 1 FROM etl_admin_users\r\n        WHERE user_id = auth.uid()\r\n    );\r\n$function$\n"
+  },
+  {
+    "name": "public_table_sizes",
+    "definition": "CREATE OR REPLACE FUNCTION public.public_table_sizes()\n RETURNS TABLE(table_name text, total_bytes bigint, heap_bytes bigint, index_bytes bigint)\n LANGUAGE sql\n STABLE SECURITY DEFINER\n SET search_path TO 'public', 'pg_temp'\nAS $function$\r\n    SELECT\r\n        c.relname::TEXT,\r\n        pg_total_relation_size(c.oid)::BIGINT,\r\n        pg_relation_size(c.oid)::BIGINT,\r\n        pg_indexes_size(c.oid)::BIGINT\r\n    FROM pg_class c\r\n    JOIN pg_namespace n ON n.oid = c.relnamespace\r\n    WHERE n.nspname = 'public' AND c.relkind = 'r'\r\n    ORDER BY pg_total_relation_size(c.oid) DESC;\r\n$function$\n"
+  },
+  {
+    "name": "update_all_apartment_normalized_data",
+    "definition": "CREATE OR REPLACE FUNCTION public.update_all_apartment_normalized_data()\n RETURNS integer\n LANGUAGE plpgsql\nAS $function$\r\nDECLARE\r\n    updated_count INTEGER := 0;\r\nBEGIN\r\n    UPDATE apartments SET\r\n        apartment_name_normalized = normalize_apartment_name(apartment_name),\r\n        road_address_normalized = normalize_address(road_address),\r\n        city = parse_city_from_address(road_address),\r\n        district = parse_district_from_address(road_address),\r\n        data_quality_score = calculate_apartment_quality_score(\r\n            apartment_name, road_address, latitude, longitude, total_households, primary_school_id\r\n        )\r\n    WHERE apartment_name_normalized IS NULL\r\n       OR road_address_normalized IS NULL\r\n       OR city IS NULL;\r\n\r\n    GET DIAGNOSTICS updated_count = ROW_COUNT;\r\n    RETURN updated_count;\r\nEND;\r\n$function$\n"
+  },
+  {
+    "name": "update_all_school_normalized_data",
+    "definition": "CREATE OR REPLACE FUNCTION public.update_all_school_normalized_data()\n RETURNS integer\n LANGUAGE plpgsql\nAS $function$\r\nDECLARE\r\n    updated_count INTEGER := 0;\r\nBEGIN\r\n    UPDATE schools SET\r\n        school_name_normalized = normalize_school_name(school_name),\r\n        road_address_normalized = normalize_address(road_address),\r\n        city = parse_city_from_address(road_address),\r\n        district = parse_district_from_address(road_address),\r\n        data_quality_score = calculate_school_quality_score(\r\n            school_name, road_address, latitude, longitude, total_students_grade_1\r\n        )\r\n    WHERE school_name_normalized IS NULL\r\n       OR road_address_normalized IS NULL\r\n       OR city IS NULL;\r\n\r\n    GET DIAGNOSTICS updated_count = ROW_COUNT;\r\n    RETURN updated_count;\r\nEND;\r\n$function$\n"
+  }
+]

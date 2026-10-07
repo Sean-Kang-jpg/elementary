@@ -242,6 +242,41 @@ export interface SchoolCareStatistics {
   afterschool_participants: number | null
 }
 
+// SQL 26 school_day_estimates / _weekdays: 학교알리미 2-가 시정표 × NEIS 1학년 교시 수.
+// 전년도(source_year) 값을 다음 입학생에게 '예상'으로 보여준다.
+export interface SchoolDayEstimateWeekday {
+  weekday: 1 | 2 | 3 | 4 | 5 // 1 = 월
+  periods: number | null
+  dismissal: string | null // 'HH:MM:SS' from PostgREST
+  note: 'inferred' | 'school_check_needed' | null
+}
+
+export interface SchoolDayEstimate {
+  school_id: string
+  source_year: number
+  applies_to_entry_year: number
+  lunch_position: 'after_p4' | 'before_p4'
+  lunch_start: string | null
+  lunch_end: string | null
+  clock_source: string
+  periods_source: string
+  reviewed_on: string
+  weekdays: SchoolDayEstimateWeekday[]
+}
+
+// SQL 26 school_care_hours: 학교알리미 15-라 돌봄 운영 시간(기본·연장 분리 표시).
+export interface SchoolCareHours {
+  school_id: string
+  source_year: number
+  status: 'stated' | 'school_check_needed'
+  afternoon_end: string | null
+  extended_end: string | null
+  extended_condition: string | null
+  morning_hours: string | null
+  grades: string | null
+  source: string
+}
+
 // SQL 23 nearby_care_centers(): 다함께돌봄센터(서울 우리동네키움센터 포함).
 export interface CareCenter {
   center_id: string

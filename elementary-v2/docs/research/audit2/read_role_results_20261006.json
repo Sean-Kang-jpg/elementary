@@ -1,0 +1,73 @@
+{
+  "captured_date": "2026-10-06",
+  "project_id": "vsgeksumgvcrkzjwvlgs",
+  "scope": "Database role/claim simulation in READ ONLY transactions; not actual Auth login or HTTP RLS E2E; no product writes or user row payloads",
+  "fixture_preflight": [
+    {
+      "fixture_is_admin": false
+    }
+  ],
+  "baseline": {
+    "read_only": "on",
+    "etl_runs_have_rows": true,
+    "etl_checks_have_rows": true,
+    "etl_sources_have_rows": true,
+    "etl_schedules_have_rows": true,
+    "private_master_has_rows": true,
+    "etl_admin_users_have_rows": true
+  },
+  "anon": {
+    "role": "anon",
+    "read_only": "on",
+    "uid_is_null": true,
+    "public_care_visible": true,
+    "public_school_visible": true,
+    "private_master_visible": false,
+    "public_academy_visible": true,
+    "cleanup_execute_granted": false,
+    "refresh_execute_granted": false,
+    "public_apartment_visible": true,
+    "admin_table_select_granted": false,
+    "staging_table_select_granted": false
+  },
+  "authenticated_non_admin": {
+    "role": "authenticated",
+    "read_only": "on",
+    "is_etl_admin": false,
+    "etl_runs_visible": false,
+    "etl_checks_visible": false,
+    "etl_sources_visible": false,
+    "fixture_uid_matches": true,
+    "etl_schedules_visible": false,
+    "public_school_visible": true,
+    "admin_role_row_visible": false,
+    "private_master_visible": false,
+    "cleanup_execute_granted": false,
+    "refresh_execute_granted": false,
+    "public_apartment_visible": true,
+    "staging_table_select_granted": false,
+    "region_lookup_execute_granted": true,
+    "monitoring_sizes_execute_granted": true,
+    "monitoring_staging_execute_granted": true
+  },
+  "anonymous_authenticated_non_admin": {
+    "role": "authenticated",
+    "read_only": "on",
+    "is_etl_admin": false,
+    "etl_runs_visible": false,
+    "etl_checks_visible": false,
+    "etl_sources_visible": false,
+    "fixture_uid_matches": true,
+    "etl_schedules_visible": false,
+    "public_school_visible": true,
+    "admin_role_row_visible": false,
+    "private_master_visible": false,
+    "cleanup_execute_granted": false,
+    "refresh_execute_granted": false,
+    "public_apartment_visible": true,
+    "staging_table_select_granted": false,
+    "region_lookup_execute_granted": true,
+    "monitoring_sizes_execute_granted": true,
+    "monitoring_staging_execute_granted": true
+  }
+}

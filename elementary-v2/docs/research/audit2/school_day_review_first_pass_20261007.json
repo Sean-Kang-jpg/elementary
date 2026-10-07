@@ -1,0 +1,695 @@
+{
+  "schema_version": "school-day-review-v1",
+  "reviewed_at": "2026-10-07",
+  "reviewer": "assistant first pass from original 학교알리미 2-가 tables; user confirmed the four open items on 2026-10-07",
+  "scope": "grade 1, first-term table where the document distinguishes terms",
+  "fields": {
+    "p4_end": "end of 4교시 for grade 1",
+    "lunch": "grade-1 lunch window",
+    "lunch_position": "after_p4 = lunch follows 4교시 (a 4-period day ends after lunch); before_p4 = lunch comes before 4교시 (a 4-period day ends at p4_end)",
+    "p5_end": "end of 5교시 for grade 1",
+    "doc_periods": "grade-1 periods Mon-Fri as printed in the same document, when printed",
+    "inferred": "values not printed but derived (e.g. 5교시 end inside a 90-minute 5·6교시 block)"
+  },
+  "schools": [
+    {
+      "school_id": "B000002704",
+      "school_name": "반안초",
+      "p4_end": "12:10",
+      "lunch": [
+        "12:10",
+        "13:00"
+      ],
+      "lunch_position": "after_p4",
+      "p5_end": "13:40",
+      "doc_periods": [
+        5,
+        4,
+        5,
+        5,
+        4
+      ],
+      "evidence": "1~4학년 일과 운영 기본안",
+      "confidence": "high"
+    },
+    {
+      "school_id": "B000002620",
+      "school_name": "양천초",
+      "p4_end": "12:10",
+      "lunch": [
+        "12:10",
+        "13:00"
+      ],
+      "lunch_position": "after_p4",
+      "p5_end": "13:40",
+      "doc_periods": [
+        4,
+        5,
+        5,
+        5,
+        4
+      ],
+      "evidence": "가. 일과 운영 (전 학년 공통)",
+      "confidence": "high"
+    },
+    {
+      "school_id": "B000002556",
+      "school_name": "명륜초",
+      "p4_end": "12:00",
+      "lunch": [
+        "12:00",
+        "12:50"
+      ],
+      "lunch_position": "after_p4",
+      "p5_end": "13:30",
+      "doc_periods": [
+        4,
+        5,
+        4,
+        5,
+        5
+      ],
+      "evidence": "1) 1~2학년 일과",
+      "confidence": "high"
+    },
+    {
+      "school_id": "B000002469",
+      "school_name": "서천초",
+      "p4_end": "12:10",
+      "lunch": [
+        "12:10",
+        "13:00"
+      ],
+      "lunch_position": "after_p4",
+      "p5_end": "13:40",
+      "doc_periods": [
+        4,
+        5,
+        5,
+        5,
+        4
+      ],
+      "evidence": "파. 일과 운영계획",
+      "confidence": "high"
+    },
+    {
+      "school_id": "B000003759",
+      "school_name": "양영초",
+      "p4_end": "12:10",
+      "lunch": [
+        "12:10",
+        "13:00"
+      ],
+      "lunch_position": "after_p4",
+      "p5_end": "13:40",
+      "doc_periods": [
+        5,
+        5,
+        4,
+        5,
+        5
+      ],
+      "evidence": "교시 시간표 + 학년별 요일 시수",
+      "confidence": "high"
+    },
+    {
+      "school_id": "B000003741",
+      "school_name": "상탑초",
+      "p4_end": "12:10",
+      "lunch": [
+        "12:10",
+        "13:00"
+      ],
+      "lunch_position": "after_p4",
+      "p5_end": "13:40",
+      "doc_periods": [
+        5,
+        5,
+        4,
+        5,
+        4
+      ],
+      "evidence": "주간 교육 활동 일정 (2블록 10:45-12:10, 3블록 첫 행 13:00-13:40)",
+      "confidence": "high"
+    },
+    {
+      "school_id": "B000003744",
+      "school_name": "판교초",
+      "p4_end": "12:00",
+      "lunch": [
+        "12:00",
+        "12:50"
+      ],
+      "lunch_position": "after_p4",
+      "p5_end": "13:30",
+      "doc_periods": null,
+      "evidence": "라. 일일 시정 계획 1~2학년 열",
+      "confidence": "high"
+    },
+    {
+      "school_id": "B000003740",
+      "school_name": "안말초",
+      "p4_end": "12:10",
+      "lunch": [
+        "12:10",
+        "13:00"
+      ],
+      "lunch_position": "after_p4",
+      "p5_end": "13:40",
+      "doc_periods": null,
+      "evidence": "사. 교육과정 일일 운영 계획",
+      "confidence": "high"
+    },
+    {
+      "school_id": "B000024167",
+      "school_name": "성남화랑초",
+      "p4_end": "12:10",
+      "lunch": [
+        "12:10",
+        "13:00"
+      ],
+      "lunch_position": "after_p4",
+      "p5_end": "13:40",
+      "doc_periods": [
+        4,
+        5,
+        4,
+        5,
+        5
+      ],
+      "evidence": "2. 시정표 1~4학년 ('1-4학년은 4교시 후 점심시간')",
+      "confidence": "high"
+    },
+    {
+      "school_id": "B000003757",
+      "school_name": "탄천초",
+      "p4_end": "12:00",
+      "lunch": [
+        "12:00",
+        "12:50"
+      ],
+      "lunch_position": "after_p4",
+      "p5_end": "13:30",
+      "doc_periods": [
+        5,
+        5,
+        4,
+        5,
+        4
+      ],
+      "inferred": [
+        "p5_end: 3블럭 12:50-14:10(80분)의 앞 40분"
+      ],
+      "evidence": "나. 시정표 (블럭)",
+      "confidence": "medium"
+    },
+    {
+      "school_id": "B000003758",
+      "school_name": "서당초",
+      "p4_end": "12:50",
+      "lunch": [
+        "11:20",
+        "12:10"
+      ],
+      "lunch_position": "before_p4",
+      "p5_end": "13:40",
+      "doc_periods": [
+        5,
+        5,
+        4,
+        5,
+        4
+      ],
+      "term_note": "1학기 1학년은 B 시정(점심 11:20, 4교시 12:10-12:50). 2학기에는 A 시정(4교시 11:30-12:10, 점심 12:10-13:00)",
+      "evidence": "□ 시정표 A/B와 '2학기의 경우 A-1·5·6학년'",
+      "confidence": "high"
+    },
+    {
+      "school_id": "B000003747",
+      "school_name": "산운초",
+      "p4_end": "12:00",
+      "lunch": [
+        "12:00",
+        "12:50"
+      ],
+      "lunch_position": "after_p4",
+      "p5_end": "13:30",
+      "doc_periods": [
+        4,
+        5,
+        4,
+        5,
+        5
+      ],
+      "explicit": "4교시는 급식 후 하교",
+      "evidence": "나 시정표 1-2학년군",
+      "confidence": "high"
+    },
+    {
+      "school_id": "B000003769",
+      "school_name": "하탑초",
+      "p4_end": "12:10",
+      "lunch": [
+        "12:10",
+        "13:00"
+      ],
+      "lunch_position": "after_p4",
+      "p5_end": "13:40",
+      "doc_periods": [
+        4,
+        5,
+        4,
+        5,
+        5
+      ],
+      "explicit": "4교시 행 월·수에 '1~2학년', 5교시 행 화·금 '1~4학년'·목 '1~2학년' (해당 교시 후 하교 학년 표시)",
+      "evidence": "2) 주간 시정 운영 계획 (교시 번호 없는 행)",
+      "confidence": "high"
+    },
+    {
+      "school_id": "B000003760",
+      "school_name": "서현초",
+      "p4_end": "12:10",
+      "lunch": [
+        "12:10",
+        "13:00"
+      ],
+      "lunch_position": "after_p4",
+      "p5_end": "13:40",
+      "doc_periods": [
+        4,
+        5,
+        4,
+        5,
+        5
+      ],
+      "note": "문서의 월요일은 '4(5)교시'",
+      "evidence": "ⅲ. 학교 시정표 1·2학년 열",
+      "confidence": "high"
+    },
+    {
+      "school_id": "B000003738",
+      "school_name": "초림초",
+      "p4_end": "12:10",
+      "lunch": [
+        "12:10",
+        "13:00"
+      ],
+      "lunch_position": "after_p4",
+      "p5_end": "13:40",
+      "doc_periods": [
+        5,
+        5,
+        4,
+        5,
+        4
+      ],
+      "note": "1학년 3월은 매일 4교시",
+      "evidence": "2) 일과운영계획",
+      "confidence": "high"
+    },
+    {
+      "school_id": "B000003770",
+      "school_name": "내정초",
+      "p4_end": "12:00",
+      "lunch": [
+        "12:00",
+        "12:50"
+      ],
+      "lunch_position": "after_p4",
+      "p5_end": "13:30",
+      "doc_periods": [
+        5,
+        5,
+        4,
+        5,
+        4
+      ],
+      "explicit": "4교시 시정: 급식 후 하교 / 5교시 시정: 13:30 하교",
+      "evidence": "마 일과 운영 계획 (4·5·6교시 시정)",
+      "confidence": "high"
+    },
+    {
+      "school_id": "B000003750",
+      "school_name": "오리초",
+      "p4_end": "12:10",
+      "lunch": [
+        "12:10",
+        "12:50"
+      ],
+      "lunch_position": "after_p4",
+      "p5_end": "13:30",
+      "doc_periods": null,
+      "note": "3월 적응기 1~2학년 정규수업 9:00~12:50",
+      "evidence": "라. 교육과정 운영 시정",
+      "confidence": "high"
+    },
+    {
+      "school_id": "B000025256",
+      "school_name": "인천송원초",
+      "p4_end": "12:00",
+      "lunch": [
+        "12:00",
+        "12:50"
+      ],
+      "lunch_position": "after_p4",
+      "p5_end": "13:30",
+      "doc_periods": null,
+      "evidence": "1, 2, 4학년 열",
+      "confidence": "high"
+    },
+    {
+      "school_id": "B000024924",
+      "school_name": "인천하늘초",
+      "p4_end": "12:50",
+      "lunch": [
+        "11:20",
+        "12:00"
+      ],
+      "lunch_position": "before_p4",
+      "p5_end": "13:40",
+      "doc_periods": [
+        4,
+        5,
+        4,
+        5,
+        5
+      ],
+      "term_note": "1학기 1학년은 1차 점심(11:20) 후 4교시 12:10-12:50. 2학기에는 2차 점심(12:10-12:50)으로 바뀜",
+      "evidence": "나 시간 1학년 열, '2학기에는 … 2차 점심시간 – 1,4학년'",
+      "confidence": "medium"
+    },
+    {
+      "school_id": "B000003101",
+      "school_name": "인천인동초",
+      "p4_end": "12:00",
+      "lunch": [
+        "12:00",
+        "12:50"
+      ],
+      "lunch_position": "after_p4",
+      "p5_end": "13:30",
+      "doc_periods": null,
+      "evidence": "1일 시간 운영 계획 1-2학년 열 (점심(급식실) 12:00-12:50)",
+      "confidence": "high"
+    },
+    {
+      "school_id": "B000003027",
+      "school_name": "인천부원초",
+      "p4_end": "12:10",
+      "lunch": [
+        "12:10",
+        "13:00"
+      ],
+      "lunch_position": "after_p4",
+      "p5_end": "13:40",
+      "doc_periods": [
+        5,
+        5,
+        4,
+        5,
+        4
+      ],
+      "evidence": "시종 활동표",
+      "confidence": "high"
+    },
+    {
+      "school_id": "B000006819",
+      "school_name": "청산초",
+      "p4_end": "12:10",
+      "lunch": [
+        "12:10",
+        "13:30"
+      ],
+      "lunch_position": "after_p4",
+      "p5_end": "14:10",
+      "doc_periods": null,
+      "note": "점심 및 청소 80분. 금요일은 별도 시정(5교시 11:40-12:20). 통학차 하교 16:40(금 14:30). NEIS 코드 미연결이라 요일별 교시 수 없음",
+      "evidence": "다 요일 일정",
+      "confidence": "low"
+    },
+    {
+      "school_id": "B000006780",
+      "school_name": "영광중앙초",
+      "p4_end": "13:10",
+      "lunch": [
+        "11:30",
+        "12:30"
+      ],
+      "lunch_position": "before_p4",
+      "p5_end": "14:00",
+      "doc_periods": null,
+      "explicit": "수요 단축시정: 하교 1,2학년 13:10",
+      "note": "월·화·목·금 1~3학년은 점심 11:30-12:30 후 4교시 12:30-13:10",
+      "evidence": "일과 운영표 (1~3년 점심·4교시 각주, 수요시정)",
+      "confidence": "medium"
+    },
+    {
+      "school_id": "B000006822",
+      "school_name": "노화북초",
+      "p4_end": "12:30",
+      "lunch": [
+        "12:35",
+        "13:20"
+      ],
+      "lunch_position": "after_p4",
+      "p5_end": "14:00",
+      "doc_periods": null,
+      "note": "6교시 시간에 1~2학년은 돌봄교실 특성화",
+      "evidence": "시간별 교육 활동 1~2학년",
+      "confidence": "high"
+    },
+    {
+      "school_id": "B000006546",
+      "school_name": "문평초",
+      "p4_end": "12:30",
+      "lunch": [
+        "12:30",
+        "13:20"
+      ],
+      "lunch_position": "after_p4",
+      "p5_end": "14:00",
+      "doc_periods": [
+        5,
+        4,
+        5,
+        4,
+        5
+      ],
+      "evidence": "차 일과표 (3,4교시 11:00~12:30)",
+      "confidence": "high"
+    },
+    {
+      "school_id": "B000006872",
+      "school_name": "가거도초",
+      "p4_end": "12:20",
+      "lunch": [
+        "12:20",
+        "13:10"
+      ],
+      "lunch_position": "after_p4",
+      "p5_end": "13:50",
+      "doc_periods": null,
+      "note": "6교시 이후 1~2학년은 돌봄교실",
+      "evidence": "사. 일일․주간 일과 운영표",
+      "confidence": "high"
+    },
+    {
+      "school_id": "B000006702",
+      "school_name": "마량초",
+      "p4_end": "12:30",
+      "lunch": [
+        "12:30",
+        "13:20"
+      ],
+      "lunch_position": "after_p4",
+      "p5_end": "14:00",
+      "doc_periods": [
+        4,
+        5,
+        5,
+        4,
+        5
+      ],
+      "note": "수요일 열에 블럭 시정(5교시 12:00-12:40 후 점심 12:40-13:30)이 있으나 학년 열 배정이 불분명해 수요일 값은 미확정",
+      "evidence": "사. 교육과정 운영 일과표 1~2 열",
+      "confidence": "medium"
+    },
+    {
+      "school_id": "B000006749",
+      "school_name": "일로동초",
+      "p4_end": "12:20",
+      "lunch": [
+        "12:20",
+        "13:00"
+      ],
+      "lunch_position": "after_p4",
+      "p5_end": "13:40",
+      "doc_periods": [
+        4,
+        5,
+        5,
+        4,
+        5
+      ],
+      "evidence": "자. 주간 일정 운영",
+      "confidence": "high"
+    },
+    {
+      "school_id": "B000006755",
+      "school_name": "삼향초",
+      "p4_end": "12:20",
+      "lunch": [
+        "12:20",
+        "13:10"
+      ],
+      "lunch_position": "after_p4",
+      "p5_end": "13:50",
+      "doc_periods": [
+        4,
+        5,
+        4,
+        5,
+        5
+      ],
+      "inferred": [
+        "p5_end: 5․6교시 13:10-14:40(90분)의 앞 40분"
+      ],
+      "evidence": "라. 일일 시간 운영 (90분 블록)",
+      "confidence": "medium"
+    },
+    {
+      "school_id": "B000006701",
+      "school_name": "신전초",
+      "p4_end": "12:20",
+      "lunch": [
+        "12:20",
+        "13:10"
+      ],
+      "lunch_position": "after_p4",
+      "p5_end": "13:50",
+      "doc_periods": [
+        5,
+        4,
+        4,
+        5,
+        5
+      ],
+      "inferred": [
+        "p5_end: 5, 6교시 13:10-14:40(90분)의 앞 40분"
+      ],
+      "evidence": "타 교육과정 주간일정 (90분 블록)",
+      "confidence": "medium"
+    },
+    {
+      "school_id": "B000002211",
+      "school_name": "서울지향초",
+      "p4_end": "12:10",
+      "lunch": [
+        "12:10",
+        "13:00"
+      ],
+      "lunch_position": "after_p4",
+      "p5_end": "13:40",
+      "doc_periods": null,
+      "evidence": "라. 2026학년도 지향 수업 일과표",
+      "confidence": "high"
+    },
+    {
+      "school_id": "B000002280",
+      "school_name": "서울양전초",
+      "p4_end": "12:10",
+      "lunch": [
+        "12:10",
+        "12:50"
+      ],
+      "lunch_position": "after_p4",
+      "p5_end": "13:30",
+      "doc_periods": null,
+      "evidence": "생활 시정표 (점심 1~6학년 공통)",
+      "confidence": "high"
+    },
+    {
+      "school_id": "B000001871",
+      "school_name": "서울묵현초",
+      "p4_end": "12:50",
+      "lunch": [
+        "11:30",
+        "12:10"
+      ],
+      "lunch_position": "before_p4",
+      "p5_end": "13:40",
+      "doc_periods": [
+        4,
+        5,
+        5,
+        5,
+        4
+      ],
+      "evidence": "기본 운영 1~3학년 열",
+      "confidence": "high"
+    },
+    {
+      "school_id": "B000002329",
+      "school_name": "서울조원초",
+      "p4_end": "12:00",
+      "lunch": [
+        "12:00",
+        "12:40"
+      ],
+      "lunch_position": "after_p4",
+      "p5_end": "13:20",
+      "doc_periods": [
+        4,
+        5,
+        4,
+        5,
+        5
+      ],
+      "evidence": "다. 학교 생활 일정 시간표",
+      "confidence": "high"
+    },
+    {
+      "school_id": "B000002017",
+      "school_name": "서울초당초",
+      "p4_end": "12:10",
+      "lunch": [
+        "12:10",
+        "12:50"
+      ],
+      "lunch_position": "after_p4",
+      "p5_end": "13:30",
+      "doc_periods": [
+        4,
+        5,
+        5,
+        5,
+        4
+      ],
+      "explicit": "점심시간 행 월·금 '(급식후) 1,2G 하교'",
+      "evidence": "라. 생활 시정표",
+      "confidence": "high"
+    }
+  ],
+  "user_decisions": {
+    "decided_at": "2026-10-07",
+    "items": [
+      {
+        "topic": "성남화랑 월요일 NEIS 5 vs 문서 4",
+        "decision": "NEIS 값 유지"
+      },
+      {
+        "topic": "블록 안 5교시 종료 추론(탄천·삼향·신전)",
+        "decision": "값을 쓰되 해당 요일에 추정 표시"
+      },
+      {
+        "topic": "1학년 점심이 4교시 앞인 4곳(서당·인천하늘·영광중앙·서울묵현)",
+        "decision": "4교시 종료 = 하교 해석 확정"
+      },
+      {
+        "topic": "비어 있는 요일(노화북 목·가거도 목·마량 수·청산 전 요일)",
+        "decision": "학교 확인 필요로 표시"
+      }
+    ]
+  }
+}
