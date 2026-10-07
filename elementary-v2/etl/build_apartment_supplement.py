@@ -103,8 +103,15 @@ def number(value) -> float | None:
 
 
 def candidates(kapt_rows: list[dict], used_codes: set[str]) -> list[dict]:
-    out = []
+    """K-apt lists some complexes on several rows under one code (양정자이더샵SKVIEW: 3);
+    one row per code, the one with the most households."""
+    by_code: dict[str, dict] = {}
     for row in kapt_rows:
+        code = (row.get("단지코드") or "").strip()
+        if code and (number(row.get("세대수")) or 0) >= (number((by_code.get(code) or {}).get("세대수")) or -1):
+            by_code[code] = row
+    out = []
+    for row in by_code.values():
         code = (row.get("단지코드") or "").strip()
         approved = (row.get("사용승인일") or "").replace("-", "").strip()
         if code and code not in used_codes and approved >= APPROVED_FROM and (row.get("도로명주소") or "").strip():

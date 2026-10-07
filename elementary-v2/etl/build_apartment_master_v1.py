@@ -34,6 +34,16 @@ LEGACY_KAPT_SOURCE = ROOT_DIR / "archive" / "legacy-v1" / "etl" / "data" / "kapt
 APT_SUPPLEMENT = BASE_DIR / "runtime" / "apartment_supplement" / "apartment_base_supplement.csv"
 
 
+def base_origin(apt: dict[str, str]) -> tuple[str, str]:
+    """Where a base row came from and as of when: the 2024-10 file, or, for a
+    supplement row (`source` = kapt_supplement:kapt_basic_YYYYMMDD.csv), that K-apt file."""
+    source = (apt.get("source") or "").strip()
+    match = re.search(r"kapt_basic_(\d{4})(\d{2})(\d{2})", source)
+    if match:
+        return source.split(":", 1)[-1], "-".join(match.groups())
+    return APT_SOURCE.name, APARTMENT_BASE_AS_OF
+
+
 def kapt_source_metadata(path: Path) -> tuple[Path, str, str]:
     """Snapshot date and encoding for an explicitly chosen K-apt file."""
     match = re.fullmatch(r"kapt_basic_(\d{8})\.csv", path.name)
@@ -456,7 +466,7 @@ def main(argv: list[str] | None = None) -> None:
             "latest_known_name": latest_known_name,
             "name_resolution_status": name_resolution_status,
             "name_aliases": json.dumps(list(dict.fromkeys(name for name in (base_name, kapt_name) if name)), ensure_ascii=False),
-            "apartment_base_as_of": APARTMENT_BASE_AS_OF,
+            "apartment_base_as_of": base_origin(apt)[1],
             "kapt_as_of": KAPT_AS_OF if match else None,
             "region": TARGET_CODES[legal_code[:2]],
             "district": district_from_address(apt.get("rdnmadr")),
@@ -509,8 +519,8 @@ def main(argv: list[str] | None = None) -> None:
             "apt_cd": apt_id,
             "canonical_complex_id": row["canonical_complex_id"],
             "name": base_name,
-            "source": APT_SOURCE.name,
-            "observed_as_of": APARTMENT_BASE_AS_OF,
+            "source": base_origin(apt)[0],
+            "observed_as_of": base_origin(apt)[1],
             "name_role": "component_or_historical_name" if match and not same_normalized_name else "confirmed_name",
         })
         if kapt_name and not same_normalized_name:
@@ -592,7 +602,7 @@ def main(argv: list[str] | None = None) -> None:
                         "canonical_complex_id": row["canonical_complex_id"],
                         "field_name": field_name,
                         "base_value": base_value,
-                        "base_as_of": APARTMENT_BASE_AS_OF,
+                        "base_as_of": base_origin(apt)[1],
                         "latest_observed_value": kapt_value,
                         "latest_observed_as_of": KAPT_AS_OF,
                         "canonical_value": canonical_value,
