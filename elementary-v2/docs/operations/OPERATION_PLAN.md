@@ -1,6 +1,6 @@
 # ETL Operation Plan
 
-Last updated: 2026-09-29
+Last updated: 2026-10-06
 
 Release status: **v2.0 operational baseline complete; v2.1 released; v2.2 interaction work in progress; nationwide expansion live — all seventeen regions are deployed to the public site as of 2026-09-28, with the pooled manual review still outstanding.**
 
@@ -12,6 +12,211 @@ This document is the single checklist for the school-zone, school, apartment, Su
 - `[ ]`: pending work
 - **Deferred**: intentionally postponed; not a current blocker
 - **Issue**: requires monitoring, review, or a later correction
+
+<a id="platform-expansion"></a>
+
+<a id="audit2-expansion"></a>
+
+## Audit 2 — 시간표·익명 수요 확장 (2026-10-06)
+
+기준 문서: [Audit 2 / 11개 산출물](../product/PLATFORM_EXPANSION_AUDIT2_20261006.md). 아래 Audit 1 체크 이력과 문서는 foundation으로 보존한다. 현재 실행 순서는 이 Audit 2 절을 우선하며 A1 P6/P7 사업/UGC 확장은 이번 범위에서 실행하지 않는다. 입점·결제·수수료·상담/수업중개·셔틀·학원 숙제 LMS·수익화 제외.
+
+### 2026-10-07 재정렬 — 현재 실행 순서
+
+E04 조사 결과(학교알리미는 전년도 예상값, 확정값은 2월 이후 기수별 가정통신문)에 따라 사용자 결정으로 순서를 바꿨다. **비로그인 "초1 하루 예상" 카드를 로그인보다 먼저** 내고, 파일럿 추출은 규칙+사람 검수로 하며, 로그인 설정은 10월 중 사용자가 시작한다. 아래 표가 Phase 1~3 표의 순서보다 우선한다.
+
+| 시기 | 항목 |
+| --- | --- |
+| ~10월 말 | A2-R01 → E04-c2b·A2-R02 → E04-c3 → E06(축소) / 병행: I01, P1-02~03, S01·S02 / 사용자: B04-b |
+| 11월 | A2-R03 공개 계약·영향 보고·B03-W gate → A2-R04 예상 카드 |
+| 11~12월 | 로그인(카카오 우선) → MY 시간표 개인 저장·직접 입력(S04~S06 중 개인 범위) |
+| 1월 | E04-d 2027 계획 게시 감시, 가족 공유 |
+| 2월 | 분당 20곳 1기 가정통신문 수집 → 신청 모드 |
+| 3월~ | 실제 모드, Phase 3(U01~U07)은 표본을 보고 판단 |
+
+- [x] A2-R01 NEIS 1학년 시간표 60학교 전체 조회 → 학교별 요일별 교시 수. 2026-10-07: [결과](../research/audit2/NEIS_GRADE1_PERIODS_20261007.md). 59/60 조회, 1학기 평시 50곳(요일 칸 244/250이 일치율 0.8 이상), 2학기 57곳. 문서 표 14곳 중 12곳 요일 5개 완전 일치. 전남 9곳은 1학기 NEIS 자료 없음(2학기만). 3월 주차별: 1주차 21/43곳이 매일 4교시 이하, 3주차부터 대부분 평시 패턴. node 테스트 3개 PASS.
+- [x] A2-R02 15-라 방과후·돌봄 계획 60/60 첨부에서 돌봄 운영시간·대상학년·정원·1~2학년 방과후 시작 시각 후보 추출(규칙+검수, `etl/school_document_text.py` 재사용).
+  2026-10-07 **1차 검수(assistant)**: `python -m etl.audit_schoolinfo_care_plans`(탐지 43/60, 테스트 5개 PASS) → 원문 검수 [검수 값](../research/audit2/care_review_first_pass_20261007.json) → [요약](../research/audit2/CARE_HOURS_FIRST_PASS_20261007.md). 1학년 돌봄 시간 44/60 확인(기본 종료 17:00 16곳·19:00 18곳 등, 저녁·연장 포함 최대 19:00 32곳), 아침돌봄 17곳, 시간 미기재 16곳은 학교 확인 필요. 2026-10-08 사용자 결정: 카드는 기본 종료와 저녁·연장을 분리 표시하고 연장 조건·정원·선발제 안내를 붙인다.
+  - [ ] A2-R02b **Deferred** 1~2학년 방과후 시작 시각: 기수별 가정통신문(2월 1기)에서 확정되므로 E04-d와 함께 수집.
+- [x] A2-R03 예상 카드 공개 데이터 계약: 공개 테이블/RPC 설계(검수 통과 행만, 출처·기준연도·`estimated` 표시 필수), §11 영향 보고, B03-W 쓰기 권한 gate. 운영 적용은 사용자 확인 후.
+  2026-10-08 **설계·초안 완료, 미적용**: [영향 보고](../research/audit2/SCHOOL_DAY_CARD_CONTRACT_20261008.md), `sql/26_create_school_day_estimates.sql`(공개 읽기 3테이블, 기본 쓰기 grant 회수), `etl/load_school_day_estimates.py`(dry-run 35/175/60행, 제약 위반 0, 테스트 4개 PASS). EXECUTION_GUIDE 26 추가. **운영 적용 사용자 승인 대기.**
+- [x] A2-R04 학교 상세 "초1 하루 예상" 카드: 요일별 예상 하교·돌봄 종료, 출처·기준일, "전년도 기준 예상" 문구, 자료 없는 학교 fallback. 분당 20곳 중 검수 통과 학교부터. lint/typecheck/build/public smoke.
+  2026-10-08 **로컬 구현·검증 완료, 미배포**: `src/components/school/SchoolDayEstimateCard.tsx`(학교 상세 StartModule 아래), `getSchoolDayEstimate`(SQL 26 미적용 시 null → 카드 숨김), 타입 3개. 요일별 예상 하교(추정·학교 확인 표시), 점심 위치 문구, 돌봄 기본·연장 분리, 출처·예상 안내. SQL 26 적용 전 확인용 dev 전용 fixture(`--write-fixture`, git 제외, 운영 번들 미포함 확인). typecheck·lint·build PASS, 360/1280px 넘침 없음, 로컬 public smoke exit 0. 측정 이벤트 `view_school_day_estimate` 문서화. 2026-10-08 **운영 반영**: 사용자 SQL 26 적용 → anon GET 200·POST/PATCH/DELETE 전부 42501 → `--apply` 35/175/60행 → master `df14027`(작업분만 선별 커밋, 격리 worktree에서 typecheck·lint·vite build 확인) → release `c27530f` → 약 3분 후 반영, 운영 public smoke exit 0, wherecho.co.kr에서 상탑·마량 카드와 비파일럿 학교 카드 숨김 확인. DATA_CONTRACTS·루트 CLAUDE.md 공개 계약 목록 갱신.
+- 범위 조정: E05 LLM 파이프라인은 100곳 이상 확장 때 착수. E06 정답 세트는 분당 20곳 × 필드 4개(1학년 요일별 하교, 점심, 돌봄 종료, 1~2학년 방과후 시작)로 축소. **보류**: E07 학원 이동시간, S03 보강·동시편집, U01~U03 수요 공개, E02 청산초 1곳(분당 표본 밖).
+- 사용자 작업: B04-b 로그인 공급자 설정 — [설정 체크리스트](AUTH_PROVIDER_SETUP.md).
+
+### 문서 산출물 (구현/실증 완료와 구분)
+
+- [x] A2-D01 Audit1 유지/충돌/변경 mapping. 2026-10-06: Audit2 §1.
+- [x] A2-D02 통합 Product Thesis/사용자여정. 2026-10-06: §2.
+- [x] A2-D03 IA/GNB/공개·로그인 경계 개정안. 2026-10-06: §3, 4GNB와 로고 HOME 유지.
+- [x] A2-D04 Phase1/2/3 로드맵. 2026-10-06: §4, ETL 50~100학교와 사용자 10~20학교 구분.
+- [x] A2-D05 ETL PoC/schema/confidence gate 설계. 2026-10-06: §5; 실제 수집·정확도 미검증.
+- [x] A2-D06 시간표 MVP/상태/UX/가족·수요 모델. 2026-10-06: §6.
+- [x] A2-D07 SEO/AEO/GEO/SNS funnel. 2026-10-06: §7; 예시 숫자는 미검증 아이디어 표시.
+- [x] A2-D08 경쟁사 공식 소개 비교. 2026-10-06: §8; 설치/실사용 비교는 미실시.
+- [x] A2-D09 이벤트/지표 분모·관측창/go-no-go 제안. 2026-10-06: §9; 사용자 가설임을 명시.
+- [x] A2-D10 코드 재사용/수정/신규 audit. 2026-10-06: §10 및 실제 school/care/academy 컬럼 확인.
+- [x] A2-D11 영향도/적용순서/복구 계획 선행 보고 문서. 2026-10-06: §11; 실제 migration 미실행.
+
+### Phase 1 — 운영 기준선과 ETL 가능성
+
+- [x] A2-B01 운영 DB catalog 1차 조회 결과를 기준선에 기록. 2026-10-05~06: core RLS/정책/grant, curriculum refs/likes 부재, school/care/academy 실컬럼 확인. 전체 migration diff 완료는 아님.
+- [x] A2-B02 HTTP smoke 부분 PASS와 browser 최종 결과 미확인을 구분해 기록. 2026-10-06: 세션 29285 최종 회수 불가. 전체 통과 아님.
+- [x] A2-B03 SQL06~24 대비 live column/FK/index/RPC/policy/grant 및 호출 영향의 **읽기 감사 범위 완료**. 2026-10-06: [기준선](../research/audit2/SCHEMA_BASELINE_20261006.md) → [정의 대조](../research/audit2/DEFINITION_DIFF_20261006.md) → [읽기 역할 검증](../research/audit2/READ_ONLY_VERIFICATION_20261006.md). 보안 수정·실로그인·쓰기·전체 PostgreSQL 실행 동등성 완료는 아님. Docker는 선행조건에서 제외.
+  - [x] A2-B03-a live catalog·유효 grants·default ACL·보안 함수 본문 저장. 24테이블/1뷰, 380컬럼, 26FK, 108인덱스, 12정책, 68함수. 운영 변경 없음.
+  - [x] A2-B03-b SQL06~24 전체 19파일 선언 존재 대조와 SHA256 기록, 오프라인 비교기 5개 테스트 통과. 06~23 이름/컬럼 존재, SQL24 2테이블/3함수 부재. 정의 동등성 증명은 아님.
+  - [x] A2-B03-c legacy RLS-off·client 기본 쓰기 grants·monitoring definer RPC의 저장소 호출자 및 조치 영향 기록. 실제 쓰기 테스트/권한 변경 미실시.
+  - [x] A2-B03-d 최종 정의 대조와 제한된 읽기 역할 검증 완료. Data API 전체 노출 설정 및 저장소 밖 소비자는 미확인 목록으로 기록; 실제 변경 전에 확인.
+    - [x] A2-B03-d1 컬럼 290개(type/정밀도/nullable/default)·FK 23개(action 포함)·인덱스 40개·함수 13개(identity/body/result/config) 대조, 정책 4개 구조 차이와 deparser 표기 차이 기록. SQL24 미적용 유지. 테스트 17개 통과, 운영 변경 없음.
+    - [x] A2-B03-d2 Docker 없이 READ ONLY transaction의 anon·비관리자 authenticated·익명 authenticated claim 모사 SELECT 검증. 원본 데이터 존재/역할 non-bypass 확인, 공개 조회 가능·관리자/private 행 비노출. 실제 JWT 로그인/실관리자 positive/쓰기/성능 테스트 아님.
+- [ ] A2-B03-W **Deferred — 변경 적용 전 gate**: 별도 테스트 DB 실제 관리자/owner/non-owner 쓰기 allow/deny·정책 성능·외부 소비자 검증. 현재 읽기 감사와 PoC를 막지 않음. legacy grants/definer RPC 보안 개선은 아직 미적용.
+- [ ] A2-B04 Auth provider/redirect/linking 운영 설정 확인. 2026-10-06: 공개 settings GET 성공, 부분 완료. 이전 자동 승인 사용량 제한은 이번 요청에서 재발하지 않음.
+  - [x] A2-B04-a 공개 provider 확인: email=true, kakao/google/anonymous_users/phone=false; disable_signup=false, mailer_autoconfirm=false. 설정 변경·가입·로그인 없음.
+  - [ ] A2-B04-b 관리 설정의 site_url/redirect allow-list/manual identity linking 및 실제 callback 확인. **담당: 다른 팀원(2026-10-08 사용자 지정)** — 설정 순서는 [AUTH_PROVIDER_SETUP](AUTH_PROVIDER_SETUP.md). 공개 응답/현재 연결 도구로 확인 불가; 로그인 구현/배포 전 gate.
+- [x] A2-B05 운영 public smoke 최종 exit 0/PASS(세션 88596), wherecho.co.kr 검색/지도·학교/단지 deep link·MY·콘텐츠·360~1280px 확인. 이름 검색 지원, 임의주소 배정/polygon UI 미확인·미지원 범위 구분. [검증 기록](../research/audit2/READ_ONLY_VERIFICATION_20261006.md).
+- [ ] A2-B05-P **Issue**: smoke 최종 성능 배열이 빈 값이라 시간 gate 통과만으로 실측 성능을 입증하지 못함. 계측 누락 및 최소 표본 gate 보완; 기능 smoke 완료와 구분.
+- [x] A2-B06 최소 URL/영구 ID/localStorage/checklist·guide/지역 QA 보호 fixture 고정. 2026-10-06: [최소 기준선](../research/audit2/MINIMUM_PROTECTION_BASELINE_20261006.md), 실제 helper 메모리 검증 28개 PASS. 기존 QA 912행/15 scope의 표본 참조(새 전국 재검수 아님). 별도 학원 refresh/실험 기능 정리 변경 보존. 개편 착수 gate 완료; 검증 범위를 선행조건으로 계속 확대하지 않음.
+- [x] A2-E01 60학교 PoC manifest와 분모 고정. 2026-10-06: [PoC 착수](../research/audit2/ETL_POC_START_20261006.md). 분당 development/밀집 후보20, 서울·인천 holdout20, 부산·전남 coverage20. 공개 master READ ONLY 선정, 6개 integrity 검사 PASS. 학교 자료 확보/NEIS crosswalk/모집 성공/운영 공개는 아직 아님.
+- [ ] A2-E02 school_id↔NEIS office/school code↔schoolinfo_code crosswalk 검증. 2026-10-06 **부분 완료**: 최신 [기존 ETL+Schoolinfo 재검증](../research/audit2/NEIS_RECONCILIATION_20261006.md) 59/60 연결, 청산초 1개 실주소 원천 상충 보류. 기존 master 변경 없음. 최초 47/13 결과는 비교 이력으로 보존.
+  - [x] A2-E02-a 공개 schoolInfo 3,039행/6페이지 조회, 47개 유일 code·13 보류 큐 증거 보존. Node 12개/Python evidence 6개 검사 PASS. 표본 교체/유사 이름 자동 연결 없음.
+  - [x] A2-E02-b [기존 ETL 규칙+Schoolinfo 재검증](../research/audit2/NEIS_RECONCILIATION_20261006.md): 현재 공개 주소 READ ONLY 확인, 기존 canonicalize_address/current_district 함수 직접 재사용, Schoolinfo code/이름/주소 대조 및 입력 hash. 현재 59/60 연결; 청산초는 NEIS 청산로1602-1 ↔ Schoolinfo1579-74 실주소 차이로 보류. 13개 원문 보류는 역사 이력이며 현재 미해결은 1개. 8개 테스트 PASS. 운영 주소/지역 체계 변경 없음.
+- [ ] A2-E03 NEIS 실제 응답·일과표·학사일정 sample 수집, 교시와 절대시각 분리 계약 검증. 2026-10-06 **부분 완료**: 최신 전남 포함 5학교/10응답, 376행 수신/120행 한정 fixture. 일과표 절대시각 미확보, 2026 자료를 2027 확정으로 사용하지 않음. 최초 4학교/8응답 이력 보존.
+  - [x] A2-E03-a 실제 API 응답·총 건수·페이지 SHA256·sample truncation 기록, 교시/반/날짜 보존 및 시작·종료 null 유지. 전체 60학교 coverage/개인 시간표/원문 archive 완료는 아님.
+  - [x] A2-E03-b 재검증 code로 전남 포함 5학교/10응답 보완: 376행 수신/120행 한정 fixture, 전남 영광중앙초 시간표92/학사일정14. 절대시각은 여전히 미확보이며 개인 확정 시간표 아님. 2026-10-06 E04-b 첨부 검토에서도 정규 일과 시각은 발견되지 않음(E04-c).
+- [ ] A2-E04 교육청/학교알리미 첨부/학교홈페이지 HWP/HWPX/PDF 수집 registry, hash/version/current/last_checked 구현.
+  - [x] A2-E04-a 개발학교2 × 자료3종 = 6슬롯 source registry와 제한 공개 게시판 probe 구현. 3게시판 HTTP200/게시판 응답hash/last_checked/상세글 후보31개, 5개 parser 테스트 PASS. 첨부 문서 hash/version/current와 일과표 절대시각은 아직 미검증; 게시판 hash와 문서 hash를 구분. 남은 미발견3슬롯 유지, holdout 규칙 조정 없음.
+  - [x] A2-E04-b 개발학교2 첨부 확보·학년도 판정. 2026-10-06: [첨부 검토](../research/audit2/DOCUMENT_ATTACHMENT_REVIEW_20261006.md). PDF3+본문 이미지1 확보, 두 번 수집 문서 hash 동일. 4건 모두 2026학년도(제목·요일 18개 정합), 2027 문서 없음. 방과후·돌봄 블록 시각은 school-plan/현재 기수 근거로 [필드 기록](../research/audit2/document_attachment_review_20261006.json), 계획안↔3기 안내 차이(금요일 강좌 미개설·수강료 변경)와 원문 오기 3건은 source_conflict로 보류. 수집기 본문 이미지 탐지 추가, node 테스트 12개 PASS. 강사·전담사 이름/연락처 미복사. 운영 DB 변경 없음.
+  - [x] A2-E04-c **정규 일과(교시 시작·종료, 하교) 시각 출처**. 2026-10-08 c1~c3 완료로 닫음: 학교알리미 2-가 시정표 × NEIS 교시 수, 파일럿 35곳 중 31곳 요일별 예상 하교 확정. 2026-10-06: 확보한 4건 어디에도 없음 → 두 학교 모두 unknown. 학사 게시판·교육과정 운영계획·학교알리미 교육과정 공시에서 찾고, 없으면 학교 문의 대상으로 기록. 방과후/돌봄 시작 시각으로 하교시각을 추정하지 않음.
+    - [x] A2-E04-c1 중앙 출처 조사. 2026-10-06: [학교알리미 조사](../research/audit2/SCHOOLINFO_SOURCE_SURVEY_20261006.md). 60/60 SHL_IDF_CD 연결, 2-가(4월) 첨부 59/60·15-라(5월) 60/60. 전체본 PDF 8개 중 5개 시정표 명시·1개 암시([표본](../research/audit2/schoolinfo_daily_clock_sample_20261006.json)); 한솔 발췌본에는 없음. 15-라 첨부 7개는 2025학년도 파일. 첨부 3/4이 HWP 계열. 별도 교육청 통합저장소는 확인되지 않아 출처 순서를 학교알리미 → 학교 홈페이지로 정정. node 테스트 5개 PASS.
+    - [x] A2-E04-c2 HWP/HWPX 판독 경로 결정 후 2-가 59학교 시정표 유무 전수 판정. 2026-10-07: [비교·판정](../research/audit2/SCHOOLINFO_SOURCE_SURVEY_20261006.md#e04-c2-판독-방식-비교와-60학교-전수-판정-2026-10-07). 로컬 추출(HWP/HWPX/PDF) 채택 — 미리보기와 HWPX 결과 동일, 미리보기는 HWP 변환 실패·결과 1분 내 만료. 시정표 탐지 35/60, 이미지 표 1, 미탐지 23(발췌본 위주), 첨부 없음 1. 1학년 요일별 교시 수 14곳. 단위 테스트 12개 PASS. 탐지 구간에 인접 표가 섞일 수 있어 필드값은 미확정.
+    - [x] A2-E04-c2b 탐지 구간에서 `school_day_periods`(학년 범위·교시·시작·종료·점심·요일별 교시 수·입학 초기 적응기) 후보 추출 → E05 검증기·검수. 이미지 표(효성)는 OCR 또는 수동.
+      2026-10-07 **1차 규칙 추출**: `python -m etl.extract_school_day_periods` → [후보](../research/audit2/school_day_periods_candidates_20261007.json). 시정표 35곳 중 19곳은 요일별 예상 하교 완성(무플래그 8, 다중 표 플래그 11), 16곳 미완(학년군·요일별 열 배치, 점심 순서 오독, 전남 2학기 목·금 NEIS 불일치, 청산 NEIS 코드 없음). 검수 창은 `etl/runtime/audit2-documents/review_windows_20261007.md`(git 제외). 사람 검수 전이라 전부 `not_approved`.
+      2026-10-07 **1차 검수(assistant)**: 35곳 원문 표를 읽어 [검수 값](../research/audit2/school_day_review_first_pass_20261007.json) 기록 → `python -m etl.build_grade1_dismissal_estimates` → [요일별 예상 하교](../research/audit2/GRADE1_DISMISSAL_FIRST_PASS_20261007.md) **31/35 완성**. NEIS↔문서 교시 수 충돌 1곳(성남화랑 월), 1학년 점심이 4교시 앞인 학교 4곳, 추론값 3곳. NEIS에 2학기 초 구간(8/24~9/4) 추가. 규칙 버그(우유급식을 점심으로 읽음) 수정, 테스트 12개 PASS. 2026-10-07 **사용자 확인 완료**: 화랑 월 NEIS 유지, 추론값은 `inferred`(추정 표시), 점심이 4교시 앞인 해석 확정, 빈 요일은 `school_check_needed`(학교 확인 필요). 추정 9개 요일·확인 필요 8개 요일. 이미지 표(효성)와 시정표 미탐지 23곳은 범위 밖.
+    - [x] A2-E04-c3 2025↔2026 공시 시정표 동일 학교 비교로 연도 간 변동률 측정(전년도 기준선 `estimated` 사용 근거). 2026-10-08: [비교](../research/audit2/YEAR_OVER_YEAR_STABILITY_20261008.md). NEIS 1학년 요일 패턴 48곳 중 45곳 동일(요일 칸 237/240), 시정표 핵심 시각 26곳 중 25곳 동일(영광중앙만 10분 이동). 전년도 값을 `estimated`로 쓰는 근거 확보. `--ay=2025` 수집 모드, `etl/compare_daily_clock_years.py` 추가.
+  - [ ] A2-E04-d 2027학년도 계획 게시 감시(통상 12~2월)와 양영초 2~4기 안내 수집. 새 hash 발생 시 E04-b 검토 반복.
+- [ ] A2-E05 LLM 후보 추출+필드 evidence+deterministic validation+confidence/review gate 구현. 승인 전 publish 금지.
+- [ ] A2-E06 gold set 분리 평가: 시간/학년/요일 정확도, unknown/학교 coverage, 검수 시간/비용, 버전 교체 안정성 보고.
+- [ ] A2-E07 학원 초등대상 3등급과 이동시간 데이터 접근/품질 조사. 기존 거리 contract 유지.
+- [ ] A2-I01 보호 경로를 유지한 5GNB(홈/학교 찾기/입학 준비/학습 준비/MY, 2026-10-08 사용자 결정: 홈 유지)/학교→학습 준비 시간표 조회→MY 시간표·대안 UI 구체안과 route fixture 작성. 실제 라우트 적용 전 영향 재확인.
+
+### Phase 2 — 시간표 MVP와 가족 상태
+
+- [ ] A2-S01 planning/application/actual 및 evidence/participation/transition 독립 상태 타입·fixture 작성.
+- [ ] A2-S02 정규+선택 방과후/돌봄+수동 일정 순수 엔진, unknown 시각/충돌/단축/방학 처리 검증.
+- [ ] A2-S03 반복/일회/보강/취소 override와 source revision diff·동시편집 처리.
+- [ ] A2-S04 Auth·profile·개인 저장→가족 membership RLS와 초대 만료/취소/수락 설계·격리 DB 테스트.
+- [ ] A2-S05 local 기록 import/계정 충돌/로그인 취소 후 복원, 가족 viewer/editor/owner 권한 테스트.
+- [ ] A2-S06 MY 시간표 UI·주간 계획·자료 상태·source/date·가족 공유·직접 입력 통합.
+- [ ] A2-S07 미계획 구간 산출, 자유시간/아직모름/activity+pickup need 입력, 공개 참여 별도 동의.
+- [ ] A2-S08 migration/배포 계획 재확인 후 제한 rollout. 기존 school/SEO/관리자 regression과 신규 상태 테스트 최종 검증.
+
+### Phase 3 — 수요 공개와 밀집 검증
+
+- [ ] A2-U01 가족 단위 중복 제거·유효기간·동의 철회/수정 반영 aggregate worker 구현.
+- [ ] A2-U02 5가정 threshold·구간표시·총계 역산/필터 조합 억제·반복 snapshot/삭제 검증. raw public 접근 차단.
+- [ ] A2-U03 누구나 열람 가능한 학교별 aggregate와 기간/표본/모드/방법 표시. 개인 게시판 없음.
+- [ ] A2-U04 Audit1 이벤트와 신규 schedule/unmet/family/demand 이벤트 연결·중복/개인정보 점검.
+- [ ] A2-U05 검증된 학교 숫자/자료만으로 SEO/AEO/GEO landing과 SNS 초안 작성. 외부 게시 상태 별도 기록.
+- [ ] A2-U06 10~20학교 집중 모집·4~6주 관측 계획 확정. 7일 start→save, 미계획/응답, 반복 cluster 가설 평가.
+- [ ] A2-U07 Go/Hold/No-go 보고 후 확대 범위 결정. 실제모드(3월 이후)는 별도 cohort 검증, 수익화 확장 없음.
+
+완료 기준: 설계·코드·검증·운영 적용·실험 결과를 별도로 기록한다. Audit1의 24개 콘텐츠 framework와 100개 장기 목표는 유지하되 현재 실행은 위 의존성을 우선한다.
+
+## 어디초 플랫폼 개편 — 실행 TODO (2026-10-05)
+
+목표·산출물·의존성·완료 조건: [개편 실행 계획](../product/PLATFORM_EXPANSION_PLAN.md). 근거: [1차 감사](../product/PLATFORM_EXPANSION_AUDIT_20261005.md)와 사용자 첨부 실행 가이드 0~25절. 이 절이 개편 체크 상태의 단일 원본이다. 기존 아래 운영/데이터 backlog는 계속 유지한다.
+
+체크 규칙: `[x]`는 해당 범위의 결과와 검증 근거가 있을 때만 사용한다. 코드 작성은 배포 완료가 아니다. 각 완료 행에 날짜와 근거를 추가한다. 미확인·실패는 `[ ]`로 유지하고 사유를 기록한다. 다음 실행 순서: **P0-04~07 → P1 → P2 → P3 → P4 → P5 → Release**. 구현 중 해당 단계의 analytics와 회귀 검증도 함께 수행한다.
+
+### P0 — 감사와 보호 기준선
+
+- [x] P0-01 코드 route/component, 콘텐츠, local MY/state, 저장소 SQL/Auth 사용 조사. 2026-10-05: 1차 감사 보고서 작성. 운영 DB 전체 검증은 포함하지 않음.
+- [x] P0-02 Keep/Move/Modify/New/Remove, 기존 route mapping, 최소 schema 초안 작성. 2026-10-05: 감사 §3~5.
+- [x] P0-03 첨부 가이드 0~25절 대조, GNB 4개/로고 HOME 정정, Phase 0~7 실행 계획과 TODO 작성. 2026-10-05: `PLATFORM_EXPANSION_PLAN.md`와 이 절.
+- [ ] P0-04 실제 DB의 테이블/컬럼/FK/RPC/grants/RLS를 SQL 06~24와 대조. 특히 curriculum 테이블 적용 여부·데이터 유무 확인. 읽기 권한이 없으면 구체적인 미확인 목록을 남김.
+- [ ] P0-05 Supabase 익명 인증/Kakao/Google/identity linking/redirect 설정과 관리자 세션 영향 확인. 비밀값은 출력하지 않음.
+- [ ] P0-06 주소 검색·학구도 표시·학교/아파트 양방향 탐색의 실제 지원 범위 확인. 이름 검색을 임의 주소 배정 조회로 간주하지 않고 미지원 범위를 분리.
+- [ ] P0-07 기존 URL·canonical·OG·sitemap·체크리스트 ID·저장 형식과 대표 지역 QA 기준선 기록. 빌드 당시 sitemap은 학교 6,302/아파트 45,853/콘텐츠 14개였으며 향후 데이터 증감과 URL 손상을 구분.
+- [ ] P0-08 이전 public smoke의 최종 종료 결과까지 재확인. 앞선 기록은 중간 PASS와 실행 세션만 있어 전체 통과 판정 보류.
+
+### P1 — IA/GNB 및 행정 재분류
+
+- [x] P1-01 기존 URL을 유지한 임시 라벨 변경: 지도→학교찾기, 공식 가이드→입학 행정. 2026-10-05: BottomNavigation/HomePage/MyPage/structure.json; lint/typecheck/full build 확인. 2026-10-06: 팀원 검토 반영, public-smoke.mjs의 /guide 활성 메뉴 기대값도 입학 행정으로 동기화(구문 검사 PASS). 2026-10-08 사용자 결정: 최종 이름은 **학교 찾기·입학 준비**(입학 행정 안 씀, 가이드 목록 제목도 '입학 준비 가이드' 유지). 바뀌는 것은 지도→학교 찾기 한 곳.
+- [ ] P1-02 홈/학교 찾기/입학 준비/학습 준비/MY 5개 GNB와 활성 상태, 모바일 접근성 검증. 2026-10-08 사용자 결정: 학습 준비 추가, 홈 유지 5개 확정(잠시 보류했다 철회 — [계획 §1](../product/PLATFORM_EXPANSION_PLAN.md#1-확정된-방향)). 학습 준비는 '준비 중' 화면으로 배포. 2026-10-08 **로컬 구현**: `BottomNavigation` 학습 준비 추가, `urlState` `/learn` 경로, `LearnPage`(자료 없음 표시만). lint/typecheck/build PASS, public smoke(127.0.0.1:3000) exit 0, 390px `/learn` 화면·활성 탭 확인. **운영 반영** master `b6376f2` → release `129f87c`, 운영 smoke PASS 101건, `/learn` 5탭 확인. 모바일 접근성·데스크톱 확인은 남음.
+- [ ] P1-03 학습 준비 landing(학습 가이드 + 초1 시간표 조회) 및 신규 경로 계약 구현. `/learn` 확정(2026-10-08, 기존 `/prep` 후보 대체), 기존 `/plans/*`, `/items/*`, `/grade1`와 feature flag 호환 전략 기록.
+- [ ] P1-04 `/guide/*`, `/faq`를 행정 주제로 재분류하고 Official/출처/검증일/지역·년도 범위 표시. title과 정적 HTML 문구 동기화.
+- [ ] P1-05 전체 일정·통지서·예비소집·입학식·전입/전출·이사·조기입학·유예/면제·지역차이·FAQ의 기존 콘텐츠/누락 목록 작성, 공식 출처 검증 후 보완.
+- [ ] P1-06 HOME의 진행상태 중심 UI를 MY로 정리하고 학교→행정/준비 교차 링크 및 관련 학교 진입 구성. 기존 체크리스트 URL/ID 유지.
+- [ ] P1-07 학교 상세의 관심학교/관련 콘텐츠 위치를 구현·검증하고 기존 배정 정보/지도 동작 회귀 확인.
+- [ ] P1-08 lint/typecheck/build/public smoke 최종 통과, 모바일·데스크톱·키보드·뒤로가기·deep link 검증 근거 기록.
+
+### P2 — 콘텐츠 Framework와 24개 seed
+
+- [ ] P2-01 환경/습관/배움/선택·준비물 taxonomy 및 하위분류 정의. 배움의 한글·수학·영어 노출·독서·영상·오디오·교구/보드게임 모두 포함.
+- [ ] P2-02 기존 10개 guide/24개 FAQ 답변/17개 checklist와 1학년 자료 및 기존 YouTube 연구 자료를 항목별 재사용 목록으로 정리. 빈 curriculum 데이터와 실제 콘텐츠를 구분.
+- [ ] P2-03 공통 템플릿 구현: 질문/요약/긍정/부정/조건부/외부 분석/Poll/한줄 경험/다음 Need. 미수집 반응과 미구현 버튼을 작동하는 것처럼 표시하지 않음.
+- [ ] P2-04 content metadata와 source signal 계약 구현: 연령·입학년도·시기·지역·학교·발행상태·검증일·출처 수, 광고 flag, 조사일/표본/빈도. HTML/링크 입력 안전성 검증.
+- [ ] P2-05 원문 재게시 없이 외부 signal 조사·교차검증·출처 기록. 협찬/파트너스/광고 구분, 출처 접근 불가와 불충분한 근거 명시.
+- [ ] P2-06 24개 실제 seed 작성·검수·등록: 환경 6/습관 6/배움 8/선택·준비물 4. 계획 문서의 후보부터 진행.
+- [ ] P2-07 초1 교육과정 기준·영어 노출 분리·불안/선행 경쟁 방지 편집 검수. 에디터 의견/공식 사실/부모 반응 구별.
+- [ ] P2-08 draft/review/published/archived 상태와 콘텐츠 수정·출처 재검증 운영 절차 구현. 초기 저장소 편집 계약을 CMS 전환에도 재사용.
+- [ ] P2-09 24개 목록/상세/관련 링크를 실제 UI에서 확인하고 신규 공개 페이지 static HTML/canonical/OG/sitemap 검증. 기존 SEO 회귀 확인.
+
+### P3 — Login, 사용자 DB, MY MVP
+
+- [ ] P3-01 live DB 충돌 확인 후 profiles/interests/content/source/tag/views/saves/checklist 최소 schema 확정. auth.users 재사용, 학교 데이터 계약과 분리.
+- [ ] P3-02 migration/인덱스/operation별 grants·RLS 작성, 미로그인·익명·소유자·타 사용자·관리자 allow/deny 테스트와 advisor 검증. 실제 DB 적용은 별도 기록.
+- [ ] P3-03 Kakao 우선·Google 로그인과 callback/오류/취소/로그아웃/return path 구현. 관리자 인증 흐름 회귀 확인.
+- [ ] P3-04 익명 identity 연결과 기존 계정 로그인 충돌 처리. 저장/투표/체크 상태의 중복 없는 병합 및 실패·재시도 검증.
+- [ ] P3-05 입학년도+관심학교 또는 관심지역 최소 onboarding 구현. 아이 이름/성별/정확주소 수집 없음.
+- [ ] P3-06 관심학교·콘텐츠 저장·내 준비 추가·MY·경험/댓글·동기화에서 로그인 trigger와 성공 후 원래 행동 복원. 공개 검색/열람 유지.
+- [ ] P3-07 기존 프로필/학교·아파트 즐겨찾기/체크/읽음 localStorage 이전과 기기 간 동기화 구현. 기존 아파트 공개키와 checklist ID 보존.
+- [ ] P3-08 MY 입학연도/D-day/학교·지역/행정 및 4분류 준비 진행/저장/최근 열람 구현. 참여내역은 P4 연결.
+- [ ] P3-09 개인정보 안내·보관/삭제·탈퇴·동기화 설명을 실제 동작에 맞춤. 서버 개인 데이터 보관 범위 확정.
+- [ ] P3-10 검증된 migration 적용 후 사용자별 조회와 실제 두 계정·두 기기 동작, 재로그인 복원을 확인. rollout/복구 결과 기록.
+
+### P4 — Poll / Reaction / 한줄 경험 및 seed 100개
+
+- [ ] P4-01 polls/options/votes 및 유용성 reaction 계약 구현. poll-option 일치, 1인1표/변경 규칙, 익명 중복 방지의 한계·보완 정책 명시.
+- [ ] P4-02 거실서재 만족/애매/다시 안 함, 책상 구매시기, 준비물 평가, 행정 해결/추가 궁금 반응 UI 구현.
+- [ ] P4-03 원본 투표/사용자 정보를 공개하지 않는 집계 제공. 최소 표본·집계 기간·0건 상태 표시, 실제 참여만 집계.
+- [ ] P4-04 로그인 한줄 경험 작성/수정/삭제, 검수·신고·스팸 대응 구현. 댓글은 콘텐츠 내 최소 범위로 정의·연결, 별도 Community GNB 없음.
+- [ ] P4-05 MY 참여 Poll/내 경험 연결. 익명→계정 전환, 이중 클릭·재시도·권한·게시 상태 검증.
+- [ ] P4-06 콘텐츠를 총 100개로 확장: 환경25/습관25/배움30/선택20. 주제 100개와 검증·발행된 본문 100개를 구분해 집계.
+
+### P5 — HOME Discovery
+
+- [ ] P5-01 기존 콘텐츠 ID를 재조합하는 rule engine 구현. entry_year/학교/지역/viewed/saved/voted/category_interest 입력과 추천 이유 정의.
+- [ ] P5-02 seen/unseen·신규 분석·시기별 행정 모듈 구현. HOME의 원본 콘텐츠 중복 생성 없음.
+- [ ] P5-03 비슷한 부모 인기·최근 반응 증가 모듈에 기간/표본 기준 적용. 근거 부족 시 시기/최신/편집 추천으로 표시.
+- [ ] P5-04 관련/함께 보는 학교 후보 제공. 주변 학교와 실제 배정학교 의미 구분, 공동조회 통계 없는 경우 허위 설명 없음.
+- [ ] P5-05 비로그인·로그인·관심 미설정·모두 열람·API 실패 fallback과 MY 역할 분리 검증.
+- [ ] P5-06 추천 노출/클릭·다음 Need 이동률 검증 및 첫 결과 보고. 과거 행동만 반복 추천하지 않도록 다양성 확인.
+
+### A — 단계와 함께 구현할 Analytics
+
+- [ ] A-01 기존 이벤트→신규 이벤트 매핑과 조회/완료·중복 제거·개인정보 없는 속성·분모/기간 정의.
+- [ ] A-02 school_search/view/save, admin_content_view/complete, prep_content_view/complete, content_save 연결.
+- [ ] A-03 poll_vote, experience_create, comment_create, login_start/complete 연결.
+- [ ] A-04 recommendation_impression/click, my_view, checklist_update 연결. 실제 노출/실제 저장 성공 시 발화 검증.
+- [ ] A-05 Search→배정 확인→다음 Need→반응/저장→로그인→개인화→HOME/MY funnel 보고 구성. 자동화 테스트로 production 분석 오염 방지.
+
+### R — 출시와 운영 확인
+
+- [ ] R-01 각 프런트 변경의 lint/typecheck/build 및 명시 URL public smoke가 최종 종료까지 통과했는지 기록.
+- [ ] R-02 360/390/430px와 데스크톱의 GNB·로고·학교/아파트 상세·검색·지도·저장·Auth·MY 전체 시나리오 검증, 화면 증거 저장.
+- [ ] R-03 기존/신규 URL 직접 진입·새로고침·뒤로/앞으로·canonical·OG·sitemap origin·404/별칭 처리 검증.
+- [ ] R-04 대표 지역 배정 QA/수동검수 기록과 운영 관리자 접근 회귀 확인. ETL/학구/공개키 산출 변경 여부 점검.
+- [ ] R-05 변경 내역·migration 상태·배포 순서·복구 절차 정리, release runbook에 따라 배포 상태 별도 기록.
+- [ ] R-06 배포 후 허용 도메인 지도/로그인 callback/public smoke·신규 funnel 확인. production 확인 전 출시 완료 체크 금지.
+
+### P6/P7 — 조건 충족 후 검토 (Deferred)
+
+- [ ] P6-01 실제 참여량과 검수 운영 근거로 사진·긴 경험글·부모 사례의 착수 조건/범위 결정.
+- [ ] P6-02 조건 충족 시 업로드/권한/신고/삭제와 사례 탐색 설계·구현. 자유게시판/Following/Influencer는 별도 검토.
+- [ ] P7-01 반복되는 부모 문제와 선택 근거를 Parent Insight로 정리하고 Wherecho Select/브랜드 협업 적합성 검토.
+- [ ] P7-02 자체 오디오/인터랙티브 장난감 등 수요 검증 후 별도 계획. 초기 수익화 CTA/배너/lead 판매는 현재 범위 제외.
 
 ## Current UX Milestone: School, Apartment, and Academy Integration
 
