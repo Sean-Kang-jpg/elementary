@@ -171,9 +171,10 @@ const SchoolDetail: React.FC<SchoolDetailProps> = ({ school, isOpen, onClose, on
       ? selectedApartment?.name
       : school.school_name
 
+  // 아파트 선택은 여기서 비우지 않는다. 닫기가 뒤로 가기로 처리될 때 먼저 비우면
+  // 주소 동기화가 학교 주소를 새로 쌓는다. 학교 선택을 비우면 아파트도 함께 비워진다.
   const close = () => {
     setCurrentView('school')
-    dispatch({ type: 'SET_SELECTED_APARTMENT', payload: null })
     onClose()
   }
 

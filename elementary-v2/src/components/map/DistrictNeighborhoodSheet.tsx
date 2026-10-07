@@ -60,6 +60,7 @@ export default function DistrictNeighborhoodSheet({
     <BottomSheet
       isOpen={isOpen}
       onClose={onClear}
+      historyKey="district"
       title={title}
       snapPoints={[0.09, 0.36, 0.88]}
       defaultSnap={1}

@@ -1,6 +1,7 @@
 import { X } from 'lucide-react'
 import React from 'react'
 import { useUI } from '../../contexts/AppContext'
+import { useCloseOnBack } from '../ui/useCloseOnBack'
 
 interface SidebarProps {
   children: React.ReactNode
@@ -9,6 +10,7 @@ interface SidebarProps {
 export default function Sidebar({ children }: SidebarProps) {
   const { ui, toggleSidebar } = useUI()
   const sidebarRef = React.useRef<HTMLDivElement>(null)
+  useCloseOnBack('filter', ui.sidebar_open, toggleSidebar)
 
   React.useEffect(() => {
     const sidebar = sidebarRef.current

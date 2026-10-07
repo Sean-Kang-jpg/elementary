@@ -215,7 +215,10 @@ export const currentPath = (): string =>
  * 뒤로 가기를 눌렀을 때 같은 페이지의 다른 철자로 돌아가면 갇힌다. 선택이
  * 실제로 달라졌을 때만 기록을 쌓는다.
  */
-export const syncPath = (path: string, { push }: { push: boolean }): void => {
+export const syncPath = (
+  path: string,
+  { push, state = {} }: { push: boolean; state?: Record<string, unknown> },
+): void => {
   // 브라우저의 pathname은 퍼센트 인코딩돼 있고 우리가 만든 주소는 한글 그대로다.
   // 같은 형태로 맞춰 비교하지 않으면 같은 주소를 기록에 거듭 쌓아, 뒤로 가기가
   // 제자리에서 맴돈다.
@@ -223,7 +226,7 @@ export const syncPath = (path: string, { push }: { push: boolean }): void => {
     setCanonical(path)
     return
   }
-  if (push) window.history.pushState({}, '', path)
-  else window.history.replaceState({}, '', path)
+  if (push) window.history.pushState(state, '', path)
+  else window.history.replaceState(state, '', path)
   setCanonical(path)
 }

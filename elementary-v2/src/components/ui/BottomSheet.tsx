@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
 import { X } from 'lucide-react'
 import { usePanelSlot } from '../layout/panelSlot'
+import { useCloseOnBack } from './useCloseOnBack'
 
 interface BottomSheetProps {
   isOpen: boolean
@@ -15,6 +16,9 @@ interface BottomSheetProps {
   onSnapChange?: (snapIndex: number) => void
   closeLabel?: string
   className?: string
+  // 주소가 없는 시트에만 준다. 주면 뒤로 가기가 이 시트를 닫는다(useCloseOnBack).
+  // 학교·아파트 상세는 주소가 기록을 맡으므로 주지 않는다.
+  historyKey?: string
 }
 
 type DragMode = 'pending' | 'sheet' | 'content'
@@ -48,7 +52,9 @@ const BottomSheet: React.FC<BottomSheetProps> = ({
   onSnapChange,
   closeLabel = '상세 정보 닫기',
   className = '',
+  historyKey,
 }) => {
+  useCloseOnBack(historyKey, isOpen, onClose)
   const [currentSnap, setCurrentSnap] = useState(defaultSnap)
   const [isDragging, setIsDragging] = useState(false)
   const [dragHeight, setDragHeight] = useState<number | null>(null)
