@@ -3,9 +3,12 @@
 from __future__ import annotations
 
 import argparse
+import http.client
 import http.cookiejar
 import json
 import re
+import time
+import urllib.error
 import urllib.parse
 import urllib.request
 from datetime import datetime
@@ -120,5 +123,22 @@ def main() -> None:
     print(json.dumps(report, ensure_ascii=False, indent=2))
 
 
+def main_with_retries(attempts: int = 4) -> None:
+    """The K-apt site drops connections from GitHub runners now and then
+    (2026-10-07 rehearsal: several scopes lost their first download, and each
+    recovery cost a five-minute group retry). Start over - new session, new CSRF
+    token - after a short wait instead."""
+    for attempt in range(attempts):
+        try:
+            main()
+            return
+        except (urllib.error.URLError, TimeoutError, ConnectionError, http.client.HTTPException) as error:
+            if attempt == attempts - 1:
+                raise
+            wait = 20 * (attempt + 1)
+            print(f"K-apt download failed ({error}); retrying in {wait}s", flush=True)
+            time.sleep(wait)
+
+
 if __name__ == "__main__":
-    main()
+    main_with_retries()
