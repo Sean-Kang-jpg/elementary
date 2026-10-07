@@ -9,7 +9,7 @@ interface BottomNavigationProps {
 
 const items = [
   { id: 'home', label: '홈', icon: Home },
-  { id: 'map', label: '지도', icon: Map },
+  { id: 'map', label: '학교 찾기', icon: Map },
   { id: 'guide', label: '입학 준비', icon: BookOpen },
   { id: 'my', label: 'MY', icon: UserRound },
 ] as const
@@ -26,7 +26,7 @@ export default function BottomNavigation({ activeView, onNavigate }: BottomNavig
     <nav className="app-gnb" aria-label="주요 메뉴">
       {items.map(({ id, label, icon: Icon }) => {
         // FAQ는 가이드 목록 아래에 있으므로 가이드 탭이 켜진다. 지역 허브는 학교를
-        // 찾는 다른 길이므로 지도 탭이 켜진다.
+        // 찾는 다른 길이므로 학교 찾기 탭이 켜진다.
         const isActive = activeView === id
           || (id === 'guide' && (activeView === 'faq' || activeView === 'checklist'))
           || (id === 'map' && activeView === 'area')
