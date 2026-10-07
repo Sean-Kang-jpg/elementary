@@ -233,6 +233,11 @@
   text-decoration: none;
 }
 
+.home-page__card + .home-page__card {
+  /* 위 .home-links와 첫 카드 사이(12px)와 같게. */
+  margin-top: 12px;
+}
+
 .home-page__card strong,
 .home-page__card small {
   display: block;
