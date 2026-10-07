@@ -1,4 +1,4 @@
-import { BookOpen, Home, Map, UserRound } from 'lucide-react'
+import { BookOpen, CalendarClock, Home, Map, UserRound } from 'lucide-react'
 import type { MouseEvent } from 'react'
 import { VIEW_PATHS, type AppView } from '../../utils/urlState'
 
@@ -11,6 +11,7 @@ const items = [
   { id: 'home', label: '홈', icon: Home },
   { id: 'map', label: '학교 찾기', icon: Map },
   { id: 'guide', label: '입학 준비', icon: BookOpen },
+  { id: 'learn', label: '학습 준비', icon: CalendarClock },
   { id: 'my', label: 'MY', icon: UserRound },
 ] as const
 

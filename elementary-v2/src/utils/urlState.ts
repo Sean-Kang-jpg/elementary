@@ -4,7 +4,7 @@ import { findRegion } from '../constants/regionRegistry'
 /**
  * 주소와 화면을 잇는다.
  *
- * 화면: 홈(`/`), 지도(`/map`과 상세), 가이드(`/guide`, `/guide/{slug}`), FAQ, 소식,
+ * 화면: 홈(`/`), 지도(`/map`과 상세), 가이드(`/guide`, `/guide/{slug}`), FAQ, 학습 준비(`/learn`), 소식,
  * MY(`/my`, 옛 주소 `/favorites`), 개인정보처리방침, 지역 허브(`/area`, `/area/서울`,
  * `/area/서울/강남구`). 지도 쪽에서는
  * 여전히 주소가 선택을 비춘다 — `/map`, `/school/…`, `/apt/…`는 같은 지도 위에서
@@ -31,17 +31,18 @@ export type Route =
   | { kind: 'guide'; slug: string | null }
   | { kind: 'faq' }
   | { kind: 'checklist' }
+  | { kind: 'learn' }
   | { kind: 'area'; path: string }
   | { kind: 'admin' }
   | { kind: 'school'; key: string }
   | { kind: 'apartment'; key: string }
 
 /** 화면 단위. 상세 두 종류는 지도 화면 위의 선택이다. */
-export type AppView = 'home' | 'map' | 'guide' | 'faq' | 'checklist' | 'area' | 'news' | 'my' | 'privacy'
+export type AppView = 'home' | 'map' | 'guide' | 'faq' | 'checklist' | 'learn' | 'area' | 'news' | 'my' | 'privacy'
 
 export const viewOf = (route: Route): AppView => {
   if (route.kind === 'school' || route.kind === 'apartment' || route.kind === 'map') return 'map'
-  if (route.kind === 'news' || route.kind === 'my' || route.kind === 'privacy') return route.kind
+  if (route.kind === 'news' || route.kind === 'my' || route.kind === 'privacy' || route.kind === 'learn') return route.kind
   if (route.kind === 'guide' || route.kind === 'faq' || route.kind === 'checklist' || route.kind === 'area') return route.kind
   return 'home'
 }
@@ -56,6 +57,7 @@ export const VIEW_PATHS: Record<AppView, string> = {
   guide: '/guide',
   faq: '/faq',
   checklist: '/checklist',
+  learn: '/learn',
   area: '/area',
 }
 
@@ -122,6 +124,7 @@ export const parseRoute = (pathname: string, search = ''): Route => {
     if (segments[0] === 'guide') return { kind: 'guide', slug: null }
     if (segments[0] === 'faq') return { kind: 'faq' }
     if (segments[0] === 'checklist') return { kind: 'checklist' }
+    if (segments[0] === 'learn') return { kind: 'learn' }
   }
   // 모르는 주소는 홈으로 연다. 404 화면이 없으므로 가장 쓸모 있는 착지점이다.
   if (segments.length !== 2) return { kind: 'home' }

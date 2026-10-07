@@ -10,6 +10,7 @@ import MyPage from './components/navigation/MyPage'
 import HomePage from './components/navigation/HomePage'
 import NewsPage from './components/navigation/NewsPage'
 import PrivacyPage from './components/navigation/PrivacyPage'
+import LearnPage from './components/navigation/LearnPage'
 import GuideListPage from './components/content/GuideListPage'
 import GuidePage from './components/content/GuidePage'
 import FaqPage from './components/content/FaqPage'
@@ -445,6 +446,7 @@ function MapApplication() {
           onProfileChange={changeProfile}
         />
       )}
+      {view === 'learn' && <LearnPage onNavigate={(path) => navigate(path, 'related')} />}
       {view === 'privacy' && <PrivacyPage />}
       
       {connectionStatus.supabase === 'error' && (
@@ -489,6 +491,7 @@ const TITLES: Record<AppView, string> = {
   guide: '입학 준비 가이드 | 어디초',
   faq: `${FAQ_PAGE.title} | 어디초`,
   checklist: `${checklistContent.title} | 어디초`,
+  learn: '학습 준비 | 어디초',
   area: '지역별 초등학교 배정 현황 | 어디초',
 }
 
