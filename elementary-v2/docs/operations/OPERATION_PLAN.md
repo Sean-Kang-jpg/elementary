@@ -42,6 +42,7 @@ E04 조사 결과(학교알리미는 전년도 예상값, 확정값은 2월 이�
   2026-10-08 **설계·초안 완료, 미적용**: [영향 보고](../research/audit2/SCHOOL_DAY_CARD_CONTRACT_20261008.md), `sql/26_create_school_day_estimates.sql`(공개 읽기 3테이블, 기본 쓰기 grant 회수), `etl/load_school_day_estimates.py`(dry-run 35/175/60행, 제약 위반 0, 테스트 4개 PASS). EXECUTION_GUIDE 26 추가. **운영 적용 사용자 승인 대기.**
 - [x] A2-R04 학교 상세 "초1 하루 예상" 카드: 요일별 예상 하교·돌봄 종료, 출처·기준일, "전년도 기준 예상" 문구, 자료 없는 학교 fallback. 분당 20곳 중 검수 통과 학교부터. lint/typecheck/build/public smoke.
   2026-10-08 **로컬 구현·검증 완료, 미배포**: `src/components/school/SchoolDayEstimateCard.tsx`(학교 상세 StartModule 아래), `getSchoolDayEstimate`(SQL 26 미적용 시 null → 카드 숨김), 타입 3개. 요일별 예상 하교(추정·학교 확인 표시), 점심 위치 문구, 돌봄 기본·연장 분리, 출처·예상 안내. SQL 26 적용 전 확인용 dev 전용 fixture(`--write-fixture`, git 제외, 운영 번들 미포함 확인). typecheck·lint·build PASS, 360/1280px 넘침 없음, 로컬 public smoke exit 0. 측정 이벤트 `view_school_day_estimate` 문서화. 2026-10-08 **운영 반영**: 사용자 SQL 26 적용 → anon GET 200·POST/PATCH/DELETE 전부 42501 → `--apply` 35/175/60행 → master `df14027`(작업분만 선별 커밋, 격리 worktree에서 typecheck·lint·vite build 확인) → release `c27530f` → 약 3분 후 반영, 운영 public smoke exit 0, wherecho.co.kr에서 상탑·마량 카드와 비파일럿 학교 카드 숨김 확인. DATA_CONTRACTS·루트 CLAUDE.md 공개 계약 목록 갱신.
+- [x] A2-R05 파일럿 확대: 성남시 전체 + 서울 강남·서초·송파(2026-10-08 사용자 결정). 2026-10-08 **1차 검수 완료, 사용자 확인 대기**: 새 148곳 — NEIS 코드는 학교알리미 페이지에서(59/59 검증), 시정 71곳 요일별 예상 하교 완성(점심이 4교시 앞 26곳), 돌봄 시간 55곳. 규칙 정확도 20/35라 전수 원문 검수 유지. 적재기는 확대 세트 미확인 시 `--apply` 거부(dry-run 106/530/208, 위반 0). [요약·확인 요청](../research/audit2/PILOT_EXPANSION_FIRST_PASS_20261008.md). 2026-10-08 **사용자 확인·운영 적재**: `--apply` 106/530/208행, wherecho.co.kr에서 성수·위례푸른·서울방이 카드 확인. master `813aff3`(프런트 변경 없음, release 이동 불필요).
 - 범위 조정: E05 LLM 파이프라인은 100곳 이상 확장 때 착수. E06 정답 세트는 분당 20곳 × 필드 4개(1학년 요일별 하교, 점심, 돌봄 종료, 1~2학년 방과후 시작)로 축소. **보류**: E07 학원 이동시간, S03 보강·동시편집, U01~U03 수요 공개, E02 청산초 1곳(분당 표본 밖).
 - 사용자 작업: B04-b 로그인 공급자 설정 — [설정 체크리스트](AUTH_PROVIDER_SETUP.md).
 
@@ -107,7 +108,7 @@ E04 조사 결과(학교알리미는 전년도 예상값, 확정값은 2월 이�
 - [ ] A2-S03 반복/일회/보강/취소 override와 source revision diff·동시편집 처리.
 - [ ] A2-S04 Auth·profile·개인 저장→가족 membership RLS와 초대 만료/취소/수락 설계·격리 DB 테스트.
 - [ ] A2-S05 local 기록 import/계정 충돌/로그인 취소 후 복원, 가족 viewer/editor/owner 권한 테스트.
-- [ ] A2-S06 MY 시간표 UI·주간 계획·자료 상태·source/date·가족 공유·직접 입력 통합.
+- [ ] A2-S06 MY 시간표 UI·주간 계획·자료 상태·source/date·가족 공유·직접 입력 통합. 2026-10-08 사용자 결정: **로그인 준비 후 착수**(기기 저장으로 먼저 시작하지 않음 — 이전 작업을 만들지 않기 위해). 선행: B04-b.
 - [ ] A2-S07 미계획 구간 산출, 자유시간/아직모름/activity+pickup need 입력, 공개 참여 별도 동의.
 - [ ] A2-S08 migration/배포 계획 재확인 후 제한 rollout. 기존 school/SEO/관리자 regression과 신규 상태 테스트 최종 검증.
 

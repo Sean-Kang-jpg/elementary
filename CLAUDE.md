@@ -69,7 +69,7 @@ npm run typecheck
 - 엔진: `src/utils/schedule/{types,fromSchoolData,engine}.ts`. 입력은 SQL 26의 하교·돌봄, 출력은 요일별 배치·미배치·
   후보·겹침·이동 확인·공백(confirmed/estimated/uncertain). 하교 모름이면 공백 분을 내지 않는다
 - 테스트: `npm run test:unit`(Node 내장 runner, 타입 제거 실행) 16개 PASS. 새 script라 루트 CLAUDE.md·AGENTS.md도 고침
-- 다음: S06 MY 시간표 화면(로그인 전에는 기기 저장으로 시작할지 사용자 결정 필요), S03 일회 취소·보강
+- 다음: S06 MY 시간표 화면은 **로그인 준비 후**(사용자 결정 2026-10-08, 기기 저장 선행 안 함). 그 전에 할 수 있는 것: S03 일회 취소·보강
 
 ### 2026-10-08: 5개 메뉴 — 학습 준비(`/learn`) 추가 (`b6376f2`, 운영 `129f87c`)
 
@@ -134,8 +134,11 @@ npm run typecheck
   `python -m etl.load_school_day_estimates --write-fixture`(src/dev-fixtures/, git 제외, 운영 번들 미포함). typecheck·lint·build·로컬 smoke PASS
 - **2026-10-08 운영 반영**: SQL 26 적용(사용자)·anon 쓰기 42501 확인·적재 35/175/60 → master `df14027` → release `c27530f`,
   운영 smoke PASS, 카드 확인. 이 커밋에 Audit 2 연구 자료·스크립트 포함. OPERATION_PLAN·이 파일의 Audit 2 기록은 다른 작업과 섞여 미커밋
-- 다음 후보: P1-02~03 4개 메뉴·입학 준비 landing(다른 세션 진행 중인지 확인), 파일럿 확대(분당 외), E04-d 2027 게시 감시,
-  로그인 설정(사용자, AUTH_PROVIDER_SETUP.md)
+- **2026-10-08 파일럿 확대 운영 적재**(사용자 결정: 성남시 + 서울 강남·서초·송파): 새 148곳 1차 검수·사용자 확인 →
+  운영 106/530/208행, master `813aff3`. `etl/build_pilot_manifest.py`(NEIS 코드는 학교알리미 페이지 sdSchulCode, 59/59 검증).
+  적재기 REVIEW_SETS에 confirmed 표시, 미확인 세트는 --apply 거부. 메뉴는 홈 포함 5개 유지(사용자 결정), 로그인은 다른 팀원 담당
+- 다음 후보: 추가 지역 확대(규칙 정확도 57%라 원문 검수 필요 — 수백 곳 이상이면 E05 자동화 먼저), E04-d 2027 게시 감시(12~2월),
+  2월 1기 가정통신문으로 확정값 갱신
 
 ### 2026-10-07: SEO — 허브·중복 정리·아파트 상세 보강 (커밋 `37a6bc2`, 운영 `release` `4e766df`)
 
