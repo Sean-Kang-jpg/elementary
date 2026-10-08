@@ -610,6 +610,18 @@ try {
     'a saved apartment opens that apartment, not only its school',
   )
   run(['eval', "localStorage.removeItem('elementary-favorites-v1'); 'cleaned up'"])
+  // 학습 준비 became the fourth of five tabs on 2026-10-08. Its timetable entry leads to the map.
+  run(['open', new URL('/learn', baseUrl).toString()])
+  await waitFor(
+    "document.querySelector('#learn-title') && document.querySelector('.app-gnb__item--active')?.getAttribute('href') === '/learn'",
+    '/learn opens 학습 준비 with its tab active',
+  )
+  assertPage(
+    "[...document.querySelectorAll('.app-gnb__item')].map((item) => item.getAttribute('href')).join(' ') === '/ /map /guide /learn /my'",
+    'the bottom navigation is 홈, 학교 찾기, 입학 준비, 학습 준비, MY in that order',
+  )
+  run(['eval', "document.querySelector('.content-page a[href=\"/map\"]').click(); 'to map'"])
+  await waitFor("location.pathname === '/map' && document.querySelector('.app-gnb__item--active')?.getAttribute('href') === '/map'", 'the timetable entry on 학습 준비 opens 학교 찾기')
   run(['open', new URL('/news', baseUrl).toString()])
   // News left the bottom navigation for a link under the guide list; the address stays.
   await waitFor("document.querySelector('#news-title')", '/news opens the news screen')

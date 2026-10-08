@@ -244,8 +244,20 @@ body {
   font-weight: 600;
 }
 
+/* 글자는 11px라 대비 4.5:1이 필요하다. 강조색(#e8664f)은 3.3:1, --warm-accent-strong도 4.50:1로
+   경계라 글자에는 더 진한 #b8452f(5.3:1)를 쓰고, 아이콘(3:1이면 충분)만 강조색으로 둔다. */
 .app-gnb__item--active {
+  color: #b8452f;
+}
+
+.app-gnb__item--active svg {
   color: var(--warm-accent, #e8664f);
+}
+
+.app-gnb__item:focus-visible {
+  outline: 2px solid var(--warm-accent-strong, #c94f3a);
+  outline-offset: -2px;
+  border-radius: 10px;
 }
 
 .app-destination {
