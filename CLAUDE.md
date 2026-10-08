@@ -63,6 +63,14 @@ npm run typecheck
 
 ## Uncommitted Work At Handoff
 
+### 2026-10-08: 시간표 엔진 S01·S02 (커밋 — 화면 미연결) · 하단 메뉴 접근성 (운영 `db3bd88`)
+
+- 접근성: 활성 탭 글자 #b8452f(5.3:1), `:focus-visible` 테두리, smoke에 `/learn` 3검사 → 운영 smoke PASS 104건
+- 엔진: `src/utils/schedule/{types,fromSchoolData,engine}.ts`. 입력은 SQL 26의 하교·돌봄, 출력은 요일별 배치·미배치·
+  후보·겹침·이동 확인·공백(confirmed/estimated/uncertain). 하교 모름이면 공백 분을 내지 않는다
+- 테스트: `npm run test:unit`(Node 내장 runner, 타입 제거 실행) 16개 PASS. 새 script라 루트 CLAUDE.md·AGENTS.md도 고침
+- 다음: S06 MY 시간표 화면(로그인 전에는 기기 저장으로 시작할지 사용자 결정 필요), S03 일회 취소·보강
+
 ### 2026-10-08: 5개 메뉴 — 학습 준비(`/learn`) 추가 (`b6376f2`, 운영 `129f87c`)
 
 - 사용자 결정: GNB **홈 / 학교 찾기 / 입학 준비 / 학습 준비 / MY**. 홈은 잠시 보류했다가 유지로 확정.

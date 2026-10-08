@@ -9,6 +9,7 @@
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "typecheck": "npm run content && tsc -b --pretty false",
+    "test:unit": "node --test \"src/**/*.test.ts\"",
     "browser:install": "agent-browser install",
     "browser:smoke": "npm run browser:smoke:public",
     "browser:smoke:public": "node scripts/public-smoke.mjs",
