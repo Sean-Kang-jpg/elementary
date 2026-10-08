@@ -16,6 +16,18 @@ This directory contains the maintained product, architecture, UX, operations, de
 
 ## Product
 
+- [Audit 2: 입학 전 시간표·익명 수요 확장](product/PLATFORM_EXPANSION_AUDIT2_20261006.md): Audit1 보존 mapping, 11개 설계 산출물, 공식 경쟁사 비교, ETL/시간표/집계/migration 계획.
+- [Audit 2 실행 TODO](operations/OPERATION_PLAN.md#audit2-expansion): Phase1 자료 가능성 → Phase2 시간표 MVP → Phase3 수요 공개/밀집 검증.
+- [Audit 2 운영 DB 기준선](research/audit2/SCHEMA_BASELINE_20261006.md): SQL06~24 선언 존재 비교, live catalog 증거와 보안 조치 영향. 보안 변경은 미적용.
+- [Audit 2 실제 정의 대조](research/audit2/DEFINITION_DIFF_20261006.md): 컬럼·외래키·인덱스·함수·정책 차이 및 격리 권한 테스트 미실시 범위.
+- [Audit 2 Docker 없는 읽기 검증](research/audit2/READ_ONLY_VERIFICATION_20261006.md): 운영 READ ONLY 역할 검증, 공개 Auth 설정과 public smoke 최종 PASS, 쓰기 검증과 미확인 범위 구분.
+- [최소 보호 기준선](research/audit2/MINIMUM_PROTECTION_BASELINE_20261006.md): 기존 URL·영구 ID·기기 저장·체크리스트 보호, 개편 착수 gate 완료.
+- [학교 자료 PoC 착수](research/audit2/ETL_POC_START_20261006.md): 60학교 manifest, 개발/평가/지역 coverage 분모와 밀집 모집 후보 구분.
+- [NEIS PoC 실제 응답](research/audit2/NEIS_POC_RESULTS_20261006.md): 47학교 코드 정확 연결/13 주소 검토 큐, 4학교 시간표·학사일정 sample과 미확보 절대시각 구분.
+- [NEIS 기존 ETL 재검증·문서 조사](research/audit2/NEIS_RECONCILIATION_20261006.md): 최신 59학교 연결/청산초 1보류, 5학교 API 표본, 개발2학교 문서 source registry와 공개 게시판 조사.
+- [어디초 개편 실행 계획](product/PLATFORM_EXPANSION_PLAN.md): 첨부 실행 가이드 기준 Phase 0~7, 목표 IA와 단계별 완료 조건.
+- [어디초 개편 실행 TODO](operations/OPERATION_PLAN.md#platform-expansion): 개편 진행상태와 검증 근거를 관리하는 단일 체크리스트.
+- [어디초 1차 감사](product/PLATFORM_EXPANSION_AUDIT_20261005.md): 코드/SQL 기준 자산·Reuse Map·schema 초안 및 운영 확인 한계.
 - [Product Brief](product/PRODUCT_BRIEF.md)
 - [Product Requirements](product/PRD.md)
 - [Product Concept v1.1](product/PRODUCT_CONCEPT.md): where the product is going — decision-tool framing, screen model, staged scope, brand. Korean. Forward-looking; the Brief and PRD govern what ships today.
