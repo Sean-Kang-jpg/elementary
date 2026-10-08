@@ -6,6 +6,8 @@ order: 6
 stage: admission
 group: admission
 verifiedAt: 2026-10-04
+rule: regional
+basisYear: 2026
 scope: 2026학년도 기준입니다. 2027학년도 운영 방식은 교육부가 2027년 초에 다시 발표하며, 신청 일정·선정 기준·비용은 학교마다 다릅니다. 아래 학교 사례는 예시입니다.
 summary:
   kind: steps

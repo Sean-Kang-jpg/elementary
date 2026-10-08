@@ -544,6 +544,45 @@
   color: var(--warm-faint);
 }
 
+/* 적용 범위 칩(P1-04). 지역마다 다른 글은 색으로 먼저 알아보게 한다. */
+.content-applies {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 10px 0 0;
+}
+
+.content-applies__chip {
+  border: 1px solid var(--warm-border-strong);
+  border-radius: 999px;
+  padding: 3px 10px;
+  color: var(--warm-muted);
+  background: var(--warm-surface);
+  font-size: 12px;
+  font-weight: 650;
+  line-height: 1.5;
+}
+
+.content-applies__chip--regional,
+.content-applies__chip--mixed {
+  border-color: #f0c9a8;
+  color: #8a4b1f;
+  background: #fff4ea;
+}
+
+.content-sources__official {
+  display: inline-block;
+  margin-right: 6px;
+  border-radius: 6px;
+  padding: 0 6px;
+  color: #1f5f46;
+  background: #e3f3eb;
+  font-size: 11px;
+  font-weight: 750;
+  line-height: 1.7;
+  vertical-align: 1px;
+}
+
 .content-body h2 {
   display: flex;
   align-items: center;

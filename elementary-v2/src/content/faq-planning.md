@@ -3,6 +3,8 @@ title: 입학 1~2년 전, 이사를 고민할 때 자주 묻는 질문
 description: 언제 이사해야 하는지, 신축 단지는 어느 학교인지, 공동통학구역과 조기입학까지 5~6세 아이를 둔 가족이 자주 묻는 질문입니다.
 stage: planning
 verifiedAt: 2026-10-03
+rule: mixed
+basisYear: 2026
 sources:
   - label: 초·중등교육법 시행령 제15조·제16조·제17조
     url: https://www.law.go.kr/법령/초·중등교육법시행령

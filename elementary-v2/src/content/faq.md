@@ -3,6 +3,8 @@ title: 초등학교 입학 자주 묻는 질문
 description: 취학통지서, 예비소집, 배정 학교, 이사, 입학 연기까지 예비초등 학부모가 자주 묻는 질문을 공식 근거와 함께 정리했습니다.
 stage: admission
 verifiedAt: 2026-10-03
+rule: mixed
+basisYear: 2026
 sources:
   - label: 초·중등교육법 시행령 제15조·제17조·제21조
     url: https://www.law.go.kr/법령/초·중등교육법시행령

@@ -5,6 +5,7 @@ import { VIEW_PATHS } from '../../utils/urlState'
 import ShareButton from '../ui/ShareButton'
 import EntryYearPicker from './EntryYearPicker'
 import SourceList from './SourceList'
+import AppliesTo from './AppliesTo'
 import { followInternalLink } from './contentLinks'
 
 interface FaqPageProps {
@@ -48,6 +49,7 @@ export default function FaqPage({ onNavigate, entryYear, onEntryYearChange, onOp
               {faq.stage === selectedStage ? <span className="home-stage__mine">우리 아이 단계</span> : null}
             </header>
             <h2 className="faq-stage__title">{faq.title}</h2>
+            <AppliesTo rule={faq.rule} basisYear={faq.basisYear} />
             {faq.sections.map((section) => (
               <section key={section.heading} className="faq-section">
                 <h3>{section.heading}</h3>

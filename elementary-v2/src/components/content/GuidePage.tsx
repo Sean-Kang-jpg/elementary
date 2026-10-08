@@ -7,6 +7,7 @@ import { markGuideRead } from '../../utils/profile'
 import ShareButton from '../ui/ShareButton'
 import ChecklistBanner from './ChecklistBanner'
 import SourceList from './SourceList'
+import AppliesTo from './AppliesTo'
 import GuideSummary from './GuideSummary'
 import { followInternalLink, followLink } from './contentLinks'
 
@@ -34,6 +35,7 @@ export default function GuidePage({ guide, onNavigate }: GuidePageProps) {
         </div>
         <span className={`stage-chip stage-chip--${guide.stage}`}>{STAGE_LABELS[guide.stage].short}</span>
         <h1 id="guide-title">{guide.title}</h1>
+        <AppliesTo rule={guide.rule} basisYear={guide.basisYear} />
         {guide.scope ? (
           <p className="content-page__scope"><Info size={15} aria-hidden="true" /><span>{guide.scope}</span></p>
         ) : null}

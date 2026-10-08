@@ -6,6 +6,8 @@ order: 0
 stage: admission
 group: admission
 verifiedAt: 2026-10-03
+rule: regional
+basisYear: 2026
 scope: 일정은 2026학년도 입학생(2025년 가을) 기준 예시입니다. 2027학년도 입학생은 2026년 가을 공지를 다시 확인해야 합니다. 국립초와 서울 외 지역 사립초는 학교마다 일정이 다릅니다.
 summary:
   kind: timeline

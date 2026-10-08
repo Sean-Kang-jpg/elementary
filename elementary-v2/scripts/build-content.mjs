@@ -37,6 +37,23 @@ const STAGES = ['planning', 'admission']
 
 /** A guide's summary diagram: ordered steps, a dated timeline, or a set of checks. */
 const SUMMARY_KINDS = ['steps', 'timeline', 'checks']
+// 적용 범위(P1-04): 법령상 전국이 같은가, 교육감·학교가 정해 지역마다 다른가, 둘이 섞였나.
+const RULES = ['national', 'regional', 'mixed']
+
+/**
+ * 정부·지자체·교육청·법령 사이트를 '공식'으로 표시한다. 주소로 판별하므로 문서에 따로
+ * 적지 않는다. 공공기관이라도 .go.kr·gov.kr 밖(예: .or.kr)은 공식으로 치지 않는다 — 기준을
+ * 하나로 두어야 표시가 흔들리지 않는다.
+ */
+const isOfficial = (url) => {
+  try {
+    const host = new URL(url).hostname
+    return host.endsWith('.go.kr') || host === 'gov.kr' || host.endsWith('.gov.kr')
+  } catch {
+    return false
+  }
+}
+const withOfficial = (sources) => (sources ?? []).map((source) => ({ label: source.label, url: source.url, official: isOfficial(source.url) }))
 const SUMMARY_MAX_ITEMS = 6
 
 const problems = []
@@ -87,6 +104,13 @@ const checkCommon = (file, meta) => {
     problem(file, 'front matter needs sources, each with a label and a url')
   }
   if (!STAGES.includes(meta.stage)) problem(file, `stage must be one of ${STAGES.join(', ')}`)
+  if (!RULES.includes(meta.rule)) problem(file, `rule must be one of ${RULES.join(', ')}`)
+  if (!Number.isInteger(meta.basisYear) || meta.basisYear < 2025 || meta.basisYear > 2035) {
+    problem(file, 'basisYear must be the school year the dates and examples are based on (e.g. 2026)')
+  }
+  if (Array.isArray(meta.sources) && !meta.sources.some((source) => isOfficial(source?.url))) {
+    problem(file, 'at least one source must be official (.go.kr or gov.kr)')
+  }
 }
 
 // Guides --------------------------------------------------------------------
@@ -122,7 +146,9 @@ for (const file of guideFiles) {
     verifiedAt: String(meta.verifiedAt),
     scope: meta.scope ?? null,
     summary,
-    sources: meta.sources ?? [],
+    rule: meta.rule,
+    basisYear: meta.basisYear,
+    sources: withOfficial(meta.sources),
     html: marked.parse(body),
     file,
   })
@@ -160,7 +186,9 @@ const parseFaq = async (file) => {
     title: meta.title,
     description: meta.description,
     verifiedAt: String(meta.verifiedAt),
-    sources: meta.sources ?? [],
+    rule: meta.rule,
+    basisYear: meta.basisYear,
+    sources: withOfficial(meta.sources),
     note,
     sections: sections.map((section) => ({
       heading: section.heading,

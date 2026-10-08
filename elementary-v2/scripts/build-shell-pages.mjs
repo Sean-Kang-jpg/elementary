@@ -123,8 +123,13 @@ const writePage = async (pagePath, html) => {
 }
 
 const sourcesHtml = (sources, verifiedAt) => '<aside class="content-sources" aria-label="근거 자료"><h2>근거 자료</h2><ul>'
-  + sources.map((source) => `<li><a href="${escapeHtml(source.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(source.label)}</a></li>`).join('')
+  + sources.map((source) => `<li>${source.official ? '<span class="content-sources__official">공식</span>' : ''}<a href="${escapeHtml(source.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(source.label)}</a></li>`).join('')
   + `</ul><p>내용 확인일 ${escapeHtml(verifiedAt)}</p></aside>`
+
+// Same markup as src/components/content/AppliesTo.tsx.
+const appliesHtml = (rule, basisYear) => '<p class="content-applies">'
+  + `<span class="content-applies__chip content-applies__chip--${rule}">${escapeHtml(structure.rules[rule])}</span>`
+  + `<span class="content-applies__chip">${escapeHtml(String(basisYear))}학년도 기준</span></p>`
 
 // Same markup as src/components/content/GuideSummary.tsx.
 const summaryHtml = (summary) => {
@@ -177,6 +182,7 @@ for (const guide of content.guides) {
       '<a class="content-page__back" href="/guide">입학 준비 가이드</a>',
       `<span class="stage-chip stage-chip--${guide.stage}">${escapeHtml(structure.stages[guide.stage].short)}</span>`,
       `<h1 id="guide-title">${escapeHtml(guide.title)}</h1>`,
+      appliesHtml(guide.rule, guide.basisYear),
       guide.scope ? `<p class="content-page__scope">${escapeHtml(guide.scope)}</p>` : '',
       summaryHtml(guide.summary),
       `<div class="content-body">${guide.html}</div>`,
@@ -194,6 +200,7 @@ await writePage('/faq', contentPage({
     `<p class="content-page__lead">${escapeHtml(structure.faqPage.description)}</p>`,
     ...content.faqs.map((faq) => `<section class="faq-stage faq-stage--${faq.stage}"><header class="guide-stage__header"><span class="stage-chip stage-chip--${faq.stage}">${escapeHtml(structure.stages[faq.stage].short)}</span></header>`
       + `<h2 class="faq-stage__title">${escapeHtml(faq.title)}</h2>`
+      + appliesHtml(faq.rule, faq.basisYear)
       + faq.sections.map((section) => `<section class="faq-section"><h3>${escapeHtml(section.heading)}</h3>`
         + section.items.map((item) => `<details class="faq-item"><summary>${escapeHtml(item.question)}</summary><div class="content-body">${item.html}</div></details>`).join('')
         + '</section>').join('')

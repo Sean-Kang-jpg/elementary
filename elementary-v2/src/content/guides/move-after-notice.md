@@ -6,6 +6,8 @@ order: 4
 stage: admission
 group: move
 verifiedAt: 2026-10-03
+rule: national
+basisYear: 2026
 scope: 법령상 전국이 같은 절차입니다. 세부 처리는 지자체(주민센터)·교육지원청마다 다를 수 있어 별도 확인이 필요합니다. 설명은 경기도교육청 안내를 기준으로 했습니다.
 summary:
   kind: steps
