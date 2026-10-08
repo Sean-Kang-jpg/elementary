@@ -31,8 +31,14 @@ def dismissal(school: dict, periods: int | None) -> str | None:
 
 
 def main() -> None:
-    review = json.loads(REVIEW.read_text(encoding='utf-8'))
-    candidates = {s['school_id']: s for s in json.loads(CANDIDATES.read_text(encoding='utf-8'))['schools']}
+    import argparse
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--review', default=str(REVIEW))
+    parser.add_argument('--candidates', default=str(CANDIDATES))
+    parser.add_argument('--out', default=str(OUT))
+    args = parser.parse_args()
+    review = json.loads(Path(args.review).read_text(encoding='utf-8'))
+    candidates = {s['school_id']: s for s in json.loads(Path(args.candidates).read_text(encoding='utf-8'))['schools']}
     rows = []
     for school in review['schools']:
         neis = candidates[school['school_id']]['grade1_weekday_periods']
@@ -60,8 +66,8 @@ def main() -> None:
                      'status': 'complete' if complete else 'incomplete'})
     summary = {'schools': len(rows), 'complete': sum(r['status'] == 'complete' for r in rows),
                'with_period_conflict': sum(bool(r['period_conflicts']) for r in rows)}
-    OUT.write_text(json.dumps({'schema_version': 'grade1-dismissal-estimates-v1', 'evidence_state': 'estimated_from_2026_sources',
-                               'review_state': 'assistant_first_pass_user_confirmed_20261007', 'publish_status': 'not_approved',
+    Path(args.out).write_text(json.dumps({'schema_version': 'grade1-dismissal-estimates-v1', 'evidence_state': 'estimated_from_2026_sources',
+                               'review_state': review.get('reviewer', ''), 'publish_status': 'not_approved',
                                'no_operational_upload': True, 'summary': summary, 'schools': rows}, ensure_ascii=False, indent=2) + '\n',
                    encoding='utf-8')
     print(json.dumps(summary, ensure_ascii=False))

@@ -73,7 +73,12 @@ def care_candidates(text: str) -> dict:
 
 
 def main() -> None:
-    probe = json.loads(PROBE.read_text(encoding='utf-8'))
+    import argparse
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--probe', default=str(PROBE))
+    parser.add_argument('--out', default=str(OUT))
+    args = parser.parse_args()
+    probe = json.loads(Path(args.probe).read_text(encoding='utf-8'))
     ARCHIVE.mkdir(parents=True, exist_ok=True)
     schools = []
     for school in probe['schools']:
@@ -95,7 +100,7 @@ def main() -> None:
         record['stale_file_year'] = any(f.get('file_academic_year') == 2025 for f in record['files'])
         schools.append(record)
     summary = Counter(s['status'] for s in schools)
-    OUT.write_text(json.dumps({'schema_version': 'schoolinfo-care-plan-audit-v1', 'checked_at': datetime.now(timezone.utc).isoformat(timespec='seconds'),
+    Path(args.out).write_text(json.dumps({'schema_version': 'schoolinfo-care-plan-audit-v1', 'checked_at': datetime.now(timezone.utc).isoformat(timespec='seconds'),
                                'source': '학교알리미 15-라 2026년 5월 공시 첨부', 'method': 'local text extraction + regex on 돌봄/늘봄 lines; candidates, not reviewed',
                                'no_operational_upload': True, 'school_count': len(schools), 'summary': dict(summary), 'schools': schools},
                               ensure_ascii=False, indent=2) + '\n', encoding='utf-8')

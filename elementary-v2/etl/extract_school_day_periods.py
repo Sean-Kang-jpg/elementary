@@ -114,8 +114,14 @@ def dismissal(clock: dict, count: int | None) -> tuple[str | None, str | None]:
 
 
 def main() -> None:
-    audit = json.loads(AUDIT.read_text(encoding='utf-8'))
-    neis = {s['school_id']: s for s in json.loads(NEIS.read_text(encoding='utf-8'))['schools']}
+    import argparse
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--audit', default=str(AUDIT))
+    parser.add_argument('--neis', default=str(NEIS))
+    parser.add_argument('--out', default=str(OUT))
+    args = parser.parse_args()
+    audit = json.loads(Path(args.audit).read_text(encoding='utf-8'))
+    neis = {s['school_id']: s for s in json.loads(Path(args.neis).read_text(encoding='utf-8'))['schools']}
     schools = []
     for school in audit['schools']:
         record = {'school_id': school['school_id'], 'school_name': school['school_name'], 'region': school['region'],
@@ -153,7 +159,7 @@ def main() -> None:
     summary: dict[str, int] = {}
     for record in schools:
         summary[record['status']] = summary.get(record['status'], 0) + 1
-    OUT.write_text(json.dumps({'schema_version': 'school-day-periods-candidates-v1', 'evidence_state': 'estimated_from_2026_sources_not_reviewed',
+    Path(args.out).write_text(json.dumps({'schema_version': 'school-day-periods-candidates-v1', 'evidence_state': 'estimated_from_2026_sources_not_reviewed',
                                'publish_status': 'not_approved', 'no_operational_upload': True, 'summary': summary, 'schools': schools},
                               ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
     print(json.dumps(summary, ensure_ascii=False))

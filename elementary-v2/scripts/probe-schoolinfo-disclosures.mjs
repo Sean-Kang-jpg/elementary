@@ -64,13 +64,18 @@ function schoolinfoIndex() {
 }
 
 async function main() {
-  const year = process.argv[2] || '2026'
-  const manifest = JSON.parse(fs.readFileSync(path.join(root, 'docs/research/audit2/poc_school_manifest_20261006.json'), 'utf8'))
+  const args = process.argv.slice(2)
+  const year = args.find(arg => /^\d{4}$/.test(arg)) || '2026'
+  // --manifest=<path> for the pilot expansion (2026-10-08); --new-only skips schools already in the PoC
+  const manifestPath = args.find(arg => arg.startsWith('--manifest='))?.slice(11) || 'docs/research/audit2/poc_school_manifest_20261006.json'
+  const manifest = JSON.parse(fs.readFileSync(path.join(root, manifestPath), 'utf8'))
+  const targets = manifest.schools.filter(school => !(args.includes('--new-only') && school.in_poc))
   const index = schoolinfoIndex()
   const schools = []
-  for (const school of manifest.schools) {
-    const shl = index.get(school.schoolinfo_code)
-    const record = { school_id: school.school_id, school_name: school.school_name, region: school.region, cohort: school.cohort, shl_idf_cd: shl ?? null, items: {} }
+  for (const school of targets) {
+    const shl = school.shl_idf_cd || index.get(school.schoolinfo_code)
+    const record = { school_id: school.school_id, school_name: school.school_name, region: school.region || school.road_address?.split(' ')[0] || null,
+      cohort: school.cohort || school.scope || null, shl_idf_cd: shl ?? null, items: {} }
     for (const item of Object.keys(ITEMS)) {
       if (!shl) { record.items[item] = { status: 'no_schoolinfo_id' }; continue }
       const checkedAt = new Date().toISOString()
