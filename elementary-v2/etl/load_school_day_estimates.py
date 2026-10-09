@@ -57,7 +57,7 @@ REVIEW_SETS = [
     # E05 wave 2: Sonnet extraction + validator, rejected items and a 10% sample read from source
     {'name': 'wave2_seoul', 'clock': 'school_day_review_wave2_seoul_20261010.json',
      'estimates': 'grade1_dismissal_estimates_wave2_seoul_20261010.json', 'care': 'care_review_wave2_seoul_20261010.json',
-     'reviewed_on': '2026-10-10', 'confirmed': False},
+     'reviewed_on': '2026-10-10', 'confirmed': True},  # user confirmed 2026-10-10
 ]
 
 
