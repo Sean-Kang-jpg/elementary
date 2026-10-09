@@ -5,8 +5,8 @@
   "publish_status": "not_approved",
   "no_operational_upload": true,
   "summary": {
-    "schools": 71,
-    "complete": 71,
+    "schools": 72,
+    "complete": 72,
     "with_period_conflict": 1
   },
   "schools": [
@@ -2850,6 +2850,46 @@
           "periods": 4,
           "periods_source": "NEIS term1_regular",
           "dismissal": "12:50",
+          "note": null
+        }
+      },
+      "period_conflicts": [],
+      "status": "complete"
+    },
+    {
+      "school_id": "B000002283",
+      "school_name": "서울대치초등학교",
+      "confidence": "high",
+      "lunch_position": "after_p4",
+      "days": {
+        "월": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:00",
+          "note": null
+        },
+        "화": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:40",
+          "note": null
+        },
+        "수": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:00",
+          "note": null
+        },
+        "목": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:40",
+          "note": null
+        },
+        "금": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:40",
           "note": null
         }
       },

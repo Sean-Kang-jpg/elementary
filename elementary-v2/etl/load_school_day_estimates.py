@@ -95,7 +95,8 @@ def _build_set(review_set: dict, snapshot: str, days: list, weekdays: list, care
             'extended_condition': school.get('extended_condition') if stated else None,
             'morning_hours': school.get('morning') if stated else None,
             'grades': school.get('grades') if stated else None,
-            'source': '학교알리미 15-라 방과후·돌봄 운영 계획 2026년 5월 공시',
+            # a few schools state care hours only in the 2-가 timetable; their review entry names it
+            'source': school.get('source') or '학교알리미 15-라 방과후·돌봄 운영 계획 2026년 5월 공시',
             'reviewed_on': reviewed_on, 'snapshot_date': snapshot,
         })
 
