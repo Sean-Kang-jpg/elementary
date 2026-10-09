@@ -15,7 +15,7 @@ from decimal import Decimal, InvalidOperation
 from typing import Any, Iterable
 
 
-MATCHER_VERSION = "molit-apartment-v2"
+MATCHER_VERSION = "molit-apartment-v3"
 DETERMINISTIC_TIERS = {
     "confirmed_apt_seq",
     "official_parcel_name",
@@ -25,8 +25,27 @@ DETERMINISTIC_TIERS = {
 
 
 def normalize_name(value: str | None) -> str:
-    text = re.sub(r"\s+", "", value or "").lower()
-    return re.sub(r"(?:아파트|apt\.?|주상복합)$", "", text)
+    text = re.sub(r"(?:아파트|apt\.?|주상복합)$", "", (value or "").strip(), flags=re.IGNORECASE)
+    return re.sub(r"[^0-9a-z가-힣]", "", text.lower())
+
+
+def compatible_name(left: str, right: str) -> bool:
+    """Allow a district-prefix difference only with strong numeric agreement.
+
+    K-apt commonly stores ``옥련현대2차`` while MOLIT reports ``현대2차``.
+    Road address must still select the candidate; this helper only decides if
+    the two names are compatible.  Short generic names and differing phase or
+    block numbers are never accepted.
+    """
+    if not left or not right:
+        return False
+    if left == right:
+        return True
+    if min(len(left), len(right)) < 4:
+        return False
+    if re.findall(r"\d+", left) != re.findall(r"\d+", right):
+        return False
+    return left.endswith(right) or right.endswith(left)
 
 
 def normalize_number(value: str | None, width: int = 4) -> str:
@@ -212,7 +231,10 @@ class Linker:
             return Decision("confirmed", "unique_official_parcel", item, (item,), evidence)
 
         road_ids = set(self.roads.get(road, ())) if road else set()
-        road_exact = {item for item in road_ids if name and name in self.candidates[item].names}
+        road_exact = {
+            item for item in road_ids
+            if name and any(compatible_name(name, alias) for alias in self.candidates[item].names)
+        }
         if len(road_exact) == 1:
             item = next(iter(road_exact))
             return Decision("confirmed", "road_address_name", item, (item,), evidence)

@@ -2,11 +2,23 @@ import unittest
 from decimal import Decimal
 
 from etl.apartment_transaction_linkage import (
-    Linker, area_band, collapse_master, overlay_missing_master_atoms, trade_fingerprint,
+    Linker, area_band, collapse_master, compatible_name, normalize_name,
+    overlay_missing_master_atoms, trade_fingerprint,
 )
 
 
 class ApartmentTransactionLinkageTest(unittest.TestCase):
+    def test_name_normalization_removes_format_only_parentheses(self) -> None:
+        self.assertEqual(
+            normalize_name("산운마을11단지(판교포레라움)"),
+            normalize_name("산운마을11단지판교포레라움아파트"),
+        )
+
+    def test_district_prefix_is_compatible_only_when_numbers_agree(self) -> None:
+        self.assertTrue(compatible_name(normalize_name("현대2차아파트"), normalize_name("옥련현대2차")))
+        self.assertFalse(compatible_name(normalize_name("현대2차"), normalize_name("옥련현대1차")))
+        self.assertFalse(compatible_name(normalize_name("현대"), normalize_name("옥련현대")))
+
     def test_master_supplement_only_fills_missing_atoms(self) -> None:
         primary = [{"apt_cd": "A", "canonical_complex_id": "CURRENT"}]
         supplement = [
@@ -56,6 +68,19 @@ class ApartmentTransactionLinkageTest(unittest.TestCase):
         })
         self.assertEqual(result.status, "review")
         self.assertEqual(result.tier, "unique_district_name")
+
+    def test_unique_road_with_district_prefix_name_is_confirmed(self) -> None:
+        rows = [{
+            "apt_cd": "APT-2", "canonical_complex_id": "KAPT:A2",
+            "road_address": "인천광역시 연수구 독배로 58",
+            "apt_nm": "옥련현대2차", "name_aliases": "[]",
+        }]
+        result = Linker(collapse_master(rows)).decide({
+            "roadNm": "독배로", "roadNmBonbun": "58", "roadNmBubun": "0",
+            "aptNm": "현대2차아파트", "aptSeq": "28185-76",
+        })
+        self.assertTrue(result.deterministic)
+        self.assertEqual(result.canonical_complex_id, "KAPT:A2")
 
     def test_confirmed_apt_seq_conflict_is_not_silently_reused(self) -> None:
         linker = Linker(collapse_master(self.rows), {

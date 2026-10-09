@@ -17,9 +17,10 @@ Last updated: 2026-10-09
 - [ ] SQL 26 운영 적용
 - [x] 최신 전국 로컬 master entity backfill dry-run 및 충돌 0 확인
 - [x] 전국 master의 K-apt 보강 누락 회귀 탐지 및 missing-atom overlay 구현
-- [ ] 39건 표본 검수 후 `aptSeq` crosswalk 승인
+- [x] 도로명 단일 후보의 형식·지역 접두어 차이 검수 및 matcher v3 반영
 - [x] 2026-09 최신 4지역 표본 재수집 및 crosswalk 승계 효과 측정
-- [ ] 대표 표본 결정적 연결률 95% 이상 재검증
+- [x] 2026-08/09 네 지역 표본 결정적 연결률 95% 이상 재검증
+- [ ] 지방·군 지역 확장 표본에서 95% 이상 재검증
 - [ ] 조건 통과 시 `molit-apartment-trade` schedule 활성화
 - [ ] 최초 전국 월 snapshot private Storage 보존 및 월별 재처리 리허설
 - [ ] approved summary만 serving refresh 후 frontend 계약/UI 활성화
@@ -54,9 +55,10 @@ Last updated: 2026-10-09
 
 ## 현재 보류 사유
 
-4지역 683건에서 결정적 자동 연결이 644건(94.29%)으로 gate보다 0.71%p 낮다.
-이름-only 1건을 강제 연결해 숫자를 맞추지 않는다. 미연결/모호 39건의 `aptSeq`
-crosswalk를 실제 단지와 검수한 뒤 재측정해야 한다.
+matcher v3 재측정에서 2026-08은 654/683(95.75%), 2026-09는
+557/585(95.21%)로 네 지역 표본 gate를 통과했다. 새 확정은 도로명·건물번호가
+유일한 후보만 대상으로 했고, 이름의 숫자열 일치 및 최소 길이를 강제했다.
+운영 DB와 K-apt를 대조한 신규 확정 단지 4개는 지번과 도로명이 모두 일치했다.
 
 2026-10-09 missing-atom overlay를 포함한 전국 master dry-run은 46,843 `apt_cd`
 원자를 46,157 entity로 계획했고 기존 crosswalk가 없는 최초 적재 기준 충돌은
@@ -65,10 +67,9 @@ crosswalk를 실제 단지와 검수한 뒤 재측정해야 한다.
 계획했다. 운영 DB backfill은 SQL 26 적용 후 기존 crosswalk export를 넣어 다시
 실행해야 하며, 그 결과가 최종 gate다.
 
-2026-10-09 최신 표본은 585건 중 547건(93.50%)이 결정적으로 연결됐다. 8월의
-충돌 없는 `aptSeq` 후보 279개를 전부 승인한 시뮬레이션도 549건(93.85%)에
-그쳤다. 9월 검토 대상은 ambiguous 17, unmatched 17, name-only 4건이며, 우선
-신축/K-apt 미등록/개명/재건축 여부를 master와 대조한다.
+8월의 충돌 없는 `aptSeq` 후보 282개를 승인한 승계 시뮬레이션은 9월
+559/585(95.56%)다. 남은 9월 검토 대상은 ambiguous 7, unmatched 17,
+name-only 2건이다. 지방·군 표본과 신축/K-apt 미등록 단지는 별도 검수를 계속한다.
 
 전국 master 단독 실행은 최신 K-apt 보강 원자 2개를 누락하여 9월 거래 3건을
 추가로 미연결 처리했다. 기존 보강 파일 전체를 단순 합치지 않고, 전국 master에

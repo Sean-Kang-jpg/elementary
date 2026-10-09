@@ -7,17 +7,22 @@ import json
 from collections import Counter
 from pathlib import Path
 
-from apartment_transaction_linkage import DETERMINISTIC_TIERS, Linker, collapse_master
+from apartment_transaction_linkage import (
+    DETERMINISTIC_TIERS, Linker, collapse_master, overlay_missing_master_atoms,
+)
 from build_apartment_transaction_snapshot import build, read_csv
 
 
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--master", type=Path, required=True)
+    parser.add_argument("--master-supplement", type=Path, action="append", default=[])
     parser.add_argument("--prior-raw", type=Path, action="append", required=True)
     parser.add_argument("--current-raw", type=Path, action="append", required=True)
     args = parser.parse_args()
     master = read_csv(args.master)
+    for path in args.master_supplement:
+        master = overlay_missing_master_atoms(master, read_csv(path))
     prior = [row for path in args.prior_raw for row in json.loads(path.read_text(encoding="utf-8"))]
     current = [row for path in args.current_raw for row in json.loads(path.read_text(encoding="utf-8"))]
     prior_result = build(prior, master)
