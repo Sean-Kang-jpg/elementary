@@ -4,6 +4,13 @@ This guide applies to the `operational-v1` school, apartment, and assignment mas
 
 Current completion status and pending work are tracked in [`docs/operations/OPERATION_PLAN.md`](../docs/operations/OPERATION_PLAN.md). Update that checklist after each migration or production ETL run.
 
+SQL `26_create_apartment_identity_and_transactions.sql` adds the private persistent
+apartment entity/crosswalk and MOLIT transaction contract. It is additive and its
+monthly schedule starts disabled. Apply it only with
+[`APARTMENT_TRANSACTION_ETL_PLAN.md`](../docs/operations/APARTMENT_TRANSACTION_ETL_PLAN.md):
+backfill entities first, resolve conflicts, and do not enable public summaries until
+the deterministic linkage gate reaches 95%.
+
 ## 1. Prepare Supabase
 
 Create or select the target Supabase project, then rotate and store fresh keys in `.env`:

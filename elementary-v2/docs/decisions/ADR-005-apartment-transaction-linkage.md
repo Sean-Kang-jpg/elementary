@@ -1,6 +1,6 @@
 # ADR-005: Apartment transaction linkage
 
-- Status: API authorized, linkage refinement required
+- Status: Superseded in part by ADR-009; publication remains gated
 - Date: 2026-09-20
 - Source owner: Ministry of Land, Infrastructure and Transport
 - Candidate API: apartment sale transaction detail data (`15126468`)
@@ -8,6 +8,11 @@
 ## Decision
 
 Apartment sale transactions can be connected to the operational apartment master, but the relationship is derived rather than identifier-based. Keep raw transactions private and publish only complex-level aggregates after linkage quality and cancellation handling pass their gates.
+
+> 2026-10-07: [ADR-009](ADR-009-persistent-apartment-entities-and-transaction-lineage.md)
+> adds the persistent entity/crosswalk contract and replaces name-only automatic
+> linkage. The 94.73% figure below included that review-only fallback; the v2
+> deterministic remeasurement is 644/683 (94.29%).
 
 Use the following ordered match contract:
 

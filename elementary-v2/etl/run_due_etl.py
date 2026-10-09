@@ -36,6 +36,8 @@ SOURCE_GROUPS = {
     # Nationwide in one run, not per scope: run_academy_refresh.py replaces the
     # academy serving tables as a whole (docs/operations/ACADEMY_REFRESH_PLAN.md).
     "academy": {"neis-academy"},
+    # Disabled by SQL 26 until the deterministic linkage gate passes.
+    "transaction": {"molit-apartment-trade"},
 }
 
 
@@ -439,7 +441,7 @@ def main() -> None:
         "--rehearse", action="store_true",
         help="Collect, build and validate every scope like a real run, but write nothing to Supabase",
     )
-    parser.add_argument("--force", action="append", choices=("apartment", "school", "academy", "all"), default=[])
+    parser.add_argument("--force", action="append", choices=("apartment", "school", "academy", "transaction", "all"), default=[])
     parser.add_argument("--max-attempts", type=int, default=3)
     parser.add_argument("--retry-delay-seconds", type=int, default=300)
     args = parser.parse_args()
@@ -474,13 +476,21 @@ def main() -> None:
             ensure_schoolinfo(regions, slug)
         if "apartment" in groups:
             restore_apartment_supplement(url, key)
-        for group in (name for name in groups if name != "academy"):
+        for group in (name for name in groups if name not in {"academy", "transaction"}):
             for regions, slug in production_scopes():
                 execute_group(
                     group, args.apply, args.max_attempts, args.retry_delay_seconds, regions, slug
                 )
         if "apartment" in groups:
             publish_public_keys(args.apply)
+        if "transaction" in groups:
+            # Runs after apartment/public-key refresh so new complexes can be
+            # linked without guessing. The SQL schedule stays disabled until
+            # its 95% gate and private backfill are approved.
+            run_script(
+                "etl/run_apartment_transaction_etl.py",
+                "--apply" if args.apply else "--rehearse",
+            )
         academy_error = None
         if "academy" in groups:
             # After the apartment group, so proximity reads this month's complexes.

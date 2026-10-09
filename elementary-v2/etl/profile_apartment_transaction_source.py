@@ -11,10 +11,15 @@ import urllib.parse
 import urllib.error
 import urllib.request
 import xml.etree.ElementTree as ET
-from collections import Counter, defaultdict
+from collections import Counter
 from datetime import datetime
 from pathlib import Path
 from typing import Any
+
+try:
+    from .apartment_transaction_linkage import Linker, collapse_master
+except ImportError:
+    from apartment_transaction_linkage import Linker, collapse_master
 
 
 BASE_DIR = Path(__file__).resolve().parent
@@ -44,53 +49,11 @@ def api_key() -> str:
     return urllib.parse.unquote(value)
 
 
-def normalize_name(value: str | None) -> str:
-    text = re.sub(r"\s+", "", value or "").lower()
-    return re.sub(r"(?:아파트|apt\.?|주상복합)$", "", text)
-
-
-def normalize_jibun(value: str | None) -> str:
-    text = re.sub(r"\s+", "", value or "")
-    text = text.replace("번지", "")
-    match = re.search(r"(산)?\s*(\d+)(?:-(\d+))?", text)
-    if not match:
-        return text
-    prefix = "산" if match.group(1) else ""
-    return f"{prefix}{int(match.group(2))}-{int(match.group(3) or 0)}"
-
-
-def legal_dong_from_address(value: str) -> str:
-    parts = value.split()
-    for part in reversed(parts):
-        if part.endswith(("동", "읍", "면", "가")):
-            return part
-    return ""
-
-
-def aliases(row: dict[str, str]) -> set[str]:
-    values = {row.get("apt_nm", ""), row.get("latest_known_name", ""), row.get("kapt_name", "")}
-    try:
-        values.update(json.loads(row.get("name_aliases") or "[]"))
-    except json.JSONDecodeError:
-        pass
-    return {normalized for value in values if (normalized := normalize_name(value))}
-
-
-def load_master(path: Path) -> list[dict[str, Any]]:
+def load_master(path: Path) -> list[dict[str, str]]:
     rows: list[dict[str, Any]] = []
     with path.open(encoding="utf-8-sig", newline="") as handle:
         for source in csv.DictReader(handle):
-            legal_code = source.get("legal_dong_code", "")
-            legal_address = source.get("legal_address", "")
-            rows.append(
-                {
-                    "canonical_complex_id": source.get("canonical_complex_id"),
-                    "sgg_cd": legal_code[:5],
-                    "umd_nm": legal_dong_from_address(legal_address),
-                    "jibun": normalize_jibun(legal_address),
-                    "names": aliases(source),
-                }
-            )
+            rows.append(source)
     return rows
 
 
@@ -150,45 +113,24 @@ def transaction_value(row: dict[str, str], *names: str) -> str:
 
 
 def match_transactions(transactions: list[dict[str, str]], master: list[dict[str, Any]]) -> tuple[Counter[str], list[dict[str, Any]]]:
-    address_index: dict[tuple[str, str, str], list[dict[str, Any]]] = defaultdict(list)
-    district_name_index: dict[tuple[str, str], list[dict[str, Any]]] = defaultdict(list)
-    for complex_row in master:
-        address_index[(complex_row["sgg_cd"], complex_row["umd_nm"], complex_row["jibun"])].append(complex_row)
-        for name in complex_row["names"]:
-            district_name_index[(complex_row["sgg_cd"], name)].append(complex_row)
-
+    linker = Linker(collapse_master(master))
     counts: Counter[str] = Counter()
     samples: list[dict[str, Any]] = []
     for transaction in transactions:
-        sgg = transaction_value(transaction, "sggCd", "법정동시군구코드")
-        umd = transaction_value(transaction, "umdNm", "법정동")
-        jibun = normalize_jibun(transaction_value(transaction, "jibun", "지번"))
-        name = normalize_name(transaction_value(transaction, "aptNm", "아파트"))
-        address_candidates = address_index.get((sgg, umd, jibun), [])
-        exact = [candidate for candidate in address_candidates if name in candidate["names"]]
-        matched: dict[str, Any] | None = None
-        if len(exact) == 1:
-            tier, matched = "exact_address_name", exact[0]
-        elif len(address_candidates) == 1:
-            tier, matched = "unique_address", address_candidates[0]
-        else:
-            name_candidates = district_name_index.get((sgg, name), [])
-            if len(name_candidates) == 1:
-                tier, matched = "unique_district_name", name_candidates[0]
-            elif exact or address_candidates or name_candidates:
-                tier = "ambiguous"
-            else:
-                tier = "unmatched"
+        decision = linker.decide(transaction)
+        tier = decision.tier
         counts[tier] += 1
         if len(samples) < 30 and tier != "exact_address_name":
             samples.append(
                 {
                     "tier": tier,
-                    "sgg_cd": sgg,
-                    "umd_nm": umd,
-                    "jibun": jibun,
+                    "sgg_cd": transaction_value(transaction, "sggCd", "법정동시군구코드"),
+                    "umd_cd": transaction_value(transaction, "umdCd", "법정동읍면동코드"),
+                    "bonbun": transaction_value(transaction, "bonbun", "본번"),
+                    "bubun": transaction_value(transaction, "bubun", "부번"),
                     "apt_nm": transaction_value(transaction, "aptNm", "아파트"),
-                    "matched_complex_id": matched and matched["canonical_complex_id"],
+                    "matched_complex_id": decision.canonical_complex_id,
+                    "candidate_ids": list(decision.candidate_ids),
                 }
             )
     return counts, samples
@@ -206,7 +148,7 @@ def main() -> None:
     master = load_master(args.master)
     counts, samples = match_transactions(transactions, master)
     field_counts = Counter(field for row in transactions for field, value in row.items() if value)
-    matched = sum(counts[tier] for tier in ("exact_address_name", "unique_address", "unique_district_name"))
+    matched = sum(counts[tier] for tier in ("confirmed_apt_seq", "official_parcel_name", "unique_official_parcel", "road_address_name"))
     profile = {
         "generated_at": datetime.now().astimezone().isoformat(),
         "source": {
@@ -221,10 +163,12 @@ def main() -> None:
         "field_population": dict(sorted(field_counts.items())),
         "match_counts": dict(counts),
         "matched_transactions": matched,
-        "match_rate": round(matched / len(transactions), 4) if transactions else 0,
+        "deterministic_match_rate": round(matched / len(transactions), 4) if transactions else 0,
+        "matcher_version": "molit-apartment-v2",
         "non_exact_samples": samples,
         "notes": [
-            "The API has no K-apt code or canonical_complex_id; linkage is derived.",
+            "Candidates are deduplicated by canonical_complex_id before ambiguity is judged.",
+            "Name-only matches are review evidence, not deterministic links.",
             "Raw transaction rows are private runtime artifacts and must not be committed.",
             "Cancellation/change fields must be retained because the source is mutable after first publication.",
         ],
