@@ -14,13 +14,19 @@ from dataclasses import dataclass
 from decimal import Decimal, InvalidOperation
 from typing import Any, Iterable
 
+try:
+    from molit_lawd_codes import canonical_master_lawd_code
+except ModuleNotFoundError:  # package import used by unittest
+    from .molit_lawd_codes import canonical_master_lawd_code
 
-MATCHER_VERSION = "molit-apartment-v3"
+
+MATCHER_VERSION = "molit-apartment-v4"
 DETERMINISTIC_TIERS = {
     "confirmed_apt_seq",
     "official_parcel_name",
     "unique_official_parcel",
     "road_address_name",
+    "unique_road_address",
 }
 
 
@@ -60,7 +66,7 @@ def official_legal_code(row: dict[str, str]) -> str:
     sgg = value(row, "sggCd", "법정동시군구코드")
     umd = value(row, "umdCd", "법정동읍면동코드")
     if len(sgg) == 5 and len(umd) == 5 and sgg.isdigit() and umd.isdigit():
-        return sgg + umd
+        return canonical_master_lawd_code(sgg) + umd
     return ""
 
 
@@ -246,8 +252,14 @@ class Linker:
         if len(road_exact) == 1:
             item = next(iter(road_exact))
             return Decision("confirmed", "road_address_name", item, (item,), evidence)
+        if len(road_ids) == 1:
+            # An exact road/building number that resolves to one nationwide
+            # master complex is authoritative even when names changed. Shared
+            # addresses stay ambiguous because road_ids then contains >1 row.
+            item = next(iter(road_ids))
+            return Decision("confirmed", "unique_road_address", item, (item,), evidence)
 
-        district = value(trade, "sggCd", "법정동시군구코드")
+        district = canonical_master_lawd_code(value(trade, "sggCd", "법정동시군구코드"))
         name_ids = set(self.names.get((district, name), ())) if district and name else set()
         candidates = tuple(sorted(exact or parcel_ids or road_exact or road_ids or name_ids))
         if len(name_ids) == 1:

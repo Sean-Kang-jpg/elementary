@@ -69,6 +69,20 @@ class ApartmentTransactionLinkageTest(unittest.TestCase):
         self.assertEqual(result.status, "review")
         self.assertEqual(result.tier, "unique_district_name")
 
+    def test_post_merger_lawd_code_matches_pre_merger_master_parcel(self) -> None:
+        rows = [{
+            "apt_cd": "APT-MOKPO", "canonical_complex_id": "KAPT:MOKPO",
+            "legal_dong_code": "4611010100",
+            "legal_address": "전라남도 목포시 용당동 2번지",
+            "apt_nm": "목포테스트", "name_aliases": "[]",
+        }]
+        result = Linker(collapse_master(rows)).decide({
+            "sggCd": "12110", "umdCd": "10100", "bonbun": "0002", "bubun": "0000",
+            "aptNm": "목포테스트", "aptSeq": "12110-X",
+        })
+        self.assertTrue(result.deterministic)
+        self.assertEqual(result.canonical_complex_id, "KAPT:MOKPO")
+
     def test_unique_road_with_district_prefix_name_is_confirmed(self) -> None:
         rows = [{
             "apt_cd": "APT-2", "canonical_complex_id": "KAPT:A2",
@@ -81,6 +95,39 @@ class ApartmentTransactionLinkageTest(unittest.TestCase):
         })
         self.assertTrue(result.deterministic)
         self.assertEqual(result.canonical_complex_id, "KAPT:A2")
+
+    def test_unique_official_road_is_confirmed_despite_renamed_complex(self) -> None:
+        rows = [{
+            "apt_cd": "APT-ROAD", "canonical_complex_id": "KAPT:ROAD",
+            "road_address": "전라남도 목포시 평화로 50",
+            "apt_nm": "과거단지명", "name_aliases": "[]",
+        }]
+        result = Linker(collapse_master(rows)).decide({
+            "roadNm": "평화로", "roadNmBonbun": "50", "roadNmBubun": "0",
+            "aptNm": "현재단지명", "aptSeq": "46110-ROAD",
+        })
+        self.assertTrue(result.deterministic)
+        self.assertEqual(result.tier, "unique_road_address")
+
+    def test_shared_official_road_remains_ambiguous(self) -> None:
+        rows = [
+            {
+                "apt_cd": "APT-A", "canonical_complex_id": "KAPT:A",
+                "road_address": "광주광역시 북구 공용로 10",
+                "apt_nm": "가단지", "name_aliases": "[]",
+            },
+            {
+                "apt_cd": "APT-B", "canonical_complex_id": "KAPT:B",
+                "road_address": "광주광역시 북구 공용로 10",
+                "apt_nm": "나단지", "name_aliases": "[]",
+            },
+        ]
+        result = Linker(collapse_master(rows)).decide({
+            "roadNm": "공용로", "roadNmBonbun": "10", "roadNmBubun": "0",
+            "aptNm": "새이름", "aptSeq": "29170-SHARED",
+        })
+        self.assertFalse(result.deterministic)
+        self.assertEqual(set(result.candidate_ids), {"KAPT:A", "KAPT:B"})
 
     def test_confirmed_apt_seq_conflict_is_not_silently_reused(self) -> None:
         linker = Linker(collapse_master(self.rows), {

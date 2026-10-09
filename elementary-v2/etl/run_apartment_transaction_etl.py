@@ -18,6 +18,7 @@ from pathlib import Path
 from build_apartment_transaction_snapshot import build, read_crosswalk
 from profile_apartment_transaction_source import fetch_all
 from apartment_transaction_linkage import collapse_master, overlay_missing_master_atoms
+from molit_lawd_codes import effective_lawd_code
 
 
 BASE_DIR = Path(__file__).resolve().parent
@@ -42,8 +43,13 @@ def load_master(paths: list[Path]) -> list[dict[str, str]]:
     return rows
 
 
-def district_codes(rows: list[dict[str, str]]) -> list[str]:
-    return sorted({row.get("legal_dong_code", "")[:5] for row in rows if len(row.get("legal_dong_code", "")) >= 5})
+def district_codes(rows: list[dict[str, str]], month: str) -> list[str]:
+    master_codes = {
+        row.get("legal_dong_code", "")[:5]
+        for row in rows
+        if len(row.get("legal_dong_code", "")) >= 5
+    }
+    return sorted({effective_lawd_code(code, month) for code in master_codes})
 
 
 def collect(key: str, month: str, codes: list[str], delay_seconds: float) -> tuple[list[dict[str, str]], list[dict[str, object]]]:
@@ -96,7 +102,12 @@ def main() -> None:
             key = api_key()
         else:
             key = args.api_key
-        trades, snapshots = collect(key, args.month, args.lawd_cd or district_codes(master), args.delay_seconds)
+        trades, snapshots = collect(
+            key,
+            args.month,
+            args.lawd_cd or district_codes(master, args.month),
+            args.delay_seconds,
+        )
     result = build(trades, master, read_crosswalk(args.crosswalk))
     report = {
         **result["quality"], "month": args.month, "snapshots": snapshots,
