@@ -63,6 +63,16 @@ npm run typecheck
 
 ## Uncommitted Work At Handoff
 
+### 2026-10-09: P1-04~06 입학 준비 정리 · P2 학습 준비 콘텐츠 틀 (커밋 `1b15dc7`~`64ab799`, **미배포**)
+
+- P1-04: 가이드·FAQ에 적용 범위 칩(front matter `rule`·`basisYear` 필수)과 `.go.kr` 출처 '공식' 표시
+- P1-05: 가이드 3편 `admission-timeline`·`delay-or-early-entry`·`first-weeks`(경기도교육청 학적 길라잡이 원문 대조)
+- P1-06: 홈 '학습 준비' 카드, 학교 하교 카드 → 입학 첫 주 가이드
+- P2: `src/content/learning/*.md` + `learning-taxonomy.json`, `/learn/{slug}`, 빌드 검증(B11 규칙). **published만 운영에
+  나간다** — `npm run dev`만 `--preview`로 초안을 보인다(typecheck/build 뒤 dev 화면에서 초안이 사라지면 `node scripts/build-content.mjs --preview`).
+  seed 3편(한글·수학·영어)은 `status: review`, 사용자 검수 대기. 부모 반응은 사람이 수집(네이버 robots.txt)
+- 다음: 사용자 결정 — release 여부, seed 검수 후 발행, 환경·습관·준비물 seed의 공식 출처
+
 ### 2026-10-08: 시간표 엔진 S01·S02 (커밋 — 화면 미연결) · 하단 메뉴 접근성 (운영 `db3bd88`)
 
 - 접근성: 활성 탭 글자 #b8452f(5.3:1), `:focus-visible` 테두리, smoke에 `/learn` 3검사 → 운영 smoke PASS 104건
