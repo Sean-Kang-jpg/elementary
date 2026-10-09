@@ -86,7 +86,7 @@ const ApartmentDetail: React.FC<ApartmentDetailProps> = ({ apartment, isOpen, on
           <section className="border-y border-gray-200 py-3" aria-labelledby="assigned-school-title">
             <div className="flex items-center gap-3">
               <span className="flex h-10 w-10 flex-none items-center justify-center rounded-md bg-blue-50 text-blue-700"><School size={20} aria-hidden="true" /></span>
-              <span className="min-w-0 flex-1"><span id="assigned-school-title" className="block text-xs font-medium text-gray-500">배정 학교</span><strong className="mt-0.5 block truncate text-base text-gray-950">{apartment.assigned_school_name ? displaySchoolName(apartment.assigned_school_name) : '학교 정보 확인 중'}</strong></span>
+              <span className="min-w-0 flex-1"><span id="assigned-school-title" className="block text-xs font-medium text-gray-500">배정 학교</span><strong className="mt-0.5 block truncate text-base text-gray-950">{apartment.assigned_school_name ? displaySchoolName(apartment.assigned_school_name, apartment.address) : '학교 정보 확인 중'}</strong></span>
             </div>
             {apartment.assignment_review_required ? (
               <p className="mt-2 rounded bg-amber-50 px-2.5 py-1.5 text-xs leading-5 text-amber-800" data-testid="assignment-review-note">

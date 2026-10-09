@@ -83,8 +83,8 @@ export default function MyPage({ onNavigate, onOpenSaved, entryYear, onEntryYear
                   <button type="button" onClick={() => onOpenSaved(item)} className="my-saved__open">
                     <span className={`app-page__entity-icon ${item.kind === 'apartment' ? 'app-page__entity-icon--apartment' : ''}`}><Icon size={18} aria-hidden="true" /></span>
                     <span className="min-w-0 flex-1">
-                      <strong>{item.kind === 'school' ? displaySchoolName(item.name) : item.name}</strong>
-                      <small>{item.kind === 'apartment' && item.schoolName ? `배정 ${displaySchoolName(item.schoolName)}` : item.address || '학교 정보'}</small>
+                      <strong>{item.kind === 'school' ? displaySchoolName(item.name, item.address) : item.name}</strong>
+                      <small>{item.kind === 'apartment' && item.schoolName ? `배정 ${displaySchoolName(item.schoolName, item.address)}` : item.address || '학교 정보'}</small>
                     </span>
                     <ChevronRight size={18} aria-hidden="true" />
                   </button>

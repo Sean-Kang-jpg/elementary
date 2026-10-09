@@ -38,9 +38,11 @@ def squash(text: str) -> str:
 
 
 def time_in(evidence: str, value: str) -> bool:
-    """'13:40' should appear in the evidence, allowing '13 : 40' and a dropped leading zero."""
+    """'13:40' should appear in the evidence, allowing '13 : 40', a dropped leading zero, and PDF text
+    that runs a range together ('11:3012:10' holds 11:30 and 12:10)."""
     h, m = value.split(':')
-    return re.search(rf'(?<!\d)0?{int(h)}\s*:\s*{m}(?!\d)', evidence) is not None
+    found = re.finditer(r'(\d{1,2})\s*:\s*(\d{2})', evidence)
+    return any(int(fh) == int(h) and fm == m for fh, fm in (match.groups() for match in found))
 
 
 def check_clock(clock: dict, source: str) -> list[str]:
