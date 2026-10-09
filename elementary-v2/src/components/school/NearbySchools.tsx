@@ -6,6 +6,7 @@ import { nearbySummary, type NearbySchool } from '../../utils/nearbySchools'
 import { areaPath, schoolPath } from '../../utils/urlState'
 import { followLink } from '../content/contentLinks'
 import { markEntry } from '../../utils/analytics'
+import { displaySchoolName } from '../../utils/schoolName'
 
 interface NearbySchoolsProps {
   school: School
@@ -66,7 +67,7 @@ export default function NearbySchools({ school, onNavigate }: NearbySchoolsProps
               return (
                 <tr key={row.school_id} className={`border-t border-gray-100 ${current ? 'bg-blue-50 font-semibold text-blue-900' : 'text-gray-800'}`} aria-current={current || undefined}>
                   <th scope="row" className="px-3 py-2 text-left font-medium">
-                    {current ? row.school_name : (
+                    {current ? displaySchoolName(row.school_name, row.establishment_type) : (
                       <a
                         href={path}
                         onClick={(event) => {
@@ -75,7 +76,7 @@ export default function NearbySchools({ school, onNavigate }: NearbySchoolsProps
                         }}
                         className="text-blue-700 hover:text-blue-900 hover:underline"
                       >
-                        {row.school_name}
+                        {displaySchoolName(row.school_name, row.establishment_type)}
                       </a>
                     )}
                     {type && <span className="text-xs font-normal text-gray-500">{type}</span>}

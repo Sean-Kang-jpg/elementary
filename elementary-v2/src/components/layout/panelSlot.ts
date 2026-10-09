@@ -7,6 +7,11 @@ export const DESKTOP_QUERY = '(min-width: 1024px)'
 
 export const PanelSlotContext = createContext<HTMLElement | null>(null)
 
+// 지도는 한 번 열리면 다른 메뉴로 가도 내려가지 않는다(다시 그리는 비용 때문에).
+// 그 안에서 여는 구·동 시트는 이 값으로 지도 화면일 때만 연다. 2026-10-09 전에는
+// 학교 찾기에서 다른 메뉴를 눌러도 시트가 그 화면 위에 남았다.
+export const MapScreenContext = createContext(false)
+
 export function useIsDesktop() {
   const [desktop, setDesktop] = useState(() => window.matchMedia(DESKTOP_QUERY).matches)
   useEffect(() => {

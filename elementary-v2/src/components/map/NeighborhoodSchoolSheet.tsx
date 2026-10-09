@@ -2,6 +2,7 @@ import { ChevronRight, GraduationCap, LayoutGrid, Users } from 'lucide-react'
 import { useCallback, useMemo, useState } from 'react'
 import { School } from '../../types'
 import BottomSheet from '../ui/BottomSheet'
+import { displaySchoolName } from '../../utils/schoolName'
 
 interface NeighborhoodSchoolSheetProps {
   district: string
@@ -80,7 +81,7 @@ export default function NeighborhoodSchoolSheet({
                   <GraduationCap size={17} />
                 </span>
                 <span className="min-w-0 flex-1">
-                  <strong className="block truncate text-sm font-semibold text-gray-950">{school.school_name}</strong>
+                  <strong className="block truncate text-sm font-semibold text-gray-950">{displaySchoolName(school.school_name, school.establishment_type)}</strong>
                   <span className="mt-0.5 flex flex-wrap items-center gap-x-3 gap-y-0.5 text-xs text-gray-500">
                     <span className="inline-flex items-center gap-1"><Users size={13} aria-hidden="true" />{targetGrade}학년 {students.toLocaleString('ko-KR')}명</span>
                     <span className="inline-flex items-center gap-1"><LayoutGrid size={13} aria-hidden="true" />{classes}학급</span>
