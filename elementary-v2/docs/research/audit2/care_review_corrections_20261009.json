@@ -1,0 +1,987 @@
+{
+ "schema_version": 1,
+ "reviewed_at": "2026-10-09",
+ "reviewer": "assistant adjudication (gold vs Haiku vs Sonnet, checked against source)",
+ "status": "user confirmed 2026-10-09; applied to review files",
+ "corrections": [
+  {
+   "school_id": "B000002124",
+   "school_name": "서울가락초",
+   "set": "expansion",
+   "before": "unknown",
+   "after": {
+    "afternoon_end": "17:00",
+    "extended_end": "19:00",
+    "extended_condition": "오후 돌봄에 참여한 학생 중 추가(연장)돌봄을 원하는 학생",
+    "morning": "07:00-09:00",
+    "grades": "1~2",
+    "evidence": "오후 돌봄 | 방과후~17:00"
+   },
+   "reason": "원문에 기본 종료 시각이 있음(두 모델 일치 또는 원문 대조로 판정)",
+   "reverses_user_decision": true
+  },
+  {
+   "school_id": "B000002126",
+   "school_name": "서울중대초",
+   "set": "expansion",
+   "before": "unknown",
+   "after": {
+    "afternoon_end": "17:00",
+    "extended_end": "19:00",
+    "extended_condition": "오후돌봄 참여학생 중 17시 이후 돌봄 희망학생",
+    "morning": "07:10-09:00",
+    "grades": "1~2",
+    "evidence": "오후돌봄 | 방과후 ~ 17:00"
+   },
+   "reason": "원문에 기본 종료 시각이 있음(두 모델 일치 또는 원문 대조로 판정)",
+   "reverses_user_decision": false
+  },
+  {
+   "school_id": "B000002127",
+   "school_name": "서울문덕초",
+   "set": "expansion",
+   "before": "unknown",
+   "after": {
+    "afternoon_end": "19:00",
+    "extended_end": null,
+    "extended_condition": null,
+    "morning": "07:00-08:50",
+    "grades": "1~4",
+    "evidence": "오후 돌봄 | 수업 종료후 ~19:00"
+   },
+   "reason": "원문에 기본 종료 시각이 있음(두 모델 일치 또는 원문 대조로 판정)",
+   "reverses_user_decision": false
+  },
+  {
+   "school_id": "B000002130",
+   "school_name": "서울문현초",
+   "set": "expansion",
+   "before": "unknown",
+   "after": {
+    "afternoon_end": "19:00",
+    "extended_end": null,
+    "extended_condition": null,
+    "morning": "07:30-08:40",
+    "grades": "1~3",
+    "evidence": "오후돌봄 | 정규수업후~19:00"
+   },
+   "reason": "원문에 기본 종료 시각이 있음(두 모델 일치 또는 원문 대조로 판정)",
+   "reverses_user_decision": false
+  },
+  {
+   "school_id": "B000002131",
+   "school_name": "서울잠일초",
+   "set": "expansion",
+   "before": "unknown",
+   "after": {
+    "afternoon_end": "16:50",
+    "extended_end": "18:50",
+    "extended_condition": "선택형 돌봄 입실 학생 중 희망 학생",
+    "morning": "07:00-09:00",
+    "grades": "1~3",
+    "evidence": "선택형 돌봄 | 12:50~16:50, 6개반"
+   },
+   "reason": "원문에 기본 종료 시각이 있음(두 모델 일치 또는 원문 대조로 판정)",
+   "reverses_user_decision": false
+  },
+  {
+   "school_id": "B000002133",
+   "school_name": "서울송전초",
+   "set": "expansion",
+   "before": "unknown",
+   "after": {
+    "afternoon_end": "17:00",
+    "extended_end": "19:00",
+    "extended_condition": "오후돌봄에 참여한 학생",
+    "morning": "07:00-09:00",
+    "grades": "1~4",
+    "evidence": "오후 돌봄 | 방과후~ 17:00"
+   },
+   "reason": "원문에 기본 종료 시각이 있음(두 모델 일치 또는 원문 대조로 판정)",
+   "reverses_user_decision": true
+  },
+  {
+   "school_id": "B000002139",
+   "school_name": "서울가동초",
+   "set": "expansion",
+   "before": "unknown",
+   "after": {
+    "afternoon_end": "17:00",
+    "extended_end": "18:50",
+    "extended_condition": "학부모수요가 있는 경우, 연장하여 운영",
+    "morning": "07:30-09:30",
+    "grades": "1~4",
+    "evidence": "오후돌봄 | 방과후~17:00"
+   },
+   "reason": "원문에 기본 종료 시각이 있음(두 모델 일치 또는 원문 대조로 판정)",
+   "reverses_user_decision": false
+  },
+  {
+   "school_id": "B000002140",
+   "school_name": "서울영풍초",
+   "set": "expansion",
+   "before": "unknown",
+   "after": {
+    "afternoon_end": "17:00",
+    "extended_end": "19:00",
+    "extended_condition": "돌봄교실 신청 학생중 저녁돌봄 신청학생",
+    "morning": "07:00-09:00",
+    "grades": "1~3",
+    "evidence": "하교후~17:00 | 전용교실(4실)"
+   },
+   "reason": "원문에 기본 종료 시각이 있음(두 모델 일치 또는 원문 대조로 판정)",
+   "reverses_user_decision": true
+  },
+  {
+   "school_id": "B000002144",
+   "school_name": "서울오륜초",
+   "set": "expansion",
+   "before": "unknown",
+   "after": {
+    "afternoon_end": "17:00",
+    "extended_end": "19:00",
+    "extended_condition": "오후돌봄에 참여한 학생 등 17시 이후 돌봄을 희망하는 학생",
+    "morning": "07:30-09:00",
+    "grades": "1~3",
+    "evidence": "오후 돌봄 | 13:00 ~17:00"
+   },
+   "reason": "원문에 기본 종료 시각이 있음(두 모델 일치 또는 원문 대조로 판정)",
+   "reverses_user_decision": false
+  },
+  {
+   "school_id": "B000002145",
+   "school_name": "서울세륜초",
+   "set": "expansion",
+   "before": "unknown",
+   "after": {
+    "afternoon_end": "17:00",
+    "extended_end": "19:00",
+    "extended_condition": "오후 돌봄 및 틈새(연계형) 돌봄에 참여한 학생 등 17시 이후 돌봄을 희망하는 학생",
+    "morning": "07:00-09:00",
+    "grades": "1~2",
+    "evidence": "오후 돌봄 | 13:00 ~17:00"
+   },
+   "reason": "원문에 기본 종료 시각이 있음(두 모델 일치 또는 원문 대조로 판정)",
+   "reverses_user_decision": false
+  },
+  {
+   "school_id": "B000002148",
+   "school_name": "서울석촌초",
+   "set": "expansion",
+   "before": "unknown",
+   "after": {
+    "afternoon_end": "16:50",
+    "extended_end": "18:50",
+    "extended_condition": "오후돌봄 학생 중 신청 아동",
+    "morning": "07:30-09:00",
+    "grades": "1~3",
+    "evidence": "오후돌봄 | 월~금 12:50~16:50"
+   },
+   "reason": "원문에 기본 종료 시각이 있음(두 모델 일치 또는 원문 대조로 판정)",
+   "reverses_user_decision": false
+  },
+  {
+   "school_id": "B000002149",
+   "school_name": "서울송파초",
+   "set": "expansion",
+   "before": "unknown",
+   "after": {
+    "afternoon_end": "19:00",
+    "extended_end": null,
+    "extended_condition": null,
+    "morning": "07:30-09:00",
+    "grades": "1~4",
+    "evidence": "오후 돌봄 · 저녁 돌봄 | 방과후 ~19:00"
+   },
+   "reason": "원문에 기본 종료 시각이 있음(두 모델 일치 또는 원문 대조로 판정)",
+   "reverses_user_decision": false
+  },
+  {
+   "school_id": "B000002154",
+   "school_name": "서울풍납초",
+   "set": "expansion",
+   "before": "unknown",
+   "after": {
+    "afternoon_end": "19:00",
+    "extended_end": null,
+    "extended_condition": null,
+    "morning": "07:00-09:00",
+    "grades": "1~4",
+    "evidence": "오후돌봄 | 방과후 ~ 19:00"
+   },
+   "reason": "원문에 기본 종료 시각이 있음(두 모델 일치 또는 원문 대조로 판정)",
+   "reverses_user_decision": false
+  },
+  {
+   "school_id": "B000002155",
+   "school_name": "서울토성초",
+   "set": "expansion",
+   "before": "unknown",
+   "after": {
+    "afternoon_end": "18:30",
+    "extended_end": null,
+    "extended_condition": null,
+    "morning": "07:00-09:00",
+    "grades": "1~3",
+    "evidence": "오후 돌봄 | 방과후 ~18:30"
+   },
+   "reason": "원문에 기본 종료 시각이 있음(두 모델 일치 또는 원문 대조로 판정)",
+   "reverses_user_decision": false
+  },
+  {
+   "school_id": "B000002158",
+   "school_name": "서울버들초",
+   "set": "expansion",
+   "before": "unknown",
+   "after": {
+    "afternoon_end": "19:00",
+    "extended_end": null,
+    "extended_condition": null,
+    "morning": "07:30-09:00",
+    "grades": null,
+    "evidence": "월수 12:50 ~ 19:00 화목금 13:40 ~ 19:00"
+   },
+   "reason": "원문에 기본 종료 시각이 있음(두 모델 일치 또는 원문 대조로 판정)",
+   "reverses_user_decision": false
+  },
+  {
+   "school_id": "B000002252",
+   "school_name": "서울우면초",
+   "set": "expansion",
+   "before": "unknown",
+   "after": {
+    "afternoon_end": "19:00",
+    "extended_end": null,
+    "extended_condition": null,
+    "morning": "07:00-09:00",
+    "grades": "1~2",
+    "evidence": "방과 후 ~ 19:00"
+   },
+   "reason": "원문에 기본 종료 시각이 있음(두 모델 일치 또는 원문 대조로 판정)",
+   "reverses_user_decision": false
+  },
+  {
+   "school_id": "B000002255",
+   "school_name": "서울서원초",
+   "set": "expansion",
+   "before": "unknown",
+   "after": {
+    "afternoon_end": "17:00",
+    "extended_end": "19:00",
+    "extended_condition": "저녁돌봄",
+    "morning": "07:30-09:00",
+    "grades": null,
+    "evidence": "오후돌봄 | 방과후∼17:00"
+   },
+   "reason": "원문에 기본 종료 시각이 있음(두 모델 일치 또는 원문 대조로 판정)",
+   "reverses_user_decision": false
+  },
+  {
+   "school_id": "B000002256",
+   "school_name": "서울원촌초",
+   "set": "expansion",
+   "before": "unknown",
+   "after": {
+    "afternoon_end": "17:00",
+    "extended_end": "19:00",
+    "extended_condition": "신청자 참여에 따라 운영 여부 반영됨",
+    "morning": "07:00-09:00",
+    "grades": null,
+    "evidence": "오후돌봄 | 하교후~ 17:00"
+   },
+   "reason": "원문에 기본 종료 시각이 있음(두 모델 일치 또는 원문 대조로 판정)",
+   "reverses_user_decision": true
+  },
+  {
+   "school_id": "B000002264",
+   "school_name": "서울서래초",
+   "set": "expansion",
+   "before": "unknown",
+   "after": {
+    "afternoon_end": "17:00",
+    "extended_end": "19:00",
+    "extended_condition": "저녁 돌봄: 오후 돌봄에 참여한 학생",
+    "morning": null,
+    "grades": "1~2",
+    "evidence": "오후 돌봄 | 정규 수업 후 ~17:00"
+   },
+   "reason": "원문에 기본 종료 시각이 있음(두 모델 일치 또는 원문 대조로 판정)",
+   "reverses_user_decision": false
+  },
+  {
+   "school_id": "B000002269",
+   "school_name": "서울서일초",
+   "set": "expansion",
+   "before": "unknown",
+   "after": {
+    "afternoon_end": "17:00",
+    "extended_end": "19:00",
+    "extended_condition": "저녁 돌봄: 오후돌봄 참여자 중 희망자",
+    "morning": "07:40-09:00",
+    "grades": "1~4",
+    "evidence": "오후 돌봄 | 방과후~17:00"
+   },
+   "reason": "원문에 기본 종료 시각이 있음(두 모델 일치 또는 원문 대조로 판정)",
+   "reverses_user_decision": false
+  },
+  {
+   "school_id": "B000002273",
+   "school_name": "서울신동초",
+   "set": "expansion",
+   "before": "unknown",
+   "after": {
+    "afternoon_end": "19:00",
+    "extended_end": null,
+    "extended_condition": null,
+    "morning": "07:00-08:50",
+    "grades": "1~4",
+    "evidence": "오후 저녁 돌봄 | 방과후 ∼ 19:00"
+   },
+   "reason": "원문에 기본 종료 시각이 있음(두 모델 일치 또는 원문 대조로 판정)",
+   "reverses_user_decision": false
+  },
+  {
+   "school_id": "B000002277",
+   "school_name": "서울수서초",
+   "set": "expansion",
+   "before": "unknown",
+   "after": {
+    "afternoon_end": "17:00",
+    "extended_end": "19:00",
+    "extended_condition": "저녁돌봄: 오후 돌봄 참여 학생 중 17시 이후 희망자 (나눔반 방과 후~19:00)",
+    "morning": "07:20-09:00",
+    "grades": "1~6",
+    "evidence": "오후돌봄 | 방과 후~17:00 | 기쁨반"
+   },
+   "reason": "원문에 기본 종료 시각이 있음(두 모델 일치 또는 원문 대조로 판정)",
+   "reverses_user_decision": false
+  },
+  {
+   "school_id": "B000002278",
+   "school_name": "서울대모초",
+   "set": "expansion",
+   "before": "unknown",
+   "after": {
+    "afternoon_end": "17:00",
+    "extended_end": "19:00",
+    "extended_condition": "저녁돌봄: 오후돌봄 참여학생 중 신청 학생",
+    "morning": "07:00-09:00",
+    "grades": "1~2",
+    "evidence": "오후돌봄 | 방과 후 ~17:00"
+   },
+   "reason": "원문에 기본 종료 시각이 있음(두 모델 일치 또는 원문 대조로 판정)",
+   "reverses_user_decision": false
+  },
+  {
+   "school_id": "B000002281",
+   "school_name": "서울구룡초",
+   "set": "expansion",
+   "before": "unknown",
+   "after": {
+    "afternoon_end": "17:00",
+    "extended_end": "19:00",
+    "extended_condition": "저녁돌봄: 오후돌봄 참여한 학생 중 추가 희망 학생",
+    "morning": "07:00-09:00",
+    "grades": "1~4",
+    "evidence": "오후돌봄 | 13:00~17:00"
+   },
+   "reason": "원문에 기본 종료 시각이 있음(두 모델 일치 또는 원문 대조로 판정)",
+   "reverses_user_decision": false
+  },
+  {
+   "school_id": "B000002283",
+   "school_name": "서울대치초",
+   "set": "expansion",
+   "before": "unknown",
+   "after": {
+    "afternoon_end": "17:00",
+    "extended_end": "19:00",
+    "extended_condition": "저녁돌봄: 오후돌봄 참여 학생 중 추가 돌봄이 필요한 학생",
+    "morning": "07:00-09:00",
+    "grades": "1~4",
+    "evidence": "오후돌봄 | 정규수업 후 ~17:00"
+   },
+   "reason": "원문에 기본 종료 시각이 있음(두 모델 일치 또는 원문 대조로 판정)",
+   "reverses_user_decision": false
+  },
+  {
+   "school_id": "B000002285",
+   "school_name": "서울대도초",
+   "set": "expansion",
+   "before": "unknown",
+   "after": {
+    "afternoon_end": "17:00",
+    "extended_end": "19:00",
+    "extended_condition": "저녁늘봄(저녁돌봄): 오후 선택형 돌봄 학생 중 신청자",
+    "morning": "07:00-09:00",
+    "grades": null,
+    "evidence": "오후 돌봄 | 정규수업후 ~17:00"
+   },
+   "reason": "원문에 기본 종료 시각이 있음(두 모델 일치 또는 원문 대조로 판정)",
+   "reverses_user_decision": false
+  },
+  {
+   "school_id": "B000002286",
+   "school_name": "서울개일초",
+   "set": "expansion",
+   "before": "unknown",
+   "after": {
+    "afternoon_end": "17:00",
+    "extended_end": "19:00",
+    "extended_condition": "저녁돌봄: 선택형 오후 돌봄 연장으로 17시 이후 추가 돌봄이 필요한 학생",
+    "morning": "07:30-09:00",
+    "grades": "1~3",
+    "evidence": "오후 돌봄 | 12:30 ~17:00"
+   },
+   "reason": "원문에 기본 종료 시각이 있음(두 모델 일치 또는 원문 대조로 판정)",
+   "reverses_user_decision": false
+  },
+  {
+   "school_id": "B000002288",
+   "school_name": "서울개원초",
+   "set": "expansion",
+   "before": "unknown",
+   "after": {
+    "afternoon_end": "17:00",
+    "extended_end": "19:00",
+    "extended_condition": "오후연장돌봄",
+    "morning": "08:00-09:00",
+    "grades": "1~3",
+    "evidence": "오후돌봄교실 | 돌봄교실 | 1~3학년 | 12:30~17:00"
+   },
+   "reason": "원문에 기본 종료 시각이 있음(두 모델 일치 또는 원문 대조로 판정)",
+   "reverses_user_decision": false
+  },
+  {
+   "school_id": "B000002289",
+   "school_name": "서울논현초",
+   "set": "expansion",
+   "before": "unknown",
+   "after": {
+    "afternoon_end": "17:00",
+    "extended_end": "19:00",
+    "extended_condition": "저녁돌봄: 오후돌봄 대상자 중 저녁늘봄 희망자",
+    "morning": "07:50-09:00",
+    "grades": "1~3",
+    "evidence": "오후돌봄 | 13:00~17:00 | 돌봄 1~3실"
+   },
+   "reason": "원문에 기본 종료 시각이 있음(두 모델 일치 또는 원문 대조로 판정)",
+   "reverses_user_decision": false
+  },
+  {
+   "school_id": "B000002290",
+   "school_name": "서울학동초",
+   "set": "expansion",
+   "before": "unknown",
+   "after": {
+    "afternoon_end": "17:00",
+    "extended_end": "20:00",
+    "extended_condition": "저녁돌봄 17:00 ~ 20:00 (일일 활동 예시는 17:00~19:00)",
+    "morning": "07:00-09:00",
+    "grades": "1~3",
+    "evidence": "오후돌봄 | 13:00 ~ 17:00 | 1-3학년"
+   },
+   "reason": "원문에 기본 종료 시각이 있음(두 모델 일치 또는 원문 대조로 판정)",
+   "reverses_user_decision": false
+  },
+  {
+   "school_id": "B000002294",
+   "school_name": "서울왕북초",
+   "set": "expansion",
+   "before": "unknown",
+   "after": {
+    "afternoon_end": "19:00",
+    "extended_end": null,
+    "extended_condition": null,
+    "morning": "07:00-09:00",
+    "grades": "1~3",
+    "evidence": "오후·저녁 돌봄 | 정규수업 후~ 19:00"
+   },
+   "reason": "원문에 기본 종료 시각이 있음(두 모델 일치 또는 원문 대조로 판정)",
+   "reverses_user_decision": false
+  },
+  {
+   "school_id": "B000002295",
+   "school_name": "서울신구초",
+   "set": "expansion",
+   "before": "unknown",
+   "after": {
+    "afternoon_end": "17:00",
+    "extended_end": "18:00",
+    "extended_condition": "오후 돌봄 참여 학생 중 추가 돌봄이 필요한 나홀로 학생",
+    "morning": "07:30-09:00",
+    "grades": "1~3",
+    "evidence": "운영시간 | 방과후~17:00(주5일)"
+   },
+   "reason": "원문에 기본 종료 시각이 있음(두 모델 일치 또는 원문 대조로 판정)",
+   "reverses_user_decision": false
+  },
+  {
+   "school_id": "B000002297",
+   "school_name": "서울도성초",
+   "set": "expansion",
+   "before": "unknown",
+   "after": {
+    "afternoon_end": "19:00",
+    "extended_end": null,
+    "extended_condition": null,
+    "morning": "07:30-09:00",
+    "grades": "1~2",
+    "evidence": "오후돌봄 | 정규수업 이후 ~ 19:00"
+   },
+   "reason": "원문에 기본 종료 시각이 있음(두 모델 일치 또는 원문 대조로 판정)",
+   "reverses_user_decision": false
+  },
+  {
+   "school_id": "B000002302",
+   "school_name": "서울언북초",
+   "set": "expansion",
+   "before": "unknown",
+   "after": {
+    "afternoon_end": "17:00",
+    "extended_end": "19:00",
+    "extended_condition": "수요가 있을 시 실시",
+    "morning": "07:30-08:40",
+    "grades": "1~2",
+    "evidence": "오후돌봄 | 방과후 ~ 17:00"
+   },
+   "reason": "원문에 기본 종료 시각이 있음(두 모델 일치 또는 원문 대조로 판정)",
+   "reverses_user_decision": false
+  },
+  {
+   "school_id": "B000003101",
+   "school_name": "인천인동초",
+   "set": "pilot",
+   "before": {
+    "afternoon_end": "18:00",
+    "extended_end": null
+   },
+   "after": {
+    "afternoon_end": "18:00",
+    "extended_end": "19:00",
+    "extended_condition": "수요가 있을 경우 최소 1학급 19시까지",
+    "morning": null,
+    "grades": "1~2",
+    "evidence": "주중 정규수업 후 ~18:00"
+   },
+   "reason": "원문에 기본 종료 시각이 있음(두 모델 일치 또는 원문 대조로 판정)",
+   "reverses_user_decision": false
+  },
+  {
+   "school_id": "B000003712",
+   "school_name": "단대초",
+   "set": "expansion",
+   "before": "unknown",
+   "after": {
+    "afternoon_end": "17:00",
+    "extended_end": "18:00",
+    "extended_condition": "행복반",
+    "morning": null,
+    "grades": "1~2",
+    "evidence": "방과 후 ~ 사랑반 17:00 까지, 행복반 18:00 까지 운영"
+   },
+   "reason": "원문에 기본 종료 시각이 있음(두 모델 일치 또는 원문 대조로 판정)",
+   "reverses_user_decision": false
+  },
+  {
+   "school_id": "B000003713",
+   "school_name": "성남북초",
+   "set": "expansion",
+   "before": "unknown",
+   "after": {
+    "afternoon_end": "19:00",
+    "extended_end": null,
+    "extended_condition": null,
+    "morning": "08:00-08:40",
+    "grades": "1~2",
+    "evidence": "방과 후~19:00"
+   },
+   "reason": "원문에 기본 종료 시각이 있음(두 모델 일치 또는 원문 대조로 판정)",
+   "reverses_user_decision": false
+  },
+  {
+   "school_id": "B000003730",
+   "school_name": "성남중앙초",
+   "set": "expansion",
+   "before": {
+    "afternoon_end": "19:00",
+    "extended_end": null
+   },
+   "after": {
+    "afternoon_end": "17:00",
+    "extended_end": "19:00",
+    "extended_condition": "17:00 ~ 19:00 통합 운영",
+    "morning": null,
+    "grades": "1~2",
+    "evidence": "오후 돌봄 | 11:00~17:00"
+   },
+   "reason": "원문에 기본 종료 시각이 있음(두 모델 일치 또는 원문 대조로 판정)",
+   "reverses_user_decision": false
+  },
+  {
+   "school_id": "B000003731",
+   "school_name": "성남은행초",
+   "set": "expansion",
+   "before": "unknown",
+   "after": {
+    "afternoon_end": "16:30",
+    "extended_end": "18:30",
+    "extended_condition": "1실",
+    "morning": null,
+    "grades": null,
+    "evidence": "16:30 (1실) 방과후~18:30 (1실)"
+   },
+   "reason": "원문에 기본 종료 시각이 있음(두 모델 일치 또는 원문 대조로 판정)",
+   "reverses_user_decision": false
+  },
+  {
+   "school_id": "B000003760",
+   "school_name": "서현초",
+   "set": "pilot",
+   "before": {
+    "afternoon_end": "17:00",
+    "extended_end": "19:00"
+   },
+   "after": {
+    "afternoon_end": "19:00",
+    "extended_end": null,
+    "extended_condition": null,
+    "morning": null,
+    "grades": "1~2",
+    "evidence": "방과 후 ~ 19:00돌봄 1반(1학년)"
+   },
+   "reason": "돌봄 1반(1학년) 방과후~19:00, 2반(2학년)은 17:00",
+   "reverses_user_decision": false
+  },
+  {
+   "school_id": "B000003763",
+   "school_name": "이매초",
+   "set": "expansion",
+   "before": "unknown",
+   "after": {
+    "afternoon_end": "17:00",
+    "extended_end": "19:00",
+    "extended_condition": "우리반은 7시까지",
+    "morning": null,
+    "grades": null,
+    "evidence": "나라반과 도란반은 5시까지, 우리반은 7시까지 운영"
+   },
+   "reason": "원문에 기본 종료 시각이 있음(두 모델 일치 또는 원문 대조로 판정)",
+   "reverses_user_decision": false
+  },
+  {
+   "school_id": "B000003766",
+   "school_name": "늘푸른초",
+   "set": "expansion",
+   "before": "unknown",
+   "after": {
+    "afternoon_end": "18:30",
+    "extended_end": null,
+    "extended_condition": null,
+    "morning": "07:50-08:30",
+    "grades": "1~2",
+    "evidence": "학기중 돌봄 | 방과 후 ~18:30"
+   },
+   "reason": "원문에 기본 종료 시각이 있음(두 모델 일치 또는 원문 대조로 판정)",
+   "reverses_user_decision": false
+  },
+  {
+   "school_id": "B000006819",
+   "school_name": "청산초",
+   "set": "pilot",
+   "before": "unknown",
+   "after": {
+    "afternoon_end": "17:00",
+    "extended_end": "19:00",
+    "extended_condition": "수요가 있을시 운영",
+    "morning": "07:50-08:30",
+    "grades": "1~2",
+    "evidence": "시간 : 월요일~금요일 (1.2학년 정규수업 후 ~ 17:00)"
+   },
+   "reason": "원문에 기본 종료 시각이 있음(두 모델 일치 또는 원문 대조로 판정)",
+   "reverses_user_decision": false
+  },
+  {
+   "school_id": "B000025289",
+   "school_name": "서울송례초",
+   "set": "expansion",
+   "before": "unknown",
+   "after": {
+    "afternoon_end": "17:00",
+    "extended_end": "19:00",
+    "extended_condition": "오후돌봄 학생 중 희망학생",
+    "morning": "07:30-09:00",
+    "grades": "1~2",
+    "evidence": "오후돌봄 | 방과후 ~ 17:00"
+   },
+   "reason": "원문에 기본 종료 시각이 있음(두 모델 일치 또는 원문 대조로 판정)",
+   "reverses_user_decision": true
+  },
+  {
+   "school_id": "B000025891",
+   "school_name": "서울언남초",
+   "set": "expansion",
+   "before": "unknown",
+   "after": {
+    "afternoon_end": "17:00",
+    "extended_end": "19:00",
+    "extended_condition": "18:30이후 저녁돌봄은 봄뜰1반에서 통합하여 19:00까지 운영",
+    "morning": "07:30-09:00",
+    "grades": "1~4",
+    "evidence": "오후 돌봄(봄뜰) | 봄뜰1~6실 | 1~4학년 | 12:30 ~ 17:00"
+   },
+   "reason": "원문에 기본 종료 시각이 있음(두 모델 일치 또는 원문 대조로 판정)",
+   "reverses_user_decision": false
+  },
+  {
+   "school_id": "B000030583",
+   "school_name": "서울개현초",
+   "set": "expansion",
+   "before": "unknown",
+   "after": {
+    "afternoon_end": "19:00",
+    "extended_end": null,
+    "extended_condition": null,
+    "morning": "07:00-09:00",
+    "grades": "1~4",
+    "evidence": "방과후~19:00 | 돌봄1~3반"
+   },
+   "reason": "원문에 기본 종료 시각이 있음(두 모델 일치 또는 원문 대조로 판정)",
+   "reverses_user_decision": false
+  },
+  {
+   "school_id": "B000002135",
+   "school_name": "서울잠실초",
+   "set": "expansion",
+   "before": "unknown",
+   "after": {
+    "afternoon_end": "18:00",
+    "extended_end": "19:00",
+    "extended_condition": "사랑반 18:00, 자람반·해닮반 19:00 (18시 이후 통합운영)",
+    "morning": "07:00-09:00",
+    "grades": "1~2",
+    "evidence": "사랑반(전용실) | 방과후~18:00"
+   },
+   "reason": "1~2학년 반이 사랑반(~18:00)·자람반(~19:00)으로 나뉨. 첨부 본문 제목이 2025학년도 계획이라 연도 표기 확인 필요",
+   "reverses_user_decision": false
+  },
+  {
+   "school_id": "B000002136",
+   "school_name": "서울잠현초",
+   "set": "expansion",
+   "before": "unknown",
+   "after": {
+    "afternoon_end": "19:00",
+    "extended_end": null,
+    "extended_condition": null,
+    "morning": "07:30-09:00",
+    "grades": "1~2",
+    "evidence": "오후 돌봄 | 방과후 ~ 19:00 (1~2학년)"
+   },
+   "reason": "1~2학년 오후돌봄 \"방과후 ~ 19:00\", 세부 계획도 \"정규수업 후 ~ 19:00\". 다른 표의 \"수업 후~17:00\"은 1~4학년 전체",
+   "reverses_user_decision": true
+  },
+  {
+   "school_id": "B000002137",
+   "school_name": "서울신가초",
+   "set": "expansion",
+   "before": "unknown",
+   "after": {
+    "afternoon_end": "17:00",
+    "extended_end": "19:00",
+    "extended_condition": "최소 1실은 19:00까지 운영",
+    "morning": "07:00-08:40",
+    "grades": "1~3",
+    "evidence": "돌봄교실 운영시간은 방과후부터 17:00까지 기본 운영하며, 최소 1실은 19:00까지 운영한다"
+   },
+   "reason": "원문에 기본 종료 시각이 있음(두 모델 일치 또는 원문 대조로 판정)",
+   "reverses_user_decision": false
+  },
+  {
+   "school_id": "B000002276",
+   "school_name": "서울대왕초",
+   "set": "expansion",
+   "before": "unknown",
+   "after": {
+    "afternoon_end": "17:00",
+    "extended_end": "19:00",
+    "extended_condition": "저녁돌봄",
+    "morning": "07:30-09:00",
+    "grades": null,
+    "evidence": "오후돌봄 | 13:00∼17:00 | 저녁돌봄 | 17:00~19:00"
+   },
+   "reason": "원문에 기본 종료 시각이 있음(두 모델 일치 또는 원문 대조로 판정)",
+   "reverses_user_decision": false
+  },
+  {
+   "school_id": "B000003710",
+   "school_name": "복정초",
+   "set": "expansion",
+   "before": "unknown",
+   "after": {
+    "afternoon_end": "18:30",
+    "extended_end": "19:00",
+    "extended_condition": "19시까지 운영하는 선택형 돌봄 1실",
+    "morning": null,
+    "grades": "1~2",
+    "evidence": "19시까지 운영하는 선택형 돌봄 1실, 18시 30분까지 운영하는 선택형 돌봄 1실을 운영한다"
+   },
+   "reason": "원문에 기본 종료 시각이 있음(두 모델 일치 또는 원문 대조로 판정)",
+   "reverses_user_decision": false
+  },
+  {
+   "school_id": "B000003716",
+   "school_name": "성남양지초",
+   "set": "expansion",
+   "before": "unknown",
+   "after": {
+    "afternoon_end": "17:00",
+    "extended_end": "19:00",
+    "extended_condition": "저녁 돌봄",
+    "morning": null,
+    "grades": null,
+    "evidence": "16:30 ~17:00 | 교실 정리 정돈 및 안전한 귀가 지도 (보육전담사) | 17:00 ~19:00 | 저녁 돌봄"
+   },
+   "reason": "원문에 기본 종료 시각이 있음(두 모델 일치 또는 원문 대조로 판정)",
+   "reverses_user_decision": false
+  },
+  {
+   "school_id": "B000003718",
+   "school_name": "성남초",
+   "set": "expansion",
+   "before": "unknown",
+   "after": {
+    "afternoon_end": "17:00",
+    "extended_end": "19:00",
+    "extended_condition": "돌봄1반 방과후 ~ 19:00",
+    "morning": null,
+    "grades": "1~2",
+    "evidence": "방과후 ~ 17:00 | 돌봄3반 (슬기관1층)"
+   },
+   "reason": "원문에 기본 종료 시각이 있음(두 모델 일치 또는 원문 대조로 판정)",
+   "reverses_user_decision": false
+  },
+  {
+   "school_id": "B000003720",
+   "school_name": "희망대초",
+   "set": "expansion",
+   "before": "unknown",
+   "after": {
+    "afternoon_end": "17:00",
+    "extended_end": "19:00",
+    "extended_condition": "사랑반 방과후 ~19:00",
+    "morning": null,
+    "grades": "1~2",
+    "evidence": "방과후 ~17:00 | 초등보육 전담사 (6시간) | 소망반"
+   },
+   "reason": "원문에 기본 종료 시각이 있음(두 모델 일치 또는 원문 대조로 판정)",
+   "reverses_user_decision": false
+  },
+  {
+   "school_id": "B000003735",
+   "school_name": "검단초",
+   "set": "expansion",
+   "before": "unknown",
+   "after": {
+    "afternoon_end": "19:00",
+    "extended_end": null,
+    "extended_condition": null,
+    "morning": "07:30-08:30",
+    "grades": "1~2",
+    "evidence": "학기중 : 11:00 ~ 19:00"
+   },
+   "reason": "돌봄1반(1학년) 학기중 11:00~19:00",
+   "reverses_user_decision": false
+  },
+  {
+   "school_id": "B000003756",
+   "school_name": "불정초",
+   "set": "expansion",
+   "before": "unknown",
+   "after": {
+    "afternoon_end": "17:00",
+    "extended_end": "19:00",
+    "extended_condition": "17:00 이후부터 19:00까지 참여하는 학생",
+    "morning": "08:00-08:40",
+    "grades": "1~2",
+    "evidence": "학기 중 12:30 (방과 후) ~ 17:00"
+   },
+   "reason": "원문에 기본 종료 시각이 있음(두 모델 일치 또는 원문 대조로 판정)",
+   "reverses_user_decision": false
+  },
+  {
+   "school_id": "B000024195",
+   "school_name": "성남여수초",
+   "set": "expansion",
+   "before": "unknown",
+   "after": {
+    "afternoon_end": "19:00",
+    "extended_end": null,
+    "extended_condition": null,
+    "morning": null,
+    "grades": "1~2",
+    "evidence": "학기중 돌봄교실 (오후 돌봄교실) | 방과 후 ~19:00"
+   },
+   "reason": "원문에 기본 종료 시각이 있음(두 모델 일치 또는 원문 대조로 판정)",
+   "reverses_user_decision": false
+  },
+  {
+   "school_id": "B000003709",
+   "school_name": "수진초",
+   "set": "expansion",
+   "before": {
+    "afternoon_end": "19:00",
+    "extended_end": null
+   },
+   "after": {
+    "afternoon_end": "17:00",
+    "extended_end": "19:00",
+    "extended_condition": "17부터 돌봄1반에서 합반",
+    "morning": null,
+    "grades": "1~2",
+    "evidence": "방과후 ~ 17:00 | 돌봄2반"
+   },
+   "reason": "1학년은 돌봄2반(방과후~17:00), 17시부터 2학년 돌봄1반(~19:00)에 합반",
+   "reverses_user_decision": false
+  },
+  {
+   "school_id": "B000003733",
+   "school_name": "중부초",
+   "set": "expansion",
+   "before": "unknown",
+   "after": {
+    "afternoon_end": "19:00",
+    "extended_end": null,
+    "extended_condition": null,
+    "morning": null,
+    "grades": null,
+    "evidence": "12:40 - 19:00",
+    "source_doc": "2-가"
+   },
+   "reason": "학교교육과정(2-가) 일과표의 \"돌봄 시간 12:40 - 19:00\" 열",
+   "reverses_user_decision": false
+  }
+ ],
+ "clock_corrections": [
+  {
+   "school_id": "B000002283",
+   "school_name": "서울대치초등학교",
+   "set": "expansion",
+   "before": "excluded_no_regular_clock (행사 일정표뿐)",
+   "after": {
+    "p4_end": "12:10",
+    "lunch": [
+     "12:10",
+     "13:00"
+    ],
+    "lunch_position": "after_p4",
+    "p5_end": "13:40",
+    "doc_periods": null,
+    "confidence": "high",
+    "note": "교원 일과표 형식의 전 학년 공통 시정. 화·목 5·6학년만 점심 이후 10분 당김"
+   },
+   "evidence": "4교시11 : 3012 : 10점심식사12 : 1013 : 005교시13 : 0013 : 40",
+   "reason": "같은 문서에 운동회 일정표와 함께 정규 시정이 있음. 1차 검수가 행사표만 보고 제외했음"
+  }
+ ]
+}

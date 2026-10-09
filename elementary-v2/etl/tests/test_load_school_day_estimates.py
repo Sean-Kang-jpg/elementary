@@ -22,7 +22,7 @@ class LoadSchoolDayEstimatesTest(unittest.TestCase):
         self.assertEqual(notes.count('inferred'), 9)
         self.assertEqual(notes.count('school_check_needed'), 8)
         unknown = [r for r in self.rows['school_care_hours'] if r['status'] == 'school_check_needed']
-        self.assertEqual(len(unknown), 16)
+        self.assertEqual(len(unknown), 15)  # 16 until the 2026-10-09 correction gave 청산 its hours
         self.assertTrue(all(r['afternoon_end'] is None for r in unknown))
 
     def test_expansion_set_also_satisfies_constraints(self):
