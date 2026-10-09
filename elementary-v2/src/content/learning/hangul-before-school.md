@@ -4,7 +4,7 @@ description: 초1 국어는 첫 단원 '한글 놀이' 34차시로 한글을 처
 answer: 다 떼고 갈 필요는 없습니다. 1학년 1학기 국어는 모음자·자음자부터 34차시를 들여 한글을 가르칩니다. 글자에 친숙해지는 정도면 충분하고, 아이가 관심을 보일 때 놀이로 시작하세요.
 category: learning
 subcategory: hangul
-status: review
+status: published
 verifiedAt: 2026-10-05
 ages: [5, 6]
 timing: 입학 1년 전부터, 아이가 관심을 보일 때
