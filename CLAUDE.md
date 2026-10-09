@@ -63,6 +63,24 @@ npm run typecheck
 
 ## Uncommitted Work At Handoff
 
+### 2026-10-09: P1-04~06 입학 준비 정리 · P2 학습 준비 콘텐츠 틀 (커밋 `1b15dc7`~`64ab799`, **미배포**)
+
+- P1-04: 가이드·FAQ에 적용 범위 칩(front matter `rule`·`basisYear` 필수)과 `.go.kr` 출처 '공식' 표시
+- P1-05: 가이드 3편 `admission-timeline`·`delay-or-early-entry`·`first-weeks`(경기도교육청 학적 길라잡이 원문 대조)
+- P1-06: 홈 '학습 준비' 카드, 학교 하교 카드 → 입학 첫 주 가이드
+- P2: `src/content/learning/*.md` + `learning-taxonomy.json`, `/learn/{slug}`, 빌드 검증(B11 규칙). **published만 운영에
+  나간다** — `npm run dev`만 `--preview`로 초안을 보인다(typecheck/build 뒤 dev 화면에서 초안이 사라지면 `node scripts/build-content.mjs --preview`).
+  seed 3편(한글·수학·영어)은 `status: review`, 사용자 검수 대기. 부모 반응은 사람이 수집(네이버 robots.txt)
+- 다음: 사용자 결정 — release 여부, seed 검수 후 발행, 환경·습관·준비물 seed의 공식 출처
+
+### 2026-10-08: 시간표 엔진 S01·S02 (커밋 — 화면 미연결) · 하단 메뉴 접근성 (운영 `db3bd88`)
+
+- 접근성: 활성 탭 글자 #b8452f(5.3:1), `:focus-visible` 테두리, smoke에 `/learn` 3검사 → 운영 smoke PASS 104건
+- 엔진: `src/utils/schedule/{types,fromSchoolData,engine}.ts`. 입력은 SQL 26의 하교·돌봄, 출력은 요일별 배치·미배치·
+  후보·겹침·이동 확인·공백(confirmed/estimated/uncertain). 하교 모름이면 공백 분을 내지 않는다
+- 테스트: `npm run test:unit`(Node 내장 runner, 타입 제거 실행) 16개 PASS. 새 script라 루트 CLAUDE.md·AGENTS.md도 고침
+- 다음: S06 MY 시간표 화면은 **로그인 준비 후**(사용자 결정 2026-10-08, 기기 저장 선행 안 함). 그 전에 할 수 있는 것: S03 일회 취소·보강
+
 ### 2026-10-08: 5개 메뉴 — 학습 준비(`/learn`) 추가 (`b6376f2`, 운영 `129f87c`)
 
 - 사용자 결정: GNB **홈 / 학교 찾기 / 입학 준비 / 학습 준비 / MY**. 홈은 잠시 보류했다가 유지로 확정.
@@ -126,8 +144,11 @@ npm run typecheck
   `python -m etl.load_school_day_estimates --write-fixture`(src/dev-fixtures/, git 제외, 운영 번들 미포함). typecheck·lint·build·로컬 smoke PASS
 - **2026-10-08 운영 반영**: SQL 26 적용(사용자)·anon 쓰기 42501 확인·적재 35/175/60 → master `df14027` → release `c27530f`,
   운영 smoke PASS, 카드 확인. 이 커밋에 Audit 2 연구 자료·스크립트 포함. OPERATION_PLAN·이 파일의 Audit 2 기록은 다른 작업과 섞여 미커밋
-- 다음 후보: P1-02~03 4개 메뉴·입학 준비 landing(다른 세션 진행 중인지 확인), 파일럿 확대(분당 외), E04-d 2027 게시 감시,
-  로그인 설정(사용자, AUTH_PROVIDER_SETUP.md)
+- **2026-10-08 파일럿 확대 운영 적재**(사용자 결정: 성남시 + 서울 강남·서초·송파): 새 148곳 1차 검수·사용자 확인 →
+  운영 106/530/208행, master `813aff3`. `etl/build_pilot_manifest.py`(NEIS 코드는 학교알리미 페이지 sdSchulCode, 59/59 검증).
+  적재기 REVIEW_SETS에 confirmed 표시, 미확인 세트는 --apply 거부. 메뉴는 홈 포함 5개 유지(사용자 결정), 로그인은 다른 팀원 담당
+- 다음 후보: 추가 지역 확대(규칙 정확도 57%라 원문 검수 필요 — 수백 곳 이상이면 E05 자동화 먼저), E04-d 2027 게시 감시(12~2월),
+  2월 1기 가정통신문으로 확정값 갱신
 
 ### 2026-10-07: SEO — 허브·중복 정리·아파트 상세 보강 (커밋 `37a6bc2`, 운영 `release` `4e766df`)
 

@@ -6,6 +6,8 @@ order: 1
 stage: admission
 group: admission
 verifiedAt: 2026-10-03
+rule: national
+basisYear: 2026
 scope: 법령상 전국이 같은 절차입니다. 날짜가 적힌 예시는 2026학년도 입학생(2025년 12월) 기준이며, 2027학년도 입학생은 2026년 12월에 다시 확인해야 합니다.
 summary:
   kind: timeline

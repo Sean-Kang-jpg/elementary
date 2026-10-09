@@ -1,0 +1,1147 @@
+{
+  "schema_version": "school-day-review-v1",
+  "reviewed_at": "2026-10-08",
+  "reviewer": "assistant first pass from original 학교알리미 2-가 tables (pilot expansion); user confirmed 2026-10-08",
+  "scope": "grade 1, first-term table",
+  "excluded_no_regular_clock": [
+    {
+      "school_id": "B000002270",
+      "school_name": "서울원명초등학교",
+      "reason": "체험 행사 일정표뿐"
+    },
+    {
+      "school_id": "B000002283",
+      "school_name": "서울대치초등학교",
+      "reason": "행사 일정표뿐"
+    },
+    {
+      "school_id": "B000002303",
+      "school_name": "서울청담초등학교",
+      "reason": "체험 행사 일정표뿐"
+    }
+  ],
+  "schools": [
+    {
+      "school_id": "B000003707",
+      "school_name": "성수초",
+      "p4_end": "12:10",
+      "lunch": [
+        "12:10",
+        "13:00"
+      ],
+      "lunch_position": "after_p4",
+      "p5_end": "13:40",
+      "doc_periods": [
+        4,
+        5,
+        5,
+        5,
+        4
+      ],
+      "confidence": "high",
+      "note": "4·5교시 행에 하교 학년 표시"
+    },
+    {
+      "school_id": "B000003709",
+      "school_name": "수진초",
+      "p4_end": "12:10",
+      "lunch": [
+        "12:10",
+        "12:50"
+      ],
+      "lunch_position": "after_p4",
+      "p5_end": "13:30",
+      "doc_periods": null,
+      "confidence": "high"
+    },
+    {
+      "school_id": "B000003712",
+      "school_name": "단대초",
+      "p4_end": "12:10",
+      "lunch": [
+        "12:10",
+        "13:00"
+      ],
+      "lunch_position": "after_p4",
+      "p5_end": "13:40",
+      "doc_periods": null,
+      "confidence": "medium",
+      "note": "5교시가 \"방과후 활동\"으로 표기됨"
+    },
+    {
+      "school_id": "B000003713",
+      "school_name": "성남북초",
+      "p4_end": "12:10",
+      "lunch": [
+        "12:10",
+        "12:50"
+      ],
+      "lunch_position": "after_p4",
+      "p5_end": "13:30",
+      "doc_periods": null,
+      "confidence": "high"
+    },
+    {
+      "school_id": "B000003714",
+      "school_name": "성남수정초",
+      "p4_end": "12:10",
+      "lunch": [
+        "12:10",
+        "13:00"
+      ],
+      "lunch_position": "after_p4",
+      "p5_end": "13:40",
+      "doc_periods": null,
+      "confidence": "high",
+      "note": "1~4학년 시정, 4교시 후 점심"
+    },
+    {
+      "school_id": "B000003715",
+      "school_name": "성남신흥초",
+      "p4_end": "12:10",
+      "lunch": [
+        "12:10",
+        "13:10"
+      ],
+      "lunch_position": "after_p4",
+      "p5_end": "13:50",
+      "doc_periods": null,
+      "confidence": "high",
+      "note": "1,2,6학년 시정"
+    },
+    {
+      "school_id": "B000003718",
+      "school_name": "성남초",
+      "p4_end": "12:10",
+      "lunch": [
+        "12:10",
+        "13:00"
+      ],
+      "lunch_position": "after_p4",
+      "p5_end": "13:40",
+      "doc_periods": null,
+      "confidence": "high"
+    },
+    {
+      "school_id": "B000003719",
+      "school_name": "성남서초",
+      "p4_end": "12:10",
+      "lunch": [
+        "12:10",
+        "13:00"
+      ],
+      "lunch_position": "after_p4",
+      "p5_end": "13:40",
+      "doc_periods": null,
+      "confidence": "high"
+    },
+    {
+      "school_id": "B000003720",
+      "school_name": "희망대초",
+      "p4_end": "12:50",
+      "lunch": [
+        "11:20",
+        "12:10"
+      ],
+      "lunch_position": "before_p4",
+      "p5_end": "13:30",
+      "doc_periods": [
+        4,
+        5,
+        5,
+        5,
+        4
+      ],
+      "confidence": "medium",
+      "note": "1.2학년 시정, 열이 합쳐진 PDF"
+    },
+    {
+      "school_id": "B000003721",
+      "school_name": "도촌초",
+      "p4_end": "12:10",
+      "lunch": [
+        "12:10",
+        "13:00"
+      ],
+      "lunch_position": "after_p4",
+      "p5_end": "13:40",
+      "doc_periods": [
+        5,
+        5,
+        4,
+        5,
+        4
+      ],
+      "confidence": "high",
+      "note": "급식 1·2부(학기별 교대)를 점심 50분으로"
+    },
+    {
+      "school_id": "B000003722",
+      "school_name": "상대원초",
+      "p4_end": "12:10",
+      "lunch": [
+        "12:10",
+        "13:00"
+      ],
+      "lunch_position": "after_p4",
+      "p5_end": "13:40",
+      "doc_periods": [
+        4,
+        5,
+        4,
+        5,
+        5
+      ],
+      "confidence": "high"
+    },
+    {
+      "school_id": "B000003723",
+      "school_name": "대일초",
+      "p4_end": "12:10",
+      "lunch": [
+        "12:10",
+        "13:00"
+      ],
+      "lunch_position": "after_p4",
+      "p5_end": "13:40",
+      "doc_periods": null,
+      "confidence": "high"
+    },
+    {
+      "school_id": "B000003726",
+      "school_name": "금상초",
+      "p4_end": "12:10",
+      "lunch": [
+        "12:10",
+        "13:00"
+      ],
+      "lunch_position": "after_p4",
+      "p5_end": "13:40",
+      "doc_periods": null,
+      "confidence": "high"
+    },
+    {
+      "school_id": "B000003727",
+      "school_name": "성남동초",
+      "p4_end": "12:50",
+      "lunch": [
+        "11:20",
+        "12:10"
+      ],
+      "lunch_position": "before_p4",
+      "p5_end": "13:30",
+      "doc_periods": null,
+      "confidence": "high",
+      "note": "1~2학년 시정"
+    },
+    {
+      "school_id": "B000003728",
+      "school_name": "중원초",
+      "p4_end": "12:10",
+      "lunch": [
+        "12:10",
+        "13:00"
+      ],
+      "lunch_position": "after_p4",
+      "p5_end": "13:40",
+      "doc_periods": null,
+      "confidence": "high"
+    },
+    {
+      "school_id": "B000003730",
+      "school_name": "성남중앙초",
+      "p4_end": "12:10",
+      "lunch": [
+        "12:10",
+        "12:50"
+      ],
+      "lunch_position": "after_p4",
+      "p5_end": "13:30",
+      "doc_periods": null,
+      "confidence": "high",
+      "note": "1,2,6학년 점심"
+    },
+    {
+      "school_id": "B000003731",
+      "school_name": "성남은행초",
+      "p4_end": "12:10",
+      "lunch": [
+        "12:10",
+        "13:00"
+      ],
+      "lunch_position": "after_p4",
+      "p5_end": "13:40",
+      "doc_periods": [
+        4,
+        5,
+        4,
+        5,
+        5
+      ],
+      "confidence": "high"
+    },
+    {
+      "school_id": "B000003732",
+      "school_name": "상원초",
+      "p4_end": "12:00",
+      "lunch": [
+        "12:00",
+        "13:00"
+      ],
+      "lunch_position": "after_p4",
+      "p5_end": "13:40",
+      "doc_periods": null,
+      "confidence": "high",
+      "note": "1~3학년 4교시 11:20~12:00"
+    },
+    {
+      "school_id": "B000003733",
+      "school_name": "중부초",
+      "p4_end": "12:10",
+      "lunch": [
+        "12:10",
+        "13:00"
+      ],
+      "lunch_position": "after_p4",
+      "p5_end": "13:40",
+      "doc_periods": null,
+      "confidence": "high"
+    },
+    {
+      "school_id": "B000003734",
+      "school_name": "성남제일초",
+      "p4_end": "12:10",
+      "lunch": [
+        "12:10",
+        "13:00"
+      ],
+      "lunch_position": "after_p4",
+      "p5_end": "13:40",
+      "doc_periods": null,
+      "confidence": "high",
+      "note": "1~2학년 열"
+    },
+    {
+      "school_id": "B000003735",
+      "school_name": "검단초",
+      "p4_end": "12:10",
+      "lunch": [
+        "12:10",
+        "12:50"
+      ],
+      "lunch_position": "after_p4",
+      "p5_end": "13:30",
+      "doc_periods": [
+        4,
+        5,
+        4,
+        5,
+        5
+      ],
+      "confidence": "high",
+      "note": "문서 쉬는 시간 오기(11:20~10:30)"
+    },
+    {
+      "school_id": "B000003736",
+      "school_name": "대하초",
+      "p4_end": "12:10",
+      "lunch": [
+        "12:10",
+        "13:00"
+      ],
+      "lunch_position": "after_p4",
+      "p5_end": "13:40",
+      "doc_periods": null,
+      "confidence": "high"
+    },
+    {
+      "school_id": "B000003737",
+      "school_name": "성남신기초",
+      "p4_end": "12:10",
+      "lunch": [
+        "12:10",
+        "13:00"
+      ],
+      "lunch_position": "after_p4",
+      "p5_end": "13:40",
+      "doc_periods": [
+        5,
+        5,
+        4,
+        5,
+        4
+      ],
+      "confidence": "high"
+    },
+    {
+      "school_id": "B000003739",
+      "school_name": "당촌초",
+      "p4_end": "12:10",
+      "lunch": [
+        "12:10",
+        "12:50"
+      ],
+      "lunch_position": "after_p4",
+      "p5_end": "13:30",
+      "doc_periods": [
+        4,
+        5,
+        4,
+        5,
+        5
+      ],
+      "confidence": "high",
+      "note": "1-2학년 등교 08:50"
+    },
+    {
+      "school_id": "B000003743",
+      "school_name": "보평초",
+      "p4_end": "13:10",
+      "lunch": [
+        "11:40",
+        "12:30"
+      ],
+      "lunch_position": "before_p4",
+      "p5_end": "13:50",
+      "doc_periods": [
+        4,
+        5,
+        5,
+        5,
+        4
+      ],
+      "confidence": "high",
+      "note": "1,2학년 09:10 시작, 월·금 2블럭 / 화수목 4·5교시 블럭"
+    },
+    {
+      "school_id": "B000003748",
+      "school_name": "운중초",
+      "p4_end": "12:10",
+      "lunch": [
+        "12:10",
+        "13:00"
+      ],
+      "lunch_position": "after_p4",
+      "p5_end": "13:40",
+      "doc_periods": null,
+      "confidence": "high"
+    },
+    {
+      "school_id": "B000003749",
+      "school_name": "청솔초",
+      "p4_end": "12:00",
+      "lunch": [
+        "12:00",
+        "13:00"
+      ],
+      "lunch_position": "after_p4",
+      "p5_end": "13:40",
+      "doc_periods": null,
+      "confidence": "high",
+      "note": "1,2학년 3·4교시 블럭 10:40~12:00"
+    },
+    {
+      "school_id": "B000003751",
+      "school_name": "구미초",
+      "p4_end": "12:10",
+      "lunch": [
+        "12:10",
+        "13:00"
+      ],
+      "lunch_position": "after_p4",
+      "p5_end": "13:40",
+      "doc_periods": [
+        4,
+        5,
+        4,
+        5,
+        5
+      ],
+      "confidence": "high",
+      "note": "1,5,6학년 시간표"
+    },
+    {
+      "school_id": "B000003756",
+      "school_name": "불정초",
+      "p4_end": "12:10",
+      "lunch": [
+        "12:10",
+        "13:00"
+      ],
+      "lunch_position": "after_p4",
+      "p5_end": "13:40",
+      "doc_periods": [
+        4,
+        5,
+        4,
+        5,
+        5
+      ],
+      "confidence": "high",
+      "note": "09:10 시작 블록"
+    },
+    {
+      "school_id": "B000003761",
+      "school_name": "분당초",
+      "p4_end": "12:10",
+      "lunch": [
+        "12:10",
+        "13:00"
+      ],
+      "lunch_position": "after_p4",
+      "p5_end": "13:40",
+      "doc_periods": [
+        5,
+        5,
+        4,
+        5,
+        4
+      ],
+      "confidence": "high",
+      "note": "1,4,6학년 열"
+    },
+    {
+      "school_id": "B000003763",
+      "school_name": "이매초",
+      "p4_end": "12:10",
+      "lunch": [
+        "12:10",
+        "13:00"
+      ],
+      "lunch_position": "after_p4",
+      "p5_end": "13:40",
+      "doc_periods": null,
+      "confidence": "high"
+    },
+    {
+      "school_id": "B000003764",
+      "school_name": "성남장안초",
+      "p4_end": "12:10",
+      "lunch": [
+        "12:10",
+        "13:00"
+      ],
+      "lunch_position": "after_p4",
+      "p5_end": "13:40",
+      "doc_periods": null,
+      "confidence": "high",
+      "note": "1-2학년 열"
+    },
+    {
+      "school_id": "B000003768",
+      "school_name": "돌마초",
+      "p4_end": "12:10",
+      "lunch": [
+        "12:10",
+        "13:00"
+      ],
+      "lunch_position": "after_p4",
+      "p5_end": "13:40",
+      "doc_periods": null,
+      "confidence": "high"
+    },
+    {
+      "school_id": "B000003771",
+      "school_name": "성남정자초",
+      "p4_end": "12:10",
+      "lunch": [
+        "12:10",
+        "13:00"
+      ],
+      "lunch_position": "after_p4",
+      "p5_end": "13:40",
+      "doc_periods": [
+        5,
+        5,
+        4,
+        5,
+        4
+      ],
+      "confidence": "high",
+      "note": "1학년은 4교시 후 급식 조"
+    },
+    {
+      "school_id": "B000024238",
+      "school_name": "위례한빛초",
+      "p4_end": "12:00",
+      "lunch": [
+        "12:00",
+        "12:50"
+      ],
+      "lunch_position": "after_p4",
+      "p5_end": "13:30",
+      "doc_periods": [
+        4,
+        5,
+        5,
+        5,
+        4
+      ],
+      "confidence": "high",
+      "note": "1학년 열, 2교시 직후 20분 쉬는 시간"
+    },
+    {
+      "school_id": "B000024239",
+      "school_name": "위례푸른초",
+      "p4_end": "12:50",
+      "lunch": [
+        "11:20",
+        "12:10"
+      ],
+      "lunch_position": "before_p4",
+      "p5_end": "13:40",
+      "doc_periods": null,
+      "confidence": "high",
+      "note": "1~3학년 열"
+    },
+    {
+      "school_id": "B000024240",
+      "school_name": "위례고운초",
+      "p4_end": "12:50",
+      "lunch": [
+        "11:20",
+        "12:10"
+      ],
+      "lunch_position": "before_p4",
+      "p5_end": "13:40",
+      "doc_periods": null,
+      "confidence": "high",
+      "note": "1~2학년 시간표"
+    },
+    {
+      "school_id": "B000024241",
+      "school_name": "위례중앙초",
+      "p4_end": "12:50",
+      "lunch": [
+        "11:20",
+        "12:10"
+      ],
+      "lunch_position": "before_p4",
+      "p5_end": "13:40",
+      "doc_periods": null,
+      "confidence": "high",
+      "note": "1~2학년"
+    },
+    {
+      "school_id": "B000002123",
+      "school_name": "서울방이초",
+      "p4_end": "12:10",
+      "lunch": [
+        "12:10",
+        "12:50"
+      ],
+      "lunch_position": "after_p4",
+      "p5_end": "13:30",
+      "doc_periods": null,
+      "confidence": "high"
+    },
+    {
+      "school_id": "B000002124",
+      "school_name": "서울가락초",
+      "p4_end": "12:50",
+      "lunch": [
+        "11:20",
+        "12:10"
+      ],
+      "lunch_position": "before_p4",
+      "p5_end": "13:40",
+      "doc_periods": null,
+      "confidence": "high",
+      "note": "1,2학년 시정"
+    },
+    {
+      "school_id": "B000002126",
+      "school_name": "서울중대초",
+      "p4_end": "12:50",
+      "lunch": [
+        "11:30",
+        "12:10"
+      ],
+      "lunch_position": "before_p4",
+      "p5_end": "13:40",
+      "doc_periods": null,
+      "confidence": "high",
+      "note": "1,2,3학년 점심(1)"
+    },
+    {
+      "school_id": "B000002130",
+      "school_name": "서울문현초",
+      "p4_end": "12:10",
+      "lunch": [
+        "12:10",
+        "12:50"
+      ],
+      "lunch_position": "after_p4",
+      "p5_end": "13:30",
+      "doc_periods": null,
+      "confidence": "high",
+      "note": "1,2,6학년 열"
+    },
+    {
+      "school_id": "B000002132",
+      "school_name": "서울잠신초",
+      "p4_end": "12:50",
+      "lunch": [
+        "11:20",
+        "12:10"
+      ],
+      "lunch_position": "before_p4",
+      "p5_end": "13:40",
+      "doc_periods": [
+        4,
+        5,
+        5,
+        5,
+        4
+      ],
+      "confidence": "high",
+      "note": "1~3학년 열"
+    },
+    {
+      "school_id": "B000002142",
+      "school_name": "서울남천초",
+      "p4_end": "12:10",
+      "lunch": [
+        "12:10",
+        "12:50"
+      ],
+      "lunch_position": "after_p4",
+      "p5_end": "13:30",
+      "doc_periods": null,
+      "confidence": "high"
+    },
+    {
+      "school_id": "B000002155",
+      "school_name": "서울토성초",
+      "p4_end": "12:10",
+      "lunch": [
+        "12:10",
+        "12:50"
+      ],
+      "lunch_position": "after_p4",
+      "p5_end": "13:30",
+      "doc_periods": [
+        5,
+        5,
+        4,
+        5,
+        4
+      ],
+      "confidence": "high",
+      "note": "2학년만 별도 시정"
+    },
+    {
+      "school_id": "B000002157",
+      "school_name": "서울아주초",
+      "p4_end": "12:40",
+      "lunch": [
+        "11:20",
+        "12:00"
+      ],
+      "lunch_position": "before_p4",
+      "p5_end": "13:30",
+      "doc_periods": null,
+      "confidence": "high",
+      "note": "1~3학년 열, 08:50 시작"
+    },
+    {
+      "school_id": "B000002252",
+      "school_name": "서울우면초",
+      "p4_end": "12:10",
+      "lunch": [
+        "12:10",
+        "12:50"
+      ],
+      "lunch_position": "after_p4",
+      "p5_end": "13:30",
+      "doc_periods": null,
+      "confidence": "high",
+      "note": "1.2.6학년 열"
+    },
+    {
+      "school_id": "B000002256",
+      "school_name": "서울원촌초",
+      "p4_end": "12:50",
+      "lunch": [
+        "11:20",
+        "12:10"
+      ],
+      "lunch_position": "before_p4",
+      "p5_end": "13:40",
+      "doc_periods": [
+        5,
+        4,
+        4,
+        5,
+        5
+      ],
+      "confidence": "high",
+      "note": "1, 2학년 열"
+    },
+    {
+      "school_id": "B000002263",
+      "school_name": "서울이수초",
+      "p4_end": "12:10",
+      "lunch": [
+        "12:20",
+        "13:00"
+      ],
+      "lunch_position": "after_p4",
+      "p5_end": "13:40",
+      "doc_periods": null,
+      "confidence": "high",
+      "note": "1,2,6학년 점심(1부)"
+    },
+    {
+      "school_id": "B000002265",
+      "school_name": "서울방배초",
+      "p4_end": "12:50",
+      "lunch": [
+        "11:20",
+        "12:10"
+      ],
+      "lunch_position": "before_p4",
+      "p5_end": "13:40",
+      "doc_periods": null,
+      "confidence": "high",
+      "note": "1,4 학년 시정"
+    },
+    {
+      "school_id": "B000002267",
+      "school_name": "서울서초초",
+      "p4_end": "12:10",
+      "lunch": [
+        "12:10",
+        "12:50"
+      ],
+      "lunch_position": "after_p4",
+      "p5_end": "13:30",
+      "doc_periods": null,
+      "confidence": "high"
+    },
+    {
+      "school_id": "B000002271",
+      "school_name": "서울양재초",
+      "p4_end": "12:40",
+      "lunch": [
+        "11:20",
+        "12:00"
+      ],
+      "lunch_position": "before_p4",
+      "p5_end": "13:30",
+      "doc_periods": null,
+      "confidence": "high",
+      "note": "1-3학년 열"
+    },
+    {
+      "school_id": "B000002276",
+      "school_name": "서울대왕초",
+      "p4_end": "12:50",
+      "lunch": [
+        "11:20",
+        "12:10"
+      ],
+      "lunch_position": "before_p4",
+      "p5_end": "13:40",
+      "doc_periods": null,
+      "confidence": "high",
+      "note": "1, 2, 3학년 열"
+    },
+    {
+      "school_id": "B000002278",
+      "school_name": "서울대모초",
+      "p4_end": "12:10",
+      "lunch": [
+        "12:10",
+        "12:50"
+      ],
+      "lunch_position": "after_p4",
+      "p5_end": "13:30",
+      "doc_periods": null,
+      "confidence": "high"
+    },
+    {
+      "school_id": "B000002281",
+      "school_name": "서울구룡초",
+      "p4_end": "12:00",
+      "lunch": [
+        "12:00",
+        "12:50"
+      ],
+      "lunch_position": "after_p4",
+      "p5_end": "13:30",
+      "doc_periods": null,
+      "confidence": "high",
+      "note": "1,2,3학년 1부 급식"
+    },
+    {
+      "school_id": "B000002282",
+      "school_name": "서울언주초",
+      "p4_end": "12:00",
+      "lunch": [
+        "12:00",
+        "12:50"
+      ],
+      "lunch_position": "after_p4",
+      "p5_end": "13:30",
+      "doc_periods": null,
+      "confidence": "high",
+      "note": "1~3학년"
+    },
+    {
+      "school_id": "B000002284",
+      "school_name": "서울도곡초",
+      "p4_end": "12:50",
+      "lunch": [
+        "11:30",
+        "12:10"
+      ],
+      "lunch_position": "before_p4",
+      "p5_end": "13:30",
+      "doc_periods": null,
+      "confidence": "high",
+      "note": "1-2학년은 3교시 후 점심"
+    },
+    {
+      "school_id": "B000002286",
+      "school_name": "서울개일초",
+      "p4_end": "12:00",
+      "lunch": [
+        "12:00",
+        "12:40"
+      ],
+      "lunch_position": "after_p4",
+      "p5_end": "13:20",
+      "doc_periods": null,
+      "confidence": "high",
+      "note": "1~3학년"
+    },
+    {
+      "school_id": "B000002288",
+      "school_name": "서울개원초",
+      "p4_end": "12:50",
+      "lunch": [
+        "11:20",
+        "12:00"
+      ],
+      "lunch_position": "before_p4",
+      "p5_end": "13:40",
+      "doc_periods": null,
+      "confidence": "high",
+      "note": "1,2,3학년 1부 급식(인쇄값 11:20~12:00)"
+    },
+    {
+      "school_id": "B000002292",
+      "school_name": "서울대현초",
+      "p4_end": "12:40",
+      "lunch": [
+        "11:10",
+        "11:50"
+      ],
+      "lunch_position": "before_p4",
+      "p5_end": "13:30",
+      "doc_periods": null,
+      "confidence": "high",
+      "note": "1,2학년, 08:50 시작"
+    },
+    {
+      "school_id": "B000002293",
+      "school_name": "서울삼릉초",
+      "p4_end": "12:40",
+      "lunch": [
+        "11:20",
+        "12:00"
+      ],
+      "lunch_position": "before_p4",
+      "p5_end": "13:30",
+      "doc_periods": null,
+      "confidence": "medium",
+      "note": "1,2학년 열, 합쳐진 PDF"
+    },
+    {
+      "school_id": "B000002295",
+      "school_name": "서울신구초",
+      "p4_end": "12:40",
+      "lunch": [
+        "11:20",
+        "12:00"
+      ],
+      "lunch_position": "before_p4",
+      "p5_end": "13:30",
+      "doc_periods": null,
+      "confidence": "high",
+      "note": "1~3학년"
+    },
+    {
+      "school_id": "B000002297",
+      "school_name": "서울도성초",
+      "p4_end": "12:40",
+      "lunch": [
+        "11:20",
+        "12:00"
+      ],
+      "lunch_position": "before_p4",
+      "p5_end": "13:20",
+      "doc_periods": [
+        4,
+        5,
+        4,
+        5,
+        5
+      ],
+      "confidence": "high",
+      "note": "월·수 4교시 후, 화·목·금 5교시 후 하교 명시"
+    },
+    {
+      "school_id": "B000002301",
+      "school_name": "서울일원초",
+      "p4_end": "12:40",
+      "lunch": [
+        "11:10",
+        "12:00"
+      ],
+      "lunch_position": "before_p4",
+      "p5_end": "13:30",
+      "doc_periods": [
+        4,
+        5,
+        4,
+        5,
+        5
+      ],
+      "confidence": "high",
+      "note": "1,2학년 월·수 12:40~, 화·목·금 13:30~ 명시"
+    },
+    {
+      "school_id": "B000002302",
+      "school_name": "서울언북초",
+      "p4_end": "12:50",
+      "lunch": [
+        "11:20",
+        "12:10"
+      ],
+      "lunch_position": "before_p4",
+      "p5_end": "13:40",
+      "doc_periods": null,
+      "confidence": "medium",
+      "note": "1·2학년 열 추정(합쳐진 표)"
+    },
+    {
+      "school_id": "B000022754",
+      "school_name": "서울세명초",
+      "p4_end": "12:10",
+      "lunch": [
+        "12:10",
+        "12:50"
+      ],
+      "lunch_position": "after_p4",
+      "p5_end": "13:30",
+      "doc_periods": [
+        4,
+        5,
+        4,
+        5,
+        5
+      ],
+      "confidence": "high",
+      "note": "1-2학년 열"
+    },
+    {
+      "school_id": "B000024069",
+      "school_name": "서울개포초",
+      "p4_end": "12:10",
+      "lunch": [
+        "12:10",
+        "13:00"
+      ],
+      "lunch_position": "after_p4",
+      "p5_end": "13:40",
+      "doc_periods": null,
+      "confidence": "medium",
+      "note": "1,2,5학년 점심 12:10~"
+    },
+    {
+      "school_id": "B000024506",
+      "school_name": "서울우솔초",
+      "p4_end": "12:50",
+      "lunch": [
+        "11:20",
+        "12:10"
+      ],
+      "lunch_position": "before_p4",
+      "p5_end": "13:40",
+      "doc_periods": null,
+      "confidence": "high",
+      "note": "1, 2, 3학년 열"
+    },
+    {
+      "school_id": "B000025000",
+      "school_name": "서울자곡초",
+      "p4_end": "12:55",
+      "lunch": [
+        "11:25",
+        "12:15"
+      ],
+      "lunch_position": "before_p4",
+      "p5_end": "13:40",
+      "doc_periods": null,
+      "confidence": "high",
+      "note": "1-3학년"
+    },
+    {
+      "school_id": "B000025289",
+      "school_name": "서울송례초",
+      "p4_end": "12:50",
+      "lunch": [
+        "11:20",
+        "12:10"
+      ],
+      "lunch_position": "before_p4",
+      "p5_end": "13:40",
+      "doc_periods": null,
+      "confidence": "high",
+      "note": "1~2학년"
+    },
+    {
+      "school_id": "B000025373",
+      "school_name": "서울위례솔초",
+      "p4_end": "12:50",
+      "lunch": [
+        "11:20",
+        "12:10"
+      ],
+      "lunch_position": "before_p4",
+      "p5_end": "13:40",
+      "doc_periods": [
+        4,
+        5,
+        5,
+        5,
+        4
+      ],
+      "confidence": "high",
+      "note": "1∙2학년"
+    }
+  ],
+  "user_decisions": {
+    "decided_at": "2026-10-08",
+    "items": [
+      {
+        "topic": "분당초 수요일 NEIS 5 vs 문서 4",
+        "decision": "NEIS 값 유지"
+      },
+      {
+        "topic": "medium 신뢰도 시정 5곳(단대·희망대·삼릉·언북·개포)",
+        "decision": "1차 판독값 사용"
+      },
+      {
+        "topic": "돌봄 해석 4곳(신중·대하·대진·대곡)",
+        "decision": "1차 판독값 사용"
+      },
+      {
+        "topic": "연장만 적힌 6곳(가락·송전·잠현·영풍·원촌·송례)",
+        "decision": "학교 확인 필요 유지"
+      }
+    ]
+  }
+}

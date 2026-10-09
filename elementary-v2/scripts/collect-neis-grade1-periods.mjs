@@ -60,8 +60,14 @@ export function summarizePeriods(rows) {
 async function main() {
   const env = { ...dotenv.parse(fs.existsSync(path.join(root, '.env')) ? fs.readFileSync(path.join(root, '.env')) : ''), ...process.env }
   if (!env.NEIS_CLASS_API_KEY) throw Object.assign(new Error('missing_keys'), { safeCode: 'missing_neis_keys' })
-  const crosswalk = JSON.parse(fs.readFileSync(path.join(root, 'docs/research/audit2/neis_reconciled_crosswalk_20261006.json'), 'utf8')).crosswalk
-  const manifest = JSON.parse(fs.readFileSync(path.join(root, 'docs/research/audit2/poc_school_manifest_20261006.json'), 'utf8'))
+  // --manifest=<path>: the pilot expansion manifest carries its own NEIS codes (read from each school's
+  // 학교알리미 page and checked 59/59 against the E02 links); --new-only skips schools already in the PoC.
+  const manifestArg = process.argv.find(arg => arg.startsWith('--manifest='))?.slice(11)
+  const crosswalk = manifestArg
+    ? JSON.parse(fs.readFileSync(path.join(root, manifestArg), 'utf8')).schools.map(s => ({ school_id: s.school_id, neis_office_code: s.neis_office_code, neis_school_code: s.neis_school_code }))
+    : JSON.parse(fs.readFileSync(path.join(root, 'docs/research/audit2/neis_reconciled_crosswalk_20261006.json'), 'utf8')).crosswalk
+  const manifest = JSON.parse(fs.readFileSync(path.join(root, manifestArg || 'docs/research/audit2/poc_school_manifest_20261006.json'), 'utf8'))
+  if (process.argv.includes('--new-only')) manifest.schools = manifest.schools.filter(s => !s.in_poc)
   const ay = process.argv.find(arg => arg.startsWith('--ay='))?.slice(5) || '2026'
   if (!['2025', '2026'].includes(ay)) throw Object.assign(new Error('unsupported_year'), { safeCode: 'unsupported_year' })
   const windows = ay === '2025' ? WINDOWS_2025 : WINDOWS
@@ -70,7 +76,7 @@ async function main() {
   const schools = []
   for (const school of manifest.schools) {
     const link = crosswalk.find(row => row.school_id === school.school_id)
-    const record = { school_id: school.school_id, school_name: school.school_name, region: school.region, cohort: school.cohort, windows: {} }
+    const record = { school_id: school.school_id, school_name: school.school_name, region: school.region || school.road_address?.split(' ')[0] || null, cohort: school.cohort || school.scope || null, windows: {} }
     if (!link?.neis_school_code) { record.status = 'no_neis_code'; schools.push(record); continue }
     for (const window of windows) {
       const params = { ATPT_OFCDC_SC_CODE: link.neis_office_code, SD_SCHUL_CODE: link.neis_school_code, AY: ay, GRADE: '1', TI_FROM_YMD: window.from, TI_TO_YMD: window.to }

@@ -1,0 +1,1285 @@
+{
+  "schema_version": "care-review-v1",
+  "reviewed_at": "2026-10-08",
+  "reviewer": "assistant first pass from 학교알리미 15-라 2026 attachments (pilot expansion); user confirmed 2026-10-08",
+  "source": "학교알리미 15-라 방과후학교 운영 계획 및 운영·지원현황, 2026년 5월 공시 첨부",
+  "schools": [
+    {
+      "school_id": "B000003707",
+      "school_name": "성수초",
+      "unknown": true,
+      "note": "공시 첨부에 1학년 돌봄 운영 시간 없음(방과후 계획 위주)",
+      "confidence": "n/a"
+    },
+    {
+      "school_id": "B000003708",
+      "school_name": "태평초",
+      "afternoon_end": "18:00",
+      "extended_end": null,
+      "extended_condition": null,
+      "morning": null,
+      "grades": null,
+      "evidence": "학기 중 정규수업후~18:00",
+      "confidence": "high"
+    },
+    {
+      "school_id": "B000003709",
+      "school_name": "수진초",
+      "afternoon_end": "19:00",
+      "extended_end": null,
+      "extended_condition": null,
+      "morning": "07:00-09:00",
+      "grades": "1~2",
+      "evidence": "오후돌봄(방과후~19:00), 저녁 19~20시는 지자체 연계(학교 미운영)",
+      "confidence": "high"
+    },
+    {
+      "school_id": "B000003710",
+      "school_name": "복정초",
+      "unknown": true,
+      "note": "공시 첨부에 1학년 돌봄 운영 시간 없음(방과후 계획 위주)",
+      "confidence": "n/a"
+    },
+    {
+      "school_id": "B000003711",
+      "school_name": "왕남초",
+      "afternoon_end": "18:00",
+      "extended_end": null,
+      "extended_condition": null,
+      "morning": null,
+      "grades": "1",
+      "evidence": "돌봄 1반(1학년) 방과후~18:00 (2학년반 ~17:00)",
+      "confidence": "high"
+    },
+    {
+      "school_id": "B000003712",
+      "school_name": "단대초",
+      "unknown": true,
+      "note": "공시 첨부에 1학년 돌봄 운영 시간 없음(방과후 계획 위주)",
+      "confidence": "n/a"
+    },
+    {
+      "school_id": "B000003713",
+      "school_name": "성남북초",
+      "unknown": true,
+      "note": "아침돌봄(08:00~08:40)과 프로그램 시간만 있음",
+      "confidence": "n/a"
+    },
+    {
+      "school_id": "B000003714",
+      "school_name": "성남수정초",
+      "afternoon_end": "17:00",
+      "extended_end": "19:00",
+      "extended_condition": "17:00 이후 희망자 통합",
+      "morning": null,
+      "grades": "1",
+      "evidence": "돌봄1반(1학년) 방과후~17:00, 희망자 최대 19:00",
+      "confidence": "high"
+    },
+    {
+      "school_id": "B000003715",
+      "school_name": "성남신흥초",
+      "unknown": true,
+      "note": "공시 첨부에 1학년 돌봄 운영 시간 없음(방과후 계획 위주)",
+      "confidence": "n/a"
+    },
+    {
+      "school_id": "B000003716",
+      "school_name": "성남양지초",
+      "unknown": true,
+      "note": "공시 첨부에 1학년 돌봄 운영 시간 없음(방과후 계획 위주)",
+      "confidence": "n/a"
+    },
+    {
+      "school_id": "B000003717",
+      "school_name": "금빛초",
+      "unknown": true,
+      "note": "아침돌봄 시간만 있음",
+      "confidence": "n/a"
+    },
+    {
+      "school_id": "B000003718",
+      "school_name": "성남초",
+      "unknown": true,
+      "note": "공시 첨부에 1학년 돌봄 운영 시간 없음(방과후 계획 위주)",
+      "confidence": "n/a"
+    },
+    {
+      "school_id": "B000003719",
+      "school_name": "성남서초",
+      "afternoon_end": "19:00",
+      "extended_end": null,
+      "extended_condition": null,
+      "morning": null,
+      "grades": "1~2",
+      "evidence": "수업 종료 방과 후 ~ 19:00",
+      "confidence": "high"
+    },
+    {
+      "school_id": "B000003720",
+      "school_name": "희망대초",
+      "unknown": true,
+      "note": "공시 첨부에 1학년 돌봄 운영 시간 없음(방과후 계획 위주)",
+      "confidence": "n/a"
+    },
+    {
+      "school_id": "B000003721",
+      "school_name": "도촌초",
+      "afternoon_end": "17:00",
+      "extended_end": "19:00",
+      "extended_condition": "2실",
+      "morning": null,
+      "grades": "1~2",
+      "evidence": "2실 방과후~17:00, 2실 방과후~19:00",
+      "confidence": "high"
+    },
+    {
+      "school_id": "B000003722",
+      "school_name": "상대원초",
+      "afternoon_end": "19:00",
+      "extended_end": null,
+      "extended_condition": null,
+      "morning": null,
+      "grades": "1~2",
+      "evidence": "오후돌봄(방과후~19:00)",
+      "confidence": "high"
+    },
+    {
+      "school_id": "B000003723",
+      "school_name": "대일초",
+      "unknown": true,
+      "note": "공시 첨부에 1학년 돌봄 운영 시간 없음(방과후 계획 위주)",
+      "confidence": "n/a"
+    },
+    {
+      "school_id": "B000003724",
+      "school_name": "하원초",
+      "unknown": true,
+      "note": "공시 첨부에 1학년 돌봄 운영 시간 없음(방과후 계획 위주)",
+      "confidence": "n/a"
+    },
+    {
+      "school_id": "B000003725",
+      "school_name": "단남초",
+      "unknown": true,
+      "note": "공시 첨부에 1학년 돌봄 운영 시간 없음(방과후 계획 위주)",
+      "confidence": "n/a"
+    },
+    {
+      "school_id": "B000003726",
+      "school_name": "금상초",
+      "unknown": true,
+      "note": "공시 첨부에 1학년 돌봄 운영 시간 없음(방과후 계획 위주)",
+      "confidence": "n/a"
+    },
+    {
+      "school_id": "B000003727",
+      "school_name": "성남동초",
+      "afternoon_end": "17:00",
+      "extended_end": "18:00",
+      "extended_condition": "희망 학생 있을 시 최소 1실",
+      "morning": null,
+      "grades": null,
+      "evidence": "방과후~17:00 기본, 희망 시 최소 1실 18:00",
+      "confidence": "high"
+    },
+    {
+      "school_id": "B000003728",
+      "school_name": "중원초",
+      "afternoon_end": "17:00",
+      "extended_end": "19:00",
+      "extended_condition": "돌봄1반",
+      "morning": null,
+      "grades": "1~2",
+      "evidence": "돌봄1반 방과 후~19:00, 돌봄2반 ~17:00",
+      "confidence": "high"
+    },
+    {
+      "school_id": "B000003730",
+      "school_name": "성남중앙초",
+      "afternoon_end": "19:00",
+      "extended_end": null,
+      "extended_condition": null,
+      "morning": null,
+      "grades": null,
+      "evidence": "학기 중 11:00~19:00, 17:00~19:00 통합 운영",
+      "confidence": "high"
+    },
+    {
+      "school_id": "B000003731",
+      "school_name": "성남은행초",
+      "unknown": true,
+      "note": "공시 첨부에 1학년 돌봄 운영 시간 없음(방과후 계획 위주)",
+      "confidence": "n/a"
+    },
+    {
+      "school_id": "B000003732",
+      "school_name": "상원초",
+      "afternoon_end": "19:00",
+      "extended_end": null,
+      "extended_condition": null,
+      "morning": null,
+      "grades": null,
+      "evidence": "오후 돌봄은 방과후부터 19:00까지",
+      "confidence": "high"
+    },
+    {
+      "school_id": "B000003733",
+      "school_name": "중부초",
+      "unknown": true,
+      "note": "공시 첨부에 1학년 돌봄 운영 시간 없음(방과후 계획 위주)",
+      "confidence": "n/a"
+    },
+    {
+      "school_id": "B000003734",
+      "school_name": "성남제일초",
+      "afternoon_end": "19:00",
+      "extended_end": null,
+      "extended_condition": null,
+      "morning": null,
+      "grades": "1",
+      "evidence": "오후돌봄1(1학년) 방과후~19:00 (2학년반 ~17:00)",
+      "confidence": "high"
+    },
+    {
+      "school_id": "B000003735",
+      "school_name": "검단초",
+      "unknown": true,
+      "note": "아침돌봄 시간만 있음",
+      "confidence": "n/a"
+    },
+    {
+      "school_id": "B000003736",
+      "school_name": "대하초",
+      "afternoon_end": "18:00",
+      "extended_end": "19:00",
+      "extended_condition": "최소 1실",
+      "morning": "08:00-08:40",
+      "grades": null,
+      "evidence": "운영시간 방과후~18:00, 최소 1실은 19시까지",
+      "confidence": "medium"
+    },
+    {
+      "school_id": "B000003737",
+      "school_name": "성남신기초",
+      "afternoon_end": "18:00",
+      "extended_end": null,
+      "extended_condition": null,
+      "morning": null,
+      "grades": "1~2",
+      "evidence": "방과후 ~ 18:00",
+      "confidence": "high"
+    },
+    {
+      "school_id": "B000003739",
+      "school_name": "당촌초",
+      "unknown": true,
+      "note": "공시 첨부에 1학년 돌봄 운영 시간 없음(방과후 계획 위주)",
+      "confidence": "n/a"
+    },
+    {
+      "school_id": "B000003743",
+      "school_name": "보평초",
+      "unknown": true,
+      "note": "공시 첨부에 1학년 돌봄 운영 시간 없음(방과후 계획 위주)",
+      "confidence": "n/a"
+    },
+    {
+      "school_id": "B000003745",
+      "school_name": "낙생초",
+      "afternoon_end": "19:00",
+      "extended_end": null,
+      "extended_condition": null,
+      "morning": null,
+      "grades": "1~2",
+      "evidence": "학기 중 방과 후~19:00",
+      "confidence": "high"
+    },
+    {
+      "school_id": "B000003748",
+      "school_name": "운중초",
+      "afternoon_end": "19:00",
+      "extended_end": null,
+      "extended_condition": null,
+      "morning": null,
+      "grades": null,
+      "evidence": "수업 종료 후~19:00",
+      "confidence": "high"
+    },
+    {
+      "school_id": "B000003749",
+      "school_name": "청솔초",
+      "unknown": true,
+      "note": "공시 첨부에 1학년 돌봄 운영 시간 없음(방과후 계획 위주)",
+      "confidence": "n/a"
+    },
+    {
+      "school_id": "B000003751",
+      "school_name": "구미초",
+      "afternoon_end": "17:00",
+      "extended_end": null,
+      "extended_condition": null,
+      "morning": null,
+      "grades": null,
+      "evidence": "평일 방과 후~17:00",
+      "confidence": "high"
+    },
+    {
+      "school_id": "B000003755",
+      "school_name": "백현초",
+      "afternoon_end": "19:00",
+      "extended_end": null,
+      "extended_condition": null,
+      "morning": null,
+      "grades": null,
+      "evidence": "12:30∼19:00 (정규수업 이후)",
+      "confidence": "high"
+    },
+    {
+      "school_id": "B000003756",
+      "school_name": "불정초",
+      "unknown": true,
+      "note": "공시 첨부에 1학년 돌봄 운영 시간 없음(방과후 계획 위주)",
+      "confidence": "n/a"
+    },
+    {
+      "school_id": "B000003761",
+      "school_name": "분당초",
+      "afternoon_end": "19:00",
+      "extended_end": null,
+      "extended_condition": null,
+      "morning": null,
+      "grades": "1~2",
+      "evidence": "학기 중 방과 후~19:00",
+      "confidence": "high"
+    },
+    {
+      "school_id": "B000003762",
+      "school_name": "야탑초",
+      "unknown": true,
+      "note": "아침돌봄 시간만 있음",
+      "confidence": "n/a"
+    },
+    {
+      "school_id": "B000003763",
+      "school_name": "이매초",
+      "unknown": true,
+      "note": "공시 첨부에 1학년 돌봄 운영 시간 없음(방과후 계획 위주)",
+      "confidence": "n/a"
+    },
+    {
+      "school_id": "B000003764",
+      "school_name": "성남장안초",
+      "unknown": true,
+      "note": "공시 첨부에 1학년 돌봄 운영 시간 없음(방과후 계획 위주)",
+      "confidence": "n/a"
+    },
+    {
+      "school_id": "B000003766",
+      "school_name": "늘푸른초",
+      "unknown": true,
+      "note": "공시 첨부에 1학년 돌봄 운영 시간 없음(방과후 계획 위주)",
+      "confidence": "n/a"
+    },
+    {
+      "school_id": "B000003767",
+      "school_name": "중탑초",
+      "unknown": true,
+      "note": "아침돌봄 시간만 있음",
+      "confidence": "n/a"
+    },
+    {
+      "school_id": "B000003768",
+      "school_name": "돌마초",
+      "unknown": true,
+      "note": "공시 첨부에 1학년 돌봄 운영 시간 없음(방과후 계획 위주)",
+      "confidence": "n/a"
+    },
+    {
+      "school_id": "B000003771",
+      "school_name": "성남정자초",
+      "unknown": true,
+      "note": "공시 첨부에 1학년 돌봄 운영 시간 없음(방과후 계획 위주)",
+      "confidence": "n/a"
+    },
+    {
+      "school_id": "B000003772",
+      "school_name": "수내초",
+      "afternoon_end": "18:00",
+      "extended_end": null,
+      "extended_condition": null,
+      "morning": null,
+      "grades": "1~2",
+      "evidence": "학기 중 방과 후~18:00",
+      "confidence": "high"
+    },
+    {
+      "school_id": "B000024195",
+      "school_name": "성남여수초",
+      "unknown": true,
+      "note": "방학 중 시간표만 판독됨",
+      "confidence": "n/a"
+    },
+    {
+      "school_id": "B000024238",
+      "school_name": "위례한빛초",
+      "afternoon_end": "17:00",
+      "extended_end": "19:00",
+      "extended_condition": "저녁돌봄 2학급",
+      "morning": null,
+      "grades": null,
+      "evidence": "오후돌봄 3학급 17시까지, 저녁돌봄 2학급 19시까지",
+      "confidence": "high"
+    },
+    {
+      "school_id": "B000024239",
+      "school_name": "위례푸른초",
+      "unknown": true,
+      "note": "공시 첨부에 1학년 돌봄 운영 시간 없음(방과후 계획 위주)",
+      "confidence": "n/a"
+    },
+    {
+      "school_id": "B000024240",
+      "school_name": "위례고운초",
+      "afternoon_end": "19:00",
+      "extended_end": null,
+      "extended_condition": null,
+      "morning": null,
+      "grades": "1~2",
+      "evidence": "수업 종료 방과 후 ~ 19:00",
+      "confidence": "high"
+    },
+    {
+      "school_id": "B000024241",
+      "school_name": "위례중앙초",
+      "afternoon_end": "19:00",
+      "extended_end": null,
+      "extended_condition": null,
+      "morning": null,
+      "grades": null,
+      "evidence": "19시까지 운영",
+      "confidence": "high"
+    },
+    {
+      "school_id": "B000002123",
+      "school_name": "서울방이초",
+      "afternoon_end": "17:00",
+      "extended_end": "19:00",
+      "extended_condition": "저녁늘봄",
+      "morning": "07:00-수업 전",
+      "grades": null,
+      "evidence": "오후 13:00~17:00, 저녁늘봄 17:00~19:00",
+      "confidence": "high"
+    },
+    {
+      "school_id": "B000002124",
+      "school_name": "서울가락초",
+      "unknown": true,
+      "note": "\"최소 1실은 19시까지\"만 있고 기본 운영 종료가 없음",
+      "confidence": "n/a"
+    },
+    {
+      "school_id": "B000002125",
+      "school_name": "서울평화초",
+      "unknown": true,
+      "note": "공시 첨부에 1학년 돌봄 운영 시간 없음(방과후 계획 위주)",
+      "confidence": "n/a"
+    },
+    {
+      "school_id": "B000002126",
+      "school_name": "서울중대초",
+      "unknown": true,
+      "note": "공시 첨부에 1학년 돌봄 운영 시간 없음(방과후 계획 위주)",
+      "confidence": "n/a"
+    },
+    {
+      "school_id": "B000002127",
+      "school_name": "서울문덕초",
+      "unknown": true,
+      "note": "공시 첨부에 1학년 돌봄 운영 시간 없음(방과후 계획 위주)",
+      "confidence": "n/a"
+    },
+    {
+      "school_id": "B000002128",
+      "school_name": "서울문정초",
+      "unknown": true,
+      "note": "공시 첨부에 1학년 돌봄 운영 시간 없음(방과후 계획 위주)",
+      "confidence": "n/a"
+    },
+    {
+      "school_id": "B000002129",
+      "school_name": "서울가원초",
+      "afternoon_end": "17:00",
+      "extended_end": "19:00",
+      "extended_condition": "저녁돌봄",
+      "morning": "07:30-08:50",
+      "grades": "1~4",
+      "evidence": "오후 방과후~17:00, 저녁 17:00~19:00",
+      "confidence": "high"
+    },
+    {
+      "school_id": "B000002130",
+      "school_name": "서울문현초",
+      "unknown": true,
+      "note": "아침·틈새돌봄 시간만 있음",
+      "confidence": "n/a"
+    },
+    {
+      "school_id": "B000002131",
+      "school_name": "서울잠일초",
+      "unknown": true,
+      "note": "공시 첨부에 1학년 돌봄 운영 시간 없음(방과후 계획 위주)",
+      "confidence": "n/a"
+    },
+    {
+      "school_id": "B000002132",
+      "school_name": "서울잠신초",
+      "afternoon_end": "19:00",
+      "extended_end": null,
+      "extended_condition": null,
+      "morning": "07:30-09:00",
+      "grades": "1~2",
+      "evidence": "오후·저녁 돌봄 12:30~19:00",
+      "confidence": "high"
+    },
+    {
+      "school_id": "B000002133",
+      "school_name": "서울송전초",
+      "unknown": true,
+      "note": "\"최소 1실은 19시까지\"만 있고 기본 운영 종료가 없음",
+      "confidence": "n/a"
+    },
+    {
+      "school_id": "B000002134",
+      "school_name": "서울잠동초",
+      "afternoon_end": "17:00",
+      "extended_end": "19:00",
+      "extended_condition": "저녁돌봄",
+      "morning": "07:00-09:00",
+      "grades": null,
+      "evidence": "오후 방과후~17:00, 저녁 17:00~19:00",
+      "confidence": "high"
+    },
+    {
+      "school_id": "B000002135",
+      "school_name": "서울잠실초",
+      "unknown": true,
+      "note": "공시 첨부에 1학년 돌봄 운영 시간 없음(방과후 계획 위주)",
+      "confidence": "n/a"
+    },
+    {
+      "school_id": "B000002136",
+      "school_name": "서울잠현초",
+      "unknown": true,
+      "note": "저녁돌봄(17~19시)만 있고 오후돌봄 종료가 없음",
+      "confidence": "n/a"
+    },
+    {
+      "school_id": "B000002137",
+      "school_name": "서울신가초",
+      "unknown": true,
+      "note": "공시 첨부에 1학년 돌봄 운영 시간 없음(방과후 계획 위주)",
+      "confidence": "n/a"
+    },
+    {
+      "school_id": "B000002138",
+      "school_name": "서울가주초",
+      "afternoon_end": "17:00",
+      "extended_end": "19:00",
+      "extended_condition": "저녁돌봄(17시 이후 필요 학생)",
+      "morning": "07:30-08:50",
+      "grades": "1~2",
+      "evidence": "오후 방과후~17:00, 저녁 17:00~19:00",
+      "confidence": "high"
+    },
+    {
+      "school_id": "B000002139",
+      "school_name": "서울가동초",
+      "unknown": true,
+      "note": "공시 첨부에 1학년 돌봄 운영 시간 없음(방과후 계획 위주)",
+      "confidence": "n/a"
+    },
+    {
+      "school_id": "B000002140",
+      "school_name": "서울영풍초",
+      "unknown": true,
+      "note": "저녁돌봄(17~19시)만 있고 오후돌봄 종료가 없음",
+      "confidence": "n/a"
+    },
+    {
+      "school_id": "B000002141",
+      "school_name": "서울거원초",
+      "afternoon_end": "17:00",
+      "extended_end": "19:00",
+      "extended_condition": "저녁돌봄",
+      "morning": null,
+      "grades": null,
+      "evidence": "오후 방과 후~17시, 저녁 17~19시",
+      "confidence": "high"
+    },
+    {
+      "school_id": "B000002142",
+      "school_name": "서울남천초",
+      "afternoon_end": "17:00",
+      "extended_end": "19:00",
+      "extended_condition": "수요가 있는 경우 저녁돌봄",
+      "morning": "07:00-08:50",
+      "grades": null,
+      "evidence": "오후 방과후~17:00, 저녁 17:00~19:00",
+      "confidence": "high"
+    },
+    {
+      "school_id": "B000002143",
+      "school_name": "서울마천초",
+      "afternoon_end": "17:00",
+      "extended_end": "19:00",
+      "extended_condition": "저녁돌봄",
+      "morning": "07:00-09:00",
+      "grades": "1~3",
+      "evidence": "오후 12:30~17:00, 저녁 17:00~19:00",
+      "confidence": "high"
+    },
+    {
+      "school_id": "B000002144",
+      "school_name": "서울오륜초",
+      "unknown": true,
+      "note": "공시 첨부에 1학년 돌봄 운영 시간 없음(방과후 계획 위주)",
+      "confidence": "n/a"
+    },
+    {
+      "school_id": "B000002145",
+      "school_name": "서울세륜초",
+      "unknown": true,
+      "note": "공시 첨부에 1학년 돌봄 운영 시간 없음(방과후 계획 위주)",
+      "confidence": "n/a"
+    },
+    {
+      "school_id": "B000002146",
+      "school_name": "서울방산초",
+      "unknown": true,
+      "note": "공시 첨부에 1학년 돌봄 운영 시간 없음(방과후 계획 위주)",
+      "confidence": "n/a"
+    },
+    {
+      "school_id": "B000002147",
+      "school_name": "서울삼전초",
+      "afternoon_end": "17:00",
+      "extended_end": "20:00",
+      "extended_condition": "수요 있을 시",
+      "morning": null,
+      "grades": null,
+      "evidence": "오후 13:00~17:00, 수요 시 저녁 20:00까지",
+      "confidence": "high"
+    },
+    {
+      "school_id": "B000002148",
+      "school_name": "서울석촌초",
+      "unknown": true,
+      "note": "공시 첨부에 1학년 돌봄 운영 시간 없음(방과후 계획 위주)",
+      "confidence": "n/a"
+    },
+    {
+      "school_id": "B000002149",
+      "school_name": "서울송파초",
+      "unknown": true,
+      "note": "공시 첨부에 1학년 돌봄 운영 시간 없음(방과후 계획 위주)",
+      "confidence": "n/a"
+    },
+    {
+      "school_id": "B000002150",
+      "school_name": "서울오금초",
+      "afternoon_end": "17:00",
+      "extended_end": "19:00",
+      "extended_condition": "저녁돌봄",
+      "morning": null,
+      "grades": "1~3",
+      "evidence": "오후 방과후~17:00, 저녁 17:00~19:00",
+      "confidence": "high"
+    },
+    {
+      "school_id": "B000002152",
+      "school_name": "서울개롱초",
+      "afternoon_end": "17:00",
+      "extended_end": "19:00",
+      "extended_condition": "오후연장(저녁)돌봄",
+      "morning": "07:00-09:00",
+      "grades": null,
+      "evidence": "오후 방과후~17:00, 오후연장(저녁) 17:00~19:00",
+      "confidence": "high"
+    },
+    {
+      "school_id": "B000002153",
+      "school_name": "서울잠전초",
+      "afternoon_end": "17:00",
+      "extended_end": "19:00",
+      "extended_condition": "저녁돌봄",
+      "morning": "07:00-09:00",
+      "grades": null,
+      "evidence": "오후 12:50~17:00(화수목 13:40부터), 저녁 17:00~19:00",
+      "confidence": "high"
+    },
+    {
+      "school_id": "B000002154",
+      "school_name": "서울풍납초",
+      "unknown": true,
+      "note": "공시 첨부에 1학년 돌봄 운영 시간 없음(방과후 계획 위주)",
+      "confidence": "n/a"
+    },
+    {
+      "school_id": "B000002155",
+      "school_name": "서울토성초",
+      "unknown": true,
+      "note": "공시 첨부에 1학년 돌봄 운영 시간 없음(방과후 계획 위주)",
+      "confidence": "n/a"
+    },
+    {
+      "school_id": "B000002156",
+      "school_name": "서울풍성초",
+      "unknown": true,
+      "note": "공시 첨부에 1학년 돌봄 운영 시간 없음(방과후 계획 위주)",
+      "confidence": "n/a"
+    },
+    {
+      "school_id": "B000002157",
+      "school_name": "서울아주초",
+      "afternoon_end": "17:00",
+      "extended_end": "19:00",
+      "extended_condition": "저녁돌봄",
+      "morning": null,
+      "grades": null,
+      "evidence": "오후 13:00~17:00, 저녁 17:00~19:00",
+      "confidence": "high"
+    },
+    {
+      "school_id": "B000002158",
+      "school_name": "서울버들초",
+      "unknown": true,
+      "note": "공시 첨부에 1학년 돌봄 운영 시간 없음(방과후 계획 위주)",
+      "confidence": "n/a"
+    },
+    {
+      "school_id": "B000002159",
+      "school_name": "서울신천초",
+      "afternoon_end": "17:00",
+      "extended_end": "19:00",
+      "extended_condition": "저녁돌봄 희망자",
+      "morning": "07:00-08:50",
+      "grades": null,
+      "evidence": "오후 13:00~17:00, 저녁 17:00~19:00",
+      "confidence": "high"
+    },
+    {
+      "school_id": "B000002252",
+      "school_name": "서울우면초",
+      "unknown": true,
+      "note": "공시 첨부에 1학년 돌봄 운영 시간 없음(방과후 계획 위주)",
+      "confidence": "n/a"
+    },
+    {
+      "school_id": "B000002253",
+      "school_name": "서울교육대학교부설초",
+      "unknown": true,
+      "note": "공시 첨부에 1학년 돌봄 운영 시간 없음(방과후 계획 위주)",
+      "confidence": "n/a"
+    },
+    {
+      "school_id": "B000002254",
+      "school_name": "서울신중초",
+      "afternoon_end": "17:00",
+      "extended_end": "22:00",
+      "extended_condition": "수요인원이 있을 시",
+      "morning": "07:30-09:00",
+      "grades": null,
+      "evidence": "\"오후돌봄 13:40∼19:00\"과 \"정규수업 후∼17:00, 저녁 17:00~22:00(수요 시)\"가 함께 적힘",
+      "confidence": "medium"
+    },
+    {
+      "school_id": "B000002255",
+      "school_name": "서울서원초",
+      "unknown": true,
+      "note": "아침돌봄 시간만 있음",
+      "confidence": "n/a"
+    },
+    {
+      "school_id": "B000002256",
+      "school_name": "서울원촌초",
+      "unknown": true,
+      "note": "저녁돌봄(18~19시) 조건만 있음",
+      "confidence": "n/a"
+    },
+    {
+      "school_id": "B000002257",
+      "school_name": "서울잠원초",
+      "unknown": true,
+      "note": "공시 첨부에 1학년 돌봄 운영 시간 없음(방과후 계획 위주)",
+      "confidence": "n/a"
+    },
+    {
+      "school_id": "B000002258",
+      "school_name": "서울반원초",
+      "unknown": true,
+      "note": "공시 첨부에 1학년 돌봄 운영 시간 없음(방과후 계획 위주)",
+      "confidence": "n/a"
+    },
+    {
+      "school_id": "B000002259",
+      "school_name": "서울매헌초",
+      "unknown": true,
+      "note": "공시 첨부에 1학년 돌봄 운영 시간 없음(방과후 계획 위주)",
+      "confidence": "n/a"
+    },
+    {
+      "school_id": "B000002262",
+      "school_name": "서울방일초",
+      "afternoon_end": "17:00",
+      "extended_end": "19:00",
+      "extended_condition": "저녁돌봄",
+      "morning": "07:30-08:50",
+      "grades": null,
+      "evidence": "오후 방과 후∼17:00, 저녁 17:00~19:00",
+      "confidence": "high"
+    },
+    {
+      "school_id": "B000002263",
+      "school_name": "서울이수초",
+      "unknown": true,
+      "note": "공시 첨부에 1학년 돌봄 운영 시간 없음(방과후 계획 위주)",
+      "confidence": "n/a"
+    },
+    {
+      "school_id": "B000002264",
+      "school_name": "서울서래초",
+      "unknown": true,
+      "note": "오후돌봄 종료가 잘려 있음",
+      "confidence": "n/a"
+    },
+    {
+      "school_id": "B000002265",
+      "school_name": "서울방배초",
+      "unknown": true,
+      "note": "공시 첨부에 1학년 돌봄 운영 시간 없음(방과후 계획 위주)",
+      "confidence": "n/a"
+    },
+    {
+      "school_id": "B000002266",
+      "school_name": "서울방현초",
+      "afternoon_end": "17:00",
+      "extended_end": "19:00",
+      "extended_condition": "저녁돌봄",
+      "morning": "07:50-08:40",
+      "grades": null,
+      "evidence": "오후 방과후~17:00, 저녁 17:00~19:00",
+      "confidence": "high"
+    },
+    {
+      "school_id": "B000002267",
+      "school_name": "서울서초초",
+      "afternoon_end": "17:00",
+      "extended_end": "19:00",
+      "extended_condition": "저녁돌봄",
+      "morning": "07:30-09:00",
+      "grades": null,
+      "evidence": "오후 정규 수업 후~17:00, 저녁 17:00~19:00",
+      "confidence": "high"
+    },
+    {
+      "school_id": "B000002268",
+      "school_name": "서울서이초",
+      "unknown": true,
+      "note": "공시 첨부에 1학년 돌봄 운영 시간 없음(방과후 계획 위주)",
+      "confidence": "n/a"
+    },
+    {
+      "school_id": "B000002269",
+      "school_name": "서울서일초",
+      "unknown": true,
+      "note": "방학 중 시간만 있음",
+      "confidence": "n/a"
+    },
+    {
+      "school_id": "B000002270",
+      "school_name": "서울원명초",
+      "afternoon_end": "17:00",
+      "extended_end": "19:00",
+      "extended_condition": "저녁돌봄",
+      "morning": null,
+      "grades": null,
+      "evidence": "오후 하교후∼17:00, 저녁 17~19시",
+      "confidence": "high"
+    },
+    {
+      "school_id": "B000002271",
+      "school_name": "서울양재초",
+      "unknown": true,
+      "note": "공시 첨부에 1학년 돌봄 운영 시간 없음(방과후 계획 위주)",
+      "confidence": "n/a"
+    },
+    {
+      "school_id": "B000002272",
+      "school_name": "서울우암초",
+      "afternoon_end": "19:00",
+      "extended_end": null,
+      "extended_condition": null,
+      "morning": null,
+      "grades": null,
+      "evidence": "운영 시간: 방과 후~19:00",
+      "confidence": "high"
+    },
+    {
+      "school_id": "B000002273",
+      "school_name": "서울신동초",
+      "unknown": true,
+      "note": "공시 첨부에 1학년 돌봄 운영 시간 없음(방과후 계획 위주)",
+      "confidence": "n/a"
+    },
+    {
+      "school_id": "B000002274",
+      "school_name": "계성초",
+      "unknown": true,
+      "note": "공시 첨부에 1학년 돌봄 운영 시간 없음(방과후 계획 위주)",
+      "confidence": "n/a"
+    },
+    {
+      "school_id": "B000002275",
+      "school_name": "서울봉은초",
+      "afternoon_end": "17:00",
+      "extended_end": "19:00",
+      "extended_condition": "저녁돌봄",
+      "morning": "07:00-09:00",
+      "grades": null,
+      "evidence": "오후 방과후~17:00, 저녁 17:00~19:00",
+      "confidence": "high"
+    },
+    {
+      "school_id": "B000002276",
+      "school_name": "서울대왕초",
+      "unknown": true,
+      "note": "공시 첨부에 1학년 돌봄 운영 시간 없음(방과후 계획 위주)",
+      "confidence": "n/a"
+    },
+    {
+      "school_id": "B000002277",
+      "school_name": "서울수서초",
+      "unknown": true,
+      "note": "방학 중 시간만 있음",
+      "confidence": "n/a"
+    },
+    {
+      "school_id": "B000002278",
+      "school_name": "서울대모초",
+      "unknown": true,
+      "note": "공시 첨부에 1학년 돌봄 운영 시간 없음(방과후 계획 위주)",
+      "confidence": "n/a"
+    },
+    {
+      "school_id": "B000002279",
+      "school_name": "서울대진초",
+      "afternoon_end": "17:00",
+      "extended_end": "19:00",
+      "extended_condition": "오후돌봄 연장",
+      "morning": null,
+      "grades": null,
+      "evidence": "\"오전+오후돌봄 08:00~17:00 / 저녁 17:00~19:00\"",
+      "confidence": "medium"
+    },
+    {
+      "school_id": "B000002281",
+      "school_name": "서울구룡초",
+      "unknown": true,
+      "note": "방학 중 시간만 있음",
+      "confidence": "n/a"
+    },
+    {
+      "school_id": "B000002282",
+      "school_name": "서울언주초",
+      "afternoon_end": "19:00",
+      "extended_end": "20:00",
+      "extended_condition": "저녁돌봄 신청자",
+      "morning": "07:00-09:00",
+      "grades": null,
+      "evidence": "오후 13:00∼19:00, 저녁 17:00~20:00",
+      "confidence": "high"
+    },
+    {
+      "school_id": "B000002283",
+      "school_name": "서울대치초",
+      "unknown": true,
+      "note": "휴업일 운영 시간만 있음",
+      "confidence": "n/a"
+    },
+    {
+      "school_id": "B000002284",
+      "school_name": "서울도곡초",
+      "afternoon_end": "17:00",
+      "extended_end": "19:00",
+      "extended_condition": "저녁돌봄",
+      "morning": "07:30-09:00",
+      "grades": "1~3",
+      "evidence": "오후 수업종료후~17:00, 저녁 17:00~19:00",
+      "confidence": "high"
+    },
+    {
+      "school_id": "B000002285",
+      "school_name": "서울대도초",
+      "unknown": true,
+      "note": "공시 첨부에 1학년 돌봄 운영 시간 없음(방과후 계획 위주)",
+      "confidence": "n/a"
+    },
+    {
+      "school_id": "B000002286",
+      "school_name": "서울개일초",
+      "unknown": true,
+      "note": "공시 첨부에 1학년 돌봄 운영 시간 없음(방과후 계획 위주)",
+      "confidence": "n/a"
+    },
+    {
+      "school_id": "B000002288",
+      "school_name": "서울개원초",
+      "unknown": true,
+      "note": "공시 첨부에 1학년 돌봄 운영 시간 없음(방과후 계획 위주)",
+      "confidence": "n/a"
+    },
+    {
+      "school_id": "B000002289",
+      "school_name": "서울논현초",
+      "unknown": true,
+      "note": "공시 첨부에 1학년 돌봄 운영 시간 없음(방과후 계획 위주)",
+      "confidence": "n/a"
+    },
+    {
+      "school_id": "B000002290",
+      "school_name": "서울학동초",
+      "unknown": true,
+      "note": "공시 첨부에 1학년 돌봄 운영 시간 없음(방과후 계획 위주)",
+      "confidence": "n/a"
+    },
+    {
+      "school_id": "B000002291",
+      "school_name": "서울대곡초",
+      "afternoon_end": "17:00",
+      "extended_end": "19:00",
+      "extended_condition": "저녁돌봄",
+      "morning": "07:00-09:00",
+      "grades": null,
+      "evidence": "오후 수업종료후~17:00, 17:00~19:00 시간제 전담",
+      "confidence": "medium"
+    },
+    {
+      "school_id": "B000002292",
+      "school_name": "서울대현초",
+      "unknown": true,
+      "note": "공시 첨부에 1학년 돌봄 운영 시간 없음(방과후 계획 위주)",
+      "confidence": "n/a"
+    },
+    {
+      "school_id": "B000002293",
+      "school_name": "서울삼릉초",
+      "afternoon_end": "19:00",
+      "extended_end": null,
+      "extended_condition": null,
+      "morning": "07:20-09:20",
+      "grades": null,
+      "evidence": "오후 돌봄교실 방과후 ~ 19:00",
+      "confidence": "high"
+    },
+    {
+      "school_id": "B000002294",
+      "school_name": "서울왕북초",
+      "unknown": true,
+      "note": "공시 첨부에 1학년 돌봄 운영 시간 없음(방과후 계획 위주)",
+      "confidence": "n/a"
+    },
+    {
+      "school_id": "B000002295",
+      "school_name": "서울신구초",
+      "unknown": true,
+      "note": "공시 첨부에 1학년 돌봄 운영 시간 없음(방과후 계획 위주)",
+      "confidence": "n/a"
+    },
+    {
+      "school_id": "B000002296",
+      "school_name": "서울압구정초",
+      "unknown": true,
+      "note": "공시 첨부에 1학년 돌봄 운영 시간 없음(방과후 계획 위주)",
+      "confidence": "n/a"
+    },
+    {
+      "school_id": "B000002297",
+      "school_name": "서울도성초",
+      "unknown": true,
+      "note": "아침돌봄 시간만 있음",
+      "confidence": "n/a"
+    },
+    {
+      "school_id": "B000002298",
+      "school_name": "서울역삼초",
+      "afternoon_end": "17:00",
+      "extended_end": "18:00",
+      "extended_condition": "저녁돌봄",
+      "morning": "07:00-09:00",
+      "grades": null,
+      "evidence": "오후 13:00~17:00, 저녁 17:00~18:00",
+      "confidence": "high"
+    },
+    {
+      "school_id": "B000002299",
+      "school_name": "서울대청초",
+      "unknown": true,
+      "note": "공시 첨부에 1학년 돌봄 운영 시간 없음(방과후 계획 위주)",
+      "confidence": "n/a"
+    },
+    {
+      "school_id": "B000002300",
+      "school_name": "서울영희초",
+      "unknown": true,
+      "note": "공시 첨부에 1학년 돌봄 운영 시간 없음(방과후 계획 위주)",
+      "confidence": "n/a"
+    },
+    {
+      "school_id": "B000002301",
+      "school_name": "서울일원초",
+      "afternoon_end": "17:00",
+      "extended_end": "19:00",
+      "extended_condition": "저녁돌봄",
+      "morning": "06:45-09:15",
+      "grades": "1~2",
+      "evidence": "오후 방과후~17:00, 저녁 17:00~19:00",
+      "confidence": "high"
+    },
+    {
+      "school_id": "B000002302",
+      "school_name": "서울언북초",
+      "unknown": true,
+      "note": "공시 첨부에 1학년 돌봄 운영 시간 없음(방과후 계획 위주)",
+      "confidence": "n/a"
+    },
+    {
+      "school_id": "B000002303",
+      "school_name": "서울청담초",
+      "unknown": true,
+      "note": "공시 첨부에 1학년 돌봄 운영 시간 없음(방과후 계획 위주)",
+      "confidence": "n/a"
+    },
+    {
+      "school_id": "B000002304",
+      "school_name": "서울포이초",
+      "afternoon_end": "17:00",
+      "extended_end": "19:00",
+      "extended_condition": "저녁돌봄",
+      "morning": "07:00-09:00",
+      "grades": "1~3",
+      "evidence": "오후 수업종료 후~17:00, 저녁 17:00~19:00",
+      "confidence": "high"
+    },
+    {
+      "school_id": "B000022754",
+      "school_name": "서울세명초",
+      "afternoon_end": "17:00",
+      "extended_end": "19:00",
+      "extended_condition": "저녁돌봄",
+      "morning": null,
+      "grades": null,
+      "evidence": "오후 13:00∼17:00, 저녁 17:00~19:00",
+      "confidence": "high"
+    },
+    {
+      "school_id": "B000024069",
+      "school_name": "서울개포초",
+      "afternoon_end": "17:00",
+      "extended_end": "19:00",
+      "extended_condition": "저녁돌봄",
+      "morning": "07:30-09:00",
+      "grades": null,
+      "evidence": "오후 정규수업 후∼17:00, 저녁 17:00~19:00",
+      "confidence": "high"
+    },
+    {
+      "school_id": "B000024506",
+      "school_name": "서울우솔초",
+      "unknown": true,
+      "note": "공시 첨부에 1학년 돌봄 운영 시간 없음(방과후 계획 위주)",
+      "confidence": "n/a"
+    },
+    {
+      "school_id": "B000025000",
+      "school_name": "서울자곡초",
+      "unknown": true,
+      "note": "공시 첨부에 1학년 돌봄 운영 시간 없음(방과후 계획 위주)",
+      "confidence": "n/a"
+    },
+    {
+      "school_id": "B000025001",
+      "school_name": "서울율현초",
+      "unknown": true,
+      "note": "공시 첨부에 1학년 돌봄 운영 시간 없음(방과후 계획 위주)",
+      "confidence": "n/a"
+    },
+    {
+      "school_id": "B000025289",
+      "school_name": "서울송례초",
+      "unknown": true,
+      "note": "저녁돌봄(19~20시)만 있음",
+      "confidence": "n/a"
+    },
+    {
+      "school_id": "B000025372",
+      "school_name": "서울해누리초",
+      "unknown": true,
+      "note": "공시 첨부에 1학년 돌봄 운영 시간 없음(방과후 계획 위주)",
+      "confidence": "n/a"
+    },
+    {
+      "school_id": "B000025373",
+      "school_name": "서울위례솔초",
+      "afternoon_end": "17:00",
+      "extended_end": "18:50",
+      "extended_condition": "수요 발생 시",
+      "morning": null,
+      "grades": null,
+      "evidence": "오후 13:00~17:00, 저녁 17:00~18:50(수요 시)",
+      "confidence": "high"
+    },
+    {
+      "school_id": "B000025375",
+      "school_name": "서울위례별초",
+      "unknown": true,
+      "note": "공시 첨부에 1학년 돌봄 운영 시간 없음(방과후 계획 위주)",
+      "confidence": "n/a"
+    },
+    {
+      "school_id": "B000025891",
+      "school_name": "서울언남초",
+      "unknown": true,
+      "note": "공시 첨부에 1학년 돌봄 운영 시간 없음(방과후 계획 위주)",
+      "confidence": "n/a"
+    },
+    {
+      "school_id": "B000030583",
+      "school_name": "서울개현초",
+      "unknown": true,
+      "note": "공시 첨부에 1학년 돌봄 운영 시간 없음(방과후 계획 위주)",
+      "confidence": "n/a"
+    }
+  ],
+  "user_decisions": {
+    "decided_at": "2026-10-08",
+    "items": [
+      {
+        "topic": "분당초 수요일 NEIS 5 vs 문서 4",
+        "decision": "NEIS 값 유지"
+      },
+      {
+        "topic": "medium 신뢰도 시정 5곳(단대·희망대·삼릉·언북·개포)",
+        "decision": "1차 판독값 사용"
+      },
+      {
+        "topic": "돌봄 해석 4곳(신중·대하·대진·대곡)",
+        "decision": "1차 판독값 사용"
+      },
+      {
+        "topic": "연장만 적힌 6곳(가락·송전·잠현·영풍·원촌·송례)",
+        "decision": "학교 확인 필요 유지"
+      }
+    ]
+  }
+}

@@ -544,6 +544,45 @@
   color: var(--warm-faint);
 }
 
+/* 적용 범위 칩(P1-04). 지역마다 다른 글은 색으로 먼저 알아보게 한다. */
+.content-applies {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 10px 0 0;
+}
+
+.content-applies__chip {
+  border: 1px solid var(--warm-border-strong);
+  border-radius: 999px;
+  padding: 3px 10px;
+  color: var(--warm-muted);
+  background: var(--warm-surface);
+  font-size: 12px;
+  font-weight: 650;
+  line-height: 1.5;
+}
+
+.content-applies__chip--regional,
+.content-applies__chip--mixed {
+  border-color: #f0c9a8;
+  color: #8a4b1f;
+  background: #fff4ea;
+}
+
+.content-sources__official {
+  display: inline-block;
+  margin-right: 6px;
+  border-radius: 6px;
+  padding: 0 6px;
+  color: #1f5f46;
+  background: #e3f3eb;
+  font-size: 11px;
+  font-weight: 750;
+  line-height: 1.7;
+  vertical-align: 1px;
+}
+
 .content-body h2 {
   display: flex;
   align-items: center;
@@ -2066,4 +2105,150 @@
   color: var(--warm-faint);
   font-size: 12.5px;
   line-height: 1.6;
+}
+
+/* ---- 학습·생활 준비 콘텐츠 (P2-03) ---------------------------------------- */
+
+.learn-status {
+  margin: 0 0 10px;
+  border-radius: 10px;
+  padding: 6px 10px;
+  color: #7a3b00;
+  background: #fff1d6;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.learn-category {
+  display: inline-block;
+  color: var(--warm-muted);
+  font-size: 13px;
+  font-weight: 650;
+}
+
+.learn-answer {
+  margin: 14px 0 0;
+  border-left: 4px solid var(--warm-accent);
+  border-radius: 12px;
+  padding: 12px 14px;
+  background: var(--warm-accent-soft);
+}
+
+.learn-answer strong {
+  display: block;
+  margin-bottom: 4px;
+  color: #b8452f;
+  font-size: 13px;
+}
+
+.learn-answer p {
+  margin: 0;
+  color: var(--warm-text);
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+.learn-facts {
+  display: grid;
+  gap: 8px;
+  margin: 14px 0 0;
+  border: 1px solid var(--warm-border);
+  border-radius: 14px;
+  padding: 12px 14px;
+  background: var(--warm-surface);
+  font-size: 13px;
+}
+
+.learn-facts > div {
+  display: grid;
+  grid-template-columns: 84px minmax(0, 1fr);
+  gap: 8px;
+}
+
+.learn-facts dt {
+  color: var(--warm-muted);
+  font-weight: 650;
+}
+
+.learn-facts dd {
+  margin: 0;
+  color: var(--warm-text);
+  line-height: 1.6;
+}
+
+.learn-link {
+  display: inline-block;
+  margin-right: 6px;
+  border-radius: 999px;
+  padding: 1px 9px;
+  font-size: 12px;
+  font-weight: 750;
+}
+
+.learn-link--direct { color: #1f5f46; background: #e3f3eb; }
+.learn-link--foundation { color: #1d4f7a; background: #e4eff9; }
+.learn-link--extension { color: #6a3f8f; background: #f1e8f8; }
+.learn-link--outside { color: #5c5650; background: #efebe7; }
+
+.learn-link__basis {
+  display: block;
+  margin-top: 3px;
+  color: var(--warm-muted);
+}
+
+.learn-signals {
+  margin-top: 28px;
+  border: 1px solid var(--warm-border);
+  border-radius: 16px;
+  padding: 14px 16px;
+  background: var(--warm-surface);
+}
+
+.learn-signals h2 {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0 0 8px;
+  color: var(--warm-text);
+  font-size: 16px;
+  font-weight: 750;
+}
+
+.learn-signals ul {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.learn-signals li {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 8px;
+}
+
+.learn-signal__tone {
+  border-radius: 6px;
+  padding: 0 6px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.learn-signal__tone--positive { color: #1f5f46; background: #e3f3eb; }
+.learn-signal__tone--negative { color: #8a2f1f; background: #fbe6e1; }
+.learn-signal__tone--conditional { color: #6b5200; background: #fbf0cf; }
+
+.learn-signals__empty,
+.learn-signals__note {
+  margin: 0;
+  color: var(--warm-muted);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.learn-signals__note {
+  margin-top: 10px;
 }

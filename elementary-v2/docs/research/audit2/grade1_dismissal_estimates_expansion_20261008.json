@@ -1,0 +1,2860 @@
+{
+  "schema_version": "grade1-dismissal-estimates-v1",
+  "evidence_state": "estimated_from_2026_sources",
+  "review_state": "assistant first pass from original 학교알리미 2-가 tables (pilot expansion); user confirmed 2026-10-08",
+  "publish_status": "not_approved",
+  "no_operational_upload": true,
+  "summary": {
+    "schools": 71,
+    "complete": 71,
+    "with_period_conflict": 1
+  },
+  "schools": [
+    {
+      "school_id": "B000003707",
+      "school_name": "성수초",
+      "confidence": "high",
+      "lunch_position": "after_p4",
+      "days": {
+        "월": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:00",
+          "note": null
+        },
+        "화": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:40",
+          "note": null
+        },
+        "수": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:40",
+          "note": null
+        },
+        "목": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:40",
+          "note": null
+        },
+        "금": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:00",
+          "note": null
+        }
+      },
+      "period_conflicts": [],
+      "status": "complete"
+    },
+    {
+      "school_id": "B000003709",
+      "school_name": "수진초",
+      "confidence": "high",
+      "lunch_position": "after_p4",
+      "days": {
+        "월": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:30",
+          "note": null
+        },
+        "화": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:30",
+          "note": null
+        },
+        "수": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "12:50",
+          "note": null
+        },
+        "목": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:30",
+          "note": null
+        },
+        "금": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:30",
+          "note": null
+        }
+      },
+      "period_conflicts": [],
+      "status": "complete"
+    },
+    {
+      "school_id": "B000003712",
+      "school_name": "단대초",
+      "confidence": "medium",
+      "lunch_position": "after_p4",
+      "days": {
+        "월": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:40",
+          "note": null
+        },
+        "화": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:00",
+          "note": null
+        },
+        "수": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:40",
+          "note": null
+        },
+        "목": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:40",
+          "note": null
+        },
+        "금": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:00",
+          "note": null
+        }
+      },
+      "period_conflicts": [],
+      "status": "complete"
+    },
+    {
+      "school_id": "B000003713",
+      "school_name": "성남북초",
+      "confidence": "high",
+      "lunch_position": "after_p4",
+      "days": {
+        "월": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "12:50",
+          "note": null
+        },
+        "화": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:30",
+          "note": null
+        },
+        "수": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:30",
+          "note": null
+        },
+        "목": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:30",
+          "note": null
+        },
+        "금": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "12:50",
+          "note": null
+        }
+      },
+      "period_conflicts": [],
+      "status": "complete"
+    },
+    {
+      "school_id": "B000003714",
+      "school_name": "성남수정초",
+      "confidence": "high",
+      "lunch_position": "after_p4",
+      "days": {
+        "월": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:40",
+          "note": null
+        },
+        "화": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:40",
+          "note": null
+        },
+        "수": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:00",
+          "note": null
+        },
+        "목": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:40",
+          "note": null
+        },
+        "금": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:40",
+          "note": null
+        }
+      },
+      "period_conflicts": [],
+      "status": "complete"
+    },
+    {
+      "school_id": "B000003715",
+      "school_name": "성남신흥초",
+      "confidence": "high",
+      "lunch_position": "after_p4",
+      "days": {
+        "월": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:50",
+          "note": null
+        },
+        "화": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:50",
+          "note": null
+        },
+        "수": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:10",
+          "note": null
+        },
+        "목": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:50",
+          "note": null
+        },
+        "금": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:10",
+          "note": null
+        }
+      },
+      "period_conflicts": [],
+      "status": "complete"
+    },
+    {
+      "school_id": "B000003718",
+      "school_name": "성남초",
+      "confidence": "high",
+      "lunch_position": "after_p4",
+      "days": {
+        "월": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:00",
+          "note": null
+        },
+        "화": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:40",
+          "note": null
+        },
+        "수": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:40",
+          "note": null
+        },
+        "목": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:40",
+          "note": null
+        },
+        "금": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:00",
+          "note": null
+        }
+      },
+      "period_conflicts": [],
+      "status": "complete"
+    },
+    {
+      "school_id": "B000003719",
+      "school_name": "성남서초",
+      "confidence": "high",
+      "lunch_position": "after_p4",
+      "days": {
+        "월": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:40",
+          "note": null
+        },
+        "화": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:40",
+          "note": null
+        },
+        "수": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:40",
+          "note": null
+        },
+        "목": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:00",
+          "note": null
+        },
+        "금": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:00",
+          "note": null
+        }
+      },
+      "period_conflicts": [],
+      "status": "complete"
+    },
+    {
+      "school_id": "B000003720",
+      "school_name": "희망대초",
+      "confidence": "medium",
+      "lunch_position": "before_p4",
+      "days": {
+        "월": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "12:50",
+          "note": null
+        },
+        "화": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:30",
+          "note": null
+        },
+        "수": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:30",
+          "note": null
+        },
+        "목": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:30",
+          "note": null
+        },
+        "금": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "12:50",
+          "note": null
+        }
+      },
+      "period_conflicts": [],
+      "status": "complete"
+    },
+    {
+      "school_id": "B000003721",
+      "school_name": "도촌초",
+      "confidence": "high",
+      "lunch_position": "after_p4",
+      "days": {
+        "월": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:40",
+          "note": null
+        },
+        "화": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:40",
+          "note": null
+        },
+        "수": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:00",
+          "note": null
+        },
+        "목": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:40",
+          "note": null
+        },
+        "금": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:00",
+          "note": null
+        }
+      },
+      "period_conflicts": [],
+      "status": "complete"
+    },
+    {
+      "school_id": "B000003722",
+      "school_name": "상대원초",
+      "confidence": "high",
+      "lunch_position": "after_p4",
+      "days": {
+        "월": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:00",
+          "note": null
+        },
+        "화": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:40",
+          "note": null
+        },
+        "수": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:00",
+          "note": null
+        },
+        "목": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:40",
+          "note": null
+        },
+        "금": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:40",
+          "note": null
+        }
+      },
+      "period_conflicts": [],
+      "status": "complete"
+    },
+    {
+      "school_id": "B000003723",
+      "school_name": "대일초",
+      "confidence": "high",
+      "lunch_position": "after_p4",
+      "days": {
+        "월": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:00",
+          "note": null
+        },
+        "화": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:40",
+          "note": null
+        },
+        "수": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:00",
+          "note": null
+        },
+        "목": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:40",
+          "note": null
+        },
+        "금": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:40",
+          "note": null
+        }
+      },
+      "period_conflicts": [],
+      "status": "complete"
+    },
+    {
+      "school_id": "B000003726",
+      "school_name": "금상초",
+      "confidence": "high",
+      "lunch_position": "after_p4",
+      "days": {
+        "월": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:00",
+          "note": null
+        },
+        "화": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:40",
+          "note": null
+        },
+        "수": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:40",
+          "note": null
+        },
+        "목": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:40",
+          "note": null
+        },
+        "금": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:00",
+          "note": null
+        }
+      },
+      "period_conflicts": [],
+      "status": "complete"
+    },
+    {
+      "school_id": "B000003727",
+      "school_name": "성남동초",
+      "confidence": "high",
+      "lunch_position": "before_p4",
+      "days": {
+        "월": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:30",
+          "note": null
+        },
+        "화": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:30",
+          "note": null
+        },
+        "수": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:30",
+          "note": null
+        },
+        "목": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "12:50",
+          "note": null
+        },
+        "금": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "12:50",
+          "note": null
+        }
+      },
+      "period_conflicts": [],
+      "status": "complete"
+    },
+    {
+      "school_id": "B000003728",
+      "school_name": "중원초",
+      "confidence": "high",
+      "lunch_position": "after_p4",
+      "days": {
+        "월": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:40",
+          "note": null
+        },
+        "화": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:40",
+          "note": null
+        },
+        "수": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:00",
+          "note": null
+        },
+        "목": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:40",
+          "note": null
+        },
+        "금": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:00",
+          "note": null
+        }
+      },
+      "period_conflicts": [],
+      "status": "complete"
+    },
+    {
+      "school_id": "B000003730",
+      "school_name": "성남중앙초",
+      "confidence": "high",
+      "lunch_position": "after_p4",
+      "days": {
+        "월": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:30",
+          "note": null
+        },
+        "화": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:30",
+          "note": null
+        },
+        "수": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "12:50",
+          "note": null
+        },
+        "목": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:30",
+          "note": null
+        },
+        "금": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "12:50",
+          "note": null
+        }
+      },
+      "period_conflicts": [],
+      "status": "complete"
+    },
+    {
+      "school_id": "B000003731",
+      "school_name": "성남은행초",
+      "confidence": "high",
+      "lunch_position": "after_p4",
+      "days": {
+        "월": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:00",
+          "note": null
+        },
+        "화": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:40",
+          "note": null
+        },
+        "수": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:00",
+          "note": null
+        },
+        "목": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:40",
+          "note": null
+        },
+        "금": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:40",
+          "note": null
+        }
+      },
+      "period_conflicts": [],
+      "status": "complete"
+    },
+    {
+      "school_id": "B000003732",
+      "school_name": "상원초",
+      "confidence": "high",
+      "lunch_position": "after_p4",
+      "days": {
+        "월": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:40",
+          "note": null
+        },
+        "화": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:40",
+          "note": null
+        },
+        "수": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:00",
+          "note": null
+        },
+        "목": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:40",
+          "note": null
+        },
+        "금": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:00",
+          "note": null
+        }
+      },
+      "period_conflicts": [],
+      "status": "complete"
+    },
+    {
+      "school_id": "B000003733",
+      "school_name": "중부초",
+      "confidence": "high",
+      "lunch_position": "after_p4",
+      "days": {
+        "월": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:40",
+          "note": null
+        },
+        "화": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:40",
+          "note": null
+        },
+        "수": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:00",
+          "note": null
+        },
+        "목": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:40",
+          "note": null
+        },
+        "금": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:00",
+          "note": null
+        }
+      },
+      "period_conflicts": [],
+      "status": "complete"
+    },
+    {
+      "school_id": "B000003734",
+      "school_name": "성남제일초",
+      "confidence": "high",
+      "lunch_position": "after_p4",
+      "days": {
+        "월": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:40",
+          "note": null
+        },
+        "화": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:40",
+          "note": null
+        },
+        "수": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:00",
+          "note": null
+        },
+        "목": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:40",
+          "note": null
+        },
+        "금": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:00",
+          "note": null
+        }
+      },
+      "period_conflicts": [],
+      "status": "complete"
+    },
+    {
+      "school_id": "B000003735",
+      "school_name": "검단초",
+      "confidence": "high",
+      "lunch_position": "after_p4",
+      "days": {
+        "월": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "12:50",
+          "note": null
+        },
+        "화": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:30",
+          "note": null
+        },
+        "수": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "12:50",
+          "note": null
+        },
+        "목": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:30",
+          "note": null
+        },
+        "금": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:30",
+          "note": null
+        }
+      },
+      "period_conflicts": [],
+      "status": "complete"
+    },
+    {
+      "school_id": "B000003736",
+      "school_name": "대하초",
+      "confidence": "high",
+      "lunch_position": "after_p4",
+      "days": {
+        "월": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:00",
+          "note": null
+        },
+        "화": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:40",
+          "note": null
+        },
+        "수": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:40",
+          "note": null
+        },
+        "목": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:40",
+          "note": null
+        },
+        "금": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:00",
+          "note": null
+        }
+      },
+      "period_conflicts": [],
+      "status": "complete"
+    },
+    {
+      "school_id": "B000003737",
+      "school_name": "성남신기초",
+      "confidence": "high",
+      "lunch_position": "after_p4",
+      "days": {
+        "월": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:40",
+          "note": null
+        },
+        "화": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:40",
+          "note": null
+        },
+        "수": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:00",
+          "note": null
+        },
+        "목": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:40",
+          "note": null
+        },
+        "금": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:00",
+          "note": null
+        }
+      },
+      "period_conflicts": [],
+      "status": "complete"
+    },
+    {
+      "school_id": "B000003739",
+      "school_name": "당촌초",
+      "confidence": "high",
+      "lunch_position": "after_p4",
+      "days": {
+        "월": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "12:50",
+          "note": null
+        },
+        "화": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:30",
+          "note": null
+        },
+        "수": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "12:50",
+          "note": null
+        },
+        "목": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:30",
+          "note": null
+        },
+        "금": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:30",
+          "note": null
+        }
+      },
+      "period_conflicts": [],
+      "status": "complete"
+    },
+    {
+      "school_id": "B000003743",
+      "school_name": "보평초",
+      "confidence": "high",
+      "lunch_position": "before_p4",
+      "days": {
+        "월": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:10",
+          "note": null
+        },
+        "화": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:50",
+          "note": null
+        },
+        "수": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:50",
+          "note": null
+        },
+        "목": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:50",
+          "note": null
+        },
+        "금": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:10",
+          "note": null
+        }
+      },
+      "period_conflicts": [],
+      "status": "complete"
+    },
+    {
+      "school_id": "B000003748",
+      "school_name": "운중초",
+      "confidence": "high",
+      "lunch_position": "after_p4",
+      "days": {
+        "월": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:40",
+          "note": null
+        },
+        "화": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:40",
+          "note": null
+        },
+        "수": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:40",
+          "note": null
+        },
+        "목": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:00",
+          "note": null
+        },
+        "금": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:00",
+          "note": null
+        }
+      },
+      "period_conflicts": [],
+      "status": "complete"
+    },
+    {
+      "school_id": "B000003749",
+      "school_name": "청솔초",
+      "confidence": "high",
+      "lunch_position": "after_p4",
+      "days": {
+        "월": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:40",
+          "note": null
+        },
+        "화": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:40",
+          "note": null
+        },
+        "수": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:00",
+          "note": null
+        },
+        "목": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:40",
+          "note": null
+        },
+        "금": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:00",
+          "note": null
+        }
+      },
+      "period_conflicts": [],
+      "status": "complete"
+    },
+    {
+      "school_id": "B000003751",
+      "school_name": "구미초",
+      "confidence": "high",
+      "lunch_position": "after_p4",
+      "days": {
+        "월": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:00",
+          "note": null
+        },
+        "화": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:40",
+          "note": null
+        },
+        "수": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:00",
+          "note": null
+        },
+        "목": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:40",
+          "note": null
+        },
+        "금": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:40",
+          "note": null
+        }
+      },
+      "period_conflicts": [],
+      "status": "complete"
+    },
+    {
+      "school_id": "B000003756",
+      "school_name": "불정초",
+      "confidence": "high",
+      "lunch_position": "after_p4",
+      "days": {
+        "월": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:00",
+          "note": null
+        },
+        "화": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:40",
+          "note": null
+        },
+        "수": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:00",
+          "note": null
+        },
+        "목": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:40",
+          "note": null
+        },
+        "금": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:40",
+          "note": null
+        }
+      },
+      "period_conflicts": [],
+      "status": "complete"
+    },
+    {
+      "school_id": "B000003761",
+      "school_name": "분당초",
+      "confidence": "high",
+      "lunch_position": "after_p4",
+      "days": {
+        "월": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:40",
+          "note": null
+        },
+        "화": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:40",
+          "note": null
+        },
+        "수": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:40",
+          "note": null
+        },
+        "목": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:40",
+          "note": null
+        },
+        "금": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:00",
+          "note": null
+        }
+      },
+      "period_conflicts": [
+        {
+          "day": "수",
+          "neis": 5,
+          "document": 4
+        }
+      ],
+      "status": "complete"
+    },
+    {
+      "school_id": "B000003763",
+      "school_name": "이매초",
+      "confidence": "high",
+      "lunch_position": "after_p4",
+      "days": {
+        "월": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:00",
+          "note": null
+        },
+        "화": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:40",
+          "note": null
+        },
+        "수": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:00",
+          "note": null
+        },
+        "목": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:40",
+          "note": null
+        },
+        "금": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:40",
+          "note": null
+        }
+      },
+      "period_conflicts": [],
+      "status": "complete"
+    },
+    {
+      "school_id": "B000003764",
+      "school_name": "성남장안초",
+      "confidence": "high",
+      "lunch_position": "after_p4",
+      "days": {
+        "월": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular+term2_early",
+          "dismissal": "13:40",
+          "note": null
+        },
+        "화": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular+term2_early",
+          "dismissal": "13:40",
+          "note": null
+        },
+        "수": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular+term2_early",
+          "dismissal": "13:00",
+          "note": null
+        },
+        "목": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular+term2_early",
+          "dismissal": "13:40",
+          "note": null
+        },
+        "금": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular+term2_early",
+          "dismissal": "13:00",
+          "note": null
+        }
+      },
+      "period_conflicts": [],
+      "status": "complete"
+    },
+    {
+      "school_id": "B000003768",
+      "school_name": "돌마초",
+      "confidence": "high",
+      "lunch_position": "after_p4",
+      "days": {
+        "월": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:00",
+          "note": null
+        },
+        "화": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:40",
+          "note": null
+        },
+        "수": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:40",
+          "note": null
+        },
+        "목": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:40",
+          "note": null
+        },
+        "금": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:00",
+          "note": null
+        }
+      },
+      "period_conflicts": [],
+      "status": "complete"
+    },
+    {
+      "school_id": "B000003771",
+      "school_name": "성남정자초",
+      "confidence": "high",
+      "lunch_position": "after_p4",
+      "days": {
+        "월": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:40",
+          "note": null
+        },
+        "화": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:40",
+          "note": null
+        },
+        "수": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:00",
+          "note": null
+        },
+        "목": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:40",
+          "note": null
+        },
+        "금": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:00",
+          "note": null
+        }
+      },
+      "period_conflicts": [],
+      "status": "complete"
+    },
+    {
+      "school_id": "B000024238",
+      "school_name": "위례한빛초",
+      "confidence": "high",
+      "lunch_position": "after_p4",
+      "days": {
+        "월": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "12:50",
+          "note": null
+        },
+        "화": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:30",
+          "note": null
+        },
+        "수": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:30",
+          "note": null
+        },
+        "목": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:30",
+          "note": null
+        },
+        "금": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "12:50",
+          "note": null
+        }
+      },
+      "period_conflicts": [],
+      "status": "complete"
+    },
+    {
+      "school_id": "B000024239",
+      "school_name": "위례푸른초",
+      "confidence": "high",
+      "lunch_position": "before_p4",
+      "days": {
+        "월": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "12:50",
+          "note": null
+        },
+        "화": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:40",
+          "note": null
+        },
+        "수": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:40",
+          "note": null
+        },
+        "목": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:40",
+          "note": null
+        },
+        "금": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "12:50",
+          "note": null
+        }
+      },
+      "period_conflicts": [],
+      "status": "complete"
+    },
+    {
+      "school_id": "B000024240",
+      "school_name": "위례고운초",
+      "confidence": "high",
+      "lunch_position": "before_p4",
+      "days": {
+        "월": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:40",
+          "note": null
+        },
+        "화": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:40",
+          "note": null
+        },
+        "수": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "12:50",
+          "note": null
+        },
+        "목": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:40",
+          "note": null
+        },
+        "금": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "12:50",
+          "note": null
+        }
+      },
+      "period_conflicts": [],
+      "status": "complete"
+    },
+    {
+      "school_id": "B000024241",
+      "school_name": "위례중앙초",
+      "confidence": "high",
+      "lunch_position": "before_p4",
+      "days": {
+        "월": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:40",
+          "note": null
+        },
+        "화": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:40",
+          "note": null
+        },
+        "수": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "12:50",
+          "note": null
+        },
+        "목": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:40",
+          "note": null
+        },
+        "금": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "12:50",
+          "note": null
+        }
+      },
+      "period_conflicts": [],
+      "status": "complete"
+    },
+    {
+      "school_id": "B000002123",
+      "school_name": "서울방이초",
+      "confidence": "high",
+      "lunch_position": "after_p4",
+      "days": {
+        "월": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "12:50",
+          "note": null
+        },
+        "화": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:30",
+          "note": null
+        },
+        "수": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "12:50",
+          "note": null
+        },
+        "목": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:30",
+          "note": null
+        },
+        "금": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:30",
+          "note": null
+        }
+      },
+      "period_conflicts": [],
+      "status": "complete"
+    },
+    {
+      "school_id": "B000002124",
+      "school_name": "서울가락초",
+      "confidence": "high",
+      "lunch_position": "before_p4",
+      "days": {
+        "월": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "12:50",
+          "note": null
+        },
+        "화": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:40",
+          "note": null
+        },
+        "수": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:40",
+          "note": null
+        },
+        "목": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:40",
+          "note": null
+        },
+        "금": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "12:50",
+          "note": null
+        }
+      },
+      "period_conflicts": [],
+      "status": "complete"
+    },
+    {
+      "school_id": "B000002126",
+      "school_name": "서울중대초",
+      "confidence": "high",
+      "lunch_position": "before_p4",
+      "days": {
+        "월": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "12:50",
+          "note": null
+        },
+        "화": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:40",
+          "note": null
+        },
+        "수": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "12:50",
+          "note": null
+        },
+        "목": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:40",
+          "note": null
+        },
+        "금": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:40",
+          "note": null
+        }
+      },
+      "period_conflicts": [],
+      "status": "complete"
+    },
+    {
+      "school_id": "B000002130",
+      "school_name": "서울문현초",
+      "confidence": "high",
+      "lunch_position": "after_p4",
+      "days": {
+        "월": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:30",
+          "note": null
+        },
+        "화": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:30",
+          "note": null
+        },
+        "수": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "12:50",
+          "note": null
+        },
+        "목": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:30",
+          "note": null
+        },
+        "금": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "12:50",
+          "note": null
+        }
+      },
+      "period_conflicts": [],
+      "status": "complete"
+    },
+    {
+      "school_id": "B000002132",
+      "school_name": "서울잠신초",
+      "confidence": "high",
+      "lunch_position": "before_p4",
+      "days": {
+        "월": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "12:50",
+          "note": null
+        },
+        "화": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:40",
+          "note": null
+        },
+        "수": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:40",
+          "note": null
+        },
+        "목": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:40",
+          "note": null
+        },
+        "금": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "12:50",
+          "note": null
+        }
+      },
+      "period_conflicts": [],
+      "status": "complete"
+    },
+    {
+      "school_id": "B000002142",
+      "school_name": "서울남천초",
+      "confidence": "high",
+      "lunch_position": "after_p4",
+      "days": {
+        "월": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "12:50",
+          "note": null
+        },
+        "화": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:30",
+          "note": null
+        },
+        "수": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:30",
+          "note": null
+        },
+        "목": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:30",
+          "note": null
+        },
+        "금": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "12:50",
+          "note": null
+        }
+      },
+      "period_conflicts": [],
+      "status": "complete"
+    },
+    {
+      "school_id": "B000002155",
+      "school_name": "서울토성초",
+      "confidence": "high",
+      "lunch_position": "after_p4",
+      "days": {
+        "월": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:30",
+          "note": null
+        },
+        "화": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:30",
+          "note": null
+        },
+        "수": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "12:50",
+          "note": null
+        },
+        "목": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:30",
+          "note": null
+        },
+        "금": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "12:50",
+          "note": null
+        }
+      },
+      "period_conflicts": [],
+      "status": "complete"
+    },
+    {
+      "school_id": "B000002157",
+      "school_name": "서울아주초",
+      "confidence": "high",
+      "lunch_position": "before_p4",
+      "days": {
+        "월": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "12:40",
+          "note": null
+        },
+        "화": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:30",
+          "note": null
+        },
+        "수": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:30",
+          "note": null
+        },
+        "목": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:30",
+          "note": null
+        },
+        "금": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "12:40",
+          "note": null
+        }
+      },
+      "period_conflicts": [],
+      "status": "complete"
+    },
+    {
+      "school_id": "B000002252",
+      "school_name": "서울우면초",
+      "confidence": "high",
+      "lunch_position": "after_p4",
+      "days": {
+        "월": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "12:50",
+          "note": null
+        },
+        "화": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:30",
+          "note": null
+        },
+        "수": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:30",
+          "note": null
+        },
+        "목": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:30",
+          "note": null
+        },
+        "금": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "12:50",
+          "note": null
+        }
+      },
+      "period_conflicts": [],
+      "status": "complete"
+    },
+    {
+      "school_id": "B000002256",
+      "school_name": "서울원촌초",
+      "confidence": "high",
+      "lunch_position": "before_p4",
+      "days": {
+        "월": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:40",
+          "note": null
+        },
+        "화": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "12:50",
+          "note": null
+        },
+        "수": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "12:50",
+          "note": null
+        },
+        "목": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:40",
+          "note": null
+        },
+        "금": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:40",
+          "note": null
+        }
+      },
+      "period_conflicts": [],
+      "status": "complete"
+    },
+    {
+      "school_id": "B000002263",
+      "school_name": "서울이수초",
+      "confidence": "high",
+      "lunch_position": "after_p4",
+      "days": {
+        "월": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:00",
+          "note": null
+        },
+        "화": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:40",
+          "note": null
+        },
+        "수": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:40",
+          "note": null
+        },
+        "목": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:00",
+          "note": null
+        },
+        "금": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:40",
+          "note": null
+        }
+      },
+      "period_conflicts": [],
+      "status": "complete"
+    },
+    {
+      "school_id": "B000002265",
+      "school_name": "서울방배초",
+      "confidence": "high",
+      "lunch_position": "before_p4",
+      "days": {
+        "월": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "12:50",
+          "note": null
+        },
+        "화": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:40",
+          "note": null
+        },
+        "수": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:40",
+          "note": null
+        },
+        "목": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:40",
+          "note": null
+        },
+        "금": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "12:50",
+          "note": null
+        }
+      },
+      "period_conflicts": [],
+      "status": "complete"
+    },
+    {
+      "school_id": "B000002267",
+      "school_name": "서울서초초",
+      "confidence": "high",
+      "lunch_position": "after_p4",
+      "days": {
+        "월": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "12:50",
+          "note": null
+        },
+        "화": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:30",
+          "note": null
+        },
+        "수": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "12:50",
+          "note": null
+        },
+        "목": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:30",
+          "note": null
+        },
+        "금": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:30",
+          "note": null
+        }
+      },
+      "period_conflicts": [],
+      "status": "complete"
+    },
+    {
+      "school_id": "B000002271",
+      "school_name": "서울양재초",
+      "confidence": "high",
+      "lunch_position": "before_p4",
+      "days": {
+        "월": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:30",
+          "note": null
+        },
+        "화": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:30",
+          "note": null
+        },
+        "수": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "12:40",
+          "note": null
+        },
+        "목": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:30",
+          "note": null
+        },
+        "금": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "12:40",
+          "note": null
+        }
+      },
+      "period_conflicts": [],
+      "status": "complete"
+    },
+    {
+      "school_id": "B000002276",
+      "school_name": "서울대왕초",
+      "confidence": "high",
+      "lunch_position": "before_p4",
+      "days": {
+        "월": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "12:50",
+          "note": null
+        },
+        "화": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:40",
+          "note": null
+        },
+        "수": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "12:50",
+          "note": null
+        },
+        "목": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:40",
+          "note": null
+        },
+        "금": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:40",
+          "note": null
+        }
+      },
+      "period_conflicts": [],
+      "status": "complete"
+    },
+    {
+      "school_id": "B000002278",
+      "school_name": "서울대모초",
+      "confidence": "high",
+      "lunch_position": "after_p4",
+      "days": {
+        "월": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:30",
+          "note": null
+        },
+        "화": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:30",
+          "note": null
+        },
+        "수": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "12:50",
+          "note": null
+        },
+        "목": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:30",
+          "note": null
+        },
+        "금": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "12:50",
+          "note": null
+        }
+      },
+      "period_conflicts": [],
+      "status": "complete"
+    },
+    {
+      "school_id": "B000002281",
+      "school_name": "서울구룡초",
+      "confidence": "high",
+      "lunch_position": "after_p4",
+      "days": {
+        "월": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "12:50",
+          "note": null
+        },
+        "화": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:30",
+          "note": null
+        },
+        "수": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:30",
+          "note": null
+        },
+        "목": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:30",
+          "note": null
+        },
+        "금": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "12:50",
+          "note": null
+        }
+      },
+      "period_conflicts": [],
+      "status": "complete"
+    },
+    {
+      "school_id": "B000002282",
+      "school_name": "서울언주초",
+      "confidence": "high",
+      "lunch_position": "after_p4",
+      "days": {
+        "월": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "12:50",
+          "note": null
+        },
+        "화": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:30",
+          "note": null
+        },
+        "수": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "12:50",
+          "note": null
+        },
+        "목": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:30",
+          "note": null
+        },
+        "금": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:30",
+          "note": null
+        }
+      },
+      "period_conflicts": [],
+      "status": "complete"
+    },
+    {
+      "school_id": "B000002284",
+      "school_name": "서울도곡초",
+      "confidence": "high",
+      "lunch_position": "before_p4",
+      "days": {
+        "월": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "12:50",
+          "note": null
+        },
+        "화": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:30",
+          "note": null
+        },
+        "수": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:30",
+          "note": null
+        },
+        "목": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:30",
+          "note": null
+        },
+        "금": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "12:50",
+          "note": null
+        }
+      },
+      "period_conflicts": [],
+      "status": "complete"
+    },
+    {
+      "school_id": "B000002286",
+      "school_name": "서울개일초",
+      "confidence": "high",
+      "lunch_position": "after_p4",
+      "days": {
+        "월": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "12:40",
+          "note": null
+        },
+        "화": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:20",
+          "note": null
+        },
+        "수": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "12:40",
+          "note": null
+        },
+        "목": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:20",
+          "note": null
+        },
+        "금": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:20",
+          "note": null
+        }
+      },
+      "period_conflicts": [],
+      "status": "complete"
+    },
+    {
+      "school_id": "B000002288",
+      "school_name": "서울개원초",
+      "confidence": "high",
+      "lunch_position": "before_p4",
+      "days": {
+        "월": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "12:50",
+          "note": null
+        },
+        "화": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:40",
+          "note": null
+        },
+        "수": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "12:50",
+          "note": null
+        },
+        "목": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:40",
+          "note": null
+        },
+        "금": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:40",
+          "note": null
+        }
+      },
+      "period_conflicts": [],
+      "status": "complete"
+    },
+    {
+      "school_id": "B000002292",
+      "school_name": "서울대현초",
+      "confidence": "high",
+      "lunch_position": "before_p4",
+      "days": {
+        "월": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "12:40",
+          "note": null
+        },
+        "화": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:30",
+          "note": null
+        },
+        "수": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "12:40",
+          "note": null
+        },
+        "목": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:30",
+          "note": null
+        },
+        "금": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:30",
+          "note": null
+        }
+      },
+      "period_conflicts": [],
+      "status": "complete"
+    },
+    {
+      "school_id": "B000002293",
+      "school_name": "서울삼릉초",
+      "confidence": "medium",
+      "lunch_position": "before_p4",
+      "days": {
+        "월": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular+term2_early",
+          "dismissal": "12:40",
+          "note": null
+        },
+        "화": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular+term2_early",
+          "dismissal": "13:30",
+          "note": null
+        },
+        "수": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular+term2_early",
+          "dismissal": "12:40",
+          "note": null
+        },
+        "목": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular+term2_early",
+          "dismissal": "13:30",
+          "note": null
+        },
+        "금": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular+term2_early",
+          "dismissal": "13:30",
+          "note": null
+        }
+      },
+      "period_conflicts": [],
+      "status": "complete"
+    },
+    {
+      "school_id": "B000002295",
+      "school_name": "서울신구초",
+      "confidence": "high",
+      "lunch_position": "before_p4",
+      "days": {
+        "월": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "12:40",
+          "note": null
+        },
+        "화": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:30",
+          "note": null
+        },
+        "수": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "12:40",
+          "note": null
+        },
+        "목": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:30",
+          "note": null
+        },
+        "금": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:30",
+          "note": null
+        }
+      },
+      "period_conflicts": [],
+      "status": "complete"
+    },
+    {
+      "school_id": "B000002297",
+      "school_name": "서울도성초",
+      "confidence": "high",
+      "lunch_position": "before_p4",
+      "days": {
+        "월": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "12:40",
+          "note": null
+        },
+        "화": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:20",
+          "note": null
+        },
+        "수": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "12:40",
+          "note": null
+        },
+        "목": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:20",
+          "note": null
+        },
+        "금": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:20",
+          "note": null
+        }
+      },
+      "period_conflicts": [],
+      "status": "complete"
+    },
+    {
+      "school_id": "B000002301",
+      "school_name": "서울일원초",
+      "confidence": "high",
+      "lunch_position": "before_p4",
+      "days": {
+        "월": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "12:40",
+          "note": null
+        },
+        "화": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:30",
+          "note": null
+        },
+        "수": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "12:40",
+          "note": null
+        },
+        "목": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:30",
+          "note": null
+        },
+        "금": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:30",
+          "note": null
+        }
+      },
+      "period_conflicts": [],
+      "status": "complete"
+    },
+    {
+      "school_id": "B000002302",
+      "school_name": "서울언북초",
+      "confidence": "medium",
+      "lunch_position": "before_p4",
+      "days": {
+        "월": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:40",
+          "note": null
+        },
+        "화": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:40",
+          "note": null
+        },
+        "수": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "12:50",
+          "note": null
+        },
+        "목": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:40",
+          "note": null
+        },
+        "금": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "12:50",
+          "note": null
+        }
+      },
+      "period_conflicts": [],
+      "status": "complete"
+    },
+    {
+      "school_id": "B000022754",
+      "school_name": "서울세명초",
+      "confidence": "high",
+      "lunch_position": "after_p4",
+      "days": {
+        "월": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "12:50",
+          "note": null
+        },
+        "화": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:30",
+          "note": null
+        },
+        "수": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "12:50",
+          "note": null
+        },
+        "목": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:30",
+          "note": null
+        },
+        "금": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:30",
+          "note": null
+        }
+      },
+      "period_conflicts": [],
+      "status": "complete"
+    },
+    {
+      "school_id": "B000024069",
+      "school_name": "서울개포초",
+      "confidence": "medium",
+      "lunch_position": "after_p4",
+      "days": {
+        "월": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:40",
+          "note": null
+        },
+        "화": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:40",
+          "note": null
+        },
+        "수": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:40",
+          "note": null
+        },
+        "목": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:00",
+          "note": null
+        },
+        "금": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:00",
+          "note": null
+        }
+      },
+      "period_conflicts": [],
+      "status": "complete"
+    },
+    {
+      "school_id": "B000024506",
+      "school_name": "서울우솔초",
+      "confidence": "high",
+      "lunch_position": "before_p4",
+      "days": {
+        "월": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "12:50",
+          "note": null
+        },
+        "화": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:40",
+          "note": null
+        },
+        "수": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:40",
+          "note": null
+        },
+        "목": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:40",
+          "note": null
+        },
+        "금": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "12:50",
+          "note": null
+        }
+      },
+      "period_conflicts": [],
+      "status": "complete"
+    },
+    {
+      "school_id": "B000025000",
+      "school_name": "서울자곡초",
+      "confidence": "high",
+      "lunch_position": "before_p4",
+      "days": {
+        "월": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "12:55",
+          "note": null
+        },
+        "화": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:40",
+          "note": null
+        },
+        "수": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "12:55",
+          "note": null
+        },
+        "목": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:40",
+          "note": null
+        },
+        "금": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:40",
+          "note": null
+        }
+      },
+      "period_conflicts": [],
+      "status": "complete"
+    },
+    {
+      "school_id": "B000025289",
+      "school_name": "서울송례초",
+      "confidence": "high",
+      "lunch_position": "before_p4",
+      "days": {
+        "월": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "12:50",
+          "note": null
+        },
+        "화": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:40",
+          "note": null
+        },
+        "수": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:40",
+          "note": null
+        },
+        "목": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:40",
+          "note": null
+        },
+        "금": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "12:50",
+          "note": null
+        }
+      },
+      "period_conflicts": [],
+      "status": "complete"
+    },
+    {
+      "school_id": "B000025373",
+      "school_name": "서울위례솔초",
+      "confidence": "high",
+      "lunch_position": "before_p4",
+      "days": {
+        "월": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "12:50",
+          "note": null
+        },
+        "화": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:40",
+          "note": null
+        },
+        "수": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:40",
+          "note": null
+        },
+        "목": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:40",
+          "note": null
+        },
+        "금": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "12:50",
+          "note": null
+        }
+      },
+      "period_conflicts": [],
+      "status": "complete"
+    }
+  ]
+}

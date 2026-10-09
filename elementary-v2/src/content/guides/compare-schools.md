@@ -6,6 +6,8 @@ order: 12
 stage: planning
 group: planning
 verifiedAt: 2026-10-03
+rule: national
+basisYear: 2026
 scope: 학교 정보는 학교알리미 공시를 기준으로 하며 해마다 갱신됩니다. 돌봄 제도는 2026년 기준입니다.
 summary:
   kind: checks

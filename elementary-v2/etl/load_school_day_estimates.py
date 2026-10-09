@@ -46,12 +46,29 @@ def periods_source_label(used: set[str]) -> str:
     return ' + '.join(parts) or '없음'
 
 
-def build_rows(snapshot: str) -> dict[str, list[dict[str, Any]]]:
-    review = {s['school_id']: s for s in _load('school_day_review_first_pass_20261007.json')['schools']}
-    estimates = _load('grade1_dismissal_estimates_20261007.json')
-    care = _load('care_review_first_pass_20261007.json')
-    reviewed_on = '2026-10-07'
-    days, weekdays = [], []
+# Each reviewed set is loaded together. `confirmed` flips only after the user has checked the
+# first-pass review; --apply refuses while any set is unconfirmed.
+REVIEW_SETS = [
+    {'name': 'pilot', 'clock': 'school_day_review_first_pass_20261007.json', 'estimates': 'grade1_dismissal_estimates_20261007.json',
+     'care': 'care_review_first_pass_20261007.json', 'reviewed_on': '2026-10-07', 'confirmed': True},
+    {'name': 'expansion_seongnam_gangnam3', 'clock': 'school_day_review_expansion_20261008.json',
+     'estimates': 'grade1_dismissal_estimates_expansion_20261008.json', 'care': 'care_review_expansion_20261008.json',
+     'reviewed_on': '2026-10-08', 'confirmed': True},  # user confirmed 2026-10-08
+]
+
+
+def build_rows(snapshot: str, sets: list[dict] | None = None) -> dict[str, list[dict[str, Any]]]:
+    days, weekdays, care_rows = [], [], []
+    for review_set in sets or REVIEW_SETS:
+        _build_set(review_set, snapshot, days, weekdays, care_rows)
+    return {'school_day_estimates': days, 'school_day_estimate_weekdays': weekdays, 'school_care_hours': care_rows}
+
+
+def _build_set(review_set: dict, snapshot: str, days: list, weekdays: list, care_rows: list) -> None:
+    review = {s['school_id']: s for s in _load(review_set['clock'])['schools']}
+    estimates = _load(review_set['estimates'])
+    care = _load(review_set['care'])
+    reviewed_on = review_set['reviewed_on']
     for est in estimates['schools']:
         clock = review[est['school_id']]
         sources = periods_source_label({v['periods_source'] for v in est['days'].values() if v['periods_source']})
@@ -68,7 +85,6 @@ def build_rows(snapshot: str) -> dict[str, list[dict[str, Any]]]:
             value = est['days'][day]
             weekdays.append({'school_id': est['school_id'], 'weekday': index, 'periods': value['periods'],
                              'dismissal': value['dismissal'], 'note': value.get('note')})
-    care_rows = []
     for school in care['schools']:
         stated = not school.get('unknown')
         care_rows.append({
@@ -80,9 +96,8 @@ def build_rows(snapshot: str) -> dict[str, list[dict[str, Any]]]:
             'morning_hours': school.get('morning') if stated else None,
             'grades': school.get('grades') if stated else None,
             'source': '학교알리미 15-라 방과후·돌봄 운영 계획 2026년 5월 공시',
-            'reviewed_on': '2026-10-07', 'snapshot_date': snapshot,
+            'reviewed_on': reviewed_on, 'snapshot_date': snapshot,
         })
-    return {'school_day_estimates': days, 'school_day_estimate_weekdays': weekdays, 'school_care_hours': care_rows}
 
 
 def violations(rows: dict[str, list[dict[str, Any]]]) -> list[str]:
@@ -136,9 +151,13 @@ def main() -> None:
         fixture = ROOT / 'src/dev-fixtures/school-day-estimates.json'
         fixture.parent.mkdir(parents=True, exist_ok=True)
         fixture.write_text(json.dumps(rows, ensure_ascii=False), encoding='utf-8')
+    report['sets'] = {s['name']: 'confirmed' if s['confirmed'] else 'awaiting user confirmation' for s in REVIEW_SETS}
     if problems:
         print(json.dumps(report, ensure_ascii=False, indent=2))
         raise SystemExit('constraint violations; nothing uploaded')
+    if args.apply and not all(s['confirmed'] for s in REVIEW_SETS):
+        print(json.dumps(report, ensure_ascii=False, indent=2))
+        raise SystemExit('a review set is not user-confirmed; nothing uploaded')
     if args.apply:
         from etl.collect_care_data import credentials, rest
         url, service_key, _ = credentials()

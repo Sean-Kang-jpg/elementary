@@ -6,6 +6,8 @@ order: 3
 stage: admission
 group: move
 verifiedAt: 2026-10-03
+rule: national
+basisYear: 2026
 scope: 법령상 전국이 같은 절차입니다. 처리 시점은 지자체(주민센터)마다 다를 수 있어 별도 확인이 필요합니다.
 summary:
   kind: steps

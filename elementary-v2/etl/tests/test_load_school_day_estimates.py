@@ -1,12 +1,13 @@
 import unittest
 
-from etl.load_school_day_estimates import build_rows, violations
+from etl.load_school_day_estimates import REVIEW_SETS, build_rows, violations
 
 
 class LoadSchoolDayEstimatesTest(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        cls.rows = build_rows('2026-10-08')
+        cls.rows = build_rows('2026-10-08', [REVIEW_SETS[0]])  # the confirmed pilot set
+        cls.all_rows = build_rows('2026-10-08')
 
     def test_reviewed_files_satisfy_sql26_constraints(self):
         self.assertEqual(violations(self.rows), [])
@@ -23,6 +24,11 @@ class LoadSchoolDayEstimatesTest(unittest.TestCase):
         unknown = [r for r in self.rows['school_care_hours'] if r['status'] == 'school_check_needed']
         self.assertEqual(len(unknown), 16)
         self.assertTrue(all(r['afternoon_end'] is None for r in unknown))
+
+    def test_expansion_set_also_satisfies_constraints(self):
+        self.assertEqual(violations(self.all_rows), [])
+        ids = [r['school_id'] for r in self.all_rows['school_care_hours']]
+        self.assertEqual(len(ids), len(set(ids)), 'a school appears in two review sets')
 
     def test_violations_catch_a_filled_unknown_day(self):
         broken = {**self.rows, 'school_day_estimate_weekdays': [

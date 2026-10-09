@@ -4,6 +4,11 @@
     "planning": { "short": "입학 1~2년 전", "long": "입학 1~2년 전 · 이사와 학교 알아보기", "homeTitle": "이사와 학교를 알아볼 때" },
     "admission": { "short": "입학하는 해", "long": "입학하는 해 · 취학 절차와 준비", "homeTitle": "취학통지서부터 입학까지" }
   },
+  "rules": {
+    "national": "전국 공통 절차",
+    "regional": "지역·학교마다 다름",
+    "mixed": "전국 공통 + 지역별 확인"
+  },
   "groups": [
     { "id": "planning", "stage": "planning", "label": "이사와 학교 알아보기" },
     { "id": "admission", "stage": "admission", "label": "입학 절차" },

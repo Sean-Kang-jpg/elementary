@@ -77,6 +77,7 @@ const homeBody = [
   `<a href="/map" class="home-page__card"><span class="min-w-0 flex-1"><strong>${escapeHtml(copy.mapCardTitle)}</strong><small>${escapeHtml(copy.mapCardBody)}</small></span></a>`,
   // The area hubs are how a crawler gets from the home to every school (api/detail.js).
   `<a href="/area" class="home-page__card"><span class="min-w-0 flex-1"><strong>${escapeHtml(copy.areaCardTitle)}</strong><small>${escapeHtml(copy.areaCardBody)}</small></span></a>`,
+  `<a href="/learn" class="home-page__card"><span class="min-w-0 flex-1"><strong>${escapeHtml(copy.learnCardTitle)}</strong><small>${escapeHtml(copy.learnCardBody)}</small></span></a>`,
   '<footer class="home-page__footer"><a href="/privacy">개인정보처리방침</a></footer>',
   '</div></section>',
 ].join('')
@@ -123,8 +124,13 @@ const writePage = async (pagePath, html) => {
 }
 
 const sourcesHtml = (sources, verifiedAt) => '<aside class="content-sources" aria-label="근거 자료"><h2>근거 자료</h2><ul>'
-  + sources.map((source) => `<li><a href="${escapeHtml(source.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(source.label)}</a></li>`).join('')
+  + sources.map((source) => `<li>${source.official ? '<span class="content-sources__official">공식</span>' : ''}<a href="${escapeHtml(source.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(source.label)}</a></li>`).join('')
   + `</ul><p>내용 확인일 ${escapeHtml(verifiedAt)}</p></aside>`
+
+// Same markup as src/components/content/AppliesTo.tsx.
+const appliesHtml = (rule, basisYear) => '<p class="content-applies">'
+  + `<span class="content-applies__chip content-applies__chip--${rule}">${escapeHtml(structure.rules[rule])}</span>`
+  + `<span class="content-applies__chip">${escapeHtml(String(basisYear))}학년도 기준</span></p>`
 
 // Same markup as src/components/content/GuideSummary.tsx.
 const summaryHtml = (summary) => {
@@ -177,11 +183,41 @@ for (const guide of content.guides) {
       '<a class="content-page__back" href="/guide">입학 준비 가이드</a>',
       `<span class="stage-chip stage-chip--${guide.stage}">${escapeHtml(structure.stages[guide.stage].short)}</span>`,
       `<h1 id="guide-title">${escapeHtml(guide.title)}</h1>`,
+      appliesHtml(guide.rule, guide.basisYear),
       guide.scope ? `<p class="content-page__scope">${escapeHtml(guide.scope)}</p>` : '',
       summaryHtml(guide.summary),
       `<div class="content-body">${guide.html}</div>`,
       sourcesHtml(guide.sources, guide.verifiedAt),
     ].join(''), 'guide-title'),
+  }))
+}
+
+// Learning items (P2): only published ones are in content.json for a build, so
+// only they get a page. Same markup as src/components/content/LearnItemPage.tsx.
+const learningTaxonomy = JSON.parse(await fs.readFile(path.join(projectRoot, 'src', 'content', 'learning-taxonomy.json'), 'utf8'))
+for (const item of content.learning ?? []) {
+  if (item.status !== 'published') continue
+  const category = learningTaxonomy.categories.find((entry) => entry.id === item.category)
+  const sub = category?.subcategories.find((entry) => entry.id === item.subcategory)
+  const back = category?.menu === 'guide' ? ['/guide', '입학 준비 가이드'] : ['/learn', '학습 준비']
+  const ages = [...item.ages].sort((a, b) => a - b)
+  const ageText = ages[0] !== ages[ages.length - 1] ? `만 ${ages[0]}~${ages[ages.length - 1]}세` : `만 ${ages[0]}세`
+  const link = item.schoolLink
+    ? `<div><dt>학교와의 연결</dt><dd><span class="learn-link learn-link--${item.schoolLink.level}">${escapeHtml(learningTaxonomy.schoolLinks[item.schoolLink.level])}</span>${item.schoolLink.basis ? `<span class="learn-link__basis">${escapeHtml(item.schoolLink.basis)}</span>` : ''}</dd></div>`
+    : ''
+  await writePage(`/learn/${item.slug}`, contentPage({
+    pagePath: `/learn/${item.slug}`,
+    title: `${item.title} | 어디초`,
+    description: item.description,
+    body: page([
+      `<a class="content-page__back" href="${back[0]}">${back[1]}</a>`,
+      `<span class="learn-category">${escapeHtml(category?.label ?? '')} · ${escapeHtml(sub?.label ?? item.subcategory)}</span>`,
+      `<h1 id="learn-item-title">${escapeHtml(item.title)}</h1>`,
+      `<div class="learn-answer"><strong>어디초 요약</strong><p>${escapeHtml(item.answer)}</p></div>`,
+      `<dl class="learn-facts"><div><dt>대상</dt><dd>${ageText}</dd></div><div><dt>시기</dt><dd>${escapeHtml(item.timing)}</dd></div>${link}</dl>`,
+      `<div class="content-body">${item.html}</div>`,
+      sourcesHtml(item.sources, item.verifiedAt),
+    ].join(''), 'learn-item-title'),
   }))
 }
 
@@ -194,6 +230,7 @@ await writePage('/faq', contentPage({
     `<p class="content-page__lead">${escapeHtml(structure.faqPage.description)}</p>`,
     ...content.faqs.map((faq) => `<section class="faq-stage faq-stage--${faq.stage}"><header class="guide-stage__header"><span class="stage-chip stage-chip--${faq.stage}">${escapeHtml(structure.stages[faq.stage].short)}</span></header>`
       + `<h2 class="faq-stage__title">${escapeHtml(faq.title)}</h2>`
+      + appliesHtml(faq.rule, faq.basisYear)
       + faq.sections.map((section) => `<section class="faq-section"><h3>${escapeHtml(section.heading)}</h3>`
         + section.items.map((item) => `<details class="faq-item"><summary>${escapeHtml(item.question)}</summary><div class="content-body">${item.html}</div></details>`).join('')
         + '</section>').join('')

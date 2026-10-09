@@ -6,6 +6,8 @@ order: 2
 stage: admission
 group: admission
 verifiedAt: 2026-10-03
+rule: regional
+basisYear: 2026
 scope: 예비소집일은 시·도 교육감이 정하므로 지역마다 다릅니다. 아래 서울 일정은 2026학년도 입학생 기준 예시이며, 2027학년도 입학생은 2026년 12월 취학통지서와 학교 공지로 다시 확인해야 합니다.
 summary:
   kind: steps

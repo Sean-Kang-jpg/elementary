@@ -37,6 +37,23 @@ const STAGES = ['planning', 'admission']
 
 /** A guide's summary diagram: ordered steps, a dated timeline, or a set of checks. */
 const SUMMARY_KINDS = ['steps', 'timeline', 'checks']
+// 적용 범위(P1-04): 법령상 전국이 같은가, 교육감·학교가 정해 지역마다 다른가, 둘이 섞였나.
+const RULES = ['national', 'regional', 'mixed']
+
+/**
+ * 정부·지자체·교육청·법령 사이트를 '공식'으로 표시한다. 주소로 판별하므로 문서에 따로
+ * 적지 않는다. 공공기관이라도 .go.kr·gov.kr 밖(예: .or.kr)은 공식으로 치지 않는다 — 기준을
+ * 하나로 두어야 표시가 흔들리지 않는다.
+ */
+const isOfficial = (url) => {
+  try {
+    const host = new URL(url).hostname
+    return host.endsWith('.go.kr') || host === 'gov.kr' || host.endsWith('.gov.kr')
+  } catch {
+    return false
+  }
+}
+const withOfficial = (sources) => (sources ?? []).map((source) => ({ label: source.label, url: source.url, official: isOfficial(source.url) }))
 const SUMMARY_MAX_ITEMS = 6
 
 const problems = []
@@ -87,6 +104,13 @@ const checkCommon = (file, meta) => {
     problem(file, 'front matter needs sources, each with a label and a url')
   }
   if (!STAGES.includes(meta.stage)) problem(file, `stage must be one of ${STAGES.join(', ')}`)
+  if (!RULES.includes(meta.rule)) problem(file, `rule must be one of ${RULES.join(', ')}`)
+  if (!Number.isInteger(meta.basisYear) || meta.basisYear < 2025 || meta.basisYear > 2035) {
+    problem(file, 'basisYear must be the school year the dates and examples are based on (e.g. 2026)')
+  }
+  if (Array.isArray(meta.sources) && !meta.sources.some((source) => isOfficial(source?.url))) {
+    problem(file, 'at least one source must be official (.go.kr or gov.kr)')
+  }
 }
 
 // Guides --------------------------------------------------------------------
@@ -122,7 +146,9 @@ for (const file of guideFiles) {
     verifiedAt: String(meta.verifiedAt),
     scope: meta.scope ?? null,
     summary,
-    sources: meta.sources ?? [],
+    rule: meta.rule,
+    basisYear: meta.basisYear,
+    sources: withOfficial(meta.sources),
     html: marked.parse(body),
     file,
   })
@@ -160,7 +186,9 @@ const parseFaq = async (file) => {
     title: meta.title,
     description: meta.description,
     verifiedAt: String(meta.verifiedAt),
-    sources: meta.sources ?? [],
+    rule: meta.rule,
+    basisYear: meta.basisYear,
+    sources: withOfficial(meta.sources),
     note,
     sections: sections.map((section) => ({
       heading: section.heading,
@@ -234,6 +262,128 @@ for (const name of ['roadmap.json', 'checklist.json']) {
   }
 }
 
+// Learning and everyday preparation (P2) ------------------------------------
+// One question per file. Rules the plan makes non-negotiable are enforced here so
+// they hold when the editor is in a hurry (PLATFORM_EXPANSION_LEARNING_INPUTS B11):
+// no source, a sponsored reaction kept, a quoted-length reaction summary, a
+// learning item without its school link and the unit behind it, English shown as
+// school preparation. Only `published` items leave this script unless --preview
+// (npm run dev) asks for the rest, so a draft never reaches the production bundle.
+
+const PREVIEW = process.argv.includes('--preview')
+const learningTaxonomy = JSON.parse(await fs.readFile(path.join(contentDir, 'learning-taxonomy.json'), 'utf8'))
+const LEARNING_STATUSES = ['draft', 'review', 'published', 'archived']
+const SCHOOL_LINKS = Object.keys(learningTaxonomy.schoolLinks)
+const SOURCE_TYPES = Object.keys(learningTaxonomy.sourceTypes)
+const SIGNAL_GRADES = ['A', 'B', 'C']
+const SIGNAL_SUMMARY_LIMIT = 60
+const ANSWER_LIMIT = 160
+const LEARNING_SECTIONS = ['이런 점이 좋아요', '이런 점은 아쉬워요', '우리 집이라면']
+const categoryById = new Map(learningTaxonomy.categories.map((category) => [category.id, category]))
+const isDate = (value) => /^\d{4}-\d{2}-\d{2}$/.test(String(value ?? ''))
+const isUrl = (value) => {
+  try {
+    return ['http:', 'https:'].includes(new URL(value).protocol)
+  } catch {
+    return false
+  }
+}
+
+const learningDir = path.join(contentDir, 'learning')
+const learningFiles = (await fs.readdir(learningDir).catch(() => []))
+  .filter((name) => name.endsWith('.md'))
+  .map((name) => path.join(learningDir, name))
+
+const learningAll = []
+for (const file of learningFiles) {
+  const { meta, body } = await readMarkdown(file)
+  const slug = path.basename(file, '.md')
+  if (!/^[a-z0-9]+(-[a-z0-9]+)*$/.test(slug)) problem(file, 'file name must be a lowercase-hyphen slug')
+  for (const field of ['title', 'description', 'answer', 'timing']) {
+    if (!meta[field]) problem(file, `front matter needs ${field}`)
+  }
+  if (meta.description && [...String(meta.description)].length > DESCRIPTION_LIMIT) problem(file, `description is over ${DESCRIPTION_LIMIT} characters`)
+  if (meta.answer && [...String(meta.answer)].length > ANSWER_LIMIT) problem(file, `answer is over ${ANSWER_LIMIT} characters`)
+  if (!String(meta.title ?? '').trim().endsWith('?')) problem(file, 'title must be the parent question, ending with ?')
+  if (!isDate(meta.verifiedAt)) problem(file, 'verifiedAt must be YYYY-MM-DD')
+  if (!LEARNING_STATUSES.includes(meta.status)) problem(file, `status must be one of ${LEARNING_STATUSES.join(', ')}`)
+  const category = categoryById.get(meta.category)
+  if (!category) problem(file, `category must be one of ${[...categoryById.keys()].join(', ')}`)
+  else if (!category.subcategories.some((sub) => sub.id === meta.subcategory)) problem(file, `subcategory "${meta.subcategory}" is not in ${meta.category}`)
+  if (!Array.isArray(meta.ages) || !meta.ages.length || meta.ages.some((age) => !Number.isInteger(age) || age < 3 || age > 8)) {
+    problem(file, 'ages must list the 만 나이 it is for, 3 to 8')
+  }
+
+  // School link: learning only, and always with the unit or standard behind it.
+  const link = meta.schoolLink ?? null
+  if (meta.category === 'learning') {
+    if (!link || !SCHOOL_LINKS.includes(link.level)) problem(file, `learning items need schoolLink.level (${SCHOOL_LINKS.join(', ')})`)
+    else if (link.level !== 'outside' && !String(link.basis ?? '').trim()) problem(file, 'schoolLink.basis must name the unit or standard')
+    if (meta.subcategory === 'english' && link?.level !== 'outside') problem(file, 'English is not taught in grade 1: schoolLink.level must be outside')
+  } else if (link) problem(file, 'schoolLink is for learning items only')
+
+  const sources = Array.isArray(meta.sources) ? meta.sources : []
+  if (!sources.length) problem(file, 'front matter needs sources')
+  sources.forEach((source, index) => {
+    if (!source?.label || !isUrl(source?.url)) problem(file, `source ${index + 1} needs a label and an http(s) url`)
+    if (!SOURCE_TYPES.includes(source?.type)) problem(file, `source ${index + 1} type must be one of ${SOURCE_TYPES.join(', ')}`)
+    if (source?.type === 'official' && !isOfficial(source.url)) problem(file, `source ${index + 1} is typed official but ${source.url} is not a .go.kr/gov.kr address`)
+  })
+
+  // Parent reactions: attributes only, never the post itself.
+  const signals = Array.isArray(meta.signals) ? meta.signals : []
+  signals.forEach((signal, index) => {
+    const where = `signal ${index + 1}`
+    if (!isUrl(signal?.url)) problem(file, `${where} needs the original url`)
+    if (!SIGNAL_GRADES.includes(signal?.grade)) problem(file, `${where} grade must be A, B or C`)
+    if (!['positive', 'negative', 'conditional'].includes(signal?.tone)) problem(file, `${where} tone must be positive, negative or conditional`)
+    if (signal?.disclosure !== 'none_found') problem(file, `${where} must be dropped: only reactions with no sponsorship or affiliate disclosure found are kept`)
+    if (!signal?.summary || [...String(signal.summary)].length > SIGNAL_SUMMARY_LIMIT) problem(file, `${where} summary must be our own words, at most ${SIGNAL_SUMMARY_LIMIT} characters`)
+    if (!isDate(signal?.checkedAt)) problem(file, `${where} needs checkedAt`)
+  })
+
+  const html = marked.parse(body)
+  for (const heading of LEARNING_SECTIONS) {
+    if (!html.includes(`<h2>${heading}</h2>`)) problem(file, `body needs the section "## ${heading}"`)
+  }
+  learningAll.push({
+    slug,
+    title: meta.title,
+    description: meta.description,
+    answer: meta.answer,
+    category: meta.category,
+    subcategory: meta.subcategory,
+    status: meta.status,
+    verifiedAt: String(meta.verifiedAt),
+    ages: meta.ages ?? [],
+    timing: meta.timing,
+    schoolLink: link ? { level: link.level, basis: link.basis ?? null } : null,
+    sources: sources.map((source) => ({ label: source.label, url: source.url, type: source.type, official: isOfficial(source.url) })),
+    signals: signals.map(({ url, grade, tone, summary, checkedAt }) => ({ url, grade, tone, summary, checkedAt })),
+    related: Array.isArray(meta.related) ? meta.related : [],
+    html,
+    file,
+  })
+}
+
+const learning = learningAll.filter((item) => PREVIEW || item.status === 'published')
+for (const item of learningAll) {
+  checkLinks(item.file, item.html)
+  checkMarkup(item.file, item.html)
+  for (const related of item.related) {
+    const guide = String(related).match(/^\/guide\/([^/?#]+)$/)
+    const learn = String(related).match(/^\/learn\/([^/?#]+)$/)
+    if (guide ? !slugs.has(guide[1]) : !learn || !learningAll.some((other) => other.slug === learn[1])) {
+      problem(item.file, `related ${related} does not exist`)
+    } else if (learn && item.status === 'published' && !learningAll.some((other) => other.slug === learn[1] && other.status === 'published')) {
+      problem(item.file, `published item points to ${related}, which is not published`)
+    }
+  }
+  for (const [, target] of item.html.matchAll(/href="\/learn\/([^"#?]+)"/g)) {
+    if (!learningAll.some((other) => other.slug === target)) problem(item.file, `links to /learn/${target}, which does not exist`)
+  }
+}
+
 // Curriculum ----------------------------------------------------------------
 // Editor cards and the item dictionary (PRD_CURRICULUM_SHARING). Keys become
 // public addresses and like targets (SQL 24), so a duplicate, a malformed key or
@@ -302,7 +452,9 @@ await fs.mkdir(path.dirname(outFile), { recursive: true })
 await fs.writeFile(outFile, JSON.stringify({
   guides: guides.map(({ file: _file, ...guide }) => guide),
   faqs: faqs.map(({ file: _file, ...faq }) => faq),
+  learning: learning.map(({ file: _file, ...item }) => item),
 }, null, 2), 'utf8')
 const answers = faqs.reduce((n, faq) => n + faq.sections.reduce((m, section) => m + section.items.length, 0), 0)
 process.stdout.write(`content     ${guides.length} guides, ${answers} FAQ answers in ${faqs.length} stage(s) -> ${path.relative(projectRoot, outFile)}\n`)
+process.stdout.write(`learning    ${learning.length} of ${learningAll.length} items (${PREVIEW ? 'preview: every status' : 'published only'})\n`)
 process.stdout.write(`curriculum  ${curriculumItems.length} items, ${curriculumPlans.length} cards (validated; the app reads src/content/curriculum directly)\n`)

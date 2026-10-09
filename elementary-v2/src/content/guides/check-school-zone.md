@@ -6,6 +6,8 @@ order: 11
 stage: planning
 group: planning
 verifiedAt: 2026-10-03
+rule: regional
+basisYear: 2026
 scope: 통학구역은 지역 교육지원청이 정합니다. 확인 방법은 전국 공통이지만 고시 시기와 방식은 지역마다 다릅니다.
 summary:
   kind: steps
