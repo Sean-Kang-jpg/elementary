@@ -490,8 +490,13 @@ try {
 
   run(['open', new URL('/school/서울-강남구-서울대현초등학교--B000002292', baseUrl).toString()])
   await waitFor(
-    "document.body.innerText.includes('서울대현초등학교')",
+    "document.body.innerText.includes('대현초등학교')",
     'school deep link restored the school it names',
+  )
+  // 서울 공립초는 화면에서 '서울'을 뗀다(2026-10-09). 주소는 공식 이름 그대로다.
+  assertPage(
+    "!document.querySelector('[data-testid=bottom-sheet]')?.innerText.includes('서울대현초등학교')",
+    'the school detail shows the Seoul public school without the repeated region prefix',
   )
   // The sheet opening is not enough: the map has to be at the school. When the
   // SDK moved to load after mount, the map was built at its city-wide default and
@@ -508,7 +513,7 @@ try {
   )
   run(['set', 'viewport', '390', '844'], { quiet: true })
   run(['open', new URL('/school/서울-강남구-서울대현초등학교--B000002292', baseUrl).toString()])
-  await waitFor("document.body.innerText.includes('서울대현초등학교')", 'school deep link reopened at mobile width for the checks below')
+  await waitFor("document.body.innerText.includes('대현초등학교')", 'school deep link reopened at mobile width for the checks below')
   assertPage(
     "(() => { const button = document.querySelector('[data-testid=share-button]');"
     + " if (!button) return false;"
@@ -524,7 +529,7 @@ try {
   await waitFor("location.pathname.startsWith('/guide/') && document.querySelector('#guide-title')", 'the start module opened a guide')
   run(['eval', 'history.back(); "back"'])
   await waitFor(
-    "location.pathname.includes('B000002292') && document.querySelector('[data-testid=bottom-sheet]')?.innerText.includes('서울대현초등학교')",
+    "location.pathname.includes('B000002292') && document.querySelector('[data-testid=bottom-sheet]')?.innerText.includes('대현초등학교')",
     'back from the guide returned to the school detail',
   )
 
@@ -540,7 +545,7 @@ try {
   run(['fill', 'input[role="combobox"]', '서울방현'])
   await waitFor("document.querySelectorAll('#map-search-results [role=option]').length > 0", 'school search returned results')
   run(['eval', "document.querySelector('#map-search-results [role=option]').click(); 'school selected'"])
-  await waitFor("document.body.innerText.includes('서울방현초등학교')", 'school detail rendered')
+  await waitFor("document.body.innerText.includes('방현초등학교')", 'school detail rendered')
   await waitFor("(window.__ELEMENTARY_PERFORMANCE__ || []).some((metric) => metric.name === 'school-apartment-load' && metric.status === 'success' && metric.context.resultCount > 0)", 'assigned apartments loaded and measured')
   assertPage("document.querySelector('[data-testid=bottom-sheet]')?.dataset.snapIndex === '1'", 'school sheet opened at its default detail snap')
 
@@ -561,7 +566,7 @@ try {
   swipeSheet(400, 570, 0)
   run(['wait', '400'])
   assertPage("document.querySelector('[data-testid=bottom-sheet]')?.dataset.snapIndex === '0'", 'detail sheet minimized to its title-only snap')
-  assertPage("document.querySelector('[data-testid=bottom-sheet]')?.innerText.includes('서울방현초등학교')", 'selected school remained visible after minimizing')
+  assertPage("document.querySelector('[data-testid=bottom-sheet]')?.innerText.includes('방현초등학교')", 'selected school remained visible after minimizing')
   assertPage("!document.querySelector('[aria-labelledby=first-grade-title]')", 'detail content was hidden at the minimum snap')
   swipeSheet(400, 570, 0)
   run(['wait', '400'])

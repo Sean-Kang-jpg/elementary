@@ -170,7 +170,7 @@ const SearchBox: React.FC<SearchBoxProps> = ({
   }, [])
 
   const displayName = (result: SearchResult) => (
-    result.type === 'school' ? displaySchoolName(result.name, result.school?.establishment_type) : result.name
+    result.type === 'school' ? displaySchoolName(result.name, result.school?.region, result.school?.establishment_type) : result.name
   )
 
   const highlightMatch = (text: string) => {
@@ -265,7 +265,7 @@ const SearchBox: React.FC<SearchBoxProps> = ({
                       <span className="mt-1 block text-xs text-gray-500">
                         {result.type === 'school'
                           ? `${result.school?.establishment_type || '초등학교'} · 1학년 ${result.school?.grade1_students || 0}명`
-                          : `${result.apartment?.households.toLocaleString() || 0}세대 · ${result.apartment?.assigned_school_name ? displaySchoolName(result.apartment.assigned_school_name) : '배정학교 확인 중'}${(result.assigned_schools?.length || 0) > 1 ? ` 외 ${(result.assigned_schools?.length || 1) - 1}곳` : ''}`}
+                          : `${result.apartment?.households.toLocaleString() || 0}세대 · ${result.apartment?.assigned_school_name ? displaySchoolName(result.apartment.assigned_school_name, result.apartment.address) : '배정학교 확인 중'}${(result.assigned_schools?.length || 0) > 1 ? ` 외 ${(result.assigned_schools?.length || 1) - 1}곳` : ''}`}
                       </span>
                     </span>
                     {query.trim().length < 2 && <Clock3 className="ml-2 flex-none text-gray-400" size={16} aria-hidden="true" />}
