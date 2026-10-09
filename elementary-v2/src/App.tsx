@@ -11,6 +11,7 @@ import HomePage from './components/navigation/HomePage'
 import NewsPage from './components/navigation/NewsPage'
 import PrivacyPage from './components/navigation/PrivacyPage'
 import LearnPage from './components/navigation/LearnPage'
+import LearnItemPage from './components/content/LearnItemPage'
 import GuideListPage from './components/content/GuideListPage'
 import GuidePage from './components/content/GuidePage'
 import FaqPage from './components/content/FaqPage'
@@ -18,7 +19,7 @@ import ChecklistPage from './components/content/ChecklistPage'
 import AreaPage from './components/content/AreaPage'
 import checklistContent from './content/checklist.json'
 import { hasSavedProfile, readProfile, saveProfile, type Profile } from './utils/profile'
-import { FAQ_PAGE, findGuide } from './content'
+import { FAQ_PAGE, findGuide, findLearning, LEARNING_CATEGORIES } from './content'
 import { readEntryYear } from './utils/entryYear'
 import { getApartmentByPublicKey, getSchoolDetail } from './services/dataService'
 import type { FavoriteRecord } from './utils/favorites'
@@ -26,6 +27,7 @@ import { initAnalytics, markEntry, rememberDetailEntry, takeEntry, track, trackP
 import {
   apartmentPath,
   guidePath,
+  learnPath,
   parseRoute,
   schoolPath,
   setCanonical,
@@ -68,6 +70,11 @@ function MapApplication() {
     const route = parseRoute(window.location.pathname, window.location.search)
     return route.kind === 'guide' ? route.slug : null
   })
+  // 학습 준비 화면 안에서 어느 콘텐츠인지. 없으면 목록이다.
+  const [learnSlug, setLearnSlug] = useState<string | null>(() => {
+    const route = parseRoute(window.location.pathname, window.location.search)
+    return route.kind === 'learn' ? route.slug : null
+  })
   // 지역 허브 화면 안에서 어느 지역인지. 허브 주소가 아니면 쓰지 않는다.
   const [areaRoute, setAreaRoute] = useState<string>(() => {
     const route = parseRoute(window.location.pathname, window.location.search)
@@ -108,6 +115,7 @@ function MapApplication() {
   const showRoute = (route: Route) => {
     setView(viewOf(route))
     setGuideSlug(route.kind === 'guide' ? route.slug : null)
+    setLearnSlug(route.kind === 'learn' ? route.slug : null)
     if (route.kind === 'area') setAreaRoute(route.path)
   }
   // 주소를 읽어 선택을 복원하는 동안에는 선택을 보고 주소를 쓰면 안 된다.
@@ -229,11 +237,17 @@ function MapApplication() {
   // 지도 쪽 canonical은 syncPath가 맞춘다. 홈·가이드·FAQ는 색인 대상이고,
   // 소식·MY·처리방침은 아니다.
   const guide = findGuide(guideSlug)
+  const learnItem = findLearning(learnSlug)
   useEffect(() => {
     if (view === 'home') setCanonical(VIEW_PATHS.home)
     else if (view === 'faq') setCanonical(VIEW_PATHS.faq)
     else if (view === 'checklist') setCanonical(VIEW_PATHS.checklist)
     else if (view === 'area') setCanonical(areaRoute)
+    else if (view === 'learn') {
+      // 없는(또는 발행되지 않은) 콘텐츠 주소는 목록을 보여주고 주소도 목록으로 고친다.
+      if (learnSlug && !learnItem) window.history.replaceState({}, '', VIEW_PATHS.learn)
+      setCanonical(learnItem?.status === 'published' ? learnPath(learnItem.slug) : null)
+    }
     else if (view === 'guide') {
       // 없는 가이드 주소는 목록을 보여주고 주소도 목록으로 고친다.
       if (guideSlug && !guide) window.history.replaceState({}, '', VIEW_PATHS.guide)
@@ -243,7 +257,7 @@ function MapApplication() {
       if (view === 'my' && window.location.pathname !== VIEW_PATHS.my) window.history.replaceState({}, '', VIEW_PATHS.my)
       if (view !== 'map') setCanonical(null)
     }
-  }, [view, guideSlug, guide, areaRoute])
+  }, [view, guideSlug, guide, areaRoute, learnSlug, learnItem])
 
   // 문서 제목. 브라우저 탭과 GA4의 page_title이 화면을 구분하게 한다. 형식은
   // 프리렌더(api/detail.js)의 제목과 맞추되, 거기에만 있는 수치는 넣지 않는다.
@@ -258,8 +272,21 @@ function MapApplication() {
         ? `${school.school_name} 배정 아파트 | 어디초`
         : view === 'guide' && guide
           ? `${guide.title} | 어디초`
-          : TITLES[view]
-  }, [view, state.selectedApartment, state.selectedSchool, guide])
+          : view === 'learn' && learnItem
+            ? `${learnItem.title} | 어디초`
+            : TITLES[view]
+  }, [view, state.selectedApartment, state.selectedSchool, guide, learnItem])
+
+  // 학습 콘텐츠 조회 (측정 계획 A-02의 prep_content_view). 뒤로 가기로 돌아온 것도 한 번으로 센다 —
+  // 가이드와 달리 아직 기록 복원 구분이 필요할 만큼 경로가 많지 않다.
+  const lastLearn = useRef<string | null>(null)
+  useEffect(() => {
+    const shown = view === 'learn' && learnItem ? learnItem.slug : null
+    if (shown === lastLearn.current) return
+    lastLearn.current = shown
+    if (!shown || !learnItem) return
+    track('prep_content_view', { content_id: shown, category: learnItem.category, entry_source: takeEntry('nav') })
+  }, [view, learnItem])
 
   // 가이드 조회와 FAQ 질문 열람 (PRD v2 12절의 1a 이벤트). 뒤로 가기로 돌아온
   // 가이드는 새 조회가 아니다.
@@ -409,8 +436,12 @@ function MapApplication() {
     checkConnections()
   }, [])
 
+  // 선택·준비물 콘텐츠는 주소는 /learn이어도 입학 준비 메뉴 소속이다(2026-10-08 결정).
+  const navView: AppView = view === 'learn' && learnItem
+    && LEARNING_CATEGORIES.find((category) => category.id === learnItem.category)?.menu === 'guide' ? 'guide' : view
+
   return (
-    <MainLayout sidebar={<FilterPanel />} activeView={view} onNavigate={(path) => navigate(path, 'nav')}>
+    <MainLayout sidebar={<FilterPanel />} activeView={navView} onNavigate={(path) => navigate(path, 'nav')}>
       {mapMounted && (
         <div className="app-map-area">
           <MapErrorBoundary>
@@ -446,7 +477,9 @@ function MapApplication() {
           onProfileChange={changeProfile}
         />
       )}
-      {view === 'learn' && <LearnPage onNavigate={(path) => navigate(path, 'related')} />}
+      {view === 'learn' && (learnItem
+        ? <LearnItemPage key={learnItem.slug} item={learnItem} onNavigate={(path) => navigate(path, 'related')} />
+        : <LearnPage onNavigate={(path) => navigate(path, 'related')} />)}
       {view === 'privacy' && <PrivacyPage />}
       
       {connectionStatus.supabase === 'error' && (

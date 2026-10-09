@@ -43,6 +43,10 @@
       "destination": "/checklist/index.html"
     },
     {
+      "source": "/learn/:slug",
+      "destination": "/learn/:slug/index.html"
+    },
+    {
       "source": "/(.*)",
       "destination": "/app.html"
     }

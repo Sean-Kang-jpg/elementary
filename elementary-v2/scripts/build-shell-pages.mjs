@@ -192,6 +192,35 @@ for (const guide of content.guides) {
   }))
 }
 
+// Learning items (P2): only published ones are in content.json for a build, so
+// only they get a page. Same markup as src/components/content/LearnItemPage.tsx.
+const learningTaxonomy = JSON.parse(await fs.readFile(path.join(projectRoot, 'src', 'content', 'learning-taxonomy.json'), 'utf8'))
+for (const item of content.learning ?? []) {
+  if (item.status !== 'published') continue
+  const category = learningTaxonomy.categories.find((entry) => entry.id === item.category)
+  const sub = category?.subcategories.find((entry) => entry.id === item.subcategory)
+  const back = category?.menu === 'guide' ? ['/guide', '입학 준비 가이드'] : ['/learn', '학습 준비']
+  const ages = [...item.ages].sort((a, b) => a - b)
+  const ageText = ages[0] !== ages[ages.length - 1] ? `만 ${ages[0]}~${ages[ages.length - 1]}세` : `만 ${ages[0]}세`
+  const link = item.schoolLink
+    ? `<div><dt>학교와의 연결</dt><dd><span class="learn-link learn-link--${item.schoolLink.level}">${escapeHtml(learningTaxonomy.schoolLinks[item.schoolLink.level])}</span>${item.schoolLink.basis ? `<span class="learn-link__basis">${escapeHtml(item.schoolLink.basis)}</span>` : ''}</dd></div>`
+    : ''
+  await writePage(`/learn/${item.slug}`, contentPage({
+    pagePath: `/learn/${item.slug}`,
+    title: `${item.title} | 어디초`,
+    description: item.description,
+    body: page([
+      `<a class="content-page__back" href="${back[0]}">${back[1]}</a>`,
+      `<span class="learn-category">${escapeHtml(category?.label ?? '')} · ${escapeHtml(sub?.label ?? item.subcategory)}</span>`,
+      `<h1 id="learn-item-title">${escapeHtml(item.title)}</h1>`,
+      `<div class="learn-answer"><strong>어디초 요약</strong><p>${escapeHtml(item.answer)}</p></div>`,
+      `<dl class="learn-facts"><div><dt>대상</dt><dd>${ageText}</dd></div><div><dt>시기</dt><dd>${escapeHtml(item.timing)}</dd></div>${link}</dl>`,
+      `<div class="content-body">${item.html}</div>`,
+      sourcesHtml(item.sources, item.verifiedAt),
+    ].join(''), 'learn-item-title'),
+  }))
+}
+
 await writePage('/faq', contentPage({
   pagePath: '/faq',
   title: `${structure.faqPage.title} | 어디초`,

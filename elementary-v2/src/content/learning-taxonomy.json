@@ -1,0 +1,69 @@
+{
+  "_comment": "학습·생활 준비 콘텐츠 분류(P2-01). menu는 이 분류의 글이 하단 메뉴 어디에 속하는지다 — 선택·준비물은 학교 안내 뒤에 사는 물건이라 입학 준비(2026-10-08 사용자 결정). 하위분류 id는 글의 front matter subcategory로 쓰이며, 빌드가 여기 없는 id를 막는다.",
+  "categories": [
+    {
+      "id": "environment",
+      "label": "환경",
+      "menu": "learn",
+      "note": "책상 위치, 거실서재, 등교 준비존",
+      "subcategories": [
+        { "id": "study-space", "label": "공부 자리" },
+        { "id": "living-room", "label": "거실·TV" },
+        { "id": "storage", "label": "정리·수납" },
+        { "id": "entrance", "label": "등교 준비존" }
+      ]
+    },
+    {
+      "id": "habit",
+      "label": "습관",
+      "menu": "learn",
+      "note": "아침 준비, 수면 루틴, 영상 끄기",
+      "subcategories": [
+        { "id": "morning", "label": "아침 준비" },
+        { "id": "sleep", "label": "수면" },
+        { "id": "belongings", "label": "자기 물건 챙기기" },
+        { "id": "screen", "label": "영상·전환" },
+        { "id": "reading-routine", "label": "읽어주기" }
+      ]
+    },
+    {
+      "id": "learning",
+      "label": "배움",
+      "menu": "learn",
+      "note": "한글, 초1 수학 범위, 독서",
+      "subcategories": [
+        { "id": "hangul", "label": "한글·국어" },
+        { "id": "math", "label": "수학" },
+        { "id": "english", "label": "영어 노출" },
+        { "id": "reading", "label": "독서" },
+        { "id": "video-audio", "label": "영상·오디오" },
+        { "id": "play-tools", "label": "교구·보드게임" }
+      ]
+    },
+    {
+      "id": "supplies",
+      "label": "선택·준비물",
+      "menu": "guide",
+      "note": "책가방, 책상, 실내화, 물병",
+      "subcategories": [
+        { "id": "timing", "label": "사는 시기" },
+        { "id": "school-list", "label": "학교 안내 준비물" },
+        { "id": "furniture", "label": "가구" }
+      ]
+    }
+  ],
+  "schoolLinks": {
+    "direct": "초1 직접 연계",
+    "foundation": "기초 준비",
+    "extension": "확장 활동",
+    "outside": "학교과정 외"
+  },
+  "sourceTypes": {
+    "official": "정부·교육청·법령",
+    "curriculum": "교육과정 원문",
+    "public_recommendation": "공공 추천 자료",
+    "research": "연구·전문기관",
+    "news": "언론 보도",
+    "commerce": "판매처 정보"
+  }
+}

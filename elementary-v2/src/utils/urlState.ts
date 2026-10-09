@@ -4,7 +4,7 @@ import { findRegion } from '../constants/regionRegistry'
 /**
  * 주소와 화면을 잇는다.
  *
- * 화면: 홈(`/`), 지도(`/map`과 상세), 가이드(`/guide`, `/guide/{slug}`), FAQ, 학습 준비(`/learn`), 소식,
+ * 화면: 홈(`/`), 지도(`/map`과 상세), 가이드(`/guide`, `/guide/{slug}`), FAQ, 학습 준비(`/learn`, `/learn/{slug}`), 소식,
  * MY(`/my`, 옛 주소 `/favorites`), 개인정보처리방침, 지역 허브(`/area`, `/area/서울`,
  * `/area/서울/강남구`). 지도 쪽에서는
  * 여전히 주소가 선택을 비춘다 — `/map`, `/school/…`, `/apt/…`는 같은 지도 위에서
@@ -31,7 +31,7 @@ export type Route =
   | { kind: 'guide'; slug: string | null }
   | { kind: 'faq' }
   | { kind: 'checklist' }
-  | { kind: 'learn' }
+  | { kind: 'learn'; slug: string | null }
   | { kind: 'area'; path: string }
   | { kind: 'admin' }
   | { kind: 'school'; key: string }
@@ -62,6 +62,7 @@ export const VIEW_PATHS: Record<AppView, string> = {
 }
 
 export const guidePath = (slug: string): string => `/guide/${slug}`
+export const learnPath = (slug: string): string => `/learn/${slug}`
 
 /** 교육부 학교 표준데이터가 부여하는 형태. 파이프라인이 만들지 않는다. */
 const SCHOOL_KEY = /^B\d+$/i
@@ -124,7 +125,7 @@ export const parseRoute = (pathname: string, search = ''): Route => {
     if (segments[0] === 'guide') return { kind: 'guide', slug: null }
     if (segments[0] === 'faq') return { kind: 'faq' }
     if (segments[0] === 'checklist') return { kind: 'checklist' }
-    if (segments[0] === 'learn') return { kind: 'learn' }
+    if (segments[0] === 'learn') return { kind: 'learn', slug: null }
   }
   // 모르는 주소는 홈으로 연다. 404 화면이 없으므로 가장 쓸모 있는 착지점이다.
   if (segments.length !== 2) return { kind: 'home' }
@@ -132,6 +133,7 @@ export const parseRoute = (pathname: string, search = ''): Route => {
   const [prefix, slug] = segments
   // 가이드 주소는 장식 없이 slug 그대로다. 모르는 slug는 가이드 화면이 목록으로 받는다.
   if (prefix === 'guide') return { kind: 'guide', slug: safeDecode(slug) }
+  if (prefix === 'learn') return { kind: 'learn', slug: safeDecode(slug) }
   const key = keyOf(slug)
 
   if (prefix === 'school' && SCHOOL_KEY.test(key)) {

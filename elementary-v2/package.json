@@ -4,7 +4,7 @@
   "version": "2.3.0",
   "type": "module",
   "scripts": {
-    "dev": "npm run content && vite",
+    "dev": "node scripts/build-content.mjs --preview && vite",
     "build": "npm run content && tsc -b && vite build && npm run shell && npm run seo",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
