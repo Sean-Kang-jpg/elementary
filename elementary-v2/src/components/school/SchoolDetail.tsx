@@ -317,7 +317,7 @@ const SchoolDetail: React.FC<SchoolDetailProps> = ({ school, isOpen, onClose, on
 
           <StartModule school={school} onOpenGuide={onOpenGuide} />
 
-          <SchoolDayEstimateCard school={school} />
+          <SchoolDayEstimateCard school={school} onOpenGuide={onOpenGuide} />
 
           <SchoolCarePanel school={school} onOpenGuide={onOpenGuide} />
 

@@ -77,6 +77,7 @@ const homeBody = [
   `<a href="/map" class="home-page__card"><span class="min-w-0 flex-1"><strong>${escapeHtml(copy.mapCardTitle)}</strong><small>${escapeHtml(copy.mapCardBody)}</small></span></a>`,
   // The area hubs are how a crawler gets from the home to every school (api/detail.js).
   `<a href="/area" class="home-page__card"><span class="min-w-0 flex-1"><strong>${escapeHtml(copy.areaCardTitle)}</strong><small>${escapeHtml(copy.areaCardBody)}</small></span></a>`,
+  `<a href="/learn" class="home-page__card"><span class="min-w-0 flex-1"><strong>${escapeHtml(copy.learnCardTitle)}</strong><small>${escapeHtml(copy.learnCardBody)}</small></span></a>`,
   '<footer class="home-page__footer"><a href="/privacy">개인정보처리방침</a></footer>',
   '</div></section>',
 ].join('')

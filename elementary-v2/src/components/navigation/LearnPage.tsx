@@ -1,6 +1,6 @@
-import { CalendarClock, ChevronRight, Home, Repeat, Sprout } from 'lucide-react'
+import { CalendarClock, ChevronRight, Flag, Home, Repeat, Sprout } from 'lucide-react'
 import { followLink } from '../content/contentLinks'
-import { VIEW_PATHS } from '../../utils/urlState'
+import { guidePath, VIEW_PATHS } from '../../utils/urlState'
 
 interface LearnPageProps {
   onNavigate: (path: string) => void
@@ -33,6 +33,15 @@ export default function LearnPage({ onNavigate }: LearnPageProps) {
           <span className="min-w-0 flex-1">
             <strong>학교별 요일별 예상 하교 시각</strong>
             <small>학교 찾기에서 학교를 고르면 상세에서 볼 수 있어요. 일부 학교부터 넓혀 가요.</small>
+          </span>
+          <ChevronRight size={18} aria-hidden="true" />
+        </a>
+
+        <a href={guidePath('first-weeks')} onClick={(event) => followLink(event, guidePath('first-weeks'), onNavigate)} className="content-list__item content-list__item--card">
+          <span className="home-link__icon home-link__icon--sage"><Flag size={19} aria-hidden="true" /></span>
+          <span className="min-w-0 flex-1">
+            <strong>입학식과 입학 첫 주</strong>
+            <small>3월 첫 1~2주는 평소보다 일찍 끝나는 학교가 많아요.</small>
           </span>
           <ChevronRight size={18} aria-hidden="true" />
         </a>

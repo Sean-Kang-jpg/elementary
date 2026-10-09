@@ -4,6 +4,8 @@ import type { School, SchoolCareHours, SchoolDayEstimate } from '../../types'
 import { getSchoolDayEstimate } from '../../services/dataService'
 import { track } from '../../utils/analytics'
 import { useSeenOnce } from '../care/useSeenOnce'
+import { followLink } from '../content/contentLinks'
+import { guidePath } from '../../utils/urlState'
 
 const WEEKDAY_LABELS = ['월', '화', '수', '목', '금'] as const
 const hhmm = (value: string | null) => (value ? value.slice(0, 5) : null)
@@ -17,7 +19,7 @@ const hhmm = (value: string | null) => (value ? value.slice(0, 5) : null)
  * 추론한 시각은 '추정', 출처가 정하지 못한 요일·학교는 '학교 확인'으로 둔다 — 빈칸을
  * 다른 값으로 채우지 않는다. 돌봄은 기본 운영과 저녁·연장을 나눠 쓴다(2026-10-08 결정).
  */
-const SchoolDayEstimateCard: React.FC<{ school: School }> = ({ school }) => {
+const SchoolDayEstimateCard: React.FC<{ school: School; onOpenGuide: (path: string) => void }> = ({ school, onOpenGuide }) => {
   const [day, setDay] = useState<SchoolDayEstimate | null>(null)
   const [care, setCare] = useState<SchoolCareHours | null>(null)
   const sectionRef = useRef<HTMLElement>(null)
@@ -80,7 +82,10 @@ const SchoolDayEstimateCard: React.FC<{ school: School }> = ({ school }) => {
             {day.lunch_position === 'after_p4'
               ? `4교시인 날은 점심(${hhmm(day.lunch_start)}~${hhmm(day.lunch_end)})을 먹고 하교해요.`
               : `1학년은 4교시 전에 점심(${hhmm(day.lunch_start)}~${hhmm(day.lunch_end)})을 먹어요. 4교시인 날은 수업이 끝나면 하교해요.`}
-            {' '}입학 첫 1~2주는 하교가 더 이른 학교가 많아요.
+            {' '}입학 첫 1~2주는 하교가 더 이른 학교가 많아요.{' '}
+            <a href={guidePath('first-weeks')} onClick={(event) => followLink(event, guidePath('first-weeks'), onOpenGuide)} className="font-semibold text-indigo-800 underline underline-offset-2">
+              입학 첫 주 알아보기
+            </a>
           </p>
         </>
       )}

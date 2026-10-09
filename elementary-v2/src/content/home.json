@@ -7,6 +7,8 @@
   "mapCardBody": "지역을 옮겨 다니며 학교와 배정 아파트를 함께 봅니다.",
   "areaCardTitle": "지역별 배정 현황",
   "areaCardBody": "시·군·구별로 학교의 학급당 학생 수와 배정 아파트를 비교합니다.",
+  "learnCardTitle": "학습 준비",
+  "learnCardBody": "초1 하루가 몇 시에 끝나는지 보고, 집에서 준비할 것을 고릅니다.",
   "noteBefore": "가까운 학교가 아니라 ",
   "noteStrong": "배정되는 학교",
   "noteAfter": "를 보여줍니다. 공식 통학구역(학구도) 자료 기준입니다."
