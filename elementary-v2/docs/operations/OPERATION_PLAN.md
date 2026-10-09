@@ -162,7 +162,7 @@ E04 조사 결과(학교알리미는 전년도 예상값, 확정값은 2월 이�
 - [ ] P2-06 24개 실제 seed 작성·검수·등록: 환경 6/습관 6/배움 8/선택·준비물 4. 계획 문서의 후보부터 진행. 2026-10-09 **3/24, 검수 대기(status: review)**: 배움 `hangul-before-school`·`math-grade1-scope`·`english-before-school`(경남교육청 도움자료 25·49·92~96쪽, 별책 2·5). 습관(수면)은 공식 출처 본문을 확보하지 못해 보류. 발행은 사용자 검수 후 `status: published`.
 - [ ] P2-07 초1 교육과정 기준·영어 노출 분리·불안/선행 경쟁 방지 편집 검수. 에디터 의견/공식 사실/부모 반응 구별.
 - [x] P2-08 draft/review/published/archived 상태와 콘텐츠 수정·출처 재검증 운영 절차 구현. 초기 저장소 편집 계약을 CMS 전환에도 재사용. 2026-10-09: draft/review/published/archived. 빌드(`npm run content`·`build`)는 published만 싣고, `npm run dev`만 `--preview`로 전부 싣는다 — 운영 번들에 초안 문구 0건 확인. 정적 페이지(`/learn/{slug}`)·sitemap·canonical은 published만. 발행 절차: 검수 → front matter `status: published` → 커밋·release.
-- [ ] P2-09 24개 목록/상세/관련 링크를 실제 UI에서 확인하고 신규 공개 페이지 static HTML/canonical/OG/sitemap 검증. 기존 SEO 회귀 확인. 2026-10-09 **구현, 첫 발행 때 검증**: 발행본만 `dist/learn/{slug}/index.html`·`sitemap-pages-1.xml`, root `vercel.json` `/learn/:slug` rewrite(발행되지 않은 주소는 404). 운영 확인은 첫 published 이후.
+- [ ] P2-09 24개 목록/상세/관련 링크를 실제 UI에서 확인하고 신규 공개 페이지 static HTML/canonical/OG/sitemap 검증. 기존 SEO 회귀 확인. 2026-10-09 **구현, 첫 발행 때 검증**: 발행본만 `dist/learn/{slug}/index.html`·`sitemap-pages-1.xml`, root `vercel.json` `/learn/:slug` rewrite. 2026-10-09 운영 확인: 정적 파일이 없는(발행 안 된) 주소는 Vercel이 앱 셸을 주고 앱이 `/learn` 목록으로 주소를 고친다 — 200이지만 초안 문구 없음(404 아님). 발행본 정적 페이지 확인은 첫 published 이후.
 
 ### P3 — Login, 사용자 DB, MY MVP
 
