@@ -52,6 +52,20 @@ class BuildApartmentTransactionSnapshotTest(unittest.TestCase):
         self.assertEqual([row["source_lawd_cd"] for row in result["raw_rows"]], ["11680", "11110"])
         self.assertIn("2026-08-07", {row["latest_contract_date"] for row in result["summaries"]})
 
+    def test_crosswalk_conflict_blocks_publication_even_above_rate_gate(self):
+        second_master = {
+            "apt_cd": "APT-2", "canonical_complex_id": "KAPT:A2", "legal_dong_code": "1168010500",
+            "legal_address": "서울특별시 강남구 청담동 3번지", "apt_nm": "두번째", "name_aliases": "[]",
+        }
+        trades = [trade() for _ in range(19)] + [
+            trade(aptSeq="SEQ-1", bonbun="3", aptNm="두번째")
+        ]
+        result = build(trades, [*MASTER, second_master])
+        self.assertGreaterEqual(result["quality"]["deterministic_link_rate"], 0.95)
+        self.assertEqual(result["quality"]["apt_seq_crosswalk_conflicts"], 1)
+        self.assertFalse(result["quality"]["publication_allowed"])
+        self.assertIn("apt_seq_crosswalk_conflicts", result["quality"]["publication_blockers"])
+
 
 if __name__ == "__main__":
     unittest.main()

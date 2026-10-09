@@ -78,6 +78,12 @@ matcher v3는 도로명·건물번호가 후보를 유일하게 정한 경우에
 검사를 통과한 뒤 serving을 공개한다. 집계 원문은
 `etl/apartment_transaction_linkage_audit_20261009.json`에 보존한다.
 
+추가 광역시·제주 표본 1,280건은 1,235건(96.48%)이 결정적으로 연결됐지만
+`aptSeq` 2개가 서로 다른 canonical 후보를 가리켰다. 강원 홍천·평창 58건은
+58건 모두 연결됐다. 연결률이 높아도 crosswalk conflict가 하나라도 있으면 공개
+gate는 실패한다. 광주·전남 구 코드 요청은 통합 이후 0건을 반환했으므로 성공
+표본으로 계산하지 않고 새 MOLIT 시군구 코드 확인 대상으로 남긴다.
+
 전국 지역 master를 단독 사용한 회귀 검사에서는 최신 K-apt 보강 원자 2개가
 누락되어 9월 거래 3건이 `road_address_name`에서 `unmatched`로 퇴행했다. 따라서
 거래 ETL은 전국 master를 권위 소스로 두되 기존 보강 파일에서 **없는 `apt_cd`

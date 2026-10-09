@@ -182,7 +182,11 @@ def build(
             "deterministic_links": deterministic,
             "deterministic_link_rate": float(round(rate, 6)),
             "publication_gate": float(PUBLICATION_GATE),
-            "publication_allowed": rate >= PUBLICATION_GATE,
+            "publication_allowed": rate >= PUBLICATION_GATE and not crosswalk_conflicts,
+            "publication_blockers": [
+                *(["deterministic_link_rate_below_gate"] if rate < PUBLICATION_GATE else []),
+                *(["apt_seq_crosswalk_conflicts"] if crosswalk_conflicts else []),
+            ],
             "match_tiers": dict(sorted(tier_counts.items())),
             "duplicate_fingerprint_rows_retained": sum(count - 1 for count in fingerprint_counts.values() if count > 1),
             "cancelled_rows_excluded_from_summary": sum(is_cancelled(row) for row in trades),
