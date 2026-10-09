@@ -4,6 +4,7 @@ import type { School, SearchResult } from '../../types'
 import { getSchoolDetail, searchMapEntities } from '../../services/dataService'
 import { useAppContext } from '../../contexts/AppContext'
 import { markEntry, track } from '../../utils/analytics'
+import { displaySchoolName } from '../../utils/schoolName'
 
 interface SearchBoxProps {
   onSchoolSelect?: (school: School) => void
@@ -168,6 +169,10 @@ const SearchBox: React.FC<SearchBoxProps> = ({
     return () => document.removeEventListener('mousedown', handleClickOutside)
   }, [])
 
+  const displayName = (result: SearchResult) => (
+    result.type === 'school' ? displaySchoolName(result.name, result.school?.establishment_type) : result.name
+  )
+
   const highlightMatch = (text: string) => {
     const term = query.trim()
     if (!term) return text
@@ -255,12 +260,12 @@ const SearchBox: React.FC<SearchBoxProps> = ({
                       <Icon size={18} aria-hidden="true" />
                     </span>
                     <span className="min-w-0 flex-1">
-                      <span className="block truncate font-medium text-gray-950">{query.trim().length >= 2 ? highlightMatch(result.name) : result.name}</span>
+                      <span className="block truncate font-medium text-gray-950">{query.trim().length >= 2 ? highlightMatch(displayName(result)) : displayName(result)}</span>
                       <span className="block truncate text-sm text-gray-500">{result.address}</span>
                       <span className="mt-1 block text-xs text-gray-500">
                         {result.type === 'school'
                           ? `${result.school?.establishment_type || '초등학교'} · 1학년 ${result.school?.grade1_students || 0}명`
-                          : `${result.apartment?.households.toLocaleString() || 0}세대 · ${result.apartment?.assigned_school_name || '배정학교 확인 중'}${(result.assigned_schools?.length || 0) > 1 ? ` 외 ${(result.assigned_schools?.length || 1) - 1}곳` : ''}`}
+                          : `${result.apartment?.households.toLocaleString() || 0}세대 · ${result.apartment?.assigned_school_name ? displaySchoolName(result.apartment.assigned_school_name) : '배정학교 확인 중'}${(result.assigned_schools?.length || 0) > 1 ? ` 외 ${(result.assigned_schools?.length || 1) - 1}곳` : ''}`}
                       </span>
                     </span>
                     {query.trim().length < 2 && <Clock3 className="ml-2 flex-none text-gray-400" size={16} aria-hidden="true" />}

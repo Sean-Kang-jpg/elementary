@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react'
 import { School } from '../../types'
+import { displaySchoolName } from '../../utils/schoolName'
 
 interface SchoolMarkerProps {
   school: School
@@ -26,7 +27,7 @@ const createMarkerContent = (school: School, targetGrade: number, selected: bool
   const students = getGradeStudents(school, targetGrade)
   return `
     <div class="school-map-marker${selected ? ' school-map-marker--selected' : ''}${dimmed ? ' school-map-marker--dimmed' : ''}" data-school-id="${escapeHtml(school.school_id)}">
-      <span class="school-map-marker__name">${escapeHtml(school.school_name)}</span>
+      <span class="school-map-marker__name">${escapeHtml(displaySchoolName(school.school_name, school.establishment_type))}</span>
       <span class="school-map-marker__count">${students.toLocaleString('ko-KR')}명</span>
     </div>
   `
@@ -52,7 +53,7 @@ const SchoolMarker: React.FC<SchoolMarkerProps> = ({
     const marker = new maps.Marker({
       position: new maps.LatLng(school.latitude, school.longitude),
       map,
-      title: `${school.school_name}, ${targetGrade}학년 ${students}명`,
+      title: `${displaySchoolName(school.school_name, school.establishment_type)}, ${targetGrade}학년 ${students}명`,
       icon: {
         content: createMarkerContent(school, targetGrade, selected, dimmed),
         anchor: new maps.Point(30, 18),

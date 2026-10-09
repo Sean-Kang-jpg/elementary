@@ -3,7 +3,7 @@
  * 줌 레벨에 따라 개별 마커 또는 클러스터 마커를 표시
  */
 
-import React, { useEffect, useRef, useState, useCallback } from 'react'
+import React, { useContext, useEffect, useRef, useState, useCallback } from 'react'
 import { useAppContext } from '../../contexts/AppContext'
 import { fetchDistrictOverviewData, fetchRegionAggregatedData, fetchRegionData, fetchSchoolsByAdministrativeArea, fetchSchoolsByIds } from '../../services/dataService'
 import type { RegionData } from '../../services/dataService'
@@ -15,6 +15,7 @@ import ClusterMarker from './ClusterMarker'
 import RegionMarker from './RegionMarker'
 import DistrictNeighborhoodSheet from './DistrictNeighborhoodSheet'
 import NeighborhoodSchoolSheet from './NeighborhoodSchoolSheet'
+import { MapScreenContext } from '../layout/panelSlot'
 import { LoaderCircle, RefreshCw, SearchX } from 'lucide-react'
 import { recordPerformanceMetric } from '../../utils/performanceMetrics'
 
@@ -45,6 +46,7 @@ const clusterIntersectsBounds = (cluster: ClusterPoint, bounds: MapBounds) => (
 
 const MarkerManager: React.FC<MarkerManagerProps> = ({ map }) => {
   const { state, dispatch } = useAppContext()
+  const onMapScreen = useContext(MapScreenContext)
   const [schools, setSchools] = useState<School[]>([])
   const [clusters, setClusters] = useState<ClusterPoint[]>([])
   const [regions, setRegions] = useState<RegionData[]>([])
@@ -462,7 +464,7 @@ const MarkerManager: React.FC<MarkerManagerProps> = ({ map }) => {
           schools={schools}
           targetGrade={state.filters.target_grade}
           loading={loading}
-          isOpen={!state.selectedSchool}
+          isOpen={onMapScreen && !state.selectedSchool}
           onNeighborhoodSelect={handleClusterClick}
           onClear={handleClearDistrict}
         />
@@ -474,7 +476,7 @@ const MarkerManager: React.FC<MarkerManagerProps> = ({ map }) => {
           neighborhood={neighborhoodScope}
           schools={schools}
           targetGrade={state.filters.target_grade}
-          isOpen={!state.selectedSchool}
+          isOpen={onMapScreen && !state.selectedSchool}
           onSchoolSelect={handleSchoolClick}
           onClear={handleClearNeighborhood}
         />
