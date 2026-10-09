@@ -21,7 +21,7 @@ CREATE TABLE IF NOT EXISTS apartment_entity (
 
 CREATE TABLE IF NOT EXISTS apartment_source_identity (
     source_system TEXT NOT NULL
-        CHECK (source_system IN ('apt_base', 'kapt', 'molit_apt_seq')),
+        CHECK (source_system IN ('apt_base', 'kapt', 'molit_apt_seq', 'molit_apt_seq_address')),
     source_id TEXT NOT NULL,
     entity_id UUID NOT NULL REFERENCES apartment_entity(entity_id),
     decision_status TEXT NOT NULL

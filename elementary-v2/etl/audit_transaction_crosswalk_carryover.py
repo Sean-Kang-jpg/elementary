@@ -29,7 +29,7 @@ def main() -> None:
     # Audit simulation only: proposals remain review in persisted output. This
     # asks what coverage would become after a human approves every clean one.
     approved = {
-        row["apt_seq"]: {
+        row.get("source_id") or row["apt_seq"]: {
             "canonical_complex_id": row["canonical_complex_id"],
             "parcel_key": row["parcel_key"],
         }

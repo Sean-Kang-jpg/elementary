@@ -66,6 +66,29 @@ class BuildApartmentTransactionSnapshotTest(unittest.TestCase):
         self.assertFalse(result["quality"]["publication_allowed"])
         self.assertIn("apt_seq_crosswalk_conflicts", result["quality"]["publication_blockers"])
 
+    def test_one_apt_seq_can_propose_distinct_address_scopes(self):
+        masters = [
+            {
+                "apt_cd": "APT-1", "canonical_complex_id": "KAPT:A1",
+                "road_address": "울산광역시 남구 첫째로 10", "apt_nm": "통합단지", "name_aliases": "[]",
+            },
+            {
+                "apt_cd": "APT-2", "canonical_complex_id": "KAPT:A2",
+                "road_address": "울산광역시 남구 둘째로 20", "apt_nm": "통합단지", "name_aliases": "[]",
+            },
+        ]
+        trades = [
+            trade(aptSeq="SEQ-MULTI", aptNm="통합단지", roadNm="첫째로", roadNmBonbun="10", roadNmBubun="0"),
+            trade(aptSeq="SEQ-MULTI", aptNm="통합단지", roadNm="둘째로", roadNmBonbun="20", roadNmBubun="0"),
+        ]
+        result = build(trades, masters)
+        self.assertEqual(result["crosswalk_conflicts"], [])
+        self.assertEqual(len(result["crosswalk_proposals"]), 2)
+        self.assertEqual(
+            {row["identity_scope"] for row in result["crosswalk_proposals"]},
+            {"apt_seq_address"},
+        )
+
 
 if __name__ == "__main__":
     unittest.main()

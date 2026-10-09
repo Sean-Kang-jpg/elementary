@@ -15,6 +15,9 @@
 - `complex_public_key`: 계속 URL의 권위 있는 키다. UUID로 URL을 바꾸지 않는다.
 - `apt_cd`, `kapt_code`, `aptSeq`: `apartment_source_identity`에 출처별 crosswalk로
   저장한다. 확정 연결은 주소·공식 ID 충돌을 감시하되 자동 재배정하지 않는다.
+- 하나의 `aptSeq`가 여러 관리 단지를 포괄하면 `aptSeq + 공식 도로명 건물번호`를
+  `molit_apt_seq_address` identity로 저장한다. 도로명으로 분리되지 않는 경우만
+  conflict이며 한 단지로 강제 병합하지 않는다.
 - 모든 자동·수동 판정은 matcher version, 근거, 기준일, 판정자를 남긴다.
 - 재건축·재개발·관리단지 병합·분할과 단순 데이터 정정은
   `apartment_entity_lineage.event_type`으로 구분한다. 근거 없는 효력일은 NULL이다.
@@ -78,10 +81,11 @@ matcher v3는 도로명·건물번호가 후보를 유일하게 정한 경우에
 검사를 통과한 뒤 serving을 공개한다. 집계 원문은
 `etl/apartment_transaction_linkage_audit_20261009.json`에 보존한다.
 
-추가 광역시·제주 표본 1,280건은 1,235건(96.48%)이 결정적으로 연결됐지만
-`aptSeq` 2개가 서로 다른 canonical 후보를 가리켰다. 강원 홍천·평창 58건은
-58건 모두 연결됐다. 연결률이 높아도 crosswalk conflict가 하나라도 있으면 공개
-gate는 실패한다. 광주·전남 구 코드 요청은 통합 이후 0건을 반환했으므로 성공
+추가 광역시·제주·강원 군 표본 1,338건은 1,293건(96.64%)이 결정적으로
+연결됐고 conflict는 0건이다. 처음 발견된 `aptSeq` 2개는 각각 공식 도로명이
+다른 복수 단지를 포괄한 정상 사례였으며 address-scoped identity로 분리했다.
+도로명이 같은 복수 후보는 계속 conflict로 남아 공개를 차단한다. 광주·전남 구
+코드 요청은 통합 이후 0건을 반환했으므로 성공
 표본으로 계산하지 않고 새 MOLIT 시군구 코드 확인 대상으로 남긴다.
 
 전국 지역 master를 단독 사용한 회귀 검사에서는 최신 K-apt 보강 원자 2개가

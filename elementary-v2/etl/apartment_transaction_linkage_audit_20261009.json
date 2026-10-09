@@ -73,8 +73,9 @@
       "transactions": 1280,
       "deterministic_links": 1235,
       "deterministic_link_rate": 0.964844,
-      "apt_seq_crosswalk_conflicts": 2,
-      "publication_allowed": false
+      "apt_seq_crosswalk_conflicts": 0,
+      "address_scoped_apt_seq_identities": 4,
+      "publication_allowed": true
     },
     "gangwon_counties": {
       "lawd_cd": ["51720", "51760"],
@@ -82,6 +83,13 @@
       "deterministic_links": 58,
       "deterministic_link_rate": 1.0,
       "apt_seq_crosswalk_conflicts": 0
+    },
+    "combined_nonzero_samples": {
+      "transactions": 1338,
+      "deterministic_links": 1293,
+      "deterministic_link_rate": 0.966368,
+      "apt_seq_crosswalk_conflicts": 0,
+      "publication_allowed": true
     },
     "merged_gwangju_jeonnam": {
       "legacy_lawd_cd_tested": ["29170", "29200", "46110", "46150", "46820", "46840"],
@@ -93,7 +101,6 @@
   "production_publication_allowed": false,
   "blocking_reasons": [
     "The 95% result must be reproduced on provincial and rural samples before nationwide publication.",
-    "Two aptSeq crosswalk conflicts in the expanded metro sample require manual identity decisions.",
     "Post-merger MOLIT district codes for Gwangju and Jeonnam are not yet resolved.",
     "SQL 26 has not been parsed or applied on production Postgres.",
     "The first production entity backfill must be rerun with an export of existing identities."

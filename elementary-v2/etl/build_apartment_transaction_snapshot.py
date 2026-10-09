@@ -19,7 +19,7 @@ from typing import Any
 
 try:  # package import in tests; direct import when run as a script
     from .apartment_transaction_linkage import (
-        DETERMINISTIC_TIERS, MATCHER_VERSION, Linker, area_band, collapse_master,
+        DETERMINISTIC_TIERS, MATCHER_VERSION, Linker, apt_seq_address_key, area_band, collapse_master,
         decimal_value, overlay_missing_master_atoms, trade_fingerprint, value,
     )
 except ImportError:
@@ -27,6 +27,7 @@ except ImportError:
         DETERMINISTIC_TIERS,
         MATCHER_VERSION,
         Linker,
+        apt_seq_address_key,
         area_band,
         collapse_master,
         decimal_value,
@@ -52,7 +53,7 @@ def read_crosswalk(path: Path | None) -> dict[str, dict[str, Any]]:
         return {}
     rows = json.loads(path.read_text(encoding="utf-8"))
     return {
-        row["apt_seq"]: row
+        row.get("source_id") or row["apt_seq"]: row
         for row in rows
         if row.get("decision_status") == "confirmed" and row.get("apt_seq")
     }
@@ -164,12 +165,43 @@ def build(
         if len(complex_ids) == 1 and len(parcel_keys) <= 1:
             crosswalk_proposals.append({
                 **payload,
+                "source_id": apt_seq,
+                "identity_scope": "apt_seq",
                 "canonical_complex_id": next(iter(complex_ids)),
                 "parcel_key": list(next(iter(parcel_keys), ())),
                 "decision_status": "review",
             })
         else:
-            crosswalk_conflicts.append({**payload, "decision_status": "conflict"})
+            by_address: dict[str, list[tuple[dict[str, Any], dict[str, Any]]]] = defaultdict(list)
+            for raw, link in items:
+                source_id = apt_seq_address_key(raw["raw_payload"])
+                if source_id:
+                    by_address[source_id].append((raw, link))
+            address_scopes_are_unique = (
+                len(by_address) > 1
+                and sum(len(rows) for rows in by_address.values()) == len(items)
+                and all(len({link["canonical_complex_id"] for _, link in rows}) == 1 for rows in by_address.values())
+            )
+            if address_scopes_are_unique:
+                for source_id, rows in sorted(by_address.items()):
+                    road = rows[0][1]["evidence"].get("road_key") or ()
+                    scoped_parcels = {
+                        tuple(link["evidence"].get("parcel_key") or ())
+                        for _, link in rows if link["evidence"].get("parcel_key")
+                    }
+                    crosswalk_proposals.append({
+                        "apt_seq": apt_seq,
+                        "source_id": source_id,
+                        "identity_scope": "apt_seq_address",
+                        "canonical_complex_id": rows[0][1]["canonical_complex_id"],
+                        "parcel_key": list(next(iter(scoped_parcels), ())),
+                        "road_key": list(road),
+                        "observation_count": len(rows),
+                        "matcher_version": MATCHER_VERSION,
+                        "decision_status": "review",
+                    })
+            else:
+                crosswalk_conflicts.append({**payload, "decision_status": "conflict"})
     return {
         "raw_rows": raw_rows,
         "links": links,

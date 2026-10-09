@@ -98,6 +98,12 @@ def road_key(row: dict[str, str]) -> tuple[str, str, str] | None:
     return match.group(1), normalize_number(match.group(2), 5), normalize_number(match.group(3), 5)
 
 
+def apt_seq_address_key(row: dict[str, str]) -> str:
+    apt_seq = value(row, "aptSeq")
+    road = road_key(row)
+    return f"{apt_seq}|road:{'|'.join(road)}" if apt_seq and road else ""
+
+
 def value(row: dict[str, str], *names: str) -> str:
     for name in names:
         if row.get(name):
@@ -213,7 +219,9 @@ class Linker:
         name = normalize_name(value(trade, "aptNm", "아파트"))
         evidence = {"matcher_version": MATCHER_VERSION, "apt_seq": apt_seq, "parcel_key": parcel, "road_key": road}
 
-        prior = self.confirmed_apt_seq.get(apt_seq) if apt_seq else None
+        scoped_source_id = apt_seq_address_key(trade)
+        prior = self.confirmed_apt_seq.get(scoped_source_id) if scoped_source_id else None
+        prior = prior or (self.confirmed_apt_seq.get(apt_seq) if apt_seq else None)
         if prior:
             prior_id = str(prior["canonical_complex_id"])
             expected_parcel = tuple(prior.get("parcel_key") or ())
