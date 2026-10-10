@@ -282,6 +282,13 @@ From an anonymous client, reads of `apartment_entity`, `apartment_source_identit
 `apartment_transaction_monthly_serving` is an anonymous read contract; anonymous execution
 of `refresh_apartment_transaction_monthly_serving()` must also be refused.
 
+Applied 2026-10-11 by the user in the SQL editor. The first production pilot loaded
+683 raw rows and 683 links for 2026-08 across 11110, 11680, 28185 and 41135. The
+deterministic linkage rate was 668/683 (97.80%) with zero conflicts. After private
+count review, 335 monthly summaries were approved and exactly 335 serving rows were
+published. Anonymous reads returned 401 for private raw/summary tables and 200 for
+the serving table; the monthly schedule remains disabled pending nationwide rollout.
+
 ## Stop Conditions
 
 - Project hostname does not resolve or keys belong to another project.

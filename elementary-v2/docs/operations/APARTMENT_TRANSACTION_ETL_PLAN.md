@@ -78,6 +78,13 @@ python etl/run_apartment_transaction_etl.py --apply --month YYYYMM ...
 뒤에만 같은 입력으로 `--apply --publish`를 실행한다. `--publish`는 단독으로 사용할
 수 없고, 연결률 95% 또는 conflict gate가 실패하면 serving RPC를 호출하지 않는다.
 
+2026-10-11 운영 pilot은 2026-08의 11110·11680·28185·41135 원본 683건으로 수행했다.
+결정적 연결은 668건(97.80%), conflict는 0건이었다. private raw/link 683/683과
+`hold` summary 335건을 먼저 확인한 후 공개했으며 serving은 승인 summary와 같은
+335건이다. 신규 원자 3건에는 불변 공개키를 발급했고, 현재 entity가 여러 과거
+키를 포함한 경우 ADR-007 canonical 순위로 redirect를 만든 뒤 공개했다. 월간
+schedule은 전국 월 데이터 검수 전까지 계속 비활성으로 둔다.
+
 ## 현재 보류 사유
 
 matcher v3 재측정에서 2026-08은 654/683(95.75%), 2026-09는

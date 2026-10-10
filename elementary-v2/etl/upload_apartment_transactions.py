@@ -10,10 +10,11 @@ from __future__ import annotations
 import gzip
 import hashlib
 import json
+import secrets
 import urllib.error
 import urllib.parse
 import urllib.request
-from datetime import date
+from datetime import date, datetime
 from pathlib import Path
 from typing import Any, Iterable
 
@@ -34,6 +35,7 @@ PRIVATE_TABLES = (
     "apartment_transaction_link",
     "apartment_transaction_monthly_summary",
 )
+PUBLIC_KEY_ALPHABET = "0123456789ABCDEFGHJKMNPQRSTVWXYZ"
 
 
 def upload_storage_object(url: str, key: str, bucket: str, object_path: str, body: bytes) -> None:
@@ -86,7 +88,10 @@ def request_json(
         raise RuntimeError(f"{method} {path}: HTTP {exc.code}: {detail}") from exc
 
 
-def fetch_all(url: str, key: str, path: str, page_size: int = 1000) -> list[dict[str, Any]]:
+def fetch_all(url: str, key: str, path: str, page_size: int = 500) -> list[dict[str, Any]]:
+    # This project caps Data API responses at 500 rows. Asking for more and
+    # stopping on a short page would silently treat the first capped page as
+    # the complete crosswalk.
     rows: list[dict[str, Any]] = []
     for start in range(0, 10_000_000, page_size):
         separator = "&" if "?" in path else "?"
@@ -123,6 +128,19 @@ def entity_map(backfill: dict[str, list[dict[str, Any]]]) -> dict[str, str]:
     return result
 
 
+def postgres_date(value: Any) -> str | None:
+    """Normalize MOLIT's compact dotted dates for PostgreSQL DATE columns."""
+    if value in (None, ""):
+        return None
+    text = str(value).strip()
+    for pattern in ("%Y-%m-%d", "%Y.%m.%d", "%y.%m.%d", "%Y%m%d"):
+        try:
+            return datetime.strptime(text, pattern).date().isoformat()
+        except ValueError:
+            continue
+    raise ValueError(f"unsupported MOLIT date: {text!r}")
+
+
 def transaction_rows(
     result: dict[str, Any],
     snapshot_ids: dict[str, str],
@@ -143,8 +161,8 @@ def transaction_rows(
             "exclusive_area_m2": raw["exclusive_area_m2"],
             "floor": raw["floor"],
             "deal_amount_10k_krw": raw["deal_amount_10k_krw"],
-            "registration_date": raw["registration_date"],
-            "cancellation_date": raw["cancellation_date"],
+            "registration_date": postgres_date(raw["registration_date"]),
+            "cancellation_date": postgres_date(raw["cancellation_date"]),
             "cancellation_type": raw["cancellation_type"],
             "raw_payload": raw["raw_payload"],
         })
@@ -206,6 +224,115 @@ def batches(rows: list[dict[str, Any]], size: int = 500) -> Iterable[list[dict[s
         yield rows[start:start + size]
 
 
+def uniform_rows(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    """Give PostgREST bulk rows one shared object shape.
+
+    PostgREST rejects a JSON array when optional columns are omitted from only
+    some objects. Explicit NULL is correct for nullable identity fields and
+    keeps the batch deterministic.
+    """
+    columns = set().union(*(row.keys() for row in rows)) if rows else set()
+    return [{column: row.get(column) for column in columns} for row in rows]
+
+
+def canonical_public_key(public_key: str, redirects: dict[str, str | None]) -> str:
+    seen: set[str] = set()
+    current = public_key
+    while redirects.get(current):
+        if current in seen:
+            raise RuntimeError(f"public key redirect cycle at {current}")
+        seen.add(current)
+        current = str(redirects[current])
+    return current
+
+
+def ensure_summary_public_keys(
+    url: str,
+    key: str,
+    backfill: dict[str, list[dict[str, Any]]],
+    summary_rows: list[dict[str, Any]],
+    source_as_of: str,
+) -> int:
+    """Issue keys only for summarized entities whose atoms have no key yet.
+
+    One entity resolving to several existing keys is a merge decision and must
+    remain manual. Missing atoms on an entity with one established key safely
+    inherit that key. Completely new entities receive one new immutable key.
+    """
+    key_records = fetch_all(
+        url, key, "/rest/v1/apartment_public_key?select=public_key,issued_at,superseded_by"
+    )
+    redirects = {
+        row["public_key"]: row.get("superseded_by") for row in key_records
+    }
+    existing_keys = set(redirects)
+    key_meta = {row["public_key"]: row for row in key_records}
+    atom_to_key = {
+        row["apt_cd"]: row["public_key"] for row in fetch_all(
+            url, key, "/rest/v1/apartment_public_key_atom?select=apt_cd,public_key"
+        )
+    }
+    entity_atoms: dict[str, set[str]] = {}
+    for identity in backfill["identities"]:
+        if identity["source_system"] == "apt_base":
+            entity_atoms.setdefault(identity["entity_id"], set()).add(identity["source_id"])
+    summary_entities = {row["entity_id"] for row in summary_rows}
+    key_rows: list[dict[str, Any]] = []
+    key_updates: list[dict[str, Any]] = []
+    atom_rows: list[dict[str, Any]] = []
+    for entity_id in sorted(summary_entities):
+        atoms = entity_atoms.get(entity_id, set())
+        if not atoms:
+            raise RuntimeError(f"summary entity {entity_id} has no apt_base identity")
+        found = {
+            canonical_public_key(atom_to_key[atom], redirects)
+            for atom in atoms if atom in atom_to_key
+        }
+        if found:
+            coverage = {
+                candidate: sum(
+                    1 for atom in atoms
+                    if atom in atom_to_key
+                    and canonical_public_key(atom_to_key[atom], redirects) == candidate
+                )
+                for candidate in found
+            }
+            public_key = min(
+                found,
+                key=lambda candidate: (
+                    -coverage[candidate],
+                    str(key_meta[candidate]["issued_at"])[:10],
+                    candidate,
+                ),
+            )
+            for loser in sorted(found - {public_key}):
+                redirects[loser] = public_key
+                key_updates.append({
+                    "public_key": loser,
+                    "issued_at": str(key_meta[loser]["issued_at"])[:10],
+                    "superseded_by": public_key,
+                })
+        else:
+            for _ in range(1000):
+                public_key = "".join(secrets.choice(PUBLIC_KEY_ALPHABET) for _ in range(8))
+                if public_key not in existing_keys:
+                    break
+            else:
+                raise RuntimeError("could not mint an unused apartment public key")
+            existing_keys.add(public_key)
+            redirects[public_key] = None
+            key_rows.append({"public_key": public_key, "issued_at": source_as_of})
+        for atom in sorted(atoms):
+            if atom not in atom_to_key:
+                atom_rows.append({"public_key": public_key, "apt_cd": atom, "first_seen_at": source_as_of})
+                atom_to_key[atom] = public_key
+    for chunk in batches(uniform_rows(key_rows + key_updates)):
+        upsert_batch(url, key, "apartment_public_key", ("public_key",), chunk)
+    for chunk in batches(atom_rows):
+        upsert_batch(url, key, "apartment_public_key_atom", ("public_key", "apt_cd"), chunk)
+    return len(key_rows)
+
+
 def upload_snapshot(url: str, key: str, snapshot: dict[str, Any]) -> str:
     path = Path(snapshot["path"])
     body = path.read_bytes()
@@ -261,10 +388,15 @@ def apply(
     new_entities = [row for row in backfill["entities"] if row["entity_id"] not in existing_entities]
     for chunk in batches(new_entities, batch_size):
         upsert_batch(url, key, "apartment_entity", ("entity_id",), chunk)
-    for chunk in batches(new_identities, batch_size):
+    for chunk in batches(uniform_rows(new_identities), batch_size):
         upsert_batch(url, key, "apartment_source_identity", ("source_system", "source_id"), chunk)
     snapshot_ids = {item["lawd_cd"]: upload_snapshot(url, key, item) for item in snapshots}
     mapped = transaction_rows(result, snapshot_ids, entity_map(backfill), source_as_of, publish)
+    issued_public_keys = 0
+    if publish:
+        issued_public_keys = ensure_summary_public_keys(
+            url, key, backfill, mapped["summaries"], source_as_of
+        )
     for chunk in batches(mapped["raw"], batch_size):
         upsert_batch(url, key, "apartment_transaction_raw", ("transaction_snapshot_id", "source_row_ordinal"), chunk)
     for chunk in batches(mapped["links"], batch_size):
@@ -301,5 +433,6 @@ def apply(
         "links": len(mapped["links"]),
         "decisions": len(mapped["decisions"]),
         "summaries": len(mapped["summaries"]),
+        "issued_public_keys": issued_public_keys,
         "serving": serving,
     }
