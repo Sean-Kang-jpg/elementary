@@ -245,7 +245,8 @@ function MapApplication() {
     else if (view === 'area') setCanonical(areaRoute)
     else if (view === 'learn') {
       // 없는(또는 발행되지 않은) 콘텐츠 주소는 목록을 보여주고 주소도 목록으로 고친다.
-      if (learnSlug && !learnItem) window.history.replaceState({}, '', VIEW_PATHS.learn)
+      // 옛 별칭(/plans 등)으로 들어와도 목록 주소로 고친다.
+      if (!learnItem && window.location.pathname !== VIEW_PATHS.learn) window.history.replaceState({}, '', VIEW_PATHS.learn)
       setCanonical(learnItem?.status === 'published' ? learnPath(learnItem.slug) : null)
     }
     else if (view === 'guide') {

@@ -27,6 +27,23 @@ const run = (args, { quiet = false } = {}) => {
 
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
 
+// Timing samples are copied out of the page as soon as they are taken. Later steps
+// open other addresses with a full load, which empties window.__ELEMENTARY_PERFORMANCE__;
+// checking the budget on that empty list passed every time without measuring anything
+// (Audit 2 A2-B05-P).
+const performanceSamples = new Map()
+const collectPerformance = () => {
+  let value = run(['eval', 'JSON.stringify(window.__ELEMENTARY_PERFORMANCE__ || [])'], { quiet: true })
+  try {
+    while (typeof value === 'string') value = JSON.parse(value)
+  } catch {
+    value = []
+  }
+  for (const metric of Array.isArray(value) ? value : []) {
+    performanceSamples.set(`${metric.name}@${metric.recordedAt}`, metric)
+  }
+}
+
 // A fixed `wait` is long enough on localhost and sometimes short over the
 // network, which makes a run fail and then pass with nothing changed. A flaky
 // gate is worse than a slow one: the habit it teaches is to re-run, and a real
@@ -367,6 +384,7 @@ try {
   )
   assertPage("document.querySelector('.quick-filter-row')?.textContent?.includes('학교') && document.querySelector('.quick-filter-row')?.textContent?.includes('아파트')", 'quick filters disclose school and apartment scope')
   await waitFor("(window.__ELEMENTARY_PERFORMANCE__ || []).some((metric) => metric.name === 'school-map-load' && metric.status === 'success' && metric.context.resultCount > 0)", 'district data loaded and measured')
+  collectPerformance()
 
   // Zoomed out past the districts, the map shows one marker per province. For ten
   // days in production it showed nothing: the markers were fetched but a render
@@ -397,6 +415,7 @@ try {
 
   run(['open', new URL('/map', baseUrl).toString()])
   await waitFor("(window.__ELEMENTARY_PERFORMANCE__ || []).some((metric) => metric.name === 'school-map-load' && metric.status === 'success' && metric.context.resultCount > 0)", 'the map reloads at district zoom for the search flow')
+  collectPerformance()
 
   run(['fill', 'input[role="combobox"]', '은마'])
   await waitFor("[...document.querySelectorAll('#map-search-results [role=option]')].some((node) => node.textContent?.includes('4,424세대'))", 'apartment search returned household data')
@@ -549,6 +568,7 @@ try {
   run(['eval', "document.querySelector('#map-search-results [role=option]').click(); 'school selected'"])
   await waitFor("document.body.innerText.includes('방현초등학교')", 'school detail rendered')
   await waitFor("(window.__ELEMENTARY_PERFORMANCE__ || []).some((metric) => metric.name === 'school-apartment-load' && metric.status === 'success' && metric.context.resultCount > 0)", 'assigned apartments loaded and measured')
+  collectPerformance()
   assertPage("document.querySelector('[data-testid=bottom-sheet]')?.dataset.snapIndex === '1'", 'school sheet opened at its default detail snap')
 
   swipeSheet(650, 470)
@@ -629,6 +649,14 @@ try {
   )
   run(['eval', "document.querySelector('.content-page a[href=\"/map\"]').click(); 'to map'"])
   await waitFor("location.pathname === '/map' && document.querySelector('.app-gnb__item--active')?.getAttribute('href') === '/map'", 'the timetable entry on 학습 준비 opens 학교 찾기')
+  // Learning-item view and read-to-the-end events (measurement plan A-02). The debug switch
+  // records events instead of sending them and is read at load, so set it, load, then clear it.
+  run(['eval', "localStorage.setItem('wherecho:analytics-debug', '1'); 'debug on'"], { quiet: true })
+  run(['open', new URL('/learn/math-grade1-scope', baseUrl).toString()])
+  await waitFor("(window.__ANALYTICS_LOG__ || []).some((entry) => entry.event === 'prep_content_view' && entry.params.content_id === 'math-grade1-scope')", 'opening a learning item records prep_content_view')
+  run(['eval', "document.querySelector('.content-sources').scrollIntoView(); 'to the end'"], { quiet: true })
+  await waitFor("(window.__ANALYTICS_LOG__ || []).some((entry) => entry.event === 'prep_content_complete' && entry.params.content_id === 'math-grade1-scope')", 'reading to the sources records prep_content_complete')
+  run(['eval', "localStorage.removeItem('wherecho:analytics-debug'); 'debug off'"], { quiet: true })
   run(['open', new URL('/news', baseUrl).toString()])
   // News left the bottom navigation for a link under the guide list; the address stays.
   await waitFor("document.querySelector('#news-title')", '/news opens the news screen')
@@ -741,11 +769,17 @@ try {
     assertPage("document.documentElement.scrollWidth === window.innerWidth", `${width}px layout has no horizontal overflow`)
   }
 
-  assertPage("(window.__ELEMENTARY_PERFORMANCE__ || []).filter((metric) => metric.name === 'school-map-load' && metric.status === 'success').every((metric) => metric.durationMs < 5000)", 'map requests stayed within the 5s smoke budget')
-  assertPage("(window.__ELEMENTARY_PERFORMANCE__ || []).filter((metric) => metric.name === 'school-apartment-load' && metric.status === 'success').every((metric) => metric.durationMs < 3000)", 'apartment requests stayed within the 3s smoke budget')
-
-  const metrics = run(['eval', 'JSON.stringify(window.__ELEMENTARY_PERFORMANCE__ || [])'], { quiet: true })
-  process.stdout.write(`Performance metrics: ${metrics}\n`)
+  collectPerformance()
+  const samples = [...performanceSamples.values()]
+  const budgets = [['school-map-load', 5000, 'map requests stayed within the 5s smoke budget'], ['school-apartment-load', 3000, 'apartment requests stayed within the 3s smoke budget']]
+  for (const [name, limit, label] of budgets) {
+    const loads = samples.filter((metric) => metric.name === name && metric.status === 'success')
+    if (!loads.length) throw new Error(`${label} — no ${name} sample was recorded, so the budget was not measured`)
+    const slowest = Math.max(...loads.map((metric) => metric.durationMs))
+    if (slowest >= limit) throw new Error(`${label} — slowest ${name} took ${slowest}ms (${loads.length} samples)`)
+    process.stdout.write(`PASS: ${label} (${loads.length} samples, slowest ${slowest}ms)\n`)
+  }
+  process.stdout.write(`Performance metrics: ${JSON.stringify(samples.map(({ name, durationMs, status }) => ({ name, durationMs, status })))}\n`)
   process.stdout.write('Public map smoke test passed.\n')
 } finally {
   spawnSync(process.execPath, [cli, '--namespace', namespace, '--session', session, ...connectionArgs, 'close'], {

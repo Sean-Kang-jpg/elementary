@@ -115,6 +115,8 @@ export const parseRoute = (pathname: string, search = ''): Route => {
   if (segments[0] === 'area' && segments.length <= 3) {
     return { kind: 'area', path: ['', ...segments.map(safeDecode)].join('/') }
   }
+  // 폐기된 커리큘럼·1학년 미리보기 주소(플래그 뒤에만 있었다). 역할을 학습 준비가 이었다.
+  if (['plans', 'items', 'grade1'].includes(segments[0]) && segments.length <= 2) return { kind: 'learn', slug: null }
   if (segments.length === 1) {
     if (segments[0] === 'map') return { kind: 'map' }
     if (segments[0] === 'news') return { kind: 'news' }

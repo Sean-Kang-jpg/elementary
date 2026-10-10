@@ -47,6 +47,30 @@ export interface ScheduleEntry {
   term?: ActiveTerm
   /** 어디서 왔나. 새 자료가 와도 사용자 수정을 덮지 않도록 출처와 판을 남긴다. */
   source?: { ref: string; version: string }
+  /** 부모가 출처 값을 고치거나 지운 기록. 새 판 자료가 와도 이 필드는 덮지 않는다(S03). */
+  userOverride?: UserOverride
+}
+
+export interface UserOverride {
+  start?: Minutes | null
+  end?: Minutes | null
+  /** 지운 일정. 동기화 때 되살아나지 않게 지우지 않고 표시만 한다. */
+  deleted?: boolean
+}
+
+/**
+ * 반복 일정을 하루만 바꾸는 것(S03). cancel은 그날 빠짐, replace는 그날만 시각이 다름,
+ * makeup은 원래 일정을 그날 한 번 더 하는 보강이다. 순서: 기본 주간 → 날짜 덮어쓰기 → 이것.
+ */
+export interface ScheduleException {
+  id: string
+  /** YYYY-MM-DD */
+  date: string
+  kind: 'cancel' | 'replace' | 'makeup'
+  /** cancel·replace는 바꿀 일정, makeup은 보강의 원래 일정. */
+  entryId: string
+  start?: Minutes | null
+  end?: Minutes | null
 }
 
 /** 부모가 정한 오후 구간. 하루 전체를 빈칸으로 채우지 않는다(§6.2). */
@@ -57,7 +81,7 @@ export interface PlanningWindow {
   to: Minutes
 }
 
-/** 날짜 단위로 기본 주간표를 덮는 것. 반복 일정의 일회 취소·보강은 S03에서 다룬다. */
+/** 날짜 단위로 기본 주간표를 덮는 것. 일정 하나의 일회 취소·보강은 ScheduleException이다. */
 export interface DayContext {
   /** 방학·휴업일. 학기 중 일정이 빠진다. */
   vacation?: boolean

@@ -63,14 +63,14 @@ npm run typecheck
 
 ## Uncommitted Work At Handoff
 
-### 2026-10-10: 시·도 클릭 시 시·군·구 목록 시트 · 지도 시트의 지역 허브 링크
+### 2026-10-10: 시·도 클릭 시 시·군·구 목록 시트 · 지도 시트의 지역 허브 링크 (`417206a`, 운영 `a269d25`)
 
 - 줌 아웃 시·도 마커 클릭 → 줌 11 이동 + 하단 시트에 시·군·구 목록(1학년 합계, 80+/80 미만 학교 수).
   `DistrictNeighborhoodSheet`에 `district`를 안 주면 시·도 단계(`historyKey` `region`). 행 클릭은 기존 구 시트로,
   뒤로 가기는 구 → 시·도 목록 → 원래 시점. 줌 10 이하로 나가면 해제, 13 이상에선 숨김
 - 시·도·구 시트 아래 "○○ 초등학교 전체 비교" 링크 → 지역 허브(`/area/대구`, `/area/서울/강남구`). 내부 링크 보강용.
   `App` → `MapContainer` → `MarkerManager`로 `navigate`를 내려 앱 안에서 연다
-- 검증: typecheck·lint·build, `localhost:3000` public smoke PASS(시·도 시트·허브 링크 검사 추가)
+- 검증: typecheck·lint·build, 운영 public smoke PASS 107건(시·도 시트·허브 링크 검사 추가), 운영에서 허브 링크 → `/area/대전` → 뒤로 가기로 시트 복귀 확인
 
 ### 2026-10-10: 구·동 시트 닫기 · 광역시 학교 이름의 도시 접두 생략 (`47e7aaf`·`e3c0698`, 운영 `ee90595`)
 

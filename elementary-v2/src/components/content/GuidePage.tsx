@@ -1,9 +1,11 @@
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import { ArrowLeft, Info } from 'lucide-react'
 import type { Guide } from '../../content'
 import { guidePath, VIEW_PATHS } from '../../utils/urlState'
 import { STAGE_LABELS } from '../../utils/entryYear'
 import { markGuideRead } from '../../utils/profile'
+import { track } from '../../utils/analytics'
+import { useSeenOnce } from '../care/useSeenOnce'
 import ShareButton from '../ui/ShareButton'
 import ChecklistBanner from './ChecklistBanner'
 import SourceList from './SourceList'
@@ -23,6 +25,9 @@ interface GuidePageProps {
 export default function GuidePage({ guide, onNavigate }: GuidePageProps) {
   // Opening a guide counts as reading it, for the hub's read marks. On this device only.
   useEffect(() => markGuideRead(guide.slug), [guide.slug])
+  // 끝(근거 자료)까지 내려 읽었으면 완료로 센다 — 측정 계획 A-02의 admin_content_complete.
+  const endRef = useRef<HTMLDivElement>(null)
+  useSeenOnce(endRef, guide.slug, () => track('admin_content_complete', { content_id: guide.slug }))
 
   return (
     <section className="app-destination app-page content-page" aria-labelledby="guide-title">
@@ -42,7 +47,7 @@ export default function GuidePage({ guide, onNavigate }: GuidePageProps) {
         {guide.summary ? <GuideSummary summary={guide.summary} /> : null}
         <div className="content-body" dangerouslySetInnerHTML={{ __html: guide.html }} />
         <ChecklistBanner onNavigate={onNavigate} />
-        <SourceList sources={guide.sources} verifiedAt={guide.verifiedAt} />
+        <div ref={endRef}><SourceList sources={guide.sources} verifiedAt={guide.verifiedAt} /></div>
       </article>
     </section>
   )

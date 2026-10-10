@@ -2252,3 +2252,12 @@
 .learn-signals__note {
   margin-top: 10px;
 }
+
+.learn-editorial-note {
+  margin: 18px 0 0;
+  border-top: 1px dashed var(--warm-border-strong);
+  padding-top: 10px;
+  color: var(--warm-muted);
+  font-size: 12px;
+  line-height: 1.6;
+}
