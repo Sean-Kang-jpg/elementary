@@ -255,3 +255,21 @@ three tables; `--apply` loaded 35 / 175 / 60 rows (snapshot 2026-10-08).
 - Migration reports an existing incompatible column or constraint.
 - Anonymous users can read history or ETL-run tables.
 - Remote row counts differ from the audited local snapshot.
+
+## 27: social links (2026-10-10) — 운영 적용 대기
+
+`sql/27_create_social_links.sql` adds `social_links`: our own Instagram posts (carousel, reel)
+linked to an 어디초 page by its permanent key — learning/guide slug or the ministry `school_id`
+(never the school name, so same-name schools stay apart). Anonymous visitors read visible rows;
+only accounts in `etl_admin_users` write, through `is_etl_admin()` (SQL 12). The admin page is
+`/admin/social`. The frontend fails open: before this runs, pages show no card and the admin page
+says the table is missing, so the code can ship first.
+
+1. Apply in the SQL editor after the user approves. Run after 12.
+2. As anon: `GET /rest/v1/social_links?select=*` → 200 `[]`; `POST` → 401/42501.
+3. Signed in as an ETL admin at `/admin/social`: add one link, hide it, confirm the anon GET no
+   longer returns it, delete it.
+4. When it is live, add `social_links` to `docs/architecture/DATA_CONTRACTS.md` and the git-root
+   `CLAUDE.md` list.
+
+Rollback: `DROP TABLE social_links;` — nothing else references it.

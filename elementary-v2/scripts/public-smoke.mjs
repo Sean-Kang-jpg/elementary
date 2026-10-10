@@ -752,6 +752,9 @@ try {
   run(['open', new URL('/privacy', baseUrl).toString()])
   await waitFor("document.querySelector('#privacy-title')", '/privacy opens the privacy policy')
   assertPage("!document.querySelector('.privacy-page__inner').innerText.includes('미정')", 'the privacy policy has every operator value filled in')
+  // The Instagram link admin (SQL 27) asks a signed-out visitor to sign in and shows nothing else.
+  run(['open', new URL('/admin/social', baseUrl).toString()])
+  await waitFor("document.querySelector('.etl-login-panel h1')?.textContent === '인스타그램 연결 관리' && !document.querySelector('.social-admin__table')", '/admin/social asks a signed-out visitor to sign in')
 
   const interactionErrors = JSON.parse(run(['--json', 'errors', '--clear'], { quiet: true }))
   const unexpectedErrors = interactionErrors.data.errors.filter((error) => (

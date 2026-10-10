@@ -53,7 +53,7 @@ const runDuration = (run: EtlRun) => {
   return seconds >= 60 ? `${Math.floor(seconds / 60)}분 ${seconds % 60}초` : `${seconds}초`
 }
 
-function SignIn({ onSuccess }: { onSuccess: () => void }) {
+export function SignIn({ onSuccess, mark = 'ETL', title = '데이터 운영 모니터' }: { onSuccess: () => void; mark?: string; title?: string }) {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
@@ -75,8 +75,8 @@ function SignIn({ onSuccess }: { onSuccess: () => void }) {
   return (
     <main className="etl-login-shell">
       <form className="etl-login-panel" onSubmit={submit}>
-        <div className="etl-brand-mark">ETL</div>
-        <h1>데이터 운영 모니터</h1>
+        <div className="etl-brand-mark">{mark}</div>
+        <h1>{title}</h1>
         <label>
           이메일
           <input type="email" value={email} onChange={(event) => setEmail(event.target.value)} autoComplete="username" required />

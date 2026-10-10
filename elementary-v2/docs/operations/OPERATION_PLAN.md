@@ -101,6 +101,13 @@ E04 조사 결과(학교알리미는 전년도 예상값, 확정값은 2월 이�
 - [ ] A2-E07 학원 초등대상 3등급과 이동시간 데이터 접근/품질 조사. 기존 거리 contract 유지.
 - [ ] A2-I01 보호 경로를 유지한 5GNB(홈/학교 찾기/입학 준비/학습 준비/MY, 2026-10-08 사용자 결정: 홈 유지)/학교→학습 준비 시간표 조회→MY 시간표·대안 UI 구체안과 route fixture 작성. 실제 라우트 적용 전 영향 재확인.
 
+### 인스타그램 연동 (2026-10-10 사용자 결정)
+
+- [x] IG-01 1단계 코드: 우리 게시물(캐러셀·릴스) ↔ 어디초 페이지 연결. 페이지는 영구 키로(학습·가이드 slug, 학교 `school_id`) — 같은 이름 학교 문제 없음. 링크 카드만(임베드 없음). `/admin/social`(etl_admin_users만 쓰기), `sql/27_create_social_links.sql`, `SocialLinks` 카드(학습 글·가이드·학교 상세), 인스타 주소 정규화 테스트 3개. 테이블 없으면 카드 없음(fail-open). lint/typecheck/build, 로컬 smoke 107 PASS. 지역 허브는 서버 HTML 구조라 2단계로.
+- [ ] IG-02 SQL 27 운영 적용(사용자) → anon 쓰기 거부·숨김 확인 → DATA_CONTRACTS·root CLAUDE.md 공개 목록에 추가.
+- [ ] IG-03 2단계: 계정이 생긴 뒤 캡션의 어디초 주소로 자동 연결(Meta 앱·토큰 60일 갱신·Actions secret), 지역 허브 표시.
+- 결정 기록: 학교 이름 해시태그 피드는 하지 않음(API 30개/7일·24시간 제한, 동명 학교, 아동 사진·사생활, 원문 재게시 금지). 학교 공식 계정 대신 학교 홈페이지 링크(2026-10-10 운영 반영).
+
 ### Phase 2 — 시간표 MVP와 가족 상태
 
 - [x] A2-S01 planning/application/actual 및 evidence/participation/transition 독립 상태 타입·fixture 작성. 2026-10-08: `src/utils/schedule/types.ts`(세 축·전이 규칙·학기/방학·오후 구간·날짜 덮어쓰기), `fromSchoolData.ts`(SQL 26 하교·돌봄 → 일정; 하교는 estimated, 학교 확인 요일은 unknown, 돌봄 기본·연장 분리, 기본 참여 considering). fixture는 반안초 운영 값 모양.

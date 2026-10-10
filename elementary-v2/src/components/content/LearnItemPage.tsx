@@ -14,6 +14,7 @@ import ShareButton from '../ui/ShareButton'
 import { track } from '../../utils/analytics'
 import { useSeenOnce } from '../care/useSeenOnce'
 import SourceList from './SourceList'
+import SocialLinks from './SocialLinks'
 import { followInternalLink, followLink } from './contentLinks'
 
 interface LearnItemPageProps {
@@ -101,6 +102,8 @@ export default function LearnItemPage({ item, onNavigate }: LearnItemPageProps) 
 
         <div className="content-body" dangerouslySetInnerHTML={{ __html: item.html }} />
         <p className="learn-editorial-note">{editorialNote(item.html)}</p>
+
+        <SocialLinks targetType="learn" targetKey={item.slug} />
 
         <section className="learn-signals" aria-labelledby="learn-signals-title">
           <h2 id="learn-signals-title"><MessageCircle size={17} aria-hidden="true" />부모들의 반응</h2>
