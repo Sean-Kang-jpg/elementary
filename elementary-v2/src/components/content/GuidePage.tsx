@@ -9,6 +9,7 @@ import { useSeenOnce } from '../care/useSeenOnce'
 import ShareButton from '../ui/ShareButton'
 import ChecklistBanner from './ChecklistBanner'
 import SourceList from './SourceList'
+import SocialLinks from './SocialLinks'
 import AppliesTo from './AppliesTo'
 import GuideSummary from './GuideSummary'
 import { followInternalLink, followLink } from './contentLinks'
@@ -46,6 +47,7 @@ export default function GuidePage({ guide, onNavigate }: GuidePageProps) {
         ) : null}
         {guide.summary ? <GuideSummary summary={guide.summary} /> : null}
         <div className="content-body" dangerouslySetInnerHTML={{ __html: guide.html }} />
+        <SocialLinks targetType="guide" targetKey={guide.slug} />
         <ChecklistBanner onNavigate={onNavigate} />
         <div ref={endRef}><SourceList sources={guide.sources} verifiedAt={guide.verifiedAt} /></div>
       </article>

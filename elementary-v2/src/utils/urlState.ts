@@ -105,7 +105,7 @@ const safeDecode = (value: string): string => {
 }
 
 export const parseRoute = (pathname: string, search = ''): Route => {
-  if (pathname === '/admin/etl' || new URLSearchParams(search).get('view') === 'etl') {
+  if (pathname === '/admin/etl' || pathname === '/admin/social' || new URLSearchParams(search).get('view') === 'etl') {
     return { kind: 'admin' }
   }
 

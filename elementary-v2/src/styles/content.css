@@ -2261,3 +2261,65 @@
   font-size: 12px;
   line-height: 1.6;
 }
+
+/* ---- 어디초 인스타그램 게시물 링크 (SQL 27) -------------------------------- */
+
+.social-links {
+  margin-top: 24px;
+  border: 1px solid var(--warm-border);
+  border-radius: 16px;
+  padding: 12px 14px;
+  background: var(--warm-surface);
+}
+
+.social-links--compact {
+  margin-top: 0;
+}
+
+.social-links h2 {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0 0 8px;
+  color: var(--warm-text);
+  font-size: 15px;
+  font-weight: 750;
+}
+
+.social-links ul {
+  display: grid;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.social-links a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-radius: 12px;
+  padding: 8px 10px;
+  color: var(--warm-text);
+  background: #faf6f2;
+  text-decoration: none;
+}
+
+.social-links a:hover {
+  background: var(--warm-accent-soft);
+}
+
+.social-links strong,
+.social-links small {
+  display: block;
+}
+
+.social-links strong {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.social-links small {
+  color: var(--warm-muted);
+  font-size: 12px;
+}

@@ -530,11 +530,15 @@ const TITLES: Record<AppView, string> = {
 }
 
 const EtlMonitoringPage = lazy(() => import('./components/admin/EtlMonitoringPage'))
+const SocialAdminPage = lazy(() => import('./components/admin/SocialAdminPage'))
 
 function App() {
   const isMonitoringRoute = window.location.pathname === '/admin/etl'
     || new URLSearchParams(window.location.search).get('view') === 'etl'
 
+  if (window.location.pathname === '/admin/social') {
+    return <Suspense fallback={<main className="etl-center-state">불러오는 중</main>}><SocialAdminPage /></Suspense>
+  }
   return isMonitoringRoute
     ? <Suspense fallback={<main className="etl-center-state">모니터링 로딩 중</main>}><EtlMonitoringPage /></Suspense>
     : <MapApplication />
