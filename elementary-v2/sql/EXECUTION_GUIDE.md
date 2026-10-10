@@ -4,7 +4,7 @@ This guide applies to the `operational-v1` school, apartment, and assignment mas
 
 Current completion status and pending work are tracked in [`docs/operations/OPERATION_PLAN.md`](../docs/operations/OPERATION_PLAN.md). Update that checklist after each migration or production ETL run.
 
-SQL `26_create_apartment_identity_and_transactions.sql` adds the private persistent
+SQL `27_create_apartment_identity_and_transactions.sql` adds the private persistent
 apartment entity/crosswalk and MOLIT transaction contract. It is additive and its
 monthly schedule starts disabled. Apply it only with
 [`APARTMENT_TRANSACTION_ETL_PLAN.md`](../docs/operations/APARTMENT_TRANSACTION_ETL_PLAN.md):
@@ -254,6 +254,33 @@ Impact, checks and rollback: `docs/research/audit2/SCHOOL_DAY_CARD_CONTRACT_2026
 
 Applied 2026-10-08 by the user in the SQL editor. Anon GET 200; anon POST/PATCH/DELETE `42501` on all
 three tables; `--apply` loaded 35 / 175 / 60 rows (snapshot 2026-10-08).
+
+## 27: persistent apartment identity and transactions
+
+`sql/27_create_apartment_identity_and_transactions.sql` is additive and starts its
+monthly schedule disabled. Apply it only after the local entity backfill and transaction
+quality audits pass. Raw trades, identities, decisions and summaries remain service-role
+only; anonymous users can read only approved rows copied to
+`apartment_transaction_monthly_serving`.
+
+After applying SQL 27, run the first load without publication:
+
+```bash
+python etl/run_apartment_transaction_etl.py --apply --month YYYYMM ...
+```
+
+Confirm that the upload report's `raw` and `links` counts equal every source snapshot's
+`row_count`, inspect all `conflict` and `review` decisions, and confirm summaries remain
+`hold`. Then repeat the same input with `--apply --publish`. Publication is refused below
+the 95% deterministic-link gate or when conflicts exist. The serving refresh also raises
+and rolls back if an approved summary cannot resolve to exactly one public apartment key.
+
+From an anonymous client, reads of `apartment_entity`, `apartment_source_identity`,
+`apartment_identity_decision`, `apartment_transaction_source_snapshot`,
+`apartment_transaction_raw`, `apartment_transaction_link`, and
+`apartment_transaction_monthly_summary` must be refused. Only
+`apartment_transaction_monthly_serving` is an anonymous read contract; anonymous execution
+of `refresh_apartment_transaction_monthly_serving()` must also be refused.
 
 ## Stop Conditions
 

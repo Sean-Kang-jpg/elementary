@@ -59,6 +59,10 @@ CREATE TABLE IF NOT EXISTS apartment_identity_decision (
 
 CREATE INDEX IF NOT EXISTS apartment_identity_decision_queue_idx
     ON apartment_identity_decision (decision_status, source_system, source_as_of DESC);
+CREATE UNIQUE INDEX IF NOT EXISTS apartment_identity_decision_idempotency_idx
+    ON apartment_identity_decision (
+        source_system, source_id, matcher_version, source_as_of, decision_status
+    );
 
 CREATE TABLE IF NOT EXISTS apartment_entity_lineage (
     lineage_id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
@@ -174,13 +178,18 @@ CREATE OR REPLACE FUNCTION refresh_apartment_transaction_monthly_serving()
 RETURNS INTEGER
 LANGUAGE plpgsql
 SECURITY DEFINER
-SET search_path = public, pg_temp
+SET search_path = ''
 AS $$
-DECLARE inserted_rows INTEGER;
+DECLARE
+    inserted_rows INTEGER;
+    expected_rows INTEGER;
 BEGIN
     PERFORM pg_advisory_xact_lock(hashtext('refresh_apartment_transaction_monthly_serving'));
-    DELETE FROM apartment_transaction_monthly_serving WHERE TRUE;
-    INSERT INTO apartment_transaction_monthly_serving (
+    SELECT COUNT(*) INTO expected_rows
+      FROM public.apartment_transaction_monthly_summary
+     WHERE quality_status = 'approved';
+    DELETE FROM public.apartment_transaction_monthly_serving WHERE TRUE;
+    INSERT INTO public.apartment_transaction_monthly_serving (
         complex_public_key, deal_month, area_band, transaction_count,
         median_amount_10k_krw, mean_amount_10k_krw,
         median_amount_per_m2_10k_krw, latest_contract_date, source_as_of, updated_at
@@ -190,19 +199,24 @@ BEGIN
         summary.area_band, summary.transaction_count, summary.median_amount_10k_krw,
         summary.mean_amount_10k_krw, summary.median_amount_per_m2_10k_krw,
         summary.latest_contract_date, summary.source_as_of, NOW()
-    FROM apartment_transaction_monthly_summary AS summary
-    JOIN apartment_source_identity AS identity
+    FROM public.apartment_transaction_monthly_summary AS summary
+    JOIN public.apartment_source_identity AS identity
       ON identity.entity_id = summary.entity_id
      AND identity.source_system = 'apt_base'
      AND identity.decision_status = 'confirmed'
-    JOIN apartment_public_key_atom AS atoms ON atoms.apt_cd = identity.source_id
-    JOIN apartment_public_key AS keys ON keys.public_key = atoms.public_key
+    JOIN public.apartment_public_key_atom AS atoms ON atoms.apt_cd = identity.source_id
+    JOIN public.apartment_public_key AS keys ON keys.public_key = atoms.public_key
     WHERE summary.quality_status = 'approved'
     GROUP BY summary.entity_id, summary.deal_month, summary.area_band,
         summary.transaction_count, summary.median_amount_10k_krw,
         summary.mean_amount_10k_krw, summary.median_amount_per_m2_10k_krw,
         summary.latest_contract_date, summary.source_as_of;
     GET DIAGNOSTICS inserted_rows = ROW_COUNT;
+    IF inserted_rows <> expected_rows THEN
+        RAISE EXCEPTION
+            'transaction serving refresh produced % rows, expected % approved summaries; public keys are missing',
+            inserted_rows, expected_rows;
+    END IF;
     RETURN inserted_rows;
 END;
 $$;
@@ -267,15 +281,15 @@ RETURNS TABLE (source_name TEXT, source_as_of DATE, refreshed_at TIMESTAMPTZ)
 LANGUAGE sql
 STABLE
 SECURITY DEFINER
-SET search_path = public
+SET search_path = ''
 AS $$
     SELECT schedules.source_name,
         (SELECT max(snapshots.source_as_of)
-           FROM etl_source_snapshots AS snapshots
+           FROM public.etl_source_snapshots AS snapshots
           WHERE snapshots.source_name = schedules.source_name
             AND snapshots.status IN ('validated', 'expired')),
         schedules.last_success_at
-      FROM etl_schedules AS schedules
+      FROM public.etl_schedules AS schedules
      WHERE schedules.enabled
        AND schedules.source_name IN (
            'kapt-basic', 'schoolinfo-basic', 'schoolinfo-grade-students',

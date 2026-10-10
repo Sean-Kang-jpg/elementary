@@ -1,6 +1,6 @@
 {
-  "audit_date": "2026-10-09",
-  "matcher_version": "molit-apartment-v3",
+  "audit_date": "2026-10-10",
+  "matcher_version": "molit-apartment-v4",
   "publication_gate": 0.95,
   "samples": [
     {
@@ -94,15 +94,19 @@
     "merged_gwangju_jeonnam": {
       "legacy_lawd_cd_tested": ["29170", "29200", "46110", "46150", "46820", "46840"],
       "returned_rows": 0,
-      "status": "excluded_from_quality_denominator_pending_post-merger MOLIT district-code confirmation"
+      "current_lawd_cd_sample": ["12110", "12270", "12300", "12330", "12790", "12810"],
+      "transactions": 1005,
+      "deterministic_links": 965,
+      "deterministic_link_rate": 0.960199,
+      "apt_seq_crosswalk_conflicts": 0,
+      "publication_allowed": true,
+      "status": "post-merger codes confirmed from the 2026-07-01 MOIS legal-dong transition"
     }
   },
   "representative_sample_gate_passed": true,
   "production_publication_allowed": false,
   "blocking_reasons": [
-    "The 95% result must be reproduced on provincial and rural samples before nationwide publication.",
-    "Post-merger MOLIT district codes for Gwangju and Jeonnam are not yet resolved.",
-    "SQL 26 has not been parsed or applied on production Postgres.",
+    "SQL 27 has not been applied on production Postgres.",
     "The first production entity backfill must be rerun with an export of existing identities."
   ]
 }

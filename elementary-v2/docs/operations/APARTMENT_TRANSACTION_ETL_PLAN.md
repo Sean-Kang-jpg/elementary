@@ -12,15 +12,15 @@ Last updated: 2026-10-10
 - [x] 이름-only fallback을 자동 확정에서 제외
 - [x] 확정 `aptSeq` 재사용 시 주소 충돌을 검토 큐로 전환
 - [x] 동일 fingerprint 정상 중복 거래 보존 및 취소 거래 집계 제외 테스트
-- [x] 영속 UUID/crosswalk/판정/계보/private raw/public summary SQL 26 작성
+- [x] 영속 UUID/crosswalk/판정/계보/private raw/public summary SQL 27 작성
 - [x] 재현 가능한 UUID backfill planner와 충돌 보류 테스트 작성
-- [ ] SQL 26 운영 적용
+- [ ] SQL 27 운영 적용
 - [x] 최신 전국 로컬 master entity backfill dry-run 및 충돌 0 확인
 - [x] 전국 master의 K-apt 보강 누락 회귀 탐지 및 missing-atom overlay 구현
 - [x] 도로명 단일 후보의 형식·지역 접두어 차이 검수 및 matcher v3 반영
 - [x] 2026-09 최신 4지역 표본 재수집 및 crosswalk 승계 효과 측정
 - [x] 2026-08/09 네 지역 표본 결정적 연결률 95% 이상 재검증
-- [ ] 지방·군 지역 확장 표본에서 95% 이상 재검증
+- [x] 지방·군 지역 확장 표본에서 95% 이상 재검증
 - [x] 확장 표본 `aptSeq` 2건을 공식 도로명 범위 identity로 분리
 - [x] 광주·전남 통합 MOLIT 시군구 코드 확인 및 6개 지역 리허설(96.02%, 충돌 0)
 - [ ] 조건 통과 시 `molit-apartment-trade` schedule 활성화
@@ -38,6 +38,7 @@ Last updated: 2026-10-10
 확정한다. 같은 도로명주소를 공유하는 두 단지 이상은 자동 연결하지 않는다.
 - [ ] 최초 전국 월 snapshot private Storage 보존 및 월별 재처리 리허설
 - [ ] approved summary만 serving refresh 후 frontend 계약/UI 활성화
+- [x] private 적재와 명시적 public publish를 분리한 idempotent uploader 구현
 
 ## 판정 상태
 
@@ -54,7 +55,7 @@ Last updated: 2026-10-10
 
 ## 운영 순서
 
-1. SQL 26을 SQL editor에서 적용한다. 기존 계약을 바꾸지 않는 추가형이다.
+1. SQL 27을 SQL editor에서 적용한다. 기존 계약을 바꾸지 않는 추가형이다.
 2. 최신 operational master에 보강 파일의 누락 `apt_cd`만 overlay하고 DB crosswalk export로
    `plan_apartment_entity_crosswalk.py`를 두 번 실행해 byte-equivalent 결과를 확인한다.
 3. entity와 `apt_base` identity를 service role로 upsert한다. conflict가 1건이라도
@@ -67,6 +68,16 @@ Last updated: 2026-10-10
    `hold`로 적재하고 public serving을 갱신하지 않는다.
 7. 통과 시 approved summary만 공개 키로 변환해 serving을 갱신한다.
 
+SQL 27 적용 후 첫 실행은 공개 갱신 없이 진행한다.
+
+```bash
+python etl/run_apartment_transaction_etl.py --apply --month YYYYMM ...
+```
+
+원본 Storage 보존, entity/identity, raw/link 및 `hold` summary의 원격 건수를 검수한
+뒤에만 같은 입력으로 `--apply --publish`를 실행한다. `--publish`는 단독으로 사용할
+수 없고, 연결률 95% 또는 conflict gate가 실패하면 serving RPC를 호출하지 않는다.
+
 ## 현재 보류 사유
 
 matcher v3 재측정에서 2026-08은 654/683(95.75%), 2026-09는
@@ -78,7 +89,7 @@ matcher v3 재측정에서 2026-08은 654/683(95.75%), 2026-09는
 원자를 46,157 entity로 계획했고 기존 crosswalk가 없는 최초 적재 기준 충돌은
 0건이었다. K-apt 17,866건은
 관리단지 코드라는 이유만으로 물리 실체를 자동 확정하지 않고 review 상태로
-계획했다. 운영 DB backfill은 SQL 26 적용 후 기존 crosswalk export를 넣어 다시
+계획했다. 운영 DB backfill은 SQL 27 적용 후 기존 crosswalk export를 넣어 다시
 실행해야 하며, 그 결과가 최종 gate다.
 
 8월의 충돌 없는 `aptSeq` 후보 282개를 승인한 승계 시뮬레이션은 9월
@@ -89,8 +100,11 @@ name-only 2건이다. 지방·군 표본과 신축/K-apt 미등록 단지는 별
 제주시·강원 홍천/평창 1,338건 중 1,293건(96.64%)을 연결했다. 대구
 `27260-1422`와 울산 `31140-1522`는 하나의 `aptSeq`가 공식 도로명이 다른
 복수 단지를 포괄한 사례라 address-scoped identity로 분리했고 conflict는 0건이다.
-광주·전남의 기존 코드 요청은 통합 이후 0건이므로 모수에서 제외하고 새 MOLIT
-시군구 코드 계약을 확인해야 한다.
+광주·전남은 행정안전부 2026-07-01 법정동 변경표의 신코드로 다시 수집했다.
+목포·광주 남구·북구·광산구·해남·무안 1,005건 중 965건(96.02%)이 결정적으로
+연결됐고 conflict는 0건이었다. 전국 마스터에서 정확한 도로명과 건물번호가 하나의
+단지에만 대응하는 37건을 `unique_road_address`로 확정했으며, 공유 주소 3건과
+미연결 37건은 계속 검수 대상으로 남겼다.
 
 전국 master 단독 실행은 최신 K-apt 보강 원자 2개를 누락하여 9월 거래 3건을
 추가로 미연결 처리했다. 기존 보강 파일 전체를 단순 합치지 않고, 전국 master에

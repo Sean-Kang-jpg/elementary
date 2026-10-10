@@ -2,7 +2,7 @@
 
 The production schedule is disabled while linkage is below the publication
 gate.  Rehearsal is fully functional; ``--apply`` refuses publication unless
-the quality report passes and SQL 26 has been applied by operations.
+the quality report passes and SQL 27 has been applied by operations.
 """
 
 from __future__ import annotations
@@ -77,6 +77,10 @@ def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--rehearse", action="store_true")
     parser.add_argument("--apply", action="store_true")
+    parser.add_argument(
+        "--publish", action="store_true",
+        help="with --apply, approve summaries and refresh public serving after all gates pass",
+    )
     parser.add_argument("--month", default=previous_month(date.today()))
     parser.add_argument("--lawd-cd", action="append", default=[])
     parser.add_argument("--master", type=Path, default=DEFAULT_MASTER)
@@ -91,11 +95,30 @@ def main() -> None:
     args = parser.parse_args()
     if args.apply == args.rehearse:
         raise ValueError("choose exactly one of --rehearse or --apply")
+    if args.publish and not args.apply:
+        raise ValueError("--publish requires --apply")
     master_paths = [args.master, *args.master_supplement]
     master = load_master(master_paths)
     if args.raw:
-        trades = [row for path in args.raw for row in json.loads(path.read_text(encoding="utf-8"))]
-        snapshots = [{"path": str(path), "row_count": len(json.loads(path.read_text(encoding="utf-8")))} for path in args.raw]
+        trades = []
+        snapshots = []
+        for path in args.raw:
+            rows = json.loads(path.read_text(encoding="utf-8"))
+            lawd_codes = {row.get("sggCd") or row.get("법정동시군구코드") for row in rows}
+            lawd_codes.discard(None)
+            if len(lawd_codes) != 1:
+                raise ValueError(f"{path}: expected exactly one source district, got {sorted(lawd_codes)}")
+            payload = path.read_bytes()
+            lawd_cd = next(iter(lawd_codes))
+            trades.extend(rows)
+            snapshots.append({
+                "lawd_cd": lawd_cd,
+                "source_month": f"{args.month[:4]}-{args.month[4:]}-01",
+                "source_as_of": date.today().isoformat(),
+                "row_count": len(rows),
+                "content_sha256": hashlib.sha256(payload).hexdigest(),
+                "path": str(path),
+            })
     else:
         if not args.api_key:
             from profile_apartment_transaction_source import api_key
@@ -125,9 +148,21 @@ def main() -> None:
     )
     print(json.dumps(report, ensure_ascii=False, indent=2))
     if args.apply:
-        if not result["quality"]["publication_allowed"]:
-            raise RuntimeError("publication gate failed; private snapshot retained and public serving unchanged")
-        raise RuntimeError("SQL 26/private backfill must be verified before enabling database upload")
+        if args.publish and not result["quality"]["publication_allowed"]:
+            raise RuntimeError("publication gate failed; public serving unchanged")
+        from upload_apartment_transactions import apply as upload
+        upload_report = upload(
+            result,
+            master,
+            snapshots,
+            date.today().isoformat(),
+            publish=args.publish,
+        )
+        report["upload"] = upload_report
+        report_path.write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8")
+        print(json.dumps(upload_report, ensure_ascii=False, indent=2))
+        print("transaction ETL upload complete" + ("; public serving refreshed" if args.publish else "; summaries remain private on hold"))
+        return
     print("transaction ETL rehearsal complete; raw rows remain private and nothing was uploaded")
 
 

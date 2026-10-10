@@ -36,7 +36,7 @@ SOURCE_GROUPS = {
     # Nationwide in one run, not per scope: run_academy_refresh.py replaces the
     # academy serving tables as a whole (docs/operations/ACADEMY_REFRESH_PLAN.md).
     "academy": {"neis-academy"},
-    # Disabled by SQL 26 until the deterministic linkage gate passes.
+    # Disabled by SQL 27 until the deterministic linkage gate passes.
     "transaction": {"molit-apartment-trade"},
 }
 
