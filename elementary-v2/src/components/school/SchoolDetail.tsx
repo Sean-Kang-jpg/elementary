@@ -1,4 +1,4 @@
-import { ArrowLeft, ChevronRight, GraduationCap, LayoutGrid, LoaderCircle, MapPin, RefreshCw, Star, UserRound, Users } from 'lucide-react'
+import { ArrowLeft, ChevronRight, ExternalLink, Globe, GraduationCap, LayoutGrid, LoaderCircle, MapPin, RefreshCw, Star, UserRound, Users } from 'lucide-react'
 import React, { useEffect, useMemo, useState } from 'react'
 import { School } from '../../types'
 import { useAppContext } from '../../contexts/AppContext'
@@ -61,6 +61,18 @@ const SchoolDetail: React.FC<SchoolDetailProps> = ({ school, isOpen, onClose, on
   // 지원 입학이라 배정 단지가 없다 — 표본 대조에서 공립은 25개 중 22개가
   // 배정 단지를 갖는 반면 국립은 17개 중 1개, 사립은 25개 중 1개였다.
   // 서울교육대학교부설초등학교는 국립, 중앙대학교사범대학부속초등학교는 사립이다.
+  // 학교알리미·NEIS의 홈페이지 주소. http(s)가 아닌 값(빈 문자열, 'http://' 같은 자리 표시)은 링크로 만들지 않는다.
+  const homepage = (() => {
+    const raw = school?.homepage?.trim()
+    if (!raw) return null
+    const withScheme = /^https?:\/\//i.test(raw) ? raw : `http://${raw}`
+    try {
+      const url = new URL(withScheme)
+      return url.hostname.includes('.') ? url.toString() : null
+    } catch {
+      return null
+    }
+  })()
   const assignsByZone = school?.establishment_type === '공립'
     && school.school_type === '초등학교'
   const hasSchoolInformation = Boolean(school?.student_data_status)
@@ -279,6 +291,21 @@ const SchoolDetail: React.FC<SchoolDetailProps> = ({ school, isOpen, onClose, on
               <MapPin className="mt-0.5 flex-none" size={16} aria-hidden="true" />
               <span>{school.address || `${school.city || ''} ${school.district || ''}`}</span>
             </div>
+            {homepage && (
+              // 공지사항·가정통신문은 학교 홈페이지가 원본이다. 서울 학교 홈페이지(sen.es.kr)는 robots.txt가
+              // 첫 화면 밖의 수집을 막으므로 내용을 가져오지 않고 링크로 보낸다(2026-10-10).
+              <a
+                href={homepage}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => track('open_school_homepage', { school_id: school.school_id })}
+                className="mt-1.5 inline-flex items-center gap-2 text-sm font-medium text-indigo-700 underline-offset-2 hover:underline"
+              >
+                <Globe className="flex-none" size={16} aria-hidden="true" />
+                학교 홈페이지 <span className="text-xs font-normal text-gray-500">공지사항·가정통신문</span>
+                <ExternalLink size={13} aria-hidden="true" />
+              </a>
+            )}
             {school.student_statistics_year && (
               <p className="mt-1 text-xs text-gray-500">{school.student_statistics_year}년 학생 통계</p>
             )}
