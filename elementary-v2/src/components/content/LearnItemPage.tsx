@@ -30,6 +30,11 @@ const ageRange = (ages: number[]): string => {
   return sorted[0] !== last ? `만 ${sorted[0]}~${last}세` : `만 ${sorted[0]}세`
 }
 
+/** 공식 사실과 어디초 판단을 구분해 알린다(P2-07). 학교 단원 절이 있는 글만 앞부분을 붙인다. */
+export const editorialNote = (html: string): string => (html.includes('<h2>학교에서는 이렇게 배워요</h2>')
+  ? '‘학교에서는 이렇게 배워요’는 아래 근거 자료의 내용이고, ‘좋은 점·아쉬운 점·우리 집이라면’은 그 사실을 바탕으로 한 어디초의 편집 판단입니다.'
+  : '‘좋은 점·아쉬운 점·우리 집이라면’은 아래 근거 자료를 바탕으로 한 어디초의 편집 판단입니다.')
+
 /** 다음에 볼 것: 학습 콘텐츠와 가이드를 같은 모양으로. 빌드가 존재를 확인했다. */
 const relatedEntry = (path: string): { path: string; title: string } | null => {
   const learn = path.match(/^\/learn\/(.+)$/)
@@ -89,6 +94,7 @@ export default function LearnItemPage({ item, onNavigate }: LearnItemPageProps) 
         </dl>
 
         <div className="content-body" dangerouslySetInnerHTML={{ __html: item.html }} />
+        <p className="learn-editorial-note">{editorialNote(item.html)}</p>
 
         <section className="learn-signals" aria-labelledby="learn-signals-title">
           <h2 id="learn-signals-title"><MessageCircle size={17} aria-hidden="true" />부모들의 반응</h2>
