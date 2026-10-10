@@ -76,7 +76,7 @@ E04 조사 결과(학교알리미는 전년도 예상값, 확정값은 2월 이�
   - [x] A2-B04-a 공개 provider 확인: email=true, kakao/google/anonymous_users/phone=false; disable_signup=false, mailer_autoconfirm=false. 설정 변경·가입·로그인 없음.
   - [ ] A2-B04-b 관리 설정의 site_url/redirect allow-list/manual identity linking 및 실제 callback 확인. **담당: 다른 팀원(2026-10-08 사용자 지정)** — 설정 순서는 [AUTH_PROVIDER_SETUP](AUTH_PROVIDER_SETUP.md). 공개 응답/현재 연결 도구로 확인 불가; 로그인 구현/배포 전 gate.
 - [x] A2-B05 운영 public smoke 최종 exit 0/PASS(세션 88596), wherecho.co.kr 검색/지도·학교/단지 deep link·MY·콘텐츠·360~1280px 확인. 이름 검색 지원, 임의주소 배정/polygon UI 미확인·미지원 범위 구분. [검증 기록](../research/audit2/READ_ONLY_VERIFICATION_20261006.md).
-- [ ] A2-B05-P **Issue**: smoke 최종 성능 배열이 빈 값이라 시간 gate 통과만으로 실측 성능을 입증하지 못함. 계측 누락 및 최소 표본 gate 보완; 기능 smoke 완료와 구분.
+- [ ] A2-B05-P **Issue**: smoke 최종 성능 배열이 빈 값이라 시간 gate 통과만으로 실측 성능을 입증하지 못함. 계측 누락 및 최소 표본 gate 보완; 기능 smoke 완료와 구분. 2026-10-10 **원인·수정**: 중간 단계가 다른 주소를 새로 열어 `__ELEMENTARY_PERFORMANCE__`가 비워진 뒤 빈 배열에 `every`로 예산을 검사해 측정 없이 통과하고 있었다. 측정 직후 3곳에서 Node 쪽으로 복사하고, 마지막에 표본이 없으면 실패·가장 느린 값으로 예산 판정하도록 수정. **실행 검증 대기**: 2026-10-10 이 PC의 로컬 dev 서버(3000·새로 띄운 3007 모두)가 응답하지 않아 smoke를 끝까지 돌리지 못함.
 - [x] A2-B06 최소 URL/영구 ID/localStorage/checklist·guide/지역 QA 보호 fixture 고정. 2026-10-06: [최소 기준선](../research/audit2/MINIMUM_PROTECTION_BASELINE_20261006.md), 실제 helper 메모리 검증 28개 PASS. 기존 QA 912행/15 scope의 표본 참조(새 전국 재검수 아님). 별도 학원 refresh/실험 기능 정리 변경 보존. 개편 착수 gate 완료; 검증 범위를 선행조건으로 계속 확대하지 않음.
 - [x] A2-E01 60학교 PoC manifest와 분모 고정. 2026-10-06: [PoC 착수](../research/audit2/ETL_POC_START_20261006.md). 분당 development/밀집 후보20, 서울·인천 holdout20, 부산·전남 coverage20. 공개 master READ ONLY 선정, 6개 integrity 검사 PASS. 학교 자료 확보/NEIS crosswalk/모집 성공/운영 공개는 아직 아님.
 - [ ] A2-E02 school_id↔NEIS office/school code↔schoolinfo_code crosswalk 검증. 2026-10-06 **부분 완료**: 최신 [기존 ETL+Schoolinfo 재검증](../research/audit2/NEIS_RECONCILIATION_20261006.md) 59/60 연결, 청산초 1개 실주소 원천 상충 보류. 기존 master 변경 없음. 최초 47/13 결과는 비교 이력으로 보존.
@@ -197,8 +197,8 @@ E04 조사 결과(학교알리미는 전년도 예상값, 확정값은 2월 이�
 
 ### A — 단계와 함께 구현할 Analytics
 
-- [ ] A-01 기존 이벤트→신규 이벤트 매핑과 조회/완료·중복 제거·개인정보 없는 속성·분모/기간 정의.
-- [ ] A-02 school_search/view/save, admin_content_view/complete, prep_content_view/complete, content_save 연결.
+- [x] A-01 기존 이벤트→신규 이벤트 매핑과 조회/완료·중복 제거·개인정보 없는 속성·분모/기간 정의. 2026-10-10: [측정 계획 9절](../product/MEASUREMENT_PLAN.md) — 계획 이름을 운영 이벤트에 맞춤(이름 변경 없음), 조회/완료 구분, 개인정보 미탑재.
+- [ ] A-02 school_search/view/save, admin_content_view/complete, prep_content_view/complete, content_save 연결. 2026-10-10 **부분**: school_*·admin_content_view는 운영 이벤트로 충족, `admin_content_complete`·`prep_content_complete` 추가(근거 자료 상자 도달), 학습 글 공유 `item_type=learn`. `content_save`는 저장 기능(P3)과 함께. smoke에 view·complete 배선 검사 추가 — **실행 검증 대기**(아래 B05-P와 같은 이유).
 - [ ] A-03 poll_vote, experience_create, comment_create, login_start/complete 연결.
 - [ ] A-04 recommendation_impression/click, my_view, checklist_update 연결. 실제 노출/실제 저장 성공 시 발화 검증.
 - [ ] A-05 Search→배정 확인→다음 Need→반응/저장→로그인→개인화→HOME/MY funnel 보고 구성. 자동화 테스트로 production 분석 오염 방지.

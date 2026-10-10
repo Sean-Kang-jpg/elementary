@@ -284,3 +284,26 @@ link·search·related·favorites 진입, 뒤로 가기 무시, 같은 학교 복
 `src/content/privacy.json`에 있고, 비어 있으면 공개 smoke가 실패해 배포를 막는다.
 **GA4와 처리방침은 같은 릴리스로만 나간다.** 법률 자문을 거친 문서가 아니다.
 
+
+## 9. 개편 이벤트 매핑 (2026-10-10, 개편 TODO A-01·A-02)
+
+개편 계획(PLATFORM_EXPANSION_PLAN §5)이 쓴 이름은 **새로 만들지 않고 운영 중인 이벤트에 맞춘다**. 이름을 바꾸면
+2026-10-03부터 쌓인 데이터와 끊긴다. 계획 이름 → 실제 이벤트:
+
+| 계획 이름 | 실제 이벤트 | 상태 |
+| --- | --- | --- |
+| `school_search` | `search` + `select_search_result` | 운영 중 |
+| `school_view` | `view_school_detail` | 운영 중 |
+| `school_save` | `save_candidate`(`item_type=school`) | 운영 중 |
+| `admin_content_view` | `view_guide`, `view_faq`(질문 펼침) | 운영 중 |
+| `admin_content_complete` | **`admin_content_complete`** `content_id`(가이드 slug) — 근거 자료 상자의 절반이 화면에 들어올 때 가이드마다 한 번 | 2026-10-10 추가 |
+| `prep_content_view` | **`prep_content_view`** `content_id`, `category`, `entry_source` — 학습 글을 열 때 | 2026-10-09 추가 |
+| `prep_content_complete` | **`prep_content_complete`** `content_id`, `category` — 학습 글의 근거 자료 상자에 닿을 때 | 2026-10-10 추가 |
+| `checklist_update` | `check_checklist_item`(체크만, 해제 없음) | 운영 중 |
+| `my_view` | `/my`의 `page_view` | 운영 중 |
+| `content_save`, `login_start/complete`, `poll_vote`, `experience_create`, `comment_create` | — | 해당 기능(P3·P4)과 함께 |
+| `recommendation_impression/click` | — | P5와 함께 |
+
+규칙: 조회와 완료는 다른 이벤트이고, 완료는 화면에 실제로 닿은 경우만(`useSeenOnce`) 센다. 같은 글을 열어 둔 채 다시
+내려와도 한 번이다. 자유 입력·주소·개인 식별 값은 싣지 않는다. 학습 글 공유는 `share_item`의 `item_type=learn`
+(`item_id`=slug)로 보낸다. 배선은 public smoke가 디버그 기록 모드로 `prep_content_view`·`prep_content_complete`를 확인한다.

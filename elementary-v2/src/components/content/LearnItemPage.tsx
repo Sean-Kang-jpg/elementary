@@ -1,4 +1,5 @@
 import { ArrowLeft, ChevronRight, MessageCircle } from 'lucide-react'
+import { useRef } from 'react'
 import {
   findGuide,
   findLearning,
@@ -10,6 +11,8 @@ import {
 } from '../../content'
 import { guidePath, learnPath, VIEW_PATHS } from '../../utils/urlState'
 import ShareButton from '../ui/ShareButton'
+import { track } from '../../utils/analytics'
+import { useSeenOnce } from '../care/useSeenOnce'
 import SourceList from './SourceList'
 import { followInternalLink, followLink } from './contentLinks'
 
@@ -57,6 +60,9 @@ export default function LearnItemPage({ item, onNavigate }: LearnItemPageProps) 
   const category = LEARNING_CATEGORIES.find((entry) => entry.id === item.category)
   const backPath = category?.menu === 'guide' ? VIEW_PATHS.guide : VIEW_PATHS.learn
   const backLabel = category?.menu === 'guide' ? '입학 준비 가이드' : '학습 준비'
+  // 끝(근거 자료)까지 내려 읽었으면 완료로 센다 — 측정 계획 A-02의 prep_content_complete.
+  const endRef = useRef<HTMLDivElement>(null)
+  useSeenOnce(endRef, item.slug, () => track('prep_content_complete', { content_id: item.slug, category: item.category }))
   const related = item.related.map(relatedEntry).filter((entry): entry is { path: string; title: string } => entry !== null)
 
   return (
@@ -128,7 +134,7 @@ export default function LearnItemPage({ item, onNavigate }: LearnItemPageProps) 
           </nav>
         ) : null}
 
-        <SourceList sources={item.sources} verifiedAt={item.verifiedAt} />
+        <div ref={endRef}><SourceList sources={item.sources} verifiedAt={item.verifiedAt} /></div>
       </article>
     </section>
   )
