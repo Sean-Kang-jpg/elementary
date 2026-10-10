@@ -13,6 +13,8 @@ import { loadNaverMaps } from '../../utils/naverMapsLoader'
 
 interface MapContainerProps {
   className?: string
+  // 구·시·도 시트의 지역 허브 링크를 앱 안에서 연다.
+  onNavigate?: (path: string) => void
 }
 
 
@@ -24,7 +26,7 @@ interface MapContainerProps {
 const MAPS_READY_POLL_MS = 100
 const MAPS_READY_TIMEOUT_MS = 15_000
 
-const MapContainer: React.FC<MapContainerProps> = ({ className = '' }) => {
+const MapContainer: React.FC<MapContainerProps> = ({ className = '', onNavigate }) => {
   const mapRef = useRef<HTMLDivElement>(null)
   const surfaceRef = useRef<HTMLDivElement>(null)
   const naverMapRef = useRef<NaverMap | null>(null)
@@ -334,7 +336,7 @@ const MapContainer: React.FC<MapContainerProps> = ({ className = '' }) => {
     // otherwise compete with the app layers and drew the logo and scale over the sheet.
     <div ref={surfaceRef} className={`relative isolate ${className}`}>
       <div ref={mapRef} className="h-full w-full" aria-label="주변 초등학교 지도" data-map-canvas />
-      {isMapReady && <MarkerManager map={naverMapRef.current} />}
+      {isMapReady && <MarkerManager map={naverMapRef.current} onNavigate={onNavigate} />}
       {isMapReady && naverMapRef.current && <ApartmentMarkerManager map={naverMapRef.current} />}
       {isMapReady && naverMapRef.current && academyDataAvailable && (state.selectedApartment || state.selectedSchool) && (
         <AcademyMarkerManager

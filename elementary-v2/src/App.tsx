@@ -445,7 +445,7 @@ function MapApplication() {
       {mapMounted && (
         <div className="app-map-area">
           <MapErrorBoundary>
-            <MapContainer className="h-full w-full" />
+            <MapContainer className="h-full w-full" onNavigate={(path) => navigate(path, 'map')} />
           </MapErrorBoundary>
         </div>
       )}
