@@ -567,6 +567,7 @@ try {
   await waitFor("document.querySelectorAll('#map-search-results [role=option]').length > 0", 'school search returned results')
   run(['eval', "document.querySelector('#map-search-results [role=option]').click(); 'school selected'"])
   await waitFor("document.body.innerText.includes('방현초등학교')", 'school detail rendered')
+  assertPage("[...document.querySelectorAll('[data-testid=bottom-sheet] a[target=_blank]')].some((link) => link.textContent.includes('학교 홈페이지') && link.protocol.startsWith('http') && link.hostname.includes('.'))", 'the school sheet links to the school homepage in a new tab')
   await waitFor("(window.__ELEMENTARY_PERFORMANCE__ || []).some((metric) => metric.name === 'school-apartment-load' && metric.status === 'success' && metric.context.resultCount > 0)", 'assigned apartments loaded and measured')
   collectPerformance()
   assertPage("document.querySelector('[data-testid=bottom-sheet]')?.dataset.snapIndex === '1'", 'school sheet opened at its default detail snap')

@@ -307,3 +307,6 @@ link·search·related·favorites 진입, 뒤로 가기 무시, 같은 학교 복
 규칙: 조회와 완료는 다른 이벤트이고, 완료는 화면에 실제로 닿은 경우만(`useSeenOnce`) 센다. 같은 글을 열어 둔 채 다시
 내려와도 한 번이다. 자유 입력·주소·개인 식별 값은 싣지 않는다. 학습 글 공유는 `share_item`의 `item_type=learn`
 (`item_id`=slug)로 보낸다. 배선은 public smoke가 디버그 기록 모드로 `prep_content_view`·`prep_content_complete`를 확인한다.
+
+`open_school_homepage`(`school_id`) — 학교 상세의 '학교 홈페이지' 링크를 누를 때(2026-10-10). 공지사항·가정통신문을 사이트 안에
+보이지 않고 학교 홈페이지로 보내므로, 이 클릭이 그 수요의 크기다.
