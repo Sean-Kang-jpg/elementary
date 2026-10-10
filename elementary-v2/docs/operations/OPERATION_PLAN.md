@@ -105,7 +105,7 @@ E04 조사 결과(학교알리미는 전년도 예상값, 확정값은 2월 이�
 
 - [x] A2-S01 planning/application/actual 및 evidence/participation/transition 독립 상태 타입·fixture 작성. 2026-10-08: `src/utils/schedule/types.ts`(세 축·전이 규칙·학기/방학·오후 구간·날짜 덮어쓰기), `fromSchoolData.ts`(SQL 26 하교·돌봄 → 일정; 하교는 estimated, 학교 확인 요일은 unknown, 돌봄 기본·연장 분리, 기본 참여 considering). fixture는 반안초 운영 값 모양.
 - [x] A2-S02 정규+선택 방과후/돌봄+수동 일정 순수 엔진, unknown 시각/충돌/단축/방학 처리 검증. 2026-10-08: `src/utils/schedule/engine.ts` `computeDay`/`computeWeek` — [start,end) 이어짐≠겹침, 점유는 planned/applying/confirmed만, 돌봄∩방과후는 `care_afterschool`로 충돌과 구분, 이어지는 일정의 미확인·금지 이동, 공백 confirmed/estimated/uncertain 분리, 하교 모름이면 공백 분 미산출, 단축·방학 덮어쓰기. 정규수업 시작은 자료에 없어 09:00 가정(오전 겹침 판정에만). `npm run test:unit` 16개 PASS, lint/typecheck/build 통과(번들 미포함). 화면 연결·저장은 S06·로그인 이후. 일회 취소·보강은 S03.
-- [ ] A2-S03 반복/일회/보강/취소 override와 source revision diff·동시편집 처리.
+- [x] A2-S03 반복/일회/보강/취소 override와 source revision diff·동시편집 처리. 2026-10-10: `src/utils/schedule/overrides.ts` — `userOverride`(부모 수정·삭제 표시), `ScheduleException`(cancel/replace/makeup), `computeDate`(기본 주간 → 날짜 덮어쓰기 → 일회 변경, 주말 null, 대상 없는 변경은 unmatched), `proposeSourceUpdate`/`applyProposals`(새 판은 제안만, 부모가 고친 필드는 conflict, 지운 일정은 kept_deleted로 되살리지 않음, 다른 출처·직접 입력 일정은 건드리지 않음). 테스트 13개 추가(전체 29 PASS). **동시편집(revision 비교)은 저장이 생기는 S04로 이관.**
 - [ ] A2-S04 Auth·profile·개인 저장→가족 membership RLS와 초대 만료/취소/수락 설계·격리 DB 테스트.
 - [ ] A2-S05 local 기록 import/계정 충돌/로그인 취소 후 복원, 가족 viewer/editor/owner 권한 테스트.
 - [ ] A2-S06 MY 시간표 UI·주간 계획·자료 상태·source/date·가족 공유·직접 입력 통합. 2026-10-08 사용자 결정: **로그인 준비 후 착수**(기기 저장으로 먼저 시작하지 않음 — 이전 작업을 만들지 않기 위해). 선행: B04-b.
