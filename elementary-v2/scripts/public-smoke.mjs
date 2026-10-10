@@ -392,6 +392,8 @@ try {
   // A province click must land on district zoom, not on zoom 10, which is still
   // province mode and only recentres.
   await waitFor("!document.querySelector('.school-cluster-marker--region') && document.querySelectorAll('.school-cluster-marker').length > 0", 'a province marker opens its district markers')
+  await waitFor("document.querySelector('[data-testid=bottom-sheet]')?.textContent?.includes('시·군·구') && document.querySelectorAll('[data-testid=bottom-sheet] .district-count-circle--high').length > 0", 'a province marker lists its districts with 80+ and under-80 counts')
+  assertPage("/^\\/area\\/[^/]+$/.test(decodeURI(document.querySelector('[data-testid=bottom-sheet] [data-testid=area-hub-link]')?.getAttribute('href') || ''))", 'the province sheet links to its area hub')
 
   run(['open', new URL('/map', baseUrl).toString()])
   await waitFor("(window.__ELEMENTARY_PERFORMANCE__ || []).some((metric) => metric.name === 'school-map-load' && metric.status === 'success' && metric.context.resultCount > 0)", 'the map reloads at district zoom for the search flow')
