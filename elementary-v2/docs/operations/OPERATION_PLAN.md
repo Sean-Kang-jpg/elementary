@@ -135,11 +135,11 @@ E04 조사 결과(학교알리미는 전년도 예상값, 확정값은 2월 이�
 - [x] P0-01 코드 route/component, 콘텐츠, local MY/state, 저장소 SQL/Auth 사용 조사. 2026-10-05: 1차 감사 보고서 작성. 운영 DB 전체 검증은 포함하지 않음.
 - [x] P0-02 Keep/Move/Modify/New/Remove, 기존 route mapping, 최소 schema 초안 작성. 2026-10-05: 감사 §3~5.
 - [x] P0-03 첨부 가이드 0~25절 대조, GNB 4개/로고 HOME 정정, Phase 0~7 실행 계획과 TODO 작성. 2026-10-05: `PLATFORM_EXPANSION_PLAN.md`와 이 절.
-- [ ] P0-04 실제 DB의 테이블/컬럼/FK/RPC/grants/RLS를 SQL 06~24와 대조. 특히 curriculum 테이블 적용 여부·데이터 유무 확인. 읽기 권한이 없으면 구체적인 미확인 목록을 남김.
-- [ ] P0-05 Supabase 익명 인증/Kakao/Google/identity linking/redirect 설정과 관리자 세션 영향 확인. 비밀값은 출력하지 않음.
-- [ ] P0-06 주소 검색·학구도 표시·학교/아파트 양방향 탐색의 실제 지원 범위 확인. 이름 검색을 임의 주소 배정 조회로 간주하지 않고 미지원 범위를 분리.
-- [ ] P0-07 기존 URL·canonical·OG·sitemap·체크리스트 ID·저장 형식과 대표 지역 QA 기준선 기록. 빌드 당시 sitemap은 학교 6,302/아파트 45,853/콘텐츠 14개였으며 향후 데이터 증감과 URL 손상을 구분.
-- [ ] P0-08 이전 public smoke의 최종 종료 결과까지 재확인. 앞선 기록은 중간 PASS와 실행 세션만 있어 전체 통과 판정 보류.
+- [x] P0-04 실제 DB의 테이블/컬럼/FK/RPC/grants/RLS를 SQL 06~24와 대조. 특히 curriculum 테이블 적용 여부·데이터 유무 확인. 읽기 권한이 없으면 구체적인 미확인 목록을 남김. 2026-10-10 정리: A2-B03(a~d)이 대신함 — SQL06~24 선언·정의 대조, SQL24(curriculum) 운영 미적용 확인, 읽기 역할 검증. 쓰기 allow/deny는 A2-B03-W로 남음.
+- [ ] P0-05 Supabase 익명 인증/Kakao/Google/identity linking/redirect 설정과 관리자 세션 영향 확인. 비밀값은 출력하지 않음. 2026-10-10 정리: A2-B04로 이관 — 공개 설정 확인(B04-a) 완료, 관리 설정·실제 callback(B04-b)은 로그인 담당 팀원.
+- [x] P0-06 주소 검색·학구도 표시·학교/아파트 양방향 탐색의 실제 지원 범위 확인. 이름 검색을 임의 주소 배정 조회로 간주하지 않고 미지원 범위를 분리. 2026-10-10 정리: A2-B05가 대신함 — 이름 검색 지원, 임의 주소 배정 조회·학구 polygon UI는 미지원 범위로 구분.
+- [x] P0-07 기존 URL·canonical·OG·sitemap·체크리스트 ID·저장 형식과 대표 지역 QA 기준선 기록. 빌드 당시 sitemap은 학교 6,302/아파트 45,853/콘텐츠 14개였으며 향후 데이터 증감과 URL 손상을 구분. 2026-10-10 정리: A2-B06 보호 fixture(URL·영구 ID·localStorage·checklist·guide·지역 QA) 28개 PASS가 기준선.
+- [x] P0-08 이전 public smoke의 최종 종료 결과까지 재확인. 앞선 기록은 중간 PASS와 실행 세션만 있어 전체 통과 판정 보류. 2026-10-10 정리: A2-B05 운영 smoke 최종 exit 0, 이후 릴리스마다 운영 smoke exit 0(2026-10-08~09 PASS 101~104건).
 
 ### P1 — IA/GNB 및 행정 재분류
 
