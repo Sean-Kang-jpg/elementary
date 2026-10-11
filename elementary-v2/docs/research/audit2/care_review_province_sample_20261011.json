@@ -1,0 +1,330 @@
+{
+ "schema_version": 1,
+ "reviewed_at": "2026-10-11",
+ "reviewer": "sonnet extraction + validator (etl/llm_extraction_check.py); rejected items read from source",
+ "source": "etl/llm_extraction_spec.md",
+ "schools": [
+  {
+   "school_id": "B000002555",
+   "school_name": "안민초등학교",
+   "afternoon_end": "17:00",
+   "extended_end": "20:00",
+   "extended_condition": "최소 1실은 희망학생이 있을 시 20시까지 운영한다",
+   "morning": null,
+   "grades": "1~2",
+   "evidence": "돌봄교실 운영 시간은 방과후부터 17시까지 기본 운영하며",
+   "confidence": "llm_validated"
+  },
+  {
+   "school_id": "B000002742",
+   "school_name": "대구율금초등학교",
+   "afternoon_end": "18:00",
+   "extended_end": null,
+   "extended_condition": null,
+   "morning": null,
+   "grades": "1~2",
+   "evidence": "오후 늘봄 | 방과후 ~18:00",
+   "confidence": "llm_validated"
+  },
+  {
+   "school_id": "B000002859",
+   "school_name": "대구팔달초등학교",
+   "afternoon_end": "18:00",
+   "extended_end": null,
+   "extended_condition": null,
+   "morning": null,
+   "grades": "1~2",
+   "evidence": "돌봄 (1~2학년) | 정규수업 후 ~18:00",
+   "confidence": "llm_validated"
+  },
+  {
+   "school_id": "B000002950",
+   "school_name": "인천신광초등학교",
+   "afternoon_end": "19:00",
+   "extended_end": null,
+   "extended_condition": null,
+   "morning": null,
+   "grades": "1~2",
+   "evidence": "운영 시간: 방과 후 ~ 19:00까지",
+   "confidence": "llm_validated"
+  },
+  {
+   "school_id": "B000002964",
+   "school_name": "인천송현초등학교",
+   "afternoon_end": "19:00",
+   "extended_end": null,
+   "extended_condition": null,
+   "morning": null,
+   "grades": "1~2",
+   "evidence": "오후 돌봄은 주5일 수업 종료 후~19:00",
+   "confidence": "llm_validated"
+  },
+  {
+   "school_id": "B000003206",
+   "school_name": "살레시오초등학교",
+   "unknown": true,
+   "note": "맞춤형 프로그램 14:00~15:45만 있고 돌봄 종료 시각은 없음",
+   "confidence": "llm_validated"
+  },
+  {
+   "school_id": "B000003289",
+   "school_name": "광주농성초등학교",
+   "afternoon_end": "17:00",
+   "extended_end": null,
+   "extended_condition": null,
+   "morning": null,
+   "grades": "1~2",
+   "evidence": "학기 중 운영 시간: 정규 수업 후~17:00",
+   "confidence": "llm_validated"
+  },
+  {
+   "school_id": "B000003349",
+   "school_name": "대전신흥초등학교",
+   "afternoon_end": "19:00",
+   "extended_end": null,
+   "extended_condition": null,
+   "morning": null,
+   "grades": "1~2",
+   "evidence": "초등돌봄 (6실) (전용교실) | 방과후 ~ 19:00",
+   "confidence": "llm_validated"
+  },
+  {
+   "school_id": "B000003434",
+   "school_name": "대전구봉초등학교",
+   "afternoon_end": "18:00",
+   "extended_end": "19:00",
+   "extended_condition": "최소 1실은 19시까지 운영함",
+   "morning": null,
+   "grades": "1~2",
+   "evidence": "돌봄교실 운영시간은 방과후부터 18시까지 운영하며",
+   "confidence": "llm_validated"
+  },
+  {
+   "school_id": "B000003556",
+   "school_name": "남산초등학교",
+   "afternoon_end": "18:00",
+   "extended_end": null,
+   "extended_condition": null,
+   "morning": null,
+   "grades": "1~2",
+   "evidence": "학기 중 운영시간: 정규수업 이후 ~ 18시",
+   "confidence": "llm_validated"
+  },
+  {
+   "school_id": "B000005009",
+   "school_name": "진주초등학교",
+   "afternoon_end": "16:20",
+   "extended_end": null,
+   "extended_condition": null,
+   "morning": null,
+   "grades": "1~2",
+   "evidence": "오후 돌봄 프로그램: 정규 교육 과정 이후 ~ 16:20까지 운영",
+   "confidence": "llm_validated"
+  },
+  {
+   "school_id": "B000005115",
+   "school_name": "장평초등학교",
+   "afternoon_end": "16:00",
+   "extended_end": null,
+   "extended_condition": null,
+   "morning": null,
+   "grades": "1~2",
+   "evidence": "정규수업운영 종료 후 (13:00~16:00)",
+   "confidence": "llm_validated"
+  },
+  {
+   "school_id": "B000005242",
+   "school_name": "주중초등학교",
+   "afternoon_end": "18:00",
+   "extended_end": null,
+   "extended_condition": null,
+   "morning": null,
+   "grades": "1~2",
+   "evidence": "오후돌봄은 주5일 12:30∼18:00",
+   "confidence": "llm_validated"
+  },
+  {
+   "school_id": "B000005407",
+   "school_name": "군남초등학교",
+   "afternoon_end": "16:30",
+   "extended_end": null,
+   "extended_condition": null,
+   "morning": null,
+   "grades": "1~3",
+   "evidence": "월 - 금요일 13:00 ~ 16:30",
+   "confidence": "llm_validated"
+  },
+  {
+   "school_id": "B000005744",
+   "school_name": "수왕초등학교",
+   "afternoon_end": "17:00",
+   "extended_end": "19:00",
+   "extended_condition": "저녁돌봄 17:00 ~ 19:00",
+   "morning": null,
+   "grades": "1~2",
+   "evidence": "늘봄학교 ~ 17:00",
+   "confidence": "llm_validated"
+  },
+  {
+   "school_id": "B000005819",
+   "school_name": "장항초등학교",
+   "afternoon_end": "16:40",
+   "extended_end": "19:30",
+   "extended_condition": "연장 및 저녁 돌봄교실(업체 위탁 운영)",
+   "morning": null,
+   "grades": "1~2",
+   "evidence": "15:50-16:40돌봄교실",
+   "confidence": "llm_validated"
+  },
+  {
+   "school_id": "B000006039",
+   "school_name": "군산용문초등학교",
+   "afternoon_end": "16:30",
+   "extended_end": null,
+   "extended_condition": null,
+   "morning": null,
+   "grades": "1~2",
+   "evidence": "16:00~16:30 | 귀가 준비 및 귀가",
+   "confidence": "llm_validated"
+  },
+  {
+   "school_id": "B000006062",
+   "school_name": "창오초등학교",
+   "afternoon_end": "17:00",
+   "extended_end": null,
+   "extended_condition": null,
+   "morning": null,
+   "grades": "1~6",
+   "evidence": "오후늘봄 | 13:00~17:00",
+   "confidence": "llm_validated"
+  },
+  {
+   "school_id": "B000006528",
+   "school_name": "나주초등학교",
+   "afternoon_end": "17:00",
+   "extended_end": "19:00",
+   "extended_condition": "저녁돌봄 수요에 따라",
+   "morning": null,
+   "grades": "1~2",
+   "evidence": "16:40 ～ 17:00 | 오후 돌봄 귀가 안전지도",
+   "confidence": "llm_validated"
+  },
+  {
+   "school_id": "B000006534",
+   "school_name": "노안남초등학교",
+   "afternoon_end": "19:00",
+   "extended_end": null,
+   "extended_condition": null,
+   "morning": null,
+   "grades": "1~2",
+   "evidence": "학기 중: 방과후~19:00",
+   "confidence": "llm_validated"
+  },
+  {
+   "school_id": "B000006925",
+   "school_name": "두호초등학교",
+   "afternoon_end": "17:00",
+   "extended_end": null,
+   "extended_condition": null,
+   "morning": null,
+   "grades": "1~2",
+   "evidence": "주중 | 방과후 ~17:00",
+   "confidence": "llm_validated"
+  },
+  {
+   "school_id": "B000007063",
+   "school_name": "풍산초등학교",
+   "afternoon_end": "18:00",
+   "extended_end": null,
+   "extended_condition": null,
+   "morning": "07:30-08:30",
+   "grades": "1~3",
+   "evidence": "오후 돌봄 | 방과후 ~18:00",
+   "confidence": "llm_validated"
+  },
+  {
+   "school_id": "B000007829",
+   "school_name": "양산초등학교",
+   "afternoon_end": "18:00",
+   "extended_end": null,
+   "extended_condition": null,
+   "morning": null,
+   "grades": "1~2",
+   "evidence": "집중 돌봄: 방과 후~18:00",
+   "confidence": "llm_validated"
+  },
+  {
+   "school_id": "B000008014",
+   "school_name": "대흘초등학교",
+   "afternoon_end": "17:00",
+   "extended_end": "18:30",
+   "extended_condition": "오후돌봄교실 교실 참여 학생 중 추가 돌봄이 필요한 학생",
+   "morning": null,
+   "grades": "1~2",
+   "evidence": "오후 돌봄 | 방과 후 ~ 17:00",
+   "confidence": "llm_validated"
+  },
+  {
+   "school_id": "B000008082",
+   "school_name": "안덕초등학교",
+   "afternoon_end": "17:00",
+   "extended_end": null,
+   "extended_condition": null,
+   "morning": null,
+   "grades": "1~2",
+   "evidence": "학기중 | 방과후~ 17:00",
+   "confidence": "llm_validated"
+  },
+  {
+   "school_id": "B000022720",
+   "school_name": "온샘초등학교",
+   "afternoon_end": "17:00",
+   "extended_end": "20:00",
+   "extended_condition": "최소 1실은 희망학생이 있을 시 20시까지 운영한다",
+   "morning": "07:50-08:30",
+   "grades": "1",
+   "evidence": "오후 돌봄 | 12:30~ 17:00",
+   "confidence": "llm_validated"
+  },
+  {
+   "school_id": "B000022965",
+   "school_name": "상월초등학교",
+   "afternoon_end": "20:00",
+   "extended_end": null,
+   "extended_condition": null,
+   "morning": null,
+   "grades": "1~6",
+   "evidence": "주중 | 13:00~20:00",
+   "confidence": "llm_validated"
+  },
+  {
+   "school_id": "B000024414",
+   "school_name": "무지개초등학교",
+   "afternoon_end": "18:30",
+   "extended_end": null,
+   "extended_condition": null,
+   "morning": null,
+   "grades": "1~2",
+   "evidence": "정규수업 이후~18:30",
+   "confidence": "llm_validated"
+  },
+  {
+   "school_id": "B000026025",
+   "school_name": "삼남초등학교",
+   "unknown": true,
+   "note": "오후 돌봄 종료 시각 없음, 아침늘봄만 기재",
+   "confidence": "llm_validated"
+  },
+  {
+   "school_id": "B000026572",
+   "school_name": "솔빛초등학교",
+   "afternoon_end": "17:00",
+   "extended_end": "18:30",
+   "extended_condition": "저녁돌봄(사전신청자에 한함)",
+   "morning": "07:40-08:30",
+   "grades": "1~2",
+   "evidence": "오후돌봄방과 후~17:00",
+   "confidence": "llm_validated"
+  }
+ ]
+}

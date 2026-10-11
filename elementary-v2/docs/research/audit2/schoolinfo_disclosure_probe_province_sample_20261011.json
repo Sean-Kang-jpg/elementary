@@ -1,0 +1,1704 @@
+{
+  "schema_version": "schoolinfo-disclosure-probe-v1",
+  "checked_at": "2026-10-11T12:12:42.385Z",
+  "disclosure_year": 2026,
+  "school_count": 30,
+  "files_downloaded": false,
+  "no_operational_upload": true,
+  "schools": [
+    {
+      "school_id": "B000005115",
+      "school_name": "장평초등학교",
+      "region": "강원특별자치도",
+      "cohort": "province_sample",
+      "shl_idf_cd": "7d95ed81-11b3-4474-9516-c7a504183325",
+      "items": {
+        "curriculum": {
+          "status": "attachments_listed",
+          "checked_at": "2026-10-11T12:11:50.889Z",
+          "http_status": 200,
+          "latest_period": {
+            "round": 1,
+            "year": 2026,
+            "month": 4
+          },
+          "status_as_of": null,
+          "attachments": [
+            {
+              "file_seq": "0",
+              "name": "2026학년도 학교교육과정 편성·운영 계획(안).hwp",
+              "size": "86 KB",
+              "file_academic_year": 2026,
+              "kind": "curriculum_plan"
+            }
+          ]
+        },
+        "afterschool": {
+          "status": "attachments_listed",
+          "checked_at": "2026-10-11T12:11:51.836Z",
+          "http_status": 200,
+          "latest_period": {
+            "round": 2,
+            "year": 2026,
+            "month": 5
+          },
+          "status_as_of": "2026-04-30",
+          "attachments": [
+            {
+              "file_seq": "0",
+              "name": "2026 THE자람 늘봄학교(돌봄.방과후) 운영 계획.hwp",
+              "size": "96 KB",
+              "file_academic_year": 2026,
+              "kind": "afterschool_care_plan"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "school_id": "B000005009",
+      "school_name": "진주초등학교",
+      "region": "강원특별자치도",
+      "cohort": "province_sample",
+      "shl_idf_cd": "f90fbc62-d71a-470f-bfb5-518359f37f48",
+      "items": {
+        "curriculum": {
+          "status": "attachments_listed",
+          "checked_at": "2026-10-11T12:11:52.703Z",
+          "http_status": 200,
+          "latest_period": {
+            "round": 1,
+            "year": 2026,
+            "month": 4
+          },
+          "status_as_of": null,
+          "attachments": [
+            {
+              "file_seq": "1",
+              "name": "2026학년도 1학기 현장체험학습 운영 계획.hwp",
+              "size": "87 KB",
+              "file_academic_year": 2026,
+              "kind": "other"
+            },
+            {
+              "file_seq": "0",
+              "name": "2026학년도 교육과정 편성운영 및 평가 계획.hwp",
+              "size": "151 KB",
+              "file_academic_year": 2026,
+              "kind": "curriculum_plan"
+            }
+          ]
+        },
+        "afterschool": {
+          "status": "attachments_listed",
+          "checked_at": "2026-10-11T12:11:53.541Z",
+          "http_status": 200,
+          "latest_period": {
+            "round": 2,
+            "year": 2026,
+            "month": 5
+          },
+          "status_as_of": "2026-04-30",
+          "attachments": [
+            {
+              "file_seq": "0",
+              "name": "2026학년도 늘봄학교 운영 계획(진주초)_최종.hwp",
+              "size": "393 KB",
+              "file_academic_year": 2026,
+              "kind": "afterschool_care_plan"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "school_id": "B000024414",
+      "school_name": "무지개초등학교",
+      "region": "경상남도",
+      "cohort": "province_sample",
+      "shl_idf_cd": "a9635147-a66d-400f-9160-6e0540475aad",
+      "items": {
+        "curriculum": {
+          "status": "attachments_listed",
+          "checked_at": "2026-10-11T12:11:54.392Z",
+          "http_status": 200,
+          "latest_period": {
+            "round": 1,
+            "year": 2026,
+            "month": 4
+          },
+          "status_as_of": null,
+          "attachments": [
+            {
+              "file_seq": "1",
+              "name": "2026학년도 무지개초 학교교육과정 편성·운영·평가 계획.hwp",
+              "size": "1,834 KB",
+              "file_academic_year": 2026,
+              "kind": "curriculum_plan"
+            },
+            {
+              "file_seq": "0",
+              "name": "2026학년도 무지개초 연간학사일정.hwp",
+              "size": "105 KB",
+              "file_academic_year": 2026,
+              "kind": "academic_calendar"
+            }
+          ]
+        },
+        "afterschool": {
+          "status": "attachments_listed",
+          "checked_at": "2026-10-11T12:11:55.236Z",
+          "http_status": 200,
+          "latest_period": {
+            "round": 2,
+            "year": 2026,
+            "month": 5
+          },
+          "status_as_of": "2026-04-30",
+          "attachments": [
+            {
+              "file_seq": "5",
+              "name": "2026학년도 무지개초등학교 방과후학교 운영 계획.hwp",
+              "size": "223 KB",
+              "file_academic_year": 2026,
+              "kind": "afterschool_care_plan"
+            },
+            {
+              "file_seq": "4",
+              "name": "2026학년도 무지개초등학교 초등돌봄교실 운영 계획.hwp",
+              "size": "266 KB",
+              "file_academic_year": 2026,
+              "kind": "afterschool_care_plan"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "school_id": "B000007829",
+      "school_name": "양산초등학교",
+      "region": "경상남도",
+      "cohort": "province_sample",
+      "shl_idf_cd": "67d20504-7211-4b3b-a7fe-589c0d2aec4d",
+      "items": {
+        "curriculum": {
+          "status": "attachments_listed",
+          "checked_at": "2026-10-11T12:11:56.125Z",
+          "http_status": 200,
+          "latest_period": {
+            "round": 1,
+            "year": 2026,
+            "month": 4
+          },
+          "status_as_of": null,
+          "attachments": [
+            {
+              "file_seq": "2",
+              "name": "2026. 현장체험학습 운영 계획(탑재용).hwp",
+              "size": "56 KB",
+              "file_academic_year": 2026,
+              "kind": "other"
+            },
+            {
+              "file_seq": "1",
+              "name": "2026학년도 양산초 연간학사일정.pdf",
+              "size": "506 KB",
+              "file_academic_year": 2026,
+              "kind": "academic_calendar"
+            },
+            {
+              "file_seq": "0",
+              "name": "2026학년도 양산초 학교교육과정 편성·운영·평가 계획.pdf",
+              "size": "2,082 KB",
+              "file_academic_year": 2026,
+              "kind": "curriculum_plan"
+            }
+          ]
+        },
+        "afterschool": {
+          "status": "attachments_listed",
+          "checked_at": "2026-10-11T12:11:56.966Z",
+          "http_status": 200,
+          "latest_period": {
+            "round": 2,
+            "year": 2026,
+            "month": 5
+          },
+          "status_as_of": "2026-04-30",
+          "attachments": [
+            {
+              "file_seq": "1",
+              "name": "2026학년도 돌봄교실 실행계획(양산초).pdf",
+              "size": "223 KB",
+              "file_academic_year": 2026,
+              "kind": "afterschool_care_plan"
+            },
+            {
+              "file_seq": "0",
+              "name": "2026학년도 방과후학교 실행계획(양산초).pdf",
+              "size": "186 KB",
+              "file_academic_year": 2026,
+              "kind": "afterschool_care_plan"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "school_id": "B000007063",
+      "school_name": "풍산초등학교",
+      "region": "경상북도",
+      "cohort": "province_sample",
+      "shl_idf_cd": "50c75ea3-485a-43ae-a8bd-cff6c3b2a7fd",
+      "items": {
+        "curriculum": {
+          "status": "attachments_listed",
+          "checked_at": "2026-10-11T12:11:57.820Z",
+          "http_status": 200,
+          "latest_period": {
+            "round": 1,
+            "year": 2026,
+            "month": 4
+          },
+          "status_as_of": null,
+          "attachments": [
+            {
+              "file_seq": "1",
+              "name": "2026 학교 교육과정 운영 계획.hwp",
+              "size": "3,401 KB",
+              "file_academic_year": 2026,
+              "kind": "curriculum_plan"
+            }
+          ]
+        },
+        "afterschool": {
+          "status": "attachments_listed",
+          "checked_at": "2026-10-11T12:11:58.658Z",
+          "http_status": 200,
+          "latest_period": {
+            "round": 2,
+            "year": 2026,
+            "month": 5
+          },
+          "status_as_of": "2026-04-30",
+          "attachments": [
+            {
+              "file_seq": "0",
+              "name": "2026학년도 초등돌봄,교육 운영 계획(풍산초).hwp",
+              "size": "88 KB",
+              "file_academic_year": 2026,
+              "kind": "afterschool_care_plan"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "school_id": "B000006925",
+      "school_name": "두호초등학교",
+      "region": "경상북도",
+      "cohort": "province_sample",
+      "shl_idf_cd": "fabb5c74-2372-402b-81e6-8666cd78bec0",
+      "items": {
+        "curriculum": {
+          "status": "attachments_listed",
+          "checked_at": "2026-10-11T12:11:59.534Z",
+          "http_status": 200,
+          "latest_period": {
+            "round": 1,
+            "year": 2026,
+            "month": 4
+          },
+          "status_as_of": null,
+          "attachments": [
+            {
+              "file_seq": "0",
+              "name": "2026 두호교육계획.pdf",
+              "size": "2,743 KB",
+              "file_academic_year": 2026,
+              "kind": "curriculum_plan"
+            }
+          ]
+        },
+        "afterschool": {
+          "status": "attachments_listed",
+          "checked_at": "2026-10-11T12:12:00.384Z",
+          "http_status": 200,
+          "latest_period": {
+            "round": 2,
+            "year": 2026,
+            "month": 5
+          },
+          "status_as_of": "2026-04-30",
+          "attachments": [
+            {
+              "file_seq": "0",
+              "name": "2026학년도 초등돌봄·교육 운영 계획서.hwp",
+              "size": "97 KB",
+              "file_academic_year": 2026,
+              "kind": "afterschool_care_plan"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "school_id": "B000003206",
+      "school_name": "살레시오초등학교",
+      "region": "광주광역시",
+      "cohort": "province_sample",
+      "shl_idf_cd": "5137fa47-580a-4844-be6f-2cd783ce3939",
+      "items": {
+        "curriculum": {
+          "status": "attachments_listed",
+          "checked_at": "2026-10-11T12:12:01.240Z",
+          "http_status": 200,
+          "latest_period": {
+            "round": 1,
+            "year": 2026,
+            "month": 4
+          },
+          "status_as_of": null,
+          "attachments": [
+            {
+              "file_seq": "0",
+              "name": "2026학년도 교육과정 편성 및 운영(심의안-수정).hwp",
+              "size": "299 KB",
+              "file_academic_year": 2026,
+              "kind": "curriculum_plan"
+            }
+          ]
+        },
+        "afterschool": {
+          "status": "attachments_listed",
+          "checked_at": "2026-10-11T12:12:02.113Z",
+          "http_status": 200,
+          "latest_period": {
+            "round": 2,
+            "year": 2026,
+            "month": 5
+          },
+          "status_as_of": "2026-04-30",
+          "attachments": [
+            {
+              "file_seq": "0",
+              "name": "2026학년도 늘봄 방과후 교육 운영 계획(안).hwp",
+              "size": "202 KB",
+              "file_academic_year": 2026,
+              "kind": "afterschool_care_plan"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "school_id": "B000003289",
+      "school_name": "광주농성초등학교",
+      "region": "광주광역시",
+      "cohort": "province_sample",
+      "shl_idf_cd": "e9ade3dd-425e-4672-a5c8-2518d9d24b13",
+      "items": {
+        "curriculum": {
+          "status": "attachments_listed",
+          "checked_at": "2026-10-11T12:12:02.983Z",
+          "http_status": 200,
+          "latest_period": {
+            "round": 1,
+            "year": 2026,
+            "month": 4
+          },
+          "status_as_of": null,
+          "attachments": [
+            {
+              "file_seq": "1",
+              "name": "2-가. 2026 광주농성 학사력.hwp",
+              "size": "101 KB",
+              "file_academic_year": 2026,
+              "kind": "other"
+            },
+            {
+              "file_seq": "0",
+              "name": "2-가 학교교육과정 편성 운영 및 평가 사항.hwp",
+              "size": "186 KB",
+              "file_academic_year": null,
+              "kind": "curriculum_plan"
+            }
+          ]
+        },
+        "afterschool": {
+          "status": "attachments_listed",
+          "checked_at": "2026-10-11T12:12:03.820Z",
+          "http_status": 200,
+          "latest_period": {
+            "round": 2,
+            "year": 2026,
+            "month": 5
+          },
+          "status_as_of": "2026-04-30",
+          "attachments": [
+            {
+              "file_seq": "1",
+              "name": "2026학년도 초등돌봄 운영 계획.hwp",
+              "size": "92 KB",
+              "file_academic_year": 2026,
+              "kind": "afterschool_care_plan"
+            },
+            {
+              "file_seq": "0",
+              "name": "2026학년도 늘봄학교 연간 운영 계획.hwp",
+              "size": "196 KB",
+              "file_academic_year": 2026,
+              "kind": "afterschool_care_plan"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "school_id": "B000002859",
+      "school_name": "대구팔달초등학교",
+      "region": "대구광역시",
+      "cohort": "province_sample",
+      "shl_idf_cd": "a03566d8-5ad5-4e6a-9989-8efc64b4a0b4",
+      "items": {
+        "curriculum": {
+          "status": "attachments_listed",
+          "checked_at": "2026-10-11T12:12:04.683Z",
+          "http_status": 200,
+          "latest_period": {
+            "round": 1,
+            "year": 2026,
+            "month": 4
+          },
+          "status_as_of": null,
+          "attachments": [
+            {
+              "file_seq": "2",
+              "name": "2026학년도 팔달초 학교교육과정 편성, 운영 및 평가 계획(정정).pdf",
+              "size": "1,114 KB",
+              "file_academic_year": 2026,
+              "kind": "curriculum_plan"
+            },
+            {
+              "file_seq": "0",
+              "name": "2026학년도 팔달초 연간학사일정.pdf",
+              "size": "135 KB",
+              "file_academic_year": 2026,
+              "kind": "academic_calendar"
+            }
+          ]
+        },
+        "afterschool": {
+          "status": "attachments_listed",
+          "checked_at": "2026-10-11T12:12:05.517Z",
+          "http_status": 200,
+          "latest_period": {
+            "round": 2,
+            "year": 2026,
+            "month": 5
+          },
+          "status_as_of": "2026-04-30",
+          "attachments": [
+            {
+              "file_seq": "2",
+              "name": "2026학년도 늘봄학교 운영 계획(운영 방침 추가) - 수정.hwpx",
+              "size": "303 KB",
+              "file_academic_year": 2026,
+              "kind": "afterschool_care_plan"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "school_id": "B000002742",
+      "school_name": "대구율금초등학교",
+      "region": "대구광역시",
+      "cohort": "province_sample",
+      "shl_idf_cd": "10152d42-041b-405c-817d-bba8b9b027bd",
+      "items": {
+        "curriculum": {
+          "status": "attachments_listed",
+          "checked_at": "2026-10-11T12:12:06.440Z",
+          "http_status": 200,
+          "latest_period": {
+            "round": 1,
+            "year": 2026,
+            "month": 4
+          },
+          "status_as_of": null,
+          "attachments": [
+            {
+              "file_seq": "3",
+              "name": "2026학년도 대구율금초 학사일정.hwp",
+              "size": "51 KB",
+              "file_academic_year": 2026,
+              "kind": "academic_calendar"
+            },
+            {
+              "file_seq": "2",
+              "name": "2026학년도 대구율금초 학교교육과정 편성·운영·평가 계획.hwpx",
+              "size": "986 KB",
+              "file_academic_year": 2026,
+              "kind": "curriculum_plan"
+            }
+          ]
+        },
+        "afterschool": {
+          "status": "attachments_listed",
+          "checked_at": "2026-10-11T12:12:07.299Z",
+          "http_status": 200,
+          "latest_period": {
+            "round": 2,
+            "year": 2026,
+            "month": 5
+          },
+          "status_as_of": "2026-04-30",
+          "attachments": [
+            {
+              "file_seq": "0",
+              "name": "2026학년도 늘봄학교 운영 계획.hwpx",
+              "size": "171 KB",
+              "file_academic_year": 2026,
+              "kind": "afterschool_care_plan"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "school_id": "B000003349",
+      "school_name": "대전신흥초등학교",
+      "region": "대전광역시",
+      "cohort": "province_sample",
+      "shl_idf_cd": "68bdb12e-fdb4-4984-963d-2da5505ed8f4",
+      "items": {
+        "curriculum": {
+          "status": "attachments_listed",
+          "checked_at": "2026-10-11T12:12:08.150Z",
+          "http_status": 200,
+          "latest_period": {
+            "round": 1,
+            "year": 2026,
+            "month": 4
+          },
+          "status_as_of": null,
+          "attachments": [
+            {
+              "file_seq": "0",
+              "name": "2026학년도 학교교육과정 편성운영 및 평가에 관한 사항.hwp",
+              "size": "391 KB",
+              "file_academic_year": 2026,
+              "kind": "curriculum_plan"
+            }
+          ]
+        },
+        "afterschool": {
+          "status": "attachments_listed",
+          "checked_at": "2026-10-11T12:12:08.989Z",
+          "http_status": 200,
+          "latest_period": {
+            "round": 2,
+            "year": 2026,
+            "month": 5
+          },
+          "status_as_of": "2026-04-30",
+          "attachments": [
+            {
+              "file_seq": "0",
+              "name": "2026학년도 초등방과후·돌봄 운영 계획.hwp",
+              "size": "764 KB",
+              "file_academic_year": 2026,
+              "kind": "afterschool_care_plan"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "school_id": "B000003434",
+      "school_name": "대전구봉초등학교",
+      "region": "대전광역시",
+      "cohort": "province_sample",
+      "shl_idf_cd": "6ee433f0-f0e7-415e-b01a-41d96ffdf003",
+      "items": {
+        "curriculum": {
+          "status": "attachments_listed",
+          "checked_at": "2026-10-11T12:12:09.847Z",
+          "http_status": 200,
+          "latest_period": {
+            "round": 1,
+            "year": 2026,
+            "month": 4
+          },
+          "status_as_of": null,
+          "attachments": [
+            {
+              "file_seq": "1",
+              "name": "2026학년도 학교 교육과정 운영 계획(대전구봉초).pdf",
+              "size": "2,323 KB",
+              "file_academic_year": 2026,
+              "kind": "curriculum_plan"
+            }
+          ]
+        },
+        "afterschool": {
+          "status": "attachments_listed",
+          "checked_at": "2026-10-11T12:12:10.712Z",
+          "http_status": 200,
+          "latest_period": {
+            "round": 2,
+            "year": 2026,
+            "month": 5
+          },
+          "status_as_of": "2026-04-30",
+          "attachments": [
+            {
+              "file_seq": "2",
+              "name": "2026학년도 대전구봉초등학교 방과후학교 운영 계획.hwp",
+              "size": "186 KB",
+              "file_academic_year": 2026,
+              "kind": "afterschool_care_plan"
+            },
+            {
+              "file_seq": "1",
+              "name": "2026학년도 대전구봉초등학교 초등돌봄교실 연간 운영 계획.hwp",
+              "size": "102 KB",
+              "file_academic_year": 2026,
+              "kind": "afterschool_care_plan"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "school_id": "B000002555",
+      "school_name": "안민초등학교",
+      "region": "부산광역시",
+      "cohort": "province_sample",
+      "shl_idf_cd": "26922875-6340-43dd-941b-151e5641ba0a",
+      "items": {
+        "curriculum": {
+          "status": "attachments_listed",
+          "checked_at": "2026-10-11T12:12:11.568Z",
+          "http_status": 200,
+          "latest_period": {
+            "round": 1,
+            "year": 2026,
+            "month": 4
+          },
+          "status_as_of": null,
+          "attachments": [
+            {
+              "file_seq": "0",
+              "name": "교육과정편성 운영 및 평가에 관한 사항.hwp",
+              "size": "364 KB",
+              "file_academic_year": null,
+              "kind": "curriculum_plan"
+            }
+          ]
+        },
+        "afterschool": {
+          "status": "attachments_listed",
+          "checked_at": "2026-10-11T12:12:12.417Z",
+          "http_status": 200,
+          "latest_period": {
+            "round": 2,
+            "year": 2026,
+            "month": 5
+          },
+          "status_as_of": "2026-04-30",
+          "attachments": [
+            {
+              "file_seq": "0",
+              "name": "2026학년도 안민초 방과후·돌봄 운영 계획.hwpx",
+              "size": "510 KB",
+              "file_academic_year": 2026,
+              "kind": "afterschool_care_plan"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "school_id": "B000022720",
+      "school_name": "온샘초등학교",
+      "region": "부산광역시",
+      "cohort": "province_sample",
+      "shl_idf_cd": "92933bed-d237-4092-9d60-3ccaf011ec55",
+      "items": {
+        "curriculum": {
+          "status": "attachments_listed",
+          "checked_at": "2026-10-11T12:12:13.314Z",
+          "http_status": 200,
+          "latest_period": {
+            "round": 1,
+            "year": 2026,
+            "month": 4
+          },
+          "status_as_of": null,
+          "attachments": [
+            {
+              "file_seq": "0",
+              "name": "2026학년도 온샘초 교육계획서(탑재용).hwpx",
+              "size": "7,268 KB",
+              "file_academic_year": 2026,
+              "kind": "curriculum_plan"
+            }
+          ]
+        },
+        "afterschool": {
+          "status": "attachments_listed",
+          "checked_at": "2026-10-11T12:12:14.180Z",
+          "http_status": 200,
+          "latest_period": {
+            "round": 2,
+            "year": 2026,
+            "month": 5
+          },
+          "status_as_of": "2026-04-30",
+          "attachments": [
+            {
+              "file_seq": "0",
+              "name": "2026학년도 온샘초등학교 방과후 돌봄 운영 계획.hwp",
+              "size": "290 KB",
+              "file_academic_year": 2026,
+              "kind": "afterschool_care_plan"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "school_id": "B000026572",
+      "school_name": "솔빛초등학교",
+      "region": "세종특별자치시",
+      "cohort": "province_sample",
+      "shl_idf_cd": "22b9c687-e5dd-465c-97c2-a57e8db9c518",
+      "items": {
+        "curriculum": {
+          "status": "attachments_listed",
+          "checked_at": "2026-10-11T12:12:15.052Z",
+          "http_status": 200,
+          "latest_period": {
+            "round": 1,
+            "year": 2026,
+            "month": 4
+          },
+          "status_as_of": null,
+          "attachments": [
+            {
+              "file_seq": "2",
+              "name": "2026학년도 솔빛 학사 운영 일정.hwp",
+              "size": "94 KB",
+              "file_academic_year": 2026,
+              "kind": "other"
+            },
+            {
+              "file_seq": "1",
+              "name": "정보공시-학교교육과정 편성,운영,평가 계획.hwpx",
+              "size": "169 KB",
+              "file_academic_year": null,
+              "kind": "curriculum_plan"
+            }
+          ]
+        },
+        "afterschool": {
+          "status": "attachments_listed",
+          "checked_at": "2026-10-11T12:12:15.890Z",
+          "http_status": 200,
+          "latest_period": {
+            "round": 2,
+            "year": 2026,
+            "month": 5
+          },
+          "status_as_of": "2026-04-30",
+          "attachments": [
+            {
+              "file_seq": "2",
+              "name": "2026학년도 늘봄학교(방과후) 운영 계획(정보공시수정).pdf",
+              "size": "1,441 KB",
+              "file_academic_year": 2026,
+              "kind": "afterschool_care_plan"
+            },
+            {
+              "file_seq": "1",
+              "name": "2026학년도 늘봄학교(돌봄교실) 운영 계획.pdf",
+              "size": "227 KB",
+              "file_academic_year": 2026,
+              "kind": "afterschool_care_plan"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "school_id": "B000005744",
+      "school_name": "수왕초등학교",
+      "region": "세종특별자치시",
+      "cohort": "province_sample",
+      "shl_idf_cd": "0d21464c-af44-45fd-a6ff-871882a0e6a3",
+      "items": {
+        "curriculum": {
+          "status": "attachments_listed",
+          "checked_at": "2026-10-11T12:12:16.751Z",
+          "http_status": 200,
+          "latest_period": {
+            "round": 1,
+            "year": 2026,
+            "month": 4
+          },
+          "status_as_of": null,
+          "attachments": [
+            {
+              "file_seq": "0",
+              "name": "2026학년도 수왕교육과정(게시용).pdf",
+              "size": "1,943 KB",
+              "file_academic_year": 2026,
+              "kind": "curriculum_plan"
+            }
+          ]
+        },
+        "afterschool": {
+          "status": "attachments_listed",
+          "checked_at": "2026-10-11T12:12:17.599Z",
+          "http_status": 200,
+          "latest_period": {
+            "round": 2,
+            "year": 2026,
+            "month": 5
+          },
+          "status_as_of": "2026-04-30",
+          "attachments": [
+            {
+              "file_seq": "3",
+              "name": "2026학년도 수왕초 초등돌봄교실 운영 계획.hwp",
+              "size": "94 KB",
+              "file_academic_year": 2026,
+              "kind": "afterschool_care_plan"
+            },
+            {
+              "file_seq": "2",
+              "name": "2026학년도 수왕초 방과후학교 운영 계획.hwp",
+              "size": "712 KB",
+              "file_academic_year": 2026,
+              "kind": "afterschool_care_plan"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "school_id": "B000003556",
+      "school_name": "남산초등학교",
+      "region": "울산광역시",
+      "cohort": "province_sample",
+      "shl_idf_cd": "69e3f34c-cb84-4cd5-baed-94c6e5e769d5",
+      "items": {
+        "curriculum": {
+          "status": "attachments_listed",
+          "checked_at": "2026-10-11T12:12:18.456Z",
+          "http_status": 200,
+          "latest_period": {
+            "round": 1,
+            "year": 2026,
+            "month": 4
+          },
+          "status_as_of": null,
+          "attachments": [
+            {
+              "file_seq": "2",
+              "name": "2026학년도 남산초등학교 교육과정 편성·운영·평가 계획.hwp",
+              "size": "719 KB",
+              "file_academic_year": 2026,
+              "kind": "curriculum_plan"
+            },
+            {
+              "file_seq": "1",
+              "name": "2026학년도 남산교육 학사일정.pdf",
+              "size": "229 KB",
+              "file_academic_year": 2026,
+              "kind": "academic_calendar"
+            }
+          ]
+        },
+        "afterschool": {
+          "status": "attachments_listed",
+          "checked_at": "2026-10-11T12:12:19.300Z",
+          "http_status": 200,
+          "latest_period": {
+            "round": 2,
+            "year": 2026,
+            "month": 5
+          },
+          "status_as_of": "2026-04-30",
+          "attachments": [
+            {
+              "file_seq": "3",
+              "name": "2026학년도 초등방과후· 돌봄(늘봄학교) 운영 계획.hwp",
+              "size": "492 KB",
+              "file_academic_year": 2026,
+              "kind": "afterschool_care_plan"
+            },
+            {
+              "file_seq": "2",
+              "name": "2026학년도 초등돌봄 프로그램 운영계획.hwp",
+              "size": "132 KB",
+              "file_academic_year": 2026,
+              "kind": "afterschool_care_plan"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "school_id": "B000026025",
+      "school_name": "삼남초등학교",
+      "region": "울산광역시",
+      "cohort": "province_sample",
+      "shl_idf_cd": "e254b039-9f5f-4b10-88d5-3b339cde51a6",
+      "items": {
+        "curriculum": {
+          "status": "attachments_listed",
+          "checked_at": "2026-10-11T12:12:20.170Z",
+          "http_status": 200,
+          "latest_period": {
+            "round": 1,
+            "year": 2026,
+            "month": 4
+          },
+          "status_as_of": null,
+          "attachments": [
+            {
+              "file_seq": "1",
+              "name": "2-가. 학교교육과정 편성,운영 및 평가에 관한 사항(학사일정).hwpx",
+              "size": "188 KB",
+              "file_academic_year": null,
+              "kind": "academic_calendar"
+            },
+            {
+              "file_seq": "0",
+              "name": "2-가. 학교교육과정 편성,운영 및 평가에 관한 사항(학교교육과정 편성,운영,평가계획).hwpx",
+              "size": "858 KB",
+              "file_academic_year": null,
+              "kind": "curriculum_plan"
+            }
+          ]
+        },
+        "afterschool": {
+          "status": "attachments_listed",
+          "checked_at": "2026-10-11T12:12:21.017Z",
+          "http_status": 200,
+          "latest_period": {
+            "round": 2,
+            "year": 2026,
+            "month": 5
+          },
+          "status_as_of": "2026-04-30",
+          "attachments": [
+            {
+              "file_seq": "0",
+              "name": "붙임) 2026학년도 늘봄학교(도담도담·초등방과후 프로그램) 운영 계획.hwpx",
+              "size": "192 KB",
+              "file_academic_year": 2026,
+              "kind": "afterschool_care_plan"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "school_id": "B000002964",
+      "school_name": "인천송현초등학교",
+      "region": "인천광역시",
+      "cohort": "province_sample",
+      "shl_idf_cd": "f93a8b08-d25e-4738-a7ee-1345b51d25ca",
+      "items": {
+        "curriculum": {
+          "status": "attachments_listed",
+          "checked_at": "2026-10-11T12:12:21.881Z",
+          "http_status": 200,
+          "latest_period": {
+            "round": 1,
+            "year": 2026,
+            "month": 4
+          },
+          "status_as_of": null,
+          "attachments": [
+            {
+              "file_seq": "2",
+              "name": "2026학년도 송현초 학교교육과정 편성,운영,평가 계획.hwp",
+              "size": "228 KB",
+              "file_academic_year": 2026,
+              "kind": "curriculum_plan"
+            },
+            {
+              "file_seq": "1",
+              "name": "2026학년도 송현초 연간학사일정.hwp",
+              "size": "88 KB",
+              "file_academic_year": 2026,
+              "kind": "academic_calendar"
+            }
+          ]
+        },
+        "afterschool": {
+          "status": "attachments_listed",
+          "checked_at": "2026-10-11T12:12:22.713Z",
+          "http_status": 200,
+          "latest_period": {
+            "round": 2,
+            "year": 2026,
+            "month": 5
+          },
+          "status_as_of": "2026-04-30",
+          "attachments": [
+            {
+              "file_seq": "0",
+              "name": "2026학년도 송현초 초등방과후·돌봄 연간 운영 계획.hwpx",
+              "size": "184 KB",
+              "file_academic_year": 2026,
+              "kind": "afterschool_care_plan"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "school_id": "B000002950",
+      "school_name": "인천신광초등학교",
+      "region": "인천광역시",
+      "cohort": "province_sample",
+      "shl_idf_cd": "7ce86513-01c6-4943-8b9a-71e1c0c2f1da",
+      "items": {
+        "curriculum": {
+          "status": "attachments_listed",
+          "checked_at": "2026-10-11T12:12:23.579Z",
+          "http_status": 200,
+          "latest_period": {
+            "round": 1,
+            "year": 2026,
+            "month": 4
+          },
+          "status_as_of": null,
+          "attachments": [
+            {
+              "file_seq": "6",
+              "name": "2026학년도 학교교육과정 편성·운영·계획.hwp",
+              "size": "1,130 KB",
+              "file_academic_year": 2026,
+              "kind": "curriculum_plan"
+            },
+            {
+              "file_seq": "5",
+              "name": "2026학년도 연간학사일정.hwp",
+              "size": "67 KB",
+              "file_academic_year": 2026,
+              "kind": "academic_calendar"
+            }
+          ]
+        },
+        "afterschool": {
+          "status": "attachments_listed",
+          "checked_at": "2026-10-11T12:12:24.416Z",
+          "http_status": 200,
+          "latest_period": {
+            "round": 2,
+            "year": 2026,
+            "month": 5
+          },
+          "status_as_of": "2026-04-30",
+          "attachments": [
+            {
+              "file_seq": "5",
+              "name": "2026학년도 인천신광초등학교 돌봄교실 기본운영 계획.hwp",
+              "size": "142 KB",
+              "file_academic_year": 2026,
+              "kind": "afterschool_care_plan"
+            },
+            {
+              "file_seq": "4",
+              "name": "2026학년도 인천신광초등학교 방과후 프로그램 운영계획서.hwp",
+              "size": "1,001 KB",
+              "file_academic_year": 2026,
+              "kind": "afterschool_care_plan"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "school_id": "B000006528",
+      "school_name": "나주초등학교",
+      "region": "전라남도",
+      "cohort": "province_sample",
+      "shl_idf_cd": "8cc8b961-468c-41a7-a312-3a02c159fcc1",
+      "items": {
+        "curriculum": {
+          "status": "attachments_listed",
+          "checked_at": "2026-10-11T12:12:25.297Z",
+          "http_status": 200,
+          "latest_period": {
+            "round": 1,
+            "year": 2026,
+            "month": 4
+          },
+          "status_as_of": null,
+          "attachments": [
+            {
+              "file_seq": "0",
+              "name": "2026학년도 나주초 학교교육과정 편성 운영 평가 계획(정보공시).hwp",
+              "size": "140 KB",
+              "file_academic_year": 2026,
+              "kind": "curriculum_plan"
+            }
+          ]
+        },
+        "afterschool": {
+          "status": "attachments_listed",
+          "checked_at": "2026-10-11T12:12:26.151Z",
+          "http_status": 200,
+          "latest_period": {
+            "round": 2,
+            "year": 2026,
+            "month": 5
+          },
+          "status_as_of": "2026-04-30",
+          "attachments": [
+            {
+              "file_seq": "5",
+              "name": "2026. 1학기 돌봄,연계형교실  전체명단(3.12)_정보공시용.hwp",
+              "size": "78 KB",
+              "file_academic_year": 2026,
+              "kind": "afterschool_care_plan"
+            },
+            {
+              "file_seq": "4",
+              "name": "2025학년도 방과후학교 운영 수익자부담금 정산내역 (2).pdf",
+              "size": "63 KB",
+              "file_academic_year": 2025,
+              "kind": "afterschool_care_plan"
+            },
+            {
+              "file_seq": "3",
+              "name": "2025학년도 돌봄·방과후학교 세부사업별 세출 산출내역.xlsx",
+              "size": "15 KB",
+              "file_academic_year": 2025,
+              "kind": "afterschool_care_plan"
+            },
+            {
+              "file_seq": "0",
+              "name": "2026. 돌봄·방과후학교 운영계획.hwp",
+              "size": "338 KB",
+              "file_academic_year": 2026,
+              "kind": "afterschool_care_plan"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "school_id": "B000006534",
+      "school_name": "노안남초등학교",
+      "region": "전라남도",
+      "cohort": "province_sample",
+      "shl_idf_cd": "f1fb10b7-c810-45f9-b438-8aa1970212e9",
+      "items": {
+        "curriculum": {
+          "status": "attachments_listed",
+          "checked_at": "2026-10-11T12:12:27.033Z",
+          "http_status": 200,
+          "latest_period": {
+            "round": 1,
+            "year": 2026,
+            "month": 4
+          },
+          "status_as_of": null,
+          "attachments": [
+            {
+              "file_seq": "2",
+              "name": "2026학년도 노안남초 연간학사일정.hwpx",
+              "size": "91 KB",
+              "file_academic_year": 2026,
+              "kind": "academic_calendar"
+            },
+            {
+              "file_seq": "0",
+              "name": "2026학년도 노안남초 학교교육계획(정보공시용).pdf",
+              "size": "6,494 KB",
+              "file_academic_year": 2026,
+              "kind": "curriculum_plan"
+            }
+          ]
+        },
+        "afterschool": {
+          "status": "attachments_listed",
+          "checked_at": "2026-10-11T12:12:27.888Z",
+          "http_status": 200,
+          "latest_period": {
+            "round": 2,
+            "year": 2026,
+            "month": 5
+          },
+          "status_as_of": "2026-04-30",
+          "attachments": [
+            {
+              "file_seq": "1",
+              "name": "2006학년도 노안초등학교 초등돌봄교실 운영 계획.hwp",
+              "size": "124 KB",
+              "file_academic_year": 2006,
+              "kind": "afterschool_care_plan"
+            },
+            {
+              "file_seq": "0",
+              "name": "2006학년도 노안초등학교 방과후학교 운영 계획.hwp",
+              "size": "100 KB",
+              "file_academic_year": 2006,
+              "kind": "afterschool_care_plan"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "school_id": "B000006039",
+      "school_name": "군산용문초등학교",
+      "region": "전북특별자치도",
+      "cohort": "province_sample",
+      "shl_idf_cd": "6eb37b90-4369-416f-9e66-04d183300adc",
+      "items": {
+        "curriculum": {
+          "status": "attachments_listed",
+          "checked_at": "2026-10-11T12:12:28.755Z",
+          "http_status": 200,
+          "latest_period": {
+            "round": 1,
+            "year": 2026,
+            "month": 4
+          },
+          "status_as_of": null,
+          "attachments": [
+            {
+              "file_seq": "1",
+              "name": "(정보공시) 2026학년도 군산용문초 학교교육과정 편성운영 및 평가 계획.hwp",
+              "size": "307 KB",
+              "file_academic_year": 2026,
+              "kind": "curriculum_plan"
+            }
+          ]
+        },
+        "afterschool": {
+          "status": "attachments_listed",
+          "checked_at": "2026-10-11T12:12:29.600Z",
+          "http_status": 200,
+          "latest_period": {
+            "round": 2,
+            "year": 2026,
+            "month": 5
+          },
+          "status_as_of": "2026-04-30",
+          "attachments": [
+            {
+              "file_seq": "1",
+              "name": "2026학년도 늘봄학교 운영 계획(군산용문초) 게시용.hwp",
+              "size": "132 KB",
+              "file_academic_year": 2026,
+              "kind": "afterschool_care_plan"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "school_id": "B000006062",
+      "school_name": "창오초등학교",
+      "region": "전북특별자치도",
+      "cohort": "province_sample",
+      "shl_idf_cd": "f1f927f6-114f-48da-b084-1ad91e22eb18",
+      "items": {
+        "curriculum": {
+          "status": "attachments_listed",
+          "checked_at": "2026-10-11T12:12:30.451Z",
+          "http_status": 200,
+          "latest_period": {
+            "round": 1,
+            "year": 2026,
+            "month": 4
+          },
+          "status_as_of": null,
+          "attachments": [
+            {
+              "file_seq": "0",
+              "name": "2026학년도 창오초등학교 교육과정 운영 계획서.hwp",
+              "size": "6,459 KB",
+              "file_academic_year": 2026,
+              "kind": "curriculum_plan"
+            }
+          ]
+        },
+        "afterschool": {
+          "status": "attachments_listed",
+          "checked_at": "2026-10-11T12:12:31.285Z",
+          "http_status": 200,
+          "latest_period": {
+            "round": 2,
+            "year": 2026,
+            "month": 5
+          },
+          "status_as_of": "2026-04-30",
+          "attachments": [
+            {
+              "file_seq": "0",
+              "name": "2026학년도 늘봄학교 운영계획.hwpx",
+              "size": "140 KB",
+              "file_academic_year": 2026,
+              "kind": "afterschool_care_plan"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "school_id": "B000008014",
+      "school_name": "대흘초등학교",
+      "region": "제주특별자치도",
+      "cohort": "province_sample",
+      "shl_idf_cd": "a9f42a9f-d4bb-4356-bdd3-6617e7cdd876",
+      "items": {
+        "curriculum": {
+          "status": "attachments_listed",
+          "checked_at": "2026-10-11T12:12:32.168Z",
+          "http_status": 200,
+          "latest_period": {
+            "round": 1,
+            "year": 2026,
+            "month": 4
+          },
+          "status_as_of": null,
+          "attachments": [
+            {
+              "file_seq": "4",
+              "name": "2026학년도 학교교육과정 편성·운영·평가 계획(대흘초).hwp",
+              "size": "351 KB",
+              "file_academic_year": 2026,
+              "kind": "curriculum_plan"
+            },
+            {
+              "file_seq": "1",
+              "name": "2026학년도 대흘초등학교 학사일정.hwpx",
+              "size": "97 KB",
+              "file_academic_year": 2026,
+              "kind": "academic_calendar"
+            }
+          ]
+        },
+        "afterschool": {
+          "status": "attachments_listed",
+          "checked_at": "2026-10-11T12:12:33.008Z",
+          "http_status": 200,
+          "latest_period": {
+            "round": 2,
+            "year": 2026,
+            "month": 5
+          },
+          "status_as_of": "2026-04-30",
+          "attachments": [
+            {
+              "file_seq": "0",
+              "name": "[대흘초][2026]방과후학교 프로그램 운영 계획_V2_260409.hwp",
+              "size": "117 KB",
+              "file_academic_year": 2026,
+              "kind": "afterschool_care_plan"
+            },
+            {
+              "file_seq": "3",
+              "name": "2026학년도 돌봄교실 운영 계획.hwp",
+              "size": "483 KB",
+              "file_academic_year": 2026,
+              "kind": "afterschool_care_plan"
+            },
+            {
+              "file_seq": "4",
+              "name": "2026학년도 방과후학교 연계형 돌봄교실 운영계획.hwp",
+              "size": "74 KB",
+              "file_academic_year": 2026,
+              "kind": "afterschool_care_plan"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "school_id": "B000008082",
+      "school_name": "안덕초등학교",
+      "region": "제주특별자치도",
+      "cohort": "province_sample",
+      "shl_idf_cd": "4ff2954d-82c6-4a82-9307-8100e9abcce7",
+      "items": {
+        "curriculum": {
+          "status": "attachments_listed",
+          "checked_at": "2026-10-11T12:12:33.865Z",
+          "http_status": 200,
+          "latest_period": {
+            "round": 1,
+            "year": 2026,
+            "month": 4
+          },
+          "status_as_of": null,
+          "attachments": [
+            {
+              "file_seq": "4",
+              "name": "2026학년도 안덕초 학교교육과정 편성?운영?평가계획.pdf",
+              "size": "2,610 KB",
+              "file_academic_year": 2026,
+              "kind": "curriculum_plan"
+            },
+            {
+              "file_seq": "2",
+              "name": "2026학년도 안덕초 연간학사일정.pdf",
+              "size": "140 KB",
+              "file_academic_year": 2026,
+              "kind": "academic_calendar"
+            }
+          ]
+        },
+        "afterschool": {
+          "status": "attachments_listed",
+          "checked_at": "2026-10-11T12:12:34.707Z",
+          "http_status": 200,
+          "latest_period": {
+            "round": 2,
+            "year": 2026,
+            "month": 5
+          },
+          "status_as_of": "2026-04-30",
+          "attachments": [
+            {
+              "file_seq": "0",
+              "name": "2026학년도 안덕초 방과후 운영계획.hwp",
+              "size": "108 KB",
+              "file_academic_year": 2026,
+              "kind": "afterschool_care_plan"
+            },
+            {
+              "file_seq": "1",
+              "name": "2026학년도 안덕초 초등돌봄교실 운영 계획.hwp",
+              "size": "90 KB",
+              "file_academic_year": 2026,
+              "kind": "afterschool_care_plan"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "school_id": "B000022965",
+      "school_name": "상월초등학교",
+      "region": "충청남도",
+      "cohort": "province_sample",
+      "shl_idf_cd": "fc081d66-8be7-4cd1-bf8e-0c1e6c678bbf",
+      "items": {
+        "curriculum": {
+          "status": "attachments_listed",
+          "checked_at": "2026-10-11T12:12:35.567Z",
+          "http_status": 200,
+          "latest_period": {
+            "round": 1,
+            "year": 2026,
+            "month": 4
+          },
+          "status_as_of": null,
+          "attachments": [
+            {
+              "file_seq": "0",
+              "name": "2026학년도 상월초등학교 교육과정 운영계획.pdf",
+              "size": "2,652 KB",
+              "file_academic_year": 2026,
+              "kind": "curriculum_plan"
+            }
+          ]
+        },
+        "afterschool": {
+          "status": "attachments_listed",
+          "checked_at": "2026-10-11T12:12:36.422Z",
+          "http_status": 200,
+          "latest_period": {
+            "round": 2,
+            "year": 2026,
+            "month": 5
+          },
+          "status_as_of": "2026-04-30",
+          "attachments": [
+            {
+              "file_seq": "0",
+              "name": "2026학년도 온돌봄학교 운영 계획.hwp",
+              "size": "4,505 KB",
+              "file_academic_year": 2026,
+              "kind": "afterschool_care_plan"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "school_id": "B000005819",
+      "school_name": "장항초등학교",
+      "region": "충청남도",
+      "cohort": "province_sample",
+      "shl_idf_cd": "3d685704-dbdd-43d5-9e38-b71ec9327234",
+      "items": {
+        "curriculum": {
+          "status": "attachments_listed",
+          "checked_at": "2026-10-11T12:12:37.284Z",
+          "http_status": 200,
+          "latest_period": {
+            "round": 1,
+            "year": 2026,
+            "month": 4
+          },
+          "status_as_of": null,
+          "attachments": [
+            {
+              "file_seq": "0",
+              "name": "2026 학교교육과정 운영 계획_장항초.pdf",
+              "size": "3,413 KB",
+              "file_academic_year": 2026,
+              "kind": "curriculum_plan"
+            }
+          ]
+        },
+        "afterschool": {
+          "status": "attachments_listed",
+          "checked_at": "2026-10-11T12:12:38.131Z",
+          "http_status": 200,
+          "latest_period": {
+            "round": 2,
+            "year": 2026,
+            "month": 5
+          },
+          "status_as_of": "2026-04-30",
+          "attachments": [
+            {
+              "file_seq": "1",
+              "name": "2026학년도 장항초등학교 온돌봄 안전관리 계획.pdf",
+              "size": "601 KB",
+              "file_academic_year": 2026,
+              "kind": "afterschool_care_plan"
+            },
+            {
+              "file_seq": "0",
+              "name": "2026학년도 장항초등학교 온돌봄 운영 계획.pdf",
+              "size": "427 KB",
+              "file_academic_year": 2026,
+              "kind": "afterschool_care_plan"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "school_id": "B000005407",
+      "school_name": "군남초등학교",
+      "region": "충청북도",
+      "cohort": "province_sample",
+      "shl_idf_cd": "a5b39672-ae72-409b-a463-7b7bd64d5ad5",
+      "items": {
+        "curriculum": {
+          "status": "attachments_listed",
+          "checked_at": "2026-10-11T12:12:38.984Z",
+          "http_status": 200,
+          "latest_period": {
+            "round": 1,
+            "year": 2026,
+            "month": 4
+          },
+          "status_as_of": null,
+          "attachments": [
+            {
+              "file_seq": "1",
+              "name": "2026. 군남초 학교교육계획(정보공시).hwp",
+              "size": "4,229 KB",
+              "file_academic_year": 2026,
+              "kind": "curriculum_plan"
+            }
+          ]
+        },
+        "afterschool": {
+          "status": "attachments_listed",
+          "checked_at": "2026-10-11T12:12:39.831Z",
+          "http_status": 200,
+          "latest_period": {
+            "round": 2,
+            "year": 2026,
+            "month": 5
+          },
+          "status_as_of": "2026-04-30",
+          "attachments": [
+            {
+              "file_seq": "0",
+              "name": "2026학년도 군남초등학교 방과후돌봄(늘봄학교) 운영 계획.hwpx",
+              "size": "1,402 KB",
+              "file_academic_year": 2026,
+              "kind": "afterschool_care_plan"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "school_id": "B000005242",
+      "school_name": "주중초등학교",
+      "region": "충청북도",
+      "cohort": "province_sample",
+      "shl_idf_cd": "eaaaf674-fb50-42a5-b5f0-eb0224207457",
+      "items": {
+        "curriculum": {
+          "status": "attachments_listed",
+          "checked_at": "2026-10-11T12:12:40.679Z",
+          "http_status": 200,
+          "latest_period": {
+            "round": 1,
+            "year": 2026,
+            "month": 4
+          },
+          "status_as_of": null,
+          "attachments": [
+            {
+              "file_seq": "0",
+              "name": "2026학년도 주중초 학교교육과정 편성·운영·평가 계획.hwp",
+              "size": "164 KB",
+              "file_academic_year": 2026,
+              "kind": "curriculum_plan"
+            }
+          ]
+        },
+        "afterschool": {
+          "status": "attachments_listed",
+          "checked_at": "2026-10-11T12:12:41.530Z",
+          "http_status": 200,
+          "latest_period": {
+            "round": 2,
+            "year": 2026,
+            "month": 5
+          },
+          "status_as_of": "2026-04-30",
+          "attachments": [
+            {
+              "file_seq": "1",
+              "name": "2026학년도 주중초 방과후돌봄(늘봄학교) 방과후 프로그램 운영계획.hwpx",
+              "size": "353 KB",
+              "file_academic_year": 2026,
+              "kind": "afterschool_care_plan"
+            },
+            {
+              "file_seq": "0",
+              "name": "2026. 주중초 돌봄 프로그램 운영 계획.hwp",
+              "size": "120 KB",
+              "file_academic_year": 2026,
+              "kind": "afterschool_care_plan"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

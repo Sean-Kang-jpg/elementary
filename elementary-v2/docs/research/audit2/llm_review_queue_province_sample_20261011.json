@@ -1,0 +1,18 @@
+{
+ "pending": [
+  {
+   "school_id": "B000002742",
+   "school_name": "대구율금초등학교",
+   "kind": "clock",
+   "problems": [
+    "clock.lunch_end not HH:MM",
+    "clock.p5_end not HH:MM"
+   ]
+  }
+ ],
+ "spot_check_sample": [
+  "B000003349",
+  "B000007829",
+  "B000022965"
+ ]
+}

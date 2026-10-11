@@ -1,0 +1,1598 @@
+{
+  "schema_version": "school-day-periods-candidates-v1",
+  "evidence_state": "estimated_from_2026_sources_not_reviewed",
+  "publish_status": "not_approved",
+  "no_operational_upload": true,
+  "summary": {
+    "needs_review": 16,
+    "candidate": 3,
+    "no_clock": 11
+  },
+  "schools": [
+    {
+      "school_id": "B000005115",
+      "school_name": "장평초등학교",
+      "region": "강원특별자치도",
+      "clock_status": "clock_found",
+      "review_flags": [
+        "dismissal_incomplete"
+      ],
+      "grade1_weekday_periods": {
+        "월": null,
+        "화": null,
+        "수": null,
+        "목": null,
+        "금": null
+      },
+      "periods_source": null,
+      "clock_file": "2026학년도 학교교육과정 편성·운영 계획(안).hwp",
+      "clock_sha256": "30cde8cfde7ab650b69a5d5839232f23e85c450dba32294f18532688e6ce4ad4",
+      "clock": {
+        "periods": {
+          "1": {
+            "start": "09:10",
+            "end": "09:50"
+          },
+          "2": {
+            "start": "10:00",
+            "end": "10:40"
+          },
+          "3": {
+            "start": "11:00",
+            "end": "11:40"
+          },
+          "4": {
+            "start": "11:50",
+            "end": "12:30"
+          },
+          "5": {
+            "start": "13:20",
+            "end": "14:00"
+          },
+          "6": {
+            "start": "14:10",
+            "end": "14:20"
+          },
+          "7": {
+            "start": "15:10",
+            "end": "15:50"
+          }
+        },
+        "lunch": {
+          "start": "12:30",
+          "end": "13:20"
+        },
+        "variants_seen": 1,
+        "inferred_periods": []
+      },
+      "estimated_dismissal": {
+        "월": {
+          "periods": null,
+          "dismissal": null,
+          "rule": null
+        },
+        "화": {
+          "periods": null,
+          "dismissal": null,
+          "rule": null
+        },
+        "수": {
+          "periods": null,
+          "dismissal": null,
+          "rule": null
+        },
+        "목": {
+          "periods": null,
+          "dismissal": null,
+          "rule": null
+        },
+        "금": {
+          "periods": null,
+          "dismissal": null,
+          "rule": null
+        }
+      },
+      "status": "needs_review"
+    },
+    {
+      "school_id": "B000005009",
+      "school_name": "진주초등학교",
+      "region": "강원특별자치도",
+      "clock_status": "clock_found",
+      "review_flags": [],
+      "grade1_weekday_periods": {
+        "월": 5,
+        "화": 4,
+        "수": 5,
+        "목": 4,
+        "금": 4
+      },
+      "periods_source": "NEIS term1_regular+term2_regular+term2_early",
+      "clock_file": "2026학년도 교육과정 편성운영 및 평가 계획.hwp",
+      "clock_sha256": "880f019632d5b707181d6bfd071cd0f2d75f396900a535e1a89765740639d814",
+      "clock": {
+        "periods": {
+          "1": {
+            "start": "09:10",
+            "end": "09:50"
+          },
+          "2": {
+            "start": "09:50",
+            "end": "10:30"
+          },
+          "3": {
+            "start": "10:50",
+            "end": "11:30"
+          },
+          "4": {
+            "start": "11:30",
+            "end": "12:10"
+          },
+          "5": {
+            "start": "13:10",
+            "end": "13:50"
+          },
+          "6": {
+            "start": "14:00",
+            "end": "14:40"
+          },
+          "7": {
+            "start": "14:50",
+            "end": "15:30"
+          }
+        },
+        "lunch": {
+          "start": "12:10",
+          "end": "13:10"
+        },
+        "variants_seen": 1,
+        "inferred_periods": []
+      },
+      "estimated_dismissal": {
+        "월": {
+          "periods": 5,
+          "dismissal": "13:50",
+          "rule": "period_end"
+        },
+        "화": {
+          "periods": 4,
+          "dismissal": "13:10",
+          "rule": "after_lunch"
+        },
+        "수": {
+          "periods": 5,
+          "dismissal": "13:50",
+          "rule": "period_end"
+        },
+        "목": {
+          "periods": 4,
+          "dismissal": "13:10",
+          "rule": "after_lunch"
+        },
+        "금": {
+          "periods": 4,
+          "dismissal": "13:10",
+          "rule": "after_lunch"
+        }
+      },
+      "status": "candidate"
+    },
+    {
+      "school_id": "B000024414",
+      "school_name": "무지개초등학교",
+      "region": "경상남도",
+      "clock_status": "no_clock_detected",
+      "review_flags": [],
+      "grade1_weekday_periods": {
+        "월": 4,
+        "화": 5,
+        "수": 4,
+        "목": 5,
+        "금": 5
+      },
+      "periods_source": "NEIS term1_regular",
+      "status": "no_clock"
+    },
+    {
+      "school_id": "B000007829",
+      "school_name": "양산초등학교",
+      "region": "경상남도",
+      "clock_status": "clock_found",
+      "review_flags": [
+        "multiple_tables",
+        "missing_period_4",
+        "missing_lunch",
+        "dismissal_incomplete"
+      ],
+      "grade1_weekday_periods": {
+        "월": 4,
+        "화": 5,
+        "수": 5,
+        "목": 5,
+        "금": 4
+      },
+      "periods_source": "NEIS term1_regular",
+      "clock_file": "2026학년도 양산초 학교교육과정 편성·운영·평가 계획.pdf",
+      "clock_sha256": "2234948aec8c5c18f2fdf74ecc39ad32deef87a5f20c4426e5927007b7b40bbc",
+      "clock": {
+        "periods": {
+          "5": {
+            "start": "08:40",
+            "end": "09:00"
+          }
+        },
+        "lunch": null,
+        "variants_seen": 2,
+        "inferred_periods": []
+      },
+      "estimated_dismissal": {
+        "월": {
+          "periods": 4,
+          "dismissal": null,
+          "rule": null
+        },
+        "화": {
+          "periods": 5,
+          "dismissal": "09:00",
+          "rule": "period_end"
+        },
+        "수": {
+          "periods": 5,
+          "dismissal": "09:00",
+          "rule": "period_end"
+        },
+        "목": {
+          "periods": 5,
+          "dismissal": "09:00",
+          "rule": "period_end"
+        },
+        "금": {
+          "periods": 4,
+          "dismissal": null,
+          "rule": null
+        }
+      },
+      "status": "needs_review"
+    },
+    {
+      "school_id": "B000007063",
+      "school_name": "풍산초등학교",
+      "region": "경상북도",
+      "clock_status": "clock_found",
+      "review_flags": [
+        "multiple_tables",
+        "missing_period_4",
+        "missing_period_5",
+        "missing_lunch",
+        "dismissal_incomplete"
+      ],
+      "grade1_weekday_periods": {
+        "월": 4,
+        "화": 5,
+        "수": 4,
+        "목": 5,
+        "금": 5
+      },
+      "periods_source": "NEIS term1_regular",
+      "clock_file": "2026 학교 교육과정 운영 계획.hwp",
+      "clock_sha256": "b604f978cd15b4671564c3959e73a5e4968127682717b8c69a089f586d21f4a1",
+      "clock": {
+        "periods": {
+          "1": {
+            "start": "09:00",
+            "end": "09:40"
+          },
+          "2": {
+            "start": "09:50",
+            "end": "10:30"
+          }
+        },
+        "lunch": null,
+        "variants_seen": 2,
+        "inferred_periods": []
+      },
+      "estimated_dismissal": {
+        "월": {
+          "periods": 4,
+          "dismissal": null,
+          "rule": null
+        },
+        "화": {
+          "periods": 5,
+          "dismissal": null,
+          "rule": null
+        },
+        "수": {
+          "periods": 4,
+          "dismissal": null,
+          "rule": null
+        },
+        "목": {
+          "periods": 5,
+          "dismissal": null,
+          "rule": null
+        },
+        "금": {
+          "periods": 5,
+          "dismissal": null,
+          "rule": null
+        }
+      },
+      "status": "needs_review"
+    },
+    {
+      "school_id": "B000006925",
+      "school_name": "두호초등학교",
+      "region": "경상북도",
+      "clock_status": "clock_found",
+      "review_flags": [
+        "multiple_tables"
+      ],
+      "grade1_weekday_periods": {
+        "월": 4,
+        "화": 5,
+        "수": 4,
+        "목": 5,
+        "금": 5
+      },
+      "periods_source": "NEIS term1_regular",
+      "clock_file": "2026 두호교육계획.pdf",
+      "clock_sha256": "55f36f66af16f027dc1fd4926ce9e96faad962f80f24dd6009e3cb5b0f9ef748",
+      "clock": {
+        "periods": {
+          "1": {
+            "start": "09:00",
+            "end": "09:40"
+          },
+          "2": {
+            "start": "09:50",
+            "end": "10:30"
+          },
+          "3": {
+            "start": "10:40",
+            "end": "11:20"
+          },
+          "4": {
+            "start": "11:30",
+            "end": "12:10"
+          },
+          "5": {
+            "start": "13:00",
+            "end": "13:40"
+          },
+          "6": {
+            "start": "13:50",
+            "end": "14:30"
+          }
+        },
+        "lunch": {
+          "start": "12:10",
+          "end": "13:00"
+        },
+        "variants_seen": 2,
+        "inferred_periods": []
+      },
+      "estimated_dismissal": {
+        "월": {
+          "periods": 4,
+          "dismissal": "13:00",
+          "rule": "after_lunch"
+        },
+        "화": {
+          "periods": 5,
+          "dismissal": "13:40",
+          "rule": "period_end"
+        },
+        "수": {
+          "periods": 4,
+          "dismissal": "13:00",
+          "rule": "after_lunch"
+        },
+        "목": {
+          "periods": 5,
+          "dismissal": "13:40",
+          "rule": "period_end"
+        },
+        "금": {
+          "periods": 5,
+          "dismissal": "13:40",
+          "rule": "period_end"
+        }
+      },
+      "status": "needs_review"
+    },
+    {
+      "school_id": "B000003206",
+      "school_name": "살레시오초등학교",
+      "region": "광주광역시",
+      "clock_status": "clock_found",
+      "review_flags": [
+        "multiple_tables",
+        "missing_period_5",
+        "lunch_before_period4_end",
+        "dismissal_incomplete"
+      ],
+      "grade1_weekday_periods": {
+        "월": 4,
+        "화": 5,
+        "수": 5,
+        "목": 4,
+        "금": 5
+      },
+      "periods_source": "NEIS term2_regular+term2_early",
+      "clock_file": "2026학년도 교육과정 편성 및 운영(심의안-수정).hwp",
+      "clock_sha256": "d137756f2f2f3000dce2445fe94d4ce10bbe515494ff1aa9ddcff9a82ff1569e",
+      "clock": {
+        "periods": {
+          "1": {
+            "start": "09:00",
+            "end": "09:40"
+          },
+          "2": {
+            "start": "09:50",
+            "end": "10:30"
+          },
+          "3": {
+            "start": "10:50",
+            "end": "11:30"
+          },
+          "4": {
+            "start": "11:40",
+            "end": "12:20"
+          }
+        },
+        "lunch": {
+          "start": "11:30",
+          "end": "12:20"
+        },
+        "variants_seen": 2,
+        "inferred_periods": []
+      },
+      "estimated_dismissal": {
+        "월": {
+          "periods": 4,
+          "dismissal": "12:20",
+          "rule": "period_end"
+        },
+        "화": {
+          "periods": 5,
+          "dismissal": null,
+          "rule": null
+        },
+        "수": {
+          "periods": 5,
+          "dismissal": null,
+          "rule": null
+        },
+        "목": {
+          "periods": 4,
+          "dismissal": "12:20",
+          "rule": "period_end"
+        },
+        "금": {
+          "periods": 5,
+          "dismissal": null,
+          "rule": null
+        }
+      },
+      "status": "needs_review"
+    },
+    {
+      "school_id": "B000003289",
+      "school_name": "광주농성초등학교",
+      "region": "광주광역시",
+      "clock_status": "clock_found",
+      "review_flags": [
+        "multiple_tables"
+      ],
+      "grade1_weekday_periods": {
+        "월": 4,
+        "화": 5,
+        "수": 4,
+        "목": 5,
+        "금": 5
+      },
+      "periods_source": "NEIS term2_regular+term2_early",
+      "clock_file": "2-가 학교교육과정 편성 운영 및 평가 사항.hwp",
+      "clock_sha256": "2421281a0964d988a5910ba740c027df4425751f41b4c8c02cddf0cb76978efc",
+      "clock": {
+        "periods": {
+          "1": {
+            "start": "09:00",
+            "end": "09:40"
+          },
+          "2": {
+            "start": "09:50",
+            "end": "10:30"
+          },
+          "3": {
+            "start": "10:50",
+            "end": "11:30"
+          },
+          "4": {
+            "start": "11:40",
+            "end": "12:20"
+          },
+          "5": {
+            "start": "12:30",
+            "end": "13:10"
+          }
+        },
+        "lunch": {
+          "start": "12:20",
+          "end": "13:10"
+        },
+        "variants_seen": 2,
+        "inferred_periods": []
+      },
+      "estimated_dismissal": {
+        "월": {
+          "periods": 4,
+          "dismissal": "13:10",
+          "rule": "after_lunch"
+        },
+        "화": {
+          "periods": 5,
+          "dismissal": "13:10",
+          "rule": "period_end"
+        },
+        "수": {
+          "periods": 4,
+          "dismissal": "13:10",
+          "rule": "after_lunch"
+        },
+        "목": {
+          "periods": 5,
+          "dismissal": "13:10",
+          "rule": "period_end"
+        },
+        "금": {
+          "periods": 5,
+          "dismissal": "13:10",
+          "rule": "period_end"
+        }
+      },
+      "status": "needs_review"
+    },
+    {
+      "school_id": "B000002859",
+      "school_name": "대구팔달초등학교",
+      "region": "대구광역시",
+      "clock_status": "clock_found",
+      "review_flags": [
+        "multiple_tables"
+      ],
+      "grade1_weekday_periods": {
+        "월": 4,
+        "화": 5,
+        "수": 5,
+        "목": 5,
+        "금": 4
+      },
+      "periods_source": "NEIS term1_regular",
+      "clock_file": "2026학년도 팔달초 학교교육과정 편성, 운영 및 평가 계획(정정).pdf",
+      "clock_sha256": "470353c4e54ffb7a381cf5da26c37749f056b6d36e5556eeed48025cb35572db",
+      "clock": {
+        "periods": {
+          "1": {
+            "start": "08:50",
+            "end": "09:30"
+          },
+          "2": {
+            "start": "09:40",
+            "end": "10:20"
+          },
+          "3": {
+            "start": "10:30",
+            "end": "11:10"
+          },
+          "4": {
+            "start": "11:20",
+            "end": "12:00"
+          },
+          "5": {
+            "start": "12:50",
+            "end": "13:30"
+          },
+          "6": {
+            "start": "13:40",
+            "end": "14:20"
+          }
+        },
+        "lunch": {
+          "start": "12:00",
+          "end": "12:50"
+        },
+        "variants_seen": 2,
+        "inferred_periods": []
+      },
+      "estimated_dismissal": {
+        "월": {
+          "periods": 4,
+          "dismissal": "12:50",
+          "rule": "after_lunch"
+        },
+        "화": {
+          "periods": 5,
+          "dismissal": "13:30",
+          "rule": "period_end"
+        },
+        "수": {
+          "periods": 5,
+          "dismissal": "13:30",
+          "rule": "period_end"
+        },
+        "목": {
+          "periods": 5,
+          "dismissal": "13:30",
+          "rule": "period_end"
+        },
+        "금": {
+          "periods": 4,
+          "dismissal": "12:50",
+          "rule": "after_lunch"
+        }
+      },
+      "status": "needs_review"
+    },
+    {
+      "school_id": "B000002742",
+      "school_name": "대구율금초등학교",
+      "region": "대구광역시",
+      "clock_status": "clock_found",
+      "review_flags": [
+        "multiple_tables",
+        "missing_period_4",
+        "missing_period_5",
+        "missing_lunch",
+        "dismissal_incomplete"
+      ],
+      "grade1_weekday_periods": {
+        "월": 4,
+        "화": 5,
+        "수": 4,
+        "목": 5,
+        "금": 5
+      },
+      "periods_source": "NEIS term1_regular",
+      "clock_file": "2026학년도 대구율금초 학교교육과정 편성·운영·평가 계획.hwpx",
+      "clock_sha256": "a01fc3fbff02d75c825f622857462ec2564ee197e4826d47ba4732611cb901db",
+      "clock": {
+        "periods": {
+          "1": {
+            "start": "08:50",
+            "end": "09:30"
+          }
+        },
+        "lunch": null,
+        "variants_seen": 2,
+        "inferred_periods": []
+      },
+      "estimated_dismissal": {
+        "월": {
+          "periods": 4,
+          "dismissal": null,
+          "rule": null
+        },
+        "화": {
+          "periods": 5,
+          "dismissal": null,
+          "rule": null
+        },
+        "수": {
+          "periods": 4,
+          "dismissal": null,
+          "rule": null
+        },
+        "목": {
+          "periods": 5,
+          "dismissal": null,
+          "rule": null
+        },
+        "금": {
+          "periods": 5,
+          "dismissal": null,
+          "rule": null
+        }
+      },
+      "status": "needs_review"
+    },
+    {
+      "school_id": "B000003349",
+      "school_name": "대전신흥초등학교",
+      "region": "대전광역시",
+      "clock_status": "clock_found",
+      "review_flags": [
+        "multiple_tables",
+        "missing_period_4",
+        "missing_period_5",
+        "missing_lunch",
+        "dismissal_incomplete"
+      ],
+      "grade1_weekday_periods": {
+        "월": 4,
+        "화": 5,
+        "수": 5,
+        "목": 5,
+        "금": 4
+      },
+      "periods_source": "NEIS term1_regular",
+      "clock_file": "2026학년도 학교교육과정 편성운영 및 평가에 관한 사항.hwp",
+      "clock_sha256": "4ff14c37be87d222362a869a165539ee1129e5d2b41b45be94c91736efefb5bb",
+      "clock": {
+        "periods": {
+          "1": {
+            "start": "08:30",
+            "end": "08:50"
+          }
+        },
+        "lunch": null,
+        "variants_seen": 2,
+        "inferred_periods": []
+      },
+      "estimated_dismissal": {
+        "월": {
+          "periods": 4,
+          "dismissal": null,
+          "rule": null
+        },
+        "화": {
+          "periods": 5,
+          "dismissal": null,
+          "rule": null
+        },
+        "수": {
+          "periods": 5,
+          "dismissal": null,
+          "rule": null
+        },
+        "목": {
+          "periods": 5,
+          "dismissal": null,
+          "rule": null
+        },
+        "금": {
+          "periods": 4,
+          "dismissal": null,
+          "rule": null
+        }
+      },
+      "status": "needs_review"
+    },
+    {
+      "school_id": "B000003434",
+      "school_name": "대전구봉초등학교",
+      "region": "대전광역시",
+      "clock_status": "clock_found",
+      "review_flags": [
+        "multiple_tables",
+        "missing_period_4",
+        "missing_period_5",
+        "missing_lunch",
+        "dismissal_incomplete"
+      ],
+      "grade1_weekday_periods": {
+        "월": 4,
+        "화": 5,
+        "수": 5,
+        "목": 5,
+        "금": 4
+      },
+      "periods_source": "NEIS term1_regular",
+      "clock_file": "2026학년도 학교 교육과정 운영 계획(대전구봉초).pdf",
+      "clock_sha256": "55ad3a39544229fcab259c9cd8ca4c61dfa37610a887b4365a8ce863c53a464f",
+      "clock": {
+        "periods": {
+          "1": {
+            "start": "09:00",
+            "end": "09:40"
+          }
+        },
+        "lunch": null,
+        "variants_seen": 2,
+        "inferred_periods": []
+      },
+      "estimated_dismissal": {
+        "월": {
+          "periods": 4,
+          "dismissal": null,
+          "rule": null
+        },
+        "화": {
+          "periods": 5,
+          "dismissal": null,
+          "rule": null
+        },
+        "수": {
+          "periods": 5,
+          "dismissal": null,
+          "rule": null
+        },
+        "목": {
+          "periods": 5,
+          "dismissal": null,
+          "rule": null
+        },
+        "금": {
+          "periods": 4,
+          "dismissal": null,
+          "rule": null
+        }
+      },
+      "status": "needs_review"
+    },
+    {
+      "school_id": "B000002555",
+      "school_name": "안민초등학교",
+      "region": "부산광역시",
+      "clock_status": "no_clock_detected",
+      "review_flags": [],
+      "grade1_weekday_periods": {
+        "월": 5,
+        "화": 5,
+        "수": 4,
+        "목": null,
+        "금": 4
+      },
+      "periods_source": "NEIS term1_regular",
+      "status": "no_clock"
+    },
+    {
+      "school_id": "B000022720",
+      "school_name": "온샘초등학교",
+      "region": "부산광역시",
+      "clock_status": "clock_found",
+      "review_flags": [
+        "multiple_tables"
+      ],
+      "grade1_weekday_periods": {
+        "월": 4,
+        "화": 5,
+        "수": 4,
+        "목": 5,
+        "금": 5
+      },
+      "periods_source": "NEIS term1_regular",
+      "clock_file": "2026학년도 온샘초 교육계획서(탑재용).hwpx",
+      "clock_sha256": "41ce42dab8a4ba72fefba20f7d9e9efe5ee0572698856a8e92bb2d82488350c9",
+      "clock": {
+        "periods": {
+          "1": {
+            "start": "08:50",
+            "end": "09:30"
+          },
+          "2": {
+            "start": "09:40",
+            "end": "10:20"
+          },
+          "3": {
+            "start": "10:30",
+            "end": "11:10"
+          },
+          "4": {
+            "start": "11:20",
+            "end": "12:00"
+          },
+          "5": {
+            "start": "12:50",
+            "end": "13:30"
+          },
+          "6": {
+            "start": "13:40",
+            "end": "14:20"
+          }
+        },
+        "lunch": {
+          "start": "12:00",
+          "end": "12:50"
+        },
+        "variants_seen": 2,
+        "inferred_periods": []
+      },
+      "estimated_dismissal": {
+        "월": {
+          "periods": 4,
+          "dismissal": "12:50",
+          "rule": "after_lunch"
+        },
+        "화": {
+          "periods": 5,
+          "dismissal": "13:30",
+          "rule": "period_end"
+        },
+        "수": {
+          "periods": 4,
+          "dismissal": "12:50",
+          "rule": "after_lunch"
+        },
+        "목": {
+          "periods": 5,
+          "dismissal": "13:30",
+          "rule": "period_end"
+        },
+        "금": {
+          "periods": 5,
+          "dismissal": "13:30",
+          "rule": "period_end"
+        }
+      },
+      "status": "needs_review"
+    },
+    {
+      "school_id": "B000026572",
+      "school_name": "솔빛초등학교",
+      "region": "세종특별자치시",
+      "clock_status": "no_clock_detected",
+      "review_flags": [],
+      "grade1_weekday_periods": {
+        "월": 4,
+        "화": 5,
+        "수": 5,
+        "목": 5,
+        "금": 4
+      },
+      "periods_source": "NEIS term1_regular",
+      "status": "no_clock"
+    },
+    {
+      "school_id": "B000005744",
+      "school_name": "수왕초등학교",
+      "region": "세종특별자치시",
+      "clock_status": "clock_found",
+      "review_flags": [
+        "multiple_tables",
+        "missing_period_4",
+        "missing_period_5",
+        "missing_lunch",
+        "dismissal_incomplete"
+      ],
+      "grade1_weekday_periods": {
+        "월": 5,
+        "화": 5,
+        "수": 4,
+        "목": 4,
+        "금": 5
+      },
+      "periods_source": "NEIS term1_regular",
+      "clock_file": "2026학년도 수왕교육과정(게시용).pdf",
+      "clock_sha256": "c8e60d460fb1493f51016599ffc92dcfc0950f31e99ffe6bef594e359e07480d",
+      "clock": {
+        "periods": {
+          "1": {
+            "start": "09:00",
+            "end": "09:40"
+          },
+          "2": {
+            "start": "09:40",
+            "end": "09:50"
+          }
+        },
+        "lunch": null,
+        "variants_seen": 2,
+        "inferred_periods": []
+      },
+      "estimated_dismissal": {
+        "월": {
+          "periods": 5,
+          "dismissal": null,
+          "rule": null
+        },
+        "화": {
+          "periods": 5,
+          "dismissal": null,
+          "rule": null
+        },
+        "수": {
+          "periods": 4,
+          "dismissal": null,
+          "rule": null
+        },
+        "목": {
+          "periods": 4,
+          "dismissal": null,
+          "rule": null
+        },
+        "금": {
+          "periods": 5,
+          "dismissal": null,
+          "rule": null
+        }
+      },
+      "status": "needs_review"
+    },
+    {
+      "school_id": "B000003556",
+      "school_name": "남산초등학교",
+      "region": "울산광역시",
+      "clock_status": "clock_heading_only",
+      "review_flags": [],
+      "grade1_weekday_periods": {
+        "월": 4,
+        "화": 5,
+        "수": 5,
+        "목": 5,
+        "금": 4
+      },
+      "periods_source": "NEIS term1_regular",
+      "status": "no_clock"
+    },
+    {
+      "school_id": "B000026025",
+      "school_name": "삼남초등학교",
+      "region": "울산광역시",
+      "clock_status": "clock_found",
+      "review_flags": [
+        "multiple_tables",
+        "missing_period_5",
+        "lunch_before_period4_end",
+        "dismissal_incomplete"
+      ],
+      "grade1_weekday_periods": {
+        "월": 5,
+        "화": 4,
+        "수": 4,
+        "목": 5,
+        "금": 5
+      },
+      "periods_source": "NEIS term1_regular",
+      "clock_file": "2-가. 학교교육과정 편성,운영 및 평가에 관한 사항(학교교육과정 편성,운영,평가계획).hwpx",
+      "clock_sha256": "bec00198a3ce30a6fd1c4f4baaefab722f8127117e2ed8e084a8442a06b74fca",
+      "clock": {
+        "periods": {
+          "1": {
+            "start": "09:00",
+            "end": "09:40"
+          },
+          "2": {
+            "start": "09:50",
+            "end": "10:30"
+          },
+          "3": {
+            "start": "10:40",
+            "end": "11:20"
+          },
+          "4": {
+            "start": "11:30",
+            "end": "12:10"
+          }
+        },
+        "lunch": {
+          "start": "11:20",
+          "end": "12:20"
+        },
+        "variants_seen": 2,
+        "inferred_periods": []
+      },
+      "estimated_dismissal": {
+        "월": {
+          "periods": 5,
+          "dismissal": null,
+          "rule": null
+        },
+        "화": {
+          "periods": 4,
+          "dismissal": "12:10",
+          "rule": "period_end"
+        },
+        "수": {
+          "periods": 4,
+          "dismissal": "12:10",
+          "rule": "period_end"
+        },
+        "목": {
+          "periods": 5,
+          "dismissal": null,
+          "rule": null
+        },
+        "금": {
+          "periods": 5,
+          "dismissal": null,
+          "rule": null
+        }
+      },
+      "status": "needs_review"
+    },
+    {
+      "school_id": "B000002964",
+      "school_name": "인천송현초등학교",
+      "region": "인천광역시",
+      "clock_status": "no_clock_detected",
+      "review_flags": [],
+      "grade1_weekday_periods": {
+        "월": 4,
+        "화": 5,
+        "수": 4,
+        "목": 5,
+        "금": 5
+      },
+      "periods_source": "NEIS term1_regular",
+      "status": "no_clock"
+    },
+    {
+      "school_id": "B000002950",
+      "school_name": "인천신광초등학교",
+      "region": "인천광역시",
+      "clock_status": "no_clock_detected",
+      "review_flags": [],
+      "grade1_weekday_periods": {
+        "월": 5,
+        "화": 5,
+        "수": 4,
+        "목": 5,
+        "금": 4
+      },
+      "periods_source": "NEIS term1_regular",
+      "status": "no_clock"
+    },
+    {
+      "school_id": "B000006528",
+      "school_name": "나주초등학교",
+      "region": "전라남도",
+      "clock_status": "no_clock_detected",
+      "review_flags": [],
+      "grade1_weekday_periods": {
+        "월": 5,
+        "화": 4,
+        "수": 5,
+        "목": 4,
+        "금": 5
+      },
+      "periods_source": "NEIS term2_regular+term2_early",
+      "status": "no_clock"
+    },
+    {
+      "school_id": "B000006534",
+      "school_name": "노안남초등학교",
+      "region": "전라남도",
+      "clock_status": "clock_found",
+      "review_flags": [],
+      "grade1_weekday_periods": {
+        "월": 5,
+        "화": 5,
+        "수": 4,
+        "목": 4,
+        "금": 5
+      },
+      "periods_source": "NEIS term2_regular+term2_early",
+      "clock_file": "2026학년도 노안남초 학교교육계획(정보공시용).pdf",
+      "clock_sha256": "4a6599c2456132ff0935ef34382798d3a51d6f5b5b2f8576dcaa3bcaca4c7d8e",
+      "clock": {
+        "periods": {
+          "1": {
+            "start": "09:00",
+            "end": "09:40"
+          },
+          "2": {
+            "start": "09:45",
+            "end": "10:25"
+          },
+          "3": {
+            "start": "10:55",
+            "end": "11:35"
+          },
+          "4": {
+            "start": "11:40",
+            "end": "12:20"
+          },
+          "5": {
+            "start": "13:20",
+            "end": "14:00"
+          },
+          "6": {
+            "start": "14:05",
+            "end": "14:45"
+          },
+          "7": {
+            "start": "14:50",
+            "end": "15:30"
+          }
+        },
+        "lunch": {
+          "start": "12:20",
+          "end": "13:20"
+        },
+        "variants_seen": 1,
+        "inferred_periods": []
+      },
+      "estimated_dismissal": {
+        "월": {
+          "periods": 5,
+          "dismissal": "14:00",
+          "rule": "period_end"
+        },
+        "화": {
+          "periods": 5,
+          "dismissal": "14:00",
+          "rule": "period_end"
+        },
+        "수": {
+          "periods": 4,
+          "dismissal": "13:20",
+          "rule": "after_lunch"
+        },
+        "목": {
+          "periods": 4,
+          "dismissal": "13:20",
+          "rule": "after_lunch"
+        },
+        "금": {
+          "periods": 5,
+          "dismissal": "14:00",
+          "rule": "period_end"
+        }
+      },
+      "status": "candidate"
+    },
+    {
+      "school_id": "B000006039",
+      "school_name": "군산용문초등학교",
+      "region": "전북특별자치도",
+      "clock_status": "clock_found",
+      "review_flags": [
+        "multiple_tables"
+      ],
+      "grade1_weekday_periods": {
+        "월": 5,
+        "화": 5,
+        "수": 5,
+        "목": 4,
+        "금": 4
+      },
+      "periods_source": "NEIS term1_regular",
+      "clock_file": "(정보공시) 2026학년도 군산용문초 학교교육과정 편성운영 및 평가 계획.hwp",
+      "clock_sha256": "fc2bd11759832d7107844a76e891309108d0b79faa8d4c823671c2ceee7a0e97",
+      "clock": {
+        "periods": {
+          "1": {
+            "start": "09:00",
+            "end": "09:40"
+          },
+          "2": {
+            "start": "09:50",
+            "end": "10:30"
+          },
+          "3": {
+            "start": "10:40",
+            "end": "11:20"
+          },
+          "4": {
+            "start": "11:30",
+            "end": "12:10"
+          },
+          "5": {
+            "start": "13:00",
+            "end": "13:40"
+          }
+        },
+        "lunch": {
+          "start": "12:10",
+          "end": "13:00"
+        },
+        "variants_seen": 2,
+        "inferred_periods": []
+      },
+      "estimated_dismissal": {
+        "월": {
+          "periods": 5,
+          "dismissal": "13:40",
+          "rule": "period_end"
+        },
+        "화": {
+          "periods": 5,
+          "dismissal": "13:40",
+          "rule": "period_end"
+        },
+        "수": {
+          "periods": 5,
+          "dismissal": "13:40",
+          "rule": "period_end"
+        },
+        "목": {
+          "periods": 4,
+          "dismissal": "13:00",
+          "rule": "after_lunch"
+        },
+        "금": {
+          "periods": 4,
+          "dismissal": "13:00",
+          "rule": "after_lunch"
+        }
+      },
+      "status": "needs_review"
+    },
+    {
+      "school_id": "B000006062",
+      "school_name": "창오초등학교",
+      "region": "전북특별자치도",
+      "clock_status": "clock_found",
+      "review_flags": [],
+      "grade1_weekday_periods": {
+        "월": 4,
+        "화": 5,
+        "수": 5,
+        "목": 5,
+        "금": 4
+      },
+      "periods_source": "NEIS term1_regular",
+      "clock_file": "2026학년도 창오초등학교 교육과정 운영 계획서.hwp",
+      "clock_sha256": "f11fde8048a6f9af5d2ab851a51c626f43be5287afa05f2919d2d07d1b0b7bd6",
+      "clock": {
+        "periods": {
+          "1": {
+            "start": "09:10",
+            "end": "09:50"
+          },
+          "2": {
+            "start": "09:50",
+            "end": "10:30"
+          },
+          "3": {
+            "start": "11:00",
+            "end": "11:40"
+          },
+          "4": {
+            "start": "11:40",
+            "end": "12:20"
+          },
+          "5": {
+            "start": "13:10",
+            "end": "13:50"
+          },
+          "6": {
+            "start": "13:50",
+            "end": "14:30"
+          },
+          "7": {
+            "start": "14:40",
+            "end": "15:20"
+          }
+        },
+        "lunch": {
+          "start": "12:20",
+          "end": "13:10"
+        },
+        "variants_seen": 1,
+        "inferred_periods": []
+      },
+      "estimated_dismissal": {
+        "월": {
+          "periods": 4,
+          "dismissal": "13:10",
+          "rule": "after_lunch"
+        },
+        "화": {
+          "periods": 5,
+          "dismissal": "13:50",
+          "rule": "period_end"
+        },
+        "수": {
+          "periods": 5,
+          "dismissal": "13:50",
+          "rule": "period_end"
+        },
+        "목": {
+          "periods": 5,
+          "dismissal": "13:50",
+          "rule": "period_end"
+        },
+        "금": {
+          "periods": 4,
+          "dismissal": "13:10",
+          "rule": "after_lunch"
+        }
+      },
+      "status": "candidate"
+    },
+    {
+      "school_id": "B000008014",
+      "school_name": "대흘초등학교",
+      "region": "제주특별자치도",
+      "clock_status": "no_clock_detected",
+      "review_flags": [],
+      "grade1_weekday_periods": {
+        "월": 5,
+        "화": 5,
+        "수": 4,
+        "목": 5,
+        "금": 4
+      },
+      "periods_source": "NEIS term1_regular",
+      "status": "no_clock"
+    },
+    {
+      "school_id": "B000008082",
+      "school_name": "안덕초등학교",
+      "region": "제주특별자치도",
+      "clock_status": "no_clock_detected",
+      "review_flags": [],
+      "grade1_weekday_periods": {
+        "월": 5,
+        "화": 5,
+        "수": 4,
+        "목": 5,
+        "금": 5
+      },
+      "periods_source": "NEIS term1_regular",
+      "status": "no_clock"
+    },
+    {
+      "school_id": "B000022965",
+      "school_name": "상월초등학교",
+      "region": "충청남도",
+      "clock_status": "clock_found",
+      "review_flags": [
+        "multiple_tables",
+        "missing_period_4",
+        "missing_period_5",
+        "missing_lunch",
+        "dismissal_incomplete"
+      ],
+      "grade1_weekday_periods": {
+        "월": 4,
+        "화": 4,
+        "수": 5,
+        "목": 6,
+        "금": 4
+      },
+      "periods_source": "NEIS term1_regular",
+      "clock_file": "2026학년도 상월초등학교 교육과정 운영계획.pdf",
+      "clock_sha256": "9043c437c17c24bc8bc3cd73fd8b10cd61a2a7f52169c587f2f705bf822450b9",
+      "clock": {
+        "periods": {
+          "1": {
+            "start": "08:40",
+            "end": "09:00"
+          }
+        },
+        "lunch": null,
+        "variants_seen": 2,
+        "inferred_periods": []
+      },
+      "estimated_dismissal": {
+        "월": {
+          "periods": 4,
+          "dismissal": null,
+          "rule": null
+        },
+        "화": {
+          "periods": 4,
+          "dismissal": null,
+          "rule": null
+        },
+        "수": {
+          "periods": 5,
+          "dismissal": null,
+          "rule": null
+        },
+        "목": {
+          "periods": 6,
+          "dismissal": null,
+          "rule": null
+        },
+        "금": {
+          "periods": 4,
+          "dismissal": null,
+          "rule": null
+        }
+      },
+      "status": "needs_review"
+    },
+    {
+      "school_id": "B000005819",
+      "school_name": "장항초등학교",
+      "region": "충청남도",
+      "clock_status": "no_clock_detected",
+      "review_flags": [],
+      "grade1_weekday_periods": {
+        "월": 5,
+        "화": 5,
+        "수": 4,
+        "목": 5,
+        "금": 4
+      },
+      "periods_source": "NEIS term1_regular",
+      "status": "no_clock"
+    },
+    {
+      "school_id": "B000005407",
+      "school_name": "군남초등학교",
+      "region": "충청북도",
+      "clock_status": "clock_found",
+      "review_flags": [
+        "multiple_tables"
+      ],
+      "grade1_weekday_periods": {
+        "월": 4,
+        "화": 5,
+        "수": 5,
+        "목": 5,
+        "금": 4
+      },
+      "periods_source": "NEIS term1_regular+term2_regular+term2_early",
+      "clock_file": "2026. 군남초 학교교육계획(정보공시).hwp",
+      "clock_sha256": "eb1179f4715a8e22f328bd7415c535376983ed014b9ad3d05be5295deb74a906",
+      "clock": {
+        "periods": {
+          "1": {
+            "start": "09:00",
+            "end": "09:40"
+          },
+          "2": {
+            "start": "09:50",
+            "end": "10:30"
+          },
+          "3": {
+            "start": "10:40",
+            "end": "11:20"
+          },
+          "4": {
+            "start": "11:20",
+            "end": "12:00"
+          },
+          "5": {
+            "start": "12:55",
+            "end": "13:35"
+          },
+          "6": {
+            "start": "13:40",
+            "end": "14:20"
+          },
+          "7": {
+            "start": "14:25",
+            "end": "15:05"
+          }
+        },
+        "lunch": {
+          "start": "12:00",
+          "end": "12:45"
+        },
+        "variants_seen": 2,
+        "inferred_periods": []
+      },
+      "estimated_dismissal": {
+        "월": {
+          "periods": 4,
+          "dismissal": "12:45",
+          "rule": "after_lunch"
+        },
+        "화": {
+          "periods": 5,
+          "dismissal": "13:35",
+          "rule": "period_end"
+        },
+        "수": {
+          "periods": 5,
+          "dismissal": "13:35",
+          "rule": "period_end"
+        },
+        "목": {
+          "periods": 5,
+          "dismissal": "13:35",
+          "rule": "period_end"
+        },
+        "금": {
+          "periods": 4,
+          "dismissal": "12:45",
+          "rule": "after_lunch"
+        }
+      },
+      "status": "needs_review"
+    },
+    {
+      "school_id": "B000005242",
+      "school_name": "주중초등학교",
+      "region": "충청북도",
+      "clock_status": "no_clock_detected",
+      "review_flags": [],
+      "grade1_weekday_periods": {
+        "월": 4,
+        "화": 5,
+        "수": 5,
+        "목": 5,
+        "금": 4
+      },
+      "periods_source": "NEIS term1_regular",
+      "status": "no_clock"
+    }
+  ]
+}
