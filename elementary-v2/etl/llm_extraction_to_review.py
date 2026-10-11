@@ -15,9 +15,10 @@ import random
 from datetime import date
 from pathlib import Path
 
-from etl.llm_extraction_check import INPUTS, check_care, check_clock
+from etl.llm_extraction_check import INPUTS, check_care, check_clock, squash
 
 ROOT = Path(__file__).resolve().parents[1]
+CLOCK_SOURCE = '학교알리미 2-가 학교교육과정 2026년 4월 공시'
 AUDIT2 = ROOT / 'docs/research/audit2'
 SAMPLE_RATE = 0.10
 
@@ -58,7 +59,13 @@ def build(rows: dict[str, dict], overrides: dict, seed: int = 20261009) -> dict:
         elif care_problems:
             pending.append({'school_id': school_id, 'school_name': name, 'kind': 'care', 'problems': care_problems})
         else:
-            care_schools.append(care_entry(school_id, name, care))
+            entry = care_entry(school_id, name, care)
+            # hours read from the 2-가 timetable rather than the 15-라 care plan carry that source
+            clock_part, _, care_part = source.partition('[CARE]')
+            evidence = squash(care.get('evidence') or '')
+            if not entry.get('unknown') and evidence and evidence not in squash(care_part) and evidence in squash(clock_part):
+                entry['source'] = CLOCK_SOURCE
+            care_schools.append(entry)
         if not clock_problems and not care_problems and not override:
             accepted_ids.append(school_id)
     sample = sorted(random.Random(seed).sample(accepted_ids, max(1, round(len(accepted_ids) * SAMPLE_RATE)))) if accepted_ids else []

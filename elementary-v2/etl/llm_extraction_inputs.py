@@ -25,6 +25,7 @@ SETS = {
     'pilot': ('schoolinfo_daily_clock_audit_20261006.json', 'schoolinfo_care_plan_audit_20261007.json'),
     'expansion': ('schoolinfo_daily_clock_audit_expansion_20261008.json', 'schoolinfo_care_plan_audit_expansion_20261008.json'),
     'wave2_seoul': ('schoolinfo_daily_clock_audit_wave2_seoul_20261009.json', 'schoolinfo_care_plan_audit_wave2_seoul_20261009.json'),
+    'wave3_gyeonggi': ('schoolinfo_daily_clock_audit_wave3_gyeonggi_20261010.json', 'schoolinfo_care_plan_audit_wave3_gyeonggi_20261010.json'),
 }
 BATCHES = ROOT / 'etl/runtime/llm_extraction/batches'
 CARE_PHRASE = re.compile(r'(오후\s*돌봄|저녁\s*돌봄|아침\s*돌봄|돌봄\s*교실|돌봄|늘봄)')

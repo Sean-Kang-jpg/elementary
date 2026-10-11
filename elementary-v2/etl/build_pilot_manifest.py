@@ -41,11 +41,14 @@ SCOPES = {
     'seoul_gangnam3': 'or=(road_address.ilike.서울*강남구*,road_address.ilike.서울*서초구*,road_address.ilike.서울*송파구*)',
     # 2026-10-09: wave 2, the rest of Seoul
     'seoul_rest': 'and=(road_address.ilike.서울*,road_address.not.ilike.*강남구*,road_address.not.ilike.*서초구*,road_address.not.ilike.*송파구*)',
+    # 2026-10-10: wave 3, 경기 without 성남 (done in the 2026-10-08 expansion)
+    'gyeonggi_rest': 'and=(road_address.ilike.경기*,road_address.not.ilike.*성남시*)',
 }
 DECISIONS = {
     'seongnam': '2026-10-08 사용자 결정: 성남시 전체 + 서울 강남·서초·송파',
     'seoul_gangnam3': '2026-10-08 사용자 결정: 성남시 전체 + 서울 강남·서초·송파',
     'seoul_rest': '2026-10-09 사용자 결정: 서울 나머지 22개 구 (LLM 추출 2차)',
+    'gyeonggi_rest': '2026-10-10 사용자 결정: 경기 (성남 제외, LLM 추출 3차)',
 }
 SCHOOL_PAGE = 'https://www.schoolinfo.go.kr/ei/ss/Pneiss_b01_s0.do'
 
