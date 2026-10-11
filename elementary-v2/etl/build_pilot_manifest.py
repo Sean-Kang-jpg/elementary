@@ -41,11 +41,19 @@ SCOPES = {
     'seoul_gangnam3': 'or=(road_address.ilike.서울*강남구*,road_address.ilike.서울*서초구*,road_address.ilike.서울*송파구*)',
     # 2026-10-09: wave 2, the rest of Seoul
     'seoul_rest': 'and=(road_address.ilike.서울*,road_address.not.ilike.*강남구*,road_address.not.ilike.*서초구*,road_address.not.ilike.*송파구*)',
+    # 2026-10-10: wave 3, 경기 without 성남 (done in the 2026-10-08 expansion)
+    'gyeonggi_rest': 'and=(road_address.ilike.경기*,road_address.not.ilike.*성남시*)',
+    # 2026-10-11: check whether a standard-timetable rule holds outside the capital region
+    'province_sample': 'and=(road_address.not.ilike.서울*,road_address.not.ilike.경기*,road_address.not.is.null)',
 }
+# scopes that take a seeded random sample of N schools per 시·도 instead of every school
+SAMPLE_PER_REGION = {'province_sample': 2}
 DECISIONS = {
     'seongnam': '2026-10-08 사용자 결정: 성남시 전체 + 서울 강남·서초·송파',
     'seoul_gangnam3': '2026-10-08 사용자 결정: 성남시 전체 + 서울 강남·서초·송파',
     'seoul_rest': '2026-10-09 사용자 결정: 서울 나머지 22개 구 (LLM 추출 2차)',
+    'gyeonggi_rest': '2026-10-10 사용자 결정: 경기 (성남 제외, LLM 추출 3차)',
+    'province_sample': '2026-10-11 사용자 결정: 수도권 밖 시·도별 2곳 표본으로 일반 시정 규칙 검증',
 }
 SCHOOL_PAGE = 'https://www.schoolinfo.go.kr/ei/ss/Pneiss_b01_s0.do'
 
@@ -122,7 +130,16 @@ def build(scopes: list[str], out: Path) -> None:
     schools = []
     for scope in scopes:
         condition = SCOPES[scope]
-        for row in supabase_get(f'school_master?select=school_id,school_name,schoolinfo_code,road_address&{condition}&order=school_id'):
+        rows = supabase_get(f'school_master?select=school_id,school_name,schoolinfo_code,road_address&{condition}&order=school_id')
+        if scope in SAMPLE_PER_REGION:
+            import random
+            by_region: dict[str, list] = {}
+            for row in rows:
+                if row['school_id'] not in poc:
+                    by_region.setdefault(row['road_address'].split()[0], []).append(row)
+            rng = random.Random(20261011)
+            rows = [r for region in sorted(by_region) for r in rng.sample(by_region[region], min(SAMPLE_PER_REGION[scope], len(by_region[region])))]
+        for row in rows:
             shl = ids.get(row.get('schoolinfo_code') or '')
             office, code = (None, None)
             if shl:

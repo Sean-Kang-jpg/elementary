@@ -1,0 +1,5523 @@
+{
+  "schema_version": "neis-grade1-periods-v1",
+  "captured_at": "2026-10-11T12:12:39.081Z",
+  "source": "open.neis.go.kr/hub/elsTimetable, AY=2026 GRADE=1",
+  "academic_year": 2026,
+  "windows": [
+    {
+      "id": "adaptation_march",
+      "from": "20260303",
+      "to": "20260327"
+    },
+    {
+      "id": "term1_regular",
+      "from": "20260406",
+      "to": "20260424"
+    },
+    {
+      "id": "term2_regular",
+      "from": "20260907",
+      "to": "20260925"
+    },
+    {
+      "id": "term2_early",
+      "from": "20260824",
+      "to": "20260904"
+    }
+  ],
+  "evidence_state": "source_reported_2026_not_2027_confirmed",
+  "no_operational_upload": true,
+  "school_count": 30,
+  "schools": [
+    {
+      "school_id": "B000005115",
+      "school_name": "장평초등학교",
+      "region": "강원특별자치도",
+      "cohort": "province_sample",
+      "windows": {
+        "adaptation_march": {
+          "status": "ok",
+          "total_rows": 0,
+          "rows_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "page_hashes": [
+            "3cca3288065e641403e5076ee83d32d69de4425718148e0a4c25eeded68a0a8a"
+          ],
+          "class_count": 0,
+          "school_days": 0,
+          "weekdays": {
+            "월": null,
+            "화": null,
+            "수": null,
+            "목": null,
+            "금": null
+          }
+        },
+        "term1_regular": {
+          "status": "ok",
+          "total_rows": 0,
+          "rows_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "page_hashes": [
+            "3cca3288065e641403e5076ee83d32d69de4425718148e0a4c25eeded68a0a8a"
+          ],
+          "class_count": 0,
+          "school_days": 0,
+          "weekdays": {
+            "월": null,
+            "화": null,
+            "수": null,
+            "목": null,
+            "금": null
+          }
+        },
+        "term2_regular": {
+          "status": "ok",
+          "total_rows": 0,
+          "rows_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "page_hashes": [
+            "3cca3288065e641403e5076ee83d32d69de4425718148e0a4c25eeded68a0a8a"
+          ],
+          "class_count": 0,
+          "school_days": 0,
+          "weekdays": {
+            "월": null,
+            "화": null,
+            "수": null,
+            "목": null,
+            "금": null
+          }
+        },
+        "term2_early": {
+          "status": "ok",
+          "total_rows": 0,
+          "rows_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "page_hashes": [
+            "3cca3288065e641403e5076ee83d32d69de4425718148e0a4c25eeded68a0a8a"
+          ],
+          "class_count": 0,
+          "school_days": 0,
+          "weekdays": {
+            "월": null,
+            "화": null,
+            "수": null,
+            "목": null,
+            "금": null
+          }
+        }
+      },
+      "status": "ok"
+    },
+    {
+      "school_id": "B000005009",
+      "school_name": "진주초등학교",
+      "region": "강원특별자치도",
+      "cohort": "province_sample",
+      "windows": {
+        "adaptation_march": {
+          "status": "ok",
+          "total_rows": 23,
+          "rows_sha256": "ea70da4873287514787499473341b1ff69de44505bb3d0dc1e70cdfa9738a018",
+          "page_hashes": [
+            "eb79a3930aceaece5b46ce5b91d687ae3085c7133dbdbbdd9e9830de4479eea2"
+          ],
+          "class_count": 1,
+          "school_days": 5,
+          "weekdays": {
+            "월": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 1
+            },
+            "화": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 1
+            },
+            "수": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 1
+            },
+            "목": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 1
+            },
+            "금": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 1
+            }
+          }
+        },
+        "term1_regular": {
+          "status": "ok",
+          "total_rows": 86,
+          "rows_sha256": "f8ed6db72aae364f59832366da95e259c30e7ffbd41b70be4ed988572eaeac2c",
+          "page_hashes": [
+            "ed41a1dafc4beff610ebdda8addcbe1eb6860ab1f3c1fc5a97265736817d97de"
+          ],
+          "class_count": 1,
+          "school_days": 17,
+          "weekdays": {
+            "월": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 3
+            },
+            "화": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 3
+            },
+            "수": {
+              "mode": 5,
+              "share": 0.67,
+              "min": 5,
+              "max": 8,
+              "observations": 3
+            },
+            "목": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 3
+            },
+            "금": {
+              "mode": 4,
+              "share": 0.67,
+              "min": 4,
+              "max": 5,
+              "observations": 3
+            }
+          }
+        },
+        "term2_regular": {
+          "status": "ok",
+          "total_rows": 90,
+          "rows_sha256": "73e27ce6fcf9a051270643dfcafdd80b2906835305cffe9f333df82be869b155",
+          "page_hashes": [
+            "c8efb1edb61f94a569f11d088b1f4952671c05cd658181b4ab1675363b574d5c"
+          ],
+          "class_count": 1,
+          "school_days": 17,
+          "weekdays": {
+            "월": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 3
+            },
+            "화": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 3
+            },
+            "수": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 3
+            },
+            "목": {
+              "mode": 4,
+              "share": 0.67,
+              "min": 4,
+              "max": 8,
+              "observations": 3
+            },
+            "금": {
+              "mode": 4,
+              "share": 0.67,
+              "min": 4,
+              "max": 8,
+              "observations": 3
+            }
+          }
+        },
+        "term2_early": {
+          "status": "ok",
+          "total_rows": 22,
+          "rows_sha256": "5c31bd832506919335c578705a011193065efff9f8b601f1bb68a830ec6641c7",
+          "page_hashes": [
+            "a855f5f0dd3fc34552d0b386e879b9b8eb1ab60816ec1866f851d309212f0d94"
+          ],
+          "class_count": 1,
+          "school_days": 5,
+          "weekdays": {
+            "월": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 1
+            },
+            "화": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 1
+            },
+            "수": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 1
+            },
+            "목": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 1
+            },
+            "금": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 1
+            }
+          }
+        }
+      },
+      "status": "ok"
+    },
+    {
+      "school_id": "B000024414",
+      "school_name": "무지개초등학교",
+      "region": "경상남도",
+      "cohort": "province_sample",
+      "windows": {
+        "adaptation_march": {
+          "status": "ok",
+          "total_rows": 648,
+          "rows_sha256": "7dbf95a5b2759a4df01b05e2a22614925a1dde862295ff28e5fc410cc21aaea8",
+          "page_hashes": [
+            "0dca9006912259538246f5e4f4d92de8dc8cde32fbced84cf9854ff9b34c50ef"
+          ],
+          "class_count": 6,
+          "school_days": 22,
+          "weekdays": {
+            "월": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 18
+            },
+            "화": {
+              "mode": 5,
+              "share": 0.75,
+              "min": 3,
+              "max": 5,
+              "observations": 24
+            },
+            "수": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 24
+            },
+            "목": {
+              "mode": 5,
+              "share": 0.75,
+              "min": 4,
+              "max": 5,
+              "observations": 24
+            },
+            "금": {
+              "mode": 5,
+              "share": 0.75,
+              "min": 4,
+              "max": 5,
+              "observations": 24
+            }
+          }
+        },
+        "term1_regular": {
+          "status": "ok",
+          "total_rows": 510,
+          "rows_sha256": "9dd2e5b8a15369e2f2f546cc6ab9917166fe096c69cfd1ea364e5ca3e6a31ea7",
+          "page_hashes": [
+            "9b04f59647d9fd6ef5d55b4ed946891614db6cba67f66c8f69f0819778cb4e4e"
+          ],
+          "class_count": 6,
+          "school_days": 17,
+          "weekdays": {
+            "월": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 18
+            },
+            "화": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 18
+            },
+            "수": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 18
+            },
+            "목": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 18
+            },
+            "금": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 18
+            }
+          }
+        },
+        "term2_regular": {
+          "status": "ok",
+          "total_rows": 546,
+          "rows_sha256": "5139e8636fa7fcbbd2e584d1e9b1fbfab8c0b55ed02e25838b828fbc7d5dfadd",
+          "page_hashes": [
+            "8feec00bc42359a42060ef7fbc2a4f8632e8fa41abf9e5350f32b2ba07526618"
+          ],
+          "class_count": 6,
+          "school_days": 17,
+          "weekdays": {
+            "월": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 18
+            },
+            "화": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 18
+            },
+            "수": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 18
+            },
+            "목": {
+              "mode": 5,
+              "share": 0.67,
+              "min": 5,
+              "max": 8,
+              "observations": 18
+            },
+            "금": {
+              "mode": 5,
+              "share": 0.67,
+              "min": 5,
+              "max": 8,
+              "observations": 18
+            }
+          }
+        },
+        "term2_early": {
+          "status": "ok",
+          "total_rows": 404,
+          "rows_sha256": "96967f82d56c528d3d977ddf50f58f53b8a7ea344f13398dd69582b08637ee05",
+          "page_hashes": [
+            "a008a018917c368f198e8cdf4b93faab35b814b502b224dc5239cdf3d87feb96"
+          ],
+          "class_count": 6,
+          "school_days": 11,
+          "weekdays": {
+            "월": {
+              "mode": 9,
+              "share": 0.5,
+              "min": 4,
+              "max": 9,
+              "observations": 12
+            },
+            "화": {
+              "mode": 9,
+              "share": 0.5,
+              "min": 5,
+              "max": 9,
+              "observations": 12
+            },
+            "수": {
+              "mode": 9,
+              "share": 0.5,
+              "min": 4,
+              "max": 9,
+              "observations": 12
+            },
+            "목": {
+              "mode": 5,
+              "share": 0.67,
+              "min": 4,
+              "max": 5,
+              "observations": 12
+            },
+            "금": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 12
+            }
+          }
+        }
+      },
+      "status": "ok"
+    },
+    {
+      "school_id": "B000007829",
+      "school_name": "양산초등학교",
+      "region": "경상남도",
+      "cohort": "province_sample",
+      "windows": {
+        "adaptation_march": {
+          "status": "ok",
+          "total_rows": 172,
+          "rows_sha256": "4713dc4f4d1294139a78d4d781dfc7a8b4c191b701b5856d191341c29e081a5a",
+          "page_hashes": [
+            "e30fa222a2654609d283df495dae7963d53eed7f9714c50a5334f62de141536d"
+          ],
+          "class_count": 2,
+          "school_days": 17,
+          "weekdays": {
+            "월": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 6
+            },
+            "화": {
+              "mode": 5,
+              "share": 0.67,
+              "min": 4,
+              "max": 5,
+              "observations": 6
+            },
+            "수": {
+              "mode": 5,
+              "share": 0.67,
+              "min": 4,
+              "max": 5,
+              "observations": 6
+            },
+            "목": {
+              "mode": 5,
+              "share": 0.67,
+              "min": 4,
+              "max": 5,
+              "observations": 6
+            },
+            "금": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 6
+            }
+          }
+        },
+        "term1_regular": {
+          "status": "ok",
+          "total_rows": 178,
+          "rows_sha256": "5dcfac2d58de46778f2fce7aa53d5ac0d9353cae5cac43736c8a0f65a672c6c1",
+          "page_hashes": [
+            "e3e3c1b8240c6be1070c2db703cbf1870ea67625ff310f3475e06cab87c70d66"
+          ],
+          "class_count": 2,
+          "school_days": 17,
+          "weekdays": {
+            "월": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 6
+            },
+            "화": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 6
+            },
+            "수": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 6
+            },
+            "목": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 6
+            },
+            "금": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 6
+            }
+          }
+        },
+        "term2_regular": {
+          "status": "ok",
+          "total_rows": 200,
+          "rows_sha256": "85d3203523888c0d6f6b0dd9e915046037ef9e5c750461fc78dfa2e701042b90",
+          "page_hashes": [
+            "2da80f0b2935a5571eeee5660eed776ea0fbe4b0378319d4e209ac382f7d31b7"
+          ],
+          "class_count": 2,
+          "school_days": 17,
+          "weekdays": {
+            "월": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 6
+            },
+            "화": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 6
+            },
+            "수": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 6
+            },
+            "목": {
+              "mode": 5,
+              "share": 0.67,
+              "min": 5,
+              "max": 10,
+              "observations": 6
+            },
+            "금": {
+              "mode": 4,
+              "share": 0.67,
+              "min": 4,
+              "max": 10,
+              "observations": 6
+            }
+          }
+        },
+        "term2_early": {
+          "status": "ok",
+          "total_rows": 106,
+          "rows_sha256": "1304cf71bce05436e130f772e7cc8c625412322400a1488f9f26e63157a31f24",
+          "page_hashes": [
+            "c73d69752763345a2b8d8fd6da0de9e061f92d21d537385422448cca6b0e1424"
+          ],
+          "class_count": 2,
+          "school_days": 8,
+          "weekdays": {
+            "월": {
+              "mode": 10,
+              "share": 0.5,
+              "min": 4,
+              "max": 10,
+              "observations": 4
+            },
+            "화": {
+              "mode": 10,
+              "share": 0.5,
+              "min": 5,
+              "max": 10,
+              "observations": 4
+            },
+            "수": {
+              "mode": 10,
+              "share": 0.5,
+              "min": 5,
+              "max": 10,
+              "observations": 4
+            },
+            "목": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 2
+            },
+            "금": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 2
+            }
+          }
+        }
+      },
+      "status": "ok"
+    },
+    {
+      "school_id": "B000007063",
+      "school_name": "풍산초등학교",
+      "region": "경상북도",
+      "cohort": "province_sample",
+      "windows": {
+        "adaptation_march": {
+          "status": "ok",
+          "total_rows": 109,
+          "rows_sha256": "b31d4edf72ba9d2c62d99e91e900fa4027ebbd3f4319b9b5682cf71cd2ec0e25",
+          "page_hashes": [
+            "d82fb7aa5b53af15d6d8c0d529270b762ca393ce6d44d283b62f88559d73a0ed"
+          ],
+          "class_count": 1,
+          "school_days": 22,
+          "weekdays": {
+            "월": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 3
+            },
+            "화": {
+              "mode": 5,
+              "share": 0.75,
+              "min": 4,
+              "max": 5,
+              "observations": 4
+            },
+            "수": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 4
+            },
+            "목": {
+              "mode": 5,
+              "share": 0.75,
+              "min": 4,
+              "max": 5,
+              "observations": 4
+            },
+            "금": {
+              "mode": 5,
+              "share": 0.75,
+              "min": 4,
+              "max": 5,
+              "observations": 4
+            }
+          }
+        },
+        "term1_regular": {
+          "status": "ok",
+          "total_rows": 85,
+          "rows_sha256": "927b130d2eaa374cb4471c251bd56d21934e114065d40cff125a8b46988a89a8",
+          "page_hashes": [
+            "78f14bd1a6dcd07b20999305e5b43351affd603a1d5f7826ec87008c37888347"
+          ],
+          "class_count": 1,
+          "school_days": 17,
+          "weekdays": {
+            "월": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 3
+            },
+            "화": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 3
+            },
+            "수": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 3
+            },
+            "목": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 3
+            },
+            "금": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 3
+            }
+          }
+        },
+        "term2_regular": {
+          "status": "ok",
+          "total_rows": 91,
+          "rows_sha256": "df6c106e04f9075f8944a19f5d5a54b39a47440d7185582edc80c442d256dc97",
+          "page_hashes": [
+            "848103a5d7ddb9f888a57daa2d7aea386765d0eafcefe5283c8a8ebfa2f4c46c"
+          ],
+          "class_count": 1,
+          "school_days": 17,
+          "weekdays": {
+            "월": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 3
+            },
+            "화": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 3
+            },
+            "수": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 3
+            },
+            "목": {
+              "mode": 5,
+              "share": 0.67,
+              "min": 5,
+              "max": 8,
+              "observations": 3
+            },
+            "금": {
+              "mode": 5,
+              "share": 0.67,
+              "min": 5,
+              "max": 8,
+              "observations": 3
+            }
+          }
+        },
+        "term2_early": {
+          "status": "ok",
+          "total_rows": 54,
+          "rows_sha256": "da886fff255846263d4c7ba861433f302f5de6cbf86cd199286a79bb3b325542",
+          "page_hashes": [
+            "2a0f727fdb3bf473829e435b7150bdbe50529e94bd9539e21fe397a109a28404"
+          ],
+          "class_count": 1,
+          "school_days": 11,
+          "weekdays": {
+            "월": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 2
+            },
+            "화": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 2
+            },
+            "수": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 2
+            },
+            "목": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 2
+            },
+            "금": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 2
+            }
+          }
+        }
+      },
+      "status": "ok"
+    },
+    {
+      "school_id": "B000006925",
+      "school_name": "두호초등학교",
+      "region": "경상북도",
+      "cohort": "province_sample",
+      "windows": {
+        "adaptation_march": {
+          "status": "ok",
+          "total_rows": 212,
+          "rows_sha256": "b5326c2c0b3b8786182e1fd090efd6d214b07bd722a041cffde2e8b7c0f5ab75",
+          "page_hashes": [
+            "ce99f6077e97c9dcea735efb8181772abd5901debc90251b39d4abe7c4664b3b"
+          ],
+          "class_count": 2,
+          "school_days": 22,
+          "weekdays": {
+            "월": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 6
+            },
+            "화": {
+              "mode": 5,
+              "share": 0.5,
+              "min": 4,
+              "max": 5,
+              "observations": 8
+            },
+            "수": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 8
+            },
+            "목": {
+              "mode": 5,
+              "share": 0.5,
+              "min": 4,
+              "max": 5,
+              "observations": 8
+            },
+            "금": {
+              "mode": 5,
+              "share": 0.5,
+              "min": 4,
+              "max": 5,
+              "observations": 8
+            }
+          }
+        },
+        "term1_regular": {
+          "status": "ok",
+          "total_rows": 170,
+          "rows_sha256": "214cab104078a48d3e4baeb5f2a2aad437936fd3cf03355dc4eb4f7cd5b56330",
+          "page_hashes": [
+            "c10fea8fe4014a510456f130886625d10c9ff3b7beedf060a68cbfc656f89ccc"
+          ],
+          "class_count": 2,
+          "school_days": 17,
+          "weekdays": {
+            "월": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 6
+            },
+            "화": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 6
+            },
+            "수": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 6
+            },
+            "목": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 6
+            },
+            "금": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 6
+            }
+          }
+        },
+        "term2_regular": {
+          "status": "ok",
+          "total_rows": 182,
+          "rows_sha256": "c51c090d4fecdc04fcc9c3ce28c919c24ae68ee097844752b9017cf38cb1c71d",
+          "page_hashes": [
+            "9b1aeffddc1350473b2bce5e1c5a308895cb41af6420635d694a861c9f5a6bd0"
+          ],
+          "class_count": 2,
+          "school_days": 17,
+          "weekdays": {
+            "월": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 6
+            },
+            "화": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 6
+            },
+            "수": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 6
+            },
+            "목": {
+              "mode": 5,
+              "share": 0.67,
+              "min": 5,
+              "max": 8,
+              "observations": 6
+            },
+            "금": {
+              "mode": 5,
+              "share": 0.67,
+              "min": 5,
+              "max": 8,
+              "observations": 6
+            }
+          }
+        },
+        "term2_early": {
+          "status": "ok",
+          "total_rows": 108,
+          "rows_sha256": "5017f8d7e287fb57b99e025970b3b9d136de04511d101832b204341370c1968e",
+          "page_hashes": [
+            "3c2e0c554ad2b980475c1ebe95da4a4294d06ddc93ea58bf8464efdfeaec1eec"
+          ],
+          "class_count": 2,
+          "school_days": 11,
+          "weekdays": {
+            "월": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 4
+            },
+            "화": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 4
+            },
+            "수": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 4
+            },
+            "목": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 4
+            },
+            "금": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 4
+            }
+          }
+        }
+      },
+      "status": "ok"
+    },
+    {
+      "school_id": "B000003206",
+      "school_name": "살레시오초등학교",
+      "region": "광주광역시",
+      "cohort": "province_sample",
+      "windows": {
+        "adaptation_march": {
+          "status": "ok",
+          "total_rows": 0,
+          "rows_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "page_hashes": [
+            "3cca3288065e641403e5076ee83d32d69de4425718148e0a4c25eeded68a0a8a"
+          ],
+          "class_count": 0,
+          "school_days": 0,
+          "weekdays": {
+            "월": null,
+            "화": null,
+            "수": null,
+            "목": null,
+            "금": null
+          }
+        },
+        "term1_regular": {
+          "status": "ok",
+          "total_rows": 0,
+          "rows_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "page_hashes": [
+            "3cca3288065e641403e5076ee83d32d69de4425718148e0a4c25eeded68a0a8a"
+          ],
+          "class_count": 0,
+          "school_days": 0,
+          "weekdays": {
+            "월": null,
+            "화": null,
+            "수": null,
+            "목": null,
+            "금": null
+          }
+        },
+        "term2_regular": {
+          "status": "ok",
+          "total_rows": 184,
+          "rows_sha256": "41e9fb60bbc276ce6ee1afe3c9cbcbc7c7da72c1e3b2405efce1697106680bf1",
+          "page_hashes": [
+            "5e1773f132ce0495ddfbd7ed01256b01b5bb8efc53a913b2a8809ffcd0af70e6"
+          ],
+          "class_count": 2,
+          "school_days": 17,
+          "weekdays": {
+            "월": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 6
+            },
+            "화": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 6
+            },
+            "수": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 6
+            },
+            "목": {
+              "mode": 4,
+              "share": 0.67,
+              "min": 4,
+              "max": 8,
+              "observations": 6
+            },
+            "금": {
+              "mode": 5,
+              "share": 0.67,
+              "min": 5,
+              "max": 8,
+              "observations": 6
+            }
+          }
+        },
+        "term2_early": {
+          "status": "ok",
+          "total_rows": 23,
+          "rows_sha256": "68a857bbf343c8bb269cc483e5dae4a6f2b04f067dcab8309fa992076f1ead02",
+          "page_hashes": [
+            "4f3bba9286261684ca23ecf665dcf28b04a30f391ea91e53922e16d0e396bae0"
+          ],
+          "class_count": 1,
+          "school_days": 5,
+          "weekdays": {
+            "월": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 1
+            },
+            "화": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 1
+            },
+            "수": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 1
+            },
+            "목": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 1
+            },
+            "금": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 1
+            }
+          }
+        }
+      },
+      "status": "ok"
+    },
+    {
+      "school_id": "B000003289",
+      "school_name": "광주농성초등학교",
+      "region": "광주광역시",
+      "cohort": "province_sample",
+      "windows": {
+        "adaptation_march": {
+          "status": "ok",
+          "total_rows": 0,
+          "rows_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "page_hashes": [
+            "3cca3288065e641403e5076ee83d32d69de4425718148e0a4c25eeded68a0a8a"
+          ],
+          "class_count": 0,
+          "school_days": 0,
+          "weekdays": {
+            "월": null,
+            "화": null,
+            "수": null,
+            "목": null,
+            "금": null
+          }
+        },
+        "term1_regular": {
+          "status": "ok",
+          "total_rows": 0,
+          "rows_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "page_hashes": [
+            "3cca3288065e641403e5076ee83d32d69de4425718148e0a4c25eeded68a0a8a"
+          ],
+          "class_count": 0,
+          "school_days": 0,
+          "weekdays": {
+            "월": null,
+            "화": null,
+            "수": null,
+            "목": null,
+            "금": null
+          }
+        },
+        "term2_regular": {
+          "status": "ok",
+          "total_rows": 198,
+          "rows_sha256": "387d7a99f4bdb92184526b8e97f2e27e74f8729735f0f83dddf6e39b39299341",
+          "page_hashes": [
+            "719fd53017a2fdd1710f13ca07ff85d9266cbdb0a164d55561af1dc58aeb1608"
+          ],
+          "class_count": 2,
+          "school_days": 17,
+          "weekdays": {
+            "월": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 6
+            },
+            "화": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 6
+            },
+            "수": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 6
+            },
+            "목": {
+              "mode": 5,
+              "share": 0.67,
+              "min": 5,
+              "max": 10,
+              "observations": 6
+            },
+            "금": {
+              "mode": 5,
+              "share": 0.67,
+              "min": 5,
+              "max": 10,
+              "observations": 6
+            }
+          }
+        },
+        "term2_early": {
+          "status": "ok",
+          "total_rows": 134,
+          "rows_sha256": "44225cb191f78a59eab63da5e1a3ee2c5ae247fc850fb2eb940182120f342860",
+          "page_hashes": [
+            "b7bda404a216169b9d4ea1c9220a189b18684d4427438b7673ce3a274561bf16"
+          ],
+          "class_count": 2,
+          "school_days": 11,
+          "weekdays": {
+            "월": {
+              "mode": 10,
+              "share": 0.5,
+              "min": 4,
+              "max": 10,
+              "observations": 4
+            },
+            "화": {
+              "mode": 10,
+              "share": 0.5,
+              "min": 5,
+              "max": 10,
+              "observations": 4
+            },
+            "수": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 4
+            },
+            "목": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 4
+            },
+            "금": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 4
+            }
+          }
+        }
+      },
+      "status": "ok"
+    },
+    {
+      "school_id": "B000002859",
+      "school_name": "대구팔달초등학교",
+      "region": "대구광역시",
+      "cohort": "province_sample",
+      "windows": {
+        "adaptation_march": {
+          "status": "ok",
+          "total_rows": 0,
+          "rows_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "page_hashes": [
+            "3cca3288065e641403e5076ee83d32d69de4425718148e0a4c25eeded68a0a8a"
+          ],
+          "class_count": 0,
+          "school_days": 0,
+          "weekdays": {
+            "월": null,
+            "화": null,
+            "수": null,
+            "목": null,
+            "금": null
+          }
+        },
+        "term1_regular": {
+          "status": "ok",
+          "total_rows": 85,
+          "rows_sha256": "89dc7d2fc19712b441cc5aae7283068600b0a02555e432f07111c107e6babb87",
+          "page_hashes": [
+            "703d14305ad0e9ef7a5286e1a4431aa9cafafdbaa1668503cf56d0f1ff3cd1dd"
+          ],
+          "class_count": 1,
+          "school_days": 17,
+          "weekdays": {
+            "월": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 3
+            },
+            "화": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 3
+            },
+            "수": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 3
+            },
+            "목": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 3
+            },
+            "금": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 3
+            }
+          }
+        },
+        "term2_regular": {
+          "status": "ok",
+          "total_rows": 92,
+          "rows_sha256": "fd9e5db0d5103e1745a729a2279a0a3febbc6aa54a709c6742ecec05e7109ca3",
+          "page_hashes": [
+            "7fd41e7fa7da36c001bd81984b342aa7b1d9c4caaeb9dc953e2db3d27e7b94a4"
+          ],
+          "class_count": 1,
+          "school_days": 17,
+          "weekdays": {
+            "월": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 3
+            },
+            "화": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 3
+            },
+            "수": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 3
+            },
+            "목": {
+              "mode": 5,
+              "share": 0.67,
+              "min": 5,
+              "max": 8,
+              "observations": 3
+            },
+            "금": {
+              "mode": 4,
+              "share": 0.67,
+              "min": 4,
+              "max": 8,
+              "observations": 3
+            }
+          }
+        },
+        "term2_early": {
+          "status": "ok",
+          "total_rows": 39,
+          "rows_sha256": "1be4ef1265daa5b1f39cfcd844efe17df9c2fad9b12fa8ef69842a4ee976f0e7",
+          "page_hashes": [
+            "d77e66d0ab8a8bebd5f8150263620df797b54cd659068a2d1aa176f96d4d8f18"
+          ],
+          "class_count": 1,
+          "school_days": 7,
+          "weekdays": {
+            "월": {
+              "mode": 8,
+              "share": 0.5,
+              "min": 4,
+              "max": 8,
+              "observations": 2
+            },
+            "화": {
+              "mode": 8,
+              "share": 0.5,
+              "min": 5,
+              "max": 8,
+              "observations": 2
+            },
+            "수": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 1
+            },
+            "목": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 1
+            },
+            "금": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 1
+            }
+          }
+        }
+      },
+      "status": "ok"
+    },
+    {
+      "school_id": "B000002742",
+      "school_name": "대구율금초등학교",
+      "region": "대구광역시",
+      "cohort": "province_sample",
+      "windows": {
+        "adaptation_march": {
+          "status": "ok",
+          "total_rows": 309,
+          "rows_sha256": "7f829e61e95ed6542a30dbadab7ccc9d50e89cb4029f7983c29a68953bf269cd",
+          "page_hashes": [
+            "fc3b51c6b70585a00dffafb28c2470ca891786a822003135a9370d9c628d99b1"
+          ],
+          "class_count": 3,
+          "school_days": 22,
+          "weekdays": {
+            "월": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 9
+            },
+            "화": {
+              "mode": 5,
+              "share": 0.83,
+              "min": 3,
+              "max": 5,
+              "observations": 12
+            },
+            "수": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 12
+            },
+            "목": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 12
+            },
+            "금": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 12
+            }
+          }
+        },
+        "term1_regular": {
+          "status": "ok",
+          "total_rows": 255,
+          "rows_sha256": "93d19f751638a521ddc8b31cb0bf7fbeba435db6b8cb0d7ac21482fef06c9be4",
+          "page_hashes": [
+            "4fd447a85c50786ff870e1bf1b1afeb7d4af3f2af613d17ec5f88fe62b9735fc"
+          ],
+          "class_count": 3,
+          "school_days": 17,
+          "weekdays": {
+            "월": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 9
+            },
+            "화": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 9
+            },
+            "수": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 9
+            },
+            "목": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 9
+            },
+            "금": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 9
+            }
+          }
+        },
+        "term2_regular": {
+          "status": "ok",
+          "total_rows": 273,
+          "rows_sha256": "8c9f95f41cc91b13a9d35f565856ab2f7f809617896a3709245f82e66877a30e",
+          "page_hashes": [
+            "d16ebcf678329cbf0c1005af1f46bc9ea94b29dedcf60dc86d9f79cc31bcedca"
+          ],
+          "class_count": 3,
+          "school_days": 17,
+          "weekdays": {
+            "월": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 9
+            },
+            "화": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 9
+            },
+            "수": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 9
+            },
+            "목": {
+              "mode": 5,
+              "share": 0.67,
+              "min": 5,
+              "max": 8,
+              "observations": 9
+            },
+            "금": {
+              "mode": 5,
+              "share": 0.67,
+              "min": 5,
+              "max": 8,
+              "observations": 9
+            }
+          }
+        },
+        "term2_early": {
+          "status": "ok",
+          "total_rows": 249,
+          "rows_sha256": "1f425647bec9753f953e4621f82fb316941b71ddc120b87545305f5bc2a4b6d8",
+          "page_hashes": [
+            "5b7da879bfd396e408e62096dcbd7905c0fe49e2050d7ed9320ff3cf3a33b5a9"
+          ],
+          "class_count": 3,
+          "school_days": 12,
+          "weekdays": {
+            "월": {
+              "mode": 8,
+              "share": 1,
+              "min": 8,
+              "max": 8,
+              "observations": 6
+            },
+            "화": {
+              "mode": 8,
+              "share": 0.5,
+              "min": 5,
+              "max": 8,
+              "observations": 6
+            },
+            "수": {
+              "mode": 8,
+              "share": 0.5,
+              "min": 4,
+              "max": 8,
+              "observations": 6
+            },
+            "목": {
+              "mode": 8,
+              "share": 0.5,
+              "min": 5,
+              "max": 8,
+              "observations": 6
+            },
+            "금": {
+              "mode": 8,
+              "share": 0.5,
+              "min": 5,
+              "max": 8,
+              "observations": 6
+            }
+          }
+        }
+      },
+      "status": "ok"
+    },
+    {
+      "school_id": "B000003349",
+      "school_name": "대전신흥초등학교",
+      "region": "대전광역시",
+      "cohort": "province_sample",
+      "windows": {
+        "adaptation_march": {
+          "status": "ok",
+          "total_rows": 666,
+          "rows_sha256": "634af7db39e5a503e3960898d6cd154297e004a23060f6f12dfc1a3eed075f94",
+          "page_hashes": [
+            "0eb7dbc6e640df57108f43154bd936d003c772c2b01f628a3edd709d9dc1e906"
+          ],
+          "class_count": 6,
+          "school_days": 22,
+          "weekdays": {
+            "월": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 18
+            },
+            "화": {
+              "mode": 5,
+              "share": 0.71,
+              "min": 3,
+              "max": 6,
+              "observations": 24
+            },
+            "수": {
+              "mode": 5,
+              "share": 0.88,
+              "min": 4,
+              "max": 5,
+              "observations": 24
+            },
+            "목": {
+              "mode": 5,
+              "share": 0.88,
+              "min": 4,
+              "max": 5,
+              "observations": 24
+            },
+            "금": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 24
+            }
+          }
+        },
+        "term1_regular": {
+          "status": "ok",
+          "total_rows": 513,
+          "rows_sha256": "2008139e60c1c17d8b8469e4856dcee8372c9b8c399720151e1a270f98090843",
+          "page_hashes": [
+            "2de4d12fe356fc6ea01da8b60da8520bbff62439e4cb7701ee354a9a2db0e3f4"
+          ],
+          "class_count": 6,
+          "school_days": 17,
+          "weekdays": {
+            "월": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 18
+            },
+            "화": {
+              "mode": 5,
+              "share": 0.83,
+              "min": 5,
+              "max": 6,
+              "observations": 18
+            },
+            "수": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 18
+            },
+            "목": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 18
+            },
+            "금": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 18
+            }
+          }
+        },
+        "term2_regular": {
+          "status": "ok",
+          "total_rows": 552,
+          "rows_sha256": "c1213995fdd0b9ccdec236c0adc32ea8cfab6167dc7812f8c14989cd2b1de595",
+          "page_hashes": [
+            "f777e4b0b701b219d621981af4523788205362c4bb91b0acbb3d569285b4158e"
+          ],
+          "class_count": 6,
+          "school_days": 17,
+          "weekdays": {
+            "월": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 18
+            },
+            "화": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 18
+            },
+            "수": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 18
+            },
+            "목": {
+              "mode": 5,
+              "share": 0.67,
+              "min": 5,
+              "max": 8,
+              "observations": 18
+            },
+            "금": {
+              "mode": 4,
+              "share": 0.67,
+              "min": 4,
+              "max": 8,
+              "observations": 18
+            }
+          }
+        },
+        "term2_early": {
+          "status": "ok",
+          "total_rows": 324,
+          "rows_sha256": "3fa25b4eced8e99a478926f1d16863627dad72b2d87e878a75afa2fcf7a2abde",
+          "page_hashes": [
+            "2bc55fd873fe347d2752872df5f155851d3590dca4478c4a53d37a499bedd215"
+          ],
+          "class_count": 6,
+          "school_days": 11,
+          "weekdays": {
+            "월": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 12
+            },
+            "화": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 12
+            },
+            "수": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 12
+            },
+            "목": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 12
+            },
+            "금": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 12
+            }
+          }
+        }
+      },
+      "status": "ok"
+    },
+    {
+      "school_id": "B000003434",
+      "school_name": "대전구봉초등학교",
+      "region": "대전광역시",
+      "cohort": "province_sample",
+      "windows": {
+        "adaptation_march": {
+          "status": "ok",
+          "total_rows": 112,
+          "rows_sha256": "4199b4b887d6b35e900cc8c62610cb5ec070e56ec7e7f34a3f79ee7342020073",
+          "page_hashes": [
+            "6b15694712819703e1a48992b496963cc4ddd0269efce52c48867ccdd8c58786"
+          ],
+          "class_count": 1,
+          "school_days": 22,
+          "weekdays": {
+            "월": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 3
+            },
+            "화": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 4
+            },
+            "수": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 4
+            },
+            "목": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 4
+            },
+            "금": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 4
+            }
+          }
+        },
+        "term1_regular": {
+          "status": "ok",
+          "total_rows": 340,
+          "rows_sha256": "5eea34a30aeb1da8640aaaedeb42cd7149b66a1d01634c24eed45d48bb0492ee",
+          "page_hashes": [
+            "203e0b4b765145ab904a88a307758fdd9cf9f3f99447b565915885ad9d2a9a74"
+          ],
+          "class_count": 4,
+          "school_days": 17,
+          "weekdays": {
+            "월": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 12
+            },
+            "화": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 12
+            },
+            "수": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 12
+            },
+            "목": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 12
+            },
+            "금": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 12
+            }
+          }
+        },
+        "term2_regular": {
+          "status": "ok",
+          "total_rows": 368,
+          "rows_sha256": "5edd1e1426b5a2c0cc99f222fc74391d27305ef44ff5fc3b120c3552811f325c",
+          "page_hashes": [
+            "b1951b7c4d9331d6221c77a93169e3a79f45eaaadbe5889e27ac865a979e64d6"
+          ],
+          "class_count": 4,
+          "school_days": 17,
+          "weekdays": {
+            "월": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 12
+            },
+            "화": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 12
+            },
+            "수": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 12
+            },
+            "목": {
+              "mode": 5,
+              "share": 0.67,
+              "min": 5,
+              "max": 8,
+              "observations": 12
+            },
+            "금": {
+              "mode": 4,
+              "share": 0.67,
+              "min": 4,
+              "max": 8,
+              "observations": 12
+            }
+          }
+        },
+        "term2_early": {
+          "status": "ok",
+          "total_rows": 216,
+          "rows_sha256": "4be8a91ead7ffafd5baec487fdbc6f1c8f8e1be586de1886f814b8ce9a8879ec",
+          "page_hashes": [
+            "f590411b1fe33aa3a30466dc441ab5fbfdd87c95ac6846bcb02001c4d233afb0"
+          ],
+          "class_count": 4,
+          "school_days": 11,
+          "weekdays": {
+            "월": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 8
+            },
+            "화": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 8
+            },
+            "수": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 8
+            },
+            "목": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 8
+            },
+            "금": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 8
+            }
+          }
+        }
+      },
+      "status": "ok"
+    },
+    {
+      "school_id": "B000002555",
+      "school_name": "안민초등학교",
+      "region": "부산광역시",
+      "cohort": "province_sample",
+      "windows": {
+        "adaptation_march": {
+          "status": "ok",
+          "total_rows": 193,
+          "rows_sha256": "c538dac627792007db0bdcebe966ff687d28fe7d5a0116ea6968b4b751afc2e6",
+          "page_hashes": [
+            "4b109f495247321079749ba91c7ff99ae1d317ebd3d47f6c141da2394d31937d"
+          ],
+          "class_count": 2,
+          "school_days": 22,
+          "weekdays": {
+            "월": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 6
+            },
+            "화": {
+              "mode": 5,
+              "share": 0.86,
+              "min": 3,
+              "max": 5,
+              "observations": 7
+            },
+            "수": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 7
+            },
+            "목": {
+              "mode": 5,
+              "share": 0.86,
+              "min": 4,
+              "max": 5,
+              "observations": 7
+            },
+            "금": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 7
+            }
+          }
+        },
+        "term1_regular": {
+          "status": "ok",
+          "total_rows": 172,
+          "rows_sha256": "92f891f1c63e4105a4a8a34b68fca77bc7fe27a57bb1fab2732ba05f71c3eb2a",
+          "page_hashes": [
+            "6853cf7b256144d136fc7d2274374215c24eb89715fc4af72604361934b98ab8"
+          ],
+          "class_count": 2,
+          "school_days": 17,
+          "weekdays": {
+            "월": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 6
+            },
+            "화": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 6
+            },
+            "수": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 6
+            },
+            "목": {
+              "mode": 5,
+              "share": 0.67,
+              "min": 5,
+              "max": 6,
+              "observations": 6
+            },
+            "금": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 6
+            }
+          }
+        },
+        "term2_regular": {
+          "status": "ok",
+          "total_rows": 184,
+          "rows_sha256": "ff68257d6ce17630c64d28fda50a97a7c3112a5f42da59a95913fc4e475c99a0",
+          "page_hashes": [
+            "00f6ec5420d0fdebe4e9bd2ac7185f76cd5aae19775e2694311524a14c6338bc"
+          ],
+          "class_count": 2,
+          "school_days": 17,
+          "weekdays": {
+            "월": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 6
+            },
+            "화": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 6
+            },
+            "수": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 6
+            },
+            "목": {
+              "mode": 5,
+              "share": 0.67,
+              "min": 5,
+              "max": 8,
+              "observations": 6
+            },
+            "금": {
+              "mode": 4,
+              "share": 0.67,
+              "min": 4,
+              "max": 8,
+              "observations": 6
+            }
+          }
+        },
+        "term2_early": {
+          "status": "ok",
+          "total_rows": 228,
+          "rows_sha256": "8e0da1d2bed961c3b6a100c784456b78bde6beddf4e1151b146c85c046c40486",
+          "page_hashes": [
+            "b5431e11c99ad09c5c1eb0d01edd6b19e2741bba1ae2da6c6d2bc855379de493"
+          ],
+          "class_count": 3,
+          "school_days": 12,
+          "weekdays": {
+            "월": {
+              "mode": 8,
+              "share": 1,
+              "min": 8,
+              "max": 8,
+              "observations": 6
+            },
+            "화": {
+              "mode": 8,
+              "share": 0.6,
+              "min": 5,
+              "max": 8,
+              "observations": 5
+            },
+            "수": {
+              "mode": 8,
+              "share": 0.6,
+              "min": 4,
+              "max": 8,
+              "observations": 5
+            },
+            "목": {
+              "mode": 8,
+              "share": 0.6,
+              "min": 5,
+              "max": 8,
+              "observations": 5
+            },
+            "금": {
+              "mode": 8,
+              "share": 0.6,
+              "min": 4,
+              "max": 8,
+              "observations": 5
+            }
+          }
+        }
+      },
+      "status": "ok"
+    },
+    {
+      "school_id": "B000022720",
+      "school_name": "온샘초등학교",
+      "region": "부산광역시",
+      "cohort": "province_sample",
+      "windows": {
+        "adaptation_march": {
+          "status": "ok",
+          "total_rows": 994,
+          "rows_sha256": "4fb711436753a54b6a4863c7c284838c28b74edf6d0943c1fa77ea6572b2062e",
+          "page_hashes": [
+            "63fa589cbe041654f979479e649194ab648c09c485637305c4c4ebd11dc0368e"
+          ],
+          "class_count": 10,
+          "school_days": 22,
+          "weekdays": {
+            "월": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 30
+            },
+            "화": {
+              "mode": 5,
+              "share": 0.95,
+              "min": 3,
+              "max": 5,
+              "observations": 38
+            },
+            "수": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 38
+            },
+            "목": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 38
+            },
+            "금": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 38
+            }
+          }
+        },
+        "term1_regular": {
+          "status": "ok",
+          "total_rows": 810,
+          "rows_sha256": "a34d8ae4d92ffa5541f8dc677b0a20662dd02caf46ff5f840feef1648819c72e",
+          "page_hashes": [
+            "af72af46eb29bcd72315454be927274ad17c4151358e48ae281056a5ab0f7da8"
+          ],
+          "class_count": 10,
+          "school_days": 17,
+          "weekdays": {
+            "월": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 30
+            },
+            "화": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 30
+            },
+            "수": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 30
+            },
+            "목": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 30
+            },
+            "금": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 30
+            }
+          }
+        },
+        "term2_regular": {
+          "status": "ok",
+          "total_rows": 830,
+          "rows_sha256": "85f9a7ebef1812ab1b83e370ed57ca3389971e5a51e5983e89036335ec545f2f",
+          "page_hashes": [
+            "8667b2b99594a7da67de2e116b7aec1b2ef50bc9024e7d8e7b267f9fc06905c6"
+          ],
+          "class_count": 10,
+          "school_days": 17,
+          "weekdays": {
+            "월": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 30
+            },
+            "화": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 30
+            },
+            "수": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 30
+            },
+            "목": {
+              "mode": 5,
+              "share": 0.67,
+              "min": 5,
+              "max": 6,
+              "observations": 30
+            },
+            "금": {
+              "mode": 5,
+              "share": 0.67,
+              "min": 5,
+              "max": 6,
+              "observations": 30
+            }
+          }
+        },
+        "term2_early": {
+          "status": "ok",
+          "total_rows": 632,
+          "rows_sha256": "7c303efd31bf6958a63a847c03492d059c286030d6817ad589c286cd6ed8ee23",
+          "page_hashes": [
+            "07aed23f33d8e4bfaac36a71fd0578f224bec06b32bbf688480a38ec7ded453b"
+          ],
+          "class_count": 10,
+          "school_days": 12,
+          "weekdays": {
+            "월": {
+              "mode": 6,
+              "share": 1,
+              "min": 6,
+              "max": 6,
+              "observations": 20
+            },
+            "화": {
+              "mode": 6,
+              "share": 0.56,
+              "min": 5,
+              "max": 6,
+              "observations": 18
+            },
+            "수": {
+              "mode": 6,
+              "share": 0.56,
+              "min": 4,
+              "max": 6,
+              "observations": 18
+            },
+            "목": {
+              "mode": 6,
+              "share": 0.56,
+              "min": 5,
+              "max": 6,
+              "observations": 18
+            },
+            "금": {
+              "mode": 6,
+              "share": 0.56,
+              "min": 5,
+              "max": 6,
+              "observations": 18
+            }
+          }
+        }
+      },
+      "status": "ok"
+    },
+    {
+      "school_id": "B000026572",
+      "school_name": "솔빛초등학교",
+      "region": "세종특별자치시",
+      "cohort": "province_sample",
+      "windows": {
+        "adaptation_march": {
+          "status": "ok",
+          "total_rows": 285,
+          "rows_sha256": "f3db6966b3146cc6c75d44732c785272db437143efa70f3e078293a7b59401fc",
+          "page_hashes": [
+            "0a03e7dd8f6adb19b955090b04c2cea9e8b8565a0bf0519d105ef64c184430e4"
+          ],
+          "class_count": 3,
+          "school_days": 22,
+          "weekdays": {
+            "월": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 9
+            },
+            "화": {
+              "mode": 5,
+              "share": 0.9,
+              "min": 5,
+              "max": 8,
+              "observations": 10
+            },
+            "수": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 10
+            },
+            "목": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 10
+            },
+            "금": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 10
+            }
+          }
+        },
+        "term1_regular": {
+          "status": "ok",
+          "total_rows": 255,
+          "rows_sha256": "10966f7faec7d34ed76e2fd39b727bfdd04f5d76b34aa86cd34f480bd9eead51",
+          "page_hashes": [
+            "1240471e6ddfeb2b0716e2d51496ae4b63e9ef4c187be27c476f167555fb1efe"
+          ],
+          "class_count": 3,
+          "school_days": 17,
+          "weekdays": {
+            "월": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 9
+            },
+            "화": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 9
+            },
+            "수": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 9
+            },
+            "목": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 9
+            },
+            "금": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 9
+            }
+          }
+        },
+        "term2_regular": {
+          "status": "ok",
+          "total_rows": 276,
+          "rows_sha256": "32c9f7f140bd36f9fe383f880ddb757d6329397ddd5105ce0ad9f3cd61e7fc0b",
+          "page_hashes": [
+            "e260d5dd7f0ce226a3e06ed40a97dc930743ed7cd32c5ff0be5b11f1796d9b16"
+          ],
+          "class_count": 3,
+          "school_days": 17,
+          "weekdays": {
+            "월": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 9
+            },
+            "화": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 9
+            },
+            "수": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 9
+            },
+            "목": {
+              "mode": 5,
+              "share": 0.67,
+              "min": 5,
+              "max": 8,
+              "observations": 9
+            },
+            "금": {
+              "mode": 4,
+              "share": 0.67,
+              "min": 4,
+              "max": 8,
+              "observations": 9
+            }
+          }
+        },
+        "term2_early": {
+          "status": "ok",
+          "total_rows": 162,
+          "rows_sha256": "59a72c845c708d6eab6a1b65b39dfb75f96c5d5ca01e8030d2607035e5b232df",
+          "page_hashes": [
+            "79be27c482f6feeaaad82e414f67c5746ed3c94bca974cab04dcbc4bcb85d352"
+          ],
+          "class_count": 3,
+          "school_days": 11,
+          "weekdays": {
+            "월": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 6
+            },
+            "화": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 6
+            },
+            "수": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 6
+            },
+            "목": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 6
+            },
+            "금": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 6
+            }
+          }
+        }
+      },
+      "status": "ok"
+    },
+    {
+      "school_id": "B000005744",
+      "school_name": "수왕초등학교",
+      "region": "세종특별자치시",
+      "cohort": "province_sample",
+      "windows": {
+        "adaptation_march": {
+          "status": "ok",
+          "total_rows": 111,
+          "rows_sha256": "02601ed0466b31b328fac0e5637edc015e102205ee7e99036c0457d7245cee8b",
+          "page_hashes": [
+            "6f293bbbe9aef950a32c38968e21e76e0c4f7f861facc94b1c191f93599e1c00"
+          ],
+          "class_count": 1,
+          "school_days": 22,
+          "weekdays": {
+            "월": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 3
+            },
+            "화": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 4
+            },
+            "수": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 4
+            },
+            "목": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 4
+            },
+            "금": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 4
+            }
+          }
+        },
+        "term1_regular": {
+          "status": "ok",
+          "total_rows": 85,
+          "rows_sha256": "1b60d8018e97ccc50dde7146dc2a36a86c7d845a72d7c13aff910c08fad5484d",
+          "page_hashes": [
+            "0737ac556bf6f8327bb710369542127f8c5655dde7cb722de6b4a8dad4722054"
+          ],
+          "class_count": 1,
+          "school_days": 17,
+          "weekdays": {
+            "월": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 3
+            },
+            "화": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 3
+            },
+            "수": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 3
+            },
+            "목": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 3
+            },
+            "금": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 3
+            }
+          }
+        },
+        "term2_regular": {
+          "status": "ok",
+          "total_rows": 92,
+          "rows_sha256": "8e3a742aa71ba797301d479e58e9a5ebffaafbf5998fd36ae188d8c8b999afbe",
+          "page_hashes": [
+            "9da780d226729eb1e3d4cfaf751dfe358dff330d6e2264c5b8662c2dc7d021df"
+          ],
+          "class_count": 1,
+          "school_days": 17,
+          "weekdays": {
+            "월": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 3
+            },
+            "화": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 3
+            },
+            "수": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 3
+            },
+            "목": {
+              "mode": 4,
+              "share": 0.67,
+              "min": 4,
+              "max": 8,
+              "observations": 3
+            },
+            "금": {
+              "mode": 5,
+              "share": 0.67,
+              "min": 5,
+              "max": 8,
+              "observations": 3
+            }
+          }
+        },
+        "term2_early": {
+          "status": "ok",
+          "total_rows": 54,
+          "rows_sha256": "3bb27eaa81a7600f0376feac1f717344ff9c648f8a12e1c2bb2cf3232d31ab37",
+          "page_hashes": [
+            "b61d0d0cfa0ec9cc95e3ae40086363a14ed95cfb8fd1fb245f1a4d96c435d956"
+          ],
+          "class_count": 1,
+          "school_days": 11,
+          "weekdays": {
+            "월": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 2
+            },
+            "화": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 2
+            },
+            "수": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 2
+            },
+            "목": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 2
+            },
+            "금": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 2
+            }
+          }
+        }
+      },
+      "status": "ok"
+    },
+    {
+      "school_id": "B000003556",
+      "school_name": "남산초등학교",
+      "region": "울산광역시",
+      "cohort": "province_sample",
+      "windows": {
+        "adaptation_march": {
+          "status": "ok",
+          "total_rows": 108,
+          "rows_sha256": "a3ac7412637e2bd61e68da56d87e4296ff324495a49babb79d4cc5510ac8d2c6",
+          "page_hashes": [
+            "db8271b58eb5af452cdde2f36ebe0eb909735d650563b3d3a449a1983283b112"
+          ],
+          "class_count": 1,
+          "school_days": 22,
+          "weekdays": {
+            "월": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 3
+            },
+            "화": {
+              "mode": 5,
+              "share": 0.75,
+              "min": 3,
+              "max": 5,
+              "observations": 4
+            },
+            "수": {
+              "mode": 5,
+              "share": 0.75,
+              "min": 4,
+              "max": 5,
+              "observations": 4
+            },
+            "목": {
+              "mode": 5,
+              "share": 0.75,
+              "min": 4,
+              "max": 5,
+              "observations": 4
+            },
+            "금": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 4
+            }
+          }
+        },
+        "term1_regular": {
+          "status": "ok",
+          "total_rows": 85,
+          "rows_sha256": "7c327de3109b3675c36e8deb55c5b355140357c4a6fceefb78c55fde9658c284",
+          "page_hashes": [
+            "0dfb8703ef85606ad99f3dc3e664f69041bf3089a9c04bc42ab6ffb0c64288af"
+          ],
+          "class_count": 1,
+          "school_days": 17,
+          "weekdays": {
+            "월": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 3
+            },
+            "화": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 3
+            },
+            "수": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 3
+            },
+            "목": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 3
+            },
+            "금": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 3
+            }
+          }
+        },
+        "term2_regular": {
+          "status": "ok",
+          "total_rows": 92,
+          "rows_sha256": "d59c54852bc2dbfac28472307e0374b315aaebde42a37fa0167602d83fda0dc1",
+          "page_hashes": [
+            "2568ae98e8a1f54674a9cec29e88259b0de677b9acab239960f445e79d82d56f"
+          ],
+          "class_count": 1,
+          "school_days": 17,
+          "weekdays": {
+            "월": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 3
+            },
+            "화": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 3
+            },
+            "수": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 3
+            },
+            "목": {
+              "mode": 5,
+              "share": 0.67,
+              "min": 5,
+              "max": 8,
+              "observations": 3
+            },
+            "금": {
+              "mode": 4,
+              "share": 0.67,
+              "min": 4,
+              "max": 8,
+              "observations": 3
+            }
+          }
+        },
+        "term2_early": {
+          "status": "ok",
+          "total_rows": 54,
+          "rows_sha256": "62531a41c0db86bfd7c39353d8815df7af6b700ded3f5e682c1228c2b16cf0f3",
+          "page_hashes": [
+            "4d6e165fc3b251e526ba4163fa83b3a230a8e4b1eb9ef149ed4d05f78d3d2bb8"
+          ],
+          "class_count": 1,
+          "school_days": 11,
+          "weekdays": {
+            "월": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 2
+            },
+            "화": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 2
+            },
+            "수": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 2
+            },
+            "목": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 2
+            },
+            "금": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 2
+            }
+          }
+        }
+      },
+      "status": "ok"
+    },
+    {
+      "school_id": "B000026025",
+      "school_name": "삼남초등학교",
+      "region": "울산광역시",
+      "cohort": "province_sample",
+      "windows": {
+        "adaptation_march": {
+          "status": "ok",
+          "total_rows": 442,
+          "rows_sha256": "1a146b6b53fcb1ab668aac49c1e95a995d90a5a7efc4273c8828e593d0a73f28",
+          "page_hashes": [
+            "3e9e9a194cf5c1635211c53c1faa821e93c86366293fb0f4a2a1d66ac7f855ff"
+          ],
+          "class_count": 4,
+          "school_days": 22,
+          "weekdays": {
+            "월": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 12
+            },
+            "화": {
+              "mode": 4,
+              "share": 0.88,
+              "min": 3,
+              "max": 4,
+              "observations": 16
+            },
+            "수": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 16
+            },
+            "목": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 16
+            },
+            "금": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 16
+            }
+          }
+        },
+        "term1_regular": {
+          "status": "ok",
+          "total_rows": 340,
+          "rows_sha256": "099758a1c5416def49a9c3320f1f6a8e69a150176504f30e0d2086b1a315b9fc",
+          "page_hashes": [
+            "9cad2a4f357adf7e26002fde68aed14321efbd92b416b0b21b5f422d4e5766e3"
+          ],
+          "class_count": 4,
+          "school_days": 17,
+          "weekdays": {
+            "월": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 12
+            },
+            "화": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 12
+            },
+            "수": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 12
+            },
+            "목": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 12
+            },
+            "금": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 12
+            }
+          }
+        },
+        "term2_regular": {
+          "status": "ok",
+          "total_rows": 364,
+          "rows_sha256": "be3569c0ada237dddd14e77a35ccdf6ce6f68e4736989efc873ec0d730ba5cee",
+          "page_hashes": [
+            "056424dcbd4cff6b2605c0d918a3a51edf4a37499fba5f50bb2266c2c24f9837"
+          ],
+          "class_count": 4,
+          "school_days": 17,
+          "weekdays": {
+            "월": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 12
+            },
+            "화": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 12
+            },
+            "수": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 12
+            },
+            "목": {
+              "mode": 5,
+              "share": 0.67,
+              "min": 5,
+              "max": 8,
+              "observations": 12
+            },
+            "금": {
+              "mode": 5,
+              "share": 0.67,
+              "min": 5,
+              "max": 8,
+              "observations": 12
+            }
+          }
+        },
+        "term2_early": {
+          "status": "ok",
+          "total_rows": 260,
+          "rows_sha256": "756bb4be4c191b1c76b4941913105ae6410388e3f2fd730a5b9e47b2a6e8366b",
+          "page_hashes": [
+            "534d56b91b6e135cdeef77b4c94a6db4f89e72d848b8a9d98d071e8b8dfd3960"
+          ],
+          "class_count": 4,
+          "school_days": 11,
+          "weekdays": {
+            "월": {
+              "mode": 8,
+              "share": 0.5,
+              "min": 5,
+              "max": 8,
+              "observations": 8
+            },
+            "화": {
+              "mode": 8,
+              "share": 0.5,
+              "min": 4,
+              "max": 8,
+              "observations": 8
+            },
+            "수": {
+              "mode": 8,
+              "share": 0.5,
+              "min": 4,
+              "max": 8,
+              "observations": 8
+            },
+            "목": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 8
+            },
+            "금": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 8
+            }
+          }
+        }
+      },
+      "status": "ok"
+    },
+    {
+      "school_id": "B000002964",
+      "school_name": "인천송현초등학교",
+      "region": "인천광역시",
+      "cohort": "province_sample",
+      "windows": {
+        "adaptation_march": {
+          "status": "ok",
+          "total_rows": 0,
+          "rows_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "page_hashes": [
+            "3cca3288065e641403e5076ee83d32d69de4425718148e0a4c25eeded68a0a8a"
+          ],
+          "class_count": 0,
+          "school_days": 0,
+          "weekdays": {
+            "월": null,
+            "화": null,
+            "수": null,
+            "목": null,
+            "금": null
+          }
+        },
+        "term1_regular": {
+          "status": "ok",
+          "total_rows": 46,
+          "rows_sha256": "d79b233c634f47d888a8716b8ae319b40bd6b08d576c74ea0e90249b45e04359",
+          "page_hashes": [
+            "49d49be8318b34bf38fd7530c7f31cc52edc9f017d51b285119f85ea4181bb87"
+          ],
+          "class_count": 1,
+          "school_days": 10,
+          "weekdays": {
+            "월": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 2
+            },
+            "화": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 2
+            },
+            "수": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 2
+            },
+            "목": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 2
+            },
+            "금": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 2
+            }
+          }
+        },
+        "term2_regular": {
+          "status": "ok",
+          "total_rows": 60,
+          "rows_sha256": "bbadea87ad287e8836888b4d0f3267a75159404f77fd82df3f0d30588b7108e3",
+          "page_hashes": [
+            "38b8549c621065ee4c9c645edbb74d5662aca8f5ad39eb289ab3a031f4d05b02"
+          ],
+          "class_count": 1,
+          "school_days": 13,
+          "weekdays": {
+            "월": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 3
+            },
+            "화": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 3
+            },
+            "수": {
+              "mode": 4,
+              "share": 0.67,
+              "min": 4,
+              "max": 5,
+              "observations": 3
+            },
+            "목": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 2
+            },
+            "금": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 2
+            }
+          }
+        },
+        "term2_early": {
+          "status": "ok",
+          "total_rows": 48,
+          "rows_sha256": "b97801e9b2fdd5366240682c1fd76a6f2847a0341c54d6fae06c5d04375faef1",
+          "page_hashes": [
+            "c4c4e1957ac406bb17710a64a156a3bbabd52f00235527532cdc7dc41a3a52f8"
+          ],
+          "class_count": 1,
+          "school_days": 10,
+          "weekdays": {
+            "월": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 2
+            },
+            "화": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 2
+            },
+            "수": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 2
+            },
+            "목": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 2
+            },
+            "금": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 2
+            }
+          }
+        }
+      },
+      "status": "ok"
+    },
+    {
+      "school_id": "B000002950",
+      "school_name": "인천신광초등학교",
+      "region": "인천광역시",
+      "cohort": "province_sample",
+      "windows": {
+        "adaptation_march": {
+          "status": "ok",
+          "total_rows": 282,
+          "rows_sha256": "e19fb9b48eae3a22120a0c2a6b45b5d95eb4e5b4db5b3ad49e20f7d4bac37e40",
+          "page_hashes": [
+            "9880dfe8628c3d8a8d952f29e48ffb54905a9aee42aceb816d9613821b6aef82"
+          ],
+          "class_count": 5,
+          "school_days": 19,
+          "weekdays": {
+            "월": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 12
+            },
+            "화": {
+              "mode": 5,
+              "share": 0.92,
+              "min": 2,
+              "max": 5,
+              "observations": 13
+            },
+            "수": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 13
+            },
+            "목": {
+              "mode": 5,
+              "share": 0.85,
+              "min": 1,
+              "max": 5,
+              "observations": 13
+            },
+            "금": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 12
+            }
+          }
+        },
+        "term1_regular": {
+          "status": "ok",
+          "total_rows": 253,
+          "rows_sha256": "13ddc3500ce00e6a7cdefe99619b48ad15d2bc58fe1c32dc6d777cd68288494d",
+          "page_hashes": [
+            "15b08329604b157bcc21bf89e986c447f965aea18f79cdcde1fb1000ae451904"
+          ],
+          "class_count": 4,
+          "school_days": 15,
+          "weekdays": {
+            "월": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 11
+            },
+            "화": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 11
+            },
+            "수": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 11
+            },
+            "목": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 11
+            },
+            "금": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 11
+            }
+          }
+        },
+        "term2_regular": {
+          "status": "ok",
+          "total_rows": 182,
+          "rows_sha256": "4a373d11b589a37f0c4ce4ba319d058c07f3b8d21bba2d118e189340f746018a",
+          "page_hashes": [
+            "d5231f76b90a06054e53a0f00d1815b5e286e284d104bbbdb1f0af47db93de8e"
+          ],
+          "class_count": 3,
+          "school_days": 15,
+          "weekdays": {
+            "월": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 9
+            },
+            "화": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 9
+            },
+            "수": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 9
+            },
+            "목": {
+              "mode": 5,
+              "share": 0.86,
+              "min": 1,
+              "max": 5,
+              "observations": 7
+            },
+            "금": {
+              "mode": 4,
+              "share": 0.86,
+              "min": 1,
+              "max": 4,
+              "observations": 7
+            }
+          }
+        },
+        "term2_early": {
+          "status": "ok",
+          "total_rows": 184,
+          "rows_sha256": "4899d71d17a06dde26f0ae13ca18099a0887e857fbacda41c3ab317d29492684",
+          "page_hashes": [
+            "22c8e9e0fc30d8066e0470eae17b7156b2dfd21c05b6a58fb3ad038ec2ec4b89"
+          ],
+          "class_count": 4,
+          "school_days": 10,
+          "weekdays": {
+            "월": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 8
+            },
+            "화": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 8
+            },
+            "수": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 8
+            },
+            "목": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 8
+            },
+            "금": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 8
+            }
+          }
+        }
+      },
+      "status": "ok"
+    },
+    {
+      "school_id": "B000006528",
+      "school_name": "나주초등학교",
+      "region": "전라남도",
+      "cohort": "province_sample",
+      "windows": {
+        "adaptation_march": {
+          "status": "ok",
+          "total_rows": 0,
+          "rows_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "page_hashes": [
+            "3cca3288065e641403e5076ee83d32d69de4425718148e0a4c25eeded68a0a8a"
+          ],
+          "class_count": 0,
+          "school_days": 0,
+          "weekdays": {
+            "월": null,
+            "화": null,
+            "수": null,
+            "목": null,
+            "금": null
+          }
+        },
+        "term1_regular": {
+          "status": "ok",
+          "total_rows": 0,
+          "rows_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "page_hashes": [
+            "3cca3288065e641403e5076ee83d32d69de4425718148e0a4c25eeded68a0a8a"
+          ],
+          "class_count": 0,
+          "school_days": 0,
+          "weekdays": {
+            "월": null,
+            "화": null,
+            "수": null,
+            "목": null,
+            "금": null
+          }
+        },
+        "term2_regular": {
+          "status": "ok",
+          "total_rows": 153,
+          "rows_sha256": "382be6cc6fe899013dd7908dedd54261522225d069bd8f672064952277828f6d",
+          "page_hashes": [
+            "15daaa678b72e864ab9ada2cc5f5aa037487f7538d1e096047c6b3cec8e08e43"
+          ],
+          "class_count": 2,
+          "school_days": 17,
+          "weekdays": {
+            "월": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 5
+            },
+            "화": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 5
+            },
+            "수": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 5
+            },
+            "목": {
+              "mode": 4,
+              "share": 0.6,
+              "min": 4,
+              "max": 8,
+              "observations": 5
+            },
+            "금": {
+              "mode": 5,
+              "share": 0.6,
+              "min": 5,
+              "max": 8,
+              "observations": 5
+            }
+          }
+        },
+        "term2_early": {
+          "status": "ok",
+          "total_rows": 54,
+          "rows_sha256": "7d6030142a22af177f0ab98ed8c9ddfabff03353073d79ad2b728f5adf105e27",
+          "page_hashes": [
+            "c3f2a468e6bf5d713cda572ece5ffacaf9b148a6f52a303fc9e6be9d718a8786"
+          ],
+          "class_count": 1,
+          "school_days": 11,
+          "weekdays": {
+            "월": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 2
+            },
+            "화": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 2
+            },
+            "수": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 2
+            },
+            "목": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 2
+            },
+            "금": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 2
+            }
+          }
+        }
+      },
+      "status": "ok"
+    },
+    {
+      "school_id": "B000006534",
+      "school_name": "노안남초등학교",
+      "region": "전라남도",
+      "cohort": "province_sample",
+      "windows": {
+        "adaptation_march": {
+          "status": "ok",
+          "total_rows": 0,
+          "rows_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "page_hashes": [
+            "3cca3288065e641403e5076ee83d32d69de4425718148e0a4c25eeded68a0a8a"
+          ],
+          "class_count": 0,
+          "school_days": 0,
+          "weekdays": {
+            "월": null,
+            "화": null,
+            "수": null,
+            "목": null,
+            "금": null
+          }
+        },
+        "term1_regular": {
+          "status": "ok",
+          "total_rows": 0,
+          "rows_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "page_hashes": [
+            "3cca3288065e641403e5076ee83d32d69de4425718148e0a4c25eeded68a0a8a"
+          ],
+          "class_count": 0,
+          "school_days": 0,
+          "weekdays": {
+            "월": null,
+            "화": null,
+            "수": null,
+            "목": null,
+            "금": null
+          }
+        },
+        "term2_regular": {
+          "status": "ok",
+          "total_rows": 96,
+          "rows_sha256": "90ed1f746edf99eb4b818c7e2647eee1fec96b2c2b523460b99702546eced357",
+          "page_hashes": [
+            "524200cbee177f55fa2ef4ff2ad0ac1c4d549595cbbc636acdf6953130dfc0e4"
+          ],
+          "class_count": 1,
+          "school_days": 17,
+          "weekdays": {
+            "월": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 3
+            },
+            "화": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 3
+            },
+            "수": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 3
+            },
+            "목": {
+              "mode": 8,
+              "share": 0.67,
+              "min": 4,
+              "max": 8,
+              "observations": 3
+            },
+            "금": {
+              "mode": 5,
+              "share": 0.67,
+              "min": 5,
+              "max": 8,
+              "observations": 3
+            }
+          }
+        },
+        "term2_early": {
+          "status": "ok",
+          "total_rows": 54,
+          "rows_sha256": "7c8662cd695bec6243390b535696b7433ff3de0517c656802a95d495b8a003e2",
+          "page_hashes": [
+            "7791d2a39ce8bd0800341af9c9951168ebcb4de24054844894b05493af550a1c"
+          ],
+          "class_count": 1,
+          "school_days": 11,
+          "weekdays": {
+            "월": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 2
+            },
+            "화": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 2
+            },
+            "수": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 2
+            },
+            "목": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 2
+            },
+            "금": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 2
+            }
+          }
+        }
+      },
+      "status": "ok"
+    },
+    {
+      "school_id": "B000006039",
+      "school_name": "군산용문초등학교",
+      "region": "전북특별자치도",
+      "cohort": "province_sample",
+      "windows": {
+        "adaptation_march": {
+          "status": "ok",
+          "total_rows": 316,
+          "rows_sha256": "e6101bae13006d7fc086944e504c1a61bddcebc5e70266ccc4857eeee7397b5b",
+          "page_hashes": [
+            "f837f9558d6b0e44de9d4f1df980a252708989eb42edbad5deed375e4db52a34"
+          ],
+          "class_count": 3,
+          "school_days": 22,
+          "weekdays": {
+            "월": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 9
+            },
+            "화": {
+              "mode": 5,
+              "share": 0.75,
+              "min": 2,
+              "max": 5,
+              "observations": 12
+            },
+            "수": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 12
+            },
+            "목": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 12
+            },
+            "금": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 12
+            }
+          }
+        },
+        "term1_regular": {
+          "status": "ok",
+          "total_rows": 255,
+          "rows_sha256": "7104eb714d86bb2599d68d1b4ea0f4d7904983029e497edd4e83ae9c0711c85f",
+          "page_hashes": [
+            "c81f54c98d4c455503f2125bec7b2f7f7cffd6b1199fff7aa57b1d774b1c7c71"
+          ],
+          "class_count": 3,
+          "school_days": 17,
+          "weekdays": {
+            "월": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 9
+            },
+            "화": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 9
+            },
+            "수": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 9
+            },
+            "목": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 9
+            },
+            "금": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 9
+            }
+          }
+        },
+        "term2_regular": {
+          "status": "ok",
+          "total_rows": 279,
+          "rows_sha256": "feb102180255122aeda9108ad3a11da6f5026472ec3df2068a9acc74540fff74",
+          "page_hashes": [
+            "715c8e7849b88eb57db37451fe978a8e599a9a8b64a41af3e68734936a5dcc21"
+          ],
+          "class_count": 3,
+          "school_days": 17,
+          "weekdays": {
+            "월": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 9
+            },
+            "화": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 9
+            },
+            "수": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 9
+            },
+            "목": {
+              "mode": 4,
+              "share": 0.67,
+              "min": 4,
+              "max": 8,
+              "observations": 9
+            },
+            "금": {
+              "mode": 4,
+              "share": 0.67,
+              "min": 4,
+              "max": 8,
+              "observations": 9
+            }
+          }
+        },
+        "term2_early": {
+          "status": "ok",
+          "total_rows": 162,
+          "rows_sha256": "8d21bef7f0d4d9ab18070f89d38e0f7c5df14f93ffc1a11649c2ed49b60d2193",
+          "page_hashes": [
+            "d67ea9da32f276639ef932938780fed25c3155032dc049668c3a59240902b2bb"
+          ],
+          "class_count": 3,
+          "school_days": 11,
+          "weekdays": {
+            "월": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 6
+            },
+            "화": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 6
+            },
+            "수": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 6
+            },
+            "목": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 6
+            },
+            "금": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 6
+            }
+          }
+        }
+      },
+      "status": "ok"
+    },
+    {
+      "school_id": "B000006062",
+      "school_name": "창오초등학교",
+      "region": "전북특별자치도",
+      "cohort": "province_sample",
+      "windows": {
+        "adaptation_march": {
+          "status": "ok",
+          "total_rows": 23,
+          "rows_sha256": "df8c07ff878cf97ebbee8ec09733753a9e7dc4fff8c313d9c2d461cc38d93864",
+          "page_hashes": [
+            "44c52c9d8e39d7c1e2b189a66178e75ed007aaa54ff69d0e4be2cdfe66c4dff7"
+          ],
+          "class_count": 1,
+          "school_days": 5,
+          "weekdays": {
+            "월": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 1
+            },
+            "화": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 1
+            },
+            "수": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 1
+            },
+            "목": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 1
+            },
+            "금": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 1
+            }
+          }
+        },
+        "term1_regular": {
+          "status": "ok",
+          "total_rows": 85,
+          "rows_sha256": "b261ada8c04e79c453cf07abb050a70c87da9a9eb766e3fd5267628b8a1886ec",
+          "page_hashes": [
+            "a48f46b05f3449e4d5161176df53a2bb2716951f7fb80a1269ab93b1dcd1c420"
+          ],
+          "class_count": 1,
+          "school_days": 17,
+          "weekdays": {
+            "월": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 3
+            },
+            "화": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 3
+            },
+            "수": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 3
+            },
+            "목": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 3
+            },
+            "금": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 3
+            }
+          }
+        },
+        "term2_regular": {
+          "status": "ok",
+          "total_rows": 92,
+          "rows_sha256": "de50ec096b5968ec572df3f1ad297e7a351e88855c70b318c613478ad52f8010",
+          "page_hashes": [
+            "3760c450f879e618b9eee2c6c0966591dff3dd12b264d1f4955140131f206383"
+          ],
+          "class_count": 1,
+          "school_days": 17,
+          "weekdays": {
+            "월": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 3
+            },
+            "화": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 3
+            },
+            "수": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 3
+            },
+            "목": {
+              "mode": 5,
+              "share": 0.67,
+              "min": 5,
+              "max": 8,
+              "observations": 3
+            },
+            "금": {
+              "mode": 4,
+              "share": 0.67,
+              "min": 4,
+              "max": 8,
+              "observations": 3
+            }
+          }
+        },
+        "term2_early": {
+          "status": "ok",
+          "total_rows": 54,
+          "rows_sha256": "f2528c90053fa161f4a3d0f66120e09bd8f2b18009896008b1b8e57957154875",
+          "page_hashes": [
+            "5a54f8a20dfc8659ae066ae616f70dffb5297e3331525e885538b7a08e686d40"
+          ],
+          "class_count": 1,
+          "school_days": 11,
+          "weekdays": {
+            "월": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 2
+            },
+            "화": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 2
+            },
+            "수": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 2
+            },
+            "목": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 2
+            },
+            "금": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 2
+            }
+          }
+        }
+      },
+      "status": "ok"
+    },
+    {
+      "school_id": "B000008014",
+      "school_name": "대흘초등학교",
+      "region": "제주특별자치도",
+      "cohort": "province_sample",
+      "windows": {
+        "adaptation_march": {
+          "status": "ok",
+          "total_rows": 226,
+          "rows_sha256": "1da97cdb3a45e3adafe40ceaccfcbb3ed67558e9d8e2716f14832d2812ee4438",
+          "page_hashes": [
+            "60a579e26fc9d082e5b7d76c5af1185324f32526dcef4512151eb338f42c4582"
+          ],
+          "class_count": 2,
+          "school_days": 22,
+          "weekdays": {
+            "월": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 6
+            },
+            "화": {
+              "mode": 5,
+              "share": 0.88,
+              "min": 3,
+              "max": 5,
+              "observations": 8
+            },
+            "수": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 8
+            },
+            "목": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 8
+            },
+            "금": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 8
+            }
+          }
+        },
+        "term1_regular": {
+          "status": "ok",
+          "total_rows": 174,
+          "rows_sha256": "83df90cc9b5263875e8c39cc36eb1c6331ba6e5058889774e366b7d73a41f1c9",
+          "page_hashes": [
+            "56ad7b9b5ffe7499013c05b112f644b4fddc8139c770d53ae5631fb79a4a6a90"
+          ],
+          "class_count": 2,
+          "school_days": 17,
+          "weekdays": {
+            "월": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 6
+            },
+            "화": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 6
+            },
+            "수": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 6
+            },
+            "목": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 6
+            },
+            "금": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 6
+            }
+          }
+        },
+        "term2_regular": {
+          "status": "ok",
+          "total_rows": 96,
+          "rows_sha256": "f2d414554108e413a7d4abd32595890717b5d506c88bc6af6941838973f4b59b",
+          "page_hashes": [
+            "b09f0c7ab29c1bc52c98ccfb90dc4e86e879519540c4326dc793ae68d54110f1"
+          ],
+          "class_count": 1,
+          "school_days": 17,
+          "weekdays": {
+            "월": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 3
+            },
+            "화": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 3
+            },
+            "수": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 3
+            },
+            "목": {
+              "mode": 5,
+              "share": 0.67,
+              "min": 5,
+              "max": 9,
+              "observations": 3
+            },
+            "금": {
+              "mode": 4,
+              "share": 0.67,
+              "min": 4,
+              "max": 9,
+              "observations": 3
+            }
+          }
+        },
+        "term2_early": {
+          "status": "ok",
+          "total_rows": 41,
+          "rows_sha256": "ad0d8bc117f06001903b91f781bf6c9e377c064db424cfd1ea7066334285096e",
+          "page_hashes": [
+            "444720f45e96867c4272827b0cb56be943a49803aed2b34b07efca5b4af3c0f0"
+          ],
+          "class_count": 2,
+          "school_days": 6,
+          "weekdays": {
+            "월": {
+              "mode": 9,
+              "share": 0.67,
+              "min": 5,
+              "max": 9,
+              "observations": 3
+            },
+            "화": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 1
+            },
+            "수": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 1
+            },
+            "목": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 1
+            },
+            "금": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 1
+            }
+          }
+        }
+      },
+      "status": "ok"
+    },
+    {
+      "school_id": "B000008082",
+      "school_name": "안덕초등학교",
+      "region": "제주특별자치도",
+      "cohort": "province_sample",
+      "windows": {
+        "adaptation_march": {
+          "status": "ok",
+          "total_rows": 186,
+          "rows_sha256": "e244738d8618725307c18a0111ff51730fda4373c93c7085c1ba22a2132eaf83",
+          "page_hashes": [
+            "2743f6608008fc01dfd5716fd221d42890d1e8ccac22b9b7c39b916cb5f96e16"
+          ],
+          "class_count": 2,
+          "school_days": 22,
+          "weekdays": {
+            "월": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 5
+            },
+            "화": {
+              "mode": 5,
+              "share": 0.86,
+              "min": 3,
+              "max": 5,
+              "observations": 7
+            },
+            "수": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 7
+            },
+            "목": {
+              "mode": 5,
+              "share": 0.86,
+              "min": 4,
+              "max": 5,
+              "observations": 7
+            },
+            "금": {
+              "mode": 5,
+              "share": 0.86,
+              "min": 4,
+              "max": 5,
+              "observations": 7
+            }
+          }
+        },
+        "term1_regular": {
+          "status": "ok",
+          "total_rows": 176,
+          "rows_sha256": "31375b21487016b73e42a04d859ae5a990d753fdcc41dad7a8465b3370991e79",
+          "page_hashes": [
+            "ab5687b1757ac96dd7e6d42a8f050a884e8ff503b4622f2645539039430036f9"
+          ],
+          "class_count": 2,
+          "school_days": 17,
+          "weekdays": {
+            "월": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 6
+            },
+            "화": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 6
+            },
+            "수": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 6
+            },
+            "목": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 6
+            },
+            "금": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 6
+            }
+          }
+        },
+        "term2_regular": {
+          "status": "ok",
+          "total_rows": 188,
+          "rows_sha256": "02c3be70e0f065a2db0ce6dbf15cc4049a1e23356488b92f2867f812fc32777a",
+          "page_hashes": [
+            "657e2b51c0b1240afc63adeb1ebefd2bd43a29113a26726de114db15e756ee43"
+          ],
+          "class_count": 2,
+          "school_days": 17,
+          "weekdays": {
+            "월": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 6
+            },
+            "화": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 6
+            },
+            "수": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 6
+            },
+            "목": {
+              "mode": 5,
+              "share": 0.67,
+              "min": 5,
+              "max": 8,
+              "observations": 6
+            },
+            "금": {
+              "mode": 5,
+              "share": 0.67,
+              "min": 5,
+              "max": 8,
+              "observations": 6
+            }
+          }
+        },
+        "term2_early": {
+          "status": "ok",
+          "total_rows": 132,
+          "rows_sha256": "bf0a51ed976fb28aa76cb21bdc435657de24a4f0ad5faeaee7a36f3d94708cb7",
+          "page_hashes": [
+            "053519d16edb4b3440d32fd87331db6fa8ad3e2aa3dcfe57ee3768842d3386b8"
+          ],
+          "class_count": 2,
+          "school_days": 11,
+          "weekdays": {
+            "월": {
+              "mode": 8,
+              "share": 0.5,
+              "min": 5,
+              "max": 8,
+              "observations": 4
+            },
+            "화": {
+              "mode": 8,
+              "share": 0.5,
+              "min": 5,
+              "max": 8,
+              "observations": 4
+            },
+            "수": {
+              "mode": 8,
+              "share": 0.5,
+              "min": 4,
+              "max": 8,
+              "observations": 4
+            },
+            "목": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 4
+            },
+            "금": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 4
+            }
+          }
+        }
+      },
+      "status": "ok"
+    },
+    {
+      "school_id": "B000022965",
+      "school_name": "상월초등학교",
+      "region": "충청남도",
+      "cohort": "province_sample",
+      "windows": {
+        "adaptation_march": {
+          "status": "ok",
+          "total_rows": 112,
+          "rows_sha256": "0ada0b0198d7ce94bddddb8469af646185b96b4196d8d5bc01080c9b67c55e9a",
+          "page_hashes": [
+            "2cd463aeb284c8f6918726f3eb0be76dde40ffd06a118e85fef5733c3e6b5d25"
+          ],
+          "class_count": 1,
+          "school_days": 22,
+          "weekdays": {
+            "월": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 3
+            },
+            "화": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 4
+            },
+            "수": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 4
+            },
+            "목": {
+              "mode": 6,
+              "share": 1,
+              "min": 6,
+              "max": 6,
+              "observations": 4
+            },
+            "금": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 4
+            }
+          }
+        },
+        "term1_regular": {
+          "status": "ok",
+          "total_rows": 85,
+          "rows_sha256": "e778888ee9c5c8555693a5d300a831eb77dd3ae0e83d74c9660b84b570299d0f",
+          "page_hashes": [
+            "5abf6fd7b479eabb9a08d770d6bfdc12204ceb69c69c0dbd92e4d727fa6bfe1b"
+          ],
+          "class_count": 1,
+          "school_days": 17,
+          "weekdays": {
+            "월": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 3
+            },
+            "화": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 3
+            },
+            "수": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 3
+            },
+            "목": {
+              "mode": 6,
+              "share": 1,
+              "min": 6,
+              "max": 6,
+              "observations": 3
+            },
+            "금": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 3
+            }
+          }
+        },
+        "term2_regular": {
+          "status": "ok",
+          "total_rows": 89,
+          "rows_sha256": "33101babdd2cc2ceb96db224758722839f08f1863102fbe7234e04e176ef165f",
+          "page_hashes": [
+            "805f30ae3d658c90da25b95efe50e12ce49ea62deb575c25cd7a7dea5f954308"
+          ],
+          "class_count": 1,
+          "school_days": 17,
+          "weekdays": {
+            "월": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 3
+            },
+            "화": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 3
+            },
+            "수": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 3
+            },
+            "목": {
+              "mode": 5,
+              "share": 0.67,
+              "min": 5,
+              "max": 8,
+              "observations": 3
+            },
+            "금": {
+              "mode": 4,
+              "share": 0.67,
+              "min": 4,
+              "max": 8,
+              "observations": 3
+            }
+          }
+        },
+        "term2_early": {
+          "status": "ok",
+          "total_rows": 53,
+          "rows_sha256": "25dac3d7cfde1efd20f58b9f22458b27a6459929846e465dda0eb190bba86293",
+          "page_hashes": [
+            "4e31cb247b693396faad90b822bc137ea2fe5a4a6f446d4ffe52b72705f65f34"
+          ],
+          "class_count": 1,
+          "school_days": 11,
+          "weekdays": {
+            "월": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 2
+            },
+            "화": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 2
+            },
+            "수": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 2
+            },
+            "목": {
+              "mode": 6,
+              "share": 0.5,
+              "min": 5,
+              "max": 6,
+              "observations": 2
+            },
+            "금": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 2
+            }
+          }
+        }
+      },
+      "status": "ok"
+    },
+    {
+      "school_id": "B000005819",
+      "school_name": "장항초등학교",
+      "region": "충청남도",
+      "cohort": "province_sample",
+      "windows": {
+        "adaptation_march": {
+          "status": "ok",
+          "total_rows": 103,
+          "rows_sha256": "493efe788a164bc2273c40d459177e4e1274f539abffe1262630975aa4f33301",
+          "page_hashes": [
+            "a3622e98ce38f5ca2771a49f58a5e9de283e47f9240c62a9d4e945bd7bf036e8"
+          ],
+          "class_count": 1,
+          "school_days": 21,
+          "weekdays": {
+            "월": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 3
+            },
+            "화": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 4
+            },
+            "수": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 4
+            },
+            "목": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 4
+            },
+            "금": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 4
+            }
+          }
+        },
+        "term1_regular": {
+          "status": "ok",
+          "total_rows": 85,
+          "rows_sha256": "6376fee176c6cab65a400e0b53ed3149893cc3e4d132d4d0d69da9c3aa2e626f",
+          "page_hashes": [
+            "9515cef7e4b8b446f3353eeed0fb1ffdde759784fe9d5b38e9a25c977bec37cc"
+          ],
+          "class_count": 1,
+          "school_days": 17,
+          "weekdays": {
+            "월": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 3
+            },
+            "화": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 3
+            },
+            "수": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 3
+            },
+            "목": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 3
+            },
+            "금": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 3
+            }
+          }
+        },
+        "term2_regular": {
+          "status": "ok",
+          "total_rows": 92,
+          "rows_sha256": "372e8f9624b1262e5db54c70274caffdfb4353d0f2a83a88e038b2ff7f78ed38",
+          "page_hashes": [
+            "2952b85b401d929fd70157f0cd16de83353a54927d67d88137df758ebd41c550"
+          ],
+          "class_count": 1,
+          "school_days": 17,
+          "weekdays": {
+            "월": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 3
+            },
+            "화": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 3
+            },
+            "수": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 3
+            },
+            "목": {
+              "mode": 5,
+              "share": 0.67,
+              "min": 5,
+              "max": 8,
+              "observations": 3
+            },
+            "금": {
+              "mode": 4,
+              "share": 0.67,
+              "min": 4,
+              "max": 8,
+              "observations": 3
+            }
+          }
+        },
+        "term2_early": {
+          "status": "ok",
+          "total_rows": 54,
+          "rows_sha256": "d34b3804dd105e37e7c9186f6de7bd8cd97cf4b3a632ae077235744ad470e0a2",
+          "page_hashes": [
+            "e8279e62257fafd0cc23a6098ee2a9055d822f808a340b373a6cb3d7422a7eff"
+          ],
+          "class_count": 1,
+          "school_days": 11,
+          "weekdays": {
+            "월": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 2
+            },
+            "화": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 2
+            },
+            "수": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 2
+            },
+            "목": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 2
+            },
+            "금": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 2
+            }
+          }
+        }
+      },
+      "status": "ok"
+    },
+    {
+      "school_id": "B000005407",
+      "school_name": "군남초등학교",
+      "region": "충청북도",
+      "cohort": "province_sample",
+      "windows": {
+        "adaptation_march": {
+          "status": "ok",
+          "total_rows": 102,
+          "rows_sha256": "6716cfc706e7ada83a0c6a20628aa2c57fa217e22ff95eaf12a38cc7f672f84e",
+          "page_hashes": [
+            "22fe94cf6b8f02c9c75edde384cf383dda7697db8e11b5f59bb35ddd8e6f11ac"
+          ],
+          "class_count": 1,
+          "school_days": 21,
+          "weekdays": {
+            "월": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 3
+            },
+            "화": {
+              "mode": 5,
+              "share": 0.75,
+              "min": 3,
+              "max": 5,
+              "observations": 4
+            },
+            "수": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 4
+            },
+            "목": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 4
+            },
+            "금": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 4
+            }
+          }
+        },
+        "term1_regular": {
+          "status": "ok",
+          "total_rows": 96,
+          "rows_sha256": "8f10ac2e58312bac448e82e842d06431f5a705fb62396c2e739dd4fe02850383",
+          "page_hashes": [
+            "be7623bea3c368749e1df27baed9acab4eb56aae1f92129f48251f87a93aa33b"
+          ],
+          "class_count": 1,
+          "school_days": 17,
+          "weekdays": {
+            "월": {
+              "mode": 4,
+              "share": 0.67,
+              "min": 4,
+              "max": 8,
+              "observations": 3
+            },
+            "화": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 3
+            },
+            "수": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 3
+            },
+            "목": {
+              "mode": 5,
+              "share": 0.67,
+              "min": 5,
+              "max": 8,
+              "observations": 3
+            },
+            "금": {
+              "mode": 4,
+              "share": 0.67,
+              "min": 4,
+              "max": 8,
+              "observations": 3
+            }
+          }
+        },
+        "term2_regular": {
+          "status": "ok",
+          "total_rows": 95,
+          "rows_sha256": "c5a0fa6b8b232012cae5a307725677632b93df5f73047f744d86af204f9931a6",
+          "page_hashes": [
+            "0386eb470096106639024dde9d66bd0851d27caf88a6c30a1ae5c2d4d5caf0fe"
+          ],
+          "class_count": 1,
+          "school_days": 17,
+          "weekdays": {
+            "월": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 3
+            },
+            "화": {
+              "mode": 5,
+              "share": 0.67,
+              "min": 5,
+              "max": 8,
+              "observations": 3
+            },
+            "수": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 3
+            },
+            "목": {
+              "mode": 5,
+              "share": 0.67,
+              "min": 5,
+              "max": 8,
+              "observations": 3
+            },
+            "금": {
+              "mode": 4,
+              "share": 0.67,
+              "min": 4,
+              "max": 8,
+              "observations": 3
+            }
+          }
+        },
+        "term2_early": {
+          "status": "ok",
+          "total_rows": 54,
+          "rows_sha256": "bc211b8829a10acc2b85d52ba8a07ab32704042f35d2435b687c6b16cbd55d12",
+          "page_hashes": [
+            "5a06c603e221d735798e12e1ee05568a0ccf57e056a7b9e478cf8ea6948da17f"
+          ],
+          "class_count": 1,
+          "school_days": 11,
+          "weekdays": {
+            "월": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 2
+            },
+            "화": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 2
+            },
+            "수": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 2
+            },
+            "목": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 2
+            },
+            "금": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 2
+            }
+          }
+        }
+      },
+      "status": "ok"
+    },
+    {
+      "school_id": "B000005242",
+      "school_name": "주중초등학교",
+      "region": "충청북도",
+      "cohort": "province_sample",
+      "windows": {
+        "adaptation_march": {
+          "status": "ok",
+          "total_rows": 460,
+          "rows_sha256": "1d6fcf11106ac5d781865b6f94350f5054e1ed44f0210d26208b1f57251baa87",
+          "page_hashes": [
+            "6ada289b02d951fbfd735f226209be01f7ae4e74afdd75a5b36b7eb0e10e85ec"
+          ],
+          "class_count": 4,
+          "school_days": 22,
+          "weekdays": {
+            "월": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 12
+            },
+            "화": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 16
+            },
+            "수": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 16
+            },
+            "목": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 16
+            },
+            "금": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 16
+            }
+          }
+        },
+        "term1_regular": {
+          "status": "ok",
+          "total_rows": 348,
+          "rows_sha256": "215d36662f2d2c067bfc9ace20d96a242927daedb1cc541238dc6d51ff067a73",
+          "page_hashes": [
+            "bc720f55976ff61399acff63a53d398d64ec4146c37363fa502ff0f97e966507"
+          ],
+          "class_count": 4,
+          "school_days": 17,
+          "weekdays": {
+            "월": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 12
+            },
+            "화": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 12
+            },
+            "수": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 12
+            },
+            "목": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 12
+            },
+            "금": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 12
+            }
+          }
+        },
+        "term2_regular": {
+          "status": "ok",
+          "total_rows": 384,
+          "rows_sha256": "eddd35fa90a13ec2a9c88ee6bf566540a0da2685cdefed1ff8c2f42c50b8834a",
+          "page_hashes": [
+            "2a7bb6cca8f8b987acd7d5b0b2607381ac01e29cc8abce794d52a321b6c86d83"
+          ],
+          "class_count": 4,
+          "school_days": 17,
+          "weekdays": {
+            "월": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 12
+            },
+            "화": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 12
+            },
+            "수": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 12
+            },
+            "목": {
+              "mode": 5,
+              "share": 0.67,
+              "min": 5,
+              "max": 9,
+              "observations": 12
+            },
+            "금": {
+              "mode": 4,
+              "share": 0.67,
+              "min": 4,
+              "max": 9,
+              "observations": 12
+            }
+          }
+        },
+        "term2_early": {
+          "status": "ok",
+          "total_rows": 220,
+          "rows_sha256": "31bf61271279539550e75f1f12e34649e84c89cb086464465ac3a58e1b574ad0",
+          "page_hashes": [
+            "ef42d7fa1e56b6fb81cbc9a26200b49291b4c550fe10e10a3275e922eaa04080"
+          ],
+          "class_count": 4,
+          "school_days": 11,
+          "weekdays": {
+            "월": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 8
+            },
+            "화": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 8
+            },
+            "수": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 8
+            },
+            "목": {
+              "mode": 5,
+              "share": 1,
+              "min": 5,
+              "max": 5,
+              "observations": 8
+            },
+            "금": {
+              "mode": 4,
+              "share": 1,
+              "min": 4,
+              "max": 4,
+              "observations": 8
+            }
+          }
+        }
+      },
+      "status": "ok"
+    }
+  ]
+}

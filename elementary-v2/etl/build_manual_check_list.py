@@ -37,6 +37,8 @@ SOURCES = {
     'expansion_seongnam_gangnam3': ('schoolinfo_disclosure_probe_expansion_20261008.json', 'schoolinfo_daily_clock_audit_expansion_20261008.json', None),
     'wave2_seoul': ('schoolinfo_disclosure_probe_wave2_seoul_20261009.json', 'schoolinfo_daily_clock_audit_wave2_seoul_20261009.json',
                     'llm_review_overrides_wave2_seoul_20261010.json'),
+    'wave3_gyeonggi': ('schoolinfo_disclosure_probe_wave3_gyeonggi_20261010.json', 'schoolinfo_daily_clock_audit_wave3_gyeonggi_20261010.json',
+                       'llm_review_overrides_wave3_gyeonggi_20261011.json'),
 }
 CLOCK_REASON = {
     'no_clock_detected': '2-가 문서에서 시정표를 찾지 못함(요약본이거나 표가 이미지일 수 있음)',

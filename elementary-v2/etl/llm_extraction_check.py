@@ -34,15 +34,18 @@ def minutes(value: str) -> int:
 
 def squash(text: str) -> str:
     """Compare quotes ignoring whitespace and table-cell separators, which extractors add or drop."""
-    return re.sub(r'[\s|]+', '', text)
+    return re.sub(r'[\s|\x00]+', '', text)
 
 
 def time_in(evidence: str, value: str) -> bool:
     """'13:40' should appear in the evidence, allowing '13 : 40', a dropped leading zero, and PDF text
     that runs a range together ('11:3012:10' holds 11:30 and 12:10)."""
     h, m = value.split(':')
-    found = re.finditer(r'(\d{1,2})\s*:\s*(\d{2})', evidence)
-    return any(int(fh) == int(h) and fm == m for fh, fm in (match.groups() for match in found))
+    # PDF/HWP text also splits digits ('1 2:1 0'), carries NUL bytes, writes '19;00', and uses
+    # 12-hour afternoon times ('1:30' for 13:30)
+    text = re.sub(r'(?<=\d)[\s\x00]+(?=[\d:;])|(?<=[:;])[\s\x00]+(?=\d)', '', evidence.replace('\x00', ' '))
+    found = re.finditer(r'(\d{1,2})\s*[:;]\s*(\d{2})', text)
+    return any(fm == m and int(fh) in (int(h), int(h) - 12) for fh, fm in (match.groups() for match in found))
 
 
 def check_clock(clock: dict, source: str) -> list[str]:

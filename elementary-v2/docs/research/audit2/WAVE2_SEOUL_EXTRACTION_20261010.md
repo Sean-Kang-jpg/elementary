@@ -44,7 +44,7 @@
 | `school_day_estimate_weekdays` | 1,455 |
 | `school_care_hours` | 708 (시간 있음 527) |
 
-자동으로 정리되지 않은 학교는 [manual_check_list_20261010.csv](manual_check_list_20261010.csv)에 모았다. 세 세트(파일럿·1차 확대·2차 서울)를 모두 포함하고, 엑셀로 열 수 있다. 다시 만들려면 `python -m etl.build_manual_check_list`를 실행한다.
+자동으로 정리되지 않은 학교는 [manual_check_list_20261011.csv](manual_check_list_20261011.csv)에 모았다. 세 세트(파일럿·1차 확대·2차 서울)를 모두 포함하고, 엑셀로 열 수 있다. 다시 만들려면 `python -m etl.build_manual_check_list`를 실행한다.
 
 | 항목 | 학교 수 |
 | --- | --- |

@@ -58,6 +58,9 @@ REVIEW_SETS = [
     {'name': 'wave2_seoul', 'clock': 'school_day_review_wave2_seoul_20261010.json',
      'estimates': 'grade1_dismissal_estimates_wave2_seoul_20261010.json', 'care': 'care_review_wave2_seoul_20261010.json',
      'reviewed_on': '2026-10-10', 'confirmed': True},  # user confirmed 2026-10-10
+    {'name': 'wave3_gyeonggi', 'clock': 'school_day_review_wave3_gyeonggi_20261011.json',
+     'estimates': 'grade1_dismissal_estimates_wave3_gyeonggi_20261011.json', 'care': 'care_review_wave3_gyeonggi_20261011.json',
+     'reviewed_on': '2026-10-11', 'confirmed': True},  # user confirmed 2026-10-11
 ]
 
 
