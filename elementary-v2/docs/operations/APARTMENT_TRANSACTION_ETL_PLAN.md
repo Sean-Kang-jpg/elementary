@@ -1,7 +1,7 @@
 # 아파트 영속 식별자·실거래 ETL 실행 계획
 
-Status: **Implementation complete locally; production publication on hold**  
-Last updated: 2026-10-10
+Status: **Nationwide September snapshot published; recurring schedule activation pending**
+Last updated: 2026-10-11
 
 ## 체크리스트
 
@@ -14,7 +14,7 @@ Last updated: 2026-10-10
 - [x] 동일 fingerprint 정상 중복 거래 보존 및 취소 거래 집계 제외 테스트
 - [x] 영속 UUID/crosswalk/판정/계보/private raw/public summary SQL 27 작성
 - [x] 재현 가능한 UUID backfill planner와 충돌 보류 테스트 작성
-- [ ] SQL 27 운영 적용
+- [x] SQL 27 운영 적용
 - [x] 최신 전국 로컬 master entity backfill dry-run 및 충돌 0 확인
 - [x] 전국 master의 K-apt 보강 누락 회귀 탐지 및 missing-atom overlay 구현
 - [x] 도로명 단일 후보의 형식·지역 접두어 차이 검수 및 matcher v3 반영
@@ -36,8 +36,8 @@ Last updated: 2026-10-10
 연결은 공식 지번과 단지명을 우선하고, 공식 지번이 없거나 바뀐 경우 전국 마스터에서
 정확한 도로명과 건물번호가 단 하나의 단지에만 대응할 때 `unique_road_address`로
 확정한다. 같은 도로명주소를 공유하는 두 단지 이상은 자동 연결하지 않는다.
-- [ ] 최초 전국 월 snapshot private Storage 보존 및 월별 재처리 리허설
-- [ ] approved summary만 serving refresh 후 frontend 계약/UI 활성화
+- [x] 최초 전국 월 snapshot private Storage 보존 및 월별 재처리 리허설
+- [x] approved summary만 serving refresh 후 frontend 계약 활성화
 - [x] private 적재와 명시적 public publish를 분리한 idempotent uploader 구현
 
 ## 판정 상태
@@ -85,7 +85,20 @@ python etl/run_apartment_transaction_etl.py --apply --month YYYYMM ...
 키를 포함한 경우 ADR-007 canonical 순위로 redirect를 만든 뒤 공개했다. 월간
 schedule은 전국 월 데이터 검수 전까지 계속 비활성으로 둔다.
 
-## 현재 보류 사유
+2026-10-11 전국 2026-09 실행은 276개 시군구 snapshot에서 원천 29,380건을
+수집했고 28,027건(95.39%)을 결정적으로 연결했다. conflict 0건으로 gate를
+통과했으며 14,298개 entity·면적구간 summary를 승인했다. 2026-08 pilot을 포함한
+운영 누적은 raw/link 30,063/30,063, 승인 summary 14,633건이다. 여러 transaction
+entity가 같은 불변 공개키로 합쳐지는 9개 구간은 SQL 28에서 단지 전체 원천을 다시
+집계하고 SQL 29에서 이를 API timeout 안으로 최적화했다. 최종 public serving은
+2026-08 335건과 2026-09 14,289건, 합계 14,624건이며 갱신은 4.27초에 완료됐다.
+비공개 raw/link/summary 익명 조회는 401, serving 조회는 206으로 확인했다.
+
+월간 runner는 각 운영 scope에서 만든 apartment master를 모두 명시적으로 전달하고,
+어느 하나라도 없으면 전국 수집을 시작하지 않는다. 운영 `--apply`는 95% gate 통과
+후에만 `--publish`까지 수행한다. schedule은 이 변경의 배포 확인 전까지 비활성이다.
+
+## 남은 운영 전환 항목
 
 matcher v3 재측정에서 2026-08은 654/683(95.75%), 2026-09는
 557/585(95.21%)로 네 지역 표본 gate를 통과했다. 새 확정은 도로명·건물번호가
@@ -96,8 +109,9 @@ matcher v3 재측정에서 2026-08은 654/683(95.75%), 2026-09는
 원자를 46,157 entity로 계획했고 기존 crosswalk가 없는 최초 적재 기준 충돌은
 0건이었다. K-apt 17,866건은
 관리단지 코드라는 이유만으로 물리 실체를 자동 확정하지 않고 review 상태로
-계획했다. 운영 DB backfill은 SQL 27 적용 후 기존 crosswalk export를 넣어 다시
-실행해야 하며, 그 결과가 최종 gate다.
+계획했다. 운영 DB backfill과 전국 9월 publication은 완료됐다. 남은 항목은 이번
+runner 변경을 배포한 뒤 `molit-apartment-trade` schedule을 활성화하고 첫 자동
+실행을 관찰하는 것이다.
 
 8월의 충돌 없는 `aptSeq` 후보 282개를 승인한 승계 시뮬레이션은 9월
 559/585(95.56%)다. 남은 9월 검토 대상은 ambiguous 7, unmatched 17,

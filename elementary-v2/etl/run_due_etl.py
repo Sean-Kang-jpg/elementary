@@ -214,6 +214,33 @@ def production_scopes() -> list[tuple[list[str], str]]:
     return scopes
 
 
+def transaction_master_args() -> list[str]:
+    """Use every production-scope apartment master for the nationwide trade run.
+
+    The apartment pipeline deliberately builds one master per operational scope.
+    Passing only the historical capital filename silently drops the rest of the
+    country and makes the linkage gate look healthier than the actual run.
+    """
+    paths = []
+    for _, slug in production_scopes():
+        filename = (
+            "apartment_master_v1_20260320.csv"
+            if slug == "capital"
+            else f"apartment_master_v1_{slug}.csv"
+        )
+        path = OUTPUT_DIR / filename
+        if not path.is_file():
+            raise FileNotFoundError(
+                f"nationwide transaction master is missing: {path}; "
+                "run the apartment group for every production scope first"
+            )
+        paths.append(path)
+    arguments = ["--master", str(paths[0])]
+    for path in paths[1:]:
+        arguments.extend(("--master-supplement", str(path)))
+    return arguments
+
+
 def capital_scope() -> list[str]:
     return [region.canonical_name for region in load_registry().production_regions
             if region.canonical_name in CAPITAL_REGIONS]
@@ -485,12 +512,16 @@ def main() -> None:
             publish_public_keys(args.apply)
         if "transaction" in groups:
             # Runs after apartment/public-key refresh so new complexes can be
-            # linked without guessing. The SQL schedule stays disabled until
-            # its 95% gate and private backfill are approved.
-            run_script(
+            # linked without guessing. A production apply publishes only after
+            # the transaction script's 95% deterministic-linkage gate passes.
+            command = [
                 "etl/run_apartment_transaction_etl.py",
                 "--apply" if args.apply else "--rehearse",
-            )
+                *transaction_master_args(),
+            ]
+            if args.apply:
+                command.append("--publish")
+            run_script(*command)
         academy_error = None
         if "academy" in groups:
             # After the apartment group, so proximity reads this month's complexes.

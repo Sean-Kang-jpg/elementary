@@ -3,6 +3,16 @@ from pathlib import Path
 
 
 SQL = (Path(__file__).resolve().parents[2] / "sql" / "27_create_apartment_identity_and_transactions.sql").read_text(encoding="utf-8")
+SERVING_FIX_SQL = (
+    Path(__file__).resolve().parents[2]
+    / "sql"
+    / "28_fix_transaction_serving_complex_aggregation.sql"
+).read_text(encoding="utf-8")
+SERVING_OPTIMIZATION_SQL = (
+    Path(__file__).resolve().parents[2]
+    / "sql"
+    / "29_optimize_transaction_serving_refresh.sql"
+).read_text(encoding="utf-8")
 
 
 class ApartmentTransactionSqlContractTest(unittest.TestCase):
@@ -33,6 +43,28 @@ class ApartmentTransactionSqlContractTest(unittest.TestCase):
 
     def test_decision_queue_is_idempotent(self):
         self.assertIn("apartment_identity_decision_idempotency_idx", SQL)
+
+    def test_public_refresh_combines_component_atoms_at_public_key_grain(self):
+        self.assertIn("GROUP BY\n        transactions.complex_public_key", SERVING_FIX_SQL)
+        self.assertIn("percentile_cont(0.5)", SERVING_FIX_SQL)
+        self.assertIn("latest_snapshots AS", SERVING_FIX_SQL)
+        self.assertIn("raw.cancellation_date IS NULL", SERVING_FIX_SQL)
+        self.assertIn("inserted_transactions <> expected_transactions", SERVING_FIX_SQL)
+
+    def test_public_refresh_remains_private_and_fixed_path(self):
+        self.assertIn("SECURITY DEFINER", SERVING_FIX_SQL)
+        self.assertIn("SET search_path = ''", SERVING_FIX_SQL)
+        self.assertIn(
+            "REVOKE ALL ON FUNCTION refresh_apartment_transaction_monthly_serving() FROM PUBLIC",
+            SERVING_FIX_SQL,
+        )
+
+    def test_nationwide_refresh_materializes_scope_and_adds_partial_indexes(self):
+        self.assertIn("CREATE TEMP TABLE apartment_transaction_publish_scope", SERVING_OPTIMIZATION_SQL)
+        self.assertIn("apartment_transaction_raw_active_contract_idx", SERVING_OPTIMIZATION_SQL)
+        self.assertIn("apartment_transaction_link_confirmed_entity_idx", SERVING_OPTIMIZATION_SQL)
+        self.assertIn("approved_transactions AS MATERIALIZED", SERVING_OPTIMIZATION_SQL)
+        self.assertIn("SET search_path = ''", SERVING_OPTIMIZATION_SQL)
 
 
 if __name__ == "__main__":

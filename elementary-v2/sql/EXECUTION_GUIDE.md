@@ -289,6 +289,23 @@ count review, 335 monthly summaries were approved and exactly 335 serving rows w
 published. Anonymous reads returned 401 for private raw/summary tables and 200 for
 the serving table; the monthly schedule remains disabled pending nationwide rollout.
 
+## 28-29: nationwide transaction serving aggregation and timeout fix
+
+Apply `sql/28_fix_transaction_serving_complex_aggregation.sql` after 27. It combines
+multiple transaction entities that resolve to the same immutable apartment public key and
+recomputes exact medians from the latest private raw snapshot. Apply
+`sql/29_optimize_transaction_serving_refresh.sql` next; it adds the publication indexes and
+materializes the approved entity-to-key scope once so the nationwide refresh stays within
+the Data API statement timeout.
+
+Applied 2026-10-11 by the user. `refresh_apartment_transaction_monthly_serving()` returned
+14,624 in 4.27 seconds: 335 rows for 2026-08 and 14,289 for 2026-09. The nine-row difference
+from 14,633 approved entity summaries is expected because component entities share one public
+complex key. Nationwide 2026-09 quality was 28,027 deterministic links from 29,380 source rows
+(95.39%), with zero conflicts and zero held summaries. Operational totals are 30,063 raw rows,
+30,063 links and 14,624 public serving rows. Anonymous reads are denied for raw, link and summary
+tables and allowed only for the serving table.
+
 ## Stop Conditions
 
 - Project hostname does not resolve or keys belong to another project.

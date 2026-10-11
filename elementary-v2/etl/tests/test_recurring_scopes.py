@@ -34,6 +34,22 @@ class ProductionScopesTest(unittest.TestCase):
         self.assertEqual(slug, "capital")
         self.assertEqual(set(regions), {"서울특별시", "경기도", "인천광역시"})
 
+    def test_transaction_run_receives_every_scope_master(self) -> None:
+        expected = due.production_scopes()
+        with patch.object(Path, "is_file", return_value=True):
+            arguments = due.transaction_master_args()
+        masters = [arguments[index + 1] for index, value in enumerate(arguments)
+                   if value in {"--master", "--master-supplement"}]
+        self.assertEqual(len(masters), len(expected))
+        self.assertTrue(masters[0].endswith("apartment_master_v1_20260320.csv"))
+        for (_, slug), path in zip(expected[1:], masters[1:]):
+            self.assertTrue(path.endswith(f"apartment_master_v1_{slug}.csv"))
+
+    def test_transaction_run_fails_closed_when_a_scope_master_is_missing(self) -> None:
+        with patch.object(Path, "is_file", return_value=False):
+            with self.assertRaisesRegex(FileNotFoundError, "nationwide transaction master"):
+                due.transaction_master_args()
+
 
 class BuildScopeTest(unittest.TestCase):
     def test_builders_always_receive_the_scope(self) -> None:
