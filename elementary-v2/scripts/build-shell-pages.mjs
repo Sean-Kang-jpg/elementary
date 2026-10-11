@@ -216,6 +216,7 @@ for (const item of content.learning ?? []) {
       `<div class="learn-answer"><strong>어디초 요약</strong><p>${escapeHtml(item.answer)}</p></div>`,
       `<dl class="learn-facts"><div><dt>대상</dt><dd>${ageText}</dd></div><div><dt>시기</dt><dd>${escapeHtml(item.timing)}</dd></div>${link}</dl>`,
       `<div class="content-body">${item.html}</div>`,
+      `<p class="learn-editorial-note">${item.html.includes('<h2>학교에서는 이렇게 배워요</h2>') ? '‘학교에서는 이렇게 배워요’는 아래 근거 자료의 내용이고, ‘좋은 점·아쉬운 점·우리 집이라면’은 그 사실을 바탕으로 한 어디초의 편집 판단입니다.' : '‘좋은 점·아쉬운 점·우리 집이라면’은 아래 근거 자료를 바탕으로 한 어디초의 편집 판단입니다.'}</p>`,
       sourcesHtml(item.sources, item.verifiedAt),
     ].join(''), 'learn-item-title'),
   }))

@@ -69,3 +69,100 @@
   .etl-section-heading { padding: 10px 16px; }
   .etl-table-wrap th, .etl-table-wrap td { padding-left: 12px; padding-right: 12px; }
 }
+
+/* /admin/social — 인스타그램 연결 관리 (SQL 27) */
+.social-admin {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 24px 16px 48px;
+  color: #1f2937;
+  font-size: 14px;
+}
+
+.social-admin__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.social-admin__header h1 {
+  margin: 0;
+  font-size: 20px;
+}
+
+.social-admin__warning,
+.social-admin__error {
+  border-radius: 8px;
+  padding: 10px 12px;
+  color: #7a1f1f;
+  background: #fde8e8;
+}
+
+.social-admin__form {
+  display: grid;
+  gap: 12px;
+  margin-bottom: 24px;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 16px;
+}
+
+.social-admin__form label {
+  display: grid;
+  gap: 4px;
+  font-weight: 600;
+}
+
+.social-admin__form input,
+.social-admin__form select {
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  padding: 8px 10px;
+  font: inherit;
+  font-weight: 400;
+}
+
+.social-admin__form small {
+  color: #4b5563;
+  font-weight: 400;
+}
+
+.social-admin__form button,
+.social-admin button {
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  padding: 6px 12px;
+  background: #fff;
+  cursor: pointer;
+}
+
+.social-admin__form button[type=submit] {
+  justify-self: start;
+  border-color: #4338ca;
+  color: #fff;
+  background: #4338ca;
+}
+
+.social-admin__form button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.social-admin__table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.social-admin__table th,
+.social-admin__table td {
+  border-bottom: 1px solid #e5e7eb;
+  padding: 8px 6px;
+  text-align: left;
+  vertical-align: top;
+  overflow-wrap: anywhere;
+}
+
+.social-admin__table tr.is-hidden td {
+  color: #9ca3af;
+}

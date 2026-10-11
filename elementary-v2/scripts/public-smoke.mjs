@@ -27,6 +27,23 @@ const run = (args, { quiet = false } = {}) => {
 
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
 
+// Timing samples are copied out of the page as soon as they are taken. Later steps
+// open other addresses with a full load, which empties window.__ELEMENTARY_PERFORMANCE__;
+// checking the budget on that empty list passed every time without measuring anything
+// (Audit 2 A2-B05-P).
+const performanceSamples = new Map()
+const collectPerformance = () => {
+  let value = run(['eval', 'JSON.stringify(window.__ELEMENTARY_PERFORMANCE__ || [])'], { quiet: true })
+  try {
+    while (typeof value === 'string') value = JSON.parse(value)
+  } catch {
+    value = []
+  }
+  for (const metric of Array.isArray(value) ? value : []) {
+    performanceSamples.set(`${metric.name}@${metric.recordedAt}`, metric)
+  }
+}
+
 // A fixed `wait` is long enough on localhost and sometimes short over the
 // network, which makes a run fail and then pass with nothing changed. A flaky
 // gate is worse than a slow one: the habit it teaches is to re-run, and a real
@@ -367,6 +384,7 @@ try {
   )
   assertPage("document.querySelector('.quick-filter-row')?.textContent?.includes('학교') && document.querySelector('.quick-filter-row')?.textContent?.includes('아파트')", 'quick filters disclose school and apartment scope')
   await waitFor("(window.__ELEMENTARY_PERFORMANCE__ || []).some((metric) => metric.name === 'school-map-load' && metric.status === 'success' && metric.context.resultCount > 0)", 'district data loaded and measured')
+  collectPerformance()
 
   // Zoomed out past the districts, the map shows one marker per province. For ten
   // days in production it showed nothing: the markers were fetched but a render
@@ -392,9 +410,12 @@ try {
   // A province click must land on district zoom, not on zoom 10, which is still
   // province mode and only recentres.
   await waitFor("!document.querySelector('.school-cluster-marker--region') && document.querySelectorAll('.school-cluster-marker').length > 0", 'a province marker opens its district markers')
+  await waitFor("document.querySelector('[data-testid=bottom-sheet]')?.textContent?.includes('시·군·구') && document.querySelectorAll('[data-testid=bottom-sheet] .district-count-circle--high').length > 0", 'a province marker lists its districts with 80+ and under-80 counts')
+  assertPage("/^\\/area\\/[^/]+$/.test(decodeURI(document.querySelector('[data-testid=bottom-sheet] [data-testid=area-hub-link]')?.getAttribute('href') || ''))", 'the province sheet links to its area hub')
 
   run(['open', new URL('/map', baseUrl).toString()])
   await waitFor("(window.__ELEMENTARY_PERFORMANCE__ || []).some((metric) => metric.name === 'school-map-load' && metric.status === 'success' && metric.context.resultCount > 0)", 'the map reloads at district zoom for the search flow')
+  collectPerformance()
 
   run(['fill', 'input[role="combobox"]', '은마'])
   await waitFor("[...document.querySelectorAll('#map-search-results [role=option]')].some((node) => node.textContent?.includes('4,424세대'))", 'apartment search returned household data')
@@ -490,8 +511,13 @@ try {
 
   run(['open', new URL('/school/서울-강남구-서울대현초등학교--B000002292', baseUrl).toString()])
   await waitFor(
-    "document.body.innerText.includes('서울대현초등학교')",
+    "document.body.innerText.includes('대현초등학교')",
     'school deep link restored the school it names',
+  )
+  // 서울 공립초는 화면에서 '서울'을 뗀다(2026-10-09). 주소는 공식 이름 그대로다.
+  assertPage(
+    "!document.querySelector('[data-testid=bottom-sheet]')?.innerText.includes('서울대현초등학교')",
+    'the school detail shows the Seoul public school without the repeated region prefix',
   )
   // The sheet opening is not enough: the map has to be at the school. When the
   // SDK moved to load after mount, the map was built at its city-wide default and
@@ -508,7 +534,7 @@ try {
   )
   run(['set', 'viewport', '390', '844'], { quiet: true })
   run(['open', new URL('/school/서울-강남구-서울대현초등학교--B000002292', baseUrl).toString()])
-  await waitFor("document.body.innerText.includes('서울대현초등학교')", 'school deep link reopened at mobile width for the checks below')
+  await waitFor("document.body.innerText.includes('대현초등학교')", 'school deep link reopened at mobile width for the checks below')
   assertPage(
     "(() => { const button = document.querySelector('[data-testid=share-button]');"
     + " if (!button) return false;"
@@ -524,7 +550,7 @@ try {
   await waitFor("location.pathname.startsWith('/guide/') && document.querySelector('#guide-title')", 'the start module opened a guide')
   run(['eval', 'history.back(); "back"'])
   await waitFor(
-    "location.pathname.includes('B000002292') && document.querySelector('[data-testid=bottom-sheet]')?.innerText.includes('서울대현초등학교')",
+    "location.pathname.includes('B000002292') && document.querySelector('[data-testid=bottom-sheet]')?.innerText.includes('대현초등학교')",
     'back from the guide returned to the school detail',
   )
 
@@ -540,8 +566,10 @@ try {
   run(['fill', 'input[role="combobox"]', '서울방현'])
   await waitFor("document.querySelectorAll('#map-search-results [role=option]').length > 0", 'school search returned results')
   run(['eval', "document.querySelector('#map-search-results [role=option]').click(); 'school selected'"])
-  await waitFor("document.body.innerText.includes('서울방현초등학교')", 'school detail rendered')
+  await waitFor("document.body.innerText.includes('방현초등학교')", 'school detail rendered')
+  assertPage("[...document.querySelectorAll('[data-testid=bottom-sheet] a[target=_blank]')].some((link) => link.textContent.includes('학교 홈페이지') && link.protocol.startsWith('http') && link.hostname.includes('.'))", 'the school sheet links to the school homepage in a new tab')
   await waitFor("(window.__ELEMENTARY_PERFORMANCE__ || []).some((metric) => metric.name === 'school-apartment-load' && metric.status === 'success' && metric.context.resultCount > 0)", 'assigned apartments loaded and measured')
+  collectPerformance()
   assertPage("document.querySelector('[data-testid=bottom-sheet]')?.dataset.snapIndex === '1'", 'school sheet opened at its default detail snap')
 
   swipeSheet(650, 470)
@@ -561,7 +589,7 @@ try {
   swipeSheet(400, 570, 0)
   run(['wait', '400'])
   assertPage("document.querySelector('[data-testid=bottom-sheet]')?.dataset.snapIndex === '0'", 'detail sheet minimized to its title-only snap')
-  assertPage("document.querySelector('[data-testid=bottom-sheet]')?.innerText.includes('서울방현초등학교')", 'selected school remained visible after minimizing')
+  assertPage("document.querySelector('[data-testid=bottom-sheet]')?.innerText.includes('방현초등학교')", 'selected school remained visible after minimizing')
   assertPage("!document.querySelector('[aria-labelledby=first-grade-title]')", 'detail content was hidden at the minimum snap')
   swipeSheet(400, 570, 0)
   run(['wait', '400'])
@@ -622,6 +650,14 @@ try {
   )
   run(['eval', "document.querySelector('.content-page a[href=\"/map\"]').click(); 'to map'"])
   await waitFor("location.pathname === '/map' && document.querySelector('.app-gnb__item--active')?.getAttribute('href') === '/map'", 'the timetable entry on 학습 준비 opens 학교 찾기')
+  // Learning-item view and read-to-the-end events (measurement plan A-02). The debug switch
+  // records events instead of sending them and is read at load, so set it, load, then clear it.
+  run(['eval', "localStorage.setItem('wherecho:analytics-debug', '1'); 'debug on'"], { quiet: true })
+  run(['open', new URL('/learn/math-grade1-scope', baseUrl).toString()])
+  await waitFor("(window.__ANALYTICS_LOG__ || []).some((entry) => entry.event === 'prep_content_view' && entry.params.content_id === 'math-grade1-scope')", 'opening a learning item records prep_content_view')
+  run(['eval', "document.querySelector('.content-sources').scrollIntoView(); 'to the end'"], { quiet: true })
+  await waitFor("(window.__ANALYTICS_LOG__ || []).some((entry) => entry.event === 'prep_content_complete' && entry.params.content_id === 'math-grade1-scope')", 'reading to the sources records prep_content_complete')
+  run(['eval', "localStorage.removeItem('wherecho:analytics-debug'); 'debug off'"], { quiet: true })
   run(['open', new URL('/news', baseUrl).toString()])
   // News left the bottom navigation for a link under the guide list; the address stays.
   await waitFor("document.querySelector('#news-title')", '/news opens the news screen')
@@ -716,6 +752,9 @@ try {
   run(['open', new URL('/privacy', baseUrl).toString()])
   await waitFor("document.querySelector('#privacy-title')", '/privacy opens the privacy policy')
   assertPage("!document.querySelector('.privacy-page__inner').innerText.includes('미정')", 'the privacy policy has every operator value filled in')
+  // The Instagram link admin (SQL 27) asks a signed-out visitor to sign in and shows nothing else.
+  run(['open', new URL('/admin/social', baseUrl).toString()])
+  await waitFor("document.querySelector('.etl-login-panel h1')?.textContent === '인스타그램 연결 관리' && !document.querySelector('.social-admin__table')", '/admin/social asks a signed-out visitor to sign in')
 
   const interactionErrors = JSON.parse(run(['--json', 'errors', '--clear'], { quiet: true }))
   const unexpectedErrors = interactionErrors.data.errors.filter((error) => (
@@ -734,11 +773,17 @@ try {
     assertPage("document.documentElement.scrollWidth === window.innerWidth", `${width}px layout has no horizontal overflow`)
   }
 
-  assertPage("(window.__ELEMENTARY_PERFORMANCE__ || []).filter((metric) => metric.name === 'school-map-load' && metric.status === 'success').every((metric) => metric.durationMs < 5000)", 'map requests stayed within the 5s smoke budget')
-  assertPage("(window.__ELEMENTARY_PERFORMANCE__ || []).filter((metric) => metric.name === 'school-apartment-load' && metric.status === 'success').every((metric) => metric.durationMs < 3000)", 'apartment requests stayed within the 3s smoke budget')
-
-  const metrics = run(['eval', 'JSON.stringify(window.__ELEMENTARY_PERFORMANCE__ || [])'], { quiet: true })
-  process.stdout.write(`Performance metrics: ${metrics}\n`)
+  collectPerformance()
+  const samples = [...performanceSamples.values()]
+  const budgets = [['school-map-load', 5000, 'map requests stayed within the 5s smoke budget'], ['school-apartment-load', 3000, 'apartment requests stayed within the 3s smoke budget']]
+  for (const [name, limit, label] of budgets) {
+    const loads = samples.filter((metric) => metric.name === name && metric.status === 'success')
+    if (!loads.length) throw new Error(`${label} — no ${name} sample was recorded, so the budget was not measured`)
+    const slowest = Math.max(...loads.map((metric) => metric.durationMs))
+    if (slowest >= limit) throw new Error(`${label} — slowest ${name} took ${slowest}ms (${loads.length} samples)`)
+    process.stdout.write(`PASS: ${label} (${loads.length} samples, slowest ${slowest}ms)\n`)
+  }
+  process.stdout.write(`Performance metrics: ${JSON.stringify(samples.map(({ name, durationMs, status }) => ({ name, durationMs, status })))}\n`)
   process.stdout.write('Public map smoke test passed.\n')
 } finally {
   spawnSync(process.execPath, [cli, '--namespace', namespace, '--session', session, ...connectionArgs, 'close'], {

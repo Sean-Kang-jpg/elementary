@@ -1,0 +1,95 @@
+{
+ "reviewed_at": "2026-10-10",
+ "reviewer": "assistant, source-checked (validator-rejected items)",
+ "spot_check": {
+  "sample": 49,
+  "errors_found": 0,
+  "note": "표본 49곳 값·근거 대조 이상 없음. 돌봄 unknown 127곳 원문 전체 재검색: 확실한 누락 0(공항초 표는 열이 섞여 판독 불가)"
+ },
+ "schools": {
+  "B000001926": {
+   "clock": null,
+   "reason": "점심이 5교시 뒤(12:40~13:30)라 4교시 날 하교 시각을 정할 수 없음 — 카드 형식(after_p4/before_p4) 밖"
+  },
+  "B000002051": {
+   "clock": {
+    "found": true,
+    "grade1_column": "1학기 1,3,5학년 (4교시 후 급식)",
+    "p4_end": "12:10",
+    "lunch_start": "12:10",
+    "lunch_end": "12:50",
+    "lunch_position": "after_p4",
+    "p5_end": "13:30",
+    "p5_end_inferred": false,
+    "evidence": {
+     "p4": "4교시 | 11:30~12:10",
+     "lunch": "급식 | 12:10~12:50",
+     "p5": "5교시 | 12:50~1:30"
+    },
+    "note": "1학기 1,3,5학년 열. 원문 5교시 끝 \"1:30\" = 13:30"
+   },
+   "reason": "모델 값이 맞음(12시간 표기라 검증기 불통과)"
+  },
+  "B000002092": {
+   "clock": null,
+   "reason": "특별실 사용 시간표뿐, 1학년 점심 시각 없음"
+  },
+  "B000002105": {
+   "clock": {
+    "found": true,
+    "grade1_column": "공통",
+    "p4_end": "12:00",
+    "lunch_start": "12:00",
+    "lunch_end": "12:40",
+    "lunch_position": "after_p4",
+    "p5_end": "13:20",
+    "p5_end_inferred": false,
+    "evidence": {
+     "p4": "4교 시11 : 2012 : 00",
+     "lunch": "점 심 시 간12 : 0012 : 40",
+     "p5": "5교 시12 : 401 : 20"
+    },
+    "note": "단일 시정표. 원문 5교시 끝 \"1 : 20\" = 13:20"
+   },
+   "reason": "모델 값이 맞음(12시간 표기)"
+  },
+  "B000002173": {
+   "clock": {
+    "found": true,
+    "grade1_column": "공통",
+    "p4_end": "12:50",
+    "lunch_start": "11:20",
+    "lunch_end": "12:10",
+    "lunch_position": "before_p4",
+    "p5_end": "13:40",
+    "p5_end_inferred": false,
+    "evidence": {
+     "p4": "4교 시 / 급 식1부11:3012:10401~4학년",
+     "lunch": "1~4학년 급식 11:20~12:10(50분)",
+     "p5": "5교 시13:0013:40"
+    },
+    "note": "1~4학년 급식 11:20~12:10 후 4교시(급식 2부 시간대) 12:10~12:50"
+   },
+   "reason": "모델이 4교시 끝을 12:10으로 읽음 → 12:50"
+  },
+  "B000002245": {
+   "clock": {
+    "found": true,
+    "grade1_column": "1, 2학년",
+    "p4_end": "12:00",
+    "lunch_start": "12:00",
+    "lunch_end": "12:40",
+    "lunch_position": "after_p4",
+    "p5_end": "13:20",
+    "p5_end_inferred": true,
+    "evidence": {
+     "p4": "4교시 | 11:20~12:00",
+     "lunch": "점심시간 | 12:00~12:40",
+     "p5": "5교시 | - | 12:40 ~13:20"
+    },
+    "note": "1,2학년 열의 1학년 5교시는 \"-\"; 같은 열의 5교시 12:40~13:20을 추정값으로 씀"
+   },
+   "reason": "1학년 5교시 시각이 없어 같은 열 값으로 추정"
+  }
+ }
+}

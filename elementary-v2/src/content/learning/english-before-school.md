@@ -4,7 +4,7 @@ description: 학교 영어 교과는 3학년부터라 초1 대비로서의 영�
 answer: 학교의 영어 교과는 3학년부터입니다. 1·2학년에는 정규 영어 수업이 없고, 학교에 따라 방과후 영어가 열릴 수 있습니다. 입학 전 영어는 초1 준비가 아니라 가정의 선택입니다.
 category: learning
 subcategory: english
-status: review
+status: published
 verifiedAt: 2026-10-05
 ages: [5, 6]
 timing: 정해진 시기 없음

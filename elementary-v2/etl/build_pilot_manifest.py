@@ -39,6 +39,13 @@ OUT = AUDIT2 / 'pilot_expansion_manifest_20261008.json'
 SCOPES = {
     'seongnam': 'road_address=ilike.*성남시*',
     'seoul_gangnam3': 'or=(road_address.ilike.서울*강남구*,road_address.ilike.서울*서초구*,road_address.ilike.서울*송파구*)',
+    # 2026-10-09: wave 2, the rest of Seoul
+    'seoul_rest': 'and=(road_address.ilike.서울*,road_address.not.ilike.*강남구*,road_address.not.ilike.*서초구*,road_address.not.ilike.*송파구*)',
+}
+DECISIONS = {
+    'seongnam': '2026-10-08 사용자 결정: 성남시 전체 + 서울 강남·서초·송파',
+    'seoul_gangnam3': '2026-10-08 사용자 결정: 성남시 전체 + 서울 강남·서초·송파',
+    'seoul_rest': '2026-10-09 사용자 결정: 서울 나머지 22개 구 (LLM 추출 2차)',
 }
 SCHOOL_PAGE = 'https://www.schoolinfo.go.kr/ei/ss/Pneiss_b01_s0.do'
 
@@ -109,11 +116,12 @@ def validate_poc() -> None:
     print(json.dumps({'verified_links': same + len(differ) + len(missing), 'same': same, 'differ': differ, 'missing': missing}, ensure_ascii=False, indent=2))
 
 
-def build() -> None:
+def build(scopes: list[str], out: Path) -> None:
     ids = schoolinfo_ids()
     poc = {s['school_id'] for s in json.loads((AUDIT2 / 'poc_school_manifest_20261006.json').read_text(encoding='utf-8'))['schools']}
     schools = []
-    for scope, condition in SCOPES.items():
+    for scope in scopes:
+        condition = SCOPES[scope]
         for row in supabase_get(f'school_master?select=school_id,school_name,schoolinfo_code,road_address&{condition}&order=school_id'):
             shl = ids.get(row.get('schoolinfo_code') or '')
             office, code = (None, None)
@@ -125,8 +133,8 @@ def build() -> None:
     summary = {'schools': len(schools), 'new': sum(not s['in_poc'] for s in schools),
                'with_schoolinfo_id': sum(bool(s['shl_idf_cd']) for s in schools),
                'with_neis_code': sum(bool(s['neis_school_code']) for s in schools)}
-    OUT.write_text(json.dumps({'schema_version': 'pilot-expansion-manifest-v1', 'built_on': date.today().isoformat(),
-                               'decision': '2026-10-08 사용자 결정: 성남시 전체 + 서울 강남·서초·송파',
+    out.write_text(json.dumps({'schema_version': 'pilot-expansion-manifest-v1', 'built_on': date.today().isoformat(),
+                               'decision': ' / '.join(sorted({DECISIONS[s] for s in scopes})),
                                'neis_code_source': '학교알리미 학교 페이지의 sdSchulCode·lctnScCd (E02 검증 링크와 대조 후 채택)',
                                'summary': summary, 'schools': schools}, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
     print(json.dumps(summary, ensure_ascii=False))
@@ -135,8 +143,10 @@ def build() -> None:
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument('--validate-poc', action='store_true')
+    parser.add_argument('--scope', action='append', choices=sorted(SCOPES), help='default: the 2026-10-08 expansion (seongnam, seoul_gangnam3)')
+    parser.add_argument('--out', default=str(OUT))
     args = parser.parse_args()
-    validate_poc() if args.validate_poc else build()
+    validate_poc() if args.validate_poc else build(args.scope or ['seongnam', 'seoul_gangnam3'], Path(args.out))
 
 
 if __name__ == '__main__':

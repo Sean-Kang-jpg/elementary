@@ -3,7 +3,7 @@
  * 줌 레벨에 따라 개별 마커 또는 클러스터 마커를 표시
  */
 
-import React, { useEffect, useRef, useState, useCallback } from 'react'
+import React, { useContext, useEffect, useMemo, useRef, useState, useCallback } from 'react'
 import { useAppContext } from '../../contexts/AppContext'
 import { fetchDistrictOverviewData, fetchRegionAggregatedData, fetchRegionData, fetchSchoolsByAdministrativeArea, fetchSchoolsByIds } from '../../services/dataService'
 import type { RegionData } from '../../services/dataService'
@@ -15,11 +15,13 @@ import ClusterMarker from './ClusterMarker'
 import RegionMarker from './RegionMarker'
 import DistrictNeighborhoodSheet from './DistrictNeighborhoodSheet'
 import NeighborhoodSchoolSheet from './NeighborhoodSchoolSheet'
+import { MapScreenContext } from '../layout/panelSlot'
 import { LoaderCircle, RefreshCw, SearchX } from 'lucide-react'
 import { recordPerformanceMetric } from '../../utils/performanceMetrics'
 
 interface MarkerManagerProps {
   map: NaverMap | null
+  onNavigate?: (path: string) => void
 }
 
 interface DistrictScope {
@@ -43,8 +45,9 @@ const clusterIntersectsBounds = (cluster: ClusterPoint, bounds: MapBounds) => (
   && cluster.bounds.west <= bounds.northeast.lng
 )
 
-const MarkerManager: React.FC<MarkerManagerProps> = ({ map }) => {
+const MarkerManager: React.FC<MarkerManagerProps> = ({ map, onNavigate }) => {
   const { state, dispatch } = useAppContext()
+  const onMapScreen = useContext(MapScreenContext)
   const [schools, setSchools] = useState<School[]>([])
   const [clusters, setClusters] = useState<ClusterPoint[]>([])
   const [regions, setRegions] = useState<RegionData[]>([])
@@ -52,14 +55,21 @@ const MarkerManager: React.FC<MarkerManagerProps> = ({ map }) => {
   const [error, setError] = useState<string | null>(null)
   const [hasLoaded, setHasLoaded] = useState(false)
   const [requestVersion, setRequestVersion] = useState(0)
+  const [regionScope, setRegionScope] = useState<string | null>(null)
   const [districtScope, setDistrictScope] = useState<DistrictScope | null>(null)
   const [neighborhoodScope, setNeighborhoodScope] = useState<string | null>(null)
   const [neighborhoodSchoolIds, setNeighborhoodSchoolIds] = useState<string[]>([])
+  const regionReturnViewportRef = useRef<ViewportSnapshot | null>(null)
   const districtReturnViewportRef = useRef<ViewportSnapshot | null>(null)
   const neighborhoodReturnViewportRef = useRef<ViewportSnapshot | null>(null)
   const schoolReturnViewportRef = useRef<ViewportSnapshot | null>(null)
   const previousSelectedSchoolRef = useRef<School | null>(null)
   const neighborhoodEnteredDirectlyRef = useRef(false)
+  // Zoom 11 loads every school of the regions in view; the sheet lists only the clicked one.
+  const regionSchools = useMemo(
+    () => (regionScope ? schools.filter((school) => school.region === regionScope) : []),
+    [regionScope, schools],
+  )
 
   const getViewportSnapshot = useCallback((): ViewportSnapshot => {
     if (!map) return { center: state.map.center, zoom: state.map.zoom }
@@ -140,9 +150,20 @@ const MarkerManager: React.FC<MarkerManagerProps> = ({ map }) => {
   }, [dispatch, getViewportSnapshot, keepSchoolInVisibleMap])
 
   // One level down from a region: jump to its centre at the first zoom that
-  // draws district clusters. Zoom 10 is still region mode and would only recentre.
+  // draws district clusters, and list its districts in a sheet like a district
+  // lists its neighborhoods. Zoom 10 is still region mode and would only recentre.
   const handleRegionClick = useCallback((region: RegionData) => {
-    setCamera({ center: region.center, zoom: 11 })
+    regionReturnViewportRef.current = getViewportSnapshot()
+    setRegionScope(region.region)
+    dispatch({ type: 'SET_SELECTED_SCHOOL', payload: null })
+    setCamera({ center: region.center, zoom: 11 }, DISTRICT_SHEET_RATIO)
+  }, [dispatch, getViewportSnapshot, setCamera])
+
+  const handleClearRegion = useCallback(() => {
+    setRegionScope(null)
+    const returnViewport = regionReturnViewportRef.current
+    regionReturnViewportRef.current = null
+    if (returnViewport) setCamera(returnViewport)
   }, [setCamera])
 
   // Move exactly one level down: district -> neighborhood -> school.
@@ -220,6 +241,11 @@ const MarkerManager: React.FC<MarkerManagerProps> = ({ map }) => {
   }, [setCamera, state.selectedSchool])
 
   useEffect(() => {
+    // Zoomed back out to province markers: the region list no longer applies.
+    if (state.map.zoom <= 10) {
+      setRegionScope(null)
+      regionReturnViewportRef.current = null
+    }
     if (state.map.zoom <= 12) {
       setDistrictScope(null)
       setNeighborhoodScope(null)
@@ -455,6 +481,21 @@ const MarkerManager: React.FC<MarkerManagerProps> = ({ map }) => {
         />
       )}
 
+      {/* The region list stays scoped while a district is open, so closing the
+          district returns to it; it only shows at the district-cluster zooms. */}
+      {regionScope && !districtScope && state.map.zoom <= 12 && (
+        <DistrictNeighborhoodSheet
+          region={regionScope}
+          schools={regionSchools}
+          targetGrade={state.filters.target_grade}
+          loading={loading || state.map.zoom < 11}
+          isOpen={onMapScreen && !state.selectedSchool}
+          onNeighborhoodSelect={handleClusterClick}
+          onClear={handleClearRegion}
+          onNavigate={onNavigate}
+        />
+      )}
+
       {districtScope && !neighborhoodScope && (
         <DistrictNeighborhoodSheet
           region={districtScope.region}
@@ -462,9 +503,10 @@ const MarkerManager: React.FC<MarkerManagerProps> = ({ map }) => {
           schools={schools}
           targetGrade={state.filters.target_grade}
           loading={loading}
-          isOpen={!state.selectedSchool}
+          isOpen={onMapScreen && !state.selectedSchool}
           onNeighborhoodSelect={handleClusterClick}
           onClear={handleClearDistrict}
+          onNavigate={onNavigate}
         />
       )}
 
@@ -474,7 +516,7 @@ const MarkerManager: React.FC<MarkerManagerProps> = ({ map }) => {
           neighborhood={neighborhoodScope}
           schools={schools}
           targetGrade={state.filters.target_grade}
-          isOpen={!state.selectedSchool}
+          isOpen={onMapScreen && !state.selectedSchool}
           onSchoolSelect={handleSchoolClick}
           onClear={handleClearNeighborhood}
         />

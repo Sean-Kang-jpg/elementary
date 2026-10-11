@@ -4,7 +4,7 @@ description: 1학년 수학은 100까지의 수와 그 안의 덧셈·뺄셈, �
 answer: 1학년은 9까지의 수에서 시작해 100까지의 수, 그 안의 덧셈·뺄셈, 여러 가지 모양과 시각, 비교하기, 규칙 찾기를 배웁니다. 세 자리 수와 곱셈은 2학년입니다. 입학 전에는 수를 세고 양과 연결하는 경험이면 충분합니다.
 category: learning
 subcategory: math
-status: review
+status: published
 verifiedAt: 2026-10-05
 ages: [5, 6]
 timing: 입학 1년 전부터

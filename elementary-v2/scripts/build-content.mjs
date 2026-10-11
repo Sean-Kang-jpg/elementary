@@ -242,9 +242,16 @@ faqs.forEach((faq) => {
 })
 
 // The roadmap and checklist link to guides and screens too, from JSON.
-const APP_PATHS = new Set(['/', '/map', '/guide', '/faq', '/checklist'])
+const APP_PATHS = new Set(['/', '/map', '/guide', '/faq', '/checklist', '/learn'])
+// 학습 글은 아래에서 읽으므로 검사를 미룬다. 체크리스트는 운영에 나가므로 발행된 글만 가리킬 수 있다.
+const pendingLearnLinks = []
 const checkPath = (file, link) => {
   if (!link) return
+  const learn = link.match(/^\/learn\/([^/?#]+)$/)
+  if (learn) {
+    pendingLearnLinks.push({ file, link, slug: learn[1] })
+    return
+  }
   const guide = link.match(/^\/guide\/([^/?#]+)$/)
   if (guide ? !slugs.has(guide[1]) : !APP_PATHS.has(link)) problem(file, `links to ${link}, which does not exist`)
 }
@@ -279,6 +286,9 @@ const SIGNAL_GRADES = ['A', 'B', 'C']
 const SIGNAL_SUMMARY_LIMIT = 60
 const ANSWER_LIMIT = 160
 const LEARNING_SECTIONS = ['이런 점이 좋아요', '이런 점은 아쉬워요', '우리 집이라면']
+// 불안·선행 경쟁을 부추기는 표현(P2-07, docs/product/LEARNING_EDITORIAL_CHECKLIST.md). 질문을 인용할 때도
+// 이 말들은 쓰지 않는다 — 걸리면 문장을 바꾼다.
+const ANXIETY_PHRASES = ['뒤처', '필수 선행', '선행 필수', '안 하면 늦', '남들보다', '상위권', '최소한 여기까지', '반드시 끝내']
 const categoryById = new Map(learningTaxonomy.categories.map((category) => [category.id, category]))
 const isDate = (value) => /^\d{4}-\d{2}-\d{2}$/.test(String(value ?? ''))
 const isUrl = (value) => {
@@ -343,6 +353,10 @@ for (const file of learningFiles) {
   })
 
   const html = marked.parse(body)
+  const wording = `${meta.title ?? ''} ${meta.description ?? ''} ${meta.answer ?? ''} ${html.replace(/<[^>]+>/g, ' ')}`
+  for (const phrase of ANXIETY_PHRASES) {
+    if (wording.includes(phrase)) problem(file, `uses "${phrase}" — rewrite without anxiety or competition (P2-07)`)
+  }
   for (const heading of LEARNING_SECTIONS) {
     if (!html.includes(`<h2>${heading}</h2>`)) problem(file, `body needs the section "## ${heading}"`)
   }
@@ -382,6 +396,10 @@ for (const item of learningAll) {
   for (const [, target] of item.html.matchAll(/href="\/learn\/([^"#?]+)"/g)) {
     if (!learningAll.some((other) => other.slug === target)) problem(item.file, `links to /learn/${target}, which does not exist`)
   }
+}
+
+for (const { file, link, slug } of pendingLearnLinks) {
+  if (!learningAll.some((item) => item.slug === slug && item.status === 'published')) problem(file, `links to ${link}, which is not a published learning item`)
 }
 
 // Curriculum ----------------------------------------------------------------

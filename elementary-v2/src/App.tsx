@@ -245,7 +245,8 @@ function MapApplication() {
     else if (view === 'area') setCanonical(areaRoute)
     else if (view === 'learn') {
       // 없는(또는 발행되지 않은) 콘텐츠 주소는 목록을 보여주고 주소도 목록으로 고친다.
-      if (learnSlug && !learnItem) window.history.replaceState({}, '', VIEW_PATHS.learn)
+      // 옛 별칭(/plans 등)으로 들어와도 목록 주소로 고친다.
+      if (!learnItem && window.location.pathname !== VIEW_PATHS.learn) window.history.replaceState({}, '', VIEW_PATHS.learn)
       setCanonical(learnItem?.status === 'published' ? learnPath(learnItem.slug) : null)
     }
     else if (view === 'guide') {
@@ -445,7 +446,7 @@ function MapApplication() {
       {mapMounted && (
         <div className="app-map-area">
           <MapErrorBoundary>
-            <MapContainer className="h-full w-full" />
+            <MapContainer className="h-full w-full" onNavigate={(path) => navigate(path, 'map')} />
           </MapErrorBoundary>
         </div>
       )}
@@ -529,11 +530,15 @@ const TITLES: Record<AppView, string> = {
 }
 
 const EtlMonitoringPage = lazy(() => import('./components/admin/EtlMonitoringPage'))
+const SocialAdminPage = lazy(() => import('./components/admin/SocialAdminPage'))
 
 function App() {
   const isMonitoringRoute = window.location.pathname === '/admin/etl'
     || new URLSearchParams(window.location.search).get('view') === 'etl'
 
+  if (window.location.pathname === '/admin/social') {
+    return <Suspense fallback={<main className="etl-center-state">불러오는 중</main>}><SocialAdminPage /></Suspense>
+  }
   return isMonitoringRoute
     ? <Suspense fallback={<main className="etl-center-state">모니터링 로딩 중</main>}><EtlMonitoringPage /></Suspense>
     : <MapApplication />

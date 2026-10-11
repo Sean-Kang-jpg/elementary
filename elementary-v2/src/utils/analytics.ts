@@ -135,7 +135,7 @@ export const rememberDetailEntry = (source: EntrySource): void => {
 export const currentDetailEntry = (): EntrySource | null => detailEntry
 
 /** The key after the last `--` in a detail path: a school_id or a complex public key. */
-export const itemOfPath = (path: string): { item_type: 'school' | 'apartment' | 'guide' | 'faq' | 'checklist'; item_id: string } | null => {
+export const itemOfPath = (path: string): { item_type: 'school' | 'apartment' | 'guide' | 'learn' | 'faq' | 'checklist'; item_id: string } | null => {
   const match = path.match(/^\/(school|apt)\/(?:.*--)?([^/]+)$/)
   if (match) return { item_type: match[1] === 'school' ? 'school' : 'apartment', item_id: match[2] }
   // Content pages, shared since 2026-10-04: a guide by its slug, the FAQ and the
@@ -143,6 +143,8 @@ export const itemOfPath = (path: string): { item_type: 'school' | 'apartment' | 
   // on the device that made them.
   const guide = path.match(/^\/guide\/([^/]+)$/)
   if (guide) return { item_type: 'guide', item_id: guide[1] }
+  const learn = path.match(/^\/learn\/([^/]+)$/)
+  if (learn) return { item_type: 'learn', item_id: learn[1] }
   if (path === '/faq') return { item_type: 'faq', item_id: 'faq' }
   if (path === '/checklist') return { item_type: 'checklist', item_id: 'checklist' }
   return null
