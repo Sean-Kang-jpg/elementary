@@ -46,8 +46,7 @@ export default function MyPage({ onNavigate, onOpenSaved, entryYear, onEntryYear
       <div className="content-page__inner">
         <h1 id="my-title">MY</h1>
         <p className="content-page__lead">관심 후보를 비교하고, 우리 아이의 하루를 계획해요.</p>
-        <section className="my-preparation" aria-labelledby="my-preparation-title">
-          <h2 id="my-preparation-title" className="my-preparation-title">입학 준비 설정</h2>
+        <section className="my-preparation" aria-label="입학연도">
           {entryYear && stage && !editing ? (
             <div className="hub-profile">
               <span className={`stage-chip stage-chip--${stage}`}>{STAGE_LABELS[stage].short}</span>
