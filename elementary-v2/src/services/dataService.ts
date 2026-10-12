@@ -1,6 +1,6 @@
 import { supabase } from '../lib/supabase'
 import { UNLIMITED_APARTMENT_AGE } from '../types'
-import type { AcademyAddress, Apartment, ApartmentAcademySummary, CareCenter, Coordinates, FilterState, MapBounds, School, SchoolCareHours, SchoolCareStatistics, SchoolDayEstimate, SchoolDayEstimateWeekday, SearchResult } from '../types'
+import type { AcademyAddress, Apartment, ApartmentAcademySummary, CareCenter, Coordinates, FilterState, MapBounds, School, SchoolAfterschool, SchoolCareHours, SchoolCareStatistics, SchoolDayEstimate, SchoolDayEstimateWeekday, SearchResult } from '../types'
 import { regionCenter, regionHasCityLevel, regionsIntersectingBounds } from '../constants/regionRegistry'
 import { getSchoolNeighborhoodLabel } from '../utils/clusterUtils'
 import { DEFAULT_CENTERS, generateCacheKey, getDisplayMode } from '../utils/mapUtils'
@@ -966,6 +966,20 @@ export const getSchoolDayEstimate = async (schoolId: string): Promise<{ day: Sch
     day: dayEstimate,
     care: care.error ? null : (care.data as SchoolCareHours | null),
   }
+}
+
+const devAfterschoolFixtures = (import.meta as ViteMeta).glob('../dev-fixtures/school-afterschool.json', { import: 'default' })
+
+/**
+ * 1학년 방과후·맞춤형 강좌(시안 단계). 공개 테이블이 아직 없으므로 운영에서는 요청하지 않고 null을
+ * 돌려준다 — 카드는 이 부분 없이 그대로 보인다. 개발 서버에서는 src/dev-fixtures/의 추출 결과를 읽는다.
+ */
+export const getSchoolAfterschool = async (schoolId: string): Promise<SchoolAfterschool | null> => {
+  if (!(import.meta as ViteMeta).env.DEV) return null
+  const load = Object.values(devAfterschoolFixtures)[0]
+  if (!load) return null
+  const rows = await load() as Record<string, SchoolAfterschool>
+  return rows[schoolId] ?? null
 }
 
 export const getCareCentersNear = async (latitude: number, longitude: number, maxDistanceM = 1000): Promise<CareCenter[]> => {

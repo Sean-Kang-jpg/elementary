@@ -22,9 +22,20 @@ const SMALL_SCHOOL_STUDENTS = 120
  */
 const CARE_GUIDE_PATH = '/guide/care-afterschool'
 
-const SchoolCarePanel: React.FC<{ school: School; onOpenGuide: (path: string) => void }> = ({ school, onOpenGuide }) => {
-  const [stats, setStats] = useState<SchoolCareStatistics | null>(null)
-  const sectionRef = useRef<HTMLElement>(null)
+interface SchoolCarePanelProps {
+  school: School
+  onOpenGuide: (path: string) => void
+  /** "초1 하루·오후" 카드 안에 들어갈 때: 카드가 이미 읽은 공시를 받고, 섹션 머리말 없이 그린다. */
+  embedded?: boolean
+  stats?: SchoolCareStatistics | null
+  /** 학교의 1학년 강좌 목록을 따로 보여 줄 때는 공시의 방과후 프로그램 수(전 학년)를 빼서 숫자가 겹치지 않게 한다. */
+  hideProgramCount?: boolean
+}
+
+const SchoolCarePanel: React.FC<SchoolCarePanelProps> = ({ school, onOpenGuide, embedded = false, stats: givenStats, hideProgramCount = false }) => {
+  const [fetchedStats, setStats] = useState<SchoolCareStatistics | null>(null)
+  const stats = embedded ? givenStats ?? null : fetchedStats
+  const sectionRef = useRef<HTMLDivElement>(null)
 
   useSeenOnce(sectionRef, stats ? school.school_id : null, () => {
     track('view_care', {
@@ -36,13 +47,14 @@ const SchoolCarePanel: React.FC<{ school: School; onOpenGuide: (path: string) =>
   })
 
   useEffect(() => {
+    if (embedded) return
     setStats(null)
     let active = true
     getSchoolCareStatistics(school.school_id)
       .then((row) => { if (active) setStats(row) })
       .catch((error) => console.error('돌봄·방과후 공시 조회 실패:', error))
     return () => { active = false }
-  }, [school.school_id])
+  }, [school.school_id, embedded])
 
   if (!stats) return null
 
@@ -58,12 +70,17 @@ const SchoolCarePanel: React.FC<{ school: School; onOpenGuide: (path: string) =>
   const eveningRooms = count(stats.evening_care_rooms)
   const programs = count(stats.afterschool_aptitude_programs) + count(stats.afterschool_curriculum_programs)
 
+  const Wrapper = embedded ? 'div' : 'section'
   return (
-    <section ref={sectionRef} aria-labelledby="school-care-title" data-testid="school-care">
-      <div className="mb-2 flex items-baseline justify-between">
-        <h3 id="school-care-title" className="inline-flex items-center gap-2 font-semibold text-gray-950"><Baby size={18} aria-hidden="true" />돌봄·방과후</h3>
-        <span className="text-xs text-gray-500">학교알리미 {stats.statistics_year}년 공시</span>
-      </div>
+    <Wrapper ref={sectionRef} aria-labelledby={embedded ? undefined : 'school-care-title'} data-testid="school-care" className={embedded ? 'mt-2' : undefined}>
+      {embedded ? (
+        <p className="mb-1.5 text-xs text-gray-500">공시 현황 · 학교알리미 {stats.statistics_year}년</p>
+      ) : (
+        <div className="mb-2 flex items-baseline justify-between">
+          <h3 id="school-care-title" className="inline-flex items-center gap-2 font-semibold text-gray-950"><Baby size={18} aria-hidden="true" />돌봄·방과후</h3>
+          <span className="text-xs text-gray-500">학교알리미 {stats.statistics_year}년 공시</span>
+        </div>
+      )}
       {careRooms === 0 ? (
         <p className="rounded-md border border-amber-200 bg-amber-50 px-3 py-3 text-sm text-amber-900">공시된 오후 돌봄교실이 없습니다. 학교나 교육청 늘봄 안내를 확인하세요.</p>
       ) : (
@@ -87,15 +104,17 @@ const SchoolCarePanel: React.FC<{ school: School; onOpenGuide: (path: string) =>
           </div>
         </div>
       )}
-      <dl className="mt-2 grid grid-cols-2 gap-2 text-sm">
+      <dl className={`mt-2 grid gap-2 text-sm ${hideProgramCount ? 'grid-cols-1' : 'grid-cols-2'}`}>
         <div className="flex items-center justify-between rounded-md border border-gray-200 px-3 py-2">
           <dt className="text-gray-600">저녁 돌봄</dt>
           <dd className={`font-semibold ${eveningRooms > 0 ? 'text-emerald-700' : 'text-gray-500'}`}>{eveningRooms > 0 ? `운영 ${eveningRooms}실` : '공시 없음'}</dd>
         </div>
-        <div className="flex items-center justify-between rounded-md border border-gray-200 px-3 py-2">
-          <dt className="text-gray-600">방과후 프로그램</dt>
-          <dd className="font-semibold text-gray-950">{programs.toLocaleString()}개</dd>
-        </div>
+        {!hideProgramCount && (
+          <div className="flex items-center justify-between rounded-md border border-gray-200 px-3 py-2">
+            <dt className="text-gray-600">방과후 프로그램</dt>
+            <dd className="font-semibold text-gray-950">{programs.toLocaleString()}개</dd>
+          </div>
+        )}
       </dl>
       <p className="mt-2 text-[11px] leading-4 text-gray-500">
         {allGradeCare
@@ -115,7 +134,7 @@ const SchoolCarePanel: React.FC<{ school: School; onOpenGuide: (path: string) =>
         늘봄·돌봄, 무엇을 언제 신청하나요
         <ChevronRight size={16} aria-hidden="true" />
       </a>
-    </section>
+    </Wrapper>
   )
 }
 

@@ -1,7 +1,9 @@
 import { Clock } from 'lucide-react'
 import React, { useEffect, useRef, useState } from 'react'
-import type { School, SchoolCareHours, SchoolDayEstimate } from '../../types'
-import { getSchoolDayEstimate } from '../../services/dataService'
+import type { School, SchoolAfterschool, SchoolCareHours, SchoolCareStatistics, SchoolDayEstimate } from '../../types'
+import { getSchoolAfterschool, getSchoolCareStatistics, getSchoolDayEstimate } from '../../services/dataService'
+import SchoolCarePanel from '../care/SchoolCarePanel'
+import AfterschoolSummary from './AfterschoolSummary'
 import { track } from '../../utils/analytics'
 import { useSeenOnce } from '../care/useSeenOnce'
 import { followLink } from '../content/contentLinks'
@@ -22,6 +24,8 @@ const hhmm = (value: string | null) => (value ? value.slice(0, 5) : null)
 const SchoolDayEstimateCard: React.FC<{ school: School; onOpenGuide: (path: string) => void }> = ({ school, onOpenGuide }) => {
   const [day, setDay] = useState<SchoolDayEstimate | null>(null)
   const [care, setCare] = useState<SchoolCareHours | null>(null)
+  const [afterschool, setAfterschool] = useState<SchoolAfterschool | null>(null)
+  const [careStats, setCareStats] = useState<SchoolCareStatistics | null>(null)
   const sectionRef = useRef<HTMLElement>(null)
 
   useSeenOnce(sectionRef, day || care ? school.school_id : null, () => {
@@ -36,7 +40,15 @@ const SchoolDayEstimateCard: React.FC<{ school: School; onOpenGuide: (path: stri
   useEffect(() => {
     setDay(null)
     setCare(null)
+    setAfterschool(null)
+    setCareStats(null)
     let active = true
+    getSchoolCareStatistics(school.school_id)
+      .then((row) => { if (active) setCareStats(row) })
+      .catch((error) => console.error('돌봄·방과후 공시 조회 실패:', error))
+    getSchoolAfterschool(school.school_id)
+      .then((result) => { if (active) setAfterschool(result) })
+      .catch((error) => console.error('방과후 강좌 조회 실패:', error))
     getSchoolDayEstimate(school.school_id)
       .then((result) => {
         if (!active) return
@@ -47,14 +59,14 @@ const SchoolDayEstimateCard: React.FC<{ school: School; onOpenGuide: (path: stri
     return () => { active = false }
   }, [school.school_id])
 
-  if (!day && !care) return null
-  const sourceYear = day?.source_year ?? care?.source_year
+  if (!day && !care && !afterschool && !careStats) return null
+  const sourceYear = day?.source_year ?? care?.source_year ?? afterschool?.source_year ?? careStats?.statistics_year
 
   return (
     <section ref={sectionRef} aria-labelledby="school-day-title" data-testid="school-day-estimate">
       <div className="mb-2 flex items-baseline justify-between">
         <h3 id="school-day-title" className="inline-flex items-center gap-2 font-semibold text-gray-950">
-          <Clock size={18} aria-hidden="true" />초1 하루 예상
+          <Clock size={18} aria-hidden="true" />초1 하루·오후
         </h3>
         <span className="text-xs text-gray-500">{sourceYear}학년도 기준 · 예상</span>
       </div>
@@ -90,10 +102,12 @@ const SchoolDayEstimateCard: React.FC<{ school: School; onOpenGuide: (path: stri
         </>
       )}
 
-      {care && (
-        <div className={day ? 'mt-3' : ''}>
-          <h4 className="mb-1.5 text-sm font-semibold text-gray-900">학교 돌봄 운영 시간</h4>
-          {care.status === 'stated' ? (
+      {afterschool && <AfterschoolSummary data={afterschool} day={day} care={care} />}
+
+      {(care || careStats) && (
+        <div className={day || afterschool ? 'mt-3' : ''}>
+          <h4 className="mb-1.5 text-sm font-semibold text-gray-900">학교 돌봄</h4>
+          {!care ? null : care.status === 'stated' ? (
             <dl className="divide-y divide-gray-100 rounded-md border border-gray-200 text-sm">
               <div className="flex items-center justify-between px-3 py-2">
                 <dt className="text-gray-600">오후 돌봄</dt>
@@ -124,14 +138,15 @@ const SchoolDayEstimateCard: React.FC<{ school: School; onOpenGuide: (path: stri
           ) : (
             <p className="rounded-md border border-gray-200 bg-gray-50 px-3 py-2.5 text-sm text-gray-700">공시에 돌봄 운영 시간이 없어요. 학교에 확인해 주세요.</p>
           )}
-          {care.status === 'stated' && (
+          {care?.status === 'stated' && (
             <p className="mt-1.5 text-[11px] leading-4 text-gray-500">돌봄은 정원과 선발 순위가 있어, 신청해도 이용하지 못할 수 있어요.</p>
           )}
+          <SchoolCarePanel school={school} onOpenGuide={onOpenGuide} embedded stats={careStats} hideProgramCount={Boolean(afterschool)} />
         </div>
       )}
 
       <p className="mt-2 text-[11px] leading-4 text-gray-500">
-        출처: {[day?.clock_source, day && day.periods_source !== '없음' ? day.periods_source : null, care?.source].filter(Boolean).join(' · ')}.
+        출처: {[day?.clock_source, day && day.periods_source !== '없음' ? day.periods_source : null, care?.source, careStats && !care ? `학교알리미 ${careStats.statistics_year}년 돌봄 공시` : null].filter(Boolean).join(' · ')}.
         {' '}학교 사정으로 바뀔 수 있어요.
       </p>
     </section>

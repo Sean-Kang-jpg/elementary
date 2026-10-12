@@ -277,6 +277,32 @@ export interface SchoolCareHours {
   source: string
 }
 
+// 1학년이 들을 수 있는 방과후·맞춤형 강좌(학교알리미 15-라 운영계획에서 추출, E05).
+// 아직 공개 테이블이 없어 개발 서버의 src/dev-fixtures/에서만 읽는다(시안 단계).
+export interface SchoolAfterschoolSection {
+  section: string | null
+  days: string | null // '월수' 같이 요일 글자를 붙여 씀, 모르면 null
+  start: string | null // 'HH:MM'
+  end: string | null
+}
+
+export interface SchoolAfterschoolOption {
+  kind: '방과후' | '맞춤형'
+  name: string
+  variant: string | null // 학부모가 수준을 골라야 하는 과정명. 시간만 다른 반이면 null
+  category: string
+  grade1: 'true' | 'unknown'
+  sections: SchoolAfterschoolSection[]
+}
+
+export interface SchoolAfterschool {
+  school_id: string
+  source_year: number
+  term: string | null
+  options: SchoolAfterschoolOption[]
+  note: string | null
+}
+
 // SQL 23 nearby_care_centers(): 다함께돌봄센터(서울 우리동네키움센터 포함).
 export interface CareCenter {
   center_id: string

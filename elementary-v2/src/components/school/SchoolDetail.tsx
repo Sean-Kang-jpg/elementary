@@ -15,7 +15,6 @@ import type { AcademyAddress, ApartmentAcademySummary } from '../../types'
 import ShareButton from '../ui/ShareButton'
 import DataFreshness from '../ui/DataFreshness'
 import StartModule from '../content/StartModule'
-import SchoolCarePanel from '../care/SchoolCarePanel'
 import SchoolDayEstimateCard from './SchoolDayEstimateCard'
 import SocialLinks from '../content/SocialLinks'
 import NearbySchools from './NearbySchools'
@@ -348,8 +347,6 @@ const SchoolDetail: React.FC<SchoolDetailProps> = ({ school, isOpen, onClose, on
           <SocialLinks targetType="school" targetKey={school.school_id} compact />
 
           <SchoolDayEstimateCard school={school} onOpenGuide={onOpenGuide} />
-
-          <SchoolCarePanel school={school} onOpenGuide={onOpenGuide} />
 
           <CareCenterList latitude={school.latitude} longitude={school.longitude} origin={{ type: 'school', id: school.school_id }} headingId="school-care-centers-title" />
 
