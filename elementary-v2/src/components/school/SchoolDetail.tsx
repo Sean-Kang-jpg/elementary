@@ -1,4 +1,4 @@
-import { ArrowLeft, ChevronRight, ExternalLink, Globe, GraduationCap, LayoutGrid, LoaderCircle, MapPin, RefreshCw, Star, UserRound, Users } from 'lucide-react'
+import { ChevronRight, ExternalLink, Globe, LayoutGrid, LoaderCircle, MapPin, RefreshCw, Star, UserRound, Users } from 'lucide-react'
 import React, { useEffect, useMemo, useState } from 'react'
 import { School } from '../../types'
 import { useAppContext } from '../../contexts/AppContext'
@@ -23,6 +23,8 @@ import { markEntry, track } from '../../utils/analytics'
 import { schoolPath } from '../../utils/urlState'
 import { hasAcademyData } from '../../utils/academyCoverage'
 import { displaySchoolName } from '../../utils/schoolName'
+import { MAP_TOPICS, type MapTopic } from '../../utils/mapTopics'
+import DetailTabs from '../ui/DetailTabs'
 
 interface SchoolDetailProps {
   school: School | null
@@ -46,7 +48,12 @@ const SchoolDetail: React.FC<SchoolDetailProps> = ({ school, isOpen, onClose, on
   const selectedApartment = state.selectedApartment
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
-  const [currentView, setCurrentView] = useState<'school' | 'apartments' | 'education' | 'apartment-detail'>('school')
+  const topicViews = { school: 'school', care: 'care', assignment: 'apartments', activity: 'education' } as const
+  const currentView = selectedApartment ? 'apartment-detail' : topicViews[state.mapTopic]
+  const setCurrentView = (view: 'school' | 'care' | 'apartments' | 'education') => {
+    const topic = ({ school: 'school', care: 'care', apartments: 'assignment', education: 'activity' } as const)[view]
+    dispatch({ type: 'SET_MAP_TOPIC', payload: topic })
+  }
   const [selectedMetric, setSelectedMetric] = useState<SchoolMetric>('students')
   const [sheetSnap, setSheetSnap] = useState(1)
   const [isFavorite, setIsFavorite] = useState(false)
@@ -78,7 +85,6 @@ const SchoolDetail: React.FC<SchoolDetailProps> = ({ school, isOpen, onClose, on
   const hasSchoolInformation = Boolean(school?.student_data_status)
 
   useEffect(() => {
-    setCurrentView('school')
     setSelectedMetric('students')
     setSheetSnap(1)
     setSchoolAcademies([])
@@ -90,13 +96,6 @@ const SchoolDetail: React.FC<SchoolDetailProps> = ({ school, isOpen, onClose, on
     if (!school?.school_id) return
     setIsFavorite(checkFavorite('school', school.school_id))
   }, [school?.school_id])
-
-  useEffect(() => {
-    setCurrentView((view) => {
-      if (selectedApartment) return 'apartment-detail'
-      return view === 'apartment-detail' ? 'school' : view
-    })
-  }, [selectedApartment])
 
   useEffect(() => {
     if (!assignsByZone || !hasSchoolInformation || currentView !== 'education' || !school?.school_id || academyLoaded || !academyDataAvailable) return
@@ -176,18 +175,11 @@ const SchoolDetail: React.FC<SchoolDetailProps> = ({ school, isOpen, onClose, on
   const firstGradeClasses = school.grade1_classes || 0
   const firstGradePerClass = school.grade1_per_class
     || (firstGradeClasses ? Math.round(school.grade1_students / firstGradeClasses) : 0)
-  const title = currentView === 'apartments'
-    ? '배정 아파트'
-    : currentView === 'education'
-      ? '주변 교육환경'
-    : currentView === 'apartment-detail'
-      ? selectedApartment?.name
-      : displaySchoolName(school.school_name, school.region, school.establishment_type)
+  const title = displaySchoolName(school.school_name, school.region, school.establishment_type)
 
   // 아파트 선택은 여기서 비우지 않는다. 닫기가 뒤로 가기로 처리될 때 먼저 비우면
   // 주소 동기화가 학교 주소를 새로 쌓는다. 학교 선택을 비우면 아파트도 함께 비워진다.
   const close = () => {
-    setCurrentView('school')
     onClose()
   }
 
@@ -201,7 +193,7 @@ const SchoolDetail: React.FC<SchoolDetailProps> = ({ school, isOpen, onClose, on
     return (
       <ApartmentDetail
         apartment={selectedApartment}
-        isOpen={isOpen}
+        isOpen={isOpen && !state.selectedMapPlace}
         onClose={close}
         onBack={() => {
           dispatch({ type: 'SET_SELECTED_APARTMENT', payload: null })
@@ -213,10 +205,10 @@ const SchoolDetail: React.FC<SchoolDetailProps> = ({ school, isOpen, onClose, on
 
   return (
     <BottomSheet
-      isOpen={isOpen}
+      isOpen={isOpen && !state.selectedMapPlace}
       onClose={close}
       title={title}
-      headerAction={currentView === 'school' ? (
+      headerAction={(
         <span className="flex items-center">
           <ShareButton
             path={school ? schoolPath(school) : null}
@@ -233,20 +225,21 @@ const SchoolDetail: React.FC<SchoolDetailProps> = ({ school, isOpen, onClose, on
             <Star size={21} fill={isFavorite ? 'currentColor' : 'none'} aria-hidden="true" />
           </button>
         </span>
-      ) : undefined}
+      )}
       snapPoints={[0.11, 0.38, 0.68, 0.88]}
       defaultSnap={1}
       swipeDownBehavior="minimize"
       onSnapChange={setSheetSnap}
     >
+      {sheetSnap !== 0 && (
+        <div className="px-4 pt-3">
+          <DetailTabs<MapTopic> label="학교 상세 메뉴" tabs={MAP_TOPICS} value={state.mapTopic}
+            onChange={(topic) => dispatch({ type: 'SET_MAP_TOPIC', payload: topic })} />
+        </div>
+      )}
       {sheetSnap === 0 ? null : currentView === 'apartments' ? (
         <div className="mx-auto h-full w-full max-w-4xl">
-          <div className="border-b border-gray-200 px-4 py-2">
-            <button type="button" onClick={() => setCurrentView('school')} className="inline-flex items-center gap-1 py-2 text-sm font-medium text-blue-700 hover:text-blue-900">
-              <ArrowLeft size={16} aria-hidden="true" />
-              학교 정보
-            </button>
-          </div>
+          <p className="px-4 py-3 text-xs text-gray-600">{assignsByZone ? '배정 아파트 · 통학구역 경계와 실제 배정은 교육지원청에 확인하세요.' : `${school.establishment_type} 학교는 지원 입학으로 통학구역 배정이 없습니다.`}</p>
           <ApartmentList
             apartments={apartments}
             loading={loading}
@@ -261,26 +254,25 @@ const SchoolDetail: React.FC<SchoolDetailProps> = ({ school, isOpen, onClose, on
         </div>
       ) : currentView === 'education' ? (
         <div className="mx-auto h-full w-full max-w-4xl overflow-auto px-4 py-3">
-          <button type="button" onClick={() => setCurrentView('school')} className="mb-3 inline-flex items-center gap-1 py-1 text-sm font-medium text-blue-700 hover:text-blue-900">
-            <ArrowLeft size={16} aria-hidden="true" />학교 정보
-          </button>
+          <h3 className="mb-2 font-semibold">주변 배움·활동</h3>
+          <p className="mb-3 text-xs text-gray-500">배정 아파트 생활권의 학원·교습소·체육도장 분야 정보입니다. 초등학생 대상 강좌와 모집 여부는 각 기관에 확인하세요.</p>
+          {(!assignsByZone || !hasSchoolInformation) && <p className="mb-3 text-xs text-gray-500">통학구역 배정 또는 학교 공시 정보가 확인되지 않아 이 학교의 생활권 시설 집계는 제공하지 않습니다. 주변 시설이 없다는 뜻은 아닙니다.</p>}
           <AcademySummaryPanel
             academies={schoolAcademies}
             loading={academyLoading}
             error={academyError}
-            dataAvailable={academyDataAvailable}
+            dataAvailable={academyDataAvailable && assignsByZone && hasSchoolInformation}
             onShowMap={() => window.dispatchEvent(new CustomEvent('joinmap:show-school-academies'))}
           />
+          <DataFreshness sources={['neis-academy']} />
+        </div>
+      ) : currentView === 'care' ? (
+        <div className="mx-auto max-w-4xl space-y-4 px-4 py-3">
+          <SchoolDayEstimateCard school={school} onOpenGuide={onOpenGuide} />
+          <CareCenterList latitude={school.latitude} longitude={school.longitude} origin={{ type: 'school', id: school.school_id }} headingId="school-care-centers-title" />
         </div>
       ) : (
         <div className="mx-auto max-w-4xl space-y-4 px-4 py-3">
-          {assignsByZone && hasSchoolInformation && (
-            <nav className="grid grid-cols-3 gap-1 rounded-md bg-gray-100 p-1" aria-label="학교 상세 메뉴">
-              <button type="button" className="rounded bg-white px-2 py-2 text-xs font-semibold text-gray-950 shadow-sm" aria-current="page">학교 현황</button>
-              <button type="button" onClick={() => setCurrentView('apartments')} className="rounded px-2 py-2 text-xs font-semibold text-gray-600 hover:bg-white">배정 아파트 {apartments.length}</button>
-              <button type="button" onClick={() => setCurrentView('education')} className="inline-flex items-center justify-center gap-1 rounded px-2 py-2 text-xs font-semibold text-gray-600 hover:bg-white"><GraduationCap size={14} aria-hidden="true" />교육환경</button>
-            </nav>
-          )}
           <section>
             {!assignsByZone && (
               <span className="mb-2 inline-flex rounded-full bg-amber-50 px-2.5 py-1 text-xs font-semibold text-amber-800">
@@ -346,9 +338,7 @@ const SchoolDetail: React.FC<SchoolDetailProps> = ({ school, isOpen, onClose, on
           <StartModule school={school} onOpenGuide={onOpenGuide} />
           <SocialLinks targetType="school" targetKey={school.school_id} compact />
 
-          <SchoolDayEstimateCard school={school} onOpenGuide={onOpenGuide} />
-
-          <CareCenterList latitude={school.latitude} longitude={school.longitude} origin={{ type: 'school', id: school.school_id }} headingId="school-care-centers-title" />
+          <button type="button" onClick={() => setCurrentView('care')} className="w-full rounded-md border border-rose-200 bg-rose-50 px-3 py-3 text-left text-sm font-semibold text-rose-900">초1 하루·방과후·돌봄 보기 <ChevronRight size={15} className="inline" aria-hidden="true" /></button>
 
           <section aria-labelledby="grade-title">
             <h3 id="grade-title" className="mb-2 font-semibold text-gray-950">학년별 학생 현황</h3>

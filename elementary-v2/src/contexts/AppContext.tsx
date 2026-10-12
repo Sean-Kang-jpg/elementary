@@ -1,6 +1,8 @@
 import React, { createContext, useContext, useReducer, ReactNode } from 'react'
 import { PRODUCTION_REGION_NAMES } from '../constants/regionRegistry'
 import { FilterState, MapState, UIState, School, Apartment, BreakPoint, UNLIMITED_APARTMENT_AGE } from '../types'
+import type { MapTopic, SelectedMapPlace } from '../utils/mapTopics'
+import type { AcademyCategoryKey } from '../utils/academyCategories'
 
 export const DEFAULT_FILTERS: FilterState = {
   target_grade: 1,
@@ -17,6 +19,9 @@ export const DEFAULT_FILTERS: FilterState = {
 
 // 🎯 App State 타입 정의
 interface AppState {
+  mapTopic: MapTopic
+  activityCategory: AcademyCategoryKey | null
+  selectedMapPlace: SelectedMapPlace | null
   // 필터 상태
   filters: FilterState
   
@@ -38,6 +43,9 @@ interface AppState {
 
 // 🔄 Action 타입 정의
 type AppAction =
+  | { type: 'SET_MAP_TOPIC'; payload: MapTopic }
+  | { type: 'SET_ACTIVITY_CATEGORY'; payload: AcademyCategoryKey | null }
+  | { type: 'SET_SELECTED_MAP_PLACE'; payload: SelectedMapPlace | null }
   // 필터 액션
   | { type: 'SET_FILTER'; payload: Partial<FilterState> }
   | { type: 'RESET_FILTERS' }
@@ -67,6 +75,9 @@ type AppAction =
 
 // 🎛️ 초기 상태
 const initialState: AppState = {
+  mapTopic: 'school',
+  activityCategory: null,
+  selectedMapPlace: null,
   filters: DEFAULT_FILTERS,
   
   map: {
@@ -90,6 +101,13 @@ const initialState: AppState = {
 // 🔄 Reducer 함수
 function appReducer(state: AppState, action: AppAction): AppState {
   switch (action.type) {
+    case 'SET_MAP_TOPIC':
+      return { ...state, mapTopic: action.payload, selectedMapPlace: null,
+        selectedApartment: action.payload === 'school' ? null : state.selectedApartment }
+    case 'SET_ACTIVITY_CATEGORY':
+      return { ...state, activityCategory: action.payload, selectedMapPlace: null }
+    case 'SET_SELECTED_MAP_PLACE':
+      return { ...state, selectedMapPlace: action.payload }
     // 필터 관련
     case 'SET_FILTER':
       return {
@@ -189,6 +207,7 @@ function appReducer(state: AppState, action: AppAction): AppState {
     case 'SET_SELECTED_SCHOOL':
       return {
         ...state,
+        selectedMapPlace: null,
         selectedSchool: action.payload,
         selectedApartment: null,
         apartments: [],
@@ -197,12 +216,16 @@ function appReducer(state: AppState, action: AppAction): AppState {
     case 'SET_SELECTED_APARTMENT':
       return {
         ...state,
+        mapTopic: action.payload ? 'assignment' : state.mapTopic,
+        selectedMapPlace: null,
         selectedApartment: action.payload,
       }
 
     case 'OPEN_SEARCHED_APARTMENT':
       return {
         ...state,
+        mapTopic: 'assignment',
+        selectedMapPlace: null,
         selectedSchool: action.payload.school,
         selectedApartment: action.payload.apartment,
         apartments: [action.payload.apartment],

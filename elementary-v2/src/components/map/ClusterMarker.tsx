@@ -27,8 +27,7 @@ const ClusterMarker: React.FC<ClusterMarkerProps> = ({ cluster, map, targetGrade
     const content = cluster.label
       ? `<div class="school-cluster-marker school-cluster-marker--district">
           <strong>${escapeHtml(cluster.label)}</strong>
-          <span class="school-cluster-marker__high" title="${targetGrade}학년 80명부터" aria-label="${targetGrade}학년 80명부터 ${cluster.high_count || 0}개교">${cluster.high_count || 0}</span>
-          <span class="school-cluster-marker__low" title="${targetGrade}학년 79명까지" aria-label="${targetGrade}학년 79명까지 ${cluster.low_count || 0}개교">${cluster.low_count || 0}</span>
+          <span aria-label="초등학교 ${cluster.schools.length}개교">${cluster.schools.length}개교</span>
         </div>`
       : `<div class="school-cluster-marker">
           <strong>${cluster.schools.length}개교</strong>
@@ -37,7 +36,9 @@ const ClusterMarker: React.FC<ClusterMarkerProps> = ({ cluster, map, targetGrade
     const marker = new maps.Marker({
       position,
       map,
-      title: `${cluster.schools.length}개 학교, ${targetGrade}학년 평균 ${average}명`,
+      title: cluster.label
+        ? `${cluster.label} 초등학교 ${cluster.schools.length}개교`
+        : `${cluster.schools.length}개 학교, ${targetGrade}학년 평균 ${average}명`,
       icon: {
         content,
         anchor: new maps.Point(36, 16),

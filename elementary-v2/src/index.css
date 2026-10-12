@@ -65,8 +65,7 @@ body {
   z-index: var(--layer-header);
 }
 
-/* 전체 필터 버튼은 스크롤 밖에 고정하고, 학교·아파트 칩은 묶음 단위로 움직인다.
-   묶음이 중간에서 갈라지면 학교 필터가 아파트 이름표 옆에 놓인다. */
+/* 전체 필터 버튼은 고정하고, 상위 탐색 영역과 종속 조건은 각 행에서 스크롤한다. */
 .quick-filter-shell {
   position: relative;
   display: flex;
@@ -78,6 +77,17 @@ body {
 .quick-filter-shell > .quick-filter-button--all {
   margin-top: 2px;
 }
+
+.quick-filter-controls { min-width: 0; flex: 1; }
+.quick-filter-controls .quick-filter-row { gap: 5px; }
+.quick-filter-note { margin: 0; padding: 4px 2px; color: #5f6368; font-size: 11px; }
+.quick-filter-button select { max-width: 140px; background: transparent; color: inherit; }
+.detail-tabs { display: flex; gap: 4px; overflow-x: auto; padding: 4px; border-radius: 8px; background: #f3f4f6; }
+.detail-tabs button { flex: 1; flex-shrink: 0; min-width: max-content; padding: 10px 8px; border-radius: 6px; font-size: 12px; font-weight: 650; color: #4b5563; }
+.detail-tabs button:hover { background: #fff; }
+.detail-tabs button:disabled { opacity: .45; }
+.detail-tabs .detail-tabs__selected { background: #fff; color: #1d4ed8; box-shadow: 0 1px 3px rgb(0 0 0 / 8%); }
+.home-page__footer { display: flex; justify-content: center; flex-wrap: wrap; gap: 16px; }
 
 .quick-filter-row {
   display: flex;
@@ -148,6 +158,7 @@ body {
   z-index: var(--layer-overlay);
   width: max-content;
   min-width: 150px;
+  max-width: calc(100vw - 16px);
   overflow: hidden;
   border: 1px solid #dadce0;
   border-radius: 8px;
@@ -807,15 +818,15 @@ body {
 
 @media (max-width: 639px) {
   .academy-layer-toggle {
-    top: 132px;
+    top: 176px;
   }
 
   .care-map-chip {
-    top: 132px;
+    top: 176px;
   }
 
   .academy-map-legend {
-    top: 184px;
+    top: 228px;
   }
 }
 

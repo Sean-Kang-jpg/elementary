@@ -1,4 +1,4 @@
-import { BookOpen, CalendarClock, ChevronRight, HelpCircle, Map, MapPinned, ShieldCheck } from 'lucide-react'
+import { BookOpen, CalendarClock, ChevronRight, HelpCircle, Map, ShieldCheck } from 'lucide-react'
 import SearchBox from '../search/SearchBox'
 import EntryYearPicker from '../content/EntryYearPicker'
 import RoadmapSummary from '../content/RoadmapSummary'
@@ -71,15 +71,6 @@ export default function HomePage({ onNavigate, entryYear, onEntryYearChange, pro
           <ChevronRight size={18} aria-hidden="true" />
         </a>
 
-        <a href={VIEW_PATHS.area} onClick={(event) => followLink(event, VIEW_PATHS.area, onNavigate)} className="home-page__card">
-          <span className="home-page__card-icon"><MapPinned size={20} aria-hidden="true" /></span>
-          <span className="min-w-0 flex-1">
-            <strong>{copy.areaCardTitle}</strong>
-            <small>{copy.areaCardBody}</small>
-          </span>
-          <ChevronRight size={18} aria-hidden="true" />
-        </a>
-
         <a href={VIEW_PATHS.learn} onClick={(event) => followLink(event, VIEW_PATHS.learn, onNavigate)} className="home-page__card">
           <span className="home-page__card-icon"><CalendarClock size={20} aria-hidden="true" /></span>
           <span className="min-w-0 flex-1">
@@ -90,6 +81,7 @@ export default function HomePage({ onNavigate, entryYear, onEntryYearChange, pro
         </a>
 
         <footer className="home-page__footer">
+          <a href={VIEW_PATHS.area} onClick={(event) => followLink(event, VIEW_PATHS.area, onNavigate)}>지역별 학교 목록</a>
           <a href={VIEW_PATHS.privacy} onClick={(event) => followLink(event, VIEW_PATHS.privacy, onNavigate)}>개인정보처리방침</a>
         </footer>
       </div>

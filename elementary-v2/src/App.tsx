@@ -4,6 +4,7 @@ import FilterPanel from './components/filters/FilterPanel'
 import MapContainer from './components/map/MapContainer'
 import MapErrorBoundary from './components/map/MapErrorBoundary'
 import SchoolDetail from './components/school/SchoolDetail'
+import MapPlaceDetail from './components/map/MapPlaceDetail'
 import { useAppContext } from './contexts/AppContext'
 import { testSupabaseConnection } from './lib/supabase'
 import MyPage from './components/navigation/MyPage'
@@ -512,6 +513,9 @@ function MapApplication() {
         onClose={handleCloseSchoolDetail}
         onOpenGuide={(path) => navigate(path, 'detail')}
       />
+      {view === 'map' && state.selectedMapPlace && (
+        <MapPlaceDetail key={state.selectedMapPlace.kind === 'care' ? state.selectedMapPlace.data.center_id : state.selectedMapPlace.data.address_id} place={state.selectedMapPlace} />
+      )}
     </MainLayout>
   )
 }

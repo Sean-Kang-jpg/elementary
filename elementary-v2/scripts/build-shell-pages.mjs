@@ -75,10 +75,8 @@ const homeBody = [
   '<a href="/faq" class="home-link"><span><strong>자주 묻는 질문</strong><small>이사·배정·취학통지서</small></span></a>',
   '</div>',
   `<a href="/map" class="home-page__card"><span class="min-w-0 flex-1"><strong>${escapeHtml(copy.mapCardTitle)}</strong><small>${escapeHtml(copy.mapCardBody)}</small></span></a>`,
-  // The area hubs are how a crawler gets from the home to every school (api/detail.js).
-  `<a href="/area" class="home-page__card"><span class="min-w-0 flex-1"><strong>${escapeHtml(copy.areaCardTitle)}</strong><small>${escapeHtml(copy.areaCardBody)}</small></span></a>`,
   `<a href="/learn" class="home-page__card"><span class="min-w-0 flex-1"><strong>${escapeHtml(copy.learnCardTitle)}</strong><small>${escapeHtml(copy.learnCardBody)}</small></span></a>`,
-  '<footer class="home-page__footer"><a href="/privacy">개인정보처리방침</a></footer>',
+  '<footer class="home-page__footer"><a href="/area">지역별 학교 목록</a><a href="/privacy">개인정보처리방침</a></footer>',
   '</div></section>',
 ].join('')
 
@@ -164,7 +162,6 @@ const listBody = page([
     + '</section>'),
   '<section class="content-list"><h2>더 보기</h2>',
   '<a class="content-list__item content-list__item--card" href="/faq"><span><strong>자주 묻는 질문</strong><small>이사 시기, 배정 학교, 취학통지서, 예비소집, 입학 연기</small></span></a>',
-  '<a class="content-list__item content-list__item--card" href="/news"><span><strong>데이터 리포트</strong><small>학교별 배정 아파트의 세대수·연식·주차를 한눈에</small></span></a>',
   '</section>',
 ].join(''), 'guides-title')
 await writePage('/guide', contentPage({

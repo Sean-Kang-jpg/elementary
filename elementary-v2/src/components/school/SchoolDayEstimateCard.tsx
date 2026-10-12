@@ -110,12 +110,12 @@ const SchoolDayEstimateCard: React.FC<{ school: School; onOpenGuide: (path: stri
           {!care ? null : care.status === 'stated' ? (
             <dl className="divide-y divide-gray-100 rounded-md border border-gray-200 text-sm">
               <div className="flex items-center justify-between px-3 py-2">
-                <dt className="text-gray-600">오후 돌봄</dt>
+                <dt className="text-gray-600">오후돌봄 기본 종료</dt>
                 <dd className="font-semibold text-gray-950">방과후 ~ {hhmm(care.afternoon_end)}</dd>
               </div>
               {care.extended_end && (
                 <div className="flex items-center justify-between gap-3 px-3 py-2">
-                  <dt className="shrink-0 text-gray-600">저녁·연장</dt>
+                  <dt className="shrink-0 text-gray-600">별도 저녁·연장 종료</dt>
                   <dd className="text-right">
                     <span className="font-semibold text-gray-950">~ {hhmm(care.extended_end)}</span>
                     {care.extended_condition && <span className="block text-[11px] text-gray-500">{care.extended_condition}</span>}
@@ -139,7 +139,7 @@ const SchoolDayEstimateCard: React.FC<{ school: School; onOpenGuide: (path: stri
             <p className="rounded-md border border-gray-200 bg-gray-50 px-3 py-2.5 text-sm text-gray-700">공시에 돌봄 운영 시간이 없어요. 학교에 확인해 주세요.</p>
           )}
           {care?.status === 'stated' && (
-            <p className="mt-1.5 text-[11px] leading-4 text-gray-500">돌봄은 정원과 선발 순위가 있어, 신청해도 이용하지 못할 수 있어요.</p>
+            <p className="mt-1.5 text-[11px] leading-4 text-gray-500">오후돌봄이 19시까지 운영되어도 별도 저녁돌봄 교실 공시값은 0실일 수 있습니다. 서로 다른 항목이며, 돌봄은 정원과 선발 순위가 있어 신청해도 이용하지 못할 수 있어요.</p>
           )}
           <SchoolCarePanel school={school} onOpenGuide={onOpenGuide} embedded stats={careStats} hideProgramCount={Boolean(afterschool)} />
         </div>

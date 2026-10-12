@@ -3,15 +3,12 @@ import { X } from 'lucide-react'
 import { getAcademiesNearApartment, getAcademiesNearSchool } from '../../services/dataService'
 import type { AcademyAddress, Apartment, School } from '../../types'
 import {
-  ACADEMY_CATEGORIES,
   academyHasCategory,
   getAcademyCategory,
-  getAcademyCategoryCounts,
   getDominantAcademyCategory,
-  getInstitutionCategories,
   type AcademyCategoryKey,
 } from '../../utils/academyCategories'
-import { closablePopup, keepPopupClearOfMapControls, POPUP_CLOSE_BUTTON } from '../../utils/mapPopup'
+import { useAppContext } from '../../contexts/AppContext'
 
 interface AcademyMarkerManagerProps {
   map: NaverMap
@@ -72,37 +69,8 @@ const clusterRows = (rows: AcademyAddress[], zoom: number): AcademyCluster[] => 
   }))
 }
 
-// Each institution leads with the category chip its marker colour comes from, so a
-// mixed building reads at a glance; the list is ordered by category to group the colours.
-const categoryChip = ({ label, color, softColor }: { label: string, color: string, softColor: string }, count?: number) => (
-  `<span class="academy-chip" style="--academy-color:${color};--academy-soft:${softColor}">${escapeHtml(label)}${count === undefined ? '' : ` <b>${count.toLocaleString('ko-KR')}</b>`}</span>`
-)
-
-const academyPopupContent = (academy: AcademyAddress) => {
-  const counts = getAcademyCategoryCounts(academy)
-  const categories = ACADEMY_CATEGORIES
-    .map((category) => ({ ...category, count: counts[category.key] }))
-    .filter(({ count }) => count > 0)
-    .sort((a, b) => b.count - a.count)
-  const order = (key: AcademyCategoryKey) => ACADEMY_CATEGORIES.findIndex((category) => category.key === key)
-  const institutions = academy.institutions
-    .map((institution) => ({ ...institution, categories: getInstitutionCategories(institution) }))
-    .sort((a, b) => order(a.categories[0].key) - order(b.categories[0].key) || a.name.localeCompare(b.name, 'ko'))
-  const institutionRows = institutions.length
-    ? institutions.map((institution) => `<li>
-        <span class="academy-map-popup__chips">${institution.categories.map((category) => categoryChip(category)).join('')}</span>
-        <span class="academy-map-popup__name"><strong>${escapeHtml(institution.name)}</strong><small>${escapeHtml([institution.type, institution.realm].filter(Boolean).join(' · ') || '미상')}</small></span>
-      </li>`).join('')
-    : '<li class="academy-map-popup__empty">기관명 정보를 준비 중입니다.</li>'
-  return `<div class="academy-map-popup">
-    <div class="academy-map-popup__header"><strong>교육시설 ${academy.institution_count.toLocaleString('ko-KR')}곳</strong><span>${bandLabel(academy.distance_band)}</span>${POPUP_CLOSE_BUTTON}</div>
-    <div class="academy-map-popup__summary">${categories.map((category) => categoryChip(category, category.count)).join('') || '<span>분야 정보 없음</span>'}</div>
-    <ul class="academy-map-popup__list">${institutionRows}</ul>
-    <small>직선거리 ${academy.straight_distance_m.toLocaleString('ko-KR')}m</small>
-  </div>`
-}
-
 export default function AcademyMarkerManager({ map, apartment, school, enabled, selectedCategory, onCategoryChange, onCountChange }: AcademyMarkerManagerProps) {
+  const { dispatch } = useAppContext()
   const [academies, setAcademies] = useState<AcademyAddress[]>([])
   const [zoom, setZoom] = useState(map.getZoom())
   // The legend covers part of the map, so it can be closed while the markers stay.
@@ -155,9 +123,7 @@ export default function AcademyMarkerManager({ map, apartment, school, enabled, 
   useEffect(() => {
     const maps = window.naver?.maps
     if (!maps || !enabled) return
-    let infoWindow: InfoWindow | null = null
     const listeners: unknown[] = []
-    listeners.push(maps.Event.addListener(map, 'click', () => infoWindow?.close()))
     const clusters = clusterRows(filteredAcademies, zoom)
     const markers = clusters.map((cluster) => {
       const isCluster = cluster.rows.length > 1 && zoom < 15
@@ -181,23 +147,11 @@ export default function AcademyMarkerManager({ map, apartment, school, enabled, 
           map.fitBounds(bounds, { top: 80, right: 80, bottom: 120, left: 80 })
           return
         }
-        infoWindow?.close()
-        const content = closablePopup(academyPopupContent(cluster.rows[0]), () => infoWindow?.close())
-        infoWindow = new maps.InfoWindow({
-          content,
-          maxWidth: 300,
-          backgroundColor: 'transparent',
-          borderWidth: 0,
-          anchorSize: new maps.Size(0, 0),
-          pixelOffset: new maps.Point(0, -18),
-        })
-        infoWindow.open(map, marker)
-        keepPopupClearOfMapControls(map, content)
+        dispatch({ type: 'SET_SELECTED_MAP_PLACE', payload: { kind: 'activity', data: cluster.rows[0] } })
       }))
       return marker
     })
     return () => {
-      infoWindow?.close()
       listeners.forEach((listener) => {
         try { maps.Event.removeListener(listener) } catch { /* The SDK may release listeners first. */ }
       })
@@ -205,7 +159,7 @@ export default function AcademyMarkerManager({ map, apartment, school, enabled, 
         try { marker.setMap(null) } catch { /* Map teardown can release markers first. */ }
       })
     }
-  }, [enabled, filteredAcademies, map, selectedCategory, zoom])
+  }, [dispatch, enabled, filteredAcademies, map, selectedCategory, zoom])
 
   if (!enabled || !academies.length || legendDismissed) return null
 

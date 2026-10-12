@@ -4,6 +4,7 @@ import type { CareCenter } from '../../types'
 import { getCareCentersNear } from '../../services/dataService'
 import { track } from '../../utils/analytics'
 import { useSeenOnce } from './useSeenOnce'
+import { useAppContext } from '../../contexts/AppContext'
 
 interface CareCenterListProps {
   latitude: number
@@ -25,6 +26,7 @@ const formatDistance = (meters: number) => meters < 1000 ? `${meters.toLocaleStr
  * SQL 23이 없는 DB에서는 빈 목록이 오고, 그때는 아무것도 그리지 않는다.
  */
 const CareCenterList: React.FC<CareCenterListProps> = ({ latitude, longitude, origin, headingId }) => {
+  const { dispatch } = useAppContext()
   const [centers, setCenters] = useState<CareCenter[] | null>(null)
   const [expanded, setExpanded] = useState(false)
   const sectionRef = useRef<HTMLElement>(null)
@@ -86,6 +88,8 @@ const CareCenterList: React.FC<CareCenterListProps> = ({ latitude, longitude, or
                 <div className="rounded bg-gray-50 px-2 py-1"><dt className="text-gray-500">학기 중</dt><dd className="font-semibold text-gray-900">{formatHours(center.term_hours)}</dd></div>
                 <div className="rounded bg-rose-50 px-2 py-1"><dt className="text-rose-700">방학 중</dt><dd className="font-semibold text-rose-900">{formatHours(center.vacation_hours)}</dd></div>
               </dl>
+              <button type="button" onClick={() => dispatch({ type: 'SET_SELECTED_MAP_PLACE', payload: { kind: 'care', data: center } })}
+                className="mt-2 rounded-md border border-rose-200 px-3 py-1.5 text-xs font-semibold text-rose-900" aria-label={`${center.name} 상세 안내`}>상세 안내</button>
             </li>
           ))}
         </ul>

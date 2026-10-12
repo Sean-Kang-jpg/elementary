@@ -1,7 +1,8 @@
 import { BookOpen, Calculator, Code, Dumbbell, FlaskConical, Globe, GraduationCap, Languages, Map, Palette, PenLine, Shapes } from 'lucide-react'
-import { useMemo, useState } from 'react'
+import { useMemo } from 'react'
 import type { AcademyAddress } from '../../types'
 import { ACADEMY_CATEGORIES, getAcademyCategoryCounts, type AcademyCategoryKey } from '../../utils/academyCategories'
+import { useAppContext } from '../../contexts/AppContext'
 
 interface AcademySummaryPanelProps {
   academies: AcademyAddress[]
@@ -25,7 +26,8 @@ const CATEGORY_ICONS = {
 } as const
 
 export default function AcademySummaryPanel({ academies, loading = false, error = null, onShowMap, dataAvailable = true }: AcademySummaryPanelProps) {
-  const [selectedCategory, setSelectedCategory] = useState<AcademyCategoryKey | null>(null)
+  const { state, dispatch } = useAppContext()
+  const selectedCategory = state.activityCategory
   const summary = useMemo(() => {
     const core = academies.filter((row) => row.distance_band === 'core')
     const extended = academies.filter((row) => row.distance_band === 'extended')
@@ -50,7 +52,7 @@ export default function AcademySummaryPanel({ academies, loading = false, error 
 
   const selectCategory = (category: AcademyCategoryKey) => {
     const nextCategory = selectedCategory === category ? null : category
-    setSelectedCategory(nextCategory)
+    dispatch({ type: 'SET_ACTIVITY_CATEGORY', payload: nextCategory })
     window.dispatchEvent(new CustomEvent('joinmap:filter-academies', { detail: { category: nextCategory } }))
     onShowMap?.()
   }

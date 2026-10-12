@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>지도 시설 상세 QA 표본</title></head>
+<body><div id="fixture-root"></div>
+<script type="module">
+  // Development-only component harness. Not referenced by the app/build entry.
+  import React from 'react'
+  import { createRoot } from 'react-dom/client'
+  import { AppProvider, useAppContext } from '/src/contexts/AppContext.tsx'
+  import MapPlaceDetail from '/src/components/map/MapPlaceDetail.tsx'
+  import '/src/index.css'
+  const care = { center_id: 'qa-zero', center_kind: '우리동네키움센터', name: 'QA 공시 0 정원', address: 'QA 표본 주소', address_detail: null, phone: null, capacity: 0, term_hours: null, vacation_hours: null, latitude: 37.494, longitude: 127.064, source_updated_on: '2026-10-01', straight_distance_m: 100 }
+  const cases = {
+    zero: { kind: 'care', data: care },
+    unknown: { kind: 'care', data: { ...care, center_id: 'qa-unknown', name: 'QA 미확인 정원', capacity: null, source_updated_on: null } },
+    activity: { kind: 'activity', data: { address_id: 'qa-activity', region: '서울특별시', district: '강남구', distance_band: 'core', institution_count: 1, straight_distance_m: 300, institutions: [{ name: 'QA 영어수학 기관', type: '학원', realm: '입시.검정 및 보습', subjects: ['english', 'math'] }] } },
+  }
+  function Harness() {
+    const { state, dispatch } = useAppContext()
+    return React.createElement(React.Fragment, null,
+      React.createElement('h1', null, '운영 데이터가 아닌 화면 QA 표본'),
+      ...Object.entries(cases).map(([key, place]) => React.createElement('button', {
+        key, type: 'button', 'data-fixture': key,
+        onClick: () => dispatch({ type: 'SET_SELECTED_MAP_PLACE', payload: place }),
+      }, `${key} 표본 열기`)),
+      state.selectedMapPlace && React.createElement(MapPlaceDetail, { key: state.selectedMapPlace.data.center_id || state.selectedMapPlace.data.address_id, place: state.selectedMapPlace }))
+  }
+  createRoot(document.getElementById('fixture-root')).render(React.createElement(AppProvider, null, React.createElement(Harness)))
+</script></body></html>

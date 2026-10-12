@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { BookOpenCheck, Check, ChevronRight, HelpCircle, LineChart, UserRound } from 'lucide-react'
+import { BookOpenCheck, Check, ChevronRight, HelpCircle, UserRound } from 'lucide-react'
 import { GUIDE_GROUPS, GUIDE_LIST, GUIDES } from '../../content'
 import { guidePath, VIEW_PATHS } from '../../utils/urlState'
 import { STAGE_LABELS, stageOf, type Stage } from '../../utils/entryYear'
@@ -15,7 +15,7 @@ interface GuideListPageProps {
 const STAGE_ORDER: Stage[] = ['planning', 'admission']
 
 /**
- * 입학 준비: the public manual - guides by stage, the FAQ and the data report. It
+ * 입학 준비: the public manual - guides by stage and the FAQ. It
  * is the same list the static /guide page gives a crawler. The family's own setup
  * (entry year, preferences, roadmap, saved places) moved to MY on 2026-10-04; this
  * page only borrows the entry year to put the child's stage first and marks the
@@ -97,14 +97,6 @@ export default function GuideListPage({ onNavigate, entryYear }: GuideListPagePr
             <span className="min-w-0 flex-1">
               <strong>자주 묻는 질문</strong>
               <small>이사 시기, 배정 학교, 취학통지서, 예비소집, 입학 연기</small>
-            </span>
-            <ChevronRight size={18} aria-hidden="true" />
-          </a>
-          <a href={VIEW_PATHS.news} onClick={(event) => followLink(event, VIEW_PATHS.news, onNavigate)} className="content-list__item content-list__item--card">
-            <span className="home-link__icon home-link__icon--peach"><LineChart size={19} aria-hidden="true" /></span>
-            <span className="min-w-0 flex-1">
-              <strong>데이터 리포트</strong>
-              <small>학교별 배정 아파트의 세대수·연식·주차를 한눈에</small>
             </span>
             <ChevronRight size={18} aria-hidden="true" />
           </a>

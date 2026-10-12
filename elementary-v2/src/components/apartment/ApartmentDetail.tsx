@@ -13,6 +13,8 @@ import { apartmentFavorite, isFavorite as checkFavorite, refreshFavorite, toggle
 import { track } from '../../utils/analytics'
 import { ACADEMY_DATA_PENDING_LABEL, hasAcademyData } from '../../utils/academyCoverage'
 import { displaySchoolName } from '../../utils/schoolName'
+import { useAppContext } from '../../contexts/AppContext'
+import DetailTabs from '../ui/DetailTabs'
 
 interface ApartmentDetailProps {
   apartment: Apartment | null
@@ -24,6 +26,8 @@ interface ApartmentDetailProps {
 const parkingLabel = (ratio: number) => ratio >= 1 ? '여유' : ratio >= 0.7 ? '보통' : '부족'
 
 const ApartmentDetail: React.FC<ApartmentDetailProps> = ({ apartment, isOpen, onClose, onBack }) => {
+  const { state, dispatch } = useAppContext()
+  const tab = state.mapTopic === 'care' || state.mapTopic === 'activity' ? state.mapTopic : 'assignment'
   const [isFavorite, setIsFavorite] = useState(false)
   const [sheetSnap, setSheetSnap] = useState(1)
   const [academySummary, setAcademySummary] = useState<ApartmentAcademySummary | undefined>()
@@ -82,6 +86,12 @@ const ApartmentDetail: React.FC<ApartmentDetailProps> = ({ apartment, isOpen, on
         <div className="mx-auto w-full max-w-4xl space-y-4 px-4 py-3">
           {onBack ? <button type="button" onClick={onBack} className="inline-flex items-center gap-1 py-1 text-sm font-medium text-blue-700 hover:text-blue-900"><ArrowLeft size={16} aria-hidden="true" />아파트 목록으로</button> : null}
           <p className="text-sm text-gray-600">{apartment.address}</p>
+          <DetailTabs label="아파트 상세 메뉴" tabs={[
+            { key: 'assignment', label: '배정·통학' },
+            { key: 'care', label: '지역 돌봄' },
+            { key: 'activity', label: '배움·활동' },
+          ]} value={tab} onChange={(value) => dispatch({ type: 'SET_MAP_TOPIC', payload: value })} />
+          {tab === 'assignment' && <>
           <ApartmentCard apartment={apartment} academySummary={academySummary} />
 
           <section className="border-y border-gray-200 py-3" aria-labelledby="assigned-school-title">
@@ -107,6 +117,12 @@ const ApartmentDetail: React.FC<ApartmentDetailProps> = ({ apartment, isOpen, on
             </div>
           </section>
 
+          {apartment.public_rental_ratio > 0 ? <section className="flex items-center gap-3 border-t border-gray-200 py-3"><span className="flex h-9 w-9 items-center justify-center rounded-md bg-orange-50 text-orange-700"><Building2 size={18} aria-hidden="true" /></span><span className="text-sm text-gray-700">공공임대 <b>{apartment.public_rental_units.toLocaleString()}세대</b> · 전체의 {apartment.public_rental_ratio}%</span></section> : null}
+          <ApartmentTransactionSummary publicKey={apartment.public_key} />
+          <DataFreshness sources={['kapt-basic', 'molit-apartment-trade']} />
+          </>}
+
+          {tab === 'activity' && <>
           <section aria-labelledby="academy-title">
             <div className="mb-2 flex items-center justify-between"><h3 id="academy-title" className="inline-flex items-center gap-2 font-semibold text-gray-950"><GraduationCap size={18} aria-hidden="true" />주변 교육시설</h3>{totalAcademies != null ? <strong className="text-sm text-teal-800">{totalAcademies.toLocaleString()}곳</strong> : null}</div>
             {academyDataAvailable ? <>
@@ -118,12 +134,13 @@ const ApartmentDetail: React.FC<ApartmentDetailProps> = ({ apartment, isOpen, on
             </> : <div className="rounded-md border border-gray-200 bg-gray-50 px-4 py-5 text-center text-sm font-medium text-gray-600">{ACADEMY_DATA_PENDING_LABEL}</div>}
             <p className="mt-2 text-[11px] leading-4 text-gray-500">단지 기준 직선거리로 집계한 주변 학원·교습소·체육도장이며 공식 배정 관계가 아닙니다.</p>
           </section>
+          <p className="text-xs text-gray-500">초등학생 대상 강좌와 실제 모집 여부는 각 기관에 확인하세요.</p>
+          <DataFreshness sources={['neis-academy']} />
+          </>}
 
-          <CareCenterList latitude={apartment.latitude} longitude={apartment.longitude} origin={{ type: 'apartment', id: apartment.public_key }} headingId="apartment-care-centers-title" />
-
-          {apartment.public_rental_ratio > 0 ? <section className="flex items-center gap-3 border-t border-gray-200 py-3"><span className="flex h-9 w-9 items-center justify-center rounded-md bg-orange-50 text-orange-700"><Building2 size={18} aria-hidden="true" /></span><span className="text-sm text-gray-700">공공임대 <b>{apartment.public_rental_units.toLocaleString()}세대</b> · 전체의 {apartment.public_rental_ratio}%</span></section> : null}
-          <ApartmentTransactionSummary publicKey={apartment.public_key} />
-          <DataFreshness sources={['kapt-basic', 'molit-apartment-trade']} />
+          {tab === 'care' && (state.selectedSchool
+            ? <CareCenterList latitude={state.selectedSchool.latitude} longitude={state.selectedSchool.longitude} origin={{ type: 'school', id: state.selectedSchool.school_id }} headingId="apartment-care-centers-title" />
+            : <p className="text-sm text-gray-600">학교를 선택하면 학교 기준 1km 안의 지역 돌봄센터를 볼 수 있어요.</p>)}
         </div>
       )}
     </BottomSheet>

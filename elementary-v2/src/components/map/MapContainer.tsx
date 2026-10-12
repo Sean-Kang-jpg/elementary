@@ -10,6 +10,7 @@ import '../../types/naver-maps.d.ts'
 import { ACADEMY_DATA_PENDING_LABEL, hasAcademyData } from '../../utils/academyCoverage'
 import type { AcademyCategoryKey } from '../../utils/academyCategories'
 import { loadNaverMaps } from '../../utils/naverMapsLoader'
+import { getCareCentersNear } from '../../services/dataService'
 
 interface MapContainerProps {
   className?: string
@@ -37,11 +38,14 @@ const MapContainer: React.FC<MapContainerProps> = ({ className = '', onNavigate 
   const [isLocating, setIsLocating] = useState(false)
   const [mapError, setMapError] = useState<string | null>(null)
   const [locationError, setLocationError] = useState<string | null>(null)
-  const [showAcademies, setShowAcademies] = useState(false)
   const [academyCount, setAcademyCount] = useState<number | null>(null)
-  const [academyCategory, setAcademyCategory] = useState<AcademyCategoryKey | null>(null)
   const [careCenters, setCareCenters] = useState<CareCenter[]>([])
   const { state, dispatch } = useAppContext()
+  const showAcademies = state.mapTopic === 'activity'
+  const academyCategory = state.activityCategory
+  const setAcademyCategory = useCallback((category: AcademyCategoryKey | null) => {
+    dispatch({ type: 'SET_ACTIVITY_CATEGORY', payload: category })
+  }, [dispatch])
   // The map is built from the viewport already in state, not from a fixed default.
   // The SDK now loads after mount (ADR-008 section 5), so a linked school or complex
   // has usually set the viewport before the map exists; building at the default and
@@ -51,13 +55,25 @@ const MapContainer: React.FC<MapContainerProps> = ({ className = '', onNavigate 
   viewportRef.current = state.map
   const selectedAcademyRegion = state.selectedApartment?.city || state.selectedSchool?.region
   const academyDataAvailable = hasAcademyData(selectedAcademyRegion)
+  const careLatitude = state.selectedSchool?.latitude
+  const careLongitude = state.selectedSchool?.longitude
 
   useEffect(() => {
-    setShowAcademies(false)
     setAcademyCount(null)
-    setAcademyCategory(null)
     setCareCenters([])
   }, [state.selectedApartment?.id, state.selectedSchool?.school_id])
+
+  useEffect(() => {
+    if (state.mapTopic !== 'care' || !careLatitude || !careLongitude) {
+      setCareCenters([])
+      return
+    }
+    let active = true
+    getCareCentersNear(careLatitude, careLongitude, 1000)
+      .then((rows) => { if (active) setCareCenters(rows) })
+      .catch((error) => { console.error('돌봄센터 지도 조회 실패:', error); if (active) setCareCenters([]) })
+    return () => { active = false }
+  }, [state.mapTopic, careLatitude, careLongitude])
 
   // An unregistered host is the usual cause, and it is invisible otherwise:
   // the SDK reports it only through this global, so without it the map would
@@ -72,17 +88,18 @@ const MapContainer: React.FC<MapContainerProps> = ({ className = '', onNavigate 
   }, [])
 
   useEffect(() => {
-    const showAcademies = () => setShowAcademies(true)
-    const showSchoolAcademies = () => setShowAcademies(true)
+    const showAcademies = () => dispatch({ type: 'SET_MAP_TOPIC', payload: 'activity' })
+    const showSchoolAcademies = showAcademies
     const filterAcademies = (event: Event) => {
       const category = (event as CustomEvent<{ category: AcademyCategoryKey | null }>).detail?.category || null
       setAcademyCategory(category)
-      setShowAcademies(true)
+      dispatch({ type: 'SET_MAP_TOPIC', payload: 'activity' })
     }
     window.addEventListener('joinmap:show-academies', showAcademies)
     window.addEventListener('joinmap:show-school-academies', showSchoolAcademies)
     window.addEventListener('joinmap:filter-academies', filterAcademies)
     const showCareCenters = (event: Event) => {
+      dispatch({ type: 'SET_MAP_TOPIC', payload: 'care' })
       setCareCenters((event as CustomEvent<{ centers: CareCenter[] }>).detail?.centers || [])
     }
     window.addEventListener('joinmap:show-care-centers', showCareCenters)
@@ -92,7 +109,7 @@ const MapContainer: React.FC<MapContainerProps> = ({ className = '', onNavigate 
       window.removeEventListener('joinmap:show-school-academies', showSchoolAcademies)
       window.removeEventListener('joinmap:filter-academies', filterAcademies)
     }
-  }, [])
+  }, [dispatch, setAcademyCategory])
 
   // Naver Maps leaves touch-action at auto and only cancels the touches it handles
   // itself, so a pinch that starts on a marker, the legend or a control fell
@@ -357,7 +374,7 @@ const MapContainer: React.FC<MapContainerProps> = ({ className = '', onNavigate 
       {isMapReady && (state.selectedApartment || state.selectedSchool) && (
         <button
           type="button"
-          onClick={() => academyDataAvailable && setShowAcademies((current) => !current)}
+          onClick={() => academyDataAvailable && dispatch({ type: 'SET_MAP_TOPIC', payload: showAcademies ? 'school' : 'activity' })}
           disabled={!academyDataAvailable}
           className={`academy-layer-toggle absolute right-3 inline-flex h-11 items-center gap-2 rounded-md border px-3 text-sm font-semibold shadow-md transition-colors sm:right-5 ${showAcademies ? 'border-emerald-700 bg-emerald-700 text-white' : 'border-gray-300 bg-white text-gray-800 hover:bg-gray-50'}`}
           aria-pressed={showAcademies}

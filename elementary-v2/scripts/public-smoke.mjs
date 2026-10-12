@@ -382,7 +382,7 @@ try {
     "!(document.querySelector('meta[name=description]')?.content || 'unset').startsWith('서울/경기/인천')",
     'the shell description does not name a stale subset of regions',
   )
-  assertPage("document.querySelector('.quick-filter-row')?.textContent?.includes('학교') && document.querySelector('.quick-filter-row')?.textContent?.includes('아파트')", 'quick filters disclose school and apartment scope')
+  assertPage("['학교', '방과후·돌봄', '배정·통학', '배움·활동'].every((label) => [...document.querySelectorAll('[aria-label=\"지도 탐색 영역\"] button')].some((node) => node.textContent.trim() === label))", 'map has four exploration topics')
   await waitFor("(window.__ELEMENTARY_PERFORMANCE__ || []).some((metric) => metric.name === 'school-map-load' && metric.status === 'success' && metric.context.resultCount > 0)", 'district data loaded and measured')
   collectPerformance()
 
@@ -410,7 +410,7 @@ try {
   // A province click must land on district zoom, not on zoom 10, which is still
   // province mode and only recentres.
   await waitFor("!document.querySelector('.school-cluster-marker--region') && document.querySelectorAll('.school-cluster-marker').length > 0", 'a province marker opens its district markers')
-  await waitFor("document.querySelector('[data-testid=bottom-sheet]')?.textContent?.includes('시·군·구') && document.querySelectorAll('[data-testid=bottom-sheet] .district-count-circle--high').length > 0", 'a province marker lists its districts with 80+ and under-80 counts')
+  await waitFor("document.querySelector('[data-testid=bottom-sheet]')?.textContent?.includes('시·군·구') && document.querySelector('[data-testid=bottom-sheet]')?.textContent?.includes('개교') && !document.querySelector('.district-count-circle--high, .school-cluster-marker__high')", 'a province marker lists districts with only school counts')
   assertPage("/^\\/area\\/[^/]+$/.test(decodeURI(document.querySelector('[data-testid=bottom-sheet] [data-testid=area-hub-link]')?.getAttribute('href') || ''))", 'the province sheet links to its area hub')
 
   run(['open', new URL('/map', baseUrl).toString()])
@@ -446,6 +446,8 @@ try {
     return 'apartment detail closed'
   })()`])
   run(['wait', '300'])
+
+  run(['eval', "[...document.querySelectorAll('[aria-label=\"지도 탐색 영역\"] button')].find((node) => node.textContent === '학교').click(); 'school topic'"])
 
   run(['eval', `(() => {
     const button = [...document.querySelectorAll('button')]
@@ -556,12 +558,15 @@ try {
 
   // Care (SQL 23). Both blocks render nothing when their reads fail, so a
   // missing grant or an empty load would pass silently without this.
+  run(['eval', "[...document.querySelectorAll('[aria-label=\"학교 상세 메뉴\"] button')].find((node) => node.textContent.trim() === '방과후·돌봄').click(); 'care tab'"])
   await waitFor(
     "document.querySelector('[data-testid=school-care]')?.innerText.includes('오후 돌봄')",
     'the school detail shows its care-classroom disclosure',
   )
   await waitFor("Boolean(document.querySelector('[data-testid=care-centers]'))", 'the school detail lists nearby care centers')
   assertPage("document.querySelector('[data-testid=care-guide-link]')?.getAttribute('href') === '/guide/care-afterschool'", 'the care block links to the care guide')
+  assertPage("document.querySelector('[aria-label=\"지도 탐색 영역\"] button[aria-pressed=true]')?.textContent === '방과후·돌봄'", 'school tab and top topic stay in sync')
+  run(['eval', "[...document.querySelectorAll('[aria-label=\"학교 상세 메뉴\"] button')].find((node) => node.textContent.trim() === '학교').click(); 'school tab'"])
 
   run(['fill', 'input[role="combobox"]', '서울방현'])
   await waitFor("document.querySelectorAll('#map-search-results [role=option]').length > 0", 'school search returned results')
@@ -600,6 +605,7 @@ try {
   // the map must not be built for a visitor who never leaves the home.
   run(['open', baseUrl])
   await waitFor("document.querySelector('#home-title') && document.querySelector('input[role=combobox]')", 'home opened with the assignment search on top')
+  assertPage("![...document.querySelectorAll('.home-page__card')].some((node) => node.textContent.includes('지역별 배정')) && document.querySelector('.home-page__footer a[href=\"/area\"]')", 'home removes the comparison banner and preserves the area directory link')
   assertPage("!document.querySelector('.quick-filter-row') && !document.querySelector('[aria-label=\"주변 초등학교 지도\"]')", 'the home does not build the map')
   // The SDK is injected only when a map screen opens (ADR-008 section 5); the
   // home is where most first visits that are not detail pages land.
@@ -667,6 +673,7 @@ try {
   run(['open', new URL('/guide', baseUrl).toString()])
   await waitFor("document.querySelector('#guides-title') && document.querySelector('.app-gnb__item--active')?.getAttribute('href') === '/guide'", '/guide lists the guides with the guide tab active')
   assertPage("document.querySelector('.app-gnb__item--active')?.textContent.includes('입학 준비')", 'the tab is named for the hub it opens')
+  assertPage("!document.querySelector('.content-page a[href=\"/news\"]')", 'the admission guide no longer shows the data report banner')
   run(['eval', "window.__smokeNoReload = true; document.querySelector('a.content-list__item[href=\"/guide/school-notice\"]').click(); 'guide'"])
   await waitFor("location.pathname === '/guide/school-notice' && document.querySelector('#guide-title') && document.querySelector('.content-sources')", 'a guide opens with its sources')
   assertPage("document.title.includes('취학통지서') && document.querySelector('link[rel=canonical]')?.href.endsWith('/guide/school-notice')", 'the guide names itself in the title and canonical')
