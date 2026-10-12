@@ -25,6 +25,8 @@ OUTPUTS = ROOT / 'etl/runtime/llm_extraction/outputs_afterschool'
 AUDIT2 = ROOT / 'docs/research/audit2'
 WEEKDAYS = '월화수목금'
 COLUMNS = ['kind', 'name', 'variant', 'section', 'grades_raw', 'days', 'start', 'end', 'grade1', 'line']
+# spec v2 (2026-10-12): every row is kept, with false for rows grade 1 cannot take, and the table's term
+COLUMNS_V2 = ['kind', 'name', 'variant', 'section', 'grades_raw', 'days', 'start', 'end', 'grade1', 'term', 'line']
 ITEM_PAGE = 'https://www.schoolinfo.go.kr/ei/pp/Pneipp_b73_s0p.do'
 
 
@@ -102,7 +104,9 @@ def main() -> None:
             options, grade1_options, latest = set(), set(), defaultdict(str)
             flagged = 0
             for values in school.get('rows', []):
-                row = dict(zip(COLUMNS, values))
+                row = dict(zip(COLUMNS_V2 if len(values) == 11 else COLUMNS, values))
+                if row.get('grade1') == 'false':
+                    continue
                 option = (row['kind'], row['name'], row.get('variant'))
                 options.add(option)
                 if row.get('grade1') == 'true':
