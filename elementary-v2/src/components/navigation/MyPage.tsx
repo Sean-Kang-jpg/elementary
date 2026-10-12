@@ -1,9 +1,8 @@
 import { useEffect, useState } from 'react'
-import { BookOpenCheck, Building2, ChevronRight, GraduationCap, Map, Star, Trash2 } from 'lucide-react'
-import { GUIDES } from '../../content'
+import { Building2, ChevronRight, GraduationCap, Map, Star, Trash2 } from 'lucide-react'
 import { VIEW_PATHS } from '../../utils/urlState'
 import { birthYearOf, STAGE_LABELS, stageOf } from '../../utils/entryYear'
-import { readGuides, subscribeProfile, type Profile } from '../../utils/profile'
+import type { Profile } from '../../utils/profile'
 import { FavoriteRecord, readFavorites, removeFavorite, subscribeFavorites } from '../../utils/favorites'
 import EntryYearPicker from '../content/EntryYearPicker'
 import RoadmapCard from '../content/RoadmapCard'
@@ -34,13 +33,10 @@ export default function MyPage({ onNavigate, onOpenSaved, entryYear, onEntryYear
   const stage = entryYear ? stageOf(entryYear) : null
   const [editing, setEditing] = useState(false)
   const [saved, setSaved] = useState<FavoriteRecord[]>(readFavorites)
-  const [read, setRead] = useState<string[]>(readGuides)
   const [candidateTab, setCandidateTab] = useState<FavoriteRecord['kind']>('school')
   const [expandedId, setExpandedId] = useState<string | null>(null)
   const [message, setMessage] = useState('')
   useEffect(() => subscribeFavorites(() => setSaved(readFavorites())), [])
-  useEffect(() => subscribeProfile(() => setRead(readGuides())), [])
-  const readCount = GUIDES.filter((guide) => read.includes(guide.slug)).length
 
   const interestLabel = profile.interest.includes('private') ? '사립·국립 관심' : '공립'
   const movingLabel = profile.moving === 'planned' ? '이사 예정' : profile.moving === 'considering' ? '이사 검토 중' : null
@@ -50,6 +46,22 @@ export default function MyPage({ onNavigate, onOpenSaved, entryYear, onEntryYear
       <div className="content-page__inner">
         <h1 id="my-title">MY</h1>
         <p className="content-page__lead">관심 후보를 비교하고, 우리 아이의 하루를 계획해요.</p>
+        <section className="my-preparation" aria-labelledby="my-preparation-title">
+          <h2 id="my-preparation-title" className="my-preparation-title">입학 준비 설정</h2>
+          {entryYear && stage && !editing ? (
+            <div className="hub-profile">
+              <span className={`stage-chip stage-chip--${stage}`}>{STAGE_LABELS[stage].short}</span>
+              <p>
+                <b>{entryYear}년 입학</b> · {birthYearOf(entryYear)}년생 · {interestLabel}{movingLabel ? ` · ${movingLabel}` : ''}
+              </p>
+              <button type="button" onClick={() => setEditing(true)} className="hub-profile__edit">바꾸기</button>
+            </div>
+          ) : (
+            <div className="home-card">
+              <EntryYearPicker value={entryYear} onChange={(year) => { onEntryYearChange(year); setEditing(false) }} />
+            </div>
+          )}
+        </section>
         <ChecklistBanner onNavigate={onNavigate} />
         <MySchedule schools={saved.filter((item) => item.kind === 'school')} entryYear={entryYear} />
 
@@ -95,37 +107,10 @@ export default function MyPage({ onNavigate, onOpenSaved, entryYear, onEntryYear
           </ul>
         )}
         <p role="status" className="my-help">{message}</p>
-        <h2 className="my-preparation-title">입학 준비 설정</h2>
-
-        {entryYear && stage && !editing ? (
-          <div className="hub-profile">
-            <span className={`stage-chip stage-chip--${stage}`}>{STAGE_LABELS[stage].short}</span>
-            <p>
-              <b>{entryYear}년 입학</b> · {birthYearOf(entryYear)}년생 · {interestLabel}{movingLabel ? ` · ${movingLabel}` : ''}
-            </p>
-            <button type="button" onClick={() => setEditing(true)} className="hub-profile__edit">바꾸기</button>
-          </div>
-        ) : (
-          <div className="home-card">
-            <EntryYearPicker
-              value={entryYear}
-              onChange={(year) => { onEntryYearChange(year); setEditing(false) }}
-            />
-          </div>
-        )}
 
         {entryYear ? (
           <RoadmapCard entryYear={entryYear} profile={profile} onProfileChange={onProfileChange} onNavigate={onNavigate} source="my" />
         ) : null}
-
-        <a href={VIEW_PATHS.guide} onClick={(event) => followLink(event, VIEW_PATHS.guide, onNavigate)} className="content-list__item content-list__item--card my-guides">
-          <span className="home-link__icon home-link__icon--peach"><BookOpenCheck size={19} aria-hidden="true" /></span>
-          <span className="min-w-0 flex-1">
-            <strong>입학 준비 가이드</strong>
-            <small>{GUIDES.length}편 중 {readCount}편 읽음</small>
-          </span>
-          <ChevronRight size={18} aria-hidden="true" />
-        </a>
 
         <p className="my-note">
           이 화면의 내용은 이 기기의 브라우저에만 저장돼요. 다른 기기나 브라우저에서는 보이지 않아요.{' '}

@@ -26,6 +26,12 @@ try {
   run('set', 'viewport', '390', '844')
   run('open', new URL('/my', base).href)
   await wait("document.querySelector('#my-title')", 'MY opens')
+  await wait("document.querySelector('.my-preparation').nextElementSibling?.classList.contains('checklist-banner')", 'admission settings immediately precede checklist')
+  await wait("!document.querySelector('.my-guides') && document.querySelector('.app-gnb a[href=\"/guide\"]')", 'MY guide banner removed while guide GNB remains')
+  evalPage("document.querySelector('.hub-profile__edit')?.click(); true")
+  await wait("document.querySelector('.my-preparation .year-chip')", 'year picker opens in top settings')
+  evalPage("document.querySelector('.my-preparation .year-chip').click(); true")
+  await wait("document.querySelector('.my-preparation .hub-profile') && document.querySelector('.my-preparation').nextElementSibling?.classList.contains('checklist-banner')", 'saved-year summary stays above checklist')
   evalPage(`localStorage.removeItem('elementary-schedule-plans-v1'); localStorage.removeItem('favorite-school-ids');
     localStorage.setItem('elementary-favorites-v1', JSON.stringify([
       {kind:'school',id:'qa-school-a',name:'QA 후보 A',address:'테스트용',latitude:0,longitude:0},
