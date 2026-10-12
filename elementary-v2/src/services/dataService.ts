@@ -1,6 +1,6 @@
 import { supabase } from '../lib/supabase'
 import { UNLIMITED_APARTMENT_AGE } from '../types'
-import type { AcademyAddress, Apartment, ApartmentAcademySummary, CareCenter, Coordinates, FilterState, MapBounds, School, SchoolAfterschool, SchoolCareHours, SchoolCareStatistics, SchoolDayEstimate, SchoolDayEstimateWeekday, SearchResult } from '../types'
+import type { AcademyAddress, Apartment, ApartmentAcademySummary, ApartmentTransactionSummary, CareCenter, Coordinates, FilterState, MapBounds, School, SchoolAfterschool, SchoolCareHours, SchoolCareStatistics, SchoolDayEstimate, SchoolDayEstimateWeekday, SearchResult } from '../types'
 import { regionCenter, regionHasCityLevel, regionsIntersectingBounds } from '../constants/regionRegistry'
 import { getSchoolNeighborhoodLabel } from '../utils/clusterUtils'
 import { DEFAULT_CENTERS, generateCacheKey, getDisplayMode } from '../utils/mapUtils'
@@ -700,6 +700,38 @@ export const getApartmentByPublicKey = async (
     apartment: toApartment(rows[0]),
     schoolIds: [...new Set(rows.map((row) => String(row.school_id)).filter(Boolean))],
   }
+}
+
+/**
+ * 단지의 공개 실거래 집계 중 각 면적대의 최신 월 한 건만 돌려준다.
+ * 계약일 원문은 UI 계약에 포함하지 않는다.
+ */
+export const getApartmentTransactionSummaries = async (
+  publicKey: string,
+): Promise<ApartmentTransactionSummary[]> => {
+  if (!publicKey) return []
+  const { data, error } = await supabase
+    .from('apartment_transaction_monthly_serving')
+    .select('complex_public_key,deal_month,area_band,transaction_count,median_amount_10k_krw,source_as_of')
+    .eq('complex_public_key', publicKey.toUpperCase())
+    .order('deal_month', { ascending: false })
+    .limit(48)
+  if (error) throw error
+
+  const latestByBand = new Map<string, ApartmentTransactionSummary>()
+  for (const row of (data || []) as unknown as Array<Record<string, unknown>>) {
+    const areaBand = String(row.area_band) as ApartmentTransactionSummary['area_band']
+    if (latestByBand.has(areaBand)) continue
+    latestByBand.set(areaBand, {
+      complex_public_key: String(row.complex_public_key),
+      deal_month: String(row.deal_month),
+      area_band: areaBand,
+      transaction_count: numberValue(row.transaction_count),
+      median_amount_10k_krw: numberValue(row.median_amount_10k_krw),
+      source_as_of: String(row.source_as_of),
+    })
+  }
+  return [...latestByBand.values()]
 }
 
 const loadReportScatterRows = async (): Promise<ReportScatterRow[]> => {

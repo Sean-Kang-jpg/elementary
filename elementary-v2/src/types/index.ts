@@ -226,6 +226,16 @@ export interface ApartmentAcademySummary {
   updated_at?: string
 }
 
+// SQL 27 apartment_transaction_monthly_serving: 공개용 월별·면적대별 실거래 집계.
+export interface ApartmentTransactionSummary {
+  complex_public_key: string
+  deal_month: string
+  area_band: 'under_60' | '60_to_84_9999' | '85_to_101_9999' | '102_plus'
+  transaction_count: number
+  median_amount_10k_krw: number
+  source_as_of: string
+}
+
 // SQL 23 school_care_statistics: 학교알리미 apiType=59 (방과후학교·돌봄교실 공시).
 // 신청·대기 인원은 공시되지 않는다.
 export interface SchoolCareStatistics {

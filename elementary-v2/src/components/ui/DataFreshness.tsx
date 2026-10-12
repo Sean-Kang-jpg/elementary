@@ -5,12 +5,14 @@ import { getDataFreshness, type DataFreshness as Freshness } from '../../service
 const LABELS: Record<string, string> = {
   'schoolinfo-grade-students': '학생 수',
   'kapt-basic': '아파트 정보',
+  'molit-apartment-trade': '실거래가',
 }
 
 /** Who publishes each source, credited only where that source is shown. */
 const PUBLISHERS: Record<string, string> = {
   'schoolinfo-grade-students': '학교알리미',
   'kapt-basic': '공동주택관리정보시스템',
+  'molit-apartment-trade': '국토교통부',
 }
 
 const formatDate = (value: string) => value.replace(/-/g, '.')
