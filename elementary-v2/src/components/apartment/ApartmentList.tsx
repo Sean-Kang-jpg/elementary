@@ -14,6 +14,17 @@ interface ApartmentListProps {
 
 type SortField = 'name' | 'parking' | 'year' | 'households'
 
+const SORT_OPTIONS = [
+  { field: 'households', order: 'desc', label: '세대수 많은순' },
+  { field: 'households', order: 'asc', label: '세대수 적은순' },
+  { field: 'name', order: 'asc', label: '이름 가나다순' },
+  { field: 'name', order: 'desc', label: '이름 역순' },
+  { field: 'parking', order: 'desc', label: '주차 많은순' },
+  { field: 'parking', order: 'asc', label: '주차 적은순' },
+  { field: 'year', order: 'desc', label: '준공연도 최신순' },
+  { field: 'year', order: 'asc', label: '준공연도 오래된순' },
+] as const
+
 const ApartmentList: React.FC<ApartmentListProps> = ({
   apartments,
   loading = false,
@@ -39,14 +50,6 @@ const ApartmentList: React.FC<ApartmentListProps> = ({
     return sortOrder === 'asc' ? result : -result
   }), [apartments, sortBy, sortOrder])
 
-  const handleSort = (field: SortField) => {
-    if (sortBy === field) setSortOrder((order) => order === 'asc' ? 'desc' : 'asc')
-    else {
-      setSortBy(field)
-      setSortOrder(field === 'name' ? 'asc' : 'desc')
-    }
-  }
-
   if (loading) {
     return (
       <div className="flex items-center justify-center py-12 text-sm text-gray-600">
@@ -70,29 +73,21 @@ const ApartmentList: React.FC<ApartmentListProps> = ({
 
   return (
     <div className="flex h-full flex-col">
-      <div className="border-b border-gray-200 px-4 py-3">
-        <div className="mb-3 flex items-center justify-between">
-          <h3 className="font-semibold text-gray-950">배정 아파트</h3>
-          <span className="text-sm font-medium text-blue-700">{apartments.length}개 단지</span>
-        </div>
-        <div className="flex gap-1 overflow-x-auto" aria-label="단지 정렬">
-          {([
-            ['households', '세대수'],
-            ['name', '이름'],
-            ['parking', '주차'],
-            ['year', '준공연도'],
-          ] as const).map(([field, label]) => (
-            <button
-              key={field}
-              type="button"
-              onClick={() => handleSort(field)}
-              className={`flex-none rounded-md border px-3 py-1.5 text-xs font-medium ${sortBy === field ? 'border-blue-300 bg-blue-50 text-blue-800' : 'border-gray-200 text-gray-600 hover:bg-gray-50'}`}
-              aria-pressed={sortBy === field}
-            >
-              {label}{sortBy === field ? (sortOrder === 'asc' ? ' ↑' : ' ↓') : ''}
-            </button>
-          ))}
-        </div>
+      <div className="flex items-center justify-between gap-2 border-b border-gray-200 px-4 py-3" data-testid="apartment-list-header">
+        <h3 className="flex items-baseline gap-1 whitespace-nowrap font-semibold text-gray-950">
+          배정 아파트 <span className="text-xs font-medium text-blue-700">{apartments.length}개 단지</span>
+        </h3>
+        <select
+          aria-label="단지 정렬"
+          value={`${sortBy}:${sortOrder}`}
+          onChange={(event) => {
+            const selected = SORT_OPTIONS.find(({ field, order }) => `${field}:${order}` === event.target.value)
+            if (selected) { setSortBy(selected.field); setSortOrder(selected.order) }
+          }}
+          className="min-h-11 w-36 min-w-0 shrink-0 rounded-md border border-blue-300 bg-blue-50 px-2 text-xs font-medium text-blue-800"
+        >
+          {SORT_OPTIONS.map(({ field, order, label }) => <option key={`${field}:${order}`} value={`${field}:${order}`}>{label}</option>)}
+        </select>
       </div>
 
       <div className="flex-1 overflow-auto px-4">
