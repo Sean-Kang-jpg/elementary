@@ -971,7 +971,7 @@ const devSchoolDayFixture = async (schoolId: string): Promise<{ day: SchoolDayEs
  * Either part may be missing; a database without SQL 26 yields both null, so the card
  * simply does not render — the same graceful path as the care tables before SQL 23.
  */
-export const getSchoolDayEstimate = async (schoolId: string): Promise<{ day: SchoolDayEstimate | null; care: SchoolCareHours | null }> => {
+export const getSchoolDayEstimate = async (schoolId: string, options: { allowDevFixture?: boolean } = {}): Promise<{ day: SchoolDayEstimate | null; care: SchoolCareHours | null }> => {
   const [day, care] = await Promise.all([
     supabase
       .from('school_day_estimates')
@@ -987,7 +987,7 @@ export const getSchoolDayEstimate = async (schoolId: string): Promise<{ day: Sch
   for (const result of [day, care]) {
     if (result.error && !CARE_NOT_DEPLOYED.has(result.error.code)) throw result.error
   }
-  if ((import.meta as ViteMeta).env.DEV && day.error && care.error) return devSchoolDayFixture(schoolId)
+  if (options.allowDevFixture !== false && (import.meta as ViteMeta).env.DEV && day.error && care.error) return devSchoolDayFixture(schoolId)
   const dayRow = day.error ? null : (day.data as (Omit<SchoolDayEstimate, 'weekdays'> & { school_day_estimate_weekdays: SchoolDayEstimateWeekday[] }) | null)
   let dayEstimate: SchoolDayEstimate | null = null
   if (dayRow) {

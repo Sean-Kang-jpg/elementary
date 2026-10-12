@@ -184,9 +184,13 @@ const SchoolDetail: React.FC<SchoolDetailProps> = ({ school, isOpen, onClose, on
   }
 
   const toggleFavorite = () => {
+    try {
     const saved = toggleSavedFavorite(schoolFavorite(school))
     if (saved) track('save_candidate', { item_type: 'school', item_id: school.school_id })
     setIsFavorite(saved)
+    } catch (error) {
+      window.alert(error instanceof Error ? error.message : '저장하지 못했어요. 브라우저 저장 설정을 확인해 주세요.')
+    }
   }
 
   if (currentView === 'apartment-detail' && assignsByZone && hasSchoolInformation) {

@@ -3,6 +3,7 @@ import type { Apartment, School } from '../types'
 const FAVORITES_KEY = 'elementary-favorites-v1'
 const LEGACY_SCHOOLS_KEY = 'favorite-school-ids'
 const FAVORITES_EVENT = 'elementary-favorites-change'
+export const FAVORITE_LIMIT = 3
 
 export type FavoriteRecord =
   | { kind: 'school'; id: string; name: string; address: string; latitude: number; longitude: number }
@@ -62,31 +63,45 @@ export const apartmentFavorite = (apartment: Apartment): FavoriteRecord => ({
   publicKey: apartment.public_key || undefined,
 })
 
-export const isFavorite = (kind: FavoriteRecord['kind'], id: string) => (
-  readFavorites().some((item) => item.kind === kind && item.id === id)
+const sameFavorite = (a: FavoriteRecord, b: FavoriteRecord) => a.kind === b.kind
+  && (a.kind === 'apartment' && b.kind === 'apartment' && a.publicKey && b.publicKey
+    ? a.publicKey === b.publicKey : a.id === b.id)
+
+export const isFavorite = (kind: FavoriteRecord['kind'], id: string, publicKey?: string) => (
+  readFavorites().some((item) => item.kind === kind
+    && (item.kind === 'apartment' && publicKey && item.publicKey ? item.publicKey === publicKey : item.id === id))
 )
 
 export const toggleFavorite = (record: FavoriteRecord) => {
   const favorites = readFavorites()
-  const exists = favorites.some((item) => item.kind === record.kind && item.id === record.id)
+  const exists = favorites.some((item) => sameFavorite(item, record))
+  if (!exists && favorites.filter((item) => item.kind === record.kind).length >= FAVORITE_LIMIT) {
+    throw new Error(`${record.kind === 'school' ? '학교' : '아파트'}는 최대 3곳까지 저장할 수 있어요. 기존 후보를 삭제한 후 다시 저장해 주세요.`)
+  }
   const next = exists
-    ? favorites.filter((item) => item.kind !== record.kind || item.id !== record.id)
+    ? favorites.filter((item) => !sameFavorite(item, record))
     : [record, ...favorites]
   writeFavorites(next)
   return !exists
 }
 
+/** Idempotent add: an apartment's assigned school must never toggle off a saved school. */
+export const saveFavorite = (record: FavoriteRecord) => {
+  if (readFavorites().some((item) => sameFavorite(item, record))) return
+  toggleFavorite(record)
+}
+
 /** 이미 저장된 항목을 새 값으로 바꾼다. 옛 기록에 없던 필드를 채울 때 쓴다. */
 export const refreshFavorite = (record: FavoriteRecord) => {
   const favorites = readFavorites()
-  const at = favorites.findIndex((item) => item.kind === record.kind && item.id === record.id)
+  const at = favorites.findIndex((item) => sameFavorite(item, record))
   if (at === -1 || JSON.stringify(favorites[at]) === JSON.stringify(record)) return
   favorites[at] = record
   writeFavorites(favorites)
 }
 
 export const removeFavorite = (record: FavoriteRecord) => {
-  writeFavorites(readFavorites().filter((item) => item.kind !== record.kind || item.id !== record.id))
+  writeFavorites(readFavorites().filter((item) => !sameFavorite(item, record)))
 }
 
 export const subscribeFavorites = (listener: () => void) => {

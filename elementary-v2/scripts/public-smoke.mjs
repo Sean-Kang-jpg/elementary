@@ -637,6 +637,7 @@ try {
     "location.pathname === '/my' && document.querySelector('#my-title') && document.querySelector('.app-gnb__item--active')?.getAttribute('href') === '/my'",
     'the old /favorites address opens MY at /my with the MY tab active',
   )
+  run(['eval', "[...document.querySelectorAll('[aria-label=\"관심 후보 유형\"] button')].find(b => b.textContent.startsWith('아파트')).click(); 'apartment candidates'"])
   await waitFor("document.querySelectorAll('.my-saved li').length === 1", 'MY lists the apartment saved from its detail')
   run(['eval', "document.querySelector('.my-saved__open').click(); 'open saved'"])
   await waitFor(

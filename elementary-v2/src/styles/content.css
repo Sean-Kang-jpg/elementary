@@ -1082,6 +1082,48 @@
 
 /* ---- MY ------------------------------------------------------------------ */
 
+.my-card { margin: 20px 0; padding: 18px; border: 1px solid var(--warm-border); border-radius: 18px; background: var(--warm-surface); }
+.my-card h2 { margin: 0 0 10px; font-size: 20px; }
+.my-active-plan { padding: 10px 12px; border-radius: 10px; background: var(--warm-bg); font-weight: 700; }
+.my-help { margin: 10px 0; color: var(--warm-muted); font-size: 13px; line-height: 1.65; }
+.my-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: 12px 0; }
+.my-button { min-height: 44px; padding: 9px 12px; border: 1px solid var(--warm-border-strong); border-radius: 10px; background: var(--warm-surface); color: var(--warm-text); font-size: 13px; cursor: pointer; }
+.my-button--primary { background: var(--warm-accent-strong); color: white; border-color: transparent; }
+.my-button:disabled { opacity: .55; cursor: wait; }
+.my-field { display: flex; flex-direction: column; gap: 6px; margin: 12px 0; font-size: 13px; }
+.my-field input, .my-field select { width: 100%; min-width: 0; min-height: 44px; padding: 9px; color: var(--warm-text); background: var(--warm-surface); border: 1px solid var(--warm-border-strong); border-radius: 8px; }
+.my-time-fields { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.my-plan-badge { border-radius: 20px; padding: 6px 10px; background: var(--warm-bg); font-size: 13px; font-weight: 700; }
+.my-week { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 6px; margin: 16px 0; }
+.my-week__day { min-width: 0; padding: 8px; border-radius: 10px; border: 1px solid var(--warm-border); }
+.my-week__day h3 { margin: 0 0 8px; font-size: 14px; }
+.my-week__day p { padding: 7px 0; margin: 0; border-top: 1px solid var(--warm-border); overflow-wrap: anywhere; font-size: 13px; }
+.my-week small, .my-entry small { display: block; color: var(--warm-muted); font-size: 11px; }
+.my-week__candidate { opacity: .7; border-left: 2px dashed var(--warm-border-strong); padding-left: 6px !important; }
+.my-warning { color: #a14712 !important; font-size: 12px; }
+.my-entry-form, .my-entry-list { margin: 14px 0; }
+.my-entry-form summary, .my-entry-list summary { min-height: 44px; padding: 10px 0; cursor: pointer; font-weight: 600; font-size: 14px; }
+.my-entry-form fieldset { border: 0; padding: 0; font-size: 13px; }
+.my-entry-form input[type=checkbox] { accent-color: var(--warm-accent-strong); }
+.my-entry { padding: 12px 0; border-bottom: 1px solid var(--warm-border); }
+.my-entry small { margin: 4px 0; overflow-wrap: anywhere; }
+.my-candidate-tabs { display: flex; gap: 8px; margin: 12px 0; }
+.my-candidate-tabs button { flex: 1; min-height: 44px; border: 1px solid var(--warm-border); border-radius: 10px; color: var(--warm-muted); background: var(--warm-surface); font-weight: 600; }
+.my-candidate-tabs button[aria-pressed=true] { color: var(--warm-accent-strong); border-color: var(--warm-accent-strong); background: var(--warm-bg); }
+.my-saved.my-candidates li { display: block; }
+.my-candidate-head { display: flex; }
+.my-candidate-toggle { display: block; width: 100%; min-height: 44px; padding: 10px 14px; border: 0; border-top: 1px solid var(--warm-border); color: var(--warm-muted); background: transparent; font-size: 13px; text-align: left; }
+.my-candidate-info { padding: 0 14px 14px; font-size: 14px; }
+.my-candidate-info h3 { margin: 14px 0 8px; font-size: 15px; }
+.my-preparation-title { margin-top: 28px; font-size: 18px; }
+@media (max-width: 560px) {
+  .my-week { grid-template-columns: 1fr; }
+  .my-week__day { display: grid; grid-template-columns: 30px 1fr; gap: 4px 8px; }
+  .my-week__day h3 { grid-row: 1; align-self: start; }
+  .my-week__day p, .my-week__day > small { grid-column: 2; }
+  .my-card { padding: 14px; }
+}
+
 .my-saved {
   margin: 10px 0 0;
   padding: 0;
