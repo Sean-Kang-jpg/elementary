@@ -547,7 +547,7 @@ try {
 
   // The start module (PRD v2 W4) is where a parent who searched the school on
   // their notice is handed to the guides, and back has to return them to it.
-  assertPage("document.querySelectorAll('.start-module a[href^=\"/guide/\"]').length >= 4", 'the school detail offers the start module with guides for both stages')
+  assertPage("document.querySelectorAll('.start-module__group').length === 2 && [...document.querySelectorAll('.start-module__group')].every(group => group.querySelectorAll('a').length === 1) && !!document.querySelector('.start-module a[href=\"/guide/school-notice\"]') && !!document.querySelector('.start-module a[href=\"/guide/when-to-move\"]')", 'without an entry year the school detail offers only the first guide for each stage')
   run(['eval', "document.querySelector('.start-module a[href^=\"/guide/\"]').click(); 'start module'"])
   await waitFor("location.pathname.startsWith('/guide/') && document.querySelector('#guide-title')", 'the start module opened a guide')
   run(['eval', 'history.back(); "back"'])

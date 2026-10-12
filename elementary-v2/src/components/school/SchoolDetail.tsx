@@ -28,6 +28,7 @@ import DetailTabs from '../ui/DetailTabs'
 
 interface SchoolDetailProps {
   school: School | null
+  entryYear: number | null
   isOpen: boolean
   onClose: () => void
   /**
@@ -39,7 +40,7 @@ interface SchoolDetailProps {
 
 type SchoolMetric = 'students' | 'classes' | 'perClass'
 
-const SchoolDetail: React.FC<SchoolDetailProps> = ({ school, isOpen, onClose, onOpenGuide }) => {
+const SchoolDetail: React.FC<SchoolDetailProps> = ({ school, entryYear, isOpen, onClose, onOpenGuide }) => {
   const { state, dispatch } = useAppContext()
   const apartments = useMemo(
     () => [...state.apartments].sort((a, b) => b.households - a.households || a.name.localeCompare(b.name, 'ko')),
@@ -339,7 +340,7 @@ const SchoolDetail: React.FC<SchoolDetailProps> = ({ school, isOpen, onClose, on
             </div>
           </section>
 
-          <StartModule school={school} onOpenGuide={onOpenGuide} />
+          <StartModule school={school} entryYear={entryYear} onOpenGuide={onOpenGuide} />
           <SocialLinks targetType="school" targetKey={school.school_id} compact />
 
           <button type="button" onClick={() => setCurrentView('care')} className="w-full rounded-md border border-rose-200 bg-rose-50 px-3 py-3 text-left text-sm font-semibold text-rose-900">초1 하루·방과후·돌봄 보기 <ChevronRight size={15} className="inline" aria-hidden="true" /></button>

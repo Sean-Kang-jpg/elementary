@@ -509,6 +509,7 @@ function MapApplication() {
       {/* 학교 상세 정보 바텀시트 */}
       <SchoolDetail
         school={state.selectedSchool}
+        entryYear={entryYear}
         isOpen={view === 'map' && !!state.selectedSchool}
         onClose={handleCloseSchoolDetail}
         onOpenGuide={(path) => navigate(path, 'detail')}
