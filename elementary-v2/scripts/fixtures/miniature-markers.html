@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>미니어처 마커 QA 표본</title></head>
+<body><main id="marker-fixtures"></main>
+<script type="module">
+  // Development-only design/shape fixtures; NOT official school/facility data.
+  import { SCHOOL_MARKER_ART, apartmentMarkerArt, CARE_MARKER_ART, ACTIVITY_MARKER_ART } from '/src/utils/mapMarkerArt.ts'
+  import '/src/index.css'
+  const root=document.getElementById('marker-fixtures')
+  document.body.style.cssText='height:auto;overflow:visible;display:block;background:#f6f7f3;padding:20px;color:#354439'
+  root.innerHTML=`<h1 style="font-size:16px;font-weight:600;margin-bottom:18px">개발 전용 디자인 QA 표본</h1>
+    <div style="display:flex;flex-wrap:wrap;gap:28px 20px;align-items:center;max-width:460px">
+      <div class="school-map-marker"><span>${SCHOOL_MARKER_ART}</span><span class="school-map-marker__text"><span class="school-map-marker__name">QA 학교</span><span class="school-map-marker__count">45명</span></span></div>
+      <div class="school-map-marker school-map-marker--selected">${SCHOOL_MARKER_ART}<span class="school-map-marker__text"><span class="school-map-marker__name">QA 선택 학교</span><span class="school-map-marker__count">99명</span></span></div>
+      <div class="school-cluster-marker school-cluster-marker--district">${SCHOOL_MARKER_ART}<strong>QA 지역</strong><span>35개교</span></div>
+      <div class="apartment-map-marker apartment-map-marker--xlarge"><span class="apartment-map-marker__label">${apartmentMarkerArt('new')}<strong>4,424</strong><small>세대</small></span></div>
+      <div class="apartment-map-marker apartment-map-marker--large apartment-map-marker--selected"><span class="apartment-map-marker__label">${apartmentMarkerArt('mid')}<strong>942</strong><small>세대</small></span></div>
+      <div class="apartment-map-marker apartment-map-marker--dot"><span class="apartment-map-marker__dot">${apartmentMarkerArt('old')}</span></div>
+      <div class="care-map-marker">${CARE_MARKER_ART}<strong>돌봄</strong></div>
+      <div class="academy-map-marker academy-map-marker--core" style="--academy-color:#7c3aed">${ACTIVITY_MARKER_ART}<strong>영</strong></div>
+      <div class="academy-map-marker academy-map-marker--extended" style="--academy-color:#7c3aed">${ACTIVITY_MARKER_ART}<strong>영</strong></div>
+    </div>`
+</script></body></html>

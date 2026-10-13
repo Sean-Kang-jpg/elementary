@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react'
 import type { RegionData } from '../../services/dataService'
+import { SCHOOL_MARKER_ART } from '../../utils/mapMarkerArt'
 
 interface RegionMarkerProps {
   region: RegionData
@@ -28,6 +29,7 @@ const RegionMarker: React.FC<RegionMarkerProps> = ({ region, map, onClick }) => 
     const label = escapeHtml(region.region_name || region.region)
     const schools = region.total_schools.toLocaleString('ko-KR')
     const content = `<div class="school-cluster-marker school-cluster-marker--region">
+        ${SCHOOL_MARKER_ART}
         <strong>${label}</strong>
         <span>${schools}개교</span>
       </div>`

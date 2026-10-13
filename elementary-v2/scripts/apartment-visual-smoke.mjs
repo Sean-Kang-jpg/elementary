@@ -33,6 +33,7 @@ try {
         return svg.dataset.apartmentEra===era && svg.querySelectorAll('[data-building-silhouette]').length===count(Number(item.dataset.fixtureHouseholds));
       });
     })()`, 'all age colours and original density tiers remain meaningful')
+    await wait("[...document.querySelectorAll('[data-fixture-age] svg')].every(svg=>svg.dataset.apartmentStyle==='miniature' && svg.querySelector('[data-scene-garden]') && svg.querySelector('[data-scene-plants]'))", 'all icons use filled miniature buildings, a garden and plants')
     await wait(`(() => {
       const geometries=[5,15,33,'null'].map(age=>[...document.querySelectorAll('[data-fixture-age="'+age+'"] [data-building-silhouette] > rect:first-child')].map(rect=>['x','y','width','height','rx'].map(key=>rect.getAttribute(key)).join(',')).join(';'));
       return new Set(geometries).size===1 && document.documentElement.scrollWidth<=innerWidth;
@@ -42,6 +43,7 @@ try {
   }
   open('/apt/서울-강남구-은마--7A2EMR5J')
   await wait("document.querySelector('.apartment-card svg[data-apartment-era=old][data-apartment-scale=\"4\"]') && document.querySelector('[data-testid=apartment-age-badge]')?.textContent.includes('년차')", 'real Eunma detail shows four density silhouettes and a known-age badge')
+  await wait("document.querySelector('.apartment-card svg[data-apartment-style=miniature] [data-scene-plants]')", 'real card uses the visibly different miniature scene')
   await wait("document.querySelector('.apartment-card b').textContent==='4,424세대' && document.querySelector('.apartment-card').textContent.includes('28개 동') && document.querySelector('.apartment-card').textContent.includes('1979년')", 'actual households, physical building count and approval year stay unchanged')
   evaluate("document.querySelector('.apartment-card').scrollIntoView({block:'start'}); true")
   if (process.argv[4]) run('screenshot', process.argv[4])

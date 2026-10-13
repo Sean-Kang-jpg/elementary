@@ -9,6 +9,7 @@ import {
   type AcademyCategoryKey,
 } from '../../utils/academyCategories'
 import { useAppContext } from '../../contexts/AppContext'
+import { ACTIVITY_MARKER_ART } from '../../utils/mapMarkerArt'
 
 interface AcademyMarkerManagerProps {
   map: NaverMap
@@ -46,6 +47,7 @@ const markerContent = (academy: AcademyAddress, selectedCategory: AcademyCategor
     : ''
   return `
     <div class="academy-map-marker academy-map-marker--${academy.distance_band} academy-map-marker--${markerSize(academy.institution_count)}" style="--academy-color:${category.color};--academy-soft:${category.softColor}" title="${escapeHtml(category.label)} · ${bandLabel(academy.distance_band)} · ${academy.straight_distance_m.toLocaleString('ko-KR')}m">
+      ${ACTIVITY_MARKER_ART}
       <strong aria-hidden="true">${category.shortLabel}</strong>${countBadge}
     </div>
   `

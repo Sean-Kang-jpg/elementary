@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { HeartHandshake, X } from 'lucide-react'
 import type { CareCenter } from '../../types'
 import { useAppContext } from '../../contexts/AppContext'
+import { CARE_MARKER_ART } from '../../utils/mapMarkerArt'
 
 interface CareCenterMarkerManagerProps {
   map: NaverMap
@@ -25,8 +26,8 @@ export default function CareCenterMarkerManager({ map, centers, onClose }: CareC
         map,
         title: center.name,
         icon: {
-          content: '<div class="care-map-marker" aria-hidden="true">돌봄</div>',
-          anchor: new maps.Point(15, 15),
+          content: `<div class="care-map-marker" aria-hidden="true">${CARE_MARKER_ART}<strong>돌봄</strong></div>`,
+          anchor: new maps.Point(29, 17),
         },
         zIndex: 540,
       })

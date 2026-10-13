@@ -445,17 +445,28 @@ body {
   align-items: center;
   justify-content: center;
   border: 2px solid #fff;
-  border-radius: 10px 10px 10px 3px;
-  box-shadow: 0 2px 7px rgb(15 23 42 / 24%);
+  border-radius: 12px;
+  box-shadow: 0 2px 5px rgb(80 65 45 / 16%);
   color: #fff;
   background: var(--academy-color, #2563eb);
   font-size: 11px;
   font-weight: 750;
-  transform: rotate(-45deg);
+  flex-direction: column;
+  gap: 1px;
 }
 
 .academy-map-marker > strong {
-  transform: rotate(45deg);
+  font-size: 10px;
+  line-height: 1;
+}
+
+.academy-map-marker .map-marker-art,
+.academy-map-marker .map-marker-art svg {
+  width: 12px;
+  height: 12px;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
 }
 
 /* Colour is the category, so the band is carried by fill and outline:
@@ -492,7 +503,7 @@ body {
   font-size: 10px;
   line-height: 15px;
   text-align: center;
-  transform: rotate(45deg);
+  border-radius: 8px;
 }
 
 .academy-map-cluster {
@@ -776,16 +787,17 @@ body {
 
 .care-map-marker {
   display: flex;
-  width: 30px;
-  height: 30px;
+  width: 58px;
+  height: 34px;
   align-items: center;
   justify-content: center;
-  border: 2px solid #fff;
-  border-radius: 9999px;
-  box-shadow: 0 2px 7px rgb(15 23 42 / 24%);
-  color: #fff;
-  background: #be123c;
-  font-size: 10px;
+  gap: 3px;
+  border: 1.5px solid #cba59b;
+  border-radius: 14px;
+  box-shadow: 0 2px 5px rgb(80 65 45 / 16%);
+  color: #795349;
+  background: #fff8f3;
+  font-size: 11px;
   font-weight: 750;
 }
 
@@ -881,26 +893,42 @@ body {
   box-shadow: 0 1px 4px rgba(31, 41, 55, 0.22);
 }
 
-/* Map labels follow the compact white-marker language used by the v1 map. */
+/* Tiny miniature symbols + soft badges; number/unit meanings stay unchanged. */
+.map-marker-art {
+  display: inline-flex;
+  width: 24px;
+  height: 24px;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9px;
+  background: #fffcf6;
+  pointer-events: none;
+}
+
+.map-marker-art svg { display: block; flex: none; }
+
 .school-map-marker {
   display: flex;
   min-width: 72px;
   max-width: 180px;
   cursor: pointer;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  gap: 3px;
-  padding: 6px 10px;
-  border: 1px solid rgba(218, 220, 224, 0.95);
-  border-radius: 6px;
-  background: #fff;
-  box-shadow: 0 2px 6px rgba(32, 33, 36, 0.18);
+  gap: 5px;
+  padding: 6px 9px;
+  border: 1px solid #bbcbd8;
+  border-radius: 15px;
+  background: #fffdf8;
+  box-shadow: 0 2px 5px rgba(80, 65, 45, 0.16);
   color: #202124;
   font-family: 'Noto Sans KR', 'Malgun Gothic', system-ui, sans-serif;
   text-align: center;
   white-space: nowrap;
   transition: border-color 120ms ease, box-shadow 120ms ease, transform 120ms ease;
 }
+
+.school-map-marker__text { display: flex; min-width: 0; flex-direction: column; align-items: center; gap: 3px; }
 
 .school-map-marker:hover {
   z-index: 2;
@@ -919,9 +947,9 @@ body {
 }
 
 .school-map-marker--selected {
-  border: 2px solid #174ea6;
-  background: #1a73e8;
-  box-shadow: 0 5px 12px rgba(26, 115, 232, 0.38);
+  border: 2px solid #355b7c;
+  background: #4c7397;
+  box-shadow: 0 3px 8px rgba(53, 91, 124, 0.28);
   transform: translateY(-2px);
 }
 
@@ -930,15 +958,15 @@ body {
 }
 
 .school-map-marker--selected .school-map-marker__count {
-  background: rgba(255, 255, 255, 0.92);
-  color: #174ea6;
+  background: #fff8eb;
+  color: #355b7c;
 }
 
 .school-map-marker__name {
   display: block;
   max-width: 160px;
   overflow: hidden;
-  color: #1a73e8;
+  color: #355b7c;
   font-size: 12px;
   font-weight: 700;
   line-height: 1.25;
@@ -949,7 +977,7 @@ body {
   display: inline-block;
   padding: 2px 7px;
   border-radius: 10px;
-  background: #f1f3f4;
+  background: #edf2f6;
   color: #202124;
   font-size: 11px;
   font-weight: 600;
@@ -998,27 +1026,27 @@ button.apartment-card:hover {
 }
 
 .apartment-map-marker--dot {
-  --marker-width: 24px;
-  --marker-height: 24px;
+  --marker-width: 28px;
+  --marker-height: 28px;
 }
 
 .apartment-map-marker--small {
-  --marker-width: 64px;
+  --marker-width: 76px;
   --marker-height: 32px;
 }
 
 .apartment-map-marker--medium {
-  --marker-width: 72px;
+  --marker-width: 84px;
   --marker-height: 34px;
 }
 
 .apartment-map-marker--large {
-  --marker-width: 82px;
+  --marker-width: 94px;
   --marker-height: 36px;
 }
 
 .apartment-map-marker--xlarge {
-  --marker-width: 94px;
+  --marker-width: 106px;
   --marker-height: 40px;
 }
 
@@ -1035,13 +1063,24 @@ button.apartment-card:hover {
   align-items: center;
   justify-content: center;
   gap: 2px;
-  border: 1px solid #99d5cd;
-  border-radius: 6px;
-  background: rgba(255, 255, 255, 0.97);
-  color: #115e59;
-  box-shadow: 0 2px 5px rgba(32, 33, 36, 0.2);
+  padding: 0 6px 0 19px;
+  border: 1px solid #abc5b6;
+  border-radius: 14px;
+  background: #fffdf8;
+  color: #355e51;
+  box-shadow: 0 2px 5px rgba(80, 65, 45, 0.16);
   white-space: nowrap;
   transition: background 120ms ease, border-color 120ms ease, box-shadow 120ms ease, color 120ms ease;
+}
+
+.apartment-map-marker__label > .map-marker-art {
+  position: absolute;
+  z-index: 2;
+  top: -6px;
+  left: -6px;
+  border: 1px solid #d4ded3;
+  border-radius: 10px;
+  box-shadow: 0 1px 3px rgba(80, 65, 45, 0.12);
 }
 
 .apartment-map-marker__label::after {
@@ -1050,8 +1089,9 @@ button.apartment-card:hover {
   left: 50%;
   width: 9px;
   height: 9px;
-  border-right: 1px solid #99d5cd;
-  border-bottom: 1px solid #99d5cd;
+  border-right: 1px solid #abc5b6;
+  border-bottom: 1px solid #abc5b6;
+  border-radius: 0 0 3px 0;
   background: inherit;
   content: '';
   transform: translateX(-50%) rotate(45deg);
@@ -1061,15 +1101,15 @@ button.apartment-card:hover {
   position: relative;
   z-index: 1;
   font-size: 13px;
-  font-weight: 800;
+  font-weight: 700;
   line-height: 1;
 }
 
 .apartment-map-marker__label small {
   position: relative;
   z-index: 1;
-  color: #4b6f69;
-  font-size: 9px;
+  color: #536e61;
+  font-size: 10px;
   font-weight: 700;
   line-height: 1;
 }
@@ -1080,14 +1120,14 @@ button.apartment-card:hover {
 }
 
 .apartment-map-marker--selected .apartment-map-marker__label {
-  border-color: #064e3b;
-  background: #0f766e;
+  border: 2px solid #2e5849;
+  background: #427b69;
   color: #fff;
-  box-shadow: 0 4px 9px rgba(6, 78, 59, 0.35);
+  box-shadow: 0 3px 8px rgba(46, 88, 73, 0.28);
 }
 
 .apartment-map-marker--selected .apartment-map-marker__label::after {
-  border-color: #064e3b;
+  border-color: #2e5849;
 }
 
 .apartment-map-marker--selected .apartment-map-marker__label small {
@@ -1095,19 +1135,22 @@ button.apartment-card:hover {
 }
 
 .apartment-map-marker__dot {
-  width: 8px;
-  height: 8px;
-  border: 1px solid #fff;
-  border-radius: 50%;
-  background: #0f766e;
-  box-shadow: 0 1px 3px rgba(6, 78, 59, 0.5);
+  display: inline-flex;
+  width: 24px;
+  height: 24px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #abc5b6;
+  border-radius: 10px;
+  background: #fffdf8;
+  box-shadow: 0 1px 3px rgba(80, 65, 45, 0.18);
 }
+
+.apartment-map-marker__dot .map-marker-art { width: 20px; height: 20px; background: transparent; }
 
 .apartment-map-marker--dot:hover .apartment-map-marker__dot,
 .apartment-map-marker--dot.apartment-map-marker--selected .apartment-map-marker__dot {
-  width: 12px;
-  height: 12px;
-  outline: 2px solid rgba(15, 118, 110, 0.24);
+  outline: 2px solid #427b69;
 }
 
 .apartment-map-marker--small .apartment-map-marker__label strong {
@@ -1119,17 +1162,16 @@ button.apartment-card:hover {
 }
 
 .apartment-map-marker--large:not(.apartment-map-marker--selected) .apartment-map-marker__label {
-  border-width: 1.5px;
-  background: rgba(240, 253, 250, 0.98);
+  border-width: 1px;
+  background: #f3f8f1;
 }
 
 .apartment-map-marker--large .apartment-map-marker__label strong {
   font-size: 14px;
 }
 
-.apartment-map-marker--xlarge .apartment-map-marker__label {
-  border-width: 2px;
-  border-color: #0f766e;
+.apartment-map-marker--xlarge:not(.apartment-map-marker--selected) .apartment-map-marker__label {
+  border-color: #7ea18e;
 }
 
 .apartment-map-marker--xlarge .apartment-map-marker__label strong {
@@ -1144,12 +1186,12 @@ button.apartment-card:hover {
   display: inline-flex;
   cursor: pointer;
   align-items: center;
-  gap: 7px;
-  padding: 6px 10px;
-  border: 1px solid #e0e0e0;
+  gap: 5px;
+  padding: 5px 9px;
+  border: 1px solid #c8d3da;
   border-radius: 16px;
-  background: #fff;
-  box-shadow: 0 2px 6px rgba(32, 33, 36, 0.17);
+  background: #fffdf8;
+  box-shadow: 0 2px 5px rgba(80, 65, 45, 0.16);
   color: #202124;
   font-family: 'Noto Sans KR', 'Malgun Gothic', system-ui, sans-serif;
   font-size: 12px;
@@ -1164,15 +1206,15 @@ button.apartment-card:hover {
 }
 
 .school-cluster-marker strong {
-  color: #1a73e8;
+  color: #355b7c;
   font-weight: 700;
 }
 
 /* Province and metropolitan-city marker, shown when zoomed out past districts. */
 .school-cluster-marker--region {
-  padding: 7px 13px;
+  padding: 6px 10px;
   border-color: #c9d6ea;
-  background: #f8faff;
+  background: #f4f7f8;
 }
 
 .school-cluster-marker--region strong {
@@ -1210,12 +1252,12 @@ button.apartment-card:hover {
 
 @media (max-width: 640px) {
   .school-map-marker {
-    max-width: 138px;
+    max-width: 160px;
     padding: 5px 8px;
   }
 
   .school-map-marker__name {
-    max-width: 122px;
+    max-width: 106px;
   }
 
   .school-cluster-marker span {
@@ -1225,6 +1267,9 @@ button.apartment-card:hover {
   .school-cluster-marker--district span {
     display: inline;
   }
+
+  .school-cluster-marker > .map-marker-art { display: inline-flex; width: 20px; height: 20px; }
+  .school-cluster-marker--region > span:not(.map-marker-art) { display: inline; }
 }
 
 @media (prefers-color-scheme: dark) {

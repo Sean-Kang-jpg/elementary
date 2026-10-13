@@ -1,5 +1,7 @@
 import { useEffect, useRef } from 'react'
 import type { Apartment } from '../../types'
+import { apartmentAge, apartmentEra } from '../../utils/apartmentVisual'
+import { apartmentMarkerArt } from '../../utils/mapMarkerArt'
 
 interface ApartmentMarkerProps {
   apartment: Apartment
@@ -26,17 +28,18 @@ const markerTier = (households: number): ApartmentMarkerTier => {
 }
 
 const markerDimensions: Record<ApartmentMarkerTier, { width: number; height: number }> = {
-  dot: { width: 24, height: 24 },
-  small: { width: 64, height: 32 },
-  medium: { width: 72, height: 34 },
-  large: { width: 82, height: 36 },
-  xlarge: { width: 94, height: 40 },
+  dot: { width: 28, height: 28 },
+  small: { width: 76, height: 32 },
+  medium: { width: 84, height: 34 },
+  large: { width: 94, height: 36 },
+  xlarge: { width: 106, height: 40 },
 }
 
 const markerContent = (apartment: Apartment, selected: boolean, tier: ApartmentMarkerTier) => `
   <div class="apartment-map-marker apartment-map-marker--${tier}${selected ? ' apartment-map-marker--selected' : ''}" data-apartment-id="${escapeHtml(apartment.id)}">
-    ${tier === 'dot' ? '<span class="apartment-map-marker__dot" aria-hidden="true"></span>' : `
+    ${tier === 'dot' ? `<span class="apartment-map-marker__dot" aria-hidden="true">${apartmentMarkerArt(apartmentEra(apartmentAge(apartment.age, apartment.built_year)))}</span>` : `
     <span class="apartment-map-marker__label" aria-hidden="true">
+      ${apartmentMarkerArt(apartmentEra(apartmentAge(apartment.age, apartment.built_year)))}
       <strong>${apartment.households.toLocaleString('ko-KR')}</strong>
       <small>세대</small>
     </span>`}

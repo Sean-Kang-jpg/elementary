@@ -3,6 +3,12 @@ import assert from 'node:assert/strict'
 import { APARTMENT_PALETTE, apartmentAge, apartmentAgeLabel, apartmentEra, apartmentSilhouetteCount } from './apartmentVisual.ts'
 
 describe('apartment information symbol', () => {
+  it('uses blue for new, green for mid, and keeps old/unknown colours', () => {
+    assert.equal(APARTMENT_PALETTE.new.ink, '#52687c')
+    assert.equal(APARTMENT_PALETTE.mid.ink, '#376c59')
+    assert.equal(APARTMENT_PALETTE.old.ink, '#806542')
+    assert.equal(APARTMENT_PALETTE.unknown.ink, '#606b78')
+  })
   it('keeps household density thresholds and boundaries', () => {
     for (const [households, count] of [[0, 1], [299, 1], [300, 2], [999, 2], [1000, 3], [2999, 3], [3000, 4], [10000, 4]]) {
       assert.equal(apartmentSilhouetteCount(households), count)

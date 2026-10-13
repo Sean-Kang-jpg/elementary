@@ -2,8 +2,8 @@ export type ApartmentEra = 'new' | 'mid' | 'old' | 'unknown'
 
 /** Shared tones; age does not express a judgement of building quality. */
 export const APARTMENT_PALETTE = {
-  new: { surface: '#edf5f0', ink: '#376c59', body: '#fbfdfb', detail: '#a5cbb8' },
-  mid: { surface: '#eff3f6', ink: '#52687c', body: '#f9fbfd', detail: '#b7c6d3' },
+  new: { surface: '#eff3f6', ink: '#52687c', body: '#f9fbfd', detail: '#b7c6d3' },
+  mid: { surface: '#edf5f0', ink: '#376c59', body: '#fbfdfb', detail: '#a5cbb8' },
   old: { surface: '#f7f0e6', ink: '#806542', body: '#fffcf7', detail: '#d9c7aa' },
   unknown: { surface: '#f0f2f4', ink: '#606b78', body: '#fbfcfd', detail: '#c4cbd1' },
 } as const

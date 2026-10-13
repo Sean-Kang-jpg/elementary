@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react'
 import { ClusterPoint } from '../../utils/clusterUtils'
+import { SCHOOL_MARKER_ART } from '../../utils/mapMarkerArt'
 
 interface ClusterMarkerProps {
   cluster: ClusterPoint
@@ -26,10 +27,12 @@ const ClusterMarker: React.FC<ClusterMarkerProps> = ({ cluster, map, targetGrade
     const average = Math.round(cluster.total_students / cluster.schools.length)
     const content = cluster.label
       ? `<div class="school-cluster-marker school-cluster-marker--district">
+          ${SCHOOL_MARKER_ART}
           <strong>${escapeHtml(cluster.label)}</strong>
           <span aria-label="초등학교 ${cluster.schools.length}개교">${cluster.schools.length}개교</span>
         </div>`
       : `<div class="school-cluster-marker">
+          ${SCHOOL_MARKER_ART}
           <strong>${cluster.schools.length}개교</strong>
           <span>${targetGrade}학년 평균 ${average.toLocaleString('ko-KR')}명</span>
         </div>`
