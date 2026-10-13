@@ -82,13 +82,20 @@ GRADE_HINT = re.compile(r'[1-6]\s*학년|[1-6]\s*[~∼\-–,·]\s*[1-6]')
 AFTERSCHOOL_OUT = ROOT / 'etl/runtime/llm_extraction/inputs_afterschool'
 
 
-def afterschool_excerpt(text: str, max_chars: int = 14000) -> str:
+WEEKDAY = re.compile(r'(?<![가-힣])[월화수목금](?:요일)?(?:\s*[~,·]\s*[월화수목금])?(?![가-힣])|\([월화수목금]\)')
+DURATION = re.compile(r'\d{2,3}\s*분|주\s*\d\s*회|주\s*\d\s*시간')
+
+
+def afterschool_excerpt(text: str, max_chars: int = 14000, wide: bool = False) -> str:
     """Programme-table lines (a time plus a programme word or a grade) with two lines of context, so
     merged-cell rows that omit the programme name keep the row above them."""
     lines = text.splitlines()
     keep: set[int] = set()
     for index, line in enumerate(lines):
-        if TIME.search(line) and (AFTERSCHOOL_KEY.search(line) or GRADE_HINT.search(line)):
+        timed = TIME.search(line) and (AFTERSCHOOL_KEY.search(line) or GRADE_HINT.search(line) or (wide and WEEKDAY.search(line)))
+        # wide: course lists that give a weekday and a length ('월~금(주1회) 80분') but no clock time
+        listed = wide and WEEKDAY.search(line) and DURATION.search(line)
+        if timed or listed:
             keep.update(range(max(0, index - 2), min(len(lines), index + 3)))
     out, last = [], None
     for index in sorted(keep):
@@ -99,23 +106,24 @@ def afterschool_excerpt(text: str, max_chars: int = 14000) -> str:
     return '\n'.join(out)[:max_chars]
 
 
-def write_afterschool(name: str, ids: list[str], care: dict) -> int:
+def write_afterschool(name: str, ids: list[str], care: dict, out: Path | None = None, wide: bool = False) -> int:
     """[AFTERSCHOOL] inputs for the 15-라 plans, written beside (not into) the clock/care inputs."""
-    AFTERSCHOOL_OUT.mkdir(parents=True, exist_ok=True)
+    out = out or AFTERSCHOOL_OUT
+    out.mkdir(parents=True, exist_ok=True)
     for school_id in ids:
         record = care.get(school_id, {})
         parts = [f'school_id: {school_id}', f"school_name: {record.get('school_name', '')}", '', '[AFTERSCHOOL]']
         for f in record.get('files', []):
             path = TEXT / f"{f.get('sha256')}.txt"
             if f.get('sha256') and path.exists():
-                excerpt = afterschool_excerpt(path.read_text(encoding='utf-8'))
+                excerpt = afterschool_excerpt(path.read_text(encoding='utf-8'), wide=wide)
                 if excerpt:
                     parts.append(f"[file: {f['name']}]\n{excerpt}")
         if len(parts) == 4:
             parts.append('(방과후·맞춤형 시간표 문구 없음)')
         # numbered lines: the extractor cites a line number instead of copying evidence text
         body = [f'L{i}: {line}' for i, line in enumerate(('\n'.join(parts[4:])).splitlines(), 1)]
-        (AFTERSCHOOL_OUT / f'{school_id}.txt').write_text('\n'.join(parts[:4] + body) + '\n', encoding='utf-8')
+        (out / f'{school_id}.txt').write_text('\n'.join(parts[:4] + body) + '\n', encoding='utf-8')
     return len(ids)
 
 
@@ -124,13 +132,17 @@ def main() -> None:
     parser.add_argument('--set', action='append', choices=sorted(SETS), required=True)
     parser.add_argument('--batch-size', type=int, default=0, help='also write batches/<set>_batch_N.txt id lists for the extractors')
     parser.add_argument('--afterschool', action='store_true', help='write only the [AFTERSCHOOL] inputs (inputs_afterschool/)')
+    parser.add_argument('--wide', action='store_true', help='afterschool: also keep weekday+length course lists and weekday+time lines')
+    parser.add_argument('--only', type=Path, help='afterschool: school ids file; write just these')
+    parser.add_argument('--out', type=Path, help='afterschool: output directory (default inputs_afterschool/)')
     args = parser.parse_args()
     if args.afterschool:
         total = 0
         for name in args.set:
             care = {s['school_id']: s for s in json.loads((AUDIT2 / SETS[name][1]).read_text(encoding='utf-8'))['schools']}
-            total += write_afterschool(name, sorted(care), care)
-        print(json.dumps({'written': total, 'dir': str(AFTERSCHOOL_OUT.relative_to(ROOT))}, ensure_ascii=False))
+            only = set(args.only.read_text(encoding='utf-8').split()) if args.only else None
+            total += write_afterschool(name, sorted(i for i in care if only is None or i in only), care, args.out, args.wide)
+        print(json.dumps({"written": total, "dir": str((args.out or AFTERSCHOOL_OUT))}, ensure_ascii=False))
         return
     OUT.mkdir(parents=True, exist_ok=True)
     written, batches = 0, 0

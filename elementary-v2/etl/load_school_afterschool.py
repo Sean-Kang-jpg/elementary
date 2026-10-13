@@ -112,18 +112,22 @@ def school_record(school: dict) -> dict[str, Any] | None:
 
 
 def build(outputs: list[Path]) -> tuple[list[dict], dict[str, int]]:
-    records, counts = [], {'schools': 0, 'published': 0, 'A': 0, 'B': 0, 'not_published': 0}
+    # a later --outputs directory (e.g. a re-extraction) replaces the same school from an earlier one
+    latest: dict[str, dict] = {}
     for directory in outputs:
         for path in sorted(directory.glob('batch_*.json')):
             for school in json.loads(path.read_text(encoding='utf-8')):
-                counts['schools'] += 1
-                record = school_record(school)
-                if record is None:
-                    counts['not_published'] += 1
-                    continue
-                counts['published'] += 1
-                counts[record['tier']] += 1
-                records.append(record)
+                latest[school['school_id']] = school
+    records, counts = [], {'schools': 0, 'published': 0, 'A': 0, 'B': 0, 'not_published': 0}
+    for school in latest.values():
+        counts['schools'] += 1
+        record = school_record(school)
+        if record is None:
+            counts['not_published'] += 1
+            continue
+        counts['published'] += 1
+        counts[record['tier']] += 1
+        records.append(record)
     return records, counts
 
 
