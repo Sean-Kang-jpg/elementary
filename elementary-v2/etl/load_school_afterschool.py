@@ -73,6 +73,9 @@ def clean_row(values: list) -> dict[str, Any] | None:
         row[key] = row[key] if HHMM.match(str(row.get(key) or '')) else None
     if row['start'] and row['end'] and row['start'] >= row['end']:
         row['start'] = row['end'] = None
+    # '월~금(주1회)' names the range a class may fall on, not five meetings: without a time it says no day
+    if row['days'] == WEEKDAYS and not row['start'] and not row['end']:
+        row['days'] = None
     return row
 
 

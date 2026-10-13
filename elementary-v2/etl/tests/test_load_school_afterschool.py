@@ -23,6 +23,9 @@ class CleanRowTest(unittest.TestCase):
         reversed_times = clean_row(ROW[:6] + ['14:15', '13:35'] + ROW[8:])
         self.assertEqual((reversed_times['start'], reversed_times['end']), (None, None))
 
+    def test_a_weekday_range_without_time_is_no_day(self):
+        self.assertIsNone(clean_row(ROW[:5] + ['월화수목금', None, None] + ROW[8:])['days'])
+
     def test_v1_rows_without_term(self):
         self.assertEqual(clean_row(ROW[:9] + [12])['name'], '컴퓨터')
 
