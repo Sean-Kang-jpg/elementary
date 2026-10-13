@@ -102,7 +102,7 @@ const SchoolDayEstimateCard: React.FC<{ school: School; onOpenGuide: (path: stri
         </>
       )}
 
-      {afterschool && <AfterschoolSummary data={afterschool} day={day} care={care} />}
+      {(afterschool || day || care) && <AfterschoolSummary data={afterschool} day={day} care={care} />}
 
       {(care || careStats) && (
         <div className={day || afterschool ? 'mt-3' : ''}>

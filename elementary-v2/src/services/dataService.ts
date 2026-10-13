@@ -1021,7 +1021,7 @@ export const getSchoolAfterschool = async (schoolId: string): Promise<SchoolAfte
   const dev = (import.meta as ViteMeta).env.DEV
   if (!afterschoolTablesAvailable) return dev ? devAfterschoolFixture(schoolId) : null
   const [summary, programs] = await Promise.all([
-    supabase.from('school_afterschool_summary').select('school_id,source_year,term_label').eq('school_id', schoolId).maybeSingle(),
+    supabase.from('school_afterschool_summary').select('school_id,source_year,tier,term_label').eq('school_id', schoolId).maybeSingle(),
     supabase
       .from('school_afterschool_programs')
       .select('seq,kind,name,variant,section,category,grade1,weekdays,start_time,end_time')
@@ -1050,8 +1050,8 @@ export const getSchoolAfterschool = async (schoolId: string): Promise<SchoolAfte
     option.sections.push({ section: row.section, days: row.weekdays, start: row.start_time?.slice(0, 5) ?? null, end: row.end_time?.slice(0, 5) ?? null })
     options.set(key, option)
   }
-  const head = summary.data as { school_id: string; source_year: number; term_label: string | null }
-  return { school_id: head.school_id, source_year: head.source_year, term: head.term_label, note: null, options: [...options.values()] }
+  const head = summary.data as { school_id: string; source_year: number; tier: SchoolAfterschool['tier']; term_label: string | null }
+  return { school_id: head.school_id, source_year: head.source_year, tier: head.tier, term: head.term_label, note: null, options: [...options.values()] }
 }
 
 export const getCareCentersNear = async (latitude: number, longitude: number, maxDistanceM = 1000): Promise<CareCenter[]> => {

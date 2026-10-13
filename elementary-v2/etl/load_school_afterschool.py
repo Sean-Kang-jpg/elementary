@@ -6,8 +6,9 @@ the rules that came out of review so the extraction never has to be re-run for t
   * rows grade 1 cannot take ("false") and rows from an earlier school year's table are dropped
   * a "true" with no grade text is a guess and becomes "unknown"
   * Saturday and other non-weekday letters are dropped from 요일; malformed times become NULL
-  * a school is published only when most grade-1 rows carry a weekday and an end time:
-    tier A (>= 90%) or B (60-90%). Everything else stays off the public tables.
+  * tier A (>= 90% of grade-1 rows carry a weekday and an end time) or B (60-90%) get the
+    timeline; C is a course list only (times missing, or no grade written). A school with no
+    course row at all is not published (2026-10-14 decision: parents adjust times in MY).
 
     python -m etl.load_school_afterschool --outputs etl/runtime/llm_extraction/outputs_afterschool/seoul
     python -m etl.load_school_afterschool --outputs ... --write-fixture   # local card preview
@@ -81,13 +82,11 @@ def clean_row(values: list) -> dict[str, Any] | None:
 
 def school_record(school: dict) -> dict[str, Any] | None:
     rows = [r for r in (clean_row(v) for v in school.get('rows', [])) if r]
+    if not rows:
+        return None
     grade1 = [r for r in rows if r['grade1'] == 'true']
-    if not grade1:
-        return None
-    share = sum(1 for r in grade1 if r['days'] and r['end']) / len(grade1)
-    tier = 'A' if share >= 0.9 else 'B' if share >= 0.6 else None
-    if tier is None:
-        return None
+    share = sum(1 for r in grade1 if r['days'] and r['end']) / len(grade1) if grade1 else 0
+    tier = 'A' if share >= 0.9 else 'B' if share >= 0.6 else 'C'
     options: OrderedDict[tuple, dict] = OrderedDict()
     for r in rows:
         key = (r['kind'], r['name'], r.get('variant'))
@@ -121,7 +120,7 @@ def build(outputs: list[Path]) -> tuple[list[dict], dict[str, int]]:
         for path in sorted(directory.glob('batch_*.json')):
             for school in json.loads(path.read_text(encoding='utf-8')):
                 latest[school['school_id']] = school
-    records, counts = [], {'schools': 0, 'published': 0, 'A': 0, 'B': 0, 'not_published': 0}
+    records, counts = [], {'schools': 0, 'published': 0, 'A': 0, 'B': 0, 'C': 0, 'not_published': 0}
     for school in latest.values():
         counts['schools'] += 1
         record = school_record(school)
@@ -155,7 +154,7 @@ def table_rows(records: list[dict], snapshot: str) -> dict[str, list[dict]]:
 
 def fixture(records: list[dict]) -> dict[str, dict]:
     """The frontend's SchoolAfterschool shape, for the dev server."""
-    return {r['school_id']: {'school_id': r['school_id'], 'source_year': SOURCE_YEAR, 'term': r['term_label'], 'note': r['note'],
+    return {r['school_id']: {'school_id': r['school_id'], 'source_year': SOURCE_YEAR, 'tier': r['tier'], 'term': r['term_label'], 'note': r['note'],
                              'options': [{**{k: o[k] for k in ('kind', 'name', 'variant', 'category', 'grade1')},
                                           'sections': [{k: s[k] for k in ('section', 'days', 'start', 'end')} for s in o['sections']]}
                                          for o in r['options']]} for r in records}

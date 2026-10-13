@@ -39,9 +39,13 @@ class SchoolRecordTest(unittest.TestCase):
         self.assertEqual(record['latest']['목'], '14:20')
         self.assertEqual(len(table_rows([record], '2026-10-13')['school_afterschool_programs']), 3)
 
-    def test_mostly_unreadable_school_is_not_published(self):
+    def test_list_only_schools_are_tier_c_and_empty_ones_are_not_published(self):
         rows = [ROW[:5] + [None, None, None] + ROW[8:]] * 3 + [ROW]
-        self.assertIsNone(school_record({'school_id': 'X', 'rows': rows}))
+        self.assertEqual(school_record({'school_id': 'X', 'rows': rows})['tier'], 'C')
+        unknown_only = [ROW[:4] + [None] + ROW[5:]]
+        record = school_record({'school_id': 'X', 'rows': unknown_only})
+        self.assertEqual((record['tier'], record['grade1_options'], record['unknown_grade_options']), ('C', 0, 1))
+        self.assertIsNone(school_record({'school_id': 'X', 'rows': []}))
 
     def test_category(self):
         self.assertEqual(category('원어민영어 Starter'), '영어')

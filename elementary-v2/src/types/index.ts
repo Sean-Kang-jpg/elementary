@@ -308,6 +308,8 @@ export interface SchoolAfterschoolOption {
 export interface SchoolAfterschool {
   school_id: string
   source_year: number
+  // A·B: 요일·종료 시각을 대부분 읽어 시간 막대를 그린다. C: 강좌 목록만(시각 또는 대상 학년 미기재)
+  tier: 'A' | 'B' | 'C'
   term: string | null
   options: SchoolAfterschoolOption[]
   note: string | null
