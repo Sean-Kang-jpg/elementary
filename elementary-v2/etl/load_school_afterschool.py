@@ -1,0 +1,194 @@
+"""Load grade-1 after-school/맞춤형 courses (E05) into SQL 30. Dry-run by default.
+
+Reads the compact extractor output (etl/llm_extraction_spec_afterschool.md) and applies, in code,
+the rules that came out of review so the extraction never has to be re-run for them:
+
+  * rows grade 1 cannot take ("false") and rows from an earlier school year's table are dropped
+  * a "true" with no grade text is a guess and becomes "unknown"
+  * Saturday and other non-weekday letters are dropped from 요일; malformed times become NULL
+  * a school is published only when most grade-1 rows carry a weekday and an end time:
+    tier A (>= 90%) or B (60-90%). Everything else stays off the public tables.
+
+    python -m etl.load_school_afterschool --outputs etl/runtime/llm_extraction/outputs_afterschool/seoul
+    python -m etl.load_school_afterschool --outputs ... --write-fixture   # local card preview
+    python -m etl.load_school_afterschool --outputs ... --apply           # after SQL 30 and user confirmation
+"""
+from __future__ import annotations
+
+import argparse
+import json
+import re
+from collections import OrderedDict
+from datetime import date
+from pathlib import Path
+from typing import Any
+
+ROOT = Path(__file__).resolve().parents[1]
+PREVIEW = ROOT / 'etl/runtime/school_afterschool_preview.json'
+FIXTURE = ROOT / 'src/dev-fixtures/school-afterschool.json'
+SOURCE = '학교알리미 15-라 방과후·돌봄 운영계획 2026년 공시'
+SOURCE_YEAR = 2026
+WEEKDAYS = '월화수목금'
+DAY_COLUMNS = ['latest_end_mon', 'latest_end_tue', 'latest_end_wed', 'latest_end_thu', 'latest_end_fri']
+HHMM = re.compile(r'^\d{2}:\d{2}$')
+PRIOR_YEAR = re.compile(r'20(1\d|2[0-5])')
+COLUMNS_V1 = ['kind', 'name', 'variant', 'section', 'grades_raw', 'days', 'start', 'end', 'grade1', 'line']
+COLUMNS_V2 = ['kind', 'name', 'variant', 'section', 'grades_raw', 'days', 'start', 'end', 'grade1', 'term', 'line']
+# Set to True only after the user has confirmed the reviewed set; --apply refuses otherwise.
+CONFIRMED = False
+
+# Category rules (team classification table): the course name is kept as written, only a label is added.
+CATEGORIES = [
+    ('영어', r'영어|English|잉글리|원어민|리딩|Reading|파닉스|Phonics|ABC'),
+    ('수학', r'수학|주산|암산|연산|셈|수리|숫자|수놀이'),
+    ('STEM', r'과학|로봇|코딩|컴퓨터|컴기초|컴박사|엑셀|AI|인공지능|드론|3D|메이커|생명|실험|SW|소프트웨어|ITQ|OA|레고|그래비트랙스'),
+    ('체육', r'축구|농구|줄넘기|체육|요가|탁구|배드민턴|태권|피구|티볼|스포츠|댄스|K-POP|발레|골프|테니스|플로어볼|체조|키성장|치어|신체|에듀건|사격|힙합'),
+    ('음악', r'바이올린|첼로|클라리넷|피아노|오카리나|우쿨렐레|음악|보컬|성악|동요|노래|합창|드럼|난타|플루트|칼림바|리코더|악기'),
+    ('미술·창작', r'미술|공예|클레이|종이접기|그림|소묘|수채|파스텔|만들기|공작|블록|웹툰|만화|애니|디자인|미니어처|캘리|도자|POP|펜'),
+    ('국어·독서', r'독서|논술|한자|글짓기|책|국어|토론|스피치|역사|한국사|연극'),
+    ('사고력', r'바둑|체스|보드게임|큐브|퍼즐|사고력|두뇌|마술|창의'),
+    ('요리', r'요리|쿠킹|베이킹|쉐프|셰프|조리'),
+]
+
+
+def category(name: str) -> str:
+    for label, pattern in CATEGORIES:
+        if re.search(pattern, name, re.I):
+            return label
+    return '기타'
+
+
+def clean_row(values: list) -> dict[str, Any] | None:
+    """One extractor row after the review rules, or None when it is not a grade-1 offer this year."""
+    row = dict(zip(COLUMNS_V2 if len(values) == 11 else COLUMNS_V1, values))
+    if row.get('grade1') == 'false' or PRIOR_YEAR.search(str(row.get('term') or '')):
+        return None
+    if row.get('grade1') == 'true' and not row.get('grades_raw'):
+        row['grade1'] = 'unknown'
+    if row.get('grade1') not in ('true', 'unknown') or row.get('kind') not in ('방과후', '맞춤형') or not row.get('name'):
+        return None
+    days = ''.join(d for d in str(row.get('days') or '') if d in WEEKDAYS)
+    row['days'] = ''.join(sorted(set(days), key=WEEKDAYS.index)) or None
+    for key in ('start', 'end'):
+        row[key] = row[key] if HHMM.match(str(row.get(key) or '')) else None
+    if row['start'] and row['end'] and row['start'] >= row['end']:
+        row['start'] = row['end'] = None
+    return row
+
+
+def school_record(school: dict) -> dict[str, Any] | None:
+    rows = [r for r in (clean_row(v) for v in school.get('rows', [])) if r]
+    grade1 = [r for r in rows if r['grade1'] == 'true']
+    if not grade1:
+        return None
+    share = sum(1 for r in grade1 if r['days'] and r['end']) / len(grade1)
+    tier = 'A' if share >= 0.9 else 'B' if share >= 0.6 else None
+    if tier is None:
+        return None
+    options: OrderedDict[tuple, dict] = OrderedDict()
+    for r in rows:
+        key = (r['kind'], r['name'], r.get('variant'))
+        option = options.setdefault(key, {'kind': r['kind'], 'name': r['name'], 'variant': r.get('variant'),
+                                          'category': category(f"{r['name']} {r.get('variant') or ''}"), 'grade1': 'unknown', 'sections': []})
+        if r['grade1'] == 'true':
+            option['grade1'] = 'true'
+        option['sections'].append({'section': r.get('section'), 'grades_raw': r.get('grades_raw'), 'days': r['days'],
+                                   'start': r['start'], 'end': r['end'], 'term': r.get('term')})
+    latest = {d: None for d in WEEKDAYS}
+    for option in options.values():
+        if option['grade1'] != 'true':
+            continue
+        for s in option['sections']:
+            for d in s['days'] or '':
+                if s['end'] and (latest[d] is None or s['end'] > latest[d]):
+                    latest[d] = s['end']
+    values = list(options.values())
+    terms = sorted({s['term'] for o in values for s in o['sections'] if s['term']})
+    return {'school_id': school['school_id'], 'tier': tier, 'options': values, 'latest': latest,
+            'grade1_options': sum(o['grade1'] == 'true' for o in values),
+            'custom_options': sum(o['kind'] == '맞춤형' for o in values),
+            'unknown_grade_options': sum(o['grade1'] != 'true' for o in values),
+            'term_label': ', '.join(terms[:3]) or None, 'note': school.get('note')}
+
+
+def build(outputs: list[Path]) -> tuple[list[dict], dict[str, int]]:
+    records, counts = [], {'schools': 0, 'published': 0, 'A': 0, 'B': 0, 'not_published': 0}
+    for directory in outputs:
+        for path in sorted(directory.glob('batch_*.json')):
+            for school in json.loads(path.read_text(encoding='utf-8')):
+                counts['schools'] += 1
+                record = school_record(school)
+                if record is None:
+                    counts['not_published'] += 1
+                    continue
+                counts['published'] += 1
+                counts[record['tier']] += 1
+                records.append(record)
+    return records, counts
+
+
+def table_rows(records: list[dict], snapshot: str) -> dict[str, list[dict]]:
+    summary, programs = [], []
+    for r in records:
+        summary.append({'school_id': r['school_id'], 'source_year': SOURCE_YEAR, 'tier': r['tier'],
+                        'grade1_options': r['grade1_options'], 'custom_options': r['custom_options'],
+                        'unknown_grade_options': r['unknown_grade_options'],
+                        **{column: r['latest'][d] for column, d in zip(DAY_COLUMNS, WEEKDAYS)},
+                        'term_label': r['term_label'], 'source': SOURCE, 'review_state': 'auto', 'snapshot_date': snapshot})
+        seq = 0
+        for option in r['options']:
+            for s in option['sections']:
+                seq += 1
+                programs.append({'school_id': r['school_id'], 'seq': seq, 'kind': option['kind'], 'name': option['name'],
+                                 'variant': option['variant'], 'section': s['section'], 'category': option['category'],
+                                 'grade1': option['grade1'], 'grades_raw': s['grades_raw'], 'weekdays': s['days'],
+                                 'start_time': s['start'], 'end_time': s['end'], 'term': s['term']})
+    return {'school_afterschool_summary': summary, 'school_afterschool_programs': programs}
+
+
+def fixture(records: list[dict]) -> dict[str, dict]:
+    """The frontend's SchoolAfterschool shape, for the dev server."""
+    return {r['school_id']: {'school_id': r['school_id'], 'source_year': SOURCE_YEAR, 'term': r['term_label'], 'note': r['note'],
+                             'options': [{**{k: o[k] for k in ('kind', 'name', 'variant', 'category', 'grade1')},
+                                          'sections': [{k: s[k] for k in ('section', 'days', 'start', 'end')} for s in o['sections']]}
+                                         for o in r['options']]} for r in records}
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    parser.add_argument('--outputs', action='append', required=True, type=Path)
+    parser.add_argument('--write-fixture', action='store_true')
+    parser.add_argument('--apply', action='store_true')
+    args = parser.parse_args()
+    snapshot = date.today().isoformat()
+    records, counts = build(args.outputs)
+    rows = table_rows(records, snapshot)
+    report = {'mode': 'apply' if args.apply else 'dry-run', 'snapshot_date': snapshot, **counts,
+              'rows': {table: len(items) for table, items in rows.items()}, 'confirmed': CONFIRMED}
+    PREVIEW.parent.mkdir(parents=True, exist_ok=True)
+    PREVIEW.write_text(json.dumps(rows, ensure_ascii=False, indent=1), encoding='utf-8')
+    if args.write_fixture:
+        FIXTURE.parent.mkdir(parents=True, exist_ok=True)
+        FIXTURE.write_text(json.dumps(fixture(records), ensure_ascii=False), encoding='utf-8')
+    if args.apply and not CONFIRMED:
+        print(json.dumps(report, ensure_ascii=False, indent=2))
+        raise SystemExit('the extracted set is not user-confirmed; nothing uploaded')
+    if args.apply:
+        from etl.collect_care_data import credentials, rest
+        url, service_key, _ = credentials()
+        for table, conflict in (('school_afterschool_summary', 'school_id'), ('school_afterschool_programs', 'school_id,seq')):
+            items = rows[table]
+            for start in range(0, len(items), 500):
+                rest(url, service_key, f'{table}?on_conflict={conflict}', method='POST', data=items[start:start + 500],
+                     headers={'Prefer': 'resolution=merge-duplicates,return=minimal'})
+        # an older snapshot's school drops with its programs (cascade); stale sections of a kept school go too
+        rest(url, service_key, f'school_afterschool_summary?snapshot_date=lt.{snapshot}', method='DELETE', headers={'Prefer': 'return=minimal'})
+        for r in rows['school_afterschool_summary']:
+            last = max(p['seq'] for p in rows['school_afterschool_programs'] if p['school_id'] == r['school_id'])
+            rest(url, service_key, f"school_afterschool_programs?school_id=eq.{r['school_id']}&seq=gt.{last}", method='DELETE',
+                 headers={'Prefer': 'return=minimal'})
+    print(json.dumps(report, ensure_ascii=False, indent=2))
+
+
+if __name__ == '__main__':
+    main()

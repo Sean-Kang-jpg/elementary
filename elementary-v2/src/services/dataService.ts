@@ -1,6 +1,6 @@
 import { supabase } from '../lib/supabase'
 import { UNLIMITED_APARTMENT_AGE } from '../types'
-import type { AcademyAddress, Apartment, ApartmentAcademySummary, ApartmentTransactionSummary, CareCenter, Coordinates, FilterState, MapBounds, School, SchoolAfterschool, SchoolCareHours, SchoolCareStatistics, SchoolDayEstimate, SchoolDayEstimateWeekday, SearchResult } from '../types'
+import type { AcademyAddress, Apartment, ApartmentAcademySummary, ApartmentTransactionSummary, CareCenter, Coordinates, FilterState, MapBounds, School, SchoolAfterschool, SchoolAfterschoolOption, SchoolCareHours, SchoolCareStatistics, SchoolDayEstimate, SchoolDayEstimateWeekday, SearchResult } from '../types'
 import { regionCenter, regionHasCityLevel, regionsIntersectingBounds } from '../constants/regionRegistry'
 import { getSchoolNeighborhoodLabel } from '../utils/clusterUtils'
 import { DEFAULT_CENTERS, generateCacheKey, getDisplayMode } from '../utils/mapUtils'
@@ -1002,16 +1002,56 @@ export const getSchoolDayEstimate = async (schoolId: string, options: { allowDev
 
 const devAfterschoolFixtures = (import.meta as ViteMeta).glob('../dev-fixtures/school-afterschool.json', { import: 'default' })
 
-/**
- * 1학년 방과후·맞춤형 강좌(시안 단계). 공개 테이블이 아직 없으므로 운영에서는 요청하지 않고 null을
- * 돌려준다 — 카드는 이 부분 없이 그대로 보인다. 개발 서버에서는 src/dev-fixtures/의 추출 결과를 읽는다.
- */
-export const getSchoolAfterschool = async (schoolId: string): Promise<SchoolAfterschool | null> => {
-  if (!(import.meta as ViteMeta).env.DEV) return null
+const devAfterschoolFixture = async (schoolId: string): Promise<SchoolAfterschool | null> => {
   const load = Object.values(devAfterschoolFixtures)[0]
   if (!load) return null
   const rows = await load() as Record<string, SchoolAfterschool>
   return rows[schoolId] ?? null
+}
+
+// SQL 30이 없는 동안 학교마다 404를 내지 않도록, 한 번 없다고 확인되면 이후로는 묻지 않는다.
+let afterschoolTablesAvailable = true
+
+/**
+ * 1학년이 들을 수 있는 방과후·맞춤형 강좌 (SQL 30, 학교알리미 15-라 운영계획 추출).
+ * 요일·종료 시각을 대부분 읽은 학교(A·B 등급)만 공개 테이블에 있다. 테이블이 아직 없으면
+ * null이고 카드는 이 부분 없이 그려진다. 개발 서버에서는 그때 src/dev-fixtures/를 읽는다.
+ */
+export const getSchoolAfterschool = async (schoolId: string): Promise<SchoolAfterschool | null> => {
+  const dev = (import.meta as ViteMeta).env.DEV
+  if (!afterschoolTablesAvailable) return dev ? devAfterschoolFixture(schoolId) : null
+  const [summary, programs] = await Promise.all([
+    supabase.from('school_afterschool_summary').select('school_id,source_year,term_label').eq('school_id', schoolId).maybeSingle(),
+    supabase
+      .from('school_afterschool_programs')
+      .select('seq,kind,name,variant,section,category,grade1,weekdays,start_time,end_time')
+      .eq('school_id', schoolId)
+      .order('seq'),
+  ])
+  for (const result of [summary, programs]) {
+    if (result.error) {
+      if (!CARE_NOT_DEPLOYED.has(result.error.code)) throw result.error
+      afterschoolTablesAvailable = false
+      return dev ? devAfterschoolFixture(schoolId) : null
+    }
+  }
+  if (!summary.data) return null
+  const options = new Map<string, SchoolAfterschoolOption>()
+  for (const row of (programs.data || []) as Array<Record<string, string | null>>) {
+    const key = `${row.kind}|${row.name}|${row.variant ?? ''}`
+    const option = options.get(key) ?? {
+      kind: row.kind as SchoolAfterschoolOption['kind'],
+      name: String(row.name),
+      variant: row.variant,
+      category: String(row.category),
+      grade1: row.grade1 as SchoolAfterschoolOption['grade1'],
+      sections: [],
+    }
+    option.sections.push({ section: row.section, days: row.weekdays, start: row.start_time?.slice(0, 5) ?? null, end: row.end_time?.slice(0, 5) ?? null })
+    options.set(key, option)
+  }
+  const head = summary.data as { school_id: string; source_year: number; term_label: string | null }
+  return { school_id: head.school_id, source_year: head.source_year, term: head.term_label, note: null, options: [...options.values()] }
 }
 
 export const getCareCentersNear = async (latitude: number, longitude: number, maxDistanceM = 1000): Promise<CareCenter[]> => {
