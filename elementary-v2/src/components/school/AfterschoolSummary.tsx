@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import type { SchoolAfterschool, SchoolAfterschoolOption, SchoolCareHours, SchoolDayEstimate } from '../../types'
+import type { SchoolAfterschool, SchoolAfterschoolOption, SchoolAfterschoolSection, SchoolCareHours, SchoolDayEstimate } from '../../types'
 
 const WEEKDAYS = ['월', '화', '수', '목', '금'] as const
 // 막대의 시간축: 정오부터 19시 30분까지. 오전 수업은 하교 시각만 보면 되므로 그리지 않는다.
@@ -16,13 +16,21 @@ const pct = (m: number) => ((Math.min(Math.max(m, T0), T1) - T0) / (T1 - T0)) * 
 
 interface Span { start: number | null; end: number }
 
-/** 그날 열리는 강좌들의 가장 이른 시작과 가장 늦은 끝. 요일을 모르는 반은 넣지 않는다. */
-const daySpan = (options: SchoolAfterschoolOption[], day: string): Span | null => {
+// 저학년 반: 대상 학년 상한이 3학년 이하. '1~6학년' 강좌의 늦은 반은 고학년용이라 막대에 넣지 않는다
+// (넣으면 서울 학교별 최종 종료 중앙값이 15:10에서 16:40으로 늦어졌다, 2026-10-14). 적재 규칙과 같다.
+const LOWER_GRADE_MAX = 3
+const isGrade1 = (section: SchoolAfterschoolSection) => section.grade1 === 'true'
+const isLowerGrade = (section: SchoolAfterschoolSection) =>
+  isGrade1(section) && section.grade_upper !== null && section.grade_upper <= LOWER_GRADE_MAX
+const isTimed = (section: SchoolAfterschoolSection) => Boolean(section.days && section.end)
+
+/** 그날 열리는 반들의 가장 이른 시작과 가장 늦은 끝. 요일을 모르는 반은 넣지 않는다. */
+const daySpan = (options: SchoolAfterschoolOption[], day: string, include: (section: SchoolAfterschoolSection) => boolean = () => true): Span | null => {
   let start: number | null = null
   let end: number | null = null
   for (const option of options) {
     for (const section of option.sections) {
-      if (!section.days?.includes(day) || !section.end) continue
+      if (!include(section) || !section.days?.includes(day) || !section.end) continue
       const s = toMin(section.start)
       const e = toMin(section.end) as number
       if (s !== null) start = start === null ? s : Math.min(start, s)
@@ -57,11 +65,14 @@ const AfterschoolSummary: React.FC<{ data: SchoolAfterschool | null; day: School
   const careEnd = care?.status === 'stated' ? toMin(care.afternoon_end) : null
   const careExt = care?.status === 'stated' ? toMin(care.extended_end) : null
   const timedCourses = data !== null && data.tier !== 'C' && options.length > 0
+  // 저학년 반이 없는 학교만 전학년 반으로 그리고, 그렇다고 밝힌다
+  const lowerBasis = afterschool.some((o) => o.sections.some((s) => isLowerGrade(s) && isTimed(s)))
+  const afterschoolSection = lowerBasis ? isLowerGrade : isGrade1
 
   const rows = WEEKDAYS.map((label, index) => {
     const dismissal = toMin(day?.weekdays[index]?.dismissal)
     const c = timedCourses ? daySpan(custom, label) : null
-    const a = timedCourses ? daySpan(afterschool, label) : null
+    const a = timedCourses ? daySpan(afterschool, label, afterschoolSection) : null
     const pickup = Math.max(dismissal ?? 0, c?.end ?? 0, a?.end ?? 0) || null
     return { label, dismissal, c, a, pickup }
   })
@@ -119,7 +130,11 @@ const AfterschoolSummary: React.FC<{ data: SchoolAfterschool | null; day: School
           <p className="mt-1 flex flex-wrap gap-x-3 gap-y-0.5 tabular-nums">
             {rows.map((row) => <span key={row.label}>{row.label} <strong>{row.pickup ? fmt(row.pickup) : '–'}</strong></span>)}
           </p>
-          <p className="mt-1 text-[11px] text-amber-800">그날 가장 늦게 끝나는 1학년 강좌 기준이에요. 고른 강좌에 따라 더 이를 수 있어요.</p>
+          <p className="mt-1 text-[11px] text-amber-800">
+            {lowerBasis || !afterschool.length
+              ? '그날 가장 늦게 끝나는 저학년 대상 반 기준이에요. 고른 강좌에 따라 더 이를 수 있어요.'
+              : '저학년 반이 따로 적혀 있지 않아 전학년 대상 반 기준이에요. 늦은 반은 고학년용일 수 있어요.'}
+          </p>
         </div>
       ) : (
         <div className="mt-2.5 rounded-md border border-amber-200 bg-amber-50 px-3 py-2 text-xs leading-5 text-amber-950" data-testid="school-afterschool-check">
@@ -170,6 +185,7 @@ const AfterschoolSummary: React.FC<{ data: SchoolAfterschool | null; day: School
                           {option.variant && <span className="ml-1 rounded bg-indigo-50 px-1 text-[10px] text-indigo-800">수준 {option.variant}</span>}
                           {option.kind === '맞춤형' && <span className="ml-1 rounded bg-emerald-50 px-1 text-[10px] text-emerald-800">맞춤형·무료</span>}
                           {option.grade1 !== 'true' && <span className="ml-1 rounded border border-gray-200 px-1 text-[10px] text-gray-600">학년 확인 필요</span>}
+                          {option.kind === '방과후' && option.grade1 === 'true' && !option.sections.some(isLowerGrade) && <span className="ml-1 rounded border border-gray-200 px-1 text-[10px] text-gray-600">전학년</span>}
                         </span>
                         <span className="max-w-[55%] shrink-0 text-right text-[11px] tabular-nums text-gray-500">{sectionTimes(option)}</span>
                       </li>

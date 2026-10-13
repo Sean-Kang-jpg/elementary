@@ -1,6 +1,6 @@
 import unittest
 
-from etl.load_school_afterschool import category, clean_row, school_record, table_rows
+from etl.load_school_afterschool import category, clean_row, grade_upper, school_record, table_rows
 
 ROW = ['방과후', '컴퓨터', '컴기초', 'A', '1-2학년', '수목', '13:00', '14:20', 'true', '1분기', 12]
 
@@ -46,6 +46,21 @@ class SchoolRecordTest(unittest.TestCase):
         record = school_record({'school_id': 'X', 'rows': unknown_only})
         self.assertEqual((record['tier'], record['grade1_options'], record['unknown_grade_options']), ('C', 0, 1))
         self.assertIsNone(school_record({'school_id': 'X', 'rows': []}))
+
+    def test_latest_end_uses_lower_grade_sections(self):
+        lower = ['방과후', '음악줄넘기', None, '1부', '1-2학년', '수', '13:00', '14:20', 'true', None, 4]
+        upper = ['방과후', '음악줄넘기', None, '2부', '1~6학년', '수', '15:30', '17:00', 'true', None, 5]
+        older = ['방과후', '음악줄넘기', None, '3부', '4~6학년', '목', '15:30', '17:20', 'false', None, 6]
+        record = school_record({'school_id': 'X', 'rows': [lower, upper, older]})
+        self.assertEqual((record['timeline_basis'], record['latest']['수'], record['latest']['목']), ('lower', '14:20', None))
+        # the section is kept with its own grade, not the course's
+        sections = record['options'][0]['sections']
+        self.assertEqual([s['grade_upper'] for s in sections], [2, 6])
+        all_grade = school_record({'school_id': 'X', 'rows': [upper]})
+        self.assertEqual((all_grade['timeline_basis'], all_grade['latest']['수']), ('all', '17:00'))
+
+    def test_grade_upper(self):
+        self.assertEqual([grade_upper(g) for g in ('1~6학년', '1-2', 'B 1~6G', '전학년', '저학년', '1학년', None)], [6, 2, 6, 6, 3, 1, None])
 
     def test_category(self):
         self.assertEqual(category('원어민영어 Starter'), '영어')

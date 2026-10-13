@@ -6,6 +6,9 @@
 -- 운영계획(연간·분기)을 읽어 만든 값이라 실제 개설·폐강과 다를 수 있다. 화면은 항상
 -- '운영계획 기준'으로 보여 주고, 요일·종료 시각을 대부분 읽은 학교(A·B)만 시간 막대를 그린다.
 -- C는 강좌 목록만 있는 학교다(시각 미기재 또는 대상 학년 미기재). 강좌표가 없는 학교는 행이 없다.
+-- 막대와 요일별 가장 늦은 종료는 저학년 반(대상 학년 상한 3학년 이하)만 쓴다. '1~6학년' 강좌의
+-- 늦은 반은 고학년용이라 넣으면 종료가 한 시간 반 늦어 보였다. 저학년 반이 없는 학교만 전학년
+-- 반을 쓰고 timeline_basis = 'all'로 밝힌다(2026-10-14 결정).
 -- 부모가 MY 시간표에서 강좌를 골라 요일·시간을 고칠 수 있으므로 목록만으로도 공개한다(2026-10-14 결정).
 -- 쓰기는 service_role(etl/load_school_afterschool.py)만 한다.
 --
@@ -28,6 +31,7 @@ CREATE TABLE IF NOT EXISTS school_afterschool_summary (
     latest_end_wed TIME,
     latest_end_thu TIME,
     latest_end_fri TIME,
+    timeline_basis TEXT CHECK (timeline_basis IN ('lower', 'all')),   -- NULL: 시각 있는 1학년 방과후 반 없음
     term_label TEXT,                 -- 문서가 쓴 기간(예: 1분기, 연간)
     source TEXT NOT NULL,
     review_state TEXT NOT NULL CHECK (review_state IN ('auto', 'reviewed')),
@@ -45,8 +49,9 @@ CREATE TABLE IF NOT EXISTS school_afterschool_programs (
     variant TEXT,                    -- 수준·내용을 골라야 하는 과정명, 시간만 다른 반이면 NULL
     section TEXT,                    -- 원문 반 표기
     category TEXT NOT NULL,
-    grade1 TEXT NOT NULL CHECK (grade1 IN ('true', 'unknown')),
+    grade1 TEXT NOT NULL CHECK (grade1 IN ('true', 'unknown')),   -- 이 반(행)의 값. 같은 강좌라도 반마다 다를 수 있다
     grades_raw TEXT,
+    grade_upper SMALLINT CHECK (grade_upper BETWEEN 1 AND 6),        -- 대상 학년 상한, 모르면 NULL
     weekdays TEXT CHECK (weekdays IS NULL OR weekdays ~ '^[월화수목금]+$'),
     start_time TIME,
     end_time TIME,

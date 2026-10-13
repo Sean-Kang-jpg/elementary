@@ -291,6 +291,8 @@ export interface SchoolCareHours {
 // 아직 공개 테이블이 없어 개발 서버의 src/dev-fixtures/에서만 읽는다(시안 단계).
 export interface SchoolAfterschoolSection {
   section: string | null
+  grade1: 'true' | 'unknown' // 이 반의 값. 같은 강좌라도 반마다 대상 학년이 다를 수 있다
+  grade_upper: number | null // 대상 학년 상한('1~6학년' → 6), 모르면 null
   days: string | null // '월수' 같이 요일 글자를 붙여 씀, 모르면 null
   start: string | null // 'HH:MM'
   end: string | null

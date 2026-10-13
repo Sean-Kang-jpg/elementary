@@ -6,6 +6,10 @@ the rules that came out of review so the extraction never has to be re-run for t
   * rows grade 1 cannot take ("false") and rows from an earlier school year's table are dropped
   * a "true" with no grade text is a guess and becomes "unknown"
   * Saturday and other non-weekday letters are dropped from 요일; malformed times become NULL
+  * the timeline and the latest end per weekday use lower-grade sections only (grade text tops out at
+    3학년 or below): a '1~6학년' course is open to grade 1 but its later sections are for older pupils,
+    and counting them put the median latest end at 16:40 instead of 15:10 (2026-10-14). A school
+    with no lower-grade section falls back to its all-grade sections and says so (timeline_basis)
   * tier A (>= 90% of grade-1 rows carry a weekday and an end time) or B (60-90%) get the
     timeline; C is a course list only (times missing, or no grade written). A school with no
     course row at all is not published (2026-10-14 decision: parents adjust times in MY).
@@ -35,6 +39,8 @@ HHMM = re.compile(r'^\d{2}:\d{2}$')
 PRIOR_YEAR = re.compile(r'20(1\d|2[0-5])')
 COLUMNS_V1 = ['kind', 'name', 'variant', 'section', 'grades_raw', 'days', 'start', 'end', 'grade1', 'line']
 COLUMNS_V2 = ['kind', 'name', 'variant', 'section', 'grades_raw', 'days', 'start', 'end', 'grade1', 'term', 'line']
+# a section counts as lower-grade when its grade text tops out at this grade
+LOWER_GRADE_MAX = 3
 # Set to True only after the user has confirmed the reviewed set; --apply refuses otherwise.
 CONFIRMED = False
 
@@ -59,6 +65,17 @@ def category(name: str) -> str:
     return '기타'
 
 
+def grade_upper(grades_raw: str | None) -> int | None:
+    """The highest grade a section's grade text names ('1~6학년' -> 6, '1-2' -> 2), or None."""
+    text = str(grades_raw or '')
+    if '전학년' in text or '고학년' in text:
+        return 6
+    numbers = [int(n) for n in re.findall(r'(?<!\d)([1-6])(?!\d)', text)]
+    if numbers:
+        return max(numbers)
+    return LOWER_GRADE_MAX if '저학년' in text else None
+
+
 def clean_row(values: list) -> dict[str, Any] | None:
     """One extractor row after the review rules, or None when it is not a grade-1 offer this year."""
     row = dict(zip(COLUMNS_V2 if len(values) == 11 else COLUMNS_V1, values))
@@ -77,6 +94,7 @@ def clean_row(values: list) -> dict[str, Any] | None:
     # '월~금(주1회)' names the range a class may fall on, not five meetings: without a time it says no day
     if row['days'] == WEEKDAYS and not row['start'] and not row['end']:
         row['days'] = None
+    row['grade_upper'] = grade_upper(row.get('grades_raw'))
     return row
 
 
@@ -94,19 +112,22 @@ def school_record(school: dict) -> dict[str, Any] | None:
                                           'category': category(f"{r['name']} {r.get('variant') or ''}"), 'grade1': 'unknown', 'sections': []})
         if r['grade1'] == 'true':
             option['grade1'] = 'true'
-        option['sections'].append({'section': r.get('section'), 'grades_raw': r.get('grades_raw'), 'days': r['days'],
-                                   'start': r['start'], 'end': r['end'], 'term': r.get('term')})
+        option['sections'].append({'section': r.get('section'), 'grades_raw': r.get('grades_raw'), 'grade1': r['grade1'],
+                                   'grade_upper': r['grade_upper'], 'days': r['days'], 'start': r['start'], 'end': r['end'],
+                                   'term': r.get('term')})
+    # the same rule as the card's bars: grade-1 sections of 방과후, lower-grade ones when the school has any
+    timed = [s for o in options.values() if o['kind'] == '방과후' for s in o['sections']
+             if s['grade1'] == 'true' and s['days'] and s['end']]
+    lower = [s for s in timed if s['grade_upper'] is not None and s['grade_upper'] <= LOWER_GRADE_MAX]
+    basis = 'lower' if lower else 'all' if timed else None
     latest = {d: None for d in WEEKDAYS}
-    for option in options.values():
-        if option['grade1'] != 'true':
-            continue
-        for s in option['sections']:
-            for d in s['days'] or '':
-                if s['end'] and (latest[d] is None or s['end'] > latest[d]):
-                    latest[d] = s['end']
+    for s in lower or timed:
+        for d in s['days']:
+            if latest[d] is None or s['end'] > latest[d]:
+                latest[d] = s['end']
     values = list(options.values())
     terms = sorted({s['term'] for o in values for s in o['sections'] if s['term']})
-    return {'school_id': school['school_id'], 'tier': tier, 'options': values, 'latest': latest,
+    return {'school_id': school['school_id'], 'tier': tier, 'options': values, 'latest': latest, 'timeline_basis': basis,
             'grade1_options': sum(o['grade1'] == 'true' for o in values),
             'custom_options': sum(o['kind'] == '맞춤형' for o in values),
             'unknown_grade_options': sum(o['grade1'] != 'true' for o in values),
@@ -139,7 +160,7 @@ def table_rows(records: list[dict], snapshot: str) -> dict[str, list[dict]]:
         summary.append({'school_id': r['school_id'], 'source_year': SOURCE_YEAR, 'tier': r['tier'],
                         'grade1_options': r['grade1_options'], 'custom_options': r['custom_options'],
                         'unknown_grade_options': r['unknown_grade_options'],
-                        **{column: r['latest'][d] for column, d in zip(DAY_COLUMNS, WEEKDAYS)},
+                        **{column: r['latest'][d] for column, d in zip(DAY_COLUMNS, WEEKDAYS)}, 'timeline_basis': r['timeline_basis'],
                         'term_label': r['term_label'], 'source': SOURCE, 'review_state': 'auto', 'snapshot_date': snapshot})
         seq = 0
         for option in r['options']:
@@ -147,7 +168,7 @@ def table_rows(records: list[dict], snapshot: str) -> dict[str, list[dict]]:
                 seq += 1
                 programs.append({'school_id': r['school_id'], 'seq': seq, 'kind': option['kind'], 'name': option['name'],
                                  'variant': option['variant'], 'section': s['section'], 'category': option['category'],
-                                 'grade1': option['grade1'], 'grades_raw': s['grades_raw'], 'weekdays': s['days'],
+                                 'grade1': s['grade1'], 'grades_raw': s['grades_raw'], 'grade_upper': s['grade_upper'], 'weekdays': s['days'],
                                  'start_time': s['start'], 'end_time': s['end'], 'term': s['term']})
     return {'school_afterschool_summary': summary, 'school_afterschool_programs': programs}
 
@@ -156,7 +177,7 @@ def fixture(records: list[dict]) -> dict[str, dict]:
     """The frontend's SchoolAfterschool shape, for the dev server."""
     return {r['school_id']: {'school_id': r['school_id'], 'source_year': SOURCE_YEAR, 'tier': r['tier'], 'term': r['term_label'], 'note': r['note'],
                              'options': [{**{k: o[k] for k in ('kind', 'name', 'variant', 'category', 'grade1')},
-                                          'sections': [{k: s[k] for k in ('section', 'days', 'start', 'end')} for s in o['sections']]}
+                                          'sections': [{k: s[k] for k in ('section', 'grade1', 'grade_upper', 'days', 'start', 'end')} for s in o['sections']]}
                                          for o in r['options']]} for r in records}
 
 

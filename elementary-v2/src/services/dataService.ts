@@ -1,6 +1,6 @@
 import { supabase } from '../lib/supabase'
 import { UNLIMITED_APARTMENT_AGE } from '../types'
-import type { AcademyAddress, Apartment, ApartmentAcademySummary, ApartmentTransactionSummary, CareCenter, Coordinates, FilterState, MapBounds, School, SchoolAfterschool, SchoolAfterschoolOption, SchoolCareHours, SchoolCareStatistics, SchoolDayEstimate, SchoolDayEstimateWeekday, SearchResult } from '../types'
+import type { AcademyAddress, Apartment, ApartmentAcademySummary, ApartmentTransactionSummary, CareCenter, Coordinates, FilterState, MapBounds, School, SchoolAfterschool, SchoolAfterschoolOption, SchoolAfterschoolSection, SchoolCareHours, SchoolCareStatistics, SchoolDayEstimate, SchoolDayEstimateWeekday, SearchResult } from '../types'
 import { regionCenter, regionHasCityLevel, regionsIntersectingBounds } from '../constants/regionRegistry'
 import { getSchoolNeighborhoodLabel } from '../utils/clusterUtils'
 import { DEFAULT_CENTERS, generateCacheKey, getDisplayMode } from '../utils/mapUtils'
@@ -1025,7 +1025,7 @@ export const getSchoolAfterschool = async (schoolId: string, fetchOptions: { all
     supabase.from('school_afterschool_summary').select('school_id,source_year,tier,term_label').eq('school_id', schoolId).maybeSingle(),
     supabase
       .from('school_afterschool_programs')
-      .select('seq,kind,name,variant,section,category,grade1,weekdays,start_time,end_time')
+      .select('seq,kind,name,variant,section,category,grade1,grade_upper,weekdays,start_time,end_time')
       .eq('school_id', schoolId)
       .order('seq'),
   ])
@@ -1038,7 +1038,7 @@ export const getSchoolAfterschool = async (schoolId: string, fetchOptions: { all
   }
   if (!summary.data) return null
   const options = new Map<string, SchoolAfterschoolOption>()
-  for (const row of (programs.data || []) as Array<Record<string, string | null>>) {
+  for (const row of (programs.data || []) as Array<Record<string, string | null> & { grade_upper: number | null }>) {
     const key = `${row.kind}|${row.name}|${row.variant ?? ''}`
     const option = options.get(key) ?? {
       kind: row.kind as SchoolAfterschoolOption['kind'],
@@ -1048,7 +1048,16 @@ export const getSchoolAfterschool = async (schoolId: string, fetchOptions: { all
       grade1: row.grade1 as SchoolAfterschoolOption['grade1'],
       sections: [],
     }
-    option.sections.push({ section: row.section, days: row.weekdays, start: row.start_time?.slice(0, 5) ?? null, end: row.end_time?.slice(0, 5) ?? null })
+    // 강좌는 반 하나라도 1학년 대상이면 1학년 강좌다. 반마다의 값은 따로 둔다.
+    if (row.grade1 === 'true') option.grade1 = 'true'
+    option.sections.push({
+      section: row.section,
+      grade1: row.grade1 as SchoolAfterschoolSection['grade1'],
+      grade_upper: row.grade_upper,
+      days: row.weekdays,
+      start: row.start_time?.slice(0, 5) ?? null,
+      end: row.end_time?.slice(0, 5) ?? null,
+    })
     options.set(key, option)
   }
   const head = summary.data as { school_id: string; source_year: number; tier: SchoolAfterschool['tier']; term_label: string | null }

@@ -67,7 +67,7 @@ export default function MyAfterschoolPicker({ schoolId, entries, onAdd, onDraft 
                   else onDraft({ label: afterschoolSectionLabel(option, section), start: section.start ?? '', end: section.end ?? '',
                     source: { ref: `school_afterschool:${schoolId}`, version: `${data.source_year} 운영계획` } })
                 }}
-              >{section.section ? `${section.section} · ` : ''}{time}{added.has(id) ? ' · 추가됨' : ''}</button>
+              >{section.section ? `${section.section} · ` : ''}{time}{section.grade_upper !== null && section.grade_upper > 3 ? ` · ${section.grade_upper === 6 ? '전학년' : `~${section.grade_upper}학년`}` : ''}{added.has(id) ? ' · 추가됨' : ''}</button>
             })}
           </div>
         </li>

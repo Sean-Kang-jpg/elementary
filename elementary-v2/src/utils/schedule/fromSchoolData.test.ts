@@ -6,7 +6,7 @@ import { afterschoolEntryFromSection } from './fromSchoolData.ts'
 
 const option: SchoolAfterschoolOption = {
   kind: '방과후', name: '컴퓨터', variant: '컴기초', category: 'STEM', grade1: 'true',
-  sections: [{ section: 'A', days: '수목', start: '13:00', end: '14:20' }],
+  sections: [{ section: 'A', grade1: 'true', grade_upper: 2, days: '수목', start: '13:00', end: '14:20' }],
 }
 
 describe('afterschoolEntryFromSection', () => {
@@ -23,12 +23,12 @@ describe('afterschoolEntryFromSection', () => {
   })
 
   it('needs a weekday and does not trust a missing or reversed time', () => {
-    assert.equal(afterschoolEntryFromSection('S1', 2026, option, { section: null, days: null, start: '13:00', end: '14:00' }), null)
-    const reversed = afterschoolEntryFromSection('S1', 2026, option, { section: null, days: '금', start: '15:00', end: '14:00' })
+    assert.equal(afterschoolEntryFromSection('S1', 2026, option, { section: null, grade1: 'true', grade_upper: 2, days: null, start: '13:00', end: '14:00' }), null)
+    const reversed = afterschoolEntryFromSection('S1', 2026, option, { section: null, grade1: 'true', grade_upper: 2, days: '금', start: '15:00', end: '14:00' })
     assert.equal(reversed?.start, null)
     assert.equal(reversed?.end, null)
     assert.equal(reversed?.evidence, 'unknown')
-    const endOnly = afterschoolEntryFromSection('S1', 2026, { ...option, kind: '맞춤형', variant: null }, { section: null, days: '월', start: null, end: '14:40' })
+    const endOnly = afterschoolEntryFromSection('S1', 2026, { ...option, kind: '맞춤형', variant: null }, { section: null, grade1: 'true', grade_upper: 2, days: '월', start: null, end: '14:40' })
     assert.equal(endOnly?.evidence, 'unknown')
     assert.equal(endOnly?.label, '맞춤형 컴퓨터')
   })
