@@ -24,6 +24,7 @@ INPUTS = ROOT / 'etl/runtime/llm_extraction/inputs_afterschool'
 OUTPUTS = ROOT / 'etl/runtime/llm_extraction/outputs_afterschool'
 AUDIT2 = ROOT / 'docs/research/audit2'
 WEEKDAYS = '월화수목금'
+HHMM = re.compile(r'^\d{2}:\d{2}$')
 COLUMNS = ['kind', 'name', 'variant', 'section', 'grades_raw', 'days', 'start', 'end', 'grade1', 'line']
 # spec v2 (2026-10-12): every row is kept, with false for rows grade 1 cannot take, and the table's term
 COLUMNS_V2 = ['kind', 'name', 'variant', 'section', 'grades_raw', 'days', 'start', 'end', 'grade1', 'term', 'line']
@@ -81,6 +82,9 @@ def check(row: dict, lines: dict[int, str]) -> str:
     problems = []
     for key in ('start', 'end'):
         value = row.get(key)
+        if value and not HHMM.match(str(value)):
+            problems.append(f'{key} 시각 형식 오류({value})')
+            continue
         if value:
             hours, mins = value.split(':')
             if not re.search(rf'(?<!\d)0?({int(hours)}|{int(hours) - 12}):{mins}', squashed):
@@ -107,12 +111,18 @@ def main() -> None:
                 row = dict(zip(COLUMNS_V2 if len(values) == 11 else COLUMNS, values))
                 if row.get('grade1') == 'false':
                     continue
+                # a previous year's table (e.g. a 2025 settlement report) is not this year's offer
+                if re.search(r'20(1\d|2[0-5])', str(row.get('term') or '')):
+                    continue
+                # a 'true' with no grade text is a guess (some extractors assumed the first table was grade 1)
+                if row.get('grade1') == 'true' and not row.get('grades_raw'):
+                    row['grade1'] = 'unknown'
                 option = (row['kind'], row['name'], row.get('variant'))
                 options.add(option)
                 if row.get('grade1') == 'true':
                     grade1_options.add(option)
                     for day in row.get('days') or '':
-                        if day in WEEKDAYS and row.get('end'):
+                        if day in WEEKDAYS and row.get('end') and HHMM.match(str(row['end'])):
                             latest[day] = max(latest[day], row['end'])
                 problem = check(row, lines)
                 flagged += bool(problem)
