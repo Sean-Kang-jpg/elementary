@@ -1063,7 +1063,7 @@ button.apartment-card:hover {
   align-items: center;
   justify-content: center;
   gap: 2px;
-  padding: 0 6px 0 19px;
+  padding: 0 4px;
   border: 1px solid #abc5b6;
   border-radius: 14px;
   background: #fffdf8;
@@ -1074,13 +1074,15 @@ button.apartment-card:hover {
 }
 
 .apartment-map-marker__label > .map-marker-art {
-  position: absolute;
-  z-index: 2;
-  top: -6px;
-  left: -6px;
-  border: 1px solid #d4ded3;
-  border-radius: 10px;
-  box-shadow: 0 1px 3px rgba(80, 65, 45, 0.12);
+  width: 18px;
+  height: 18px;
+  background: transparent;
+  border-radius: 0;
+}
+
+.apartment-map-marker__label > .map-marker-art svg {
+  width: 18px;
+  height: 18px;
 }
 
 .apartment-map-marker__label::after {
