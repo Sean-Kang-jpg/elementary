@@ -2,18 +2,13 @@ import { CarFront, ChevronRight, GraduationCap } from 'lucide-react'
 import type { Apartment, ApartmentAcademySummary } from '../../types'
 import { ACADEMY_DATA_PENDING_LABEL, hasAcademyData } from '../../utils/academyCoverage'
 import ApartmentIllustration from './ApartmentIllustration'
+import { APARTMENT_PALETTE, apartmentAge, apartmentAgeLabel, apartmentEra } from '../../utils/apartmentVisual'
 
 interface ApartmentCardProps {
   apartment: Apartment
   academySummary?: ApartmentAcademySummary
   compact?: boolean
   onClick?: () => void
-}
-
-const ageTone = (age: number) => {
-  if (age <= 10) return { label: '신축', className: 'bg-emerald-50 text-emerald-800' }
-  if (age <= 25) return { label: `${age}년차`, className: 'bg-blue-50 text-blue-800' }
-  return { label: `${age}년차`, className: 'bg-rose-50 text-rose-700' }
 }
 
 const scaleLabel = (households: number) => {
@@ -24,8 +19,8 @@ const scaleLabel = (households: number) => {
 }
 
 export default function ApartmentCard({ apartment, academySummary, compact = false, onClick }: ApartmentCardProps) {
-  const age = Math.max(apartment.age || (apartment.built_year ? new Date().getFullYear() - apartment.built_year : 0), 0)
-  const ageState = ageTone(age)
+  const age = apartmentAge(apartment.age, apartment.built_year)
+  const ageColor = APARTMENT_PALETTE[apartmentEra(age)]
   const parkingRatio = Math.max(apartment.parking_per_household || 0, 0)
   const parkingPercent = Math.min(parkingRatio / 1.5 * 100, 100)
   const totalAcademies = academySummary
@@ -35,7 +30,7 @@ export default function ApartmentCard({ apartment, academySummary, compact = fal
 
   const content = (
     <>
-      <span className="apartment-card__visual" aria-hidden="true">
+      <span className="apartment-card__visual" aria-hidden="true" title="연식·세대수 규모를 요약한 기호로 실제 외관이나 동 수가 아닙니다">
         <ApartmentIllustration households={apartment.households} age={age} />
       </span>
       <span className="min-w-0 flex-1">
@@ -53,7 +48,8 @@ export default function ApartmentCard({ apartment, academySummary, compact = fal
 
         <span className="mt-2 flex flex-wrap gap-1.5">
           <span className="rounded bg-violet-50 px-2 py-1 text-[11px] font-semibold text-violet-700">{scaleLabel(apartment.households)}</span>
-          {age > 0 ? <span className={`rounded px-2 py-1 text-[11px] font-semibold ${ageState.className}`}>{ageState.label}</span> : null}
+          <span className="rounded px-2 py-1 text-[11px] font-semibold" data-testid="apartment-age-badge"
+            style={{ backgroundColor: ageColor.surface, color: ageColor.ink }}>{apartmentAgeLabel(age)}</span>
           {totalAcademies != null ? (
             <span className="inline-flex items-center gap-1 rounded bg-teal-50 px-2 py-1 text-[11px] font-semibold text-teal-800">
               <GraduationCap size={12} aria-hidden="true" />교육시설 {totalAcademies.toLocaleString()}곳

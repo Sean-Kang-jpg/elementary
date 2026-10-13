@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>아파트 정보 아이콘 QA</title>
+<style>body{font:14px system-ui,sans-serif;margin:16px;color:#28382f;background:#fff}h1{font-size:18px}h2{font-size:14px;margin:20px 0 8px}.cases{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;max-width:420px}.case{text-align:center}.case p{margin:4px 0;font-size:12px}</style></head>
+<body><h1>화면 QA 표본 · 운영 단지가 아님</h1><div id="fixture-root"></div>
+<script type="module">
+  import React from 'react'
+  import { createRoot } from 'react-dom/client'
+  import ApartmentIllustration from '/src/components/apartment/ApartmentIllustration.tsx'
+  import ApartmentCard from '/src/components/apartment/ApartmentCard.tsx'
+  import '/src/index.css'
+  import { apartmentAgeLabel } from '/src/utils/apartmentVisual.ts'
+  const ages=[5,15,33,null]
+  const households=[100,500,1500,4000]
+  const sections=ages.map(age=>{
+    const items=households.map(size=>React.createElement('div',{
+      className:'case',key:size,'data-fixture-age':String(age),'data-fixture-households':size,
+    },React.createElement(ApartmentIllustration,{households:size,age}),React.createElement('p',null,`${size.toLocaleString()}세대`)))
+    return React.createElement('section',{key:String(age)},React.createElement('h2',null,apartmentAgeLabel(age)),React.createElement('div',{className:'cases'},...items))
+  })
+  const unknownCard=React.createElement(ApartmentCard,{apartment:{id:'qa-unknown-age',name:'QA 연식 미확인',age:0,built_year:0,households:500,building_count:0,city:'QA',parking_per_household:0,ground_parking:0,underground_parking:0}})
+  createRoot(document.getElementById('fixture-root')).render(React.createElement(React.Fragment,null,...sections,React.createElement('h2',null,'연식 미확인 카드 QA'),unknownCard))
+</script></body></html>

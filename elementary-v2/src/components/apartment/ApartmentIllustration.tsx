@@ -1,84 +1,53 @@
+import { APARTMENT_PALETTE, apartmentEra, apartmentSilhouetteCount } from '../../utils/apartmentVisual'
+
 interface ApartmentIllustrationProps {
   households: number
-  /** 사용승인 후 경과 연수. 0 이하이면 연식을 모르는 것으로 본다. */
-  age: number
+  /** null means unknown; zero is a verified current-year approval. */
+  age: number | null
   width?: number
   height?: number
 }
 
-type Era = 'new' | 'mid' | 'old' | 'unknown'
-
-// 연식 칩(ApartmentCard의 ageTone)과 같은 색 체계: 신축 초록, 중간 파랑, 구축 분홍.
-const PALETTE: Record<Era, { bg: string; line: string; window: string; sun: string }> = {
-  new: { bg: '#e6f6ef', line: '#2f8f6a', window: '#bfe5d4', sun: '#d3efe3' },
-  mid: { bg: '#e9effb', line: '#3b62b5', window: '#c9d7f2', sun: '#dbe4f7' },
-  old: { bg: '#fbecee', line: '#b0475f', window: '#efc9d1', sun: '#f5dce1' },
-  unknown: { bg: '#e7f5f2', line: '#5fb3a9', window: '#cfe9e5', sun: '#d6efeb' },
+// The same shapes across ages: height/roof do not imply an actual exterior.
+const HEIGHTS: Record<number, number[]> = {
+  1: [34], 2: [34, 40], 3: [30, 40, 34], 4: [30, 40, 34, 28],
 }
 
-// 10년 이하는 높은 탑상형, 11~25년은 중층, 26년 이상은 낮은 판상형. 높이는 76px 기준.
-const SHAPE: Record<Era, { width: number; heights: number[] }> = {
-  new: { width: 10, heights: [48, 56, 44, 52] },
-  mid: { width: 12, heights: [36, 42, 32, 38] },
-  old: { width: 13, heights: [22, 26, 20, 24] },
-  unknown: { width: 12, heights: [36, 42, 32, 38] },
-}
-
-const eraOf = (age: number): Era => age <= 0 ? 'unknown' : age <= 10 ? 'new' : age <= 25 ? 'mid' : 'old'
-
-const buildingCount = (households: number) =>
-  households >= 3000 ? 4 : households >= 1000 ? 3 : households >= 300 ? 2 : 1
-
-/** 실제 외관 사진이 아니라 연식과 세대수로 그린 단지 그림. 글자 정보는 카드 본문이 갖는다. */
-export default function ApartmentIllustration({ households, age, width = 68, height = 76 }: ApartmentIllustrationProps) {
-  const era = eraOf(age)
-  const color = PALETTE[era]
-  const shape = SHAPE[era]
-  const count = buildingCount(households)
-  const scale = height / 76
-  const base = height - 8
+/** Decorative information symbol; actual household/year data stay in card text. */
+export default function ApartmentIllustration({ households, age, width = 64, height = 64 }: ApartmentIllustrationProps) {
+  const era = apartmentEra(age)
+  const color = APARTMENT_PALETTE[era]
+  const count = apartmentSilhouetteCount(households)
+  const buildingWidth = count <= 2 ? 15 : 10
+  const base = 53
   const gap = 3
-  const startX = (width - (count * shape.width + (count - 1) * gap)) / 2
-  const rowHeight = era === 'new' ? 5 : 6
+  const startX = (64 - (count * buildingWidth + (count - 1) * gap)) / 2
 
   return (
-    <svg width={width} height={height} viewBox={`0 0 ${width} ${height}`} aria-hidden="true" focusable="false">
-      <rect width={width} height={height} fill={color.bg} />
-      <circle cx={width - 14} cy={14} r={6} fill={color.sun} />
-      {Array.from({ length: count }, (_, index) => {
-        const x = startX + index * (shape.width + gap)
-        const h = shape.heights[index] * scale
-        const top = base - h
-        const columns = 2
-        const columnWidth = (shape.width - 4) / columns
-        const rows: number[] = []
-        for (let y = top + 4; y < base - 4; y += rowHeight) rows.push(y)
+    <svg width={width} height={height} viewBox="0 0 64 64" aria-hidden="true" focusable="false"
+      data-apartment-era={era} data-apartment-scale={count}>
+      <rect width="64" height="64" rx="15" fill={color.surface} />
+      <ellipse cx="32" cy="55" rx="25" ry="2.5" fill={color.ink} opacity="0.09" />
+      {HEIGHTS[count].map((buildingHeight, index) => {
+        const x = startX + index * (buildingWidth + gap)
+        const top = base - buildingHeight
+        const rows = Math.floor((buildingHeight - 12) / 7)
         return (
-          <g key={index}>
-            <rect x={x} y={top} width={shape.width} height={h} fill="#fff" stroke={color.line} strokeWidth={1.2} />
-            {rows.map((y) => Array.from({ length: columns }, (_, column) => (
-              <rect
-                key={`${y}-${column}`}
-                x={x + 2 + column * columnWidth + 0.8}
-                y={y}
-                width={columnWidth - 1.6}
-                height={2.2}
-                fill={color.window}
-              />
+          <g key={index} data-building-silhouette="true">
+            <rect x={x} y={top} width={buildingWidth} height={buildingHeight} rx="2.5"
+              fill={color.body} stroke={color.ink} strokeWidth="1.25" />
+            {Array.from({ length: rows }, (_, row) => [0, 1].map((column) => (
+              <rect key={`${row}-${column}`} x={x + 2.5 + column * (buildingWidth - 5) / 2}
+                y={top + 5 + row * 7} width={(buildingWidth - 7) / 2} height="3" rx="0.8" fill={color.detail} />
             )))}
-            {era === 'new' ? (
-              <path
-                d={`M${x - 0.6} ${top} L${x + shape.width / 2} ${top - 5} L${x + shape.width + 0.6} ${top}`}
-                fill="#fff"
-                stroke={color.line}
-                strokeWidth={1.2}
-                strokeLinejoin="round"
-              />
-            ) : null}
+            <rect x={x + buildingWidth / 2 - 1.5} y={base - 6} width="3" height="6" rx="1" fill={color.detail} />
           </g>
         )
       })}
-      <rect x={0} y={base} width={width} height={height - base} fill={color.line} opacity={0.18} />
+      <g fill="none" stroke={color.ink} strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" opacity="0.8">
+        <circle cx="53" cy="11" r="5.5" fill={color.surface} />
+        <path d="M53 8v3l2 1" />
+      </g>
     </svg>
   )
 }

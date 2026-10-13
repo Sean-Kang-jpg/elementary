@@ -990,11 +990,11 @@ button.apartment-card:hover {
 
 .apartment-card__visual {
   display: flex;
-  width: 68px;
-  height: 76px;
+  width: 64px;
+  height: 64px;
   flex: none;
   overflow: hidden;
-  border-radius: 7px;
+  border-radius: 15px;
 }
 
 .apartment-map-marker--dot {
