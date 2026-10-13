@@ -1,4 +1,4 @@
-import type { SchoolCareHours, SchoolDayEstimate } from '../../types'
+import type { SchoolAfterschoolOption, SchoolAfterschoolSection, SchoolCareHours, SchoolDayEstimate } from '../../types'
 import type { EvidenceStatus, Minutes, ParticipationStatus, ScheduleEntry, Weekday } from './types'
 
 /** 'HH:MM' 또는 PostgREST의 'HH:MM:SS'. 읽을 수 없으면 null — 추측하지 않는다. */
@@ -81,4 +81,47 @@ export const careEntriesFromHours = (
     })
   }
   return entries
+}
+
+const WEEKDAY_LETTERS = '월화수목금'
+
+/** 방과후 강좌의 반 하나를 가리키는 이름. 같은 반을 두 번 넣지 않도록 id에도 쓴다. */
+export const afterschoolSectionLabel = (option: SchoolAfterschoolOption, section: SchoolAfterschoolSection): string =>
+  `${option.kind === '맞춤형' ? '맞춤형 ' : ''}${option.name}${option.variant ? ` (${option.variant})` : ''}${section.section ? ` · ${section.section}` : ''}`
+
+export const afterschoolSectionId = (schoolId: string, option: SchoolAfterschoolOption, section: SchoolAfterschoolSection): string =>
+  `afterschool-${schoolId}-${afterschoolSectionLabel(option, section)}-${section.days ?? ''}-${section.start ?? ''}-${section.end ?? ''}`
+
+/**
+ * 부모가 고른 방과후·맞춤형 강좌의 반 하나(SQL 30, 15-라 운영계획)를 후보 일정으로 바꾼다.
+ * 요일을 모르면 null이다 — 일정은 요일이 있어야 하므로 부모가 요일을 직접 고르게 한다.
+ * 운영계획 값이라 시작·종료를 모두 읽은 반만 school-plan이고, 참여는 부모가 고른다.
+ */
+export const afterschoolEntryFromSection = (
+  schoolId: string,
+  sourceYear: number,
+  option: SchoolAfterschoolOption,
+  section: SchoolAfterschoolSection,
+): ScheduleEntry | null => {
+  const weekdays = [...new Set(section.days ?? '')]
+    .map((letter) => WEEKDAY_LETTERS.indexOf(letter) + 1)
+    .filter((day): day is Weekday => day >= 1)
+    .sort()
+  if (!weekdays.length) return null
+  let start = toMinutes(section.start)
+  let end = toMinutes(section.end)
+  if (start !== null && end !== null && start >= end) start = end = null
+  return {
+    id: afterschoolSectionId(schoolId, option, section),
+    kind: 'afterschool',
+    label: afterschoolSectionLabel(option, section),
+    weekdays,
+    start,
+    end,
+    evidence: start !== null && end !== null ? 'school-plan' : 'unknown',
+    participation: 'considering',
+    transitionIn: 'unknown',
+    term: 'semester',
+    source: { ref: `school_afterschool:${schoolId}`, version: `${sourceYear} 운영계획` },
+  }
 }

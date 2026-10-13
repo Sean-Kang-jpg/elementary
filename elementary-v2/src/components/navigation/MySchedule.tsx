@@ -6,6 +6,7 @@ import { computeWeek, WEEKDAYS } from '../../utils/schedule/engine'
 import { deletePlan, readPlans, selectPlan, subscribePlans, upsertPlan, writePlans, type PlanStore, type SchoolPlan } from '../../utils/schedule/plans'
 import type { EntryKind, ParticipationStatus, ScheduleEntry, Weekday } from '../../utils/schedule/types'
 import { displaySchoolName } from '../../utils/schoolName'
+import MyAfterschoolPicker, { type EntryDraft } from './MyAfterschoolPicker'
 
 const DAYS = ['월', '화', '수', '목', '금']
 const STATUS: Record<ParticipationStatus, string> = {
@@ -13,6 +14,7 @@ const STATUS: Record<ParticipationStatus, string> = {
   confirmed: '참여 확정', rejected: '미선정', cancelled: '취소',
 }
 const KINDS: Record<EntryKind, string> = { school: '정규수업', afterschool: '방과후', care: '돌봄', personal: '배움·활동 / 개인 일정' }
+const SOURCES: Record<EntryKind, string> = { school: '학교별 예상 하교 자료', afterschool: '학교 방과후 운영계획', care: '학교 돌봄 운영 시간 자료', personal: '사용자 입력' }
 const timing = (e: ScheduleEntry) => e.kind === 'school'
   ? `하교 ${e.end === null ? '미확인' : formatMinutes(e.end) + ' (예상)'}`
   : `${e.startsAfterSchool ? '하교 후' : e.start === null ? '시작 미확인' : formatMinutes(e.start)} ~ ${e.end === null ? '종료 미확인' : formatMinutes(e.end)}`
@@ -22,6 +24,7 @@ export default function MySchedule({ schools, entryYear }: { schools: FavoriteRe
   const [selectedId, setSelectedId] = useState('')
   const [message, setMessage] = useState('')
   const [loading, setLoading] = useState(false)
+  const [draft, setDraft] = useState<{ value: EntryDraft; nonce: number } | null>(null)
   const alive = useRef(true)
   useEffect(() => {
     alive.current = true
@@ -101,7 +104,7 @@ export default function MySchedule({ schools, entryYear }: { schools: FavoriteRe
           <details className="my-entry-list"><summary>일정·참여 상태 관리 ({plan.entries.length})</summary>
             {plan.entries.map((e) => <div className="my-entry" key={e.id}>
               <b>{e.label}</b><small>{e.weekdays.map((d) => DAYS[d - 1]).join('·')} · {timing(e)}</small>
-              <small>{e.source ? `출처 ${e.kind === 'school' ? '학교별 예상 하교 자료' : '학교 돌봄 운영 시간 자료'} · 학년도/확인 기준 ${e.source.version}` : '사용자 입력 · 운영 자료와 별도 확인 필요'}</small>
+              <small>{e.source ? `출처 ${SOURCES[e.kind]} · 학년도/확인 기준 ${e.source.version}` : '사용자 입력 · 운영 자료와 별도 확인 필요'}</small>
               {e.kind !== 'school' && <label className="my-field">참여 상태 · {e.label}
                 <select value={e.participation} onChange={(event) => updatePlan({ ...plan, entries: plan.entries.map((item) => item.id === e.id ? { ...item, participation: event.target.value as ParticipationStatus } : item) })}>
                   {Object.entries(STATUS).map(([value, label]) => <option value={value} key={value}>{label}</option>)}
@@ -110,7 +113,10 @@ export default function MySchedule({ schools, entryYear }: { schools: FavoriteRe
               <button type="button" className="my-button" onClick={() => updatePlan({ ...plan, entries: plan.entries.filter((item) => item.id !== e.id) })} aria-label={`${e.label} 일정 삭제`}>일정 삭제</button>
             </div>)}
           </details>
-          <ScheduleEntryForm key={plan.schoolId} onAdd={(entry) => updatePlan({ ...plan, entries: [...plan.entries, entry] })} />
+          <MyAfterschoolPicker schoolId={plan.schoolId} entries={plan.entries}
+            onAdd={(entry) => updatePlan({ ...plan, entries: [...plan.entries, entry] })}
+            onDraft={(value) => { setDraft((current) => ({ value, nonce: (current?.nonce ?? 0) + 1 })); setMessage('요일이 적혀 있지 않은 반이에요. 아래 양식에서 요일을 골라 저장해 주세요.') }} />
+          <ScheduleEntryForm key={`${plan.schoolId}-${draft?.nonce ?? 0}`} draft={draft?.value} onAdd={(entry) => updatePlan({ ...plan, entries: [...plan.entries, entry] })} />
           <p className="my-help">미확인 시간은 배치·공백 계산을 하지 않아요. 돌봄 운영 시간은 이용 가능이나 1학년 대상 확정을 뜻하지 않아요. 방학 일정은 별도 확인이 필요해요.</p>
           <button type="button" className="my-button" onClick={() => {
             if (window.confirm('이 학교의 시간표 초안을 삭제할까요? 관심 학교는 유지됩니다.')) persist(deletePlan(readPlans(), plan.schoolId), '시간표 초안을 삭제했어요.')
@@ -122,14 +128,14 @@ export default function MySchedule({ schools, entryYear }: { schools: FavoriteRe
   )
 }
 
-function ScheduleEntryForm({ onAdd }: { onAdd: (entry: ScheduleEntry) => boolean }) {
-  const [label, setLabel] = useState('')
+function ScheduleEntryForm({ onAdd, draft }: { onAdd: (entry: ScheduleEntry) => boolean; draft?: EntryDraft }) {
+  const [label, setLabel] = useState(draft?.label ?? '')
   const [kind, setKind] = useState<EntryKind>('afterschool')
   const [weekdays, setWeekdays] = useState<Weekday[]>([1])
-  const [start, setStart] = useState('')
-  const [end, setEnd] = useState('')
+  const [start, setStart] = useState(draft?.start ?? '')
+  const [end, setEnd] = useState(draft?.end ?? '')
   const [error, setError] = useState('')
-  return <details className="my-entry-form"><summary>방과후·돌봄·배움활동 일정 추가</summary>
+  return <details className="my-entry-form" open={draft ? true : undefined} ref={(node) => { if (node && draft) node.scrollIntoView({ block: 'nearest' }) }}><summary>방과후·돌봄·배움활동 일정 추가</summary>
     <form onSubmit={(event) => {
       event.preventDefault()
       const from = toMinutes(start), to = toMinutes(end)
@@ -137,7 +143,8 @@ function ScheduleEntryForm({ onAdd }: { onAdd: (entry: ScheduleEntry) => boolean
         setError('일정 이름과 요일을 확인해 주세요. 종료 시간은 시작 시간 이후여야 해요.'); return
       }
       const saved = onAdd({ id: crypto.randomUUID(), label: label.trim(), kind, weekdays, start: from, end: to,
-        evidence: from === null || to === null ? 'unknown' : 'estimated', participation: 'considering', transitionIn: 'unknown', term: 'semester' })
+        evidence: from === null || to === null ? 'unknown' : 'estimated', participation: 'considering', transitionIn: 'unknown', term: 'semester',
+        ...(draft?.source && label.trim() === draft.label ? { source: draft.source } : {}) })
       if (saved) { setLabel(''); setStart(''); setEnd('') }
       setError('')
     }}>

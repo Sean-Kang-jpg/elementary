@@ -1017,8 +1017,9 @@ let afterschoolTablesAvailable = true
  * 요일·종료 시각을 대부분 읽은 학교(A·B 등급)만 공개 테이블에 있다. 테이블이 아직 없으면
  * null이고 카드는 이 부분 없이 그려진다. 개발 서버에서는 그때 src/dev-fixtures/를 읽는다.
  */
-export const getSchoolAfterschool = async (schoolId: string): Promise<SchoolAfterschool | null> => {
-  const dev = (import.meta as ViteMeta).env.DEV
+export const getSchoolAfterschool = async (schoolId: string, fetchOptions: { allowDevFixture?: boolean } = {}): Promise<SchoolAfterschool | null> => {
+  // MY 시간표에 저장될 자료는 개발용 예시를 쓰지 않는다(getSchoolDayEstimate와 같은 규칙).
+  const dev = (import.meta as ViteMeta).env.DEV && fetchOptions.allowDevFixture !== false
   if (!afterschoolTablesAvailable) return dev ? devAfterschoolFixture(schoolId) : null
   const [summary, programs] = await Promise.all([
     supabase.from('school_afterschool_summary').select('school_id,source_year,tier,term_label').eq('school_id', schoolId).maybeSingle(),

@@ -1107,6 +1107,11 @@
 .my-entry-form input[type=checkbox] { accent-color: var(--warm-accent-strong); }
 .my-entry { padding: 12px 0; border-bottom: 1px solid var(--warm-border); }
 .my-entry small { margin: 4px 0; overflow-wrap: anywhere; }
+.my-afterschool-pick ul { margin: 0; padding: 0; list-style: none; }
+.my-afterschool-pick li { padding: 10px 0; border-top: 1px solid var(--warm-border); font-size: 14px; }
+.my-afterschool-pick li small { display: block; color: var(--warm-muted); font-size: 12px; }
+.my-afterschool-pick .my-actions { margin: 8px 0 0; }
+.my-afterschool-pick .my-button:disabled { cursor: default; }
 .my-candidate-tabs { display: flex; gap: 8px; margin: 12px 0; }
 .my-candidate-tabs button { flex: 1; min-height: 44px; border: 1px solid var(--warm-border); border-radius: 10px; color: var(--warm-muted); background: var(--warm-surface); font-weight: 600; }
 .my-candidate-tabs button[aria-pressed=true] { color: var(--warm-accent-strong); border-color: var(--warm-accent-strong); background: var(--warm-bg); }
