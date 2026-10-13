@@ -37,7 +37,7 @@ const apartment = "document.querySelector('.apartment-map-marker--selected')"
 const activity = "document.querySelector('.academy-map-marker, .academy-map-cluster')"
 const care = "document.querySelector('.care-map-marker')"
 try {
-  run('set', 'viewport', '390', '844')
+  run('set', 'viewport', '1280', '844')
   open('/map')
   await wait("document.querySelectorAll('.map-layer-controls button').length===3", 'three direct push buttons render together before selection')
   check("document.querySelectorAll('.map-layer-controls button:disabled').length===3", 'all dependent layers explain missing origin before selection')
@@ -83,10 +83,20 @@ try {
   topic('배정·통학')
   for (const width of [360,390,430,1280]) {
     run('set', 'viewport', String(width), '844')
-    check("(() => { const r=document.querySelector('.map-layer-controls').getBoundingClientRect(); return r.left>=0 && r.right<=innerWidth && r.top>=0 && r.bottom<=innerHeight && document.documentElement.scrollWidth<=innerWidth })()", `${width}px buttons stay within the viewport without horizontal overflow`)
-    check("[...document.querySelectorAll('.map-layer-controls button, [data-layer-entry=banner]')].every(x=>x.getBoundingClientRect().height>=44)", `${width}px floating and banner buttons keep accessible touch heights`)
+    if (width < 640) {
+      check("document.querySelector('.map-layer-disclosure').getAttribute('aria-expanded')==='false' && getComputedStyle(document.querySelector('.map-layer-controls')).display==='none'", `${width}px starts with the display filters collapsed`)
+      run('click', '.map-layer-disclosure')
+      check("document.querySelector('.map-layer-disclosure').getAttribute('aria-expanded')==='true' && getComputedStyle(document.querySelector('.map-layer-controls')).display==='grid'", `${width}px disclosure exposes all layer toggles`)
+    }
+    check("(() => { const r=document.querySelector('.map-layer-control-shell').getBoundingClientRect(); return r.left>=0 && r.right<=innerWidth && r.top>=0 && r.bottom<=innerHeight && document.documentElement.scrollWidth<=innerWidth })()", `${width}px controls stay within the viewport without horizontal overflow`)
+    check(width < 640
+      ? "[...document.querySelectorAll('.map-layer-controls button, .map-layer-disclosure, [data-layer-entry=banner]')].every(x=>x.getBoundingClientRect().height>=40)"
+      : "[...document.querySelectorAll('.map-layer-controls button')].every(x=>x.getBoundingClientRect().height<=32) && document.querySelector('.map-layer-controls').getBoundingClientRect().height<=32",
+      width < 640 ? `${width}px expanded controls keep practical touch heights` : `${width}px controls form one compact row`)
+    if (width < 640) run('click', '.map-layer-disclosure')
   }
   run('set', 'viewport', '390', '844')
+  run('click', '.map-layer-disclosure')
   run('focus', floating('apartments'))
   run('press', 'Space')
   await wait(`(${matchingState('apartments')}) && document.querySelector(${JSON.stringify(floating('apartments'))}).getAttribute('aria-pressed')==='false'`, 'keyboard Space toggles push button and banner together')

@@ -33,6 +33,10 @@ declare global {
     mapTypeId?: string;
     minZoom?: number;
     maxZoom?: number;
+    draggable?: boolean;
+    pinchZoom?: boolean;
+    scrollWheel?: boolean;
+    keyboardShortcuts?: boolean;
     zoomControl?: boolean;
     zoomControlOptions?: {
       position: string;

@@ -5,7 +5,7 @@ import type { MapLayer } from '../../utils/mapLayers'
 
 const LAYERS = {
   apartments: { label: '배정아파트', icon: Building2, note: '세대수 표시 · 100세대 미만은 작은 아이콘' },
-  care: { label: '지역 돌봄', icon: HeartHandshake, note: '학교 기준 직선거리 1km' },
+  care: { label: '돌봄센터', icon: HeartHandshake, note: '학교 기준 직선거리 1km' },
   activity: { label: '교육환경', icon: GraduationCap, note: '학원 등 · 실선 ~600m / 점선 600~800m · +N 복합상가' },
 } as const
 

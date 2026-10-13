@@ -433,23 +433,31 @@ body {
   bottom: 24px;
 }
 
-.map-layer-controls {
+.map-layer-control-shell {
   position: absolute;
   top: 126px;
   right: 20px;
   z-index: var(--layer-map-ui);
-  display: grid;
-  width: 120px;
-  gap: 6px;
+}
+.map-layer-controls {
+  display: flex;
+  gap: 5px;
+}
+.map-layer-disclosure {
+  display: none;
+}
+[data-map-canvas] {
+  /* The SDK still receives pointer/touch input; only browser viewport gestures are disabled. */
+  touch-action: none;
 }
 .map-layer-button {
   display: flex;
-  min-height: 44px;
+  min-height: 30px;
   align-items: center;
-  gap: 7px;
-  padding: 7px 9px;
+  gap: 5px;
+  padding: 4px 8px;
   border: 1px solid #cdd5d0;
-  border-radius: 11px;
+  border-radius: 999px;
   background: #fffdf8;
   color: #546158;
   text-align: left;
@@ -458,7 +466,7 @@ body {
 }
 .map-layer-button > svg { flex: none; }
 .map-layer-button__text { flex: 1; min-width: 0; }
-.map-layer-button__text strong { display: block; font-size: 12px; font-weight: 650; line-height: 1.5; }
+.map-layer-button__text strong { display: block; font-size: 12px; font-weight: 650; line-height: 1.25; white-space: nowrap; }
 .map-layer-button__text small { display: block; margin-top: 2px; color: inherit; font-size: 10px; line-height: 1.5; }
 .map-layer-button__unchecked { width: 13px; height: 13px; flex: none; border: 1px solid #b4c0b8; border-radius: 50%; }
 .map-layer-button--apartments[aria-pressed="true"] { border-color: #80ac94; background: #e6f3eb; color: #2e5849; }
@@ -861,10 +869,39 @@ body {
 }
 
 @media (max-width: 639px) {
-  .map-layer-controls {
+  .map-layer-control-shell {
     top: 176px;
     right: 12px;
   }
+
+  .map-layer-disclosure {
+    display: inline-flex;
+    min-height: 40px;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 10px;
+    border: 1px solid #cdd5d0;
+    border-radius: 999px;
+    background: #fffdf8;
+    color: #445149;
+    box-shadow: 0 2px 7px rgb(80 65 45 / 16%);
+    font-size: 12px;
+    font-weight: 700;
+  }
+
+  .map-layer-disclosure__chevron { transition: transform 120ms ease; }
+  .map-layer-disclosure[aria-expanded="true"] .map-layer-disclosure__chevron { transform: rotate(180deg); }
+  .map-layer-disclosure:focus-visible { outline: 2px solid #4c7397; outline-offset: 2px; }
+
+  .map-layer-controls {
+    display: none;
+    width: 132px;
+    margin-top: 6px;
+    gap: 5px;
+  }
+
+  .map-layer-controls[data-mobile-expanded="true"] { display: grid; }
+  .map-layer-controls .map-layer-button { min-height: 40px; border-radius: 10px; }
 
   .care-map-chip {
     top: 176px;

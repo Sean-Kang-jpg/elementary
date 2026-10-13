@@ -114,7 +114,7 @@ const MapContainer: React.FC<MapContainerProps> = ({ className = '', onNavigate 
   // itself, so a pinch that starts on a marker, the legend or a control fell
   // through to the browser's page zoom. The page then scaled while the map zoomed
   // on its own, and markers stopped matching the tiles. Over the map, zooming
-  // belongs to the map: the browser's pinch, ctrl+wheel (trackpad pinch on
+  // belongs to the map: the browser's pinch, Ctrl/Meta+wheel (trackpad pinch on
   // desktop) and Safari's gesture events are cancelled here without stopping
   // propagation, so the SDK still receives every event. Single-finger moves are
   // left alone so the academy popup's table can still scroll.
@@ -125,18 +125,25 @@ const MapContainer: React.FC<MapContainerProps> = ({ className = '', onNavigate 
       if (event.touches.length > 1 && event.cancelable) event.preventDefault()
     }
     const blockPageZoomWheel = (event: WheelEvent) => {
-      if (event.ctrlKey) event.preventDefault()
+      if ((event.ctrlKey || event.metaKey) && event.cancelable) event.preventDefault()
     }
-    const blockGesture = (event: Event) => event.preventDefault()
-    surface.addEventListener('touchmove', blockMultiTouch, { passive: false })
-    surface.addEventListener('wheel', blockPageZoomWheel, { passive: false })
-    surface.addEventListener('gesturestart', blockGesture)
-    surface.addEventListener('gesturechange', blockGesture)
+    const blockGesture = (event: Event) => {
+      if (event.cancelable) event.preventDefault()
+    }
+    const nonPassiveCapture = { passive: false, capture: true } as const
+    surface.addEventListener('touchstart', blockMultiTouch, nonPassiveCapture)
+    surface.addEventListener('touchmove', blockMultiTouch, nonPassiveCapture)
+    surface.addEventListener('wheel', blockPageZoomWheel, nonPassiveCapture)
+    surface.addEventListener('gesturestart', blockGesture, nonPassiveCapture)
+    surface.addEventListener('gesturechange', blockGesture, nonPassiveCapture)
+    surface.addEventListener('gestureend', blockGesture, nonPassiveCapture)
     return () => {
-      surface.removeEventListener('touchmove', blockMultiTouch)
-      surface.removeEventListener('wheel', blockPageZoomWheel)
-      surface.removeEventListener('gesturestart', blockGesture)
-      surface.removeEventListener('gesturechange', blockGesture)
+      surface.removeEventListener('touchstart', blockMultiTouch, true)
+      surface.removeEventListener('touchmove', blockMultiTouch, true)
+      surface.removeEventListener('wheel', blockPageZoomWheel, true)
+      surface.removeEventListener('gesturestart', blockGesture, true)
+      surface.removeEventListener('gesturechange', blockGesture, true)
+      surface.removeEventListener('gestureend', blockGesture, true)
     }
   }, [mapError])
 
@@ -154,6 +161,10 @@ const MapContainer: React.FC<MapContainerProps> = ({ className = '', onNavigate 
         zoom: initial.zoom,
         minZoom: 8,
         maxZoom: 18,
+        draggable: true,
+        pinchZoom: true,
+        scrollWheel: true,
+        keyboardShortcuts: true,
         zoomControl: window.matchMedia('(min-width: 640px)').matches,
         zoomControlOptions: {
           position: window.naver.maps.Position?.TOP_RIGHT || 'TOP_RIGHT',
