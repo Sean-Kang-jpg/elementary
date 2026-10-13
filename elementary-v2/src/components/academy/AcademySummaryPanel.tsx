@@ -1,4 +1,4 @@
-import { BookOpen, Calculator, Code, Dumbbell, FlaskConical, Globe, GraduationCap, Languages, Map, Palette, PenLine, Shapes } from 'lucide-react'
+import { BookOpen, Calculator, Code, Dumbbell, FlaskConical, Globe, GraduationCap, Languages, Palette, PenLine, Shapes } from 'lucide-react'
 import { useMemo } from 'react'
 import type { AcademyAddress } from '../../types'
 import { ACADEMY_CATEGORIES, getAcademyCategoryCounts, type AcademyCategoryKey } from '../../utils/academyCategories'
@@ -8,7 +8,6 @@ interface AcademySummaryPanelProps {
   academies: AcademyAddress[]
   loading?: boolean
   error?: string | null
-  onShowMap?: () => void
   dataAvailable?: boolean
 }
 
@@ -25,7 +24,7 @@ const CATEGORY_ICONS = {
   other: Shapes,
 } as const
 
-export default function AcademySummaryPanel({ academies, loading = false, error = null, onShowMap, dataAvailable = true }: AcademySummaryPanelProps) {
+export default function AcademySummaryPanel({ academies, loading = false, error = null, dataAvailable = true }: AcademySummaryPanelProps) {
   const { state, dispatch } = useAppContext()
   const selectedCategory = state.activityCategory
   const summary = useMemo(() => {
@@ -54,7 +53,6 @@ export default function AcademySummaryPanel({ academies, loading = false, error 
     const nextCategory = selectedCategory === category ? null : category
     dispatch({ type: 'SET_ACTIVITY_CATEGORY', payload: nextCategory })
     window.dispatchEvent(new CustomEvent('joinmap:filter-academies', { detail: { category: nextCategory } }))
-    onShowMap?.()
   }
 
   if (!dataAvailable) return <div className="rounded-md border border-gray-200 bg-gray-50 px-4 py-10 text-center text-sm font-medium text-gray-600">교육시설 데이터 준비 중</div>
@@ -103,7 +101,6 @@ export default function AcademySummaryPanel({ academies, loading = false, error 
         </section>
       ) : null}
 
-      {onShowMap ? <button type="button" onClick={onShowMap} className="inline-flex h-11 w-full items-center justify-center gap-2 rounded-md bg-teal-700 text-sm font-semibold text-white hover:bg-teal-800"><Map size={18} aria-hidden="true" />교육시설 지도 보기</button> : null}
       <p className="text-[11px] leading-4 text-gray-500">배정 아파트 주변 학원·교습소·체육도장의 직선거리 기반 집계이며 공식 배정 관계를 의미하지 않습니다.</p>
     </div>
   )

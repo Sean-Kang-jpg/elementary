@@ -25,6 +25,7 @@ import { hasAcademyData } from '../../utils/academyCoverage'
 import { displaySchoolName } from '../../utils/schoolName'
 import { MAP_TOPICS, type MapTopic } from '../../utils/mapTopics'
 import DetailTabs from '../ui/DetailTabs'
+import MapLayerButton from '../map/MapLayerButton'
 
 interface SchoolDetailProps {
   school: School | null
@@ -240,6 +241,9 @@ const SchoolDetail: React.FC<SchoolDetailProps> = ({ school, entryYear, isOpen, 
         <div className="px-4 pt-3">
           <DetailTabs<MapTopic> label="학교 상세 메뉴" tabs={MAP_TOPICS} value={state.mapTopic}
             onChange={(topic) => dispatch({ type: 'SET_MAP_TOPIC', payload: topic })} />
+          {(state.mapTopic === 'assignment' || state.mapTopic === 'activity') && <div className="mt-3">
+            <MapLayerButton layer={state.mapTopic === 'assignment' ? 'apartments' : 'activity'} variant="banner" />
+          </div>}
         </div>
       )}
       {sheetSnap === 0 ? null : currentView === 'apartments' ? (
@@ -267,7 +271,6 @@ const SchoolDetail: React.FC<SchoolDetailProps> = ({ school, entryYear, isOpen, 
             loading={academyLoading}
             error={academyError}
             dataAvailable={academyDataAvailable && assignsByZone && hasSchoolInformation}
-            onShowMap={() => window.dispatchEvent(new CustomEvent('joinmap:show-school-academies'))}
           />
           <DataFreshness sources={['neis-academy']} />
         </div>

@@ -1,10 +1,11 @@
-import { HeartHandshake, LoaderCircle, Map, Phone } from 'lucide-react'
+import { HeartHandshake, LoaderCircle, Phone } from 'lucide-react'
 import React, { useEffect, useRef, useState } from 'react'
 import type { CareCenter } from '../../types'
 import { getCareCentersNear } from '../../services/dataService'
 import { track } from '../../utils/analytics'
 import { useSeenOnce } from './useSeenOnce'
 import { useAppContext } from '../../contexts/AppContext'
+import MapLayerButton from '../map/MapLayerButton'
 
 interface CareCenterListProps {
   latitude: number
@@ -32,6 +33,8 @@ const CareCenterList: React.FC<CareCenterListProps> = ({ latitude, longitude, or
   const sectionRef = useRef<HTMLElement>(null)
   const originLabel = origin.type === 'school' ? '학교' : '단지'
   const eventBase = { item_type: origin.type, item_id: origin.id || undefined }
+  const mapBanner = <MapLayerButton layer="care" variant="banner" onEnable={() =>
+    track('show_care_map', { ...eventBase, center_count: centers?.length })} />
 
   useSeenOnce(sectionRef, centers ? `${origin.type}:${origin.id}` : null, () => {
     track('view_care', { ...eventBase, block: 'care_centers', center_count: centers?.length ?? 0 })
@@ -55,6 +58,7 @@ const CareCenterList: React.FC<CareCenterListProps> = ({ latitude, longitude, or
   if (centers === null) {
     return (
       <section aria-labelledby={headingId}>
+        <div className="mb-3">{mapBanner}</div>
         <h3 id={headingId} className="mb-2 inline-flex items-center gap-2 font-semibold text-gray-950"><HeartHandshake size={18} aria-hidden="true" />주변 돌봄센터</h3>
         <LoaderCircle className="animate-spin text-blue-600" size={18} aria-label="주변 돌봄센터 불러오는 중" />
       </section>
@@ -65,6 +69,7 @@ const CareCenterList: React.FC<CareCenterListProps> = ({ latitude, longitude, or
 
   return (
     <section ref={sectionRef} aria-labelledby={headingId} data-testid="care-centers">
+      <div className="mb-3">{mapBanner}</div>
       <div className="mb-2 flex items-center justify-between">
         <h3 id={headingId} className="inline-flex items-center gap-2 font-semibold text-gray-950"><HeartHandshake size={18} aria-hidden="true" />주변 돌봄센터</h3>
         <strong className="text-sm text-rose-800">{centers.length}곳</strong>
@@ -94,18 +99,6 @@ const CareCenterList: React.FC<CareCenterListProps> = ({ latitude, longitude, or
           ))}
         </ul>
       )}
-      {centers.length > 0 ? (
-        <button
-          type="button"
-          onClick={() => {
-            track('show_care_map', { ...eventBase, center_count: centers.length })
-            window.dispatchEvent(new CustomEvent('joinmap:show-care-centers', { detail: { centers } }))
-          }}
-          className="mt-2 inline-flex h-10 w-full items-center justify-center gap-2 rounded-md border border-rose-700 text-sm font-semibold text-rose-800 hover:bg-rose-50"
-        >
-          <Map size={17} aria-hidden="true" />지도에서 돌봄센터 보기
-        </button>
-      ) : null}
       {centers.length > INITIAL_COUNT ? (
         <button type="button" onClick={() => setExpanded((value) => !value)} className="mt-2 h-9 w-full rounded-md border border-gray-200 text-sm font-medium text-gray-700 hover:bg-gray-50">
           {expanded ? '접기' : `${centers.length - INITIAL_COUNT}곳 더 보기`}

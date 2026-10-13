@@ -1,5 +1,4 @@
 import { useEffect, useMemo, useState } from 'react'
-import { X } from 'lucide-react'
 import { getAcademiesNearApartment, getAcademiesNearSchool } from '../../services/dataService'
 import type { AcademyAddress, Apartment, School } from '../../types'
 import {
@@ -17,7 +16,6 @@ interface AcademyMarkerManagerProps {
   school?: School | null
   enabled: boolean
   selectedCategory: AcademyCategoryKey | null
-  onCategoryChange: (category: AcademyCategoryKey | null) => void
   onCountChange: (count: number | null) => void
 }
 
@@ -71,21 +69,14 @@ const clusterRows = (rows: AcademyAddress[], zoom: number): AcademyCluster[] => 
   }))
 }
 
-export default function AcademyMarkerManager({ map, apartment, school, enabled, selectedCategory, onCategoryChange, onCountChange }: AcademyMarkerManagerProps) {
+export default function AcademyMarkerManager({ map, apartment, school, enabled, selectedCategory, onCountChange }: AcademyMarkerManagerProps) {
   const { dispatch } = useAppContext()
   const [academies, setAcademies] = useState<AcademyAddress[]>([])
   const [zoom, setZoom] = useState(map.getZoom())
-  // The legend covers part of the map, so it can be closed while the markers stay.
-  // It comes back whenever the layer is turned on again or the selection changes.
-  const [legendDismissed, setLegendDismissed] = useState(false)
   const filteredAcademies = useMemo(
     () => academies.filter((academy) => academyHasCategory(academy, selectedCategory)),
     [academies, selectedCategory],
   )
-
-  useEffect(() => {
-    setLegendDismissed(false)
-  }, [apartment?.id, enabled, school?.school_id])
 
   useEffect(() => {
     let active = true
@@ -108,7 +99,7 @@ export default function AcademyMarkerManager({ map, apartment, school, enabled, 
       })
       .catch((error) => {
         console.error('Failed to load nearby academy markers:', error)
-        if (active) onCountChange(null)
+        if (active) onCountChange(-2)
       })
     return () => { active = false }
   }, [apartment?.id, enabled, onCountChange, school?.school_id])
@@ -163,25 +154,6 @@ export default function AcademyMarkerManager({ map, apartment, school, enabled, 
     }
   }, [dispatch, enabled, filteredAcademies, map, selectedCategory, zoom])
 
-  if (!enabled || !academies.length || legendDismissed) return null
-
-  const selectedLabel = selectedCategory ? getAcademyCategory(selectedCategory).label : '전체 분야'
-  return (
-    <div className="academy-map-legend absolute right-3 rounded-lg border border-gray-200 bg-white/95 p-2.5 shadow-lg backdrop-blur sm:right-5" aria-label="교육시설 지도 범례">
-      <div className="flex items-center justify-between gap-3">
-        <strong className="text-xs text-gray-800">{selectedLabel}</strong>
-        <div className="flex items-center gap-2">
-          {selectedCategory ? <button type="button" onClick={() => onCategoryChange(null)} className="text-[11px] font-semibold text-blue-700 hover:text-blue-900">전체 보기</button> : null}
-          <button type="button" onClick={() => setLegendDismissed(true)} aria-label="교육시설 범례 닫기" title="범례 닫기" className="-m-1.5 inline-flex h-7 w-7 items-center justify-center rounded text-gray-500 hover:bg-gray-100 hover:text-gray-800">
-            <X size={15} aria-hidden="true" />
-          </button>
-        </div>
-      </div>
-      <div className="mt-1.5 flex items-center gap-3 text-[11px] text-gray-600">
-        <span className="inline-flex items-center gap-1"><i className="academy-legend-swatch academy-legend-swatch--core" aria-hidden="true" />핵심 ~600m</span>
-        <span className="inline-flex items-center gap-1"><i className="academy-legend-swatch academy-legend-swatch--extended" aria-hidden="true" />확장 600~800m</span>
-        <span>+N 복합상가</span>
-      </div>
-    </div>
-  )
+  // Legend and layer visibility live together in MapLayerControl.
+  return null
 }

@@ -1,13 +1,14 @@
-import { GraduationCap, LocateFixed, LoaderCircle, X } from 'lucide-react'
+import { LocateFixed, LoaderCircle, X } from 'lucide-react'
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 import { useAppContext } from '../../contexts/AppContext'
 import MarkerManager from './MarkerManager'
 import ApartmentMarkerManager from './ApartmentMarkerManager'
 import AcademyMarkerManager from './AcademyMarkerManager'
 import CareCenterMarkerManager from './CareCenterMarkerManager'
+import MapLayerControl from './MapLayerControl'
 import type { CareCenter } from '../../types'
 import '../../types/naver-maps.d.ts'
-import { ACADEMY_DATA_PENDING_LABEL, hasAcademyData } from '../../utils/academyCoverage'
+import { hasAcademyData } from '../../utils/academyCoverage'
 import type { AcademyCategoryKey } from '../../utils/academyCategories'
 import { loadNaverMaps } from '../../utils/naverMapsLoader'
 import { getCareCentersNear } from '../../services/dataService'
@@ -40,8 +41,9 @@ const MapContainer: React.FC<MapContainerProps> = ({ className = '', onNavigate 
   const [locationError, setLocationError] = useState<string | null>(null)
   const [academyCount, setAcademyCount] = useState<number | null>(null)
   const [careCenters, setCareCenters] = useState<CareCenter[]>([])
+  const [careStatus, setCareStatus] = useState<'idle' | 'loading' | 'ready' | 'error'>('idle')
   const { state, dispatch } = useAppContext()
-  const showAcademies = state.mapTopic === 'activity'
+  const showAcademies = state.mapLayers.activity
   const academyCategory = state.activityCategory
   const setAcademyCategory = useCallback((category: AcademyCategoryKey | null) => {
     dispatch({ type: 'SET_ACTIVITY_CATEGORY', payload: category })
@@ -59,21 +61,19 @@ const MapContainer: React.FC<MapContainerProps> = ({ className = '', onNavigate 
   const careLongitude = state.selectedSchool?.longitude
 
   useEffect(() => {
-    setAcademyCount(null)
-    setCareCenters([])
-  }, [state.selectedApartment?.id, state.selectedSchool?.school_id])
-
-  useEffect(() => {
-    if (state.mapTopic !== 'care' || !careLatitude || !careLongitude) {
+    if (!state.mapLayers.care || !careLatitude || !careLongitude) {
       setCareCenters([])
+      setCareStatus('idle')
       return
     }
     let active = true
+    setCareCenters([])
+    setCareStatus('loading')
     getCareCentersNear(careLatitude, careLongitude, 1000)
-      .then((rows) => { if (active) setCareCenters(rows) })
-      .catch((error) => { console.error('돌봄센터 지도 조회 실패:', error); if (active) setCareCenters([]) })
+      .then((rows) => { if (active) { setCareCenters(rows); setCareStatus('ready') } })
+      .catch((error) => { console.error('돌봄센터 지도 조회 실패:', error); if (active) { setCareCenters([]); setCareStatus('error') } })
     return () => { active = false }
-  }, [state.mapTopic, careLatitude, careLongitude])
+  }, [state.mapLayers.care, careLatitude, careLongitude])
 
   // An unregistered host is the usual cause, and it is invisible otherwise:
   // the SDK reports it only through this global, so without it the map would
@@ -98,9 +98,8 @@ const MapContainer: React.FC<MapContainerProps> = ({ className = '', onNavigate 
     window.addEventListener('joinmap:show-academies', showAcademies)
     window.addEventListener('joinmap:show-school-academies', showSchoolAcademies)
     window.addEventListener('joinmap:filter-academies', filterAcademies)
-    const showCareCenters = (event: Event) => {
+    const showCareCenters = () => {
       dispatch({ type: 'SET_MAP_TOPIC', payload: 'care' })
-      setCareCenters((event as CustomEvent<{ centers: CareCenter[] }>).detail?.centers || [])
     }
     window.addEventListener('joinmap:show-care-centers', showCareCenters)
     return () => {
@@ -354,7 +353,7 @@ const MapContainer: React.FC<MapContainerProps> = ({ className = '', onNavigate 
     <div ref={surfaceRef} className={`relative isolate ${className}`}>
       <div ref={mapRef} className="h-full w-full" aria-label="주변 초등학교 지도" data-map-canvas />
       {isMapReady && <MarkerManager map={naverMapRef.current} onNavigate={onNavigate} />}
-      {isMapReady && naverMapRef.current && <ApartmentMarkerManager map={naverMapRef.current} />}
+      {isMapReady && naverMapRef.current && state.mapLayers.apartments && <ApartmentMarkerManager map={naverMapRef.current} />}
       {isMapReady && naverMapRef.current && academyDataAvailable && (state.selectedApartment || state.selectedSchool) && (
         <AcademyMarkerManager
           map={naverMapRef.current}
@@ -362,28 +361,15 @@ const MapContainer: React.FC<MapContainerProps> = ({ className = '', onNavigate 
           school={state.selectedSchool}
           enabled={showAcademies}
           selectedCategory={academyCategory}
-          onCategoryChange={setAcademyCategory}
           onCountChange={setAcademyCount}
         />
       )}
 
-      {isMapReady && naverMapRef.current && careCenters.length > 0 && (
-        <CareCenterMarkerManager map={naverMapRef.current} centers={careCenters} onClose={() => setCareCenters([])} />
+      {isMapReady && naverMapRef.current && state.mapLayers.care && careCenters.length > 0 && (
+        <CareCenterMarkerManager map={naverMapRef.current} centers={careCenters} />
       )}
 
-      {isMapReady && (state.selectedApartment || state.selectedSchool) && (
-        <button
-          type="button"
-          onClick={() => academyDataAvailable && dispatch({ type: 'SET_MAP_TOPIC', payload: showAcademies ? 'school' : 'activity' })}
-          disabled={!academyDataAvailable}
-          className={`academy-layer-toggle absolute right-3 inline-flex h-11 items-center gap-2 rounded-md border px-3 text-sm font-semibold shadow-md transition-colors sm:right-5 ${showAcademies ? 'border-emerald-700 bg-emerald-700 text-white' : 'border-gray-300 bg-white text-gray-800 hover:bg-gray-50'}`}
-          aria-pressed={showAcademies}
-          aria-label={state.selectedApartment ? '선택한 아파트 주변 교육시설 표시' : '선택한 학교 생활권 교육시설 표시'}
-        >
-          {academyCount === -1 ? <LoaderCircle className="animate-spin" size={18} aria-hidden="true" /> : <GraduationCap size={18} aria-hidden="true" />}
-          <span>{!academyDataAvailable ? ACADEMY_DATA_PENDING_LABEL : showAcademies && academyCount != null && academyCount >= 0 ? `교육시설 ${academyCount}` : '주변 교육시설'}</span>
-        </button>
-      )}
+      {isMapReady && <MapLayerControl academyCount={academyCount} careStatus={careStatus} careCount={careCenters.length} />}
 
       {!isMapReady && (
         <div className="absolute inset-0 flex items-center justify-center bg-gray-100/80">

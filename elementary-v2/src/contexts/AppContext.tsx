@@ -3,6 +3,7 @@ import { PRODUCTION_REGION_NAMES } from '../constants/regionRegistry'
 import { FilterState, MapState, UIState, School, Apartment, BreakPoint, UNLIMITED_APARTMENT_AGE } from '../types'
 import type { MapTopic, SelectedMapPlace } from '../utils/mapTopics'
 import type { AcademyCategoryKey } from '../utils/academyCategories'
+import { DEFAULT_MAP_LAYERS, layersForTopic, setMapLayer, type MapLayer, type MapLayers } from '../utils/mapLayers'
 
 export const DEFAULT_FILTERS: FilterState = {
   target_grade: 1,
@@ -20,6 +21,7 @@ export const DEFAULT_FILTERS: FilterState = {
 // 🎯 App State 타입 정의
 interface AppState {
   mapTopic: MapTopic
+  mapLayers: MapLayers
   activityCategory: AcademyCategoryKey | null
   selectedMapPlace: SelectedMapPlace | null
   // 필터 상태
@@ -44,6 +46,7 @@ interface AppState {
 // 🔄 Action 타입 정의
 type AppAction =
   | { type: 'SET_MAP_TOPIC'; payload: MapTopic }
+  | { type: 'SET_MAP_LAYER'; payload: { layer: MapLayer; enabled: boolean } }
   | { type: 'SET_ACTIVITY_CATEGORY'; payload: AcademyCategoryKey | null }
   | { type: 'SET_SELECTED_MAP_PLACE'; payload: SelectedMapPlace | null }
   // 필터 액션
@@ -76,6 +79,7 @@ type AppAction =
 // 🎛️ 초기 상태
 const initialState: AppState = {
   mapTopic: 'school',
+  mapLayers: DEFAULT_MAP_LAYERS,
   activityCategory: null,
   selectedMapPlace: null,
   filters: DEFAULT_FILTERS,
@@ -102,8 +106,11 @@ const initialState: AppState = {
 function appReducer(state: AppState, action: AppAction): AppState {
   switch (action.type) {
     case 'SET_MAP_TOPIC':
-      return { ...state, mapTopic: action.payload, selectedMapPlace: null,
+      return { ...state, mapTopic: action.payload, mapLayers: layersForTopic(state.mapLayers, action.payload), selectedMapPlace: null,
         selectedApartment: action.payload === 'school' ? null : state.selectedApartment }
+    case 'SET_MAP_LAYER':
+      return { ...state, mapLayers: setMapLayer(state.mapLayers, action.payload.layer, action.payload.enabled),
+        selectedMapPlace: !action.payload.enabled && state.selectedMapPlace?.kind === action.payload.layer ? null : state.selectedMapPlace }
     case 'SET_ACTIVITY_CATEGORY':
       return { ...state, activityCategory: action.payload, selectedMapPlace: null }
     case 'SET_SELECTED_MAP_PLACE':
@@ -217,6 +224,7 @@ function appReducer(state: AppState, action: AppAction): AppState {
       return {
         ...state,
         mapTopic: action.payload ? 'assignment' : state.mapTopic,
+        mapLayers: action.payload ? layersForTopic(state.mapLayers, 'assignment') : state.mapLayers,
         selectedMapPlace: null,
         selectedApartment: action.payload,
       }
@@ -225,6 +233,7 @@ function appReducer(state: AppState, action: AppAction): AppState {
       return {
         ...state,
         mapTopic: 'assignment',
+        mapLayers: layersForTopic(state.mapLayers, 'assignment'),
         selectedMapPlace: null,
         selectedSchool: action.payload.school,
         selectedApartment: action.payload.apartment,

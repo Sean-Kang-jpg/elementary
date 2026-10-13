@@ -1,5 +1,4 @@
 import { useEffect } from 'react'
-import { HeartHandshake, X } from 'lucide-react'
 import type { CareCenter } from '../../types'
 import { useAppContext } from '../../contexts/AppContext'
 import { CARE_MARKER_ART } from '../../utils/mapMarkerArt'
@@ -7,14 +6,13 @@ import { CARE_MARKER_ART } from '../../utils/mapMarkerArt'
 interface CareCenterMarkerManagerProps {
   map: NaverMap
   centers: CareCenter[]
-  onClose: () => void
 }
 
 /**
  * School-origin care centers in the fixed 1km layer. Marker selection uses
  * the same detail sheet as other map entities, rather than an SDK popup.
  */
-export default function CareCenterMarkerManager({ map, centers, onClose }: CareCenterMarkerManagerProps) {
+export default function CareCenterMarkerManager({ map, centers }: CareCenterMarkerManagerProps) {
   const { dispatch } = useAppContext()
   useEffect(() => {
     const maps = window.naver?.maps
@@ -36,9 +34,6 @@ export default function CareCenterMarkerManager({ map, centers, onClose }: CareC
       }))
       return marker
     })
-    const bounds = new maps.LatLngBounds(markers[0].getPosition(), markers[0].getPosition())
-    markers.forEach((marker) => bounds.extend(marker.getPosition()))
-    map.fitBounds(bounds, { top: 140, right: 60, bottom: 260, left: 60 })
     return () => {
       listeners.forEach((listener) => {
         try { maps.Event.removeListener(listener) } catch { /* The SDK may release listeners first. */ }
@@ -49,14 +44,6 @@ export default function CareCenterMarkerManager({ map, centers, onClose }: CareC
     }
   }, [centers, dispatch, map])
 
-  if (!centers.length) return null
-  return (
-    <div className="care-map-chip absolute left-3 inline-flex h-10 items-center gap-2 rounded-md border border-rose-200 bg-white/95 pl-3 pr-1 text-sm font-semibold text-rose-800 shadow-md sm:left-5" data-testid="care-map-chip">
-      <HeartHandshake size={17} aria-hidden="true" />
-      돌봄센터 {centers.length}곳
-      <button type="button" onClick={() => { dispatch({ type: 'SET_SELECTED_MAP_PLACE', payload: null }); onClose() }} aria-label="돌봄센터 지도 표시 닫기" className="inline-flex h-8 w-8 items-center justify-center rounded text-gray-500 hover:bg-gray-100 hover:text-gray-800">
-        <X size={15} aria-hidden="true" />
-      </button>
-    </div>
-  )
+  // Visibility and count are controlled by the shared map-layer panel.
+  return null
 }
