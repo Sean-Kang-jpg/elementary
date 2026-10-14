@@ -87,7 +87,7 @@ const AfterschoolSummary: React.FC<{
   careStats?: SchoolCareStatistics | null
 }> = ({ data, day, care, careStats = null }) => {
   const [open, setOpen] = useState(false)
-  // 목록 보기: 맞춤형(무료)과 방과후(유료)는 신청을 따로 하므로 나눠 보여 준다. 위 숫자 칸을 누르면 그 종류만
+  // 목록 보기: 맞춤형과 방과후는 신청을 따로 하므로 나눠 보여 준다. 위 숫자 칸을 누르면 그 종류만
   const [view, setView] = useState<ListView>('all')
   const options = data?.options ?? []
   const grade1 = options.filter((o) => o.grade1 === 'true')
@@ -126,17 +126,17 @@ const AfterschoolSummary: React.FC<{
   const byCategory = (items: SchoolAfterschoolOption[]) => Object.entries(items.reduce<Record<string, SchoolAfterschoolOption[]>>(
     (acc, o) => ({ ...acc, [o.category]: [...(acc[o.category] ?? []), o] }), {})).sort((x, y) => y[1].length - x[1].length)
   const sections = [
-    { key: 'custom' as const, title: '맞춤형 프로그램', tag: '무료', tagClass: 'bg-emerald-100 text-emerald-900',
+    { key: 'custom' as const, title: '맞춤형 프로그램', swatch: 'bg-emerald-500',
       note: '1·2학년 대상이에요. 방과후와 따로 신청해요.', groups: [['', custom]] as [string, SchoolAfterschoolOption[]][] },
-    { key: 'paid' as const, title: '방과후 강좌', tag: '유료 · 수강료 별도', tagClass: 'bg-amber-100 text-amber-900',
+    { key: 'paid' as const, title: '방과후 강좌', swatch: 'bg-amber-500',
       note: '1학년이 신청할 수 있는 강좌예요. 맞춤형과 따로 신청해요.', groups: byCategory(afterschool) },
-    { key: 'unknown' as const, title: '방과후 · 학년 확인 필요', tag: '유료 · 수강료 별도', tagClass: 'bg-gray-100 text-gray-700',
+    { key: 'unknown' as const, title: '방과후 · 학년 확인 필요', swatch: 'bg-gray-300',
       note: '운영계획에 대상 학년이 적혀 있지 않아요. 1학년이 들을 수 있는지 학교에 확인해 주세요.', groups: [['', paidUnknown]] as [string, SchoolAfterschoolOption[]][] },
   ].filter((section) => section.groups.some(([, items]) => items.length) && (view === 'all' || view === section.key))
   const tiles = [
-    { key: 'paid' as const, value: afterschool.length, label: '1학년 방과후', sub: '유료', on: 'border-amber-400 bg-amber-50' },
-    { key: 'custom' as const, value: custom.length, label: '맞춤형', sub: '무료', on: 'border-emerald-400 bg-emerald-50' },
-    { key: 'unknown' as const, value: paidUnknown.length, label: '학년 확인 필요', sub: '방과후', on: 'border-gray-400 bg-gray-50' },
+    { key: 'paid' as const, value: afterschool.length, label: '1학년 방과후', on: 'border-amber-400 bg-amber-50' },
+    { key: 'custom' as const, value: custom.length, label: '맞춤형', on: 'border-emerald-400 bg-emerald-50' },
+    { key: 'unknown' as const, value: paidUnknown.length, label: '학년 확인 필요', on: 'border-gray-400 bg-gray-50' },
   ]
   const showView = (next: ListView) => {
     if (open && view === next) { setView('all'); return }
@@ -235,7 +235,6 @@ const AfterschoolSummary: React.FC<{
               >
                 <strong className="block text-base leading-tight text-gray-950">{tile.value}</strong>
                 <span className="block text-[11px] text-gray-600">{tile.label}</span>
-                <span className="block text-[10px] text-gray-500">{tile.sub}</span>
               </button>
             ))}
           </div>
@@ -262,8 +261,7 @@ const AfterschoolSummary: React.FC<{
               {sections.map((section) => (
                 <section key={section.key} aria-label={section.title}>
                   <div className="flex flex-wrap items-baseline gap-x-2 gap-y-0.5 border-b border-gray-200 pb-1">
-                    <h5 className="text-sm font-semibold text-gray-900">{section.title}</h5>
-                    <span className={`rounded px-1.5 py-0.5 text-[10px] font-semibold ${section.tagClass}`}>{section.tag}</span>
+                    <h5 className="inline-flex items-center gap-1.5 text-sm font-semibold text-gray-900"><i className={`h-2.5 w-2.5 rounded-sm ${section.swatch}`} aria-hidden="true" />{section.title}</h5>
                     <span className="text-[11px] text-gray-500">{section.groups.reduce((sum, [, items]) => sum + items.length, 0)}개</span>
                   </div>
                   <p className="mt-1 text-[11px] leading-4 text-gray-500">{section.note}</p>
