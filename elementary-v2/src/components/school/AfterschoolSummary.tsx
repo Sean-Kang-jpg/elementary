@@ -45,6 +45,8 @@ const Bar: React.FC<{ from: number; to: number; className: string; title: string
 
 const ESTIMATED_CARE_END = 17 * 60
 
+type ListView = 'all' | 'custom' | 'paid' | 'unknown'
+
 // 전학년 반(고학년 위주): 같은 주황을 연한 빗금으로. 저학년 반이 끝난 뒤만 이어 그린다(2026-10-14 시안 '한 줄' 안)
 const ALL_GRADE_FILL: React.CSSProperties = { backgroundImage: 'repeating-linear-gradient(135deg, rgba(245, 158, 11, .35) 0 4px, transparent 4px 7px)' }
 
@@ -85,9 +87,10 @@ const AfterschoolSummary: React.FC<{
   careStats?: SchoolCareStatistics | null
 }> = ({ data, day, care, careStats = null }) => {
   const [open, setOpen] = useState(false)
+  // 목록 보기: 맞춤형(무료)과 방과후(유료)는 신청을 따로 하므로 나눠 보여 준다. 위 숫자 칸을 누르면 그 종류만
+  const [view, setView] = useState<ListView>('all')
   const options = data?.options ?? []
   const grade1 = options.filter((o) => o.grade1 === 'true')
-  const unknown = options.filter((o) => o.grade1 !== 'true')
   const afterschool = grade1.filter((o) => o.kind === '방과후')
   const custom = options.filter((o) => o.kind === '맞춤형')
   const careEnd = care?.status === 'stated' ? toMin(care.afternoon_end) : null
@@ -116,10 +119,30 @@ const AfterschoolSummary: React.FC<{
   const hasTimeline = timedCourses || careBandEnd !== null || rows.some((row) => row.dismissal !== null)
   if (!hasTimeline && options.length === 0) return null
 
-  const listed = grade1.length ? grade1 : unknown
-  const categories = Object.entries(listed.reduce<Record<string, number>>((acc, o) => ({ ...acc, [o.category]: (acc[o.category] ?? 0) + 1 }), {}))
+  const paidUnknown = options.filter((o) => o.kind === '방과후' && o.grade1 !== 'true')
+  const paidListed = afterschool.length ? afterschool : paidUnknown
+  const categories = Object.entries(paidListed.reduce<Record<string, number>>((acc, o) => ({ ...acc, [o.category]: (acc[o.category] ?? 0) + 1 }), {}))
     .sort((x, y) => y[1] - x[1])
-  const groups = categories.map(([category]) => [category, listed.filter((o) => o.category === category)] as const)
+  const byCategory = (items: SchoolAfterschoolOption[]) => Object.entries(items.reduce<Record<string, SchoolAfterschoolOption[]>>(
+    (acc, o) => ({ ...acc, [o.category]: [...(acc[o.category] ?? []), o] }), {})).sort((x, y) => y[1].length - x[1].length)
+  const sections = [
+    { key: 'custom' as const, title: '맞춤형 프로그램', tag: '무료', tagClass: 'bg-emerald-100 text-emerald-900',
+      note: '1·2학년 대상이에요. 방과후와 따로 신청해요.', groups: [['', custom]] as [string, SchoolAfterschoolOption[]][] },
+    { key: 'paid' as const, title: '방과후 강좌', tag: '유료 · 수강료 별도', tagClass: 'bg-amber-100 text-amber-900',
+      note: '1학년이 신청할 수 있는 강좌예요. 맞춤형과 따로 신청해요.', groups: byCategory(afterschool) },
+    { key: 'unknown' as const, title: '방과후 · 학년 확인 필요', tag: '유료 · 수강료 별도', tagClass: 'bg-gray-100 text-gray-700',
+      note: '운영계획에 대상 학년이 적혀 있지 않아요. 1학년이 들을 수 있는지 학교에 확인해 주세요.', groups: [['', paidUnknown]] as [string, SchoolAfterschoolOption[]][] },
+  ].filter((section) => section.groups.some(([, items]) => items.length) && (view === 'all' || view === section.key))
+  const tiles = [
+    { key: 'paid' as const, value: afterschool.length, label: '1학년 방과후', sub: '유료', on: 'border-amber-400 bg-amber-50' },
+    { key: 'custom' as const, value: custom.length, label: '맞춤형', sub: '무료', on: 'border-emerald-400 bg-emerald-50' },
+    { key: 'unknown' as const, value: paidUnknown.length, label: '학년 확인 필요', sub: '방과후', on: 'border-gray-400 bg-gray-50' },
+  ]
+  const showView = (next: ListView) => {
+    if (open && view === next) { setView('all'); return }
+    setView(next)
+    setOpen(true)
+  }
 
   return (
     <div className="mt-3" data-testid="school-afterschool">
@@ -200,12 +223,20 @@ const AfterschoolSummary: React.FC<{
 
       {options.length > 0 && (
         <>
-          <div className="mt-2.5 grid grid-cols-3 gap-1.5 text-center">
-            {[[afterschool.length, '1학년 방과후'], [custom.length, '맞춤형(무료)'], [unknown.length, '학년 확인 필요']].map(([value, label]) => (
-              <div key={label} className="rounded-md border border-gray-200 px-1 py-1.5">
-                <strong className="block text-base leading-tight text-gray-950">{value}</strong>
-                <span className="text-[11px] text-gray-600">{label}</span>
-              </div>
+          <div className="mt-2.5 grid grid-cols-3 gap-1.5 text-center" role="group" aria-label="종류별로 강좌 보기">
+            {tiles.map((tile) => (
+              <button
+                key={tile.key}
+                type="button"
+                disabled={tile.value === 0}
+                aria-pressed={open && view === tile.key}
+                onClick={() => showView(tile.key)}
+                className={`rounded-md border px-1 py-1.5 disabled:opacity-50 ${open && view === tile.key ? tile.on : 'border-gray-200'}`}
+              >
+                <strong className="block text-base leading-tight text-gray-950">{tile.value}</strong>
+                <span className="block text-[11px] text-gray-600">{tile.label}</span>
+                <span className="block text-[10px] text-gray-500">{tile.sub}</span>
+              </button>
             ))}
           </div>
           <div className="mt-2 flex flex-wrap gap-1.5">
@@ -218,39 +249,51 @@ const AfterschoolSummary: React.FC<{
             type="button"
             className="mt-2.5 w-full rounded-md border border-gray-200 py-2 text-sm font-semibold text-indigo-800"
             aria-expanded={open}
-            onClick={() => setOpen((value) => !value)}
+            onClick={() => {
+              if (open && view !== 'all') { setView('all'); return }
+              setView('all')
+              setOpen((value) => !value)
+            }}
           >
-            {open ? '강좌 접기' : `강좌 ${options.length}개 모두 보기`}
+            {open && view === 'all' ? '강좌 접기' : `강좌 ${options.length}개 모두 보기`}
           </button>
           {open && (
-            <div className="mt-2 space-y-3">
-              {[...groups, ...(unknown.length && grade1.length ? [['학년 확인 필요', unknown] as const] : [])].map(([category, items]) => (
-                <div key={category}>
-                  <h5 className="mb-0.5 text-xs font-semibold text-gray-600">{category} · {items.length}</h5>
-                  <ul className="divide-y divide-gray-100">
-                    {items.map((option) => (
-                      <li key={`${option.kind}-${option.name}-${option.variant ?? ''}`} className="py-1.5 text-sm">
-                        <span className="text-gray-900">
-                          {option.name}
-                          {option.variant && <span className="ml-1 rounded bg-indigo-50 px-1 text-[10px] text-indigo-800">수준 {option.variant}</span>}
-                          {option.kind === '맞춤형' && <span className="ml-1 rounded bg-emerald-50 px-1 text-[10px] text-emerald-800">맞춤형·무료</span>}
-                          {option.grade1 !== 'true' && <span className="ml-1 rounded border border-gray-200 px-1 text-[10px] text-gray-600">학년 확인 필요</span>}
-                        </span>
-                        {/* 반마다 대상 학년을 붙인다: 같은 강좌에 1·2학년 반과 전학년 반이 함께 있는 학교가 많다 */}
-                        <ul className="mt-0.5 space-y-0.5">
-                          {sectionLines(option).map((line) => (
-                            <li key={`${line.grade}|${line.time}`} className="flex items-center gap-1.5 text-[11px] tabular-nums text-gray-600">
-                              {line.grade && (
-                                <span className={`shrink-0 rounded px-1 text-[10px] font-medium ${line.lower ? 'bg-amber-100 text-amber-900' : 'border border-amber-300 text-amber-800'}`}>{line.grade}</span>
-                              )}
-                              <span>{line.time}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+            <div className="mt-2 space-y-4">
+              {sections.map((section) => (
+                <section key={section.key} aria-label={section.title}>
+                  <div className="flex flex-wrap items-baseline gap-x-2 gap-y-0.5 border-b border-gray-200 pb-1">
+                    <h5 className="text-sm font-semibold text-gray-900">{section.title}</h5>
+                    <span className={`rounded px-1.5 py-0.5 text-[10px] font-semibold ${section.tagClass}`}>{section.tag}</span>
+                    <span className="text-[11px] text-gray-500">{section.groups.reduce((sum, [, items]) => sum + items.length, 0)}개</span>
+                  </div>
+                  <p className="mt-1 text-[11px] leading-4 text-gray-500">{section.note}</p>
+                  {section.groups.filter(([, items]) => items.length).map(([category, items]) => (
+                    <div key={category || section.key} className="mt-1.5">
+                      {category && <h6 className="text-xs font-semibold text-gray-600">{category} · {items.length}</h6>}
+                      <ul className="divide-y divide-gray-100">
+                        {items.map((option) => (
+                          <li key={`${option.kind}-${option.name}-${option.variant ?? ''}`} className="py-1.5 text-sm">
+                            <span className="text-gray-900">
+                              {option.name}
+                              {option.variant && <span className="ml-1 rounded bg-indigo-50 px-1 text-[10px] text-indigo-800">수준 {option.variant}</span>}
+                            </span>
+                            {/* 반마다 대상 학년을 붙인다: 같은 강좌에 1·2학년 반과 전학년 반이 함께 있는 학교가 많다 */}
+                            <ul className="mt-0.5 space-y-0.5">
+                              {sectionLines(option).map((line) => (
+                                <li key={`${line.grade}|${line.time}`} className="flex items-center gap-1.5 text-[11px] tabular-nums text-gray-600">
+                                  {line.grade && option.kind === '방과후' && (
+                                    <span className={`shrink-0 rounded px-1 text-[10px] font-medium ${line.lower ? 'bg-amber-100 text-amber-900' : 'border border-amber-300 text-amber-800'}`}>{line.grade}</span>
+                                  )}
+                                  <span>{line.time}</span>
+                                </li>
+                              ))}
+                            </ul>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
+                </section>
               ))}
             </div>
           )}
