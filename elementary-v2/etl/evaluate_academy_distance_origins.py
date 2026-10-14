@@ -153,7 +153,7 @@ def main() -> None:
     parser.add_argument("--academies", type=Path, default=DEFAULT_ACADEMIES)
     parser.add_argument("--additional-dongs", type=Path, default=DEFAULT_ADDITIONAL_DONGS)
     parser.add_argument("--min-households", type=int, default=0)
-    parser.add_argument("--radius-m", type=float, default=600)
+    parser.add_argument("--radius-m", type=float, default=400)
     parser.add_argument("--report", type=Path, default=DEFAULT_REPORT)
     parser.add_argument("--samples", type=Path, default=DEFAULT_SAMPLES)
     args = parser.parse_args()

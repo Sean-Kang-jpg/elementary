@@ -136,7 +136,7 @@ const ApartmentDetail: React.FC<ApartmentDetailProps> = ({ apartment, isOpen, on
             <div className="mb-2 flex items-center justify-between"><h3 id="academy-title" className="inline-flex items-center gap-2 font-semibold text-gray-950"><GraduationCap size={18} aria-hidden="true" />주변 교육시설</h3>{totalAcademies != null ? <strong className="text-sm text-teal-800">{totalAcademies.toLocaleString()}곳</strong> : null}</div>
             {academyDataAvailable ? <>
               <div className="grid grid-cols-2 gap-2">
-                <div className="rounded-md bg-teal-50 p-3"><span className="text-xs text-teal-700">핵심 생활권 · 600m</span><strong className="mt-1 block text-xl text-teal-900">{academySummary?.core_institution_count.toLocaleString() ?? '-'}</strong></div>
+                <div className="rounded-md bg-teal-50 p-3"><span className="text-xs text-teal-700">핵심 생활권 · 400m</span><strong className="mt-1 block text-xl text-teal-900">{academySummary?.core_institution_count.toLocaleString() ?? '-'}</strong></div>
                 <div className="rounded-md bg-gray-100 p-3"><span className="text-xs text-gray-600">확장 생활권 · 800m</span><strong className="mt-1 block text-xl text-gray-900">{academySummary?.extended_institution_count.toLocaleString() ?? '-'}</strong></div>
               </div>
             </> : <div className="rounded-md border border-gray-200 bg-gray-50 px-4 py-5 text-center text-sm font-medium text-gray-600">{ACADEMY_DATA_PENDING_LABEL}</div>}

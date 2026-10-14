@@ -38,7 +38,7 @@ from evaluate_academy_distance_origins import grid_key, haversine_m, nearby_cand
 from upload_academy_proximity import PROJECT_DIR, load_env, request_json, table_count, upsert
 
 
-CORE_RADIUS_M = 600
+CORE_RADIUS_M = 400
 MAXIMUM_RADIUS_M = 800
 PAGE = 1000
 

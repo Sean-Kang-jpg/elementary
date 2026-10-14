@@ -96,7 +96,7 @@ def write_csv(path: Path, fieldnames, rows):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--as-of", default=date.today().isoformat())
-    parser.add_argument("--core-radius-m", type=float, default=600)
+    parser.add_argument("--core-radius-m", type=float, default=400)
     parser.add_argument("--maximum-radius-m", type=float, default=800)
     parser.add_argument("--complexes", type=Path, default=COMPLEXES)
     parser.add_argument("--academies", type=Path, default=None)

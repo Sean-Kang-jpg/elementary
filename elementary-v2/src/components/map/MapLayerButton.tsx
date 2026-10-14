@@ -6,7 +6,7 @@ import type { MapLayer } from '../../utils/mapLayers'
 const LAYERS = {
   apartments: { label: '배정아파트', icon: Building2, note: '세대수 표시 · 100세대 미만은 작은 아이콘' },
   care: { label: '돌봄센터', icon: HeartHandshake, note: '학교 기준 직선거리 1km' },
-  activity: { label: '교육환경', icon: GraduationCap, note: '학원 등 · 실선 ~600m / 점선 600~800m · +N 복합상가' },
+  activity: { label: '교육환경', icon: GraduationCap, note: '학원 등 · 실선 ~400m / 점선 400~800m · +N 복합상가' },
 } as const
 
 interface MapLayerButtonProps {
@@ -30,7 +30,7 @@ export default function MapLayerButton({ layer, variant = 'floating', loading = 
   const unavailableReason = layer === 'activity' && hasOrigin && !academyAvailable ? '이 지역 데이터 준비 중'
     : layer === 'activity' ? '학교나 아파트를 먼저 선택하세요' : '학교를 먼저 선택하세요'
   const explanation = !available ? unavailableReason : loading && enabled ? '조회 중' : enabled && status ? status : note
-  const bannerNote = layer === 'activity' ? '핵심 ~600m · 확장 600~800m' : layer === 'apartments' ? '배정 단지 · 세대수 표시' : note
+  const bannerNote = layer === 'activity' ? '핵심 ~400m · 확장 400~800m' : layer === 'apartments' ? '배정 단지 · 세대수 표시' : note
   const failed = enabled && status?.startsWith('조회 실패')
 
   return <button type="button" data-map-layer={layer} data-layer-entry={variant}

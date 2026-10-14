@@ -68,7 +68,7 @@ export default function AcademySummaryPanel({ academies, loading = false, error 
       </section>
 
       <div className="grid grid-cols-2 gap-2">
-        <div className="rounded-md bg-teal-50 p-3"><span className="text-xs text-teal-700">핵심 생활권 · 600m</span><strong className="mt-1 block text-xl text-teal-900">{summary.core.toLocaleString()}</strong></div>
+        <div className="rounded-md bg-teal-50 p-3"><span className="text-xs text-teal-700">핵심 생활권 · 400m</span><strong className="mt-1 block text-xl text-teal-900">{summary.core.toLocaleString()}</strong></div>
         <div className="rounded-md bg-gray-100 p-3"><span className="text-xs text-gray-600">확장 생활권 · 800m</span><strong className="mt-1 block text-xl text-gray-900">{summary.extended.toLocaleString()}</strong></div>
       </div>
 
