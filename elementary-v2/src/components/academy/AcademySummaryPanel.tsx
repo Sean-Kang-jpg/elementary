@@ -1,7 +1,7 @@
 import { BookOpen, Calculator, Code, Dumbbell, FlaskConical, Globe, GraduationCap, Languages, Palette, PenLine, Shapes } from 'lucide-react'
 import { useMemo } from 'react'
 import type { AcademyAddress } from '../../types'
-import { ACADEMY_CATEGORIES, getAcademyCategoryCounts, type AcademyCategoryKey } from '../../utils/academyCategories'
+import { ACADEMY_CATEGORIES, getAcademyCategoryCounts, getInstitutionCategories, type AcademyCategoryKey } from '../../utils/academyCategories'
 import { useAppContext } from '../../contexts/AppContext'
 
 interface AcademySummaryPanelProps {
@@ -24,6 +24,9 @@ const CATEGORY_ICONS = {
   other: Shapes,
 } as const
 
+// 분야마다 가까운 순으로 보여 줄 대표 상호 수
+const NAMES_PER_CATEGORY = 3
+
 export default function AcademySummaryPanel({ academies, loading = false, error = null, dataAvailable = true }: AcademySummaryPanelProps) {
   const { state, dispatch } = useAppContext()
   const selectedCategory = state.activityCategory
@@ -36,8 +39,20 @@ export default function AcademySummaryPanel({ academies, loading = false, error 
       const counts = getAcademyCategoryCounts(academy)
       ACADEMY_CATEGORIES.forEach(({ key }) => { categoryTotals[key] += counts[key] })
     })
+    // 대표 상호: 분야마다 가까운 주소의 기관부터. 같은 상호는 한 번만(분점·층별 등록)
+    const nearest = [...academies].sort((a, b) => (a.straight_distance_m ?? Infinity) - (b.straight_distance_m ?? Infinity))
+    const names = Object.fromEntries(ACADEMY_CATEGORIES.map(({ key }) => [key, [] as string[]])) as Record<AcademyCategoryKey, string[]>
+    nearest.forEach((academy) => {
+      (academy.institutions || []).forEach((institution) => {
+        const name = institution.name?.trim()
+        if (!name) return
+        getInstitutionCategories(institution).forEach(({ key }) => {
+          if (names[key].length < NAMES_PER_CATEGORY && !names[key].includes(name)) names[key].push(name)
+        })
+      })
+    })
     const categories = ACADEMY_CATEGORIES
-      .map((category) => ({ ...category, count: categoryTotals[category.key] }))
+      .map((category) => ({ ...category, count: categoryTotals[category.key], names: names[category.key] }))
       .filter(({ count }) => count > 0)
       .sort((a, b) => b.count - a.count)
     return {
@@ -75,9 +90,9 @@ export default function AcademySummaryPanel({ academies, loading = false, error 
       {summary.categories.length ? (
         <section aria-labelledby="academy-category-title">
           <h3 id="academy-category-title" className="mb-2 font-semibold text-gray-950">분야별 분포 <span className="text-xs font-normal text-gray-500">· 선택하여 지도 강조</span></h3>
-          <p className="mb-2 text-[11px] leading-4 text-gray-500">분야는 학원 이름으로 나눴어요. 영어·수학을 함께 가르치는 곳은 두 분야에 모두 셉니다.</p>
+          <p className="mb-2 text-[11px] leading-4 text-gray-500">분야는 학원 이름으로 나눴어요. 영어·수학을 함께 가르치는 곳은 두 분야에 모두 셉니다. 상호는 가까운 곳부터 보여 드려요.</p>
           <div className="space-y-1">
-            {summary.categories.map(({ key, label, count, color, softColor }) => {
+            {summary.categories.map(({ key, label, count, color, softColor, names }) => {
               const Icon = CATEGORY_ICONS[key]
               const selected = selectedCategory === key
               return (
@@ -92,6 +107,11 @@ export default function AcademySummaryPanel({ academies, loading = false, error 
                   <span className="min-w-0">
                     <span className="block text-sm font-semibold text-gray-800">{label}</span>
                     <span className="mt-1 block h-1.5 overflow-hidden rounded-full bg-gray-100"><span className="block h-full rounded-full" style={{ width: `${Math.max(6, (count / summary.largestCategory) * 100)}%`, backgroundColor: color }} /></span>
+                    {names.length > 0 && (
+                      <span className="mt-1 block truncate text-[11px] text-gray-500" data-testid="academy-category-names">
+                        {names.join(' · ')}{count > names.length ? ` 외 ${(count - names.length).toLocaleString()}곳` : ''}
+                      </span>
+                    )}
                   </span>
                   <strong className="text-sm text-gray-700">{count.toLocaleString()}</strong>
                 </button>
