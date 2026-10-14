@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import type { SchoolAfterschool, SchoolAfterschoolOption, SchoolAfterschoolSection, SchoolCareHours, SchoolDayEstimate } from '../../types'
+import type { SchoolAfterschool, SchoolAfterschoolOption, SchoolAfterschoolSection, SchoolCareHours, SchoolCareStatistics, SchoolDayEstimate } from '../../types'
 
 const WEEKDAYS = ['월', '화', '수', '목', '금'] as const
 // 막대의 시간축: 정오부터 19시 30분까지. 오전 수업은 하교 시각만 보면 되므로 그리지 않는다.
@@ -46,8 +46,26 @@ const Bar: React.FC<{ from: number; to: number; className: string; title: string
 // 전학년 반(고학년 위주): 같은 주황을 연한 빗금으로. 저학년 반이 끝난 뒤만 이어 그린다(2026-10-14 시안 '한 줄' 안)
 const ALL_GRADE_FILL: React.CSSProperties = { backgroundImage: 'repeating-linear-gradient(135deg, rgba(245, 158, 11, .35) 0 4px, transparent 4px 7px)' }
 
-const sectionTimes = (option: SchoolAfterschoolOption) =>
-  [...new Set(option.sections.map((s) => `${s.days ?? '요일?'} ${s.start ? `${s.start}–` : ''}${s.end ?? '시간?'}`))].join(' · ')
+const sectionTime = (section: SchoolAfterschoolSection) =>
+  `${section.days ?? '요일?'} ${section.start ? `${section.start}–` : ''}${section.end ?? '시간?'}`
+
+/** 반의 대상 학년: '1·2학년'(저학년) ~ '전학년'. 1학년 대상인지 모르면 빈 문자열. */
+const gradeLabel = (section: SchoolAfterschoolSection) => {
+  if (section.grade1 !== 'true' || section.grade_upper === null) return ''
+  if (section.grade_upper >= 6) return '전학년'
+  return section.grade_upper <= 2 ? '1·2학년' : `1~${section.grade_upper}학년`
+}
+
+/** 같은 대상 학년·요일·시간의 반은 한 줄로 묶는다(분반 A·B 등). */
+const sectionLines = (option: SchoolAfterschoolOption) => {
+  const lines = new Map<string, { grade: string; lower: boolean; time: string }>()
+  for (const section of option.sections) {
+    const grade = gradeLabel(section)
+    const time = sectionTime(section)
+    lines.set(`${grade}|${time}`, { grade, lower: isLowerGrade(section), time })
+  }
+  return [...lines.values()]
+}
 
 /**
  * 초1 오후 한눈에: 요일마다 하교·맞춤형·방과후·돌봄을 한 막대에 겹쳐 보여 주고,
@@ -58,7 +76,12 @@ const sectionTimes = (option: SchoolAfterschoolOption) =>
  * 강좌표가 없는 학교(data null)도 하교·돌봄 막대는 그리고, 강좌는 별도 확인이 필요하다고 알린다
  * (2026-10-14 결정).
  */
-const AfterschoolSummary: React.FC<{ data: SchoolAfterschool | null; day: SchoolDayEstimate | null; care: SchoolCareHours | null }> = ({ data, day, care }) => {
+const AfterschoolSummary: React.FC<{
+  data: SchoolAfterschool | null
+  day: SchoolDayEstimate | null
+  care: SchoolCareHours | null
+  careStats?: SchoolCareStatistics | null
+}> = ({ data, day, care, careStats = null }) => {
   const [open, setOpen] = useState(false)
   const options = data?.options ?? []
   const grade1 = options.filter((o) => o.grade1 === 'true')
@@ -106,7 +129,7 @@ const AfterschoolSummary: React.FC<{ data: SchoolAfterschool | null; day: School
             {timedCourses && <span className="inline-flex items-center gap-1"><i className="h-2.5 w-2.5 rounded-sm bg-emerald-500" />맞춤형</span>}
             {timedCourses && <span className="inline-flex items-center gap-1"><i className="h-2.5 w-2.5 rounded-sm bg-amber-500" />{lowerBasis ? '방과후 저학년 반' : '방과후'}</span>}
             {hasExtension && <span className="inline-flex items-center gap-1"><i className="h-2.5 w-2.5 rounded-sm border border-amber-500" style={ALL_GRADE_FILL} />전학년 반(고학년 위주)</span>}
-            <span className="inline-flex items-center gap-1"><i className="h-2.5 w-2.5 rounded-sm border border-indigo-400 bg-indigo-100" />돌봄</span>
+            {careEnd !== null && <span className="inline-flex items-center gap-1"><i className="h-2.5 w-2.5 rounded-sm border border-indigo-400 bg-indigo-100" />돌봄</span>}
           </div>
 
           <ol className="grid grid-cols-[1.25rem_minmax(0,1fr)] items-center gap-x-2 gap-y-1.5" aria-label="요일별 오후 일정">
@@ -132,6 +155,14 @@ const AfterschoolSummary: React.FC<{ data: SchoolAfterschool | null; day: School
           <div className="relative ml-[1.75rem] mt-1 h-3.5 text-[10px] text-gray-400" aria-hidden="true">
             {[12, 14, 16, 18].map((h) => <span key={h} className="absolute -translate-x-1/2" style={{ left: `${pct(h * 60)}%` }}>{h}시</span>)}
           </div>
+          {careEnd === null && (
+            <p className="mt-1.5 rounded-md bg-indigo-50 px-3 py-2 text-xs leading-5 text-indigo-950" data-testid="school-afterschool-care-note">
+              {(careStats?.afternoon_care_rooms ?? 0) > 0
+                ? `돌봄교실은 운영해요(오후 ${careStats!.afternoon_care_rooms}실${(careStats!.evening_care_rooms ?? 0) > 0 ? `·저녁 ${careStats!.evening_care_rooms}실` : ''}, 학교알리미). `
+                : ''}
+              돌봄 운영 시간은 공시 문서에 없어 막대에 넣지 않았어요. 시간을 공시한 학교는 오후 돌봄이 17:00까지인 곳이 가장 많고(서울 71%, 경기 56%), 19:00까지인 곳도 있어요. 이 학교 시간은 학교에 확인해 주세요.
+            </p>
+          )}
         </>
       )}
 
@@ -190,15 +221,24 @@ const AfterschoolSummary: React.FC<{ data: SchoolAfterschool | null; day: School
                   <h5 className="mb-0.5 text-xs font-semibold text-gray-600">{category} · {items.length}</h5>
                   <ul className="divide-y divide-gray-100">
                     {items.map((option) => (
-                      <li key={`${option.kind}-${option.name}-${option.variant ?? ''}`} className="flex justify-between gap-2 py-1.5 text-sm">
-                        <span className="min-w-0 text-gray-900">
+                      <li key={`${option.kind}-${option.name}-${option.variant ?? ''}`} className="py-1.5 text-sm">
+                        <span className="text-gray-900">
                           {option.name}
                           {option.variant && <span className="ml-1 rounded bg-indigo-50 px-1 text-[10px] text-indigo-800">수준 {option.variant}</span>}
                           {option.kind === '맞춤형' && <span className="ml-1 rounded bg-emerald-50 px-1 text-[10px] text-emerald-800">맞춤형·무료</span>}
                           {option.grade1 !== 'true' && <span className="ml-1 rounded border border-gray-200 px-1 text-[10px] text-gray-600">학년 확인 필요</span>}
-                          {option.kind === '방과후' && option.grade1 === 'true' && !option.sections.some(isLowerGrade) && <span className="ml-1 rounded border border-gray-200 px-1 text-[10px] text-gray-600">전학년</span>}
                         </span>
-                        <span className="max-w-[55%] shrink-0 text-right text-[11px] tabular-nums text-gray-500">{sectionTimes(option)}</span>
+                        {/* 반마다 대상 학년을 붙인다: 같은 강좌에 1·2학년 반과 전학년 반이 함께 있는 학교가 많다 */}
+                        <ul className="mt-0.5 space-y-0.5">
+                          {sectionLines(option).map((line) => (
+                            <li key={`${line.grade}|${line.time}`} className="flex items-center gap-1.5 text-[11px] tabular-nums text-gray-600">
+                              {line.grade && (
+                                <span className={`shrink-0 rounded px-1 text-[10px] font-medium ${line.lower ? 'bg-amber-100 text-amber-900' : 'border border-amber-300 text-amber-800'}`}>{line.grade}</span>
+                              )}
+                              <span>{line.time}</span>
+                            </li>
+                          ))}
+                        </ul>
                       </li>
                     ))}
                   </ul>
