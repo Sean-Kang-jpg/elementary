@@ -36,7 +36,7 @@ export const ACADEMY_CATEGORIES: AcademyCategoryDefinition[] = [
   { key: 'science', label: '과학', shortLabel: '과', color: '#0891b2', softColor: '#cffafe', realmKeywords: [] },
   { key: 'coding', label: '코딩', shortLabel: '코', color: '#ca8a04', softColor: '#fef9c3', realmKeywords: ['정보'] },
   { key: 'study', label: '입시·종합', shortLabel: '입', color: '#1e3a8a', softColor: '#e0e7ff', realmKeywords: ['입시', '보습', '종합', '교과', '독서', '인문사회'] },
-  { key: 'language', label: '외국어', shortLabel: '외', color: '#a855f7', softColor: '#f3e8ff', realmKeywords: ['국제화', '외국어', '영어', '중국어', '일본어', '어학'] },
+  { key: 'language', label: '외국어', shortLabel: '외', color: '#8b5a2b', softColor: '#f3e8dc', realmKeywords: ['국제화', '외국어', '영어', '중국어', '일본어', '어학'] },
   { key: 'arts', label: '예능', shortLabel: '예', color: '#db2777', softColor: '#fce7f3', realmKeywords: ['예능', '음악', '미술', '무용', '연기'] },
   { key: 'sports', label: '체육', shortLabel: '체', color: '#059669', softColor: '#d1fae5', realmKeywords: ['체육', '무도', '태권도', '검도', '유도', '합기도', '복싱', '권투', '우슈', '레슬링', '수영', '스포츠'] },
   { key: 'other', label: '기타', shortLabel: '기', color: '#94a3b8', softColor: '#f1f5f9', realmKeywords: [] },
