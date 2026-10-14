@@ -40,8 +40,11 @@ const daySpan = (options: SchoolAfterschoolOption[], day: string, include: (sect
   return end === null ? null : { start, end }
 }
 
-const Bar: React.FC<{ from: number; to: number; className: string; title: string }> = ({ from, to, className, title }) =>
-  to > from ? <span className={`absolute ${className}`} style={{ left: `${pct(from)}%`, width: `${pct(to) - pct(from)}%` }} title={title} /> : null
+const Bar: React.FC<{ from: number; to: number; className: string; title: string; style?: React.CSSProperties }> = ({ from, to, className, title, style }) =>
+  to > from ? <span className={`absolute ${className}`} style={{ ...style, left: `${pct(from)}%`, width: `${pct(to) - pct(from)}%` }} title={title} /> : null
+
+// 전학년 반(고학년 위주): 같은 주황을 연한 빗금으로. 저학년 반이 끝난 뒤만 이어 그린다(2026-10-14 시안 '한 줄' 안)
+const ALL_GRADE_FILL: React.CSSProperties = { backgroundImage: 'repeating-linear-gradient(135deg, rgba(245, 158, 11, .35) 0 4px, transparent 4px 7px)' }
 
 const sectionTimes = (option: SchoolAfterschoolOption) =>
   [...new Set(option.sections.map((s) => `${s.days ?? '요일?'} ${s.start ? `${s.start}–` : ''}${s.end ?? '시간?'}`))].join(' · ')
@@ -73,9 +76,14 @@ const AfterschoolSummary: React.FC<{ data: SchoolAfterschool | null; day: School
     const dismissal = toMin(day?.weekdays[index]?.dismissal)
     const c = timedCourses ? daySpan(custom, label) : null
     const a = timedCourses ? daySpan(afterschool, label, afterschoolSection) : null
+    // 저학년 기준인 학교에서 전학년 반이 더 늦게 이어지는 부분. 데리러 가는 시각에는 넣지 않는다
+    const all = timedCourses && lowerBasis ? daySpan(afterschool, label, (s) => isGrade1(s) && !isLowerGrade(s)) : null
+    const allFrom = all ? Math.max(all.start ?? a?.end ?? dismissal ?? all.end - 80, a?.end ?? 0) : null
+    const ext = all && allFrom !== null && all.end > allFrom ? { start: allFrom, end: all.end } : null
     const pickup = Math.max(dismissal ?? 0, c?.end ?? 0, a?.end ?? 0) || null
-    return { label, dismissal, c, a, pickup }
+    return { label, dismissal, c, a, ext, pickup }
   })
+  const hasExtension = rows.some((row) => row.ext)
   const hasTimeline = timedCourses || careEnd !== null || rows.some((row) => row.dismissal !== null)
   if (!hasTimeline && options.length === 0) return null
 
@@ -96,7 +104,8 @@ const AfterschoolSummary: React.FC<{ data: SchoolAfterschool | null; day: School
           <div className="mb-1.5 flex flex-wrap gap-x-3 gap-y-1 text-[11px] text-gray-600" aria-hidden="true">
             <span className="inline-flex items-center gap-1"><i className="h-2.5 w-2.5 rounded-sm bg-gray-300" />수업</span>
             {timedCourses && <span className="inline-flex items-center gap-1"><i className="h-2.5 w-2.5 rounded-sm bg-emerald-500" />맞춤형</span>}
-            {timedCourses && <span className="inline-flex items-center gap-1"><i className="h-2.5 w-2.5 rounded-sm bg-amber-500" />방과후</span>}
+            {timedCourses && <span className="inline-flex items-center gap-1"><i className="h-2.5 w-2.5 rounded-sm bg-amber-500" />{lowerBasis ? '방과후 저학년 반' : '방과후'}</span>}
+            {hasExtension && <span className="inline-flex items-center gap-1"><i className="h-2.5 w-2.5 rounded-sm border border-amber-500" style={ALL_GRADE_FILL} />전학년 반(고학년 위주)</span>}
             <span className="inline-flex items-center gap-1"><i className="h-2.5 w-2.5 rounded-sm border border-indigo-400 bg-indigo-100" />돌봄</span>
           </div>
 
@@ -105,15 +114,17 @@ const AfterschoolSummary: React.FC<{ data: SchoolAfterschool | null; day: School
               <li key={row.label} className="contents">
                 <span className="text-xs font-semibold text-gray-600">{row.label}</span>
                 <div
-                  className="relative h-5 rounded bg-gray-50"
+                  className="relative h-6 rounded bg-gray-50"
                   role="img"
-                  aria-label={`${row.label}요일 ${row.dismissal ? `하교 ${fmt(row.dismissal)}` : '하교 시각 미확인'}${row.c ? `, 맞춤형 ~${fmt(row.c.end)}` : ''}${row.a ? `, 방과후 ~${fmt(row.a.end)}` : ''}${careEnd ? `, 돌봄 ~${fmt(careEnd)}` : ''}`}
+                  aria-label={`${row.label}요일 ${row.dismissal ? `하교 ${fmt(row.dismissal)}` : '하교 시각 미확인'}${row.c ? `, 맞춤형 ~${fmt(row.c.end)}` : ''}${row.a ? `, 방과후 ~${fmt(row.a.end)}` : ''}${row.ext ? `, 전학년 반 ~${fmt(row.ext.end)}` : ''}${careEnd ? `, 돌봄 ~${fmt(careEnd)}` : ''}`}
                 >
                   {careEnd && <Bar from={row.dismissal ?? 13 * 60} to={careEnd} className="inset-y-0 rounded-sm border border-indigo-400 bg-indigo-100" title={`돌봄 ~${fmt(careEnd)}`} />}
                   {careEnd && careExt && <Bar from={careEnd} to={careExt} className="inset-y-0 rounded-r-sm border border-l-0 border-dashed border-indigo-400" title={`저녁·연장 ~${fmt(careExt)}`} />}
                   {row.dismissal && <Bar from={T0} to={row.dismissal} className="inset-y-1 rounded-sm bg-gray-300" title={`하교 ${fmt(row.dismissal)}`} />}
-                  {row.c && <Bar from={row.c.start ?? row.dismissal ?? row.c.end - 80} to={row.c.end} className="inset-y-1 rounded-sm bg-emerald-500" title={`맞춤형 ~${fmt(row.c.end)}`} />}
-                  {row.a && <Bar from={row.a.start ?? row.dismissal ?? row.a.end - 80} to={row.a.end} className="inset-y-1 rounded-sm bg-amber-500" title={`방과후 ~${fmt(row.a.end)}`} />}
+                  {/* 맞춤형은 위 칸, 방과후는 아래 칸: 시간이 겹쳐도 둘 다 보인다 */}
+                  {row.c && <Bar from={row.c.start ?? row.dismissal ?? row.c.end - 80} to={row.c.end} className="top-1 h-[7px] rounded-sm bg-emerald-500" title={`맞춤형 ~${fmt(row.c.end)}`} />}
+                  {row.a && <Bar from={row.a.start ?? row.dismissal ?? row.a.end - 80} to={row.a.end} className="top-[13px] h-[7px] rounded-sm bg-amber-500" title={`방과후 ~${fmt(row.a.end)}`} />}
+                  {row.ext && <Bar from={row.ext.start} to={row.ext.end} className="top-[13px] h-[7px] rounded-sm border border-amber-500" style={ALL_GRADE_FILL} title={`전학년 반 ~${fmt(row.ext.end)}`} />}
                 </div>
               </li>
             ))}
@@ -132,7 +143,7 @@ const AfterschoolSummary: React.FC<{ data: SchoolAfterschool | null; day: School
           </p>
           <p className="mt-1 text-[11px] text-amber-800">
             {lowerBasis || !afterschool.length
-              ? '그날 가장 늦게 끝나는 저학년 대상 반 기준이에요. 고른 강좌에 따라 더 이를 수 있어요.'
+              ? `그날 가장 늦게 끝나는 저학년 대상 반 기준이에요.${hasExtension ? ' 빗금은 전학년 반이라 고르면 그만큼 늦어질 수 있어요.' : ' 고른 강좌에 따라 더 이를 수 있어요.'}`
               : '저학년 반이 따로 적혀 있지 않아 전학년 대상 반 기준이에요. 늦은 반은 고학년용일 수 있어요.'}
           </p>
         </div>
