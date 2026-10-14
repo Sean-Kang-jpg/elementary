@@ -43,6 +43,8 @@ const daySpan = (options: SchoolAfterschoolOption[], day: string, include: (sect
 const Bar: React.FC<{ from: number; to: number; className: string; title: string; style?: React.CSSProperties }> = ({ from, to, className, title, style }) =>
   to > from ? <span className={`absolute ${className}`} style={{ ...style, left: `${pct(from)}%`, width: `${pct(to) - pct(from)}%` }} title={title} /> : null
 
+const ESTIMATED_CARE_END = 17 * 60
+
 // 전학년 반(고학년 위주): 같은 주황을 연한 빗금으로. 저학년 반이 끝난 뒤만 이어 그린다(2026-10-14 시안 '한 줄' 안)
 const ALL_GRADE_FILL: React.CSSProperties = { backgroundImage: 'repeating-linear-gradient(135deg, rgba(245, 158, 11, .35) 0 4px, transparent 4px 7px)' }
 
@@ -90,6 +92,10 @@ const AfterschoolSummary: React.FC<{
   const custom = options.filter((o) => o.kind === '맞춤형')
   const careEnd = care?.status === 'stated' ? toMin(care.afternoon_end) : null
   const careExt = care?.status === 'stated' ? toMin(care.extended_end) : null
+  // 시간 공시는 없지만 학교알리미에 오후돌봄 교실이 있으면 17:00까지로 추정해 점선으로 그린다
+  // (시간을 공시한 학교 중 17:00이 가장 많다: 서울 71%, 경기 56%). 학교 확인이 필요하다고 함께 쓴다.
+  const careEstimated = careEnd === null && (careStats?.afternoon_care_rooms ?? 0) > 0
+  const careBandEnd = careEnd ?? (careEstimated ? ESTIMATED_CARE_END : null)
   const timedCourses = data !== null && data.tier !== 'C' && options.length > 0
   // 저학년 반이 없는 학교만 전학년 반으로 그리고, 그렇다고 밝힌다
   const lowerBasis = afterschool.some((o) => o.sections.some((s) => isLowerGrade(s) && isTimed(s)))
@@ -107,7 +113,7 @@ const AfterschoolSummary: React.FC<{
     return { label, dismissal, c, a, ext, pickup }
   })
   const hasExtension = rows.some((row) => row.ext)
-  const hasTimeline = timedCourses || careEnd !== null || rows.some((row) => row.dismissal !== null)
+  const hasTimeline = timedCourses || careBandEnd !== null || rows.some((row) => row.dismissal !== null)
   if (!hasTimeline && options.length === 0) return null
 
   const listed = grade1.length ? grade1 : unknown
@@ -130,6 +136,7 @@ const AfterschoolSummary: React.FC<{
             {timedCourses && <span className="inline-flex items-center gap-1"><i className="h-2.5 w-2.5 rounded-sm bg-amber-500" />{lowerBasis ? '방과후 저학년 반' : '방과후'}</span>}
             {hasExtension && <span className="inline-flex items-center gap-1"><i className="h-2.5 w-2.5 rounded-sm border border-amber-500" style={ALL_GRADE_FILL} />전학년 반(고학년 위주)</span>}
             {careEnd !== null && <span className="inline-flex items-center gap-1"><i className="h-2.5 w-2.5 rounded-sm border border-indigo-400 bg-indigo-100" />돌봄</span>}
+            {careEstimated && <span className="inline-flex items-center gap-1"><i className="h-2.5 w-2.5 rounded-sm border border-dashed border-indigo-400 bg-indigo-50" />돌봄(17시 추정)</span>}
           </div>
 
           <ol className="grid grid-cols-[1.25rem_minmax(0,1fr)] items-center gap-x-2 gap-y-1.5" aria-label="요일별 오후 일정">
@@ -139,9 +146,10 @@ const AfterschoolSummary: React.FC<{
                 <div
                   className="relative h-6 rounded bg-gray-50"
                   role="img"
-                  aria-label={`${row.label}요일 ${row.dismissal ? `하교 ${fmt(row.dismissal)}` : '하교 시각 미확인'}${row.c ? `, 맞춤형 ~${fmt(row.c.end)}` : ''}${row.a ? `, 방과후 ~${fmt(row.a.end)}` : ''}${row.ext ? `, 전학년 반 ~${fmt(row.ext.end)}` : ''}${careEnd ? `, 돌봄 ~${fmt(careEnd)}` : ''}`}
+                  aria-label={`${row.label}요일 ${row.dismissal ? `하교 ${fmt(row.dismissal)}` : '하교 시각 미확인'}${row.c ? `, 맞춤형 ~${fmt(row.c.end)}` : ''}${row.a ? `, 방과후 ~${fmt(row.a.end)}` : ''}${row.ext ? `, 전학년 반 ~${fmt(row.ext.end)}` : ''}${careEnd ? `, 돌봄 ~${fmt(careEnd)}` : careEstimated ? ', 돌봄 17:00까지로 추정, 학교 확인 필요' : ''}`}
                 >
                   {careEnd && <Bar from={row.dismissal ?? 13 * 60} to={careEnd} className="inset-y-0 rounded-sm border border-indigo-400 bg-indigo-100" title={`돌봄 ~${fmt(careEnd)}`} />}
+                  {careEstimated && <Bar from={row.dismissal ?? 13 * 60} to={ESTIMATED_CARE_END} className="inset-y-0 rounded-sm border border-dashed border-indigo-400 bg-indigo-50/60" title="돌봄 17:00까지로 추정 · 학교 확인 필요" />}
                   {careEnd && careExt && <Bar from={careEnd} to={careExt} className="inset-y-0 rounded-r-sm border border-l-0 border-dashed border-indigo-400" title={`저녁·연장 ~${fmt(careExt)}`} />}
                   {row.dismissal && <Bar from={T0} to={row.dismissal} className="inset-y-1 rounded-sm bg-gray-300" title={`하교 ${fmt(row.dismissal)}`} />}
                   {/* 맞춤형은 위 칸, 방과후는 아래 칸: 시간이 겹쳐도 둘 다 보인다 */}
@@ -160,7 +168,7 @@ const AfterschoolSummary: React.FC<{
               {(careStats?.afternoon_care_rooms ?? 0) > 0
                 ? `돌봄교실은 운영해요(오후 ${careStats!.afternoon_care_rooms}실${(careStats!.evening_care_rooms ?? 0) > 0 ? `·저녁 ${careStats!.evening_care_rooms}실` : ''}, 학교알리미). `
                 : ''}
-              돌봄 운영 시간은 공시 문서에 없어 막대에 넣지 않았어요. 시간을 공시한 학교는 오후 돌봄이 17:00까지인 곳이 가장 많고(서울 71%, 경기 56%), 19:00까지인 곳도 있어요. 이 학교 시간은 학교에 확인해 주세요.
+              {careEstimated ? '운영 시간은 공시 문서에 없어 점선은 17:00까지로 추정한 거예요.' : '돌봄 운영 시간은 공시 문서에 없어 막대에 넣지 않았어요.'} 시간을 공시한 학교는 오후 돌봄이 17:00까지인 곳이 가장 많고(서울 71%, 경기 56%), 19:00까지인 곳도 있어요. 이 학교 시간은 학교에 확인해 주세요.
             </p>
           )}
         </>

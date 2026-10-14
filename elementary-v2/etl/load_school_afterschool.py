@@ -5,6 +5,10 @@ the rules that came out of review so the extraction never has to be re-run for t
 
   * rows grade 1 cannot take ("false") and rows from an earlier school year's table are dropped
   * a "true" with no grade text is a guess and becomes "unknown"
+  * 맞춤형 with no grade text is grade 1 (and 2): the programme exists for 초1·2 by policy, so the
+    extractor's 'unknown' there was a missing header, not doubt (2026-10-14)
+  * --custom-outputs (llm_extraction_spec_custom.md) replaces a school's generic 맞춤형 rows
+    ('맞춤형교실') with the per-weekday programme names when the re-extraction found any
   * Saturday and other non-weekday letters are dropped from 요일; malformed times become NULL
   * the timeline and the latest end per weekday use lower-grade sections only (grade text tops out at
     3학년 or below): a '1~6학년' course is open to grade 1 but its later sections are for older pupils,
@@ -81,7 +85,9 @@ def clean_row(values: list) -> dict[str, Any] | None:
     row = dict(zip(COLUMNS_V2 if len(values) == 11 else COLUMNS_V1, values))
     if row.get('grade1') == 'false' or PRIOR_YEAR.search(str(row.get('term') or '')):
         return None
-    if row.get('grade1') == 'true' and not row.get('grades_raw'):
+    if row.get('kind') == '맞춤형' and not row.get('grades_raw') and row.get('grade1') in ('true', 'unknown'):
+        row['grade1'] = 'true'
+    elif row.get('grade1') == 'true' and not row.get('grades_raw'):
         row['grade1'] = 'unknown'
     if row.get('grade1') not in ('true', 'unknown') or row.get('kind') not in ('방과후', '맞춤형') or not row.get('name'):
         return None
@@ -95,7 +101,15 @@ def clean_row(values: list) -> dict[str, Any] | None:
     if row['days'] == WEEKDAYS and not row['start'] and not row['end']:
         row['days'] = None
     row['grade_upper'] = grade_upper(row.get('grades_raw'))
+    if row['kind'] == '맞춤형' and row['grade_upper'] is None:
+        row['grade_upper'] = 2
     return row
+
+
+def custom_rows(school: dict) -> list[list]:
+    """Re-extracted 맞춤형 rows ([name, day, start, end, grades_raw, line]) in the compact v2 shape."""
+    return [['맞춤형', name, None, None, grades, day, start, end, 'true', None, line]
+            for name, day, start, end, grades, line in school.get('rows', [])]
 
 
 def school_record(school: dict) -> dict[str, Any] | None:
@@ -134,13 +148,20 @@ def school_record(school: dict) -> dict[str, Any] | None:
             'term_label': ', '.join(terms[:3]) or None, 'note': school.get('note')}
 
 
-def build(outputs: list[Path]) -> tuple[list[dict], dict[str, int]]:
+def build(outputs: list[Path], custom: list[Path] | None = None) -> tuple[list[dict], dict[str, int]]:
     # a later --outputs directory (e.g. a re-extraction) replaces the same school from an earlier one
     latest: dict[str, dict] = {}
     for directory in outputs:
         for path in sorted(directory.glob('batch_*.json')):
             for school in json.loads(path.read_text(encoding='utf-8')):
                 latest[school['school_id']] = school
+    for directory in custom or []:
+        for path in sorted(directory.glob('batch_*.json')):
+            for school in json.loads(path.read_text(encoding='utf-8')):
+                if school['school_id'] in latest and school.get('rows'):
+                    base = latest[school['school_id']]
+                    kept = [r for r in base.get('rows', []) if r[0] != '맞춤형']
+                    latest[school['school_id']] = {**base, 'rows': kept + custom_rows(school)}
     records, counts = [], {'schools': 0, 'published': 0, 'A': 0, 'B': 0, 'C': 0, 'not_published': 0}
     for school in latest.values():
         counts['schools'] += 1
@@ -184,11 +205,12 @@ def fixture(records: list[dict]) -> dict[str, dict]:
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument('--outputs', action='append', required=True, type=Path)
+    parser.add_argument('--custom-outputs', action='append', type=Path, help='맞춤형 re-extraction (llm_extraction_spec_custom.md)')
     parser.add_argument('--write-fixture', action='store_true')
     parser.add_argument('--apply', action='store_true')
     args = parser.parse_args()
     snapshot = date.today().isoformat()
-    records, counts = build(args.outputs)
+    records, counts = build(args.outputs, args.custom_outputs)
     rows = table_rows(records, snapshot)
     report = {'mode': 'apply' if args.apply else 'dry-run', 'snapshot_date': snapshot, **counts,
               'rows': {table: len(items) for table, items in rows.items()}, 'confirmed': CONFIRMED}

@@ -1,6 +1,6 @@
 import unittest
 
-from etl.load_school_afterschool import category, clean_row, grade_upper, school_record, table_rows
+from etl.load_school_afterschool import build, category, clean_row, grade_upper, school_record, table_rows
 
 ROW = ['방과후', '컴퓨터', '컴기초', 'A', '1-2학년', '수목', '13:00', '14:20', 'true', '1분기', 12]
 
@@ -25,6 +25,12 @@ class CleanRowTest(unittest.TestCase):
 
     def test_a_weekday_range_without_time_is_no_day(self):
         self.assertIsNone(clean_row(ROW[:5] + ['월화수목금', None, None] + ROW[8:])['days'])
+
+    def test_custom_without_grade_text_is_grade1(self):
+        row = clean_row(['맞춤형', '맞춤형교실', None, None, None, '월', '12:40', '14:40', 'unknown', None, 3])
+        self.assertEqual((row['grade1'], row['grade_upper']), ('true', 2))
+        # a 방과후 row with no grade text stays unknown
+        self.assertEqual(clean_row(ROW[:4] + [None] + ROW[5:])['grade1'], 'unknown')
 
     def test_v1_rows_without_term(self):
         self.assertEqual(clean_row(ROW[:9] + [12])['name'], '컴퓨터')
@@ -61,6 +67,20 @@ class SchoolRecordTest(unittest.TestCase):
 
     def test_grade_upper(self):
         self.assertEqual([grade_upper(g) for g in ('1~6학년', '1-2', 'B 1~6G', '전학년', '저학년', '1학년', None)], [6, 2, 6, 6, 3, 1, None])
+
+    def test_custom_outputs_replace_generic_rows(self):
+        import json, tempfile
+        from pathlib import Path
+        with tempfile.TemporaryDirectory() as tmp:
+            base, custom = Path(tmp, 'base'), Path(tmp, 'custom')
+            base.mkdir(); custom.mkdir()
+            generic = ['맞춤형', '맞춤형교실', None, None, None, '월', '12:40', '14:40', 'unknown', None, 3]
+            (base / 'batch_1.json').write_text(json.dumps([{'school_id': 'X', 'rows': [ROW, generic]}]), encoding='utf-8')
+            (custom / 'batch_1.json').write_text(json.dumps([{'school_id': 'X', 'rows': [['놀이체육', '월', '12:40', '14:40', '1~2학년', 9]]},
+                                                             {'school_id': 'Y', 'rows': [['음악놀이', '화', None, None, None, 4]]}]), encoding='utf-8')
+            records, counts = build([base], [custom])
+        names = [o['name'] for o in records[0]['options'] if o['kind'] == '맞춤형']
+        self.assertEqual((names, counts['schools']), (['놀이체육'], 1))   # Y was never in the base set
 
     def test_category(self):
         self.assertEqual(category('원어민영어 Starter'), '영어')
