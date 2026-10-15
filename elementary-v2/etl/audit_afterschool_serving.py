@@ -7,6 +7,7 @@ estimates (SQL 26) and the Seoul school list. Each check names its likely cause:
   source    the disclosure itself lacks the value (no grade, no time) - nothing to fix in code
   extract   the extractor read the document wrongly or kept rows it should have dropped
   rule      the loader's rules produced a misleading value (fixable in code, no re-extraction)
+  info      intended behaviour worth counting, not a defect
 
     python -m etl.audit_afterschool_serving            # summary
     python -m etl.audit_afterschool_serving --csv out  # also one row per flagged school
@@ -64,7 +65,9 @@ CHECKS = {
     'no_course_table': ('source', '추출했지만 강좌표가 없어 공개하지 않았다'),
     'no_dismissal': ('coverage', '1학년 하교 예상(SQL 26)이 없어 수업 막대가 없다'),
     'paid_no_grade': ('source', '방과후 반에 대상 학년이 하나도 적혀 있지 않다'),
-    'tier_by_custom_only': ('rule', 'A·B 등급인데 시각 있는 1학년 방과후 반이 없다(맞춤형만으로 등급이 매겨짐)'),
+    # intended since e25587c (2026-10-15): the tier is per kind and the better one wins, so timed 맞춤형
+    # bars show even when the 방과후 list has no times. Counted for context, not as a defect
+    'tier_by_custom_only': ('info', 'A·B 등급이 맞춤형에서 나왔다(방과후 반은 시각 없음, 의도된 규칙)'),
     'morning_rows': ('extract', '정오 전에 끝나는 반(아침·방학 강좌)이 들어 있다'),
     'starts_before_dismissal': ('rule', '1학년 반이 그날 하교 전에 시작한다(4교시 날용 반이거나 학년 오판)'),
     'very_long_or_short': ('extract', '반 하나가 3시간을 넘거나 20분 미만이다'),
@@ -139,9 +142,10 @@ def main() -> None:
     by_cause = Counter()
     for code, n in counts.items():
         by_cause[CHECKS[code][0]] += n
+    defects = {school_id for school_id, codes in flags.items() if any(CHECKS[c][0] != 'info' for c in codes)}
     report = {
         'seoul_schools': len(seoul), 'published': sum(1 for s in seoul if s in summary),
-        'schools_flagged': len(flags), 'schools_clean': len(seoul) - len(flags),
+        'schools_flagged': len(defects), 'schools_clean': len(seoul) - len(defects),
         'by_check': {code: {'cause': CHECKS[code][0], 'schools': counts[code], 'what': CHECKS[code][1]}
                      for code in CHECKS if counts[code]},
         'by_cause': dict(by_cause),
