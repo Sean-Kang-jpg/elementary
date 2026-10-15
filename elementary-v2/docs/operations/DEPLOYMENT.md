@@ -177,10 +177,21 @@ Production Branch는 `Settings → Environments → Production → Branch Tracki
 ### 릴리스 절차
 
 ```bash
-git checkout release
-git merge master          # 올릴 범위를 정해서 머지한다
-git push                  # 이 push가 곧 운영 배포다
+git fetch origin
+git merge-base --is-ancestor origin/release master   # 실패하면 아래 '갈라졌을 때'
+git push origin master:release                       # 이 push가 곧 운영 배포다
 ```
+
+- **배포는 `master`를 그대로 올리는 것만 한다.** 작업 트리가 다른 사람의 변경으로 더러워도
+  `checkout` 없이 된다.
+- **`release`에 직접 커밋하지 않는다.** 아직 내보내면 안 되는 커밋이 `master`에 있으면 `master`에서
+  먼저 정리한다(되돌리기 커밋 등). 2026-10-16 MY 시간표 배포 때 `release`에 같은 내용의 별도 커밋을
+  만들면서 `master`의 앞선 커밋이 빠진 채 나갔고, 두 브랜치가 갈라져 다음 배포가 fast-forward로
+  되지 않았다.
+- **갈라졌을 때**: `release`에만 있는 커밋의 내용이 `master`에 이미 있으면(`git diff origin/release <같은 내용의 master 커밋>`이
+  비어 있으면) 파일 변경 없는 합치기 커밋으로 되돌린다.
+  `git commit-tree origin/master^{tree} -p origin/master -p origin/release` → `git update-ref refs/heads/master <커밋>` → `git push origin master`
+  (2026-10-16 `102f028`). 내용이 다르면 그 차이를 `master`에 먼저 반영한다.
 
 배포가 끝나면 1절의 검증을 실행한다.
 
