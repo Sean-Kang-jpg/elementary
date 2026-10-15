@@ -46,7 +46,7 @@ COLUMNS_V2 = ['kind', 'name', 'variant', 'section', 'grades_raw', 'days', 'start
 # a section counts as lower-grade when its grade text tops out at this grade
 LOWER_GRADE_MAX = 3
 # Set to True only after the user has confirmed the reviewed set; --apply refuses otherwise.
-CONFIRMED = False
+CONFIRMED = True   # 2026-10-15: user approved publishing all 536 Seoul schools before the 30-school review
 
 # Category rules (team classification table): the course name is kept as written, only a label is added.
 CATEGORIES = [
