@@ -10,7 +10,9 @@
 - Active app: `F:\sm\vibe\elementary\pjt_250826\elementary-v2`
 - Stack: React 18, TypeScript, Vite, Tailwind CSS, Supabase, Naver Maps
 - Branch: `master` (작업), `release` (운영 배포. push가 곧 운영 배포다)
-- Last pushed baseline (2026-10-08): 운영 `release` `920d8ee` = master `8fc2df7`의 트리
+- Last pushed baseline (2026-10-15): 운영 `release` = master `f8e3638`(fast-forward). 6d2012a 이후 22+2개 커밋이
+  한꺼번에 나갔다: **초1 오후 한눈에 카드·MY 강좌 선택 첫 공개**(SQL 30), 팀원 커밋(교육환경 400m, 지도 필터 축소) 포함.
+- 이전 baseline (2026-10-08): 운영 `release` `920d8ee` = master `8fc2df7`의 트리
   (그 앞 `c27530f` 초1 하루 예상 카드 SQL 26, `920d8ee` 홈 카드 간격 12px).
   10-07 `4e766df`: SEO 허브·동별 등록 단지 canonical 통합·아파트 상세 보강, 신축 단지 '배정 확인 필요' 안내, 커리큘럼 화면 삭제.
   10-08: 하단 탭 **홈 · 학교 찾기 · 입학 준비 · MY**(사용자 확정. '입학 행정'은 안 씀)
@@ -62,6 +64,26 @@ npm run typecheck
 이전 단계(v2.0~v2.2, P4~P6)의 기록은 `elementary-v2/docs/PROJECT_PROGRESS.html`에 있다.
 
 ## Uncommitted Work At Handoff
+
+### 2026-10-15: 방과후 누락 보완 · 종류별 등급 · 학교 안내 학년 (`e25587c`·`f8e3638`, 운영 `f8e3638`)
+
+- 증상: 서초초 방과후 0개, 역삼초 맞춤형 0개. 원인은 발췌(`llm_extraction_inputs.afterschool_excerpt`)가
+  **시각 있는 줄만** 남겨 '화(주 80분)'식 목록·시간 없는 맞춤형 표가 추출에 안 들어간 것.
+- 방과후 행 없는 36곳 중 23곳을 `--wide` 발췌(`inputs_afterschool_wide_noas/`)로 소네트 재추출 →
+  `outputs_afterschool/seoul_noas/`(약 31만 토큰). 14곳에 방과후 추가, 9곳은 원문에도 없음.
+  11곳은 이미 `seoul_retry`로 wide 재추출됐고 2곳은 wide여도 같아 제외.
+- 적재기: `--afterschool-outputs`는 **방과후 행만** 바꾼다(재추출이 맞춤형을 더 못 읽은 학교가 있었다: 잠신).
+  등급은 방과후·맞춤형 **따로 매겨 나은 쪽**(시간 없는 방과후 목록이 맞춤형 막대를 숨기던 문제).
+  학년 없는 방과후 반에 운영계획의 '초1~6학년 대상의 방과후교실' 문장이 있으면 `grades_raw='학교 안내 1~6학년'`
+  (grade1은 unknown 그대로, 97곳 1,836반). 이 판정은 로컬 `etl/runtime/audit2-documents/text/`를 읽는다.
+- 운영 적재 명령(재현):
+  `python -m etl.load_school_afterschool --outputs <O>/seoul --outputs <O>/seoul_retry --afterschool-outputs <O>/seoul_noas --custom-outputs etl/runtime/llm_extraction/outputs_custom/seoul --apply`
+  (`<O>`=`etl/runtime/llm_extraction/outputs_afterschool`). 결과 536곳, 18,438반, A 449 / B 19 / C 68.
+- 화면: 요일만 있고 시간 없는 방과후는 그 요일 막대에 '방과후 N · 시간 미기재', 축 아래 설명. MY 선택 안내는 반 기준.
+- **남은 일**: ① 맞춤형 행 없는 269곳(원문에 '맞춤형교실' 249곳) — `--custom` 재추출을 맞춤형 0개 학교로 넓히고
+  적재기가 맞춤형을 새로 추가할 수 있게 해야 함(토큰 큼). ② 요일만 있는 47곳 추정 막대는 보류(사용자: 80분 일괄 부적절,
+  시작 시각 추정이 A/B반 때문에 위험). ③ 작업 트리의 MY 시간표 개편(다른 세션)과 `MyAfterschoolPicker.tsx`: 커밋본에는
+  같은 안내 수정만 HEAD 기준으로 따로 넣었다(작업 트리 파일은 그 개편 위에 같은 수정 포함).
 
 ### 2026-10-10~11: 직접 할 수 있는 개편 작업 마무리 · 학교 홈페이지 링크 · 인스타 연동 1단계 (운영 `c8da548`)
 
