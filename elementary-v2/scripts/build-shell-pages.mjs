@@ -96,6 +96,9 @@ const seasonHtml = (() => {
     + '</ul></section>'
 })()
 
+// Labels of src/utils/academyCategories.ts, for the static text only.
+const ACADEMY_LABELS = { english: '영어', math: '수학', writing: '국어·논술', science: '과학', coding: '코딩', study: '입시·종합', language: '외국어', arts: '예능', sports: '체육' }
+
 // Text-only for the crawler: the bars are drawn by the app.
 const showcaseHtml = showcase ? (() => {
   const { school, apartment } = showcase
@@ -103,7 +106,9 @@ const showcaseHtml = showcase ? (() => {
     .map((day) => `${day.label} 하교 ${day.dismissal}${day.afterschoolEnd ? `·방과후 ~${day.afterschoolEnd}` : ''}`).join(', ')
   return `<section class="home-shelf" aria-labelledby="home-showcase-title"><div class="home-shelf__head"><h2 id="home-showcase-title">${escapeHtml(shelves.showcase.title)}</h2><small>${escapeHtml(shelves.showcase.lead)}</small></div><ul class="home-shelf__row home-shelf__row--wide">`
     + `<li><a href="${escapeHtml(encodeURI(school.path))}" class="showcase-card"><span class="showcase-card__kicker">초1 오후 한눈에</span><strong>${escapeHtml(school.name)}</strong><small>${escapeHtml(days)}${school.careEnd ? `, 돌봄 ~${escapeHtml(school.careEnd)}` : ''}</small></a></li>`
-    + (apartment ? `<li><a href="${escapeHtml(encodeURI(apartment.path))}" class="showcase-card"><span class="showcase-card__kicker">배정 학교 찾기</span><strong>${escapeHtml(apartment.name)} → ${escapeHtml(school.name)}</strong><small>1학년 ${school.grade1Students ?? '–'}명 · 학급당 ${school.grade1PerClass ?? '–'}명 · 배정 아파트 ${school.apartments}곳</small></a></li>` : '')
+    + (apartment ? `<li><a href="${escapeHtml(encodeURI(apartment.path))}" class="showcase-card"><span class="showcase-card__kicker">배정 학교 찾기</span><strong>${escapeHtml(apartment.name)} → ${escapeHtml(school.name)}</strong><small>1학년 ${school.grade1Students ?? '–'}명 · 학급당 ${school.grade1PerClass ?? '–'}명 · 배정 아파트 ${school.apartments}곳</small>`
+      + (apartment.academies ? `<small>교육환경: 학원·교습소 400m ${apartment.academies.core ?? '–'}곳 · 800m ${apartment.academies.extended ?? '–'}곳 (${apartment.academies.categories.map(({ key, count }) => `${ACADEMY_LABELS[key] ?? key} ${count}`).join(', ')})</small>` : '')
+      + '</a></li>' : '')
     + `<li><a href="/my" class="showcase-card"><span class="showcase-card__kicker">MY 시간표 예시</span><strong>맞벌이 가정의 하루</strong><small>${school.morning ? `아침돌봄 ${escapeHtml(school.morning)}, ` : ''}하교 뒤 방과후와 돌봄을 이어 붙인 예시</small></a></li>`
     + '</ul></section>'
 })() : ''

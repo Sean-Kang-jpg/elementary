@@ -76,5 +76,11 @@ export interface HomeShowcase {
     customOptions: number | null
     days: ShowcaseDay[]
   }
-  apartment: { name: string; path: string; households: number | null } | null
+  apartment: {
+    name: string
+    path: string
+    households: number | null
+    // 아파트 상세 '교육환경'과 같은 값: 400m·800m 안 기관 수, 800m 안 분야 상위 4개(키는 academyCategories)
+    academies?: { core: number | null; extended: number | null; categories: { key: string; count: number }[] } | null
+  } | null
 }

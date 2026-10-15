@@ -25,42 +25,28 @@
   font-size: 12px;
 }
 
+/* 가로로 넘기지 않는다: 휴대폰에서 두 번째 카드가 화면 밖에 숨어 안 보였다(2026-10-15).
+   휴대폰은 시즌 2칸·예시 1칸, 720px부터 시즌 4칸·예시 2칸(홀수 마지막은 한 줄 전체). */
 .home-shelf__row {
   display: grid;
-  grid-auto-flow: column;
-  grid-auto-columns: minmax(150px, 46%);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 10px;
-  margin: 0 -16px;
-  padding: 2px 16px 6px;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  /* 스냅이 첫 카드를 스크롤 영역 끝에 붙이지 않도록 안쪽 여백만큼 띄운다 */
-  scroll-padding-inline: 16px;
-  scrollbar-width: none;
+  margin: 0;
+  padding: 0;
   list-style: none;
 }
 
-.home-shelf__row::-webkit-scrollbar {
-  display: none;
-}
-
 .home-shelf__row > li {
-  scroll-snap-align: start;
   min-width: 0;
 }
 
 .home-shelf__row--wide {
-  grid-auto-columns: minmax(232px, 78%);
+  grid-template-columns: minmax(0, 1fr);
 }
 
-/* 넓은 화면은 넘기지 않고 격자로: 시즌 카드는 한 줄 4칸, 예시 카드는 2칸(홀수 마지막은 한 줄 전체) */
 @media (min-width: 720px) {
   .home-shelf__row {
-    grid-auto-flow: row;
     grid-template-columns: repeat(4, minmax(0, 1fr));
-    margin: 0;
-    padding: 2px 0 6px;
-    overflow: visible;
   }
 
   .home-shelf__row--wide {
@@ -248,4 +234,34 @@
 .showcase-facts span {
   color: var(--warm-muted);
   font-size: 10.5px;
+}
+
+.showcase-academy {
+  display: grid;
+  gap: 5px;
+  border-top: 1px dashed var(--warm-border);
+  padding-top: 7px;
+}
+
+.showcase-academy__head {
+  color: var(--warm-muted);
+  font-size: 11.5px;
+}
+
+.showcase-academy__head b {
+  color: var(--warm-text);
+  font-variant-numeric: tabular-nums;
+}
+
+.showcase-academy__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.showcase-academy__chips span {
+  border-radius: 999px;
+  padding: 1px 7px;
+  font-size: 11px;
+  font-weight: 700;
 }

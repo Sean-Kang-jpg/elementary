@@ -4,7 +4,7 @@
     "title": "지금 챙길 것",
     "max": 4,
     "items": [
-      { "id": "private", "from": "09-15", "to": "11-25", "deadline": "11-06", "deadlineLabel": "원서", "title": "사립초·국립초 지원", "body": "2027학년도 일정과 준비 순서", "href": "/guide/private-national" },
+      { "id": "private", "from": "09-15", "to": "11-25", "deadline": "11-06", "deadlineLabel": "원서", "title": "사립초·국립초 지원", "body": "서울·경기·인천 2027학년도 일정", "href": "/guide/private-national" },
       { "id": "morning", "from": "10-15", "to": "03-15", "newUntil": "2026-11-15", "title": "초1 아침, 등교 전 시간", "body": "아침돌봄 7시~9시, 요일별 하교 시각", "href": "/guide/morning-care" },
       { "id": "delay", "from": "10-01", "to": "12-31", "deadline": "12-31", "deadlineLabel": "신청 마감", "title": "입학 연기·조기입학", "body": "주민센터에 10월 1일~12월 31일 신청", "href": "/guide/delay-or-early-entry" },
       { "id": "care", "from": "10-01", "to": "02-28", "title": "늘봄·돌봄 신청 준비", "body": "돌봄교실·맞춤형·방과후 차이와 신청 시기", "href": "/guide/care-afterschool" },

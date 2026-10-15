@@ -4,6 +4,7 @@ import { seasonCards, type HomeShowcase, type SeasonItem } from '../../utils/hom
 import { followLink } from '../content/contentLinks'
 import { track } from '../../utils/analytics'
 import { VIEW_PATHS } from '../../utils/urlState'
+import { getAcademyCategory, type AcademyCategoryKey } from '../../utils/academyCategories'
 
 // 막대 축: 정오~19시 30분 (학교 상세 '초1 오후 한눈에'와 같다)
 const T0 = 12 * 60
@@ -121,7 +122,20 @@ function ShowcaseRow({ showcase, go }: {
                 <div><b>{school.grade1PerClass ?? '–'}명</b><span>학급당</span></div>
                 <div><b>{school.apartments}곳</b><span>배정 아파트</span></div>
               </div>
-              <small>{school.place} · 공식 학구도 기준 배정 관계와 학교 규모를 함께 봐요</small>
+              {apartment.academies && (
+                <div className="showcase-academy">
+                  <span className="showcase-academy__head">
+                    교육환경 · 학원·교습소 400m <b>{apartment.academies.core ?? '–'}</b>곳 · 800m <b>{apartment.academies.extended ?? '–'}</b>곳
+                  </span>
+                  <span className="showcase-academy__chips">
+                    {apartment.academies.categories.map(({ key, count }) => {
+                      const category = getAcademyCategory(key as AcademyCategoryKey)
+                      return <span key={key} style={{ color: category.color, background: category.softColor }}>{category.label} {count}</span>
+                    })}
+                  </span>
+                </div>
+              )}
+              <small>{school.place} · 배정 관계, 학교 규모, 주변 학원 분야를 함께 봐요</small>
             </a>
           </li>
         )}

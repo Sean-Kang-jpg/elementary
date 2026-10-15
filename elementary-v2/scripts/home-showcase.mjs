@@ -72,6 +72,23 @@ const readable = (parts) =>
     .replace(/-{2,}/g, '-')
     .replace(/^-|-$/g, '')
 
+/**
+ * Category of each institution, mirroring src/utils/academyCategories.ts: the
+ * ETL's name-derived `subjects`, or the realm keyword for rows without them.
+ * 직업기술 is left out, as the app's withoutExcludedRealms() does.
+ */
+const CATEGORY_KEYS = new Set(['english', 'math', 'writing', 'science', 'coding', 'study', 'language', 'arts', 'sports', 'other'])
+const REALM_KEYWORDS = [
+  ['coding', ['정보']],
+  ['study', ['입시', '보습', '종합', '교과', '독서', '인문사회']],
+  ['language', ['국제화', '외국어', '영어', '중국어', '일본어', '어학']],
+  ['arts', ['예능', '음악', '미술', '무용', '연기']],
+  ['sports', ['체육', '무도', '태권도', '검도', '유도', '합기도', '복싱', '권투', '우슈', '레슬링', '수영', '스포츠']],
+]
+const institutionCategories = (institution) => (Array.isArray(institution.subjects) && institution.subjects.length
+  ? [...new Set(institution.subjects.map((subject) => (CATEGORY_KEYS.has(subject) ? subject : 'other')))]
+  : [REALM_KEYWORDS.find(([, words]) => words.some((word) => String(institution.realm || '').includes(word)))?.[0] ?? 'other'])
+
 const clock = (value) => (/^\d{2}:\d{2}/.test(String(value || '')) ? String(value).slice(0, 5) : null)
 
 export const loadShowcase = async (schoolId) => {
@@ -109,6 +126,38 @@ export const loadShowcase = async (schoolId) => {
     const biggest = [...complexes.values()]
       .filter((row) => row.complex_public_key)
       .sort((a, b) => (Number(b.households) || 0) - (Number(a.households) || 0))[0]
+    // The apartment's education environment, as its detail screen shows it:
+    // institution counts within 400 m / 800 m, and the subject mix within 800 m.
+    let academies = null
+    if (biggest) {
+      const rpc = async (fn, body) => {
+        const response = await fetch(`${url}/rest/v1/rpc/${fn}`, {
+          method: 'POST',
+          headers: { apikey: key, Authorization: `Bearer ${key}`, 'Content-Type': 'application/json' },
+          body: JSON.stringify(body),
+          signal: AbortSignal.timeout(10_000),
+        })
+        if (!response.ok) throw new Error(`${fn} -> ${response.status}`)
+        return response.json()
+      }
+      const [summaryRows, addresses] = await Promise.all([
+        get('apartment_academy_summary', { select: 'core_institution_count,extended_institution_count', canonical_complex_id: `eq.${biggest.canonical_complex_id}` }),
+        rpc('nearby_academy_addresses', { p_canonical_complex_id: biggest.canonical_complex_id, p_max_distance_m: 800 }),
+      ])
+      const counts = {}
+      for (const address of addresses) {
+        for (const institution of Array.isArray(address.institutions) ? address.institutions : []) {
+          if (institution.realm === '직업기술') continue
+          for (const category of institutionCategories(institution)) counts[category] = (counts[category] || 0) + 1
+        }
+      }
+      academies = {
+        core: summaryRows[0] ? Number(summaryRows[0].core_institution_count) : null,
+        extended: summaryRows[0] ? Number(summaryRows[0].extended_institution_count) : null,
+        categories: Object.entries(counts).filter(([category]) => category !== 'other')
+          .sort((a, b) => b[1] - a[1]).slice(0, 4).map(([category, count]) => ({ key: category, count })),
+      }
+    }
     return {
       generatedAt: new Date().toISOString().slice(0, 10),
       school: {
@@ -134,6 +183,7 @@ export const loadShowcase = async (schoolId) => {
             name: biggest.complex_name,
             path: `/apt/${readable([regions.get(biggest.region)?.shortName ?? biggest.region, biggest.district, biggest.complex_name])}--${biggest.complex_public_key}`,
             households: Number(biggest.households) || null,
+            academies,
           }
         : null,
     }
