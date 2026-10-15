@@ -64,7 +64,10 @@ CHECKS = {
     'not_extracted': ('coverage', '서울 학교인데 방과후 추출을 하지 않았다'),
     'no_course_table': ('source', '추출했지만 강좌표가 없어 공개하지 않았다'),
     'no_dismissal': ('coverage', '1학년 하교 예상(SQL 26)이 없어 수업 막대가 없다'),
-    'paid_no_grade': ('source', '방과후 반에 대상 학년이 하나도 적혀 있지 않다'),
+    'paid_no_grade': ('source', '방과후 반에 대상 학년이 하나도 적혀 있지 않다(학교 전체 안내도 없음)'),
+    # school_wide_target() in the loader (e25587c): the plan says '초1~6학년 대상의 방과후교실' once for
+    # the whole list; grades_raw carries it but grade1 stays unknown so bars and counts do not move
+    'paid_school_wide': ('source', '방과후 반마다의 학년은 없고 학교 전체 대상(1~6학년) 안내만 있다'),
     # intended since e25587c (2026-10-15): the tier is per kind and the better one wins, so timed 맞춤형
     # bars show even when the 방과후 list has no times. Counted for context, not as a defect
     'tier_by_custom_only': ('info', 'A·B 등급이 맞춤형에서 나왔다(방과후 반은 시각 없음, 의도된 규칙)'),
@@ -84,7 +87,7 @@ def main() -> None:
     url, key = env()
     summary = {r['school_id']: r for r in fetch(url, key, 'school_afterschool_summary', 'school_id,tier,timeline_basis')}
     programs = defaultdict(list)
-    for r in fetch(url, key, 'school_afterschool_programs', 'school_id,kind,name,grade1,grade_upper,weekdays,start_time,end_time'):
+    for r in fetch(url, key, 'school_afterschool_programs', 'school_id,kind,name,grade1,grades_raw,grade_upper,weekdays,start_time,end_time'):
         programs[r['school_id']].append(r)
     dismissal = defaultdict(dict)
     for r in fetch(url, key, 'school_day_estimate_weekdays', 'school_id,weekday,dismissal'):
@@ -110,7 +113,8 @@ def main() -> None:
             flags[school_id].append('no_dismissal')
         paid = [r for r in rows if r['kind'] == '방과후']
         if paid and not any(r['grade1'] == 'true' for r in paid):
-            flags[school_id].append('paid_no_grade')
+            school_wide = any((r['grades_raw'] or '').startswith('학교 안내') for r in paid)
+            flags[school_id].append('paid_school_wide' if school_wide else 'paid_no_grade')
         timed_paid = [r for r in paid if r['grade1'] == 'true' and r['weekdays'] and r['end_time']]
         if tier in ('A', 'B') and not timed_paid and paid:
             flags[school_id].append('tier_by_custom_only')
