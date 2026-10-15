@@ -293,6 +293,7 @@ export interface SchoolAfterschoolSection {
   section: string | null
   grade1: 'true' | 'unknown' // 이 반의 값. 같은 강좌라도 반마다 대상 학년이 다를 수 있다
   grade_upper: number | null // 대상 학년 상한('1~6학년' → 6), 모르면 null
+  school_wide?: boolean // 반의 학년은 없지만 운영계획이 방과후 대상을 1~6학년으로 밝힌 경우. grade1은 'unknown' 그대로
   days: string | null // '월수' 같이 요일 글자를 붙여 씀, 모르면 null
   start: string | null // 'HH:MM'
   end: string | null

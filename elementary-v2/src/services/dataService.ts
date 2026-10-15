@@ -1025,7 +1025,7 @@ export const getSchoolAfterschool = async (schoolId: string, fetchOptions: { all
     supabase.from('school_afterschool_summary').select('school_id,source_year,tier,term_label').eq('school_id', schoolId).maybeSingle(),
     supabase
       .from('school_afterschool_programs')
-      .select('seq,kind,name,variant,section,category,grade1,grade_upper,weekdays,start_time,end_time')
+      .select('seq,kind,name,variant,section,category,grade1,grades_raw,grade_upper,weekdays,start_time,end_time')
       .eq('school_id', schoolId)
       .order('seq'),
   ])
@@ -1054,6 +1054,8 @@ export const getSchoolAfterschool = async (schoolId: string, fetchOptions: { all
       section: row.section,
       grade1: row.grade1 as SchoolAfterschoolSection['grade1'],
       grade_upper: row.grade_upper,
+      // 적재가 강좌 학년 대신 운영계획의 방과후 대상(1~6학년)을 붙인 반 (load_school_afterschool.SCHOOL_WIDE)
+      school_wide: row.grades_raw?.startsWith('학교 안내') ?? false,
       days: row.weekdays,
       start: row.start_time?.slice(0, 5) ?? null,
       end: row.end_time?.slice(0, 5) ?? null,

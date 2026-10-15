@@ -66,10 +66,11 @@ type ListView = 'all' | 'custom' | 'paid' | 'unknown'
 const ALL_GRADE_FILL: React.CSSProperties = { backgroundImage: 'repeating-linear-gradient(135deg, rgba(245, 158, 11, .35) 0 4px, transparent 4px 7px)' }
 
 const sectionTime = (section: SchoolAfterschoolSection) =>
-  `${isMorning(section) ? '아침 ' : ''}${section.days ?? '요일?'} ${section.start ? `${section.start}–` : ''}${section.end ?? '시간?'}`
+  `${isMorning(section) ? '아침 ' : ''}${section.days ?? '요일 미기재'} ${section.start ? `${section.start}–` : ''}${section.end ?? '시간 미기재'}`
 
 /** 반의 대상 학년: '1·2학년'(저학년) ~ '전학년'. 1학년 대상인지 모르면 빈 문자열. */
 const gradeLabel = (section: SchoolAfterschoolSection) => {
+  if (section.grade1 !== 'true' && section.school_wide) return '학교 안내 1~6학년'
   if (section.grade1 !== 'true' || section.grade_upper === null) return ''
   if (section.grade_upper >= 6) return '전학년'
   return section.grade_upper <= 2 ? '1·2학년' : `1~${section.grade_upper}학년`
@@ -140,6 +141,10 @@ const AfterschoolSummary: React.FC<{
   if (!hasTimeline && options.length === 0) return null
 
   const paidUnknown = options.filter((o) => o.kind === '방과후' && o.grade1 !== 'true')
+  // 강좌 학년은 없지만 운영계획이 방과후를 1~6학년 대상으로 밝힌 강좌만 남은 경우(2026-10-15)
+  const unknownSchoolWide = paidUnknown.length > 0 && paidUnknown.every((o) => o.sections.every((s) => s.school_wide))
+  // 막대·데리러 가는 시각에 들어가지 못한 방과후 강좌: 반 어디에도 요일·종료 시각이 없다(서초초 26개 등)
+  const untimedPaid = allPaid.filter((o) => !o.sections.some(isTimed)).length
   const paidListed = afterschool.length ? afterschool : paidUnknown
   const categories = Object.entries(paidListed.reduce<Record<string, number>>((acc, o) => ({ ...acc, [o.category]: (acc[o.category] ?? 0) + 1 }), {}))
     .sort((x, y) => y[1] - x[1])
@@ -150,13 +155,15 @@ const AfterschoolSummary: React.FC<{
       note: '1·2학년 대상이에요. 방과후와 따로 신청해요.', groups: [['', custom]] as [string, SchoolAfterschoolOption[]][] },
     { key: 'paid' as const, title: '방과후 강좌', swatch: 'bg-amber-500',
       note: '1학년이 신청할 수 있는 강좌예요. 맞춤형과 따로 신청해요.', groups: byCategory(afterschool) },
-    { key: 'unknown' as const, title: '방과후 · 학년 확인 필요', swatch: 'bg-gray-300',
-      note: '운영계획에 대상 학년이 적혀 있지 않아요. 1학년이 들을 수 있는지 학교에 확인해 주세요.', groups: [['', paidUnknown]] as [string, SchoolAfterschoolOption[]][] },
+    { key: 'unknown' as const, title: unknownSchoolWide ? '방과후 · 1~6학년 대상(학교 안내)' : '방과후 · 학년 확인 필요', swatch: 'bg-gray-300',
+      note: unknownSchoolWide
+        ? '강좌마다 대상 학년은 적혀 있지 않지만, 운영계획에 방과후교실은 1~6학년 대상이라고 나와 있어요. 강좌에 따라 학년 제한이 있을 수 있으니 신청 안내에서 확인해 주세요.'
+        : '운영계획에 대상 학년이 적혀 있지 않아요. 1학년이 들을 수 있는지 학교에 확인해 주세요.', groups: [['', paidUnknown]] as [string, SchoolAfterschoolOption[]][] },
   ].filter((section) => section.groups.some(([, items]) => items.length) && (view === 'all' || view === section.key))
   const tiles = [
     { key: 'paid' as const, value: afterschool.length, label: '1학년 방과후', on: 'border-amber-400 bg-amber-50' },
     { key: 'custom' as const, value: custom.length, label: '맞춤형', on: 'border-emerald-400 bg-emerald-50' },
-    { key: 'unknown' as const, value: paidUnknown.length, label: '학년 확인 필요', on: 'border-gray-400 bg-gray-50' },
+    { key: 'unknown' as const, value: paidUnknown.length, label: unknownSchoolWide ? '1~6학년 안내' : '학년 확인 필요', on: 'border-gray-400 bg-gray-50' },
   ]
   const showView = (next: ListView) => {
     if (open && view === next) { setView('all'); return }
@@ -228,6 +235,11 @@ const AfterschoolSummary: React.FC<{
               ? `그날 가장 늦게 끝나는 저학년 대상 반 기준이에요.${hasExtension ? ` 빗금은 ${unknownGradeSections ? '전학년 반이거나 대상 학년이 적혀 있지 않은 반이라' : '전학년 반이라'} 고르면 그만큼 늦어질 수 있어요.` : ' 고른 강좌에 따라 더 이를 수 있어요.'}`
               : '저학년 반이 따로 적혀 있지 않아 전학년 대상 반 기준이에요. 늦은 반은 고학년용일 수 있어요.'}
           </p>
+          {untimedPaid > 0 && (
+            <p className="mt-1 text-[11px] text-amber-800" data-testid="school-afterschool-untimed">
+              방과후 {untimedPaid}개 강좌는 운영계획에 시간이 적혀 있지 않아 막대와 이 시각에 넣지 않았어요. 신청 안내에서 시간을 확인하고, MY 시간표에 직접 넣을 수 있어요.
+            </p>
+          )}
         </div>
       ) : (
         <div className="mt-2.5 rounded-md border border-amber-200 bg-amber-50 px-3 py-2 text-xs leading-5 text-amber-950" data-testid="school-afterschool-check">

@@ -38,17 +38,20 @@ export default function MyAfterschoolPicker({ schoolId, entries, onAdd, onDraft 
   }
   const options = [...data.options.filter((o) => o.grade1 === 'true'), ...data.options.filter((o) => o.grade1 !== 'true')]
   const added = new Set(entries.map((e) => e.id))
+  // 등급은 방과후·맞춤형 중 나은 쪽이라(2026-10-15) A 학교에도 시간 없는 반이 있다. 안내는 반 기준으로 한다
+  const untimed = options.filter((o) => o.sections.some((s) => !s.days || !s.end)).length
   return <details className="my-entry-form my-afterschool-pick">
     <summary>이 학교 방과후 강좌에서 골라 넣기 ({options.length})</summary>
     <p className="my-help">
       {data.source_year}학년도 운영계획 기준이에요. 고른 반은 ‘후보’로 들어가고, 시각은 일정 관리에서 고칠 수 있어요.
-      {data.tier === 'C' && ' 이 학교는 운영계획에 강좌 시간이 적혀 있지 않아 요일·시간을 직접 골라야 해요.'}
+      {untimed > 0 && untimed === options.length && ' 이 학교는 운영계획에 강좌 시간이 적혀 있지 않아 요일·시간을 직접 골라야 해요.'}
+      {untimed > 0 && untimed < options.length && ` ${untimed}개 강좌는 요일·시간이 적혀 있지 않아 직접 골라야 해요.`}
     </p>
     <ul>
       {options.map((option) => (
         <li key={`${option.kind}-${option.name}-${option.variant ?? ''}`}>
           <b>{option.kind === '맞춤형' ? '맞춤형 ' : ''}{option.name}{option.variant ? ` (${option.variant})` : ''}</b>
-          <small>{option.category}{option.grade1 !== 'true' && ' · 1학년 대상인지 학교 확인 필요'}</small>
+          <small>{option.category}{option.grade1 !== 'true' && (option.sections.every((s) => s.school_wide) ? ' · 1~6학년 대상(학교 안내)' : ' · 1학년 대상인지 학교 확인 필요')}</small>
           <div className="my-actions">
             {option.sections.map((section, index) => {
               const id = afterschoolSectionId(schoolId, option, section)

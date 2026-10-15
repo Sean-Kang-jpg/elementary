@@ -15,7 +15,8 @@ the rules that came out of review so the extraction never has to be re-run for t
     and counting them put the median latest end at 16:40 instead of 15:10 (2026-10-14). A school
     with no lower-grade section falls back to its all-grade sections and says so (timeline_basis)
   * tier A (>= 90% of grade-1 rows carry a weekday and an end time) or B (60-90%) get the
-    timeline; C is a course list only (times missing, or no grade written). A school with no
+    timeline; C is a course list only (times missing, or no grade written). The share is taken per
+    kind and the better of 방과후 and 맞춤형 is the school's tier (2026-10-15). A school with no
     course row at all is not published (2026-10-14 decision: parents adjust times in MY).
 
     python -m etl.load_school_afterschool --outputs etl/runtime/llm_extraction/outputs_afterschool/seoul
@@ -60,6 +61,46 @@ CATEGORIES = [
     ('사고력', r'바둑|체스|보드게임|큐브|퍼즐|사고력|두뇌|마술|창의'),
     ('요리', r'요리|쿠킹|베이킹|쉐프|셰프|조리'),
 ]
+
+
+AUDIT2 = ROOT / 'docs/research/audit2'
+TEXT = ROOT / 'etl/runtime/audit2-documents/text'
+# A 방과후 section with no grade text inherits the plan's own 방과후 target when the plan states one:
+# the Seoul template '초1~6학년 대상의 방과후교실', '방과후교실: 1~6학년 중 희망 학생', or '대상: 1~6학년 희망 학생'
+# right under a 방과후 heading. It stays grade1 'unknown' (a course can still restrict grades) and only
+# says so in grades_raw, so the timeline and counts do not change (2026-10-15: 98 of 136 schools).
+SCHOOL_WIDE = '학교 안내 1~6학년'
+_G16 = r'1\s*[~∼\-–]\s*6\s*학년'
+SCHOOL_WIDE_PATTERNS = [
+    re.compile(rf'(?:초\s*)?{_G16}\s*대상의\s*방과\s*후'),
+    re.compile(rf'방과\s*후\s*(?:학교|교실|프로그램)?\s*[:：(]\s*(?:초\s*)?{_G16}'),
+    re.compile(rf'방과\s*후\s*(?:학교|교실|프로그램)?\s*[:：]?\s*(?:초\s*)?{_G16}\s*(?:학생\s*)?중?\s*희망'),
+]
+SCHOOL_WIDE_SECTION = re.compile(rf'대\s*상\s*[:：]\s*(?:초\s*)?{_G16}\s*(?:학생\s*)?(?:중\s*)?희망')
+_plan_files: dict[str, list[dict]] | None = None
+
+
+def school_wide_target(school_id: str) -> bool:
+    """True when the school's 15-라 plan says its 방과후 classes are for grades 1-6 (local source text only)."""
+    global _plan_files
+    if _plan_files is None:
+        _plan_files = {}
+        for path in sorted(AUDIT2.glob('schoolinfo_care_plan_audit_*.json')):
+            for school in json.loads(path.read_text(encoding='utf-8'))['schools']:
+                _plan_files.setdefault(school['school_id'], school.get('files', []))
+    for f in _plan_files.get(school_id, []):
+        path = TEXT / f"{f.get('sha256')}.txt"
+        if not f.get('sha256') or not path.exists():
+            continue
+        lines = path.read_text(encoding='utf-8').splitlines()
+        for index, line in enumerate(lines):
+            if any(p.search(line) for p in SCHOOL_WIDE_PATTERNS):
+                return True
+            if SCHOOL_WIDE_SECTION.search(line) and '돌봄' not in line:
+                heads = [h for h in lines[max(0, index - 4):index] if re.search(r'방과\s*후|맞춤형|돌봄', h)]
+                if heads and re.search(r'방과\s*후', heads[-1]) and not re.search(r'맞춤형|돌봄', heads[-1]):
+                    return True
+    return False
 
 
 def category(name: str) -> str:
@@ -116,9 +157,19 @@ def school_record(school: dict) -> dict[str, Any] | None:
     rows = [r for r in (clean_row(v) for v in school.get('rows', [])) if r]
     if not rows:
         return None
-    grade1 = [r for r in rows if r['grade1'] == 'true']
-    share = sum(1 for r in grade1 if r['days'] and r['end']) / len(grade1) if grade1 else 0
-    tier = 'A' if share >= 0.9 else 'B' if share >= 0.6 else 'C'
+    # tier per kind, the better one wins: a 방과후 list without times must not hide timed 맞춤형 bars
+    # (전농: 맞춤형 5/5 timed, 방과후 0/27 -> 16% overall was C, 2026-10-15). Untimed sections draw no bar anyway
+    tiers = []
+    for kind in ('방과후', '맞춤형'):
+        grade1 = [r for r in rows if r['grade1'] == 'true' and r['kind'] == kind]
+        if grade1:
+            share = sum(1 for r in grade1 if r['days'] and r['end']) / len(grade1)
+            tiers.append('A' if share >= 0.9 else 'B' if share >= 0.6 else 'C')
+    tier = min(tiers) if tiers else 'C'
+    ungraded = [r for r in rows if r['kind'] == '방과후' and r['grade1'] == 'unknown' and not r.get('grades_raw')]
+    if ungraded and school_wide_target(school['school_id']):
+        for r in ungraded:
+            r['grades_raw'] = SCHOOL_WIDE
     options: OrderedDict[tuple, dict] = OrderedDict()
     for r in rows:
         key = (r['kind'], r['name'], r.get('variant'))
@@ -148,13 +199,25 @@ def school_record(school: dict) -> dict[str, Any] | None:
             'term_label': ', '.join(terms[:3]) or None, 'note': school.get('note')}
 
 
-def build(outputs: list[Path], custom: list[Path] | None = None) -> tuple[list[dict], dict[str, int]]:
+def build(outputs: list[Path], custom: list[Path] | None = None,
+          afterschool: list[Path] | None = None) -> tuple[list[dict], dict[str, int]]:
     # a later --outputs directory (e.g. a re-extraction) replaces the same school from an earlier one
     latest: dict[str, dict] = {}
     for directory in outputs:
         for path in sorted(directory.glob('batch_*.json')):
             for school in json.loads(path.read_text(encoding='utf-8')):
                 latest[school['school_id']] = school
+    # --afterschool-outputs (a wide re-run for schools with no 방과후 row) replaces 방과후 rows only: its
+    # 맞춤형 rows were re-read worse than the first pass for 잠신 and others (2026-10-15)
+    for directory in afterschool or []:
+        for path in sorted(directory.glob('batch_*.json')):
+            for school in json.loads(path.read_text(encoding='utf-8')):
+                if school['school_id'] not in latest:
+                    latest[school['school_id']] = school
+                    continue
+                base = latest[school['school_id']]
+                kept = [r for r in base.get('rows', []) if r[0] != '방과후']
+                latest[school['school_id']] = {**base, 'rows': kept + [r for r in school.get('rows', []) if r[0] == '방과후']}
     for directory in custom or []:
         for path in sorted(directory.glob('batch_*.json')):
             for school in json.loads(path.read_text(encoding='utf-8')):
@@ -198,7 +261,8 @@ def fixture(records: list[dict]) -> dict[str, dict]:
     """The frontend's SchoolAfterschool shape, for the dev server."""
     return {r['school_id']: {'school_id': r['school_id'], 'source_year': SOURCE_YEAR, 'tier': r['tier'], 'term': r['term_label'], 'note': r['note'],
                              'options': [{**{k: o[k] for k in ('kind', 'name', 'variant', 'category', 'grade1')},
-                                          'sections': [{k: s[k] for k in ('section', 'grade1', 'grade_upper', 'days', 'start', 'end')} for s in o['sections']]}
+                                          'sections': [{**{k: s[k] for k in ('section', 'grade1', 'grade_upper', 'days', 'start', 'end')},
+                                                        'school_wide': s['grades_raw'] == SCHOOL_WIDE} for s in o['sections']]}
                                          for o in r['options']]} for r in records}
 
 
@@ -206,11 +270,12 @@ def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument('--outputs', action='append', required=True, type=Path)
     parser.add_argument('--custom-outputs', action='append', type=Path, help='맞춤형 re-extraction (llm_extraction_spec_custom.md)')
+    parser.add_argument('--afterschool-outputs', action='append', type=Path, help='방과후-only re-extraction (wide inputs); keeps 맞춤형 rows')
     parser.add_argument('--write-fixture', action='store_true')
     parser.add_argument('--apply', action='store_true')
     args = parser.parse_args()
     snapshot = date.today().isoformat()
-    records, counts = build(args.outputs, args.custom_outputs)
+    records, counts = build(args.outputs, args.custom_outputs, args.afterschool_outputs)
     rows = table_rows(records, snapshot)
     report = {'mode': 'apply' if args.apply else 'dry-run', 'snapshot_date': snapshot, **counts,
               'rows': {table: len(items) for table, items in rows.items()}, 'confirmed': CONFIRMED}
