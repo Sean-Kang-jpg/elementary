@@ -245,7 +245,7 @@ const schoolPage = async (key) => {
     school_id: `eq.${key}`,
     limit: '1',
   })
-  const [schools, complexes, care, nearby] = await Promise.all([
+  const [schools, complexes, care, nearby, careHours, dayRows] = await Promise.all([
     schoolRead,
     query('school_apartment_serving', {
       select: 'canonical_complex_id,complex_name,households,complex_public_key,region,district,road_address',
@@ -261,9 +261,35 @@ const schoolPage = async (key) => {
       limit: '1',
     }).catch(() => []),
     schoolRead.then((rows) => (rows[0] ? nearbySchools(rows[0]) : [])).catch(() => []),
+    // Morning care hours and grade-1 dismissal (SQL 26): what parents search as
+    // "OO초 하교 시간", "아침돌봄 몇 시". Extras like care - a failure drops the lines.
+    query('school_care_hours', {
+      select: 'source_year,status,morning_hours,afternoon_end,extended_end',
+      school_id: `eq.${key}`,
+      limit: '1',
+    }).catch(() => []),
+    query('school_day_estimate_weekdays', {
+      select: 'weekday,dismissal',
+      school_id: `eq.${key}`,
+      order: 'weekday',
+    }).catch(() => []),
   ])
   const school = schools[0]
   if (!school) return null
+  const hoursRow = careHours[0]
+  const clock = (value) => (/^\d{2}:\d{2}/.test(String(value || '')) ? String(value).slice(0, 5) : null)
+  // Only a clean "HH:MM~HH:MM" is a time; free text in the plan is not shown as one.
+  const morningMatch = String(hoursRow?.morning_hours || '').match(/^\s*(\d{1,2}):(\d{2})\s*[~∼\-–]\s*(\d{1,2}):(\d{2})\s*$/)
+  const morning = morningMatch
+    ? `${morningMatch[1].padStart(2, '0')}:${morningMatch[2]}~${morningMatch[3].padStart(2, '0')}:${morningMatch[4]} (${hoursRow.source_year}학년도 운영계획)`
+    : null
+  const afternoonEnd = hoursRow?.status === 'stated' ? clock(hoursRow.afternoon_end) : null
+  const extendedEnd = hoursRow?.status === 'stated' ? clock(hoursRow.extended_end) : null
+  const days = ['월', '화', '수', '목', '금']
+  const dismissal = dayRows
+    .filter((row) => row.weekday >= 1 && row.weekday <= 5 && clock(row.dismissal))
+    .map((row) => `${days[row.weekday - 1]} ${clock(row.dismissal)}`)
+    .join(' · ')
   const unique = new Map()
   for (const row of complexes) {
     if (!unique.has(row.canonical_complex_id)) unique.set(row.canonical_complex_id, row)
@@ -304,6 +330,9 @@ const schoolPage = async (key) => {
       ['전교생', withCommas(school.total_students)],
       ['배정 아파트', `${withCommas(assigned.length)}개 단지`],
       ['배정 총세대수', households ? `${withCommas(households)}세대` : null],
+      ['1학년 하교 (예상)', dismissal || null],
+      ['아침돌봄', morning],
+      ['오후 돌봄 운영', afternoonEnd ? `~${afternoonEnd}${extendedEnd ? ` (저녁 ~${extendedEnd})` : ''}` : null],
       ['오후 돌봄교실', careRooms ? `${careRooms}실 · ${withCommas(careRow.afternoon_care_students)}명 참여` : careRow ? '공시 없음' : null],
       ['저녁 돌봄교실', careRow ? (eveningRooms ? `운영 ${eveningRooms}실` : '공시 없음') : null],
       ['방과후 프로그램', programs ? `${withCommas(programs)}개` : null],

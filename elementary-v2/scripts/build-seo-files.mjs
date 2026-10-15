@@ -153,10 +153,12 @@ const fetchAll = async ({ url, key }, table, select) => {
 const xmlEscape = (value) =>
   value.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
 
-const urlSet = (paths, origin) =>
+// lastmod only where a page carries a real check date (guides, FAQ, learning items):
+// a build date on every URL would tell crawlers that 52,000 pages changed on each deploy.
+const urlSet = (paths, origin, lastmods = new Map()) =>
   '<?xml version="1.0" encoding="UTF-8"?>\n'
   + '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
-  + paths.map((p) => `  <url><loc>${xmlEscape(origin + encodeURI(p))}</loc></url>\n`).join('')
+  + paths.map((p) => `  <url><loc>${xmlEscape(origin + encodeURI(p))}</loc>${lastmods.has(p) ? `<lastmod>${lastmods.get(p)}</lastmod>` : ''}</url>\n`).join('')
   + '</urlset>\n'
 
 const sitemapIndex = (files, origin, lastmod) =>
@@ -248,12 +250,18 @@ const main = async () => {
   const contentPaths = ['/', '/guide', ...content.guides.map((guide) => `/guide/${guide.slug}`), '/faq', '/checklist',
     ...(content.learning ?? []).filter((item) => item.status === 'published').map((item) => `/learn/${item.slug}`)]
 
+  const contentLastmods = new Map([
+    ...content.guides.map((guide) => [`/guide/${guide.slug}`, guide.verifiedAt]),
+    ['/faq', content.faqs.map((faq) => faq.verifiedAt).sort().at(-1)],
+    ...(content.learning ?? []).filter((item) => item.status === 'published').map((item) => [`/learn/${item.slug}`, item.verifiedAt]),
+  ].filter(([, date]) => /^\d{4}-\d{2}-\d{2}$/.test(String(date))))
+
   await fs.mkdir(outDir, { recursive: true })
   for (const [label, paths] of [['pages', contentPaths], ['areas', [...areaPaths]], ['schools', schoolPaths], ['apartments', apartmentPaths]]) {
     const pages = chunk(paths, URLS_PER_FILE)
     for (const [index, page] of pages.entries()) {
       const file = `sitemap-${label}-${index + 1}.xml`
-      await fs.writeFile(path.join(outDir, file), urlSet(page, origin), 'utf8')
+      await fs.writeFile(path.join(outDir, file), urlSet(page, origin, label === 'pages' ? contentLastmods : undefined), 'utf8')
       files.push(file)
     }
     console.log(`${label.padEnd(11)} ${paths.length.toLocaleString()} URLs in ${pages.length} file(s)`)

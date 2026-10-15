@@ -97,7 +97,18 @@ process.stdout.write('home        dist/index.html (prerendered home content)\n')
 
 // Guides and the FAQ (ADR-008 section 4). Each is a static file with its own
 // head and its content in #root, built from the same JSON the app renders.
-const contentPage = ({ pagePath, title, description, body }) => {
+// Structured data for answer engines (Google, Naver, AI search): what the page
+// is, when it was checked, and what it cites. Same escaping as api/detail.js.
+const ldScript = (data) => `<script type="application/ld+json">${JSON.stringify(data).replace(/</g, '\\u003c')}</script>`
+const plainText = (html) => html.replace(/<[^>]+>/g, ' ').replace(/&nbsp;/g, ' ').replace(/&amp;/g, '&').replace(/&lt;/g, '<')
+  .replace(/&gt;/g, '>').replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/\s+/g, ' ').trim()
+const publisher = { '@type': 'Organization', name: '어디초', url: siteOrigin() + '/' }
+const breadcrumb = (items) => ({
+  '@type': 'BreadcrumbList',
+  itemListElement: items.map(([name, itemPath], index) => ({ '@type': 'ListItem', position: index + 1, name, item: siteOrigin() + encodeURI(itemPath) })),
+})
+
+const contentPage = ({ pagePath, title, description, body, jsonLd = null }) => {
   const url = siteOrigin() + encodeURI(pagePath)
   const replaceOnce = (html, pattern, replacement, what) => {
     if (!pattern.test(html)) fail(`the shell has no ${what} to replace for ${pagePath}`)
@@ -109,7 +120,7 @@ const contentPage = ({ pagePath, title, description, body }) => {
   html = replaceOnce(html, /<meta property="og:title" content="[^"]*">/, `<meta property="og:title" content="${escapeHtml(title)}">`, 'og:title')
   html = replaceOnce(html, /<meta property="og:description" content="[^"]*">/, `<meta property="og:description" content="${escapeHtml(description)}">`, 'og:description')
   html = html
-    .replace('</head>', `  <link rel="canonical" href="${escapeHtml(url)}">\n    <meta property="og:url" content="${escapeHtml(url)}">\n  </head>`)
+    .replace('</head>', `  <link rel="canonical" href="${escapeHtml(url)}">\n    <meta property="og:url" content="${escapeHtml(url)}">\n${jsonLd ? `    ${ldScript(jsonLd)}\n` : ''}  </head>`)
     .replace('<div id="root"></div>', `<div id="root">${body}</div>`)
   if ((html.match(/rel="canonical"/g) || []).length !== 1) fail(`${pagePath} must declare exactly one canonical`)
   return html
@@ -176,6 +187,23 @@ for (const guide of content.guides) {
     pagePath: `/guide/${guide.slug}`,
     title: `${guide.title} | 어디초`,
     description: guide.description,
+    jsonLd: {
+      '@context': 'https://schema.org',
+      '@graph': [
+        {
+          '@type': 'Article',
+          headline: guide.title,
+          description: guide.description,
+          inLanguage: 'ko-KR',
+          dateModified: guide.verifiedAt,
+          mainEntityOfPage: siteOrigin() + encodeURI(`/guide/${guide.slug}`),
+          author: publisher,
+          publisher,
+          citation: guide.sources.map((source) => ({ '@type': 'CreativeWork', name: source.label, url: source.url })),
+        },
+        breadcrumb([['어디초', '/'], ['입학 준비 가이드', '/guide'], [guide.title, `/guide/${guide.slug}`]]),
+      ],
+    },
     body: page([
       '<a class="content-page__back" href="/guide">입학 준비 가이드</a>',
       `<span class="stage-chip stage-chip--${guide.stage}">${escapeHtml(structure.stages[guide.stage].short)}</span>`,
@@ -223,6 +251,22 @@ await writePage('/faq', contentPage({
   pagePath: '/faq',
   title: `${structure.faqPage.title} | 어디초`,
   description: structure.faqPage.description,
+  jsonLd: {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'FAQPage',
+        inLanguage: 'ko-KR',
+        dateModified: content.faqs.map((faq) => faq.verifiedAt).sort().at(-1),
+        mainEntity: content.faqs.flatMap((faq) => faq.sections.flatMap((section) => section.items.map((item) => ({
+          '@type': 'Question',
+          name: item.question,
+          acceptedAnswer: { '@type': 'Answer', text: plainText(item.html).replace(/\s*자세히$/, '') },
+        })))),
+      },
+      breadcrumb([['어디초', '/'], ['자주 묻는 질문', '/faq']]),
+    ],
+  },
   body: page([
     `<h1 id="faq-title">${escapeHtml(structure.faqPage.title)}</h1>`,
     `<p class="content-page__lead">${escapeHtml(structure.faqPage.description)}</p>`,
