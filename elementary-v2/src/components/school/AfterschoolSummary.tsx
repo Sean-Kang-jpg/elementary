@@ -295,7 +295,7 @@ const AfterschoolSummary: React.FC<{
               ))}
             </div>
           )}
-          <p className="mt-2 text-[11px] leading-4 text-gray-500">운영계획상 예정이에요. 실제 개설·폐강과 신청 일정은 학교 공지로 확인해 주세요.</p>
+          <p className="mt-2 text-[11px] leading-4 text-gray-500">운영계획상 예정이에요. 공시 문서를 자동으로 정리한 값이라 틀릴 수 있어요. 실제 개설·폐강과 신청 일정은 학교 공지로 확인해 주세요.</p>
         </>
       )}
     </div>
