@@ -136,10 +136,21 @@ const homeBody = [
   '</div></section>',
 ].join('')
 
-const home = built.replace(
-  '<div id="root"></div>',
-  `<div id="root"><!--prerender:home-->${homeBody}<!--/prerender:home--></div>`,
-)
+// The site's identity for brand queries ("어디초"): WebSite + Organization. No
+// SearchAction - Google retired the sitelinks search box in 2024.
+const homeLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    { '@type': 'WebSite', '@id': `${siteOrigin()}/#website`, name: copy.brand, alternateName: 'wherecho', url: `${siteOrigin()}/`, inLanguage: 'ko-KR', publisher: { '@id': `${siteOrigin()}/#organization` } },
+    { '@type': 'Organization', '@id': `${siteOrigin()}/#organization`, name: copy.brand, url: `${siteOrigin()}/`, logo: `${siteOrigin()}/favicon.svg`, description: '공식 학구도 기준 초등학교 배정 아파트, 학교 정보, 입학 준비 가이드' },
+  ],
+}
+const home = built
+  .replace('</head>', `  <script type="application/ld+json">${JSON.stringify(homeLd).replace(/</g, '\\u003c')}</script>\n    <link rel="alternate" type="application/rss+xml" title="어디초 입학 준비 가이드" href="${siteOrigin()}/guide/rss.xml">\n  </head>`)
+  .replace(
+    '<div id="root"></div>',
+    `<div id="root"><!--prerender:home-->${homeBody}<!--/prerender:home--></div>`,
+  )
 if (!home.includes('<!--prerender:home-->')) fail('the home content was not placed in #root')
 if (!/<link rel="canonical" href="[^"]+\/">/.test(home)) fail('the home lost its canonical')
 
@@ -176,7 +187,7 @@ const contentPage = ({ pagePath, title, description, body, jsonLd = null }) => {
   html = replaceOnce(html, /<meta property="og:title" content="[^"]*">/, `<meta property="og:title" content="${escapeHtml(title)}">`, 'og:title')
   html = replaceOnce(html, /<meta property="og:description" content="[^"]*">/, `<meta property="og:description" content="${escapeHtml(description)}">`, 'og:description')
   html = html
-    .replace('</head>', `  <link rel="canonical" href="${escapeHtml(url)}">\n    <meta property="og:url" content="${escapeHtml(url)}">\n${jsonLd ? `    ${ldScript(jsonLd)}\n` : ''}  </head>`)
+    .replace('</head>', `  <link rel="canonical" href="${escapeHtml(url)}">\n    <meta property="og:url" content="${escapeHtml(url)}">\n${jsonLd ? `    ${ldScript(jsonLd)}\n` : ''}    <link rel="alternate" type="application/rss+xml" title="어디초 입학 준비 가이드" href="${siteOrigin()}/guide/rss.xml">\n  </head>`)
     .replace('<div id="root"></div>', `<div id="root">${body}</div>`)
   if ((html.match(/rel="canonical"/g) || []).length !== 1) fail(`${pagePath} must declare exactly one canonical`)
   return html
@@ -352,3 +363,29 @@ await writePage('/checklist', contentPage({
     + '</div></section>',
 }))
 process.stdout.write(`content     dist/guide/ (list + ${content.guides.length}), dist/faq/, dist/checklist/\n`)
+
+// RSS for the guides and published learning items, so Naver (Search Advisor
+// takes an RSS address) and readers pick up new and re-checked articles. The
+// date is each article's check date - the date its content was last confirmed.
+const xml = (value) => String(value).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;')
+const rfc822 = (isoDate) => new Date(`${isoDate}T09:00:00+09:00`).toUTCString()
+const feedItems = [
+  ...content.guides.map((guide) => ({ title: guide.title, path: `/guide/${guide.slug}`, description: guide.description, date: guide.verifiedAt })),
+  ...(content.learning ?? []).filter((item) => item.status === 'published')
+    .map((item) => ({ title: item.title, path: `/learn/${item.slug}`, description: item.description, date: item.verifiedAt })),
+].filter((item) => /^\d{4}-\d{2}-\d{2}$/.test(String(item.date)))
+  .sort((a, b) => b.date.localeCompare(a.date) || a.path.localeCompare(b.path))
+const feed = '<?xml version="1.0" encoding="UTF-8"?>\n'
+  + '<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel>\n'
+  + `<title>어디초 입학 준비 가이드</title><link>${xml(siteOrigin() + '/guide')}</link>`
+  + `<description>${xml(structure.guideList.description)}</description><language>ko</language>`
+  + `<atom:link href="${xml(siteOrigin() + '/guide/rss.xml')}" rel="self" type="application/rss+xml"/>`
+  + `<lastBuildDate>${rfc822(feedItems[0]?.date ?? new Date().toISOString().slice(0, 10))}</lastBuildDate>\n`
+  + feedItems.map((item) => {
+    const link = siteOrigin() + encodeURI(item.path)
+    return `<item><title>${xml(item.title)}</title><link>${xml(link)}</link><guid isPermaLink="true">${xml(link)}</guid>`
+      + `<description>${xml(item.description)}</description><pubDate>${rfc822(item.date)}</pubDate></item>\n`
+  }).join('')
+  + '</channel></rss>\n'
+await fs.writeFile(path.join(outDir, 'guide', 'rss.xml'), feed, 'utf8')
+process.stdout.write(`rss         dist/guide/rss.xml (${feedItems.length} items)\n`)
