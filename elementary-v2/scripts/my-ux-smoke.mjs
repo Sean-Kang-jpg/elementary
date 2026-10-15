@@ -64,7 +64,7 @@ try {
   await wait("document.querySelectorAll('.my-saved li').length === 1 && document.querySelector('.my-saved').textContent.includes('QA 아파트')", 'apartment tab remains independent')
   await wait("document.documentElement.scrollWidth <= innerWidth", 'mobile layout has no horizontal overflow')
   await wait("getComputedStyle(document.querySelector('.my-saved li')).display === 'block'", 'candidate actions stack below the card heading')
-  await wait("document.querySelector('.my-week__day').getBoundingClientRect().height < 120", 'empty weekday rows stay compact')
+  await wait("document.querySelector('.my-week__timeline').getBoundingClientRect().height === 504 && document.querySelector('.my-week').scrollWidth > document.querySelector('.my-week').clientWidth", 'empty weekdays retain the shared 12–19 time grid and horizontal scroll')
   evalPage("[...document.querySelectorAll('[aria-label=\"관심 후보 유형\"] button')].find(b=>b.textContent.startsWith('학교')).click(); true")
   evalPage("document.querySelector('[aria-label=\"QA 후보 B 저장 삭제\"]').click(); true")
   await wait("JSON.parse(localStorage.getItem('elementary-schedule-plans-v1')).activeSchoolId === 'qa-school-b' && document.querySelector('.my-schedule').textContent.includes('관심 학교에서 삭제한 초안')", 'favorite removal preserves active draft with explanation')
