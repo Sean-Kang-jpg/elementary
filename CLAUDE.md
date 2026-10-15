@@ -65,6 +65,21 @@ npm run typecheck
 
 ## Uncommitted Work At Handoff
 
+### 2026-10-15 (2): SEO·콘텐츠 시즌 대응과 홈 두 줄 (`11f9199` 운영 반영, `5de9bb3` **미배포**)
+
+- 운영 반영(`release`=`11f9199`): 새 가이드 `/guide/morning-care`(초1 등교·하교 중앙값 서울 223·경기 995개교,
+  서울 아침돌봄 411/606곳, 키움센터 아침돌봄), `/guide/private-national` 2027학년도 개편(서울 사립초 11/6~,
+  교대부초 10/26~ — 뉴스1 보도 기준, **공식 발표 나오면 날짜 확정 필요**), FAQ 7문항, 가이드 `Article`·FAQ
+  `FAQPage` JSON-LD, pages 사이트맵 `lastmod`, 학교 프리렌더에 1학년 요일별 하교·아침돌봄·오후 돌봄 종료.
+- 검색엔진 작업 목록: `elementary-v2/docs/operations/SEARCH_ENGINE_GUIDE_20261015.md` (배포 후 서치콘솔·
+  서치어드바이저에서 사이트맵 재제출·URL 수집 요청 — **사용자가 할 일**).
+- 홈 두 줄(`5de9bb3`, master만): '지금 챙길 것'(`content/home-shelves.json` 날짜 창, D-day/NEW)과
+  '어디초로 볼 수 있는 것'(빌드 시 `scripts/home-showcase.mjs`가 서울목동초 B000002209 실데이터를
+  `dist/home-showcase.json`으로). 개발 서버에는 그 파일이 없어 예시 줄이 안 보이는 게 정상.
+  `vite preview`는 Vercel rewrite가 없어 public smoke의 `/map` 검사가 실패한다 — 스모크는 dev 서버로.
+- 경기·인천 사립초 일정(카드뉴스 이미지)은 공식 출처 확인이 안 돼 가이드에 넣지 않았다.
+- 아침돌봄 Track B(다른 팀원, 미커밋)와 겹치지 않게 가이드 문구만 썼다. 학교별 아침돌봄 상태값이 확정되면 가이드·프리렌더 문구를 맞춘다.
+
 ### 2026-10-15: 방과후 누락 보완 · 종류별 등급 · 학교 안내 학년 (`e25587c`·`f8e3638`, 운영 `f8e3638`)
 
 - 증상: 서초초 방과후 0개, 역삼초 맞춤형 0개. 원인은 발췌(`llm_extraction_inputs.afterschool_excerpt`)가
