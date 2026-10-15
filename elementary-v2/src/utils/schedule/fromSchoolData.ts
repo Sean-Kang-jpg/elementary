@@ -93,15 +93,17 @@ export const afterschoolSectionId = (schoolId: string, option: SchoolAfterschool
   `afterschool-${schoolId}-${afterschoolSectionLabel(option, section)}-${section.days ?? ''}-${section.start ?? ''}-${section.end ?? ''}`
 
 /**
- * 부모가 고른 방과후·맞춤형 강좌의 반 하나(SQL 30, 15-라 운영계획)를 후보 일정으로 바꾼다.
+ * 방과후·맞춤형 강좌의 반 하나(SQL 30, 15-라 운영계획)를 일정으로 바꾼다.
  * 요일을 모르면 null이다 — 일정은 요일이 있어야 하므로 부모가 요일을 직접 고르게 한다.
- * 운영계획 값이라 시작·종료를 모두 읽은 반만 school-plan이고, 참여는 부모가 고른다.
+ * 운영계획 값이라 시작·종료를 모두 읽은 반만 school-plan이다. 기본은 후보,
+ * MY에서 명시적으로 고른 반은 planned로 전달하며 실제 참여 확정은 따로 고른다.
  */
 export const afterschoolEntryFromSection = (
   schoolId: string,
   sourceYear: number,
   option: SchoolAfterschoolOption,
   section: SchoolAfterschoolSection,
+  participation: ParticipationStatus = 'considering',
 ): ScheduleEntry | null => {
   const weekdays = [...new Set(section.days ?? '')]
     .map((letter) => WEEKDAY_LETTERS.indexOf(letter) + 1)
@@ -119,7 +121,7 @@ export const afterschoolEntryFromSection = (
     start,
     end,
     evidence: start !== null && end !== null ? 'school-plan' : 'unknown',
-    participation: 'considering',
+    participation,
     transitionIn: 'unknown',
     term: 'semester',
     source: { ref: `school_afterschool:${schoolId}`, version: `${sourceYear} 운영계획` },
