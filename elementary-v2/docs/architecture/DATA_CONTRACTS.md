@@ -22,6 +22,7 @@ operational table returns an empty result under RLS rather than rows.
 | `care_centers` | table (SQL `23`; community care centers, public-page fields only) |
 | `nearby_care_centers(...)` | function (SQL `23`) |
 | `school_day_estimates`, `school_day_estimate_weekdays`, `school_care_hours` | tables (SQL `26`, 2026-10-08; reviewed grade-1 day estimate and school care hours, pilot 35/60 schools) |
+| `school_afterschool_summary`, `school_afterschool_programs` | tables (SQL `30`, 2026-10-15; grade-1 방과후·맞춤형 courses from the 15-라 plan, Seoul 536 schools, auto-extracted) |
 | `curriculum_like_counts(...)`, `curriculum_item_ranking(...)`, `curriculum_likes` | SQL `24` — **운영 미적용, 프런트 호출 없음**(2026-10-06 화면 삭제). 개편 P3·P4 결정 전까지 보류 |
 
 Verified blocked in the same pass: `apartment_complex_master`,
@@ -116,6 +117,25 @@ Every value is a `source_year` figure shown to the following entry year as an **
 (2025→2026: weekday patterns 94% and clocks 96% unchanged). The tables revoke Supabase's default
 anon/authenticated write grants and grant SELECT only; on 2026-10-08 anon POST/PATCH/DELETE all
 returned `42501`. **Degrades gracefully**: without SQL `26` the card renders nothing.
+
+### `school_afterschool_summary`, `school_afterschool_programs` (SQL `30`)
+
+Purpose: the "초1 오후 한눈에" card (school detail, 방과후·돌봄 tab) and the MY planner's "이 학교
+방과후 강좌에서 골라 넣기". Loaded by `etl/load_school_afterschool.py` from the Sonnet extraction of
+the 학교알리미 15-라 plan (`etl/llm_extraction_spec_afterschool.md`, 맞춤형 names re-extracted by
+`etl/llm_extraction_spec_custom.md`). Review rules are applied in the loader, not by re-extraction.
+
+- `school_afterschool_summary` — per school: `tier` A/B (요일·종료 read for ≥90% / 60–90% of grade-1
+  sections; the card draws course bars) or C (list only), option counts, latest grade-1 end per
+  weekday from lower-grade sections (`grade_upper` ≤ 3; `timeline_basis = 'all'` when a school has
+  none), `review_state` (`auto` until reviewed).
+- `school_afterschool_programs` — one course section: kind (방과후 paid / 맞춤형 free, applied for
+  separately), name, variant, section, category, `grade1` per section, `grades_raw`, `grade_upper`,
+  weekdays, planned start and end, term.
+
+Values are the plan, not enrolment: the card says so and that they were auto-extracted. Instructor
+names and phone numbers are never loaded. **Degrades gracefully**: without SQL `30` the card shows
+dismissal and care bars with a "별도 확인 필요" note.
 
 ## Private operational contracts
 

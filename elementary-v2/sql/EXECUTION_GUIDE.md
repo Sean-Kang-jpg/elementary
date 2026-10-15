@@ -255,6 +255,25 @@ Impact, checks and rollback: `docs/research/audit2/SCHOOL_DAY_CARD_CONTRACT_2026
 Applied 2026-10-08 by the user in the SQL editor. Anon GET 200; anon POST/PATCH/DELETE `42501` on all
 three tables; `--apply` loaded 35 / 175 / 60 rows (snapshot 2026-10-08).
 
+## 30: grade-1 after-school and 맞춤형 courses (2026-10-15) — 운영 적용·적재 완료
+
+`sql/30_create_school_afterschool.sql` adds two public read-only tables for the school detail's
+"초1 오후 한눈에" card and the MY planner's course picker: `school_afterschool_summary` (one row per
+school: tier, option counts, latest grade-1 end per weekday, `timeline_basis`) and
+`school_afterschool_programs` (one row per course section: kind 방과후/맞춤형, grade per section,
+`grade_upper`, weekdays, planned times). Nothing existing changes. The frontend renders the card
+without courses when the tables are missing (`PGRST205`/`42P01`).
+
+1. Apply in the SQL editor only after the user approves.
+2. As anon: GET returns rows; PATCH returns `42501`.
+3. `python -m etl.load_school_afterschool --outputs <dirs> --custom-outputs <dir>` (dry run), then
+   `--apply`, which refuses while `CONFIRMED = False` in the loader.
+
+Applied 2026-10-15 by the user in the SQL editor. Anon GET 200; anon PATCH `42501` on both tables.
+`--apply` loaded Seoul 536 schools / 18,143 rows (A 419, B 45, C 72; 33 schools with no course
+table are not published), `review_state = 'auto'`: published before the 30-school review at the
+user's decision, with the card saying the values are auto-extracted.
+
 ## 27: persistent apartment identity and transactions
 
 `sql/27_create_apartment_identity_and_transactions.sql` is additive and starts its
