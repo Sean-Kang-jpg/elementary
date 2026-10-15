@@ -2,6 +2,8 @@
 @import './styles/mobile.css';
 /* 홈·가이드·FAQ·처리방침의 따뜻한 화면 디자인 (2026-10-03) */
 @import './styles/content.css';
+/* 홈 '지금 챙길 것'·'어디초로 볼 수 있는 것' 줄 (2026-10-15) */
+@import './styles/home-shelves.css';
 
 @tailwind base;
 @tailwind components;

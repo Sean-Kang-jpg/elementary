@@ -26,6 +26,7 @@ import fs from 'node:fs/promises'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { siteOrigin } from './site-origin.mjs'
+import { loadShowcase } from './home-showcase.mjs'
 
 const projectRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
 const outDir = path.join(projectRoot, 'dist')
@@ -59,6 +60,54 @@ const content = JSON.parse(await fs.readFile(path.join(projectRoot, 'src/content
 const structure = JSON.parse(await fs.readFile(path.join(projectRoot, 'src/content/structure.json'), 'utf8'))
 const STAGE_ORDER = ['planning', 'admission']
 
+// The home's two rows (2026-10-15). seasonCards mirrors src/utils/homeShelves.ts;
+// the static copy names the deadline date rather than a D-day, which would go
+// stale between deploys - the app replaces it with the live count on mount.
+const shelves = JSON.parse(await fs.readFile(path.join(projectRoot, 'src/content/home-shelves.json'), 'utf8'))
+const seasonCards = (items, now, max) => {
+  const today = `${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`
+  const iso = `${now.getFullYear()}-${today}`
+  const inWindow = (from, to) => (from <= to ? today >= from && today <= to : today >= from || today <= to)
+  const until = (mmdd) => {
+    const [month, day] = mmdd.split('-').map(Number)
+    const start = new Date(now.getFullYear(), now.getMonth(), now.getDate())
+    let target = new Date(now.getFullYear(), month - 1, day)
+    if (target < start) target = new Date(now.getFullYear() + 1, month - 1, day)
+    return Math.round((target - start) / 86_400_000)
+  }
+  return items
+    .filter((item) => inWindow(item.from, item.to))
+    .map((item, index) => ({ ...item, index, dday: item.deadline ? until(item.deadline) : null, isNew: Boolean(item.newUntil && iso <= item.newUntil) }))
+    .sort((a, b) => (a.dday ?? 999) - (b.dday ?? 999) || a.index - b.index)
+    .slice(0, max)
+}
+const showcase = await loadShowcase(shelves.showcase.schoolId)
+if (showcase) await fs.writeFile(path.join(outDir, 'home-showcase.json'), JSON.stringify(showcase), 'utf8')
+process.stdout.write(`showcase    ${showcase ? `dist/home-showcase.json (${showcase.school.name})` : 'none - the home leaves the row out'}\n`)
+
+const seasonHtml = (() => {
+  const cards = seasonCards(shelves.season.items, new Date(), shelves.season.max)
+  if (!cards.length) return ''
+  const badge = (card) => (card.deadline
+    ? `<span class="season-card__badge">${escapeHtml(card.deadlineLabel)} ${Number(card.deadline.slice(0, 2))}월 ${Number(card.deadline.slice(3))}일</span>`
+    : card.isNew ? '<span class="season-card__badge season-card__badge--new">NEW</span>' : '')
+  return `<section class="home-shelf" aria-labelledby="home-season-title"><div class="home-shelf__head"><h2 id="home-season-title">${escapeHtml(shelves.season.title)}</h2></div><ul class="home-shelf__row">`
+    + cards.map((card) => `<li><a href="${escapeHtml(card.href)}" class="season-card">${badge(card)}<strong>${escapeHtml(card.title)}</strong><small>${escapeHtml(card.body)}</small></a></li>`).join('')
+    + '</ul></section>'
+})()
+
+// Text-only for the crawler: the bars are drawn by the app.
+const showcaseHtml = showcase ? (() => {
+  const { school, apartment } = showcase
+  const days = school.days.filter((day) => day.dismissal)
+    .map((day) => `${day.label} 하교 ${day.dismissal}${day.afterschoolEnd ? `·방과후 ~${day.afterschoolEnd}` : ''}`).join(', ')
+  return `<section class="home-shelf" aria-labelledby="home-showcase-title"><div class="home-shelf__head"><h2 id="home-showcase-title">${escapeHtml(shelves.showcase.title)}</h2><small>${escapeHtml(shelves.showcase.lead)}</small></div><ul class="home-shelf__row home-shelf__row--wide">`
+    + `<li><a href="${escapeHtml(encodeURI(school.path))}" class="showcase-card"><span class="showcase-card__kicker">초1 오후 한눈에</span><strong>${escapeHtml(school.name)}</strong><small>${escapeHtml(days)}${school.careEnd ? `, 돌봄 ~${escapeHtml(school.careEnd)}` : ''}</small></a></li>`
+    + (apartment ? `<li><a href="${escapeHtml(encodeURI(apartment.path))}" class="showcase-card"><span class="showcase-card__kicker">배정 학교 찾기</span><strong>${escapeHtml(apartment.name)} → ${escapeHtml(school.name)}</strong><small>1학년 ${school.grade1Students ?? '–'}명 · 학급당 ${school.grade1PerClass ?? '–'}명 · 배정 아파트 ${school.apartments}곳</small></a></li>` : '')
+    + `<li><a href="/my" class="showcase-card"><span class="showcase-card__kicker">MY 시간표 예시</span><strong>맞벌이 가정의 하루</strong><small>${school.morning ? `아침돌봄 ${escapeHtml(school.morning)}, ` : ''}하교 뒤 방과후와 돌봄을 이어 붙인 예시</small></a></li>`
+    + '</ul></section>'
+})() : ''
+
 const homeBody = [
   '<section class="app-destination app-page home-page" aria-labelledby="home-title">',
   '<div class="home-hero"><div class="home-page__inner">',
@@ -68,6 +117,8 @@ const homeBody = [
   `<p class="home-hero__trust"><span>${escapeHtml(copy.noteBefore)}<b>${escapeHtml(copy.noteStrong)}</b>${escapeHtml(copy.noteAfter)}</span></p>`,
   '</div></div>',
   '<div class="home-page__inner home-page__body">',
+  seasonHtml,
+  showcaseHtml,
   // The guide list itself lives under /guide since 2026-10-04; the home links to it,
   // as the app does, rather than repeat it.
   '<div class="home-links">',

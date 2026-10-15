@@ -7,6 +7,7 @@ import SchoolIllustration from '../content/SchoolIllustration'
 import { followLink } from '../content/contentLinks'
 import { VIEW_PATHS } from '../../utils/urlState'
 import copy from '../../content/home.json'
+import HomeShelves from './HomeShelves'
 
 interface HomePageProps {
   onNavigate: (path: string) => void
@@ -45,6 +46,8 @@ export default function HomePage({ onNavigate, entryYear, onEntryYearChange, pro
       </div>
 
       <div className="home-page__inner home-page__body">
+        <HomeShelves onNavigate={onNavigate} />
+
         <section className="home-card" aria-label="입학 연도 선택">
           <EntryYearPicker value={entryYear} onChange={onEntryYearChange} />
         </section>

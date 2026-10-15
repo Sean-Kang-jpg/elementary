@@ -1,0 +1,251 @@
+/* 홈의 두 줄 (2026-10-15): '지금 챙길 것' 시즌 카드와 '어디초로 볼 수 있는 것' 예시 카드.
+   가로로 넘겨 보는 줄이다. 정적 홈(build-shell-pages.mjs)도 같은 클래스를 쓴다. */
+
+.home-shelf {
+  margin: 0 0 18px;
+}
+
+.home-shelf__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+  margin: 0 0 8px;
+}
+
+.home-shelf__head h2 {
+  margin: 0;
+  color: var(--warm-text);
+  font-size: 16px;
+  font-weight: 800;
+}
+
+.home-shelf__head small {
+  color: var(--warm-muted);
+  font-size: 12px;
+}
+
+.home-shelf__row {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(150px, 46%);
+  gap: 10px;
+  margin: 0 -16px;
+  padding: 2px 16px 6px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  /* 스냅이 첫 카드를 스크롤 영역 끝에 붙이지 않도록 안쪽 여백만큼 띄운다 */
+  scroll-padding-inline: 16px;
+  scrollbar-width: none;
+  list-style: none;
+}
+
+.home-shelf__row::-webkit-scrollbar {
+  display: none;
+}
+
+.home-shelf__row > li {
+  scroll-snap-align: start;
+  min-width: 0;
+}
+
+.home-shelf__row--wide {
+  grid-auto-columns: minmax(232px, 78%);
+}
+
+/* 넓은 화면은 넘기지 않고 격자로: 시즌 카드는 한 줄 4칸, 예시 카드는 2칸(홀수 마지막은 한 줄 전체) */
+@media (min-width: 720px) {
+  .home-shelf__row {
+    grid-auto-flow: row;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    margin: 0;
+    padding: 2px 0 6px;
+    overflow: visible;
+  }
+
+  .home-shelf__row--wide {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .home-shelf__row--wide > li:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+  }
+}
+
+.season-card,
+.showcase-card {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  gap: 6px;
+  border: 1px solid var(--warm-border);
+  border-radius: 14px;
+  padding: 12px;
+  color: var(--warm-text);
+  background: var(--warm-surface);
+  text-decoration: none;
+}
+
+.season-card:focus-visible,
+.showcase-card:focus-visible {
+  outline: 2px solid var(--warm-accent);
+  outline-offset: 2px;
+}
+
+.season-card__badge {
+  align-self: flex-start;
+  border-radius: 999px;
+  padding: 1px 8px;
+  color: var(--warm-accent-strong);
+  background: var(--warm-accent-soft);
+  font-size: 11.5px;
+  font-weight: 800;
+}
+
+.season-card__badge--new {
+  color: var(--warm-sage);
+  background: var(--warm-sage-soft);
+}
+
+.season-card strong,
+.showcase-card strong {
+  font-size: 14px;
+  font-weight: 800;
+  line-height: 1.35;
+}
+
+.season-card small,
+.showcase-card small {
+  color: var(--warm-muted);
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.showcase-card__kicker {
+  color: var(--warm-peach);
+  font-size: 11.5px;
+  font-weight: 800;
+}
+
+.showcase-card__more {
+  margin-top: auto;
+  color: var(--warm-accent-strong);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+/* 미니 '초1 오후 한눈에': 학교 상세 카드와 같은 색(회색 수업, 주황 방과후, 남색 돌봄) */
+.showcase-bars {
+  display: grid;
+  grid-template-columns: 1rem minmax(0, 1fr) 2.6rem;
+  align-items: center;
+  gap: 3px 6px;
+  margin: 2px 0;
+  padding: 0;
+  list-style: none;
+  font-size: 11px;
+}
+
+.showcase-bars__day {
+  color: var(--warm-muted);
+  font-weight: 700;
+}
+
+.showcase-bars__track {
+  position: relative;
+  height: 10px;
+  border-radius: 3px;
+  background: #f6f1ec;
+}
+
+.showcase-bars__track > span {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  border-radius: 3px;
+}
+
+.showcase-bars__class {
+  background: #d1d5db;
+}
+
+.showcase-bars__after {
+  background: #f59e0b;
+}
+
+.showcase-bars__care {
+  border: 1px solid #818cf8;
+  background: #e0e7ff;
+}
+
+.showcase-bars__end {
+  color: var(--warm-text);
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
+
+.showcase-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px 8px;
+  color: var(--warm-muted);
+  font-size: 10.5px;
+}
+
+.showcase-legend i {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  margin-right: 3px;
+  border-radius: 2px;
+  vertical-align: -1px;
+}
+
+.showcase-route {
+  display: grid;
+  gap: 4px;
+  margin: 2px 0;
+  padding: 0;
+  list-style: none;
+  font-size: 12px;
+}
+
+.showcase-route li {
+  display: flex;
+  gap: 8px;
+}
+
+.showcase-route b {
+  min-width: 2.7rem;
+  color: var(--warm-text);
+  font-variant-numeric: tabular-nums;
+}
+
+.showcase-route span {
+  color: var(--warm-muted);
+}
+
+.showcase-facts {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 4px;
+  margin: 2px 0;
+  text-align: center;
+}
+
+.showcase-facts div {
+  border-radius: 8px;
+  padding: 6px 2px;
+  background: #faf6f2;
+}
+
+.showcase-facts b {
+  display: block;
+  font-size: 14px;
+  font-variant-numeric: tabular-nums;
+}
+
+.showcase-facts span {
+  color: var(--warm-muted);
+  font-size: 10.5px;
+}

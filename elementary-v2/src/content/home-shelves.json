@@ -1,0 +1,22 @@
+{
+  "_comment": "홈의 두 줄. season은 날짜 창(MM-DD, 해를 넘겨도 된다) 안에 있을 때만 보인다. deadline이 있으면 D-day를 붙이고, newUntil(YYYY-MM-DD) 전에는 NEW. showcase.schoolId는 빌드가 실제 값을 읽어 오는 대표 학교다(scripts/home-showcase.mjs). HomePage.tsx와 scripts/build-shell-pages.mjs가 함께 읽는다.",
+  "season": {
+    "title": "지금 챙길 것",
+    "max": 4,
+    "items": [
+      { "id": "private", "from": "09-15", "to": "11-25", "deadline": "11-06", "deadlineLabel": "원서", "title": "사립초·국립초 지원", "body": "2027학년도 일정과 준비 순서", "href": "/guide/private-national" },
+      { "id": "morning", "from": "10-15", "to": "03-15", "newUntil": "2026-11-15", "title": "초1 아침, 등교 전 시간", "body": "아침돌봄 7시~9시, 요일별 하교 시각", "href": "/guide/morning-care" },
+      { "id": "delay", "from": "10-01", "to": "12-31", "deadline": "12-31", "deadlineLabel": "신청 마감", "title": "입학 연기·조기입학", "body": "주민센터에 10월 1일~12월 31일 신청", "href": "/guide/delay-or-early-entry" },
+      { "id": "care", "from": "10-01", "to": "02-28", "title": "늘봄·돌봄 신청 준비", "body": "돌봄교실·맞춤형·방과후 차이와 신청 시기", "href": "/guide/care-afterschool" },
+      { "id": "notice", "from": "11-20", "to": "12-31", "deadline": "12-20", "deadlineLabel": "발송", "title": "취학통지서", "body": "12월 20일까지 주민센터가 보냅니다", "href": "/guide/school-notice" },
+      { "id": "call", "from": "12-15", "to": "01-31", "title": "예비소집", "body": "준비물과 갈 수 없을 때 할 일", "href": "/guide/preliminary-call" },
+      { "id": "first", "from": "02-01", "to": "03-31", "title": "입학식과 첫 주", "body": "첫 1~2주는 4교시 하교가 흔해요", "href": "/guide/first-weeks" },
+      { "id": "move", "from": "04-01", "to": "11-30", "title": "이사 시기 정하기", "body": "배정은 취학통지 때 주소로 정해져요", "href": "/guide/when-to-move" }
+    ]
+  },
+  "showcase": {
+    "title": "어디초로 볼 수 있는 것",
+    "lead": "실제 학교 자료로 만든 예시예요.",
+    "schoolId": "B000002209"
+  }
+}
