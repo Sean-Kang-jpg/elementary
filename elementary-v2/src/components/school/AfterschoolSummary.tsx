@@ -122,6 +122,8 @@ const AfterschoolSummary: React.FC<{
   // 진한 막대에 넣지 않은 방과후 반: 전학년 반과 대상 학년이 적혀 있지 않은 반. 빗금으로 이어 그린다
   // (방배초처럼 A반·B반을 시간으로만 나누고 학년을 적지 않은 학교는 이것만 있다, 2026-10-15)
   const allPaid = options.filter((o) => o.kind === '방과후')
+  // 막대·데리러 가는 시각에 들어가지 못한 방과후 강좌: 반 어디에도 요일·종료 시각이 없다(서초초 26개 등)
+  const untimedPaid = timedCourses ? allPaid.filter((o) => !o.sections.some(isTimed)).length : 0
   const unknownGradeSections = allPaid.some((o) => o.sections.some((s) => !isGrade1(s) && isTimed(s)))
   const extensionLabel = unknownGradeSections ? '전학년·학년 미기재 반' : '전학년 반(고학년 위주)'
 
@@ -134,7 +136,9 @@ const AfterschoolSummary: React.FC<{
     const allFrom = all ? Math.max(all.start ?? a?.end ?? dismissal ?? all.end - 80, a?.end ?? 0) : null
     const ext = all && allFrom !== null && all.end > allFrom ? { start: allFrom, end: all.end } : null
     const pickup = Math.max(dismissal ?? 0, c?.end ?? 0, a?.end ?? 0) || null
-    return { label, dismissal, c, a, ext, pickup }
+    // 이 요일에 열리지만 시각이 없어 막대로 못 그린 방과후 강좌(서초초 '화(주 80분)' 등). 막대 위에 글로 쓴다
+    const untimed = allPaid.filter((o) => !o.sections.some(isTimed) && o.sections.some((s) => s.days?.includes(label))).length
+    return { label, dismissal, c, a, ext, pickup, untimed }
   })
   const hasExtension = rows.some((row) => row.ext)
   const hasTimeline = timedCourses || careBandEnd !== null || rows.some((row) => row.dismissal !== null)
@@ -143,8 +147,6 @@ const AfterschoolSummary: React.FC<{
   const paidUnknown = options.filter((o) => o.kind === '방과후' && o.grade1 !== 'true')
   // 강좌 학년은 없지만 운영계획이 방과후를 1~6학년 대상으로 밝힌 강좌만 남은 경우(2026-10-15)
   const unknownSchoolWide = paidUnknown.length > 0 && paidUnknown.every((o) => o.sections.every((s) => s.school_wide))
-  // 막대·데리러 가는 시각에 들어가지 못한 방과후 강좌: 반 어디에도 요일·종료 시각이 없다(서초초 26개 등)
-  const untimedPaid = allPaid.filter((o) => !o.sections.some(isTimed)).length
   const paidListed = afterschool.length ? afterschool : paidUnknown
   const categories = Object.entries(paidListed.reduce<Record<string, number>>((acc, o) => ({ ...acc, [o.category]: (acc[o.category] ?? 0) + 1 }), {}))
     .sort((x, y) => y[1] - x[1])
@@ -196,7 +198,7 @@ const AfterschoolSummary: React.FC<{
                 <div
                   className="relative h-6 rounded bg-gray-50"
                   role="img"
-                  aria-label={`${row.label}요일 ${row.dismissal ? `하교 ${fmt(row.dismissal)}` : '하교 시각 미확인'}${row.c ? `, 맞춤형 ~${fmt(row.c.end)}` : ''}${row.a ? `, 방과후 ~${fmt(row.a.end)}` : ''}${row.ext ? `, ${extensionLabel} ~${fmt(row.ext.end)}` : ''}${careEnd ? `, 돌봄 ~${fmt(careEnd)}` : careEstimated ? ', 돌봄 17:00까지로 추정, 학교 확인 필요' : ''}`}
+                  aria-label={`${row.label}요일 ${row.dismissal ? `하교 ${fmt(row.dismissal)}` : '하교 시각 미확인'}${row.c ? `, 맞춤형 ~${fmt(row.c.end)}` : ''}${row.a ? `, 방과후 ~${fmt(row.a.end)}` : ''}${row.ext ? `, ${extensionLabel} ~${fmt(row.ext.end)}` : ''}${careEnd ? `, 돌봄 ~${fmt(careEnd)}` : careEstimated ? ', 돌봄 17:00까지로 추정, 학교 확인 필요' : ''}${untimedPaid && row.untimed ? `, 시간 미기재 방과후 ${row.untimed}개` : ''}`}
                 >
                   {careEnd && <Bar from={row.dismissal ?? 13 * 60} to={careEnd} className="inset-y-0 rounded-sm border border-indigo-400 bg-indigo-100" title={`돌봄 ~${fmt(careEnd)}`} />}
                   {careEstimated && <Bar from={row.dismissal ?? 13 * 60} to={ESTIMATED_CARE_END} className="inset-y-0 rounded-sm border border-dashed border-indigo-400 bg-indigo-50/60" title="돌봄 17:00까지로 추정 · 학교 확인 필요" />}
@@ -206,6 +208,11 @@ const AfterschoolSummary: React.FC<{
                   {row.c && <Bar from={row.c.start ?? row.dismissal ?? row.c.end - 80} to={row.c.end} className="top-1 h-[7px] rounded-sm bg-emerald-500" title={`맞춤형 ~${fmt(row.c.end)}`} />}
                   {row.a && <Bar from={row.a.start ?? row.dismissal ?? row.a.end - 80} to={row.a.end} className="top-[13px] h-[7px] rounded-sm bg-amber-500" title={`방과후 ~${fmt(row.a.end)}`} />}
                   {row.ext && <Bar from={row.ext.start} to={row.ext.end} className="top-[13px] h-[7px] rounded-sm border border-amber-500" style={ALL_GRADE_FILL} title={`전학년 반 ~${fmt(row.ext.end)}`} />}
+                  {untimedPaid > 0 && row.untimed > 0 && (
+                    <span className="absolute inset-y-0 right-1 flex items-center" aria-hidden="true">
+                      <span className="rounded border border-dashed border-amber-400 bg-white/90 px-1 text-[10px] leading-4 text-amber-800">방과후 {row.untimed} · 시간 미기재</span>
+                    </span>
+                  )}
                 </div>
               </li>
             ))}
@@ -213,6 +220,11 @@ const AfterschoolSummary: React.FC<{
           <div className="relative ml-[1.75rem] mt-1 h-3.5 text-[10px] text-gray-400" aria-hidden="true">
             {[12, 14, 16, 18].map((h) => <span key={h} className="absolute -translate-x-1/2" style={{ left: `${pct(h * 60)}%` }}>{h}시</span>)}
           </div>
+          {untimedPaid > 0 && (
+            <p className="mt-1 text-[11px] leading-4 text-amber-800" data-testid="school-afterschool-untimed">
+              방과후 {untimedPaid}개 강좌는 운영계획에 {rows.some((row) => row.untimed) ? '요일만 있고 ' : ''}시간이 적혀 있지 않아 막대와 데리러 가는 시각에 넣지 않았어요. 신청 안내에서 시간을 확인하고, MY 시간표에 직접 넣을 수 있어요.
+            </p>
+          )}
           {careEnd === null && (
             <p className="mt-1.5 rounded-md bg-indigo-50 px-3 py-2 text-xs leading-5 text-indigo-950" data-testid="school-afterschool-care-note">
               {(careStats?.afternoon_care_rooms ?? 0) > 0
@@ -235,11 +247,6 @@ const AfterschoolSummary: React.FC<{
               ? `그날 가장 늦게 끝나는 저학년 대상 반 기준이에요.${hasExtension ? ` 빗금은 ${unknownGradeSections ? '전학년 반이거나 대상 학년이 적혀 있지 않은 반이라' : '전학년 반이라'} 고르면 그만큼 늦어질 수 있어요.` : ' 고른 강좌에 따라 더 이를 수 있어요.'}`
               : '저학년 반이 따로 적혀 있지 않아 전학년 대상 반 기준이에요. 늦은 반은 고학년용일 수 있어요.'}
           </p>
-          {untimedPaid > 0 && (
-            <p className="mt-1 text-[11px] text-amber-800" data-testid="school-afterschool-untimed">
-              방과후 {untimedPaid}개 강좌는 운영계획에 시간이 적혀 있지 않아 막대와 이 시각에 넣지 않았어요. 신청 안내에서 시간을 확인하고, MY 시간표에 직접 넣을 수 있어요.
-            </p>
-          )}
         </div>
       ) : (
         <div className="mt-2.5 rounded-md border border-amber-200 bg-amber-50 px-3 py-2 text-xs leading-5 text-amber-950" data-testid="school-afterschool-check">
