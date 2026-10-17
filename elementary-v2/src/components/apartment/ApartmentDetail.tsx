@@ -118,7 +118,9 @@ const ApartmentDetail: React.FC<ApartmentDetailProps> = ({ apartment, isOpen, on
           <section aria-labelledby="parking-title">
             <div className="mb-2 flex items-center justify-between">
               <h3 id="parking-title" className="inline-flex items-center gap-2 font-semibold text-gray-950"><CarFront size={18} aria-hidden="true" />주차</h3>
-              <span className={`rounded px-2 py-1 text-xs font-semibold ${apartment.parking_per_household >= 1 ? 'bg-emerald-50 text-emerald-700' : apartment.parking_per_household >= 0.7 ? 'bg-amber-50 text-amber-700' : 'bg-rose-50 text-rose-700'}`}>세대당 {apartment.parking_per_household.toFixed(1)}대 · {parkingLabel(apartment.parking_per_household)}</span>
+              {apartment.parking_per_household === null
+                ? <span className="rounded bg-gray-100 px-2 py-1 text-xs font-semibold text-gray-600">세대당 주차 확인 중</span>
+                : <span className={`rounded px-2 py-1 text-xs font-semibold ${apartment.parking_per_household >= 1 ? 'bg-emerald-50 text-emerald-700' : apartment.parking_per_household >= 0.7 ? 'bg-amber-50 text-amber-700' : 'bg-rose-50 text-rose-700'}`}>세대당 {apartment.parking_per_household.toFixed(1)}대 · {parkingLabel(apartment.parking_per_household)}</span>}
             </div>
             <div className="overflow-hidden rounded-md border border-gray-200 bg-gray-50 p-3">
               <div className="flex h-3 overflow-hidden rounded-full bg-gray-200" aria-label={`지상 ${apartment.ground_parking}대, 지하 ${apartment.underground_parking}대`}><span className="bg-sky-400" style={{ width: `${100 - undergroundShare}%` }} /><span className="bg-teal-700" style={{ width: `${undergroundShare}%` }} /></div>

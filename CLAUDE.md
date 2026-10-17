@@ -65,6 +65,22 @@ npm run typecheck
 
 ## Uncommitted Work At Handoff
 
+### 2026-10-17: 릴스 녹화 중 찾은 버그 2건 (**미커밋**)
+
+- 배정 아파트 0개: 아파트 검색 → 같은 배정 학교 마커를 누르면 학교 상세가 "배정 아파트 0개 단지". `SET_SELECTED_SCHOOL`이
+  목록을 비우는데 학교 ID가 같아 `SchoolDetail`이 다시 불러오지 않았음. `AppContext.tsx`에서 같은 학교 재선택 시 목록 유지,
+  `OPEN_SEARCHED_APARTMENT`도 같은 학교면 목록을 1개로 줄이지 않게. 브라우저 3경로 확인(원효초 13개 유지, 대현초 23개로 전환).
+- 세대당 주차 57.1대(원효산호): K-apt 2026-10-02 세대수 9 vs 기본 554. 화면·프리렌더는 5대 초과를 숨김(`src/utils/parking.ts`,
+  `api/detail.js`, "세대당 주차 확인 중"). ETL `build_complex_master`는 단일 단지에서 K-apt가 기본의 절반 미만이고 0이거나
+  주차비가 5 초과일 때 기본 세대수 유지(`apartment_base_kapt_outlier`). 로컬 수도권 기준 19곳 변경, 다른 행 변화 없음.
+- 검증: lint·typecheck·build·public smoke(62 PASS)·`test:unit` 84·`etl.tests.test_complex_household_source` 7.
+- 이식성 기준선 재잠금 완료(`portable_readonly_baseline.json`, 묶음 기준 17곳 값 변경·행 수 변화 없음). **주의:** 이 PC에서
+  읽기 전용 빌드를 돌리면 `etl/runtime/apartment_supplement/apartment_base_supplement.csv`(묶음 밖, 10-07부터 읽힘) 때문에
+  약 360행이 늘어 기준선과 항상 어긋남 — 로컬 재잠금 때는 그 파일을 잠시 치웠다가 되돌릴 것. CI는 영향 없음.
+  빌드가 덮어쓴 `local_outputs_20260320`은 백업으로 원상 복구했고, 백업
+  `etl/runtime/backup-local_outputs_20260320-before-relock-20261017`(1.3GB)은 지워도 됨.
+- 운영 데이터는 다음 월간 ETL 업로드 때 반영. 상세는 `OPERATION_PLAN.md` Update Log 2026-10-17.
+
 ### 2026-10-15 (2): SEO·콘텐츠 시즌 대응과 홈 두 줄 (운영 `release` = `00b9021`)
 
 - 추가(`00b9021`): 홈 예시 아파트 카드에 교육환경(400m·800m 학원 수, 분야 상위 4개), 휴대폰은 가로 스크롤 없이 쌓기.

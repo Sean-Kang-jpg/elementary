@@ -211,14 +211,20 @@ function appReducer(state: AppState, action: AppAction): AppState {
         apartments: action.payload
       }
 
-    case 'SET_SELECTED_SCHOOL':
+    // SchoolDetail reloads the assigned apartments only when the school id
+    // changes, so re-selecting the school already open must keep its list:
+    // clearing it showed "배정 아파트 0개" after search → apartment → the same
+    // school's marker (found while recording reels, 2026-10-16).
+    case 'SET_SELECTED_SCHOOL': {
+      const sameSchool = !!action.payload && action.payload.school_id === state.selectedSchool?.school_id
       return {
         ...state,
         selectedMapPlace: null,
         selectedSchool: action.payload,
         selectedApartment: null,
-        apartments: [],
+        apartments: sameSchool ? state.apartments : [],
       }
+    }
 
     case 'SET_SELECTED_APARTMENT':
       return {
@@ -229,16 +235,24 @@ function appReducer(state: AppState, action: AppAction): AppState {
         selectedApartment: action.payload,
       }
 
-    case 'OPEN_SEARCHED_APARTMENT':
+    // Same rule from the other side: searching an apartment of the school that
+    // is already open must not shrink its loaded list to that one apartment.
+    case 'OPEN_SEARCHED_APARTMENT': {
+      const { school, apartment } = action.payload
+      const sameSchool = school.school_id === state.selectedSchool?.school_id
+      const apartments = !sameSchool
+        ? [apartment]
+        : state.apartments.some((item) => item.id === apartment.id) ? state.apartments : [...state.apartments, apartment]
       return {
         ...state,
         mapTopic: 'assignment',
         mapLayers: layersForTopic(state.mapLayers, 'assignment'),
         selectedMapPlace: null,
-        selectedSchool: action.payload.school,
-        selectedApartment: action.payload.apartment,
-        apartments: [action.payload.apartment],
+        selectedSchool: school,
+        selectedApartment: apartment,
+        apartments,
       }
+    }
 
     // 반응형 관련
     case 'SET_BREAKPOINT':

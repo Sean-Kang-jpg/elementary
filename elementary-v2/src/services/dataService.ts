@@ -5,6 +5,7 @@ import { regionCenter, regionHasCityLevel, regionsIntersectingBounds } from '../
 import { getSchoolNeighborhoodLabel } from '../utils/clusterUtils'
 import { DEFAULT_CENTERS, generateCacheKey, getDisplayMode } from '../utils/mapUtils'
 import { distanceKm, type NearbySchool } from '../utils/nearbySchools'
+import { plausibleParkingRatio } from '../utils/parking'
 
 export interface RegionData {
   region: string
@@ -557,7 +558,7 @@ const toApartment = (row: ApartmentServingRow): Apartment => {
     built_year: builtYear,
     age: builtYear ? currentYear - builtYear : 0,
     parking_total: numberValue(row.parking_total),
-    parking_per_household: numberValue(row.parking_per_household),
+    parking_per_household: plausibleParkingRatio(numberValue(row.parking_per_household)),
     underground_parking: numberValue(row.parking_underground),
     ground_parking: numberValue(row.parking_ground),
     public_rental_units: numberValue(row.public_rental_units),
@@ -765,7 +766,7 @@ const loadReportScatterRows = async (): Promise<ReportScatterRow[]> => {
     if (!school) return []
     const households = row.households == null || row.households === '' ? null : numberValue(row.households)
     const builtYear = row.use_approval_year == null || row.use_approval_year === '' ? null : numberValue(row.use_approval_year)
-    const parkingRatio = row.parking_per_household == null || row.parking_per_household === '' ? null : numberValue(row.parking_per_household)
+    const parkingRatio = row.parking_per_household == null || row.parking_per_household === '' ? null : plausibleParkingRatio(numberValue(row.parking_per_household))
     const undergroundParking = row.parking_underground == null || row.parking_underground === '' ? null : numberValue(row.parking_underground)
     return [{
       schoolId: String(row.school_id),

@@ -103,7 +103,7 @@ export interface Apartment {
   
   // 주차 정보
   parking_total: number // 총 주차대수
-  parking_per_household: number // 세대당 주차대수
+  parking_per_household: number | null // 세대당 주차대수 (null: 원천 세대수가 의심스러워 숨김, utils/parking.ts)
   underground_parking: number // 지하주차
   ground_parking: number // 지상주차
   

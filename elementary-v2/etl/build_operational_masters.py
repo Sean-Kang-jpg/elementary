@@ -349,6 +349,31 @@ def source_value(kapt_value: Any, base_value: Any, use_kapt: bool, kapt_as_of: A
     return base_value, "apartment_base_2024_10"
 
 
+# A K-apt household count far below the base count can be a broken K-apt row:
+# 원효산호 is 554 households in the 2024-10 base and arrived from K-apt
+# 2026-10-02 as 9, which published 514 spaces as 57.1 per household. It can
+# also be right - several base rows lump a multi-단지 complex that K-apt
+# splits (K-apt 1,270 against a base 4,774) - so a low count alone decides
+# nothing. Parking breaks the tie: the K-apt count is rejected only when it is
+# zero or makes the parking ratio impossible. Measured on the 2026-10 capital
+# outputs, a size-only rule changed 29 complexes and wrongly overrode about ten
+# split complexes; this one keeps those on K-apt. A larger K-apt count is never
+# overridden - a base row that is one building is smaller than K-apt's total.
+KAPT_HOUSEHOLD_DROP_MAX = 0.5
+KAPT_HOUSEHOLD_DROP_MIN_BASE = 30
+PARKING_RATIO_MAX = 5  # same limit as the app's src/utils/parking.ts
+
+
+def kapt_household_outlier(kapt_households: int | None, base_households: int | None, parking_total: int | None) -> bool:
+    if kapt_households is None or base_households is None or base_households < KAPT_HOUSEHOLD_DROP_MIN_BASE:
+        return False
+    if kapt_households >= base_households * KAPT_HOUSEHOLD_DROP_MAX:
+        return False
+    if kapt_households == 0:
+        return True
+    return parking_total is not None and parking_total / kapt_households > PARKING_RATIO_MAX
+
+
 def student_statistics_year(status: Any) -> int | None:
     match = re.fullmatch(r"observed_schoolinfo_(\d{4})", str(status or ""))
     if match:
@@ -422,6 +447,16 @@ def build_complex_master(apartments: list[dict[str, str]]) -> list[dict[str, Any
         kapt_as_of = first.get("kapt_as_of")
         name, name_source = source_value(first.get("kapt_name"), first.get("latest_known_name") or first["apt_nm"], use_kapt, kapt_as_of)
         households, households_source = source_value(integer(first.get("kapt_households")), integer(first.get("canonical_households")), use_kapt, kapt_as_of)
+        # Only a single-component complex can be compared: a shared group's K-apt
+        # count is the whole complex while each component carries its own part.
+        # The component already carries property_review_required, so the row
+        # stays in the review queue.
+        if use_kapt and not is_shared and kapt_household_outlier(
+            integer(first.get("kapt_households")),
+            integer(first.get("canonical_households")),
+            integer(first.get("kapt_parking_total")),
+        ):
+            households, households_source = integer(first.get("canonical_households")), "apartment_base_kapt_outlier"
         building_count, building_source = source_value(integer(first.get("kapt_building_count")), integer(first.get("canonical_building_count")), use_kapt, kapt_as_of)
         approval_year, approval_source = source_value(integer(first.get("kapt_use_approval_year")), integer(first.get("canonical_use_approval_year")), use_kapt, kapt_as_of)
         parking_total, parking_source = source_value(integer(first.get("kapt_parking_total")), integer(first.get("canonical_parking_total")), use_kapt, kapt_as_of)

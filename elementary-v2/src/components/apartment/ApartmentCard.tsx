@@ -21,8 +21,8 @@ const scaleLabel = (households: number) => {
 export default function ApartmentCard({ apartment, academySummary, compact = false, onClick }: ApartmentCardProps) {
   const age = apartmentAge(apartment.age, apartment.built_year)
   const ageColor = APARTMENT_PALETTE[apartmentEra(age)]
-  const parkingRatio = Math.max(apartment.parking_per_household || 0, 0)
-  const parkingPercent = Math.min(parkingRatio / 1.5 * 100, 100)
+  const parkingRatio = apartment.parking_per_household === null ? null : Math.max(apartment.parking_per_household, 0)
+  const parkingPercent = parkingRatio === null ? 0 : Math.min(parkingRatio / 1.5 * 100, 100)
   const totalAcademies = academySummary
     ? academySummary.core_institution_count + academySummary.extended_institution_count
     : null
@@ -65,7 +65,9 @@ export default function ApartmentCard({ apartment, academySummary, compact = fal
           <span className="mt-3 block">
             <span className="flex items-center justify-between text-xs text-gray-600">
               <span className="inline-flex items-center gap-1"><CarFront size={13} aria-hidden="true" />세대당 주차</span>
-              <strong className={parkingRatio >= 1 ? 'text-emerald-700' : parkingRatio >= 0.7 ? 'text-amber-700' : 'text-rose-700'}>{parkingRatio.toFixed(1)}대</strong>
+              {parkingRatio === null
+                ? <strong className="text-gray-500">확인 중</strong>
+                : <strong className={parkingRatio >= 1 ? 'text-emerald-700' : parkingRatio >= 0.7 ? 'text-amber-700' : 'text-rose-700'}>{parkingRatio.toFixed(1)}대</strong>}
             </span>
             <span className="mt-1 block h-1.5 overflow-hidden rounded-full bg-gray-100">
               <span className="block h-full rounded-full bg-teal-600" style={{ width: `${parkingPercent}%` }} />

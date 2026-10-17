@@ -52,6 +52,14 @@ const escapeHtml = (value) =>
 
 const number = (value) => (value == null || value === '' ? null : Number(value))
 const withCommas = (value) => (value == null ? null : Number(value).toLocaleString('ko-KR'))
+// Same rule as the app's src/utils/parking.ts (this file cannot import it):
+// above 5 spaces per household the upstream household count is wrong, so the
+// figure is left out rather than published.
+const PARKING_RATIO_MAX = 5
+const plausibleParkingRatio = (value) => {
+  const ratio = number(value)
+  return ratio != null && Number.isFinite(ratio) && ratio <= PARKING_RATIO_MAX ? ratio : null
+}
 
 const supabase = () => {
   const url = process.env.VITE_SUPABASE_URL || process.env.SUPABASE_URL
@@ -590,7 +598,7 @@ const apartmentPage = async (key) => {
       ['함께 등록된 동 합계', group.length > 1 ? `${withCommas(group.length)}개 동 · ${withCommas(groupHouseholds)}세대` : null],
       ['동 수', complex.building_count || null],
       ['사용승인연도', complex.use_approval_year || null],
-      ['세대당 주차', complex.parking_per_household],
+      ['세대당 주차', plausibleParkingRatio(complex.parking_per_household)],
       ['공공임대 비율', number(complex.public_rental_ratio) ? `${complex.public_rental_ratio}%` : null],
       ['주변 학원·교습소·체육도장', academyAll != null ? `600m 이내 ${withCommas(academyCore || 0)}곳 · 800m 이내 ${withCommas(academyAll)}곳` : null],
     ],

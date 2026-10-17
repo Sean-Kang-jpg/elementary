@@ -12,7 +12,7 @@
     {
       "name": "apartment_complex_master_v1.json",
       "rows": 20164,
-      "sha256": "1db43cbfe8f4fae5008b20991e39271abeea2855725ef98bb7a12f30362dc631"
+      "sha256": "f95de688fdb285f5c0c0879595a4105b6ef9c8831cdcfc038be2c5843c3f2a43"
     },
     {
       "name": "apartment_assignment_units_v1.json",
@@ -27,7 +27,7 @@
     {
       "name": "school_apartment_serving_v1.json",
       "rows": 20850,
-      "sha256": "e85b9f17de8ad733c437180a9686b01b1f550a52b103fb9176935ae1e631a206"
+      "sha256": "a5bb34e935454de6a4cb5140143d0c1e52c8f922ada5b4001bb07fe93b9a44ec"
     },
     {
       "name": "apartment_name_history_operational_v1.csv",
@@ -54,6 +54,11 @@
     {
       "relocked_at": "2026-10-04T11:46:13.812695+00:00",
       "reason": "2026-10-04: school addresses adopt Schoolinfo's district for 인천's 2026-07-01 reform (80 schools); only school_master_operational_v1 changes",
+      "row_changes": {}
+    },
+    {
+      "relocked_at": "2026-10-16T21:59:44.582728+00:00",
+      "reason": "2026-10-17: build_complex_master keeps the base household count for a single K-apt complex whose K-apt count is under half a base of 30+ and is zero or puts parking above 5 per household (source apartment_base_kapt_outlier; 원효산호 9 -> 554). 17 bundle complexes change value; no row counts change. Relocked without the local etl/runtime/apartment_supplement file, which is not part of the bundle.",
       "row_changes": {}
     }
   ]
