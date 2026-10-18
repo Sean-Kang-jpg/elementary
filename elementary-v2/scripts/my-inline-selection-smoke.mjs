@@ -60,6 +60,7 @@ try {
   assert.deepEqual([entries.find(entry => entry.label === 'QA 시간미확인').start, entries.find(entry => entry.label === 'QA 시간미확인').end], [null,null])
   console.log('PASS: known weekday with unknown course times remains explicitly unknown')
   await card.getByRole('button', { name: '외부 학원', exact: true }).click()
+  assert.match(await card.locator('.my-academy-picker').textContent(), /학교 건물과의 거리는 아니에요/)
   assert.equal(await page.evaluate(() => window.qaAcademyReads), 0)
   await card.getByRole('button', { name: '수학', exact: true }).click()
   await card.locator('.my-academy-results button').first().waitFor()

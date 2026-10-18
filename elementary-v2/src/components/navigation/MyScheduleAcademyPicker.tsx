@@ -25,7 +25,7 @@ export default function MyScheduleAcademyPicker({ schoolId, onChoose }: { school
     .map((institution) => ({ ...institution, addressId: address.address_id, distance: address.straight_distance_m })))
     .sort((a, b) => a.distance - b.distance || a.name.localeCompare(b.name, 'ko'))
   return <section className="my-academy-picker" aria-label="주변 학원 선택">
-    <p className="my-help">선택한 학교 기준 직선거리 800m 이내예요. 먼저 분야를 선택하세요.</p>
+    <p className="my-help">선택한 학교의 배정 아파트 생활권에서 찾아요. 가까운 배정 아파트 기준 직선거리 800m 이내이며, 학교 건물과의 거리는 아니에요.</p>
     <div className="my-academy-topics" role="group" aria-label="학원 분야">
       {ACADEMY_CATEGORIES.map((item) => <button type="button" key={item.key} aria-pressed={category === item.key}
         onClick={() => { setCategory(item.key); onChoose('') }}>{item.key === 'arts' ? '미술·음악·무용' : item.label}</button>)}
@@ -36,7 +36,7 @@ export default function MyScheduleAcademyPicker({ schoolId, onChoose }: { school
         : data === null ? <p role="status" className="my-help">근처 학원을 찾고 있어요…</p>
           : <ul className="my-academy-results" aria-label="선택 분야 근처 학원 목록">
             {rows.map((item, index) => <li key={`${item.addressId}-${item.name}-${index}`}><button type="button" onClick={() => onChoose(`${ACADEMY_CATEGORIES.find((item) => item.key === category)!.label} · ${item.name}`.slice(0, 80))}>
-              <b>{item.name}</b><span>{item.type} · 직선거리 {Math.round(item.distance).toLocaleString()}m</span>
+              <b>{item.name}</b><span>{item.type} · 가까운 배정 아파트에서 {Math.round(item.distance).toLocaleString()}m</span>
             </button></li>)}
             {!rows.length && <li className="my-help">조건에 맞는 학원이 조회되지 않았어요. 분야·검색어를 바꾸거나 직접 입력할 수 있어요.</li>}
           </ul>}
