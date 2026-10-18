@@ -43,7 +43,12 @@ const clickPoint = p => { mouse(p); run('mouse', 'down'); run('mouse', 'up') }
 const times = (start, end) => `document.querySelector('.my-calendar-form input[type=time]').value==='${start}' && document.querySelectorAll('.my-calendar-form input[type=time]')[1].value==='${end}'`
 // agent-browser's time-input fill does not dispatch React's native input events on Windows.
 const fillTime = (index, value) => evaluate(`(() => { const input=document.querySelectorAll('.my-calendar-form input[type=time]')[${index}];Object.getOwnPropertyDescriptor(HTMLInputElement.prototype,'value').set.call(input,${JSON.stringify(value)});input.dispatchEvent(new Event('input',{bubbles:true}));input.dispatchEvent(new Event('change',{bubbles:true}));return true })()`)
-const save = label => { run('fill', '.my-calendar-form input:not([type])', label); run('click', '.my-calendar-form button[type=submit]') }
+const submit = () => {
+  // The Windows CLI's nearest-edge scroll can put an inline button behind the fixed GNB.
+  evaluate("document.querySelector('.my-calendar-form button[type=submit]').scrollIntoView({block:'center'}); true")
+  run('click', '.my-calendar-form button[type=submit]')
+}
+const save = label => { run('fill', '.my-calendar-form input:not([type])', label); submit() }
 const chooseManual = () => run('click', '.my-add-card__tabs button:last-child')
 try {
   run('set', 'viewport', '1280', '1000')
@@ -120,7 +125,7 @@ try {
   save('독서')
   check("document.querySelector('.my-calendar-form [role=alert]').textContent.length>0", 'reversed times are rejected without closing the editor')
   fillTime(1, '15:40')
-  run('click', '.my-calendar-form button[type=submit]')
+  submit()
   await wait(`${entries}.some(e=>e.label==='독서' && e.weekdays[0]===4 && e.start===905 && e.end===940)`, 'mobile form can change the day and save an exact five-minute range')
   run('click', '.my-week-nav button:first-child')
   clickPoint(point(1, 900))
