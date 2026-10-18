@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { useLayoutEffect, useRef, useState } from 'react'
 import { computeWeek, WEEKDAYS, type DayPlan } from '../../utils/schedule/engine'
 import { CALENDAR_END, CALENDAR_HOURS, CALENDAR_START, careResumptions, layoutCalendarBlocks, scheduleEntryHeading, scheduleKindLabel } from '../../utils/schedule/calendar'
 import { formatMinutes } from '../../utils/schedule/fromSchoolData'
@@ -9,6 +9,8 @@ import useCalendarInteraction from './useCalendarInteraction'
 import ScheduleSubjectIcon from './ScheduleSubjectIcon'
 import MorningCalendarBand from './MorningCalendarBand'
 import { isMorningCalendarCare, morningCalendarView } from '../../utils/schedule/morningCalendar'
+import MyScheduleDay from './MyScheduleDay'
+import ScheduleAddCard from './ScheduleAddCard'
 
 const DAYS = ['월', '화', '수', '목', '금']
 const STATUS: Record<ParticipationStatus, string> = { considering: '후보', planned: '계획에 포함', applying: '신청 중', confirmed: '참여 확정', rejected: '미선정', cancelled: '취소' }
@@ -24,26 +26,38 @@ const compactTime = (entry: ScheduleEntry, day: DayPlan) => {
   return `${start === null ? entry.startsAfterSchool ? '하교 후' : '시작 미확인' : formatMinutes(start)}–${entry.end === null ? '종료 미확인' : formatMinutes(entry.end)}`
 }
 
-export default function MyScheduleWeek({ entries, onSave }: { entries: ScheduleEntry[]; onSave: (change: CalendarChange) => ScheduleEntry | null }) {
+export default function MyScheduleWeek({ schoolId, entries, onSave, onAdd, onRemove, onToggleDay }: {
+  schoolId: string; entries: ScheduleEntry[]; onSave: (change: CalendarChange) => ScheduleEntry | null
+  onAdd: (entry: ScheduleEntry) => boolean; onRemove: (id: string) => boolean
+  onToggleDay: (entry: ScheduleEntry, weekday: Weekday) => boolean
+}) {
   const scroller = useRef<HTMLDivElement>(null)
   const [activeDay, setActiveDay] = useState<Weekday>(1)
+  const [view, setView] = useState<'day' | 'week'>('day')
   const [selected, setSelected] = useState<{ id: string; weekday: Weekday } | null>(null)
   const [editor, setEditor] = useState<CalendarChange | null>(null)
+  const [adding, setAdding] = useState<CalendarRange | null>(null)
   const [cursor, setCursor] = useState<CalendarRange | null>(null)
   const [notice, setNotice] = useState('')
+  useLayoutEffect(() => {
+    const node = scroller.current
+    const active = node?.querySelector<HTMLElement>('.my-week__day--active')
+    const first = node?.firstElementChild as HTMLElement | null
+    if (node && active && first) node.scrollLeft = active.offsetLeft - first.offsetLeft
+  }, [view])
   const days = computeWeek(entries, { from: 'dismissal', to: CALENDAR_END })
   const morning = morningCalendarView(entries)
   const selectedEntry = entries.find((entry) => entry.id === selected?.id && !['cancelled', 'rejected'].includes(entry.participation))
   const selectedDay = days.find((day) => day.weekday === selected?.weekday)
   const jumpTo = (weekday: Weekday) => {
+    setActiveDay(weekday)
     const node = scroller.current
     if (!node) return
     const day = node.children[weekday - 1] as HTMLElement
     const first = node.children[0] as HTMLElement
     node.scrollTo({ left: day.offsetLeft - first.offsetLeft, behavior: 'auto' })
-    setActiveDay(weekday)
   }
-  const createAt = (range: CalendarRange) => { setEditor({ ...range, label: '', kind: 'personal' }); setCursor(null); setNotice('') }
+  const createAt = (range: CalendarRange) => { setAdding(range); setCursor(null); setNotice('') }
   const editAt = (entry: ScheduleEntry, weekday: Weekday) => {
     if (!canEditCalendarEntry(entry) || entry.kind === 'school') return
     const start = entry.start ?? days.find((day) => day.weekday === weekday)?.dismissal.at ?? 14 * 60
@@ -63,16 +77,25 @@ export default function MyScheduleWeek({ entries, onSave }: { entries: ScheduleE
     save({ ...range, original, fromWeekday, label: original.label, kind: original.kind })
   } })
   const preview = interaction.preview ?? cursor
-  return <div className="my-week-section" onKeyDown={(event) => {
+  const composer = adding ? <ScheduleAddCard key={adding.weekday} schoolId={schoolId} entries={entries} range={adding} onAdd={onAdd} onRemove={onRemove} onToggleDay={onToggleDay} onSave={save}
+    onChangeDay={(weekday) => { setSelected(null); jumpTo(weekday); setAdding({ ...adding, weekday }) }} onClose={() => setAdding(null)} /> : undefined
+  return <div className={`my-week-section my-week-section--${view}`} onKeyDown={(event) => {
     if (event.key === 'Escape' && (interaction.onEscape() || cursor)) { setCursor(null); event.preventDefault(); event.stopPropagation() }
   }}>
-    <div className="my-calendar-toolbar"><div><h3>요일별 시간표</h3><span>{morning ? '아침 · 정규수업 축약 · 오후' : '12:00~19:00'} · 5분 단위</span></div><button type="button" className="my-button my-calendar-add" onClick={() => createAt(calendarRange(activeDay, 14 * 60))}>+ 일정 추가</button></div>
+    <div className="my-calendar-toolbar"><div><span className="my-calendar-eyebrow">{view === 'day' ? '매주 반복되는 우리 아이의 하루' : `${morning ? '아침 · 정규수업 축약 · 오후' : '12:00~19:00'} · 5분 단위`}</span><h3>{view === 'day' ? `${DAYS[activeDay - 1]}요일 시간표` : '주간 시간표 편집'}</h3></div><button type="button" className="my-button my-calendar-add" onClick={() => createAt(calendarRange(activeDay, 14 * 60))}>+ 일정 추가</button></div>
+    <div className="my-calendar-view" role="group" aria-label="시간표 보기 방식">
+      <button type="button" aria-pressed={view === 'day'} onClick={() => { interaction.onEscape(); setCursor(null); setView('day') }}>하루 보기</button>
+      <button type="button" aria-pressed={view === 'week'} onClick={() => { setCursor(null); setView('week') }}>주간 편집</button>
+    </div>
+    {view === 'week' && <>
     <p className="my-help my-calendar-instructions" id="my-calendar-instructions">오후 빈칸을 누르거나 드래그해 일정을 추가하세요. 직접 입력한 오후 일정은 끌어서 옮길 수 있어요.</p>
     {morning && <p className="my-help my-calendar-instructions">아침돌봄부터 시간순으로 보여요. 가운데 정규수업 구간은 축약했으며 시간 간격이 같지 않아요. 등교시각·이동 조건은 별도 확인이 필요해요.</p>}
     <p className="my-help my-week-hint">요일은 옆으로 넘겨 볼 수 있어요. 모바일에서는 빈칸을 누른 뒤 시간과 요일을 조정할 수 있어요.</p>
+    </>}
     <div className="my-week-nav" role="group" aria-label="시간표 요일 이동">
-      {WEEKDAYS.map((weekday) => <button type="button" key={weekday} aria-pressed={activeDay === weekday} aria-controls={`my-week-day-${weekday}`} onClick={() => jumpTo(weekday)}>{DAYS[weekday - 1]}</button>)}
+      {WEEKDAYS.map((weekday) => <button type="button" key={weekday} aria-label={`${DAYS[weekday - 1]}요일`} aria-pressed={activeDay === weekday} aria-controls={view === 'day' ? `my-agenda-day-${activeDay}` : `my-week-day-${weekday}`} onClick={() => { setSelected(null); setAdding(null); jumpTo(weekday) }}><span>{view === 'day' ? ['MON', 'TUE', 'WED', 'THU', 'FRI'][weekday - 1] : DAYS[weekday - 1]}</span>{view === 'day' && <><b>{DAYS[weekday - 1]}요일</b><i aria-hidden="true" /></>}</button>)}
     </div>
+    {view === 'day' ? <MyScheduleDay day={days[activeDay - 1]} entries={entries} selectedId={selected?.weekday === activeDay ? selected.id : undefined} onSelect={(id) => setSelected({ id, weekday: activeDay })} onCreate={() => createAt(calendarRange(activeDay, 14 * 60))} composer={composer} /> : <>
     <div className="my-calendar" data-testid={morning ? 'morning-care-week' : undefined} aria-label={morning ? '아침돌봄부터 저녁 7시까지, 정규수업 구간 축약 시간표' : '오후 12시부터 저녁 7시까지 시간표'}>
       <div className="my-calendar__axis" aria-hidden="true">
         {morning && <>
@@ -153,6 +176,8 @@ export default function MyScheduleWeek({ entries, onSave }: { entries: ScheduleE
         })}
       </div>
     </div>
+    {composer}
+    </>}
     {selectedEntry && selectedDay && <div className="my-week-detail" role="status">
       <div className="my-course-picker__heading"><b>{DAYS[selectedDay.weekday - 1]}요일 · {selectedEntry.label}</b><button type="button" className="my-button" onClick={() => setSelected(null)}>닫기</button></div>
       <p>{scheduleKindLabel(selectedEntry)} · {timing(selectedEntry, selectedDay)} · {selectedEntry.kind === 'school' ? '자료 기반 예상' : STATUS[selectedEntry.participation]}</p>
@@ -161,6 +186,6 @@ export default function MyScheduleWeek({ entries, onSave }: { entries: ScheduleE
     </div>}
     <p className="my-calendar-feedback" aria-live="polite">{notice}</p>
     {editor && <CalendarEntryDialog draft={editor} onSave={save} onClose={() => setEditor(null)} />}
-    <p className="my-help my-calendar-help">{morning ? '아침돌봄은 선택한 요일에만 표시해요. 정규수업은 위에서 축약하고 오후에는 예상 하교까지 수업 중으로 표시해요. 19시 이후 일정은 표시 범위를 넘어 이어질 수 있어요.' : '시간이 확인된 일정만 시간축에 배치해요. 정규수업은 예상 하교 시각까지 표시하며, 12시 이전·19시 이후 일정은 표시 범위를 넘어 이어질 수 있어요.'}</p>
+    {view === 'week' && <p className="my-help my-calendar-help">{morning ? '아침돌봄은 선택한 요일에만 표시해요. 정규수업은 위에서 축약하고 오후에는 예상 하교까지 수업 중으로 표시해요. 19시 이후 일정은 표시 범위를 넘어 이어질 수 있어요.' : '시간이 확인된 일정만 시간축에 배치해요. 정규수업은 예상 하교 시각까지 표시하며, 12시 이전·19시 이후 일정은 표시 범위를 넘어 이어질 수 있어요.'}</p>}
   </div>
 }

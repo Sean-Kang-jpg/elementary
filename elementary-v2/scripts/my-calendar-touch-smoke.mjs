@@ -17,10 +17,12 @@ try {
     localStorage.setItem('elementary-schedule-plans-v1', JSON.stringify({ version: 1, activeSchoolId: null, plans: [{ schoolId: 'qa-touch', schoolName: '터치 검사용 학교', entryYear: null, updatedAt: '2026-10-15', entries: [{ id: 'touch-entry', label: '피아노', kind: 'personal', weekdays: [1], start: 840, end: 900, evidence: 'estimated', participation: 'planned' }] }] }))
   })
   await page.reload()
+  await page.getByRole('button', { name: '주간 편집', exact: true }).click()
   await page.locator('.my-week-section').scrollIntoViewIfNeeded()
   const rect = await page.locator('#my-week-day-1 .my-week__timeline').boundingBox()
   await page.touchscreen.tap(rect.x + rect.width / 2, rect.y + 300)
-  const dialog = page.locator('.my-calendar-dialog[open]')
+  await page.locator('.my-add-card').getByRole('button', { name: '직접 입력', exact: true }).click()
+  const dialog = page.locator('.my-add-card .my-calendar-form')
   await dialog.waitFor()
   console.log('PASS: real touch tap creates a mobile editor')
   await dialog.getByLabel('일정 이름').fill('독서')
@@ -49,7 +51,7 @@ try {
   for (const delta of [20, 50, 80, 120]) await touch('touchMove', x - delta, y)
   await touch('touchEnd', x - 120, y)
   await page.waitForFunction(() => document.querySelector('.my-week').scrollLeft > 30)
-  assert.equal(await page.locator('.my-calendar-dialog').count(), 0)
+  assert.equal(await page.locator('.my-add-card').count(), 0)
   console.log('PASS: horizontal touch scrolling does not accidentally create an event')
   await page.waitForFunction(() => {
     const left = document.querySelector('.my-week').scrollLeft

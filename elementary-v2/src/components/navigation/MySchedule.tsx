@@ -9,6 +9,7 @@ import { displaySchoolName } from '../../utils/schoolName'
 import MyAfterschoolPicker, { type EntryDraft } from './MyAfterschoolPicker'
 import MyScheduleWeek from './MyScheduleWeek'
 import { applyCalendarChange, type CalendarChange } from '../../utils/schedule/editing'
+import { toggleProgramDay } from '../../utils/schedule/programSelection'
 
 const DAYS = ['월', '화', '수', '목', '금']
 const STATUS: Record<ParticipationStatus, string> = {
@@ -102,7 +103,8 @@ export default function MySchedule({ schools, entryYear }: { schools: FavoriteRe
             {entryYear !== plan.entryYear && ' · 현재 입학연도와 달라요. 자료를 다시 확인해 주세요.'}
             {!schools.some((s) => s.id === plan.schoolId) && ' · 관심 학교에서 삭제한 초안이에요. 시간표는 유지돼요.'}
           </p>
-          <MyScheduleWeek key={`week-${plan.schoolId}`} entries={plan.entries} onSave={saveCalendarEntry} />
+          <MyScheduleWeek key={`week-${plan.schoolId}`} schoolId={plan.schoolId} entries={plan.entries} onSave={saveCalendarEntry} onAdd={addEntry} onRemove={removeEntry}
+            onToggleDay={(entry, weekday) => changeEntries((entries) => toggleProgramDay(entries, entry, weekday))} />
           <details className="my-program-selection" key={`selection-${plan.schoolId}`}><summary>방과후/맞춤형/돌봄 선택하기</summary>
             <MyAfterschoolPicker key={plan.schoolId} schoolId={plan.schoolId} entries={plan.entries} onAdd={addEntry} onRemove={removeEntry}
               onDraft={(value) => { setDraft((current) => ({ value, schoolId: plan.schoolId, nonce: (current?.nonce ?? 0) + 1 })); setMessage('요일이 적혀 있지 않은 반이에요. 아래 양식에서 요일을 골라 저장해 주세요.') }} />

@@ -27,6 +27,7 @@ try {
     localStorage.setItem('elementary-schedule-plans-v1', JSON.stringify({ version: 1, activeSchoolId: null, plans: [{ schoolId: 'qa-schedule', schoolName: '아침 시간표 검사용 학교', entryYear: null, updatedAt: '2026-10-15', entries }] }))
   })
   await page.reload()
+  await page.getByRole('button', { name: '주간 편집', exact: true }).click()
   await page.locator('[data-testid=morning-care-week]').waitFor()
   const stored = await page.evaluate(() => localStorage.getItem('elementary-schedule-plans-v1'))
   assert.equal(await page.locator('[data-band=morning]').count(), 2)

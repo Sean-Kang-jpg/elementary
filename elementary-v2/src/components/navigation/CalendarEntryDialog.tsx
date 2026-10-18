@@ -11,12 +11,6 @@ export default function CalendarEntryDialog({ draft, onSave, onClose }: {
 }) {
   const dialog = useRef<HTMLDialogElement>(null)
   const titleId = useId()
-  const [label, setLabel] = useState(draft.label)
-  const [kind, setKind] = useState(draft.kind)
-  const [weekday, setWeekday] = useState(draft.weekday)
-  const [start, setStart] = useState(formatMinutes(draft.start))
-  const [end, setEnd] = useState(formatMinutes(draft.end))
-  const [error, setError] = useState('')
   useEffect(() => {
     const node = dialog.current
     node?.showModal()
@@ -24,7 +18,23 @@ export default function CalendarEntryDialog({ draft, onSave, onClose }: {
   }, [])
   return <dialog className="my-calendar-dialog" ref={dialog} aria-labelledby={titleId} onCancel={(event) => { event.preventDefault(); onClose() }}>
     <h3 id={titleId}>{draft.original ? '일정 수정' : '일정 추가'}</h3>
-    <form onSubmit={(event) => {
+    <CalendarEntryForm draft={draft} onSave={onSave} onClose={onClose} />
+  </dialog>
+}
+
+export function CalendarEntryForm({ draft, onSave, onClose, unknownTimes = false }: {
+  draft: CalendarChange
+  onSave: (change: CalendarChange) => ScheduleEntry | null
+  onClose: () => void
+  unknownTimes?: boolean
+}) {
+  const [label, setLabel] = useState(draft.label)
+  const [kind, setKind] = useState(draft.kind)
+  const [weekday, setWeekday] = useState(draft.weekday)
+  const [start, setStart] = useState(unknownTimes ? '' : formatMinutes(draft.start))
+  const [end, setEnd] = useState(unknownTimes ? '' : formatMinutes(draft.end))
+  const [error, setError] = useState('')
+  return <form className="my-calendar-form" onSubmit={(event) => {
       event.preventDefault()
       const from = toMinutes(start), to = toMinutes(end)
       if (!label.trim() || from === null || to === null || from >= to) { setError('일정 이름과 시작·종료 시간을 확인해 주세요.'); return }
@@ -46,5 +56,4 @@ export default function CalendarEntryDialog({ draft, onSave, onClose }: {
       <p className="my-warning" role="alert">{error}</p>
       <div className="my-actions"><button type="submit" className="my-button my-button--primary">저장</button><button type="button" className="my-button" onClick={onClose}>취소</button></div>
     </form>
-  </dialog>
 }

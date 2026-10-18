@@ -30,6 +30,7 @@ try {
     localStorage.setItem('elementary-schedule-plans-v1', JSON.stringify({ version: 1, activeSchoolId: null, plans: [{ schoolId: 'qa-schedule', schoolName: '카드 디자인 검사용 학교', entryYear: null, updatedAt: '2026-10-15', entries }] }))
   })
   await page.reload()
+  await page.getByRole('button', { name: '주간 편집', exact: true }).click()
   await page.locator('.my-week__entry').first().waitFor()
   await page.waitForFunction(() => document.querySelector('.my-course-picker')?.getAttribute('aria-busy') === 'false')
   const inspect = () => page.evaluate(() => [...document.querySelectorAll('.my-week__entry')].every(card => {

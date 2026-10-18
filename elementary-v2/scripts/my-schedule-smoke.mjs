@@ -36,6 +36,7 @@ try {
   await wait("document.querySelector('.my-schedule > .my-field select')", 'isolated QA school selected')
   clickText('시간표 초안 만들기')
   await wait("document.querySelectorAll('.my-course-choice').length===7", 'care and per-section course choices load')
+  clickText('주간 편집')
   check("document.querySelector('.my-program-selection > summary').textContent==='방과후/맞춤형/돌봄 선택하기' && document.querySelector('.my-entry-form > summary').textContent==='추가 일정 입력하기' && document.querySelector('.my-week-section').compareDocumentPosition(document.querySelector('.my-program-selection')) & Node.DOCUMENT_POSITION_FOLLOWING", 'renamed selection and input menus follow the calendar')
   openChoices()
   check("[...document.querySelectorAll('.my-calendar__hours span')].map(e=>e.textContent).join(',')==='12:00,13:00,14:00,15:00,16:00,17:00,18:00,19:00'", 'fixed time axis runs from noon to 7pm')
