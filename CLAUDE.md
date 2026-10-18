@@ -65,6 +65,14 @@ npm run typecheck
 
 ## Uncommitted Work At Handoff
 
+### 2026-10-18: 파비콘·로고 교체 (`560faaf`, 운영 `release` = `560faaf`)
+
+- 옛 파란 핀 `favicon.svg`를 지우고 10/16 새 로고(`docs/assets/logo-source.png`, 릴스 `brand/logo.png`와 같은 그림)로 바꿨다.
+  `scripts/build-icons.py`(Pillow)가 `public/`에 `favicon.ico`(16·32·48, 투명), `icon-192.png`, `apple-touch-icon.png`(흰 바탕), `logo.png`(512, JSON-LD `Organization.logo`)를 만든다.
+  원본 타일이 흰 바탕과 거의 같은 색이라 작은 크기에서는 타일을 빼고 핀+지도만 오려 냈다.
+- 운영 확인: 세 파일 이미지로 서빙, `browser:smoke:public -- https://wherecho.co.kr` 통과. `/favicon.svg`는 이제 SPA 셸(HTML)로 떨어진다.
+  구글 검색결과의 아이콘은 재수집 후 바뀐다(며칠~몇 주).
+
 ### 2026-10-17: 릴스 녹화 중 찾은 버그 2건 (`6eb2862`, 운영 `release` = `6eb2862`)
 
 - 배포 검증(운영): `/admin/etl` 200, public smoke 66 PASS, 원효초 배정 아파트 13개 유지(3경로), 원효산호 "세대당 주차 확인 중"·
