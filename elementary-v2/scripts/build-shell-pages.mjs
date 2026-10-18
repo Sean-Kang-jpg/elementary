@@ -142,7 +142,7 @@ const homeLd = {
   '@context': 'https://schema.org',
   '@graph': [
     { '@type': 'WebSite', '@id': `${siteOrigin()}/#website`, name: copy.brand, alternateName: 'wherecho', url: `${siteOrigin()}/`, inLanguage: 'ko-KR', publisher: { '@id': `${siteOrigin()}/#organization` } },
-    { '@type': 'Organization', '@id': `${siteOrigin()}/#organization`, name: copy.brand, url: `${siteOrigin()}/`, logo: `${siteOrigin()}/favicon.svg`, description: '공식 학구도 기준 초등학교 배정 아파트, 학교 정보, 입학 준비 가이드' },
+    { '@type': 'Organization', '@id': `${siteOrigin()}/#organization`, name: copy.brand, url: `${siteOrigin()}/`, logo: `${siteOrigin()}/logo.png`, description: '공식 학구도 기준 초등학교 배정 아파트, 학교 정보, 입학 준비 가이드' },
   ],
 }
 const home = built

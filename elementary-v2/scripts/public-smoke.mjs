@@ -263,11 +263,11 @@ const assertFileServed = async (filePath, mustContain, { built = false } = {}) =
  * at it, and every KakaoTalk preview shows a broken thumbnail. So this checks
  * the content type and a plausible size, not the status code.
  */
-const assertImageServed = async (filePath) => {
+const assertImageServed = async (filePath, minBytes = 10_000) => {
   const response = await fetch(new URL(filePath, baseUrl).toString())
   const type = response.headers.get('content-type') || ''
   const bytes = response.ok ? (await response.arrayBuffer()).byteLength : 0
-  if (!response.ok || !type.startsWith('image/') || bytes < 10_000) {
+  if (!response.ok || !type.startsWith('image/') || bytes < minBytes) {
     throw new Error(`${filePath} is not served as an image (HTTP ${response.status}, ${type || 'no type'}, ${bytes} bytes)`)
   }
   process.stdout.write(`PASS: ${filePath} is served as ${type}, ${Math.round(bytes / 1024)} KB\n`)
@@ -330,7 +330,9 @@ try {
   await assertFileServed('/robots.txt', 'Sitemap:', { built: true })
   await assertFileServed('/sitemap.xml', '<sitemapindex', { built: true })
   await assertFileServed('/sitemap-schools-1.xml', '/school/', { built: true })
-  await assertFileServed('/favicon.svg', '<svg')
+  await assertImageServed('/favicon.ico', 1_000)
+  await assertImageServed('/apple-touch-icon.png')
+  await assertImageServed('/logo.png')
   await assertOriginsAgree()
 
   run(['set', 'viewport', '390', '844'])
