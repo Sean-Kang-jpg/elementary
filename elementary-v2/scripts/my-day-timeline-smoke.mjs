@@ -13,8 +13,8 @@ try {
   const page = await context.newPage()
   const errors = []
   page.on('pageerror', error => errors.push(error.message))
-  await page.goto(new URL('/my', base).href)
-  await page.locator('#my-title').waitFor()
+  await page.goto(new URL('/timetable', base).href)
+  await page.locator('#timetable-title').waitFor()
   await page.evaluate(() => {
     const entry = (id, kind, label, weekdays, start, end, extra = {}) => ({ id, kind, label, weekdays, start, end, evidence: 'school-plan', participation: 'planned', ...extra })
     const entries = [

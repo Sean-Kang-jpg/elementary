@@ -265,3 +265,50 @@
   font-size: 11px;
   font-weight: 700;
 }
+
+/* 예시 줄 아래 시간표 미리 짜보기 배너 (2026-10-19). 정적 홈도 같은 클래스를 쓴다(아이콘은 앱만). */
+.timetable-banner {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0 0 18px;
+  padding: 16px;
+  border: 1px solid #f6c9bb;
+  border-radius: var(--warm-radius);
+  background: linear-gradient(120deg, #ffe9df 0%, #fff4ec 100%);
+  color: var(--warm-text);
+  text-decoration: none;
+  box-shadow: var(--warm-shadow);
+}
+
+.timetable-banner__icon {
+  display: inline-grid;
+  flex: none;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  background: var(--warm-accent-strong);
+  color: #fff;
+}
+
+.timetable-banner strong {
+  display: block;
+  font-size: 15px;
+  word-break: keep-all;
+  font-weight: 800;
+  line-height: 1.35;
+}
+
+.timetable-banner small {
+  display: block;
+  margin-top: 3px;
+  color: var(--warm-muted);
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.timetable-banner > svg {
+  flex: none;
+  color: var(--warm-accent-strong);
+}

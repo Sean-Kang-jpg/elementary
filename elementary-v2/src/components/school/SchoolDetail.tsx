@@ -276,7 +276,7 @@ const SchoolDetail: React.FC<SchoolDetailProps> = ({ school, entryYear, isOpen, 
         </div>
       ) : currentView === 'care' ? (
         <div className="mx-auto max-w-4xl space-y-4 px-4 py-3">
-          <SchoolDayEstimateCard school={school} onOpenGuide={onOpenGuide} />
+          <SchoolDayEstimateCard school={school} onOpenGuide={onOpenGuide} planLink />
           <CareCenterList latitude={school.latitude} longitude={school.longitude} origin={{ type: 'school', id: school.school_id }} headingId="school-care-centers-title" />
         </div>
       ) : (

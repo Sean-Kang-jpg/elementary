@@ -52,8 +52,8 @@ const save = label => { run('fill', '.my-calendar-form input:not([type])', label
 const chooseManual = () => run('click', '.my-add-card__tabs button:last-child')
 try {
   run('set', 'viewport', '1280', '1000')
-  run('open', new URL('/my', base).href)
-  await wait("document.querySelector('#my-title')", 'MY opens')
+  run('open', new URL('/timetable', base).href)
+  await wait("document.querySelector('#timetable-title')", 'timetable page opens')
   evaluate(`(() => {
     const item=(id,label,weekdays,start,end,extra={})=>({id,label,weekdays,start,end,kind:'personal',evidence:'estimated',participation:'planned',term:'semester',...extra});
     localStorage.setItem('elementary-favorites-v1',JSON.stringify([{kind:'school',id:'qa-schedule',name:'시간표 조작 검사용 학교',address:'운영자료 아님',latitude:0,longitude:0}]));

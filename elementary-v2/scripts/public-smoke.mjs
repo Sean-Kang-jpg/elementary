@@ -302,13 +302,13 @@ const assertHomeAndShellSplit = async () => {
     process.stdout.write('PASS: app paths are not split here (no build served), checked on deploy only\n')
     return
   }
-  for (const appPath of ['/map', '/my', '/favorites', '/admin/etl']) {
+  for (const appPath of ['/map', '/my', '/favorites', '/timetable', '/admin/etl']) {
     const body = await (await fetch(new URL(appPath, baseUrl).toString())).text()
     if (/rel="canonical"/.test(body) || !body.includes('<div id="root"></div>')) {
       throw new Error(`${appPath} is not served the app shell - it names an address or carries prerendered content`)
     }
   }
-  process.stdout.write('PASS: /map, /my, /favorites and /admin/etl are served the app shell, not the home\n')
+  process.stdout.write('PASS: /map, /my, /favorites, /timetable and /admin/etl are served the app shell, not the home\n')
 
   // Guides and the FAQ are static pages with their own head and content, so a
   // crawler that runs no JavaScript reads them (ADR-008 section 4).

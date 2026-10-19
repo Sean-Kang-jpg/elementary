@@ -5,7 +5,7 @@ import { findRegion } from '../constants/regionRegistry'
  * 주소와 화면을 잇는다.
  *
  * 화면: 홈(`/`), 지도(`/map`과 상세), 가이드(`/guide`, `/guide/{slug}`), FAQ, 학습 준비(`/learn`, `/learn/{slug}`), 소식,
- * MY(`/my`, 옛 주소 `/favorites`), 개인정보처리방침, 지역 허브(`/area`, `/area/서울`,
+ * MY(`/my`, 옛 주소 `/favorites`), 시간표 미리 짜보기(`/timetable?school=B…`), 개인정보처리방침, 지역 허브(`/area`, `/area/서울`,
  * `/area/서울/강남구`). 지도 쪽에서는
  * 여전히 주소가 선택을 비춘다 — `/map`, `/school/…`, `/apt/…`는 같은 지도 위에서
  * 선택만 다른 같은 화면이고, 셋 사이를 오갈 때 지도 인스턴스를 다시 만들지 않는다.
@@ -32,17 +32,18 @@ export type Route =
   | { kind: 'faq' }
   | { kind: 'checklist' }
   | { kind: 'learn'; slug: string | null }
+  | { kind: 'timetable'; schoolId: string | null }
   | { kind: 'area'; path: string }
   | { kind: 'admin' }
   | { kind: 'school'; key: string }
   | { kind: 'apartment'; key: string }
 
 /** 화면 단위. 상세 두 종류는 지도 화면 위의 선택이다. */
-export type AppView = 'home' | 'map' | 'guide' | 'faq' | 'checklist' | 'learn' | 'area' | 'news' | 'my' | 'privacy'
+export type AppView = 'home' | 'map' | 'guide' | 'faq' | 'checklist' | 'learn' | 'timetable' | 'area' | 'news' | 'my' | 'privacy'
 
 export const viewOf = (route: Route): AppView => {
   if (route.kind === 'school' || route.kind === 'apartment' || route.kind === 'map') return 'map'
-  if (route.kind === 'news' || route.kind === 'my' || route.kind === 'privacy' || route.kind === 'learn') return route.kind
+  if (route.kind === 'news' || route.kind === 'my' || route.kind === 'privacy' || route.kind === 'learn' || route.kind === 'timetable') return route.kind
   if (route.kind === 'guide' || route.kind === 'faq' || route.kind === 'checklist' || route.kind === 'area') return route.kind
   return 'home'
 }
@@ -58,11 +59,15 @@ export const VIEW_PATHS: Record<AppView, string> = {
   faq: '/faq',
   checklist: '/checklist',
   learn: '/learn',
+  timetable: '/timetable',
   area: '/area',
 }
 
 export const guidePath = (slug: string): string => `/guide/${slug}`
 export const learnPath = (slug: string): string => `/learn/${slug}`
+/** 시간표 미리 짜보기. 학교는 질의로만 싣는다 — 이 화면은 기기 저장 초안이라 색인하지 않는다. */
+export const timetablePath = (schoolId?: string | null): string =>
+  schoolId ? `/timetable?school=${encodeURIComponent(schoolId)}` : '/timetable'
 
 /** 교육부 학교 표준데이터가 부여하는 형태. 파이프라인이 만들지 않는다. */
 const SCHOOL_KEY = /^B\d+$/i
@@ -70,6 +75,8 @@ const SCHOOL_KEY = /^B\d+$/i
 const APARTMENT_KEY = /^[0-9ABCDEFGHJKMNPQRSTVWXYZ]{8}$/i
 
 const KEY_SEPARATOR = '--'
+/** 시간표 질의의 학교 값. 운영 키(B…) 말고도 기기에 남은 초안 ID를 받되, 모양만 제한한다. */
+const TIMETABLE_SCHOOL = /^[A-Za-z0-9_-]{1,40}$/
 
 /**
  * 장식 부분을 만든다. 규칙이 단순해야 매 요청마다 같은 문자열이 나오고,
@@ -128,6 +135,10 @@ export const parseRoute = (pathname: string, search = ''): Route => {
     if (segments[0] === 'faq') return { kind: 'faq' }
     if (segments[0] === 'checklist') return { kind: 'checklist' }
     if (segments[0] === 'learn') return { kind: 'learn', slug: null }
+    if (segments[0] === 'timetable') {
+      const school = new URLSearchParams(search).get('school')
+      return { kind: 'timetable', schoolId: school && TIMETABLE_SCHOOL.test(school) ? school : null }
+    }
   }
   // 모르는 주소는 홈으로 연다. 404 화면이 없으므로 가장 쓸모 있는 착지점이다.
   if (segments.length !== 2) return { kind: 'home' }

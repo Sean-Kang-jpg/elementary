@@ -109,7 +109,7 @@ const showcaseHtml = showcase ? (() => {
     + (apartment ? `<li><a href="${escapeHtml(encodeURI(apartment.path))}" class="showcase-card"><span class="showcase-card__kicker">배정 학교 찾기</span><strong>${escapeHtml(apartment.name)} → ${escapeHtml(school.name)}</strong><small>1학년 ${school.grade1Students ?? '–'}명 · 학급당 ${school.grade1PerClass ?? '–'}명 · 배정 아파트 ${school.apartments}곳</small>`
       + (apartment.academies ? `<small>교육환경: 학원·교습소 400m ${apartment.academies.core ?? '–'}곳 · 800m ${apartment.academies.extended ?? '–'}곳 (${apartment.academies.categories.map(({ key, count }) => `${ACADEMY_LABELS[key] ?? key} ${count}`).join(', ')})</small>` : '')
       + '</a></li>' : '')
-    + `<li><a href="/my" class="showcase-card"><span class="showcase-card__kicker">MY 시간표 예시</span><strong>맞벌이 가정의 하루</strong><small>${school.morning ? `아침돌봄 ${escapeHtml(school.morning)}, ` : ''}하교 뒤 방과후와 돌봄을 이어 붙인 예시</small></a></li>`
+    + `<li><a href="/timetable?school=${encodeURIComponent(school.id)}" class="showcase-card"><span class="showcase-card__kicker">시간표 예시</span><strong>맞벌이 가정의 하루</strong><small>${school.morning ? `아침돌봄 ${escapeHtml(school.morning)}, ` : ''}하교 뒤 방과후와 돌봄을 이어 붙인 예시</small></a></li>`
     + '</ul></section>'
 })() : ''
 
@@ -124,6 +124,8 @@ const homeBody = [
   '<div class="home-page__inner home-page__body">',
   seasonHtml,
   showcaseHtml,
+  // Same banner as HomeShelves.tsx: the way from the examples into /timetable.
+  '<a href="/timetable" class="timetable-banner"><span class="min-w-0 flex-1"><strong>우리 아이 초등학교 시간표 미리 짜보기</strong><small>맞춤형·방과후·돌봄에 주변 학원까지, 입학 전에 한 주를 그려 봐요</small></span></a>',
   // The guide list itself lives under /guide since 2026-10-04; the home links to it,
   // as the app does, rather than repeat it.
   '<div class="home-links">',

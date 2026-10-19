@@ -1,7 +1,7 @@
-import { CalendarClock, ChevronRight, Flag, Home, Repeat, Sprout } from 'lucide-react'
+import { CalendarClock, CalendarPlus, ChevronRight, Flag, Home, Repeat, Sprout } from 'lucide-react'
 import { followLink } from '../content/contentLinks'
 import { LEARNING, LEARNING_CATEGORIES, subcategoryLabel, type LearningCategory } from '../../content'
-import { guidePath, learnPath, VIEW_PATHS } from '../../utils/urlState'
+import { guidePath, learnPath, timetablePath, VIEW_PATHS } from '../../utils/urlState'
 
 interface LearnPageProps {
   onNavigate: (path: string) => void
@@ -13,7 +13,8 @@ interface LearnPageProps {
  * 두 가지를 담는다: 학교별 초1 시간표 조회, 그리고 환경·습관·배움 콘텐츠(P2). 학교별 시간표는
  * 학교 상세의 "초1 하루 예상" 카드에 있어 여기서는 학교 찾기로 보낸다. 콘텐츠는 빌드가 발행본만
  * 싣고(`npm run dev`는 검수 중인 것도), 글이 아직 없는 분류는 '준비 중'으로 둔다.
- * 선택·준비물은 입학 준비 메뉴 소속이라 여기 없다. 시간표 짜기는 로그인이 켜지는 P3에서 붙인다.
+ * 선택·준비물은 입학 준비 메뉴 소속이라 여기 없다. 시간표 짜기는 2026-10-19부터 이 메뉴 안의
+ * `/timetable`(로그인 없이 기기 저장)이다.
  */
 const CATEGORY_ICONS: Partial<Record<LearningCategory, typeof Home>> = { environment: Home, habit: Repeat, learning: Sprout }
 
@@ -25,6 +26,14 @@ export default function LearnPage({ onNavigate }: LearnPageProps) {
         <p className="content-page__lead">초1 하루가 어떻게 흘러가는지 보고, 집에서 준비할 것을 골라요.</p>
 
         <h2>우리 학교 초1 시간표</h2>
+        <a href={timetablePath()} onClick={(event) => followLink(event, timetablePath(), onNavigate)} className="content-list__item content-list__item--card">
+          <span className="home-link__icon home-link__icon--peach"><CalendarPlus size={19} aria-hidden="true" /></span>
+          <span className="min-w-0 flex-1">
+            <strong>우리 아이 시간표 미리 짜보기</strong>
+            <small>학교를 고르면 하교 시각 위에 맞춤형·방과후·돌봄·주변 학원을 직접 넣어 봐요.</small>
+          </span>
+          <ChevronRight size={18} aria-hidden="true" />
+        </a>
         <a href={VIEW_PATHS.map} onClick={(event) => followLink(event, VIEW_PATHS.map, onNavigate)} className="content-list__item content-list__item--card">
           <span className="home-link__icon home-link__icon--sage"><CalendarClock size={19} aria-hidden="true" /></span>
           <span className="min-w-0 flex-1">

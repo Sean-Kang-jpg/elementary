@@ -1,9 +1,10 @@
 import { useEffect, useMemo, useState, type MouseEvent } from 'react'
+import { CalendarClock, ChevronRight } from 'lucide-react'
 import shelves from '../../content/home-shelves.json'
 import { seasonCards, type HomeShowcase, type SeasonItem } from '../../utils/homeShelves'
 import { followLink } from '../content/contentLinks'
 import { track } from '../../utils/analytics'
-import { VIEW_PATHS } from '../../utils/urlState'
+import { timetablePath } from '../../utils/urlState'
 import { getAcademyCategory, type AcademyCategoryKey } from '../../utils/academyCategories'
 
 // 막대 축: 정오~19시 30분 (학교 상세 '초1 오후 한눈에'와 같다)
@@ -62,6 +63,16 @@ export default function HomeShelves({ onNavigate }: { onNavigate: (path: string)
       )}
 
       {showcase && <ShowcaseRow showcase={showcase} go={go} />}
+
+      {/* 예시를 본 다음 바로 우리 학교로 짜 보게 한다(2026-10-19). 예시 줄이 없는 개발 서버에서도 보인다. */}
+      <a href={timetablePath()} className="timetable-banner" onClick={go('banner', 'timetable', timetablePath())}>
+        <span className="timetable-banner__icon"><CalendarClock size={20} aria-hidden="true" /></span>
+        <span className="min-w-0 flex-1">
+          <strong>우리 아이 초등학교 시간표 미리 짜보기</strong>
+          <small>맞춤형·방과후·돌봄에 주변 학원까지, 입학 전에 한 주를 그려 봐요</small>
+        </span>
+        <ChevronRight size={20} aria-hidden="true" />
+      </a>
     </>
   )
 }
@@ -142,8 +153,8 @@ function ShowcaseRow({ showcase, go }: {
 
         {monday && (
           <li>
-            <a href={VIEW_PATHS.my} className="showcase-card" onClick={go('showcase', 'timetable', VIEW_PATHS.my)}>
-              <span className="showcase-card__kicker">MY 시간표 예시 · {monday.label}요일</span>
+            <a href={timetablePath(school.id)} className="showcase-card" onClick={go('showcase', 'timetable', timetablePath(school.id))}>
+              <span className="showcase-card__kicker">시간표 예시 · {monday.label}요일</span>
               <strong>맞벌이 가정의 하루</strong>
               <ol className="showcase-route">
                 {morning && <li><b>{morning[0]}</b><span>아침돌봄 (~{morning[1]})</span></li>}

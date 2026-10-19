@@ -29,11 +29,12 @@ const choose = name => evaluate(`[...document.querySelectorAll('.my-course-choic
 const openChoices = () => evaluate("document.querySelector('.my-program-selection').open=true; true")
 const plan = "JSON.parse(localStorage.getItem('elementary-schedule-plans-v1')).plans.find(p=>p.schoolId==='qa-schedule')"
 try {
+  // Open first: with a viewport set beforehand, --init-script opens on a blank tab (agent-browser, 2026-10-19).
+  run('open', new URL('/timetable', base).href, '--init-script', path.join(root, 'scripts/fixtures/my-schedule-network.js'))
   run('set', 'viewport', '390', '844')
-  run('open', new URL('/my', base).href, '--init-script', path.join(root, 'scripts/fixtures/my-schedule-network.js'))
-  await wait("document.querySelector('#my-title')", 'MY opens')
+  await wait("document.querySelector('#timetable-title')", 'timetable page opens')
   evaluate(`localStorage.removeItem('elementary-schedule-plans-v1'); localStorage.setItem('elementary-favorites-v1',JSON.stringify([{kind:'school',id:'qa-schedule',name:'QA 시간표 검사용 학교',address:'운영자료 아님',latitude:0,longitude:0}])); location.reload(); true`)
-  await wait("document.querySelector('.my-schedule > .my-field select')", 'isolated QA school selected')
+  await wait("new URLSearchParams(location.search).get('school')==='qa-schedule' && document.querySelector('.timetable-picks button[aria-pressed=true]')?.dataset.schoolId==='qa-schedule' && document.querySelector('.my-schedule')", 'saved QA school opens without a separate save step')
   clickText('시간표 초안 만들기')
   await wait("document.querySelectorAll('.my-course-choice').length===7", 'care and per-section course choices load')
   clickText('주간 편집')
@@ -64,6 +65,7 @@ try {
   evaluate("document.querySelector('.my-course-choice--care').click(); true")
   run('reload')
   await wait("document.querySelectorAll('.my-course-choice[aria-pressed=true]').length===3", 'reload restores selected courses and care')
+  clickText('주간 편집') // reload returns to the day view; the weekday grid checks below need the editor
   openChoices()
   choose('QA 미술 · A')
   await wait(`!${plan}.entries.some(e=>e.label==='QA 미술 · A') && ${plan}.entries.some(e=>e.kind==='care') && !document.querySelector('#my-week-day-1').textContent.includes('시간 겹침')`, 'deselecting a class preserves care and updates course conflicts')
@@ -116,8 +118,8 @@ try {
   clickText('자료 다시 불러오기')
   await wait("document.querySelectorAll('.my-course-choice').length===7 && !document.querySelector('.my-course-picker [role=alert]')", 'retry restores course data without changing the saved plan')
   // Real public reads are verified separately from the QA fixtures.
-  evaluate("localStorage.setItem('elementary-favorites-v1',JSON.stringify([{kind:'school',id:'B000002292',name:'서울대현초등학교',address:'서울',latitude:0,longitude:0}])); localStorage.removeItem('elementary-schedule-plans-v1'); location.reload(); true")
-  await wait("document.querySelector('.my-schedule > .my-field select')?.value==='B000002292'", 'real Seoul school is selected')
+  evaluate("localStorage.setItem('elementary-favorites-v1',JSON.stringify([{kind:'school',id:'B000002292',name:'서울대현초등학교',address:'서울',latitude:0,longitude:0}])); localStorage.removeItem('elementary-schedule-plans-v1'); location.href='/timetable'; true")
+  await wait("new URLSearchParams(location.search).get('school')==='B000002292' && document.querySelector('[data-testid=school-day-estimate]')", 'real Seoul school is selected and its school-day data is shown before a draft')
   clickText('시간표 초안 만들기')
   await wait("document.querySelector('.my-course-picker[aria-busy=false]')", 'real Seoul program and care reads finish')
   openChoices()

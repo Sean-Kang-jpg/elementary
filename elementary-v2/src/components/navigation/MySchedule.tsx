@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from 'react'
-import type { FavoriteRecord } from '../../utils/favorites'
 import { getSchoolDayEstimate } from '../../services/dataService'
 import { formatMinutes, schoolEntriesFromEstimate, toMinutes } from '../../utils/schedule/fromSchoolData'
 import { WEEKDAYS } from '../../utils/schedule/engine'
@@ -22,9 +21,18 @@ const timing = (e: ScheduleEntry) => e.kind === 'school'
   ? `하교 ${e.end === null ? '미확인' : formatMinutes(e.end) + ' (예상)'}`
   : `${e.startsAfterSchool ? '하교 후' : e.start === null ? '시작 미확인' : formatMinutes(e.start)} ~ ${e.end === null ? '종료 미확인' : formatMinutes(e.end)}`
 
-export default function MySchedule({ schools, entryYear }: { schools: FavoriteRecord[]; entryYear: number | null }) {
+/**
+ * 한 학교의 시간표 초안을 만들고 고친다. 학교는 시간표 미리 짜보기 화면(`/timetable`)이 고른다 —
+ * 2026-10-19부터 관심 학교로 저장하지 않아도 짤 수 있고, MY에는 요약만 남았다.
+ */
+export default function MySchedule({ school, entryYear, saved }: {
+  /** displayName은 화면 표기(광역시 접두 생략)용. 초안에는 공식 이름을 저장한다. */
+  school: { id: string; name: string; displayName?: string }
+  entryYear: number | null
+  /** 관심 학교로 저장한 학교인지. 저장과 시간표는 별개라 안내만 달라진다. */
+  saved: boolean
+}) {
   const [store, setStore] = useState(readPlans)
-  const [selectedId, setSelectedId] = useState('')
   const [message, setMessage] = useState('')
   const [loading, setLoading] = useState(false)
   const [draft, setDraft] = useState<{ value: EntryDraft; schoolId: string; nonce: number } | null>(null)
@@ -34,12 +42,9 @@ export default function MySchedule({ schools, entryYear }: { schools: FavoriteRe
     const unsubscribe = subscribePlans(() => setStore(readPlans()))
     return () => { alive.current = false; unsubscribe() }
   }, [])
-  const options = [...schools.map((s) => ({ id: s.id, name: s.name })),
-    ...store.plans.filter((p) => !schools.some((s) => s.id === p.schoolId)).map((p) => ({ id: p.schoolId, name: p.schoolName }))]
-  const schoolId = options.some((s) => s.id === selectedId) ? selectedId : store.activeSchoolId || options[0]?.id || ''
+  const schoolId = school.id
   const plan = store.plans.find((p) => p.schoolId === schoolId)
   const active = store.plans.find((p) => p.schoolId === store.activeSchoolId)
-  const school = options.find((s) => s.id === schoolId)
   const persist = (next: PlanStore, success: string) => {
     try { writePlans(next); setStore(next); setMessage(success); return true }
     catch { setMessage('저장하지 못했어요. 브라우저 저장 공간·설정을 확인해 주세요. 변경 내용은 저장되지 않았어요.'); return false }
@@ -59,9 +64,9 @@ export default function MySchedule({ schools, entryYear }: { schools: FavoriteRe
     return updatePlan({ ...latest, entries: result.entries }) ? result.entry : null
   }
   const create = async (withoutData = false) => {
-    if (!school || loading) return
+    if (loading) return
     setLoading(true); setMessage('')
-    const chosen = { ...school }
+    const chosen = { id: school.id, name: school.name }
     try {
       const data = withoutData ? { day: null, care: null } : await getSchoolDayEstimate(chosen.id, { allowDevFixture: false })
       if (!alive.current) return
@@ -80,54 +85,47 @@ export default function MySchedule({ schools, entryYear }: { schools: FavoriteRe
   }
   return (
     <section className="my-schedule my-card" aria-labelledby="my-schedule-title">
-      <h2 id="my-schedule-title">우리 아이 시간표</h2>
+      <h2 id="my-schedule-title">3. {school.displayName ?? displaySchoolName(school.name)} 시간표 짜기</h2>
       <p className="my-active-plan">{active ? `내 시간표 · ${displaySchoolName(active.schoolName)}` : '아직 내 시간표를 선택하지 않았어요'}</p>
       <p className="my-help">학교별 초안을 비교한 뒤 하나를 내 시간표로 사용하세요. 학교 입학·프로그램 신청·참여 확정과는 별개예요.</p>
-      {options.length ? <>
-        <label className="my-field">살펴볼 학교 초안
-          <select value={schoolId} disabled={loading} onChange={(e) => { setSelectedId(e.target.value); setMessage('') }}>
-            {options.map((s) => <option key={s.id} value={s.id}>{displaySchoolName(s.name)}{store.activeSchoolId === s.id ? ' · 내 시간표' : ''}</option>)}
-          </select>
-        </label>
-        {!plan ? <div className="my-actions">
-          <button type="button" className="my-button my-button--primary" disabled={loading} onClick={() => void create()}>{loading ? '자료 확인 중…' : '시간표 초안 만들기'}</button>
-          <button type="button" className="my-button" disabled={loading} onClick={() => void create(true)}>자료 없이 직접 만들기</button>
-        </div> : <>
-          <div className="my-actions">
-            <span className="my-plan-badge">{store.activeSchoolId === plan.schoolId ? '내 시간표' : '후보 초안'}</span>
-            {store.activeSchoolId !== plan.schoolId
-              ? <button type="button" className="my-button my-button--primary" onClick={() => persist(selectPlan(readPlans(), plan.schoolId), '내 시간표를 바꿨어요. 다른 초안은 그대로 보관돼요.')}>내 시간표로 사용</button>
-              : <button type="button" className="my-button" onClick={() => persist(selectPlan(readPlans(), null), '내 시간표 선택을 해제했어요. 초안은 보관돼요.')}>선택 해제</button>}
-          </div>
-          <p className="my-help">입학연도 {plan.entryYear ?? '미설정'} · 마지막 수정 {plan.updatedAt.slice(0, 10)}
-            {entryYear !== plan.entryYear && ' · 현재 입학연도와 달라요. 자료를 다시 확인해 주세요.'}
-            {!schools.some((s) => s.id === plan.schoolId) && ' · 관심 학교에서 삭제한 초안이에요. 시간표는 유지돼요.'}
-          </p>
-          <MyScheduleWeek key={`week-${plan.schoolId}`} schoolId={plan.schoolId} entries={plan.entries} onSave={saveCalendarEntry} onAdd={addEntry} onRemove={removeEntry}
-            onToggleDay={(entry, weekday) => changeEntries((entries) => toggleProgramDay(entries, entry, weekday))} />
-          <details className="my-program-selection" key={`selection-${plan.schoolId}`}><summary>방과후/맞춤형/돌봄 선택하기</summary>
-            <MyAfterschoolPicker key={plan.schoolId} schoolId={plan.schoolId} entries={plan.entries} onAdd={addEntry} onRemove={removeEntry}
-              onDraft={(value) => { setDraft((current) => ({ value, schoolId: plan.schoolId, nonce: (current?.nonce ?? 0) + 1 })); setMessage('요일이 적혀 있지 않은 반이에요. 아래 양식에서 요일을 골라 저장해 주세요.') }} />
-            <details className="my-entry-list"><summary>선택한 일정 관리 ({plan.entries.length})</summary>
-              {plan.entries.map((e) => <div className="my-entry" key={e.id}>
-                <b>{e.label}</b><small>{e.weekdays.map((d) => DAYS[d - 1]).join('·')} · {timing(e)}</small>
-                <small>{e.source ? `출처 ${SOURCES[e.kind]} · 학년도/확인 기준 ${e.source.version}` : '사용자 입력 · 운영 자료와 별도 확인 필요'}</small>
-                {e.kind !== 'school' && <label className="my-field">참여 상태 · {e.label}
-                  <select value={e.participation} onChange={(event) => changeEntries((entries) => entries.map((item) => item.id === e.id ? { ...item, participation: event.target.value as ParticipationStatus } : item))}>
-                    {Object.entries(STATUS).map(([value, label]) => <option value={value} key={value}>{label}</option>)}
-                  </select>
-                </label>}
-                <button type="button" className="my-button" onClick={() => removeEntry(e.id)} aria-label={`${e.label} 일정 삭제`}>일정 삭제</button>
-              </div>)}
-            </details>
+      {!plan ? <div className="my-actions">
+        <button type="button" className="my-button my-button--primary" disabled={loading} onClick={() => void create()}>{loading ? '자료 확인 중…' : '시간표 초안 만들기'}</button>
+        <button type="button" className="my-button" disabled={loading} onClick={() => void create(true)}>자료 없이 직접 만들기</button>
+      </div> : <>
+        <div className="my-actions">
+          <span className="my-plan-badge">{store.activeSchoolId === plan.schoolId ? '내 시간표' : '후보 초안'}</span>
+          {store.activeSchoolId !== plan.schoolId
+            ? <button type="button" className="my-button my-button--primary" onClick={() => persist(selectPlan(readPlans(), plan.schoolId), '내 시간표를 바꿨어요. 다른 초안은 그대로 보관돼요.')}>내 시간표로 사용</button>
+            : <button type="button" className="my-button" onClick={() => persist(selectPlan(readPlans(), null), '내 시간표 선택을 해제했어요. 초안은 보관돼요.')}>선택 해제</button>}
+        </div>
+        <p className="my-help">입학연도 {plan.entryYear ?? '미설정'} · 마지막 수정 {plan.updatedAt.slice(0, 10)}
+          {entryYear !== plan.entryYear && ' · 현재 입학연도와 달라요. 자료를 다시 확인해 주세요.'}
+          {!saved && ' · 관심 학교에 저장하지 않은 학교예요. 시간표는 이 기기에 따로 보관돼요.'}
+        </p>
+        <MyScheduleWeek key={`week-${plan.schoolId}`} schoolId={plan.schoolId} entries={plan.entries} onSave={saveCalendarEntry} onAdd={addEntry} onRemove={removeEntry}
+          onToggleDay={(entry, weekday) => changeEntries((entries) => toggleProgramDay(entries, entry, weekday))} />
+        <details className="my-program-selection" key={`selection-${plan.schoolId}`}><summary>방과후/맞춤형/돌봄 선택하기</summary>
+          <MyAfterschoolPicker key={plan.schoolId} schoolId={plan.schoolId} entries={plan.entries} onAdd={addEntry} onRemove={removeEntry}
+            onDraft={(value) => { setDraft((current) => ({ value, schoolId: plan.schoolId, nonce: (current?.nonce ?? 0) + 1 })); setMessage('요일이 적혀 있지 않은 반이에요. 아래 양식에서 요일을 골라 저장해 주세요.') }} />
+          <details className="my-entry-list"><summary>선택한 일정 관리 ({plan.entries.length})</summary>
+            {plan.entries.map((e) => <div className="my-entry" key={e.id}>
+              <b>{e.label}</b><small>{e.weekdays.map((d) => DAYS[d - 1]).join('·')} · {timing(e)}</small>
+              <small>{e.source ? `출처 ${SOURCES[e.kind]} · 학년도/확인 기준 ${e.source.version}` : '사용자 입력 · 운영 자료와 별도 확인 필요'}</small>
+              {e.kind !== 'school' && <label className="my-field">참여 상태 · {e.label}
+                <select value={e.participation} onChange={(event) => changeEntries((entries) => entries.map((item) => item.id === e.id ? { ...item, participation: event.target.value as ParticipationStatus } : item))}>
+                  {Object.entries(STATUS).map(([value, label]) => <option value={value} key={value}>{label}</option>)}
+                </select>
+              </label>}
+              <button type="button" className="my-button" onClick={() => removeEntry(e.id)} aria-label={`${e.label} 일정 삭제`}>일정 삭제</button>
+            </div>)}
           </details>
-          <ScheduleEntryForm key={`${plan.schoolId}-${draft?.nonce ?? 0}`} draft={draft?.schoolId === plan.schoolId ? draft.value : undefined} onAdd={addEntry} onComplete={() => setDraft(null)} />
-          <p className="my-help">미확인 시간은 배치·공백 계산을 하지 않아요. 돌봄 운영 시간은 이용 가능이나 1학년 대상 확정을 뜻하지 않아요. 방학 일정은 별도 확인이 필요해요.</p>
-          <button type="button" className="my-button" onClick={() => {
-            if (window.confirm('이 학교의 시간표 초안을 삭제할까요? 관심 학교는 유지됩니다.')) persist(deletePlan(readPlans(), plan.schoolId), '시간표 초안을 삭제했어요.')
-          }}>이 초안 삭제</button>
-        </>}
-      </> : <p className="my-help">아래 관심 학교를 저장하면 학교별 시간표를 만들 수 있어요. 아파트 저장만으로 학교를 자동 선택하지 않아요.</p>}
+        </details>
+        <ScheduleEntryForm key={`${plan.schoolId}-${draft?.nonce ?? 0}`} draft={draft?.schoolId === plan.schoolId ? draft.value : undefined} onAdd={addEntry} onComplete={() => setDraft(null)} />
+        <p className="my-help">미확인 시간은 배치·공백 계산을 하지 않아요. 돌봄 운영 시간은 이용 가능이나 1학년 대상 확정을 뜻하지 않아요. 방학 일정은 별도 확인이 필요해요.</p>
+        <button type="button" className="my-button" onClick={() => {
+          if (window.confirm('이 학교의 시간표 초안을 삭제할까요? 관심 학교는 유지됩니다.')) persist(deletePlan(readPlans(), plan.schoolId), '시간표 초안을 삭제했어요.')
+        }}>이 초안 삭제</button>
+      </>}
       <p role="status" aria-live="polite" className="my-help">{message}</p>
     </section>
   )

@@ -9,7 +9,7 @@ import RoadmapCard from '../content/RoadmapCard'
 import ChecklistBanner from '../content/ChecklistBanner'
 import { followLink } from '../content/contentLinks'
 import { displaySchoolName } from '../../utils/schoolName'
-import MySchedule from './MySchedule'
+import MyTimetableSummary from './MyTimetableSummary'
 import MyCandidateInfo from './MyCandidateInfo'
 
 interface MyPageProps {
@@ -62,7 +62,7 @@ export default function MyPage({ onNavigate, onOpenSaved, entryYear, onEntryYear
           )}
         </section>
         <ChecklistBanner onNavigate={onNavigate} />
-        <MySchedule schools={saved.filter((item) => item.kind === 'school')} entryYear={entryYear} />
+        <MyTimetableSummary onNavigate={onNavigate} />
 
         <div className="hub-guides-head">
           <h2>관심 후보</h2>
@@ -74,7 +74,7 @@ export default function MyPage({ onNavigate, onOpenSaved, entryYear, onEntryYear
             {kind === 'school' ? '학교' : '아파트'} {saved.filter((item) => item.kind === kind).length}/3
           </button>)}
         </div>
-        <p className="my-help">학교·아파트 각각 최대 3곳. 후보 저장과 내 시간표 선택은 별개예요. 기존 3곳 초과 기록은 삭제하지 않고 유지해요.</p>
+        <p className="my-help">학교·아파트 각각 최대 3곳. 후보 저장과 시간표 짜기는 별개예요. 기존 3곳 초과 기록은 삭제하지 않고 유지해요.</p>
         {!saved.some((item) => item.kind === candidateTab) ? (
           <div className="my-saved__empty">
             <p>학교나 아파트 상세에서 <Star size={14} aria-hidden="true" /> 를 누르면 관심 후보에 모여요.</p>

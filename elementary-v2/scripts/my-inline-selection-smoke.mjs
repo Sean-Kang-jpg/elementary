@@ -13,8 +13,8 @@ try {
   const page = await context.newPage()
   const errors = []
   page.on('pageerror', error => errors.push(error.message))
-  await page.goto(new URL('/my', base).href)
-  await page.locator('#my-title').waitFor()
+  await page.goto(new URL('/timetable', base).href)
+  await page.locator('#timetable-title').waitFor()
   await page.evaluate(() => {
     localStorage.setItem('elementary-favorites-v1', JSON.stringify([{ kind: 'school', id: 'qa-schedule', name: '카드 내 선택 검사용 학교', address: '운영자료 아님', latitude: 0, longitude: 0 }]))
     localStorage.setItem('elementary-schedule-plans-v1', JSON.stringify({ version: 1, activeSchoolId: null, plans: [{ schoolId: 'qa-schedule', schoolName: '카드 내 선택 검사용 학교', entryYear: null, updatedAt: '2026-10-18', entries: [{ id: 'school', label: '정규수업 4교시', kind: 'school', weekdays: [1,2,3,4,5], start: null, end: 780, evidence: 'estimated', participation: 'confirmed', source: { ref: 'qa-school', version: '2026' } }] }] }))

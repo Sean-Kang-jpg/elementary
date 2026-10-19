@@ -1094,6 +1094,41 @@
 .my-field input, .my-field select { width: 100%; min-width: 0; min-height: 44px; padding: 9px; color: var(--warm-text); background: var(--warm-surface); border: 1px solid var(--warm-border-strong); border-radius: 8px; }
 .my-time-fields { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
 .my-plan-badge { border-radius: 20px; padding: 6px 10px; background: var(--warm-bg); font-size: 13px; font-weight: 700; }
+
+/* ---- 시간표 미리 짜보기 (/timetable, 2026-10-19) ---------------------------- */
+
+.timetable-page__kicker { display: inline-flex; align-items: center; gap: 6px; margin: 0 0 6px; padding: 4px 10px; border-radius: 999px; background: var(--warm-accent-soft); color: var(--warm-accent-strong); font-size: 12px; font-weight: 700; }
+.timetable-steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; margin: 16px 0 0; padding: 0; list-style: none; }
+.timetable-steps li { display: flex; align-items: center; gap: 6px; min-width: 0; padding: 8px 10px; border: 1px solid var(--warm-border); border-radius: 12px; background: var(--warm-surface); color: var(--warm-muted); font-size: 12px; }
+.timetable-steps b { display: inline-grid; place-items: center; flex: none; width: 20px; height: 20px; border-radius: 50%; background: var(--warm-bg); font-size: 11px; }
+.timetable-steps span { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.timetable-steps li[aria-current="step"] { border-color: var(--warm-accent); color: var(--warm-text); font-weight: 700; }
+.timetable-steps li[aria-current="step"] b { background: var(--warm-accent-strong); color: #fff; }
+.timetable-steps li.is-done b { background: var(--warm-sage-soft); color: var(--warm-sage); }
+.timetable-search__field { display: flex; align-items: center; gap: 8px; min-height: 48px; padding: 0 12px; border: 1px solid var(--warm-border-strong); border-radius: 12px; background: var(--warm-surface); color: var(--warm-muted); }
+.timetable-search__field:focus-within { border-color: var(--warm-accent); }
+.timetable-search__field input { flex: 1; min-width: 0; height: 46px; border: 0; outline: 0; background: transparent; color: var(--warm-text); font-size: 16px; }
+.timetable-search__results { margin: 6px 0 0; padding: 0; list-style: none; border: 1px solid var(--warm-border); border-radius: 12px; overflow: hidden; }
+.timetable-search__results > li + li { border-top: 1px solid var(--warm-border); }
+.timetable-search__results > li.my-help { margin: 0; padding: 10px 12px; }
+.timetable-search__results button { display: flex; flex-direction: column; gap: 2px; width: 100%; min-height: 48px; padding: 10px 12px; border: 0; background: var(--warm-surface); color: var(--warm-text); text-align: left; cursor: pointer; }
+.timetable-search__results button:hover { background: var(--warm-bg); }
+.timetable-search__results small { color: var(--warm-muted); font-size: 12px; }
+.timetable-picks { display: flex; flex-wrap: wrap; gap: 6px; margin: 12px 0 0; }
+.timetable-picks button { display: inline-flex; align-items: center; gap: 5px; min-height: 40px; padding: 6px 12px; border: 1px solid var(--warm-border-strong); border-radius: 999px; background: var(--warm-surface); color: var(--warm-text); font-size: 13px; font-weight: 600; cursor: pointer; }
+.timetable-picks button small { color: var(--warm-muted); font-size: 11px; font-weight: 500; }
+.timetable-picks button[aria-pressed="true"] { border-color: var(--warm-accent-strong); background: var(--warm-accent-soft); color: var(--warm-accent-strong); }
+.timetable-skip { width: 100%; margin: 0 0 14px; font-weight: 700; }
+.timetable-source > summary { font-weight: 700; cursor: pointer; }
+.timetable-source[open] > summary { margin-bottom: 12px; }
+.timetable-cta { display: flex; align-items: center; gap: 8px; min-height: 48px; margin-top: 12px; padding: 10px 14px; border-radius: 12px; background: var(--warm-accent-strong); color: #fff; font-size: 14px; font-weight: 700; text-decoration: none; }
+.timetable-cta span { flex: 1; min-width: 0; }
+.my-timetable-summary__list { margin: 0; padding: 0; list-style: none; }
+.my-timetable-summary__list > li + li { margin-top: 8px; }
+.my-timetable-summary__list a { display: flex; align-items: center; gap: 8px; padding: 12px; border: 1px solid var(--warm-border); border-radius: 12px; background: var(--warm-bg); color: var(--warm-text); text-decoration: none; }
+.my-timetable-summary__list strong { display: block; font-size: 15px; }
+.my-timetable-summary__list small { display: block; color: var(--warm-muted); font-size: 12px; }
+.my-timetable-summary__list .my-plan-badge { flex: none; background: var(--warm-accent-soft); color: var(--warm-accent-strong); font-size: 12px; }
 .my-week-section { margin: 20px 0; min-width: 0; padding: 14px; border: 1px solid #e5e5f0; border-radius: 20px; background: #fff; box-shadow: 0 5px 22px #4c426a08; }
 .my-calendar-toolbar { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
 .my-calendar-toolbar h3 { margin: 0; font-size: 18px; color: #38354d; }

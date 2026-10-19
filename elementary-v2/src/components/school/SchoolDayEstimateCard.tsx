@@ -1,4 +1,4 @@
-import { Clock } from 'lucide-react'
+import { CalendarPlus, ChevronRight, Clock } from 'lucide-react'
 import React, { useEffect, useRef, useState } from 'react'
 import type { School, SchoolAfterschool, SchoolCareHours, SchoolCareStatistics, SchoolDayEstimate } from '../../types'
 import { getSchoolAfterschool, getSchoolCareStatistics, getSchoolDayEstimate } from '../../services/dataService'
@@ -7,7 +7,7 @@ import AfterschoolSummary from './AfterschoolSummary'
 import { track } from '../../utils/analytics'
 import { useSeenOnce } from '../care/useSeenOnce'
 import { followLink } from '../content/contentLinks'
-import { guidePath } from '../../utils/urlState'
+import { guidePath, timetablePath } from '../../utils/urlState'
 
 const WEEKDAY_LABELS = ['월', '화', '수', '목', '금'] as const
 const hhmm = (value: string | null) => (value ? value.slice(0, 5) : null)
@@ -21,7 +21,7 @@ const hhmm = (value: string | null) => (value ? value.slice(0, 5) : null)
  * 추론한 시각은 '추정', 출처가 정하지 못한 요일·학교는 '학교 확인'으로 둔다 — 빈칸을
  * 다른 값으로 채우지 않는다. 돌봄은 기본 운영과 저녁·연장을 나눠 쓴다(2026-10-08 결정).
  */
-const SchoolDayEstimateCard: React.FC<{ school: School; onOpenGuide: (path: string) => void }> = ({ school, onOpenGuide }) => {
+const SchoolDayEstimateCard: React.FC<{ school: School; onOpenGuide: (path: string) => void; planLink?: boolean }> = ({ school, onOpenGuide, planLink = false }) => {
   const [day, setDay] = useState<SchoolDayEstimate | null>(null)
   const [care, setCare] = useState<SchoolCareHours | null>(null)
   const [afterschool, setAfterschool] = useState<SchoolAfterschool | null>(null)
@@ -59,7 +59,7 @@ const SchoolDayEstimateCard: React.FC<{ school: School; onOpenGuide: (path: stri
     return () => { active = false }
   }, [school.school_id])
 
-  if (!day && !care && !afterschool && !careStats) return null
+  if (!planLink && !day && !care && !afterschool && !careStats) return null
   const sourceYear = day?.source_year ?? care?.source_year ?? afterschool?.source_year ?? careStats?.statistics_year
 
   return (
@@ -68,7 +68,7 @@ const SchoolDayEstimateCard: React.FC<{ school: School; onOpenGuide: (path: stri
         <h3 id="school-day-title" className="inline-flex items-center gap-2 font-semibold text-gray-950">
           <Clock size={18} aria-hidden="true" />초1 하루·오후
         </h3>
-        <span className="text-xs text-gray-500">{sourceYear}학년도 기준 · 예상</span>
+        {sourceYear && <span className="text-xs text-gray-500">{sourceYear}학년도 기준 · 예상</span>}
       </div>
 
       {day && (
@@ -149,6 +149,14 @@ const SchoolDayEstimateCard: React.FC<{ school: School; onOpenGuide: (path: stri
         출처: {[day?.clock_source, day && day.periods_source !== '없음' ? day.periods_source : null, care?.source, careStats && !care ? `학교알리미 ${careStats.statistics_year}년 돌봄 공시` : null].filter(Boolean).join(' · ')}.
         {' '}학교 사정으로 바뀔 수 있어요.
       </p>
+      {planLink && (
+        <a href={timetablePath(school.school_id)} onClick={(event) => followLink(event, timetablePath(school.school_id), onOpenGuide)}
+          className="timetable-cta mt-3" data-testid="school-day-plan-link">
+          <CalendarPlus size={18} aria-hidden="true" />
+          <span>이 학교로 시간표 미리 짜보기</span>
+          <ChevronRight size={18} aria-hidden="true" />
+        </a>
+      )}
     </section>
   )
 }

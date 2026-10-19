@@ -222,7 +222,7 @@ const AfterschoolSummary: React.FC<{
           </div>
           {untimedPaid > 0 && (
             <p className="mt-1 text-[11px] leading-4 text-amber-800" data-testid="school-afterschool-untimed">
-              방과후 {untimedPaid}개 강좌는 운영계획에 {rows.some((row) => row.untimed) ? '요일만 있고 ' : ''}시간이 적혀 있지 않아 막대와 데리러 가는 시각에 넣지 않았어요. 신청 안내에서 시간을 확인하고, MY 시간표에 직접 넣을 수 있어요.
+              방과후 {untimedPaid}개 강좌는 운영계획에 {rows.some((row) => row.untimed) ? '요일만 있고 ' : ''}시간이 적혀 있지 않아 막대와 데리러 가는 시각에 넣지 않았어요. 신청 안내에서 시간을 확인하고, 시간표 미리 짜보기에서 직접 넣을 수 있어요.
             </p>
           )}
           {careEnd === null && (
@@ -255,7 +255,7 @@ const AfterschoolSummary: React.FC<{
             {options.length > 0
               ? `운영계획에 강좌 ${grade1.length ? '시간' : '대상 학년'}이 적혀 있지 않아 강좌 목록만 보여 드려요.`
               : '이 학교의 1학년 강좌 시간표는 아직 확인하지 못했어요. 학교 홈페이지 공지나 가정통신문으로 확인해 주세요.'}
-            {' '}MY 시간표에서 요일·시간을 직접 넣을 수 있어요.
+            {' '}시간표 미리 짜보기에서 요일·시간을 직접 넣을 수 있어요.
           </p>
         </div>
       )}

@@ -12,6 +12,7 @@ import HomePage from './components/navigation/HomePage'
 import NewsPage from './components/navigation/NewsPage'
 import PrivacyPage from './components/navigation/PrivacyPage'
 import LearnPage from './components/navigation/LearnPage'
+import TimetablePage from './components/navigation/TimetablePage'
 import LearnItemPage from './components/content/LearnItemPage'
 import GuideListPage from './components/content/GuideListPage'
 import GuidePage from './components/content/GuidePage'
@@ -29,6 +30,7 @@ import {
   apartmentPath,
   guidePath,
   learnPath,
+  timetablePath,
   parseRoute,
   schoolPath,
   setCanonical,
@@ -76,6 +78,16 @@ function MapApplication() {
     const route = parseRoute(window.location.pathname, window.location.search)
     return route.kind === 'learn' ? route.slug : null
   })
+  // 시간표 미리 짜보기에서 고른 학교. 주소의 `?school=`과 같다.
+  const [timetableSchool, setTimetableSchool] = useState<string | null>(() => {
+    const route = parseRoute(window.location.pathname, window.location.search)
+    return route.kind === 'timetable' ? route.schoolId : null
+  })
+  const changeTimetableSchool = useCallback((schoolId: string) => {
+    // 학교를 바꿔 고르는 것은 같은 화면 안의 선택이라 기록을 쌓지 않는다.
+    window.history.replaceState({}, '', timetablePath(schoolId))
+    setTimetableSchool(schoolId)
+  }, [])
   // 지역 허브 화면 안에서 어느 지역인지. 허브 주소가 아니면 쓰지 않는다.
   const [areaRoute, setAreaRoute] = useState<string>(() => {
     const route = parseRoute(window.location.pathname, window.location.search)
@@ -117,6 +129,7 @@ function MapApplication() {
     setView(viewOf(route))
     setGuideSlug(route.kind === 'guide' ? route.slug : null)
     setLearnSlug(route.kind === 'learn' ? route.slug : null)
+    if (route.kind === 'timetable') setTimetableSchool(route.schoolId)
     if (route.kind === 'area') setAreaRoute(route.path)
   }
   // 주소를 읽어 선택을 복원하는 동안에는 선택을 보고 주소를 쓰면 안 된다.
@@ -439,7 +452,8 @@ function MapApplication() {
   }, [])
 
   // 선택·준비물 콘텐츠는 주소는 /learn이어도 입학 준비 메뉴 소속이다(2026-10-08 결정).
-  const navView: AppView = view === 'learn' && learnItem
+  // 시간표 미리 짜보기는 학습 준비 메뉴 안의 화면이다(2026-10-19 결정).
+  const navView: AppView = view === 'timetable' ? 'learn' : view === 'learn' && learnItem
     && LEARNING_CATEGORIES.find((category) => category.id === learnItem.category)?.menu === 'guide' ? 'guide' : view
 
   return (
@@ -482,6 +496,10 @@ function MapApplication() {
       {view === 'learn' && (learnItem
         ? <LearnItemPage key={learnItem.slug} item={learnItem} onNavigate={(path) => navigate(path, 'related')} />
         : <LearnPage onNavigate={(path) => navigate(path, 'related')} />)}
+      {view === 'timetable' && (
+        <TimetablePage schoolId={timetableSchool} entryYear={entryYear} onSchoolChange={changeTimetableSchool}
+          onNavigate={(path) => navigate(path, 'related')} />
+      )}
       {view === 'privacy' && <PrivacyPage />}
       
       {connectionStatus.supabase === 'error' && (
@@ -531,6 +549,7 @@ const TITLES: Record<AppView, string> = {
   faq: `${FAQ_PAGE.title} | 어디초`,
   checklist: `${checklistContent.title} | 어디초`,
   learn: '학습 준비 | 어디초',
+  timetable: '초1 시간표 미리 짜보기 | 어디초',
   area: '지역별 초등학교 배정 현황 | 어디초',
 }
 
