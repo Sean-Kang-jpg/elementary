@@ -5,6 +5,7 @@ import { getInstitutionCategories } from '../../utils/academyCategories'
 import BottomSheet from '../ui/BottomSheet'
 import DetailTabs from '../ui/DetailTabs'
 import DataFreshness from '../ui/DataFreshness'
+import CareCenterMorningInfo from '../care/CareCenterMorningInfo'
 
 export default function MapPlaceDetail({ place }: { place: SelectedMapPlace }) {
   const { dispatch } = useAppContext()
@@ -27,6 +28,7 @@ export default function MapPlaceDetail({ place }: { place: SelectedMapPlace }) {
             <div><dt className="text-gray-500">학기 중 운영시간</dt><dd>{place.data.term_hours?.replace('~', ' ~ ') ?? '미확인'}</dd></div>
             <div><dt className="text-gray-500">방학 중 운영시간</dt><dd>{place.data.vacation_hours?.replace('~', ' ~ ') ?? '미확인'}</dd></div>
           </dl>
+          <CareCenterMorningInfo />
           <p className="text-xs text-gray-600">시설 정원은 현재 여석을 뜻하지 않습니다. 모집·예약기간과 신청 경로는 센터에 확인해 주세요.</p>
           {place.data.phone && <a href={`tel:${place.data.phone}`} className="inline-block rounded-md border border-rose-200 px-3 py-2 text-sm font-semibold text-rose-900">센터 전화 {place.data.phone}</a>}
         </> : <>

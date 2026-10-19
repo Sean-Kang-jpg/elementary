@@ -8,6 +8,8 @@ import { track } from '../../utils/analytics'
 import { useSeenOnce } from '../care/useSeenOnce'
 import { followLink } from '../content/contentLinks'
 import { guidePath, timetablePath } from '../../utils/urlState'
+import MorningCarePanel from '../care/MorningCarePanel'
+import { morningCareFromLegacy } from '../../utils/morningCare'
 
 const WEEKDAY_LABELS = ['월', '화', '수', '목', '금'] as const
 const hhmm = (value: string | null) => (value ? value.slice(0, 5) : null)
@@ -21,11 +23,17 @@ const hhmm = (value: string | null) => (value ? value.slice(0, 5) : null)
  * 추론한 시각은 '추정', 출처가 정하지 못한 요일·학교는 '학교 확인'으로 둔다 — 빈칸을
  * 다른 값으로 채우지 않는다. 돌봄은 기본 운영과 저녁·연장을 나눠 쓴다(2026-10-08 결정).
  */
-const SchoolDayEstimateCard: React.FC<{ school: School; onOpenGuide: (path: string) => void; planLink?: boolean }> = ({ school, onOpenGuide, planLink = false }) => {
+const SchoolDayEstimateCard: React.FC<{
+  school: School
+  onOpenGuide: (path: string) => void
+  /** 학교 상세에서만 켠다: 이 학교로 시간표 미리 짜보기(`/timetable`)로 보낸다. 그 화면 안에서는 끈다. */
+  planLink?: boolean
+}> = ({ school, onOpenGuide, planLink = false }) => {
   const [day, setDay] = useState<SchoolDayEstimate | null>(null)
   const [care, setCare] = useState<SchoolCareHours | null>(null)
   const [afterschool, setAfterschool] = useState<SchoolAfterschool | null>(null)
   const [careStats, setCareStats] = useState<SchoolCareStatistics | null>(null)
+  const [morningState, setMorningState] = useState<'loading' | 'ready' | 'error'>('loading')
   const sectionRef = useRef<HTMLElement>(null)
 
   useSeenOnce(sectionRef, day || care ? school.school_id : null, () => {
@@ -42,6 +50,7 @@ const SchoolDayEstimateCard: React.FC<{ school: School; onOpenGuide: (path: stri
     setCare(null)
     setAfterschool(null)
     setCareStats(null)
+    setMorningState('loading')
     let active = true
     getSchoolCareStatistics(school.school_id)
       .then((row) => { if (active) setCareStats(row) })
@@ -54,22 +63,27 @@ const SchoolDayEstimateCard: React.FC<{ school: School; onOpenGuide: (path: stri
         if (!active) return
         setDay(result.day)
         setCare(result.care)
+        setMorningState('ready')
       })
-      .catch((error) => console.error('초1 하루 예상 조회 실패:', error))
+      .catch((error) => {
+        console.error('초1 하루 예상 조회 실패:', error)
+        if (active) setMorningState('error')
+      })
     return () => { active = false }
   }, [school.school_id])
 
-  if (!planLink && !day && !care && !afterschool && !careStats) return null
   const sourceYear = day?.source_year ?? care?.source_year ?? afterschool?.source_year ?? careStats?.statistics_year
 
   return (
     <section ref={sectionRef} aria-labelledby="school-day-title" data-testid="school-day-estimate">
       <div className="mb-2 flex items-baseline justify-between">
         <h3 id="school-day-title" className="inline-flex items-center gap-2 font-semibold text-gray-950">
-          <Clock size={18} aria-hidden="true" />초1 하루·오후
+          <Clock size={18} aria-hidden="true" />초1 하루·돌봄
         </h3>
         {sourceYear && <span className="text-xs text-gray-500">{sourceYear}학년도 기준 · 예상</span>}
       </div>
+
+      <MorningCarePanel info={morningCareFromLegacy(care)} state={morningState} />
 
       {day && (
         <>
@@ -122,12 +136,6 @@ const SchoolDayEstimateCard: React.FC<{ school: School; onOpenGuide: (path: stri
                   </dd>
                 </div>
               )}
-              {care.morning_hours && (
-                <div className="flex items-center justify-between px-3 py-2">
-                  <dt className="text-gray-600">아침 돌봄</dt>
-                  <dd className="font-semibold text-gray-950">{care.morning_hours.replace('-', ' ~ ')}</dd>
-                </div>
-              )}
               {care.grades && (
                 <div className="flex items-center justify-between px-3 py-2">
                   <dt className="text-gray-600">대상</dt>
@@ -145,10 +153,11 @@ const SchoolDayEstimateCard: React.FC<{ school: School; onOpenGuide: (path: stri
         </div>
       )}
 
-      <p className="mt-2 text-[11px] leading-4 text-gray-500">
+      {(day || care || careStats) && <p className="mt-2 text-[11px] leading-4 text-gray-500">
         출처: {[day?.clock_source, day && day.periods_source !== '없음' ? day.periods_source : null, care?.source, careStats && !care ? `학교알리미 ${careStats.statistics_year}년 돌봄 공시` : null].filter(Boolean).join(' · ')}.
         {' '}학교 사정으로 바뀔 수 있어요.
-      </p>
+      </p>}
+
       {planLink && (
         <a href={timetablePath(school.school_id)} onClick={(event) => followLink(event, timetablePath(school.school_id), onOpenGuide)}
           className="timetable-cta mt-3" data-testid="school-day-plan-link">

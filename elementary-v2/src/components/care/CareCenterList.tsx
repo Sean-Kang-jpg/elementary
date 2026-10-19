@@ -6,6 +6,7 @@ import { track } from '../../utils/analytics'
 import { useSeenOnce } from './useSeenOnce'
 import { useAppContext } from '../../contexts/AppContext'
 import MapLayerButton from '../map/MapLayerButton'
+import CareCenterMorningInfo from './CareCenterMorningInfo'
 
 interface CareCenterListProps {
   latitude: number
@@ -93,6 +94,7 @@ const CareCenterList: React.FC<CareCenterListProps> = ({ latitude, longitude, or
                 <div className="rounded bg-gray-50 px-2 py-1"><dt className="text-gray-500">학기 중</dt><dd className="font-semibold text-gray-900">{formatHours(center.term_hours)}</dd></div>
                 <div className="rounded bg-rose-50 px-2 py-1"><dt className="text-rose-700">방학 중</dt><dd className="font-semibold text-rose-900">{formatHours(center.vacation_hours)}</dd></div>
               </dl>
+              <CareCenterMorningInfo compact />
               <button type="button" onClick={() => dispatch({ type: 'SET_SELECTED_MAP_PLACE', payload: { kind: 'care', data: center } })}
                 className="mt-2 rounded-md border border-rose-200 px-3 py-1.5 text-xs font-semibold text-rose-900" aria-label={`${center.name} 상세 안내`}>상세 안내</button>
             </li>
