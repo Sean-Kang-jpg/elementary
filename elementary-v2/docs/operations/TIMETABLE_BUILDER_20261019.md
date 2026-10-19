@@ -1,6 +1,6 @@
 # 시간표 미리 짜보기 구현 기록
 
-상태: 로컬 구현·검증 완료, 운영 배포 전.
+상태: 2026-10-19 운영 배포·검증 완료. 기능 커밋 `e13633b`.
 
 ## 화면과 진입
 
@@ -19,3 +19,11 @@
 agent-browser 검사는 Chrome 실행 경로를 명시했다. React 입력의 `fill` 문제는 기존 운영 화면에서도 재현되어 해당 smoke에 native setter를 사용했다. Playwright 검사는 별도 `CALENDAR_QA_PLAYWRIGHT`와 `CALENDAR_QA_CHROME` 경로 설정을 사용했다.
 
 다른 세션의 돌봄·ETL 변경이 작업 트리에 함께 있으므로 커밋·배포 시 변경 범위를 확인해야 한다.
+
+## 운영 배포
+
+- `e13633b`를 `master`와 `release`에 push. Vercel 운영 배포 `dpl_CjiZgmYsMqGyGogNq6BVrG4o5QKq` READY, `https://wherecho.co.kr` 연결 확인.
+- 다른 세션의 아침돌봄 UI·ETL 변경을 제외한 별도 검증 사본으로 lint·typecheck·전체 build·단위 테스트 92개 통과.
+- 운영 public smoke 전체 통과. 지도 조회 최장 698.3ms, 아파트 조회 최장 209.9ms.
+- 실제 운영 자료로 홈 배너 → 학교 검색 → 관심 저장 없이 초안 생성 → 내 시간표 선택 → MY 요약 → 편집 재진입 → 새로고침 유지 확인. 360/390/768/1280px 가로 넘침과 실행 오류 없음.
+- 배포 중 다른 세션의 `a054193`이 master에 추가되었으나 이번 운영 배포 대상은 `e13633b`다.
