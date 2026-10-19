@@ -1,0 +1,3633 @@
+{
+  "checked_on": "2026-10-19",
+  "method": "offline_rebuild_of_published_inputs",
+  "db_write": false,
+  "live_db_rechecked": false,
+  "baseline": {
+    "seoul_schools": 606,
+    "published_schools": 561,
+    "program_rows": 20567,
+    "custom_schools": 428,
+    "no_public_courses": 45,
+    "no_custom_data": 178
+  },
+  "groups": {
+    "gap37_held": 12,
+    "processed_no_public_course": 33,
+    "custom_gap_in_published_school": 133
+  },
+  "schools": [
+    {
+      "school_id": "B000001858",
+      "school_name": "은석초등학교",
+      "group": "gap37_held",
+      "priority": 1,
+      "public_course_data_missing": true,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "2026학년도 방과후학교 운영계획 1부.hwp"
+      ],
+      "extraction_notes": [],
+      "research_input": "etl/runtime/seoul-gap37-20261019/inputs/B000001858.txt",
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000001926",
+      "school_name": "경기초등학교",
+      "group": "gap37_held",
+      "priority": 1,
+      "public_course_data_missing": true,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "2026학년도 경기초 방과후학교 운영계획(개인정보 마스킹).hwp"
+      ],
+      "extraction_notes": [],
+      "research_input": "etl/runtime/seoul-gap37-20261019/inputs/B000001926.txt",
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000001951",
+      "school_name": "홍익대학교사범대학부속초등학교",
+      "group": "gap37_held",
+      "priority": 1,
+      "public_course_data_missing": true,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "2026학년도 학운위 회의 자료(방과후).hwp"
+      ],
+      "extraction_notes": [],
+      "research_input": "etl/runtime/seoul-gap37-20261019/inputs/B000001951.txt",
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000002038",
+      "school_name": "동북초등학교",
+      "group": "gap37_held",
+      "priority": 1,
+      "public_course_data_missing": true,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "(동북초) 2026 방과후운영계획.pdf",
+        "(동북초) 2026 돌봄교실운영계획.pdf"
+      ],
+      "extraction_notes": [],
+      "research_input": "etl/runtime/seoul-gap37-20261019/inputs/B000002038.txt",
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000002094",
+      "school_name": "운현초등학교",
+      "group": "gap37_held",
+      "priority": 1,
+      "public_course_data_missing": true,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "꿈과 소질을 키워가는 방과후 학교 운영.hwpx"
+      ],
+      "extraction_notes": [],
+      "research_input": "etl/runtime/seoul-gap37-20261019/inputs/B000002094.txt",
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000002105",
+      "school_name": "리라초등학교",
+      "group": "gap37_held",
+      "priority": 1,
+      "public_course_data_missing": true,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "방과후 운영계획(2026).hwp"
+      ],
+      "extraction_notes": [],
+      "research_input": "etl/runtime/seoul-gap37-20261019/inputs/B000002105.txt",
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000002106",
+      "school_name": "숭의초등학교",
+      "group": "gap37_held",
+      "priority": 1,
+      "public_course_data_missing": true,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "2026학년도 방과후학교 연간 운영계획.pdf"
+      ],
+      "extraction_notes": [],
+      "research_input": "etl/runtime/seoul-gap37-20261019/inputs/B000002106.txt",
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000002122",
+      "school_name": "신광초등학교",
+      "group": "gap37_held",
+      "priority": 1,
+      "public_course_data_missing": true,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "2026 방과후학교 운영 세부계획서.pdf"
+      ],
+      "extraction_notes": [],
+      "research_input": "etl/runtime/seoul-gap37-20261019/inputs/B000002122.txt",
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000002366",
+      "school_name": "한양초등학교",
+      "group": "gap37_held",
+      "priority": 1,
+      "public_course_data_missing": true,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "2026학년도 한양초 방과후교실  운영 계획.hwp"
+      ],
+      "extraction_notes": [],
+      "research_input": "etl/runtime/seoul-gap37-20261019/inputs/B000002366.txt",
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000002387",
+      "school_name": "경복초등학교",
+      "group": "gap37_held",
+      "priority": 1,
+      "public_course_data_missing": true,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "2026 경복초등학교 방과후학교 운영계획서(보고용).hwp"
+      ],
+      "extraction_notes": [],
+      "research_input": "etl/runtime/seoul-gap37-20261019/inputs/B000002387.txt",
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000002415",
+      "school_name": "대광초등학교",
+      "group": "gap37_held",
+      "priority": 1,
+      "public_course_data_missing": true,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "방과후학교운영계획.hwpx"
+      ],
+      "extraction_notes": [],
+      "research_input": "etl/runtime/seoul-gap37-20261019/inputs/B000002415.txt",
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000002417",
+      "school_name": "매원초등학교",
+      "group": "gap37_held",
+      "priority": 1,
+      "public_course_data_missing": true,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "방과후학교부(완성-260212).hwp"
+      ],
+      "extraction_notes": [],
+      "research_input": "etl/runtime/seoul-gap37-20261019/inputs/B000002417.txt",
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000001845",
+      "school_name": "서울장평초등학교",
+      "group": "processed_no_public_course",
+      "priority": 1,
+      "public_course_data_missing": true,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "(학운위)2026 늘봄학교 연간 운영 계획(안)_장평초.hwp",
+        "(학운위) 2026 초등돌봄교실 운영 계획(안).hwp"
+      ],
+      "extraction_notes": [
+        "돌봄교실 내부 일과만 있고 방과후·맞춤형 강좌표 없음"
+      ],
+      "research_input": null,
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000001866",
+      "school_name": "서울중곡초등학교",
+      "group": "processed_no_public_course",
+      "priority": 1,
+      "public_course_data_missing": true,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "2026학년도 서울중곡초등학교 방과후교실 연간 운영 계획.hwp"
+      ],
+      "extraction_notes": [
+        "강좌명·요일 열 배치가 표에서 불분명해 요일 null, 구체 강좌 없음",
+        "강좌 목록은 수강료 표뿐이고 요일·시간표 없음, 맞춤형 시간표는 요일 대응 불분명"
+      ],
+      "research_input": null,
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000001886",
+      "school_name": "서울갈현초등학교",
+      "group": "processed_no_public_course",
+      "priority": 1,
+      "public_course_data_missing": true,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "2026 갈현초 방과후·돌봄교실 연간 운영계획(수정).hwp"
+      ],
+      "extraction_notes": [
+        "강좌표·시간표 없이 운영 방침 서술만 있음",
+        "강좌 표가 입력에 없음"
+      ],
+      "research_input": null,
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000001939",
+      "school_name": "서울성원초등학교",
+      "group": "processed_no_public_course",
+      "priority": 1,
+      "public_course_data_missing": true,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "2025학년도 서울성원초등학교 선택형 돌봄 운영 계획(안).hwp",
+        "2025학년도 서울성원초등학교 선택형 교육 프로그램(방과후학교) 연간 운영 계획(안).hwp"
+      ],
+      "extraction_notes": [
+        "입력에 돌봄교실 운영 개요뿐이고 방과후 강좌표 없음",
+        "돌봄 내부 일과만 있음"
+      ],
+      "research_input": null,
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000001958",
+      "school_name": "서울개명초등학교",
+      "group": "processed_no_public_course",
+      "priority": 1,
+      "public_course_data_missing": true,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "2026학년도 돌봄교실 연간 운영 계획안.hwp",
+        "(학운위심의안건)2026학년도 방과후·맞춤형교실 연간 운영 계획(안)(수정).hwp"
+      ],
+      "extraction_notes": [
+        "맞춤형 표가 깨져 요일 불명, 12:50-14:10와 13:40-15:00 두 시간대에 배치된 프로그램명만 기록",
+        "강좌는 수강료 표뿐이라 제외, 맞춤형 시간표는 칸 구조 불명"
+      ],
+      "research_input": null,
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000001959",
+      "school_name": "서울온수초등학교",
+      "group": "processed_no_public_course",
+      "priority": 1,
+      "public_course_data_missing": true,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "2026학년도 돌봄교실 연간 운영 계획(안).hwp",
+        "2026학년도 방과후·맞춤형 연간 운영 계획 심의(안).zip"
+      ],
+      "extraction_notes": [
+        "방과후 강좌표 없음, 돌봄 일과만 있음",
+        "방과후·맞춤형 강좌표 없음; 외부강사 활동은 돌봄교실 내부 일과라 제외"
+      ],
+      "research_input": null,
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000002021",
+      "school_name": "서울누원초등학교",
+      "group": "processed_no_public_course",
+      "priority": 1,
+      "public_course_data_missing": true,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "2026학년도 돌봄교실 연간 운영 계획(안).hwpx",
+        "2026 방과후학교 운영 계획.hwpx"
+      ],
+      "extraction_notes": [
+        "돌봄교실 운영 표만 있고 방과후·맞춤형 강좌표 없음",
+        "돌봄교실 내부 일과만 있고 방과후·맞춤형 강좌표 없음"
+      ],
+      "research_input": null,
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000002022",
+      "school_name": "서울오봉초등학교",
+      "group": "processed_no_public_course",
+      "priority": 1,
+      "public_course_data_missing": true,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "2026학년 도봉 방[과후][good]방과후교실운영 계획(안).pdf"
+      ],
+      "extraction_notes": [
+        "방과후·맞춤형 시간표 문구 없음"
+      ],
+      "research_input": null,
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000002023",
+      "school_name": "서울도봉초등학교",
+      "group": "processed_no_public_course",
+      "priority": 1,
+      "public_course_data_missing": true,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "(심의자료)2026학년도 방과후,맞춤형 연간 운영계획(안).hwp"
+      ],
+      "extraction_notes": [
+        "방과후·맞춤형 시간표 문구 없음"
+      ],
+      "research_input": null,
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000002028",
+      "school_name": "서울쌍문초등학교",
+      "group": "processed_no_public_course",
+      "priority": 1,
+      "public_course_data_missing": true,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "2026학년도 방과후 돌봄 운영계획.hwp"
+      ],
+      "extraction_notes": [
+        "돌봄교실 운영 표만 있고 방과후·맞춤형 강좌표 없음",
+        "강좌표 없음(운영 방침·돌봄 개요만)"
+      ],
+      "research_input": null,
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000002044",
+      "school_name": "서울상원초등학교",
+      "group": "processed_no_public_course",
+      "priority": 1,
+      "public_course_data_missing": true,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "2026학년도 방과후학교 운영계획 및 규정.hwp"
+      ],
+      "extraction_notes": [
+        "입력에 방과후·맞춤형 시간표 문구 없음",
+        "방과후·맞춤형 시간표 문구 없음"
+      ],
+      "research_input": null,
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000002071",
+      "school_name": "서울중원초등학교",
+      "group": "processed_no_public_course",
+      "priority": 1,
+      "public_course_data_missing": true,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "2026학년도 방과후 맞춤형 프로그램 운영계획(안).hwpx",
+        "2026학년도 돌봄교실 운영계획.hwp"
+      ],
+      "extraction_notes": [
+        "돌봄 운영비와 일과 예시뿐이고 방과후·맞춤형 강좌표가 없음",
+        "강좌표 없음"
+      ],
+      "research_input": null,
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000002089",
+      "school_name": "서울독립문초등학교",
+      "group": "processed_no_public_course",
+      "priority": 1,
+      "public_course_data_missing": true,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "2026학년도 서울독립문초등학교 초등돌봄교실 운영 계획(안).pdf",
+        "2026학년도 서울독립문초등학교 방과후교실 운영 계획(안).pdf"
+      ],
+      "extraction_notes": [
+        "방과후교실 운영계획 PDF 텍스트가 깨져 강좌명·요일·시간 판독 불가(14:40-16:00 2-6G 조각만 있고 강좌명 없음); 돌봄 내용만 있음",
+        "방과후 강좌표가 깨진 글자로만 남아 강좌명·요일을 읽을 수 없음; 돌봄 문서 위주"
+      ],
+      "research_input": null,
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000002126",
+      "school_name": "서울중대초등학교",
+      "group": "processed_no_public_course",
+      "priority": 1,
+      "public_course_data_missing": true,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "2026학년도 방과후·돌봄(맞춤형, 방과후) 운영계획(안).hwp",
+        "2026학년도 초등돌봄교실 운영 계획(안).hwp"
+      ],
+      "extraction_notes": [
+        "시간이 적힌 방과후·맞춤형 강좌표 없음(돌봄 일과와 운영 방침 문구뿐)",
+        "방과후·맞춤형 강좌 목록이 입력에 없음(돌봄 문서와 계획 서문뿐)"
+      ],
+      "research_input": null,
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000002146",
+      "school_name": "서울방산초등학교",
+      "group": "processed_no_public_course",
+      "priority": 1,
+      "public_course_data_missing": true,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "2026학년도 방과후·맞춤형교실, 돌봄교실 연간 운영계획(안).pdf"
+      ],
+      "extraction_notes": [
+        "방과후·맞춤형 시간표 문구 없음"
+      ],
+      "research_input": null,
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000002164",
+      "school_name": "서울강일초등학교",
+      "group": "processed_no_public_course",
+      "priority": 1,
+      "public_course_data_missing": true,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "2026 돌봄교실 운영 계획(안).hwpx",
+        "2026학년도 방과후돌봄교실 연간 운영 계획(안).hwpx"
+      ],
+      "extraction_notes": [
+        "돌봄·틈새돌봄 운영계획만 있고 방과후·맞춤형 강좌표 없음",
+        "강좌표 없음(돌봄 운영시간과 수강료 산정표만 있음)"
+      ],
+      "research_input": null,
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000002173",
+      "school_name": "서울명원초등학교",
+      "group": "processed_no_public_course",
+      "priority": 1,
+      "public_course_data_missing": true,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "2026학년도 방과후맞춤형 교실 연간 운영 계획.hwp"
+      ],
+      "extraction_notes": [
+        "방과후·맞춤형 시간표 문구 없음",
+        "시간표 문구 없음"
+      ],
+      "research_input": null,
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000002187",
+      "school_name": "서울목원초등학교",
+      "group": "processed_no_public_course",
+      "priority": 1,
+      "public_course_data_missing": true,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "(목원초)2026학년도 방과후·돌봄 운영계획.zip"
+      ],
+      "extraction_notes": [
+        "방과후·맞춤형 시간표 문구 없음",
+        "시간표 문구 없음"
+      ],
+      "research_input": null,
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000002191",
+      "school_name": "서울계남초등학교",
+      "group": "processed_no_public_course",
+      "priority": 1,
+      "public_course_data_missing": true,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "2026학년도 계남초등학교 초등돌봄교실 연간 운영 계획.hwp",
+        "2026학년도 계남초등학교 방과후교실 연간 운영 계획.hwp"
+      ],
+      "extraction_notes": [
+        "방과후 강좌표 없음, 돌봄 운영계획만 있음",
+        "강좌표 없음"
+      ],
+      "research_input": null,
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000002198",
+      "school_name": "서울갈산초등학교",
+      "group": "processed_no_public_course",
+      "priority": 1,
+      "public_course_data_missing": true,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "2026 돌봄교실 운영 계획.hwpx",
+        "2026 방과후학교 운영 계획.hwpx"
+      ],
+      "extraction_notes": [
+        "방과후 강좌표 없음, 돌봄 운영계획만 있음",
+        "강좌표 없음"
+      ],
+      "research_input": null,
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000002204",
+      "school_name": "서울강서초등학교",
+      "group": "processed_no_public_course",
+      "priority": 1,
+      "public_course_data_missing": true,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "방과후학교 운영계획(정보공시).hwp"
+      ],
+      "extraction_notes": [
+        "방과후 강좌표 없음, 돌봄 운영 개요만 있음",
+        "강좌표 없음"
+      ],
+      "research_input": null,
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000002229",
+      "school_name": "서울발산초등학교",
+      "group": "processed_no_public_course",
+      "priority": 1,
+      "public_course_data_missing": true,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "(학교운영위원회자료) 2026학년 방과후교실  프로그램 운영 기본 계획(안).hwp"
+      ],
+      "extraction_notes": [
+        "시간표 문구 없음"
+      ],
+      "research_input": null,
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000002243",
+      "school_name": "서울화곡초등학교",
+      "group": "processed_no_public_course",
+      "priority": 1,
+      "public_course_data_missing": true,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "2026학년도 돌봄교실 운영 계획(안).hwpx",
+        "2026 늘봄학교(방과후교실) 연간운영계획.hwp"
+      ],
+      "extraction_notes": [
+        "컴퓨터교실 시간표만 있고 요일 칸 불명확로 요일 null, 오후 시각 환산",
+        "컴퓨터교실 시간표만 강좌표 형태이며 요일은 칸 위치와 주2회 문구(L51)로 월수로 판단, 시각은 1:50-3:20 등을 오후로 환산"
+      ],
+      "research_input": null,
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000002290",
+      "school_name": "서울학동초등학교",
+      "group": "processed_no_public_course",
+      "priority": 1,
+      "public_course_data_missing": true,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "2026 학교교육과정(방과후돌봄)자료.hwp"
+      ],
+      "extraction_notes": [
+        "방과후 강좌표 없음(돌봄 운영 개요만, 방과후 프로그램은 별도 계획이라고만 적힘)",
+        "방과후 강좌표 없음(돌봄 운영 개요와 별도 계획 참조 문구만 있음)"
+      ],
+      "research_input": null,
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000002325",
+      "school_name": "서울원신초등학교",
+      "group": "processed_no_public_course",
+      "priority": 1,
+      "public_course_data_missing": true,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "2026학년도 방과후교실 연간 운영계획(학운위 심의).hwp"
+      ],
+      "extraction_notes": [
+        "4개 강좌 모두 3-6학년 대상",
+        "시각은 오후 12시간제(2:30-4:00 등)를 24시간제로 환산"
+      ],
+      "research_input": null,
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000002326",
+      "school_name": "서울남부초등학교",
+      "group": "processed_no_public_course",
+      "priority": 1,
+      "public_course_data_missing": true,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "(정보공시)2026학년도 돌봄교실 연간 운영 계획(안).hwp",
+        "(정보공시)2026학년도 방과후·맞춤형 연간 운영 계획(수정) 및 수강료 교재재료 사용계획(안).hwp"
+      ],
+      "extraction_notes": [
+        "방과후 강좌표 없음(돌봄 일과와 운영기간만); 돌봄 내부 일과는 제외",
+        "방과후·맞춤형 강좌표 없음(운영 기간만 있고 맞춤형 요일 일과는 돌봄교실 내부 일과)"
+      ],
+      "research_input": null,
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000002352",
+      "school_name": "서울금호초등학교",
+      "group": "processed_no_public_course",
+      "priority": 1,
+      "public_course_data_missing": true,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "2026학년도 금호초 초등돌봄교실 운영 계획.hwp",
+        "2026학년도 금호초 방과후학교 운영 계획.hwp"
+      ],
+      "extraction_notes": [
+        "강좌표 없음(돌봄 운영계획만)",
+        "방과후 개설 프로그램 목록이 잘려 강좌 정보 없음(돌봄 일과만 있음)"
+      ],
+      "research_input": null,
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000002355",
+      "school_name": "서울동명초등학교",
+      "group": "processed_no_public_course",
+      "priority": 1,
+      "public_course_data_missing": true,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "2. 2026학년도 서울동명초등학교 초등돌봄교실 운영계획(안).hwp",
+        "1. 2026학년도 서울동명초등학교 방과후교실 사업지원비 운영 계획(안).hwp",
+        "1. 2026학년도 서울동명초등학교 방과후.맞춤형 프로그램 연간 운영 계획(안).hwp"
+      ],
+      "extraction_notes": [
+        "방과후 맞춤형 강좌표 없음(운영 기간과 시간대만)",
+        "방과후 강좌표 없음, 운영시간 개요와 돌봄 일과만 있음"
+      ],
+      "research_input": null,
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000002361",
+      "school_name": "서울옥정초등학교",
+      "group": "processed_no_public_course",
+      "priority": 1,
+      "public_course_data_missing": true,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "2026학년도 옥정초 돌봄교실 연간 운영 계획 및 안전 관리 계획.pdf",
+        "(옥정초) 2026학년도 방과후.돌봄 운영계획(안).hwp"
+      ],
+      "extraction_notes": [
+        "입력이 강좌표 전에 잘림, 돌봄 내용뿐",
+        "방과후·맞춤형 강좌표가 입력에 없음(본문 잘림)"
+      ],
+      "research_input": null,
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000002402",
+      "school_name": "서울석계초등학교",
+      "group": "processed_no_public_course",
+      "priority": 1,
+      "public_course_data_missing": true,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "2026학년도 석계초 초등돌봄교실 운영계획.hwp",
+        "2026학년도 석계초 방과후·맞춤형 교실 연간운영계획.hwp"
+      ],
+      "extraction_notes": [
+        "연간운영계획 본문만 있고 강좌표 없음; 맞춤형은 매일 2차시 언급뿐",
+        "방과후·맞춤형 강좌표가 입력에 없음(본문 잘림)"
+      ],
+      "research_input": null,
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000002403",
+      "school_name": "서울석관초등학교",
+      "group": "processed_no_public_course",
+      "priority": 1,
+      "public_course_data_missing": true,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "2026학년도 맞춤형 방과후교실 운영계획.hwp",
+        "2026학년도 초등돌봄교실 연간 운영 계획.hwp"
+      ],
+      "extraction_notes": [
+        "돌봄교실 계획만 있고 방과후·맞춤형 강좌표 없음",
+        "방과후·맞춤형 강좌표 없음(돌봄 개요만)"
+      ],
+      "research_input": null,
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000002418",
+      "school_name": "서울번동초등학교",
+      "group": "processed_no_public_course",
+      "priority": 1,
+      "public_course_data_missing": true,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "2026학년도 번동초등학교 방과후교실 운영계획.hwp",
+        "2026학년도 번동초등학교 초등돌봄교실 운영계획.hwp"
+      ],
+      "extraction_notes": [
+        "돌봄교실 계획만 있고 방과후·맞춤형 강좌표 없음",
+        "방과후·맞춤형 강좌표 없음(환불 규정과 돌봄 개요만)"
+      ],
+      "research_input": null,
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000024102",
+      "school_name": "서울어울초등학교",
+      "group": "processed_no_public_course",
+      "priority": 1,
+      "public_course_data_missing": true,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "(심의)2026학년도 방과후교실 연간 운영 계획 심의(안).hwp"
+      ],
+      "extraction_notes": [
+        "기수별 일정만 있고 강좌 시간표 없음.",
+        "기수 일정만 있고 강좌표 없음"
+      ],
+      "research_input": null,
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000001838",
+      "school_name": "서울휘경초등학교",
+      "group": "custom_gap_in_published_school",
+      "priority": 2,
+      "public_course_data_missing": false,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "2026학년도 특수학급 방과후교실 운영 계획.hwp",
+        "2026학년도 돌봄 프로그램운영 계획.hwp",
+        "2026학년도 방과후교실 연간 운영계획(안).hwp"
+      ],
+      "extraction_notes": [
+        "2026학년도 요일별 맞춤형 프로그램명 없음. 제공 원문은 돌봄 개요 및 방과후·맞춤형 안전관리 지침이며 실제 강좌명 미제시."
+      ],
+      "research_input": null,
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000001843",
+      "school_name": "서울이문초등학교",
+      "group": "custom_gap_in_published_school",
+      "priority": 2,
+      "public_course_data_missing": false,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "(정보공시)2026학년도 이문초등학교 방과후학교 운영 계획.hwpx"
+      ],
+      "extraction_notes": [
+        "입력에 방과후·맞춤형 시간표 문구 없음",
+        "학년 표기 없음, 시간은 표의 운영 시간 칸 그대로"
+      ],
+      "research_input": null,
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000001856",
+      "school_name": "경희초등학교",
+      "group": "custom_gap_in_published_school",
+      "priority": 2,
+      "public_course_data_missing": false,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "2026학년도 경희초 방과후학교 운영계획.hwp"
+      ],
+      "extraction_notes": [
+        "추가 검수 목록만. 요일·시각은 공개 반영에서 제외. publication_provenance.json 참조."
+      ],
+      "research_input": "etl/runtime/seoul-gap37-20261019/inputs/B000001856.txt",
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000001857",
+      "school_name": "서울삼육초등학교",
+      "group": "custom_gap_in_published_school",
+      "priority": 2,
+      "public_course_data_missing": false,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "2026학년도 방과후학교 운영계획.hwpx"
+      ],
+      "extraction_notes": [
+        "강좌별 요일군(월수/화목)과 시간대 순서를 표 순서로 추정; 리딩&라이팅은 요일군 불명으로 월수화목 표기; 6학년 전용 강좌 요일은 영문법독해만 월수"
+      ],
+      "research_input": null,
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000001864",
+      "school_name": "서울면일초등학교",
+      "group": "custom_gap_in_published_school",
+      "priority": 2,
+      "public_course_data_missing": false,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "2026학년도 면일초 초등돌봄교실 운영 계획.hwpx",
+        "2026학년도 면일초 방과후학교 운영 계획.hwp"
+      ],
+      "extraction_notes": [
+        "단체 특강(뉴스포츠·티볼·꼬마베이킹)은 오전 시간표라 방학 특강으로 보고 제외; 수학교실 3학년 줄은 반 표기 없음"
+      ],
+      "research_input": null,
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000001867",
+      "school_name": "서울면동초등학교",
+      "group": "custom_gap_in_published_school",
+      "priority": 2,
+      "public_course_data_missing": false,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "2026학년도 방과후교실 연간 운영 계획.hwp"
+      ],
+      "extraction_notes": [
+        "토요일 강좌 포함(요일 토); 맞춤형 강좌표 없음"
+      ],
+      "research_input": null,
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000001872",
+      "school_name": "서울신묵초등학교",
+      "group": "custom_gap_in_published_school",
+      "priority": 2,
+      "public_course_data_missing": false,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "2026학년도 돌봄교실 연간교육계획안 및 안전교육계획안.hwpx",
+        "2026학년도 방과후·맞춤형교실 연간운영계획(안).hwp",
+        "2026년 4월 돌봄교실 교육계획안1.hwp",
+        "2026학년도 제1기 방과후교실 운영 계획(안).hwp",
+        "2025학년도 돌봄교실 연간교육 계획안 및 안전교육 계획안.hwpx",
+        "2025학년도 늘봄학교(선택형,맞춤형) 연간 운영 계획(안).hwp"
+      ],
+      "extraction_notes": [
+        "주2회 표의 시간 열 머리글이 방학 중이라 적혀 있으나 학기 시간으로 기록; 맞춤형 강좌표 없음",
+        "요일별 프로그램명 없음. 2026 표 L138~147은 월요일 프로그램 등의 자리표시뿐이며 2025 과업내용서는 사용하지 않음."
+      ],
+      "research_input": null,
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000001873",
+      "school_name": "서울상봉초등학교",
+      "group": "custom_gap_in_published_school",
+      "priority": 2,
+      "public_course_data_missing": false,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "2026학년도 상봉초 돌봄교실 운영계획.hwp",
+        "2026학년도 상봉초 방과후교실 연간운영계획.hwp"
+      ],
+      "extraction_notes": [
+        "특수교육대상 놀이체육은 제외; 맞춤형 강좌표 없음",
+        "초1·2 맞춤형교실 실제 강좌명 없음. 더 좋은 맞춤형 방과후의 영어놀이·창의보드게임은 각각 4·5학년 대상이고, 놀이체육·원예미술은 특수학급 방과후이므로 제외."
+      ],
+      "research_input": null,
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000001877",
+      "school_name": "서울봉화초등학교",
+      "group": "custom_gap_in_published_school",
+      "priority": 2,
+      "public_course_data_missing": false,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "2026학년도 서울봉화초등학교 초등돌봄교실 운영 계획.hwp",
+        "2026학년도 서울봉화초등학교 방과후학교 운영 계획.hwp"
+      ],
+      "extraction_notes": [
+        "방과후·맞춤형 강좌표(강좌명·요일·시간) 없음, 돌봄교실 운영계획만 있음",
+        "요일·시각 거의 없음(주당 분량만), 돌봄 내부 일과 제외",
+        "요일별 맞춤형 프로그램명 없음. L56 게임놀이교실·독서 교실은 맞춤형 참여 학생의 돌봄교실 내부 특기적성 활동으로 별도 맞춤형 수업임이 확인되지 않아 제외."
+      ],
+      "research_input": null,
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000001880",
+      "school_name": "금성초등학교",
+      "group": "custom_gap_in_published_school",
+      "priority": 2,
+      "public_course_data_missing": false,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "2026 방과후교육 연간 계획.hwp"
+      ],
+      "extraction_notes": [
+        "추가 검수 목록만. 요일·시각은 공개 반영에서 제외. publication_provenance.json 참조."
+      ],
+      "research_input": "etl/runtime/seoul-gap37-20261019/inputs/B000001880.txt",
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000001884",
+      "school_name": "서울진관초등학교",
+      "group": "custom_gap_in_published_school",
+      "priority": 2,
+      "public_course_data_missing": false,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "2026학년 서울진관초 돌봄교실 (사랑샘터) 운영계획(안).hwp",
+        "2026학년도 서울진관초 방과후교실 연간 세부 계획.hwp"
+      ],
+      "extraction_notes": [
+        "강좌표에 대상학년·요일이 대부분 없어 unknown/null; 요일은 L34-35 시간표로 보충(배드민턴·농구·음악줄넘기·마인크래프트)",
+        "2026학년도 실제 맞춤형 강좌명 미제시. L40 나열명은 3·4학년 돌봄 무상활동이며 1·2학년 맞춤형과 별도여서 제외."
+      ],
+      "research_input": null,
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000001890",
+      "school_name": "서울녹번초등학교",
+      "group": "custom_gap_in_published_school",
+      "priority": 2,
+      "public_course_data_missing": false,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "(정보공시) 2026학년도 초등돌봄교실 운영 계획.hwp",
+        "(정보공시) 2026학년도 방과후교실 운영 계획.hwp"
+      ],
+      "extraction_notes": [
+        "2분기 강좌표만 수록"
+      ],
+      "research_input": null,
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000001891",
+      "school_name": "서울수리초등학교",
+      "group": "custom_gap_in_published_school",
+      "priority": 2,
+      "public_course_data_missing": false,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "2026학년도 돌봄교실 운영 계획(안) .pdf",
+        "2026학년도 방과후교실 운영 계획(안)_최종.pdf"
+      ],
+      "extraction_notes": [
+        "수리초 강좌표는 한 줄로 합쳐져 있어 요일·학년·시간을 순서대로 해석함"
+      ],
+      "research_input": null,
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000001893",
+      "school_name": "서울연신초등학교",
+      "group": "custom_gap_in_published_school",
+      "priority": 2,
+      "public_course_data_missing": false,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "2026학년도 방과후학교  운영계획.hwp"
+      ],
+      "extraction_notes": [
+        "특수학급 전용(도담반) 제외; 강좌명 끝 A/B는 원문 표기 그대로",
+        "2026학년도 요일별 맞춤형 프로그램명 없음. 생명실험과학·로봇파워·특수미술활동은 수강료가 있는 방과후 강좌이며 더 좋은 맞춤형 방과후교실은 사업지원 용어로 초1~2 무료 맞춤형과 구분."
+      ],
+      "research_input": null,
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000001900",
+      "school_name": "서울상신초등학교",
+      "group": "custom_gap_in_published_school",
+      "priority": 2,
+      "public_course_data_missing": false,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "2026학년도 상신초 돌봄교실프로그램 운영계획.hwp",
+        "2026학년도 상신초 방과후교실 연간 운영 계획 수정.hwp"
+      ],
+      "extraction_notes": [
+        "돌봄교실 개요만 있고 방과후·맞춤형 강좌표 없음",
+        "요일은 월~금 중 주당 횟수만 기재, 시각 없음",
+        "요일별 프로그램명 없음. 돌봄 내부 활동 및 방학 미래교육 예산만 제시되어 제외."
+      ],
+      "research_input": null,
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000001904",
+      "school_name": "서울응암초등학교",
+      "group": "custom_gap_in_published_school",
+      "priority": 2,
+      "public_course_data_missing": false,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "1. 2026학년도 늘봄학교  방과후교실  운영 계획.hwpx"
+      ],
+      "extraction_notes": [
+        "입력에 요일·시간 정보 없음(프로그램명·정원·횟수만, 본문 중간에서 끊김)",
+        "입력이 5번 강좌에서 끊김, 요일·시각 없음(주1회 80분 등)"
+      ],
+      "research_input": null,
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000001906",
+      "school_name": "서울대은초등학교",
+      "group": "custom_gap_in_published_school",
+      "priority": 2,
+      "public_course_data_missing": false,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "2026학년도 대은초등학교 돌봄교실 운영 계획.hwp",
+        "2026학년도 대은초등학교 방과후교실  운영 계획.hwp"
+      ],
+      "extraction_notes": [
+        "맞춤형 시간표 없음, 돌봄 운영 시간만 있음"
+      ],
+      "research_input": null,
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000001908",
+      "school_name": "선일초등학교",
+      "group": "custom_gap_in_published_school",
+      "priority": 2,
+      "public_course_data_missing": false,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "[목요일부서]2026-1_선일초 방과후수업계획서.hwp",
+        "[금요일부서]2026-1_선일초 방과후수업계획서.hwp"
+      ],
+      "extraction_notes": [
+        "추가 검수 목록만. 요일·시각은 공개 반영에서 제외. publication_provenance.json 참조."
+      ],
+      "research_input": "etl/runtime/seoul-gap37-20261019/inputs/B000001908.txt",
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000001909",
+      "school_name": "예일초등학교",
+      "group": "custom_gap_in_published_school",
+      "priority": 2,
+      "public_course_data_missing": false,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "방과후학교계(완료).hwp"
+      ],
+      "extraction_notes": [
+        "추가 검수 목록만. 요일·시각은 공개 반영에서 제외. publication_provenance.json 참조."
+      ],
+      "research_input": "etl/runtime/seoul-gap37-20261019/inputs/B000001909.txt",
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000001912",
+      "school_name": "서울미동초등학교",
+      "group": "custom_gap_in_published_school",
+      "priority": 2,
+      "public_course_data_missing": false,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "2026학년도 방과후교실 연간운영계획(정보공시).hwp"
+      ],
+      "extraction_notes": [
+        "요일별 맞춤형 프로그램명 없음. 제공 입력은 유료 방과후 운영·교재 계획 및 공통 생활지도이며 별도 맞춤형 명칭 미기재."
+      ],
+      "research_input": null,
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000001922",
+      "school_name": "서울홍연초등학교",
+      "group": "custom_gap_in_published_school",
+      "priority": 2,
+      "public_course_data_missing": false,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "2026학년도 홍연초등학교 돌봄교실 운영계획.hwp",
+        "2026학년도 홍연초등학교 방과후학교 운영 계획.hwp"
+      ],
+      "extraction_notes": [
+        "돌봄교실 프로그램(L4~10)은 제외, 맞춤형 강좌표는 입력에 없음",
+        "2026학년도 요일별 맞춤형 프로그램명 없음. L65~75 강좌는 맞춤형 미참여 1·2학년 및 3·4학년용 돌봄 특기적성 프로그램으로 명시되어 제외."
+      ],
+      "research_input": null,
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000001927",
+      "school_name": "이화여자대학교사범대학부속초등학교",
+      "group": "custom_gap_in_published_school",
+      "priority": 2,
+      "public_course_data_missing": false,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "2026학년도 방과후학교 운영 계획.hwp"
+      ],
+      "extraction_notes": [
+        "추가 검수 목록만. 요일·시각은 공개 반영에서 제외. publication_provenance.json 참조."
+      ],
+      "research_input": "etl/runtime/seoul-gap37-20261019/inputs/B000001927.txt",
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000001928",
+      "school_name": "추계초등학교",
+      "group": "custom_gap_in_published_school",
+      "priority": 2,
+      "public_course_data_missing": false,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "2025 방과후학교 지원 현황.hwp",
+        "2026 방과후학교 운영 현황.hwp",
+        "2026 방과후학교 운영계획서.hwp"
+      ],
+      "extraction_notes": [
+        "추가 검수 목록만. 요일·시각은 공개 반영에서 제외. publication_provenance.json 참조."
+      ],
+      "research_input": "etl/runtime/seoul-gap37-20261019/inputs/B000001928.txt",
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000001929",
+      "school_name": "명지초등학교",
+      "group": "custom_gap_in_published_school",
+      "priority": 2,
+      "public_course_data_missing": false,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "2026학년도 돌?교실 운영계획.hwp",
+        "2026학년도 방과후교실 운영계획.hwp"
+      ],
+      "extraction_notes": [
+        "추가 검수 목록만. 요일·시각은 공개 반영에서 제외. publication_provenance.json 참조."
+      ],
+      "research_input": "etl/runtime/seoul-gap37-20261019/inputs/B000001929.txt",
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000001931",
+      "school_name": "서울창천초등학교",
+      "group": "custom_gap_in_published_school",
+      "priority": 2,
+      "public_course_data_missing": false,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "2026학년도창천초학교 방과후학교 운영계획.hwp"
+      ],
+      "extraction_notes": [],
+      "research_input": null,
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000001938",
+      "school_name": "서울서교초등학교",
+      "group": "custom_gap_in_published_school",
+      "priority": 2,
+      "public_course_data_missing": false,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "2026학년도 돌봄교실 운영 계획_정보공시.hwp",
+        "2026학년도 방과후교실 교육 프로그램 연간 운영 계획_정보공시.hwp"
+      ],
+      "extraction_notes": [
+        "원어민 영어와 민간참여 컴퓨터는 시간표 없어 제외",
+        "2026학년도 실제 맞춤형 강좌명 없음. 드로잉·놀이체육·숨은그림찾기·스티커아트는 맞춤형 또는 돌봄 특기적성 중 후자의 프로그램으로 구분되어 제외."
+      ],
+      "research_input": null,
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000001946",
+      "school_name": "서울염리초등학교",
+      "group": "custom_gap_in_published_school",
+      "priority": 2,
+      "public_course_data_missing": false,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "2026학년도 돌봄교실 연간 운영계획.pdf",
+        "2026학년도 방과후프로그램 연간 운영계획.pdf"
+      ],
+      "extraction_notes": [
+        "입력에 돌봄교실 운영 개요뿐이고 방과후 강좌표 없음",
+        "학년별로 반을 나눈 같은 강좌는 행을 따로 둠, 시각 없음(주당 시간만)",
+        "요일별 맞춤형 프로그램명 없음. 제공 자료는 돌봄교실 운영계획으로, L16의 이야기를 그려요·디폼블럭·종이오리기·교실놀이는 돌봄 내부활동이며 별도 맞춤형 수업으로 명시되지 않음."
+      ],
+      "research_input": null,
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000001961",
+      "school_name": "서울개봉초등학교",
+      "group": "custom_gap_in_published_school",
+      "priority": 2,
+      "public_course_data_missing": false,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "2026학년도 방과후교실 운영계획.hwp",
+        "2026학년도 돌봄교실 운영계획.hwp"
+      ],
+      "extraction_notes": [
+        "분기별 수강료·주수 표기, 요일별 표 사용",
+        "요일별 초1 또는 초1·2 공통 맞춤형 프로그램명 없음. L14 치유 도시농업 수업은 맞춤형 2학년 전용이므로 제외; 나머지는 유료 방과후."
+      ],
+      "research_input": null,
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000001966",
+      "school_name": "서울신구로초등학교",
+      "group": "custom_gap_in_published_school",
+      "priority": 2,
+      "public_course_data_missing": false,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "2026학년도 신구로초 초등돌봄교실 운영계획.pdf",
+        "2026학년도 신구로초 방과후교실 연간운영계획(안).pdf",
+        "2026학년도 신구로초 방과후교실 연간운영계획(세부).pdf"
+      ],
+      "extraction_notes": [
+        "일부 강좌는 요일표가 깨져 요일을 알 수 없음(요일 null), 컴퓨터교실 시간표는 표 구조로 추정",
+        "2026학년도 요일별 별도 맞춤형교실 프로그램명 없음. 창의미술·연극·놀이영어·보드게임은 돌봄교실 특별활동으로 명시; 맞춤형 예산 활용·강사 인건비 준용만으로 별도 맞춤형 수업으로 간주하지 않음."
+      ],
+      "research_input": null,
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000001974",
+      "school_name": "서울오정초등학교",
+      "group": "custom_gap_in_published_school",
+      "priority": 2,
+      "public_course_data_missing": false,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "2026학년도 방과후교실 운영계획.hwpx"
+      ],
+      "extraction_notes": [
+        "1기(3/9~5/29) 표만 있음",
+        "2026학년도 맞춤형 설치·운영 방침은 있으나 실제 프로그램명 미제시. 제시된 강좌 및 재료표는 유료 방과후교실로 제외."
+      ],
+      "research_input": null,
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000001975",
+      "school_name": "서울오류남초등학교",
+      "group": "custom_gap_in_published_school",
+      "priority": 2,
+      "public_course_data_missing": false,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "2026 돌봄 교실 연간 운영 계획(안)_공시.hwp",
+        "2026학년도 방과후교실 연간 운영 계획(안)_공시.hwp"
+      ],
+      "extraction_notes": [
+        "컴퓨터 강좌표는 본안/변경안 중 두 번째(L94~) 사용, 12시간제 오후 환산; 컴퓨터교실은 2학기부터 운영 예정; 영어 화목/수 시간이 달라 요일별 행으로 분리"
+      ],
+      "research_input": null,
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000001980",
+      "school_name": "서울문백초등학교",
+      "group": "custom_gap_in_published_school",
+      "priority": 2,
+      "public_course_data_missing": false,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "2026학년도 문백초등학교 돌봄교실 운영 계획.pdf",
+        "2026학년도 문백초등학교 방과후학교 운영 계획.pdf"
+      ],
+      "extraction_notes": [
+        "방과후 표가 평문으로 합쳐져 줄번호는 대표 줄(L32,L36,L42,L46); 민참 컴퓨터교실은 2026.8.29까지; 11주 기준 분기제",
+        "2026학년도 요일별 별도 맞춤형교실 프로그램명 없음. L9 책놀이·놀이체육·보드게임은 1~3학년 돌봄 단체활동 예시이며 L35도 돌봄 단체활동 3개로 명시. 별도 초1~2 맞춤형과 구분하여 제외."
+      ],
+      "research_input": null,
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000001986",
+      "school_name": "서울안천초등학교",
+      "group": "custom_gap_in_published_school",
+      "priority": 2,
+      "public_course_data_missing": false,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "2026학년도 돌봄교실 연간운영 계획.hwp",
+        "2026학년도 방과후 교육 연간 운영계획(안).hwp"
+      ],
+      "extraction_notes": [
+        "12주 기준",
+        "요일별 맞춤형 프로그램명 없음. 이야기할머니 등은 돌봄 내부 특별활동이며 KB작은별기업가교육은 3·4학년 대상이므로 제외."
+      ],
+      "research_input": null,
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000001989",
+      "school_name": "서울백산초등학교",
+      "group": "custom_gap_in_published_school",
+      "priority": 2,
+      "public_course_data_missing": false,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "2026학년도 초등돌봄교실 운영계획.hwp",
+        "2026학년도 서울백산초등학교 민간참여 컴퓨터교실 운영계획.hwp",
+        "2026학년도 서울백산초등학교 방과후 운영계획.hwp"
+      ],
+      "extraction_notes": [
+        "L65~66 장소 배치표는 본표와 요일이 달라 본표(L47~64) 사용; 컴퓨터는 12시간제 오후 환산",
+        "2026학년도 맞춤형 운영 언급만 있고 실제 맞춤형 프로그램명 없음. 이름과 시간이 있는 강좌표는 수익자 부담 방과후교실이므로 제외."
+      ],
+      "research_input": null,
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000001990",
+      "school_name": "서울금산초등학교",
+      "group": "custom_gap_in_published_school",
+      "priority": 2,
+      "public_course_data_missing": false,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "2026학년도 서울금산초 초등돌봄교실 운영계획.hwp",
+        "2026학년도 서울금산초 방과후(방과후교실) 운영계획.hwp"
+      ],
+      "extraction_notes": [
+        "대상학년 표기 없음; 교실별 표의 열 순서로 요일 판단, 12시간제 오후 환산; 폐강 표기 반은 강좌명에 (폐강) 유지; 맞춤형 강좌표 없음",
+        "폐강 표시된 강좌/반은 제외, 일부 요일은 시간표 기준(목록의 축구 화, 배드민턴 월->금과 불일치); 12시간제 시각 변환",
+        "2026학년도 학기 중 요일별 맞춤형 프로그램명 없음. 놀이체육·안전교육·보드게임·나는 환경지킴이 등 L106~114는 방학 중 특별 프로그램으로 제외; 학기 시간으로 전용하지 않음."
+      ],
+      "research_input": null,
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000001993",
+      "school_name": "동광초등학교",
+      "group": "custom_gap_in_published_school",
+      "priority": 2,
+      "public_course_data_missing": false,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "2026학년도 업체위탁 학교 특색 방과후학교A(중국어·PBL)·돌봄교실 연간운영계획.hwp",
+        "2026학년도 업체위탁 학교 특색 방과후학교A(1인 1악기)·소질 적성 방과후학교B 연간운영계획.hwp"
+      ],
+      "extraction_notes": [
+        "추가 검수 목록만. 요일·시각은 공개 반영에서 제외. publication_provenance.json 참조."
+      ],
+      "research_input": "etl/runtime/seoul-gap37-20261019/inputs/B000001993.txt",
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000001994",
+      "school_name": "서울여의도초등학교",
+      "group": "custom_gap_in_published_school",
+      "priority": 2,
+      "public_course_data_missing": false,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "2026학년도 방과후교실 운영계획(안).hwp"
+      ],
+      "extraction_notes": [],
+      "research_input": null,
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000001996",
+      "school_name": "서울영중초등학교",
+      "group": "custom_gap_in_published_school",
+      "priority": 2,
+      "public_course_data_missing": false,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "2026학년도 영중초등학교 초등돌봄교실 운영계획(안).hwp",
+        "2026학년도 영중초등학교 방과후학교 운영계획.hwpx"
+      ],
+      "extraction_notes": [
+        "1기(3/9~5/29) 표 하나만 제시",
+        "2026학년도 맞춤형 실제 강좌명 미제시. L187~207 명칭은 방과후교실 강사이력·교육내용 표이며 개인별 맞춤형 지도라는 표현을 무료 맞춤형교실로 해석하지 않음."
+      ],
+      "research_input": null,
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000001997",
+      "school_name": "서울영동초등학교",
+      "group": "custom_gap_in_published_school",
+      "priority": 2,
+      "public_course_data_missing": false,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "2026학년도 영동초등학교 초등돌봄교실 운영계획.hwp",
+        "2026학년도 영동초등학교 방과후학교 운영계획.hwp"
+      ],
+      "extraction_notes": [
+        "논리수학 A반은 월·수 시간이 달라 두 행; 창의미술(목)은 폐강 표기로 제외; 특수 음악·미술 제외; 생명과학(목)은 L87 두번째 표에서만 확인",
+        "요일별 프로그램명은 돌봄교실 내부 특별활동 표에만 있으며 별도 초1·2 맞춤형 수업으로 확인되지 않아 제외. 별도 맞춤형 요일별 프로그램명 없음."
+      ],
+      "research_input": null,
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000002002",
+      "school_name": "서울영문초등학교",
+      "group": "custom_gap_in_published_school",
+      "priority": 2,
+      "public_course_data_missing": false,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "2026 영문초 방과후교실 업체위탁 연간 운영 계획(수정안).hwp"
+      ],
+      "extraction_notes": [
+        "교실별 시간표(L3~L24) 기준; 수 음악줄넘기는 상세표 시간 사용; 교과수학 L9 두 칸과 컴퓨터실 일부(L16~22)는 요일 불명이라 null; 열린반 없음"
+      ],
+      "research_input": null,
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000002011",
+      "school_name": "서울대영초등학교",
+      "group": "custom_gap_in_published_school",
+      "priority": 2,
+      "public_course_data_missing": false,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "2026-1분기 방과후학교 운영 계획서(최종).hwp"
+      ],
+      "extraction_notes": [
+        "강좌별 총 운영시간(2개 반 합산 구간)만 있어 시작·종료는 그 구간이고 반 구분은 null"
+      ],
+      "research_input": null,
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000002012",
+      "school_name": "서울우신초등학교",
+      "group": "custom_gap_in_published_school",
+      "priority": 2,
+      "public_course_data_missing": false,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "(학운위)2026학년도 방과후학교 연간 및 기별 운영 계획(안).hwp"
+      ],
+      "extraction_notes": [
+        "방학 중 시간 제외"
+      ],
+      "research_input": null,
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000002018",
+      "school_name": "서울신학초등학교",
+      "group": "custom_gap_in_published_school",
+      "priority": 2,
+      "public_course_data_missing": false,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "2026학년도 서울신학초등학교 방과후학교 연간운영계획.hwp",
+        "2026학년도 서울신학초등학교 초등돌봄교실 운영계획안.hwp"
+      ],
+      "extraction_notes": [
+        "요일별 프로그램명 없음. 제시된 언어·창의·놀이체육 등의 표는 돌봄교실 재량활동이며 별도 맞춤형 수업이 아님."
+      ],
+      "research_input": null,
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000002019",
+      "school_name": "서울창경초등학교",
+      "group": "custom_gap_in_published_school",
+      "priority": 2,
+      "public_course_data_missing": false,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "2026 방과후교실 프로그램 운영 계획.hwp"
+      ],
+      "extraction_notes": [
+        "컴퓨터 월금 과정은 월요일 시각 기준, 활동시간은 학기중 시각만 기재"
+      ],
+      "research_input": null,
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000002024",
+      "school_name": "서울방학초등학교",
+      "group": "custom_gap_in_published_school",
+      "priority": 2,
+      "public_course_data_missing": false,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "(방학초) 2026학년도 돌봄교실 운영 계획(안).hwpx",
+        "(방학초) 2026학년도 방과후 프로그램 운영 계획(안).hwp"
+      ],
+      "extraction_notes": [
+        "컴퓨터 표와 시간표의 학년이 달라(마인크래프트 1-6 vs 2~6, 반려동물 2-4 vs 1~2) unknown 처리"
+      ],
+      "research_input": null,
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000002025",
+      "school_name": "서울신방학초등학교",
+      "group": "custom_gap_in_published_school",
+      "priority": 2,
+      "public_course_data_missing": false,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "2026학년도 서울신방학초등학교 돌봄교실 운영계획.hwpx",
+        "2026학년도 서울신방학초등학교 방과후교실 운영계획.hwpx"
+      ],
+      "extraction_notes": [
+        "학기중 시각만 기재, 꾸러기천재는 월요일 시각 기준(수 13:40~14:20)"
+      ],
+      "research_input": null,
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000002027",
+      "school_name": "서울숭미초등학교",
+      "group": "custom_gap_in_published_school",
+      "priority": 2,
+      "public_course_data_missing": false,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "2026학년도 숭미초 방과후교실 운영 계획.hwp",
+        "2026학년도 숭미초 돌봄교실 운영 계획.hwp"
+      ],
+      "extraction_notes": [
+        "컴마스터·마크코딩특강은 월요일 시각 기준(금요일 10분 늦음)",
+        "2026학년도 요일별 맞춤형 프로그램명 없음. 방과후 유료 프로그램 및 맞춤형 미참여 학생의 돌봄 내부 활동은 제외."
+      ],
+      "research_input": null,
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000002032",
+      "school_name": "서울가인초등학교",
+      "group": "custom_gap_in_published_school",
+      "priority": 2,
+      "public_course_data_missing": false,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "2026학년도 방과후 교실 운영 계획(안).hwp",
+        "2026학년도 돌봄교실 운영 계획(안).hwp"
+      ],
+      "extraction_notes": [
+        "영어(업체위탁)는 월요일 시각 기준, 수요일은 약 40분 늦음",
+        "요일별 맞춤형 프로그램명 없음. 맞춤형 용어·관리 안내만 있고 별도 편성 누락; 도봉형 유료 방과후 및 돌봄 내부 프로그램 제외."
+      ],
+      "research_input": null,
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000002033",
+      "school_name": "서울창동초등학교",
+      "group": "custom_gap_in_published_school",
+      "priority": 2,
+      "public_course_data_missing": false,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "2026학년도 창동초 방과후교실 프로그램 연간 운영 계획.hwp",
+        "2026학년도 창동초 초등돌봄교실 운영계획.hwp"
+      ],
+      "extraction_notes": [
+        "컴퓨터 컴작품 초급의 요일은 월요일 구획에 있어 월로 기재, 강사 연락처는 옮기지 않음"
+      ],
+      "research_input": null,
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000002034",
+      "school_name": "서울창원초등학교",
+      "group": "custom_gap_in_published_school",
+      "priority": 2,
+      "public_course_data_missing": false,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "2026학년도 창원초 초등돌봄교실 운영계획.hwp",
+        "2026학년도 창원초등학교 방과후학교 운영 계획.hwp"
+      ],
+      "extraction_notes": [
+        "방과후 강좌표와 청담 영어 시간표 포함, 돌봄 제외"
+      ],
+      "research_input": null,
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000002037",
+      "school_name": "서울신화초등학교",
+      "group": "custom_gap_in_published_school",
+      "priority": 2,
+      "public_course_data_missing": false,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "2026학년도 서울신화초등학교 방과후교실 연간 운영 계획.hwp"
+      ],
+      "extraction_notes": [
+        "영어 C반 금요일 시간은 L36 별행 해석"
+      ],
+      "research_input": null,
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000002039",
+      "school_name": "한신초등학교",
+      "group": "custom_gap_in_published_school",
+      "priority": 2,
+      "public_course_data_missing": false,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "2026학년도 방과후·돌봄 운영계획서(한신초) - 에듀파인 업로드 2월 말.hwp"
+      ],
+      "extraction_notes": [
+        "추가 검수 목록만. 요일·시각은 공개 반영에서 제외. publication_provenance.json 참조."
+      ],
+      "research_input": "etl/runtime/seoul-gap37-20261019/inputs/B000002039.txt",
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000002057",
+      "school_name": "서울상곡초등학교",
+      "group": "custom_gap_in_published_school",
+      "priority": 2,
+      "public_course_data_missing": false,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "2026학년도 돌봄교실 운영계획.hwp",
+        "2026학년도 방과후교실 연간 운영계획(안).hwp"
+      ],
+      "extraction_notes": [
+        "맞춤형 시간표 없음(돌봄만)",
+        "2026학년도 맞춤형 무상 운영 및 돌봄 내 운영 방침만 확인되며 실제 강좌명 없음. 후반 교재표는 방과후교실이므로 제외."
+      ],
+      "research_input": null,
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000002059",
+      "school_name": "서울당현초등학교",
+      "group": "custom_gap_in_published_school",
+      "priority": 2,
+      "public_course_data_missing": false,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "2026학년도 당현초 돌봄교실 운영 계획.hwp",
+        "2026학년도 당현초 방과후학교 운영 계획.hwp"
+      ],
+      "extraction_notes": [
+        "맞춤형 표 없음",
+        "요일별 맞춤형 프로그램명 없음. L71~76은 맞춤형 미참여자 또는 3~4학년 돌봄 주제활동으로 제외."
+      ],
+      "research_input": null,
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000002068",
+      "school_name": "서울월계초등학교",
+      "group": "custom_gap_in_published_school",
+      "priority": 2,
+      "public_course_data_missing": false,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "2026학년도 초등돌봄교실 운영 계획(안)).hwp",
+        "2026학년도 서울월계초등학교 방과후교실 운영계획(정보공시).hwp"
+      ],
+      "extraction_notes": [
+        "돌봄 운영 개요와 수강료 산출 문장뿐이고 강좌표가 없음",
+        "학년 표기 없음",
+        "요일별 맞춤형 프로그램명 없음. L67은 돌봄 내부 활동이고 후반 강좌표는 유료 방과후교실이므로 제외."
+      ],
+      "research_input": null,
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000002069",
+      "school_name": "서울원광초등학교",
+      "group": "custom_gap_in_published_school",
+      "priority": 2,
+      "public_course_data_missing": false,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "2025학년도 원광초등학교 방과후 수익자부담금액.pdf",
+        "2025학년도 원광초등학교 방과후 지원금(자유수강권).pdf",
+        "2026학년도 원광초등학교 초등돌봄교실 운영 계획.hwp",
+        "2026학년도 원광초등학교 방과후학교 운영계획.hwp"
+      ],
+      "extraction_notes": [
+        "계약기간이 2025학년도로 적혀 기간 null. 요일별 시간표에서 한 칸에 시간이 둘이면 두 행으로 기록, 학년 미기재는 unknown",
+        "요일별 맞춤형 프로그램명 없음. L65 창의활동·교구활동 등은 돌봄 내부 활동으로 별도 맞춤형 수업이 아님."
+      ],
+      "research_input": null,
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000002078",
+      "school_name": "청원초등학교",
+      "group": "custom_gap_in_published_school",
+      "priority": 2,
+      "public_course_data_missing": false,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "2026학년도 1학기 화목방과후학교 운영 계획.hwp"
+      ],
+      "extraction_notes": [
+        "추가 검수 목록만. 요일·시각은 공개 반영에서 제외. publication_provenance.json 참조."
+      ],
+      "research_input": "etl/runtime/seoul-gap37-20261019/inputs/B000002078.txt",
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000002079",
+      "school_name": "태강삼육초등학교",
+      "group": "custom_gap_in_published_school",
+      "priority": 2,
+      "public_course_data_missing": false,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "방과후학교 지원 현황(2025학년도).hwp",
+        "(2026학년도)돌봄교실 운영계획안.hwpx",
+        "방과후학교 운영현황(2026학년도 4월 신청자 명단).xlsx",
+        "(2026학년도)특기교육부 교육과정 운영계획.hwpx"
+      ],
+      "extraction_notes": [
+        "추가 검수 목록만. 요일·시각은 공개 반영에서 제외. publication_provenance.json 참조."
+      ],
+      "research_input": "etl/runtime/seoul-gap37-20261019/inputs/B000002079.txt",
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000002080",
+      "school_name": "화랑초등학교",
+      "group": "custom_gap_in_published_school",
+      "priority": 2,
+      "public_course_data_missing": false,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "2026 방과후학교 운영 계획.hwp"
+      ],
+      "extraction_notes": [
+        "추가 검수 목록만. 요일·시각은 공개 반영에서 제외. publication_provenance.json 참조."
+      ],
+      "research_input": "etl/runtime/seoul-gap37-20261019/inputs/B000002080.txt",
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000002081",
+      "school_name": "상명초등학교",
+      "group": "custom_gap_in_published_school",
+      "priority": 2,
+      "public_course_data_missing": false,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "(학운위) 2026학년도 방과후학교 연간 운영계획.hwp"
+      ],
+      "extraction_notes": [
+        "추가 검수 목록만. 요일·시각은 공개 반영에서 제외. publication_provenance.json 참조."
+      ],
+      "research_input": "etl/runtime/seoul-gap37-20261019/inputs/B000002081.txt",
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000002095",
+      "school_name": "상명대학교사범대학부속초등학교",
+      "group": "custom_gap_in_published_school",
+      "priority": 2,
+      "public_course_data_missing": false,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "2026 방과후학교 운영계획(0226).hwpx"
+      ],
+      "extraction_notes": [
+        "추가 검수 목록만. 요일·시각은 공개 반영에서 제외. publication_provenance.json 참조."
+      ],
+      "research_input": "etl/runtime/seoul-gap37-20261019/inputs/B000002095.txt",
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000002096",
+      "school_name": "서울남산초등학교",
+      "group": "custom_gap_in_published_school",
+      "priority": 2,
+      "public_course_data_missing": false,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "(서울남산초등학교-2534 (첨부)) 2026학년도 방과후교실 연간 운영 계획.hwp"
+      ],
+      "extraction_notes": [
+        "표 열 순서로 요일 배정; 골프·튼튼수학Ⅱ·피아노는 주2회라 요일별 행; 바이올린 과정은 실력/기초; 기간 미표기"
+      ],
+      "research_input": null,
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000002099",
+      "school_name": "서울광희초등학교",
+      "group": "custom_gap_in_published_school",
+      "priority": 2,
+      "public_course_data_missing": false,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "3. 2025학년도 광희초등학교 방과후학교 교육경비보조금 정산서.hwpx",
+        "2-3. 2026학년도 광희초등학교 중구형 초등돌봄 새솔반 출석부.pdf",
+        "2-2. 2026학년도 광희초등학교 중구형 초등돌봄 도담반 출석부.pdf",
+        "2-1. 2026학년도 광희초등학교 방과후·맞춤형교실 수강생 현황 및 출석부.pdf",
+        "1-2. 2026학년도 광희초등학교 중구형 초등돌봄 사업계획서.pdf",
+        "1-1. 2026학년도 광희초등학교 방과후·맞춤형교실 운영계획.hwpx"
+      ],
+      "extraction_notes": [
+        "2026 계획에는 강좌표 없음; 2025학년도 방과후 교육경비 정산서의 마지막(12~2월) 표만 기록(이전 분기 표는 거의 동일하며 다중지능 보드게임·학년만 차이); 시간은 반 전체 운영 구간이며 개별 반 시간 불명",
+        "2025학년도 정산서(L1~169)는 지난해 실적이라 제외, 2026 운영계획(L188~)만 기록; 시각은 없고 80분 등 길이만 있음; 학년별 행은 반 표기 없음",
+        "2026학년도 별도 맞춤형 프로그램명 없음. L135 구청 지원 무상 방과후로 대체하나 제공된 구체명 L92~101은 2025학년도 참고 편성이고 2026학년도 맞춤형 확정 명칭·임시표는 없음; 전년도 목록 전용하지 않음."
+      ],
+      "research_input": null,
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000002101",
+      "school_name": "서울신당초등학교",
+      "group": "custom_gap_in_published_school",
+      "priority": 2,
+      "public_course_data_missing": false,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "2026학년도 신당초 방과후학교 운영 계획(안).hwp"
+      ],
+      "extraction_notes": [
+        "기간 미표기(실내악앙상블만 1분기 표); 컴퓨터 반명변경예정; 하단 격자표와 일부 학년·요일 표기가 달라 상단 강좌표 기준",
+        "맞춤형은 본교에서 틈새 방과후교실로 명칭 변경했으나 실제 틈새 맞춤형 강좌명 없음. 비용표의 유료 방과후 강좌는 제외."
+      ],
+      "research_input": null,
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000002104",
+      "school_name": "서울충무초등학교",
+      "group": "custom_gap_in_published_school",
+      "priority": 2,
+      "public_course_data_missing": false,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "학교운영위원회 안건서(2026학년도 방과후·맞춤형프로그램 운영 계획).hwp"
+      ],
+      "extraction_notes": [
+        "방과후·맞춤형 시간표 문구 없음",
+        "표 5~7번 행이 입력에서 빠져 있음; 병합 셀이라 드럼 등은 바이올린과 같은 월~금(주1회 80분)으로 봄; 학년 표기 없음",
+        "2026학년도 문서 제목은 방과후·맞춤형 통합이나 제시된 19강좌는 수익자부담 방과후 강사료·기별 운영표와 연결됨. 초1·2 무료 맞춤형으로 구별된 실제 명칭 없음."
+      ],
+      "research_input": null,
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000002107",
+      "school_name": "동산초등학교",
+      "group": "custom_gap_in_published_school",
+      "priority": 2,
+      "public_course_data_missing": false,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "2026학년도 동산초등학교 방과후 프로그램 운영 계획.hwp"
+      ],
+      "extraction_notes": [
+        "추가 검수 목록만. 요일·시각은 공개 반영에서 제외. publication_provenance.json 참조."
+      ],
+      "research_input": "etl/runtime/seoul-gap37-20261019/inputs/B000002107.txt",
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000002128",
+      "school_name": "서울문정초등학교",
+      "group": "custom_gap_in_published_school",
+      "priority": 2,
+      "public_course_data_missing": false,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "(학운위심의안)2026학년도 방과후교실 연간운영 계획(안).pdf"
+      ],
+      "extraction_notes": [
+        "방과후·맞춤형 시간표 문구 없음",
+        "요일·시각이 입력에 없음(수강료 칸의 '수강료' 글자를 요일로 읽지 않음); 반별 학년은 붙어 쓴 글자에서 해석",
+        "2026학년도 요일별 맞춤형 프로그램명 없음. 제공 원문은 수익자부담 방과후교실 운영계획과 강좌·수강료 목록이며 실제 무료 맞춤형 목록 미제시."
+      ],
+      "research_input": null,
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000002135",
+      "school_name": "서울잠실초등학교",
+      "group": "custom_gap_in_published_school",
+      "priority": 2,
+      "public_course_data_missing": false,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "2026학년도 잠실초 방과후,맞춤형 프로그램 연간운영계획(안).hwp",
+        "2026학년도 잠실초 돌봄 운영 계획(안).hwp"
+      ],
+      "extraction_notes": [
+        "강좌표 없음(운영 기간·시간 문구와 돌봄 계획뿐)",
+        "표 중간 행(6~11, 18~24번 일부)이 입력에서 빠져 있음; 학년 표기 없음; 요일은 강좌명 괄호에 있는 것만 기록",
+        "2026학년도 1학년 프로그램 1~5 및 2학년 프로그램 1~5는 일반 자리표시자이며 실제 이름 없음."
+      ],
+      "research_input": null,
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000002141",
+      "school_name": "서울거원초등학교",
+      "group": "custom_gap_in_published_school",
+      "priority": 2,
+      "public_course_data_missing": false,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "2026학년도 거원초 초등돌봄교실 운영계획.hwp",
+        "2026학년도 거원초 방과후교실 운영계획.hwp"
+      ],
+      "extraction_notes": [
+        "표의 열 순서(월~금)로 요일 판정. 영어교실 주3회는 화·목·금 열에 각각 있어 요일별 행, 학년 표기 없어 unknown. 맞춤형 없음",
+        "요일별 맞춤형 프로그램명 없음. 10개 과목 운영 설명만 있고 첨부된 요일별 강좌는 유료 방과후교실. 돌봄 특별활동은 제외."
+      ],
+      "research_input": null,
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000002148",
+      "school_name": "서울석촌초등학교",
+      "group": "custom_gap_in_published_school",
+      "priority": 2,
+      "public_course_data_missing": false,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "2026학년도 돌봄교실 운영계획서.hwp",
+        "2026학년도 방과후·맞춤형 프로그램 연간운영게획(안).hwp"
+      ],
+      "extraction_notes": [
+        "맞춤형 시간표만 있고 대상학년 미기재",
+        "학년·시각 없음(주 2시간 등 길이만); 맞춤형 시간표에는 프로그램명이 없어 행 없음",
+        "2026학년도 요일별 프로그램명 없음. L149~151은 맞춤형 프로그램 총칭이고 업체 협의 후 확정(L154). 키즈요가·주산·공예활동·한자활동은 돌봄 내부 활동이며 요일도 미제시."
+      ],
+      "research_input": null,
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000002150",
+      "school_name": "서울오금초등학교",
+      "group": "custom_gap_in_published_school",
+      "priority": 2,
+      "public_course_data_missing": false,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "(오금초)2026학년도 돌봄교실 운영 계획.hwp",
+        "2026학년도 방과후학교 연간 운영 계획(안).hwp"
+      ],
+      "extraction_notes": [
+        "12시간제 오후 시각 변환. 컴퓨터교실 시간 미기재"
+      ],
+      "research_input": null,
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000002153",
+      "school_name": "서울잠전초등학교",
+      "group": "custom_gap_in_published_school",
+      "priority": 2,
+      "public_course_data_missing": false,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "2026학년도 잠전초등학교 초등돌봄교실 운영 계획.hwpx",
+        "2026학년도 잠전초등학교 방과후학교 운영계획.hwp"
+      ],
+      "extraction_notes": [
+        "돌봄교실 운영계획만 있고 방과후·맞춤형 강좌표 없음",
+        "요일만 있고 시간·대상학년 없음, 신규프로그램 2개는 요일 미정",
+        "요일별 맞춤형 프로그램명 없음. L65 특별프로그램은 돌봄 내부활동이며 L115~129는 유료 방과후 편성으로 제외."
+      ],
+      "research_input": null,
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000002154",
+      "school_name": "서울풍납초등학교",
+      "group": "custom_gap_in_published_school",
+      "priority": 2,
+      "public_course_data_missing": false,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "2026학년도 방과후 · 맞춤형교실 운영계획 변경.hwp",
+        "2026학년도 초등돌봄교실 학생안전지도 및 시설물 관리.hwp",
+        "2026학년도 초등돌봄교실 운영 계획(최종).hwp",
+        "2026학년도 방과후 · 맞춤형 교실 연간운영계획.hwp"
+      ],
+      "extraction_notes": [
+        "변경 파일의 종합체육(L4)·컴퓨터(L9-11)를 사용하고 연간계획의 중복 표(L70-71, L84-86, L98-100, L92-95)는 뺌. 맞춤형 강좌명은 놀이체육만 있음",
+        "2026학년도 변경안의 놀이체육은 2학년 전용이므로 제외. 1학년 또는 공통 맞춤형 실제 강좌명 없음."
+      ],
+      "research_input": null,
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000002168",
+      "school_name": "서울신명초등학교",
+      "group": "custom_gap_in_published_school",
+      "priority": 2,
+      "public_course_data_missing": false,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "2026학년도 돌봄교실 운영 계획(안).hwp",
+        "2026학년도 방과후교실 연간 운영계획(안).hwp"
+      ],
+      "extraction_notes": [
+        "돌봄교실 내부 일과 제외; 영어·수학·피아노는 요일별 시각이 다르면 요일 행으로 분리",
+        "요일별 맞춤형 프로그램명 없음. 돌봄 계획과 방과후 원가표만 있으며 맞춤형은 강사료 책정 기준만 언급됨."
+      ],
+      "research_input": null,
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000002180",
+      "school_name": "서울명일초등학교",
+      "group": "custom_gap_in_published_school",
+      "priority": 2,
+      "public_course_data_missing": false,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "2026학년도 돌봄교실 연간 운영 계획.hwp",
+        "2026학년도 방과후교실 연간 운영 계획.hwp"
+      ],
+      "extraction_notes": [
+        "12시간제 시각을 24시간으로 환산; 드론 축구는 요일표(목)와 수강료표(월)가 달라 요일표를 따름; 특수 방과후교실 제외",
+        "2026학년도 실제 맞춤형 강좌명 없음. 돌봄 창의활동 예시와 방과후 사업지원비 비용표만 있어 제외."
+      ],
+      "research_input": null,
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000002184",
+      "school_name": "서울선사초등학교",
+      "group": "custom_gap_in_published_school",
+      "priority": 2,
+      "public_course_data_missing": false,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "2026학년도 방과후학교 운영 계획.hwp",
+        "2026학년도 돌봄교실 운영계획.hwp"
+      ],
+      "extraction_notes": [
+        "방과후만 있음; 컴퓨터는 추후 심의로 표 없음",
+        "2026학년도 요일별 맞춤형 프로그램명 없음. 제공 원문은 환불·안전관리 지침이며 실제 맞춤형 수업 목록 없음; 방학 안전 협조공문 예시 시간을 학기 시간으로 쓰지 않음."
+      ],
+      "research_input": null,
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000002188",
+      "school_name": "서울경인초등학교",
+      "group": "custom_gap_in_published_school",
+      "priority": 2,
+      "public_course_data_missing": false,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "2026학년도 경인초 돌봄교실 운영계획.hwp",
+        "2026학년도 경인초 방과후교실 운영계획.hwp"
+      ],
+      "extraction_notes": [
+        "월금/화목 주2회 강좌는 첫 등장 줄만 한 행으로 기록",
+        "요일별 맞춤형 프로그램명 없음. L42~54 맞춤형 운영시간·대상만 있고 프로그램별 편성은 제공되지 않음; 컴퓨터 목록은 방과후로 제외."
+      ],
+      "research_input": null,
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000002196",
+      "school_name": "서울남명초등학교",
+      "group": "custom_gap_in_published_school",
+      "priority": 2,
+      "public_course_data_missing": false,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "(정보공시) 2026학년도 돌봄교실 운영 계획.hwp",
+        "(정보공시) 2026학년도 방과후교실 운영 계획.hwpx"
+      ],
+      "extraction_notes": [
+        "4분기제, 학기 중 시간만 기록, 방학 중 시간·방학특강 제외",
+        "요일별 맞춤형 프로그램명 없음. 돌봄 내부활동 및 방학 계획은 제외."
+      ],
+      "research_input": null,
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000002201",
+      "school_name": "서울정목초등학교",
+      "group": "custom_gap_in_published_school",
+      "priority": 2,
+      "public_course_data_missing": false,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "(정보공시)2026학년도 정목초 초등돌봄교실 운영 계획.pdf",
+        "(정보공시)2026학년도 정목초 방과후학교 운영계획.pdf"
+      ],
+      "extraction_notes": [
+        "PDF 표가 붙어 있어 요일·시각 열 대응은 표 순서로 추정, 월수금 영어는 월=수 시간, 금은 한 칸 뒤로 읽음",
+        "2026학년도 맞춤형은 늘봄교실1(월) 등 요일별 총칭만 확인되며 실제 강좌명 없음. 방과후 유료 강좌 및 돌봄 안전교육 주제 제외."
+      ],
+      "research_input": null,
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000002221",
+      "school_name": "서울등양초등학교",
+      "group": "custom_gap_in_published_school",
+      "priority": 2,
+      "public_course_data_missing": false,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "2026학년도 등양초 방과후돌봄 운영 계획.hwp",
+        "2026학년도 등양초 초등돌봄교실 운영계획.hwpx"
+      ],
+      "extraction_notes": [
+        "기간 표기 없음, 맞춤형 강좌표 없음",
+        "2026학년도 요일별 맞춤형 프로그램명 없음. 제공 원문의 선택형 교육 프로그램은 수익자부담. L155 생활체육·전래놀이·놀이요가·심리미술은 돌봄 특기적성 계획이며 별도 맞춤형 수업으로 명시되지 않아 제외."
+      ],
+      "research_input": null,
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000002235",
+      "school_name": "서울송정초등학교",
+      "group": "custom_gap_in_published_school",
+      "priority": 2,
+      "public_course_data_missing": false,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "2026 방과후·맞춤형교실 연간운영계획안.hwp",
+        "2026학년도 돌봄교실 운영계획안.hwp"
+      ],
+      "extraction_notes": [
+        "1기(3/16~5/30) 11주 기준 표만 기재, 토요반 포함, L54 외발자전거 B반 시간 오기로 제외",
+        "2026학년도 맞춤형 운영방법·비용만 제시하고 실제 맞춤형 명칭 없음. L106 이후 교재표는 앞 방과후 강좌(유료 한자급수·쿠키앤토탈공예 등)와 대응하여 무료 맞춤형 명칭으로 사용하지 않음."
+      ],
+      "research_input": null,
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000002240",
+      "school_name": "서울개화초등학교",
+      "group": "custom_gap_in_published_school",
+      "priority": 2,
+      "public_course_data_missing": false,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "2026학년도 서울개화초등학교 방과후학교 운영 계획.pdf",
+        "2026학년도 서울개화초 초등돌봄교실 운영 계획.pdf"
+      ],
+      "extraction_notes": [
+        "1~3기 중 어느 기수 표인지 불명, 동아리(무료) 포함",
+        "2026학년도 요일별 맞춤형 프로그램명 없음. 방과후교실·구청지원 방과후동아리와 돌봄 특별활동만 명시. 무료 우쿨렐레는 전학년 방과후동아리이며 초1~2 맞춤형으로 명시되지 않아 제외; 체육·창의미술은 돌봄 내부 활동."
+      ],
+      "research_input": null,
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000002242",
+      "school_name": "서울염동초등학교",
+      "group": "custom_gap_in_published_school",
+      "priority": 2,
+      "public_course_data_missing": false,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "2026학년도 초등돌봄교실 운영계획(학운위심의안).hwp",
+        "2026학년도 방과후교실 연간 운영 계획.hwp"
+      ],
+      "extraction_notes": [
+        "프로그램 개요표만 있고 시각 없음(시각 null)",
+        "입력이 3번 강좌에서 끝남(잘림)",
+        "2026학년도 요일별 실제 맞춤형 프로그램명 없음. L44의 맞춤형 프로그램 총칭과 별도의 돌봄 요일별 활동(레고·창의놀이 등)은 구분하며 돌봄 내부 활동 제외."
+      ],
+      "research_input": null,
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000002249",
+      "school_name": "서울등원초등학교",
+      "group": "custom_gap_in_published_school",
+      "priority": 2,
+      "public_course_data_missing": false,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "2026학년도 등원초 돌봄교실 운영 계획.hwp",
+        "2026학년도 등원초 방과후교실 운영 계획.hwpx"
+      ],
+      "extraction_notes": [],
+      "research_input": null,
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000002250",
+      "school_name": "서울수명초등학교",
+      "group": "custom_gap_in_published_school",
+      "priority": 2,
+      "public_course_data_missing": false,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "2026학년도 방과후교실 운영 계획.hwp"
+      ],
+      "extraction_notes": [
+        "분기별 운영기간만 있고 강좌표 없음",
+        "시각 없음(요일과 주80분만). 연간 11개월 단일 표",
+        "2026학년도 맞춤형 개인위탁 4학급 운영 설명만 있고 실제 강좌명 없음. 방과후 수강료·신설 강좌표는 제외."
+      ],
+      "research_input": null,
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000002251",
+      "school_name": "유석초등학교",
+      "group": "custom_gap_in_published_school",
+      "priority": 2,
+      "public_course_data_missing": false,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "2026학년도 유석초 일반 방과후교실 위탁운영계획.hwp",
+        "2026학년도 영어 방과후교실 위탁운영계획.hwp"
+      ],
+      "extraction_notes": [
+        "추가 검수 목록만. 요일·시각은 공개 반영에서 제외. publication_provenance.json 참조."
+      ],
+      "research_input": "etl/runtime/seoul-gap37-20261019/inputs/B000002251.txt",
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000002252",
+      "school_name": "서울우면초등학교",
+      "group": "custom_gap_in_published_school",
+      "priority": 2,
+      "public_course_data_missing": false,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "2026학년도 우면초 초등돌봄교실 운영계획.hwp",
+        "2026학년도 우면초 방과후교실 운영 계획.hwpx"
+      ],
+      "extraction_notes": [
+        "돌봄교실 운영계획만 있고 강좌표 없음",
+        "맞춤형 표 없음. 학년은 표의 대상 학년 칸(1~6)",
+        "요일별 프로그램명 없음. 맞춤형 참여 안내와 위탁 행정 규정만 있으며 실제 맞춤형 강좌명 미제시."
+      ],
+      "research_input": null,
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000002269",
+      "school_name": "서울서일초등학교",
+      "group": "custom_gap_in_published_school",
+      "priority": 2,
+      "public_course_data_missing": false,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "등2025년 서일초등학교 초등돌봄교실 운영 계획.hwp",
+        "2026학년도 서일초등학교 방과후학교 운영 계획.hwpx"
+      ],
+      "extraction_notes": [
+        "돌봄교실 운영계획만 있고 방과후 강좌표는 입력에 없음",
+        "컴퓨터교실 1개 강좌만 기재(주2회, 요일 미정)"
+      ],
+      "research_input": null,
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000002270",
+      "school_name": "서울원명초등학교",
+      "group": "custom_gap_in_published_school",
+      "priority": 2,
+      "public_course_data_missing": false,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "2026학년도 서울원명초등학교 초등돌봄교실 운영 계획.hwp",
+        "2026학년도 서울원명초등학교 방과후교실 운영계획.hwp"
+      ],
+      "extraction_notes": [
+        "돌봄 프로그램(클레이 아트, 종이접기)은 돌봄교실 내부라 제외",
+        "2026학년도 요일별 맞춤형 프로그램명 없음. 종이접기·클레이 아트·비즈·음악감상·토탈공예는 돌봄 자체 또는 지역연계 활동으로 별도 맞춤형 수업 명시 없어 제외."
+      ],
+      "research_input": null,
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000002272",
+      "school_name": "서울우암초등학교",
+      "group": "custom_gap_in_published_school",
+      "priority": 2,
+      "public_course_data_missing": false,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "(정보공시)2026학년도 돌봄교실 운영 계획(안).hwp",
+        "2026학년도 서울우암초 선택형교육프로그램 (연간)운영계획.hwp"
+      ],
+      "extraction_notes": [
+        "돌봄교실 체육활동은 돌봄 내부 프로그램이라 제외",
+        "요일별 맞춤형 프로그램명 없음. 돌봄 월간계획의 내부 단체활동과 빈 신청서만 있음."
+      ],
+      "research_input": null,
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000002274",
+      "school_name": "계성초등학교",
+      "group": "custom_gap_in_published_school",
+      "priority": 2,
+      "public_course_data_missing": false,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "8. 방과후교육운영부(2026_완료).hwpx"
+      ],
+      "extraction_notes": [
+        "추가 검수 목록만. 요일·시각은 공개 반영에서 제외. publication_provenance.json 참조."
+      ],
+      "research_input": "etl/runtime/seoul-gap37-20261019/inputs/B000002274.txt",
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000002276",
+      "school_name": "서울대왕초등학교",
+      "group": "custom_gap_in_published_school",
+      "priority": 2,
+      "public_course_data_missing": false,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "2026학년도 서울대왕초등학교 방과후교실 운영계획.hwp",
+        "2026학년도 서울대왕초등학교 컴퓨터교실 운영계획.hwp",
+        "2026학년도 서울대왕초등학교 돌봄교실 운영계획.hwp"
+      ],
+      "extraction_notes": [
+        "방학 특강(꾸러기캠프·스마트캠프) 제외",
+        "요일별 맞춤형(늘봄교실) 프로그램명 없음. L62~63 생활체육은 3학년 돌봄 특별활동이며 방학 추가 프로그램도 제외."
+      ],
+      "research_input": null,
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000002281",
+      "school_name": "서울구룡초등학교",
+      "group": "custom_gap_in_published_school",
+      "priority": 2,
+      "public_course_data_missing": false,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "2026학년도 구룡초 초등돌봄교실 운영계획.hwpx",
+        "2026학년도 구룡초 방과후학교 운영계획.hwp"
+      ],
+      "extraction_notes": [
+        "1~4분기 동일 프로그램 운영; 배드민턴 B반은 학년 미기재(표마다 1~6/2-6 혼재)",
+        "2026학년도 맞춤형 단가·위탁 계약만 제시되어 실제 강좌명 없음. 요일·시간이 있는 영어교실은 유료 방과후로 제외."
+      ],
+      "research_input": null,
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000002288",
+      "school_name": "서울개원초등학교",
+      "group": "custom_gap_in_published_school",
+      "priority": 2,
+      "public_course_data_missing": false,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "2026학년도 개원초 컴퓨터교실 연간 운영 계획(안).hwp",
+        "2026학년도 개원초 돌봄교실 연간 운영 계획(안).hwpx",
+        "2026학년도 개원초 방과후교실 연간 운영 계획(안).hwpx"
+      ],
+      "extraction_notes": [
+        "컴퓨터교실 표는 열이 어긋나 월금/화목 같은 시각 패턴으로 요일 추정, 마지막 시간대(4:10~5:00)는 강좌명 없어 제외"
+      ],
+      "research_input": null,
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000002291",
+      "school_name": "서울대곡초등학교",
+      "group": "custom_gap_in_published_school",
+      "priority": 2,
+      "public_course_data_missing": false,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "2025년도 세출결산서.pdf",
+        "2026학년도 돌봄교실(연간운영계획(안)수정 학운위 심의 자료.hwp",
+        "(학교운영위원회 심의자료)수정안 2026학년도 방과후교실 연간 운영계획(안).hwp"
+      ],
+      "extraction_notes": [
+        "토요 강좌 제외; 강사명 제외",
+        "요일별 프로그램명 없음 (프로그램 운영 계획 항목이 비어 있고 '맞춤형 교실' 총칭만 있음)"
+      ],
+      "research_input": null,
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000002292",
+      "school_name": "서울대현초등학교",
+      "group": "custom_gap_in_published_school",
+      "priority": 2,
+      "public_course_data_missing": false,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "서울대현초등학교  방과후학교 운영계획(안).hwp"
+      ],
+      "extraction_notes": [
+        "방과후·맞춤형 시간표 문구 없음",
+        "표 일부만 추출됨(순번 2~6). 요일은 강좌명에 있는 경우만",
+        "2026학년도 운영표 L73~77은 맞춤형프로그램 A~E 총칭만 있음. 창의놀이·미술놀이·전래놀이·책놀이·음악놀이는 L118~126 및 L168~172 비용 산출표에만 등장하므로 사용자 지시의 비용만 있는 표 제외 규칙 적용. 실제 운영명으로 검증된 이름이 아니므로 null요일 보존 예외 대상 아님."
+      ],
+      "research_input": null,
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000002297",
+      "school_name": "서울도성초등학교",
+      "group": "custom_gap_in_published_school",
+      "priority": 2,
+      "public_course_data_missing": false,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "2026학년도 도성초등학교 돌봄교실 운영 계획.hwp",
+        "2026학년도 도성초등학교 방과후교실 운영 계획.hwp"
+      ],
+      "extraction_notes": [
+        "분기 수강료 표라 기간 미기재(분기 단위 운영, 기간 null). 돌봄교실 외부강사 프로그램 제외. 오케스트라는 L76 시간 사용(L94-95 표와 다소 다름)",
+        "요일별 별도 맞춤형 프로그램명 없음. 보드게임·종이공예는 맞춤형 예산 지원 언급만 있는 돌봄교실 외부강사 활동으로, 별도 맞춤형 수업으로 명시되지 않아 제외."
+      ],
+      "research_input": null,
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000002324",
+      "school_name": "중앙대학교사범대학부속초등학교",
+      "group": "custom_gap_in_published_school",
+      "priority": 2,
+      "public_course_data_missing": false,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "2026학년도 방과후학교 운영계획.hwp"
+      ],
+      "extraction_notes": [
+        "추가 검수 목록만. 요일·시각은 공개 반영에서 제외. publication_provenance.json 참조."
+      ],
+      "research_input": "etl/runtime/seoul-gap37-20261019/inputs/B000002324.txt",
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000002330",
+      "school_name": "서울난곡초등학교",
+      "group": "custom_gap_in_published_school",
+      "priority": 2,
+      "public_course_data_missing": false,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "2026학년도 난곡초 돌봄교실 운영 계획.pdf",
+        "2026학년도 난곡초 방과후맞춤형교실 운영 계획.pdf"
+      ],
+      "extraction_notes": [
+        "연간 표와 1분기 표가 같은 구성이라 1분기 표(L41) 기준",
+        "2026학년도 맞춤형은 돌봄 일과표 L16의 총칭뿐이고 실제 명칭 미제시. 별도 프로그램표 L51은 수강료가 있는 방과후교실로 제외."
+      ],
+      "research_input": null,
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000002334",
+      "school_name": "서울청룡초등학교",
+      "group": "custom_gap_in_published_school",
+      "priority": 2,
+      "public_course_data_missing": false,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "2026학년도 돌봄교실 연간운영계획.hwp",
+        "2026학년도 방과후교실 연간운영계획.hwp"
+      ],
+      "extraction_notes": [
+        "학기중 시간만 사용(방학중 시간 제외); 배드민턴·바이올린·미니어쳐 등 병합 요일 칸은 위 행 요일 사용",
+        "요일별 맞춤형 프로그램명 없음. 수정안 L108은 별도 계획 참조이나 그 편성은 입력에 없음. 돌봄 내부활동 및 유료 방과후 제외."
+      ],
+      "research_input": null,
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000002346",
+      "school_name": "서울신성초등학교",
+      "group": "custom_gap_in_published_school",
+      "priority": 2,
+      "public_course_data_missing": false,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "신성초_방과후학교 지원 현황.xlsx",
+        "신성초_방과후학교 운영 현황.xlsx",
+        "2026학년도 신성초 초등돌봄교실 운영 계획.hwp",
+        "2026학년도 신성초 방과후학교 프로그램 운영 계획.hwp"
+      ],
+      "extraction_notes": [
+        "업체위탁 개인위탁 컴퓨터교실 표 모두 포함",
+        "2026학년도 맞춤형 운영기간만 확인되며 실제 프로그램명 없음. 돌봄 내부 활동 제외."
+      ],
+      "research_input": null,
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000002350",
+      "school_name": "서울경수초등학교",
+      "group": "custom_gap_in_published_school",
+      "priority": 2,
+      "public_course_data_missing": false,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "2026학년도 서울경수초등학교 초등돌봄교실 연간 운영계획.hwp",
+        "2026학년도 서울경수초등학교 방과후학교 연간 운영계획(안).hwpx"
+      ],
+      "extraction_notes": [
+        "전학년 표기는 1학년 포함으로 true 처리; 배드민턴 요일은 위 화요 강좌 묶음에서 추정",
+        "요일별 맞춤형 프로그램명 없음. 맞춤형 2학급 설치 및 교원 활용 방침만 있고 구체 편성은 입력에 없음. 유료 방과후 강좌·강사 경력 속 타교 맞춤형 강좌는 제외."
+      ],
+      "research_input": null,
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000002357",
+      "school_name": "서울사근초등학교",
+      "group": "custom_gap_in_published_school",
+      "priority": 2,
+      "public_course_data_missing": false,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "2026학년도 돌봄교실 운영계획.hwp",
+        "2026학년도 방과후교실 운영계획.hwp"
+      ],
+      "extraction_notes": [
+        "2026학년도 맞춤형 2학급 설치 사실은 있으나 실제 프로그램명 없음. 독서논술은 3~6학년 방과후 지원 강좌이며 무료 여부와 별개로 초1·2 맞춤형 대상 아님."
+      ],
+      "research_input": null,
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000002360",
+      "school_name": "서울송원초등학교",
+      "group": "custom_gap_in_published_school",
+      "priority": 2,
+      "public_course_data_missing": false,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "2026학년도 송원초 초등돌봄교실 운영 계획.pdf",
+        "2026학년도 송원초 방과후교실 운영 계획.pdf"
+      ],
+      "extraction_notes": [
+        "강좌표에 요일·시간 없음(주1회 80분, 4기), 대상학년만 있음",
+        "요일·시간 없이 주1회 80분 2개반(4기)만 기재",
+        "2026학년도 요일별 맞춤형 프로그램명 없음. 학기·방학 표는 맞춤형 교실 총칭만 제시. 실험과학·AI요가·피아노·뮤지컬 등 L20은 방과후 교재·재료비 표로 제외; 방학 돌봄 창의활동도 제외."
+      ],
+      "research_input": null,
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000002369",
+      "school_name": "서울광장초등학교",
+      "group": "custom_gap_in_published_school",
+      "priority": 2,
+      "public_course_data_missing": false,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "20○○학년도 방과후교실 운영계획.hwpx"
+      ],
+      "extraction_notes": [
+        "비고의 수강생부족 1기 폐강(연극&뮤지컬)은 행으로 유지",
+        "요일별 맞춤형 프로그램명 없음. 입력은 20○○학년도·서울○○초등학교의 미완성 운영계획 서식으로 실제 연도·프로그램 편성이 없음."
+      ],
+      "research_input": null,
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000002370",
+      "school_name": "서울동의초등학교",
+      "group": "custom_gap_in_published_school",
+      "priority": 2,
+      "public_course_data_missing": false,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "2026학년도 돌봄교실 운영계획(안).hwp",
+        "2026학년도 방과후학교 연간 운영 계획(안).hwp"
+      ],
+      "extraction_notes": [
+        "표는 1기 기준으로 보이나 기수 표기 없음; 반 c는 C로 기록; 돌봄 특기적성은 제외",
+        "2026학년도 맞춤형 운영·참여 언급은 있으나 실제 맞춤형 강좌명 없음. 방과후 전체 운영시간은 전용하지 않음."
+      ],
+      "research_input": null,
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000002381",
+      "school_name": "서울중광초등학교",
+      "group": "custom_gap_in_published_school",
+      "priority": 2,
+      "public_course_data_missing": false,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "2026학년도 서울중광초등학교 초등돌봄교실 운영 계획(수정).pdf",
+        "2026학년도 서울중광초등학교 방과후교실 연간운영계획.pdf"
+      ],
+      "extraction_notes": [
+        "컴퓨터 자격증반(4-6)은 시간 표기가 없어 null; 창의로봇·창의미술 B반의 요일은 A반과 같다고 읽음",
+        "요일별 맞춤형 프로그램명 없음. 수정 돌봄계획 L19의 창의수학·책놀이·디폼블럭·종이공작·언어활동은 돌봄전담사 내부 활동으로 별도 맞춤형 수업과 구분되어 제외. L37은 유료 방과후, 학습·사회성 특강은 방학중이라 제외."
+      ],
+      "research_input": null,
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000002383",
+      "school_name": "서울용곡초등학교",
+      "group": "custom_gap_in_published_school",
+      "priority": 2,
+      "public_course_data_missing": false,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "2026학년도 방과후학교 운영계획.hwpx"
+      ],
+      "extraction_notes": [
+        "분기·기간 표기 없는 연간 강좌표; 맞춤형 표 없음"
+      ],
+      "research_input": null,
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000002386",
+      "school_name": "세종초등학교",
+      "group": "custom_gap_in_published_school",
+      "priority": 2,
+      "public_course_data_missing": false,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "2026 방과후교실 연간운영계획.hwp"
+      ],
+      "extraction_notes": [
+        "추가 검수 목록만. 요일·시각은 공개 반영에서 제외. publication_provenance.json 참조."
+      ],
+      "research_input": "etl/runtime/seoul-gap37-20261019/inputs/B000002386.txt",
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000002388",
+      "school_name": "성동초등학교",
+      "group": "custom_gap_in_published_school",
+      "priority": 2,
+      "public_course_data_missing": false,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "2026학년도 1학기 방과후교실 운영 계획.hwp"
+      ],
+      "extraction_notes": [
+        "추가 검수 목록만. 요일·시각은 공개 반영에서 제외. publication_provenance.json 참조."
+      ],
+      "research_input": "etl/runtime/seoul-gap37-20261019/inputs/B000002388.txt",
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000002389",
+      "school_name": "서울돈암초등학교",
+      "group": "custom_gap_in_published_school",
+      "priority": 2,
+      "public_course_data_missing": false,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "2026학년도 서울돈암초등학교 맞춤형, 방과후교실  운영 계획(정보공시).hwp",
+        "2026학년도 서울돈암초등학교 돌봄교실 운영계획(정보공시).hwp"
+      ],
+      "extraction_notes": [
+        "돌봄 내부 일과(특기적성 활동 북아트 등)만 있고 방과후·맞춤형 강좌표 없음",
+        "요일과 주당 시간만 있고 시작/종료 없음. 신설프로그램 4개는 요일 미정",
+        "2026학년도 요일별 프로그램명 없음. 맞춤형교실1(월) 등은 자리표시자이고 업체 협의 후 확정 예정(L68). 방과후 유료 강좌 제외."
+      ],
+      "research_input": null,
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000002394",
+      "school_name": "서울숭덕초등학교",
+      "group": "custom_gap_in_published_school",
+      "priority": 2,
+      "public_course_data_missing": false,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "2026학년도 방과후 교실 연간 운영 계획.hwp"
+      ],
+      "extraction_notes": [
+        "표 일부만 추출됨(머리글 없음, 대상학년 없음); 토요 강좌 제외, '매일'은 월~금으로 보고 화목 17:10 종료를 분리",
+        "업무 종료 후 방과후 현황만 있음. 토요 강좌는 요일 글자 규칙에 토가 없어 null. 원어민영어는 화·목 종료 17:10. 수요일 소제목 뒤 두 강좌는 수요일로 추정"
+      ],
+      "research_input": null,
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000002398",
+      "school_name": "서울월곡초등학교",
+      "group": "custom_gap_in_published_school",
+      "priority": 2,
+      "public_course_data_missing": false,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "2026학년도 월곡초등학교 방과후학교 운영계획.hwp",
+        "2026학년도 월곡초등학교 돌봄교실 운영계획.hwp"
+      ],
+      "extraction_notes": [
+        "돌봄교실 내부 무상프로그램(놀이체육·우쿨렐레 등)만 있고 방과후·맞춤형 강좌표 없음",
+        "요일과 주당 시간만 있고 시작/종료 없음",
+        "2026학년도. 맞춤형 2학급 운영과 운영 대상은 확인되나 학기 중 실제 맞춤형 프로그램명은 제시되지 않음. L54~65 및 L113~124의 실제 이름은 방과후학교 유료 프로그램/원가 산정표이므로 제외. 방학 운영시간과 맞춤형 강사료 원가 규정만으로 프로그램을 생성하지 않음."
+      ],
+      "research_input": null,
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000002404",
+      "school_name": "서울성북초등학교",
+      "group": "custom_gap_in_published_school",
+      "priority": 2,
+      "public_course_data_missing": false,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "2026학년도 성북초등학교 방과후교실 운영계획.hwpx",
+        "2026학년도 성북초등학교 돌봄교실 운영계획.hwp"
+      ],
+      "extraction_notes": [
+        "방학중 시간표는 제외; 맞춤형 시간 없음",
+        "2026학년도 맞춤형 시간표는 프로그램명 부분이 누락되어 실제 현행 명칭 확인 불가. L70 역사가 쏙쏙은 방과후 강사 선정표의 과거 맞춤형 재계약 경력 표시로 현행 맞춤형 강좌로 확정할 수 없어 제외."
+      ],
+      "research_input": null,
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000002408",
+      "school_name": "서울정릉초등학교",
+      "group": "custom_gap_in_published_school",
+      "priority": 2,
+      "public_course_data_missing": false,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "2026학년도 돌봄교실 운영계획.hwp",
+        "2026학년도 방과후·맞춤형교실 연간운영계획(안).hwp"
+      ],
+      "extraction_notes": [
+        "돌봄교실 계획만 있고 방과후·맞춤형 강좌표 없음",
+        "요일과 주당 시간만 있고 시작/종료 없음",
+        "2026학년도 맞춤형 대상은 1~2학년이나 L79~80은 맞춤형교실1(월) 등 일반 자리표시자뿐이며 L82에서 업체 협의 후 프로그램 확정이라고 명시. 실제 프로그램 이름 없음. L88 이후의 실제 강좌는 별도 방과후교실이므로 제외."
+      ],
+      "research_input": null,
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000002409",
+      "school_name": "서울청덕초등학교",
+      "group": "custom_gap_in_published_school",
+      "priority": 2,
+      "public_course_data_missing": false,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "2026학년도 1기 방과후교실 운영 계획.hwp"
+      ],
+      "extraction_notes": [
+        "강의실 표(L28-)의 시간 사용, 앞 표와 다른 곳은 뒤 표 우선"
+      ],
+      "research_input": null,
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000002410",
+      "school_name": "서울일신초등학교",
+      "group": "custom_gap_in_published_school",
+      "priority": 2,
+      "public_course_data_missing": false,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "2026학년도 방과후학교 운영 계획.hwp",
+        "2026학년도 초등돌봄교실 운영 계획.hwp"
+      ],
+      "extraction_notes": [
+        "운영기간 2026.3.9~2027.2.5",
+        "2026학년도 요일별 실제 맞춤형 프로그램명 없음. L89 체육/건강·예술/공연·인문/사회·창의/과학·학교적응/정서는 교육 영역이며 강좌명으로 보지 않음. 키움센터의 실제 이름도 미제시."
+      ],
+      "research_input": null,
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000002412",
+      "school_name": "서울숭인초등학교",
+      "group": "custom_gap_in_published_school",
+      "priority": 2,
+      "public_course_data_missing": false,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "2026학년도 돌봄교실 운영 계획(안).hwp",
+        "학교운영위원회 안건 제출(2026학년 방과후·맞춤형 연간 운영 계획(안)).hwp"
+      ],
+      "extraction_notes": [
+        "돌봄교실 계획만 있고 방과후·맞춤형 강좌표 없음",
+        "요일과 주당 시간만 있고 시작/종료 없음(4기 47주)",
+        "요일별 프로그램명 없음 (프로그램A~E 기호만 있고 '음악활동, 미술활동, 독서활동 등' 총칭)"
+      ],
+      "research_input": null,
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000002413",
+      "school_name": "성신초등학교",
+      "group": "custom_gap_in_published_school",
+      "priority": 2,
+      "public_course_data_missing": false,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "(정보공시)2026학년도 성신초등학교 방과후 프로그램 운영계획.hwp"
+      ],
+      "extraction_notes": [
+        "추가 검수 목록만. 요일·시각은 공개 반영에서 제외. publication_provenance.json 참조."
+      ],
+      "research_input": "etl/runtime/seoul-gap37-20261019/inputs/B000002413.txt",
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000002414",
+      "school_name": "우촌초등학교",
+      "group": "custom_gap_in_published_school",
+      "priority": 2,
+      "public_course_data_missing": false,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "2026학년도 1학기 우촌초등학교 방과후학교 운영 계획.hwpx"
+      ],
+      "extraction_notes": [
+        "추가 검수 목록만. 요일·시각은 공개 반영에서 제외. publication_provenance.json 참조."
+      ],
+      "research_input": "etl/runtime/seoul-gap37-20261019/inputs/B000002414.txt",
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000002416",
+      "school_name": "광운초등학교",
+      "group": "custom_gap_in_published_school",
+      "priority": 2,
+      "public_course_data_missing": false,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "2026년 방과후학교 운영계획.hwp"
+      ],
+      "extraction_notes": [
+        "추가 검수 목록만. 요일·시각은 공개 반영에서 제외. publication_provenance.json 참조."
+      ],
+      "research_input": "etl/runtime/seoul-gap37-20261019/inputs/B000002416.txt",
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000002420",
+      "school_name": "서울삼양초등학교",
+      "group": "custom_gap_in_published_school",
+      "priority": 2,
+      "public_course_data_missing": false,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "2026학년도 서울삼양초등학교 초등돌봄교실 운영 계획.hwp",
+        "2026학년도 서울삼양초등학교 방과후학교 운영 계획.hwp"
+      ],
+      "extraction_notes": [
+        "분기별 수강료표; 영어체험센터·컴벤져스 포함; 돌봄 체육/미술은 제외",
+        "2026학년도. L16~17은 돌봄과 맞춤형의 운영 연계만 안내하며 실제 맞춤형 프로그램명은 없음. L39~48 체육·미술은 돌봄 특별활동으로, 연중 대상은 3학년이고 1~2학년 대상은 방학 중이므로 제외. L54~68은 방과후학교 교재·재료 가격표로 제외."
+      ],
+      "research_input": null,
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000002426",
+      "school_name": "서울수송초등학교",
+      "group": "custom_gap_in_published_school",
+      "priority": 2,
+      "public_course_data_missing": false,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "2026학년도 수송초등학교 초등돌봄교실 운영계획.hwp",
+        "2026학년도 수송초등학교 방과후교실 운영 계획.pdf"
+      ],
+      "extraction_notes": [
+        "방과후 프로그램표 한 줄(L21)에서 추출; 수요요리교실 B반 시간은 원문대로(14:00-14:50); 맞춤형 시간표 없음",
+        "2026학년도 요일별 맞춤형 프로그램명 없음. L47 체육활동·안전교육·창의미술·특기적성·보드게임은 돌봄 운영내용이며 별도 맞춤형 수업 명시 없어 제외. 이후 문서는 유료 방과후교실."
+      ],
+      "research_input": null,
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000002429",
+      "school_name": "서울우이초등학교",
+      "group": "custom_gap_in_published_school",
+      "priority": 2,
+      "public_course_data_missing": false,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "2026학년도 우이초 초등돌봄교실 운영 계획.hwp",
+        "2026학년도 우이초등학교 방과후학교 운영 계획.hwp"
+      ],
+      "extraction_notes": [
+        "오후 12시간제 표기를 24시간제로 변환. 기간 미표기."
+      ],
+      "research_input": null,
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000002430",
+      "school_name": "서울유현초등학교",
+      "group": "custom_gap_in_published_school",
+      "priority": 2,
+      "public_course_data_missing": false,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "2026학년도 돌봄교실 운영 계획.hwp",
+        "2026학년도 방과후교실 운영 계획.hwp"
+      ],
+      "extraction_notes": [
+        "영어교실은 월/수 요일별 시간을 두 행으로 분리."
+      ],
+      "research_input": null,
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000002431",
+      "school_name": "영훈초등학교",
+      "group": "custom_gap_in_published_school",
+      "priority": 2,
+      "public_course_data_missing": false,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "2026학년도 방과후·돌봄·학년특별프로그램 운영 계획(탑재용).hwp"
+      ],
+      "extraction_notes": [
+        "추가 검수 목록만. 요일·시각은 공개 반영에서 제외. publication_provenance.json 참조."
+      ],
+      "research_input": "etl/runtime/seoul-gap37-20261019/inputs/B000002431.txt",
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000024031",
+      "school_name": "서울가재울초등학교",
+      "group": "custom_gap_in_published_school",
+      "priority": 2,
+      "public_course_data_missing": false,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "2026학년도 서울가재울초 돌봄교실 운영 계획.pdf",
+        "2026학년도 서울가재울초 방과후교실 운영 계획.pdf"
+      ],
+      "extraction_notes": [
+        "방과후 표만 기록(맞춤형 시간표는 입력에 없음). 강사료 4주 기준 표라 기간 미표기.",
+        "요일별 맞춤형 프로그램명 없음. 돌봄계획 L4·L7의 미술·독서토론·합창 등은 돌봄 내부 활동 및 특기적성 수업이며 별도 맞춤형 수업으로 명시되지 않아 제외. 나머지는 유료 방과후 또는 일반 강사계약 안내."
+      ],
+      "research_input": null,
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000024069",
+      "school_name": "서울개포초등학교",
+      "group": "custom_gap_in_published_school",
+      "priority": 2,
+      "public_course_data_missing": false,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "2026학년도 개포초 돌봄교실 운영계획.hwpx",
+        "2026학년도 개포초 방과후학교 운영계획.hwp"
+      ],
+      "extraction_notes": [
+        "입력은 학생별 신청표(L33~)뿐이라 1학년 학급(1-x) 수강생이 있는 강좌·요일·시작시각만 기록, 종료시각·대상학년 원문 없음(1학년 수강 사실로 true).",
+        "강좌표 없이 1학년(1-1~1-4반) 수강 현황표에서 요일·시작 시각만 종합, 종료 시각 없음",
+        "2026학년도 맞춤형 시간표는 늘봄교실1(월) 등 총칭만 있어 실제 프로그램명 없음. 돌봄 예산의 종이접기·클레이아트·생활체육·보드게임은 비용만 제시된 표이므로 제외."
+      ],
+      "research_input": null,
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000024205",
+      "school_name": "서울강솔초등학교",
+      "group": "custom_gap_in_published_school",
+      "priority": 2,
+      "public_course_data_missing": false,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "2026학년도 초등돌봄교실 연간 운영계획서.hwp",
+        "2026학년도 방과후 프로그램 연간 운영계획(안).hwp"
+      ],
+      "extraction_notes": [
+        "돌봄 일과표만 있고 방과후·맞춤형 강좌표 없음.",
+        "대상학년 없음(unknown), 요일은 컴퓨터만 표기",
+        "2026학년도 원문에 실제 맞춤형 강좌명 없음. 반별 프로그램·개별활동은 총칭 또는 돌봄 활동이므로 제외."
+      ],
+      "research_input": null,
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000024506",
+      "school_name": "서울우솔초등학교",
+      "group": "custom_gap_in_published_school",
+      "priority": 2,
+      "public_course_data_missing": false,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "2026학년도 방과후교실 연간 운영 계획.hwp"
+      ],
+      "extraction_notes": [
+        "방과후·맞춤형 시간표 문구 없음.",
+        "대상학년·시각 없음(unknown), 운영시간은 요일과 주당 시간만 적힘"
+      ],
+      "research_input": null,
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000025001",
+      "school_name": "서울율현초등학교",
+      "group": "custom_gap_in_published_school",
+      "priority": 2,
+      "public_course_data_missing": false,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "2026학년도 서울율현초 방과후교실 운영 계획.hwpx"
+      ],
+      "extraction_notes": [
+        "방과후·맞춤형 시간표 문구 없음.",
+        "시각 없음, 요일과 대상학년만 표기; 운영 1~4기는 연간으로 기록",
+        "2026학년도 맞춤형 개인위탁 운영 방침만 있고 실제 강좌명 없음."
+      ],
+      "research_input": null,
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000025289",
+      "school_name": "서울송례초등학교",
+      "group": "custom_gap_in_published_school",
+      "priority": 2,
+      "public_course_data_missing": false,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "2026학년도 서울송례초 방과후·돌봄 운영 계획(정보공시용).hwp"
+      ],
+      "extraction_notes": [
+        "격자표 열 순서로 요일 배정. 영재IT자격은 4칸이라 월A·화B·목B·금A로 추정(수는 마크코딩). 맞춤형 프로그램1~5는 요일 대응 불명확해 제외. 기간 미표기.",
+        "2026학년도 학기중 맞춤형 표 L109~115는 프로그램1~5 자리표시뿐으로 실제 프로그램명 없음."
+      ],
+      "research_input": null,
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    },
+    {
+      "school_id": "B000027451",
+      "school_name": "서울양원숲초등학교",
+      "group": "custom_gap_in_published_school",
+      "priority": 2,
+      "public_course_data_missing": false,
+      "custom_data_missing": true,
+      "operation_status": "unknown",
+      "source_disclosure_year": 2026,
+      "live_source_rechecked": false,
+      "attachment_names": [
+        "(서울양원숲초) 2026학년도 방과후교실 연간 운영 계획.hwpx"
+      ],
+      "extraction_notes": [
+        "2026학년도 방과후교실 운영계획만 제공. L14~17 맞춤형은 학교 특색 방과후 운영 지원이며 여름·겨울방학 운영으로 기재. L30 이후의 실제 강좌도 일반 방과후교실이며 초1~2 맞춤형교실 개설로 확인되지 않음. 강사 경력의 타교 맞춤형 영어프로그램도 해당 학교 수업 근거가 아니므로 제외."
+      ],
+      "research_input": null,
+      "next_action": "원문 학년도·초1 대상·선택 강좌 구분·병합표를 확인하고 이름을 보강. 시간·요일은 직접 근거가 있을 때만 반영."
+    }
+  ]
+}
