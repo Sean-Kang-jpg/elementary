@@ -1,0 +1,339 @@
+{
+  "schema_version": "pivot-p2-source-fetch-queue-v1",
+  "created_on": "2026-10-21",
+  "read_only": true,
+  "no_operational_upload": true,
+  "source": "2026 Schoolinfo disclosure probe snapshots",
+  "download_endpoint": "https://www.schoolinfo.go.kr/servlets/EiFileDownLoad.do",
+  "item_codes": {
+    "JG_BURYU_CD": "JG020",
+    "JG_HANGMOK_CD": "05",
+    "JG_GUBUN": "1",
+    "JG_CHASU": "1",
+    "JG_YEAR": "2026",
+    "USE_YN": "Y"
+  },
+  "summary": {
+    "schools": 17,
+    "with_download_metadata": 16,
+    "without_download_metadata": 1
+  },
+  "schools": [
+    {
+      "school_id": "B000003745",
+      "school_name": "낙생초등학교",
+      "area": "bundang",
+      "probes": [
+        {
+          "source": "schoolinfo_disclosure_probe_expansion_20261008.json",
+          "shl_idf_cd": "a08bd094-13a9-4615-95de-e42fd5f1693c",
+          "attachments": [
+            {
+              "file_seq": "0",
+              "name": "2026학년도 낙생초 학교교육과정 편성운영평가 계획.pdf"
+            }
+          ]
+        }
+      ],
+      "review_status": "pending_original_source_review",
+      "publish_status": "not_approved"
+    },
+    {
+      "school_id": "B000003766",
+      "school_name": "늘푸른초등학교",
+      "area": "bundang",
+      "probes": [
+        {
+          "source": "schoolinfo_disclosure_probe_expansion_20261008.json",
+          "shl_idf_cd": "902416d3-c09c-4b3a-bf26-3fb6b9c05c43",
+          "attachments": [
+            {
+              "file_seq": "0",
+              "name": "2026학년도 늘푸른초 학교교육과정 편성 운영 평가계획(정보공시).hwp"
+            }
+          ]
+        }
+      ],
+      "review_status": "pending_original_source_review",
+      "publish_status": "not_approved"
+    },
+    {
+      "school_id": "B000003755",
+      "school_name": "백현초등학교",
+      "area": "bundang",
+      "probes": [
+        {
+          "source": "schoolinfo_disclosure_probe_expansion_20261008.json",
+          "shl_idf_cd": "332807f9-3631-4141-9b38-437c9e83efa8",
+          "attachments": [
+            {
+              "file_seq": "2",
+              "name": "2-가. 학교교육과정 편성·운영 및 평가_백현초.hwpx"
+            },
+            {
+              "file_seq": "1",
+              "name": "2025 백현초 학교평가 결과 보고서(탑재용).pdf"
+            }
+          ]
+        }
+      ],
+      "review_status": "pending_original_source_review",
+      "publish_status": "not_approved"
+    },
+    {
+      "school_id": "B000003752",
+      "school_name": "불곡초등학교",
+      "area": "bundang",
+      "probes": [
+        {
+          "source": "schoolinfo_disclosure_probe_20261006.json",
+          "shl_idf_cd": "27c56c22-c20f-4dc5-af24-9648bce71e0f",
+          "attachments": [
+            {
+              "file_seq": "2",
+              "name": "2026학년도 불곡초 학교교육과정 편성·운영·평가 계획.hwp"
+            }
+          ]
+        }
+      ],
+      "review_status": "pending_original_source_review",
+      "publish_status": "not_approved"
+    },
+    {
+      "school_id": "B000003753",
+      "school_name": "성남매송초등학교",
+      "area": "bundang",
+      "probes": [
+        {
+          "source": "schoolinfo_disclosure_probe_20261006.json",
+          "shl_idf_cd": "11ecb1c6-9b7a-44cf-a803-57de3deb506b",
+          "attachments": [
+            {
+              "file_seq": "0",
+              "name": "2026학년도 성남매송초 학교교육과정 편성 운영 및 평가 사항.pdf"
+            }
+          ]
+        }
+      ],
+      "review_status": "pending_original_source_review",
+      "publish_status": "not_approved"
+    },
+    {
+      "school_id": "B000003754",
+      "school_name": "성남미금초등학교",
+      "area": "bundang",
+      "probes": [
+        {
+          "source": "schoolinfo_disclosure_probe_20261006.json",
+          "shl_idf_cd": "f426bd95-6d71-48c3-9198-7882cf678aa0",
+          "attachments": [
+            {
+              "file_seq": "0",
+              "name": "2026학년도 성남미금초 학교교육과정 편성·운영·평가 계획.hwpx"
+            }
+          ]
+        }
+      ],
+      "review_status": "pending_original_source_review",
+      "publish_status": "not_approved"
+    },
+    {
+      "school_id": "B000003742",
+      "school_name": "성남송현초등학교",
+      "area": "bundang",
+      "probes": [
+        {
+          "source": "schoolinfo_disclosure_probe_20261006.json",
+          "shl_idf_cd": "82068094-4a43-43ff-bf09-8f704e7e945a",
+          "attachments": [
+            {
+              "file_seq": "0",
+              "name": "정보공시2-가. 학교교육과정 편성·운영 및 평가에 관한 사항.pdf"
+            }
+          ]
+        }
+      ],
+      "review_status": "pending_original_source_review",
+      "publish_status": "not_approved"
+    },
+    {
+      "school_id": "B000003772",
+      "school_name": "수내초등학교",
+      "area": "bundang",
+      "probes": [
+        {
+          "source": "schoolinfo_disclosure_probe_expansion_20261008.json",
+          "shl_idf_cd": "08b9716d-6f0e-459d-9122-022daee936eb",
+          "attachments": [
+            {
+              "file_seq": "0",
+              "name": "2026학년도 수내초등학교 학교교육과정 편성운영 및 평가계획.hwp"
+            }
+          ]
+        }
+      ],
+      "review_status": "pending_original_source_review",
+      "publish_status": "not_approved"
+    },
+    {
+      "school_id": "B000003746",
+      "school_name": "신백현초등학교",
+      "area": "bundang",
+      "probes": [
+        {
+          "source": "schoolinfo_disclosure_probe_20261006.json",
+          "shl_idf_cd": "326772f5-02d5-4925-9d27-a3c0f5847bcf",
+          "attachments": [
+            {
+              "file_seq": "0",
+              "name": "2026학년도 신백현초 학교교육과정 편성운영평가계획.hwp"
+            }
+          ]
+        }
+      ],
+      "review_status": "pending_original_source_review",
+      "publish_status": "not_approved"
+    },
+    {
+      "school_id": "B000003762",
+      "school_name": "야탑초등학교",
+      "area": "bundang",
+      "probes": [
+        {
+          "source": "schoolinfo_disclosure_probe_expansion_20261008.json",
+          "shl_idf_cd": "50755c0f-6c19-4ace-8201-1091084ed768",
+          "attachments": [
+            {
+              "file_seq": "0",
+              "name": "2026학년도 야탑초 학교교육과정 편성·운영·평가 계획.hwp"
+            }
+          ]
+        }
+      ],
+      "review_status": "pending_original_source_review",
+      "publish_status": "not_approved"
+    },
+    {
+      "school_id": "B000003767",
+      "school_name": "중탑초등학교",
+      "area": "bundang",
+      "probes": [
+        {
+          "source": "schoolinfo_disclosure_probe_expansion_20261008.json",
+          "shl_idf_cd": "84e56f86-0034-4a87-bb94-81b7e51eef20",
+          "attachments": [
+            {
+              "file_seq": "0",
+              "name": "2026학년도 교육과정계획(4월 정보공시).hwp"
+            }
+          ]
+        }
+      ],
+      "review_status": "pending_original_source_review",
+      "publish_status": "not_approved"
+    },
+    {
+      "school_id": "B000026906",
+      "school_name": "판교대장초등학교",
+      "area": "bundang",
+      "probes": [
+        {
+          "source": "schoolinfo_disclosure_probe_20261006.json",
+          "shl_idf_cd": "76fb9fee-55c3-4fe1-a8e1-908aacb2911e",
+          "attachments": [
+            {
+              "file_seq": "1",
+              "name": "2026학년도 판교대장초등학교 학교교육과정 편성, 운영, 평가계획.hwpx"
+            }
+          ]
+        }
+      ],
+      "review_status": "pending_original_source_review",
+      "publish_status": "not_approved"
+    },
+    {
+      "school_id": "B000003765",
+      "school_name": "한솔초등학교",
+      "area": "bundang",
+      "probes": [
+        {
+          "source": "schoolinfo_disclosure_probe_20261006.json",
+          "shl_idf_cd": "cb00456b-4dfa-4f0e-aa76-26a2afea6247",
+          "attachments": [
+            {
+              "file_seq": "0",
+              "name": "2026학년도 한솔초 학교교육과정 편성 운영 평가 계획.pdf"
+            }
+          ]
+        }
+      ],
+      "review_status": "pending_original_source_review",
+      "publish_status": "not_approved"
+    },
+    {
+      "school_id": "B000002150",
+      "school_name": "서울오금초등학교",
+      "area": "songpa",
+      "probes": [
+        {
+          "source": "schoolinfo_disclosure_probe_expansion_20261008.json",
+          "shl_idf_cd": "96e0e9a7-7bf6-4d71-a18b-9062baa17ec7",
+          "attachments": [
+            {
+              "file_seq": "0",
+              "name": "2026학년도 오금초 학교교육과정 편성운영평가계획.hwpx"
+            }
+          ]
+        }
+      ],
+      "review_status": "pending_original_source_review",
+      "publish_status": "not_approved"
+    },
+    {
+      "school_id": "B000025375",
+      "school_name": "서울위례별초등학교",
+      "area": "songpa",
+      "probes": [
+        {
+          "source": "schoolinfo_disclosure_probe_expansion_20261008.json",
+          "shl_idf_cd": "d0745976-af2e-46b0-8b23-a1ac6fcb635e",
+          "attachments": [
+            {
+              "file_seq": "4",
+              "name": "2026학년도 학교교육과정 편성 운영 평가 계획(수정).pdf"
+            }
+          ]
+        }
+      ],
+      "review_status": "pending_original_source_review",
+      "publish_status": "not_approved"
+    },
+    {
+      "school_id": "B000002172",
+      "school_name": "서울위례초등학교",
+      "area": "wirye",
+      "probes": [
+        {
+          "source": "schoolinfo_disclosure_probe_wave2_seoul_20261009.json",
+          "shl_idf_cd": "05784c97-d5b5-43dc-a117-57adc861ba89",
+          "attachments": [
+            {
+              "file_seq": "0",
+              "name": "2026 학교교육과정 편성운영 및 평가에 관한 사항.pdf"
+            }
+          ]
+        }
+      ],
+      "review_status": "pending_original_source_review",
+      "publish_status": "not_approved"
+    },
+    {
+      "school_id": "B000023087",
+      "school_name": "위례초등학교",
+      "area": "wirye",
+      "probes": [],
+      "review_status": "pending_original_source_review",
+      "publish_status": "not_approved"
+    }
+  ]
+}
