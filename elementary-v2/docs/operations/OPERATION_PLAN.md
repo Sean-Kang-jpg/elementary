@@ -1,6 +1,6 @@
 # ETL Operation Plan
 
-Last updated: 2026-10-19
+Last updated: 2026-10-20
 
 Release status: **v2.0 operational baseline complete; v2.1 released; v2.2 interaction work in progress; nationwide expansion live — all seventeen regions are deployed to the public site as of 2026-09-28, with the pooled manual review still outstanding.**
 
@@ -18,7 +18,7 @@ This document is the single checklist for the school-zone, school, apartment, Su
 아래 과거 단계별 체크는 당시 범위의 이력이다. 최신 운영 데이터는 [전체 현황](../research/morning-care-20261015/ALL_CARE_STATUS_20261019.md), 프론트 통합 검증은 [로컬 통합 기록](LOCAL_INTEGRATION_20261019.md)을 우선한다.
 
 - [x] 로컬 시간표·아침돌봄 통합: lint/typecheck/build, 단위 테스트 92개, MY·학교 검색·선택·저장·재방문·모바일 터치와 공개 smoke 통과. 2026-10-19, 위 통합 기록 참조.
-- [ ] 아침돌봄 UI 커밋·운영 반영 및 실제 도메인의 최종 검증. 독립 시간표의 `e13633b`는 다른 세션에서 배포 중이므로 중복 release push를 하지 않는다.
+- [x] 아침돌봄 UI 커밋·운영 반영 및 실제 도메인의 최종 검증. 2026-10-20: `249f7fb`를 포함하는 운영 `e529774` READY, 실제 자료 선택·새로고침·MY 및 전체 public smoke 통과. [배포 기록](MORNING_CARE_DEPLOYMENT_20261020.md).
 - [x] 맞춤형 누락 재추출 및 서울 추가 25개교·736행 운영 반영: 현재 561개교·20,567행. [반영 기록](../research/seoul-gap37-20261019/PUBLICATION_20261019.md).
 - [ ] 서울 공개 자료 공백 45개교와 맞춤형 미확인 178개교의 원문 보강. 두 집합은 겹친다. 2026-10-19: [학교별 조사 큐](../research/care-followup-20261019/README.md)를 생성했고, 승인 입력 재빌드가 561개교·20,567행·맞춤형 428개교를 재현함을 확인했다. 조사 완료는 아니다.
 - [ ] 아침돌봄 잔여 566개교 및 실제 운영·2027학년도·신청 조건 조사, 연구 DB와 공개 화면 연결 검증.
