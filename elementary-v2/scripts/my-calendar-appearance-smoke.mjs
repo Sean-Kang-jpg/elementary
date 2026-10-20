@@ -32,7 +32,6 @@ try {
   await page.reload()
   await page.getByRole('button', { name: '주간 편집', exact: true }).click()
   await page.locator('.my-week__entry').first().waitFor()
-  await page.waitForFunction(() => document.querySelector('.my-course-picker')?.getAttribute('aria-busy') === 'false')
   const inspect = () => page.evaluate(() => [...document.querySelectorAll('.my-week__entry')].every(card => {
     const badge = card.querySelector('.my-entry-icon'), style = getComputedStyle(card)
     return card.children.length === 2 && badge?.querySelector('svg') && badge.getAttribute('aria-hidden') === 'true' && badge.textContent === ''
@@ -55,7 +54,8 @@ try {
       await page.screenshot({ path: process.argv[3].replace('.png', '-mobile.png') })
     }
   }
-  await page.locator('.my-program-selection > summary').click()
+  await page.locator('.my-calendar-add').click()
+  await page.locator('.my-add-card .my-course-picker[aria-busy=false]').waitFor()
   assert.equal(await page.locator('.my-course-choice').evaluateAll(nodes => nodes.length > 0 && nodes.every(node => node.querySelector('.my-entry-icon svg') && node.querySelector('.my-entry-icon').textContent === '' && node.querySelector('.my-course-choice__lines').children.length === 2)), true)
   await page.locator('.my-course-choice[data-program-label]').first().click()
   assert.equal(await page.locator('.my-course-choice[data-program-label]').first().getAttribute('aria-pressed'), 'true')

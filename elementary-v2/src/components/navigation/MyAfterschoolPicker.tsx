@@ -94,7 +94,6 @@ export default function MyAfterschoolPicker({ schoolId, entries, onAdd, onRemove
             </li>
           })}
           {courses.map((option) => <li key={`${option.kind}-${option.name}-${option.variant ?? ''}`}>
-            <small>{option.category}</small>
             <div className="my-course-sections">
               {option.sections.map((section, index) => {
                 const id = afterschoolSectionId(schoolId, option, section)
@@ -104,7 +103,7 @@ export default function MyAfterschoolPicker({ schoolId, entries, onAdd, onRemove
                 const time = `${section.days ?? '요일 미확인'} · ${section.start ?? '시작 미확인'} ~ ${section.end ?? '종료 미확인'}`
                 const grade = section.grade1 !== 'true' ? (section.school_wide ? '1~6학년 대상(학교 안내)' : '1학년 대상 확인 필요') : section.grade_upper === null ? '1학년 포함' : section.grade_upper === 6 ? '전학년' : `1~${section.grade_upper}학년`
                 return <div className="my-course-section" key={`${id}-${index}`}>
-                  <small>{section.days ?? '요일 미확인'} · {grade}</small>
+                  <small className="my-course-meta">{option.category} · {section.days ?? '요일 미확인'} · {grade}</small>
                   <button type="button" className={`my-course-choice${option.kind === '맞춤형' ? ' my-course-choice--custom' : ''}`} aria-pressed={selected}
                     data-program-label={afterschoolSectionLabel(option, section)}
                     aria-label={`${scheduleEntryHeading({ kind: 'afterschool', label: afterschoolSectionLabel(option, section) })} ${time} ${grade} ${selected ? '선택 해제' : entry || existing ? '시간표에 넣기' : '요일 입력하기'}`}
@@ -123,7 +122,7 @@ export default function MyAfterschoolPicker({ schoolId, entries, onAdd, onRemove
           {!careOptions.length && !courses.length && <li className="my-help">조건에 맞는 과목이 없어요. 다른 유형이나 검색어로 찾아보세요.</li>}
         </ul>
         {weekday && <p className="my-help">요일 미확인 강좌는 이 목록에서 제외했어요. 돌봄 이용 요일·대상·이동 조건은 학교에 확인해 주세요.</p>}
-      </> : !errors.length && <p className="my-help">이 학교의 강좌·돌봄 운영 자료는 아직 확인하지 못했어요. 학교 공지를 보고 ‘추가 일정 입력하기’로 넣어 주세요.</p>}
+      </> : !errors.length && <p className="my-help">이 학교의 강좌·돌봄 운영 자료는 아직 확인하지 못했어요. 학교 공지를 보고 위의 ‘직접 입력’에서 추가해 주세요.</p>}
     </>}
   </section>
 }
