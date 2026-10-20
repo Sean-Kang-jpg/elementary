@@ -1,0 +1,13 @@
+{
+  "checked_on": "2026-10-15",
+  "project": "elementary_v2.0",
+  "mode": "read_only",
+  "table": "school_care_hours join school_master",
+  "filter": "region=서울특별시",
+  "result": {
+    "seoul_rows": 606,
+    "morning_not_null": 411,
+    "stated_rows": 453,
+    "school_check_needed_rows": 153
+  }
+}

@@ -139,6 +139,26 @@ dismissal and care bars with a "별도 확인 필요" note.
 
 ## Private operational contracts
 
+### `care_research` morning-care research (2026-10-16)
+
+The non-public schema contains `ingestion_batches`, `care_services`, `care_service_sources`,
+`care_service_observations`, `care_service_schedules`, `observation_sources`,
+`care_service_assertions`, and `school_service_links`. All eight tables enable RLS;
+PUBLIC/anon/authenticated cannot use the schema or access its tables. The server service role
+has SELECT and INSERT only. There is no public view, RPC or frontend query contract for it yet.
+
+`etl/load_morning_care_research.py` validates research-v1 annual-plan snapshots and generates an
+atomic SQL load. A dataset/payload hash identifies a batch; identical input is idempotent,
+revised input creates a new immutable batch. The 40-school Seoul pilot stores 72 sources and
+283 field assertions; all live-operation and escort states remain unknown. Annual plans cannot
+be marked live-confirmed, and publication is constrained to `research_only`.
+
+See [implementation and verification](../research/morning-care-20261015/SCHEMA_PILOT_20261016.md).
+The existing school-care public types and projections are unchanged. A later public read model
+must update SQL, ETL, TypeScript and dataService together before consumers use the new fields.
+
+### Existing private master/ETL tables
+
 - `apartment_complex_master`
 - `apartment_assignment_units`
 - `apartment_assignment_schools`

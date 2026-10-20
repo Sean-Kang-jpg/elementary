@@ -79,3 +79,9 @@ pip-delete-this-directory.txt
 
 # local-only fixture for the 초1 하루 예상 card before SQL 26 (etl.load_school_day_estimates --write-fixture)
 src/dev-fixtures/
+
+# CLI version-check cache; repository migrations are kept under sql/.
+supabase/.temp/
+
+# Reviewed public-school sample delivered by Track A (not raw ETL CSV input).
+!docs/research/morning-care-20261015/school_sample.csv

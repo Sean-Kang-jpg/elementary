@@ -1,0 +1,745 @@
+{
+  "reviewed_on": "2026-10-15",
+  "reviewer": "assistant_source_text_review",
+  "status": "research_only",
+  "confirmed_live_operation": false,
+  "reviews": [
+    {
+      "school_id": "B000002275",
+      "sha_prefix": "aa1e9bece1c4",
+      "start_time": "07:00",
+      "end_time": "09:00",
+      "target_grades": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "capacity": 25,
+      "capacity_qualifier": "정원",
+      "eligibility_raw": "조기 등교 학생·녹색어머니회 봉사 활동 자녀",
+      "line_ranges": [
+        [
+          2,
+          4
+        ]
+      ],
+      "note": "학기중; 자율휴업일 수요 시. 방학 오전돌봄 08:00~10:30은 별도"
+    },
+    {
+      "school_id": "B000002160",
+      "sha_prefix": "ebf677f60a32",
+      "start_time": "07:30",
+      "end_time": "09:00",
+      "target_grades": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "capacity": null,
+      "capacity_qualifier": null,
+      "eligibility_raw": "1~6학년 희망 학생",
+      "line_ranges": [
+        [
+          3,
+          3
+        ],
+        [
+          8,
+          10
+        ]
+      ],
+      "note": "정원 00명(예정)은 미확정; 전년도 참여 50명과 구분"
+    },
+    {
+      "school_id": "B000002418",
+      "sha_prefix": "564719feac05",
+      "start_time": "07:40",
+      "end_time": "09:10",
+      "target_grades": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "capacity": null,
+      "capacity_qualifier": null,
+      "eligibility_raw": "맞벌이 가정 자녀·조기 등교가 필요한 1~6학년 학생",
+      "line_ranges": [
+        [
+          40,
+          44
+        ],
+        [
+          260,
+          264
+        ]
+      ],
+      "note": "학기중; 방학 수요 시 08:00~09:00. 수능일 10:10 종료. 방학 운영 여부 문서 내 불일치"
+    },
+    {
+      "school_id": "B000002216",
+      "sha_prefix": "83453155bf0f",
+      "start_time": null,
+      "end_time": "09:00",
+      "target_grades": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "capacity": null,
+      "capacity_qualifier": null,
+      "eligibility_raw": "1~6학년 중 희망자",
+      "line_ranges": [
+        [
+          11,
+          11
+        ],
+        [
+          61,
+          61
+        ]
+      ],
+      "note": "운영개요 07:30, 일과표 07:00 충돌; 확정 시작시각 보류"
+    },
+    {
+      "school_id": "B000002367",
+      "sha_prefix": "3c77b8ee70b0",
+      "start_time": "07:30",
+      "end_time": "09:00",
+      "target_grades": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "capacity": null,
+      "capacity_qualifier": null,
+      "eligibility_raw": "1~6학년 희망자 전체",
+      "line_ranges": [
+        [
+          225,
+          225
+        ],
+        [
+          234,
+          234
+        ]
+      ],
+      "note": "방학 및 자율휴업일 포함 계획"
+    },
+    {
+      "school_id": "B000001952",
+      "sha_prefix": "a824268ae911",
+      "start_time": "07:30",
+      "end_time": "08:40",
+      "target_grades": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "capacity": 20,
+      "capacity_qualifier": "정원",
+      "eligibility_raw": "1~6학년 희망 학생 전체",
+      "line_ranges": [
+        [
+          21,
+          21
+        ],
+        [
+          39,
+          39
+        ]
+      ],
+      "note": "방학 포함 계획"
+    },
+    {
+      "school_id": "B000001976",
+      "sha_prefix": "e19fb9372816",
+      "start_time": "07:30",
+      "end_time": "09:00",
+      "target_grades": null,
+      "capacity": null,
+      "capacity_qualifier": null,
+      "eligibility_raw": null,
+      "line_ranges": [
+        [
+          179,
+          179
+        ],
+        [
+          189,
+          191
+        ]
+      ],
+      "note": "아침 대상학년·정원은 이 근거에서 분리 확인하지 못함"
+    },
+    {
+      "school_id": "B000002040",
+      "sha_prefix": "019d73b51756",
+      "start_time": "07:50",
+      "end_time": "09:00",
+      "target_grades": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "capacity": null,
+      "capacity_qualifier": null,
+      "eligibility_raw": "전학년",
+      "line_ranges": [
+        [
+          28,
+          28
+        ]
+      ],
+      "note": "수요에 따라 변동 가능; 방학 포함"
+    },
+    {
+      "school_id": "B000002017",
+      "sha_prefix": "e56a24bc0324",
+      "start_time": "07:00",
+      "end_time": null,
+      "target_grades": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "capacity": null,
+      "capacity_qualifier": null,
+      "eligibility_raw": "전학년 희망 학생",
+      "line_ranges": [
+        [
+          16,
+          16
+        ]
+      ],
+      "note": "종료는 수업전; 2시간 봉사시간으로 09:00을 역산하지 않음"
+    },
+    {
+      "school_id": "B000001853",
+      "sha_prefix": "f71fb6244d58",
+      "start_time": "07:20",
+      "end_time": "09:00",
+      "target_grades": null,
+      "capacity": null,
+      "capacity_qualifier": null,
+      "eligibility_raw": "맞벌이로 인한 조기 등교 아동; 녹색어머니회 아동 이용 가능",
+      "line_ranges": [
+        [
+          34,
+          38
+        ]
+      ],
+      "note": "운영시 표현이 있어 조건부 계획; 수요에 따라 시간 변동"
+    },
+    {
+      "school_id": "B000002305",
+      "sha_prefix": "5479a31d0008",
+      "start_time": "07:00",
+      "end_time": "09:00",
+      "target_grades": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "capacity": null,
+      "capacity_qualifier": null,
+      "eligibility_raw": "희망하는 모든 학생(1~6)",
+      "line_ranges": [
+        [
+          8,
+          8
+        ]
+      ],
+      "note": ""
+    },
+    {
+      "school_id": "B000001930",
+      "sha_prefix": "982d5a39b256",
+      "start_time": "07:10",
+      "end_time": "08:50",
+      "target_grades": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "capacity": 25,
+      "capacity_qualifier": "정원",
+      "eligibility_raw": "희망하는 1~6학년 학생 전체",
+      "line_ranges": [
+        [
+          22,
+          23
+        ],
+        [
+          45,
+          45
+        ]
+      ],
+      "note": "학기중 계획"
+    },
+    {
+      "school_id": "B000002252",
+      "sha_prefix": "009b471caa99",
+      "start_time": "07:00",
+      "end_time": "09:00",
+      "target_grades": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "capacity": null,
+      "capacity_qualifier": null,
+      "eligibility_raw": "희망하는 1~6학년 학생 전체",
+      "line_ranges": [
+        [
+          10,
+          10
+        ],
+        [
+          24,
+          24
+        ]
+      ],
+      "note": "희망자 모두 수용 문구; 숫자 정원은 없음"
+    },
+    {
+      "school_id": "B000002347",
+      "sha_prefix": "7925baed6e69",
+      "start_time": "07:00",
+      "end_time": "09:00",
+      "target_grades": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "capacity": null,
+      "capacity_qualifier": null,
+      "eligibility_raw": "1~6학년 재학생 중 아침돌봄 신청 학생",
+      "line_ranges": [
+        [
+          37,
+          37
+        ],
+        [
+          45,
+          45
+        ]
+      ],
+      "note": "학기중 계획"
+    },
+    {
+      "school_id": "B000002389",
+      "sha_prefix": "6e68b4ee77c5",
+      "start_time": "07:30",
+      "end_time": "09:00",
+      "target_grades": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "capacity": 20,
+      "capacity_qualifier": "정원",
+      "eligibility_raw": "희망하는 1~6학년 학생 전체",
+      "line_ranges": [
+        [
+          18,
+          19
+        ],
+        [
+          39,
+          39
+        ]
+      ],
+      "note": "학기중; 방학 수요 반영 가능"
+    },
+    {
+      "school_id": "B000002123",
+      "sha_prefix": "03c3fd4833aa",
+      "start_time": "07:00",
+      "end_time": null,
+      "target_grades": null,
+      "capacity": null,
+      "capacity_qualifier": null,
+      "eligibility_raw": null,
+      "line_ranges": [
+        [
+          11,
+          11
+        ],
+        [
+          28,
+          28
+        ]
+      ],
+      "note": "학교 등교일 운영; 종료 수업전. 오후돌봄 1~2학년을 아침 대상에 전이하지 않음"
+    },
+    {
+      "school_id": "B000002186",
+      "sha_prefix": "d965598bf093",
+      "start_time": "07:00",
+      "end_time": "09:00",
+      "target_grades": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "capacity": 22,
+      "capacity_qualifier": "명 내외",
+      "eligibility_raw": "전학년(1~6); 아침돌봄 참여신청서 제출, 별도 증빙서류 없음",
+      "line_ranges": [
+        [
+          27,
+          31
+        ],
+        [
+          90,
+          90
+        ]
+      ],
+      "note": "학기중 계획. 오후 맞벌이 우선순위·증빙서류는 별도"
+    },
+    {
+      "school_id": "B000002108",
+      "sha_prefix": "f62a22795b47",
+      "start_time": "07:00",
+      "end_time": "09:00",
+      "target_grades": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "capacity": null,
+      "capacity_qualifier": null,
+      "eligibility_raw": "조기등교 학생 중 돌봄을 희망하는 전 학년 학생",
+      "line_ranges": [
+        [
+          24,
+          27
+        ]
+      ],
+      "note": ""
+    },
+    {
+      "school_id": "B000001859",
+      "sha_prefix": "83fb79a67d50",
+      "start_time": "07:30",
+      "end_time": "09:00",
+      "target_grades": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "capacity": null,
+      "capacity_qualifier": null,
+      "eligibility_raw": "면목초 재학생(1~6학년) 중 희망하는 모든 학생",
+      "line_ranges": [
+        [
+          17,
+          17
+        ],
+        [
+          29,
+          29
+        ]
+      ],
+      "note": "주5일; 표 0900은 별도 본문 09:00으로 교차 확인"
+    },
+    {
+      "school_id": "B000002276",
+      "sha_prefix": "efa00704ff18",
+      "start_time": "07:30",
+      "end_time": "09:00",
+      "target_grades": null,
+      "capacity": null,
+      "capacity_qualifier": null,
+      "eligibility_raw": null,
+      "line_ranges": [
+        [
+          15,
+          15
+        ]
+      ],
+      "note": "대상학년 1~3은 전체 돌봄 문맥이라 아침 대상에 옮기지 않음"
+    },
+    {
+      "school_id": "B000002161",
+      "sha_prefix": "5f85a0611ee8",
+      "start_time": "07:00",
+      "end_time": "09:00",
+      "target_grades": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "capacity": 24,
+      "capacity_qualifier": "명 내외",
+      "eligibility_raw": "전교생 중 참여 희망자 사전 신청서 제출",
+      "line_ranges": [
+        [
+          14,
+          14
+        ]
+      ],
+      "note": "방학 및 자율휴업일 미운영. 표의 미운영은 방학 열"
+    },
+    {
+      "school_id": "B000002217",
+      "sha_prefix": "3a829fa74eac",
+      "start_time": "07:30",
+      "end_time": "09:00",
+      "target_grades": null,
+      "capacity": null,
+      "capacity_qualifier": null,
+      "eligibility_raw": "정규수업 이전 돌봄을 희망하는 학생",
+      "line_ranges": [
+        [
+          14,
+          14
+        ]
+      ],
+      "note": "전학년 명시는 이 근거에서 확인하지 못함"
+    },
+    {
+      "school_id": "B000002326",
+      "sha_prefix": "59406097fea9",
+      "start_time": "07:00",
+      "end_time": "09:00",
+      "target_grades": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "capacity": 30,
+      "capacity_qualifier": "명 내외",
+      "eligibility_raw": "학기 중 1~6학년 희망자",
+      "line_ranges": [
+        [
+          42,
+          42
+        ],
+        [
+          64,
+          64
+        ]
+      ],
+      "note": "방학 및 자율휴업일 포함; 수요·여건에 따라 변동"
+    },
+    {
+      "school_id": "B000002368",
+      "sha_prefix": "295dfeb7385b",
+      "start_time": "07:30",
+      "end_time": "09:00",
+      "target_grades": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "capacity": null,
+      "capacity_qualifier": null,
+      "eligibility_raw": "1~6학년 재학생 중 아침돌봄 신청 학생",
+      "line_ranges": [
+        [
+          25,
+          25
+        ],
+        [
+          35,
+          35
+        ]
+      ],
+      "note": "학기중; 2실은 인원 정원이 아님"
+    },
+    {
+      "school_id": "B000001953",
+      "sha_prefix": "08e60d328e21",
+      "start_time": "07:30",
+      "end_time": "08:30",
+      "target_grades": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "capacity": null,
+      "capacity_qualifier": null,
+      "eligibility_raw": "학부모 수요·학교 여건에 따라 가급적 희망하는 전교생",
+      "line_ranges": [
+        [
+          20,
+          20
+        ],
+        [
+          57,
+          57
+        ]
+      ],
+      "note": "학기중; 수요·학교 여건 조건"
+    },
+    {
+      "school_id": "B000001977",
+      "sha_prefix": "102b5eb79e0e",
+      "start_time": "07:40",
+      "end_time": "09:00",
+      "target_grades": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "capacity": null,
+      "capacity_qualifier": null,
+      "eligibility_raw": "돌봄이 필요한 신청 학생(전학년); 전교생 중 희망자",
+      "line_ranges": [
+        [
+          22,
+          22
+        ],
+        [
+          27,
+          29
+        ]
+      ],
+      "note": "학생 현황(2026-03-23 현재)의 10명은 정원이 아니므로 제외"
+    },
+    {
+      "school_id": "B000002018",
+      "sha_prefix": "1ec30dc1684d",
+      "start_time": "07:00",
+      "end_time": "09:00",
+      "target_grades": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "capacity": null,
+      "capacity_qualifier": null,
+      "eligibility_raw": "1~6학년 재학생; 신청서 제출, 증빙서류 없이 참여 가능",
+      "line_ranges": [
+        [
+          7,
+          7
+        ],
+        [
+          19,
+          19
+        ],
+        [
+          54,
+          54
+        ]
+      ],
+      "note": "아침돌봄반 4명은 현황; 정원으로 사용하지 않음"
+    },
+    {
+      "school_id": "B000002306",
+      "sha_prefix": "80fc51e376b3",
+      "start_time": "07:00",
+      "end_time": "09:00",
+      "target_grades": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "capacity": null,
+      "capacity_qualifier": null,
+      "eligibility_raw": "1~6학년 전교생; 정규수업 전 등교 학생 누구나",
+      "line_ranges": [
+        [
+          5,
+          5
+        ]
+      ],
+      "note": "방학중 시각 변동. 동작구 서울강남초로 강남구와 혼동 금지"
+    },
+    {
+      "school_id": "B000001913",
+      "sha_prefix": "da8bb47ebd6c",
+      "start_time": "07:30",
+      "end_time": "09:00",
+      "target_grades": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "capacity": null,
+      "capacity_qualifier": null,
+      "eligibility_raw": "전교생",
+      "line_ranges": [
+        [
+          28,
+          29
+        ]
+      ],
+      "note": "인원(명) 41은 모집정원인지 불분명하여 정원 제외"
+    }
+  ]
+}

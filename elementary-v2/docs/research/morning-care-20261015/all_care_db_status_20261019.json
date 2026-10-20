@@ -1,0 +1,112 @@
+{
+  "checked_on": "2026-10-19",
+  "method": "read_only_sql",
+  "metrics": [
+    {
+      "metric": "seoul_master",
+      "value": {
+        "schools": 606
+      }
+    },
+    {
+      "metric": "programs_by_kind",
+      "value": [
+        {
+          "kind": "맞춤형",
+          "rows": 3403,
+          "schools": 427,
+          "timed_rows": 2433,
+          "grade_unknown_rows": 0
+        },
+        {
+          "kind": "방과후",
+          "rows": 16428,
+          "schools": 514,
+          "timed_rows": 14018,
+          "grade_unknown_rows": 2719
+        }
+      ]
+    },
+    {
+      "metric": "summary",
+      "value": {
+        "auto": 536,
+        "schools": 536,
+        "reviewed": 0,
+        "latest_snapshot": "2026-10-18",
+        "earliest_snapshot": "2026-10-18"
+      }
+    },
+    {
+      "metric": "tiers",
+      "value": {
+        "A": 461,
+        "B": 13,
+        "C": 62
+      }
+    },
+    {
+      "metric": "research",
+      "value": {
+        "planned": 27,
+        "schools": 40,
+        "not_found": 11,
+        "conditional": 2,
+        "latest_check": "2026-10-15",
+        "actual_unknown": 40
+      }
+    },
+    {
+      "metric": "legacy_morning_by_region",
+      "value": [
+        {
+          "region": "인천광역시",
+          "schools": 4
+        },
+        {
+          "region": "부산광역시",
+          "schools": 5
+        },
+        {
+          "region": "서울특별시",
+          "schools": 411
+        },
+        {
+          "region": "전라남도",
+          "schools": 1
+        },
+        {
+          "region": "경기도",
+          "schools": 56
+        }
+      ]
+    },
+    {
+      "metric": "programs_by_region",
+      "value": [
+        {
+          "kind": "맞춤형",
+          "region": "서울특별시",
+          "schools": 427
+        },
+        {
+          "kind": "방과후",
+          "region": "서울특별시",
+          "schools": 514
+        }
+      ]
+    }
+  ],
+  "coverage": {
+    "both": 405,
+    "paid_only": 109,
+    "custom_only": 22,
+    "neither": 70
+  },
+  "local_loader": {
+    "schools": 569,
+    "published": 536,
+    "not_published": 33,
+    "not_extracted": 37
+  }
+}

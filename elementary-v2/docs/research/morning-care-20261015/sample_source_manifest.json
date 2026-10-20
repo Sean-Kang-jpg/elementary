@@ -1,0 +1,1584 @@
+{
+  "method": "district sorted, first one per district then second in first 15 districts; excludes prior 33-school comparison candidates",
+  "excluded_short_names": [
+    "구산",
+    "구현",
+    "군자",
+    "답십리",
+    "동답",
+    "동원",
+    "면남",
+    "면일",
+    "방산",
+    "배봉",
+    "불광",
+    "삼육",
+    "수리",
+    "신내",
+    "신답",
+    "신묵",
+    "신천",
+    "신현",
+    "안평",
+    "용두",
+    "이문",
+    "인왕",
+    "장평",
+    "전곡",
+    "전농",
+    "전동",
+    "종암",
+    "중목",
+    "청량",
+    "풍납",
+    "홍제",
+    "홍파",
+    "휘경"
+  ],
+  "schools": [
+    {
+      "school_id": "B000002275",
+      "school_name": "서울봉은초등학교",
+      "region": "서울특별시",
+      "cohort": "seoul_gangnam3",
+      "shl_idf_cd": "acda155f-2602-46d5-8d0b-b578244b2b5f",
+      "items": {
+        "afterschool": {
+          "checked_at": "2026-10-08T08:39:01.777Z"
+        }
+      },
+      "probe_file": "schoolinfo_disclosure_probe_expansion_20261008.json",
+      "district": "강남구",
+      "homepage": "http://bongeun.sen.es.kr",
+      "files": [
+        {
+          "file_seq": "7",
+          "name": "2026 초등돌봄교실 운영계획.pdf",
+          "size": "260 KB",
+          "file_academic_year": 2026,
+          "kind": "afterschool_care_plan",
+          "sha256": "aa1e9bece1c43617cafa47bb0672795d568a9f22d169a6afc8d2d13846f55068",
+          "raw_hash_valid": true,
+          "text_path": "etl/runtime/audit2-documents/text/aa1e9bece1c43617cafa47bb0672795d568a9f22d169a6afc8d2d13846f55068.txt",
+          "morning_mentions": 5,
+          "text_sha256": "08e0e0d02aaf97580c001f4455bfe480b6d5b5daa679520b87e2a0f655705009"
+        },
+        {
+          "file_seq": "6",
+          "name": "2026 방과후·맞춤형교실 연간운영계획.pdf",
+          "size": "282 KB",
+          "file_academic_year": 2026,
+          "kind": "afterschool_care_plan",
+          "sha256": "a08a18e6fb0076d25228e0964ff4db90a8114eeb723a9252b0cb891b6bb6377c",
+          "raw_hash_valid": true,
+          "text_path": "etl/runtime/audit2-documents/text/a08a18e6fb0076d25228e0964ff4db90a8114eeb723a9252b0cb891b6bb6377c.txt",
+          "morning_mentions": 0,
+          "text_sha256": "c82a02149630f98934db5561a0f23480e11d6ed262ad2aab08f3696273e48042"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002160",
+      "school_name": "서울둔촌초등학교",
+      "region": "서울특별시",
+      "cohort": "seoul_rest",
+      "shl_idf_cd": "0a2ce9ac-bd87-47bc-a633-a3be78afc5ec",
+      "items": {
+        "afterschool": {
+          "checked_at": "2026-10-09T01:45:34.991Z"
+        }
+      },
+      "probe_file": "schoolinfo_disclosure_probe_wave2_seoul_20261009.json",
+      "district": "강동구",
+      "homepage": "https://doonchon.sen.es.kr/",
+      "files": [
+        {
+          "file_seq": "1",
+          "name": "2026학년도 서운둔촌초등학교 돌봄교실 운영계획.pdf",
+          "size": "204 KB",
+          "file_academic_year": 2026,
+          "kind": "afterschool_care_plan",
+          "sha256": "ebf677f60a322c9e5ddff8b3e9fd2e929f5279f16f9e20be5dfeaeeb42677504",
+          "raw_hash_valid": true,
+          "text_path": "etl/runtime/audit2-documents/text/ebf677f60a322c9e5ddff8b3e9fd2e929f5279f16f9e20be5dfeaeeb42677504.txt",
+          "morning_mentions": 5,
+          "text_sha256": "e02e2cce9619ae6ca59af157e29b19640317b8ad273005f9db3561fa3b243bbe"
+        },
+        {
+          "file_seq": "0",
+          "name": "2026학년도 서울둔촌초등학교 방과후학교 운영계획.pdf",
+          "size": "327 KB",
+          "file_academic_year": 2026,
+          "kind": "afterschool_care_plan",
+          "sha256": "5359d9a4d2ab7affab43e39e2cd4d86a3ff24d88e9dd156eb04adb8d0654d664",
+          "raw_hash_valid": true,
+          "text_path": "etl/runtime/audit2-documents/text/5359d9a4d2ab7affab43e39e2cd4d86a3ff24d88e9dd156eb04adb8d0654d664.txt",
+          "morning_mentions": 0,
+          "text_sha256": "f861a9bc6d5647dfe8130b91511b258dfd2f790486876cb06fdea60be68cc951"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002418",
+      "school_name": "서울번동초등학교",
+      "region": "서울특별시",
+      "cohort": "seoul_rest",
+      "shl_idf_cd": "52c9a0bd-0f05-4d25-aadb-4bc6835fb7b8",
+      "items": {
+        "afterschool": {
+          "checked_at": "2026-10-09T01:51:09.257Z"
+        }
+      },
+      "probe_file": "schoolinfo_disclosure_probe_wave2_seoul_20261009.json",
+      "district": "강북구",
+      "homepage": "http://beondong.sen.es.kr",
+      "files": [
+        {
+          "file_seq": "3",
+          "name": "2026학년도 번동초등학교 방과후교실 운영계획.hwp",
+          "size": "115 KB",
+          "file_academic_year": 2026,
+          "kind": "afterschool_care_plan",
+          "sha256": "c1cf5498a8b1b18747cad261655d4b212be04ffd1d8eb3599584e0139f588092",
+          "raw_hash_valid": true,
+          "text_path": "etl/runtime/audit2-documents/text/c1cf5498a8b1b18747cad261655d4b212be04ffd1d8eb3599584e0139f588092.txt",
+          "morning_mentions": 0,
+          "text_sha256": "b00da8adec1af8fef14f5c5ccfb939493abe6017ca13281eec4d8acfe44fa841"
+        },
+        {
+          "file_seq": "2",
+          "name": "2026학년도 번동초등학교 초등돌봄교실 운영계획.hwp",
+          "size": "198 KB",
+          "file_academic_year": 2026,
+          "kind": "afterschool_care_plan",
+          "sha256": "564719feac058dca4109c2b794aec639ba1bbf44b6c0c436a8e5ec58d47801c2",
+          "raw_hash_valid": true,
+          "text_path": "etl/runtime/audit2-documents/text/564719feac058dca4109c2b794aec639ba1bbf44b6c0c436a8e5ec58d47801c2.txt",
+          "morning_mentions": 9,
+          "text_sha256": "5c4e3d416a8d92ff31d7641699fd64f913a592305a69082d27d8776d4ca2f1c2"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002216",
+      "school_name": "서울화일초등학교",
+      "region": "서울특별시",
+      "cohort": "seoul_rest",
+      "shl_idf_cd": "87c225e6-d034-433f-8ec9-5c2a8de8a8ef",
+      "items": {
+        "afterschool": {
+          "checked_at": "2026-10-09T01:47:07.005Z"
+        }
+      },
+      "probe_file": "schoolinfo_disclosure_probe_wave2_seoul_20261009.json",
+      "district": "강서구",
+      "homepage": "http://hwail.sen.es.kr",
+      "files": [
+        {
+          "file_seq": "1",
+          "name": "2026학년도 서울화일초등학교 초등돌봄교실 운영계획.pdf",
+          "size": "621 KB",
+          "file_academic_year": 2026,
+          "kind": "afterschool_care_plan",
+          "sha256": "83453155bf0fe53ccd37e813f1784806d73f3aca10143eef61d7224d92c5a68c",
+          "raw_hash_valid": true,
+          "text_path": "etl/runtime/audit2-documents/text/83453155bf0fe53ccd37e813f1784806d73f3aca10143eef61d7224d92c5a68c.txt",
+          "morning_mentions": 7,
+          "text_sha256": "a914a610e30e94a104b43599bf232d137a33df974907340ae3454e3b02302010"
+        },
+        {
+          "file_seq": "0",
+          "name": "2026학년도 서울화일초등학교 방과후학교 운영계획.pdf",
+          "size": "909 KB",
+          "file_academic_year": 2026,
+          "kind": "afterschool_care_plan",
+          "sha256": "8685967bacbf49e2a6b3bdc00738e03e7d0a7026fbd03fa9bbc6141ae7e6e808",
+          "raw_hash_valid": true,
+          "text_path": "etl/runtime/audit2-documents/text/8685967bacbf49e2a6b3bdc00738e03e7d0a7026fbd03fa9bbc6141ae7e6e808.txt",
+          "morning_mentions": 0,
+          "text_sha256": "d55cbff1b12f3bbaba39d6b89bd09cd12419a6de8df0e0349bdf61a68b035f8a"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002325",
+      "school_name": "서울원신초등학교",
+      "region": "서울특별시",
+      "cohort": "seoul_rest",
+      "shl_idf_cd": "1f21bc74-1b71-4207-ba80-b04e1cfd0705",
+      "items": {
+        "afterschool": {
+          "checked_at": "2026-10-09T01:48:37.492Z"
+        }
+      },
+      "probe_file": "schoolinfo_disclosure_probe_wave2_seoul_20261009.json",
+      "district": "관악구",
+      "homepage": "http://wonshin.sen.es.kr",
+      "files": [
+        {
+          "file_seq": "0",
+          "name": "2026학년도 방과후교실 연간 운영계획(학운위 심의).hwp",
+          "size": "84 KB",
+          "file_academic_year": 2026,
+          "kind": "afterschool_care_plan",
+          "sha256": "e11d366463bdaf1900f8267f0a4cbb39d033c2756c00b4f8fff5a3728633a530",
+          "raw_hash_valid": true,
+          "text_path": "etl/runtime/audit2-documents/text/e11d366463bdaf1900f8267f0a4cbb39d033c2756c00b4f8fff5a3728633a530.txt",
+          "morning_mentions": 0,
+          "text_sha256": "dd883b53b516c6cc5afda9df33bad9f516404c1ff150e3ec9623d275c48f2113"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002367",
+      "school_name": "서울양진초등학교",
+      "region": "서울특별시",
+      "cohort": "seoul_rest",
+      "shl_idf_cd": "27b5bdfb-8090-4b6f-aa30-9a71dc8f0609",
+      "items": {
+        "afterschool": {
+          "checked_at": "2026-10-09T01:49:44.045Z"
+        }
+      },
+      "probe_file": "schoolinfo_disclosure_probe_wave2_seoul_20261009.json",
+      "district": "광진구",
+      "homepage": "http://yjs.sen.es.kr",
+      "files": [
+        {
+          "file_seq": "2",
+          "name": "(정보공시)2026 양진초 방과후교실 수익자 경비 부담 사항.hwp",
+          "size": "83 KB",
+          "file_academic_year": 2026,
+          "kind": "afterschool_care_plan",
+          "sha256": "73b074391e5415143a7de11589bcc3ce31e1f3d1eb402d11a6444da8b4a4b94e",
+          "raw_hash_valid": true,
+          "text_path": "etl/runtime/audit2-documents/text/73b074391e5415143a7de11589bcc3ce31e1f3d1eb402d11a6444da8b4a4b94e.txt",
+          "morning_mentions": 0,
+          "text_sha256": "e561549e17dc3d8de09a9571e07a6d2003eb949b762c8b728f23a6cbfea1be6b"
+        },
+        {
+          "file_seq": "1",
+          "name": "(정보공시)2026 양진초 방과후돌봄 연간 운영 계획.hwp",
+          "size": "479 KB",
+          "file_academic_year": 2026,
+          "kind": "afterschool_care_plan",
+          "sha256": "3c77b8ee70b0b906329d12f0d379f6590e903763831efd3ca091791c3cd46fe6",
+          "raw_hash_valid": true,
+          "text_path": "etl/runtime/audit2-documents/text/3c77b8ee70b0b906329d12f0d379f6590e903763831efd3ca091791c3cd46fe6.txt",
+          "morning_mentions": 5,
+          "text_sha256": "faff797a7a2509870c628b8f85d6f32ff147dd6e5c077d8a535a8f34d03663f7"
+        }
+      ]
+    },
+    {
+      "school_id": "B000001952",
+      "school_name": "서울천왕초등학교",
+      "region": "서울특별시",
+      "cohort": "seoul_rest",
+      "shl_idf_cd": "9d934187-d96a-4d1f-9ca6-1faead737fb6",
+      "items": {
+        "afterschool": {
+          "checked_at": "2026-10-09T01:40:50.758Z"
+        }
+      },
+      "probe_file": "schoolinfo_disclosure_probe_wave2_seoul_20261009.json",
+      "district": "구로구",
+      "homepage": "http://cheonwang.sen.es.kr",
+      "files": [
+        {
+          "file_seq": "2",
+          "name": "2026학년도 천왕초등학교 방과후, 맞춤형, 특수 운영계획서.hwpx",
+          "size": "4,880 KB",
+          "file_academic_year": 2026,
+          "kind": "afterschool_care_plan",
+          "sha256": "0275d09551a43c95e17dec725ae503e759b4715723071c36f2847c8717f45087",
+          "raw_hash_valid": true,
+          "text_path": "etl/runtime/audit2-documents/text/0275d09551a43c95e17dec725ae503e759b4715723071c36f2847c8717f45087.txt",
+          "morning_mentions": 0,
+          "text_sha256": "289241c61f47abb2b854d87d13186a14aab11e7cb9987a7ef41ab2ea2e725de3"
+        },
+        {
+          "file_seq": "1",
+          "name": "2026학년도 초등돌봄교실 운영 계획(안).hwp",
+          "size": "214 KB",
+          "file_academic_year": 2026,
+          "kind": "afterschool_care_plan",
+          "sha256": "a824268ae91156670bf4c83e168f10d8f8460ed15689e3c065be756dc000d613",
+          "raw_hash_valid": true,
+          "text_path": "etl/runtime/audit2-documents/text/a824268ae91156670bf4c83e168f10d8f8460ed15689e3c065be756dc000d613.txt",
+          "morning_mentions": 9,
+          "text_sha256": "afb9f47292148389c7ed2c2bfd6d67fa292d3e3af3fc34c18b7a5941e0dc448f"
+        }
+      ]
+    },
+    {
+      "school_id": "B000001976",
+      "school_name": "서울두산초등학교",
+      "region": "서울특별시",
+      "cohort": "seoul_rest",
+      "shl_idf_cd": "1931bd31-4acb-4e2d-9be8-1b6218d5a11c",
+      "items": {
+        "afterschool": {
+          "checked_at": "2026-10-09T01:41:31.455Z"
+        }
+      },
+      "probe_file": "schoolinfo_disclosure_probe_wave2_seoul_20261009.json",
+      "district": "금천구",
+      "homepage": "http://doosan.sen.es.kr",
+      "files": [
+        {
+          "file_seq": "0",
+          "name": "(학운위용)2026학년도 방과후·돌봄 운영계획(안)_1223.hwpx",
+          "size": "265 KB",
+          "file_academic_year": 2026,
+          "kind": "afterschool_care_plan",
+          "sha256": "e19fb9372816288e0b51f422f726c75ba28f14159f678a8f83974449bc00e4c8",
+          "raw_hash_valid": true,
+          "text_path": "etl/runtime/audit2-documents/text/e19fb9372816288e0b51f422f726c75ba28f14159f678a8f83974449bc00e4c8.txt",
+          "morning_mentions": 2,
+          "text_sha256": "e35b13cbd0d6a3526bbc784d9a9ff78d9319b15c957755be8f25a562fad7ba72"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002040",
+      "school_name": "서울신계초등학교",
+      "region": "서울특별시",
+      "cohort": "seoul_rest",
+      "shl_idf_cd": "6357d2fd-18ad-4d64-aaac-83177dd1569b",
+      "items": {
+        "afterschool": {
+          "checked_at": "2026-10-09T01:43:17.107Z"
+        }
+      },
+      "probe_file": "schoolinfo_disclosure_probe_wave2_seoul_20261009.json",
+      "district": "노원구",
+      "homepage": "http://singye.sen.es.kr",
+      "files": [
+        {
+          "file_seq": "2",
+          "name": "2026학년도 돌봄교실 연간 운영 계획.hwp",
+          "size": "186 KB",
+          "file_academic_year": 2026,
+          "kind": "afterschool_care_plan",
+          "sha256": "019d73b51756a13af9ee2c26d4f440715e6c260d1e7585a6819844a7c618fae3",
+          "raw_hash_valid": true,
+          "text_path": "etl/runtime/audit2-documents/text/019d73b51756a13af9ee2c26d4f440715e6c260d1e7585a6819844a7c618fae3.txt",
+          "morning_mentions": 4,
+          "text_sha256": "13de1a5809f11888ac225b4fe1eedd5a1794a5855f3afcc386e289050205f40a"
+        },
+        {
+          "file_seq": "0",
+          "name": "2026학년도 방과후 및 맞춤형 업체위탁 연간 운영계획.hwp",
+          "size": "110 KB",
+          "file_academic_year": 2026,
+          "kind": "afterschool_care_plan",
+          "sha256": "1524ad732763858ec5ac193ff2dd4b3b8430071dc0ce177bd8298912c528693d",
+          "raw_hash_valid": true,
+          "text_path": "etl/runtime/audit2-documents/text/1524ad732763858ec5ac193ff2dd4b3b8430071dc0ce177bd8298912c528693d.txt",
+          "morning_mentions": 0,
+          "text_sha256": "f3fea22ae3ffd6edd707c23dfddc7a667999fd74ab062fc11be9ae0d15d1505c"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002017",
+      "school_name": "서울초당초등학교",
+      "region": "서울특별시",
+      "cohort": "holdout",
+      "shl_idf_cd": "2ab51f48-91c3-4e8a-ae5c-c200affb0a66",
+      "items": {
+        "afterschool": {
+          "checked_at": "2026-10-06T14:23:30.972Z"
+        }
+      },
+      "probe_file": "schoolinfo_disclosure_probe_20261006.json",
+      "district": "도봉구",
+      "homepage": "http://chodang.sen.es.kr",
+      "files": [
+        {
+          "file_seq": "7",
+          "name": "2026학년도 특수교육대상학생 방과후교실 운영 계획(안).hwp",
+          "size": "74 KB",
+          "file_academic_year": 2026,
+          "kind": "afterschool_care_plan",
+          "sha256": "44d946c1ce824bb75ac12e4a0cf60715fe9bdf1acf811f1bb070db5e6c684cdd",
+          "raw_hash_valid": true,
+          "text_path": "etl/runtime/audit2-documents/text/44d946c1ce824bb75ac12e4a0cf60715fe9bdf1acf811f1bb070db5e6c684cdd.txt",
+          "morning_mentions": 0,
+          "text_sha256": "8e229e3904104e6db2d071a250223b10e5333ce62df110bb0b0ef10f48a30feb"
+        },
+        {
+          "file_seq": "6",
+          "name": "2026학년도 초등돌봄교실 운영계획(안).hwp",
+          "size": "113 KB",
+          "file_academic_year": 2026,
+          "kind": "afterschool_care_plan",
+          "sha256": "e56a24bc0324a6c9cc679d6c0877167b42457eb21143ea1a8700bff1c5738c07",
+          "raw_hash_valid": true,
+          "text_path": "etl/runtime/audit2-documents/text/e56a24bc0324a6c9cc679d6c0877167b42457eb21143ea1a8700bff1c5738c07.txt",
+          "morning_mentions": 4,
+          "text_sha256": "4137465a4e57d163c9904201ec0dfecc91a3645d8b6e0db2062aa48e765388e7"
+        },
+        {
+          "file_seq": "5",
+          "name": "2026학년도 방과후·맞춤형교실 연간 운영 계획(안).hwp",
+          "size": "208 KB",
+          "file_academic_year": 2026,
+          "kind": "afterschool_care_plan",
+          "sha256": "11945c92beaafcc5a64895ae5148f7d49891c6b51ee3c22d3b295ac7b90b7e9a",
+          "raw_hash_valid": true,
+          "text_path": "etl/runtime/audit2-documents/text/11945c92beaafcc5a64895ae5148f7d49891c6b51ee3c22d3b295ac7b90b7e9a.txt",
+          "morning_mentions": 0,
+          "text_sha256": "d8b615184c28d6d8bcc8add3562e66d0ff00d9f0bdad53f0a4f3a7d51dd831b7"
+        }
+      ]
+    },
+    {
+      "school_id": "B000001853",
+      "school_name": "서울홍릉초등학교",
+      "region": "서울특별시",
+      "cohort": "seoul_rest",
+      "shl_idf_cd": "177dc8c6-b6f0-4bb1-9bc0-c245c10ecb6e",
+      "items": {
+        "afterschool": {
+          "checked_at": "2026-10-09T01:38:10.135Z"
+        }
+      },
+      "probe_file": "schoolinfo_disclosure_probe_wave2_seoul_20261009.json",
+      "district": "동대문구",
+      "homepage": "http://hongneung.sen.es.kr",
+      "files": [
+        {
+          "file_seq": "3",
+          "name": "(학운위 심의)2026학년도 초등돌봄교실 운영계획(안)_돌봄.hwp",
+          "size": "258 KB",
+          "file_academic_year": 2026,
+          "kind": "afterschool_care_plan",
+          "sha256": "f71fb6244d5828234adb6a0890c6c89cac79633ab30959b57396d804a3f68372",
+          "raw_hash_valid": true,
+          "text_path": "etl/runtime/audit2-documents/text/f71fb6244d5828234adb6a0890c6c89cac79633ab30959b57396d804a3f68372.txt",
+          "morning_mentions": 2,
+          "text_sha256": "41173eeff0d714b5b03f83549ebe6af08bdfdf082a0f179a65a7475af00e7f7e"
+        },
+        {
+          "file_seq": "0",
+          "name": "2026 방과후(특수방과후)·맞춤형 프로그램 연간운영계획.hwp",
+          "size": "121 KB",
+          "file_academic_year": 2026,
+          "kind": "afterschool_care_plan",
+          "sha256": "d7a3457e8183ce9314cedd879d79ec3bcf13fa02a6a31cb489e47605f8a54214",
+          "raw_hash_valid": true,
+          "text_path": "etl/runtime/audit2-documents/text/d7a3457e8183ce9314cedd879d79ec3bcf13fa02a6a31cb489e47605f8a54214.txt",
+          "morning_mentions": 0,
+          "text_sha256": "04712adc178e17e0f60eea7d9ad44254bb2b0f310d232dcd242a6360e7b4d4a6"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002305",
+      "school_name": "서울신상도초등학교",
+      "region": "서울특별시",
+      "cohort": "seoul_rest",
+      "shl_idf_cd": "65d5c968-52ca-438c-a0e1-19715e00c2f8",
+      "items": {
+        "afterschool": {
+          "checked_at": "2026-10-09T01:48:03.420Z"
+        }
+      },
+      "probe_file": "schoolinfo_disclosure_probe_wave2_seoul_20261009.json",
+      "district": "동작구",
+      "homepage": "http://shinsangdo.sen.es.kr",
+      "files": [
+        {
+          "file_seq": "3",
+          "name": "2026학년도 신상도초 돌봄교실 운영계획.hwp",
+          "size": "271 KB",
+          "file_academic_year": 2026,
+          "kind": "afterschool_care_plan",
+          "sha256": "5479a31d0008a6012744ad05e9dec5cd776bf4e4d248a53690b7263e989620c8",
+          "raw_hash_valid": true,
+          "text_path": "etl/runtime/audit2-documents/text/5479a31d0008a6012744ad05e9dec5cd776bf4e4d248a53690b7263e989620c8.txt",
+          "morning_mentions": 2,
+          "text_sha256": "cee896fe5a915e63ffbbb77fd5c82a95868ab0f90bbd19d357a37d256cd4c3a8"
+        },
+        {
+          "file_seq": "2",
+          "name": "2026학년도 신상도초 방과후, 맞춤형 교실 운영 계획.hwpx",
+          "size": "137 KB",
+          "file_academic_year": 2026,
+          "kind": "afterschool_care_plan",
+          "sha256": "cb27b83b2438fd4ad041cadfc7b50bcc314d9033363fbe21958c3c35e6e0692a",
+          "raw_hash_valid": true,
+          "text_path": "etl/runtime/audit2-documents/text/cb27b83b2438fd4ad041cadfc7b50bcc314d9033363fbe21958c3c35e6e0692a.txt",
+          "morning_mentions": 0,
+          "text_sha256": "2cfa8c98d667b8a6de1241efcdf72d55500994bc0c7fdee56263a39e21988d9f"
+        }
+      ]
+    },
+    {
+      "school_id": "B000001930",
+      "school_name": "서울공덕초등학교",
+      "region": "서울특별시",
+      "cohort": "seoul_rest",
+      "shl_idf_cd": "f7d1ebbd-1824-426d-b9d5-5fb55791fdcd",
+      "items": {
+        "afterschool": {
+          "checked_at": "2026-10-09T01:40:13.154Z"
+        }
+      },
+      "probe_file": "schoolinfo_disclosure_probe_wave2_seoul_20261009.json",
+      "district": "마포구",
+      "homepage": "http://kongduck.sen.es.kr",
+      "files": [
+        {
+          "file_seq": "2",
+          "name": "2026학년도 공덕초등학교 방과후 및 맞춤형교실 연간 운영 계획.hwp",
+          "size": "492 KB",
+          "file_academic_year": 2026,
+          "kind": "afterschool_care_plan",
+          "sha256": "2d916003205626cfea35fe67997ded7d7adc1bbaa84977ec169f11bad6fa0ad7",
+          "raw_hash_valid": true,
+          "text_path": "etl/runtime/audit2-documents/text/2d916003205626cfea35fe67997ded7d7adc1bbaa84977ec169f11bad6fa0ad7.txt",
+          "morning_mentions": 0,
+          "text_sha256": "7d0360b08dc9bf5a8e462e2cc28b5e4abe56c83d7335834fa59d81cf447e5c78"
+        },
+        {
+          "file_seq": "1",
+          "name": "2026학년도 공덕초등학교 돌봄교실 연간 운영 계획.hwp",
+          "size": "109 KB",
+          "file_academic_year": 2026,
+          "kind": "afterschool_care_plan",
+          "sha256": "982d5a39b2560303762d1412328a15b8d7b33d1f32d659f55de8d509e747b1f8",
+          "raw_hash_valid": true,
+          "text_path": "etl/runtime/audit2-documents/text/982d5a39b2560303762d1412328a15b8d7b33d1f32d659f55de8d509e747b1f8.txt",
+          "morning_mentions": 7,
+          "text_sha256": "b0a926eb17677b093197f3ec1c459f1c6343e67ac698b36dbe1d2561add2b77e"
+        }
+      ]
+    },
+    {
+      "school_id": "B000001912",
+      "school_name": "서울미동초등학교",
+      "region": "서울특별시",
+      "cohort": "seoul_rest",
+      "shl_idf_cd": "efd0a2db-7999-4c26-8073-d6e4eb09ea97",
+      "items": {
+        "afterschool": {
+          "checked_at": "2026-10-09T01:39:42.504Z"
+        }
+      },
+      "probe_file": "schoolinfo_disclosure_probe_wave2_seoul_20261009.json",
+      "district": "서대문구",
+      "homepage": "http://midong.sen.es.kr",
+      "files": [
+        {
+          "file_seq": "0",
+          "name": "2026학년도 방과후교실 연간운영계획(정보공시).hwp",
+          "size": "224 KB",
+          "file_academic_year": 2026,
+          "kind": "afterschool_care_plan",
+          "sha256": "c0124444c9768d9a6b7bc615c5dafc1c9f5d7ef6b19b0949552ef1fbc9db70f6",
+          "raw_hash_valid": true,
+          "text_path": "etl/runtime/audit2-documents/text/c0124444c9768d9a6b7bc615c5dafc1c9f5d7ef6b19b0949552ef1fbc9db70f6.txt",
+          "morning_mentions": 0,
+          "text_sha256": "87c0538449a96a0ff9e5a5487c4a7cf03db3a045b1f2da57bc650a9758b033da"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002252",
+      "school_name": "서울우면초등학교",
+      "region": "서울특별시",
+      "cohort": "seoul_gangnam3",
+      "shl_idf_cd": "ebcec8c9-3104-4769-8b95-e307ce0e958b",
+      "items": {
+        "afterschool": {
+          "checked_at": "2026-10-08T08:38:24.995Z"
+        }
+      },
+      "probe_file": "schoolinfo_disclosure_probe_expansion_20261008.json",
+      "district": "서초구",
+      "homepage": "http://woomyeon.sen.es.kr",
+      "files": [
+        {
+          "file_seq": "2",
+          "name": "2026학년도 우면초 초등돌봄교실 운영계획.hwp",
+          "size": "50 KB",
+          "file_academic_year": 2026,
+          "kind": "afterschool_care_plan",
+          "sha256": "009b471caa9973cefbf9cb7e3fa9967189fdb2ca3be40a40d27b85ddc6393206",
+          "raw_hash_valid": true,
+          "text_path": "etl/runtime/audit2-documents/text/009b471caa9973cefbf9cb7e3fa9967189fdb2ca3be40a40d27b85ddc6393206.txt",
+          "morning_mentions": 2,
+          "text_sha256": "f037b4b3500a4c7afef6d808e0fdee413944a5f165ba6f5b10b9c191685ae5e8"
+        },
+        {
+          "file_seq": "1",
+          "name": "2026학년도 우면초 방과후교실 운영 계획.hwpx",
+          "size": "116 KB",
+          "file_academic_year": 2026,
+          "kind": "afterschool_care_plan",
+          "sha256": "858e9f52d2adbb470671c240113591fbcca176645e0802a1577bef3031e1cb83",
+          "raw_hash_valid": true,
+          "text_path": "etl/runtime/audit2-documents/text/858e9f52d2adbb470671c240113591fbcca176645e0802a1577bef3031e1cb83.txt",
+          "morning_mentions": 0,
+          "text_sha256": "d511850c4b315060e1caaa8608f1c03eb8ffb0d0bc7df7cb19b8bb9a0b281299"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002347",
+      "school_name": "서울행당초등학교",
+      "region": "서울특별시",
+      "cohort": "seoul_rest",
+      "shl_idf_cd": "465a963c-b972-475b-992f-1826424bdfbe",
+      "items": {
+        "afterschool": {
+          "checked_at": "2026-10-09T01:49:09.932Z"
+        }
+      },
+      "probe_file": "schoolinfo_disclosure_probe_wave2_seoul_20261009.json",
+      "district": "성동구",
+      "homepage": "http://hd.sen.es.kr",
+      "files": [
+        {
+          "file_seq": "1",
+          "name": "2026학년도 행당초 초등돌봄교실 운영 계획.hwp",
+          "size": "69 KB",
+          "file_academic_year": 2026,
+          "kind": "afterschool_care_plan",
+          "sha256": "7925baed6e6953eda7f50fb0d44534ad6ecc4d960ba164e668b5d47354e12f85",
+          "raw_hash_valid": true,
+          "text_path": "etl/runtime/audit2-documents/text/7925baed6e6953eda7f50fb0d44534ad6ecc4d960ba164e668b5d47354e12f85.txt",
+          "morning_mentions": 10,
+          "text_sha256": "e04b01c53250122cc066fe247eaa53195b653a2702e136914dca3b073e1cc0b9"
+        },
+        {
+          "file_seq": "0",
+          "name": "2026학년도 행당초 방과후학교 운영 계획.hwp",
+          "size": "109 KB",
+          "file_academic_year": 2026,
+          "kind": "afterschool_care_plan",
+          "sha256": "71428cab3973625ef73d55aed8736fed0fd93e141e8f9fabb513bf68fe615125",
+          "raw_hash_valid": true,
+          "text_path": "etl/runtime/audit2-documents/text/71428cab3973625ef73d55aed8736fed0fd93e141e8f9fabb513bf68fe615125.txt",
+          "morning_mentions": 0,
+          "text_sha256": "e7b7e0573ff31269b26ddb53e05af7a7f8348d3aa4887d6631428bd049efb84b"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002389",
+      "school_name": "서울돈암초등학교",
+      "region": "서울특별시",
+      "cohort": "seoul_rest",
+      "shl_idf_cd": "27a67e7f-66e6-4ac9-8312-76af7af00ef2",
+      "items": {
+        "afterschool": {
+          "checked_at": "2026-10-09T01:50:19.736Z"
+        }
+      },
+      "probe_file": "schoolinfo_disclosure_probe_wave2_seoul_20261009.json",
+      "district": "성북구",
+      "homepage": "http://donam.sen.es.kr",
+      "files": [
+        {
+          "file_seq": "1",
+          "name": "2026학년도 서울돈암초등학교 맞춤형, 방과후교실  운영 계획(정보공시).hwp",
+          "size": "113 KB",
+          "file_academic_year": 2026,
+          "kind": "afterschool_care_plan",
+          "sha256": "7477c43c818e00a39e351c2808bd353164f6ff0c12072c0362493ef5c4186abe",
+          "raw_hash_valid": true,
+          "text_path": "etl/runtime/audit2-documents/text/7477c43c818e00a39e351c2808bd353164f6ff0c12072c0362493ef5c4186abe.txt",
+          "morning_mentions": 0,
+          "text_sha256": "c0aade451637a3f695549dec588ad66594a2ca9d3ac8d56984daf453addc3b0b"
+        },
+        {
+          "file_seq": "0",
+          "name": "2026학년도 서울돈암초등학교 돌봄교실 운영계획(정보공시).hwp",
+          "size": "166 KB",
+          "file_academic_year": 2026,
+          "kind": "afterschool_care_plan",
+          "sha256": "6e68b4ee77c5d0efd03269e84cec73144518989469903db576e86ce034a684ef",
+          "raw_hash_valid": true,
+          "text_path": "etl/runtime/audit2-documents/text/6e68b4ee77c5d0efd03269e84cec73144518989469903db576e86ce034a684ef.txt",
+          "morning_mentions": 10,
+          "text_sha256": "1185298b0ab78ffca967f9469f998ecbf87f1d3aecb8ab4f998f2ca1364c062b"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002123",
+      "school_name": "서울방이초등학교",
+      "region": "서울특별시",
+      "cohort": "seoul_gangnam3",
+      "shl_idf_cd": "2c5098c1-db49-435e-bbe4-8eadc08d80e6",
+      "items": {
+        "afterschool": {
+          "checked_at": "2026-10-08T08:37:22.879Z"
+        }
+      },
+      "probe_file": "schoolinfo_disclosure_probe_expansion_20261008.json",
+      "district": "송파구",
+      "homepage": "http://bangi.sen.es.kr",
+      "files": [
+        {
+          "file_seq": "1",
+          "name": "2026학년도  초등돌봄교실 운영 계획.hwp",
+          "size": "101 KB",
+          "file_academic_year": 2026,
+          "kind": "afterschool_care_plan",
+          "sha256": "03c3fd4833aa4023677878d37280dce29d2af52ddf6a6fd2801d7d97d82f8dd4",
+          "raw_hash_valid": true,
+          "text_path": "etl/runtime/audit2-documents/text/03c3fd4833aa4023677878d37280dce29d2af52ddf6a6fd2801d7d97d82f8dd4.txt",
+          "morning_mentions": 5,
+          "text_sha256": "28d9db203365b579bfb00bb0ba0d86516f1c5da84915f896ac3c92683403a9ad"
+        },
+        {
+          "file_seq": "0",
+          "name": "2026학년도 방과후·맞춤형 프로그램 연간 운영 및 1분기 운영 계획.hwp",
+          "size": "110 KB",
+          "file_academic_year": 2026,
+          "kind": "afterschool_care_plan",
+          "sha256": "e0be1b90e028d69d50d0f19b521f67e65744b3e04ed6a6a8e7710655235d4f72",
+          "raw_hash_valid": true,
+          "text_path": "etl/runtime/audit2-documents/text/e0be1b90e028d69d50d0f19b521f67e65744b3e04ed6a6a8e7710655235d4f72.txt",
+          "morning_mentions": 0,
+          "text_sha256": "10599c356bc889be8ad226cb202b03c248f07f7c4bfcff8987a3355011d9ab79"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002186",
+      "school_name": "서울신은초등학교",
+      "region": "서울특별시",
+      "cohort": "holdout",
+      "shl_idf_cd": "8f7b4f41-3ece-4a02-bd9d-20a96d8915d6",
+      "items": {
+        "afterschool": {
+          "checked_at": "2026-10-06T14:23:34.410Z"
+        }
+      },
+      "probe_file": "schoolinfo_disclosure_probe_20261006.json",
+      "district": "양천구",
+      "homepage": "http://se.sen.es.kr",
+      "files": [
+        {
+          "file_seq": "1",
+          "name": "2026학년도 초등돌봄교실 운영계획(안).hwp",
+          "size": "244 KB",
+          "file_academic_year": 2026,
+          "kind": "afterschool_care_plan",
+          "sha256": "d965598bf0937ef9714e6cb96c391cb825c98f6862c0dca9f1882d6e56c40655",
+          "raw_hash_valid": true,
+          "text_path": "etl/runtime/audit2-documents/text/d965598bf0937ef9714e6cb96c391cb825c98f6862c0dca9f1882d6e56c40655.txt",
+          "morning_mentions": 9,
+          "text_sha256": "7bcadaeb251881226c6f22bf81ac3bcace112573fdc355b1ed531a193da0d932"
+        },
+        {
+          "file_seq": "0",
+          "name": "2026학년도 신은초 맞춤형교실&amp;amp;방과후교실(위탁+민참) 프로그램 연간운영계획.hwp",
+          "size": "99 KB",
+          "file_academic_year": 2026,
+          "kind": "afterschool_care_plan",
+          "sha256": "5349e96ca512892a6957583b72d7e2b14f0000faf5bb1d562290f49635255046",
+          "raw_hash_valid": true,
+          "text_path": "etl/runtime/audit2-documents/text/5349e96ca512892a6957583b72d7e2b14f0000faf5bb1d562290f49635255046.txt",
+          "morning_mentions": 0,
+          "text_sha256": "2daa0fa0ffa349455960a052b7c7d586b045bb26ad26e005dbf0b996be9f2509"
+        }
+      ]
+    },
+    {
+      "school_id": "B000001994",
+      "school_name": "서울여의도초등학교",
+      "region": "서울특별시",
+      "cohort": "seoul_rest",
+      "shl_idf_cd": "49333c37-70aa-4d9b-b5c0-ab2bdfdd94d3",
+      "items": {
+        "afterschool": {
+          "checked_at": "2026-10-09T01:42:00.276Z"
+        }
+      },
+      "probe_file": "schoolinfo_disclosure_probe_wave2_seoul_20261009.json",
+      "district": "영등포구",
+      "homepage": "http://yeouido.sen.es.kr",
+      "files": [
+        {
+          "file_seq": "1",
+          "name": "2026학년도 방과후교실 운영계획(안).hwp",
+          "size": "80 KB",
+          "file_academic_year": 2026,
+          "kind": "afterschool_care_plan",
+          "sha256": "664c3b173ba3f8ad31644fb64878e3f6d3226f2ff6b50528b5c7f6af7a7c48e8",
+          "raw_hash_valid": true,
+          "text_path": "etl/runtime/audit2-documents/text/664c3b173ba3f8ad31644fb64878e3f6d3226f2ff6b50528b5c7f6af7a7c48e8.txt",
+          "morning_mentions": 0,
+          "text_sha256": "ec4bddc17b1df7d973ebec0e9bacc2bc0109b5c1f5265c12ba73ab028d0b1d67"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002108",
+      "school_name": "서울용산초등학교",
+      "region": "서울특별시",
+      "cohort": "seoul_rest",
+      "shl_idf_cd": "ae82cd9d-1ab8-41ab-aeed-a020ec66c7a6",
+      "items": {
+        "afterschool": {
+          "checked_at": "2026-10-09T01:45:11.005Z"
+        }
+      },
+      "probe_file": "schoolinfo_disclosure_probe_wave2_seoul_20261009.json",
+      "district": "용산구",
+      "homepage": "http://yongsan.sen.es.kr",
+      "files": [
+        {
+          "file_seq": "1",
+          "name": "2026학년도 서울용산초등학교 돌봄교실 운영 계획.hwp",
+          "size": "151 KB",
+          "file_academic_year": 2026,
+          "kind": "afterschool_care_plan",
+          "sha256": "f62a22795b47c0ba86e48bfc5d3eb3932b8af740aa24163a67f0db0e78e6be7f",
+          "raw_hash_valid": true,
+          "text_path": "etl/runtime/audit2-documents/text/f62a22795b47c0ba86e48bfc5d3eb3932b8af740aa24163a67f0db0e78e6be7f.txt",
+          "morning_mentions": 7,
+          "text_sha256": "47623745ed4490593c0bcc70804182f29d6e25514d2bf3cc6f7725ffbb3a37da"
+        },
+        {
+          "file_seq": "0",
+          "name": "2026학년도 서울용산초등학교 방과후돌봄(방과후교실, 맞춤형교실) 운영 계획.hwpx",
+          "size": "161 KB",
+          "file_academic_year": 2026,
+          "kind": "afterschool_care_plan",
+          "sha256": "32bf2333d1bf9074ae6204a408a2c9ef84889176cba4c905bedf40e000983744",
+          "raw_hash_valid": true,
+          "text_path": "etl/runtime/audit2-documents/text/32bf2333d1bf9074ae6204a408a2c9ef84889176cba4c905bedf40e000983744.txt",
+          "morning_mentions": 0,
+          "text_sha256": "3ca3ea077c2872c98ebf5edf6a66891d39d2befc2b39f065c32610b2798b13bc"
+        }
+      ]
+    },
+    {
+      "school_id": "B000001881",
+      "school_name": "서울은빛초등학교",
+      "region": "서울특별시",
+      "cohort": "seoul_rest",
+      "shl_idf_cd": "29094911-9453-4059-a509-7a763bb81c29",
+      "items": {
+        "afterschool": {
+          "checked_at": "2026-10-09T01:38:54.667Z"
+        }
+      },
+      "probe_file": "schoolinfo_disclosure_probe_wave2_seoul_20261009.json",
+      "district": "은평구",
+      "homepage": "http://ev.sen.es.kr",
+      "files": [
+        {
+          "file_seq": "0",
+          "name": "(은빛초)2026학년도 방과후.맞춤형교실 연간 운영 계획(학운위).hwp",
+          "size": "424 KB",
+          "file_academic_year": 2026,
+          "kind": "afterschool_care_plan",
+          "sha256": "8fefc783eadf9009b5f69cfed082a3a1b177d80a2c2874109eb5c5e14439a070",
+          "raw_hash_valid": true,
+          "text_path": "etl/runtime/audit2-documents/text/8fefc783eadf9009b5f69cfed082a3a1b177d80a2c2874109eb5c5e14439a070.txt",
+          "morning_mentions": 0,
+          "text_sha256": "787c66004a9924a5c6cfc91bb1487b6050d093e5ca05f257151e1f87933570e2"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002082",
+      "school_name": "서울대학교사범대학부설초등학교",
+      "region": "서울특별시",
+      "cohort": "seoul_rest",
+      "shl_idf_cd": "ebf4644c-1129-4a98-9193-ee3c74192528",
+      "items": {
+        "afterschool": {
+          "checked_at": "2026-10-09T01:44:28.556Z"
+        }
+      },
+      "probe_file": "schoolinfo_disclosure_probe_wave2_seoul_20261009.json",
+      "district": "종로구",
+      "homepage": "http://snu.sen.es.kr",
+      "files": [
+        {
+          "file_seq": "0",
+          "name": "(학운위)2026학년 방과후교실,맞춤형 교실 및 위탁업체 연간 운영 계획.hwp",
+          "size": "167 KB",
+          "file_academic_year": 2026,
+          "kind": "afterschool_care_plan",
+          "sha256": "a83833f2c16a73946889172165526232b8617ca59193fcb40204bd2bd453742b",
+          "raw_hash_valid": true,
+          "text_path": "etl/runtime/audit2-documents/text/a83833f2c16a73946889172165526232b8617ca59193fcb40204bd2bd453742b.txt",
+          "morning_mentions": 0,
+          "text_sha256": "16cd09f4eea15f50a0d3c0b88f99d8bc9125409d4f9d06d1cc2a6fc2754149d3"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002096",
+      "school_name": "서울남산초등학교",
+      "region": "서울특별시",
+      "cohort": "seoul_rest",
+      "shl_idf_cd": "806a3421-b25d-4c3f-a6c9-d0c2d4711c53",
+      "items": {
+        "afterschool": {
+          "checked_at": "2026-10-09T01:44:50.605Z"
+        }
+      },
+      "probe_file": "schoolinfo_disclosure_probe_wave2_seoul_20261009.json",
+      "district": "중구",
+      "homepage": "https://namsan.sen.es.kr",
+      "files": [
+        {
+          "file_seq": "0",
+          "name": "(서울남산초등학교-2534 (첨부)) 2026학년도 방과후교실 연간 운영 계획.hwp",
+          "size": "118 KB",
+          "file_academic_year": 2026,
+          "kind": "afterschool_care_plan",
+          "sha256": "6d218441ef8a88765f684a0fcd7409b203418344d75fe4cf2237220bab1d86bd",
+          "raw_hash_valid": true,
+          "text_path": "etl/runtime/audit2-documents/text/6d218441ef8a88765f684a0fcd7409b203418344d75fe4cf2237220bab1d86bd.txt",
+          "morning_mentions": 0,
+          "text_sha256": "b36fca18180b338bbd7a9e7e856bfcacd50964e67441f756768ae01f4e7192c0"
+        }
+      ]
+    },
+    {
+      "school_id": "B000001859",
+      "school_name": "서울면목초등학교",
+      "region": "서울특별시",
+      "cohort": "seoul_rest",
+      "shl_idf_cd": "540b69d3-9b09-4342-9de7-b92a0b1f1023",
+      "items": {
+        "afterschool": {
+          "checked_at": "2026-10-09T01:38:20.467Z"
+        }
+      },
+      "probe_file": "schoolinfo_disclosure_probe_wave2_seoul_20261009.json",
+      "district": "중랑구",
+      "homepage": "http://myeonmok.sen.es.kr",
+      "files": [
+        {
+          "file_seq": "4",
+          "name": "2026학년도 서울면목초 초등돌봄교실 운영 계획.hwp",
+          "size": "104 KB",
+          "file_academic_year": 2026,
+          "kind": "afterschool_care_plan",
+          "sha256": "83fb79a67d509028854b92fd685ecc157f0c4113aa2100556c776ee6c94bc6ab",
+          "raw_hash_valid": true,
+          "text_path": "etl/runtime/audit2-documents/text/83fb79a67d509028854b92fd685ecc157f0c4113aa2100556c776ee6c94bc6ab.txt",
+          "morning_mentions": 3,
+          "text_sha256": "178644b0ba0c8fc3013b333930531c234b4b0aaf3fba5d89441b204974841fad"
+        },
+        {
+          "file_seq": "3",
+          "name": "2026학년도 서울면목초등학교 방과후학교 운영 계획.hwp",
+          "size": "103 KB",
+          "file_academic_year": 2026,
+          "kind": "afterschool_care_plan",
+          "sha256": "dec60d4b0bd7aa0ff2317f76aa5164531dd82054104e03dc189487c6bb4033be",
+          "raw_hash_valid": true,
+          "text_path": "etl/runtime/audit2-documents/text/dec60d4b0bd7aa0ff2317f76aa5164531dd82054104e03dc189487c6bb4033be.txt",
+          "morning_mentions": 0,
+          "text_sha256": "3ed769f26d4f7ebd243a12f425f93523ddbaf763d9f728e85ed612c1be8dfd37"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002276",
+      "school_name": "서울대왕초등학교",
+      "region": "서울특별시",
+      "cohort": "seoul_gangnam3",
+      "shl_idf_cd": "60ca1520-41b0-466e-92fd-fc3a32934df0",
+      "items": {
+        "afterschool": {
+          "checked_at": "2026-10-08T08:39:03.482Z"
+        }
+      },
+      "probe_file": "schoolinfo_disclosure_probe_expansion_20261008.json",
+      "district": "강남구",
+      "homepage": "http://daewang.sen.es.kr",
+      "files": [
+        {
+          "file_seq": "5",
+          "name": "2026학년도 서울대왕초등학교 방과후교실 운영계획.hwp",
+          "size": "126 KB",
+          "file_academic_year": 2026,
+          "kind": "afterschool_care_plan",
+          "sha256": "7ab422c0657cf0ceece56b62cc9a048a8ecfee640b176db9f9d2dc42ca2d24d4",
+          "raw_hash_valid": true,
+          "text_path": "etl/runtime/audit2-documents/text/7ab422c0657cf0ceece56b62cc9a048a8ecfee640b176db9f9d2dc42ca2d24d4.txt",
+          "morning_mentions": 0,
+          "text_sha256": "65eaa0f8427e8b9fa6c0908e10886f51c74c0809c3fdf2c6f55ef09a3d4651cf"
+        },
+        {
+          "file_seq": "4",
+          "name": "2026학년도 서울대왕초등학교 컴퓨터교실 운영계획.hwp",
+          "size": "171 KB",
+          "file_academic_year": 2026,
+          "kind": "other",
+          "sha256": "f76203a83057a468c9374688e3c33e74df66a5dd018396e5bb66716e874e6473",
+          "raw_hash_valid": true,
+          "text_path": "etl/runtime/audit2-documents/text/f76203a83057a468c9374688e3c33e74df66a5dd018396e5bb66716e874e6473.txt",
+          "morning_mentions": 0,
+          "text_sha256": "8159eea8b8f24c33be82b0c2c1ce94b38df4da2f610b66179b1eaff571e00b8b"
+        },
+        {
+          "file_seq": "3",
+          "name": "2026학년도 서울대왕초등학교 돌봄교실 운영계획.hwp",
+          "size": "574 KB",
+          "file_academic_year": 2026,
+          "kind": "afterschool_care_plan",
+          "sha256": "efa00704ff184f4a5bff84ab37f5255978c02d7805d34820f50ebf46c28f1f29",
+          "raw_hash_valid": true,
+          "text_path": "etl/runtime/audit2-documents/text/efa00704ff184f4a5bff84ab37f5255978c02d7805d34820f50ebf46c28f1f29.txt",
+          "morning_mentions": 2,
+          "text_sha256": "8d2ea7caf9c141cf56e3c6f1310763a3f95c10be03699837160fc808e35ecc30"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002161",
+      "school_name": "서울선린초등학교",
+      "region": "서울특별시",
+      "cohort": "seoul_rest",
+      "shl_idf_cd": "9832b5ee-11a4-44c5-96fd-21740159c812",
+      "items": {
+        "afterschool": {
+          "checked_at": "2026-10-09T01:45:36.682Z"
+        }
+      },
+      "probe_file": "schoolinfo_disclosure_probe_wave2_seoul_20261009.json",
+      "district": "강동구",
+      "homepage": "http://sunrin.sen.es.kr",
+      "files": [
+        {
+          "file_seq": "2",
+          "name": "2026학년도 돌봄교실 운영계획(안).hwp",
+          "size": "152 KB",
+          "file_academic_year": 2026,
+          "kind": "afterschool_care_plan",
+          "sha256": "5f85a0611ee8ec1103f5a53f3efc2b75a49145f9e390bad72aee90b834e622b6",
+          "raw_hash_valid": true,
+          "text_path": "etl/runtime/audit2-documents/text/5f85a0611ee8ec1103f5a53f3efc2b75a49145f9e390bad72aee90b834e622b6.txt",
+          "morning_mentions": 10,
+          "text_sha256": "b14f2d7fc5f7234e6a09ed6150bbe35b18135cb98ee40a1c22f6259ce016ee2f"
+        },
+        {
+          "file_seq": "1",
+          "name": "2026학년도 1기 방과후·맞춤형교실 운영계획 변경(안).hwp",
+          "size": "55 KB",
+          "file_academic_year": 2026,
+          "kind": "afterschool_care_plan",
+          "sha256": "a0d8512f8c3876cff130c6af7b84a7c232c9c423a3de9c5ea01b4d7114b2cdf6",
+          "raw_hash_valid": true,
+          "text_path": "etl/runtime/audit2-documents/text/a0d8512f8c3876cff130c6af7b84a7c232c9c423a3de9c5ea01b4d7114b2cdf6.txt",
+          "morning_mentions": 0,
+          "text_sha256": "8ab1f44c840ab38f566fa090065fc0c5aea357548b2216a83f46c2f279d2df5c"
+        },
+        {
+          "file_seq": "0",
+          "name": "2026학년도 방과후ㆍ맞춤형 프로그램 운영계획(안)_최종.hwp",
+          "size": "159 KB",
+          "file_academic_year": 2026,
+          "kind": "afterschool_care_plan",
+          "sha256": "4d819acb7bda65afda1babf866d5b05dcbd434ba7e692ad9267ab5275bb008a3",
+          "raw_hash_valid": true,
+          "text_path": "etl/runtime/audit2-documents/text/4d819acb7bda65afda1babf866d5b05dcbd434ba7e692ad9267ab5275bb008a3.txt",
+          "morning_mentions": 0,
+          "text_sha256": "d8f856cbdeeabb3ccf122b8cc963de43581f13824b5e0c4a14d92f8a25f1c950"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002419",
+      "school_name": "서울오현초등학교",
+      "region": "서울특별시",
+      "cohort": "seoul_rest",
+      "shl_idf_cd": "eb8054ff-6279-46b8-9f5e-dd76255136f9",
+      "items": {
+        "afterschool": {
+          "checked_at": "2026-10-09T01:51:10.959Z"
+        }
+      },
+      "probe_file": "schoolinfo_disclosure_probe_wave2_seoul_20261009.json",
+      "district": "강북구",
+      "homepage": "http://ohhyun.sen.es.kr",
+      "files": [
+        {
+          "file_seq": "3",
+          "name": "2026 초등돌봄교실 운영 계획.hwp",
+          "size": "123 KB",
+          "file_academic_year": 2026,
+          "kind": "afterschool_care_plan",
+          "sha256": "7b4a8e7eddcf7d246d69dee9b9b0d1fc52c774156ac654a148f6383141f353b8",
+          "raw_hash_valid": true,
+          "text_path": "etl/runtime/audit2-documents/text/7b4a8e7eddcf7d246d69dee9b9b0d1fc52c774156ac654a148f6383141f353b8.txt",
+          "morning_mentions": 0,
+          "text_sha256": "7f3d42c3bae96c7a46d6d6ccc13887b99d059211b937ace594edd94dc290e6ca"
+        },
+        {
+          "file_seq": "0",
+          "name": "2026학년도 방과후,맞춤형교실 운영 계획(안).hwp",
+          "size": "138 KB",
+          "file_academic_year": 2026,
+          "kind": "afterschool_care_plan",
+          "sha256": "0e1c2897569c25ffb1dc21707711c88face896bd2824631091d240976c9d5b81",
+          "raw_hash_valid": true,
+          "text_path": "etl/runtime/audit2-documents/text/0e1c2897569c25ffb1dc21707711c88face896bd2824631091d240976c9d5b81.txt",
+          "morning_mentions": 0,
+          "text_sha256": "4a1ab4309c636b4e2cdccc494b75c55276048cbb6b2b16eeec23f61ef3a758c4"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002217",
+      "school_name": "서울우장초등학교",
+      "region": "서울특별시",
+      "cohort": "seoul_rest",
+      "shl_idf_cd": "51f7ba03-c4a5-4812-ae28-9afa36fc99a6",
+      "items": {
+        "afterschool": {
+          "checked_at": "2026-10-09T01:47:08.707Z"
+        }
+      },
+      "probe_file": "schoolinfo_disclosure_probe_wave2_seoul_20261009.json",
+      "district": "강서구",
+      "homepage": "http://ujang.sen.es.kr",
+      "files": [
+        {
+          "file_seq": "6",
+          "name": "(우장초)2026학년도 방과후·맞춤형 프로그램 연간운영계획(안).hwp",
+          "size": "163 KB",
+          "file_academic_year": 2026,
+          "kind": "afterschool_care_plan",
+          "sha256": "80da6e773357171a68f08c5e51524453fbd150dd92899763626cdb6c0978465c",
+          "raw_hash_valid": true,
+          "text_path": "etl/runtime/audit2-documents/text/80da6e773357171a68f08c5e51524453fbd150dd92899763626cdb6c0978465c.txt",
+          "morning_mentions": 0,
+          "text_sha256": "c56890eef2741841d51a508eaa82122ee0e914e544635482f801383d9019a082"
+        },
+        {
+          "file_seq": "4",
+          "name": "(우장초)2026학년도 돌봄교실 운영 계획(안).hwp",
+          "size": "64 KB",
+          "file_academic_year": 2026,
+          "kind": "afterschool_care_plan",
+          "sha256": "3a829fa74eac3b2adc7812558a7e251ab9bc2cddaf3b2a3cdebdad9522aa62d8",
+          "raw_hash_valid": true,
+          "text_path": "etl/runtime/audit2-documents/text/3a829fa74eac3b2adc7812558a7e251ab9bc2cddaf3b2a3cdebdad9522aa62d8.txt",
+          "morning_mentions": 1,
+          "text_sha256": "f2bffbb578e1d9b375482c40950043239e133d791cdcb81446a4d33aa60b4722"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002326",
+      "school_name": "서울남부초등학교",
+      "region": "서울특별시",
+      "cohort": "seoul_rest",
+      "shl_idf_cd": "18d61f26-c962-47fd-b52f-dfa06fa91aa8",
+      "items": {
+        "afterschool": {
+          "checked_at": "2026-10-09T01:48:39.256Z"
+        }
+      },
+      "probe_file": "schoolinfo_disclosure_probe_wave2_seoul_20261009.json",
+      "district": "관악구",
+      "homepage": "http://seoulnambu.sen.es.kr",
+      "files": [
+        {
+          "file_seq": "6",
+          "name": "(정보공시)2026학년도 돌봄교실 연간 운영 계획(안).hwp",
+          "size": "135 KB",
+          "file_academic_year": 2026,
+          "kind": "afterschool_care_plan",
+          "sha256": "59406097fea99421e528a6533dc42636854150b428302b68e5ab134205e0659a",
+          "raw_hash_valid": true,
+          "text_path": "etl/runtime/audit2-documents/text/59406097fea99421e528a6533dc42636854150b428302b68e5ab134205e0659a.txt",
+          "morning_mentions": 7,
+          "text_sha256": "b3d71fc1e693a86bfa1b15fc8681ceeb7fa1e7b57ebb572d1baf21d4ebcc62d8"
+        },
+        {
+          "file_seq": "4",
+          "name": "(정보공시)2026학년도 방과후·맞춤형 연간 운영 계획(수정) 및 수강료 교재재료 사용계획(안).hwp",
+          "size": "107 KB",
+          "file_academic_year": 2026,
+          "kind": "afterschool_care_plan",
+          "sha256": "5c0068acc5774d22d4a661568f132059dbfd931a2617790f036b79991a318529",
+          "raw_hash_valid": true,
+          "text_path": "etl/runtime/audit2-documents/text/5c0068acc5774d22d4a661568f132059dbfd931a2617790f036b79991a318529.txt",
+          "morning_mentions": 0,
+          "text_sha256": "8901ee56c239c17322a9cd29895c2f62cc3176ed6304aa084f96811b60205d52"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002368",
+      "school_name": "서울광남초등학교",
+      "region": "서울특별시",
+      "cohort": "seoul_rest",
+      "shl_idf_cd": "16c9e34f-5fe0-45b6-889d-723d4d57af75",
+      "items": {
+        "afterschool": {
+          "checked_at": "2026-10-09T01:49:45.721Z"
+        }
+      },
+      "probe_file": "schoolinfo_disclosure_probe_wave2_seoul_20261009.json",
+      "district": "광진구",
+      "homepage": "http://gwangnam.sen.es.kr",
+      "files": [
+        {
+          "file_seq": "1",
+          "name": "(광남초)2026 방과후·맞춤형교실 연간운영계획.hwpx",
+          "size": "110 KB",
+          "file_academic_year": 2026,
+          "kind": "afterschool_care_plan",
+          "sha256": "9d3ca2f3d2c6aee566624cb1abd5c46c69761b715bd3a548b284eedb7e4dee41",
+          "raw_hash_valid": true,
+          "text_path": "etl/runtime/audit2-documents/text/9d3ca2f3d2c6aee566624cb1abd5c46c69761b715bd3a548b284eedb7e4dee41.txt",
+          "morning_mentions": 0,
+          "text_sha256": "2b98fbd44d257ada42195f5014956add7a0eeb12d63b393a97e519807661d366"
+        },
+        {
+          "file_seq": "0",
+          "name": "(광남초)2026학년도 초등돌봄교실 연간운영계획.hwp",
+          "size": "106 KB",
+          "file_academic_year": 2026,
+          "kind": "afterschool_care_plan",
+          "sha256": "295dfeb7385b37d0d2abd0087d5a31a684cc96088af24a1d4e67be7b5d1cd51a",
+          "raw_hash_valid": true,
+          "text_path": "etl/runtime/audit2-documents/text/295dfeb7385b37d0d2abd0087d5a31a684cc96088af24a1d4e67be7b5d1cd51a.txt",
+          "morning_mentions": 9,
+          "text_sha256": "63e5291434dbd5817b27bc841a6e5fd19d8cb5691432fb1ae872ce74e152c2b0"
+        }
+      ]
+    },
+    {
+      "school_id": "B000001953",
+      "school_name": "서울영일초등학교",
+      "region": "서울특별시",
+      "cohort": "seoul_rest",
+      "shl_idf_cd": "c4290159-3e75-4dab-b319-233eea54e008",
+      "items": {
+        "afterschool": {
+          "checked_at": "2026-10-09T01:40:52.448Z"
+        }
+      },
+      "probe_file": "schoolinfo_disclosure_probe_wave2_seoul_20261009.json",
+      "district": "구로구",
+      "homepage": "http://syoungil.sen.es.kr",
+      "files": [
+        {
+          "file_seq": "4",
+          "name": "2026학년도 방과후(맞춤형교실, 방과후교실) 연간 운영 계획.hwp",
+          "size": "2,436 KB",
+          "file_academic_year": 2026,
+          "kind": "afterschool_care_plan",
+          "sha256": "5b2c5d6009e0cdd84596fb5bf04c07135e31a99c37bde19b8e714dd2fd7c2dc8",
+          "raw_hash_valid": true,
+          "text_path": "etl/runtime/audit2-documents/text/5b2c5d6009e0cdd84596fb5bf04c07135e31a99c37bde19b8e714dd2fd7c2dc8.txt",
+          "morning_mentions": 0,
+          "text_sha256": "2a61d955b69bf7c5f12ea161992e5d855d15eda9a8111ca9bf508e4f5d64a310"
+        },
+        {
+          "file_seq": "3",
+          "name": "2026학년도 돌봄교실 운영계획.hwp",
+          "size": "119 KB",
+          "file_academic_year": 2026,
+          "kind": "afterschool_care_plan",
+          "sha256": "08e60d328e21f38810e72472ed6750bc812212c78645e3ddfe95755ef26a847c",
+          "raw_hash_valid": true,
+          "text_path": "etl/runtime/audit2-documents/text/08e60d328e21f38810e72472ed6750bc812212c78645e3ddfe95755ef26a847c.txt",
+          "morning_mentions": 3,
+          "text_sha256": "6dad4a85ff9669a20ca5692c92da6837436d474b4ef080d2983a3e57de26bde0"
+        }
+      ]
+    },
+    {
+      "school_id": "B000001977",
+      "school_name": "서울문교초등학교",
+      "region": "서울특별시",
+      "cohort": "seoul_rest",
+      "shl_idf_cd": "0dd03e46-9a69-4b6f-8671-192600327175",
+      "items": {
+        "afterschool": {
+          "checked_at": "2026-10-09T01:41:33.149Z"
+        }
+      },
+      "probe_file": "schoolinfo_disclosure_probe_wave2_seoul_20261009.json",
+      "district": "금천구",
+      "homepage": "http://mungyo.sen.es.kr",
+      "files": [
+        {
+          "file_seq": "2",
+          "name": "2026학년도 돌봄교실 운영 계획.hwp",
+          "size": "62 KB",
+          "file_academic_year": 2026,
+          "kind": "afterschool_care_plan",
+          "sha256": "102b5eb79e0ecf5c71d0cdb2d604d9525b40fbc1c6041021b11059790f54cc65",
+          "raw_hash_valid": true,
+          "text_path": "etl/runtime/audit2-documents/text/102b5eb79e0ecf5c71d0cdb2d604d9525b40fbc1c6041021b11059790f54cc65.txt",
+          "morning_mentions": 2,
+          "text_sha256": "e5197c4d8d39d8b3874ebf490dd148cfdb5075fa62bd80360f4eef41362bcc07"
+        },
+        {
+          "file_seq": "1",
+          "name": "2026 문교초 늘봄학교 연간운영계획...hwp",
+          "size": "158 KB",
+          "file_academic_year": 2026,
+          "kind": "afterschool_care_plan",
+          "sha256": "77962c8d1060d587963dfadc5d5786535e434db3c1903fee9cf2265174c1b004",
+          "raw_hash_valid": true,
+          "text_path": "etl/runtime/audit2-documents/text/77962c8d1060d587963dfadc5d5786535e434db3c1903fee9cf2265174c1b004.txt",
+          "morning_mentions": 0,
+          "text_sha256": "f3e614eb91267b82ebe7900e4e9826d7fab51880c3be37b787dae718b68cd2de"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002041",
+      "school_name": "서울녹천초등학교",
+      "region": "서울특별시",
+      "cohort": "seoul_rest",
+      "shl_idf_cd": "653d4e90-3e80-417b-be88-dd0ae8e192d6",
+      "items": {
+        "afterschool": {
+          "checked_at": "2026-10-09T01:43:18.801Z"
+        }
+      },
+      "probe_file": "schoolinfo_disclosure_probe_wave2_seoul_20261009.json",
+      "district": "노원구",
+      "homepage": "http://nokcheon.sen.es.kr",
+      "files": [
+        {
+          "file_seq": "2",
+          "name": "(서울녹천초)2026학년도 맞춤형.방과후교실 운영 계획 1부.pdf",
+          "size": "251 KB",
+          "file_academic_year": 2026,
+          "kind": "afterschool_care_plan",
+          "sha256": "a4dd6940ed5caa5b5e9801801a3961ae8bf219802d14c40f22711f69eb332d86",
+          "raw_hash_valid": true,
+          "text_path": "etl/runtime/audit2-documents/text/a4dd6940ed5caa5b5e9801801a3961ae8bf219802d14c40f22711f69eb332d86.txt",
+          "morning_mentions": 0,
+          "text_sha256": "7400b73f7c61493b3dc925b4aaf181e076bd153c4daaa5fbd08cb23863de6eca"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002018",
+      "school_name": "서울신학초등학교",
+      "region": "서울특별시",
+      "cohort": "seoul_rest",
+      "shl_idf_cd": "090a5f45-d08d-4c32-b186-6388f60d2158",
+      "items": {
+        "afterschool": {
+          "checked_at": "2026-10-09T01:42:39.439Z"
+        }
+      },
+      "probe_file": "schoolinfo_disclosure_probe_wave2_seoul_20261009.json",
+      "district": "도봉구",
+      "homepage": "http://seoulsinhak.sen.es.kr",
+      "files": [
+        {
+          "file_seq": "2",
+          "name": "2026학년도 서울신학초등학교 방과후학교 연간운영계획.hwp",
+          "size": "769 KB",
+          "file_academic_year": 2026,
+          "kind": "afterschool_care_plan",
+          "sha256": "e6789fc710fcb3cdc9b381ad89db5937930223a475d3bdcf896e74184759c6cd",
+          "raw_hash_valid": true,
+          "text_path": "etl/runtime/audit2-documents/text/e6789fc710fcb3cdc9b381ad89db5937930223a475d3bdcf896e74184759c6cd.txt",
+          "morning_mentions": 0,
+          "text_sha256": "5c754e7a3eab059abd2a59dd032a5d7af546b59872f03da059408c3cac687869"
+        },
+        {
+          "file_seq": "0",
+          "name": "2026학년도 서울신학초등학교 초등돌봄교실 운영계획안.hwp",
+          "size": "157 KB",
+          "file_academic_year": 2026,
+          "kind": "afterschool_care_plan",
+          "sha256": "1ec30dc1684d7b83cc436a355e4e00d123c806d262e559848ff25b3a45011e89",
+          "raw_hash_valid": true,
+          "text_path": "etl/runtime/audit2-documents/text/1ec30dc1684d7b83cc436a355e4e00d123c806d262e559848ff25b3a45011e89.txt",
+          "morning_mentions": 12,
+          "text_sha256": "68ec24365381f1b4c0376cd530c0a93bfb006f16f5566a665298438cb67f1a07"
+        }
+      ]
+    },
+    {
+      "school_id": "B000001855",
+      "school_name": "서울휘봉초등학교",
+      "region": "서울특별시",
+      "cohort": "seoul_rest",
+      "shl_idf_cd": "a55532cd-b24e-40f9-9b66-5d0ff7d9566c",
+      "items": {
+        "afterschool": {
+          "checked_at": "2026-10-09T01:38:13.568Z"
+        }
+      },
+      "probe_file": "schoolinfo_disclosure_probe_wave2_seoul_20261009.json",
+      "district": "동대문구",
+      "homepage": "http://hwibong.sen.es.kr",
+      "files": [
+        {
+          "file_seq": "1",
+          "name": "(취봉초) 2026학년도 방과후·맞춤형프로그램 연간운영계획(안)(강사명 삭제).hwp",
+          "size": "140 KB",
+          "file_academic_year": 2026,
+          "kind": "afterschool_care_plan",
+          "sha256": "5493e9751f3573a7e0a07344f04ad2da3ff241cf18b9b89a1280e7ea4c57b22d",
+          "raw_hash_valid": true,
+          "text_path": "etl/runtime/audit2-documents/text/5493e9751f3573a7e0a07344f04ad2da3ff241cf18b9b89a1280e7ea4c57b22d.txt",
+          "morning_mentions": 0,
+          "text_sha256": "fd6a53c7377263a4d01024aa5d64e9731c961c7b044cefa0840e9ddc10777958"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002306",
+      "school_name": "서울강남초등학교",
+      "region": "서울특별시",
+      "cohort": "seoul_rest",
+      "shl_idf_cd": "e53b6fad-485e-44a7-8312-3067f8b3b953",
+      "items": {
+        "afterschool": {
+          "checked_at": "2026-10-09T01:48:05.120Z"
+        }
+      },
+      "probe_file": "schoolinfo_disclosure_probe_wave2_seoul_20261009.json",
+      "district": "동작구",
+      "homepage": "http://gangnam.sen.es.kr",
+      "files": [
+        {
+          "file_seq": "3",
+          "name": "(정보공시)2026학년도 서울강남초 초등돌봄교실 운영 계획(안) 및 학사 일정.pdf",
+          "size": "344 KB",
+          "file_academic_year": 2026,
+          "kind": "afterschool_care_plan",
+          "sha256": "80fc51e376b3a1e4ee3be68a24e46f643e9192e63cdc075ca33586bb44699ccc",
+          "raw_hash_valid": true,
+          "text_path": "etl/runtime/audit2-documents/text/80fc51e376b3a1e4ee3be68a24e46f643e9192e63cdc075ca33586bb44699ccc.txt",
+          "morning_mentions": 2,
+          "text_sha256": "a51fea738ef79786659b046065e4251eb003a38e4b5804aab5b7430ba6c227ab"
+        },
+        {
+          "file_seq": "2",
+          "name": "(정보공시)2026학년도 서울강남초 방과후학교  연간 운영계획(안).pdf",
+          "size": "310 KB",
+          "file_academic_year": 2026,
+          "kind": "afterschool_care_plan",
+          "sha256": "0520baf8d2aa0e4b9ca59046396c7e4b81d0cb2d0abc06307c7871508424e681",
+          "raw_hash_valid": true,
+          "text_path": "etl/runtime/audit2-documents/text/0520baf8d2aa0e4b9ca59046396c7e4b81d0cb2d0abc06307c7871508424e681.txt",
+          "morning_mentions": 0,
+          "text_sha256": "4e3ea1e3dc503a37f85d8c15908cecfe45e87f1f22a690f88f71333de6bb98b9"
+        }
+      ]
+    },
+    {
+      "school_id": "B000001931",
+      "school_name": "서울창천초등학교",
+      "region": "서울특별시",
+      "cohort": "seoul_rest",
+      "shl_idf_cd": "09ed338b-b05e-4e4e-9e82-341d5cf8bad1",
+      "items": {
+        "afterschool": {
+          "checked_at": "2026-10-09T01:40:14.858Z"
+        }
+      },
+      "probe_file": "schoolinfo_disclosure_probe_wave2_seoul_20261009.json",
+      "district": "마포구",
+      "homepage": "http://changchon.sen.es.kr",
+      "files": [
+        {
+          "file_seq": "0",
+          "name": "2026학년도창천초학교 방과후학교 운영계획.hwp",
+          "size": "103 KB",
+          "file_academic_year": 2026,
+          "kind": "afterschool_care_plan",
+          "sha256": "a4134dfaeae24dba2d4652b1bca5276592e68f395295c4f7e27e12cc28a4ef87",
+          "raw_hash_valid": true,
+          "text_path": "etl/runtime/audit2-documents/text/a4134dfaeae24dba2d4652b1bca5276592e68f395295c4f7e27e12cc28a4ef87.txt",
+          "morning_mentions": 0,
+          "text_sha256": "dea5f4ba865894f9c06ac4b332c403415b69b2e32520f43843dc219f158f41fb"
+        }
+      ]
+    },
+    {
+      "school_id": "B000001913",
+      "school_name": "서울금화초등학교",
+      "region": "서울특별시",
+      "cohort": "seoul_rest",
+      "shl_idf_cd": "a2070dfd-7415-4036-b4ad-1d5df4e89161",
+      "items": {
+        "afterschool": {
+          "checked_at": "2026-10-09T01:39:44.226Z"
+        }
+      },
+      "probe_file": "schoolinfo_disclosure_probe_wave2_seoul_20261009.json",
+      "district": "서대문구",
+      "homepage": "http://geumhwa.sen.es.kr",
+      "files": [
+        {
+          "file_seq": "1",
+          "name": "2026학년도 초등돌봄교실 운영 계획.hwpx",
+          "size": "107 KB",
+          "file_academic_year": 2026,
+          "kind": "afterschool_care_plan",
+          "sha256": "da8bb47ebd6ca26033a0a47cc47b02b32c826360db8920984ca38dc983213c2e",
+          "raw_hash_valid": true,
+          "text_path": "etl/runtime/audit2-documents/text/da8bb47ebd6ca26033a0a47cc47b02b32c826360db8920984ca38dc983213c2e.txt",
+          "morning_mentions": 5,
+          "text_sha256": "6754be8d798ee7138b3a8a2770a2cc7f74a8bdf4f3e59dbc137c8f1289ec80ba"
+        },
+        {
+          "file_seq": "0",
+          "name": "2026학년도 방과후·맞춤형교실 운영 계획.hwp",
+          "size": "125 KB",
+          "file_academic_year": 2026,
+          "kind": "afterschool_care_plan",
+          "sha256": "4804c94397601d1e32a4e15fc94d58ca5347cccdcaa7fe53e0d14494fc2a684a",
+          "raw_hash_valid": true,
+          "text_path": "etl/runtime/audit2-documents/text/4804c94397601d1e32a4e15fc94d58ca5347cccdcaa7fe53e0d14494fc2a684a.txt",
+          "morning_mentions": 0,
+          "text_sha256": "3585545b1d5e6e08f10fa1a7c30ebbb84e88653ea0ebd9f387c53bb7ec381b62"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002253",
+      "school_name": "서울교육대학교부설초등학교",
+      "region": "서울특별시",
+      "cohort": "seoul_gangnam3",
+      "shl_idf_cd": "abd50a29-61c6-4b54-adbf-a51907ef0b9e",
+      "items": {
+        "afterschool": {
+          "checked_at": "2026-10-08T08:38:26.718Z"
+        }
+      },
+      "probe_file": "schoolinfo_disclosure_probe_expansion_20261008.json",
+      "district": "서초구",
+      "homepage": "http://snueps.sen.es.kr/",
+      "files": [
+        {
+          "file_seq": "0",
+          "name": "(정보공시용)2026학년도 방과후.맞춤형 프로그램 1기 운영 계획.hwp",
+          "size": "95 KB",
+          "file_academic_year": 2026,
+          "kind": "afterschool_care_plan",
+          "sha256": "b0f3918535cd1bbb8b12583a12f35f540c0eaf38a50195ac87fa3d7a02429b24",
+          "raw_hash_valid": true,
+          "text_path": "etl/runtime/audit2-documents/text/b0f3918535cd1bbb8b12583a12f35f540c0eaf38a50195ac87fa3d7a02429b24.txt",
+          "morning_mentions": 0,
+          "text_sha256": "774448e49128719a372a109fc819307531e9ca4cad6d2277a1c2ede46adfcd62"
+        }
+      ]
+    }
+  ]
+}

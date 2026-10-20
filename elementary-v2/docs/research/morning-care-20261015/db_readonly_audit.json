@@ -1,0 +1,55 @@
+{
+  "checked_on": "2026-10-15",
+  "mode": "read_only",
+  "project": "elementary_v2.0",
+  "summary": [
+    {
+      "dataset": "school_care_hours",
+      "summary": {
+        "rows": 2014,
+        "years": [
+          2026
+        ],
+        "latest_review": "2026-10-11",
+        "morning_not_null": 477
+      }
+    },
+    {
+      "dataset": "care_centers_seoul",
+      "summary": {
+        "rows": 282,
+        "capacity": 269,
+        "snapshot": "2026-10-07",
+        "term_hours": 251
+      }
+    },
+    {
+      "dataset": "school_care_statistics",
+      "summary": {
+        "rows": 6266,
+        "years": [
+          2026
+        ],
+        "snapshot": "2026-10-07"
+      }
+    }
+  ],
+  "schedules": [
+    {
+      "schedule_id": "schoolinfo-basic-annual",
+      "source_name": "schoolinfo-basic",
+      "cadence_unit": "annual",
+      "cadence_value": 1,
+      "last_success_at": "2026-08-29 14:00:48.46127+00",
+      "next_due_at": "2027-08-29 14:00:48.46127+00"
+    },
+    {
+      "schedule_id": "schoolinfo-grade-annual",
+      "source_name": "schoolinfo-grade-students",
+      "cadence_unit": "annual",
+      "cadence_value": 1,
+      "last_success_at": "2026-08-29 14:00:48.46127+00",
+      "next_due_at": "2027-08-29 14:00:48.46127+00"
+    }
+  ]
+}
