@@ -1,0 +1,121 @@
+[
+  {
+    "school_id": "B000003745",
+    "school_name": "낙생초등학교",
+    "area": "bundang",
+    "road_address": "경기도 성남시 분당구 서판교로74번길 11",
+    "grade1_students": 137
+  },
+  {
+    "school_id": "B000003766",
+    "school_name": "늘푸른초등학교",
+    "area": "bundang",
+    "road_address": "경기도 성남시 분당구 정자일로 87",
+    "grade1_students": 181
+  },
+  {
+    "school_id": "B000003755",
+    "school_name": "백현초등학교",
+    "area": "bundang",
+    "road_address": "경기도 성남시 분당구 백현로144번길 26",
+    "grade1_students": 7
+  },
+  {
+    "school_id": "B000003752",
+    "school_name": "불곡초등학교",
+    "area": "bundang",
+    "road_address": "경기도 성남시 분당구 무지개로 129",
+    "grade1_students": 60
+  },
+  {
+    "school_id": "B000003753",
+    "school_name": "성남매송초등학교",
+    "area": "bundang",
+    "road_address": "경기도 성남시 분당구 탄천로 97",
+    "grade1_students": 91
+  },
+  {
+    "school_id": "B000003754",
+    "school_name": "성남미금초등학교",
+    "area": "bundang",
+    "road_address": "경기도 성남시 분당구 미금로 151",
+    "grade1_students": 88
+  },
+  {
+    "school_id": "B000003742",
+    "school_name": "성남송현초등학교",
+    "area": "bundang",
+    "road_address": "경기도 성남시 분당구 동판교로 258",
+    "grade1_students": 150
+  },
+  {
+    "school_id": "B000003772",
+    "school_name": "수내초등학교",
+    "area": "bundang",
+    "road_address": "경기도 성남시 분당구 백현로243번길 12",
+    "grade1_students": 123
+  },
+  {
+    "school_id": "B000003746",
+    "school_name": "신백현초등학교",
+    "area": "bundang",
+    "road_address": "경기도 성남시 분당구 판교역로14번길 42",
+    "grade1_students": 84
+  },
+  {
+    "school_id": "B000003762",
+    "school_name": "야탑초등학교",
+    "area": "bundang",
+    "road_address": "경기도 성남시 분당구 양현로 400",
+    "grade1_students": 81
+  },
+  {
+    "school_id": "B000003767",
+    "school_name": "중탑초등학교",
+    "area": "bundang",
+    "road_address": "경기도 성남시 분당구 벌말로 68",
+    "grade1_students": 57
+  },
+  {
+    "school_id": "B000026906",
+    "school_name": "판교대장초등학교",
+    "area": "bundang",
+    "road_address": "경기도 성남시 분당구 판교대장로5길 71",
+    "grade1_students": 259
+  },
+  {
+    "school_id": "B000003765",
+    "school_name": "한솔초등학교",
+    "area": "bundang",
+    "road_address": "경기도 성남시 분당구 돌마로 303",
+    "grade1_students": 9
+  },
+  {
+    "school_id": "B000002150",
+    "school_name": "서울오금초등학교",
+    "area": "songpa",
+    "road_address": "서울특별시 송파구 위례성대로22길 11",
+    "grade1_students": 74
+  },
+  {
+    "school_id": "B000025375",
+    "school_name": "서울위례별초등학교",
+    "area": "songpa",
+    "road_address": "서울특별시 송파구 위례광장로 243",
+    "grade1_students": 205
+  },
+  {
+    "school_id": "B000002172",
+    "school_name": "서울위례초등학교",
+    "area": "wirye",
+    "road_address": "서울특별시 강동구 명일로 23",
+    "grade1_students": 164
+  },
+  {
+    "school_id": "B000023087",
+    "school_name": "위례초등학교",
+    "area": "wirye",
+    "road_address": "경기도 하남시 위례순환로 333",
+    "grade1_students": 206
+  }
+]

@@ -155,6 +155,15 @@ def main() -> None:
     out = OUT_DIR / f"pilot_manifest_{manifest['generated'].replace('-', '')}.json"
     out.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
     print(f'wrote {out.relative_to(ROOT)}')
+    # handoff lists for the operating pilot: P1 after-school (teammate), P2 dismissal (pilot branch)
+    stamp = manifest['generated'].replace('-', '')
+    for track, layer in (('p1_afterschool', 'afterschool'), ('p2_dismissal', 'dismissal')):
+        targets = [e for e in manifest['schools'] if e['operating_pilot'] and layer in e['missing']]
+        path = OUT_DIR / f'{track}_operating_{stamp}.json'
+        fields = ('school_id', 'school_name', 'area', 'road_address', 'grade1_students')
+        rows = [{field: e[field] for field in fields} for e in targets]
+        path.write_text(json.dumps(rows, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+        print(f'wrote {path.relative_to(ROOT)} ({len(targets)} schools)')
 
 
 if __name__ == '__main__':
