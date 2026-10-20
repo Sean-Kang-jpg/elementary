@@ -1,0 +1,477 @@
+{
+  "schema_version": "pivot-p2-first-triage-v1",
+  "created_on": "2026-10-21",
+  "branch_base": "claude/pivot-pilot-etl",
+  "scope": "operating pilot P2 missing 17 only",
+  "manifest_source": "docs/research/pivot/p2_dismissal_operating_20261020.json",
+  "evidence_scope": {
+    "clock_audits_scanned": [
+      "docs/research/audit2/schoolinfo_daily_clock_audit_20261006.json",
+      "docs/research/audit2/schoolinfo_daily_clock_audit_expansion_20261008.json",
+      "docs/research/audit2/schoolinfo_daily_clock_audit_wave2_seoul_20261009.json"
+    ],
+    "reviewed_snapshots_checked": [
+      "docs/research/audit2/school_day_review_first_pass_20261007.json",
+      "docs/research/audit2/school_day_review_expansion_20261008.json",
+      "docs/research/audit2/school_day_review_wave2_seoul_20261010.json",
+      "docs/research/audit2/school_day_review_wave3_gyeonggi_20261011.json"
+    ],
+    "dismissal_snapshots_checked": [
+      "docs/research/audit2/grade1_dismissal_estimates_20261007.json",
+      "docs/research/audit2/grade1_dismissal_estimates_expansion_20261008.json",
+      "docs/research/audit2/grade1_dismissal_estimates_wave2_seoul_20261010.json",
+      "docs/research/audit2/grade1_dismissal_estimates_wave3_gyeonggi_20261011.json"
+    ],
+    "not_scanned": "schoolinfo_daily_clock_audit_wave3_gyeonggi_20261010.json (GitHub connector size limit; must re-check locally)"
+  },
+  "read_only": true,
+  "no_operational_upload": true,
+  "summary": {
+    "target_schools": 17,
+    "clock_not_detected_in_scanned_audits": 16,
+    "source_audit_unverified": 1,
+    "found_in_existing_review_or_estimate": 0
+  },
+  "cautions": [
+    "no_clock_detected means the 2026 audit detector did not find the clock; it does NOT prove the clock is absent from the original document.",
+    "This is based on frozen 2026-10-20 manifest; do not infer live DB freshness.",
+    "Do not infer or populate estimated dismissal times without school-level source review."
+  ],
+  "schools": [
+    {
+      "school_id": "B000003745",
+      "school_name": "낙생초등학교",
+      "area": "bundang",
+      "road_address": "경기도 성남시 분당구 서판교로74번길 11",
+      "grade1_students": 137,
+      "triage_status": "clock_not_detected_in_2026_2ga_audit",
+      "audits": [
+        {
+          "snapshot": "docs/research/audit2/schoolinfo_daily_clock_audit_expansion_20261008.json",
+          "status": "no_clock_detected",
+          "documents": [
+            {
+              "name": "2026학년도 낙생초 학교교육과정 편성운영평가 계획.pdf",
+              "status": "no_clock_detected",
+              "format": "pdf",
+              "sha256": "32c7cf7741a26d163e0a7f74d236ba784fd94b34fce3512204f022c1144ae16e"
+            }
+          ]
+        }
+      ],
+      "existing_review_snapshots": [],
+      "existing_estimate_snapshots": [],
+      "follow_up": "reinspect_original_2ga_document_tables_and_timetable_synonyms",
+      "operation": "research_only_no_db_write"
+    },
+    {
+      "school_id": "B000003766",
+      "school_name": "늘푸른초등학교",
+      "area": "bundang",
+      "road_address": "경기도 성남시 분당구 정자일로 87",
+      "grade1_students": 181,
+      "triage_status": "clock_not_detected_in_2026_2ga_audit",
+      "audits": [
+        {
+          "snapshot": "docs/research/audit2/schoolinfo_daily_clock_audit_expansion_20261008.json",
+          "status": "no_clock_detected",
+          "documents": [
+            {
+              "name": "2026학년도 늘푸른초 학교교육과정 편성 운영 평가계획(정보공시).hwp",
+              "status": "no_clock_detected",
+              "format": "hwp",
+              "sha256": "2cd583a1125bf5257dc39aa38add95176b2e50792cb6c19662b6b5be0bd2b50c"
+            }
+          ]
+        }
+      ],
+      "existing_review_snapshots": [],
+      "existing_estimate_snapshots": [],
+      "follow_up": "reinspect_original_2ga_document_tables_and_timetable_synonyms",
+      "operation": "research_only_no_db_write"
+    },
+    {
+      "school_id": "B000003755",
+      "school_name": "백현초등학교",
+      "area": "bundang",
+      "road_address": "경기도 성남시 분당구 백현로144번길 26",
+      "grade1_students": 7,
+      "triage_status": "clock_not_detected_in_2026_2ga_audit",
+      "audits": [
+        {
+          "snapshot": "docs/research/audit2/schoolinfo_daily_clock_audit_expansion_20261008.json",
+          "status": "no_clock_detected",
+          "documents": [
+            {
+              "name": "2-가. 학교교육과정 편성·운영 및 평가_백현초.hwpx",
+              "status": "no_clock_detected",
+              "format": "hwpx",
+              "sha256": "62f3e70e226f94bf25634210f9c2bdc16a924aeee1a80ed9af9860af58fe4185"
+            },
+            {
+              "name": "2025 백현초 학교평가 결과 보고서(탑재용).pdf",
+              "status": "no_clock_detected",
+              "format": "pdf",
+              "sha256": "b798c6c3a325d22105417145a571113f92b20b18807cb53f7f910816cd2c9d13"
+            }
+          ]
+        }
+      ],
+      "existing_review_snapshots": [],
+      "existing_estimate_snapshots": [],
+      "follow_up": "reinspect_original_2ga_document_tables_and_timetable_synonyms",
+      "operation": "research_only_no_db_write"
+    },
+    {
+      "school_id": "B000003752",
+      "school_name": "불곡초등학교",
+      "area": "bundang",
+      "road_address": "경기도 성남시 분당구 무지개로 129",
+      "grade1_students": 60,
+      "triage_status": "clock_not_detected_in_2026_2ga_audit",
+      "audits": [
+        {
+          "snapshot": "docs/research/audit2/schoolinfo_daily_clock_audit_20261006.json",
+          "status": "no_clock_detected",
+          "documents": [
+            {
+              "name": "2026학년도 불곡초 학교교육과정 편성·운영·평가 계획.hwp",
+              "status": "no_clock_detected",
+              "format": "hwp",
+              "sha256": "ac66592c9ba3b6c393879bb4eb34fde93a0523545c95f700344e00ebdbac3a96"
+            }
+          ]
+        }
+      ],
+      "existing_review_snapshots": [],
+      "existing_estimate_snapshots": [],
+      "follow_up": "reinspect_original_2ga_document_tables_and_timetable_synonyms",
+      "operation": "research_only_no_db_write"
+    },
+    {
+      "school_id": "B000003753",
+      "school_name": "성남매송초등학교",
+      "area": "bundang",
+      "road_address": "경기도 성남시 분당구 탄천로 97",
+      "grade1_students": 91,
+      "triage_status": "clock_not_detected_in_2026_2ga_audit",
+      "audits": [
+        {
+          "snapshot": "docs/research/audit2/schoolinfo_daily_clock_audit_20261006.json",
+          "status": "no_clock_detected",
+          "documents": [
+            {
+              "name": "2026학년도 성남매송초 학교교육과정 편성 운영 및 평가 사항.pdf",
+              "status": "no_clock_detected",
+              "format": "pdf",
+              "sha256": "25a04182563d037fe3e6d3b9b24e8720ad9d20a6ccd1d48b21e244f8fd495d46"
+            }
+          ]
+        }
+      ],
+      "existing_review_snapshots": [],
+      "existing_estimate_snapshots": [],
+      "follow_up": "reinspect_original_2ga_document_tables_and_timetable_synonyms",
+      "operation": "research_only_no_db_write"
+    },
+    {
+      "school_id": "B000003754",
+      "school_name": "성남미금초등학교",
+      "area": "bundang",
+      "road_address": "경기도 성남시 분당구 미금로 151",
+      "grade1_students": 88,
+      "triage_status": "clock_not_detected_in_2026_2ga_audit",
+      "audits": [
+        {
+          "snapshot": "docs/research/audit2/schoolinfo_daily_clock_audit_20261006.json",
+          "status": "no_clock_detected",
+          "documents": [
+            {
+              "name": "2026학년도 성남미금초 학교교육과정 편성·운영·평가 계획.hwpx",
+              "status": "no_clock_detected",
+              "format": "hwpx",
+              "sha256": "c28bce060aa6c2b0c16f8afa2271ac7a345e540d81efeb292fcc2f150830c27d"
+            }
+          ]
+        }
+      ],
+      "existing_review_snapshots": [],
+      "existing_estimate_snapshots": [],
+      "follow_up": "reinspect_original_2ga_document_tables_and_timetable_synonyms",
+      "operation": "research_only_no_db_write"
+    },
+    {
+      "school_id": "B000003742",
+      "school_name": "성남송현초등학교",
+      "area": "bundang",
+      "road_address": "경기도 성남시 분당구 동판교로 258",
+      "grade1_students": 150,
+      "triage_status": "clock_not_detected_in_2026_2ga_audit",
+      "audits": [
+        {
+          "snapshot": "docs/research/audit2/schoolinfo_daily_clock_audit_20261006.json",
+          "status": "no_clock_detected",
+          "documents": [
+            {
+              "name": "정보공시2-가. 학교교육과정 편성·운영 및 평가에 관한 사항.pdf",
+              "status": "no_clock_detected",
+              "format": "pdf",
+              "sha256": "ecd3bb864370b3cf51faa2c9fd59e713072bb5a7d2dd62344fdaf67948245522"
+            }
+          ]
+        }
+      ],
+      "existing_review_snapshots": [],
+      "existing_estimate_snapshots": [],
+      "follow_up": "reinspect_original_2ga_document_tables_and_timetable_synonyms",
+      "operation": "research_only_no_db_write"
+    },
+    {
+      "school_id": "B000003772",
+      "school_name": "수내초등학교",
+      "area": "bundang",
+      "road_address": "경기도 성남시 분당구 백현로243번길 12",
+      "grade1_students": 123,
+      "triage_status": "clock_not_detected_in_2026_2ga_audit",
+      "audits": [
+        {
+          "snapshot": "docs/research/audit2/schoolinfo_daily_clock_audit_expansion_20261008.json",
+          "status": "no_clock_detected",
+          "documents": [
+            {
+              "name": "2026학년도 수내초등학교 학교교육과정 편성운영 및 평가계획.hwp",
+              "status": "no_clock_detected",
+              "format": "hwp",
+              "sha256": "2687a5cda3133cd4d47724697d7993579a3ba69ac699b34dc053e29f9024859c"
+            }
+          ]
+        }
+      ],
+      "existing_review_snapshots": [],
+      "existing_estimate_snapshots": [],
+      "follow_up": "reinspect_original_2ga_document_tables_and_timetable_synonyms",
+      "operation": "research_only_no_db_write"
+    },
+    {
+      "school_id": "B000003746",
+      "school_name": "신백현초등학교",
+      "area": "bundang",
+      "road_address": "경기도 성남시 분당구 판교역로14번길 42",
+      "grade1_students": 84,
+      "triage_status": "clock_not_detected_in_2026_2ga_audit",
+      "audits": [
+        {
+          "snapshot": "docs/research/audit2/schoolinfo_daily_clock_audit_20261006.json",
+          "status": "no_clock_detected",
+          "documents": [
+            {
+              "name": "2026학년도 신백현초 학교교육과정 편성운영평가계획.hwp",
+              "status": "no_clock_detected",
+              "format": "hwp",
+              "sha256": "8961ec38940da30f1530ff53abb94fdcebc8a4e81d8f4844776e63281e99443c"
+            }
+          ]
+        }
+      ],
+      "existing_review_snapshots": [],
+      "existing_estimate_snapshots": [],
+      "follow_up": "reinspect_original_2ga_document_tables_and_timetable_synonyms",
+      "operation": "research_only_no_db_write"
+    },
+    {
+      "school_id": "B000003762",
+      "school_name": "야탑초등학교",
+      "area": "bundang",
+      "road_address": "경기도 성남시 분당구 양현로 400",
+      "grade1_students": 81,
+      "triage_status": "clock_not_detected_in_2026_2ga_audit",
+      "audits": [
+        {
+          "snapshot": "docs/research/audit2/schoolinfo_daily_clock_audit_expansion_20261008.json",
+          "status": "no_clock_detected",
+          "documents": [
+            {
+              "name": "2026학년도 야탑초 학교교육과정 편성·운영·평가 계획.hwp",
+              "status": "no_clock_detected",
+              "format": "hwp",
+              "sha256": "7d95c9ef063384d6efd184c159acda2829ac9e916461eee61fddf80b409569dc"
+            }
+          ]
+        }
+      ],
+      "existing_review_snapshots": [],
+      "existing_estimate_snapshots": [],
+      "follow_up": "reinspect_original_2ga_document_tables_and_timetable_synonyms",
+      "operation": "research_only_no_db_write"
+    },
+    {
+      "school_id": "B000003767",
+      "school_name": "중탑초등학교",
+      "area": "bundang",
+      "road_address": "경기도 성남시 분당구 벌말로 68",
+      "grade1_students": 57,
+      "triage_status": "clock_not_detected_in_2026_2ga_audit",
+      "audits": [
+        {
+          "snapshot": "docs/research/audit2/schoolinfo_daily_clock_audit_expansion_20261008.json",
+          "status": "no_clock_detected",
+          "documents": [
+            {
+              "name": "2026학년도 교육과정계획(4월 정보공시).hwp",
+              "status": "no_clock_detected",
+              "format": "hwp",
+              "sha256": "e7ad82d17680981fd27cd3a9b671bfe9b24f2ecce01238fdc72e7d9672fd8af6"
+            }
+          ]
+        }
+      ],
+      "existing_review_snapshots": [],
+      "existing_estimate_snapshots": [],
+      "follow_up": "reinspect_original_2ga_document_tables_and_timetable_synonyms",
+      "operation": "research_only_no_db_write"
+    },
+    {
+      "school_id": "B000026906",
+      "school_name": "판교대장초등학교",
+      "area": "bundang",
+      "road_address": "경기도 성남시 분당구 판교대장로5길 71",
+      "grade1_students": 259,
+      "triage_status": "clock_not_detected_in_2026_2ga_audit",
+      "audits": [
+        {
+          "snapshot": "docs/research/audit2/schoolinfo_daily_clock_audit_20261006.json",
+          "status": "no_clock_detected",
+          "documents": [
+            {
+              "name": "2026학년도 판교대장초등학교 학교교육과정 편성, 운영, 평가계획.hwpx",
+              "status": "no_clock_detected",
+              "format": "hwpx",
+              "sha256": "44f0a409f6c2f53f42d698da2d5c2dc9faa6e8589686a60e5ebdbe25c67d9270"
+            }
+          ]
+        }
+      ],
+      "existing_review_snapshots": [],
+      "existing_estimate_snapshots": [],
+      "follow_up": "reinspect_original_2ga_document_tables_and_timetable_synonyms",
+      "operation": "research_only_no_db_write"
+    },
+    {
+      "school_id": "B000003765",
+      "school_name": "한솔초등학교",
+      "area": "bundang",
+      "road_address": "경기도 성남시 분당구 돌마로 303",
+      "grade1_students": 9,
+      "triage_status": "clock_not_detected_in_2026_2ga_audit",
+      "audits": [
+        {
+          "snapshot": "docs/research/audit2/schoolinfo_daily_clock_audit_20261006.json",
+          "status": "no_clock_detected",
+          "documents": [
+            {
+              "name": "2026학년도 한솔초 학교교육과정 편성 운영 평가 계획.pdf",
+              "status": "no_clock_detected",
+              "format": "pdf",
+              "sha256": "97f959864cd3239c09419a45d8ad6e6b5690455680d2c9237b5a2b6e0f636aac"
+            }
+          ]
+        }
+      ],
+      "existing_review_snapshots": [],
+      "existing_estimate_snapshots": [],
+      "follow_up": "reinspect_original_2ga_document_tables_and_timetable_synonyms",
+      "operation": "research_only_no_db_write"
+    },
+    {
+      "school_id": "B000002150",
+      "school_name": "서울오금초등학교",
+      "area": "songpa",
+      "road_address": "서울특별시 송파구 위례성대로22길 11",
+      "grade1_students": 74,
+      "triage_status": "clock_not_detected_in_2026_2ga_audit",
+      "audits": [
+        {
+          "snapshot": "docs/research/audit2/schoolinfo_daily_clock_audit_expansion_20261008.json",
+          "status": "no_clock_detected",
+          "documents": [
+            {
+              "name": "2026학년도 오금초 학교교육과정 편성운영평가계획.hwpx",
+              "status": "no_clock_detected",
+              "format": "hwpx",
+              "sha256": "7055431d1a5e0f0d98822e72465bf0f1c898aef6023bc1bdafd7e23d64478050"
+            }
+          ]
+        }
+      ],
+      "existing_review_snapshots": [],
+      "existing_estimate_snapshots": [],
+      "follow_up": "reinspect_original_2ga_document_tables_and_timetable_synonyms",
+      "operation": "research_only_no_db_write"
+    },
+    {
+      "school_id": "B000025375",
+      "school_name": "서울위례별초등학교",
+      "area": "songpa",
+      "road_address": "서울특별시 송파구 위례광장로 243",
+      "grade1_students": 205,
+      "triage_status": "clock_not_detected_in_2026_2ga_audit",
+      "audits": [
+        {
+          "snapshot": "docs/research/audit2/schoolinfo_daily_clock_audit_expansion_20261008.json",
+          "status": "no_clock_detected",
+          "documents": [
+            {
+              "name": "2026학년도 학교교육과정 편성 운영 평가 계획(수정).pdf",
+              "status": "no_clock_detected",
+              "format": "pdf",
+              "sha256": "e5b461cb7de55c469524db83493d66d8ab5804ea80d7dcc3fe4011a29acf344d"
+            }
+          ]
+        }
+      ],
+      "existing_review_snapshots": [],
+      "existing_estimate_snapshots": [],
+      "follow_up": "reinspect_original_2ga_document_tables_and_timetable_synonyms",
+      "operation": "research_only_no_db_write"
+    },
+    {
+      "school_id": "B000002172",
+      "school_name": "서울위례초등학교",
+      "area": "wirye",
+      "road_address": "서울특별시 강동구 명일로 23",
+      "grade1_students": 164,
+      "triage_status": "clock_not_detected_in_2026_2ga_audit",
+      "audits": [
+        {
+          "snapshot": "docs/research/audit2/schoolinfo_daily_clock_audit_wave2_seoul_20261009.json",
+          "status": "no_clock_detected",
+          "documents": [
+            {
+              "name": "2026 학교교육과정 편성운영 및 평가에 관한 사항.pdf",
+              "status": "no_clock_detected",
+              "format": "pdf",
+              "sha256": "af39c81abfacd551554be21cb9c65360395c0477835b7848beb17ddfc98b87e4"
+            }
+          ]
+        }
+      ],
+      "existing_review_snapshots": [],
+      "existing_estimate_snapshots": [],
+      "follow_up": "reinspect_original_2ga_document_tables_and_timetable_synonyms",
+      "operation": "research_only_no_db_write"
+    },
+    {
+      "school_id": "B000023087",
+      "school_name": "위례초등학교",
+      "area": "wirye",
+      "road_address": "경기도 하남시 위례순환로 333",
+      "grade1_students": 206,
+      "triage_status": "source_audit_unverified",
+      "audits": [],
+      "existing_review_snapshots": [],
+      "existing_estimate_snapshots": [],
+      "follow_up": "locate_2026_2ga_archive_and_audit_source",
+      "operation": "research_only_no_db_write"
+    }
+  ]
+}
