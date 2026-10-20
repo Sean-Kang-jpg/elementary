@@ -1,0 +1,5222 @@
+{
+  "source": "p2_gap_diagnosis_20261020.json",
+  "summary": {
+    "all": {
+      "no_clock_detected": 140,
+      "clock_found": 10
+    },
+    "operating_pilot": {
+      "no_clock_detected": 14,
+      "clock_found": 3
+    }
+  },
+  "schools": [
+    {
+      "school_id": "B000003745",
+      "school_name": "낙생초등학교",
+      "area": "bundang",
+      "stage": 1,
+      "operating_pilot": true,
+      "reason": "no_clock",
+      "status": "no_clock_detected",
+      "files": [
+        {
+          "name": "2026학년도 낙생초 방과후·돌봄 운영계획.pdf",
+          "sha256": "df758272fc6751971fadcd468363f1972d78f064528570fbdac30f235808f59e",
+          "format": "pdf",
+          "text_chars": 31280,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        }
+      ]
+    },
+    {
+      "school_id": "B000003766",
+      "school_name": "늘푸른초등학교",
+      "area": "bundang",
+      "stage": 1,
+      "operating_pilot": true,
+      "reason": "no_clock",
+      "status": "clock_found",
+      "files": [
+        {
+          "name": "2026 돌봄교실 운영 계획.hwp",
+          "sha256": "d0ea014def380d8e7d4f9396535a1e2b791eb1322ed09c26e4e1c14aed78faeb",
+          "format": "hwp",
+          "text_chars": 9259,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        },
+        {
+          "name": "2026학년도 방과후돌봄 운영계획.hwp",
+          "sha256": "24412e6460c0d3ab3be97e4665eb0b240a0894a8e7c11d7e7e3e6dbbd0ef8b03",
+          "format": "hwp",
+          "text_chars": 30995,
+          "file_academic_year": 2026,
+          "clock_block_count": 1,
+          "clock_blocks": [
+            [
+              {
+                "line": 91,
+                "label": "4교시",
+                "start": "09:00",
+                "end": "12:10"
+              },
+              {
+                "line": 91,
+                "label": "4교시",
+                "start": "12:10",
+                "end": "13:00"
+              },
+              {
+                "line": 91,
+                "label": "점심",
+                "start": "13:00",
+                "end": "13:40"
+              },
+              {
+                "line": 91,
+                "label": "5교시",
+                "start": "13:50",
+                "end": "14:30"
+              },
+              {
+                "line": 95,
+                "label": "4교시",
+                "start": "09:00",
+                "end": "12:10"
+              },
+              {
+                "line": 95,
+                "label": "4교시",
+                "start": "12:10",
+                "end": "13:00"
+              },
+              {
+                "line": 95,
+                "label": "점심",
+                "start": "13:00",
+                "end": "13:40"
+              },
+              {
+                "line": 95,
+                "label": "5교시",
+                "start": "13:50",
+                "end": "14:30"
+              }
+            ]
+          ],
+          "grade1_weekday_periods": [],
+          "status": "clock_found"
+        }
+      ]
+    },
+    {
+      "school_id": "B000003755",
+      "school_name": "백현초등학교",
+      "area": "bundang",
+      "stage": 1,
+      "operating_pilot": true,
+      "reason": "no_clock",
+      "status": "no_clock_detected",
+      "files": [
+        {
+          "name": "2026학년도 돌봄교실 연간 운영 계획.hwp",
+          "sha256": "c841b05b0df3900dee9932549e8408954e5ea096bfd9f18bc5995232dcf9a23a",
+          "format": "hwp",
+          "text_chars": 17526,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        },
+        {
+          "name": "2026학년도 수익자 방과후 연간 운영 계획.hwp",
+          "sha256": "405118fb805552d50414874dde58844e5af4b561c71217d5659516935f6576ef",
+          "format": "hwp",
+          "text_chars": 16491,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        }
+      ]
+    },
+    {
+      "school_id": "B000003752",
+      "school_name": "불곡초등학교",
+      "area": "bundang",
+      "stage": 1,
+      "operating_pilot": true,
+      "reason": "not_audited",
+      "status": "clock_found",
+      "files": [
+        {
+          "name": "2026학년도 불곡초 방과후·돌봄 운영 계획.pdf",
+          "sha256": "4380b63cdc0bd7d72af16ffde1574d7d3a5b9e6834804c5dcacd081f2a9ceb5a",
+          "format": "pdf",
+          "text_chars": 23147,
+          "file_academic_year": 2026,
+          "clock_block_count": 1,
+          "clock_blocks": [
+            [
+              {
+                "line": 16,
+                "label": "4교시",
+                "start": "09:00",
+                "end": "12:10"
+              },
+              {
+                "line": 16,
+                "label": "4교시",
+                "start": "12:10",
+                "end": "13:00"
+              },
+              {
+                "line": 16,
+                "label": "점심",
+                "start": "13:00",
+                "end": "13:40"
+              },
+              {
+                "line": 16,
+                "label": "4교시",
+                "start": "09:00",
+                "end": "12:10"
+              },
+              {
+                "line": 16,
+                "label": "4교시",
+                "start": "12:10",
+                "end": "13:00"
+              },
+              {
+                "line": 16,
+                "label": "점심",
+                "start": "13:00",
+                "end": "13:40"
+              },
+              {
+                "line": 16,
+                "label": "5교시",
+                "start": "13:50",
+                "end": "14:40"
+              }
+            ]
+          ],
+          "grade1_weekday_periods": [],
+          "status": "clock_found"
+        }
+      ]
+    },
+    {
+      "school_id": "B000003753",
+      "school_name": "성남매송초등학교",
+      "area": "bundang",
+      "stage": 1,
+      "operating_pilot": true,
+      "reason": "not_audited",
+      "status": "no_clock_detected",
+      "files": [
+        {
+          "name": "2026학년도 성남매송초 방과후돌봄 운영 계획.hwpx",
+          "sha256": "11895609a2a3bd03f6ab80cc613b65c2a71f078e82afc48631cc5d4c12b7843f",
+          "format": "hwpx",
+          "text_chars": 13620,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        },
+        {
+          "name": "26.1. 2026.성남매송초 초등돌봄교실 운영계획.hwp",
+          "sha256": "bb4f3323b069469115dc3e8e8ed01fc5452b2bc05b6b73424e8b8698dea7a9f9",
+          "format": "hwp",
+          "text_chars": 13550,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        }
+      ]
+    },
+    {
+      "school_id": "B000003754",
+      "school_name": "성남미금초등학교",
+      "area": "bundang",
+      "stage": 1,
+      "operating_pilot": true,
+      "reason": "not_audited",
+      "status": "no_clock_detected",
+      "files": [
+        {
+          "name": "2025 성남미금초 돌봄교실 주간학습안내(8월 4주).hwp",
+          "sha256": "491cd6061c0a357d8cf3b842a0f8c25ebeee56901a61d2bb67b857144df5ebb3",
+          "format": "hwp",
+          "text_chars": 1842,
+          "file_academic_year": 2025,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        },
+        {
+          "name": "2025 성남미금초 돌봄교실 주간학습안내(5월 3주).hwp",
+          "sha256": "561f62da3980616791d7503abe9b044d196ce578f20e652eda093d0cf20deac5",
+          "format": "hwp",
+          "text_chars": 1766,
+          "file_academic_year": 2025,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        },
+        {
+          "name": "2025 성남미금초 돌봄교실 주간학습안내(3월1주).hwp",
+          "sha256": "d0a3c44cd1812c284831fb32233de047ad9079532dde23db3a5b5051951508db",
+          "format": "hwp",
+          "text_chars": 1314,
+          "file_academic_year": 2025,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        },
+        {
+          "name": "2026학년도 1분기 수익자 방과후 교육 징수명단.xls",
+          "sha256": null,
+          "status": "missing"
+        },
+        {
+          "name": "[가정통신문]2025학년도 늘봄학교 1~4분기 선택형교육(수익자 부담) 정산서 공개_(2.19).hwp",
+          "sha256": "d03c8082157c84c9ceb7a63a522682736763889a1240c09b129ca5442bc12931",
+          "format": "hwp",
+          "text_chars": 1262,
+          "file_academic_year": 2025,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        },
+        {
+          "name": "2026학년도성남미금초 돌봄교실 운영 계획_.hwp",
+          "sha256": "0075370405d2cbe64553825e19e59c2aaadc002be309294679c1fc2eef2eb698",
+          "format": "hwp",
+          "text_chars": 9295,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        },
+        {
+          "name": "2026학년도 성남미금초 방과후돌봄학교 통합 운영 계획(안)_.hwp",
+          "sha256": "6265ac1b183a923c6377dfb042de3932399a047d3c545eba0727b1968c5f9a6f",
+          "format": "hwp",
+          "text_chars": 41775,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        }
+      ]
+    },
+    {
+      "school_id": "B000003742",
+      "school_name": "성남송현초등학교",
+      "area": "bundang",
+      "stage": 1,
+      "operating_pilot": true,
+      "reason": "not_audited",
+      "status": "no_clock_detected",
+      "files": [
+        {
+          "name": "2026?성남송현초 방과후학교?운영?계획.hwp",
+          "sha256": "b8c2753b933aad2da693834442fca25e455f75cd5309ba999fc2d59f8b2898a4",
+          "format": "hwp",
+          "text_chars": 37553,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        }
+      ]
+    },
+    {
+      "school_id": "B000003772",
+      "school_name": "수내초등학교",
+      "area": "bundang",
+      "stage": 1,
+      "operating_pilot": true,
+      "reason": "no_clock",
+      "status": "no_clock_detected",
+      "files": [
+        {
+          "name": "2026학년도 수내초 방과후·돌봄 운영 계획.hwpx",
+          "sha256": "0e9c6f3714da77c378da0a000df9dbe7ec47e9ede158ff76bb585fe1e8684565",
+          "format": "hwpx",
+          "text_chars": 26111,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        }
+      ]
+    },
+    {
+      "school_id": "B000003746",
+      "school_name": "신백현초등학교",
+      "area": "bundang",
+      "stage": 1,
+      "operating_pilot": true,
+      "reason": "not_audited",
+      "status": "clock_found",
+      "files": [
+        {
+          "name": "2026 신백현초 방과후·돌봄 통합 운영 계획 계획(환불 규정 개정).hwp",
+          "sha256": "3007f65ce6a28c67fda6b664931fc81509f24c49f890f212c1118088de3746e3",
+          "format": "hwp",
+          "text_chars": 58941,
+          "file_academic_year": 2026,
+          "clock_block_count": 1,
+          "clock_blocks": [
+            [
+              {
+                "line": 75,
+                "label": "4교시",
+                "start": "12:40",
+                "end": "14:10"
+              },
+              {
+                "line": 75,
+                "label": "5교시",
+                "start": "13:30",
+                "end": "15:00"
+              },
+              {
+                "line": 80,
+                "label": "5교시",
+                "start": "08:50",
+                "end": "13:30"
+              },
+              {
+                "line": 82,
+                "label": "쉬는시간",
+                "start": "14:10",
+                "end": "14:20"
+              },
+              {
+                "line": 88,
+                "label": "4교시",
+                "start": "08:50",
+                "end": "12:00"
+              },
+              {
+                "line": 89,
+                "label": "점심",
+                "start": "12:00",
+                "end": "12:50"
+              },
+              {
+                "line": 91,
+                "label": "쉬는시간",
+                "start": "13:30",
+                "end": "13:40"
+              },
+              {
+                "line": 98,
+                "label": "5교시",
+                "start": "08:50",
+                "end": "13:30"
+              },
+              {
+                "line": 100,
+                "label": "쉬는시간",
+                "start": "14:10",
+                "end": "14:20"
+              },
+              {
+                "line": 106,
+                "label": "4교시",
+                "start": "08:50",
+                "end": "12:00"
+              },
+              {
+                "line": 107,
+                "label": "점심",
+                "start": "12:00",
+                "end": "12:50"
+              },
+              {
+                "line": 109,
+                "label": "쉬는시간",
+                "start": "13:30",
+                "end": "13:40"
+              }
+            ]
+          ],
+          "grade1_weekday_periods": [],
+          "status": "clock_found"
+        }
+      ]
+    },
+    {
+      "school_id": "B000003762",
+      "school_name": "야탑초등학교",
+      "area": "bundang",
+      "stage": 1,
+      "operating_pilot": true,
+      "reason": "no_clock",
+      "status": "no_clock_detected",
+      "files": [
+        {
+          "name": "2026학년도 야탑초 방과후·돌봄 운영 계획(정보공시).hwpx",
+          "sha256": "9f40821dfa1b618b56c04ddb0f7db253d209f55cda8d704357cc8db221d5bb39",
+          "format": "hwpx",
+          "text_chars": 30056,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        }
+      ]
+    },
+    {
+      "school_id": "B000003767",
+      "school_name": "중탑초등학교",
+      "area": "bundang",
+      "stage": 1,
+      "operating_pilot": true,
+      "reason": "no_clock",
+      "status": "no_clock_detected",
+      "files": [
+        {
+          "name": "2026학년도 중탑초 방과후[수익자, 초1-2 맞춤형 프로그램] 연간운영계획.hwp",
+          "sha256": "b911835ed93433897f3a96b813302de42259574b0f9ebf970ec20f38257d38dc",
+          "format": "hwp",
+          "text_chars": 19185,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        }
+      ]
+    },
+    {
+      "school_id": "B000026906",
+      "school_name": "판교대장초등학교",
+      "area": "bundang",
+      "stage": 1,
+      "operating_pilot": true,
+      "reason": "not_audited",
+      "status": "no_clock_detected",
+      "files": [
+        {
+          "name": "2026학년도 초등 방과후, 돌봄 운영 계획.hwp",
+          "sha256": "38f70909f8b0e98195808d0bd11d828172da4a31bd75102c60e9008ec487f6fd",
+          "format": "hwp",
+          "text_chars": 32628,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        }
+      ]
+    },
+    {
+      "school_id": "B000003765",
+      "school_name": "한솔초등학교",
+      "area": "bundang",
+      "stage": 1,
+      "operating_pilot": true,
+      "reason": "not_audited",
+      "status": "no_clock_detected",
+      "files": [
+        {
+          "name": "2026학년도 한솔초 선택형돌봄 운영 계획.hwp",
+          "sha256": "c66efd097d7f0ca452b06806eb3bcf9f24278cd3d53ce4256ef89a31971fa75f",
+          "format": "hwp",
+          "text_chars": 15195,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        },
+        {
+          "name": "2026학년도 방과후학교 운영계획(한솔초).hwpx",
+          "sha256": "a93f9cd8c3e72b3045bdd2ea668bbc803719db396f10ca2c8da38eccd07e8609",
+          "format": "hwpx",
+          "text_chars": 14156,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        }
+      ]
+    },
+    {
+      "school_id": "B000030583",
+      "school_name": "서울개현초등학교",
+      "area": "gangnam",
+      "stage": 1,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "status": "no_clock_detected",
+      "files": [
+        {
+          "name": "★2026학년도 방과후돌봄  돌봄교실 운영계획(안).hwp",
+          "sha256": "d7bfbe0b7740da0473d772cf327d412617ee75ac284b721f705ba30191509d2c",
+          "format": "hwp",
+          "text_chars": 5111,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        },
+        {
+          "name": "★2026학년도 방과후·돌봄 연간운영계획(안).hwp",
+          "sha256": "afb3dc1605aa6e04294c70015dbd8f48ffb9c0f6f1b290c4ddcbcc768eb91d47",
+          "format": "hwp",
+          "text_chars": 22138,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002289",
+      "school_name": "서울논현초등학교",
+      "area": "gangnam",
+      "stage": 1,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "status": "clock_found",
+      "files": [
+        {
+          "name": "2026학년도 논현초등학교 정보공시(수익자, 수익자외).xlsx",
+          "sha256": "5e54ccfd66a8cc23bb0ba90cdcb0707fa2c60e86354d2f3075117ff127f6a490",
+          "format": "hwpx",
+          "text_chars": 0,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        },
+        {
+          "name": "2026학년도 논현초등학교 초등돌봄교실 연간운영계획.hwp",
+          "sha256": "7ed7dc659eeaa32b5c155d76a48bea666f23ec0ff6fb4de764239ccea6a99b45",
+          "format": "hwp",
+          "text_chars": 9511,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        },
+        {
+          "name": "2026학년도 논현초등학교 방과후·맞춤형교실 프로그램 연간 운영 계획.hwp",
+          "sha256": "32f3c83466d317fe6d7e9f73ff315d56184565689beaf084c7651c29bcabec09",
+          "format": "hwp",
+          "text_chars": 19729,
+          "file_academic_year": 2026,
+          "clock_block_count": 1,
+          "clock_blocks": [
+            [
+              {
+                "line": 56,
+                "label": "아침",
+                "start": "08:10",
+                "end": "08:50"
+              },
+              {
+                "line": 62,
+                "label": "아침",
+                "start": "08:10",
+                "end": "08:50"
+              },
+              {
+                "line": 68,
+                "label": "아침",
+                "start": "08:10",
+                "end": "08:50"
+              },
+              {
+                "line": 74,
+                "label": "4교시",
+                "start": "09:10",
+                "end": "12:10"
+              },
+              {
+                "line": 75,
+                "label": "점심",
+                "start": "12:10",
+                "end": "13:00"
+              },
+              {
+                "line": 76,
+                "label": "5교시",
+                "start": "13:30",
+                "end": "15:30"
+              }
+            ]
+          ],
+          "grade1_weekday_periods": [],
+          "status": "clock_found"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002291",
+      "school_name": "서울대곡초등학교",
+      "area": "gangnam",
+      "stage": 1,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "status": "no_clock_detected",
+      "files": [
+        {
+          "name": "2025년도 세출결산서.pdf",
+          "sha256": "5fa5eb0fcdb778b790f3fb8a718222beac52af200fca6591848d71573bea31b1",
+          "format": "pdf",
+          "text_chars": 17464,
+          "file_academic_year": 2025,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        },
+        {
+          "name": "2026학년도 돌봄교실(연간운영계획(안)수정 학운위 심의 자료.hwp",
+          "sha256": "4adfb27149a0b959b32fc68284f7ad4a3b9b2c35fee4e033f9036fe9037e1399",
+          "format": "hwp",
+          "text_chars": 17235,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        },
+        {
+          "name": "(학교운영위원회 심의자료)수정안 2026학년도 방과후교실 연간 운영계획(안).hwp",
+          "sha256": "fc9e947b1dbada7833090b64c87d7bf8638f5ae9bd71df05d1923dffc585f076",
+          "format": "hwp",
+          "text_chars": 23853,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002285",
+      "school_name": "서울대도초등학교",
+      "area": "gangnam",
+      "stage": 1,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "status": "no_clock_detected",
+      "files": [
+        {
+          "name": "2026학년도 돌봄교실  연간 운영 계획(안).hwp",
+          "sha256": "4fb4a9656a42cda828dc538e772c7d718db094775fdbff7f2295f4dec3086452",
+          "format": "hwp",
+          "text_chars": 4279,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        },
+        {
+          "name": "2026학년도 방과후·맞춤형 연간운영계획(안).hwp",
+          "sha256": "3b8dd3c3c72e4bcb1dfbadd641b0b57913198776f291d1c0120a507bcfba8205",
+          "format": "hwp",
+          "text_chars": 18307,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002279",
+      "school_name": "서울대진초등학교",
+      "area": "gangnam",
+      "stage": 1,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "status": "no_clock_detected",
+      "files": [
+        {
+          "name": "2026학년도 방과후, 맞춤형교실 운영 계획.hwpx",
+          "sha256": "4bd272410f5a533e3bd81eb1d2f0caa71df393c5a00329cb04a50f71e40eee65",
+          "format": "hwpx",
+          "text_chars": 25911,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        },
+        {
+          "name": "2026학년도 돌봄교실 연간 운영 계획.hwp",
+          "sha256": "fcd5bd9fe8db2643d24296cd25fb5db4b7f0f69104b7b73fb98bdfac3398b1a5",
+          "format": "hwp",
+          "text_chars": 5370,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002299",
+      "school_name": "서울대청초등학교",
+      "area": "gangnam",
+      "stage": 1,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "status": "no_clock_detected",
+      "files": [
+        {
+          "name": "1.2026 방과후·맞춤형교실 업체위탁 운영계획안.hwp",
+          "sha256": "768963bb55dca65556e8fde607595978f5f75c7e099529e9d2452c7fa5090103",
+          "format": "hwp",
+          "text_chars": 13457,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002275",
+      "school_name": "서울봉은초등학교",
+      "area": "gangnam",
+      "stage": 1,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "status": "no_clock_detected",
+      "files": [
+        {
+          "name": "2026 초등돌봄교실 운영계획.pdf",
+          "sha256": "aa1e9bece1c43617cafa47bb0672795d568a9f22d169a6afc8d2d13846f55068",
+          "format": "pdf",
+          "text_chars": 15652,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        },
+        {
+          "name": "2026 방과후·맞춤형교실 연간운영계획.pdf",
+          "sha256": "a08a18e6fb0076d25228e0964ff4db90a8114eeb723a9252b0cb891b6bb6377c",
+          "format": "pdf",
+          "text_chars": 17263,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002277",
+      "school_name": "서울수서초등학교",
+      "area": "gangnam",
+      "stage": 1,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "status": "no_clock_detected",
+      "files": [
+        {
+          "name": "2026학년도 수서초 돌봄교실 운영 계획.hwp",
+          "sha256": "16c67533c9324d130990b1905d702b184c33888615a51eec04f0edfd409deffd",
+          "format": "hwp",
+          "text_chars": 4559,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        },
+        {
+          "name": "2026학년도 수서초 방과후,맞춤형 연간 운영 계획.hwpx",
+          "sha256": "00084f64695e945a8b7d9eb51c1817e3093e37ffa46a9d73005cdd1f639da7a9",
+          "format": "hwpx",
+          "text_chars": 16221,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002296",
+      "school_name": "서울압구정초등학교",
+      "area": "gangnam",
+      "stage": 1,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "status": "no_clock_detected",
+      "files": [
+        {
+          "name": "2026학년도 방과후·맞춤형프로그램 연간운영계획.hwp",
+          "sha256": "02e455d347cfe1c0df47c3bb220572e7efe9590af4a1270b6fa4d876fe0166bb",
+          "format": "hwp",
+          "text_chars": 18485,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002298",
+      "school_name": "서울역삼초등학교",
+      "area": "gangnam",
+      "stage": 1,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "status": "no_clock_detected",
+      "files": [
+        {
+          "name": "2026학년 돌봄교실 연간운영계획(안).hwp",
+          "sha256": "3e4cda6e2a3770c2f66dfa741e622b231f9541db7e11f9f4cca3771a0c36c4e1",
+          "format": "hwp",
+          "text_chars": 10663,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        },
+        {
+          "name": "2026 방과후·맞춤형교실 연간운영계획(정보공시).hwp",
+          "sha256": "346a94a48712a750133603e8292f46e64e5673ca5ee028ded8791953c811defc",
+          "format": "hwp",
+          "text_chars": 30911,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002300",
+      "school_name": "서울영희초등학교",
+      "area": "gangnam",
+      "stage": 1,
+      "operating_pilot": false,
+      "reason": "unreadable",
+      "status": "no_clock_detected",
+      "files": [
+        {
+          "name": "2026년 영희초 방과후·맞춤형 프로그램 운영계획(안).hwp",
+          "sha256": "533b4c9b02d77666aba9f6563ba056c02434619d8ddd49c6939e72d386420cf1",
+          "format": "hwp",
+          "text_chars": 13105,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002294",
+      "school_name": "서울왕북초등학교",
+      "area": "gangnam",
+      "stage": 1,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "status": "no_clock_detected",
+      "files": [
+        {
+          "name": "2026학년도 돌봄교실 연간 운영계획(정보공시).hwp",
+          "sha256": "e55e9319015ba6ea52380df20796dd9d4cd597762deec51d16361c2106062ed9",
+          "format": "hwp",
+          "text_chars": 12298,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        },
+        {
+          "name": "2026학년도 방과후 및 맞춤형교실 연간 운영계획(정보공시).hwp",
+          "sha256": "e9a97524d1230c0fae140ddb13acb0a674a16ecded75ab22d63339642af7094c",
+          "format": "hwp",
+          "text_chars": 27079,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        }
+      ]
+    },
+    {
+      "school_id": "B000025001",
+      "school_name": "서울율현초등학교",
+      "area": "gangnam",
+      "stage": 1,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "status": "no_clock_detected",
+      "files": [
+        {
+          "name": "2026학년도 서울율현초 방과후교실 운영 계획.hwpx",
+          "sha256": "a9641cc00a0038c41ac0569c72ea2b233885479be58a3bae1f71f97fc09f5b78",
+          "format": "hwpx",
+          "text_chars": 18366,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002303",
+      "school_name": "서울청담초등학교",
+      "area": "gangnam",
+      "stage": 1,
+      "operating_pilot": false,
+      "reason": "excluded",
+      "status": "no_clock_detected",
+      "files": [
+        {
+          "name": "2026학년도 방과후학교(방과후, 맞춤형) 프로그램 연간운영계획(안).hwp",
+          "sha256": "3de499ac5ea895d95247f1ae52ad60ffda085b42fd6de2670bd82b87099cb79a",
+          "format": "hwp",
+          "text_chars": 29741,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002304",
+      "school_name": "서울포이초등학교",
+      "area": "gangnam",
+      "stage": 1,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "status": "no_clock_detected",
+      "files": [
+        {
+          "name": "(포이초)2026학년도 더 좋은 맞춤형 방과후학교 여름방학 뉴스포츠 캠프 운영계획.hwp",
+          "sha256": "3d40d739d8c7fbc731b78f7b1089f3783645d3223b71f41a813504e1c1d9e34a",
+          "format": "hwp",
+          "text_chars": 4114,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        },
+        {
+          "name": "(포이초)2026학년도 방과후맞춤형 운영계획.pdf",
+          "sha256": "c261d5788fd760988838ab9a51ac2754ce58deb865d32ad892d73774ddc36f99",
+          "format": "pdf",
+          "text_chars": 24990,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        },
+        {
+          "name": "(포이초)2026학년도 초등돌봄교실 운영계획.pdf",
+          "sha256": "aea271df4ff1adc48c205bb7b2e47bce805c2a1eff6aceee2595d8724b10baed",
+          "format": "pdf",
+          "text_chars": 9421,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002290",
+      "school_name": "서울학동초등학교",
+      "area": "gangnam",
+      "stage": 1,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "status": "no_clock_detected",
+      "files": [
+        {
+          "name": "2026 학교교육과정(방과후돌봄)자료.hwp",
+          "sha256": "74fe8771b4499c5344e2d39d8715563ad96172ba144ba1b702721d2def7ab124",
+          "format": "hwp",
+          "text_chars": 13851,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002274",
+      "school_name": "계성초등학교",
+      "area": "seocho",
+      "stage": 1,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "status": "no_clock_detected",
+      "files": [
+        {
+          "name": "8. 방과후교육운영부(2026_완료).hwpx",
+          "sha256": "f39e1ea7fec08318bdf70070519db09dd7c5ad91ac673e72749d55eeeb0c6b7d",
+          "format": "hwpx",
+          "text_chars": 9633,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002253",
+      "school_name": "서울교육대학교부설초등학교",
+      "area": "seocho",
+      "stage": 1,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "status": "no_clock_detected",
+      "files": [
+        {
+          "name": "(정보공시용)2026학년도 방과후.맞춤형 프로그램 1기 운영 계획.hwp",
+          "sha256": "b0f3918535cd1bbb8b12583a12f35f540c0eaf38a50195ac87fa3d7a02429b24",
+          "format": "hwp",
+          "text_chars": 14139,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002259",
+      "school_name": "서울매헌초등학교",
+      "area": "seocho",
+      "stage": 1,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "status": "no_clock_detected",
+      "files": [
+        {
+          "name": "2026학년도 방과후 ? 맞춤형교실 운영계획.hwp",
+          "sha256": "a2adbb415cae0207698341c5a2ece3b921caf20670889ca4e99be339926ee312",
+          "format": "hwp",
+          "text_chars": 23925,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002258",
+      "school_name": "서울반원초등학교",
+      "area": "seocho",
+      "stage": 1,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "status": "no_clock_detected",
+      "files": [
+        {
+          "name": "방과후학교 지원 현황 2025학년도.pdf",
+          "sha256": "3085015c423ab3fc6423fdbdab0ff0d57c8a7cb78d920079391f2107f516c630",
+          "format": "pdf",
+          "text_chars": 15277,
+          "file_academic_year": 2025,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        },
+        {
+          "name": "방과후학교 운영 현황 2026학년도(2026.4.30.).xlsx",
+          "sha256": "33a5b0a7bf65770064fe60ae226d0c87d1e300fc3a7a1805d48a071a791ae1a7",
+          "format": "hwpx",
+          "text_chars": 0,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        },
+        {
+          "name": "방과후학교 운영 계획 2026학년도.hwp",
+          "sha256": "f7211ccb5543ddc4f3e29c6baefd846e1affeee7846ddf5578dfc0861ac2b13e",
+          "format": "hwp",
+          "text_chars": 29406,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002262",
+      "school_name": "서울방일초등학교",
+      "area": "seocho",
+      "stage": 1,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "status": "no_clock_detected",
+      "files": [
+        {
+          "name": "2026학년도 초등돌봄교실 운영 계획.hwp",
+          "sha256": "2cd9dd5ce982853860a0cebcccf126a91f2fe7b5a80b9f3eb277f927859aeda3",
+          "format": "hwp",
+          "text_chars": 13864,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        },
+        {
+          "name": "2026학년도 방일초등학교 방과후학교 운영 계획.hwpx",
+          "sha256": "48c76a6213c63b9e991264730d75cbc3dbf45f913a21848b5f4daa2b6878996a",
+          "format": "hwpx",
+          "text_chars": 21976,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002266",
+      "school_name": "서울방현초등학교",
+      "area": "seocho",
+      "stage": 1,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "status": "no_clock_detected",
+      "files": [
+        {
+          "name": "2026학년도 방현초등학교 방과후학교 운영 계획.hwp",
+          "sha256": "25500857334caacbe4c84c55453a46430ccd8ee03efab20438c16664d7510131",
+          "format": "hwp",
+          "text_chars": 14298,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        },
+        {
+          "name": "2026학년도 방현초 초등돌봄교실 운영 계획.hwp",
+          "sha256": "a3fb0a6821ff391e445dc109aedab1ae134b9f66da8ce550af0c9505360eaa56",
+          "format": "hwp",
+          "text_chars": 16074,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002264",
+      "school_name": "서울서래초등학교",
+      "area": "seocho",
+      "stage": 1,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "status": "no_clock_detected",
+      "files": [
+        {
+          "name": "2026학년도 서래초 학교교육계획(방과후돌봄지원부) (정보공시) 26년 5월 7일.hwp",
+          "sha256": "a6f501240aa2286c05c1340f06d8ef341cf0ae57dac2c0f1dcbe1a6da9bcfa24",
+          "format": "hwp",
+          "text_chars": 38554,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002255",
+      "school_name": "서울서원초등학교",
+      "area": "seocho",
+      "stage": 1,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "status": "no_clock_detected",
+      "files": [
+        {
+          "name": "2026 늘봄지원실 운영계획.hwp",
+          "sha256": "66df7cd40f9671edd72ab841ed241dfc694f033f59efc52363dcc220dc3376ca",
+          "format": "hwp",
+          "text_chars": 35280,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002268",
+      "school_name": "서울서이초등학교",
+      "area": "seocho",
+      "stage": 1,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "status": "no_clock_detected",
+      "files": [
+        {
+          "name": "(서울서이초등학교-5219 (첨부)) (수정)2026학년도 방과후·돌봄 연간 운영 계획(정보공시).hwp",
+          "sha256": "83c88ad76a88a8583ec043318e8f836275ef16ad1593c5fa89bf18eaf0a1fad9",
+          "format": "hwp",
+          "text_chars": 33774,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002269",
+      "school_name": "서울서일초등학교",
+      "area": "seocho",
+      "stage": 1,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "status": "no_clock_detected",
+      "files": [
+        {
+          "name": "등2025년 서일초등학교 초등돌봄교실 운영 계획.hwp",
+          "sha256": "1d8b9a90cc8733cb4c5547d89b40d7d111283f11f4c7716b07a099c6cd6ac633",
+          "format": "hwp",
+          "text_chars": 12262,
+          "file_academic_year": 2025,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        },
+        {
+          "name": "2026학년도 서일초등학교 방과후학교 운영 계획.hwpx",
+          "sha256": "5c36a895c2f63e19d68dd6e2f8a35b51be7a05042501efa5945969233a450b3c",
+          "format": "hwpx",
+          "text_chars": 25370,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002273",
+      "school_name": "서울신동초등학교",
+      "area": "seocho",
+      "stage": 1,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "status": "no_clock_detected",
+      "files": [
+        {
+          "name": "2026학년도 신동초등학교 초등돌봄교실 운영 계획(안).hwp",
+          "sha256": "26dff4609d2758fc89d2671a09aca0d176d9438c9902f812a0334c2012b3f774",
+          "format": "hwp",
+          "text_chars": 16044,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        },
+        {
+          "name": "2026학년도 신동초등학교 방과후학교 운영계획(안).hwp",
+          "sha256": "d19ebf4cc2ae598bb76f585197b71931e2ff0551e86a49e92926575b5ae7da73",
+          "format": "hwp",
+          "text_chars": 25970,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002254",
+      "school_name": "서울신중초등학교",
+      "area": "seocho",
+      "stage": 1,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "status": "no_clock_detected",
+      "files": [
+        {
+          "name": "2026학년도 신중초 돌봄교실 운영계획.hwp",
+          "sha256": "345a09cd8f52543d5e49e44baf7a4779c1a2f1c330d4ca8003a0680865272b8d",
+          "format": "hwp",
+          "text_chars": 18380,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        },
+        {
+          "name": "2.2026학년도 방과후 돌봄(방과후 및 맞춤형교실)  연간 운영 계획(안).hwp",
+          "sha256": "f104fb54784eb8c45b629ae12e5e3258086f30cfae2536a672a89de3c5b40e46",
+          "format": "hwp",
+          "text_chars": 20972,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        }
+      ]
+    },
+    {
+      "school_id": "B000025891",
+      "school_name": "서울언남초등학교",
+      "area": "seocho",
+      "stage": 1,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "status": "no_clock_detected",
+      "files": [
+        {
+          "name": "(학운위)2026학년도 돌봄교실 운영 계획.hwp",
+          "sha256": "a504047b7181b5d21da74b8c4cc0ea3cf3c53e695a7f30d10932d6260dbe39a9",
+          "format": "hwp",
+          "text_chars": 5128,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        },
+        {
+          "name": "2026학년도 방과후·맞춤형·특수학급 방과후교실 운영계획(안).hwp",
+          "sha256": "40405e73aad198c41ef70f6a6391511b8ae9664fc566b7a21119821b3b4fdb6e",
+          "format": "hwp",
+          "text_chars": 28285,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002272",
+      "school_name": "서울우암초등학교",
+      "area": "seocho",
+      "stage": 1,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "status": "no_clock_detected",
+      "files": [
+        {
+          "name": "(정보공시)2026학년도 돌봄교실 운영 계획(안).hwp",
+          "sha256": "bb8d02ea1fc1757b48d4e8d20f70c1d70d0f2cfa53ccce4766a9c0f4a4fb3c48",
+          "format": "hwp",
+          "text_chars": 12941,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        },
+        {
+          "name": "2026학년도 서울우암초 선택형교육프로그램 (연간)운영계획.hwp",
+          "sha256": "5cc272fe65c7fdcb856ef59c2ea6efda719b758f7772955f1b607674f90f38ee",
+          "format": "hwp",
+          "text_chars": 12993,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002270",
+      "school_name": "서울원명초등학교",
+      "area": "seocho",
+      "stage": 1,
+      "operating_pilot": false,
+      "reason": "excluded",
+      "status": "no_clock_detected",
+      "files": [
+        {
+          "name": "2026학년도 서울원명초등학교 초등돌봄교실 운영 계획.hwp",
+          "sha256": "7ee4b38a69e32112285a0de4a8ea4c116b082d00bdb7e6b16ef82401a706668c",
+          "format": "hwp",
+          "text_chars": 32380,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        },
+        {
+          "name": "2026학년도 서울원명초등학교 방과후교실 운영계획.hwp",
+          "sha256": "95c10cab2671b2c63ac28116e9bf3d107ea3fad44da6f76563926bf947f0f710",
+          "format": "hwp",
+          "text_chars": 17455,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002257",
+      "school_name": "서울잠원초등학교",
+      "area": "seocho",
+      "stage": 1,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "status": "no_clock_detected",
+      "files": [
+        {
+          "name": "2026학년도 방과후교실 운영계획.hwp",
+          "sha256": "46f9d5edb2b8308c795aa5b9c3df961de84f0ad2659f1f565bac52e58c63e138",
+          "format": "hwp",
+          "text_chars": 22210,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002139",
+      "school_name": "서울가동초등학교",
+      "area": "songpa",
+      "stage": 1,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "status": "no_clock_detected",
+      "files": [
+        {
+          "name": "2026학년도 돌봄교실 운영계획.hwp",
+          "sha256": "834760cfc6ade9b2042b217fce1186c9a55bdd9dad87c7cc5a94b3ada11cb3f0",
+          "format": "hwp",
+          "text_chars": 10046,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        },
+        {
+          "name": "2026학년도 방과후맞춤형교실 운영계획.hwpx",
+          "sha256": "b6f2d2ec2d4028afb735c4aa41fc711b0266d37ef76dc0db3efdd7e182a48909",
+          "format": "hwpx",
+          "text_chars": 16562,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002129",
+      "school_name": "서울가원초등학교",
+      "area": "songpa",
+      "stage": 1,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "status": "no_clock_detected",
+      "files": [
+        {
+          "name": "2026학년도 방과후·맞춤형교실 연간운영계획.pdf",
+          "sha256": "d2dcf709577be740cc91c4b76701d6fd22a2a4bd4693618219406ec67a724789",
+          "format": "pdf",
+          "text_chars": 13299,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        },
+        {
+          "name": "2026학년도 돌봄교실 연간 운영 계획.pdf",
+          "sha256": "f0b104ecfd60da4d4a64f0e41e30c38c217dc965a3f285f4068fe69fa84d15d0",
+          "format": "pdf",
+          "text_chars": 14711,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002138",
+      "school_name": "서울가주초등학교",
+      "area": "songpa",
+      "stage": 1,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "status": "no_clock_detected",
+      "files": [
+        {
+          "name": "2026학년도 가주초 방과후학교 운영계획.hwp",
+          "sha256": "f0a530957e8cd21f2b7b64083bc45c5fb6988f4257a03a2a466014471a34a9af",
+          "format": "hwp",
+          "text_chars": 15204,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002152",
+      "school_name": "서울개롱초등학교",
+      "area": "songpa",
+      "stage": 1,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "status": "clock_found",
+      "files": [
+        {
+          "name": "2026 개롱초 돌봄교실 운영계획.pdf",
+          "sha256": "297b85585c76110a9ab09f5bf324e48ba8af1dcdf3c7846daafcd82b804fc3ba",
+          "format": "pdf",
+          "text_chars": 19136,
+          "file_academic_year": 2026,
+          "clock_block_count": 1,
+          "clock_blocks": [
+            [
+              {
+                "line": 8,
+                "label": "아침",
+                "start": "07:00",
+                "end": "09:00"
+              },
+              {
+                "line": 11,
+                "label": "등교",
+                "start": "07:00",
+                "end": "09:00"
+              },
+              {
+                "line": 21,
+                "label": "등교",
+                "start": "08:00",
+                "end": "09:30"
+              },
+              {
+                "line": 21,
+                "label": "등교",
+                "start": "09:30",
+                "end": "11:00"
+              },
+              {
+                "line": 21,
+                "label": "점심",
+                "start": "12:00",
+                "end": "13:00"
+              },
+              {
+                "line": 21,
+                "label": "점심",
+                "start": "13:00",
+                "end": "13:30"
+              },
+              {
+                "line": 21,
+                "label": "등교",
+                "start": "13:30",
+                "end": "14:00"
+              }
+            ]
+          ],
+          "grade1_weekday_periods": [],
+          "status": "clock_found"
+        },
+        {
+          "name": "2026 개롱초 방과후·돌봄 운영계획.pdf",
+          "sha256": "aea6544fc8d4d34d24cf41670f06a51654304eb69dd4b0f63fdbfa0b1ce61d88",
+          "format": "pdf",
+          "text_chars": 17568,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002151",
+      "school_name": "서울거여초등학교",
+      "area": "songpa",
+      "stage": 1,
+      "operating_pilot": false,
+      "reason": "not_audited",
+      "status": "no_clock_detected",
+      "files": [
+        {
+          "name": "(거여초)2026학년도 방과후 운영계획(안).hwp",
+          "sha256": "5480cab2be41c0d87b047d786df595062da5526226331a78f87acd5aacb29fb2",
+          "format": "hwp",
+          "text_chars": 9784,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        },
+        {
+          "name": "(거여초)2025학년도 늘봄학교 운영 계획안.hwp",
+          "sha256": "2ffdf4dafb3f15b4224ad51fa3e425bb62e855e5a8360f5b533a50ffc3929ee1",
+          "format": "hwp",
+          "text_chars": 10588,
+          "file_academic_year": 2025,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002141",
+      "school_name": "서울거원초등학교",
+      "area": "songpa",
+      "stage": 1,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "status": "no_clock_detected",
+      "files": [
+        {
+          "name": "2026학년도 거원초 초등돌봄교실 운영계획.hwp",
+          "sha256": "62fbc43cf7fe64667b616d14ed647da142f464ece3982b5d1b5be494f94dfdd2",
+          "format": "hwp",
+          "text_chars": 5347,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        },
+        {
+          "name": "2026학년도 거원초 방과후교실 운영계획.hwp",
+          "sha256": "660f1452906a5499f911f221b3360705dae329d1900315feeb4569a2e395e734",
+          "format": "hwp",
+          "text_chars": 12412,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002143",
+      "school_name": "서울마천초등학교",
+      "area": "songpa",
+      "stage": 1,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "status": "no_clock_detected",
+      "files": [
+        {
+          "name": "2026 초등돌봄교실 운영계획 및 안전관리 계획(안).hwpx",
+          "sha256": "7bba04e25ffcb45c879533800efcf88ed08fcd0ed928ceb3707e4c9dcc3b4b3e",
+          "format": "hwpx",
+          "text_chars": 25378,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        },
+        {
+          "name": "2026학년도 방과후.맞춤형교실 운영 계획.hwp",
+          "sha256": "db0e3c9fe365afc23ed3e294b4a531615313ef87fbff81e3ccd7129b1547b028",
+          "format": "hwp",
+          "text_chars": 17647,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002127",
+      "school_name": "서울문덕초등학교",
+      "area": "songpa",
+      "stage": 1,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "status": "no_clock_detected",
+      "files": [
+        {
+          "name": "2026학년도 서울문덕초 돌봄교실 운영 계획.hwpx",
+          "sha256": "73993d437a1e1e15053c0b5a7c527f6b2813ee110386d0b1b669dd9fcfa66e59",
+          "format": "hwpx",
+          "text_chars": 7952,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        },
+        {
+          "name": "2026학년도 서울문덕초 방과후교실 운영계획.hwp",
+          "sha256": "5d80a2922e053637424371a8c34e7b0303e5f156773e4cfbb934d8f44dfd0e5b",
+          "format": "hwp",
+          "text_chars": 13468,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002128",
+      "school_name": "서울문정초등학교",
+      "area": "songpa",
+      "stage": 1,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "status": "no_clock_detected",
+      "files": [
+        {
+          "name": "(학운위심의안)2026학년도 방과후교실 연간운영 계획(안).pdf",
+          "sha256": "98b5a3eb793506e05e1421ebf458f43d3f8094e0d738fd7219b3c5aaa90c6268",
+          "format": "pdf",
+          "text_chars": 9715,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002146",
+      "school_name": "서울방산초등학교",
+      "area": "songpa",
+      "stage": 1,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "status": "no_clock_detected",
+      "files": [
+        {
+          "name": "2026학년도 방과후·맞춤형교실, 돌봄교실 연간 운영계획(안).pdf",
+          "sha256": "a0eb326940e757d56d15f3148fca635c7dbdc7aef5f9d7b74ae853599db108dd",
+          "format": "pdf",
+          "text_chars": 0,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002158",
+      "school_name": "서울버들초등학교",
+      "area": "songpa",
+      "stage": 1,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "status": "no_clock_detected",
+      "files": [
+        {
+          "name": "2026학년도 버들초 방과후교실(1분기) 운영 계획.hwp",
+          "sha256": "4414944939d197d299e5e82d9261e8d05938cb5122ceadb381944b67524b38c7",
+          "format": "hwp",
+          "text_chars": 9331,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        },
+        {
+          "name": "2026학년도 버들초 방과후,돌봄 운영 계획.hwp",
+          "sha256": "ba6d636dfd33b989288b5ffc15e4cc27f27bf4cb6eaac50a6afa568a81b60f00",
+          "format": "hwp",
+          "text_chars": 17825,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002147",
+      "school_name": "서울삼전초등학교",
+      "area": "songpa",
+      "stage": 1,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "status": "no_clock_detected",
+      "files": [
+        {
+          "name": "2026학년도 초등돌봄교실 연간 운영 계획.hwpx",
+          "sha256": "85368ddd0d564fd548ac765103ffce42088c0521f0a55f921eaf7d8507f7ef00",
+          "format": "hwpx",
+          "text_chars": 13768,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        },
+        {
+          "name": "2026학년도 방과후·맞춤형 프로그램 연간 운영 계획.hwp",
+          "sha256": "8336ccc1bbb37ab384e5f1f666126567d75dbb06b9b333233b1873fe5162c1c6",
+          "format": "hwp",
+          "text_chars": 38196,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002148",
+      "school_name": "서울석촌초등학교",
+      "area": "songpa",
+      "stage": 1,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "status": "no_clock_detected",
+      "files": [
+        {
+          "name": "2026학년도 돌봄교실 운영계획서.hwp",
+          "sha256": "38499eb1bb9d433db46232995acebae374570a6227ccf8d63c6c908672449fec",
+          "format": "hwp",
+          "text_chars": 9135,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        },
+        {
+          "name": "2026학년도 방과후·맞춤형 프로그램 연간운영게획(안).hwp",
+          "sha256": "ed7c3f4c73b199de35f53d035a943f280b8a35b4fbccfdb026a36e86a8c77f28",
+          "format": "hwp",
+          "text_chars": 12990,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002145",
+      "school_name": "서울세륜초등학교",
+      "area": "songpa",
+      "stage": 1,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "status": "no_clock_detected",
+      "files": [
+        {
+          "name": "방과후 돌봄교실_2026.hwp",
+          "sha256": "415f44ba164cd9cbe01919862dd65d234701f71298ce075600a10b5202afaafe",
+          "format": "hwp",
+          "text_chars": 12152,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002133",
+      "school_name": "서울송전초등학교",
+      "area": "songpa",
+      "stage": 1,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "status": "no_clock_detected",
+      "files": [
+        {
+          "name": "2026학년도 방과후?돌봄 운영계획.hwpx",
+          "sha256": "3a927bbd86fc39d56f27cf0f29f34b4098815dbbc1ebc9efc49ff1e3e375bcbf",
+          "format": "hwpx",
+          "text_chars": 37024,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002149",
+      "school_name": "서울송파초등학교",
+      "area": "songpa",
+      "stage": 1,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "status": "no_clock_detected",
+      "files": [
+        {
+          "name": "2026학년도 방과후·맞춤형교실,돌봄교실 연간운영 및 1분기 운영 계획(안).hwpx",
+          "sha256": "d15ac8f35763e3d8926b5275aa464fcf46260d56f4b1b7896fbeda4dd992807d",
+          "format": "hwp",
+          "text_chars": 36001,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002137",
+      "school_name": "서울신가초등학교",
+      "area": "songpa",
+      "stage": 1,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "status": "no_clock_detected",
+      "files": [
+        {
+          "name": "2026학년도 서울신가초등학교 돌봄교실 운영계획.hwp",
+          "sha256": "245207a14818aea6fd12fa226863906e55e35f875fa442e6efa509cfc6d5c66a",
+          "format": "hwp",
+          "text_chars": 13247,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        },
+        {
+          "name": "2026학년도 서울신가초등학교 방과후교실 운영계획.hwp",
+          "sha256": "dc71e2e27602bdede3997f508cbb5b9b2fa2c13e222792d412ce824e46074733",
+          "format": "hwp",
+          "text_chars": 15733,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002159",
+      "school_name": "서울신천초등학교",
+      "area": "songpa",
+      "stage": 1,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "status": "no_clock_detected",
+      "files": [
+        {
+          "name": "2026학년도 서울신천초등학교 방과후맞춤형교실 프로그램 연간 운영 계획(안).pdf",
+          "sha256": "0f6673379b3c0dfebb9c96d09e0d868a2c6a8de74801201d97d45a0c8953eef4",
+          "format": "pdf",
+          "text_chars": 20755,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        },
+        {
+          "name": "2026학년도 서울신천초등학교 방과후교실 프로그램 변경 및 교구재 사용 계획(안).pdf",
+          "sha256": "2e0aa7e4f4b0b6376751f5b9b262cbf27d968f39ad4ef86cac97871579ce01b4",
+          "format": "pdf",
+          "text_chars": 2408,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        },
+        {
+          "name": "2026학년도 서울신천초등학교 돌봄교실 연간 운영 계획(안).pdf",
+          "sha256": "8181ca189b77a124cf12f755484920e8563b289cb2b9768df1dedfb2c852ddfb",
+          "format": "pdf",
+          "text_chars": 9866,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002140",
+      "school_name": "서울영풍초등학교",
+      "area": "songpa",
+      "stage": 1,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "status": "clock_found",
+      "files": [
+        {
+          "name": "2026학년도 영풍초 방과후학교 운영 계획.hwp",
+          "sha256": "d669e39e117be96c1bf1da2274a651f1bfd0db83651d2f6710c59c4e7b854423",
+          "format": "hwp",
+          "text_chars": 19831,
+          "file_academic_year": 2026,
+          "clock_block_count": 1,
+          "clock_blocks": [
+            [
+              {
+                "line": 73,
+                "label": "4교시",
+                "start": "09:00",
+                "end": "12:20"
+              },
+              {
+                "line": 73,
+                "label": "4교시",
+                "start": "12:20",
+                "end": "13:00"
+              },
+              {
+                "line": 73,
+                "label": "점심",
+                "start": "13:00",
+                "end": "13:50"
+              },
+              {
+                "line": 73,
+                "label": "5교시",
+                "start": "13:00",
+                "end": "15:00"
+              },
+              {
+                "line": 73,
+                "label": "5교시",
+                "start": "13:00",
+                "end": "15:00"
+              },
+              {
+                "line": 73,
+                "label": "5교시",
+                "start": "13:50",
+                "end": "15:00"
+              }
+            ]
+          ],
+          "grade1_weekday_periods": [],
+          "status": "clock_found"
+        },
+        {
+          "name": "2026학년도 영풍초 초등돌봄교실 운영 계획.hwp",
+          "sha256": "776740e84af582ff9f6f3a6e59a6157dc6bb9012075ff5ac7a65332c7df022ed",
+          "format": "hwp",
+          "text_chars": 8571,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002150",
+      "school_name": "서울오금초등학교",
+      "area": "songpa",
+      "stage": 1,
+      "operating_pilot": true,
+      "reason": "no_clock",
+      "status": "no_clock_detected",
+      "files": [
+        {
+          "name": "(오금초)2026학년도 돌봄교실 운영 계획.hwp",
+          "sha256": "b5a25d40742bc04c20baa627cbf4406ac6f7443d560f88bfe39404cbc146cc80",
+          "format": "hwp",
+          "text_chars": 20581,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        },
+        {
+          "name": "2026학년도 방과후학교 연간 운영 계획(안).hwp",
+          "sha256": "738dfe7cb02bd336368208e775b859d2f614daf614ba147eaa065cbc1398d25c",
+          "format": "hwp",
+          "text_chars": 13339,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002144",
+      "school_name": "서울오륜초등학교",
+      "area": "songpa",
+      "stage": 1,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "status": "no_clock_detected",
+      "files": [
+        {
+          "name": "2026학년도 오륜초 돌봄교실 운영 계획.hwp",
+          "sha256": "66d273a6cb5089564f6ed6ee5914ac628917113297698ea2c69f05b08dfd2c19",
+          "format": "hwp",
+          "text_chars": 6871,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        },
+        {
+          "name": "2026학년도 오륜초 방과후학교 운영계획.hwp",
+          "sha256": "494f4b132fc28018797660ec3d3ce1d4dcb55c61ea980caa771f461e3ffe2426",
+          "format": "hwp",
+          "text_chars": 27626,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        }
+      ]
+    },
+    {
+      "school_id": "B000025375",
+      "school_name": "서울위례별초등학교",
+      "area": "songpa",
+      "stage": 1,
+      "operating_pilot": true,
+      "reason": "no_clock",
+      "status": "no_clock_detected",
+      "files": [
+        {
+          "name": "2026학년도 방과후·맞춤형교실 연간 운영 계획(안).hwp",
+          "sha256": "bfef98f333aff6e6148fd982ccf9badc960e784315f35b1c2404d824967a937a",
+          "format": "hwp",
+          "text_chars": 14505,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002134",
+      "school_name": "서울잠동초등학교",
+      "area": "songpa",
+      "stage": 1,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "status": "no_clock_detected",
+      "files": [
+        {
+          "name": "2026학년도(잠동초) 초등돌봄교실 운영계획.hwp",
+          "sha256": "965c2401e5534ecb4253770795cfff342bf3169d4ec5ad5afdc0b1fcca226cbc",
+          "format": "hwp",
+          "text_chars": 13483,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        },
+        {
+          "name": "2026학년도 (잠동초)방과후학교 운영계획.hwpx",
+          "sha256": "87e4b4db0fac319a4402490e3117767af4538c4c75e37fffaad3478fd3b2c619",
+          "format": "hwpx",
+          "text_chars": 48729,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002135",
+      "school_name": "서울잠실초등학교",
+      "area": "songpa",
+      "stage": 1,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "status": "no_clock_detected",
+      "files": [
+        {
+          "name": "2026학년도 잠실초 방과후,맞춤형 프로그램 연간운영계획(안).hwp",
+          "sha256": "b1c92edaf9d519adbbd4a8510058c220a3b1f633b971a9112a7ee78e0591d9c5",
+          "format": "hwp",
+          "text_chars": 14877,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        },
+        {
+          "name": "2026학년도 잠실초 돌봄 운영 계획(안).hwp",
+          "sha256": "a49c8f528e9c9d46974e4cf3239c25ba9a62a46fb4620c420cc656f5df2771e2",
+          "format": "hwp",
+          "text_chars": 1565,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002131",
+      "school_name": "서울잠일초등학교",
+      "area": "songpa",
+      "stage": 1,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "status": "no_clock_detected",
+      "files": [
+        {
+          "name": "2026학년도 잠일초 돌봄교실 운영 계획.hwpx",
+          "sha256": "8417d61a542bfc6971a87c48fca237bd122ebd78b8a616e83679d1ab6e923f49",
+          "format": "hwpx",
+          "text_chars": 32291,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        },
+        {
+          "name": "2026학년도 잠일초 방과후·돌봄 운영 계획.hwp",
+          "sha256": "a83f87245b9474604d4cf981573872be77569eae70a0ee10abcb3820b1f24066",
+          "format": "hwp",
+          "text_chars": 23450,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002153",
+      "school_name": "서울잠전초등학교",
+      "area": "songpa",
+      "stage": 1,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "status": "no_clock_detected",
+      "files": [
+        {
+          "name": "2026학년도 잠전초등학교 초등돌봄교실 운영 계획.hwpx",
+          "sha256": "9d379fb1f97ff210b793d0ba295a2cd9e2e9b18ead25608c002d6ad6877a9647",
+          "format": "hwpx",
+          "text_chars": 7489,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        },
+        {
+          "name": "2026학년도 잠전초등학교 방과후학교 운영계획.hwp",
+          "sha256": "b6e81de16c9f1bf5a0b4b35af2158773027d3ee06caf352c538eb8f4591b09e6",
+          "format": "hwp",
+          "text_chars": 12791,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002136",
+      "school_name": "서울잠현초등학교",
+      "area": "songpa",
+      "stage": 1,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "status": "no_clock_detected",
+      "files": [
+        {
+          "name": "★(수정)2026학년도 방과후·돌봄 연간운영계획(세부).hwp",
+          "sha256": "70bd8c43bd1f6fc9f9777a9d3f2dd3a635f3a384f8bc1eb6fd324a5ec36666a5",
+          "format": "hwp",
+          "text_chars": 32926,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        },
+        {
+          "name": "(수정)(학운위) 2026학년도 방과후·돌봄 운영 계획(안).hwp",
+          "sha256": "4dfb6e209924c198a0eb91d94d534f72c07b37d08a56818698a5adb52691273a",
+          "format": "hwp",
+          "text_chars": 1721,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002125",
+      "school_name": "서울평화초등학교",
+      "area": "songpa",
+      "stage": 1,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "status": "no_clock_detected",
+      "files": [
+        {
+          "name": "3. 2025학년도2학기 선택형교육·맞춤형 프로그램 지원현황.hwp",
+          "sha256": "b3e18b28f4b85454152f01ab228e1cc94d758f47da68ef55ffc2d386c356c348",
+          "format": "hwp",
+          "text_chars": 6197,
+          "file_academic_year": 2025,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        },
+        {
+          "name": "2. 2026 1분기 방과후·맞춤형 프로그램 운영현황(2026.4.30.).hwp",
+          "sha256": "a196d25fd2d173e85325c7e6985fe98064b7001d41e2c41d743e7d68099e062e",
+          "format": "hwp",
+          "text_chars": 10079,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        },
+        {
+          "name": "1. 2026 방과후·맞춤형 프로그램 연간운영계획.hwpx",
+          "sha256": "851a0f8b351be439d9249eb3438b18a6cc321d7433263b910669904ff4b276c8",
+          "format": "hwpx",
+          "text_chars": 13325,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002154",
+      "school_name": "서울풍납초등학교",
+      "area": "songpa",
+      "stage": 1,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "status": "no_clock_detected",
+      "files": [
+        {
+          "name": "2026학년도 방과후 · 맞춤형교실 운영계획 변경.hwp",
+          "sha256": "df341fbe50ca2f48aef81569600c4945f64d759b9d6bf2bf5c76f5a2778e1040",
+          "format": "hwp",
+          "text_chars": 4491,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        },
+        {
+          "name": "2026학년도 초등돌봄교실 학생안전지도 및 시설물 관리.hwp",
+          "sha256": "aa6857385b01b99117bce13d2e19bf2a7fc811cd20c73d0ed1c2286a440d3750",
+          "format": "hwp",
+          "text_chars": 907,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        },
+        {
+          "name": "2026학년도 초등돌봄교실 운영 계획(최종).hwp",
+          "sha256": "819c8c6057b6b1c2981bb5b2d3291098427ce0afc598d3ae7d90b06b5d2df882",
+          "format": "hwp",
+          "text_chars": 2813,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        },
+        {
+          "name": "2026학년도 방과후 · 맞춤형 교실 연간운영계획.hwp",
+          "sha256": "f1aad51540c69c63a0a4f00911a4093a5e6e16bfc7a52beb52ebeebfb57d7817",
+          "format": "hwp",
+          "text_chars": 25880,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002156",
+      "school_name": "서울풍성초등학교",
+      "area": "songpa",
+      "stage": 1,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "status": "no_clock_detected",
+      "files": [
+        {
+          "name": "20OO학년도 OO학교 방과후.돌봄 교실 연간 운영 계획.hwp",
+          "sha256": "75c2d59fbb159238968e5bc8be3a8a9b58306a0b125a69522b1c9393cc127235",
+          "format": "hwp",
+          "text_chars": 25495,
+          "file_academic_year": null,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        }
+      ]
+    },
+    {
+      "school_id": "B000025372",
+      "school_name": "서울해누리초등학교",
+      "area": "songpa",
+      "stage": 1,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "status": "no_clock_detected",
+      "files": [
+        {
+          "name": "학교운영위원회심의안건(방과후.맞춤형)운영계획.hwp",
+          "sha256": "b9acd9230c4391fc6a8e669fb32eba941f90e8ea0e4f54ed9152325e2a1193a9",
+          "format": "hwp",
+          "text_chars": 34424,
+          "file_academic_year": null,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002172",
+      "school_name": "서울위례초등학교",
+      "area": "wirye",
+      "stage": 1,
+      "operating_pilot": true,
+      "reason": "no_clock",
+      "status": "no_clock_detected",
+      "files": [
+        {
+          "name": "(위례초)2026학년도 방과후·맞춤형교실 연간운영계획.hwp",
+          "sha256": "5e82295ee2ba8bfa72f005caa27f5e377a7ca1c1e5d902c29b6f9be0dd4d7acc",
+          "format": "hwp",
+          "text_chars": 22046,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        }
+      ]
+    },
+    {
+      "school_id": "B000023087",
+      "school_name": "위례초등학교",
+      "area": "wirye",
+      "stage": 1,
+      "operating_pilot": true,
+      "reason": "no_clock",
+      "status": "no_clock_detected",
+      "files": [
+        {
+          "name": "(위례초등학교-2318 (첨부)) (1_연간계획)2026학년도 방과후·돌봄 운영계획(수정).hwp",
+          "sha256": "aa53a1aff0af001afb4c300819aa173161b5a2a2bac044ed866233e7d643f86a",
+          "format": "hwp",
+          "text_chars": 32093,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002081",
+      "school_name": "상명초등학교",
+      "area": "nowon",
+      "stage": 2,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "status": "no_clock_detected",
+      "files": [
+        {
+          "name": "(학운위) 2026학년도 방과후학교 연간 운영계획.hwp",
+          "sha256": "c9e33b70f4b5f8b1bd2039d0fd548ddc01a7854d46d4592510a0872526c6ea7c",
+          "format": "hwp",
+          "text_chars": 9677,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002053",
+      "school_name": "서울공릉초등학교",
+      "area": "nowon",
+      "stage": 2,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "status": "no_clock_detected",
+      "files": [
+        {
+          "name": "2026학년도 돌봄교실 연간 운영 계획(안).hwp",
+          "sha256": "2a33746b2621af8feebc087f39ed5675d63838c67b8cfdbc85b13818260f6e64",
+          "format": "hwp",
+          "text_chars": 31291,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        },
+        {
+          "name": "2026학년도 방과후.맞춤형교실 연간 운영  계획(안) 및 프로그램 교재 및 재료 선정 계획(안).hwp",
+          "sha256": "0daab7d0d874dbc4ea51abbe231c3402fdcbd2097dcf7a8c39b418c785fe9b65",
+          "format": "hwp",
+          "text_chars": 51499,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002062",
+      "school_name": "서울노원초등학교",
+      "area": "nowon",
+      "stage": 2,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "status": "no_clock_detected",
+      "files": [
+        {
+          "name": "2026학년도 초등돌봄교실 연간운영계획(안).hwp",
+          "sha256": "4c636c214b78938720e7cb67786610d834a2201a49a6514da79d635c252f8c77",
+          "format": "hwp",
+          "text_chars": 9831,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        },
+        {
+          "name": "2026학년도 맞춤형,방과후교실 연간 운영 계획.hwpx",
+          "sha256": "46f946cb0d23515d7b490befba5b584b9a9be6f231422ed9b6ba8f3df265d6bf",
+          "format": "hwpx",
+          "text_chars": 17275,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002041",
+      "school_name": "서울녹천초등학교",
+      "area": "nowon",
+      "stage": 2,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "status": "no_clock_detected",
+      "files": [
+        {
+          "name": "(서울녹천초)2026학년도 맞춤형.방과후교실 운영 계획 1부.pdf",
+          "sha256": "a4dd6940ed5caa5b5e9801801a3961ae8bf219802d14c40f22711f69eb332d86",
+          "format": "pdf",
+          "text_chars": 13328,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002042",
+      "school_name": "서울덕암초등학교",
+      "area": "nowon",
+      "stage": 2,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "status": "no_clock_detected",
+      "files": [
+        {
+          "name": "2026학년도 덕암초 방과후교실 및 맞춤형교실 운영 계획.hwp",
+          "sha256": "baf671c52150abe98bd35dc39f7fc7896ba607071b2b7c90d9b6a13ed587cfa6",
+          "format": "hwp",
+          "text_chars": 47618,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002061",
+      "school_name": "서울동일초등학교",
+      "area": "nowon",
+      "stage": 2,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "status": "no_clock_detected",
+      "files": [
+        {
+          "name": "2026학년도 방과후·맞춤형 프로그램 운영 계획(안).hwpx",
+          "sha256": "ea01cce183fa9937eda0bde6ad540f25a765768c9956c6f12a8db496e299eed4",
+          "format": "hwpx",
+          "text_chars": 26792,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        },
+        {
+          "name": "2026학년도 방과후학교 운영 현황.hwp",
+          "sha256": "54118d06f386c8bde01f47a8e104c9bf1f69bd4744f133c5f5f0c5a8b5df6a28",
+          "format": "hwp",
+          "text_chars": 8197,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        },
+        {
+          "name": "2026학년도 돌봄교실 운영계획.hwp",
+          "sha256": "89b2c1f20d048ec3dbd4b1834b986ddf6c6b5f951d27611c4a9a77cbee156734",
+          "format": "hwp",
+          "text_chars": 14906,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002045",
+      "school_name": "서울불암초등학교",
+      "area": "nowon",
+      "stage": 2,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "status": "no_clock_detected",
+      "files": [
+        {
+          "name": "(정보공시)2025학년도 늘봄방과후학교 자유수강권 지원 실적.xlsx",
+          "sha256": "c6a764db5938407f2bc33d5b4250191eae6d2fe76c3446e7539f55ed38376ca4",
+          "format": "hwpx",
+          "text_chars": 0,
+          "file_academic_year": 2025,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        },
+        {
+          "name": "2026학년도 방과후.맞춤형교실 연간 운영.pdf",
+          "sha256": "5dd20a0d3a4d94dcd5f201dd852d3eb8a11f03389fbb79f136ec377af8c5267e",
+          "format": "pdf",
+          "text_chars": 14488,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        },
+        {
+          "name": "2026학년도 돌봄교실 연간운영 계획.pdf",
+          "sha256": "b10dea70b8317f27940ba6de9bb4627fc7569d4cc0d85ee75c54d7af09f0d7e6",
+          "format": "pdf",
+          "text_chars": 11637,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002076",
+      "school_name": "서울상경초등학교",
+      "area": "nowon",
+      "stage": 2,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "status": "no_clock_detected",
+      "files": [
+        {
+          "name": "(상경초)2026학년도 방과후 및 맞춤형 운영계획(안)_최종_게시용.hwp",
+          "sha256": "ebb963057033333506ec1c3f77b80919837f244e1cff41e3c5924216d5f04400",
+          "format": "hwp",
+          "text_chars": 27012,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        },
+        {
+          "name": "(안건발의서)2026학년도 초등돌봄교실 운영 계획(안).hwp",
+          "sha256": "4c01a5c3235f926965f388ea5e0096c5e234181eb8614f1cdfdeaf9a7037c77a",
+          "format": "hwp",
+          "text_chars": 8278,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002055",
+      "school_name": "서울상계초등학교",
+      "area": "nowon",
+      "stage": 2,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "status": "no_clock_detected",
+      "files": [
+        {
+          "name": "2026학년도 돌봄교실 운영계획(안).hwp",
+          "sha256": "aa97f25fecb65bf4e7a958eaeb48e522d284df3160ecea7851b732457e9246ed",
+          "format": "hwp",
+          "text_chars": 11418,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        },
+        {
+          "name": "2026학년도 방과후.맞춤형교실 운영 계획(안).hwp",
+          "sha256": "87907a736b40f5e1b253673cbf38c09d4b7bed99cb17a1efea0c390ec601fde2",
+          "format": "hwp",
+          "text_chars": 21001,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002077",
+      "school_name": "서울상수초등학교",
+      "area": "nowon",
+      "stage": 2,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "status": "no_clock_detected",
+      "files": [
+        {
+          "name": "2026학년도 초등돌봄교실 운영 계획.hwpx",
+          "sha256": "2fd3e554c4b6c81e3a8a078e3c14da49cac686e6ea96e3bff4e2df3cfa76ec3d",
+          "format": "hwpx",
+          "text_chars": 18807,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        },
+        {
+          "name": "2026학년도 방과후교실 연간 운영 계획.hwp",
+          "sha256": "09bcd70ebcf07a4d655fd2fed8e594e0c63ee02c738783dce1e57da0f424391b",
+          "format": "hwp",
+          "text_chars": 18513,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002067",
+      "school_name": "서울선곡초등학교",
+      "area": "nowon",
+      "stage": 2,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "status": "no_clock_detected",
+      "files": [
+        {
+          "name": "2026학년도 학부모운영위원회 심의자료(돌봄교실 운영계획).hwp",
+          "sha256": "b8373d5e69a8786859e88b9a2f975ed3f7582de7b91d6d3f8f596b33cf209179",
+          "format": "hwp",
+          "text_chars": 27561,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        },
+        {
+          "name": "2026학년도 학부모운영위원회 심의자료(돌봄교실 간식운영계획).hwp",
+          "sha256": "a61958c9d20b4613846c9bcbe7fb81f9f4fe757fbc3b12d938bceaf70c1c6402",
+          "format": "hwp",
+          "text_chars": 2622,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        },
+        {
+          "name": "2026학년도 학부모운영위원회 심의자료(아침 및 틈새돌봄 운영계획).hwp",
+          "sha256": "b076719d011ea55bd9a632d1f3d2c9da636e2bc9b5f4964c01ca4c336fb1a2bb",
+          "format": "hwp",
+          "text_chars": 1420,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        },
+        {
+          "name": "(2026년 3월) 학교운영위원회 심의 자료(2026학년도 방과후·맞춤형교실 연간 운영 계획).hwp",
+          "sha256": "5bf12906407b6e5cc81e39a10bee2241cbe7b6304ef97953b4b7eef83ff9db11",
+          "format": "hwp",
+          "text_chars": 24842,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002064",
+      "school_name": "서울수락초등학교",
+      "area": "nowon",
+      "stage": 2,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "status": "no_clock_detected",
+      "files": [
+        {
+          "name": "(학운위안건)2026학년도 방과후,맞춤형 프로그램 연간 운영계획(안).hwpx",
+          "sha256": "ad14ed003856d8e881015f8733764d02860309d621fbea9eb4251c159eabf954",
+          "format": "hwpx",
+          "text_chars": 26183,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002046",
+      "school_name": "서울수암초등학교",
+      "area": "nowon",
+      "stage": 2,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "status": "no_clock_detected",
+      "files": [
+        {
+          "name": "2026학년도 수암돌봄교실 연간 운영 계획.hwp",
+          "sha256": "9fe234232b884e9a296f7f4c9acfdb5c4d1989bd4ae57a5b20a9211ce96347d8",
+          "format": "hwp",
+          "text_chars": 13550,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        },
+        {
+          "name": "2026학년도 방과후.맞춤형 프로그램 연간운영계획.hwp",
+          "sha256": "e259992cc2b440f1ef17554f594836c72ee14d31f94ad3829da38905458aa784",
+          "format": "hwp",
+          "text_chars": 14344,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002054",
+      "school_name": "서울신상계초등학교",
+      "area": "nowon",
+      "stage": 2,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "status": "no_clock_detected",
+      "files": [
+        {
+          "name": "(학운위심의자료)2026학년도 돌봄교실 운영 계획(안).hwp",
+          "sha256": "ba90751b2e8addebdf8ed7f843a86615708df5493fc491ae5fbf4d1ee019580f",
+          "format": "hwp",
+          "text_chars": 13846,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        },
+        {
+          "name": "(학운위심의자료)2026학년도 방과후.맞춤형교실 연간 운영계획(안).hwp",
+          "sha256": "553b3cd90230cebf4205147ce41eea60d3af2014b2491941dd773cf3512f6295",
+          "format": "hwp",
+          "text_chars": 28053,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002066",
+      "school_name": "서울연지초등학교",
+      "area": "nowon",
+      "stage": 2,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "status": "no_clock_detected",
+      "files": [
+        {
+          "name": "2026학년도 방과후및 맞춤형교실 운영계획안.hwp",
+          "sha256": "fcfcfe49be4b2a8cfe171805e78bb0dacd90da0edda3eb41fc900d90c0400ae5",
+          "format": "hwp",
+          "text_chars": 23928,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002073",
+      "school_name": "서울용동초등학교",
+      "area": "nowon",
+      "stage": 2,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "status": "no_clock_detected",
+      "files": [
+        {
+          "name": "2026학년도 용동초 초등돌봄교실 운영 계획.hwp",
+          "sha256": "e2281d5d15a86543b39a3d6f9f16c08f87b68dbc9c899709e27791ecd5f2dc3b",
+          "format": "hwp",
+          "text_chars": 16827,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        },
+        {
+          "name": "2026학년도 용동초 방과후·맞춤형학교 운영 계획.hwp",
+          "sha256": "5c5870771a16d57ae1113a58e6a963a03dcdf770afcada7474880a1799694151",
+          "format": "hwp",
+          "text_chars": 17694,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002052",
+      "school_name": "서울용원초등학교",
+      "area": "nowon",
+      "stage": 2,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "status": "no_clock_detected",
+      "files": [
+        {
+          "name": "2026학년도 용원초 방과후 돌봄교실 운영계획안.hwp",
+          "sha256": "d697600d7cd68a8840754b24d2bb937f550634eb70755c96b10fc41dd7bc8a27",
+          "format": "hwp",
+          "text_chars": 6034,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        },
+        {
+          "name": "2026학년도 용원초 방과후·맞춤형 프로그램 연간운영계획(안).hwp",
+          "sha256": "bd9c5075bb48576ee6b1c5e5d450d21bac2545ce51243e7cff8d15945d52ded8",
+          "format": "hwp",
+          "text_chars": 28017,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002069",
+      "school_name": "서울원광초등학교",
+      "area": "nowon",
+      "stage": 2,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "status": "no_clock_detected",
+      "files": [
+        {
+          "name": "2025학년도 원광초등학교 방과후 수익자부담금액.pdf",
+          "sha256": "b01226ab13fd2b0f13eb21070d4089cb58c2723d2dfe32ed55c8d48eb9071de4",
+          "format": "pdf",
+          "text_chars": 40606,
+          "file_academic_year": 2025,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        },
+        {
+          "name": "2025학년도 원광초등학교 방과후 지원금(자유수강권).pdf",
+          "sha256": "810360b1269ab9978fe6e4d1f5a35418bc7d7bec51a3a61405193bd1872ffd24",
+          "format": "pdf",
+          "text_chars": 29069,
+          "file_academic_year": 2025,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        },
+        {
+          "name": "2026학년도 원광초등학교 초등돌봄교실 운영 계획.hwp",
+          "sha256": "73ce3d218f9ce2b2b4071ad65fa8bcc43189ce615812191c2f804f64264bfa4b",
+          "format": "hwp",
+          "text_chars": 35669,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        },
+        {
+          "name": "2026학년도 원광초등학교 방과후학교 운영계획.hwp",
+          "sha256": "41d303bc6624a1a65e41049941bcd86a5518fc349b98be5d6de1fe0e33a8f667",
+          "format": "hwp",
+          "text_chars": 11112,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002068",
+      "school_name": "서울월계초등학교",
+      "area": "nowon",
+      "stage": 2,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "status": "no_clock_detected",
+      "files": [
+        {
+          "name": "2026학년도 초등돌봄교실 운영 계획(안)).hwp",
+          "sha256": "2a90afa6c9ce8889692cf1ff64786298f53009eeee89f4ee67af78bf1d58f3a4",
+          "format": "hwp",
+          "text_chars": 26625,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        },
+        {
+          "name": "2026학년도 서울월계초등학교 방과후교실 운영계획(정보공시).hwp",
+          "sha256": "556038d71ef0b7fce9b39c4efd9706902cafd40fe76a73b1eb93b527f64683ea",
+          "format": "hwp",
+          "text_chars": 9955,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002070",
+      "school_name": "서울을지초등학교",
+      "area": "nowon",
+      "stage": 2,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "status": "no_clock_detected",
+      "files": [
+        {
+          "name": "9. 방과후·돌봄부.hwp",
+          "sha256": "49713db2a65b7002b7d95d90e9467703709cae52372030b2a6f7635e58f7d2c6",
+          "format": "hwp",
+          "text_chars": 29257,
+          "file_academic_year": null,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002047",
+      "school_name": "서울중계초등학교",
+      "area": "nowon",
+      "stage": 2,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "status": "no_clock_detected",
+      "files": [
+        {
+          "name": "2026학년도 서울중계초등학교 초등돌봄교실 운영 계획.hwp",
+          "sha256": "23cc09dd656b972342ecf8458d32030ccbfb9f7a3fd7c0ac62d4e5cd6c73f11f",
+          "format": "hwp",
+          "text_chars": 9075,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        },
+        {
+          "name": "2026학년도 서울중계초등학교 방과후·맞춤형 교실 운영 계획.hwp",
+          "sha256": "fe61a1caef6066f86bcd2f4ac06c497769d26fb9d12ff30395cbec04ae93a0c2",
+          "format": "hwp",
+          "text_chars": 28155,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002071",
+      "school_name": "서울중원초등학교",
+      "area": "nowon",
+      "stage": 2,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "status": "no_clock_detected",
+      "files": [
+        {
+          "name": "2026학년도 방과후 맞춤형 프로그램 운영계획(안).hwpx",
+          "sha256": "b2af8ea2455a4706cbac32cd580d1aa5367d5679f6f7675d83fbb4f75ac0596c",
+          "format": "hwpx",
+          "text_chars": 20951,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        },
+        {
+          "name": "2026학년도 돌봄교실 운영계획.hwp",
+          "sha256": "c7241f2d2103948c04f2ea69e1936dc7970a46e61a7e5922a7b10872e96989b4",
+          "format": "hwp",
+          "text_chars": 26890,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002075",
+      "school_name": "서울중평초등학교",
+      "area": "nowon",
+      "stage": 2,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "status": "no_clock_detected",
+      "files": [
+        {
+          "name": "2026학년도 중평초 초등돌봄교실 운영 계획.hwp",
+          "sha256": "cff12336bf23dadd667f792d872cf2b8efbab18c44d340656efa697138ceec0e",
+          "format": "hwp",
+          "text_chars": 14830,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        },
+        {
+          "name": "2026학년도 중평초 방과후·맞춤형프로그램 운영 계획.hwp",
+          "sha256": "1d1df186bdce6ef1834cc84a7f386140757028546a338de728f4541df3844e84",
+          "format": "hwp",
+          "text_chars": 17368,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002074",
+      "school_name": "서울중현초등학교",
+      "area": "nowon",
+      "stage": 2,
+      "operating_pilot": false,
+      "reason": "not_reviewed",
+      "status": "no_clock_detected",
+      "files": [
+        {
+          "name": "2026학년도 방과후.맞춤형 프로그램 연간위탁운영 계획(안).hwpx",
+          "sha256": "8080dee5c0256c65801eb117d6b20fa93378b9c2fde3d0a915f3aca4649b7667",
+          "format": "hwpx",
+          "text_chars": 23078,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002072",
+      "school_name": "서울청계초등학교",
+      "area": "nowon",
+      "stage": 2,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "status": "no_clock_detected",
+      "files": [
+        {
+          "name": "2026학년도 초등돌봄교실 운영계획(안).hwp",
+          "sha256": "045d4585eb0a8d290ae8464eeb650c97a7db1139a7a5214b185439606c855ea7",
+          "format": "hwp",
+          "text_chars": 6858,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        },
+        {
+          "name": "(학운위심의)2026학년도 방과후-맞춤형 교실 운영 계획(안) (1).hwp",
+          "sha256": "838556dff42e36f40d6ec4694d85c0f6d439dae2497fca9179e0c5b0b4e11d91",
+          "format": "hwp",
+          "text_chars": 13109,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002049",
+      "school_name": "서울태랑초등학교",
+      "area": "nowon",
+      "stage": 2,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "status": "no_clock_detected",
+      "files": [
+        {
+          "name": "2026학년도 태랑초 방과후.돌봄 운영 계획.hwp",
+          "sha256": "cc9b9106aa908204ded7d53789c4edfba5a322b889c0502780ec80e927cb5365",
+          "format": "hwp",
+          "text_chars": 22888,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002050",
+      "school_name": "서울태릉초등학교",
+      "area": "nowon",
+      "stage": 2,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "status": "no_clock_detected",
+      "files": [
+        {
+          "name": "2026학년도 태릉초 돌봄교실 연간 운영 계획(안).hwp",
+          "sha256": "7969f00dc771af44c8ce312bb38e6f11ccda549733c32e426b4aa75524eab421",
+          "format": "hwp",
+          "text_chars": 14627,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        },
+        {
+          "name": "2026학년도 태릉초 방과후학교 운영 계획(안).hwpx",
+          "sha256": "d808c19bd4828dd173d10a500738dd01c39b4d0ebe83a326101e82a115e8cb36",
+          "format": "hwpx",
+          "text_chars": 19764,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002078",
+      "school_name": "청원초등학교",
+      "area": "nowon",
+      "stage": 2,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "status": "no_clock_detected",
+      "files": [
+        {
+          "name": "2026학년도 1학기 화목방과후학교 운영 계획.hwp",
+          "sha256": "273184ed67fb940170a4e237c41de8058aa28624584776939ac2fee36e287c5c",
+          "format": "hwp",
+          "text_chars": 1411,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002079",
+      "school_name": "태강삼육초등학교",
+      "area": "nowon",
+      "stage": 2,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "status": "no_clock_detected",
+      "files": [
+        {
+          "name": "방과후학교 지원 현황(2025학년도).hwp",
+          "sha256": "a85d46400bf0aa0299f63dff8498aaa88c7f3fef0ca1e69ea1ae707d28445254",
+          "format": "hwp",
+          "text_chars": 1668,
+          "file_academic_year": 2025,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        },
+        {
+          "name": "(2026학년도)돌봄교실 운영계획안.hwpx",
+          "sha256": "866b4a85f83bd538370a43954149bc79635315e42b4fbeacf85fdd50316233e8",
+          "format": "hwpx",
+          "text_chars": 5649,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        },
+        {
+          "name": "방과후학교 운영현황(2026학년도 4월 신청자 명단).xlsx",
+          "sha256": "040617b1a40a4d567be407627ec163493b76cc21d983523bbeb881fa6c82662a",
+          "format": "hwpx",
+          "text_chars": 0,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        },
+        {
+          "name": "(2026학년도)특기교육부 교육과정 운영계획.hwpx",
+          "sha256": "82dd6f01b0a51f4cafabf59b6c6822710be1bfe03cc2bc4009e275f7a3184455",
+          "format": "hwpx",
+          "text_chars": 19311,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002199",
+      "school_name": "서울강신초등학교",
+      "area": "yangcheon",
+      "stage": 2,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "status": "no_clock_detected",
+      "files": [
+        {
+          "name": "2026학년도 돌봄교실 운영계획.hwp",
+          "sha256": "fb19fac86728420b467e9510a77ff37d41e4ce4f233ebf1077aa33545f0decf8",
+          "format": "hwp",
+          "text_chars": 5351,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        },
+        {
+          "name": "2026학년도 강신초 맞춤형교실 및 방과후교실 연간 운영 계획(안).hwp",
+          "sha256": "958a2975a45f9d57b1823db1e2112e881a5bf82077138893b718f681e1ef3bed",
+          "format": "hwp",
+          "text_chars": 38423,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002208",
+      "school_name": "서울강월초등학교",
+      "area": "yangcheon",
+      "stage": 2,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "status": "no_clock_detected",
+      "files": [
+        {
+          "name": "2026학년도 강월초 초등돌봄교실 운영계획(안).pdf",
+          "sha256": "3a983905f90084bb560c1152e890a2df28ffa0fa7d38ab69c45c1459351b443b",
+          "format": "pdf",
+          "text_chars": 19043,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        },
+        {
+          "name": "2026학년도 강월초 방과후·맞춤형교실 운영 계획.pdf",
+          "sha256": "f0725af20aad3e0f810fd72c88ac6c3c0107da0b187ae4e303eb4222a5daaffd",
+          "format": "pdf",
+          "text_chars": 16110,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002188",
+      "school_name": "서울경인초등학교",
+      "area": "yangcheon",
+      "stage": 2,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "status": "no_clock_detected",
+      "files": [
+        {
+          "name": "2026학년도 경인초 돌봄교실 운영계획.hwp",
+          "sha256": "bfff0c7e73aef882a13a9db4d862d727746a234176d22b482e5e490d47f8d28d",
+          "format": "hwp",
+          "text_chars": 5010,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        },
+        {
+          "name": "2026학년도 경인초 방과후교실 운영계획.hwp",
+          "sha256": "c09110649609282f0aba64f847c0f1d92da20972acc41513ec12ad63eda0ec89",
+          "format": "hwp",
+          "text_chars": 15935,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002190",
+      "school_name": "서울목운초등학교",
+      "area": "yangcheon",
+      "stage": 2,
+      "operating_pilot": false,
+      "reason": "no_attachment",
+      "status": "no_clock_detected",
+      "files": [
+        {
+          "name": "2026학년도 1기 서울목운초등학교 컴퓨터교실 운영계획.hwp",
+          "sha256": "3d775a7a2f3d38c812853fc295b28e59f24fda92ad7d43a34cd23dfa385ef6b6",
+          "format": "hwp",
+          "text_chars": 4391,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        },
+        {
+          "name": "2026학년도 서울목운초등학교 초등돌봄교실 운영계획.hwp",
+          "sha256": "533975418530387f706a8e588a8b6884a61a4495f0d2e37afc77665bc2b83751",
+          "format": "hwp",
+          "text_chars": 15380,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        },
+        {
+          "name": "2026학년도 서울목운초등학교 특수학급 방과후교실 운영 계획.hwp",
+          "sha256": "c335785fa40323fe05c572871b12c8b6a5b8eb7939f4dd1bd53d9a48ca35604d",
+          "format": "hwp",
+          "text_chars": 7809,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        },
+        {
+          "name": "2026학년도 서울목운초등학교 방과후학교 운영계획.hwp",
+          "sha256": "54e21fa03d5ef381bd02e619c2ee7ba85c6eaf95922fe7cfce774ec1eab7006a",
+          "format": "hwp",
+          "text_chars": 61893,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002187",
+      "school_name": "서울목원초등학교",
+      "area": "yangcheon",
+      "stage": 2,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "status": "no_clock_detected",
+      "files": [
+        {
+          "name": "(목원초)2026학년도 방과후·돌봄 운영계획.zip",
+          "sha256": "e206f4ba5613dbe84bfa935883e66c1cb349c57d5fed8fa177d5ebca33dadea0",
+          "format": "hwpx",
+          "text_chars": 0,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002189",
+      "school_name": "서울서정초등학교",
+      "area": "yangcheon",
+      "stage": 2,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "status": "no_clock_detected",
+      "files": [
+        {
+          "name": "2026학년도 맞춤형·방과후·돌봄 연간 운영계획.hwp",
+          "sha256": "6ed44fdc1e2e25aa2c0bdad10c2964a4b3a0424153a26a3f14009cc86cb769e9",
+          "format": "hwp",
+          "text_chars": 33653,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002205",
+      "school_name": "서울신강초등학교",
+      "area": "yangcheon",
+      "stage": 2,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "status": "no_clock_detected",
+      "files": [
+        {
+          "name": "2026학년도 신강초등학교 방과후학교 연간운영계획(안).hwp",
+          "sha256": "3078de5ab36a02f91e510325135d12bf43deba47f02901d7dbc86cf1d79d2f2f",
+          "format": "hwp",
+          "text_chars": 30411,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        },
+        {
+          "name": "2026학년도 신강초등학교 초등돌봄교실 운영계획(안).hwp",
+          "sha256": "05cef3d00b2aa888da335b6b027b245a9eb130a18e37d8a238e95372eb1ba5e8",
+          "format": "hwp",
+          "text_chars": 18665,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002207",
+      "school_name": "서울신남초등학교",
+      "area": "yangcheon",
+      "stage": 2,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "status": "no_clock_detected",
+      "files": [
+        {
+          "name": "2026학년도 돌봄교실 운영계획.hwpx",
+          "sha256": "536696f41dda44b5ace491cce8ccb089715c15c1aa5b3a0d5a8c8ee89a169af9",
+          "format": "hwpx",
+          "text_chars": 4040,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        },
+        {
+          "name": "2026학년도 방과후·돌봄 연간운영계획.hwpx",
+          "sha256": "28da9b4da380c95e3a4c865cc2e9a89a454c3f06b67a0ec0954d729ae70fd034",
+          "format": "hwpx",
+          "text_chars": 27545,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002193",
+      "school_name": "서울신서초등학교",
+      "area": "yangcheon",
+      "stage": 2,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "status": "no_clock_detected",
+      "files": [
+        {
+          "name": "2026학년도 초등돌봄교실 운영 계획(안).hwp",
+          "sha256": "efd0cf9932a816b3fd1b287d2240bb0e77dab956996649e20e32b79773a6ac97",
+          "format": "hwp",
+          "text_chars": 8024,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        },
+        {
+          "name": "2026 신서초 방과후맞춤형 연간운영계획(안).hwp",
+          "sha256": "afff7ac894dd43a3cf6fa8435cc7baea87ed26de76219cd8deab522b75957174",
+          "format": "hwp",
+          "text_chars": 25107,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002203",
+      "school_name": "서울신원초등학교",
+      "area": "yangcheon",
+      "stage": 2,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "status": "no_clock_detected",
+      "files": [
+        {
+          "name": "(정보공시용)(심의안건 발의서)2026학년도 맞춤형.방과후교실 연간 및 1기 운영계획(안).hwp",
+          "sha256": "60af60d514c654408bac067821cf3b9cccee09013026bd3b021138774b2f067d",
+          "format": "hwp",
+          "text_chars": 7954,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        },
+        {
+          "name": "2026학년도 신원초 초등돌봄교실 운영계획안.hwp",
+          "sha256": "1c853b2912a6ce77dd238ccd7dd0c80cb5949898fa10fac3a0d7cdf99469a160",
+          "format": "hwp",
+          "text_chars": 19649,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002186",
+      "school_name": "서울신은초등학교",
+      "area": "yangcheon",
+      "stage": 2,
+      "operating_pilot": false,
+      "reason": "not_audited",
+      "status": "no_clock_detected",
+      "files": [
+        {
+          "name": "2026학년도 초등돌봄교실 운영계획(안).hwp",
+          "sha256": "d965598bf0937ef9714e6cb96c391cb825c98f6862c0dca9f1882d6e56c40655",
+          "format": "hwp",
+          "text_chars": 21358,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        },
+        {
+          "name": "2026학년도 신은초 맞춤형교실&amp;amp;방과후교실(위탁+민참) 프로그램 연간운영계획.hwp",
+          "sha256": "5349e96ca512892a6957583b72d7e2b14f0000faf5bb1d562290f49635255046",
+          "format": "hwp",
+          "text_chars": 25583,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002213",
+      "school_name": "서울양동초등학교",
+      "area": "yangcheon",
+      "stage": 2,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "status": "no_clock_detected",
+      "files": [
+        {
+          "name": "2026학년 방과후,맞춤형 프로그램 연간운영계획(안).hwp",
+          "sha256": "be64d021fcd89d5c95f7a129cdb0a727b3cc4ae18fda842d2b18bf219b8e33fa",
+          "format": "hwp",
+          "text_chars": 15946,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002202",
+      "school_name": "서울양원초등학교",
+      "area": "yangcheon",
+      "stage": 2,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "status": "no_clock_detected",
+      "files": [
+        {
+          "name": "2026학년도 서울양원초등학교 초등돌봄교실 운영 계획.pdf",
+          "sha256": "cc300fe2f6ca5ab166576a28f9fb2f71d4bd9b07eebc0c890b84e47f09e32360",
+          "format": "pdf",
+          "text_chars": 18067,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        },
+        {
+          "name": "2026학년도 서울양원초등학교 방과후·맞춤형교실 운영계획.pdf",
+          "sha256": "e7f2b35d221e1b390da3fb0097b539c042071a78a5c8ea408c2bf0e1266ac2dc",
+          "format": "pdf",
+          "text_chars": 12874,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002214",
+      "school_name": "서울월촌초등학교",
+      "area": "yangcheon",
+      "stage": 2,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "status": "no_clock_detected",
+      "files": [
+        {
+          "name": "2026학년도 월촌초 초등돌봄교실 운영계획.hwp",
+          "sha256": "39fb4f2d7f81d5b7450325e0925fa7d207a05f6978c87a367642421c5052cf58",
+          "format": "hwp",
+          "text_chars": 16404,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        },
+        {
+          "name": "2026학년도 월촌초 방과후학교 운영 계획.hwp",
+          "sha256": "3bb726b66534f0470fe26547fe3bb502e23b87f97dc962397e1a46f8f9729360",
+          "format": "hwp",
+          "text_chars": 18782,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002201",
+      "school_name": "서울정목초등학교",
+      "area": "yangcheon",
+      "stage": 2,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "status": "no_clock_detected",
+      "files": [
+        {
+          "name": "(정보공시)2026학년도 정목초 초등돌봄교실 운영 계획.pdf",
+          "sha256": "10ab1171e5a6989bfce119af367f96a689d060db0fea8af4a9f6d6beed4cc0cd",
+          "format": "pdf",
+          "text_chars": 13282,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        },
+        {
+          "name": "(정보공시)2026학년도 정목초 방과후학교 운영계획.pdf",
+          "sha256": "5d4c848128757549b8d720f6df1d3eb80aeb05be8abfff71a88c3739fdc6fa42",
+          "format": "pdf",
+          "text_chars": 21524,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        }
+      ]
+    },
+    {
+      "school_id": "B000003867",
+      "school_name": "관양초등학교",
+      "area": "dongan",
+      "stage": 3,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "status": "no_clock_detected",
+      "files": [
+        {
+          "name": "2026학년도 초등돌봄교실 연간운영계획.hwp",
+          "sha256": "417eeccff050757ce8c0b647e7a207459313267cf81a03a563741fc6505e8054",
+          "format": "hwp",
+          "text_chars": 8832,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        },
+        {
+          "name": "2026학년도 방과후프로그램 운영계획.hwp",
+          "sha256": "8eebeff180fd1abc32aaeb0167cd7b2f24ef3632381957190ac35c460c313271",
+          "format": "hwp",
+          "text_chars": 32654,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        }
+      ]
+    },
+    {
+      "school_id": "B000003860",
+      "school_name": "귀인초등학교",
+      "area": "dongan",
+      "stage": 3,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "status": "no_clock_detected",
+      "files": [
+        {
+          "name": "2026 선택형돌봄교실 운영 계획(귀인초).hwp",
+          "sha256": "a631163a551b2cdb8770a00d97f73313d9febcaf29be665bd5eeab3a0efb4b66",
+          "format": "hwp",
+          "text_chars": 33013,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        },
+        {
+          "name": "2026학년도 1학기 귀인초 방과후프로그램 운영 계획서.hwpx",
+          "sha256": "3d77c6dd53b2ebc25303a5c1f6094e14a9e918b2245cd8753f979ec535875b24",
+          "format": "hwpx",
+          "text_chars": 4396,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        },
+        {
+          "name": "2026학년도 초1~2맞춤형방과후프로그램 운영계획안(귀인초).hwp",
+          "sha256": "46313777f7e0cf100566ec3cb9cd9d63aab2644fbdb827304a9e5af0c23720fa",
+          "format": "hwp",
+          "text_chars": 31466,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        }
+      ]
+    },
+    {
+      "school_id": "B000003858",
+      "school_name": "동안초등학교",
+      "area": "dongan",
+      "stage": 3,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "status": "no_clock_detected",
+      "files": [
+        {
+          "name": "2026 방과후 프로그램 운영 계획(안)_re.pdf",
+          "sha256": "300e81dec154dd6f99342622d8b1d9eeb6ebd5c4a003b94100c58f721941777a",
+          "format": "pdf",
+          "text_chars": 10033,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        }
+      ]
+    },
+    {
+      "school_id": "B000003861",
+      "school_name": "민백초등학교",
+      "area": "dongan",
+      "stage": 3,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "status": "clock_found",
+      "files": [
+        {
+          "name": "2026학년도 초등 방과후·돌봄 운영 계획.hwpx",
+          "sha256": "5a95f2bc318314b02b006af5c044bd4634368b8ab3905ef3b9a6fbc81cfc3723",
+          "format": "hwpx",
+          "text_chars": 31328,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        },
+        {
+          "name": "2025학년도 늘봄학교 연간운영계획(안).hwp",
+          "sha256": "ff001d1429290f1fdebc7cab0e919e00342dbb623729bab01ef7d0b39dc9eef3",
+          "format": "hwp",
+          "text_chars": 32889,
+          "file_academic_year": 2025,
+          "clock_block_count": 1,
+          "clock_blocks": [
+            [
+              {
+                "line": 55,
+                "label": "4교시",
+                "start": "09:00",
+                "end": "12:10"
+              },
+              {
+                "line": 55,
+                "label": "4교시",
+                "start": "12:10",
+                "end": "13:00"
+              },
+              {
+                "line": 55,
+                "label": "점심",
+                "start": "13:00",
+                "end": "13:40"
+              },
+              {
+                "line": 55,
+                "label": "1교시",
+                "start": "13:50",
+                "end": "14:30"
+              },
+              {
+                "line": 55,
+                "label": "4교시",
+                "start": "09:00",
+                "end": "12:10"
+              },
+              {
+                "line": 55,
+                "label": "4교시",
+                "start": "12:10",
+                "end": "13:00"
+              },
+              {
+                "line": 55,
+                "label": "점심",
+                "start": "13:00",
+                "end": "13:40"
+              },
+              {
+                "line": 57,
+                "label": "4교시",
+                "start": "09:00",
+                "end": "12:10"
+              },
+              {
+                "line": 57,
+                "label": "4교시",
+                "start": "12:10",
+                "end": "13:00"
+              },
+              {
+                "line": 57,
+                "label": "점심",
+                "start": "13:00",
+                "end": "13:40"
+              },
+              {
+                "line": 57,
+                "label": "4교시",
+                "start": "09:00",
+                "end": "12:10"
+              },
+              {
+                "line": 57,
+                "label": "4교시",
+                "start": "12:10",
+                "end": "13:00"
+              },
+              {
+                "line": 57,
+                "label": "점심",
+                "start": "13:00",
+                "end": "13:40"
+              }
+            ]
+          ],
+          "grade1_weekday_periods": [],
+          "status": "clock_found"
+        }
+      ]
+    },
+    {
+      "school_id": "B000003862",
+      "school_name": "범계초등학교",
+      "area": "dongan",
+      "stage": 3,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "status": "no_clock_detected",
+      "files": [
+        {
+          "name": "2026학년도 수익자 방과후 프로그램 운영계획(정보공시).hwp",
+          "sha256": "6f13d502acd2ecb442902fd837324ef851478a6e20af22066ff738f72c6720d7",
+          "format": "hwp",
+          "text_chars": 14839,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        }
+      ]
+    },
+    {
+      "school_id": "B000003852",
+      "school_name": "샘모루초등학교",
+      "area": "dongan",
+      "stage": 3,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "status": "no_clock_detected",
+      "files": [
+        {
+          "name": "2026학년도 초등 방과후·돌봄 운영 계획-홈페이지.hwp",
+          "sha256": "45b65da2b2d1304091a1fd3c1e1ab46c0286d041b610ef5723be79f8d4de8b9c",
+          "format": "hwp",
+          "text_chars": 41400,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        }
+      ]
+    },
+    {
+      "school_id": "B000003865",
+      "school_name": "안양남초등학교",
+      "area": "dongan",
+      "stage": 3,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "status": "no_clock_detected",
+      "files": [
+        {
+          "name": "2026학년도 수익자 방과후 운영 계획.hwp",
+          "sha256": "82858f7bcde7846153466e5cf6e5f96834d8c83c90496d9cdf7fce553e28fb24",
+          "format": "hwp",
+          "text_chars": 32452,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        }
+      ]
+    },
+    {
+      "school_id": "B000003873",
+      "school_name": "안양신기초등학교",
+      "area": "dongan",
+      "stage": 3,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "status": "no_clock_detected",
+      "files": [
+        {
+          "name": "2026학년도 초등돌봄교실 연간 운영 계획.hwp",
+          "sha256": "e4450b026d01015ba9c4b0a72a5a96e88e022d5748a3412241ffc2dc675be915",
+          "format": "hwp",
+          "text_chars": 19076,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        },
+        {
+          "name": "2026학년도 초등방과후프로그램(방과후,초12맞춤포함) 운영계획.hwp",
+          "sha256": "cd9408003b663377e691df8d0f86759a6a7e0f419fd4c847dd644f189753d106",
+          "format": "hwp",
+          "text_chars": 23766,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        }
+      ]
+    },
+    {
+      "school_id": "B000003853",
+      "school_name": "안양중앙초등학교",
+      "area": "dongan",
+      "stage": 3,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "status": "no_clock_detected",
+      "files": [
+        {
+          "name": "2026학년도 안양중앙초 오후돌봄 연간 운영 계획서.hwp",
+          "sha256": "a1ec1892fd228c6f27e23d5f1cd8a8e39a81bbfe6119c9f63c894c105a1f14ba",
+          "format": "hwp",
+          "text_chars": 7914,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        },
+        {
+          "name": "2026학년도 초등 방과후.돌봄 운영 계획.hwpx",
+          "sha256": "c6b6855f5abefddc25281196578beb669eb68e64ba62d5e87fd51246e08444d2",
+          "format": "hwpx",
+          "text_chars": 14408,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        }
+      ]
+    },
+    {
+      "school_id": "B000003859",
+      "school_name": "평촌초등학교",
+      "area": "dongan",
+      "stage": 3,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "status": "no_clock_detected",
+      "files": [
+        {
+          "name": "2026학년도 평촌초 방과후 프로그램 운영 계획(안).pdf",
+          "sha256": "1859aa07c9f7385991793ffd89a47632b2b5f0eade108df043e0f5b7ca7fa868",
+          "format": "pdf",
+          "text_chars": 9524,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        },
+        {
+          "name": "2026학년도 평촌초 선택형돌봄 운영계획.pdf",
+          "sha256": "f08ac285a5056f95983122af862017eef19064d8da2e9eed427cb34d48310505",
+          "format": "pdf",
+          "text_chars": 3787,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        }
+      ]
+    },
+    {
+      "school_id": "B000004277",
+      "school_name": "광명광덕초등학교",
+      "area": "gwangmyeong",
+      "stage": 3,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "status": "clock_found",
+      "files": [
+        {
+          "name": "2026학년도 광명광덕초 초등돌봄교실 운영 계획(정보공시용).hwp",
+          "sha256": "ce335bdf8d7aa9da281c607a7ee954e04fd18fc60b56f3f68d352934b1bef677",
+          "format": "hwp",
+          "text_chars": 35047,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        },
+        {
+          "name": "2026학년도 광명광덕초 방과후학교 운영 계획(정보공시용).hwpx",
+          "sha256": "c46e225e16e8140d75cbe17f0e12d9f134d28eec09694c545e047fb39f661963",
+          "format": "hwpx",
+          "text_chars": 13159,
+          "file_academic_year": 2026,
+          "clock_block_count": 1,
+          "clock_blocks": [
+            [
+              {
+                "line": 44,
+                "label": "4교시",
+                "start": "09:00",
+                "end": "12:20"
+              },
+              {
+                "line": 44,
+                "label": "4교시",
+                "start": "12:20",
+                "end": "13:00"
+              },
+              {
+                "line": 44,
+                "label": "점심",
+                "start": "13:00",
+                "end": "13:40"
+              },
+              {
+                "line": 44,
+                "label": "쉬는시간",
+                "start": "13:40",
+                "end": "13:50"
+              },
+              {
+                "line": 44,
+                "label": "쉬는시간",
+                "start": "13:50",
+                "end": "14:30"
+              },
+              {
+                "line": 47,
+                "label": "5교시",
+                "start": "13:00",
+                "end": "13:40"
+              },
+              {
+                "line": 47,
+                "label": "5교시",
+                "start": "13:40",
+                "end": "13:50"
+              },
+              {
+                "line": 47,
+                "label": "쉬는시간",
+                "start": "13:50",
+                "end": "14:30"
+              },
+              {
+                "line": 47,
+                "label": "쉬는시간",
+                "start": "14:30",
+                "end": "14:40"
+              },
+              {
+                "line": 47,
+                "label": "쉬는시간",
+                "start": "14:40",
+                "end": "15:20"
+              },
+              {
+                "line": 50,
+                "label": "5교시",
+                "start": "09:00",
+                "end": "13:00"
+              },
+              {
+                "line": 50,
+                "label": "점심",
+                "start": "13:00",
+                "end": "13:40"
+              },
+              {
+                "line": 50,
+                "label": "5교시",
+                "start": "13:40",
+                "end": "13:50"
+              },
+              {
+                "line": 50,
+                "label": "쉬는시간",
+                "start": "13:50",
+                "end": "14:30"
+              },
+              {
+                "line": 50,
+                "label": "쉬는시간",
+                "start": "14:30",
+                "end": "14:40"
+              },
+              {
+                "line": 50,
+                "label": "쉬는시간",
+                "start": "14:40",
+                "end": "15:20"
+              },
+              {
+                "line": 50,
+                "label": "4교시",
+                "start": "09:00",
+                "end": "13:00"
+              },
+              {
+                "line": 50,
+                "label": "5교시",
+                "start": "13:00",
+                "end": "13:40"
+              },
+              {
+                "line": 50,
+                "label": "5교시",
+                "start": "13:40",
+                "end": "13:50"
+              },
+              {
+                "line": 50,
+                "label": "쉬는시간",
+                "start": "13:50",
+                "end": "14:30"
+              },
+              {
+                "line": 50,
+                "label": "쉬는시간",
+                "start": "14:30",
+                "end": "14:40"
+              },
+              {
+                "line": 50,
+                "label": "쉬는시간",
+                "start": "14:40",
+                "end": "15:20"
+              }
+            ]
+          ],
+          "grade1_weekday_periods": [],
+          "status": "clock_found"
+        }
+      ]
+    },
+    {
+      "school_id": "B000004270",
+      "school_name": "광명남초등학교",
+      "area": "gwangmyeong",
+      "stage": 3,
+      "operating_pilot": false,
+      "reason": "not_reviewed",
+      "status": "no_clock_detected",
+      "files": [
+        {
+          "name": "2025 방과후 자유수강 지원현황.xlsx",
+          "sha256": "4819ac8324857b6a0f6d8d30768d3395636dc64a214181d7c1d9780682a3e37a",
+          "format": "hwpx",
+          "text_chars": 0,
+          "file_academic_year": 2025,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        },
+        {
+          "name": "2026운영현황(2026.04.30현재).xlsx",
+          "sha256": "80c05e1e65536a2ae32ff6c7ec92fa9e616ad20f534b260a60e2572dfb5acbb2",
+          "format": "hwpx",
+          "text_chars": 0,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        },
+        {
+          "name": "2026학년도 초등돌봄교실 운영현황.hwpx",
+          "sha256": "c6c56f7b054d0c6a20b8f0d335d930e2c011cb5de7c4f31a664390f4b1257b8e",
+          "format": "hwpx",
+          "text_chars": 388,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        },
+        {
+          "name": "2026학년도 돌봄교실 운영 계획.hwp",
+          "sha256": "17c4f5626eae282a8bde9acf160fd44a2eb66eb4d461b7459bcc46efff489d52",
+          "format": "hwp",
+          "text_chars": 19929,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        },
+        {
+          "name": "2026학년도 맞춤형, 방과후 연간 운영 계획.pdf",
+          "sha256": "ae467f1f0a5d67fb863ae9975f016209a64171ca5ea539082d73b60629af5077",
+          "format": "pdf",
+          "text_chars": 24026,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        }
+      ]
+    },
+    {
+      "school_id": "B000004269",
+      "school_name": "광명서초등학교",
+      "area": "gwangmyeong",
+      "stage": 3,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "status": "clock_found",
+      "files": [
+        {
+          "name": "2026학년도 광명서초 방과후 돌봄 교육 운영 계획.hwp",
+          "sha256": "364bdc25c18e2d3f1e17a5ecf7c99e7d42e7999081acf4a604bb98821ccd5ac5",
+          "format": "hwp",
+          "text_chars": 60114,
+          "file_academic_year": 2026,
+          "clock_block_count": 1,
+          "clock_blocks": [
+            [
+              {
+                "line": 541,
+                "label": "점심",
+                "start": "09:00",
+                "end": "12:50"
+              },
+              {
+                "line": 547,
+                "label": "점심",
+                "start": "09:00",
+                "end": "12:50"
+              },
+              {
+                "line": 555,
+                "label": "4교시",
+                "start": "13:00",
+                "end": "14:30"
+              },
+              {
+                "line": 555,
+                "label": "5교시",
+                "start": "13:50",
+                "end": "15:20"
+              },
+              {
+                "line": 556,
+                "label": "5교시",
+                "start": "13:50",
+                "end": "15:20"
+              }
+            ]
+          ],
+          "grade1_weekday_periods": [],
+          "status": "clock_found"
+        }
+      ]
+    },
+    {
+      "school_id": "B000004272",
+      "school_name": "광문초등학교",
+      "area": "gwangmyeong",
+      "stage": 3,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "status": "no_clock_detected",
+      "files": [
+        {
+          "name": "2026학년도 광문초 돌봄 운영계획.pdf",
+          "sha256": "304925d71389edaffb60ad32b2a3a8bb05ca71a6ef25989b1c202ef0e1ff9897",
+          "format": "pdf",
+          "text_chars": 11138,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        },
+        {
+          "name": "2026학년도 광문초 방과후학교 운영계획.pdf",
+          "sha256": "dcf3b00649c477995bb7b1d2d6377ff961f486e3acdd508aa051b73453710f96",
+          "format": "pdf",
+          "text_chars": 11674,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        }
+      ]
+    },
+    {
+      "school_id": "B000004271",
+      "school_name": "광일초등학교",
+      "area": "gwangmyeong",
+      "stage": 3,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "status": "clock_found",
+      "files": [
+        {
+          "name": "2026학년도 광일초 방과후 돌봄교육 운영 계획.hwp",
+          "sha256": "9de6414bd7ab40ab5e1214445e64dfc6e6a277bb3cbf1d2d255056449f6d3e74",
+          "format": "hwp",
+          "text_chars": 50869,
+          "file_academic_year": 2026,
+          "clock_block_count": 1,
+          "clock_blocks": [
+            [
+              {
+                "line": 549,
+                "label": "점심",
+                "start": "09:00",
+                "end": "12:50"
+              },
+              {
+                "line": 555,
+                "label": "점심",
+                "start": "09:00",
+                "end": "12:50"
+              },
+              {
+                "line": 562,
+                "label": "점심",
+                "start": "09:00",
+                "end": "12:50"
+              },
+              {
+                "line": 570,
+                "label": "4교시",
+                "start": "13:00",
+                "end": "14:20"
+              },
+              {
+                "line": 570,
+                "label": "5교시",
+                "start": "13:50",
+                "end": "15:10"
+              },
+              {
+                "line": 571,
+                "label": "5교시",
+                "start": "13:50",
+                "end": "15:10"
+              }
+            ]
+          ],
+          "grade1_weekday_periods": [],
+          "status": "clock_found"
+        }
+      ]
+    },
+    {
+      "school_id": "B000004273",
+      "school_name": "서면초등학교",
+      "area": "gwangmyeong",
+      "stage": 3,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "status": "no_clock_detected",
+      "files": [
+        {
+          "name": "2026학년도 방과후학교 운영계획(최종).hwp",
+          "sha256": "d6dd014eaf0d160d464d8745c15ca1acb3922de3e47b8b5bea706523caa8b0f2",
+          "format": "hwp",
+          "text_chars": 16662,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        }
+      ]
+    },
+    {
+      "school_id": "B000004266",
+      "school_name": "안서초등학교",
+      "area": "gwangmyeong",
+      "stage": 3,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "status": "no_clock_detected",
+      "files": [
+        {
+          "name": "2026학년도 방과후 프로그램 운영 계획.hwp",
+          "sha256": "9d55f7aecc01588cfd458d8cd6875eed47d035bbb83cfd911c7f5669b16a7350",
+          "format": "hwp",
+          "text_chars": 10724,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        }
+      ]
+    },
+    {
+      "school_id": "B000004265",
+      "school_name": "연서초등학교",
+      "area": "gwangmyeong",
+      "stage": 3,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "status": "no_clock_detected",
+      "files": [
+        {
+          "name": "2026학년도 방과후학교연간운영계획(연서초 정보공시).pdf",
+          "sha256": "3b40422f04a474a7d94ac3f266994342b529b9dbd80f24a66977a29913619287",
+          "format": "pdf",
+          "text_chars": 26658,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        }
+      ]
+    },
+    {
+      "school_id": "B000003993",
+      "school_name": "동천초등학교",
+      "area": "suji",
+      "stage": 3,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "status": "no_clock_detected",
+      "files": [
+        {
+          "name": "2026학년도 동천초 초등돌봄교실 운영 계획.hwp",
+          "sha256": "a967a734f563aef219c6b5d6e49224f8005a8839c75bd4385817b69919e6e709",
+          "format": "hwp",
+          "text_chars": 13980,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        },
+        {
+          "name": "2026학년도 동천초등학교 방과후학교 운영계획.hwp",
+          "sha256": "ed83a2ddf4694f3c1d4ccf0a93fed913e4303b94eba0e637d71d9648ba86a0ef",
+          "format": "hwp",
+          "text_chars": 38954,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        }
+      ]
+    },
+    {
+      "school_id": "B000025542",
+      "school_name": "매봉초등학교",
+      "area": "suji",
+      "stage": 3,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "status": "no_clock_detected",
+      "files": [
+        {
+          "name": "초등돌봄교실 운영계획(매봉초).hwp",
+          "sha256": "2b16a3f6760a04f78ec6412f78d63afe31e7f3a62a9aaa998223c025c28dcd20",
+          "format": "hwp",
+          "text_chars": 12954,
+          "file_academic_year": null,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        },
+        {
+          "name": "방과후학교 운영계획(매봉초).hwp",
+          "sha256": "40be7d60128c2b46170f8540a75b8045a880fd1b9337f49aca9890030e5b88c2",
+          "format": "hwp",
+          "text_chars": 42712,
+          "file_academic_year": null,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        }
+      ]
+    },
+    {
+      "school_id": "B000003980",
+      "school_name": "서원초등학교",
+      "area": "suji",
+      "stage": 3,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "status": "no_clock_detected",
+      "files": [
+        {
+          "name": "2026학년도 방과후 돌봄 운영 계획(안)..hwp",
+          "sha256": "de2fc13c5600aaea30a5bc21bf11d44cffa8ca28f1ec91259ccbe9a74dcabad7",
+          "format": "hwp",
+          "text_chars": 26005,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        }
+      ]
+    },
+    {
+      "school_id": "B000003978",
+      "school_name": "솔개초등학교",
+      "area": "suji",
+      "stage": 3,
+      "operating_pilot": false,
+      "reason": "unreadable",
+      "status": "no_clock_detected",
+      "files": [
+        {
+          "name": "3. 첨부2-2026학년도 방과후 프로그램 세부 운영 계획.hwp",
+          "sha256": "ed9347017f573d0c185f4b02b276d8c265ddc54ca61ae8905da6bcc7a0ee8727",
+          "format": "hwp",
+          "text_chars": 7163,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        },
+        {
+          "name": "2. 첨부1-2026학년도 방과후 운영 계획-.hwp",
+          "sha256": "d959297a9ea98ebd4066f76fa1f2fc9e4eaa065db7dba06bbd340147559f859b",
+          "format": "hwp",
+          "text_chars": 11251,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        }
+      ]
+    },
+    {
+      "school_id": "B000003995",
+      "school_name": "수지초등학교",
+      "area": "suji",
+      "stage": 3,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "status": "no_clock_detected",
+      "files": [
+        {
+          "name": "2026학년도 수지초등학교 방과후학교 연간 운영 계획(변경안) (3).hwp",
+          "sha256": "8d9de0afe9bf6b51604a4ccaeb3644f143ae08a541579f3d265a9f50142d61e0",
+          "format": "hwp",
+          "text_chars": 43461,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        }
+      ]
+    },
+    {
+      "school_id": "B000003985",
+      "school_name": "신리초등학교",
+      "area": "suji",
+      "stage": 3,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "status": "no_clock_detected",
+      "files": [
+        {
+          "name": "2026학년도 신리초 초등돌봄교실 운영계획.hwp",
+          "sha256": "5627a9d541857d1354d1016485dabcadfa9cb5f2c13225ce57b7035d286e9f4e",
+          "format": "hwp",
+          "text_chars": 40873,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        },
+        {
+          "name": "2026학년도 신리초 방과후학교 운영 계획.hwpx",
+          "sha256": "9c6fb80d89b72fc9beb80e34122499348da7b940618da738609846676a789f5c",
+          "format": "hwpx",
+          "text_chars": 37235,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        }
+      ]
+    },
+    {
+      "school_id": "B000003979",
+      "school_name": "용인심곡초등학교",
+      "area": "suji",
+      "stage": 3,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "status": "no_clock_detected",
+      "files": [
+        {
+          "name": "2. 2026학년도 방과후학교 운영계획서(변경안).hwp",
+          "sha256": "e11b85d585b8bcf90c8d6a280c5ec0268b744e16deff6ea0e303f0890b8815df",
+          "format": "hwp",
+          "text_chars": 35739,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        }
+      ]
+    },
+    {
+      "school_id": "B000003977",
+      "school_name": "용인한빛초등학교",
+      "area": "suji",
+      "stage": 3,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "status": "no_clock_detected",
+      "files": [
+        {
+          "name": "2026학년도 용인한빛초등학교 돌봄교실 운영 계획.hwp",
+          "sha256": "74aa02a3b72761dcaed12c58e7593d10dc3e9ea8ce974ed8055ccf79ee8180ec",
+          "format": "hwp",
+          "text_chars": 17697,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        },
+        {
+          "name": "2026학년도 용인한빛초등학교 방과후학교 운영계획(2.23.).hwp",
+          "sha256": "cb326251c81ee9acd7404e0a644257cdb36840ea0a937c234bd12c2454d0518f",
+          "format": "hwp",
+          "text_chars": 42410,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        }
+      ]
+    },
+    {
+      "school_id": "B000003999",
+      "school_name": "죽전초등학교",
+      "area": "suji",
+      "stage": 3,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "status": "no_clock_detected",
+      "files": [
+        {
+          "name": "2026학년도 초등돌봄교실 운영 계획서-26.5.8정보공시용(개인정보x).hwp",
+          "sha256": "2da72229c7d073be72e55d29c9fe63ae3866beb256023c2a4555e3bd0b35d8b9",
+          "format": "hwp",
+          "text_chars": 8988,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        },
+        {
+          "name": "2026학년도 죽전초등학교 방과후학교 운영 계획 (홈페이지게시).hwpx",
+          "sha256": "55975b000e53ee995a018c6226f843686f62889aefe6522424822104e7cb386e",
+          "format": "hwpx",
+          "text_chars": 17346,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        }
+      ]
+    },
+    {
+      "school_id": "B000003997",
+      "school_name": "풍덕초등학교",
+      "area": "suji",
+      "stage": 3,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "status": "no_clock_detected",
+      "files": [
+        {
+          "name": "2026학년도 풍덕초등학교 초등돌봄교실 운영 계획.hwp",
+          "sha256": "58d29ec68b469d363e07a684a5218a0f41305e3ef9b8f0ea4b1b7d8318e577c8",
+          "format": "hwp",
+          "text_chars": 23073,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        },
+        {
+          "name": "2026학년도 풍덕초등학교 방과후학교 운영 계획.hwpx",
+          "sha256": "17e2f7bbacb87b9d48d497486e7b1d2aff73d3d025f7918d482f8302f04a422c",
+          "format": "hwpx",
+          "text_chars": 36741,
+          "file_academic_year": 2026,
+          "clock_block_count": 0,
+          "clock_blocks": [],
+          "grade1_weekday_periods": [],
+          "status": "no_clock_detected"
+        }
+      ]
+    }
+  ]
+}

@@ -61,6 +61,12 @@ REVIEW_SETS = [
     {'name': 'wave3_gyeonggi', 'clock': 'school_day_review_wave3_gyeonggi_20261011.json',
      'estimates': 'grade1_dismissal_estimates_wave3_gyeonggi_20261011.json', 'care': 'care_review_wave3_gyeonggi_20261011.json',
      'reviewed_on': '2026-10-11', 'confirmed': True},  # user confirmed 2026-10-11
+    # 어디초 2.0 P2: operating-pilot schools whose 2-가 has no bell schedule, read from the 15-라 plan.
+    # Paths are relative to docs/research/audit2, so this set reaches into docs/research/pivot.
+    {'name': 'pivot_pilot_15ra', 'clock': '../pivot/p2_school_day_review_pilot_20261021.json',
+     'estimates': '../pivot/p2_dismissal_estimates_pilot_20261021.json', 'care': '../pivot/p2_care_review_pilot_20261021.json',
+     'clock_source': '학교알리미 15-라 방과후·돌봄 운영 계획 2026년 5월 공시(초1~2 맞춤형 시간표)',
+     'reviewed_on': '2026-10-21', 'confirmed': False},  # awaiting user confirmation
 ]
 
 
@@ -84,7 +90,7 @@ def _build_set(review_set: dict, snapshot: str, days: list, weekdays: list, care
             'lunch_position': clock['lunch_position'], 'p4_end': clock['p4_end'],
             'lunch_start': clock['lunch'][0], 'lunch_end': clock['lunch'][1], 'p5_end': clock['p5_end'],
             'p5_end_inferred': any(i.startswith('p5_end') for i in clock.get('inferred', [])),
-            'clock_source': '학교알리미 2-가 학교교육과정 2026년 4월 공시',
+            'clock_source': review_set.get('clock_source', '학교알리미 2-가 학교교육과정 2026년 4월 공시'),
             'periods_source': sources,
             'reviewed_on': reviewed_on, 'snapshot_date': snapshot,
         })

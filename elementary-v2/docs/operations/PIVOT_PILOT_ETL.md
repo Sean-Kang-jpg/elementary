@@ -26,7 +26,7 @@
   - `docs/research/pivot/p1_afterschool_operating_<날짜>.json` — P1 우선 44곳
   - `docs/research/pivot/p2_dismissal_operating_<날짜>.json` — P2 우선 17곳
   범위가 바뀌면 매니페스트만 다시 만든다. 다른 목록을 손으로 유지하지 않는다.
-- 파일럿 브랜치는 `load_school_afterschool.py`, `load_school_day_estimates.py`, v3 추출기를 고치지 않는다. 바꿀 일이 생기면 팀원에게 요청한다.
+- 방과후 적재기 `load_school_afterschool.py`와 v3 추출기는 팀원만 고친다. 하교 예상 적재기 `load_school_day_estimates.py`는 P2를 맡은 파일럿 브랜치가 고친다(2026-10-21: 세트별 `clock_source`, 15-라 세트 추가).
 - 새 파일은 이름에 `pivot`을 붙인다(`etl/*pivot*`, `docs/research/pivot/`).
 - 화면 작업(결과 3분류, 홈)은 `MySchedule`·시간표 엔진을 건드리므로, 팀원의 진행 중 시간표 화면 변경이 커밋된 뒤에 시작한다.
 
@@ -60,7 +60,7 @@
 | 트랙 | 대상 | 상태 | 갱신 |
 | --- | --- | --- | --- |
 | P1 | 운영 파일럿 44곳 | 인수 대기 — [인수 메모](PIVOT_P1_HANDOFF.md) | 2026-10-20 |
-| P2 | 운영 파일럿 17곳 | 진단 완료(`p2_gap_diagnosis_20261020.json`): 150곳 중 134곳, 파일럿 17곳 전부가 2-가 문서에 시정표 자체가 없음(추출 실패 아님). NEIS 요일별 교시 수는 있음. 다른 출처 결정 대기 | 2026-10-21 |
+| P2 | 운영 파일럿 17곳 | 15-라 원문 검수 완료(`p2_school_day_review_pilot_20261021.json`): 10곳 요일별 하교 완성(그중 2곳 하루 값 추정), 2곳 맞춤형 시작 시각만, 5곳 단서 없음 → 학교 전화. 적재 세트 `pivot_pilot_15ra` dry-run 1,245곳·위반 0, **사용자 확인 대기** | 2026-10-21 |
 | P3 | 분당·판교, 위례 | 질문지 준비 전 | 2026-10-20 |
 | P4 | 수요 등록 | 설계 전 — 연락처 수집 여부 결정 대기 | 2026-10-20 |
 
