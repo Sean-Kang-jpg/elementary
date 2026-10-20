@@ -1,0 +1,5403 @@
+{
+  "generated": "2026-10-20",
+  "decision": "2026-10-20 사용자 결정: 학군지 10곳 + 위례, 3단계 확장. 운영 파일럿은 분당·판교와 위례",
+  "source": "public contract via anon key: school_master, school_day_estimates, school_care_hours, school_afterschool_summary",
+  "summary": {
+    "bundang": {
+      "stage": 1,
+      "schools": 38,
+      "grade1": 3113,
+      "missing": {
+        "dismissal": 13,
+        "care_hours": 0,
+        "afterschool": 38
+      }
+    },
+    "gangnam": {
+      "stage": 1,
+      "schools": 34,
+      "grade1": 2999,
+      "missing": {
+        "dismissal": 16,
+        "care_hours": 0,
+        "afterschool": 1
+      }
+    },
+    "seocho": {
+      "stage": 1,
+      "schools": 23,
+      "grade1": 2651,
+      "missing": {
+        "dismissal": 16,
+        "care_hours": 0,
+        "afterschool": 0
+      }
+    },
+    "songpa": {
+      "stage": 1,
+      "schools": 41,
+      "grade1": 3851,
+      "missing": {
+        "dismissal": 31,
+        "care_hours": 0,
+        "afterschool": 2
+      }
+    },
+    "wirye": {
+      "stage": 1,
+      "schools": 7,
+      "grade1": 1010,
+      "missing": {
+        "dismissal": 2,
+        "care_hours": 0,
+        "afterschool": 6
+      }
+    },
+    "nowon": {
+      "stage": 2,
+      "schools": 42,
+      "grade1": 2397,
+      "missing": {
+        "dismissal": 29,
+        "care_hours": 0,
+        "afterschool": 2
+      }
+    },
+    "yangcheon": {
+      "stage": 2,
+      "schools": 30,
+      "grade1": 2321,
+      "missing": {
+        "dismissal": 15,
+        "care_hours": 0,
+        "afterschool": 4
+      }
+    },
+    "dongan": {
+      "stage": 3,
+      "schools": 26,
+      "grade1": 2160,
+      "missing": {
+        "dismissal": 10,
+        "care_hours": 0,
+        "afterschool": 26
+      }
+    },
+    "gwangmyeong": {
+      "stage": 3,
+      "schools": 25,
+      "grade1": 1823,
+      "missing": {
+        "dismissal": 8,
+        "care_hours": 0,
+        "afterschool": 25
+      }
+    },
+    "suji": {
+      "stage": 3,
+      "schools": 32,
+      "grade1": 2792,
+      "missing": {
+        "dismissal": 10,
+        "care_hours": 0,
+        "afterschool": 32
+      }
+    }
+  },
+  "schools": [
+    {
+      "school_id": "B000003751",
+      "school_name": "구미초등학교",
+      "road_address": "경기도 성남시 분당구 미금로22번길 25",
+      "grade1_students": 77,
+      "area": "bundang",
+      "wirye": false,
+      "stage": 1,
+      "operating_pilot": true,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": false
+      },
+      "missing": [
+        "afterschool"
+      ]
+    },
+    {
+      "school_id": "B000003745",
+      "school_name": "낙생초등학교",
+      "road_address": "경기도 성남시 분당구 서판교로74번길 11",
+      "grade1_students": 137,
+      "area": "bundang",
+      "wirye": false,
+      "stage": 1,
+      "operating_pilot": true,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": false
+      },
+      "missing": [
+        "dismissal",
+        "afterschool"
+      ]
+    },
+    {
+      "school_id": "B000003770",
+      "school_name": "내정초등학교",
+      "road_address": "경기도 성남시 분당구 내정로174번길 19",
+      "grade1_students": 152,
+      "area": "bundang",
+      "wirye": false,
+      "stage": 1,
+      "operating_pilot": true,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": false
+      },
+      "missing": [
+        "afterschool"
+      ]
+    },
+    {
+      "school_id": "B000003766",
+      "school_name": "늘푸른초등학교",
+      "road_address": "경기도 성남시 분당구 정자일로 87",
+      "grade1_students": 181,
+      "area": "bundang",
+      "wirye": false,
+      "stage": 1,
+      "operating_pilot": true,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": false
+      },
+      "missing": [
+        "dismissal",
+        "afterschool"
+      ]
+    },
+    {
+      "school_id": "B000003739",
+      "school_name": "당촌초등학교",
+      "road_address": "경기도 성남시 분당구 분당로 196",
+      "grade1_students": 64,
+      "area": "bundang",
+      "wirye": false,
+      "stage": 1,
+      "operating_pilot": true,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": false
+      },
+      "missing": [
+        "afterschool"
+      ]
+    },
+    {
+      "school_id": "B000003768",
+      "school_name": "돌마초등학교",
+      "road_address": "경기도 성남시 분당구 야탑로 96-7",
+      "grade1_students": 51,
+      "area": "bundang",
+      "wirye": false,
+      "stage": 1,
+      "operating_pilot": true,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": false
+      },
+      "missing": [
+        "afterschool"
+      ]
+    },
+    {
+      "school_id": "B000003755",
+      "school_name": "백현초등학교",
+      "road_address": "경기도 성남시 분당구 백현로144번길 26",
+      "grade1_students": 7,
+      "area": "bundang",
+      "wirye": false,
+      "stage": 1,
+      "operating_pilot": true,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": false
+      },
+      "missing": [
+        "dismissal",
+        "afterschool"
+      ]
+    },
+    {
+      "school_id": "B000003743",
+      "school_name": "보평초등학교",
+      "road_address": "경기도 성남시 분당구 동판교로 154",
+      "grade1_students": 107,
+      "area": "bundang",
+      "wirye": false,
+      "stage": 1,
+      "operating_pilot": true,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": false
+      },
+      "missing": [
+        "afterschool"
+      ]
+    },
+    {
+      "school_id": "B000003761",
+      "school_name": "분당초등학교",
+      "road_address": "경기도 성남시 분당구 중앙공원로32번길 20",
+      "grade1_students": 71,
+      "area": "bundang",
+      "wirye": false,
+      "stage": 1,
+      "operating_pilot": true,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": false
+      },
+      "missing": [
+        "afterschool"
+      ]
+    },
+    {
+      "school_id": "B000003752",
+      "school_name": "불곡초등학교",
+      "road_address": "경기도 성남시 분당구 무지개로 129",
+      "grade1_students": 60,
+      "area": "bundang",
+      "wirye": false,
+      "stage": 1,
+      "operating_pilot": true,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": false
+      },
+      "missing": [
+        "dismissal",
+        "afterschool"
+      ]
+    },
+    {
+      "school_id": "B000003756",
+      "school_name": "불정초등학교",
+      "road_address": "경기도 성남시 분당구 돌마로 250",
+      "grade1_students": 81,
+      "area": "bundang",
+      "wirye": false,
+      "stage": 1,
+      "operating_pilot": true,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": false
+      },
+      "missing": [
+        "afterschool"
+      ]
+    },
+    {
+      "school_id": "B000003747",
+      "school_name": "산운초등학교",
+      "road_address": "경기도 성남시 분당구 판교원로117번길 11",
+      "grade1_students": 88,
+      "area": "bundang",
+      "wirye": false,
+      "stage": 1,
+      "operating_pilot": true,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": false
+      },
+      "missing": [
+        "afterschool"
+      ]
+    },
+    {
+      "school_id": "B000003741",
+      "school_name": "상탑초등학교",
+      "road_address": "경기도 성남시 분당구 판교로 647",
+      "grade1_students": 40,
+      "area": "bundang",
+      "wirye": false,
+      "stage": 1,
+      "operating_pilot": true,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": false
+      },
+      "missing": [
+        "afterschool"
+      ]
+    },
+    {
+      "school_id": "B000003758",
+      "school_name": "서당초등학교",
+      "road_address": "경기도 성남시 분당구 돌마로476번길 30",
+      "grade1_students": 92,
+      "area": "bundang",
+      "wirye": false,
+      "stage": 1,
+      "operating_pilot": true,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": false
+      },
+      "missing": [
+        "afterschool"
+      ]
+    },
+    {
+      "school_id": "B000003760",
+      "school_name": "서현초등학교",
+      "road_address": "경기도 성남시 분당구 중앙공원로39번길 12",
+      "grade1_students": 107,
+      "area": "bundang",
+      "wirye": false,
+      "stage": 1,
+      "operating_pilot": true,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": false
+      },
+      "missing": [
+        "afterschool"
+      ]
+    },
+    {
+      "school_id": "B000003753",
+      "school_name": "성남매송초등학교",
+      "road_address": "경기도 성남시 분당구 탄천로 97",
+      "grade1_students": 91,
+      "area": "bundang",
+      "wirye": false,
+      "stage": 1,
+      "operating_pilot": true,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": false
+      },
+      "missing": [
+        "dismissal",
+        "afterschool"
+      ]
+    },
+    {
+      "school_id": "B000003754",
+      "school_name": "성남미금초등학교",
+      "road_address": "경기도 성남시 분당구 미금로 151",
+      "grade1_students": 88,
+      "area": "bundang",
+      "wirye": false,
+      "stage": 1,
+      "operating_pilot": true,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": false
+      },
+      "missing": [
+        "dismissal",
+        "afterschool"
+      ]
+    },
+    {
+      "school_id": "B000003742",
+      "school_name": "성남송현초등학교",
+      "road_address": "경기도 성남시 분당구 동판교로 258",
+      "grade1_students": 150,
+      "area": "bundang",
+      "wirye": false,
+      "stage": 1,
+      "operating_pilot": true,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": false
+      },
+      "missing": [
+        "dismissal",
+        "afterschool"
+      ]
+    },
+    {
+      "school_id": "B000003737",
+      "school_name": "성남신기초등학교",
+      "road_address": "경기도 성남시 분당구 황새울로 74",
+      "grade1_students": 61,
+      "area": "bundang",
+      "wirye": false,
+      "stage": 1,
+      "operating_pilot": true,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": false
+      },
+      "missing": [
+        "afterschool"
+      ]
+    },
+    {
+      "school_id": "B000003764",
+      "school_name": "성남장안초등학교",
+      "road_address": "경기도 성남시 분당구 장안로51번길 10",
+      "grade1_students": 49,
+      "area": "bundang",
+      "wirye": false,
+      "stage": 1,
+      "operating_pilot": true,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": false
+      },
+      "missing": [
+        "afterschool"
+      ]
+    },
+    {
+      "school_id": "B000003771",
+      "school_name": "성남정자초등학교",
+      "road_address": "경기도 성남시 분당구 분당수서로 442",
+      "grade1_students": 110,
+      "area": "bundang",
+      "wirye": false,
+      "stage": 1,
+      "operating_pilot": true,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": false
+      },
+      "missing": [
+        "afterschool"
+      ]
+    },
+    {
+      "school_id": "B000024167",
+      "school_name": "성남화랑초등학교",
+      "road_address": "경기도 성남시 분당구 동판교로 77",
+      "grade1_students": 26,
+      "area": "bundang",
+      "wirye": false,
+      "stage": 1,
+      "operating_pilot": true,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": false
+      },
+      "missing": [
+        "afterschool"
+      ]
+    },
+    {
+      "school_id": "B000003772",
+      "school_name": "수내초등학교",
+      "road_address": "경기도 성남시 분당구 백현로243번길 12",
+      "grade1_students": 123,
+      "area": "bundang",
+      "wirye": false,
+      "stage": 1,
+      "operating_pilot": true,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": false
+      },
+      "missing": [
+        "dismissal",
+        "afterschool"
+      ]
+    },
+    {
+      "school_id": "B000003746",
+      "school_name": "신백현초등학교",
+      "road_address": "경기도 성남시 분당구 판교역로14번길 42",
+      "grade1_students": 84,
+      "area": "bundang",
+      "wirye": false,
+      "stage": 1,
+      "operating_pilot": true,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": false
+      },
+      "missing": [
+        "dismissal",
+        "afterschool"
+      ]
+    },
+    {
+      "school_id": "B000003740",
+      "school_name": "안말초등학교",
+      "road_address": "경기도 성남시 분당구 양현로 104",
+      "grade1_students": 79,
+      "area": "bundang",
+      "wirye": false,
+      "stage": 1,
+      "operating_pilot": true,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": false
+      },
+      "missing": [
+        "afterschool"
+      ]
+    },
+    {
+      "school_id": "B000003762",
+      "school_name": "야탑초등학교",
+      "road_address": "경기도 성남시 분당구 양현로 400",
+      "grade1_students": 81,
+      "area": "bundang",
+      "wirye": false,
+      "stage": 1,
+      "operating_pilot": true,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": false
+      },
+      "missing": [
+        "dismissal",
+        "afterschool"
+      ]
+    },
+    {
+      "school_id": "B000003759",
+      "school_name": "양영초등학교",
+      "road_address": "경기도 성남시 분당구 불정로406번길 17",
+      "grade1_students": 11,
+      "area": "bundang",
+      "wirye": false,
+      "stage": 1,
+      "operating_pilot": true,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": false
+      },
+      "missing": [
+        "afterschool"
+      ]
+    },
+    {
+      "school_id": "B000003750",
+      "school_name": "오리초등학교",
+      "road_address": "경기도 성남시 분당구 미금로 121",
+      "grade1_students": 4,
+      "area": "bundang",
+      "wirye": false,
+      "stage": 1,
+      "operating_pilot": true,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": false
+      },
+      "missing": [
+        "afterschool"
+      ]
+    },
+    {
+      "school_id": "B000003748",
+      "school_name": "운중초등학교",
+      "road_address": "경기도 성남시 분당구 운중로45번길 8",
+      "grade1_students": 66,
+      "area": "bundang",
+      "wirye": false,
+      "stage": 1,
+      "operating_pilot": true,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": false
+      },
+      "missing": [
+        "afterschool"
+      ]
+    },
+    {
+      "school_id": "B000003763",
+      "school_name": "이매초등학교",
+      "road_address": "경기도 성남시 분당구 양현로 146",
+      "grade1_students": 56,
+      "area": "bundang",
+      "wirye": false,
+      "stage": 1,
+      "operating_pilot": true,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": false
+      },
+      "missing": [
+        "afterschool"
+      ]
+    },
+    {
+      "school_id": "B000003767",
+      "school_name": "중탑초등학교",
+      "road_address": "경기도 성남시 분당구 벌말로 68",
+      "grade1_students": 57,
+      "area": "bundang",
+      "wirye": false,
+      "stage": 1,
+      "operating_pilot": true,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": false
+      },
+      "missing": [
+        "dismissal",
+        "afterschool"
+      ]
+    },
+    {
+      "school_id": "B000003749",
+      "school_name": "청솔초등학교",
+      "road_address": "경기도 성남시 분당구 금곡로 243",
+      "grade1_students": 28,
+      "area": "bundang",
+      "wirye": false,
+      "stage": 1,
+      "operating_pilot": true,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": false
+      },
+      "missing": [
+        "afterschool"
+      ]
+    },
+    {
+      "school_id": "B000003738",
+      "school_name": "초림초등학교",
+      "road_address": "경기도 성남시 분당구 수내로90번길 26",
+      "grade1_students": 122,
+      "area": "bundang",
+      "wirye": false,
+      "stage": 1,
+      "operating_pilot": true,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": false
+      },
+      "missing": [
+        "afterschool"
+      ]
+    },
+    {
+      "school_id": "B000003757",
+      "school_name": "탄천초등학교",
+      "road_address": "경기도 성남시 분당구 내정로 20",
+      "grade1_students": 55,
+      "area": "bundang",
+      "wirye": false,
+      "stage": 1,
+      "operating_pilot": true,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": false
+      },
+      "missing": [
+        "afterschool"
+      ]
+    },
+    {
+      "school_id": "B000026906",
+      "school_name": "판교대장초등학교",
+      "road_address": "경기도 성남시 분당구 판교대장로5길 71",
+      "grade1_students": 259,
+      "area": "bundang",
+      "wirye": false,
+      "stage": 1,
+      "operating_pilot": true,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": false
+      },
+      "missing": [
+        "dismissal",
+        "afterschool"
+      ]
+    },
+    {
+      "school_id": "B000003744",
+      "school_name": "판교초등학교",
+      "road_address": "경기도 성남시 분당구 판교원로 231",
+      "grade1_students": 117,
+      "area": "bundang",
+      "wirye": false,
+      "stage": 1,
+      "operating_pilot": true,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": false
+      },
+      "missing": [
+        "afterschool"
+      ]
+    },
+    {
+      "school_id": "B000003769",
+      "school_name": "하탑초등학교",
+      "road_address": "경기도 성남시 분당구 양현로 262",
+      "grade1_students": 72,
+      "area": "bundang",
+      "wirye": false,
+      "stage": 1,
+      "operating_pilot": true,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": false
+      },
+      "missing": [
+        "afterschool"
+      ]
+    },
+    {
+      "school_id": "B000003765",
+      "school_name": "한솔초등학교",
+      "road_address": "경기도 성남시 분당구 돌마로 303",
+      "grade1_students": 9,
+      "area": "bundang",
+      "wirye": false,
+      "stage": 1,
+      "operating_pilot": true,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": false
+      },
+      "missing": [
+        "dismissal",
+        "afterschool"
+      ]
+    },
+    {
+      "school_id": "B000002288",
+      "school_name": "서울개원초등학교",
+      "road_address": "서울특별시 강남구 선릉로 29",
+      "grade1_students": 120,
+      "area": "gangnam",
+      "wirye": false,
+      "stage": 1,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": []
+    },
+    {
+      "school_id": "B000002286",
+      "school_name": "서울개일초등학교",
+      "road_address": "서울특별시 강남구 개포로 401",
+      "grade1_students": 104,
+      "area": "gangnam",
+      "wirye": false,
+      "stage": 1,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": []
+    },
+    {
+      "school_id": "B000024069",
+      "school_name": "서울개포초등학교",
+      "road_address": "서울특별시 강남구 삼성로4길 30",
+      "grade1_students": 104,
+      "area": "gangnam",
+      "wirye": false,
+      "stage": 1,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": []
+    },
+    {
+      "school_id": "B000030583",
+      "school_name": "서울개현초등학교",
+      "road_address": "서울특별시 강남구 선릉로 15",
+      "grade1_students": 125,
+      "area": "gangnam",
+      "wirye": false,
+      "stage": 1,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": [
+        "dismissal"
+      ]
+    },
+    {
+      "school_id": "B000002281",
+      "school_name": "서울구룡초등학교",
+      "road_address": "서울특별시 강남구 개포로 263",
+      "grade1_students": 88,
+      "area": "gangnam",
+      "wirye": false,
+      "stage": 1,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": []
+    },
+    {
+      "school_id": "B000002289",
+      "school_name": "서울논현초등학교",
+      "road_address": "서울특별시 강남구 강남대로120길 33",
+      "grade1_students": 22,
+      "area": "gangnam",
+      "wirye": false,
+      "stage": 1,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": [
+        "dismissal"
+      ]
+    },
+    {
+      "school_id": "B000002291",
+      "school_name": "서울대곡초등학교",
+      "road_address": "서울특별시 강남구 남부순환로 3022",
+      "grade1_students": 128,
+      "area": "gangnam",
+      "wirye": false,
+      "stage": 1,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": [
+        "dismissal"
+      ]
+    },
+    {
+      "school_id": "B000002285",
+      "school_name": "서울대도초등학교",
+      "road_address": "서울특별시 강남구 선릉로 209",
+      "grade1_students": 183,
+      "area": "gangnam",
+      "wirye": false,
+      "stage": 1,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": [
+        "dismissal"
+      ]
+    },
+    {
+      "school_id": "B000002278",
+      "school_name": "서울대모초등학교",
+      "road_address": "서울특별시 강남구 광평로20길 27",
+      "grade1_students": 99,
+      "area": "gangnam",
+      "wirye": false,
+      "stage": 1,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": []
+    },
+    {
+      "school_id": "B000002276",
+      "school_name": "서울대왕초등학교",
+      "road_address": "서울특별시 강남구 헌릉로618길 8",
+      "grade1_students": 83,
+      "area": "gangnam",
+      "wirye": false,
+      "stage": 1,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": []
+    },
+    {
+      "school_id": "B000002279",
+      "school_name": "서울대진초등학교",
+      "road_address": "서울특별시 강남구 개포로109길 74",
+      "grade1_students": 19,
+      "area": "gangnam",
+      "wirye": false,
+      "stage": 1,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": [
+        "dismissal"
+      ]
+    },
+    {
+      "school_id": "B000002299",
+      "school_name": "서울대청초등학교",
+      "road_address": "서울특별시 강남구 양재대로55길 28",
+      "grade1_students": 6,
+      "area": "gangnam",
+      "wirye": false,
+      "stage": 1,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": [
+        "dismissal"
+      ]
+    },
+    {
+      "school_id": "B000002283",
+      "school_name": "서울대치초등학교",
+      "road_address": "서울특별시 강남구 양재천로 363",
+      "grade1_students": 117,
+      "area": "gangnam",
+      "wirye": false,
+      "stage": 1,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": []
+    },
+    {
+      "school_id": "B000002292",
+      "school_name": "서울대현초등학교",
+      "road_address": "서울특별시 강남구 역삼로98길 16",
+      "grade1_students": 99,
+      "area": "gangnam",
+      "wirye": false,
+      "stage": 1,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": []
+    },
+    {
+      "school_id": "B000002284",
+      "school_name": "서울도곡초등학교",
+      "road_address": "서울특별시 강남구 선릉로64길 33",
+      "grade1_students": 77,
+      "area": "gangnam",
+      "wirye": false,
+      "stage": 1,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": []
+    },
+    {
+      "school_id": "B000002297",
+      "school_name": "서울도성초등학교",
+      "road_address": "서울특별시 강남구 역삼로 313",
+      "grade1_students": 177,
+      "area": "gangnam",
+      "wirye": false,
+      "stage": 1,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": []
+    },
+    {
+      "school_id": "B000002275",
+      "school_name": "서울봉은초등학교",
+      "road_address": "서울특별시 강남구 학동로 610",
+      "grade1_students": 88,
+      "area": "gangnam",
+      "wirye": false,
+      "stage": 1,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": [
+        "dismissal"
+      ]
+    },
+    {
+      "school_id": "B000002293",
+      "school_name": "서울삼릉초등학교",
+      "road_address": "서울특별시 강남구 봉은사로63길 22",
+      "grade1_students": 43,
+      "area": "gangnam",
+      "wirye": false,
+      "stage": 1,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": []
+    },
+    {
+      "school_id": "B000022754",
+      "school_name": "서울세명초등학교",
+      "road_address": "서울특별시 강남구 자곡로 55",
+      "grade1_students": 86,
+      "area": "gangnam",
+      "wirye": false,
+      "stage": 1,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": []
+    },
+    {
+      "school_id": "B000002277",
+      "school_name": "서울수서초등학교",
+      "road_address": "서울특별시 강남구 광평로51길 46",
+      "grade1_students": 21,
+      "area": "gangnam",
+      "wirye": false,
+      "stage": 1,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": [
+        "dismissal"
+      ]
+    },
+    {
+      "school_id": "B000002295",
+      "school_name": "서울신구초등학교",
+      "road_address": "서울특별시 강남구 압구정로18길 28",
+      "grade1_students": 62,
+      "area": "gangnam",
+      "wirye": false,
+      "stage": 1,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": []
+    },
+    {
+      "school_id": "B000002296",
+      "school_name": "서울압구정초등학교",
+      "road_address": "서울특별시 강남구 압구정로39길 29",
+      "grade1_students": 103,
+      "area": "gangnam",
+      "wirye": false,
+      "stage": 1,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": [
+        "dismissal"
+      ]
+    },
+    {
+      "school_id": "B000002280",
+      "school_name": "서울양전초등학교",
+      "road_address": "서울특별시 강남구 개포로 513",
+      "grade1_students": 20,
+      "area": "gangnam",
+      "wirye": false,
+      "stage": 1,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": []
+    },
+    {
+      "school_id": "B000002302",
+      "school_name": "서울언북초등학교",
+      "road_address": "서울특별시 강남구 삼성로135길 42",
+      "grade1_students": 168,
+      "area": "gangnam",
+      "wirye": false,
+      "stage": 1,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": []
+    },
+    {
+      "school_id": "B000002282",
+      "school_name": "서울언주초등학교",
+      "road_address": "서울특별시 강남구 남부순환로363길 19",
+      "grade1_students": 164,
+      "area": "gangnam",
+      "wirye": false,
+      "stage": 1,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": []
+    },
+    {
+      "school_id": "B000002298",
+      "school_name": "서울역삼초등학교",
+      "road_address": "서울특별시 강남구 강남대로66길 21",
+      "grade1_students": 28,
+      "area": "gangnam",
+      "wirye": false,
+      "stage": 1,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": [
+        "dismissal"
+      ]
+    },
+    {
+      "school_id": "B000002300",
+      "school_name": "서울영희초등학교",
+      "road_address": "서울특별시 강남구 일원로 21",
+      "grade1_students": 27,
+      "area": "gangnam",
+      "wirye": false,
+      "stage": 1,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": [
+        "dismissal"
+      ]
+    },
+    {
+      "school_id": "B000002294",
+      "school_name": "서울왕북초등학교",
+      "road_address": "서울특별시 강남구 광평로31길 74",
+      "grade1_students": 101,
+      "area": "gangnam",
+      "wirye": false,
+      "stage": 1,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": [
+        "dismissal"
+      ]
+    },
+    {
+      "school_id": "B000025001",
+      "school_name": "서울율현초등학교",
+      "road_address": "서울특별시 강남구 밤고개로21길 15",
+      "grade1_students": 136,
+      "area": "gangnam",
+      "wirye": false,
+      "stage": 1,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": [
+        "dismissal"
+      ]
+    },
+    {
+      "school_id": "B000002301",
+      "school_name": "서울일원초등학교",
+      "road_address": "서울특별시 강남구 영동대로4길 20",
+      "grade1_students": 142,
+      "area": "gangnam",
+      "wirye": false,
+      "stage": 1,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": []
+    },
+    {
+      "school_id": "B000025000",
+      "school_name": "서울자곡초등학교",
+      "road_address": "서울특별시 강남구 자곡로 150",
+      "grade1_students": 71,
+      "area": "gangnam",
+      "wirye": false,
+      "stage": 1,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": []
+    },
+    {
+      "school_id": "B000002303",
+      "school_name": "서울청담초등학교",
+      "road_address": "서울특별시 강남구 압구정로71길 9",
+      "grade1_students": 72,
+      "area": "gangnam",
+      "wirye": false,
+      "stage": 1,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": [
+        "dismissal"
+      ]
+    },
+    {
+      "school_id": "B000002304",
+      "school_name": "서울포이초등학교",
+      "road_address": "서울특별시 강남구 개포로22길 87",
+      "grade1_students": 69,
+      "area": "gangnam",
+      "wirye": false,
+      "stage": 1,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": [
+        "dismissal"
+      ]
+    },
+    {
+      "school_id": "B000002290",
+      "school_name": "서울학동초등학교",
+      "road_address": "서울특별시 강남구 선릉로115길 42",
+      "grade1_students": 47,
+      "area": "gangnam",
+      "wirye": false,
+      "stage": 1,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": false
+      },
+      "missing": [
+        "dismissal",
+        "afterschool"
+      ]
+    },
+    {
+      "school_id": "B000002274",
+      "school_name": "계성초등학교",
+      "road_address": "서울특별시 서초구 신반포로19길 23",
+      "grade1_students": 99,
+      "area": "seocho",
+      "wirye": false,
+      "stage": 1,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": [
+        "dismissal"
+      ]
+    },
+    {
+      "school_id": "B000002253",
+      "school_name": "서울교육대학교부설초등학교",
+      "road_address": "서울특별시 서초구 서초중앙로 96",
+      "grade1_students": 95,
+      "area": "seocho",
+      "wirye": false,
+      "stage": 1,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": [
+        "dismissal"
+      ]
+    },
+    {
+      "school_id": "B000002259",
+      "school_name": "서울매헌초등학교",
+      "road_address": "서울특별시 서초구 언남길 8",
+      "grade1_students": 66,
+      "area": "seocho",
+      "wirye": false,
+      "stage": 1,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": [
+        "dismissal"
+      ]
+    },
+    {
+      "school_id": "B000002258",
+      "school_name": "서울반원초등학교",
+      "road_address": "서울특별시 서초구 잠원로3길 28",
+      "grade1_students": 160,
+      "area": "seocho",
+      "wirye": false,
+      "stage": 1,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": [
+        "dismissal"
+      ]
+    },
+    {
+      "school_id": "B000002265",
+      "school_name": "서울방배초등학교",
+      "road_address": "서울특별시 서초구 방배중앙로13길 26",
+      "grade1_students": 112,
+      "area": "seocho",
+      "wirye": false,
+      "stage": 1,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": []
+    },
+    {
+      "school_id": "B000002262",
+      "school_name": "서울방일초등학교",
+      "road_address": "서울특별시 서초구 방배로18길 52",
+      "grade1_students": 131,
+      "area": "seocho",
+      "wirye": false,
+      "stage": 1,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": [
+        "dismissal"
+      ]
+    },
+    {
+      "school_id": "B000002266",
+      "school_name": "서울방현초등학교",
+      "road_address": "서울특별시 서초구 효령로4길 58",
+      "grade1_students": 11,
+      "area": "seocho",
+      "wirye": false,
+      "stage": 1,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": [
+        "dismissal"
+      ]
+    },
+    {
+      "school_id": "B000002264",
+      "school_name": "서울서래초등학교",
+      "road_address": "서울특별시 서초구 방배로 260",
+      "grade1_students": 156,
+      "area": "seocho",
+      "wirye": false,
+      "stage": 1,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": [
+        "dismissal"
+      ]
+    },
+    {
+      "school_id": "B000002255",
+      "school_name": "서울서원초등학교",
+      "road_address": "서울특별시 서초구 고무래로 63",
+      "grade1_students": 239,
+      "area": "seocho",
+      "wirye": false,
+      "stage": 1,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": [
+        "dismissal"
+      ]
+    },
+    {
+      "school_id": "B000002268",
+      "school_name": "서울서이초등학교",
+      "road_address": "서울특별시 서초구 서운로 35",
+      "grade1_students": 166,
+      "area": "seocho",
+      "wirye": false,
+      "stage": 1,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": [
+        "dismissal"
+      ]
+    },
+    {
+      "school_id": "B000002269",
+      "school_name": "서울서일초등학교",
+      "road_address": "서울특별시 서초구 남부순환로339길 38",
+      "grade1_students": 59,
+      "area": "seocho",
+      "wirye": false,
+      "stage": 1,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": [
+        "dismissal"
+      ]
+    },
+    {
+      "school_id": "B000002267",
+      "school_name": "서울서초초등학교",
+      "road_address": "서울특별시 서초구 서운로 178",
+      "grade1_students": 107,
+      "area": "seocho",
+      "wirye": false,
+      "stage": 1,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": []
+    },
+    {
+      "school_id": "B000002273",
+      "school_name": "서울신동초등학교",
+      "road_address": "서울특별시 서초구 나루터로 15",
+      "grade1_students": 198,
+      "area": "seocho",
+      "wirye": false,
+      "stage": 1,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": [
+        "dismissal"
+      ]
+    },
+    {
+      "school_id": "B000002254",
+      "school_name": "서울신중초등학교",
+      "road_address": "서울특별시 서초구 남부순환로317길 15",
+      "grade1_students": 112,
+      "area": "seocho",
+      "wirye": false,
+      "stage": 1,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": [
+        "dismissal"
+      ]
+    },
+    {
+      "school_id": "B000002271",
+      "school_name": "서울양재초등학교",
+      "road_address": "서울특별시 서초구 바우뫼로18길 14",
+      "grade1_students": 45,
+      "area": "seocho",
+      "wirye": false,
+      "stage": 1,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": []
+    },
+    {
+      "school_id": "B000025891",
+      "school_name": "서울언남초등학교",
+      "road_address": "서울특별시 서초구 헌릉로8길 42",
+      "grade1_students": 95,
+      "area": "seocho",
+      "wirye": false,
+      "stage": 1,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": [
+        "dismissal"
+      ]
+    },
+    {
+      "school_id": "B000002252",
+      "school_name": "서울우면초등학교",
+      "road_address": "서울특별시 서초구 태봉로 59",
+      "grade1_students": 49,
+      "area": "seocho",
+      "wirye": false,
+      "stage": 1,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": []
+    },
+    {
+      "school_id": "B000024506",
+      "school_name": "서울우솔초등학교",
+      "road_address": "서울특별시 서초구 양재대로2길 74",
+      "grade1_students": 57,
+      "area": "seocho",
+      "wirye": false,
+      "stage": 1,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": []
+    },
+    {
+      "school_id": "B000002272",
+      "school_name": "서울우암초등학교",
+      "road_address": "서울특별시 서초구 바우뫼로7길 38",
+      "grade1_students": 39,
+      "area": "seocho",
+      "wirye": false,
+      "stage": 1,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": [
+        "dismissal"
+      ]
+    },
+    {
+      "school_id": "B000002270",
+      "school_name": "서울원명초등학교",
+      "road_address": "서울특별시 서초구 고무래로 90-6",
+      "grade1_students": 142,
+      "area": "seocho",
+      "wirye": false,
+      "stage": 1,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": [
+        "dismissal"
+      ]
+    },
+    {
+      "school_id": "B000002256",
+      "school_name": "서울원촌초등학교",
+      "road_address": "서울특별시 서초구 사평대로45길 26",
+      "grade1_students": 184,
+      "area": "seocho",
+      "wirye": false,
+      "stage": 1,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": []
+    },
+    {
+      "school_id": "B000002263",
+      "school_name": "서울이수초등학교",
+      "road_address": "서울특별시 서초구 방배천로4길 23",
+      "grade1_students": 42,
+      "area": "seocho",
+      "wirye": false,
+      "stage": 1,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": []
+    },
+    {
+      "school_id": "B000002257",
+      "school_name": "서울잠원초등학교",
+      "road_address": "서울특별시 서초구 신반포로16길 15-25",
+      "grade1_students": 287,
+      "area": "seocho",
+      "wirye": false,
+      "stage": 1,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": [
+        "dismissal"
+      ]
+    },
+    {
+      "school_id": "B000002139",
+      "school_name": "서울가동초등학교",
+      "road_address": "서울특별시 송파구 중대로20길 47",
+      "grade1_students": 72,
+      "area": "songpa",
+      "wirye": false,
+      "stage": 1,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": [
+        "dismissal"
+      ]
+    },
+    {
+      "school_id": "B000002124",
+      "school_name": "서울가락초등학교",
+      "road_address": "서울특별시 송파구 송파대로37길 45",
+      "grade1_students": 198,
+      "area": "songpa",
+      "wirye": false,
+      "stage": 1,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": []
+    },
+    {
+      "school_id": "B000002129",
+      "school_name": "서울가원초등학교",
+      "road_address": "서울특별시 송파구 중대로4길 8",
+      "grade1_students": 74,
+      "area": "songpa",
+      "wirye": false,
+      "stage": 1,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": [
+        "dismissal"
+      ]
+    },
+    {
+      "school_id": "B000002138",
+      "school_name": "서울가주초등학교",
+      "road_address": "서울특별시 송파구 오금로40길 37",
+      "grade1_students": 85,
+      "area": "songpa",
+      "wirye": false,
+      "stage": 1,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": [
+        "dismissal"
+      ]
+    },
+    {
+      "school_id": "B000002152",
+      "school_name": "서울개롱초등학교",
+      "road_address": "서울특별시 송파구 문정로 211",
+      "grade1_students": 21,
+      "area": "songpa",
+      "wirye": false,
+      "stage": 1,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": [
+        "dismissal"
+      ]
+    },
+    {
+      "school_id": "B000002151",
+      "school_name": "서울거여초등학교",
+      "road_address": "서울특별시 송파구 마천로25길 18",
+      "grade1_students": 71,
+      "area": "songpa",
+      "wirye": false,
+      "stage": 1,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": [
+        "dismissal"
+      ]
+    },
+    {
+      "school_id": "B000002141",
+      "school_name": "서울거원초등학교",
+      "road_address": "서울특별시 송파구 양산로2길 26",
+      "grade1_students": 103,
+      "area": "songpa",
+      "wirye": false,
+      "stage": 1,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": [
+        "dismissal"
+      ]
+    },
+    {
+      "school_id": "B000002142",
+      "school_name": "서울남천초등학교",
+      "road_address": "서울특별시 송파구 성내천로 207",
+      "grade1_students": 24,
+      "area": "songpa",
+      "wirye": false,
+      "stage": 1,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": []
+    },
+    {
+      "school_id": "B000002143",
+      "school_name": "서울마천초등학교",
+      "road_address": "서울특별시 송파구 마천로61다길 24",
+      "grade1_students": 83,
+      "area": "songpa",
+      "wirye": false,
+      "stage": 1,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": [
+        "dismissal"
+      ]
+    },
+    {
+      "school_id": "B000002127",
+      "school_name": "서울문덕초등학교",
+      "road_address": "서울특별시 송파구 송이로34길 60",
+      "grade1_students": 65,
+      "area": "songpa",
+      "wirye": false,
+      "stage": 1,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": [
+        "dismissal"
+      ]
+    },
+    {
+      "school_id": "B000002128",
+      "school_name": "서울문정초등학교",
+      "road_address": "서울특별시 송파구 문정로5길 20",
+      "grade1_students": 121,
+      "area": "songpa",
+      "wirye": false,
+      "stage": 1,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": [
+        "dismissal"
+      ]
+    },
+    {
+      "school_id": "B000002130",
+      "school_name": "서울문현초등학교",
+      "road_address": "서울특별시 송파구 충민로 137",
+      "grade1_students": 105,
+      "area": "songpa",
+      "wirye": false,
+      "stage": 1,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": []
+    },
+    {
+      "school_id": "B000002146",
+      "school_name": "서울방산초등학교",
+      "road_address": "서울특별시 송파구 오금로27길 42",
+      "grade1_students": 66,
+      "area": "songpa",
+      "wirye": false,
+      "stage": 1,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": false
+      },
+      "missing": [
+        "dismissal",
+        "afterschool"
+      ]
+    },
+    {
+      "school_id": "B000002123",
+      "school_name": "서울방이초등학교",
+      "road_address": "서울특별시 송파구 위례성대로10길 4",
+      "grade1_students": 75,
+      "area": "songpa",
+      "wirye": true,
+      "stage": 1,
+      "operating_pilot": true,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": []
+    },
+    {
+      "school_id": "B000002158",
+      "school_name": "서울버들초등학교",
+      "road_address": "서울특별시 송파구 석촌호수로 81",
+      "grade1_students": 100,
+      "area": "songpa",
+      "wirye": false,
+      "stage": 1,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": [
+        "dismissal"
+      ]
+    },
+    {
+      "school_id": "B000002147",
+      "school_name": "서울삼전초등학교",
+      "road_address": "서울특별시 송파구 백제고분로28길 19",
+      "grade1_students": 57,
+      "area": "songpa",
+      "wirye": false,
+      "stage": 1,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": [
+        "dismissal"
+      ]
+    },
+    {
+      "school_id": "B000002148",
+      "school_name": "서울석촌초등학교",
+      "road_address": "서울특별시 송파구 가락로11길 26",
+      "grade1_students": 76,
+      "area": "songpa",
+      "wirye": false,
+      "stage": 1,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": [
+        "dismissal"
+      ]
+    },
+    {
+      "school_id": "B000002145",
+      "school_name": "서울세륜초등학교",
+      "road_address": "서울특별시 송파구 양재대로 1264",
+      "grade1_students": 61,
+      "area": "songpa",
+      "wirye": false,
+      "stage": 1,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": [
+        "dismissal"
+      ]
+    },
+    {
+      "school_id": "B000025289",
+      "school_name": "서울송례초등학교",
+      "road_address": "서울특별시 송파구 위례순환로 439",
+      "grade1_students": 143,
+      "area": "songpa",
+      "wirye": true,
+      "stage": 1,
+      "operating_pilot": true,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": []
+    },
+    {
+      "school_id": "B000002133",
+      "school_name": "서울송전초등학교",
+      "road_address": "서울특별시 송파구 석촌호수로 159",
+      "grade1_students": 85,
+      "area": "songpa",
+      "wirye": false,
+      "stage": 1,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": [
+        "dismissal"
+      ]
+    },
+    {
+      "school_id": "B000002149",
+      "school_name": "서울송파초등학교",
+      "road_address": "서울특별시 송파구 백제고분로 400",
+      "grade1_students": 54,
+      "area": "songpa",
+      "wirye": false,
+      "stage": 1,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": [
+        "dismissal"
+      ]
+    },
+    {
+      "school_id": "B000002137",
+      "school_name": "서울신가초등학교",
+      "road_address": "서울특별시 송파구 송이로 75",
+      "grade1_students": 76,
+      "area": "songpa",
+      "wirye": false,
+      "stage": 1,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": [
+        "dismissal"
+      ]
+    },
+    {
+      "school_id": "B000002159",
+      "school_name": "서울신천초등학교",
+      "road_address": "서울특별시 송파구 올림픽로 215",
+      "grade1_students": 39,
+      "area": "songpa",
+      "wirye": false,
+      "stage": 1,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": [
+        "dismissal"
+      ]
+    },
+    {
+      "school_id": "B000002157",
+      "school_name": "서울아주초등학교",
+      "road_address": "서울특별시 송파구 올림픽로4길 59",
+      "grade1_students": 52,
+      "area": "songpa",
+      "wirye": false,
+      "stage": 1,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": []
+    },
+    {
+      "school_id": "B000002140",
+      "school_name": "서울영풍초등학교",
+      "road_address": "서울특별시 송파구 오금로57길 15",
+      "grade1_students": 90,
+      "area": "songpa",
+      "wirye": false,
+      "stage": 1,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": [
+        "dismissal"
+      ]
+    },
+    {
+      "school_id": "B000002150",
+      "school_name": "서울오금초등학교",
+      "road_address": "서울특별시 송파구 위례성대로22길 11",
+      "grade1_students": 74,
+      "area": "songpa",
+      "wirye": true,
+      "stage": 1,
+      "operating_pilot": true,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": [
+        "dismissal"
+      ]
+    },
+    {
+      "school_id": "B000002144",
+      "school_name": "서울오륜초등학교",
+      "road_address": "서울특별시 송파구 양재대로 1196",
+      "grade1_students": 64,
+      "area": "songpa",
+      "wirye": false,
+      "stage": 1,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": [
+        "dismissal"
+      ]
+    },
+    {
+      "school_id": "B000025375",
+      "school_name": "서울위례별초등학교",
+      "road_address": "서울특별시 송파구 위례광장로 243",
+      "grade1_students": 205,
+      "area": "songpa",
+      "wirye": true,
+      "stage": 1,
+      "operating_pilot": true,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": [
+        "dismissal"
+      ]
+    },
+    {
+      "school_id": "B000025373",
+      "school_name": "서울위례솔초등학교",
+      "road_address": "서울특별시 송파구 위례북로2길 12",
+      "grade1_students": 264,
+      "area": "songpa",
+      "wirye": true,
+      "stage": 1,
+      "operating_pilot": true,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": []
+    },
+    {
+      "school_id": "B000002134",
+      "school_name": "서울잠동초등학교",
+      "road_address": "서울특별시 송파구 올림픽로35길 122",
+      "grade1_students": 165,
+      "area": "songpa",
+      "wirye": false,
+      "stage": 1,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": [
+        "dismissal"
+      ]
+    },
+    {
+      "school_id": "B000002132",
+      "school_name": "서울잠신초등학교",
+      "road_address": "서울특별시 송파구 잠실로 32",
+      "grade1_students": 167,
+      "area": "songpa",
+      "wirye": false,
+      "stage": 1,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": []
+    },
+    {
+      "school_id": "B000002135",
+      "school_name": "서울잠실초등학교",
+      "road_address": "서울특별시 송파구 올림픽로35길 20",
+      "grade1_students": 162,
+      "area": "songpa",
+      "wirye": false,
+      "stage": 1,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": [
+        "dismissal"
+      ]
+    },
+    {
+      "school_id": "B000002131",
+      "school_name": "서울잠일초등학교",
+      "road_address": "서울특별시 송파구 올림픽로 95",
+      "grade1_students": 177,
+      "area": "songpa",
+      "wirye": false,
+      "stage": 1,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": [
+        "dismissal"
+      ]
+    },
+    {
+      "school_id": "B000002153",
+      "school_name": "서울잠전초등학교",
+      "road_address": "서울특별시 송파구 올림픽로12길 51",
+      "grade1_students": 64,
+      "area": "songpa",
+      "wirye": false,
+      "stage": 1,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": [
+        "dismissal"
+      ]
+    },
+    {
+      "school_id": "B000002136",
+      "school_name": "서울잠현초등학교",
+      "road_address": "서울특별시 송파구 올림픽로37길 109",
+      "grade1_students": 137,
+      "area": "songpa",
+      "wirye": false,
+      "stage": 1,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": [
+        "dismissal"
+      ]
+    },
+    {
+      "school_id": "B000002126",
+      "school_name": "서울중대초등학교",
+      "road_address": "서울특별시 송파구 송파대로36길 8",
+      "grade1_students": 129,
+      "area": "songpa",
+      "wirye": false,
+      "stage": 1,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": false
+      },
+      "missing": [
+        "afterschool"
+      ]
+    },
+    {
+      "school_id": "B000002155",
+      "school_name": "서울토성초등학교",
+      "road_address": "서울특별시 송파구 풍성로20길 44",
+      "grade1_students": 71,
+      "area": "songpa",
+      "wirye": false,
+      "stage": 1,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": []
+    },
+    {
+      "school_id": "B000002125",
+      "school_name": "서울평화초등학교",
+      "road_address": "서울특별시 송파구 송파대로26길 22",
+      "grade1_students": 18,
+      "area": "songpa",
+      "wirye": false,
+      "stage": 1,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": [
+        "dismissal"
+      ]
+    },
+    {
+      "school_id": "B000002154",
+      "school_name": "서울풍납초등학교",
+      "road_address": "서울특별시 송파구 풍성로 43",
+      "grade1_students": 25,
+      "area": "songpa",
+      "wirye": false,
+      "stage": 1,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": [
+        "dismissal"
+      ]
+    },
+    {
+      "school_id": "B000002156",
+      "school_name": "서울풍성초등학교",
+      "road_address": "서울특별시 송파구 강동대로2길 13",
+      "grade1_students": 44,
+      "area": "songpa",
+      "wirye": false,
+      "stage": 1,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": [
+        "dismissal"
+      ]
+    },
+    {
+      "school_id": "B000025372",
+      "school_name": "서울해누리초등학교",
+      "road_address": "서울특별시 송파구 송파대로37길 95",
+      "grade1_students": 89,
+      "area": "songpa",
+      "wirye": false,
+      "stage": 1,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": [
+        "dismissal"
+      ]
+    },
+    {
+      "school_id": "B000002172",
+      "school_name": "서울위례초등학교",
+      "road_address": "서울특별시 강동구 명일로 23",
+      "grade1_students": 164,
+      "area": "wirye",
+      "wirye": true,
+      "stage": 1,
+      "operating_pilot": true,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": [
+        "dismissal"
+      ]
+    },
+    {
+      "school_id": "B000024240",
+      "school_name": "위례고운초등학교",
+      "road_address": "경기도 성남시 수정구 위례순환로 155",
+      "grade1_students": 117,
+      "area": "wirye",
+      "wirye": true,
+      "stage": 1,
+      "operating_pilot": true,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": false
+      },
+      "missing": [
+        "afterschool"
+      ]
+    },
+    {
+      "school_id": "B000023089",
+      "school_name": "위례숲초등학교",
+      "road_address": "경기도 하남시 위례대로6길 65",
+      "grade1_students": 240,
+      "area": "wirye",
+      "wirye": true,
+      "stage": 1,
+      "operating_pilot": true,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": false
+      },
+      "missing": [
+        "afterschool"
+      ]
+    },
+    {
+      "school_id": "B000024241",
+      "school_name": "위례중앙초등학교",
+      "road_address": "경기도 성남시 수정구 위례순환로 71",
+      "grade1_students": 59,
+      "area": "wirye",
+      "wirye": true,
+      "stage": 1,
+      "operating_pilot": true,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": false
+      },
+      "missing": [
+        "afterschool"
+      ]
+    },
+    {
+      "school_id": "B000023087",
+      "school_name": "위례초등학교",
+      "road_address": "경기도 하남시 위례순환로 333",
+      "grade1_students": 206,
+      "area": "wirye",
+      "wirye": true,
+      "stage": 1,
+      "operating_pilot": true,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": false
+      },
+      "missing": [
+        "dismissal",
+        "afterschool"
+      ]
+    },
+    {
+      "school_id": "B000024239",
+      "school_name": "위례푸른초등학교",
+      "road_address": "경기도 성남시 수정구 위례순환로 205",
+      "grade1_students": 118,
+      "area": "wirye",
+      "wirye": true,
+      "stage": 1,
+      "operating_pilot": true,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": false
+      },
+      "missing": [
+        "afterschool"
+      ]
+    },
+    {
+      "school_id": "B000024238",
+      "school_name": "위례한빛초등학교",
+      "road_address": "경기도 성남시 수정구 위례동로 55",
+      "grade1_students": 106,
+      "area": "wirye",
+      "wirye": true,
+      "stage": 1,
+      "operating_pilot": true,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": false
+      },
+      "missing": [
+        "afterschool"
+      ]
+    },
+    {
+      "school_id": "B000002081",
+      "school_name": "상명초등학교",
+      "road_address": "서울특별시 노원구 덕릉로 541",
+      "grade1_students": 122,
+      "area": "nowon",
+      "wirye": false,
+      "stage": 2,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": [
+        "dismissal"
+      ]
+    },
+    {
+      "school_id": "B000002056",
+      "school_name": "서울계상초등학교",
+      "road_address": "서울특별시 노원구 한글비석로41가길 24",
+      "grade1_students": 24,
+      "area": "nowon",
+      "wirye": false,
+      "stage": 2,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": []
+    },
+    {
+      "school_id": "B000002053",
+      "school_name": "서울공릉초등학교",
+      "road_address": "서울특별시 노원구 동일로173길 12",
+      "grade1_students": 32,
+      "area": "nowon",
+      "wirye": false,
+      "stage": 2,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": [
+        "dismissal"
+      ]
+    },
+    {
+      "school_id": "B000002051",
+      "school_name": "서울공연초등학교",
+      "road_address": "서울특별시 노원구 동일로192가길 16",
+      "grade1_students": 41,
+      "area": "nowon",
+      "wirye": false,
+      "stage": 2,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": []
+    },
+    {
+      "school_id": "B000002062",
+      "school_name": "서울노원초등학교",
+      "road_address": "서울특별시 노원구 동일로230나길 32",
+      "grade1_students": 19,
+      "area": "nowon",
+      "wirye": false,
+      "stage": 2,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": [
+        "dismissal"
+      ]
+    },
+    {
+      "school_id": "B000002063",
+      "school_name": "서울노일초등학교",
+      "road_address": "서울특별시 노원구 동일로 1625",
+      "grade1_students": 53,
+      "area": "nowon",
+      "wirye": false,
+      "stage": 2,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": []
+    },
+    {
+      "school_id": "B000002041",
+      "school_name": "서울녹천초등학교",
+      "road_address": "서울특별시 노원구 마들로3길 34",
+      "grade1_students": 12,
+      "area": "nowon",
+      "wirye": false,
+      "stage": 2,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": [
+        "dismissal"
+      ]
+    },
+    {
+      "school_id": "B000002059",
+      "school_name": "서울당현초등학교",
+      "road_address": "서울특별시 노원구 동일로213길 52",
+      "grade1_students": 50,
+      "area": "nowon",
+      "wirye": false,
+      "stage": 2,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": []
+    },
+    {
+      "school_id": "B000002042",
+      "school_name": "서울덕암초등학교",
+      "road_address": "서울특별시 노원구 덕릉로112길 68",
+      "grade1_students": 65,
+      "area": "nowon",
+      "wirye": false,
+      "stage": 2,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": [
+        "dismissal"
+      ]
+    },
+    {
+      "school_id": "B000002061",
+      "school_name": "서울동일초등학교",
+      "road_address": "서울특별시 노원구 한글비석로 566",
+      "grade1_students": 55,
+      "area": "nowon",
+      "wirye": false,
+      "stage": 2,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": [
+        "dismissal"
+      ]
+    },
+    {
+      "school_id": "B000002045",
+      "school_name": "서울불암초등학교",
+      "road_address": "서울특별시 노원구 중계로 178",
+      "grade1_students": 73,
+      "area": "nowon",
+      "wirye": false,
+      "stage": 2,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": [
+        "dismissal"
+      ]
+    },
+    {
+      "school_id": "B000002076",
+      "school_name": "서울상경초등학교",
+      "road_address": "서울특별시 노원구 수락산로 237",
+      "grade1_students": 78,
+      "area": "nowon",
+      "wirye": false,
+      "stage": 2,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": [
+        "dismissal"
+      ]
+    },
+    {
+      "school_id": "B000002055",
+      "school_name": "서울상계초등학교",
+      "road_address": "서울특별시 노원구 상계로9길 39",
+      "grade1_students": 10,
+      "area": "nowon",
+      "wirye": false,
+      "stage": 2,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": [
+        "dismissal"
+      ]
+    },
+    {
+      "school_id": "B000002057",
+      "school_name": "서울상곡초등학교",
+      "road_address": "서울특별시 노원구 노원로38길 34",
+      "grade1_students": 59,
+      "area": "nowon",
+      "wirye": false,
+      "stage": 2,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": []
+    },
+    {
+      "school_id": "B000002077",
+      "school_name": "서울상수초등학교",
+      "road_address": "서울특별시 노원구 동일로216길 66",
+      "grade1_students": 50,
+      "area": "nowon",
+      "wirye": false,
+      "stage": 2,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": [
+        "dismissal"
+      ]
+    },
+    {
+      "school_id": "B000002044",
+      "school_name": "서울상원초등학교",
+      "road_address": "서울특별시 노원구 한글비석로54길 119",
+      "grade1_students": 22,
+      "area": "nowon",
+      "wirye": false,
+      "stage": 2,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": false
+      },
+      "missing": [
+        "afterschool"
+      ]
+    },
+    {
+      "school_id": "B000002058",
+      "school_name": "서울상월초등학교",
+      "road_address": "서울특별시 노원구 동일로221길 27",
+      "grade1_students": 24,
+      "area": "nowon",
+      "wirye": false,
+      "stage": 2,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": []
+    },
+    {
+      "school_id": "B000002060",
+      "school_name": "서울상천초등학교",
+      "road_address": "서울특별시 노원구 덕릉로 443",
+      "grade1_students": 25,
+      "area": "nowon",
+      "wirye": false,
+      "stage": 2,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": []
+    },
+    {
+      "school_id": "B000002067",
+      "school_name": "서울선곡초등학교",
+      "road_address": "서울특별시 노원구 광운로2길 1",
+      "grade1_students": 75,
+      "area": "nowon",
+      "wirye": false,
+      "stage": 2,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": [
+        "dismissal"
+      ]
+    },
+    {
+      "school_id": "B000002064",
+      "school_name": "서울수락초등학교",
+      "road_address": "서울특별시 노원구 동일로 1745",
+      "grade1_students": 55,
+      "area": "nowon",
+      "wirye": false,
+      "stage": 2,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": [
+        "dismissal"
+      ]
+    },
+    {
+      "school_id": "B000002046",
+      "school_name": "서울수암초등학교",
+      "road_address": "서울특별시 노원구 중계로12길 9",
+      "grade1_students": 33,
+      "area": "nowon",
+      "wirye": false,
+      "stage": 2,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": [
+        "dismissal"
+      ]
+    },
+    {
+      "school_id": "B000002040",
+      "school_name": "서울신계초등학교",
+      "road_address": "서울특별시 노원구 초안산로 29",
+      "grade1_students": 11,
+      "area": "nowon",
+      "wirye": false,
+      "stage": 2,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": []
+    },
+    {
+      "school_id": "B000002054",
+      "school_name": "서울신상계초등학교",
+      "road_address": "서울특별시 노원구 상계로 267",
+      "grade1_students": 37,
+      "area": "nowon",
+      "wirye": false,
+      "stage": 2,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": [
+        "dismissal"
+      ]
+    },
+    {
+      "school_id": "B000002066",
+      "school_name": "서울연지초등학교",
+      "road_address": "서울특별시 노원구 월계로55길 48",
+      "grade1_students": 29,
+      "area": "nowon",
+      "wirye": false,
+      "stage": 2,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": [
+        "dismissal"
+      ]
+    },
+    {
+      "school_id": "B000002048",
+      "school_name": "서울연촌초등학교",
+      "road_address": "서울특별시 노원구 공릉로58길 36",
+      "grade1_students": 64,
+      "area": "nowon",
+      "wirye": false,
+      "stage": 2,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": []
+    },
+    {
+      "school_id": "B000002043",
+      "school_name": "서울온곡초등학교",
+      "road_address": "서울특별시 노원구 한글비석로52길 59",
+      "grade1_students": 55,
+      "area": "nowon",
+      "wirye": false,
+      "stage": 2,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": []
+    },
+    {
+      "school_id": "B000002073",
+      "school_name": "서울용동초등학교",
+      "road_address": "서울특별시 노원구 한글비석로1길 81-11",
+      "grade1_students": 15,
+      "area": "nowon",
+      "wirye": false,
+      "stage": 2,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": [
+        "dismissal"
+      ]
+    },
+    {
+      "school_id": "B000002052",
+      "school_name": "서울용원초등학교",
+      "road_address": "서울특별시 노원구 섬밭로 144",
+      "grade1_students": 55,
+      "area": "nowon",
+      "wirye": false,
+      "stage": 2,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": [
+        "dismissal"
+      ]
+    },
+    {
+      "school_id": "B000002069",
+      "school_name": "서울원광초등학교",
+      "road_address": "서울특별시 노원구 덕릉로76길 18",
+      "grade1_students": 62,
+      "area": "nowon",
+      "wirye": false,
+      "stage": 2,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": [
+        "dismissal"
+      ]
+    },
+    {
+      "school_id": "B000002068",
+      "school_name": "서울월계초등학교",
+      "road_address": "서울특별시 노원구 월계로45가길 10",
+      "grade1_students": 34,
+      "area": "nowon",
+      "wirye": false,
+      "stage": 2,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": [
+        "dismissal"
+      ]
+    },
+    {
+      "school_id": "B000002070",
+      "school_name": "서울을지초등학교",
+      "road_address": "서울특별시 노원구 중계로 239",
+      "grade1_students": 123,
+      "area": "nowon",
+      "wirye": false,
+      "stage": 2,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": [
+        "dismissal"
+      ]
+    },
+    {
+      "school_id": "B000002047",
+      "school_name": "서울중계초등학교",
+      "road_address": "서울특별시 노원구 한글비석로19길 39",
+      "grade1_students": 88,
+      "area": "nowon",
+      "wirye": false,
+      "stage": 2,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": [
+        "dismissal"
+      ]
+    },
+    {
+      "school_id": "B000002071",
+      "school_name": "서울중원초등학교",
+      "road_address": "서울특별시 노원구 섬밭로 316",
+      "grade1_students": 29,
+      "area": "nowon",
+      "wirye": false,
+      "stage": 2,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": false
+      },
+      "missing": [
+        "dismissal",
+        "afterschool"
+      ]
+    },
+    {
+      "school_id": "B000002075",
+      "school_name": "서울중평초등학교",
+      "road_address": "서울특별시 노원구 섬밭로 241",
+      "grade1_students": 155,
+      "area": "nowon",
+      "wirye": false,
+      "stage": 2,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": [
+        "dismissal"
+      ]
+    },
+    {
+      "school_id": "B000002074",
+      "school_name": "서울중현초등학교",
+      "road_address": "서울특별시 노원구 섬밭로 181",
+      "grade1_students": 10,
+      "area": "nowon",
+      "wirye": false,
+      "stage": 2,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": [
+        "dismissal"
+      ]
+    },
+    {
+      "school_id": "B000002072",
+      "school_name": "서울청계초등학교",
+      "road_address": "서울특별시 노원구 공릉로 431",
+      "grade1_students": 17,
+      "area": "nowon",
+      "wirye": false,
+      "stage": 2,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": [
+        "dismissal"
+      ]
+    },
+    {
+      "school_id": "B000002049",
+      "school_name": "서울태랑초등학교",
+      "road_address": "서울특별시 노원구 화랑로51나길 31",
+      "grade1_students": 114,
+      "area": "nowon",
+      "wirye": false,
+      "stage": 2,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": [
+        "dismissal"
+      ]
+    },
+    {
+      "school_id": "B000002050",
+      "school_name": "서울태릉초등학교",
+      "road_address": "서울특별시 노원구 노원로1길 36",
+      "grade1_students": 101,
+      "area": "nowon",
+      "wirye": false,
+      "stage": 2,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": [
+        "dismissal"
+      ]
+    },
+    {
+      "school_id": "B000002065",
+      "school_name": "서울한천초등학교",
+      "road_address": "서울특별시 노원구 마들로 45",
+      "grade1_students": 86,
+      "area": "nowon",
+      "wirye": false,
+      "stage": 2,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": []
+    },
+    {
+      "school_id": "B000002078",
+      "school_name": "청원초등학교",
+      "road_address": "서울특별시 노원구 한글비석로 506",
+      "grade1_students": 124,
+      "area": "nowon",
+      "wirye": false,
+      "stage": 2,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": [
+        "dismissal"
+      ]
+    },
+    {
+      "school_id": "B000002079",
+      "school_name": "태강삼육초등학교",
+      "road_address": "서울특별시 노원구 화랑로 815",
+      "grade1_students": 113,
+      "area": "nowon",
+      "wirye": false,
+      "stage": 2,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": [
+        "dismissal"
+      ]
+    },
+    {
+      "school_id": "B000002080",
+      "school_name": "화랑초등학교",
+      "road_address": "서울특별시 노원구 화랑로 621",
+      "grade1_students": 98,
+      "area": "nowon",
+      "wirye": false,
+      "stage": 2,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": []
+    },
+    {
+      "school_id": "B000002198",
+      "school_name": "서울갈산초등학교",
+      "road_address": "서울특별시 양천구 목동로 31",
+      "grade1_students": 132,
+      "area": "yangcheon",
+      "wirye": false,
+      "stage": 2,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": false
+      },
+      "missing": [
+        "afterschool"
+      ]
+    },
+    {
+      "school_id": "B000002204",
+      "school_name": "서울강서초등학교",
+      "road_address": "서울특별시 양천구 오목로 31",
+      "grade1_students": 83,
+      "area": "yangcheon",
+      "wirye": false,
+      "stage": 2,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": false
+      },
+      "missing": [
+        "afterschool"
+      ]
+    },
+    {
+      "school_id": "B000002199",
+      "school_name": "서울강신초등학교",
+      "road_address": "서울특별시 양천구 월정로 280",
+      "grade1_students": 67,
+      "area": "yangcheon",
+      "wirye": false,
+      "stage": 2,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": [
+        "dismissal"
+      ]
+    },
+    {
+      "school_id": "B000002208",
+      "school_name": "서울강월초등학교",
+      "road_address": "서울특별시 양천구 신월로 97",
+      "grade1_students": 44,
+      "area": "yangcheon",
+      "wirye": false,
+      "stage": 2,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": [
+        "dismissal"
+      ]
+    },
+    {
+      "school_id": "B000002188",
+      "school_name": "서울경인초등학교",
+      "road_address": "서울특별시 양천구 안양천로 1009",
+      "grade1_students": 107,
+      "area": "yangcheon",
+      "wirye": false,
+      "stage": 2,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": [
+        "dismissal"
+      ]
+    },
+    {
+      "school_id": "B000002191",
+      "school_name": "서울계남초등학교",
+      "road_address": "서울특별시 양천구 목동동로2길 54",
+      "grade1_students": 80,
+      "area": "yangcheon",
+      "wirye": false,
+      "stage": 2,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": false
+      },
+      "missing": [
+        "afterschool"
+      ]
+    },
+    {
+      "school_id": "B000002196",
+      "school_name": "서울남명초등학교",
+      "road_address": "서울특별시 양천구 중앙로23길 3",
+      "grade1_students": 50,
+      "area": "yangcheon",
+      "wirye": false,
+      "stage": 2,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": []
+    },
+    {
+      "school_id": "B000002209",
+      "school_name": "서울목동초등학교",
+      "road_address": "서울특별시 양천구 목동동로12길 12",
+      "grade1_students": 181,
+      "area": "yangcheon",
+      "wirye": false,
+      "stage": 2,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": []
+    },
+    {
+      "school_id": "B000002190",
+      "school_name": "서울목운초등학교",
+      "road_address": "서울특별시 양천구 목동동로 235",
+      "grade1_students": 180,
+      "area": "yangcheon",
+      "wirye": false,
+      "stage": 2,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": [
+        "dismissal"
+      ]
+    },
+    {
+      "school_id": "B000002187",
+      "school_name": "서울목원초등학교",
+      "road_address": "서울특별시 양천구 목동중앙로 204",
+      "grade1_students": 40,
+      "area": "yangcheon",
+      "wirye": false,
+      "stage": 2,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": false
+      },
+      "missing": [
+        "dismissal",
+        "afterschool"
+      ]
+    },
+    {
+      "school_id": "B000002189",
+      "school_name": "서울서정초등학교",
+      "road_address": "서울특별시 양천구 목동로8길 19",
+      "grade1_students": 118,
+      "area": "yangcheon",
+      "wirye": false,
+      "stage": 2,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": [
+        "dismissal"
+      ]
+    },
+    {
+      "school_id": "B000002205",
+      "school_name": "서울신강초등학교",
+      "road_address": "서울특별시 양천구 중앙로55길 72",
+      "grade1_students": 26,
+      "area": "yangcheon",
+      "wirye": false,
+      "stage": 2,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": [
+        "dismissal"
+      ]
+    },
+    {
+      "school_id": "B000002195",
+      "school_name": "서울신기초등학교",
+      "road_address": "서울특별시 양천구 신정로 292",
+      "grade1_students": 47,
+      "area": "yangcheon",
+      "wirye": false,
+      "stage": 2,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": []
+    },
+    {
+      "school_id": "B000002207",
+      "school_name": "서울신남초등학교",
+      "road_address": "서울특별시 양천구 남부순환로83길 44",
+      "grade1_students": 172,
+      "area": "yangcheon",
+      "wirye": false,
+      "stage": 2,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": [
+        "dismissal"
+      ]
+    },
+    {
+      "school_id": "B000002210",
+      "school_name": "서울신목초등학교",
+      "road_address": "서울특별시 양천구 신목로5길 11-6",
+      "grade1_students": 98,
+      "area": "yangcheon",
+      "wirye": false,
+      "stage": 2,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": []
+    },
+    {
+      "school_id": "B000002193",
+      "school_name": "서울신서초등학교",
+      "road_address": "서울특별시 양천구 목동서로10길 35",
+      "grade1_students": 98,
+      "area": "yangcheon",
+      "wirye": false,
+      "stage": 2,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": [
+        "dismissal"
+      ]
+    },
+    {
+      "school_id": "B000002203",
+      "school_name": "서울신원초등학교",
+      "road_address": "서울특별시 양천구 남부순환로58길 32",
+      "grade1_students": 35,
+      "area": "yangcheon",
+      "wirye": false,
+      "stage": 2,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": [
+        "dismissal"
+      ]
+    },
+    {
+      "school_id": "B000002186",
+      "school_name": "서울신은초등학교",
+      "road_address": "서울특별시 양천구 신정이펜2로 30",
+      "grade1_students": 38,
+      "area": "yangcheon",
+      "wirye": false,
+      "stage": 2,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": [
+        "dismissal"
+      ]
+    },
+    {
+      "school_id": "B000002206",
+      "school_name": "서울양강초등학교",
+      "road_address": "서울특별시 양천구 오목로 101",
+      "grade1_students": 53,
+      "area": "yangcheon",
+      "wirye": false,
+      "stage": 2,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": []
+    },
+    {
+      "school_id": "B000002213",
+      "school_name": "서울양동초등학교",
+      "road_address": "서울특별시 양천구 오목로23길 24",
+      "grade1_students": 34,
+      "area": "yangcheon",
+      "wirye": false,
+      "stage": 2,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": [
+        "dismissal"
+      ]
+    },
+    {
+      "school_id": "B000002194",
+      "school_name": "서울양명초등학교",
+      "road_address": "서울특별시 양천구 중앙로 204",
+      "grade1_students": 55,
+      "area": "yangcheon",
+      "wirye": false,
+      "stage": 2,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": []
+    },
+    {
+      "school_id": "B000002197",
+      "school_name": "서울양목초등학교",
+      "road_address": "서울특별시 양천구 목동로11길 30",
+      "grade1_students": 44,
+      "area": "yangcheon",
+      "wirye": false,
+      "stage": 2,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": []
+    },
+    {
+      "school_id": "B000002202",
+      "school_name": "서울양원초등학교",
+      "road_address": "서울특별시 양천구 화곡로 16",
+      "grade1_students": 28,
+      "area": "yangcheon",
+      "wirye": false,
+      "stage": 2,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": [
+        "dismissal"
+      ]
+    },
+    {
+      "school_id": "B000002200",
+      "school_name": "서울양화초등학교",
+      "road_address": "서울특별시 양천구 목동중앙북로16길 57",
+      "grade1_students": 59,
+      "area": "yangcheon",
+      "wirye": false,
+      "stage": 2,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": []
+    },
+    {
+      "school_id": "B000002215",
+      "school_name": "서울영도초등학교",
+      "road_address": "서울특별시 양천구 목동중앙로 70",
+      "grade1_students": 119,
+      "area": "yangcheon",
+      "wirye": false,
+      "stage": 2,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": []
+    },
+    {
+      "school_id": "B000002214",
+      "school_name": "서울월촌초등학교",
+      "road_address": "서울특별시 양천구 목동중앙로 132",
+      "grade1_students": 115,
+      "area": "yangcheon",
+      "wirye": false,
+      "stage": 2,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": [
+        "dismissal"
+      ]
+    },
+    {
+      "school_id": "B000002192",
+      "school_name": "서울은정초등학교",
+      "road_address": "서울특별시 양천구 목동남로 85",
+      "grade1_students": 40,
+      "area": "yangcheon",
+      "wirye": false,
+      "stage": 2,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": []
+    },
+    {
+      "school_id": "B000002212",
+      "school_name": "서울장수초등학교",
+      "road_address": "서울특별시 양천구 신정로13가길 30",
+      "grade1_students": 25,
+      "area": "yangcheon",
+      "wirye": false,
+      "stage": 2,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": []
+    },
+    {
+      "school_id": "B000002201",
+      "school_name": "서울정목초등학교",
+      "road_address": "서울특별시 양천구 목동중앙로3길 30-10",
+      "grade1_students": 77,
+      "area": "yangcheon",
+      "wirye": false,
+      "stage": 2,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": [
+        "dismissal"
+      ]
+    },
+    {
+      "school_id": "B000002211",
+      "school_name": "서울지향초등학교",
+      "road_address": "서울특별시 양천구 신정로11길 74",
+      "grade1_students": 76,
+      "area": "yangcheon",
+      "wirye": false,
+      "stage": 2,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": true
+      },
+      "missing": []
+    },
+    {
+      "school_id": "B000003867",
+      "school_name": "관양초등학교",
+      "road_address": "경기도 안양시 동안구 관평로336번길 23",
+      "grade1_students": 53,
+      "area": "dongan",
+      "wirye": false,
+      "stage": 3,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": false
+      },
+      "missing": [
+        "dismissal",
+        "afterschool"
+      ]
+    },
+    {
+      "school_id": "B000003860",
+      "school_name": "귀인초등학교",
+      "road_address": "경기도 안양시 동안구 귀인로 248",
+      "grade1_students": 172,
+      "area": "dongan",
+      "wirye": false,
+      "stage": 3,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": false
+      },
+      "missing": [
+        "dismissal",
+        "afterschool"
+      ]
+    },
+    {
+      "school_id": "B000003856",
+      "school_name": "나눔초등학교",
+      "road_address": "경기도 안양시 동안구 흥안대로414번길 22",
+      "grade1_students": 20,
+      "area": "dongan",
+      "wirye": false,
+      "stage": 3,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": false
+      },
+      "missing": [
+        "afterschool"
+      ]
+    },
+    {
+      "school_id": "B000003870",
+      "school_name": "달안초등학교",
+      "road_address": "경기도 안양시 동안구 동안로 178",
+      "grade1_students": 7,
+      "area": "dongan",
+      "wirye": false,
+      "stage": 3,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": false
+      },
+      "missing": [
+        "afterschool"
+      ]
+    },
+    {
+      "school_id": "B000003858",
+      "school_name": "동안초등학교",
+      "road_address": "경기도 안양시 동안구 관평로138번길 36",
+      "grade1_students": 49,
+      "area": "dongan",
+      "wirye": false,
+      "stage": 3,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": false
+      },
+      "missing": [
+        "dismissal",
+        "afterschool"
+      ]
+    },
+    {
+      "school_id": "B000003861",
+      "school_name": "민백초등학교",
+      "road_address": "경기도 안양시 동안구 부림로 22",
+      "grade1_students": 67,
+      "area": "dongan",
+      "wirye": false,
+      "stage": 3,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": false
+      },
+      "missing": [
+        "dismissal",
+        "afterschool"
+      ]
+    },
+    {
+      "school_id": "B000003857",
+      "school_name": "벌말초등학교",
+      "road_address": "경기도 안양시 동안구 학의로408번길 25",
+      "grade1_students": 83,
+      "area": "dongan",
+      "wirye": false,
+      "stage": 3,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": false
+      },
+      "missing": [
+        "afterschool"
+      ]
+    },
+    {
+      "school_id": "B000003862",
+      "school_name": "범계초등학교",
+      "road_address": "경기도 안양시 동안구 동안로 90",
+      "grade1_students": 69,
+      "area": "dongan",
+      "wirye": false,
+      "stage": 3,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": false
+      },
+      "missing": [
+        "dismissal",
+        "afterschool"
+      ]
+    },
+    {
+      "school_id": "B000003855",
+      "school_name": "부림초등학교",
+      "road_address": "경기도 안양시 동안구 달안로 161",
+      "grade1_students": 87,
+      "area": "dongan",
+      "wirye": false,
+      "stage": 3,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": false
+      },
+      "missing": [
+        "afterschool"
+      ]
+    },
+    {
+      "school_id": "B000003876",
+      "school_name": "비산초등학교",
+      "road_address": "경기도 안양시 동안구 운곡로 52",
+      "grade1_students": 91,
+      "area": "dongan",
+      "wirye": false,
+      "stage": 3,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": false
+      },
+      "missing": [
+        "afterschool"
+      ]
+    },
+    {
+      "school_id": "B000003852",
+      "school_name": "샘모루초등학교",
+      "road_address": "경기도 안양시 동안구 관악대로 155",
+      "grade1_students": 94,
+      "area": "dongan",
+      "wirye": false,
+      "stage": 3,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": false
+      },
+      "missing": [
+        "dismissal",
+        "afterschool"
+      ]
+    },
+    {
+      "school_id": "B000003866",
+      "school_name": "안양관악초등학교",
+      "road_address": "경기도 안양시 동안구 일동로 201",
+      "grade1_students": 24,
+      "area": "dongan",
+      "wirye": false,
+      "stage": 3,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": false
+      },
+      "missing": [
+        "afterschool"
+      ]
+    },
+    {
+      "school_id": "B000003865",
+      "school_name": "안양남초등학교",
+      "road_address": "경기도 안양시 동안구 흥안대로 275",
+      "grade1_students": 49,
+      "area": "dongan",
+      "wirye": false,
+      "stage": 3,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": false
+      },
+      "missing": [
+        "dismissal",
+        "afterschool"
+      ]
+    },
+    {
+      "school_id": "B000003864",
+      "school_name": "안양덕현초등학교",
+      "road_address": "경기도 안양시 동안구 갈산로 34",
+      "grade1_students": 168,
+      "area": "dongan",
+      "wirye": false,
+      "stage": 3,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": false
+      },
+      "missing": [
+        "afterschool"
+      ]
+    },
+    {
+      "school_id": "B000003872",
+      "school_name": "안양동초등학교",
+      "road_address": "경기도 안양시 동안구 임곡로80번길 34",
+      "grade1_students": 123,
+      "area": "dongan",
+      "wirye": false,
+      "stage": 3,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": false
+      },
+      "missing": [
+        "afterschool"
+      ]
+    },
+    {
+      "school_id": "B000003854",
+      "school_name": "안양부안초등학교",
+      "road_address": "경기도 안양시 동안구 달안로 113",
+      "grade1_students": 44,
+      "area": "dongan",
+      "wirye": false,
+      "stage": 3,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": false
+      },
+      "missing": [
+        "afterschool"
+      ]
+    },
+    {
+      "school_id": "B000003871",
+      "school_name": "안양부흥초등학교",
+      "road_address": "경기도 안양시 동안구 달안로 37",
+      "grade1_students": 106,
+      "area": "dongan",
+      "wirye": false,
+      "stage": 3,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": false
+      },
+      "missing": [
+        "afterschool"
+      ]
+    },
+    {
+      "school_id": "B000003873",
+      "school_name": "안양신기초등학교",
+      "road_address": "경기도 안양시 동안구 동안로 26",
+      "grade1_students": 87,
+      "area": "dongan",
+      "wirye": false,
+      "stage": 3,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": false
+      },
+      "missing": [
+        "dismissal",
+        "afterschool"
+      ]
+    },
+    {
+      "school_id": "B000003853",
+      "school_name": "안양중앙초등학교",
+      "road_address": "경기도 안양시 동안구 경수대로883번길 11",
+      "grade1_students": 118,
+      "area": "dongan",
+      "wirye": false,
+      "stage": 3,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": false
+      },
+      "missing": [
+        "dismissal",
+        "afterschool"
+      ]
+    },
+    {
+      "school_id": "B000003868",
+      "school_name": "인덕원초등학교",
+      "road_address": "경기도 안양시 동안구 관양로 311",
+      "grade1_students": 54,
+      "area": "dongan",
+      "wirye": false,
+      "stage": 3,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": false
+      },
+      "missing": [
+        "afterschool"
+      ]
+    },
+    {
+      "school_id": "B000003859",
+      "school_name": "평촌초등학교",
+      "road_address": "경기도 안양시 동안구 평촌대로180번길 56",
+      "grade1_students": 103,
+      "area": "dongan",
+      "wirye": false,
+      "stage": 3,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": false
+      },
+      "missing": [
+        "dismissal",
+        "afterschool"
+      ]
+    },
+    {
+      "school_id": "B000003836",
+      "school_name": "해오름초등학교",
+      "road_address": "경기도 안양시 동안구 동편로 117",
+      "grade1_students": 37,
+      "area": "dongan",
+      "wirye": false,
+      "stage": 3,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": false
+      },
+      "missing": [
+        "afterschool"
+      ]
+    },
+    {
+      "school_id": "B000003875",
+      "school_name": "호계초등학교",
+      "road_address": "경기도 안양시 동안구 경수대로707번길 27",
+      "grade1_students": 111,
+      "area": "dongan",
+      "wirye": false,
+      "stage": 3,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": false
+      },
+      "missing": [
+        "afterschool"
+      ]
+    },
+    {
+      "school_id": "B000003863",
+      "school_name": "호성초등학교",
+      "road_address": "경기도 안양시 동안구 호성로 43-2",
+      "grade1_students": 134,
+      "area": "dongan",
+      "wirye": false,
+      "stage": 3,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": false
+      },
+      "missing": [
+        "afterschool"
+      ]
+    },
+    {
+      "school_id": "B000003874",
+      "school_name": "호원초등학교",
+      "road_address": "경기도 안양시 동안구 경수대로623번길 72",
+      "grade1_students": 191,
+      "area": "dongan",
+      "wirye": false,
+      "stage": 3,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": false
+      },
+      "missing": [
+        "afterschool"
+      ]
+    },
+    {
+      "school_id": "B000003869",
+      "school_name": "희성초등학교",
+      "road_address": "경기도 안양시 동안구 학의로 86",
+      "grade1_students": 19,
+      "area": "dongan",
+      "wirye": false,
+      "stage": 3,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": false
+      },
+      "missing": [
+        "afterschool"
+      ]
+    },
+    {
+      "school_id": "B000004264",
+      "school_name": "가림초등학교",
+      "road_address": "경기도 광명시 금당로 11-7",
+      "grade1_students": 41,
+      "area": "gwangmyeong",
+      "wirye": false,
+      "stage": 3,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": false
+      },
+      "missing": [
+        "afterschool"
+      ]
+    },
+    {
+      "school_id": "B000004277",
+      "school_name": "광명광덕초등학교",
+      "road_address": "경기도 광명시 오리로841번길 9",
+      "grade1_students": 61,
+      "area": "gwangmyeong",
+      "wirye": false,
+      "stage": 3,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": false
+      },
+      "missing": [
+        "dismissal",
+        "afterschool"
+      ]
+    },
+    {
+      "school_id": "B000004276",
+      "school_name": "광명광성초등학교",
+      "road_address": "경기도 광명시 철산로 59",
+      "grade1_students": 74,
+      "area": "gwangmyeong",
+      "wirye": false,
+      "stage": 3,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": false
+      },
+      "missing": [
+        "afterschool"
+      ]
+    },
+    {
+      "school_id": "B000004270",
+      "school_name": "광명남초등학교",
+      "road_address": "경기도 광명시 광명로 866-9",
+      "grade1_students": 67,
+      "area": "gwangmyeong",
+      "wirye": false,
+      "stage": 3,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": false
+      },
+      "missing": [
+        "dismissal",
+        "afterschool"
+      ]
+    },
+    {
+      "school_id": "B000004274",
+      "school_name": "광명동초등학교",
+      "road_address": "경기도 광명시 연서일로 25",
+      "grade1_students": 62,
+      "area": "gwangmyeong",
+      "wirye": false,
+      "stage": 3,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": false
+      },
+      "missing": [
+        "afterschool"
+      ]
+    },
+    {
+      "school_id": "B000004275",
+      "school_name": "광명북초등학교",
+      "road_address": "경기도 광명시 시청로138번길 8",
+      "grade1_students": 91,
+      "area": "gwangmyeong",
+      "wirye": false,
+      "stage": 3,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": false
+      },
+      "missing": [
+        "afterschool"
+      ]
+    },
+    {
+      "school_id": "B000004269",
+      "school_name": "광명서초등학교",
+      "road_address": "경기도 광명시 너부대로 5",
+      "grade1_students": 58,
+      "area": "gwangmyeong",
+      "wirye": false,
+      "stage": 3,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": false
+      },
+      "missing": [
+        "dismissal",
+        "afterschool"
+      ]
+    },
+    {
+      "school_id": "B000004268",
+      "school_name": "광명초등학교",
+      "road_address": "경기도 광명시 광이로 21",
+      "grade1_students": 101,
+      "area": "gwangmyeong",
+      "wirye": false,
+      "stage": 3,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": false
+      },
+      "missing": [
+        "afterschool"
+      ]
+    },
+    {
+      "school_id": "B000004272",
+      "school_name": "광문초등학교",
+      "road_address": "경기도 광명시 덕단이로 29",
+      "grade1_students": 85,
+      "area": "gwangmyeong",
+      "wirye": false,
+      "stage": 3,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": false
+      },
+      "missing": [
+        "dismissal",
+        "afterschool"
+      ]
+    },
+    {
+      "school_id": "B000004271",
+      "school_name": "광일초등학교",
+      "road_address": "경기도 광명시 목감로 34-6",
+      "grade1_students": 79,
+      "area": "gwangmyeong",
+      "wirye": false,
+      "stage": 3,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": false
+      },
+      "missing": [
+        "dismissal",
+        "afterschool"
+      ]
+    },
+    {
+      "school_id": "B000004260",
+      "school_name": "구름산초등학교",
+      "road_address": "경기도 광명시 한내일로 5",
+      "grade1_students": 88,
+      "area": "gwangmyeong",
+      "wirye": false,
+      "stage": 3,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": false
+      },
+      "missing": [
+        "afterschool"
+      ]
+    },
+    {
+      "school_id": "B000004258",
+      "school_name": "도덕초등학교",
+      "road_address": "경기도 광명시 가마산로 28",
+      "grade1_students": 172,
+      "area": "gwangmyeong",
+      "wirye": false,
+      "stage": 3,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": false
+      },
+      "missing": [
+        "afterschool"
+      ]
+    },
+    {
+      "school_id": "B000024196",
+      "school_name": "빛가온초등학교",
+      "road_address": "경기도 광명시 양달로10번길 8",
+      "grade1_students": 174,
+      "area": "gwangmyeong",
+      "wirye": false,
+      "stage": 3,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": false
+      },
+      "missing": [
+        "afterschool"
+      ]
+    },
+    {
+      "school_id": "B000004273",
+      "school_name": "서면초등학교",
+      "road_address": "경기도 광명시 오리로 402",
+      "grade1_students": 56,
+      "area": "gwangmyeong",
+      "wirye": false,
+      "stage": 3,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": false
+      },
+      "missing": [
+        "dismissal",
+        "afterschool"
+      ]
+    },
+    {
+      "school_id": "B000004261",
+      "school_name": "소하초등학교",
+      "road_address": "경기도 광명시 소하일로 45",
+      "grade1_students": 113,
+      "area": "gwangmyeong",
+      "wirye": false,
+      "stage": 3,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": false
+      },
+      "missing": [
+        "afterschool"
+      ]
+    },
+    {
+      "school_id": "B000004266",
+      "school_name": "안서초등학교",
+      "road_address": "경기도 광명시 가학로 247-55",
+      "grade1_students": 7,
+      "area": "gwangmyeong",
+      "wirye": false,
+      "stage": 3,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": false
+      },
+      "missing": [
+        "dismissal",
+        "afterschool"
+      ]
+    },
+    {
+      "school_id": "B000004262",
+      "school_name": "안현초등학교",
+      "road_address": "경기도 광명시 도덕공원로 5",
+      "grade1_students": 129,
+      "area": "gwangmyeong",
+      "wirye": false,
+      "stage": 3,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": false
+      },
+      "missing": [
+        "afterschool"
+      ]
+    },
+    {
+      "school_id": "B000004265",
+      "school_name": "연서초등학교",
+      "road_address": "경기도 광명시 안현로 80-2",
+      "grade1_students": 25,
+      "area": "gwangmyeong",
+      "wirye": false,
+      "stage": 3,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": false
+      },
+      "missing": [
+        "dismissal",
+        "afterschool"
+      ]
+    },
+    {
+      "school_id": "B000004267",
+      "school_name": "온신초등학교",
+      "road_address": "경기도 광명시 범안로 657",
+      "grade1_students": 3,
+      "area": "gwangmyeong",
+      "wirye": false,
+      "stage": 3,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": false
+      },
+      "missing": [
+        "afterschool"
+      ]
+    },
+    {
+      "school_id": "B000004278",
+      "school_name": "철산초등학교",
+      "road_address": "경기도 광명시 하안로 392",
+      "grade1_students": 156,
+      "area": "gwangmyeong",
+      "wirye": false,
+      "stage": 3,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": false
+      },
+      "missing": [
+        "afterschool"
+      ]
+    },
+    {
+      "school_id": "B000004259",
+      "school_name": "충현초등학교",
+      "road_address": "경기도 광명시 성채안로 16",
+      "grade1_students": 37,
+      "area": "gwangmyeong",
+      "wirye": false,
+      "stage": 3,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": false
+      },
+      "missing": [
+        "afterschool"
+      ]
+    },
+    {
+      "school_id": "B000004279",
+      "school_name": "하안남초등학교",
+      "road_address": "경기도 광명시 금당로 71",
+      "grade1_students": 35,
+      "area": "gwangmyeong",
+      "wirye": false,
+      "stage": 3,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": false
+      },
+      "missing": [
+        "afterschool"
+      ]
+    },
+    {
+      "school_id": "B000004281",
+      "school_name": "하안북초등학교",
+      "road_address": "경기도 광명시 가림로 18",
+      "grade1_students": 25,
+      "area": "gwangmyeong",
+      "wirye": false,
+      "stage": 3,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": false
+      },
+      "missing": [
+        "afterschool"
+      ]
+    },
+    {
+      "school_id": "B000004263",
+      "school_name": "하안초등학교",
+      "road_address": "경기도 광명시 안현로 16",
+      "grade1_students": 49,
+      "area": "gwangmyeong",
+      "wirye": false,
+      "stage": 3,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": false
+      },
+      "missing": [
+        "afterschool"
+      ]
+    },
+    {
+      "school_id": "B000004280",
+      "school_name": "하일초등학교",
+      "road_address": "경기도 광명시 철망산로 68",
+      "grade1_students": 35,
+      "area": "gwangmyeong",
+      "wirye": false,
+      "stage": 3,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": false
+      },
+      "missing": [
+        "afterschool"
+      ]
+    },
+    {
+      "school_id": "B000003976",
+      "school_name": "고기초등학교",
+      "road_address": "경기도 용인시 수지구 고기로 385",
+      "grade1_students": 17,
+      "area": "suji",
+      "wirye": false,
+      "stage": 3,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": false
+      },
+      "missing": [
+        "afterschool"
+      ]
+    },
+    {
+      "school_id": "B000003998",
+      "school_name": "대지초등학교",
+      "road_address": "경기도 용인시 수지구 대지로51번길 6",
+      "grade1_students": 31,
+      "area": "suji",
+      "wirye": false,
+      "stage": 3,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": false
+      },
+      "missing": [
+        "afterschool"
+      ]
+    },
+    {
+      "school_id": "B000004001",
+      "school_name": "대청초등학교",
+      "road_address": "경기도 용인시 수지구 죽전로 276",
+      "grade1_students": 48,
+      "area": "suji",
+      "wirye": false,
+      "stage": 3,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": false
+      },
+      "missing": [
+        "afterschool"
+      ]
+    },
+    {
+      "school_id": "B000003988",
+      "school_name": "대현초등학교",
+      "road_address": "경기도 용인시 수지구 용구대로2771번길 16",
+      "grade1_students": 38,
+      "area": "suji",
+      "wirye": false,
+      "stage": 3,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": false
+      },
+      "missing": [
+        "afterschool"
+      ]
+    },
+    {
+      "school_id": "B000003993",
+      "school_name": "동천초등학교",
+      "road_address": "경기도 용인시 수지구 고기로 71",
+      "grade1_students": 158,
+      "area": "suji",
+      "wirye": false,
+      "stage": 3,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": false
+      },
+      "missing": [
+        "dismissal",
+        "afterschool"
+      ]
+    },
+    {
+      "school_id": "B000025542",
+      "school_name": "매봉초등학교",
+      "road_address": "경기도 용인시 수지구 수지로 75-1",
+      "grade1_students": 111,
+      "area": "suji",
+      "wirye": false,
+      "stage": 3,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": false
+      },
+      "missing": [
+        "dismissal",
+        "afterschool"
+      ]
+    },
+    {
+      "school_id": "B000004002",
+      "school_name": "상현초등학교",
+      "road_address": "경기도 용인시 수지구 만현로67번길 23",
+      "grade1_students": 149,
+      "area": "suji",
+      "wirye": false,
+      "stage": 3,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": false
+      },
+      "missing": [
+        "afterschool"
+      ]
+    },
+    {
+      "school_id": "B000003937",
+      "school_name": "새빛초등학교",
+      "road_address": "경기도 용인시 수지구 광교마을로 63",
+      "grade1_students": 99,
+      "area": "suji",
+      "wirye": false,
+      "stage": 3,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": false
+      },
+      "missing": [
+        "afterschool"
+      ]
+    },
+    {
+      "school_id": "B000003980",
+      "school_name": "서원초등학교",
+      "road_address": "경기도 용인시 수지구 상현로 45",
+      "grade1_students": 98,
+      "area": "suji",
+      "wirye": false,
+      "stage": 3,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": false
+      },
+      "missing": [
+        "dismissal",
+        "afterschool"
+      ]
+    },
+    {
+      "school_id": "B000003982",
+      "school_name": "성복초등학교",
+      "road_address": "경기도 용인시 수지구 성복2로78번길 52",
+      "grade1_students": 82,
+      "area": "suji",
+      "wirye": false,
+      "stage": 3,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": false
+      },
+      "missing": [
+        "afterschool"
+      ]
+    },
+    {
+      "school_id": "B000004003",
+      "school_name": "성서초등학교",
+      "road_address": "경기도 용인시 수지구 성복2로 210",
+      "grade1_students": 97,
+      "area": "suji",
+      "wirye": false,
+      "stage": 3,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": false
+      },
+      "missing": [
+        "afterschool"
+      ]
+    },
+    {
+      "school_id": "B000003946",
+      "school_name": "소현초등학교",
+      "road_address": "경기도 용인시 수지구 만현로133번길 78",
+      "grade1_students": 47,
+      "area": "suji",
+      "wirye": false,
+      "stage": 3,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": false
+      },
+      "missing": [
+        "afterschool"
+      ]
+    },
+    {
+      "school_id": "B000003994",
+      "school_name": "손곡초등학교",
+      "road_address": "경기도 용인시 수지구 손곡로 68",
+      "grade1_students": 89,
+      "area": "suji",
+      "wirye": false,
+      "stage": 3,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": false
+      },
+      "missing": [
+        "afterschool"
+      ]
+    },
+    {
+      "school_id": "B000003978",
+      "school_name": "솔개초등학교",
+      "road_address": "경기도 용인시 수지구 상현로 79",
+      "grade1_students": 105,
+      "area": "suji",
+      "wirye": false,
+      "stage": 3,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": false
+      },
+      "missing": [
+        "dismissal",
+        "afterschool"
+      ]
+    },
+    {
+      "school_id": "B000003995",
+      "school_name": "수지초등학교",
+      "road_address": "경기도 용인시 수지구 정평로13번길 30",
+      "grade1_students": 253,
+      "area": "suji",
+      "wirye": false,
+      "stage": 3,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": false
+      },
+      "missing": [
+        "dismissal",
+        "afterschool"
+      ]
+    },
+    {
+      "school_id": "B000003985",
+      "school_name": "신리초등학교",
+      "road_address": "경기도 용인시 수지구 신봉1로48번길 6",
+      "grade1_students": 48,
+      "area": "suji",
+      "wirye": false,
+      "stage": 3,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": false
+      },
+      "missing": [
+        "dismissal",
+        "afterschool"
+      ]
+    },
+    {
+      "school_id": "B000003996",
+      "school_name": "신월초등학교",
+      "road_address": "경기도 용인시 수지구 풍덕천로 86",
+      "grade1_students": 83,
+      "area": "suji",
+      "wirye": false,
+      "stage": 3,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": false
+      },
+      "missing": [
+        "afterschool"
+      ]
+    },
+    {
+      "school_id": "B000003984",
+      "school_name": "신일초등학교",
+      "road_address": "경기도 용인시 수지구 신봉2로48번길 28",
+      "grade1_students": 63,
+      "area": "suji",
+      "wirye": false,
+      "stage": 3,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": false
+      },
+      "missing": [
+        "afterschool"
+      ]
+    },
+    {
+      "school_id": "B000003989",
+      "school_name": "용인대덕초등학교",
+      "road_address": "경기도 용인시 수지구 죽전로293번길 14",
+      "grade1_students": 37,
+      "area": "suji",
+      "wirye": false,
+      "stage": 3,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": false
+      },
+      "missing": [
+        "afterschool"
+      ]
+    },
+    {
+      "school_id": "B000003986",
+      "school_name": "용인대일초등학교",
+      "road_address": "경기도 용인시 수지구 푸른솔로 98",
+      "grade1_students": 38,
+      "area": "suji",
+      "wirye": false,
+      "stage": 3,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": false
+      },
+      "missing": [
+        "afterschool"
+      ]
+    },
+    {
+      "school_id": "B000004004",
+      "school_name": "용인신봉초등학교",
+      "road_address": "경기도 용인시 수지구 신봉2로 115",
+      "grade1_students": 141,
+      "area": "suji",
+      "wirye": false,
+      "stage": 3,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": false
+      },
+      "missing": [
+        "afterschool"
+      ]
+    },
+    {
+      "school_id": "B000003987",
+      "school_name": "용인신촌초등학교",
+      "road_address": "경기도 용인시 수지구 죽전로27번길 14-19",
+      "grade1_students": 72,
+      "area": "suji",
+      "wirye": false,
+      "stage": 3,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": false
+      },
+      "missing": [
+        "afterschool"
+      ]
+    },
+    {
+      "school_id": "B000003979",
+      "school_name": "용인심곡초등학교",
+      "road_address": "경기도 용인시 수지구 심곡로 59",
+      "grade1_students": 91,
+      "area": "suji",
+      "wirye": false,
+      "stage": 3,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": false
+      },
+      "missing": [
+        "dismissal",
+        "afterschool"
+      ]
+    },
+    {
+      "school_id": "B000003977",
+      "school_name": "용인한빛초등학교",
+      "road_address": "경기도 용인시 수지구 동천로153번길 23",
+      "grade1_students": 81,
+      "area": "suji",
+      "wirye": false,
+      "stage": 3,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": false
+      },
+      "missing": [
+        "dismissal",
+        "afterschool"
+      ]
+    },
+    {
+      "school_id": "B000003990",
+      "school_name": "정평초등학교",
+      "road_address": "경기도 용인시 수지구 정평로 64",
+      "grade1_students": 102,
+      "area": "suji",
+      "wirye": false,
+      "stage": 3,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": false
+      },
+      "missing": [
+        "afterschool"
+      ]
+    },
+    {
+      "school_id": "B000003999",
+      "school_name": "죽전초등학교",
+      "road_address": "경기도 용인시 수지구 용구대로2772번길 15",
+      "grade1_students": 39,
+      "area": "suji",
+      "wirye": false,
+      "stage": 3,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": false
+      },
+      "missing": [
+        "dismissal",
+        "afterschool"
+      ]
+    },
+    {
+      "school_id": "B000003992",
+      "school_name": "토월초등학교",
+      "road_address": "경기도 용인시 수지구 수지로296번길 3",
+      "grade1_students": 89,
+      "area": "suji",
+      "wirye": false,
+      "stage": 3,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": false
+      },
+      "missing": [
+        "afterschool"
+      ]
+    },
+    {
+      "school_id": "B000003997",
+      "school_name": "풍덕초등학교",
+      "road_address": "경기도 용인시 수지구 수지로 367",
+      "grade1_students": 132,
+      "area": "suji",
+      "wirye": false,
+      "stage": 3,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": false,
+        "care_hours": true,
+        "afterschool": false
+      },
+      "missing": [
+        "dismissal",
+        "afterschool"
+      ]
+    },
+    {
+      "school_id": "B000003991",
+      "school_name": "풍천초등학교",
+      "road_address": "경기도 용인시 수지구 진산로66번길 20",
+      "grade1_students": 116,
+      "area": "suji",
+      "wirye": false,
+      "stage": 3,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": false
+      },
+      "missing": [
+        "afterschool"
+      ]
+    },
+    {
+      "school_id": "B000004000",
+      "school_name": "현암초등학교",
+      "road_address": "경기도 용인시 수지구 대지로 146",
+      "grade1_students": 79,
+      "area": "suji",
+      "wirye": false,
+      "stage": 3,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": false
+      },
+      "missing": [
+        "afterschool"
+      ]
+    },
+    {
+      "school_id": "B000003983",
+      "school_name": "홍천초등학교",
+      "road_address": "경기도 용인시 수지구 신봉2로14번길 49",
+      "grade1_students": 43,
+      "area": "suji",
+      "wirye": false,
+      "stage": 3,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": false
+      },
+      "missing": [
+        "afterschool"
+      ]
+    },
+    {
+      "school_id": "B000003981",
+      "school_name": "효자초등학교",
+      "road_address": "경기도 용인시 수지구 성복1로 106-1",
+      "grade1_students": 116,
+      "area": "suji",
+      "wirye": false,
+      "stage": 3,
+      "operating_pilot": false,
+      "has": {
+        "dismissal": true,
+        "care_hours": true,
+        "afterschool": false
+      },
+      "missing": [
+        "afterschool"
+      ]
+    }
+  ]
+}
