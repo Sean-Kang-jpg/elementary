@@ -1,0 +1,59 @@
+{
+  "checked_on": "2026-10-19",
+  "by_kind": [
+    {
+      "kind": "맞춤형",
+      "rows": 3413,
+      "schools": 428
+    },
+    {
+      "kind": "방과후",
+      "rows": 17154,
+      "schools": 539
+    }
+  ],
+  "by_tier": [
+    {
+      "tier": "A",
+      "schools": 461
+    },
+    {
+      "tier": "B",
+      "schools": 13
+    },
+    {
+      "tier": "C",
+      "schools": 87
+    }
+  ],
+  "new_unsafe_programs": 0,
+  "morning_research_observations": 40,
+  "dry_run_batches": 7,
+  "committed_batches": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+  ],
+  "pilot_replay_duplicate_rows": 0,
+  "python_tests_passed": 28,
+  "offline_rebuild": {
+    "schools": 561,
+    "programs": 20567
+  },
+  "public_smoke": {
+    "origin": "https://wherecho.co.kr",
+    "passed": true,
+    "map_max_ms": 1338.6,
+    "apartment_max_ms": 436.7
+  },
+  "rollback": {
+    "prepared": true,
+    "executed": false,
+    "rehearsal_verified": false,
+    "rehearsal_error": "Invalid or expired requestState"
+  }
+}

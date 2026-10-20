@@ -1,0 +1,21 @@
+{
+  "checked_on": "2026-10-19",
+  "checks": {
+    "numbered_inputs": 37,
+    "raw_sources": 48,
+    "source_texts": 48,
+    "research_rows": 1595
+  },
+  "errors": [],
+  "python_tests_passed": 22,
+  "semantic_review_complete": false,
+  "live_operation_verified": false,
+  "db_writes": false,
+  "limitations": [
+    "No new official-page fetch; checked_on is local review date.",
+    "Merged sections, uncertain scope, source-year conflicts and repeated field tuples remain review targets.",
+    "No proof of current opening, enrolment, vacancies or 2027 operation."
+  ],
+  "grade_context_restored_rows": 25,
+  "grade_unknown_remaining": 435
+}

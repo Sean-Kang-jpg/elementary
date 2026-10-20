@@ -1,0 +1,333 @@
+[
+  {
+    "school_id": "B000001856",
+    "school_name": "경희초등학교",
+    "research_rows": 45,
+    "accepted_rows": 36,
+    "excluded_counts": {
+      "not_grade1": 9
+    }
+  },
+  {
+    "school_id": "B000001858",
+    "school_name": "은석초등학교",
+    "research_rows": 157,
+    "accepted_rows": 0,
+    "excluded_counts": {
+      "school_scope_pending": 157
+    }
+  },
+  {
+    "school_id": "B000001880",
+    "school_name": "금성초등학교",
+    "research_rows": 83,
+    "accepted_rows": 29,
+    "excluded_counts": {
+      "not_grade1": 31,
+      "same_list_entry_collapsed": 23
+    }
+  },
+  {
+    "school_id": "B000001907",
+    "school_name": "충암초등학교",
+    "research_rows": 82,
+    "accepted_rows": 51,
+    "excluded_counts": {
+      "not_grade1": 25,
+      "same_list_entry_collapsed": 6
+    }
+  },
+  {
+    "school_id": "B000001908",
+    "school_name": "선일초등학교",
+    "research_rows": 20,
+    "accepted_rows": 20,
+    "excluded_counts": {}
+  },
+  {
+    "school_id": "B000001909",
+    "school_name": "예일초등학교",
+    "research_rows": 18,
+    "accepted_rows": 6,
+    "excluded_counts": {
+      "not_grade1": 6,
+      "same_list_entry_collapsed": 6
+    }
+  },
+  {
+    "school_id": "B000001926",
+    "school_name": "경기초등학교",
+    "research_rows": 10,
+    "accepted_rows": 0,
+    "excluded_counts": {
+      "not_grade1": 10
+    }
+  },
+  {
+    "school_id": "B000001927",
+    "school_name": "이화여자대학교사범대학부속초등학교",
+    "research_rows": 34,
+    "accepted_rows": 34,
+    "excluded_counts": {}
+  },
+  {
+    "school_id": "B000001928",
+    "school_name": "추계초등학교",
+    "research_rows": 97,
+    "accepted_rows": 38,
+    "excluded_counts": {
+      "not_grade1": 59
+    }
+  },
+  {
+    "school_id": "B000001929",
+    "school_name": "명지초등학교",
+    "research_rows": 59,
+    "accepted_rows": 30,
+    "excluded_counts": {
+      "not_grade1": 29
+    }
+  },
+  {
+    "school_id": "B000001951",
+    "school_name": "홍익대학교사범대학부속초등학교",
+    "research_rows": 9,
+    "accepted_rows": 0,
+    "excluded_counts": {
+      "school_scope_pending": 9
+    }
+  },
+  {
+    "school_id": "B000001993",
+    "school_name": "동광초등학교",
+    "research_rows": 29,
+    "accepted_rows": 14,
+    "excluded_counts": {
+      "programme_scope_pending": 3,
+      "not_grade1": 12
+    }
+  },
+  {
+    "school_id": "B000002038",
+    "school_name": "동북초등학교",
+    "research_rows": 17,
+    "accepted_rows": 0,
+    "excluded_counts": {
+      "school_scope_pending": 17
+    }
+  },
+  {
+    "school_id": "B000002039",
+    "school_name": "한신초등학교",
+    "research_rows": 67,
+    "accepted_rows": 45,
+    "excluded_counts": {
+      "same_list_entry_collapsed": 1,
+      "programme_scope_pending": 21
+    }
+  },
+  {
+    "school_id": "B000002078",
+    "school_name": "청원초등학교",
+    "research_rows": 16,
+    "accepted_rows": 15,
+    "excluded_counts": {
+      "not_grade1": 1
+    }
+  },
+  {
+    "school_id": "B000002079",
+    "school_name": "태강삼육초등학교",
+    "research_rows": 29,
+    "accepted_rows": 27,
+    "excluded_counts": {
+      "same_list_entry_collapsed": 2
+    }
+  },
+  {
+    "school_id": "B000002080",
+    "school_name": "화랑초등학교",
+    "research_rows": 34,
+    "accepted_rows": 24,
+    "excluded_counts": {
+      "not_grade1": 5,
+      "same_list_entry_collapsed": 3,
+      "row_year_conflict": 2
+    }
+  },
+  {
+    "school_id": "B000002081",
+    "school_name": "상명초등학교",
+    "research_rows": 24,
+    "accepted_rows": 19,
+    "excluded_counts": {
+      "not_grade1": 5
+    }
+  },
+  {
+    "school_id": "B000002094",
+    "school_name": "운현초등학교",
+    "research_rows": 50,
+    "accepted_rows": 0,
+    "excluded_counts": {
+      "school_scope_pending": 50
+    }
+  },
+  {
+    "school_id": "B000002095",
+    "school_name": "상명대학교사범대학부속초등학교",
+    "research_rows": 6,
+    "accepted_rows": 6,
+    "excluded_counts": {}
+  },
+  {
+    "school_id": "B000002105",
+    "school_name": "리라초등학교",
+    "research_rows": 0,
+    "accepted_rows": 0,
+    "excluded_counts": {}
+  },
+  {
+    "school_id": "B000002106",
+    "school_name": "숭의초등학교",
+    "research_rows": 13,
+    "accepted_rows": 0,
+    "excluded_counts": {
+      "school_scope_pending": 13
+    }
+  },
+  {
+    "school_id": "B000002107",
+    "school_name": "동산초등학교",
+    "research_rows": 47,
+    "accepted_rows": 35,
+    "excluded_counts": {
+      "not_grade1": 6,
+      "same_list_entry_collapsed": 6
+    }
+  },
+  {
+    "school_id": "B000002122",
+    "school_name": "신광초등학교",
+    "research_rows": 30,
+    "accepted_rows": 0,
+    "excluded_counts": {
+      "school_scope_pending": 30
+    }
+  },
+  {
+    "school_id": "B000002251",
+    "school_name": "유석초등학교",
+    "research_rows": 42,
+    "accepted_rows": 35,
+    "excluded_counts": {
+      "programme_scope_pending": 7
+    }
+  },
+  {
+    "school_id": "B000002274",
+    "school_name": "계성초등학교",
+    "research_rows": 51,
+    "accepted_rows": 33,
+    "excluded_counts": {
+      "not_grade1": 18
+    }
+  },
+  {
+    "school_id": "B000002324",
+    "school_name": "중앙대학교사범대학부속초등학교",
+    "research_rows": 43,
+    "accepted_rows": 43,
+    "excluded_counts": {}
+  },
+  {
+    "school_id": "B000002366",
+    "school_name": "한양초등학교",
+    "research_rows": 78,
+    "accepted_rows": 0,
+    "excluded_counts": {
+      "school_scope_pending": 78
+    }
+  },
+  {
+    "school_id": "B000002386",
+    "school_name": "세종초등학교",
+    "research_rows": 65,
+    "accepted_rows": 42,
+    "excluded_counts": {
+      "same_list_entry_collapsed": 7,
+      "not_grade1": 16
+    }
+  },
+  {
+    "school_id": "B000002387",
+    "school_name": "경복초등학교",
+    "research_rows": 56,
+    "accepted_rows": 0,
+    "excluded_counts": {
+      "school_scope_pending": 56
+    }
+  },
+  {
+    "school_id": "B000002388",
+    "school_name": "성동초등학교",
+    "research_rows": 44,
+    "accepted_rows": 28,
+    "excluded_counts": {
+      "not_grade1": 14,
+      "same_list_entry_collapsed": 2
+    }
+  },
+  {
+    "school_id": "B000002413",
+    "school_name": "성신초등학교",
+    "research_rows": 63,
+    "accepted_rows": 63,
+    "excluded_counts": {}
+  },
+  {
+    "school_id": "B000002414",
+    "school_name": "우촌초등학교",
+    "research_rows": 13,
+    "accepted_rows": 9,
+    "excluded_counts": {
+      "not_grade1": 4
+    }
+  },
+  {
+    "school_id": "B000002415",
+    "school_name": "대광초등학교",
+    "research_rows": 60,
+    "accepted_rows": 0,
+    "excluded_counts": {
+      "school_scope_pending": 60
+    }
+  },
+  {
+    "school_id": "B000002416",
+    "school_name": "광운초등학교",
+    "research_rows": 29,
+    "accepted_rows": 12,
+    "excluded_counts": {
+      "not_grade1": 17
+    }
+  },
+  {
+    "school_id": "B000002417",
+    "school_name": "매원초등학교",
+    "research_rows": 32,
+    "accepted_rows": 0,
+    "excluded_counts": {
+      "school_scope_pending": 32
+    }
+  },
+  {
+    "school_id": "B000002431",
+    "school_name": "영훈초등학교",
+    "research_rows": 43,
+    "accepted_rows": 42,
+    "excluded_counts": {
+      "not_grade1": 1
+    }
+  }
+]
