@@ -65,6 +65,12 @@ npm run typecheck
 
 ## Uncommitted Work At Handoff
 
+### 2026-10-20: 시간표 카드·입력 메뉴 정리 (운영 `e529774`)
+
+- 강좌 분류·요일·대상을 한 줄로 합치고 하단 선택·직접 입력 메뉴를 상단 일정 추가로 통합. 선택한 일정 관리는 유지.
+- 운영 public smoke와 실제 학교 시간표의 상단 입력·새로고침 복원 검증 통과.
+- 기록: `elementary-v2/docs/operations/RELEASE_TIMETABLE_COMPACT_20261020.md`.
+
 ### 2026-10-19: 시간표 설계 독립 화면 (운영 `e13633b`)
 
 - `/timetable?school=학교ID`를 학습 준비 메뉴 안에 추가. 홈 예시 아래 배너·예시 카드, 학습 준비, 학교 상세에서 진입한다.
