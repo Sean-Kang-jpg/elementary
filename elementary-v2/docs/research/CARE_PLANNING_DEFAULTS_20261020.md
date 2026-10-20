@@ -1,6 +1,6 @@
 # 시간 미확인 돌봄의 시간표 기본 가정
 
-2026-10-20. 사용자가 선택한 돌봄을 계획 단계에서 배치하는 화면 변경이다. 운영 DB의 실제 시간·운영 상태는 변경하지 않았다. 운영 배포는 수행하지 않았다.
+2026-10-20. 사용자가 선택한 돌봄을 계획 단계에서 배치하는 화면 변경이다. 운영 DB의 실제 시간·운영 상태는 변경하지 않았다. 구현 검증 후 사용자 승인에 따라 운영 배포를 완료했다.
 
 - 아침 시간 미확인: 선택한 요일에 08:00–09:00 기본 가정. 명시적인 미운영 상태는 선택 대상에서 제외한다.
 - 오후 종료 미확인: 정규수업 하교부터 17:00 종료 기본 가정. 기존 저장된 시각 미확인 돌봄에도 적용한다. 확정 자료·직접 수정·방학 일정은 덮어쓰지 않는다.
@@ -19,3 +19,13 @@
 - 운영 `npm run browser:smoke:public -- https://wherecho.co.kr` 통과. 이는 현행 운영 서비스의 회귀 점검이며 신규 코드의 운영 배포 검증은 아니다.
 
 React 검토: 훅 순서·기존 비동기 취소 처리·목록 키·버튼 접근성·저장 성공 후 처리 확인. 새로운 외부 호출이나 DB 쓰기를 추가하지 않았다.
+
+## 운영 배포 및 배포 후 검증
+
+- 배포 커밋: `403142fdd890864abcae1e61daf15a22914ce0bb`. `master` → `release` fast-forward push로 배포했다. 기존 운영 대비 이 기능 외 앱 코드 차이는 없으며 미커밋 ETL 작업은 포함하지 않았다.
+- Vercel 프로젝트 `elementary` (`prj_1H2Vx4Ye38UvGpz8yu67GRc63piZ`), 팀 `team_BwevgkWVS8CQ8ETHgE6xSxip`, target production, branch release, 배포 `dpl_25kEBR9heh5bswUJVn1pvbPfByoH`: READY.
+- `wherecho.co.kr` 및 `www.wherecho.co.kr`이 새 배포에 연결됨을 확인했다. 배포 URL: `https://elementary-nxc3z4kj3-seankangs-projects.vercel.app`.
+- `node scripts/care-planning-production-smoke.mjs https://wherecho.co.kr`: 통과. API 모의 응답 없이 분리된 브라우저에 만든 시간 미확인 초안으로 아침 08–09시·오후 17시 종료 기본 가정, 시간순 표시, 방과후 15시 종료 후 돌봄 복귀, 17시부터 저녁돌봄 연결, 주간 배치 및 360/390/1280px 화면을 검증했다. 기존 초안 저장값 불변·페이지 오류 0건. 사용자 브라우저나 DB에는 쓰지 않았다. 이는 계획 기본값 표시 검증이며 실제 학교 돌봄 운영 여부의 검증이 아니다.
+- 배포 후 `npm run browser:smoke:public -- https://wherecho.co.kr`: 통과. 딥링크 `/admin/etl` 포함, 공유 주소·학교·아파트·지도·MY·모바일/데스크톱 회귀 검사 통과. 지도 요청 최장 788.5ms, 아파트 요청 281.1ms, 예상 밖 페이지 오류 없음.
+- 해당 배포의 최근 10분 서버 error 로그 0건. Vercel 연결 도구는 팀 권한 403으로 조회하지 못했으나 같은 팀을 명시한 기존 CLI 인증으로 배포·도메인·로그 조회를 완료했다.
+- 복구가 필요하면 직전 운영 배포 `dpl_EeBgc1N7Zkznpajpgaohk2RT1Cgd` (`e529774`)를 운영으로 승격하고 공개 회귀 검사를 실행한다. 복구는 실행하지 않았다.
