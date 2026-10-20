@@ -1,0 +1,3382 @@
+{
+  "schema_version": "morning-care-research-v1",
+  "checked_on": "2026-10-15",
+  "scope": "Seoul 2026 annual-plan source text; 2027 not verified",
+  "no_operational_upload": true,
+  "summary": {
+    "schools": 40,
+    "districts": 25,
+    "source_files": 72,
+    "hash_verified_source_files": 72,
+    "operation_status": {
+      "unknown": 40
+    },
+    "plan_status": {
+      "planned": 27,
+      "not_found": 11,
+      "conditional": 2
+    },
+    "time_status": {
+      "stated": 26,
+      "source_conflict": 1,
+      "not_found": 11,
+      "open_end": 2
+    },
+    "field_populated": {
+      "start_time": 28,
+      "end_time": 27,
+      "target_grades": 24,
+      "eligibility_raw": 26,
+      "application_window": 0,
+      "capacity": 7
+    },
+    "complete_clock_pairs": 26,
+    "escort_verified": 0,
+    "legacy_regex_detected_schools": 26,
+    "denominator": "all 40 sampled schools; planned field coverage, not live-service coverage"
+  },
+  "schools": [
+    {
+      "school_id": "B000002275",
+      "school_name": "서울봉은초등학교",
+      "district": "강남구",
+      "academic_year": 2026,
+      "calendar_scope": "term_weekday",
+      "service_type": "school_morning_care",
+      "operation_status": "unknown",
+      "operation_evidence": null,
+      "plan_status": "planned",
+      "start_time": "07:00",
+      "end_time": "09:00",
+      "end_time_raw": "09:00",
+      "time_status": "stated",
+      "target_grades": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "eligibility_raw": "조기 등교 학생·녹색어머니회 봉사 활동 자녀",
+      "application_window": null,
+      "capacity": 25,
+      "capacity_qualifier": "정원",
+      "escort_to_school": "unknown",
+      "escort_evidence": null,
+      "source_kind": "annual_plan",
+      "source_year": 2026,
+      "checked_on": "2026-10-15",
+      "source_list_checked_at": "2026-10-08T08:39:01.777Z",
+      "source_live_rechecked_on": null,
+      "review_state": "assistant_source_text_review",
+      "publication_state": "research_only",
+      "homepage": "http://bongeun.sen.es.kr",
+      "schoolinfo_url": "https://www.schoolinfo.go.kr/ei/ss/Pneiss_b01_s0.do?SHL_IDF_CD=acda155f-2602-46d5-8d0b-b578244b2b5f",
+      "probe_file": "schoolinfo_disclosure_probe_expansion_20261008.json",
+      "note": "학기중; 자율휴업일 수요 시. 방학 오전돌봄 08:00~10:30은 별도",
+      "field_evidence": {
+        "start_time": [
+          "aa1e9bece1c4:L2-L4"
+        ],
+        "end_time": [
+          "aa1e9bece1c4:L2-L4"
+        ],
+        "target_grades": [
+          "aa1e9bece1c4:L2-L4"
+        ],
+        "eligibility_raw": [
+          "aa1e9bece1c4:L2-L4"
+        ],
+        "capacity": [
+          "aa1e9bece1c4:L2-L4"
+        ]
+      },
+      "evidence": [
+        {
+          "evidence_id": "aa1e9bece1c4:L2-L4",
+          "sha256": "aa1e9bece1c43617cafa47bb0672795d568a9f22d169a6afc8d2d13846f55068",
+          "line_start": 2,
+          "line_end": 4,
+          "excerpt": "개 요운영형태운영시간장소대상수용인원비용부담비고아침돌봄07:00~09:00돌봄교실(1층,다솜방)-전 학년 대상-녹색 어 머니 회  봉사  가 정 학 생25명비용없음학기중 운영오후돌봄방과후~17:001~2학년 맞벌이･저소득층･한부모가정･ 다자녀 가정･담임 추천대상자 등의 학생2 5명간식 무상제공(1일 1회 2,500원)방학 및 자율휴업일 포함운영저녁돌봄17:00~19:00방학중돌봄08:00~18:30방학중 돌봄교실 참여 신청 학생25명방 학 중  중 식  수 익 자  부 담(교 육 비 지 원 대 상 자  무 료)방학중 운영틈새(연계형)돌봄방과후~15:30틈새(연계형)돌봄교실(4층,다솜방2)3~6학 년  맞벌이･저소득층･한부모 가정･ 다자녀 가정･․담임 추천대상자 등의 학생 중 방과후교실 프로\n##### PAGE 2\n2. 운영방침 및 내용  가. 아침돌봄 및 방학중 오전돌봄교실    1) 운영기간: 2026. 3. 3.(화)~2027. 2. 26.(금)    2) 운영시간: 학기중 07:00~09:00 방학중 08:00~10:30                학교자율휴업일 07:00~09:00(수요에 따라 운영가능)    3) 운영대상: 부모의 출근으로 인한 조기 등교 학생, 녹색어머니회 봉사 활동 자녀    4) 운영방침      ○ 학교 내 돌봄교실 등을 활용하여 조기 등교 학생을 보호      ○ 봉사자를 위촉하여 운영      ○ 자율 독서 및 학생이 자기 주도적 학습을 할 수 있도록 돌봄 운영      ○ 출석부 작성 및 보관  나. 오후 ‧ 저녁 돌봄교실    1) 운영기간: 2026. 3. 3.(화)~2027. 2. 26.(금)    2) 운영시간: 학기중 오후돌봄 방과후~ 17:00 저녁돌봄 17:00~19:00                학교자율휴업일 09:00~17:00    3) 운영대상      ○ 초1~2학년중 법정수급(저소득층)·맞벌이·한부모·다자녀·다문화가정, 담임교사         추천 학생 등 돌봄이 꼭 필요한 학생을 대상      ○ 실당 인원수에 여유가 있을 경우 3학년 이상으로 확대하여 운영      ○ 돌봄 참여를 희망하는 학생의 우선순위를 정해 최대한 수용    4) 선정기준 및 순위"
+        }
+      ],
+      "sources": [
+        {
+          "document_name": "2026 초등돌봄교실 운영계획.pdf",
+          "academic_year_in_filename": 2026,
+          "sha256": "aa1e9bece1c43617cafa47bb0672795d568a9f22d169a6afc8d2d13846f55068",
+          "text_sha256": "08e0e0d02aaf97580c001f4455bfe480b6d5b5daa679520b87e2a0f655705009",
+          "raw_hash_valid": true,
+          "file_seq": "7",
+          "source_url": "https://www.schoolinfo.go.kr/servlets/EiFileDownLoad.do?SHL_IDF_CD=acda155f-2602-46d5-8d0b-b578244b2b5f&JG_BURYU_CD=JG150&JG_HANGMOK_CD=59&JG_GUBUN=1&JG_CHASU=2&JG_YEAR=2026&USE_YN=Y&FILE_SEQ=7",
+          "text_path": "etl/runtime/audit2-documents/text/aa1e9bece1c43617cafa47bb0672795d568a9f22d169a6afc8d2d13846f55068.txt",
+          "text_lines": 119
+        },
+        {
+          "document_name": "2026 방과후·맞춤형교실 연간운영계획.pdf",
+          "academic_year_in_filename": 2026,
+          "sha256": "a08a18e6fb0076d25228e0964ff4db90a8114eeb723a9252b0cb891b6bb6377c",
+          "text_sha256": "c82a02149630f98934db5561a0f23480e11d6ed262ad2aab08f3696273e48042",
+          "raw_hash_valid": true,
+          "file_seq": "6",
+          "source_url": "https://www.schoolinfo.go.kr/servlets/EiFileDownLoad.do?SHL_IDF_CD=acda155f-2602-46d5-8d0b-b578244b2b5f&JG_BURYU_CD=JG150&JG_HANGMOK_CD=59&JG_GUBUN=1&JG_CHASU=2&JG_YEAR=2026&USE_YN=Y&FILE_SEQ=6",
+          "text_path": "etl/runtime/audit2-documents/text/a08a18e6fb0076d25228e0964ff4db90a8114eeb723a9252b0cb891b6bb6377c.txt",
+          "text_lines": 44
+        }
+      ],
+      "legacy_regex_candidates": {
+        "07:00-09:00": 4,
+        "08:00-08:40": 1
+      }
+    },
+    {
+      "school_id": "B000002160",
+      "school_name": "서울둔촌초등학교",
+      "district": "강동구",
+      "academic_year": 2026,
+      "calendar_scope": "term_weekday",
+      "service_type": "school_morning_care",
+      "operation_status": "unknown",
+      "operation_evidence": null,
+      "plan_status": "planned",
+      "start_time": "07:30",
+      "end_time": "09:00",
+      "end_time_raw": "09:00",
+      "time_status": "stated",
+      "target_grades": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "eligibility_raw": "1~6학년 희망 학생",
+      "application_window": null,
+      "capacity": null,
+      "capacity_qualifier": null,
+      "escort_to_school": "unknown",
+      "escort_evidence": null,
+      "source_kind": "annual_plan",
+      "source_year": 2026,
+      "checked_on": "2026-10-15",
+      "source_list_checked_at": "2026-10-09T01:45:34.991Z",
+      "source_live_rechecked_on": null,
+      "review_state": "assistant_source_text_review",
+      "publication_state": "research_only",
+      "homepage": "https://doonchon.sen.es.kr/",
+      "schoolinfo_url": "https://www.schoolinfo.go.kr/ei/ss/Pneiss_b01_s0.do?SHL_IDF_CD=0a2ce9ac-bd87-47bc-a633-a3be78afc5ec",
+      "probe_file": "schoolinfo_disclosure_probe_wave2_seoul_20261009.json",
+      "note": "정원 00명(예정)은 미확정; 전년도 참여 50명과 구분",
+      "field_evidence": {
+        "start_time": [
+          "ebf677f60a32:L3-L3",
+          "ebf677f60a32:L8-L10"
+        ],
+        "end_time": [
+          "ebf677f60a32:L3-L3",
+          "ebf677f60a32:L8-L10"
+        ],
+        "target_grades": [
+          "ebf677f60a32:L3-L3",
+          "ebf677f60a32:L8-L10"
+        ],
+        "eligibility_raw": [
+          "ebf677f60a32:L3-L3",
+          "ebf677f60a32:L8-L10"
+        ]
+      },
+      "evidence": [
+        {
+          "evidence_id": "ebf677f60a32:L3-L3",
+          "sha256": "ebf677f60a322c9e5ddff8b3e9fd2e929f5279f16f9e20be5dfeaeeb42677504",
+          "line_start": 3,
+          "line_end": 3,
+          "excerpt": "학교장 중심으로 운영한다. 나.당해 연도에는 아침늘봄 2실, 오후,저녁돌봄 4실을 운영하며, 틈새(연계형)돌봄을 설치하여 운영한다. 다.돌봄 유형에 따른 시간 운영은 학교 교육과정 운영 시간과 연계하여 운영하며, 세부 사항은 관련 협의회에서 정하는 관련 규정에 따른다. 라.돌봄교실은 방과후교실 운영 시간과 연계하여 운영한다.3 세부 운영 계획 가. 운영개요                       운영유형운영시간장소대상수용인원비고아침돌봄07:30~09:00돌봄1,2반1~6학년 희망자00명(예정) 연중 상시 운영오후돌봄방과후~17:00돌봄1~4반1~2학년 맞벌이/한부모/저소득 가정 학생실당25명내외간식: 무상지원급식: 방학 중  수익자 부담(교육비지원 대상학생은 교육청 지원)저녁돌봄17:00 …        운영유형운영시간장소대상수용인원비고아침돌봄07:30~09:00돌봄1,2반1~6학년 희망자00명(예정) 연중 상시 운영오후돌봄방과후~17:00돌봄1~4반1~2학년 맞벌이/한부모/저소득 가정 학생실당25명내외간식: 무상지원급식: 방학 중  수익자 부담(교육비지원 대상학생은 교육청 지원)저녁돌봄17:00~19:00틈새(연계형)돌봄방과후~16:10특별실1,특별실2,과학실2 3~4학년 방과후를 이용하는 맞벌이/한부모/저소득 가정 학생실당 30명내외방학 중 돌봄 ※ 별도 방학 운영 계획에 따름급식: 방학 중  수익자 부담※ 참여 대상자는 증빙서류 제출하여야 함※ 수용인원이 초과 될 경우 돌봄교실 규정으로 정한 우선순위로 결정함※ 틈새(연계형)돌봄은 학교 사정에 따라 운영반 및 운영하는 장"
+        },
+        {
+          "evidence_id": "ebf677f60a32:L8-L10",
+          "sha256": "ebf677f60a322c9e5ddff8b3e9fd2e929f5279f16f9e20be5dfeaeeb42677504",
+          "line_start": 8,
+          "line_end": 10,
+          "excerpt": "학기중방학중자율휴업일아침 돌봄07:30 ~ 09:00학기 중과 동일수요조사에 따라 탄력적으로 운영오후ž저녁 돌봄방과후 ~ 19:00틈새(연계형) 돌봄방과후 ~ 16:10 (3~4학년)※ 별도 방학 운영 계획에 따름※ 방학 중 계획(오전돌봄, 오후ž저녁돌봄, 틈새돌봄)은 별도 운영계획에 의하며, 학교실정, 지역사회의 특수성, 하/동절기, 학생수요 등을 고려하여 운영 시간을 융통성 있게 편성하도록 함다. 대상 학생 및 학생 선정  1) 대상 학생 선정\n   \n구분 대상 학생 선정아침돌봄1~6학년 희망 학생오후돌봄1~2학년 희망 수요는 모두 수용함이 원칙(맞춤형교실, 방과후교실 종료 후 간식 먹고 귀가)선정 자료: 학부모 입급신청서 기재내용, 관련 증빙서류, 담임 추천서 등   - 선정 우선 순위: 맞벌이·한부모·저소득층·담임추천학생  (수용인원보다 신청인원이 많을 경우 선정 우선 순위와 돌봄참여 시간 고려)※ 입급 후 귀가시간 변경시 반이 변경 될 수 있음저녁돌봄 오후 돌봄 참여자 중 학생 중 저녁 돌봄이 필요한 학생틈새(연계형)돌봄 3~4학년 희망 학생 중 맞벌이/한부모/저소득 가정 학생 방과후를 1개이상 이용하는 맞벌이/한부모/저소득 가정 학생방학 중 돌봄 ※ 별도 방학 운영 계획에 따름   ※ 육아휴직의 경우 돌 …  사정에 따라 반이 바뀔 수 있음    다) 아침늘봄-2개 반, 오후·저녁돌봄-4개 반, 틈새(연계형) 돌봄-O개 반으로 운영    다) 오후/저녁늘봄은 돌봄전담사가 담당        라) 아침/틈새(연계형)돌봄은 봉사 인력을 위촉하여 활용       3) 2025학년도 참여 현황(2025. 12. 04. 기준)      - 아침늘봄: 1~6학년(50명 내외)     - 오후돌봄: 돌봄1반(27명), 돌봄2반(26명), 돌봄3반(27명), 돌봄4반(27명)    - 저녁늘봄: 돌봄1-4반(7명) … 2025. 12. 04. 기준)      - 아침늘봄: 1~6학년(50명 내외)     - 오후돌봄: 돌봄1반(27명), 돌봄2반(26명), 돌봄3반(27명), 돌봄4반(27명)    - 저녁늘봄: 돌봄1-4반(7명)"
+        }
+      ],
+      "sources": [
+        {
+          "document_name": "2026학년도 서운둔촌초등학교 돌봄교실 운영계획.pdf",
+          "academic_year_in_filename": 2026,
+          "sha256": "ebf677f60a322c9e5ddff8b3e9fd2e929f5279f16f9e20be5dfeaeeb42677504",
+          "text_sha256": "e02e2cce9619ae6ca59af157e29b19640317b8ad273005f9db3561fa3b243bbe",
+          "raw_hash_valid": true,
+          "file_seq": "1",
+          "source_url": "https://www.schoolinfo.go.kr/servlets/EiFileDownLoad.do?SHL_IDF_CD=0a2ce9ac-bd87-47bc-a633-a3be78afc5ec&JG_BURYU_CD=JG150&JG_HANGMOK_CD=59&JG_GUBUN=1&JG_CHASU=2&JG_YEAR=2026&USE_YN=Y&FILE_SEQ=1",
+          "text_path": "etl/runtime/audit2-documents/text/ebf677f60a322c9e5ddff8b3e9fd2e929f5279f16f9e20be5dfeaeeb42677504.txt",
+          "text_lines": 41
+        },
+        {
+          "document_name": "2026학년도 서울둔촌초등학교 방과후학교 운영계획.pdf",
+          "academic_year_in_filename": 2026,
+          "sha256": "5359d9a4d2ab7affab43e39e2cd4d86a3ff24d88e9dd156eb04adb8d0654d664",
+          "text_sha256": "f861a9bc6d5647dfe8130b91511b258dfd2f790486876cb06fdea60be68cc951",
+          "raw_hash_valid": true,
+          "file_seq": "0",
+          "source_url": "https://www.schoolinfo.go.kr/servlets/EiFileDownLoad.do?SHL_IDF_CD=0a2ce9ac-bd87-47bc-a633-a3be78afc5ec&JG_BURYU_CD=JG150&JG_HANGMOK_CD=59&JG_GUBUN=1&JG_CHASU=2&JG_YEAR=2026&USE_YN=Y&FILE_SEQ=0",
+          "text_path": "etl/runtime/audit2-documents/text/5359d9a4d2ab7affab43e39e2cd4d86a3ff24d88e9dd156eb04adb8d0654d664.txt",
+          "text_lines": 46
+        }
+      ],
+      "legacy_regex_candidates": {
+        "07:30-09:00": 2
+      }
+    },
+    {
+      "school_id": "B000002418",
+      "school_name": "서울번동초등학교",
+      "district": "강북구",
+      "academic_year": 2026,
+      "calendar_scope": "term_weekday",
+      "service_type": "school_morning_care",
+      "operation_status": "unknown",
+      "operation_evidence": null,
+      "plan_status": "planned",
+      "start_time": "07:40",
+      "end_time": "09:10",
+      "end_time_raw": "09:10",
+      "time_status": "stated",
+      "target_grades": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "eligibility_raw": "맞벌이 가정 자녀·조기 등교가 필요한 1~6학년 학생",
+      "application_window": null,
+      "capacity": null,
+      "capacity_qualifier": null,
+      "escort_to_school": "unknown",
+      "escort_evidence": null,
+      "source_kind": "annual_plan",
+      "source_year": 2026,
+      "checked_on": "2026-10-15",
+      "source_list_checked_at": "2026-10-09T01:51:09.257Z",
+      "source_live_rechecked_on": null,
+      "review_state": "assistant_source_text_review",
+      "publication_state": "research_only",
+      "homepage": "http://beondong.sen.es.kr",
+      "schoolinfo_url": "https://www.schoolinfo.go.kr/ei/ss/Pneiss_b01_s0.do?SHL_IDF_CD=52c9a0bd-0f05-4d25-aadb-4bc6835fb7b8",
+      "probe_file": "schoolinfo_disclosure_probe_wave2_seoul_20261009.json",
+      "note": "학기중; 방학 수요 시 08:00~09:00. 수능일 10:10 종료. 방학 운영 여부 문서 내 불일치",
+      "field_evidence": {
+        "start_time": [
+          "564719feac05:L40-L44",
+          "564719feac05:L260-L264"
+        ],
+        "end_time": [
+          "564719feac05:L40-L44",
+          "564719feac05:L260-L264"
+        ],
+        "target_grades": [
+          "564719feac05:L40-L44",
+          "564719feac05:L260-L264"
+        ],
+        "eligibility_raw": [
+          "564719feac05:L40-L44",
+          "564719feac05:L260-L264"
+        ]
+      },
+      "evidence": [
+        {
+          "evidence_id": "564719feac05:L40-L44",
+          "sha256": "564719feac058dca4109c2b794aec639ba1bbf44b6c0c436a8e5ec58d47801c2",
+          "line_start": 40,
+          "line_end": 44,
+          "excerpt": "3. 아침돌봄교실\n  가. 대상: (1~6학년) 중 조기 등교로 돌봄이 필요한 학생\n  나. 운영 시간: (학기 중) 7:40 ~ 9:10, (참여자 있을 경우 방학 중) 8:00~9:00\n  다. 운영 장소: 도서실 \n  라. 봉사자: 관리 시간 내 15시간 미만 봉사자 위촉  "
+        },
+        {
+          "evidence_id": "564719feac05:L260-L264",
+          "sha256": "564719feac058dca4109c2b794aec639ba1bbf44b6c0c436a8e5ec58d47801c2",
+          "line_start": 260,
+          "line_end": 264,
+          "excerpt": "  (1) 목적: 맞벌이 가정 등의 아침 출근으로 인하여 조기 등교 학생들의 안전한 보호\n  (2) 운영 방침\n    가. 대상: 맞벌이 가정의 자녀, 조기 등교가 꼭 필요한 1~6학년 학생\n    나. 운영 기간: 2026. 3. 3 ~ 2027. 2.28. (수요가 있을 경우 방학 기간 운영)\n    다. 운영 시간: 월~금 (학기중 07:40~09:10/ 방학중 08:00~09:00)  대입수능일 (아침 07:40~10:10)"
+        }
+      ],
+      "sources": [
+        {
+          "document_name": "2026학년도 번동초등학교 방과후교실 운영계획.hwp",
+          "academic_year_in_filename": 2026,
+          "sha256": "c1cf5498a8b1b18747cad261655d4b212be04ffd1d8eb3599584e0139f588092",
+          "text_sha256": "b00da8adec1af8fef14f5c5ccfb939493abe6017ca13281eec4d8acfe44fa841",
+          "raw_hash_valid": true,
+          "file_seq": "3",
+          "source_url": "https://www.schoolinfo.go.kr/servlets/EiFileDownLoad.do?SHL_IDF_CD=52c9a0bd-0f05-4d25-aadb-4bc6835fb7b8&JG_BURYU_CD=JG150&JG_HANGMOK_CD=59&JG_GUBUN=1&JG_CHASU=2&JG_YEAR=2026&USE_YN=Y&FILE_SEQ=3",
+          "text_path": "etl/runtime/audit2-documents/text/c1cf5498a8b1b18747cad261655d4b212be04ffd1d8eb3599584e0139f588092.txt",
+          "text_lines": 217
+        },
+        {
+          "document_name": "2026학년도 번동초등학교 초등돌봄교실 운영계획.hwp",
+          "academic_year_in_filename": 2026,
+          "sha256": "564719feac058dca4109c2b794aec639ba1bbf44b6c0c436a8e5ec58d47801c2",
+          "text_sha256": "5c4e3d416a8d92ff31d7641699fd64f913a592305a69082d27d8776d4ca2f1c2",
+          "raw_hash_valid": true,
+          "file_seq": "2",
+          "source_url": "https://www.schoolinfo.go.kr/servlets/EiFileDownLoad.do?SHL_IDF_CD=52c9a0bd-0f05-4d25-aadb-4bc6835fb7b8&JG_BURYU_CD=JG150&JG_HANGMOK_CD=59&JG_GUBUN=1&JG_CHASU=2&JG_YEAR=2026&USE_YN=Y&FILE_SEQ=2",
+          "text_path": "etl/runtime/audit2-documents/text/564719feac058dca4109c2b794aec639ba1bbf44b6c0c436a8e5ec58d47801c2.txt",
+          "text_lines": 424
+        }
+      ],
+      "legacy_regex_candidates": {
+        "07:40-09:10": 2
+      }
+    },
+    {
+      "school_id": "B000002216",
+      "school_name": "서울화일초등학교",
+      "district": "강서구",
+      "academic_year": 2026,
+      "calendar_scope": "term_weekday",
+      "service_type": "school_morning_care",
+      "operation_status": "unknown",
+      "operation_evidence": null,
+      "plan_status": "planned",
+      "start_time": null,
+      "end_time": "09:00",
+      "end_time_raw": "09:00",
+      "time_status": "source_conflict",
+      "target_grades": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "eligibility_raw": "1~6학년 중 희망자",
+      "application_window": null,
+      "capacity": null,
+      "capacity_qualifier": null,
+      "escort_to_school": "unknown",
+      "escort_evidence": null,
+      "source_kind": "annual_plan",
+      "source_year": 2026,
+      "checked_on": "2026-10-15",
+      "source_list_checked_at": "2026-10-09T01:47:07.005Z",
+      "source_live_rechecked_on": null,
+      "review_state": "assistant_source_text_review",
+      "publication_state": "research_only",
+      "homepage": "http://hwail.sen.es.kr",
+      "schoolinfo_url": "https://www.schoolinfo.go.kr/ei/ss/Pneiss_b01_s0.do?SHL_IDF_CD=87c225e6-d034-433f-8ec9-5c2a8de8a8ef",
+      "probe_file": "schoolinfo_disclosure_probe_wave2_seoul_20261009.json",
+      "note": "운영개요 07:30, 일과표 07:00 충돌; 확정 시작시각 보류",
+      "field_evidence": {
+        "end_time": [
+          "83453155bf0f:L11-L11",
+          "83453155bf0f:L61-L61"
+        ],
+        "target_grades": [
+          "83453155bf0f:L11-L11",
+          "83453155bf0f:L61-L61"
+        ],
+        "eligibility_raw": [
+          "83453155bf0f:L11-L11",
+          "83453155bf0f:L61-L61"
+        ]
+      },
+      "evidence": [
+        {
+          "evidence_id": "83453155bf0f:L11-L11",
+          "sha256": "83453155bf0fe53ccd37e813f1784806d73f3aca10143eef61d7224d92c5a68c",
+          "line_start": 11,
+          "line_end": 11,
+          "excerpt": "세부 운영 계획Ⅲ  1. 운영 개요          운영유형운영시간장  소대  상인원(명)운영 인력비  고아침돌봄0 7:3 0~ 0 9:0 0도 담3교 실 1~ 6학 년  중희 망 자○ ○봉 사 인 력  위 촉학기중 운영수요발생시 방중운영오후선택형돌봄방과 후~ 17:00전용교실(3) 법 정 수 급(저 소 득 층)가 정학 생, 맞 벌 이  가 정, 한 부 모가 정, 담 임 교 사  추 천  학 생저학년학생(1~2학년) 참여 우선 ) 63돌봄전담사방학 및 자율휴업일 포함 운영저녁돌봄17:00~ 18:40도담2,3교실오 후 돌 봄  학 생  중희 망 자10돌봄전담사오후돌봄 운영시 운영(수요발생시 19시운영)틈새(연계형)돌봄13:00 ~ 15:30희망동 4층방 과후  틈 새 돌 봄 이 필요 한  희망 자25봉사인력 위촉학기중 운영방학중 오전돌봄09:00~13:00각 돌봄교실방 학 돌 봄  신 청 학 생○ ○오전 봉사자 위촉돌봄전담사방학 오전 운영중식비 개인 부담    ※ 돌봄교실 운영 시간과 대상자는 학교와 수요자의 상황에 따라 탄력적으로 운영하도록 함. "
+        },
+        {
+          "evidence_id": "83453155bf0f:L61-L61",
+          "sha256": "83453155bf0fe53ccd37e813f1784806d73f3aca10143eef61d7224d92c5a68c",
+          "line_start": 61,
+          "line_end": 61,
+          "excerpt": "요일시간월화수목금7:00~9:00개별 활동(독서, 개별학습 등)"
+        }
+      ],
+      "sources": [
+        {
+          "document_name": "2026학년도 서울화일초등학교 초등돌봄교실 운영계획.pdf",
+          "academic_year_in_filename": 2026,
+          "sha256": "83453155bf0fe53ccd37e813f1784806d73f3aca10143eef61d7224d92c5a68c",
+          "text_sha256": "a914a610e30e94a104b43599bf232d137a33df974907340ae3454e3b02302010",
+          "raw_hash_valid": true,
+          "file_seq": "1",
+          "source_url": "https://www.schoolinfo.go.kr/servlets/EiFileDownLoad.do?SHL_IDF_CD=87c225e6-d034-433f-8ec9-5c2a8de8a8ef&JG_BURYU_CD=JG150&JG_HANGMOK_CD=59&JG_GUBUN=1&JG_CHASU=2&JG_YEAR=2026&USE_YN=Y&FILE_SEQ=1",
+          "text_path": "etl/runtime/audit2-documents/text/83453155bf0fe53ccd37e813f1784806d73f3aca10143eef61d7224d92c5a68c.txt",
+          "text_lines": 173
+        },
+        {
+          "document_name": "2026학년도 서울화일초등학교 방과후학교 운영계획.pdf",
+          "academic_year_in_filename": 2026,
+          "sha256": "8685967bacbf49e2a6b3bdc00738e03e7d0a7026fbd03fa9bbc6141ae7e6e808",
+          "text_sha256": "d55cbff1b12f3bbaba39d6b89bd09cd12419a6de8df0e0349bdf61a68b035f8a",
+          "raw_hash_valid": true,
+          "file_seq": "0",
+          "source_url": "https://www.schoolinfo.go.kr/servlets/EiFileDownLoad.do?SHL_IDF_CD=87c225e6-d034-433f-8ec9-5c2a8de8a8ef&JG_BURYU_CD=JG150&JG_HANGMOK_CD=59&JG_GUBUN=1&JG_CHASU=2&JG_YEAR=2026&USE_YN=Y&FILE_SEQ=0",
+          "text_path": "etl/runtime/audit2-documents/text/8685967bacbf49e2a6b3bdc00738e03e7d0a7026fbd03fa9bbc6141ae7e6e808.txt",
+          "text_lines": 143
+        }
+      ],
+      "legacy_regex_candidates": {
+        "07:00-09:00": 1
+      },
+      "start_time_candidates": [
+        "07:00",
+        "07:30"
+      ]
+    },
+    {
+      "school_id": "B000002325",
+      "school_name": "서울원신초등학교",
+      "district": "관악구",
+      "academic_year": 2026,
+      "calendar_scope": "term_weekday",
+      "service_type": "school_morning_care",
+      "operation_status": "unknown",
+      "operation_evidence": null,
+      "plan_status": "not_found",
+      "start_time": null,
+      "end_time": null,
+      "end_time_raw": null,
+      "time_status": "not_found",
+      "target_grades": null,
+      "eligibility_raw": null,
+      "application_window": null,
+      "capacity": null,
+      "capacity_qualifier": null,
+      "escort_to_school": "unknown",
+      "escort_evidence": null,
+      "source_kind": "annual_plan",
+      "source_year": 2026,
+      "checked_on": "2026-10-15",
+      "source_list_checked_at": "2026-10-09T01:48:37.492Z",
+      "source_live_rechecked_on": null,
+      "review_state": "assistant_source_text_review",
+      "publication_state": "research_only",
+      "homepage": "http://wonshin.sen.es.kr",
+      "schoolinfo_url": "https://www.schoolinfo.go.kr/ei/ss/Pneiss_b01_s0.do?SHL_IDF_CD=1f21bc74-1b71-4207-ba80-b04e1cfd0705",
+      "probe_file": "schoolinfo_disclosure_probe_wave2_seoul_20261009.json",
+      "note": "선정한 15-라 첨부에서 아침돌봄 근거 미확인; 미운영으로 판단하지 않음",
+      "field_evidence": {},
+      "evidence": [],
+      "sources": [
+        {
+          "document_name": "2026학년도 방과후교실 연간 운영계획(학운위 심의).hwp",
+          "academic_year_in_filename": 2026,
+          "sha256": "e11d366463bdaf1900f8267f0a4cbb39d033c2756c00b4f8fff5a3728633a530",
+          "text_sha256": "dd883b53b516c6cc5afda9df33bad9f516404c1ff150e3ec9623d275c48f2113",
+          "raw_hash_valid": true,
+          "file_seq": "0",
+          "source_url": "https://www.schoolinfo.go.kr/servlets/EiFileDownLoad.do?SHL_IDF_CD=1f21bc74-1b71-4207-ba80-b04e1cfd0705&JG_BURYU_CD=JG150&JG_HANGMOK_CD=59&JG_GUBUN=1&JG_CHASU=2&JG_YEAR=2026&USE_YN=Y&FILE_SEQ=0",
+          "text_path": "etl/runtime/audit2-documents/text/e11d366463bdaf1900f8267f0a4cbb39d033c2756c00b4f8fff5a3728633a530.txt",
+          "text_lines": 395
+        }
+      ],
+      "legacy_regex_candidates": {}
+    },
+    {
+      "school_id": "B000002367",
+      "school_name": "서울양진초등학교",
+      "district": "광진구",
+      "academic_year": 2026,
+      "calendar_scope": "term_weekday",
+      "service_type": "school_morning_care",
+      "operation_status": "unknown",
+      "operation_evidence": null,
+      "plan_status": "planned",
+      "start_time": "07:30",
+      "end_time": "09:00",
+      "end_time_raw": "09:00",
+      "time_status": "stated",
+      "target_grades": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "eligibility_raw": "1~6학년 희망자 전체",
+      "application_window": null,
+      "capacity": null,
+      "capacity_qualifier": null,
+      "escort_to_school": "unknown",
+      "escort_evidence": null,
+      "source_kind": "annual_plan",
+      "source_year": 2026,
+      "checked_on": "2026-10-15",
+      "source_list_checked_at": "2026-10-09T01:49:44.045Z",
+      "source_live_rechecked_on": null,
+      "review_state": "assistant_source_text_review",
+      "publication_state": "research_only",
+      "homepage": "http://yjs.sen.es.kr",
+      "schoolinfo_url": "https://www.schoolinfo.go.kr/ei/ss/Pneiss_b01_s0.do?SHL_IDF_CD=27b5bdfb-8090-4b6f-aa30-9a71dc8f0609",
+      "probe_file": "schoolinfo_disclosure_probe_wave2_seoul_20261009.json",
+      "note": "방학 및 자율휴업일 포함 계획",
+      "field_evidence": {
+        "start_time": [
+          "3c77b8ee70b0:L225-L225",
+          "3c77b8ee70b0:L234-L234"
+        ],
+        "end_time": [
+          "3c77b8ee70b0:L225-L225",
+          "3c77b8ee70b0:L234-L234"
+        ],
+        "target_grades": [
+          "3c77b8ee70b0:L225-L225",
+          "3c77b8ee70b0:L234-L234"
+        ],
+        "eligibility_raw": [
+          "3c77b8ee70b0:L225-L225",
+          "3c77b8ee70b0:L234-L234"
+        ]
+      },
+      "evidence": [
+        {
+          "evidence_id": "3c77b8ee70b0:L225-L225",
+          "sha256": "3c77b8ee70b0b906329d12f0d379f6590e903763831efd3ca091791c3cd46fe6",
+          "line_start": 225,
+          "line_end": 225,
+          "excerpt": "아침 돌봄 | 7:30  ~ 9:00 | 도서실 | 없음 | 희망 학생 | 방학 및  자율휴업일 포함 운영 |"
+        },
+        {
+          "evidence_id": "3c77b8ee70b0:L234-L234",
+          "sha256": "3c77b8ee70b0b906329d12f0d379f6590e903763831efd3ca091791c3cd46fe6",
+          "line_start": 234,
+          "line_end": 234,
+          "excerpt": "아침 돌봄 | 1~6학년 희망자 전체 |"
+        }
+      ],
+      "sources": [
+        {
+          "document_name": "(정보공시)2026 양진초 방과후교실 수익자 경비 부담 사항.hwp",
+          "academic_year_in_filename": 2026,
+          "sha256": "73b074391e5415143a7de11589bcc3ce31e1f3d1eb402d11a6444da8b4a4b94e",
+          "text_sha256": "e561549e17dc3d8de09a9571e07a6d2003eb949b762c8b728f23a6cbfea1be6b",
+          "raw_hash_valid": true,
+          "file_seq": "2",
+          "source_url": "https://www.schoolinfo.go.kr/servlets/EiFileDownLoad.do?SHL_IDF_CD=27b5bdfb-8090-4b6f-aa30-9a71dc8f0609&JG_BURYU_CD=JG150&JG_HANGMOK_CD=59&JG_GUBUN=1&JG_CHASU=2&JG_YEAR=2026&USE_YN=Y&FILE_SEQ=2",
+          "text_path": "etl/runtime/audit2-documents/text/73b074391e5415143a7de11589bcc3ce31e1f3d1eb402d11a6444da8b4a4b94e.txt",
+          "text_lines": 122
+        },
+        {
+          "document_name": "(정보공시)2026 양진초 방과후돌봄 연간 운영 계획.hwp",
+          "academic_year_in_filename": 2026,
+          "sha256": "3c77b8ee70b0b906329d12f0d379f6590e903763831efd3ca091791c3cd46fe6",
+          "text_sha256": "faff797a7a2509870c628b8f85d6f32ff147dd6e5c077d8a535a8f34d03663f7",
+          "raw_hash_valid": true,
+          "file_seq": "1",
+          "source_url": "https://www.schoolinfo.go.kr/servlets/EiFileDownLoad.do?SHL_IDF_CD=27b5bdfb-8090-4b6f-aa30-9a71dc8f0609&JG_BURYU_CD=JG150&JG_HANGMOK_CD=59&JG_GUBUN=1&JG_CHASU=2&JG_YEAR=2026&USE_YN=Y&FILE_SEQ=1",
+          "text_path": "etl/runtime/audit2-documents/text/3c77b8ee70b0b906329d12f0d379f6590e903763831efd3ca091791c3cd46fe6.txt",
+          "text_lines": 665
+        }
+      ],
+      "legacy_regex_candidates": {
+        "07:30-09:00": 2
+      }
+    },
+    {
+      "school_id": "B000001952",
+      "school_name": "서울천왕초등학교",
+      "district": "구로구",
+      "academic_year": 2026,
+      "calendar_scope": "term_weekday",
+      "service_type": "school_morning_care",
+      "operation_status": "unknown",
+      "operation_evidence": null,
+      "plan_status": "planned",
+      "start_time": "07:30",
+      "end_time": "08:40",
+      "end_time_raw": "08:40",
+      "time_status": "stated",
+      "target_grades": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "eligibility_raw": "1~6학년 희망 학생 전체",
+      "application_window": null,
+      "capacity": 20,
+      "capacity_qualifier": "정원",
+      "escort_to_school": "unknown",
+      "escort_evidence": null,
+      "source_kind": "annual_plan",
+      "source_year": 2026,
+      "checked_on": "2026-10-15",
+      "source_list_checked_at": "2026-10-09T01:40:50.758Z",
+      "source_live_rechecked_on": null,
+      "review_state": "assistant_source_text_review",
+      "publication_state": "research_only",
+      "homepage": "http://cheonwang.sen.es.kr",
+      "schoolinfo_url": "https://www.schoolinfo.go.kr/ei/ss/Pneiss_b01_s0.do?SHL_IDF_CD=9d934187-d96a-4d1f-9ca6-1faead737fb6",
+      "probe_file": "schoolinfo_disclosure_probe_wave2_seoul_20261009.json",
+      "note": "방학 포함 계획",
+      "field_evidence": {
+        "start_time": [
+          "a824268ae911:L21-L21",
+          "a824268ae911:L39-L39"
+        ],
+        "end_time": [
+          "a824268ae911:L21-L21",
+          "a824268ae911:L39-L39"
+        ],
+        "target_grades": [
+          "a824268ae911:L21-L21",
+          "a824268ae911:L39-L39"
+        ],
+        "eligibility_raw": [
+          "a824268ae911:L21-L21",
+          "a824268ae911:L39-L39"
+        ],
+        "capacity": [
+          "a824268ae911:L21-L21",
+          "a824268ae911:L39-L39"
+        ]
+      },
+      "evidence": [
+        {
+          "evidence_id": "a824268ae911:L21-L21",
+          "sha256": "a824268ae91156670bf4c83e168f10d8f8460ed15689e3c065be756dc000d613",
+          "line_start": 21,
+          "line_end": 21,
+          "excerpt": "아침돌봄 | 07:30 ~08:40 | 행복반 |  -희망하는1~6학년 학년 전체 | 20명 | 없음 | 방학 포함 운영 |"
+        },
+        {
+          "evidence_id": "a824268ae911:L39-L39",
+          "sha256": "a824268ae91156670bf4c83e168f10d8f8460ed15689e3c065be756dc000d613",
+          "line_start": 39,
+          "line_end": 39,
+          "excerpt": "아침 돌봄 | ­ 희망하는 1~6학년 학생 전체 | 봉사인력 / 1학급 |"
+        }
+      ],
+      "sources": [
+        {
+          "document_name": "2026학년도 천왕초등학교 방과후, 맞춤형, 특수 운영계획서.hwpx",
+          "academic_year_in_filename": 2026,
+          "sha256": "0275d09551a43c95e17dec725ae503e759b4715723071c36f2847c8717f45087",
+          "text_sha256": "289241c61f47abb2b854d87d13186a14aab11e7cb9987a7ef41ab2ea2e725de3",
+          "raw_hash_valid": true,
+          "file_seq": "2",
+          "source_url": "https://www.schoolinfo.go.kr/servlets/EiFileDownLoad.do?SHL_IDF_CD=9d934187-d96a-4d1f-9ca6-1faead737fb6&JG_BURYU_CD=JG150&JG_HANGMOK_CD=59&JG_GUBUN=1&JG_CHASU=2&JG_YEAR=2026&USE_YN=Y&FILE_SEQ=2",
+          "text_path": "etl/runtime/audit2-documents/text/0275d09551a43c95e17dec725ae503e759b4715723071c36f2847c8717f45087.txt",
+          "text_lines": 799
+        },
+        {
+          "document_name": "2026학년도 초등돌봄교실 운영 계획(안).hwp",
+          "academic_year_in_filename": 2026,
+          "sha256": "a824268ae91156670bf4c83e168f10d8f8460ed15689e3c065be756dc000d613",
+          "text_sha256": "afb9f47292148389c7ed2c2bfd6d67fa292d3e3af3fc34c18b7a5941e0dc448f",
+          "raw_hash_valid": true,
+          "file_seq": "1",
+          "source_url": "https://www.schoolinfo.go.kr/servlets/EiFileDownLoad.do?SHL_IDF_CD=9d934187-d96a-4d1f-9ca6-1faead737fb6&JG_BURYU_CD=JG150&JG_HANGMOK_CD=59&JG_GUBUN=1&JG_CHASU=2&JG_YEAR=2026&USE_YN=Y&FILE_SEQ=1",
+          "text_path": "etl/runtime/audit2-documents/text/a824268ae91156670bf4c83e168f10d8f8460ed15689e3c065be756dc000d613.txt",
+          "text_lines": 260
+        }
+      ],
+      "legacy_regex_candidates": {
+        "07:30-08:40": 2
+      }
+    },
+    {
+      "school_id": "B000001976",
+      "school_name": "서울두산초등학교",
+      "district": "금천구",
+      "academic_year": 2026,
+      "calendar_scope": "term_weekday",
+      "service_type": "school_morning_care",
+      "operation_status": "unknown",
+      "operation_evidence": null,
+      "plan_status": "planned",
+      "start_time": "07:30",
+      "end_time": "09:00",
+      "end_time_raw": "09:00",
+      "time_status": "stated",
+      "target_grades": null,
+      "eligibility_raw": null,
+      "application_window": null,
+      "capacity": null,
+      "capacity_qualifier": null,
+      "escort_to_school": "unknown",
+      "escort_evidence": null,
+      "source_kind": "annual_plan",
+      "source_year": 2026,
+      "checked_on": "2026-10-15",
+      "source_list_checked_at": "2026-10-09T01:41:31.455Z",
+      "source_live_rechecked_on": null,
+      "review_state": "assistant_source_text_review",
+      "publication_state": "research_only",
+      "homepage": "http://doosan.sen.es.kr",
+      "schoolinfo_url": "https://www.schoolinfo.go.kr/ei/ss/Pneiss_b01_s0.do?SHL_IDF_CD=1931bd31-4acb-4e2d-9be8-1b6218d5a11c",
+      "probe_file": "schoolinfo_disclosure_probe_wave2_seoul_20261009.json",
+      "note": "아침 대상학년·정원은 이 근거에서 분리 확인하지 못함",
+      "field_evidence": {
+        "start_time": [
+          "e19fb9372816:L179-L179",
+          "e19fb9372816:L189-L191"
+        ],
+        "end_time": [
+          "e19fb9372816:L179-L179",
+          "e19fb9372816:L189-L191"
+        ]
+      },
+      "evidence": [
+        {
+          "evidence_id": "e19fb9372816:L179-L179",
+          "sha256": "e19fb9372816288e0b51f422f726c75ba28f14159f678a8f83974449bc00e4c8",
+          "line_start": 179,
+          "line_end": 179,
+          "excerpt": "    나) 아침돌봄, 저녁돌봄, 오후돌봄, 틈새(연계형) 돌봄 교실을 운영한다."
+        },
+        {
+          "evidence_id": "e19fb9372816:L189-L191",
+          "sha256": "e19fb9372816288e0b51f422f726c75ba28f14159f678a8f83974449bc00e4c8",
+          "line_start": 189,
+          "line_end": 191,
+          "excerpt": "<아침돌봄>\n시간 | 월 | 화 | 수 | 목 | 금 |\n07:30~09:00 | 인사 / 입실 확인 및 개별활동 |"
+        }
+      ],
+      "sources": [
+        {
+          "document_name": "(학운위용)2026학년도 방과후·돌봄 운영계획(안)_1223.hwpx",
+          "academic_year_in_filename": 2026,
+          "sha256": "e19fb9372816288e0b51f422f726c75ba28f14159f678a8f83974449bc00e4c8",
+          "text_sha256": "e35b13cbd0d6a3526bbc784d9a9ff78d9319b15c957755be8f25a562fad7ba72",
+          "raw_hash_valid": true,
+          "file_seq": "0",
+          "source_url": "https://www.schoolinfo.go.kr/servlets/EiFileDownLoad.do?SHL_IDF_CD=1931bd31-4acb-4e2d-9be8-1b6218d5a11c&JG_BURYU_CD=JG150&JG_HANGMOK_CD=59&JG_GUBUN=1&JG_CHASU=2&JG_YEAR=2026&USE_YN=Y&FILE_SEQ=0",
+          "text_path": "etl/runtime/audit2-documents/text/e19fb9372816288e0b51f422f726c75ba28f14159f678a8f83974449bc00e4c8.txt",
+          "text_lines": 532
+        }
+      ],
+      "legacy_regex_candidates": {}
+    },
+    {
+      "school_id": "B000002040",
+      "school_name": "서울신계초등학교",
+      "district": "노원구",
+      "academic_year": 2026,
+      "calendar_scope": "term_weekday",
+      "service_type": "school_morning_care",
+      "operation_status": "unknown",
+      "operation_evidence": null,
+      "plan_status": "planned",
+      "start_time": "07:50",
+      "end_time": "09:00",
+      "end_time_raw": "09:00",
+      "time_status": "stated",
+      "target_grades": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "eligibility_raw": "전학년",
+      "application_window": null,
+      "capacity": null,
+      "capacity_qualifier": null,
+      "escort_to_school": "unknown",
+      "escort_evidence": null,
+      "source_kind": "annual_plan",
+      "source_year": 2026,
+      "checked_on": "2026-10-15",
+      "source_list_checked_at": "2026-10-09T01:43:17.107Z",
+      "source_live_rechecked_on": null,
+      "review_state": "assistant_source_text_review",
+      "publication_state": "research_only",
+      "homepage": "http://singye.sen.es.kr",
+      "schoolinfo_url": "https://www.schoolinfo.go.kr/ei/ss/Pneiss_b01_s0.do?SHL_IDF_CD=6357d2fd-18ad-4d64-aaac-83177dd1569b",
+      "probe_file": "schoolinfo_disclosure_probe_wave2_seoul_20261009.json",
+      "note": "수요에 따라 변동 가능; 방학 포함",
+      "field_evidence": {
+        "start_time": [
+          "019d73b51756:L28-L28"
+        ],
+        "end_time": [
+          "019d73b51756:L28-L28"
+        ],
+        "target_grades": [
+          "019d73b51756:L28-L28"
+        ],
+        "eligibility_raw": [
+          "019d73b51756:L28-L28"
+        ]
+      },
+      "evidence": [
+        {
+          "evidence_id": "019d73b51756:L28-L28",
+          "sha256": "019d73b51756a13af9ee2c26d4f440715e6c260d1e7585a6819844a7c618fae3",
+          "line_start": 28,
+          "line_end": 28,
+          "excerpt": "학 기 중 | 아침돌봄 | 07:50~09:00 | 늘봄1반 (전용교실) | 전학년 | 없음 | 수요에 따라 변동 가능 방학 포함 운영 |"
+        }
+      ],
+      "sources": [
+        {
+          "document_name": "2026학년도 돌봄교실 연간 운영 계획.hwp",
+          "academic_year_in_filename": 2026,
+          "sha256": "019d73b51756a13af9ee2c26d4f440715e6c260d1e7585a6819844a7c618fae3",
+          "text_sha256": "13de1a5809f11888ac225b4fe1eedd5a1794a5855f3afcc386e289050205f40a",
+          "raw_hash_valid": true,
+          "file_seq": "2",
+          "source_url": "https://www.schoolinfo.go.kr/servlets/EiFileDownLoad.do?SHL_IDF_CD=6357d2fd-18ad-4d64-aaac-83177dd1569b&JG_BURYU_CD=JG150&JG_HANGMOK_CD=59&JG_GUBUN=1&JG_CHASU=2&JG_YEAR=2026&USE_YN=Y&FILE_SEQ=2",
+          "text_path": "etl/runtime/audit2-documents/text/019d73b51756a13af9ee2c26d4f440715e6c260d1e7585a6819844a7c618fae3.txt",
+          "text_lines": 287
+        },
+        {
+          "document_name": "2026학년도 방과후 및 맞춤형 업체위탁 연간 운영계획.hwp",
+          "academic_year_in_filename": 2026,
+          "sha256": "1524ad732763858ec5ac193ff2dd4b3b8430071dc0ce177bd8298912c528693d",
+          "text_sha256": "f3fea22ae3ffd6edd707c23dfddc7a667999fd74ab062fc11be9ae0d15d1505c",
+          "raw_hash_valid": true,
+          "file_seq": "0",
+          "source_url": "https://www.schoolinfo.go.kr/servlets/EiFileDownLoad.do?SHL_IDF_CD=6357d2fd-18ad-4d64-aaac-83177dd1569b&JG_BURYU_CD=JG150&JG_HANGMOK_CD=59&JG_GUBUN=1&JG_CHASU=2&JG_YEAR=2026&USE_YN=Y&FILE_SEQ=0",
+          "text_path": "etl/runtime/audit2-documents/text/1524ad732763858ec5ac193ff2dd4b3b8430071dc0ce177bd8298912c528693d.txt",
+          "text_lines": 345
+        }
+      ],
+      "legacy_regex_candidates": {
+        "07:50-09:00": 1
+      }
+    },
+    {
+      "school_id": "B000002017",
+      "school_name": "서울초당초등학교",
+      "district": "도봉구",
+      "academic_year": 2026,
+      "calendar_scope": "term_weekday",
+      "service_type": "school_morning_care",
+      "operation_status": "unknown",
+      "operation_evidence": null,
+      "plan_status": "planned",
+      "start_time": "07:00",
+      "end_time": null,
+      "end_time_raw": "수업전",
+      "time_status": "open_end",
+      "target_grades": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "eligibility_raw": "전학년 희망 학생",
+      "application_window": null,
+      "capacity": null,
+      "capacity_qualifier": null,
+      "escort_to_school": "unknown",
+      "escort_evidence": null,
+      "source_kind": "annual_plan",
+      "source_year": 2026,
+      "checked_on": "2026-10-15",
+      "source_list_checked_at": "2026-10-06T14:23:30.972Z",
+      "source_live_rechecked_on": null,
+      "review_state": "assistant_source_text_review",
+      "publication_state": "research_only",
+      "homepage": "http://chodang.sen.es.kr",
+      "schoolinfo_url": "https://www.schoolinfo.go.kr/ei/ss/Pneiss_b01_s0.do?SHL_IDF_CD=2ab51f48-91c3-4e8a-ae5c-c200affb0a66",
+      "probe_file": "schoolinfo_disclosure_probe_20261006.json",
+      "note": "종료는 수업전; 2시간 봉사시간으로 09:00을 역산하지 않음",
+      "field_evidence": {
+        "start_time": [
+          "e56a24bc0324:L16-L16"
+        ],
+        "target_grades": [
+          "e56a24bc0324:L16-L16"
+        ],
+        "eligibility_raw": [
+          "e56a24bc0324:L16-L16"
+        ]
+      },
+      "evidence": [
+        {
+          "evidence_id": "e56a24bc0324:L16-L16",
+          "sha256": "e56a24bc0324a6c9cc679d6c0877167b42457eb21143ea1a8700bff1c5738c07",
+          "line_start": 16,
+          "line_end": 16,
+          "excerpt": "아침돌봄 | 07:00∼수업전 | 틈새 교실 | 전학년, 희망학생 | 없음 | 봉사자 |"
+        }
+      ],
+      "sources": [
+        {
+          "document_name": "2026학년도 특수교육대상학생 방과후교실 운영 계획(안).hwp",
+          "academic_year_in_filename": 2026,
+          "sha256": "44d946c1ce824bb75ac12e4a0cf60715fe9bdf1acf811f1bb070db5e6c684cdd",
+          "text_sha256": "8e229e3904104e6db2d071a250223b10e5333ce62df110bb0b0ef10f48a30feb",
+          "raw_hash_valid": true,
+          "file_seq": "7",
+          "source_url": "https://www.schoolinfo.go.kr/servlets/EiFileDownLoad.do?SHL_IDF_CD=2ab51f48-91c3-4e8a-ae5c-c200affb0a66&JG_BURYU_CD=JG150&JG_HANGMOK_CD=59&JG_GUBUN=1&JG_CHASU=2&JG_YEAR=2026&USE_YN=Y&FILE_SEQ=7",
+          "text_path": "etl/runtime/audit2-documents/text/44d946c1ce824bb75ac12e4a0cf60715fe9bdf1acf811f1bb070db5e6c684cdd.txt",
+          "text_lines": 110
+        },
+        {
+          "document_name": "2026학년도 초등돌봄교실 운영계획(안).hwp",
+          "academic_year_in_filename": 2026,
+          "sha256": "e56a24bc0324a6c9cc679d6c0877167b42457eb21143ea1a8700bff1c5738c07",
+          "text_sha256": "4137465a4e57d163c9904201ec0dfecc91a3645d8b6e0db2062aa48e765388e7",
+          "raw_hash_valid": true,
+          "file_seq": "6",
+          "source_url": "https://www.schoolinfo.go.kr/servlets/EiFileDownLoad.do?SHL_IDF_CD=2ab51f48-91c3-4e8a-ae5c-c200affb0a66&JG_BURYU_CD=JG150&JG_HANGMOK_CD=59&JG_GUBUN=1&JG_CHASU=2&JG_YEAR=2026&USE_YN=Y&FILE_SEQ=6",
+          "text_path": "etl/runtime/audit2-documents/text/e56a24bc0324a6c9cc679d6c0877167b42457eb21143ea1a8700bff1c5738c07.txt",
+          "text_lines": 115
+        },
+        {
+          "document_name": "2026학년도 방과후·맞춤형교실 연간 운영 계획(안).hwp",
+          "academic_year_in_filename": 2026,
+          "sha256": "11945c92beaafcc5a64895ae5148f7d49891c6b51ee3c22d3b295ac7b90b7e9a",
+          "text_sha256": "d8b615184c28d6d8bcc8add3562e66d0ff00d9f0bdad53f0a4f3a7d51dd831b7",
+          "raw_hash_valid": true,
+          "file_seq": "5",
+          "source_url": "https://www.schoolinfo.go.kr/servlets/EiFileDownLoad.do?SHL_IDF_CD=2ab51f48-91c3-4e8a-ae5c-c200affb0a66&JG_BURYU_CD=JG150&JG_HANGMOK_CD=59&JG_GUBUN=1&JG_CHASU=2&JG_YEAR=2026&USE_YN=Y&FILE_SEQ=5",
+          "text_path": "etl/runtime/audit2-documents/text/11945c92beaafcc5a64895ae5148f7d49891c6b51ee3c22d3b295ac7b90b7e9a.txt",
+          "text_lines": 282
+        }
+      ],
+      "legacy_regex_candidates": {}
+    },
+    {
+      "school_id": "B000001853",
+      "school_name": "서울홍릉초등학교",
+      "district": "동대문구",
+      "academic_year": 2026,
+      "calendar_scope": "term_weekday",
+      "service_type": "school_morning_care",
+      "operation_status": "unknown",
+      "operation_evidence": null,
+      "plan_status": "conditional",
+      "start_time": "07:20",
+      "end_time": "09:00",
+      "end_time_raw": "09:00",
+      "time_status": "stated",
+      "target_grades": null,
+      "eligibility_raw": "맞벌이로 인한 조기 등교 아동; 녹색어머니회 아동 이용 가능",
+      "application_window": null,
+      "capacity": null,
+      "capacity_qualifier": null,
+      "escort_to_school": "unknown",
+      "escort_evidence": null,
+      "source_kind": "annual_plan",
+      "source_year": 2026,
+      "checked_on": "2026-10-15",
+      "source_list_checked_at": "2026-10-09T01:38:10.135Z",
+      "source_live_rechecked_on": null,
+      "review_state": "assistant_source_text_review",
+      "publication_state": "research_only",
+      "homepage": "http://hongneung.sen.es.kr",
+      "schoolinfo_url": "https://www.schoolinfo.go.kr/ei/ss/Pneiss_b01_s0.do?SHL_IDF_CD=177dc8c6-b6f0-4bb1-9bc0-c245c10ecb6e",
+      "probe_file": "schoolinfo_disclosure_probe_wave2_seoul_20261009.json",
+      "note": "운영시 표현이 있어 조건부 계획; 수요에 따라 시간 변동",
+      "field_evidence": {
+        "start_time": [
+          "f71fb6244d58:L34-L38"
+        ],
+        "end_time": [
+          "f71fb6244d58:L34-L38"
+        ],
+        "eligibility_raw": [
+          "f71fb6244d58:L34-L38"
+        ]
+      },
+      "evidence": [
+        {
+          "evidence_id": "f71fb6244d58:L34-L38",
+          "sha256": "f71fb6244d5828234adb6a0890c6c89cac79633ab30959b57396d804a3f68372",
+          "line_start": 34,
+          "line_end": 38,
+          "excerpt": "4. 아침돌봄(7:20~9:00)\n   - 운영장소 : 돌봄교실1(1층)\n   - 맞벌이로 인해 학교에 일찍 등교하는 아동 돌봄\n     (※아침돌봄운영시 녹색어머니회 아동 및 조기등교학생 이용가능)   \n   - 수요에 따라 운영 시간 변동될 수 있음."
+        }
+      ],
+      "sources": [
+        {
+          "document_name": "(학운위 심의)2026학년도 초등돌봄교실 운영계획(안)_돌봄.hwp",
+          "academic_year_in_filename": 2026,
+          "sha256": "f71fb6244d5828234adb6a0890c6c89cac79633ab30959b57396d804a3f68372",
+          "text_sha256": "41173eeff0d714b5b03f83549ebe6af08bdfdf082a0f179a65a7475af00e7f7e",
+          "raw_hash_valid": true,
+          "file_seq": "3",
+          "source_url": "https://www.schoolinfo.go.kr/servlets/EiFileDownLoad.do?SHL_IDF_CD=177dc8c6-b6f0-4bb1-9bc0-c245c10ecb6e&JG_BURYU_CD=JG150&JG_HANGMOK_CD=59&JG_GUBUN=1&JG_CHASU=2&JG_YEAR=2026&USE_YN=Y&FILE_SEQ=3",
+          "text_path": "etl/runtime/audit2-documents/text/f71fb6244d5828234adb6a0890c6c89cac79633ab30959b57396d804a3f68372.txt",
+          "text_lines": 158
+        },
+        {
+          "document_name": "2026 방과후(특수방과후)·맞춤형 프로그램 연간운영계획.hwp",
+          "academic_year_in_filename": 2026,
+          "sha256": "d7a3457e8183ce9314cedd879d79ec3bcf13fa02a6a31cb489e47605f8a54214",
+          "text_sha256": "04712adc178e17e0f60eea7d9ad44254bb2b0f310d232dcd242a6360e7b4d4a6",
+          "raw_hash_valid": true,
+          "file_seq": "0",
+          "source_url": "https://www.schoolinfo.go.kr/servlets/EiFileDownLoad.do?SHL_IDF_CD=177dc8c6-b6f0-4bb1-9bc0-c245c10ecb6e&JG_BURYU_CD=JG150&JG_HANGMOK_CD=59&JG_GUBUN=1&JG_CHASU=2&JG_YEAR=2026&USE_YN=Y&FILE_SEQ=0",
+          "text_path": "etl/runtime/audit2-documents/text/d7a3457e8183ce9314cedd879d79ec3bcf13fa02a6a31cb489e47605f8a54214.txt",
+          "text_lines": 335
+        }
+      ],
+      "legacy_regex_candidates": {
+        "07:20-09:00": 1
+      }
+    },
+    {
+      "school_id": "B000002305",
+      "school_name": "서울신상도초등학교",
+      "district": "동작구",
+      "academic_year": 2026,
+      "calendar_scope": "term_weekday",
+      "service_type": "school_morning_care",
+      "operation_status": "unknown",
+      "operation_evidence": null,
+      "plan_status": "planned",
+      "start_time": "07:00",
+      "end_time": "09:00",
+      "end_time_raw": "09:00",
+      "time_status": "stated",
+      "target_grades": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "eligibility_raw": "희망하는 모든 학생(1~6)",
+      "application_window": null,
+      "capacity": null,
+      "capacity_qualifier": null,
+      "escort_to_school": "unknown",
+      "escort_evidence": null,
+      "source_kind": "annual_plan",
+      "source_year": 2026,
+      "checked_on": "2026-10-15",
+      "source_list_checked_at": "2026-10-09T01:48:03.420Z",
+      "source_live_rechecked_on": null,
+      "review_state": "assistant_source_text_review",
+      "publication_state": "research_only",
+      "homepage": "http://shinsangdo.sen.es.kr",
+      "schoolinfo_url": "https://www.schoolinfo.go.kr/ei/ss/Pneiss_b01_s0.do?SHL_IDF_CD=65d5c968-52ca-438c-a0e1-19715e00c2f8",
+      "probe_file": "schoolinfo_disclosure_probe_wave2_seoul_20261009.json",
+      "note": "",
+      "field_evidence": {
+        "start_time": [
+          "5479a31d0008:L8-L8"
+        ],
+        "end_time": [
+          "5479a31d0008:L8-L8"
+        ],
+        "target_grades": [
+          "5479a31d0008:L8-L8"
+        ],
+        "eligibility_raw": [
+          "5479a31d0008:L8-L8"
+        ]
+      },
+      "evidence": [
+        {
+          "evidence_id": "5479a31d0008:L8-L8",
+          "sha256": "5479a31d0008a6012744ad05e9dec5cd776bf4e4d248a53690b7263e989620c8",
+          "line_start": 8,
+          "line_end": 8,
+          "excerpt": "아침돌봄 | 07:00 ~ 09:00 | 희망하는 모든 학생(1~6) | 없음 | 전용  돌봄교실 |"
+        }
+      ],
+      "sources": [
+        {
+          "document_name": "2026학년도 신상도초 돌봄교실 운영계획.hwp",
+          "academic_year_in_filename": 2026,
+          "sha256": "5479a31d0008a6012744ad05e9dec5cd776bf4e4d248a53690b7263e989620c8",
+          "text_sha256": "cee896fe5a915e63ffbbb77fd5c82a95868ab0f90bbd19d357a37d256cd4c3a8",
+          "raw_hash_valid": true,
+          "file_seq": "3",
+          "source_url": "https://www.schoolinfo.go.kr/servlets/EiFileDownLoad.do?SHL_IDF_CD=65d5c968-52ca-438c-a0e1-19715e00c2f8&JG_BURYU_CD=JG150&JG_HANGMOK_CD=59&JG_GUBUN=1&JG_CHASU=2&JG_YEAR=2026&USE_YN=Y&FILE_SEQ=3",
+          "text_path": "etl/runtime/audit2-documents/text/5479a31d0008a6012744ad05e9dec5cd776bf4e4d248a53690b7263e989620c8.txt",
+          "text_lines": 395
+        },
+        {
+          "document_name": "2026학년도 신상도초 방과후, 맞춤형 교실 운영 계획.hwpx",
+          "academic_year_in_filename": 2026,
+          "sha256": "cb27b83b2438fd4ad041cadfc7b50bcc314d9033363fbe21958c3c35e6e0692a",
+          "text_sha256": "2cfa8c98d667b8a6de1241efcdf72d55500994bc0c7fdee56263a39e21988d9f",
+          "raw_hash_valid": true,
+          "file_seq": "2",
+          "source_url": "https://www.schoolinfo.go.kr/servlets/EiFileDownLoad.do?SHL_IDF_CD=65d5c968-52ca-438c-a0e1-19715e00c2f8&JG_BURYU_CD=JG150&JG_HANGMOK_CD=59&JG_GUBUN=1&JG_CHASU=2&JG_YEAR=2026&USE_YN=Y&FILE_SEQ=2",
+          "text_path": "etl/runtime/audit2-documents/text/cb27b83b2438fd4ad041cadfc7b50bcc314d9033363fbe21958c3c35e6e0692a.txt",
+          "text_lines": 434
+        }
+      ],
+      "legacy_regex_candidates": {
+        "07:00-09:00": 1
+      }
+    },
+    {
+      "school_id": "B000001930",
+      "school_name": "서울공덕초등학교",
+      "district": "마포구",
+      "academic_year": 2026,
+      "calendar_scope": "term_weekday",
+      "service_type": "school_morning_care",
+      "operation_status": "unknown",
+      "operation_evidence": null,
+      "plan_status": "planned",
+      "start_time": "07:10",
+      "end_time": "08:50",
+      "end_time_raw": "08:50",
+      "time_status": "stated",
+      "target_grades": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "eligibility_raw": "희망하는 1~6학년 학생 전체",
+      "application_window": null,
+      "capacity": 25,
+      "capacity_qualifier": "정원",
+      "escort_to_school": "unknown",
+      "escort_evidence": null,
+      "source_kind": "annual_plan",
+      "source_year": 2026,
+      "checked_on": "2026-10-15",
+      "source_list_checked_at": "2026-10-09T01:40:13.154Z",
+      "source_live_rechecked_on": null,
+      "review_state": "assistant_source_text_review",
+      "publication_state": "research_only",
+      "homepage": "http://kongduck.sen.es.kr",
+      "schoolinfo_url": "https://www.schoolinfo.go.kr/ei/ss/Pneiss_b01_s0.do?SHL_IDF_CD=f7d1ebbd-1824-426d-b9d5-5fb55791fdcd",
+      "probe_file": "schoolinfo_disclosure_probe_wave2_seoul_20261009.json",
+      "note": "학기중 계획",
+      "field_evidence": {
+        "start_time": [
+          "982d5a39b256:L22-L23",
+          "982d5a39b256:L45-L45"
+        ],
+        "end_time": [
+          "982d5a39b256:L22-L23",
+          "982d5a39b256:L45-L45"
+        ],
+        "target_grades": [
+          "982d5a39b256:L22-L23",
+          "982d5a39b256:L45-L45"
+        ],
+        "eligibility_raw": [
+          "982d5a39b256:L22-L23",
+          "982d5a39b256:L45-L45"
+        ],
+        "capacity": [
+          "982d5a39b256:L22-L23",
+          "982d5a39b256:L45-L45"
+        ]
+      },
+      "evidence": [
+        {
+          "evidence_id": "982d5a39b256:L22-L23",
+          "sha256": "982d5a39b2560303762d1412328a15b8d7b33d1f32d659f55de8d509e747b1f8",
+          "line_start": 22,
+          "line_end": 23,
+          "excerpt": "운영 유형 | 운영 시간 | 장소 | 대상 | 수용 인원 | 비용부담 | 비고 |\n아침돌봄 | 07:10 08:50 | 돌봄1반 (1실) | - 희망하는 1~6학년 학생 전체 | 25 | 없음 | 학기 중 운영 |"
+        },
+        {
+          "evidence_id": "982d5a39b256:L45-L45",
+          "sha256": "982d5a39b2560303762d1412328a15b8d7b33d1f32d659f55de8d509e747b1f8",
+          "line_start": 45,
+          "line_end": 45,
+          "excerpt": "아침돌봄 | 희망하는 1~6학년 학생 전체 | 봉사인력 / 1학급 |"
+        }
+      ],
+      "sources": [
+        {
+          "document_name": "2026학년도 공덕초등학교 방과후 및 맞춤형교실 연간 운영 계획.hwp",
+          "academic_year_in_filename": 2026,
+          "sha256": "2d916003205626cfea35fe67997ded7d7adc1bbaa84977ec169f11bad6fa0ad7",
+          "text_sha256": "7d0360b08dc9bf5a8e462e2cc28b5e4abe56c83d7335834fa59d81cf447e5c78",
+          "raw_hash_valid": true,
+          "file_seq": "2",
+          "source_url": "https://www.schoolinfo.go.kr/servlets/EiFileDownLoad.do?SHL_IDF_CD=f7d1ebbd-1824-426d-b9d5-5fb55791fdcd&JG_BURYU_CD=JG150&JG_HANGMOK_CD=59&JG_GUBUN=1&JG_CHASU=2&JG_YEAR=2026&USE_YN=Y&FILE_SEQ=2",
+          "text_path": "etl/runtime/audit2-documents/text/2d916003205626cfea35fe67997ded7d7adc1bbaa84977ec169f11bad6fa0ad7.txt",
+          "text_lines": 499
+        },
+        {
+          "document_name": "2026학년도 공덕초등학교 돌봄교실 연간 운영 계획.hwp",
+          "academic_year_in_filename": 2026,
+          "sha256": "982d5a39b2560303762d1412328a15b8d7b33d1f32d659f55de8d509e747b1f8",
+          "text_sha256": "b0a926eb17677b093197f3ec1c459f1c6343e67ac698b36dbe1d2561add2b77e",
+          "raw_hash_valid": true,
+          "file_seq": "1",
+          "source_url": "https://www.schoolinfo.go.kr/servlets/EiFileDownLoad.do?SHL_IDF_CD=f7d1ebbd-1824-426d-b9d5-5fb55791fdcd&JG_BURYU_CD=JG150&JG_HANGMOK_CD=59&JG_GUBUN=1&JG_CHASU=2&JG_YEAR=2026&USE_YN=Y&FILE_SEQ=1",
+          "text_path": "etl/runtime/audit2-documents/text/982d5a39b2560303762d1412328a15b8d7b33d1f32d659f55de8d509e747b1f8.txt",
+          "text_lines": 311
+        }
+      ],
+      "legacy_regex_candidates": {
+        "07:10-08:50": 2
+      }
+    },
+    {
+      "school_id": "B000001912",
+      "school_name": "서울미동초등학교",
+      "district": "서대문구",
+      "academic_year": 2026,
+      "calendar_scope": "term_weekday",
+      "service_type": "school_morning_care",
+      "operation_status": "unknown",
+      "operation_evidence": null,
+      "plan_status": "not_found",
+      "start_time": null,
+      "end_time": null,
+      "end_time_raw": null,
+      "time_status": "not_found",
+      "target_grades": null,
+      "eligibility_raw": null,
+      "application_window": null,
+      "capacity": null,
+      "capacity_qualifier": null,
+      "escort_to_school": "unknown",
+      "escort_evidence": null,
+      "source_kind": "annual_plan",
+      "source_year": 2026,
+      "checked_on": "2026-10-15",
+      "source_list_checked_at": "2026-10-09T01:39:42.504Z",
+      "source_live_rechecked_on": null,
+      "review_state": "assistant_source_text_review",
+      "publication_state": "research_only",
+      "homepage": "http://midong.sen.es.kr",
+      "schoolinfo_url": "https://www.schoolinfo.go.kr/ei/ss/Pneiss_b01_s0.do?SHL_IDF_CD=efd0a2db-7999-4c26-8073-d6e4eb09ea97",
+      "probe_file": "schoolinfo_disclosure_probe_wave2_seoul_20261009.json",
+      "note": "선정한 15-라 첨부에서 아침돌봄 근거 미확인; 미운영으로 판단하지 않음",
+      "field_evidence": {},
+      "evidence": [],
+      "sources": [
+        {
+          "document_name": "2026학년도 방과후교실 연간운영계획(정보공시).hwp",
+          "academic_year_in_filename": 2026,
+          "sha256": "c0124444c9768d9a6b7bc615c5dafc1c9f5d7ef6b19b0949552ef1fbc9db70f6",
+          "text_sha256": "87c0538449a96a0ff9e5a5487c4a7cf03db3a045b1f2da57bc650a9758b033da",
+          "raw_hash_valid": true,
+          "file_seq": "0",
+          "source_url": "https://www.schoolinfo.go.kr/servlets/EiFileDownLoad.do?SHL_IDF_CD=efd0a2db-7999-4c26-8073-d6e4eb09ea97&JG_BURYU_CD=JG150&JG_HANGMOK_CD=59&JG_GUBUN=1&JG_CHASU=2&JG_YEAR=2026&USE_YN=Y&FILE_SEQ=0",
+          "text_path": "etl/runtime/audit2-documents/text/c0124444c9768d9a6b7bc615c5dafc1c9f5d7ef6b19b0949552ef1fbc9db70f6.txt",
+          "text_lines": 284
+        }
+      ],
+      "legacy_regex_candidates": {}
+    },
+    {
+      "school_id": "B000002252",
+      "school_name": "서울우면초등학교",
+      "district": "서초구",
+      "academic_year": 2026,
+      "calendar_scope": "term_weekday",
+      "service_type": "school_morning_care",
+      "operation_status": "unknown",
+      "operation_evidence": null,
+      "plan_status": "planned",
+      "start_time": "07:00",
+      "end_time": "09:00",
+      "end_time_raw": "09:00",
+      "time_status": "stated",
+      "target_grades": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "eligibility_raw": "희망하는 1~6학년 학생 전체",
+      "application_window": null,
+      "capacity": null,
+      "capacity_qualifier": null,
+      "escort_to_school": "unknown",
+      "escort_evidence": null,
+      "source_kind": "annual_plan",
+      "source_year": 2026,
+      "checked_on": "2026-10-15",
+      "source_list_checked_at": "2026-10-08T08:38:24.995Z",
+      "source_live_rechecked_on": null,
+      "review_state": "assistant_source_text_review",
+      "publication_state": "research_only",
+      "homepage": "http://woomyeon.sen.es.kr",
+      "schoolinfo_url": "https://www.schoolinfo.go.kr/ei/ss/Pneiss_b01_s0.do?SHL_IDF_CD=ebcec8c9-3104-4769-8b95-e307ce0e958b",
+      "probe_file": "schoolinfo_disclosure_probe_expansion_20261008.json",
+      "note": "희망자 모두 수용 문구; 숫자 정원은 없음",
+      "field_evidence": {
+        "start_time": [
+          "009b471caa99:L10-L10",
+          "009b471caa99:L24-L24"
+        ],
+        "end_time": [
+          "009b471caa99:L10-L10",
+          "009b471caa99:L24-L24"
+        ],
+        "target_grades": [
+          "009b471caa99:L10-L10",
+          "009b471caa99:L24-L24"
+        ],
+        "eligibility_raw": [
+          "009b471caa99:L10-L10",
+          "009b471caa99:L24-L24"
+        ]
+      },
+      "evidence": [
+        {
+          "evidence_id": "009b471caa99:L10-L10",
+          "sha256": "009b471caa9973cefbf9cb7e3fa9967189fdb2ca3be40a40d27b85ddc6393206",
+          "line_start": 10,
+          "line_end": 10,
+          "excerpt": "아침돌봄 | 희망하는 1~6학년 학생전체 | 07:00 ~ 09:00 | 돌봄1반 (봉사인력) | 없음 |"
+        },
+        {
+          "evidence_id": "009b471caa99:L24-L24",
+          "sha256": "009b471caa9973cefbf9cb7e3fa9967189fdb2ca3be40a40d27b85ddc6393206",
+          "line_start": 24,
+          "line_end": 24,
+          "excerpt": "아침 돌봄 | 본교1층 돌봄1반 | 전교생 희망자 | 희망자 모두 수용 | 봉사 인력 - 유00 |"
+        }
+      ],
+      "sources": [
+        {
+          "document_name": "2026학년도 우면초 초등돌봄교실 운영계획.hwp",
+          "academic_year_in_filename": 2026,
+          "sha256": "009b471caa9973cefbf9cb7e3fa9967189fdb2ca3be40a40d27b85ddc6393206",
+          "text_sha256": "f037b4b3500a4c7afef6d808e0fdee413944a5f165ba6f5b10b9c191685ae5e8",
+          "raw_hash_valid": true,
+          "file_seq": "2",
+          "source_url": "https://www.schoolinfo.go.kr/servlets/EiFileDownLoad.do?SHL_IDF_CD=ebcec8c9-3104-4769-8b95-e307ce0e958b&JG_BURYU_CD=JG150&JG_HANGMOK_CD=59&JG_GUBUN=1&JG_CHASU=2&JG_YEAR=2026&USE_YN=Y&FILE_SEQ=2",
+          "text_path": "etl/runtime/audit2-documents/text/009b471caa9973cefbf9cb7e3fa9967189fdb2ca3be40a40d27b85ddc6393206.txt",
+          "text_lines": 82
+        },
+        {
+          "document_name": "2026학년도 우면초 방과후교실 운영 계획.hwpx",
+          "academic_year_in_filename": 2026,
+          "sha256": "858e9f52d2adbb470671c240113591fbcca176645e0802a1577bef3031e1cb83",
+          "text_sha256": "d511850c4b315060e1caaa8608f1c03eb8ffb0d0bc7df7cb19b8bb9a0b281299",
+          "raw_hash_valid": true,
+          "file_seq": "1",
+          "source_url": "https://www.schoolinfo.go.kr/servlets/EiFileDownLoad.do?SHL_IDF_CD=ebcec8c9-3104-4769-8b95-e307ce0e958b&JG_BURYU_CD=JG150&JG_HANGMOK_CD=59&JG_GUBUN=1&JG_CHASU=2&JG_YEAR=2026&USE_YN=Y&FILE_SEQ=1",
+          "text_path": "etl/runtime/audit2-documents/text/858e9f52d2adbb470671c240113591fbcca176645e0802a1577bef3031e1cb83.txt",
+          "text_lines": 265
+        }
+      ],
+      "legacy_regex_candidates": {
+        "07:00-09:00": 1
+      }
+    },
+    {
+      "school_id": "B000002347",
+      "school_name": "서울행당초등학교",
+      "district": "성동구",
+      "academic_year": 2026,
+      "calendar_scope": "term_weekday",
+      "service_type": "school_morning_care",
+      "operation_status": "unknown",
+      "operation_evidence": null,
+      "plan_status": "planned",
+      "start_time": "07:00",
+      "end_time": "09:00",
+      "end_time_raw": "09:00",
+      "time_status": "stated",
+      "target_grades": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "eligibility_raw": "1~6학년 재학생 중 아침돌봄 신청 학생",
+      "application_window": null,
+      "capacity": null,
+      "capacity_qualifier": null,
+      "escort_to_school": "unknown",
+      "escort_evidence": null,
+      "source_kind": "annual_plan",
+      "source_year": 2026,
+      "checked_on": "2026-10-15",
+      "source_list_checked_at": "2026-10-09T01:49:09.932Z",
+      "source_live_rechecked_on": null,
+      "review_state": "assistant_source_text_review",
+      "publication_state": "research_only",
+      "homepage": "http://hd.sen.es.kr",
+      "schoolinfo_url": "https://www.schoolinfo.go.kr/ei/ss/Pneiss_b01_s0.do?SHL_IDF_CD=465a963c-b972-475b-992f-1826424bdfbe",
+      "probe_file": "schoolinfo_disclosure_probe_wave2_seoul_20261009.json",
+      "note": "학기중 계획",
+      "field_evidence": {
+        "start_time": [
+          "7925baed6e69:L37-L37",
+          "7925baed6e69:L45-L45"
+        ],
+        "end_time": [
+          "7925baed6e69:L37-L37",
+          "7925baed6e69:L45-L45"
+        ],
+        "target_grades": [
+          "7925baed6e69:L37-L37",
+          "7925baed6e69:L45-L45"
+        ],
+        "eligibility_raw": [
+          "7925baed6e69:L37-L37",
+          "7925baed6e69:L45-L45"
+        ]
+      },
+      "evidence": [
+        {
+          "evidence_id": "7925baed6e69:L37-L37",
+          "sha256": "7925baed6e6953eda7f50fb0d44534ad6ecc4d960ba164e668b5d47354e12f85",
+          "line_start": 37,
+          "line_end": 37,
+          "excerpt": "아침돌봄 | 07:00 ~09:00 |  돌봄교실 1반 | 학기 중 운영 |"
+        },
+        {
+          "evidence_id": "7925baed6e69:L45-L45",
+          "sha256": "7925baed6e6953eda7f50fb0d44534ad6ecc4d960ba164e668b5d47354e12f85",
+          "line_start": 45,
+          "line_end": 45,
+          "excerpt": "아침돌봄 | 1-6학년 재학생 중 아침돌봄 신청 학생  | 아침돌봄 봉사자  |"
+        }
+      ],
+      "sources": [
+        {
+          "document_name": "2026학년도 행당초 초등돌봄교실 운영 계획.hwp",
+          "academic_year_in_filename": 2026,
+          "sha256": "7925baed6e6953eda7f50fb0d44534ad6ecc4d960ba164e668b5d47354e12f85",
+          "text_sha256": "e04b01c53250122cc066fe247eaa53195b653a2702e136914dca3b073e1cc0b9",
+          "raw_hash_valid": true,
+          "file_seq": "1",
+          "source_url": "https://www.schoolinfo.go.kr/servlets/EiFileDownLoad.do?SHL_IDF_CD=465a963c-b972-475b-992f-1826424bdfbe&JG_BURYU_CD=JG150&JG_HANGMOK_CD=59&JG_GUBUN=1&JG_CHASU=2&JG_YEAR=2026&USE_YN=Y&FILE_SEQ=1",
+          "text_path": "etl/runtime/audit2-documents/text/7925baed6e6953eda7f50fb0d44534ad6ecc4d960ba164e668b5d47354e12f85.txt",
+          "text_lines": 292
+        },
+        {
+          "document_name": "2026학년도 행당초 방과후학교 운영 계획.hwp",
+          "academic_year_in_filename": 2026,
+          "sha256": "71428cab3973625ef73d55aed8736fed0fd93e141e8f9fabb513bf68fe615125",
+          "text_sha256": "e7b7e0573ff31269b26ddb53e05af7a7f8348d3aa4887d6631428bd049efb84b",
+          "raw_hash_valid": true,
+          "file_seq": "0",
+          "source_url": "https://www.schoolinfo.go.kr/servlets/EiFileDownLoad.do?SHL_IDF_CD=465a963c-b972-475b-992f-1826424bdfbe&JG_BURYU_CD=JG150&JG_HANGMOK_CD=59&JG_GUBUN=1&JG_CHASU=2&JG_YEAR=2026&USE_YN=Y&FILE_SEQ=0",
+          "text_path": "etl/runtime/audit2-documents/text/71428cab3973625ef73d55aed8736fed0fd93e141e8f9fabb513bf68fe615125.txt",
+          "text_lines": 444
+        }
+      ],
+      "legacy_regex_candidates": {
+        "07:00-09:00": 1
+      }
+    },
+    {
+      "school_id": "B000002389",
+      "school_name": "서울돈암초등학교",
+      "district": "성북구",
+      "academic_year": 2026,
+      "calendar_scope": "term_weekday",
+      "service_type": "school_morning_care",
+      "operation_status": "unknown",
+      "operation_evidence": null,
+      "plan_status": "planned",
+      "start_time": "07:30",
+      "end_time": "09:00",
+      "end_time_raw": "09:00",
+      "time_status": "stated",
+      "target_grades": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "eligibility_raw": "희망하는 1~6학년 학생 전체",
+      "application_window": null,
+      "capacity": 20,
+      "capacity_qualifier": "정원",
+      "escort_to_school": "unknown",
+      "escort_evidence": null,
+      "source_kind": "annual_plan",
+      "source_year": 2026,
+      "checked_on": "2026-10-15",
+      "source_list_checked_at": "2026-10-09T01:50:19.736Z",
+      "source_live_rechecked_on": null,
+      "review_state": "assistant_source_text_review",
+      "publication_state": "research_only",
+      "homepage": "http://donam.sen.es.kr",
+      "schoolinfo_url": "https://www.schoolinfo.go.kr/ei/ss/Pneiss_b01_s0.do?SHL_IDF_CD=27a67e7f-66e6-4ac9-8312-76af7af00ef2",
+      "probe_file": "schoolinfo_disclosure_probe_wave2_seoul_20261009.json",
+      "note": "학기중; 방학 수요 반영 가능",
+      "field_evidence": {
+        "start_time": [
+          "6e68b4ee77c5:L18-L19",
+          "6e68b4ee77c5:L39-L39"
+        ],
+        "end_time": [
+          "6e68b4ee77c5:L18-L19",
+          "6e68b4ee77c5:L39-L39"
+        ],
+        "target_grades": [
+          "6e68b4ee77c5:L18-L19",
+          "6e68b4ee77c5:L39-L39"
+        ],
+        "eligibility_raw": [
+          "6e68b4ee77c5:L18-L19",
+          "6e68b4ee77c5:L39-L39"
+        ],
+        "capacity": [
+          "6e68b4ee77c5:L18-L19",
+          "6e68b4ee77c5:L39-L39"
+        ]
+      },
+      "evidence": [
+        {
+          "evidence_id": "6e68b4ee77c5:L18-L19",
+          "sha256": "6e68b4ee77c5d0efd03269e84cec73144518989469903db576e86ce034a684ef",
+          "line_start": 18,
+          "line_end": 19,
+          "excerpt": "운영 유형 | 운영 시간 | 장소 | 대상 | 수용 인원 | 비용 부담 | 비고 |\n아침돌봄 | 07:30 ~09:00 | 연계형  돌봄교실 (1실) | - 희망하는 1~6학년 학생 전체 | 20 | 없음 | 학기 중, 방학 중 운영가능 |"
+        },
+        {
+          "evidence_id": "6e68b4ee77c5:L39-L39",
+          "sha256": "6e68b4ee77c5d0efd03269e84cec73144518989469903db576e86ce034a684ef",
+          "line_start": 39,
+          "line_end": 39,
+          "excerpt": "아침돌봄 | 희망하는 1~6학년 학생 전체 | 봉사인력 / 1학급 |"
+        }
+      ],
+      "sources": [
+        {
+          "document_name": "2026학년도 서울돈암초등학교 맞춤형, 방과후교실  운영 계획(정보공시).hwp",
+          "academic_year_in_filename": 2026,
+          "sha256": "7477c43c818e00a39e351c2808bd353164f6ff0c12072c0362493ef5c4186abe",
+          "text_sha256": "c0aade451637a3f695549dec588ad66594a2ca9d3ac8d56984daf453addc3b0b",
+          "raw_hash_valid": true,
+          "file_seq": "1",
+          "source_url": "https://www.schoolinfo.go.kr/servlets/EiFileDownLoad.do?SHL_IDF_CD=27a67e7f-66e6-4ac9-8312-76af7af00ef2&JG_BURYU_CD=JG150&JG_HANGMOK_CD=59&JG_GUBUN=1&JG_CHASU=2&JG_YEAR=2026&USE_YN=Y&FILE_SEQ=1",
+          "text_path": "etl/runtime/audit2-documents/text/7477c43c818e00a39e351c2808bd353164f6ff0c12072c0362493ef5c4186abe.txt",
+          "text_lines": 284
+        },
+        {
+          "document_name": "2026학년도 서울돈암초등학교 돌봄교실 운영계획(정보공시).hwp",
+          "academic_year_in_filename": 2026,
+          "sha256": "6e68b4ee77c5d0efd03269e84cec73144518989469903db576e86ce034a684ef",
+          "text_sha256": "1185298b0ab78ffca967f9469f998ecbf87f1d3aecb8ab4f998f2ca1364c062b",
+          "raw_hash_valid": true,
+          "file_seq": "0",
+          "source_url": "https://www.schoolinfo.go.kr/servlets/EiFileDownLoad.do?SHL_IDF_CD=27a67e7f-66e6-4ac9-8312-76af7af00ef2&JG_BURYU_CD=JG150&JG_HANGMOK_CD=59&JG_GUBUN=1&JG_CHASU=2&JG_YEAR=2026&USE_YN=Y&FILE_SEQ=0",
+          "text_path": "etl/runtime/audit2-documents/text/6e68b4ee77c5d0efd03269e84cec73144518989469903db576e86ce034a684ef.txt",
+          "text_lines": 252
+        }
+      ],
+      "legacy_regex_candidates": {
+        "07:30-09:00": 2
+      }
+    },
+    {
+      "school_id": "B000002123",
+      "school_name": "서울방이초등학교",
+      "district": "송파구",
+      "academic_year": 2026,
+      "calendar_scope": "term_weekday",
+      "service_type": "school_morning_care",
+      "operation_status": "unknown",
+      "operation_evidence": null,
+      "plan_status": "planned",
+      "start_time": "07:00",
+      "end_time": null,
+      "end_time_raw": "수업전",
+      "time_status": "open_end",
+      "target_grades": null,
+      "eligibility_raw": null,
+      "application_window": null,
+      "capacity": null,
+      "capacity_qualifier": null,
+      "escort_to_school": "unknown",
+      "escort_evidence": null,
+      "source_kind": "annual_plan",
+      "source_year": 2026,
+      "checked_on": "2026-10-15",
+      "source_list_checked_at": "2026-10-08T08:37:22.879Z",
+      "source_live_rechecked_on": null,
+      "review_state": "assistant_source_text_review",
+      "publication_state": "research_only",
+      "homepage": "http://bangi.sen.es.kr",
+      "schoolinfo_url": "https://www.schoolinfo.go.kr/ei/ss/Pneiss_b01_s0.do?SHL_IDF_CD=2c5098c1-db49-435e-bbe4-8eadc08d80e6",
+      "probe_file": "schoolinfo_disclosure_probe_expansion_20261008.json",
+      "note": "학교 등교일 운영; 종료 수업전. 오후돌봄 1~2학년을 아침 대상에 전이하지 않음",
+      "field_evidence": {
+        "start_time": [
+          "03c3fd4833aa:L11-L11",
+          "03c3fd4833aa:L28-L28"
+        ]
+      },
+      "evidence": [
+        {
+          "evidence_id": "03c3fd4833aa:L11-L11",
+          "sha256": "03c3fd4833aa4023677878d37280dce29d2af52ddf6a6fd2801d7d97d82f8dd4",
+          "line_start": 11,
+          "line_end": 11,
+          "excerpt": "  나. 본 학년도에는 전용교실 3학급(돌봄1, 2, 3실)에서 오후돌봄 및 오후연장돌봄을        운영하고, 돌봄1실에서 아침돌봄교실을 운영한다. "
+        },
+        {
+          "evidence_id": "03c3fd4833aa:L28-L28",
+          "sha256": "03c3fd4833aa4023677878d37280dce29d2af52ddf6a6fd2801d7d97d82f8dd4",
+          "line_start": 28,
+          "line_end": 28,
+          "excerpt": "1) 아침늘봄: 7:00~수업전(돌봄교실1에서 학교 등교일만 운영)"
+        }
+      ],
+      "sources": [
+        {
+          "document_name": "2026학년도  초등돌봄교실 운영 계획.hwp",
+          "academic_year_in_filename": 2026,
+          "sha256": "03c3fd4833aa4023677878d37280dce29d2af52ddf6a6fd2801d7d97d82f8dd4",
+          "text_sha256": "28d9db203365b579bfb00bb0ba0d86516f1c5da84915f896ac3c92683403a9ad",
+          "raw_hash_valid": true,
+          "file_seq": "1",
+          "source_url": "https://www.schoolinfo.go.kr/servlets/EiFileDownLoad.do?SHL_IDF_CD=2c5098c1-db49-435e-bbe4-8eadc08d80e6&JG_BURYU_CD=JG150&JG_HANGMOK_CD=59&JG_GUBUN=1&JG_CHASU=2&JG_YEAR=2026&USE_YN=Y&FILE_SEQ=1",
+          "text_path": "etl/runtime/audit2-documents/text/03c3fd4833aa4023677878d37280dce29d2af52ddf6a6fd2801d7d97d82f8dd4.txt",
+          "text_lines": 283
+        },
+        {
+          "document_name": "2026학년도 방과후·맞춤형 프로그램 연간 운영 및 1분기 운영 계획.hwp",
+          "academic_year_in_filename": 2026,
+          "sha256": "e0be1b90e028d69d50d0f19b521f67e65744b3e04ed6a6a8e7710655235d4f72",
+          "text_sha256": "10599c356bc889be8ad226cb202b03c248f07f7c4bfcff8987a3355011d9ab79",
+          "raw_hash_valid": true,
+          "file_seq": "0",
+          "source_url": "https://www.schoolinfo.go.kr/servlets/EiFileDownLoad.do?SHL_IDF_CD=2c5098c1-db49-435e-bbe4-8eadc08d80e6&JG_BURYU_CD=JG150&JG_HANGMOK_CD=59&JG_GUBUN=1&JG_CHASU=2&JG_YEAR=2026&USE_YN=Y&FILE_SEQ=0",
+          "text_path": "etl/runtime/audit2-documents/text/e0be1b90e028d69d50d0f19b521f67e65744b3e04ed6a6a8e7710655235d4f72.txt",
+          "text_lines": 341
+        }
+      ],
+      "legacy_regex_candidates": {}
+    },
+    {
+      "school_id": "B000002186",
+      "school_name": "서울신은초등학교",
+      "district": "양천구",
+      "academic_year": 2026,
+      "calendar_scope": "term_weekday",
+      "service_type": "school_morning_care",
+      "operation_status": "unknown",
+      "operation_evidence": null,
+      "plan_status": "planned",
+      "start_time": "07:00",
+      "end_time": "09:00",
+      "end_time_raw": "09:00",
+      "time_status": "stated",
+      "target_grades": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "eligibility_raw": "전학년(1~6); 아침돌봄 참여신청서 제출, 별도 증빙서류 없음",
+      "application_window": null,
+      "capacity": 22,
+      "capacity_qualifier": "명 내외",
+      "escort_to_school": "unknown",
+      "escort_evidence": null,
+      "source_kind": "annual_plan",
+      "source_year": 2026,
+      "checked_on": "2026-10-15",
+      "source_list_checked_at": "2026-10-06T14:23:34.410Z",
+      "source_live_rechecked_on": null,
+      "review_state": "assistant_source_text_review",
+      "publication_state": "research_only",
+      "homepage": "http://se.sen.es.kr",
+      "schoolinfo_url": "https://www.schoolinfo.go.kr/ei/ss/Pneiss_b01_s0.do?SHL_IDF_CD=8f7b4f41-3ece-4a02-bd9d-20a96d8915d6",
+      "probe_file": "schoolinfo_disclosure_probe_20261006.json",
+      "note": "학기중 계획. 오후 맞벌이 우선순위·증빙서류는 별도",
+      "field_evidence": {
+        "start_time": [
+          "d965598bf093:L27-L31",
+          "d965598bf093:L90-L90"
+        ],
+        "end_time": [
+          "d965598bf093:L27-L31",
+          "d965598bf093:L90-L90"
+        ],
+        "target_grades": [
+          "d965598bf093:L27-L31",
+          "d965598bf093:L90-L90"
+        ],
+        "eligibility_raw": [
+          "d965598bf093:L27-L31",
+          "d965598bf093:L90-L90"
+        ],
+        "capacity": [
+          "d965598bf093:L27-L31",
+          "d965598bf093:L90-L90"
+        ]
+      },
+      "evidence": [
+        {
+          "evidence_id": "d965598bf093:L27-L31",
+          "sha256": "d965598bf0937ef9714e6cb96c391cb825c98f6862c0dca9f1882d6e56c40655",
+          "line_start": 27,
+          "line_end": 31,
+          "excerpt": "아침돌봄 (1실) | 운영기간 | 22026. 3. 3. ~ 2027. 2. 28.(학기중 운영) |\n운영대상 | 전학년 대상 (1~6학년) 정규수업 이전 학부모(보호자)의 출근 시간등을 고려하여 운영 (재학생 기준 3월 3일부터 정상운영) |\n운영시간 | 07:00~09:00 |\n운영교실 | 다솜반, 학년구분 없음 |\n비용부담 | 없음 |"
+        },
+        {
+          "evidence_id": "d965598bf093:L90-L90",
+          "sha256": "d965598bf0937ef9714e6cb96c391cb825c98f6862c0dca9f1882d6e56c40655",
+          "line_start": 90,
+          "line_end": 90,
+          "excerpt": "아침 돌봄교실 | 모집 정원 | ‣ 학생들의 안전 및 돌봄서비스의 질 유지를 위해 22명 내외로 운영  ‣ 아침돌봄 참여신청서 제출, 별도의 증빙서류 없음 |"
+        }
+      ],
+      "sources": [
+        {
+          "document_name": "2026학년도 초등돌봄교실 운영계획(안).hwp",
+          "academic_year_in_filename": 2026,
+          "sha256": "d965598bf0937ef9714e6cb96c391cb825c98f6862c0dca9f1882d6e56c40655",
+          "text_sha256": "7bcadaeb251881226c6f22bf81ac3bcace112573fdc355b1ed531a193da0d932",
+          "raw_hash_valid": true,
+          "file_seq": "1",
+          "source_url": "https://www.schoolinfo.go.kr/servlets/EiFileDownLoad.do?SHL_IDF_CD=8f7b4f41-3ece-4a02-bd9d-20a96d8915d6&JG_BURYU_CD=JG150&JG_HANGMOK_CD=59&JG_GUBUN=1&JG_CHASU=2&JG_YEAR=2026&USE_YN=Y&FILE_SEQ=1",
+          "text_path": "etl/runtime/audit2-documents/text/d965598bf0937ef9714e6cb96c391cb825c98f6862c0dca9f1882d6e56c40655.txt",
+          "text_lines": 441
+        },
+        {
+          "document_name": "2026학년도 신은초 맞춤형교실&amp;amp;방과후교실(위탁+민참) 프로그램 연간운영계획.hwp",
+          "academic_year_in_filename": 2026,
+          "sha256": "5349e96ca512892a6957583b72d7e2b14f0000faf5bb1d562290f49635255046",
+          "text_sha256": "2daa0fa0ffa349455960a052b7c7d586b045bb26ad26e005dbf0b996be9f2509",
+          "raw_hash_valid": true,
+          "file_seq": "0",
+          "source_url": "https://www.schoolinfo.go.kr/servlets/EiFileDownLoad.do?SHL_IDF_CD=8f7b4f41-3ece-4a02-bd9d-20a96d8915d6&JG_BURYU_CD=JG150&JG_HANGMOK_CD=59&JG_GUBUN=1&JG_CHASU=2&JG_YEAR=2026&USE_YN=Y&FILE_SEQ=0",
+          "text_path": "etl/runtime/audit2-documents/text/5349e96ca512892a6957583b72d7e2b14f0000faf5bb1d562290f49635255046.txt",
+          "text_lines": 524
+        }
+      ],
+      "legacy_regex_candidates": {
+        "07:00-09:00": 1
+      }
+    },
+    {
+      "school_id": "B000001994",
+      "school_name": "서울여의도초등학교",
+      "district": "영등포구",
+      "academic_year": 2026,
+      "calendar_scope": "term_weekday",
+      "service_type": "school_morning_care",
+      "operation_status": "unknown",
+      "operation_evidence": null,
+      "plan_status": "not_found",
+      "start_time": null,
+      "end_time": null,
+      "end_time_raw": null,
+      "time_status": "not_found",
+      "target_grades": null,
+      "eligibility_raw": null,
+      "application_window": null,
+      "capacity": null,
+      "capacity_qualifier": null,
+      "escort_to_school": "unknown",
+      "escort_evidence": null,
+      "source_kind": "annual_plan",
+      "source_year": 2026,
+      "checked_on": "2026-10-15",
+      "source_list_checked_at": "2026-10-09T01:42:00.276Z",
+      "source_live_rechecked_on": null,
+      "review_state": "assistant_source_text_review",
+      "publication_state": "research_only",
+      "homepage": "http://yeouido.sen.es.kr",
+      "schoolinfo_url": "https://www.schoolinfo.go.kr/ei/ss/Pneiss_b01_s0.do?SHL_IDF_CD=49333c37-70aa-4d9b-b5c0-ab2bdfdd94d3",
+      "probe_file": "schoolinfo_disclosure_probe_wave2_seoul_20261009.json",
+      "note": "선정한 15-라 첨부에서 아침돌봄 근거 미확인; 미운영으로 판단하지 않음",
+      "field_evidence": {},
+      "evidence": [],
+      "sources": [
+        {
+          "document_name": "2026학년도 방과후교실 운영계획(안).hwp",
+          "academic_year_in_filename": 2026,
+          "sha256": "664c3b173ba3f8ad31644fb64878e3f6d3226f2ff6b50528b5c7f6af7a7c48e8",
+          "text_sha256": "ec4bddc17b1df7d973ebec0e9bacc2bc0109b5c1f5265c12ba73ab028d0b1d67",
+          "raw_hash_valid": true,
+          "file_seq": "1",
+          "source_url": "https://www.schoolinfo.go.kr/servlets/EiFileDownLoad.do?SHL_IDF_CD=49333c37-70aa-4d9b-b5c0-ab2bdfdd94d3&JG_BURYU_CD=JG150&JG_HANGMOK_CD=59&JG_GUBUN=1&JG_CHASU=2&JG_YEAR=2026&USE_YN=Y&FILE_SEQ=1",
+          "text_path": "etl/runtime/audit2-documents/text/664c3b173ba3f8ad31644fb64878e3f6d3226f2ff6b50528b5c7f6af7a7c48e8.txt",
+          "text_lines": 188
+        }
+      ],
+      "legacy_regex_candidates": {}
+    },
+    {
+      "school_id": "B000002108",
+      "school_name": "서울용산초등학교",
+      "district": "용산구",
+      "academic_year": 2026,
+      "calendar_scope": "term_weekday",
+      "service_type": "school_morning_care",
+      "operation_status": "unknown",
+      "operation_evidence": null,
+      "plan_status": "planned",
+      "start_time": "07:00",
+      "end_time": "09:00",
+      "end_time_raw": "09:00",
+      "time_status": "stated",
+      "target_grades": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "eligibility_raw": "조기등교 학생 중 돌봄을 희망하는 전 학년 학생",
+      "application_window": null,
+      "capacity": null,
+      "capacity_qualifier": null,
+      "escort_to_school": "unknown",
+      "escort_evidence": null,
+      "source_kind": "annual_plan",
+      "source_year": 2026,
+      "checked_on": "2026-10-15",
+      "source_list_checked_at": "2026-10-09T01:45:11.005Z",
+      "source_live_rechecked_on": null,
+      "review_state": "assistant_source_text_review",
+      "publication_state": "research_only",
+      "homepage": "http://yongsan.sen.es.kr",
+      "schoolinfo_url": "https://www.schoolinfo.go.kr/ei/ss/Pneiss_b01_s0.do?SHL_IDF_CD=ae82cd9d-1ab8-41ab-aeed-a020ec66c7a6",
+      "probe_file": "schoolinfo_disclosure_probe_wave2_seoul_20261009.json",
+      "note": "",
+      "field_evidence": {
+        "start_time": [
+          "f62a22795b47:L24-L27"
+        ],
+        "end_time": [
+          "f62a22795b47:L24-L27"
+        ],
+        "target_grades": [
+          "f62a22795b47:L24-L27"
+        ],
+        "eligibility_raw": [
+          "f62a22795b47:L24-L27"
+        ]
+      },
+      "evidence": [
+        {
+          "evidence_id": "f62a22795b47:L24-L27",
+          "sha256": "f62a22795b47c0ba86e48bfc5d3eb3932b8af740aa24163a67f0db0e78e6be7f",
+          "line_start": 24,
+          "line_end": 27,
+          "excerpt": " 가. 아침돌봄 운영계획\n  1) 운영대상: 조기등교 학생 중 돌봄 서비스를 희망하는 전 학년 학생\n  2) 운영시간 및 장소: 7:00~9:00, 돌봄교실 2반\n  3) 운영내용: 자율학습 및 독서활동 "
+        }
+      ],
+      "sources": [
+        {
+          "document_name": "2026학년도 서울용산초등학교 돌봄교실 운영 계획.hwp",
+          "academic_year_in_filename": 2026,
+          "sha256": "f62a22795b47c0ba86e48bfc5d3eb3932b8af740aa24163a67f0db0e78e6be7f",
+          "text_sha256": "47623745ed4490593c0bcc70804182f29d6e25514d2bf3cc6f7725ffbb3a37da",
+          "raw_hash_valid": true,
+          "file_seq": "1",
+          "source_url": "https://www.schoolinfo.go.kr/servlets/EiFileDownLoad.do?SHL_IDF_CD=ae82cd9d-1ab8-41ab-aeed-a020ec66c7a6&JG_BURYU_CD=JG150&JG_HANGMOK_CD=59&JG_GUBUN=1&JG_CHASU=2&JG_YEAR=2026&USE_YN=Y&FILE_SEQ=1",
+          "text_path": "etl/runtime/audit2-documents/text/f62a22795b47c0ba86e48bfc5d3eb3932b8af740aa24163a67f0db0e78e6be7f.txt",
+          "text_lines": 522
+        },
+        {
+          "document_name": "2026학년도 서울용산초등학교 방과후돌봄(방과후교실, 맞춤형교실) 운영 계획.hwpx",
+          "academic_year_in_filename": 2026,
+          "sha256": "32bf2333d1bf9074ae6204a408a2c9ef84889176cba4c905bedf40e000983744",
+          "text_sha256": "3ca3ea077c2872c98ebf5edf6a66891d39d2befc2b39f065c32610b2798b13bc",
+          "raw_hash_valid": true,
+          "file_seq": "0",
+          "source_url": "https://www.schoolinfo.go.kr/servlets/EiFileDownLoad.do?SHL_IDF_CD=ae82cd9d-1ab8-41ab-aeed-a020ec66c7a6&JG_BURYU_CD=JG150&JG_HANGMOK_CD=59&JG_GUBUN=1&JG_CHASU=2&JG_YEAR=2026&USE_YN=Y&FILE_SEQ=0",
+          "text_path": "etl/runtime/audit2-documents/text/32bf2333d1bf9074ae6204a408a2c9ef84889176cba4c905bedf40e000983744.txt",
+          "text_lines": 353
+        }
+      ],
+      "legacy_regex_candidates": {
+        "07:00-09:00": 3
+      }
+    },
+    {
+      "school_id": "B000001881",
+      "school_name": "서울은빛초등학교",
+      "district": "은평구",
+      "academic_year": 2026,
+      "calendar_scope": "term_weekday",
+      "service_type": "school_morning_care",
+      "operation_status": "unknown",
+      "operation_evidence": null,
+      "plan_status": "not_found",
+      "start_time": null,
+      "end_time": null,
+      "end_time_raw": null,
+      "time_status": "not_found",
+      "target_grades": null,
+      "eligibility_raw": null,
+      "application_window": null,
+      "capacity": null,
+      "capacity_qualifier": null,
+      "escort_to_school": "unknown",
+      "escort_evidence": null,
+      "source_kind": "annual_plan",
+      "source_year": 2026,
+      "checked_on": "2026-10-15",
+      "source_list_checked_at": "2026-10-09T01:38:54.667Z",
+      "source_live_rechecked_on": null,
+      "review_state": "assistant_source_text_review",
+      "publication_state": "research_only",
+      "homepage": "http://ev.sen.es.kr",
+      "schoolinfo_url": "https://www.schoolinfo.go.kr/ei/ss/Pneiss_b01_s0.do?SHL_IDF_CD=29094911-9453-4059-a509-7a763bb81c29",
+      "probe_file": "schoolinfo_disclosure_probe_wave2_seoul_20261009.json",
+      "note": "선정한 15-라 첨부에서 아침돌봄 근거 미확인; 미운영으로 판단하지 않음",
+      "field_evidence": {},
+      "evidence": [],
+      "sources": [
+        {
+          "document_name": "(은빛초)2026학년도 방과후.맞춤형교실 연간 운영 계획(학운위).hwp",
+          "academic_year_in_filename": 2026,
+          "sha256": "8fefc783eadf9009b5f69cfed082a3a1b177d80a2c2874109eb5c5e14439a070",
+          "text_sha256": "787c66004a9924a5c6cfc91bb1487b6050d093e5ca05f257151e1f87933570e2",
+          "raw_hash_valid": true,
+          "file_seq": "0",
+          "source_url": "https://www.schoolinfo.go.kr/servlets/EiFileDownLoad.do?SHL_IDF_CD=29094911-9453-4059-a509-7a763bb81c29&JG_BURYU_CD=JG150&JG_HANGMOK_CD=59&JG_GUBUN=1&JG_CHASU=2&JG_YEAR=2026&USE_YN=Y&FILE_SEQ=0",
+          "text_path": "etl/runtime/audit2-documents/text/8fefc783eadf9009b5f69cfed082a3a1b177d80a2c2874109eb5c5e14439a070.txt",
+          "text_lines": 603
+        }
+      ],
+      "legacy_regex_candidates": {}
+    },
+    {
+      "school_id": "B000002082",
+      "school_name": "서울대학교사범대학부설초등학교",
+      "district": "종로구",
+      "academic_year": 2026,
+      "calendar_scope": "term_weekday",
+      "service_type": "school_morning_care",
+      "operation_status": "unknown",
+      "operation_evidence": null,
+      "plan_status": "not_found",
+      "start_time": null,
+      "end_time": null,
+      "end_time_raw": null,
+      "time_status": "not_found",
+      "target_grades": null,
+      "eligibility_raw": null,
+      "application_window": null,
+      "capacity": null,
+      "capacity_qualifier": null,
+      "escort_to_school": "unknown",
+      "escort_evidence": null,
+      "source_kind": "annual_plan",
+      "source_year": 2026,
+      "checked_on": "2026-10-15",
+      "source_list_checked_at": "2026-10-09T01:44:28.556Z",
+      "source_live_rechecked_on": null,
+      "review_state": "assistant_source_text_review",
+      "publication_state": "research_only",
+      "homepage": "http://snu.sen.es.kr",
+      "schoolinfo_url": "https://www.schoolinfo.go.kr/ei/ss/Pneiss_b01_s0.do?SHL_IDF_CD=ebf4644c-1129-4a98-9193-ee3c74192528",
+      "probe_file": "schoolinfo_disclosure_probe_wave2_seoul_20261009.json",
+      "note": "선정한 15-라 첨부에서 아침돌봄 근거 미확인; 미운영으로 판단하지 않음",
+      "field_evidence": {},
+      "evidence": [],
+      "sources": [
+        {
+          "document_name": "(학운위)2026학년 방과후교실,맞춤형 교실 및 위탁업체 연간 운영 계획.hwp",
+          "academic_year_in_filename": 2026,
+          "sha256": "a83833f2c16a73946889172165526232b8617ca59193fcb40204bd2bd453742b",
+          "text_sha256": "16cd09f4eea15f50a0d3c0b88f99d8bc9125409d4f9d06d1cc2a6fc2754149d3",
+          "raw_hash_valid": true,
+          "file_seq": "0",
+          "source_url": "https://www.schoolinfo.go.kr/servlets/EiFileDownLoad.do?SHL_IDF_CD=ebf4644c-1129-4a98-9193-ee3c74192528&JG_BURYU_CD=JG150&JG_HANGMOK_CD=59&JG_GUBUN=1&JG_CHASU=2&JG_YEAR=2026&USE_YN=Y&FILE_SEQ=0",
+          "text_path": "etl/runtime/audit2-documents/text/a83833f2c16a73946889172165526232b8617ca59193fcb40204bd2bd453742b.txt",
+          "text_lines": 509
+        }
+      ],
+      "legacy_regex_candidates": {}
+    },
+    {
+      "school_id": "B000002096",
+      "school_name": "서울남산초등학교",
+      "district": "중구",
+      "academic_year": 2026,
+      "calendar_scope": "term_weekday",
+      "service_type": "school_morning_care",
+      "operation_status": "unknown",
+      "operation_evidence": null,
+      "plan_status": "not_found",
+      "start_time": null,
+      "end_time": null,
+      "end_time_raw": null,
+      "time_status": "not_found",
+      "target_grades": null,
+      "eligibility_raw": null,
+      "application_window": null,
+      "capacity": null,
+      "capacity_qualifier": null,
+      "escort_to_school": "unknown",
+      "escort_evidence": null,
+      "source_kind": "annual_plan",
+      "source_year": 2026,
+      "checked_on": "2026-10-15",
+      "source_list_checked_at": "2026-10-09T01:44:50.605Z",
+      "source_live_rechecked_on": null,
+      "review_state": "assistant_source_text_review",
+      "publication_state": "research_only",
+      "homepage": "https://namsan.sen.es.kr",
+      "schoolinfo_url": "https://www.schoolinfo.go.kr/ei/ss/Pneiss_b01_s0.do?SHL_IDF_CD=806a3421-b25d-4c3f-a6c9-d0c2d4711c53",
+      "probe_file": "schoolinfo_disclosure_probe_wave2_seoul_20261009.json",
+      "note": "선정한 15-라 첨부에서 아침돌봄 근거 미확인; 미운영으로 판단하지 않음",
+      "field_evidence": {},
+      "evidence": [],
+      "sources": [
+        {
+          "document_name": "(서울남산초등학교-2534 (첨부)) 2026학년도 방과후교실 연간 운영 계획.hwp",
+          "academic_year_in_filename": 2026,
+          "sha256": "6d218441ef8a88765f684a0fcd7409b203418344d75fe4cf2237220bab1d86bd",
+          "text_sha256": "b36fca18180b338bbd7a9e7e856bfcacd50964e67441f756768ae01f4e7192c0",
+          "raw_hash_valid": true,
+          "file_seq": "0",
+          "source_url": "https://www.schoolinfo.go.kr/servlets/EiFileDownLoad.do?SHL_IDF_CD=806a3421-b25d-4c3f-a6c9-d0c2d4711c53&JG_BURYU_CD=JG150&JG_HANGMOK_CD=59&JG_GUBUN=1&JG_CHASU=2&JG_YEAR=2026&USE_YN=Y&FILE_SEQ=0",
+          "text_path": "etl/runtime/audit2-documents/text/6d218441ef8a88765f684a0fcd7409b203418344d75fe4cf2237220bab1d86bd.txt",
+          "text_lines": 291
+        }
+      ],
+      "legacy_regex_candidates": {}
+    },
+    {
+      "school_id": "B000001859",
+      "school_name": "서울면목초등학교",
+      "district": "중랑구",
+      "academic_year": 2026,
+      "calendar_scope": "term_weekday",
+      "service_type": "school_morning_care",
+      "operation_status": "unknown",
+      "operation_evidence": null,
+      "plan_status": "planned",
+      "start_time": "07:30",
+      "end_time": "09:00",
+      "end_time_raw": "09:00",
+      "time_status": "stated",
+      "target_grades": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "eligibility_raw": "면목초 재학생(1~6학년) 중 희망하는 모든 학생",
+      "application_window": null,
+      "capacity": null,
+      "capacity_qualifier": null,
+      "escort_to_school": "unknown",
+      "escort_evidence": null,
+      "source_kind": "annual_plan",
+      "source_year": 2026,
+      "checked_on": "2026-10-15",
+      "source_list_checked_at": "2026-10-09T01:38:20.467Z",
+      "source_live_rechecked_on": null,
+      "review_state": "assistant_source_text_review",
+      "publication_state": "research_only",
+      "homepage": "http://myeonmok.sen.es.kr",
+      "schoolinfo_url": "https://www.schoolinfo.go.kr/ei/ss/Pneiss_b01_s0.do?SHL_IDF_CD=540b69d3-9b09-4342-9de7-b92a0b1f1023",
+      "probe_file": "schoolinfo_disclosure_probe_wave2_seoul_20261009.json",
+      "note": "주5일; 표 0900은 별도 본문 09:00으로 교차 확인",
+      "field_evidence": {
+        "start_time": [
+          "83fb79a67d50:L17-L17",
+          "83fb79a67d50:L29-L29"
+        ],
+        "end_time": [
+          "83fb79a67d50:L17-L17",
+          "83fb79a67d50:L29-L29"
+        ],
+        "target_grades": [
+          "83fb79a67d50:L17-L17",
+          "83fb79a67d50:L29-L29"
+        ],
+        "eligibility_raw": [
+          "83fb79a67d50:L17-L17",
+          "83fb79a67d50:L29-L29"
+        ]
+      },
+      "evidence": [
+        {
+          "evidence_id": "83fb79a67d50:L17-L17",
+          "sha256": "83fb79a67d509028854b92fd685ecc157f0c4113aa2100556c776ee6c94bc6ab",
+          "line_start": 17,
+          "line_end": 17,
+          "excerpt": "아침 돌봄 | 07:30 ~0900 | 도서실 | 면목초 재학생(1~6학년)중 희망하는 모든 학생 | 1학급 | 비용 발생 안함 |  |"
+        },
+        {
+          "evidence_id": "83fb79a67d50:L29-L29",
+          "sha256": "83fb79a67d509028854b92fd685ecc157f0c4113aa2100556c776ee6c94bc6ab",
+          "line_start": 29,
+          "line_end": 29,
+          "excerpt": "     ① 아침 돌봄 주 5일 07:30 ~ 09:00 (수요에 따라 변경 가능)"
+        }
+      ],
+      "sources": [
+        {
+          "document_name": "2026학년도 서울면목초 초등돌봄교실 운영 계획.hwp",
+          "academic_year_in_filename": 2026,
+          "sha256": "83fb79a67d509028854b92fd685ecc157f0c4113aa2100556c776ee6c94bc6ab",
+          "text_sha256": "178644b0ba0c8fc3013b333930531c234b4b0aaf3fba5d89441b204974841fad",
+          "raw_hash_valid": true,
+          "file_seq": "4",
+          "source_url": "https://www.schoolinfo.go.kr/servlets/EiFileDownLoad.do?SHL_IDF_CD=540b69d3-9b09-4342-9de7-b92a0b1f1023&JG_BURYU_CD=JG150&JG_HANGMOK_CD=59&JG_GUBUN=1&JG_CHASU=2&JG_YEAR=2026&USE_YN=Y&FILE_SEQ=4",
+          "text_path": "etl/runtime/audit2-documents/text/83fb79a67d509028854b92fd685ecc157f0c4113aa2100556c776ee6c94bc6ab.txt",
+          "text_lines": 272
+        },
+        {
+          "document_name": "2026학년도 서울면목초등학교 방과후학교 운영 계획.hwp",
+          "academic_year_in_filename": 2026,
+          "sha256": "dec60d4b0bd7aa0ff2317f76aa5164531dd82054104e03dc189487c6bb4033be",
+          "text_sha256": "3ed769f26d4f7ebd243a12f425f93523ddbaf763d9f728e85ed612c1be8dfd37",
+          "raw_hash_valid": true,
+          "file_seq": "3",
+          "source_url": "https://www.schoolinfo.go.kr/servlets/EiFileDownLoad.do?SHL_IDF_CD=540b69d3-9b09-4342-9de7-b92a0b1f1023&JG_BURYU_CD=JG150&JG_HANGMOK_CD=59&JG_GUBUN=1&JG_CHASU=2&JG_YEAR=2026&USE_YN=Y&FILE_SEQ=3",
+          "text_path": "etl/runtime/audit2-documents/text/dec60d4b0bd7aa0ff2317f76aa5164531dd82054104e03dc189487c6bb4033be.txt",
+          "text_lines": 338
+        }
+      ],
+      "legacy_regex_candidates": {
+        "07:30-09:00": 1
+      }
+    },
+    {
+      "school_id": "B000002276",
+      "school_name": "서울대왕초등학교",
+      "district": "강남구",
+      "academic_year": 2026,
+      "calendar_scope": "term_weekday",
+      "service_type": "school_morning_care",
+      "operation_status": "unknown",
+      "operation_evidence": null,
+      "plan_status": "planned",
+      "start_time": "07:30",
+      "end_time": "09:00",
+      "end_time_raw": "09:00",
+      "time_status": "stated",
+      "target_grades": null,
+      "eligibility_raw": null,
+      "application_window": null,
+      "capacity": null,
+      "capacity_qualifier": null,
+      "escort_to_school": "unknown",
+      "escort_evidence": null,
+      "source_kind": "annual_plan",
+      "source_year": 2026,
+      "checked_on": "2026-10-15",
+      "source_list_checked_at": "2026-10-08T08:39:03.482Z",
+      "source_live_rechecked_on": null,
+      "review_state": "assistant_source_text_review",
+      "publication_state": "research_only",
+      "homepage": "http://daewang.sen.es.kr",
+      "schoolinfo_url": "https://www.schoolinfo.go.kr/ei/ss/Pneiss_b01_s0.do?SHL_IDF_CD=60ca1520-41b0-466e-92fd-fc3a32934df0",
+      "probe_file": "schoolinfo_disclosure_probe_expansion_20261008.json",
+      "note": "대상학년 1~3은 전체 돌봄 문맥이라 아침 대상에 옮기지 않음",
+      "field_evidence": {
+        "start_time": [
+          "efa00704ff18:L15-L15"
+        ],
+        "end_time": [
+          "efa00704ff18:L15-L15"
+        ]
+      },
+      "evidence": [
+        {
+          "evidence_id": "efa00704ff18:L15-L15",
+          "sha256": "efa00704ff184f4a5bff84ab37f5255978c02d7805d34820f50ebf46c28f1f29",
+          "line_start": 15,
+          "line_end": 15,
+          "excerpt": "아침돌봄 | 07:30∼09:00  | *수요자 귀가시간에 따른  운영시간 변동 가능. *아침돌봄: 봉사자 근무([인명 제외]) *방학 오전: 봉사자 근무 . |"
+        }
+      ],
+      "sources": [
+        {
+          "document_name": "2026학년도 서울대왕초등학교 방과후교실 운영계획.hwp",
+          "academic_year_in_filename": 2026,
+          "sha256": "7ab422c0657cf0ceece56b62cc9a048a8ecfee640b176db9f9d2dc42ca2d24d4",
+          "text_sha256": "65eaa0f8427e8b9fa6c0908e10886f51c74c0809c3fdf2c6f55ef09a3d4651cf",
+          "raw_hash_valid": true,
+          "file_seq": "5",
+          "source_url": "https://www.schoolinfo.go.kr/servlets/EiFileDownLoad.do?SHL_IDF_CD=60ca1520-41b0-466e-92fd-fc3a32934df0&JG_BURYU_CD=JG150&JG_HANGMOK_CD=59&JG_GUBUN=1&JG_CHASU=2&JG_YEAR=2026&USE_YN=Y&FILE_SEQ=5",
+          "text_path": "etl/runtime/audit2-documents/text/7ab422c0657cf0ceece56b62cc9a048a8ecfee640b176db9f9d2dc42ca2d24d4.txt",
+          "text_lines": 436
+        },
+        {
+          "document_name": "2026학년도 서울대왕초등학교 컴퓨터교실 운영계획.hwp",
+          "academic_year_in_filename": 2026,
+          "sha256": "f76203a83057a468c9374688e3c33e74df66a5dd018396e5bb66716e874e6473",
+          "text_sha256": "8159eea8b8f24c33be82b0c2c1ce94b38df4da2f610b66179b1eaff571e00b8b",
+          "raw_hash_valid": true,
+          "file_seq": "4",
+          "source_url": "https://www.schoolinfo.go.kr/servlets/EiFileDownLoad.do?SHL_IDF_CD=60ca1520-41b0-466e-92fd-fc3a32934df0&JG_BURYU_CD=JG150&JG_HANGMOK_CD=59&JG_GUBUN=1&JG_CHASU=2&JG_YEAR=2026&USE_YN=Y&FILE_SEQ=4",
+          "text_path": "etl/runtime/audit2-documents/text/f76203a83057a468c9374688e3c33e74df66a5dd018396e5bb66716e874e6473.txt",
+          "text_lines": 123
+        },
+        {
+          "document_name": "2026학년도 서울대왕초등학교 돌봄교실 운영계획.hwp",
+          "academic_year_in_filename": 2026,
+          "sha256": "efa00704ff184f4a5bff84ab37f5255978c02d7805d34820f50ebf46c28f1f29",
+          "text_sha256": "8d2ea7caf9c141cf56e3c6f1310763a3f95c10be03699837160fc808e35ecc30",
+          "raw_hash_valid": true,
+          "file_seq": "3",
+          "source_url": "https://www.schoolinfo.go.kr/servlets/EiFileDownLoad.do?SHL_IDF_CD=60ca1520-41b0-466e-92fd-fc3a32934df0&JG_BURYU_CD=JG150&JG_HANGMOK_CD=59&JG_GUBUN=1&JG_CHASU=2&JG_YEAR=2026&USE_YN=Y&FILE_SEQ=3",
+          "text_path": "etl/runtime/audit2-documents/text/efa00704ff184f4a5bff84ab37f5255978c02d7805d34820f50ebf46c28f1f29.txt",
+          "text_lines": 190
+        }
+      ],
+      "legacy_regex_candidates": {
+        "07:30-09:00": 1
+      }
+    },
+    {
+      "school_id": "B000002161",
+      "school_name": "서울선린초등학교",
+      "district": "강동구",
+      "academic_year": 2026,
+      "calendar_scope": "term_weekday",
+      "service_type": "school_morning_care",
+      "operation_status": "unknown",
+      "operation_evidence": null,
+      "plan_status": "planned",
+      "start_time": "07:00",
+      "end_time": "09:00",
+      "end_time_raw": "09:00",
+      "time_status": "stated",
+      "target_grades": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "eligibility_raw": "전교생 중 참여 희망자 사전 신청서 제출",
+      "application_window": null,
+      "capacity": 24,
+      "capacity_qualifier": "명 내외",
+      "escort_to_school": "unknown",
+      "escort_evidence": null,
+      "source_kind": "annual_plan",
+      "source_year": 2026,
+      "checked_on": "2026-10-15",
+      "source_list_checked_at": "2026-10-09T01:45:36.682Z",
+      "source_live_rechecked_on": null,
+      "review_state": "assistant_source_text_review",
+      "publication_state": "research_only",
+      "homepage": "http://sunrin.sen.es.kr",
+      "schoolinfo_url": "https://www.schoolinfo.go.kr/ei/ss/Pneiss_b01_s0.do?SHL_IDF_CD=9832b5ee-11a4-44c5-96fd-21740159c812",
+      "probe_file": "schoolinfo_disclosure_probe_wave2_seoul_20261009.json",
+      "note": "방학 및 자율휴업일 미운영. 표의 미운영은 방학 열",
+      "field_evidence": {
+        "start_time": [
+          "5f85a0611ee8:L14-L14"
+        ],
+        "end_time": [
+          "5f85a0611ee8:L14-L14"
+        ],
+        "target_grades": [
+          "5f85a0611ee8:L14-L14"
+        ],
+        "eligibility_raw": [
+          "5f85a0611ee8:L14-L14"
+        ],
+        "capacity": [
+          "5f85a0611ee8:L14-L14"
+        ]
+      },
+      "evidence": [
+        {
+          "evidence_id": "5f85a0611ee8:L14-L14",
+          "sha256": "5f85a0611ee8ec1103f5a53f3efc2b75a49145f9e390bad72aee90b834e622b6",
+          "line_start": 14,
+          "line_end": 14,
+          "excerpt": "아침 돌봄 | 07:00   ~ 09:00 | 미운영 | 누리반 | 전교생 중 참여 희망자 사전 신청서 제출 | 24명 내외 | 무료 | 방학 및 자율휴업일 미운영 |"
+        }
+      ],
+      "sources": [
+        {
+          "document_name": "2026학년도 돌봄교실 운영계획(안).hwp",
+          "academic_year_in_filename": 2026,
+          "sha256": "5f85a0611ee8ec1103f5a53f3efc2b75a49145f9e390bad72aee90b834e622b6",
+          "text_sha256": "b14f2d7fc5f7234e6a09ed6150bbe35b18135cb98ee40a1c22f6259ce016ee2f",
+          "raw_hash_valid": true,
+          "file_seq": "2",
+          "source_url": "https://www.schoolinfo.go.kr/servlets/EiFileDownLoad.do?SHL_IDF_CD=9832b5ee-11a4-44c5-96fd-21740159c812&JG_BURYU_CD=JG150&JG_HANGMOK_CD=59&JG_GUBUN=1&JG_CHASU=2&JG_YEAR=2026&USE_YN=Y&FILE_SEQ=2",
+          "text_path": "etl/runtime/audit2-documents/text/5f85a0611ee8ec1103f5a53f3efc2b75a49145f9e390bad72aee90b834e622b6.txt",
+          "text_lines": 588
+        },
+        {
+          "document_name": "2026학년도 1기 방과후·맞춤형교실 운영계획 변경(안).hwp",
+          "academic_year_in_filename": 2026,
+          "sha256": "a0d8512f8c3876cff130c6af7b84a7c232c9c423a3de9c5ea01b4d7114b2cdf6",
+          "text_sha256": "8ab1f44c840ab38f566fa090065fc0c5aea357548b2216a83f46c2f279d2df5c",
+          "raw_hash_valid": true,
+          "file_seq": "1",
+          "source_url": "https://www.schoolinfo.go.kr/servlets/EiFileDownLoad.do?SHL_IDF_CD=9832b5ee-11a4-44c5-96fd-21740159c812&JG_BURYU_CD=JG150&JG_HANGMOK_CD=59&JG_GUBUN=1&JG_CHASU=2&JG_YEAR=2026&USE_YN=Y&FILE_SEQ=1",
+          "text_path": "etl/runtime/audit2-documents/text/a0d8512f8c3876cff130c6af7b84a7c232c9c423a3de9c5ea01b4d7114b2cdf6.txt",
+          "text_lines": 65
+        },
+        {
+          "document_name": "2026학년도 방과후ㆍ맞춤형 프로그램 운영계획(안)_최종.hwp",
+          "academic_year_in_filename": 2026,
+          "sha256": "4d819acb7bda65afda1babf866d5b05dcbd434ba7e692ad9267ab5275bb008a3",
+          "text_sha256": "d8f856cbdeeabb3ccf122b8cc963de43581f13824b5e0c4a14d92f8a25f1c950",
+          "raw_hash_valid": true,
+          "file_seq": "0",
+          "source_url": "https://www.schoolinfo.go.kr/servlets/EiFileDownLoad.do?SHL_IDF_CD=9832b5ee-11a4-44c5-96fd-21740159c812&JG_BURYU_CD=JG150&JG_HANGMOK_CD=59&JG_GUBUN=1&JG_CHASU=2&JG_YEAR=2026&USE_YN=Y&FILE_SEQ=0",
+          "text_path": "etl/runtime/audit2-documents/text/4d819acb7bda65afda1babf866d5b05dcbd434ba7e692ad9267ab5275bb008a3.txt",
+          "text_lines": 320
+        }
+      ],
+      "legacy_regex_candidates": {
+        "07:00-09:00": 3
+      }
+    },
+    {
+      "school_id": "B000002419",
+      "school_name": "서울오현초등학교",
+      "district": "강북구",
+      "academic_year": 2026,
+      "calendar_scope": "term_weekday",
+      "service_type": "school_morning_care",
+      "operation_status": "unknown",
+      "operation_evidence": null,
+      "plan_status": "not_found",
+      "start_time": null,
+      "end_time": null,
+      "end_time_raw": null,
+      "time_status": "not_found",
+      "target_grades": null,
+      "eligibility_raw": null,
+      "application_window": null,
+      "capacity": null,
+      "capacity_qualifier": null,
+      "escort_to_school": "unknown",
+      "escort_evidence": null,
+      "source_kind": "annual_plan",
+      "source_year": 2026,
+      "checked_on": "2026-10-15",
+      "source_list_checked_at": "2026-10-09T01:51:10.959Z",
+      "source_live_rechecked_on": null,
+      "review_state": "assistant_source_text_review",
+      "publication_state": "research_only",
+      "homepage": "http://ohhyun.sen.es.kr",
+      "schoolinfo_url": "https://www.schoolinfo.go.kr/ei/ss/Pneiss_b01_s0.do?SHL_IDF_CD=eb8054ff-6279-46b8-9f5e-dd76255136f9",
+      "probe_file": "schoolinfo_disclosure_probe_wave2_seoul_20261009.json",
+      "note": "선정한 15-라 첨부에서 아침돌봄 근거 미확인; 미운영으로 판단하지 않음",
+      "field_evidence": {},
+      "evidence": [],
+      "sources": [
+        {
+          "document_name": "2026 초등돌봄교실 운영 계획.hwp",
+          "academic_year_in_filename": 2026,
+          "sha256": "7b4a8e7eddcf7d246d69dee9b9b0d1fc52c774156ac654a148f6383141f353b8",
+          "text_sha256": "7f3d42c3bae96c7a46d6d6ccc13887b99d059211b937ace594edd94dc290e6ca",
+          "raw_hash_valid": true,
+          "file_seq": "3",
+          "source_url": "https://www.schoolinfo.go.kr/servlets/EiFileDownLoad.do?SHL_IDF_CD=eb8054ff-6279-46b8-9f5e-dd76255136f9&JG_BURYU_CD=JG150&JG_HANGMOK_CD=59&JG_GUBUN=1&JG_CHASU=2&JG_YEAR=2026&USE_YN=Y&FILE_SEQ=3",
+          "text_path": "etl/runtime/audit2-documents/text/7b4a8e7eddcf7d246d69dee9b9b0d1fc52c774156ac654a148f6383141f353b8.txt",
+          "text_lines": 138
+        },
+        {
+          "document_name": "2026학년도 방과후,맞춤형교실 운영 계획(안).hwp",
+          "academic_year_in_filename": 2026,
+          "sha256": "0e1c2897569c25ffb1dc21707711c88face896bd2824631091d240976c9d5b81",
+          "text_sha256": "4a1ab4309c636b4e2cdccc494b75c55276048cbb6b2b16eeec23f61ef3a758c4",
+          "raw_hash_valid": true,
+          "file_seq": "0",
+          "source_url": "https://www.schoolinfo.go.kr/servlets/EiFileDownLoad.do?SHL_IDF_CD=eb8054ff-6279-46b8-9f5e-dd76255136f9&JG_BURYU_CD=JG150&JG_HANGMOK_CD=59&JG_GUBUN=1&JG_CHASU=2&JG_YEAR=2026&USE_YN=Y&FILE_SEQ=0",
+          "text_path": "etl/runtime/audit2-documents/text/0e1c2897569c25ffb1dc21707711c88face896bd2824631091d240976c9d5b81.txt",
+          "text_lines": 399
+        }
+      ],
+      "legacy_regex_candidates": {}
+    },
+    {
+      "school_id": "B000002217",
+      "school_name": "서울우장초등학교",
+      "district": "강서구",
+      "academic_year": 2026,
+      "calendar_scope": "term_weekday",
+      "service_type": "school_morning_care",
+      "operation_status": "unknown",
+      "operation_evidence": null,
+      "plan_status": "planned",
+      "start_time": "07:30",
+      "end_time": "09:00",
+      "end_time_raw": "09:00",
+      "time_status": "stated",
+      "target_grades": null,
+      "eligibility_raw": "정규수업 이전 돌봄을 희망하는 학생",
+      "application_window": null,
+      "capacity": null,
+      "capacity_qualifier": null,
+      "escort_to_school": "unknown",
+      "escort_evidence": null,
+      "source_kind": "annual_plan",
+      "source_year": 2026,
+      "checked_on": "2026-10-15",
+      "source_list_checked_at": "2026-10-09T01:47:08.707Z",
+      "source_live_rechecked_on": null,
+      "review_state": "assistant_source_text_review",
+      "publication_state": "research_only",
+      "homepage": "http://ujang.sen.es.kr",
+      "schoolinfo_url": "https://www.schoolinfo.go.kr/ei/ss/Pneiss_b01_s0.do?SHL_IDF_CD=51f7ba03-c4a5-4812-ae28-9afa36fc99a6",
+      "probe_file": "schoolinfo_disclosure_probe_wave2_seoul_20261009.json",
+      "note": "전학년 명시는 이 근거에서 확인하지 못함",
+      "field_evidence": {
+        "start_time": [
+          "3a829fa74eac:L14-L14"
+        ],
+        "end_time": [
+          "3a829fa74eac:L14-L14"
+        ],
+        "eligibility_raw": [
+          "3a829fa74eac:L14-L14"
+        ]
+      },
+      "evidence": [
+        {
+          "evidence_id": "3a829fa74eac:L14-L14",
+          "sha256": "3a829fa74eac3b2adc7812558a7e251ab9bc2cddaf3b2a3cdebdad9522aa62d8",
+          "line_start": 14,
+          "line_end": 14,
+          "excerpt": "아침돌봄 | 07:30 ~ 09:00 | 글샘터 (도서실)   | 정규수업 이전 돌봄을 희망하는 학생  | -없음 | 봉사자 위촉 |"
+        }
+      ],
+      "sources": [
+        {
+          "document_name": "(우장초)2026학년도 방과후·맞춤형 프로그램 연간운영계획(안).hwp",
+          "academic_year_in_filename": 2026,
+          "sha256": "80da6e773357171a68f08c5e51524453fbd150dd92899763626cdb6c0978465c",
+          "text_sha256": "c56890eef2741841d51a508eaa82122ee0e914e544635482f801383d9019a082",
+          "raw_hash_valid": true,
+          "file_seq": "6",
+          "source_url": "https://www.schoolinfo.go.kr/servlets/EiFileDownLoad.do?SHL_IDF_CD=51f7ba03-c4a5-4812-ae28-9afa36fc99a6&JG_BURYU_CD=JG150&JG_HANGMOK_CD=59&JG_GUBUN=1&JG_CHASU=2&JG_YEAR=2026&USE_YN=Y&FILE_SEQ=6",
+          "text_path": "etl/runtime/audit2-documents/text/80da6e773357171a68f08c5e51524453fbd150dd92899763626cdb6c0978465c.txt",
+          "text_lines": 456
+        },
+        {
+          "document_name": "(우장초)2026학년도 돌봄교실 운영 계획(안).hwp",
+          "academic_year_in_filename": 2026,
+          "sha256": "3a829fa74eac3b2adc7812558a7e251ab9bc2cddaf3b2a3cdebdad9522aa62d8",
+          "text_sha256": "f2bffbb578e1d9b375482c40950043239e133d791cdcb81446a4d33aa60b4722",
+          "raw_hash_valid": true,
+          "file_seq": "4",
+          "source_url": "https://www.schoolinfo.go.kr/servlets/EiFileDownLoad.do?SHL_IDF_CD=51f7ba03-c4a5-4812-ae28-9afa36fc99a6&JG_BURYU_CD=JG150&JG_HANGMOK_CD=59&JG_GUBUN=1&JG_CHASU=2&JG_YEAR=2026&USE_YN=Y&FILE_SEQ=4",
+          "text_path": "etl/runtime/audit2-documents/text/3a829fa74eac3b2adc7812558a7e251ab9bc2cddaf3b2a3cdebdad9522aa62d8.txt",
+          "text_lines": 56
+        }
+      ],
+      "legacy_regex_candidates": {
+        "07:30-09:00": 1
+      }
+    },
+    {
+      "school_id": "B000002326",
+      "school_name": "서울남부초등학교",
+      "district": "관악구",
+      "academic_year": 2026,
+      "calendar_scope": "term_weekday",
+      "service_type": "school_morning_care",
+      "operation_status": "unknown",
+      "operation_evidence": null,
+      "plan_status": "planned",
+      "start_time": "07:00",
+      "end_time": "09:00",
+      "end_time_raw": "09:00",
+      "time_status": "stated",
+      "target_grades": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "eligibility_raw": "학기 중 1~6학년 희망자",
+      "application_window": null,
+      "capacity": 30,
+      "capacity_qualifier": "명 내외",
+      "escort_to_school": "unknown",
+      "escort_evidence": null,
+      "source_kind": "annual_plan",
+      "source_year": 2026,
+      "checked_on": "2026-10-15",
+      "source_list_checked_at": "2026-10-09T01:48:39.256Z",
+      "source_live_rechecked_on": null,
+      "review_state": "assistant_source_text_review",
+      "publication_state": "research_only",
+      "homepage": "http://seoulnambu.sen.es.kr",
+      "schoolinfo_url": "https://www.schoolinfo.go.kr/ei/ss/Pneiss_b01_s0.do?SHL_IDF_CD=18d61f26-c962-47fd-b52f-dfa06fa91aa8",
+      "probe_file": "schoolinfo_disclosure_probe_wave2_seoul_20261009.json",
+      "note": "방학 및 자율휴업일 포함; 수요·여건에 따라 변동",
+      "field_evidence": {
+        "start_time": [
+          "59406097fea9:L42-L42",
+          "59406097fea9:L64-L64"
+        ],
+        "end_time": [
+          "59406097fea9:L42-L42",
+          "59406097fea9:L64-L64"
+        ],
+        "target_grades": [
+          "59406097fea9:L42-L42",
+          "59406097fea9:L64-L64"
+        ],
+        "eligibility_raw": [
+          "59406097fea9:L42-L42",
+          "59406097fea9:L64-L64"
+        ],
+        "capacity": [
+          "59406097fea9:L42-L42",
+          "59406097fea9:L64-L64"
+        ]
+      },
+      "evidence": [
+        {
+          "evidence_id": "59406097fea9:L42-L42",
+          "sha256": "59406097fea99421e528a6533dc42636854150b428302b68e5ab134205e0659a",
+          "line_start": 42,
+          "line_end": 42,
+          "excerpt": "아침돌봄 | 07:00~09:00 | 도서실 | 학기 중 1~6학년 희망자 | 30명 내외 | 없음 | 방학 및 자율휴업일 포함 운영 (참여학생수와 운영시간은 수요자의 요구와 학교의 여건을 고려하여 변동가능함) |"
+        },
+        {
+          "evidence_id": "59406097fea9:L64-L64",
+          "sha256": "59406097fea99421e528a6533dc42636854150b428302b68e5ab134205e0659a",
+          "line_start": 64,
+          "line_end": 64,
+          "excerpt": "아침돌봄 | - 희망하는 1~6학년 학생 전체 | 봉사인력/1학급 |"
+        }
+      ],
+      "sources": [
+        {
+          "document_name": "(정보공시)2026학년도 돌봄교실 연간 운영 계획(안).hwp",
+          "academic_year_in_filename": 2026,
+          "sha256": "59406097fea99421e528a6533dc42636854150b428302b68e5ab134205e0659a",
+          "text_sha256": "b3d71fc1e693a86bfa1b15fc8681ceeb7fa1e7b57ebb572d1baf21d4ebcc62d8",
+          "raw_hash_valid": true,
+          "file_seq": "6",
+          "source_url": "https://www.schoolinfo.go.kr/servlets/EiFileDownLoad.do?SHL_IDF_CD=18d61f26-c962-47fd-b52f-dfa06fa91aa8&JG_BURYU_CD=JG150&JG_HANGMOK_CD=59&JG_GUBUN=1&JG_CHASU=2&JG_YEAR=2026&USE_YN=Y&FILE_SEQ=6",
+          "text_path": "etl/runtime/audit2-documents/text/59406097fea99421e528a6533dc42636854150b428302b68e5ab134205e0659a.txt",
+          "text_lines": 529
+        },
+        {
+          "document_name": "(정보공시)2026학년도 방과후·맞춤형 연간 운영 계획(수정) 및 수강료 교재재료 사용계획(안).hwp",
+          "academic_year_in_filename": 2026,
+          "sha256": "5c0068acc5774d22d4a661568f132059dbfd931a2617790f036b79991a318529",
+          "text_sha256": "8901ee56c239c17322a9cd29895c2f62cc3176ed6304aa084f96811b60205d52",
+          "raw_hash_valid": true,
+          "file_seq": "4",
+          "source_url": "https://www.schoolinfo.go.kr/servlets/EiFileDownLoad.do?SHL_IDF_CD=18d61f26-c962-47fd-b52f-dfa06fa91aa8&JG_BURYU_CD=JG150&JG_HANGMOK_CD=59&JG_GUBUN=1&JG_CHASU=2&JG_YEAR=2026&USE_YN=Y&FILE_SEQ=4",
+          "text_path": "etl/runtime/audit2-documents/text/5c0068acc5774d22d4a661568f132059dbfd931a2617790f036b79991a318529.txt",
+          "text_lines": 306
+        }
+      ],
+      "legacy_regex_candidates": {
+        "07:00-09:00": 4
+      }
+    },
+    {
+      "school_id": "B000002368",
+      "school_name": "서울광남초등학교",
+      "district": "광진구",
+      "academic_year": 2026,
+      "calendar_scope": "term_weekday",
+      "service_type": "school_morning_care",
+      "operation_status": "unknown",
+      "operation_evidence": null,
+      "plan_status": "planned",
+      "start_time": "07:30",
+      "end_time": "09:00",
+      "end_time_raw": "09:00",
+      "time_status": "stated",
+      "target_grades": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "eligibility_raw": "1~6학년 재학생 중 아침돌봄 신청 학생",
+      "application_window": null,
+      "capacity": null,
+      "capacity_qualifier": null,
+      "escort_to_school": "unknown",
+      "escort_evidence": null,
+      "source_kind": "annual_plan",
+      "source_year": 2026,
+      "checked_on": "2026-10-15",
+      "source_list_checked_at": "2026-10-09T01:49:45.721Z",
+      "source_live_rechecked_on": null,
+      "review_state": "assistant_source_text_review",
+      "publication_state": "research_only",
+      "homepage": "http://gwangnam.sen.es.kr",
+      "schoolinfo_url": "https://www.schoolinfo.go.kr/ei/ss/Pneiss_b01_s0.do?SHL_IDF_CD=16c9e34f-5fe0-45b6-889d-723d4d57af75",
+      "probe_file": "schoolinfo_disclosure_probe_wave2_seoul_20261009.json",
+      "note": "학기중; 2실은 인원 정원이 아님",
+      "field_evidence": {
+        "start_time": [
+          "295dfeb7385b:L25-L25",
+          "295dfeb7385b:L35-L35"
+        ],
+        "end_time": [
+          "295dfeb7385b:L25-L25",
+          "295dfeb7385b:L35-L35"
+        ],
+        "target_grades": [
+          "295dfeb7385b:L25-L25",
+          "295dfeb7385b:L35-L35"
+        ],
+        "eligibility_raw": [
+          "295dfeb7385b:L25-L25",
+          "295dfeb7385b:L35-L35"
+        ]
+      },
+      "evidence": [
+        {
+          "evidence_id": "295dfeb7385b:L25-L25",
+          "sha256": "295dfeb7385b37d0d2abd0087d5a31a684cc96088af24a1d4e67be7b5d1cd51a",
+          "line_start": 25,
+          "line_end": 25,
+          "excerpt": "아침돌봄 (2실) | 07:30~09:00 | 도서실 | 학기 중 운영 |"
+        },
+        {
+          "evidence_id": "295dfeb7385b:L35-L35",
+          "sha256": "295dfeb7385b37d0d2abd0087d5a31a684cc96088af24a1d4e67be7b5d1cd51a",
+          "line_start": 35,
+          "line_end": 35,
+          "excerpt": "아침돌봄 | 1-6학년 재학생 중 아침돌봄 신청 학생  | 아침돌봄 봉사자  |"
+        }
+      ],
+      "sources": [
+        {
+          "document_name": "(광남초)2026 방과후·맞춤형교실 연간운영계획.hwpx",
+          "academic_year_in_filename": 2026,
+          "sha256": "9d3ca2f3d2c6aee566624cb1abd5c46c69761b715bd3a548b284eedb7e4dee41",
+          "text_sha256": "2b98fbd44d257ada42195f5014956add7a0eeb12d63b393a97e519807661d366",
+          "raw_hash_valid": true,
+          "file_seq": "1",
+          "source_url": "https://www.schoolinfo.go.kr/servlets/EiFileDownLoad.do?SHL_IDF_CD=16c9e34f-5fe0-45b6-889d-723d4d57af75&JG_BURYU_CD=JG150&JG_HANGMOK_CD=59&JG_GUBUN=1&JG_CHASU=2&JG_YEAR=2026&USE_YN=Y&FILE_SEQ=1",
+          "text_path": "etl/runtime/audit2-documents/text/9d3ca2f3d2c6aee566624cb1abd5c46c69761b715bd3a548b284eedb7e4dee41.txt",
+          "text_lines": 246
+        },
+        {
+          "document_name": "(광남초)2026학년도 초등돌봄교실 연간운영계획.hwp",
+          "academic_year_in_filename": 2026,
+          "sha256": "295dfeb7385b37d0d2abd0087d5a31a684cc96088af24a1d4e67be7b5d1cd51a",
+          "text_sha256": "63e5291434dbd5817b27bc841a6e5fd19d8cb5691432fb1ae872ce74e152c2b0",
+          "raw_hash_valid": true,
+          "file_seq": "0",
+          "source_url": "https://www.schoolinfo.go.kr/servlets/EiFileDownLoad.do?SHL_IDF_CD=16c9e34f-5fe0-45b6-889d-723d4d57af75&JG_BURYU_CD=JG150&JG_HANGMOK_CD=59&JG_GUBUN=1&JG_CHASU=2&JG_YEAR=2026&USE_YN=Y&FILE_SEQ=0",
+          "text_path": "etl/runtime/audit2-documents/text/295dfeb7385b37d0d2abd0087d5a31a684cc96088af24a1d4e67be7b5d1cd51a.txt",
+          "text_lines": 303
+        }
+      ],
+      "legacy_regex_candidates": {
+        "07:30-09:00": 1
+      }
+    },
+    {
+      "school_id": "B000001953",
+      "school_name": "서울영일초등학교",
+      "district": "구로구",
+      "academic_year": 2026,
+      "calendar_scope": "term_weekday",
+      "service_type": "school_morning_care",
+      "operation_status": "unknown",
+      "operation_evidence": null,
+      "plan_status": "conditional",
+      "start_time": "07:30",
+      "end_time": "08:30",
+      "end_time_raw": "08:30",
+      "time_status": "stated",
+      "target_grades": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "eligibility_raw": "학부모 수요·학교 여건에 따라 가급적 희망하는 전교생",
+      "application_window": null,
+      "capacity": null,
+      "capacity_qualifier": null,
+      "escort_to_school": "unknown",
+      "escort_evidence": null,
+      "source_kind": "annual_plan",
+      "source_year": 2026,
+      "checked_on": "2026-10-15",
+      "source_list_checked_at": "2026-10-09T01:40:52.448Z",
+      "source_live_rechecked_on": null,
+      "review_state": "assistant_source_text_review",
+      "publication_state": "research_only",
+      "homepage": "http://syoungil.sen.es.kr",
+      "schoolinfo_url": "https://www.schoolinfo.go.kr/ei/ss/Pneiss_b01_s0.do?SHL_IDF_CD=c4290159-3e75-4dab-b319-233eea54e008",
+      "probe_file": "schoolinfo_disclosure_probe_wave2_seoul_20261009.json",
+      "note": "학기중; 수요·학교 여건 조건",
+      "field_evidence": {
+        "start_time": [
+          "08e60d328e21:L20-L20",
+          "08e60d328e21:L57-L57"
+        ],
+        "end_time": [
+          "08e60d328e21:L20-L20",
+          "08e60d328e21:L57-L57"
+        ],
+        "target_grades": [
+          "08e60d328e21:L20-L20",
+          "08e60d328e21:L57-L57"
+        ],
+        "eligibility_raw": [
+          "08e60d328e21:L20-L20",
+          "08e60d328e21:L57-L57"
+        ]
+      },
+      "evidence": [
+        {
+          "evidence_id": "08e60d328e21:L20-L20",
+          "sha256": "08e60d328e21f38810e72472ed6750bc812212c78645e3ddfe95755ef26a847c",
+          "line_start": 20,
+          "line_end": 20,
+          "excerpt": "1 | 아침돌봄 | 07:30~08:30 | 학기중 |"
+        },
+        {
+          "evidence_id": "08e60d328e21:L57-L57",
+          "sha256": "08e60d328e21f38810e72472ed6750bc812212c78645e3ddfe95755ef26a847c",
+          "line_start": 57,
+          "line_end": 57,
+          "excerpt": " 다. 아침돌봄 : 학부모 수요 및 학교 여건에 따라 가급적 희망하는 전교생 대상으로 운영 "
+        }
+      ],
+      "sources": [
+        {
+          "document_name": "2026학년도 방과후(맞춤형교실, 방과후교실) 연간 운영 계획.hwp",
+          "academic_year_in_filename": 2026,
+          "sha256": "5b2c5d6009e0cdd84596fb5bf04c07135e31a99c37bde19b8e714dd2fd7c2dc8",
+          "text_sha256": "2a61d955b69bf7c5f12ea161992e5d855d15eda9a8111ca9bf508e4f5d64a310",
+          "raw_hash_valid": true,
+          "file_seq": "4",
+          "source_url": "https://www.schoolinfo.go.kr/servlets/EiFileDownLoad.do?SHL_IDF_CD=c4290159-3e75-4dab-b319-233eea54e008&JG_BURYU_CD=JG150&JG_HANGMOK_CD=59&JG_GUBUN=1&JG_CHASU=2&JG_YEAR=2026&USE_YN=Y&FILE_SEQ=4",
+          "text_path": "etl/runtime/audit2-documents/text/5b2c5d6009e0cdd84596fb5bf04c07135e31a99c37bde19b8e714dd2fd7c2dc8.txt",
+          "text_lines": 349
+        },
+        {
+          "document_name": "2026학년도 돌봄교실 운영계획.hwp",
+          "academic_year_in_filename": 2026,
+          "sha256": "08e60d328e21f38810e72472ed6750bc812212c78645e3ddfe95755ef26a847c",
+          "text_sha256": "6dad4a85ff9669a20ca5692c92da6837436d474b4ef080d2983a3e57de26bde0",
+          "raw_hash_valid": true,
+          "file_seq": "3",
+          "source_url": "https://www.schoolinfo.go.kr/servlets/EiFileDownLoad.do?SHL_IDF_CD=c4290159-3e75-4dab-b319-233eea54e008&JG_BURYU_CD=JG150&JG_HANGMOK_CD=59&JG_GUBUN=1&JG_CHASU=2&JG_YEAR=2026&USE_YN=Y&FILE_SEQ=3",
+          "text_path": "etl/runtime/audit2-documents/text/08e60d328e21f38810e72472ed6750bc812212c78645e3ddfe95755ef26a847c.txt",
+          "text_lines": 176
+        }
+      ],
+      "legacy_regex_candidates": {
+        "07:30-08:30": 1
+      }
+    },
+    {
+      "school_id": "B000001977",
+      "school_name": "서울문교초등학교",
+      "district": "금천구",
+      "academic_year": 2026,
+      "calendar_scope": "term_weekday",
+      "service_type": "school_morning_care",
+      "operation_status": "unknown",
+      "operation_evidence": null,
+      "plan_status": "planned",
+      "start_time": "07:40",
+      "end_time": "09:00",
+      "end_time_raw": "09:00",
+      "time_status": "stated",
+      "target_grades": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "eligibility_raw": "돌봄이 필요한 신청 학생(전학년); 전교생 중 희망자",
+      "application_window": null,
+      "capacity": null,
+      "capacity_qualifier": null,
+      "escort_to_school": "unknown",
+      "escort_evidence": null,
+      "source_kind": "annual_plan",
+      "source_year": 2026,
+      "checked_on": "2026-10-15",
+      "source_list_checked_at": "2026-10-09T01:41:33.149Z",
+      "source_live_rechecked_on": null,
+      "review_state": "assistant_source_text_review",
+      "publication_state": "research_only",
+      "homepage": "http://mungyo.sen.es.kr",
+      "schoolinfo_url": "https://www.schoolinfo.go.kr/ei/ss/Pneiss_b01_s0.do?SHL_IDF_CD=0dd03e46-9a69-4b6f-8671-192600327175",
+      "probe_file": "schoolinfo_disclosure_probe_wave2_seoul_20261009.json",
+      "note": "학생 현황(2026-03-23 현재)의 10명은 정원이 아니므로 제외",
+      "field_evidence": {
+        "start_time": [
+          "102b5eb79e0e:L22-L22",
+          "102b5eb79e0e:L27-L29"
+        ],
+        "end_time": [
+          "102b5eb79e0e:L22-L22",
+          "102b5eb79e0e:L27-L29"
+        ],
+        "target_grades": [
+          "102b5eb79e0e:L22-L22",
+          "102b5eb79e0e:L27-L29"
+        ],
+        "eligibility_raw": [
+          "102b5eb79e0e:L22-L22",
+          "102b5eb79e0e:L27-L29"
+        ]
+      },
+      "evidence": [
+        {
+          "evidence_id": "102b5eb79e0e:L22-L22",
+          "sha256": "102b5eb79e0ecf5c71d0cdb2d604d9525b40fbc1c6041021b11059790f54cc65",
+          "line_start": 22,
+          "line_end": 22,
+          "excerpt": "아침돌봄 | 07:40~09:00 | 돌봄이 필요한 신청 학생 (전학년 대상) | 수업일 | 무상 |"
+        },
+        {
+          "evidence_id": "102b5eb79e0e:L27-L29",
+          "sha256": "102b5eb79e0ecf5c71d0cdb2d604d9525b40fbc1c6041021b11059790f54cc65",
+          "line_start": 27,
+          "line_end": 29,
+          "excerpt": " 마. 학생 현황(2026년 3월 23일 현재) \n운영유형 | 운영시간 | 장  소 | 대  상 | 인원(명) | 운영비 | 비  고 |\n아침돌봄 | 7:40 ~9:00 | 돌봄1실 | 전교생 중  희망자 | 10 | 무상 |  |"
+        }
+      ],
+      "sources": [
+        {
+          "document_name": "2026학년도 돌봄교실 운영 계획.hwp",
+          "academic_year_in_filename": 2026,
+          "sha256": "102b5eb79e0ecf5c71d0cdb2d604d9525b40fbc1c6041021b11059790f54cc65",
+          "text_sha256": "e5197c4d8d39d8b3874ebf490dd148cfdb5075fa62bd80360f4eef41362bcc07",
+          "raw_hash_valid": true,
+          "file_seq": "2",
+          "source_url": "https://www.schoolinfo.go.kr/servlets/EiFileDownLoad.do?SHL_IDF_CD=0dd03e46-9a69-4b6f-8671-192600327175&JG_BURYU_CD=JG150&JG_HANGMOK_CD=59&JG_GUBUN=1&JG_CHASU=2&JG_YEAR=2026&USE_YN=Y&FILE_SEQ=2",
+          "text_path": "etl/runtime/audit2-documents/text/102b5eb79e0ecf5c71d0cdb2d604d9525b40fbc1c6041021b11059790f54cc65.txt",
+          "text_lines": 115
+        },
+        {
+          "document_name": "2026 문교초 늘봄학교 연간운영계획...hwp",
+          "academic_year_in_filename": 2026,
+          "sha256": "77962c8d1060d587963dfadc5d5786535e434db3c1903fee9cf2265174c1b004",
+          "text_sha256": "f3e614eb91267b82ebe7900e4e9826d7fab51880c3be37b787dae718b68cd2de",
+          "raw_hash_valid": true,
+          "file_seq": "1",
+          "source_url": "https://www.schoolinfo.go.kr/servlets/EiFileDownLoad.do?SHL_IDF_CD=0dd03e46-9a69-4b6f-8671-192600327175&JG_BURYU_CD=JG150&JG_HANGMOK_CD=59&JG_GUBUN=1&JG_CHASU=2&JG_YEAR=2026&USE_YN=Y&FILE_SEQ=1",
+          "text_path": "etl/runtime/audit2-documents/text/77962c8d1060d587963dfadc5d5786535e434db3c1903fee9cf2265174c1b004.txt",
+          "text_lines": 324
+        }
+      ],
+      "legacy_regex_candidates": {
+        "07:40-09:00": 2
+      }
+    },
+    {
+      "school_id": "B000002041",
+      "school_name": "서울녹천초등학교",
+      "district": "노원구",
+      "academic_year": 2026,
+      "calendar_scope": "term_weekday",
+      "service_type": "school_morning_care",
+      "operation_status": "unknown",
+      "operation_evidence": null,
+      "plan_status": "not_found",
+      "start_time": null,
+      "end_time": null,
+      "end_time_raw": null,
+      "time_status": "not_found",
+      "target_grades": null,
+      "eligibility_raw": null,
+      "application_window": null,
+      "capacity": null,
+      "capacity_qualifier": null,
+      "escort_to_school": "unknown",
+      "escort_evidence": null,
+      "source_kind": "annual_plan",
+      "source_year": 2026,
+      "checked_on": "2026-10-15",
+      "source_list_checked_at": "2026-10-09T01:43:18.801Z",
+      "source_live_rechecked_on": null,
+      "review_state": "assistant_source_text_review",
+      "publication_state": "research_only",
+      "homepage": "http://nokcheon.sen.es.kr",
+      "schoolinfo_url": "https://www.schoolinfo.go.kr/ei/ss/Pneiss_b01_s0.do?SHL_IDF_CD=653d4e90-3e80-417b-be88-dd0ae8e192d6",
+      "probe_file": "schoolinfo_disclosure_probe_wave2_seoul_20261009.json",
+      "note": "선정한 15-라 첨부에서 아침돌봄 근거 미확인; 미운영으로 판단하지 않음",
+      "field_evidence": {},
+      "evidence": [],
+      "sources": [
+        {
+          "document_name": "(서울녹천초)2026학년도 맞춤형.방과후교실 운영 계획 1부.pdf",
+          "academic_year_in_filename": 2026,
+          "sha256": "a4dd6940ed5caa5b5e9801801a3961ae8bf219802d14c40f22711f69eb332d86",
+          "text_sha256": "7400b73f7c61493b3dc925b4aaf181e076bd153c4daaa5fbd08cb23863de6eca",
+          "raw_hash_valid": true,
+          "file_seq": "2",
+          "source_url": "https://www.schoolinfo.go.kr/servlets/EiFileDownLoad.do?SHL_IDF_CD=653d4e90-3e80-417b-be88-dd0ae8e192d6&JG_BURYU_CD=JG150&JG_HANGMOK_CD=59&JG_GUBUN=1&JG_CHASU=2&JG_YEAR=2026&USE_YN=Y&FILE_SEQ=2",
+          "text_path": "etl/runtime/audit2-documents/text/a4dd6940ed5caa5b5e9801801a3961ae8bf219802d14c40f22711f69eb332d86.txt",
+          "text_lines": 45
+        }
+      ],
+      "legacy_regex_candidates": {}
+    },
+    {
+      "school_id": "B000002018",
+      "school_name": "서울신학초등학교",
+      "district": "도봉구",
+      "academic_year": 2026,
+      "calendar_scope": "term_weekday",
+      "service_type": "school_morning_care",
+      "operation_status": "unknown",
+      "operation_evidence": null,
+      "plan_status": "planned",
+      "start_time": "07:00",
+      "end_time": "09:00",
+      "end_time_raw": "09:00",
+      "time_status": "stated",
+      "target_grades": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "eligibility_raw": "1~6학년 재학생; 신청서 제출, 증빙서류 없이 참여 가능",
+      "application_window": null,
+      "capacity": null,
+      "capacity_qualifier": null,
+      "escort_to_school": "unknown",
+      "escort_evidence": null,
+      "source_kind": "annual_plan",
+      "source_year": 2026,
+      "checked_on": "2026-10-15",
+      "source_list_checked_at": "2026-10-09T01:42:39.439Z",
+      "source_live_rechecked_on": null,
+      "review_state": "assistant_source_text_review",
+      "publication_state": "research_only",
+      "homepage": "http://seoulsinhak.sen.es.kr",
+      "schoolinfo_url": "https://www.schoolinfo.go.kr/ei/ss/Pneiss_b01_s0.do?SHL_IDF_CD=090a5f45-d08d-4c32-b186-6388f60d2158",
+      "probe_file": "schoolinfo_disclosure_probe_wave2_seoul_20261009.json",
+      "note": "아침돌봄반 4명은 현황; 정원으로 사용하지 않음",
+      "field_evidence": {
+        "start_time": [
+          "1ec30dc1684d:L7-L7",
+          "1ec30dc1684d:L19-L19",
+          "1ec30dc1684d:L54-L54"
+        ],
+        "end_time": [
+          "1ec30dc1684d:L7-L7",
+          "1ec30dc1684d:L19-L19",
+          "1ec30dc1684d:L54-L54"
+        ],
+        "target_grades": [
+          "1ec30dc1684d:L7-L7",
+          "1ec30dc1684d:L19-L19",
+          "1ec30dc1684d:L54-L54"
+        ],
+        "eligibility_raw": [
+          "1ec30dc1684d:L7-L7",
+          "1ec30dc1684d:L19-L19",
+          "1ec30dc1684d:L54-L54"
+        ]
+      },
+      "evidence": [
+        {
+          "evidence_id": "1ec30dc1684d:L7-L7",
+          "sha256": "1ec30dc1684d7b83cc436a355e4e00d123c806d262e559848ff25b3a45011e89",
+          "line_start": 7,
+          "line_end": 7,
+          "excerpt": "        (1) 아침늘봄: 1학년~6학년 재학생"
+        },
+        {
+          "evidence_id": "1ec30dc1684d:L19-L19",
+          "sha256": "1ec30dc1684d7b83cc436a355e4e00d123c806d262e559848ff25b3a45011e89",
+          "line_start": 19,
+          "line_end": 19,
+          "excerpt": "        (1) 아침늘봄: 증빙서류 없이 참여 가능(신청서 제출)"
+        },
+        {
+          "evidence_id": "1ec30dc1684d:L54-L54",
+          "sha256": "1ec30dc1684d7b83cc436a355e4e00d123c806d262e559848ff25b3a45011e89",
+          "line_start": 54,
+          "line_end": 54,
+          "excerpt": "활동 | 아침늘봄 | 7:00 ~ 9:00 | 9:00 ~ 19:00 (수요에 따라 아침 운영시각 변동) | 9:00~17:00 |"
+        }
+      ],
+      "sources": [
+        {
+          "document_name": "2026학년도 서울신학초등학교 방과후학교 연간운영계획.hwp",
+          "academic_year_in_filename": 2026,
+          "sha256": "e6789fc710fcb3cdc9b381ad89db5937930223a475d3bdcf896e74184759c6cd",
+          "text_sha256": "5c754e7a3eab059abd2a59dd032a5d7af546b59872f03da059408c3cac687869",
+          "raw_hash_valid": true,
+          "file_seq": "2",
+          "source_url": "https://www.schoolinfo.go.kr/servlets/EiFileDownLoad.do?SHL_IDF_CD=090a5f45-d08d-4c32-b186-6388f60d2158&JG_BURYU_CD=JG150&JG_HANGMOK_CD=59&JG_GUBUN=1&JG_CHASU=2&JG_YEAR=2026&USE_YN=Y&FILE_SEQ=2",
+          "text_path": "etl/runtime/audit2-documents/text/e6789fc710fcb3cdc9b381ad89db5937930223a475d3bdcf896e74184759c6cd.txt",
+          "text_lines": 190
+        },
+        {
+          "document_name": "2026학년도 서울신학초등학교 초등돌봄교실 운영계획안.hwp",
+          "academic_year_in_filename": 2026,
+          "sha256": "1ec30dc1684d7b83cc436a355e4e00d123c806d262e559848ff25b3a45011e89",
+          "text_sha256": "68ec24365381f1b4c0376cd530c0a93bfb006f16f5566a665298438cb67f1a07",
+          "raw_hash_valid": true,
+          "file_seq": "0",
+          "source_url": "https://www.schoolinfo.go.kr/servlets/EiFileDownLoad.do?SHL_IDF_CD=090a5f45-d08d-4c32-b186-6388f60d2158&JG_BURYU_CD=JG150&JG_HANGMOK_CD=59&JG_GUBUN=1&JG_CHASU=2&JG_YEAR=2026&USE_YN=Y&FILE_SEQ=0",
+          "text_path": "etl/runtime/audit2-documents/text/1ec30dc1684d7b83cc436a355e4e00d123c806d262e559848ff25b3a45011e89.txt",
+          "text_lines": 444
+        }
+      ],
+      "legacy_regex_candidates": {
+        "07:00-09:00": 2
+      }
+    },
+    {
+      "school_id": "B000001855",
+      "school_name": "서울휘봉초등학교",
+      "district": "동대문구",
+      "academic_year": 2026,
+      "calendar_scope": "term_weekday",
+      "service_type": "school_morning_care",
+      "operation_status": "unknown",
+      "operation_evidence": null,
+      "plan_status": "not_found",
+      "start_time": null,
+      "end_time": null,
+      "end_time_raw": null,
+      "time_status": "not_found",
+      "target_grades": null,
+      "eligibility_raw": null,
+      "application_window": null,
+      "capacity": null,
+      "capacity_qualifier": null,
+      "escort_to_school": "unknown",
+      "escort_evidence": null,
+      "source_kind": "annual_plan",
+      "source_year": 2026,
+      "checked_on": "2026-10-15",
+      "source_list_checked_at": "2026-10-09T01:38:13.568Z",
+      "source_live_rechecked_on": null,
+      "review_state": "assistant_source_text_review",
+      "publication_state": "research_only",
+      "homepage": "http://hwibong.sen.es.kr",
+      "schoolinfo_url": "https://www.schoolinfo.go.kr/ei/ss/Pneiss_b01_s0.do?SHL_IDF_CD=a55532cd-b24e-40f9-9b66-5d0ff7d9566c",
+      "probe_file": "schoolinfo_disclosure_probe_wave2_seoul_20261009.json",
+      "note": "선정한 15-라 첨부에서 아침돌봄 근거 미확인; 미운영으로 판단하지 않음",
+      "field_evidence": {},
+      "evidence": [],
+      "sources": [
+        {
+          "document_name": "(취봉초) 2026학년도 방과후·맞춤형프로그램 연간운영계획(안)(강사명 삭제).hwp",
+          "academic_year_in_filename": 2026,
+          "sha256": "5493e9751f3573a7e0a07344f04ad2da3ff241cf18b9b89a1280e7ea4c57b22d",
+          "text_sha256": "fd6a53c7377263a4d01024aa5d64e9731c961c7b044cefa0840e9ddc10777958",
+          "raw_hash_valid": true,
+          "file_seq": "1",
+          "source_url": "https://www.schoolinfo.go.kr/servlets/EiFileDownLoad.do?SHL_IDF_CD=a55532cd-b24e-40f9-9b66-5d0ff7d9566c&JG_BURYU_CD=JG150&JG_HANGMOK_CD=59&JG_GUBUN=1&JG_CHASU=2&JG_YEAR=2026&USE_YN=Y&FILE_SEQ=1",
+          "text_path": "etl/runtime/audit2-documents/text/5493e9751f3573a7e0a07344f04ad2da3ff241cf18b9b89a1280e7ea4c57b22d.txt",
+          "text_lines": 515
+        }
+      ],
+      "legacy_regex_candidates": {}
+    },
+    {
+      "school_id": "B000002306",
+      "school_name": "서울강남초등학교",
+      "district": "동작구",
+      "academic_year": 2026,
+      "calendar_scope": "term_weekday",
+      "service_type": "school_morning_care",
+      "operation_status": "unknown",
+      "operation_evidence": null,
+      "plan_status": "planned",
+      "start_time": "07:00",
+      "end_time": "09:00",
+      "end_time_raw": "09:00",
+      "time_status": "stated",
+      "target_grades": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "eligibility_raw": "1~6학년 전교생; 정규수업 전 등교 학생 누구나",
+      "application_window": null,
+      "capacity": null,
+      "capacity_qualifier": null,
+      "escort_to_school": "unknown",
+      "escort_evidence": null,
+      "source_kind": "annual_plan",
+      "source_year": 2026,
+      "checked_on": "2026-10-15",
+      "source_list_checked_at": "2026-10-09T01:48:05.120Z",
+      "source_live_rechecked_on": null,
+      "review_state": "assistant_source_text_review",
+      "publication_state": "research_only",
+      "homepage": "http://gangnam.sen.es.kr",
+      "schoolinfo_url": "https://www.schoolinfo.go.kr/ei/ss/Pneiss_b01_s0.do?SHL_IDF_CD=e53b6fad-485e-44a7-8312-3067f8b3b953",
+      "probe_file": "schoolinfo_disclosure_probe_wave2_seoul_20261009.json",
+      "note": "방학중 시각 변동. 동작구 서울강남초로 강남구와 혼동 금지",
+      "field_evidence": {
+        "start_time": [
+          "80fc51e376b3:L5-L5"
+        ],
+        "end_time": [
+          "80fc51e376b3:L5-L5"
+        ],
+        "target_grades": [
+          "80fc51e376b3:L5-L5"
+        ],
+        "eligibility_raw": [
+          "80fc51e376b3:L5-L5"
+        ]
+      },
+      "evidence": [
+        {
+          "evidence_id": "80fc51e376b3:L5-L5",
+          "sha256": "80fc51e376b3a1e4ee3be68a24e46f643e9192e63cdc075ca33586bb44699ccc",
+          "line_start": 5,
+          "line_end": 5,
+          "excerpt": "대상 학생 선정 구분학생 선정담당 / 운영실수아침돌봄- 1~6학년 전교생 참여- 정규수업 전 등교 학생 누구나 봉사안력/1실오후돌봄- 초등 1~3학년 중심- 선정 자료 : 학부모 희망서 기재 내용, 담임 조사서, 관련 증빙서류 돌봄전담사/6실저녁돌봄- 오후돌봄 참여 학생이면서 맞벌이･저소득층･한부모 가정･담임 추천대상자 등의 추가 돌봄이 필요한 학생 돌봄전담사(시간제)/1실 (틈새)연계형- 4~6학년 맞벌이･저소득층･한부모 가정･다자녀 가정･담임 추천대상자 등의 학생 중 방과후학교 프로그램에 주1일, 1개 이상 참여하면서, 오후돌봄교실을 이용하지 못하는 학생 중심 봉사안력/1실※ 참여 학생은 신청서를 제출 필수, 중도포기자는 재입급의 제한을 둘 수 있고, 전입생은 전입일을 기준으로 입급  …  법정공휴일 제외.구 분운영 시간담 당 비 고아침돌봄학기중 7:00~9:00방학 중 시간 변동오전돌봄 봉사자 방학 중 시간 변경 운영오후돌봄학기중돌봄 전담사  ※ 돌봄교실 입・퇴실 시간 준수 ※ 17시 이후 보호자 동반   귀가 원칙 준수방과후~19:00방학중돌봄전담사/봉사자방학 중 시간 변동연계형돌봄방과후-16:30(방학 중 미운영)  봉사자저녁돌봄19:00 이후지역아동센터 연계오전~오후돌봄(방학 중, 자율휴업일) 방학 중07:30~18:30봉사자/돌봄전담사 ※ 학기 중 돌봄교실 참여하는    학생 대상으로 수요조사 후   운영 계획 수립자율휴업일수요에 따라 시간변동 "
+        }
+      ],
+      "sources": [
+        {
+          "document_name": "(정보공시)2026학년도 서울강남초 초등돌봄교실 운영 계획(안) 및 학사 일정.pdf",
+          "academic_year_in_filename": 2026,
+          "sha256": "80fc51e376b3a1e4ee3be68a24e46f643e9192e63cdc075ca33586bb44699ccc",
+          "text_sha256": "a51fea738ef79786659b046065e4251eb003a38e4b5804aab5b7430ba6c227ab",
+          "raw_hash_valid": true,
+          "file_seq": "3",
+          "source_url": "https://www.schoolinfo.go.kr/servlets/EiFileDownLoad.do?SHL_IDF_CD=e53b6fad-485e-44a7-8312-3067f8b3b953&JG_BURYU_CD=JG150&JG_HANGMOK_CD=59&JG_GUBUN=1&JG_CHASU=2&JG_YEAR=2026&USE_YN=Y&FILE_SEQ=3",
+          "text_path": "etl/runtime/audit2-documents/text/80fc51e376b3a1e4ee3be68a24e46f643e9192e63cdc075ca33586bb44699ccc.txt",
+          "text_lines": 75
+        },
+        {
+          "document_name": "(정보공시)2026학년도 서울강남초 방과후학교  연간 운영계획(안).pdf",
+          "academic_year_in_filename": 2026,
+          "sha256": "0520baf8d2aa0e4b9ca59046396c7e4b81d0cb2d0abc06307c7871508424e681",
+          "text_sha256": "4e3ea1e3dc503a37f85d8c15908cecfe45e87f1f22a690f88f71333de6bb98b9",
+          "raw_hash_valid": true,
+          "file_seq": "2",
+          "source_url": "https://www.schoolinfo.go.kr/servlets/EiFileDownLoad.do?SHL_IDF_CD=e53b6fad-485e-44a7-8312-3067f8b3b953&JG_BURYU_CD=JG150&JG_HANGMOK_CD=59&JG_GUBUN=1&JG_CHASU=2&JG_YEAR=2026&USE_YN=Y&FILE_SEQ=2",
+          "text_path": "etl/runtime/audit2-documents/text/0520baf8d2aa0e4b9ca59046396c7e4b81d0cb2d0abc06307c7871508424e681.txt",
+          "text_lines": 34
+        }
+      ],
+      "legacy_regex_candidates": {
+        "07:00-09:00": 1
+      }
+    },
+    {
+      "school_id": "B000001931",
+      "school_name": "서울창천초등학교",
+      "district": "마포구",
+      "academic_year": 2026,
+      "calendar_scope": "term_weekday",
+      "service_type": "school_morning_care",
+      "operation_status": "unknown",
+      "operation_evidence": null,
+      "plan_status": "not_found",
+      "start_time": null,
+      "end_time": null,
+      "end_time_raw": null,
+      "time_status": "not_found",
+      "target_grades": null,
+      "eligibility_raw": null,
+      "application_window": null,
+      "capacity": null,
+      "capacity_qualifier": null,
+      "escort_to_school": "unknown",
+      "escort_evidence": null,
+      "source_kind": "annual_plan",
+      "source_year": 2026,
+      "checked_on": "2026-10-15",
+      "source_list_checked_at": "2026-10-09T01:40:14.858Z",
+      "source_live_rechecked_on": null,
+      "review_state": "assistant_source_text_review",
+      "publication_state": "research_only",
+      "homepage": "http://changchon.sen.es.kr",
+      "schoolinfo_url": "https://www.schoolinfo.go.kr/ei/ss/Pneiss_b01_s0.do?SHL_IDF_CD=09ed338b-b05e-4e4e-9e82-341d5cf8bad1",
+      "probe_file": "schoolinfo_disclosure_probe_wave2_seoul_20261009.json",
+      "note": "선정한 15-라 첨부에서 아침돌봄 근거 미확인; 미운영으로 판단하지 않음",
+      "field_evidence": {},
+      "evidence": [],
+      "sources": [
+        {
+          "document_name": "2026학년도창천초학교 방과후학교 운영계획.hwp",
+          "academic_year_in_filename": 2026,
+          "sha256": "a4134dfaeae24dba2d4652b1bca5276592e68f395295c4f7e27e12cc28a4ef87",
+          "text_sha256": "dea5f4ba865894f9c06ac4b332c403415b69b2e32520f43843dc219f158f41fb",
+          "raw_hash_valid": true,
+          "file_seq": "0",
+          "source_url": "https://www.schoolinfo.go.kr/servlets/EiFileDownLoad.do?SHL_IDF_CD=09ed338b-b05e-4e4e-9e82-341d5cf8bad1&JG_BURYU_CD=JG150&JG_HANGMOK_CD=59&JG_GUBUN=1&JG_CHASU=2&JG_YEAR=2026&USE_YN=Y&FILE_SEQ=0",
+          "text_path": "etl/runtime/audit2-documents/text/a4134dfaeae24dba2d4652b1bca5276592e68f395295c4f7e27e12cc28a4ef87.txt",
+          "text_lines": 322
+        }
+      ],
+      "legacy_regex_candidates": {}
+    },
+    {
+      "school_id": "B000001913",
+      "school_name": "서울금화초등학교",
+      "district": "서대문구",
+      "academic_year": 2026,
+      "calendar_scope": "term_weekday",
+      "service_type": "school_morning_care",
+      "operation_status": "unknown",
+      "operation_evidence": null,
+      "plan_status": "planned",
+      "start_time": "07:30",
+      "end_time": "09:00",
+      "end_time_raw": "09:00",
+      "time_status": "stated",
+      "target_grades": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "eligibility_raw": "전교생",
+      "application_window": null,
+      "capacity": null,
+      "capacity_qualifier": null,
+      "escort_to_school": "unknown",
+      "escort_evidence": null,
+      "source_kind": "annual_plan",
+      "source_year": 2026,
+      "checked_on": "2026-10-15",
+      "source_list_checked_at": "2026-10-09T01:39:44.226Z",
+      "source_live_rechecked_on": null,
+      "review_state": "assistant_source_text_review",
+      "publication_state": "research_only",
+      "homepage": "http://geumhwa.sen.es.kr",
+      "schoolinfo_url": "https://www.schoolinfo.go.kr/ei/ss/Pneiss_b01_s0.do?SHL_IDF_CD=a2070dfd-7415-4036-b4ad-1d5df4e89161",
+      "probe_file": "schoolinfo_disclosure_probe_wave2_seoul_20261009.json",
+      "note": "인원(명) 41은 모집정원인지 불분명하여 정원 제외",
+      "field_evidence": {
+        "start_time": [
+          "da8bb47ebd6c:L28-L29"
+        ],
+        "end_time": [
+          "da8bb47ebd6c:L28-L29"
+        ],
+        "target_grades": [
+          "da8bb47ebd6c:L28-L29"
+        ],
+        "eligibility_raw": [
+          "da8bb47ebd6c:L28-L29"
+        ]
+      },
+      "evidence": [
+        {
+          "evidence_id": "da8bb47ebd6c:L28-L29",
+          "sha256": "da8bb47ebd6ca26033a0a47cc47b02b32c826360db8920984ca38dc983213c2e",
+          "line_start": 28,
+          "line_end": 29,
+          "excerpt": "구분 | 운영시간 | 장소 | 대상 | 인원(명) | 비고 |\n아침돌봄 | 07:30~09:00 | 금화이음터 | 전교생 | 41 | 연중 |"
+        }
+      ],
+      "sources": [
+        {
+          "document_name": "2026학년도 초등돌봄교실 운영 계획.hwpx",
+          "academic_year_in_filename": 2026,
+          "sha256": "da8bb47ebd6ca26033a0a47cc47b02b32c826360db8920984ca38dc983213c2e",
+          "text_sha256": "6754be8d798ee7138b3a8a2770a2cc7f74a8bdf4f3e59dbc137c8f1289ec80ba",
+          "raw_hash_valid": true,
+          "file_seq": "1",
+          "source_url": "https://www.schoolinfo.go.kr/servlets/EiFileDownLoad.do?SHL_IDF_CD=a2070dfd-7415-4036-b4ad-1d5df4e89161&JG_BURYU_CD=JG150&JG_HANGMOK_CD=59&JG_GUBUN=1&JG_CHASU=2&JG_YEAR=2026&USE_YN=Y&FILE_SEQ=1",
+          "text_path": "etl/runtime/audit2-documents/text/da8bb47ebd6ca26033a0a47cc47b02b32c826360db8920984ca38dc983213c2e.txt",
+          "text_lines": 288
+        },
+        {
+          "document_name": "2026학년도 방과후·맞춤형교실 운영 계획.hwp",
+          "academic_year_in_filename": 2026,
+          "sha256": "4804c94397601d1e32a4e15fc94d58ca5347cccdcaa7fe53e0d14494fc2a684a",
+          "text_sha256": "3585545b1d5e6e08f10fa1a7c30ebbb84e88653ea0ebd9f387c53bb7ec381b62",
+          "raw_hash_valid": true,
+          "file_seq": "0",
+          "source_url": "https://www.schoolinfo.go.kr/servlets/EiFileDownLoad.do?SHL_IDF_CD=a2070dfd-7415-4036-b4ad-1d5df4e89161&JG_BURYU_CD=JG150&JG_HANGMOK_CD=59&JG_GUBUN=1&JG_CHASU=2&JG_YEAR=2026&USE_YN=Y&FILE_SEQ=0",
+          "text_path": "etl/runtime/audit2-documents/text/4804c94397601d1e32a4e15fc94d58ca5347cccdcaa7fe53e0d14494fc2a684a.txt",
+          "text_lines": 344
+        }
+      ],
+      "legacy_regex_candidates": {
+        "07:30-09:00": 2
+      }
+    },
+    {
+      "school_id": "B000002253",
+      "school_name": "서울교육대학교부설초등학교",
+      "district": "서초구",
+      "academic_year": 2026,
+      "calendar_scope": "term_weekday",
+      "service_type": "school_morning_care",
+      "operation_status": "unknown",
+      "operation_evidence": null,
+      "plan_status": "not_found",
+      "start_time": null,
+      "end_time": null,
+      "end_time_raw": null,
+      "time_status": "not_found",
+      "target_grades": null,
+      "eligibility_raw": null,
+      "application_window": null,
+      "capacity": null,
+      "capacity_qualifier": null,
+      "escort_to_school": "unknown",
+      "escort_evidence": null,
+      "source_kind": "annual_plan",
+      "source_year": 2026,
+      "checked_on": "2026-10-15",
+      "source_list_checked_at": "2026-10-08T08:38:26.718Z",
+      "source_live_rechecked_on": null,
+      "review_state": "assistant_source_text_review",
+      "publication_state": "research_only",
+      "homepage": "http://snueps.sen.es.kr/",
+      "schoolinfo_url": "https://www.schoolinfo.go.kr/ei/ss/Pneiss_b01_s0.do?SHL_IDF_CD=abd50a29-61c6-4b54-adbf-a51907ef0b9e",
+      "probe_file": "schoolinfo_disclosure_probe_expansion_20261008.json",
+      "note": "선정한 15-라 첨부에서 아침돌봄 근거 미확인; 미운영으로 판단하지 않음",
+      "field_evidence": {},
+      "evidence": [],
+      "sources": [
+        {
+          "document_name": "(정보공시용)2026학년도 방과후.맞춤형 프로그램 1기 운영 계획.hwp",
+          "academic_year_in_filename": 2026,
+          "sha256": "b0f3918535cd1bbb8b12583a12f35f540c0eaf38a50195ac87fa3d7a02429b24",
+          "text_sha256": "774448e49128719a372a109fc819307531e9ca4cad6d2277a1c2ede46adfcd62",
+          "raw_hash_valid": true,
+          "file_seq": "0",
+          "source_url": "https://www.schoolinfo.go.kr/servlets/EiFileDownLoad.do?SHL_IDF_CD=abd50a29-61c6-4b54-adbf-a51907ef0b9e&JG_BURYU_CD=JG150&JG_HANGMOK_CD=59&JG_GUBUN=1&JG_CHASU=2&JG_YEAR=2026&USE_YN=Y&FILE_SEQ=0",
+          "text_path": "etl/runtime/audit2-documents/text/b0f3918535cd1bbb8b12583a12f35f540c0eaf38a50195ac87fa3d7a02429b24.txt",
+          "text_lines": 185
+        }
+      ],
+      "legacy_regex_candidates": {}
+    }
+  ]
+}

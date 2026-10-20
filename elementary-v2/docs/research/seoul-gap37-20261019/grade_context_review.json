@@ -1,0 +1,795 @@
+{
+  "checked_on": "2026-10-19",
+  "policy": "Direct same-table grade evidence may update grade1; school-wide targets are retained separately.",
+  "unknown_before": 460,
+  "unknown_after": 435,
+  "changed_rows": 25,
+  "schools": [
+    {
+      "school_id": "B000001856",
+      "school_name": "경희초등학교",
+      "unknown_before": 6,
+      "unknown_after": 1,
+      "direct_context_changes": [
+        {
+          "name": "바둑&체스",
+          "input_line": 49,
+          "previous_grade1": "unknown",
+          "grades_raw": "1~2학년/3~6학년",
+          "grade1": "true",
+          "basis": "following_grade_cell",
+          "evidence": [
+            {
+              "input_line": 50,
+              "sha256": "5cdf6e008fa3d6c96e1db7db7101422e73fc0280cb8b2d7fcaeda6a7343bef2d",
+              "source_line": 49
+            }
+          ]
+        },
+        {
+          "name": "배드민턴",
+          "input_line": 51,
+          "previous_grade1": "unknown",
+          "grades_raw": "1~2학년/3~4학년/5~6학년",
+          "grade1": "true",
+          "basis": "same_row_grade_cell",
+          "evidence": [
+            {
+              "input_line": 51,
+              "sha256": "5cdf6e008fa3d6c96e1db7db7101422e73fc0280cb8b2d7fcaeda6a7343bef2d",
+              "source_line": 50
+            }
+          ]
+        },
+        {
+          "name": "농구",
+          "input_line": 53,
+          "previous_grade1": "unknown",
+          "grades_raw": "3~6학년",
+          "grade1": "false",
+          "basis": "same_row_grade_cell",
+          "evidence": [
+            {
+              "input_line": 53,
+              "sha256": "5cdf6e008fa3d6c96e1db7db7101422e73fc0280cb8b2d7fcaeda6a7343bef2d",
+              "source_line": 52
+            }
+          ]
+        },
+        {
+          "name": "축구",
+          "input_line": 61,
+          "previous_grade1": "unknown",
+          "grades_raw": "1~2학년/3~6학년",
+          "grade1": "true",
+          "basis": "following_grade_cell",
+          "evidence": [
+            {
+              "input_line": 62,
+              "sha256": "5cdf6e008fa3d6c96e1db7db7101422e73fc0280cb8b2d7fcaeda6a7343bef2d",
+              "source_line": 61
+            }
+          ]
+        },
+        {
+          "name": "숲체험",
+          "input_line": 71,
+          "previous_grade1": "unknown",
+          "grades_raw": "1학년/2학년/3학년",
+          "grade1": "true",
+          "basis": "following_grade_cell",
+          "evidence": [
+            {
+              "input_line": 72,
+              "sha256": "5cdf6e008fa3d6c96e1db7db7101422e73fc0280cb8b2d7fcaeda6a7343bef2d",
+              "source_line": 71
+            }
+          ]
+        }
+      ],
+      "separate_guidance": []
+    },
+    {
+      "school_id": "B000001858",
+      "school_name": "은석초등학교",
+      "unknown_before": 7,
+      "unknown_after": 0,
+      "direct_context_changes": [
+        {
+          "name": "Global Class A 월수금",
+          "input_line": 224,
+          "previous_grade1": "unknown",
+          "grades_raw": "1,2학년",
+          "grade1": "true",
+          "basis": "english_table_merged_grade_header",
+          "evidence": [
+            {
+              "input_line": 224,
+              "sha256": "327786915022b37ad2f2c1036f47e904c71a1e402d9541343a18d7cf37bda5bf",
+              "source_line": 223
+            }
+          ]
+        },
+        {
+          "name": "Global Class B 월수금",
+          "input_line": 225,
+          "previous_grade1": "unknown",
+          "grades_raw": "1,2학년",
+          "grade1": "true",
+          "basis": "english_table_merged_grade_header",
+          "evidence": [
+            {
+              "input_line": 224,
+              "sha256": "327786915022b37ad2f2c1036f47e904c71a1e402d9541343a18d7cf37bda5bf",
+              "source_line": 223
+            }
+          ]
+        },
+        {
+          "name": "Global Class C 월수금",
+          "input_line": 226,
+          "previous_grade1": "unknown",
+          "grades_raw": "1,2학년",
+          "grade1": "true",
+          "basis": "english_table_merged_grade_header",
+          "evidence": [
+            {
+              "input_line": 224,
+              "sha256": "327786915022b37ad2f2c1036f47e904c71a1e402d9541343a18d7cf37bda5bf",
+              "source_line": 223
+            }
+          ]
+        },
+        {
+          "name": "Global Class A 화, 수",
+          "input_line": 227,
+          "previous_grade1": "unknown",
+          "grades_raw": "3,4학년",
+          "grade1": "false",
+          "basis": "english_table_merged_grade_header",
+          "evidence": [
+            {
+              "input_line": 227,
+              "sha256": "327786915022b37ad2f2c1036f47e904c71a1e402d9541343a18d7cf37bda5bf",
+              "source_line": 226
+            }
+          ]
+        },
+        {
+          "name": "Global Class B 월, 수",
+          "input_line": 228,
+          "previous_grade1": "unknown",
+          "grades_raw": "3,4학년",
+          "grade1": "false",
+          "basis": "english_table_merged_grade_header",
+          "evidence": [
+            {
+              "input_line": 227,
+              "sha256": "327786915022b37ad2f2c1036f47e904c71a1e402d9541343a18d7cf37bda5bf",
+              "source_line": 226
+            }
+          ]
+        },
+        {
+          "name": "Global Class A 월, 목",
+          "input_line": 229,
+          "previous_grade1": "unknown",
+          "grades_raw": "5,6학년",
+          "grade1": "false",
+          "basis": "english_table_merged_grade_header",
+          "evidence": [
+            {
+              "input_line": 229,
+              "sha256": "327786915022b37ad2f2c1036f47e904c71a1e402d9541343a18d7cf37bda5bf",
+              "source_line": 228
+            }
+          ]
+        },
+        {
+          "name": "Global Class B 월, 목",
+          "input_line": 230,
+          "previous_grade1": "unknown",
+          "grades_raw": "5,6학년",
+          "grade1": "false",
+          "basis": "english_table_merged_grade_header",
+          "evidence": [
+            {
+              "input_line": 229,
+              "sha256": "327786915022b37ad2f2c1036f47e904c71a1e402d9541343a18d7cf37bda5bf",
+              "source_line": 228
+            }
+          ]
+        }
+      ],
+      "separate_guidance": [
+        {
+          "input_line": 24,
+          "scope": "school_wide_target",
+          "note": "학교 전체 대상. 영어 분반의 학년은 224~230행의 개별 표에서 복구",
+          "text": " ㅇ 대상: 1~6학년 중 희망 학생",
+          "sha256": "327786915022b37ad2f2c1036f47e904c71a1e402d9541343a18d7cf37bda5bf",
+          "source_line": 23
+        }
+      ]
+    },
+    {
+      "school_id": "B000001880",
+      "school_name": "금성초등학교",
+      "unknown_before": 0,
+      "unknown_after": 0,
+      "direct_context_changes": [],
+      "separate_guidance": []
+    },
+    {
+      "school_id": "B000001907",
+      "school_name": "충암초등학교",
+      "unknown_before": 0,
+      "unknown_after": 0,
+      "direct_context_changes": [],
+      "separate_guidance": []
+    },
+    {
+      "school_id": "B000001908",
+      "school_name": "선일초등학교",
+      "unknown_before": 20,
+      "unknown_after": 20,
+      "direct_context_changes": [],
+      "separate_guidance": []
+    },
+    {
+      "school_id": "B000001909",
+      "school_name": "예일초등학교",
+      "unknown_before": 0,
+      "unknown_after": 0,
+      "direct_context_changes": [],
+      "separate_guidance": []
+    },
+    {
+      "school_id": "B000001926",
+      "school_name": "경기초등학교",
+      "unknown_before": 0,
+      "unknown_after": 0,
+      "direct_context_changes": [],
+      "separate_guidance": []
+    },
+    {
+      "school_id": "B000001927",
+      "school_name": "이화여자대학교사범대학부속초등학교",
+      "unknown_before": 34,
+      "unknown_after": 34,
+      "direct_context_changes": [],
+      "separate_guidance": [
+        {
+          "input_line": 75,
+          "scope": "calendar_scope_only",
+          "note": "1~6학년 운영기간. 개별 강좌 대상 확정 근거로 사용하지 않음",
+          "text": "       1~6학년 : 2026년 3월 9일(월) ~7월 16일(목)",
+          "sha256": "3dca6d72fe013c9a789b32680c9248c112e2508bfcefcd9e5cb90c72b8e43f74",
+          "source_line": 74
+        }
+      ]
+    },
+    {
+      "school_id": "B000001928",
+      "school_name": "추계초등학교",
+      "unknown_before": 0,
+      "unknown_after": 0,
+      "direct_context_changes": [],
+      "separate_guidance": []
+    },
+    {
+      "school_id": "B000001929",
+      "school_name": "명지초등학교",
+      "unknown_before": 0,
+      "unknown_after": 0,
+      "direct_context_changes": [],
+      "separate_guidance": []
+    },
+    {
+      "school_id": "B000001951",
+      "school_name": "홍익대학교사범대학부속초등학교",
+      "unknown_before": 0,
+      "unknown_after": 0,
+      "direct_context_changes": [],
+      "separate_guidance": []
+    },
+    {
+      "school_id": "B000001993",
+      "school_name": "동광초등학교",
+      "unknown_before": 3,
+      "unknown_after": 0,
+      "direct_context_changes": [
+        {
+          "name": "중국어",
+          "input_line": 68,
+          "previous_grade1": "unknown",
+          "grades_raw": "1-2학년 / 3-6학년",
+          "grade1": "true",
+          "basis": "same_program_split_grade_cells",
+          "evidence": [
+            {
+              "input_line": 68,
+              "sha256": "f2725476e4c68a5f0fbe5a96c4df585934bc963fec7213ab95f88a8e56edcac0",
+              "source_line": 67
+            },
+            {
+              "input_line": 69,
+              "sha256": "f2725476e4c68a5f0fbe5a96c4df585934bc963fec7213ab95f88a8e56edcac0",
+              "source_line": 68
+            }
+          ]
+        },
+        {
+          "name": "PBL",
+          "input_line": 71,
+          "previous_grade1": "unknown",
+          "grades_raw": "1-2학년",
+          "grade1": "true",
+          "basis": "same_row_grade_cell",
+          "evidence": [
+            {
+              "input_line": 71,
+              "sha256": "f2725476e4c68a5f0fbe5a96c4df585934bc963fec7213ab95f88a8e56edcac0",
+              "source_line": 70
+            }
+          ]
+        },
+        {
+          "name": "1인 1악기",
+          "input_line": 338,
+          "previous_grade1": "unknown",
+          "grades_raw": "1-6학년",
+          "grade1": "true",
+          "basis": "same_row_grade_cell",
+          "evidence": [
+            {
+              "input_line": 338,
+              "sha256": "f92e73f9240dd560570e005f9056deb654c14fd1f7533e8a618aa45b096f6b17",
+              "source_line": 74
+            }
+          ]
+        }
+      ],
+      "separate_guidance": [
+        {
+          "input_line": 16,
+          "scope": "school_wide_target",
+          "note": "학교 전체 방과후 대상. 강좌별 학년 셀과 구분",
+          "text": "4. 초1~6학년 대상의 방과후교실, 초1~2학년 대상의 돌봄교실은 정규수업 시간 이외에 운영하며 학생·학부모 선택에 의한 자율적 참여를 원칙으로 한다.",
+          "sha256": "f2725476e4c68a5f0fbe5a96c4df585934bc963fec7213ab95f88a8e56edcac0",
+          "source_line": 15
+        }
+      ]
+    },
+    {
+      "school_id": "B000002038",
+      "school_name": "동북초등학교",
+      "unknown_before": 0,
+      "unknown_after": 0,
+      "direct_context_changes": [],
+      "separate_guidance": []
+    },
+    {
+      "school_id": "B000002039",
+      "school_name": "한신초등학교",
+      "unknown_before": 67,
+      "unknown_after": 67,
+      "direct_context_changes": [],
+      "separate_guidance": [
+        {
+          "input_line": 13,
+          "scope": "school_wide_target",
+          "note": "선택형 교육 프로그램 전체 대상",
+          "text": "4. 초1~6학년 대상의 선택형 교육 프로그램은 정규수업 시간 이후에 운영하며 학생․학부모 선택에 의한 자율적 참여를 원칙으로 한다.",
+          "sha256": "fe34fa4f1515b275b21fd27e8e143310244ae234de9f970b354641efc7683e97",
+          "source_line": 12
+        },
+        {
+          "input_line": 24,
+          "scope": "school_wide_target",
+          "note": "1~6학년 중 희망 학생. 모든 분반에 초1이 참여 가능하다는 뜻은 아님",
+          "text": "     - 선택형 교육 프로그램: 1~6학년 중 희망 학생",
+          "sha256": "fe34fa4f1515b275b21fd27e8e143310244ae234de9f970b354641efc7683e97",
+          "source_line": 23
+        }
+      ]
+    },
+    {
+      "school_id": "B000002078",
+      "school_name": "청원초등학교",
+      "unknown_before": 13,
+      "unknown_after": 13,
+      "direct_context_changes": [],
+      "separate_guidance": []
+    },
+    {
+      "school_id": "B000002079",
+      "school_name": "태강삼육초등학교",
+      "unknown_before": 0,
+      "unknown_after": 0,
+      "direct_context_changes": [],
+      "separate_guidance": []
+    },
+    {
+      "school_id": "B000002080",
+      "school_name": "화랑초등학교",
+      "unknown_before": 0,
+      "unknown_after": 0,
+      "direct_context_changes": [],
+      "separate_guidance": []
+    },
+    {
+      "school_id": "B000002081",
+      "school_name": "상명초등학교",
+      "unknown_before": 0,
+      "unknown_after": 0,
+      "direct_context_changes": [],
+      "separate_guidance": []
+    },
+    {
+      "school_id": "B000002094",
+      "school_name": "운현초등학교",
+      "unknown_before": 4,
+      "unknown_after": 0,
+      "direct_context_changes": [
+        {
+          "name": "맛있는 독서 B",
+          "input_line": 45,
+          "previous_grade1": "unknown",
+          "grades_raw": "1-2학년",
+          "grade1": "true",
+          "basis": "same_table_merged_grade_scope",
+          "evidence": [
+            {
+              "input_line": 44,
+              "sha256": "e9bb7dad344fcc3cadc16fc83772cd87aad1ef7edd2732e1252f4db32385800a",
+              "source_line": 43
+            }
+          ]
+        },
+        {
+          "name": "맛있는 독서 C",
+          "input_line": 46,
+          "previous_grade1": "unknown",
+          "grades_raw": "1-2학년",
+          "grade1": "true",
+          "basis": "same_table_merged_grade_scope",
+          "evidence": [
+            {
+              "input_line": 44,
+              "sha256": "e9bb7dad344fcc3cadc16fc83772cd87aad1ef7edd2732e1252f4db32385800a",
+              "source_line": 43
+            }
+          ]
+        },
+        {
+          "name": "기초한글 1",
+          "input_line": 63,
+          "previous_grade1": "unknown",
+          "grades_raw": "1학년",
+          "grade1": "true",
+          "basis": "same_table_merged_grade_scope",
+          "evidence": [
+            {
+              "input_line": 62,
+              "sha256": "e9bb7dad344fcc3cadc16fc83772cd87aad1ef7edd2732e1252f4db32385800a",
+              "source_line": 61
+            }
+          ]
+        },
+        {
+          "name": "기초한글 2",
+          "input_line": 65,
+          "previous_grade1": "unknown",
+          "grades_raw": "2학년",
+          "grade1": "false",
+          "basis": "same_table_merged_grade_scope",
+          "evidence": [
+            {
+              "input_line": 64,
+              "sha256": "e9bb7dad344fcc3cadc16fc83772cd87aad1ef7edd2732e1252f4db32385800a",
+              "source_line": 63
+            }
+          ]
+        }
+      ],
+      "separate_guidance": []
+    },
+    {
+      "school_id": "B000002095",
+      "school_name": "상명대학교사범대학부속초등학교",
+      "unknown_before": 5,
+      "unknown_after": 5,
+      "direct_context_changes": [],
+      "separate_guidance": [
+        {
+          "input_line": 259,
+          "scope": "vacation_program_only",
+          "note": "방학 영어캠프 대상. 학기 중 발레 등에는 적용하지 않음",
+          "text": "<1∼2블록> 09:00-12:00 (쉬는 시간 20분 포함) | 원어민과 함께하는 영어캠프 (1∼6학년) | 무제한 | 영어실 및 교실 | 32 | 80,000원 (재료비 별도) |",
+          "sha256": "e650108c16203d655e56aa344b40f43d469ab3ffd1fb4e5350be57f6fc8cb427",
+          "source_line": 258
+        }
+      ]
+    },
+    {
+      "school_id": "B000002105",
+      "school_name": "리라초등학교",
+      "unknown_before": 0,
+      "unknown_after": 0,
+      "direct_context_changes": [],
+      "separate_guidance": []
+    },
+    {
+      "school_id": "B000002106",
+      "school_name": "숭의초등학교",
+      "unknown_before": 13,
+      "unknown_after": 13,
+      "direct_context_changes": [],
+      "separate_guidance": []
+    },
+    {
+      "school_id": "B000002107",
+      "school_name": "동산초등학교",
+      "unknown_before": 0,
+      "unknown_after": 0,
+      "direct_context_changes": [],
+      "separate_guidance": []
+    },
+    {
+      "school_id": "B000002122",
+      "school_name": "신광초등학교",
+      "unknown_before": 30,
+      "unknown_after": 30,
+      "direct_context_changes": [],
+      "separate_guidance": []
+    },
+    {
+      "school_id": "B000002251",
+      "school_name": "유석초등학교",
+      "unknown_before": 42,
+      "unknown_after": 36,
+      "direct_context_changes": [
+        {
+          "name": "서양악(저학년)",
+          "input_line": 49,
+          "previous_grade1": "unknown",
+          "grades_raw": "1-2학년",
+          "grade1": "true",
+          "basis": "same_row_operating_grade_cell",
+          "evidence": [
+            {
+              "input_line": 49,
+              "sha256": "26319495351db301ed800b5d8ee6d22cb26a796baa57257c1ba74904665a75bc",
+              "source_line": 48
+            }
+          ]
+        },
+        {
+          "name": "서양악(고학년)",
+          "input_line": 50,
+          "previous_grade1": "unknown",
+          "grades_raw": "3-6학년",
+          "grade1": "false",
+          "basis": "same_row_operating_grade_cell",
+          "evidence": [
+            {
+              "input_line": 50,
+              "sha256": "26319495351db301ed800b5d8ee6d22cb26a796baa57257c1ba74904665a75bc",
+              "source_line": 49
+            }
+          ]
+        },
+        {
+          "name": "국악(저학년)",
+          "input_line": 51,
+          "previous_grade1": "unknown",
+          "grades_raw": "1-2학년",
+          "grade1": "true",
+          "basis": "same_row_operating_grade_cell",
+          "evidence": [
+            {
+              "input_line": 51,
+              "sha256": "26319495351db301ed800b5d8ee6d22cb26a796baa57257c1ba74904665a75bc",
+              "source_line": 50
+            }
+          ]
+        },
+        {
+          "name": "국악(고학년)",
+          "input_line": 52,
+          "previous_grade1": "unknown",
+          "grades_raw": "3-6학년",
+          "grade1": "false",
+          "basis": "same_row_operating_grade_cell",
+          "evidence": [
+            {
+              "input_line": 52,
+              "sha256": "26319495351db301ed800b5d8ee6d22cb26a796baa57257c1ba74904665a75bc",
+              "source_line": 51
+            }
+          ]
+        },
+        {
+          "name": "영어교실",
+          "input_line": 780,
+          "previous_grade1": "unknown",
+          "grades_raw": "1~2학년",
+          "grade1": "true",
+          "basis": "same_row_operating_grade_cell",
+          "evidence": [
+            {
+              "input_line": 780,
+              "sha256": "0b540538692ee6f9710ed87923d90987328438233a39d842386828f9493243f6",
+              "source_line": 24
+            }
+          ]
+        },
+        {
+          "name": "방과후 영어교실",
+          "input_line": 783,
+          "previous_grade1": "unknown",
+          "grades_raw": "1~6학년",
+          "grade1": "true",
+          "basis": "same_row_operating_grade_cell",
+          "evidence": [
+            {
+              "input_line": 783,
+              "sha256": "0b540538692ee6f9710ed87923d90987328438233a39d842386828f9493243f6",
+              "source_line": 27
+            }
+          ]
+        }
+      ],
+      "separate_guidance": [
+        {
+          "input_line": 25,
+          "scope": "vacation_program_only",
+          "note": "방학 운영의 학년 범위",
+          "text": "여름 방학 | 방학 기간 | 월~토 1~6학년 8:40~10:30 [50분씩] 월~금 오케스트라- 9:00~12:00 [180분] | -3주: 방과후학교 -1주: 오케스트라캠프 |",
+          "sha256": "26319495351db301ed800b5d8ee6d22cb26a796baa57257c1ba74904665a75bc",
+          "source_line": 24
+        },
+        {
+          "input_line": 467,
+          "scope": "safety_guidance_only",
+          "note": "전 학년 안전귀가 매뉴얼. 개별 강좌 대상 근거 아님",
+          "text": "유석초 방과후학교 안전귀가 매뉴얼 <1~6학년 전학년 방과후학교 수업 공통 적용 사항> 1. 수업 종료 2분 전에 정리 시작 2. 쓰레기 및 책걸상 원위치, 창문 닫기, 온열기 및 전등 소등 등 교실 정리 3. 수업 마치는 정시에 교사가 마지막으로 교실 퇴실 및 문단속 후 건물 밖까지 하교 지도    (※오케스트라 수업은 악기를 교실에 갖다 놓아야 하는 경우, 정리 시간에 갖다 놓고 다시 교실에 모여서, 인원수 파악 후 하교 지도 인솔. 건물에 남아 있을 가능성 있기에 개인별로 악기 갖다 놓고 알아서 각자 하교 절대 금지.)  ※ 유석초 본관은 날에 따라 다르겠지만 4시 35분부터 세콤을 걸게 될 수도 있습니다. 늦게 내려오거나 교실에 따로 갔다 오는 경우 건물에 갇히게 되어 세콤 알람이 작동될 수 있으니 남은 학생 없도록 하교 지도 바랍니다.  <학생 하교 형태‧시간별 담당 역할>  하교대상 (시간) | 담당 | 학생 하교 형태 | / 스쿨버스 | 자율귀가 | 대면귀가 1차(15:25~15:35) / 2차(16:35~16:45) | / 1~2학년 (15:20~) -저학년 방과후 종료 | 강사 | 스쿨버스 앞까지 인솔 | 정문까지 인솔 | 정문 파고라까지 인솔.  당일 대면귀가 명단 매니저께 인계. | / 방과후 매니저 | - | - | [방과후매니저]  명단 확인 및 15:25~15:35까지 대면귀가 학생 관리. 15:35 이후 도서실까지 인솔 및 명단 사서 선생님께 인계. | / 기타 | [차량도우미]  버스탑승자 명단 확인 | [보안관]  하교 및 교통지도 | - | / 3~6학년 (16:30~) -고학년 방과후 종료 | 강사 | (운행안함) | 정문까지 인솔 | 정문 파고라까지 인솔.  당일 대면귀가 명단 매니저께 인계. | / 매니저 | (운행안함) | - | [방과후매니저] 명단 확인 후 15:40까지 대면귀가 학생 관리. 15:40 이후 보안관께 명단 인계. 인의관 및 본관에 남아있는 학생 있는지 확인 및 건물 문단속. | / 기타 | - | [보안관]  하교 및 교통지도 | [보안관] 16:45~18:00 잔여 대면귀가 학생 관리 | |",
+          "sha256": "26319495351db301ed800b5d8ee6d22cb26a796baa57257c1ba74904665a75bc",
+          "source_line": 466
+        }
+      ]
+    },
+    {
+      "school_id": "B000002274",
+      "school_name": "계성초등학교",
+      "unknown_before": 0,
+      "unknown_after": 0,
+      "direct_context_changes": [],
+      "separate_guidance": []
+    },
+    {
+      "school_id": "B000002324",
+      "school_name": "중앙대학교사범대학부속초등학교",
+      "unknown_before": 43,
+      "unknown_after": 43,
+      "direct_context_changes": [],
+      "separate_guidance": []
+    },
+    {
+      "school_id": "B000002366",
+      "school_name": "한양초등학교",
+      "unknown_before": 78,
+      "unknown_after": 78,
+      "direct_context_changes": [],
+      "separate_guidance": [
+        {
+          "input_line": 108,
+          "scope": "recruitment_audience_only",
+          "note": "전교생 대상 수강 신청 안내. 개별 강좌 학년 근거 아님",
+          "text": " ∘ 수강 신청 안내 및 수강생 모집 | 4회 | 기별 | 전교생 |  |",
+          "sha256": "59956853eb81823519f17e904ffe6406da14dc242de3cea21ad38109a6df80b7",
+          "source_line": 107
+        }
+      ]
+    },
+    {
+      "school_id": "B000002386",
+      "school_name": "세종초등학교",
+      "unknown_before": 0,
+      "unknown_after": 0,
+      "direct_context_changes": [],
+      "separate_guidance": []
+    },
+    {
+      "school_id": "B000002387",
+      "school_name": "경복초등학교",
+      "unknown_before": 0,
+      "unknown_after": 0,
+      "direct_context_changes": [],
+      "separate_guidance": []
+    },
+    {
+      "school_id": "B000002388",
+      "school_name": "성동초등학교",
+      "unknown_before": 0,
+      "unknown_after": 0,
+      "direct_context_changes": [],
+      "separate_guidance": []
+    },
+    {
+      "school_id": "B000002413",
+      "school_name": "성신초등학교",
+      "unknown_before": 63,
+      "unknown_after": 63,
+      "direct_context_changes": [],
+      "separate_guidance": [
+        {
+          "input_line": 32,
+          "scope": "recruitment_audience_only",
+          "note": "전교생 대상 모집 안내. 강좌명 뒤 숫자의 의미를 학년으로 단정하지 않음",
+          "text": " ∘ 수강 신청 안내 및 수강생 모집 | 12월~1월 | 전교생 |  |",
+          "sha256": "1651e4ede790515c92343b3418d0024b495a522ab7d21d5a0822e1787e20ab21",
+          "source_line": 31
+        }
+      ]
+    },
+    {
+      "school_id": "B000002414",
+      "school_name": "우촌초등학교",
+      "unknown_before": 0,
+      "unknown_after": 0,
+      "direct_context_changes": [],
+      "separate_guidance": []
+    },
+    {
+      "school_id": "B000002415",
+      "school_name": "대광초등학교",
+      "unknown_before": 0,
+      "unknown_after": 0,
+      "direct_context_changes": [],
+      "separate_guidance": []
+    },
+    {
+      "school_id": "B000002416",
+      "school_name": "광운초등학교",
+      "unknown_before": 0,
+      "unknown_after": 0,
+      "direct_context_changes": [],
+      "separate_guidance": []
+    },
+    {
+      "school_id": "B000002417",
+      "school_name": "매원초등학교",
+      "unknown_before": 32,
+      "unknown_after": 32,
+      "direct_context_changes": [],
+      "separate_guidance": [
+        {
+          "input_line": 135,
+          "scope": "separate_english_program_only",
+          "note": "특성화 영어교육 항목의 전 학년 대상. 앞쪽 일반 방과후 32행에는 적용하지 않음",
+          "text": "  라. 1～6학년을 대상으로 수업을 운영한다.",
+          "sha256": "3ba1fa20e8677c0b880a52c71693d6096ae57926bac11bae965524db915d2be8",
+          "source_line": 134
+        },
+        {
+          "input_line": 155,
+          "scope": "separate_english_program_only",
+          "note": "특성화 영어교육 세부 계획 대상",
+          "text": "    1) 대상: 1~6학년 학생 중 수강 희망자",
+          "sha256": "3ba1fa20e8677c0b880a52c71693d6096ae57926bac11bae965524db915d2be8",
+          "source_line": 154
+        }
+      ]
+    },
+    {
+      "school_id": "B000002431",
+      "school_name": "영훈초등학교",
+      "unknown_before": 0,
+      "unknown_after": 0,
+      "direct_context_changes": [],
+      "separate_guidance": []
+    }
+  ]
+}

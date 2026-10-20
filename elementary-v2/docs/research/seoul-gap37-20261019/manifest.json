@@ -1,0 +1,896 @@
+{
+  "checked_on": "2026-10-19",
+  "source_scope": "cached Schoolinfo 2026 disclosure attachments; not live re-fetched",
+  "schools": [
+    {
+      "school_id": "B000001856",
+      "school_name": "경희초등학교",
+      "sources": [
+        {
+          "name": "2026학년도 경희초 방과후학교 운영계획.hwp",
+          "sha256": "5cdf6e008fa3d6c96e1db7db7101422e73fc0280cb8b2d7fcaeda6a7343bef2d",
+          "filename_year": 2026,
+          "raw_hash_valid": true,
+          "text_sha256": "fafa208dd0208a8ec60ccd53837c42cf86bd86e8f88398e05040b3efb32d25aa",
+          "text_path": "etl/runtime/audit2-documents/text/5cdf6e008fa3d6c96e1db7db7101422e73fc0280cb8b2d7fcaeda6a7343bef2d.txt",
+          "text_chars": 17477,
+          "status": "available"
+        }
+      ],
+      "operation_status": "unknown",
+      "publication_state": "research_only",
+      "input_sha256": "6be7b79d8742c332e8d124f9b397d977cbd3575a1a0152c1a14e89423484ca35",
+      "input_path": "etl/runtime/seoul-gap37-20261019/inputs/B000001856.txt",
+      "line_map_path": "etl/runtime/seoul-gap37-20261019/inputs/B000001856.lines.json"
+    },
+    {
+      "school_id": "B000001858",
+      "school_name": "은석초등학교",
+      "sources": [
+        {
+          "name": "2026학년도 방과후학교 운영계획 1부.hwp",
+          "sha256": "327786915022b37ad2f2c1036f47e904c71a1e402d9541343a18d7cf37bda5bf",
+          "filename_year": 2026,
+          "raw_hash_valid": true,
+          "text_sha256": "270dae9b307ff610590d1cbac977507be6ba69809f51b1160b109e155a99d66e",
+          "text_path": "etl/runtime/audit2-documents/text/327786915022b37ad2f2c1036f47e904c71a1e402d9541343a18d7cf37bda5bf.txt",
+          "text_chars": 40324,
+          "status": "available"
+        }
+      ],
+      "operation_status": "unknown",
+      "publication_state": "research_only",
+      "input_sha256": "0aa528fe1beefaf7af287f99405109cc5ff45b3be185375e772d73f12e05bf00",
+      "input_path": "etl/runtime/seoul-gap37-20261019/inputs/B000001858.txt",
+      "line_map_path": "etl/runtime/seoul-gap37-20261019/inputs/B000001858.lines.json"
+    },
+    {
+      "school_id": "B000001880",
+      "school_name": "금성초등학교",
+      "sources": [
+        {
+          "name": "2026 방과후교육 연간 계획.hwp",
+          "sha256": "1857af5da9ca1c73fcc9973d601da4c817a5d0d7f6c641dc9ac663d4aa164c83",
+          "filename_year": 2026,
+          "raw_hash_valid": true,
+          "text_sha256": "f145ede84e2d74269cd9b1f0e059c2f5b468db22dfc64c7a468a8665fb4ae3c1",
+          "text_path": "etl/runtime/audit2-documents/text/1857af5da9ca1c73fcc9973d601da4c817a5d0d7f6c641dc9ac663d4aa164c83.txt",
+          "text_chars": 45714,
+          "status": "available"
+        }
+      ],
+      "operation_status": "unknown",
+      "publication_state": "research_only",
+      "input_sha256": "6091d680d807c59cfdca94bf88dbe3d7873a82d3f35b08bff816811b5758fc7a",
+      "input_path": "etl/runtime/seoul-gap37-20261019/inputs/B000001880.txt",
+      "line_map_path": "etl/runtime/seoul-gap37-20261019/inputs/B000001880.lines.json"
+    },
+    {
+      "school_id": "B000001907",
+      "school_name": "충암초등학교",
+      "sources": [
+        {
+          "name": "2026학년도 맞춤형돌봄교실 운영 계획(안).hwp",
+          "sha256": "4476a0f5504e71a22c1b10ced7c49dc78523b9b99577713aad3e760b566c73ae",
+          "filename_year": 2026,
+          "raw_hash_valid": true,
+          "text_sha256": "a4174d1356b0e1ff3701d93ace1c4e201d8e4f82c0dc440ea900dbbe12b729b6",
+          "text_path": "etl/runtime/audit2-documents/text/4476a0f5504e71a22c1b10ced7c49dc78523b9b99577713aad3e760b566c73ae.txt",
+          "text_chars": 12663,
+          "status": "available"
+        },
+        {
+          "name": "2026학년도 충암초 방과후교실 운영 계획.hwp",
+          "sha256": "bd591b7ecab74880182c5d76afa2b9f3f838e46b1183bc69db1fa1cd792b17e2",
+          "filename_year": 2026,
+          "raw_hash_valid": true,
+          "text_sha256": "ec5926e813fd63d7392420de7a31503cc81e3880bcd99ef03300dd95140fbfee",
+          "text_path": "etl/runtime/audit2-documents/text/bd591b7ecab74880182c5d76afa2b9f3f838e46b1183bc69db1fa1cd792b17e2.txt",
+          "text_chars": 20139,
+          "status": "available"
+        }
+      ],
+      "operation_status": "unknown",
+      "publication_state": "research_only",
+      "input_sha256": "c9d764b1fc2f63a47c2e9b46c2c81509ca49145ee04083cfa574ff1701b10650",
+      "input_path": "etl/runtime/seoul-gap37-20261019/inputs/B000001907.txt",
+      "line_map_path": "etl/runtime/seoul-gap37-20261019/inputs/B000001907.lines.json"
+    },
+    {
+      "school_id": "B000001908",
+      "school_name": "선일초등학교",
+      "sources": [
+        {
+          "name": "[목요일부서]2026-1_선일초 방과후수업계획서.hwp",
+          "sha256": "ebe8e1a4c537bebf19fc2a5ed901908c7bc31a23638caccb1a9efe9013f0f728",
+          "filename_year": 2026,
+          "raw_hash_valid": true,
+          "text_sha256": "d90a7a5e560f9fb007105e13aa7aad90023b1e93ae053bda0319aa48f8ad7c3d",
+          "text_path": "etl/runtime/audit2-documents/text/ebe8e1a4c537bebf19fc2a5ed901908c7bc31a23638caccb1a9efe9013f0f728.txt",
+          "text_chars": 13640,
+          "status": "available"
+        },
+        {
+          "name": "[금요일부서]2026-1_선일초 방과후수업계획서.hwp",
+          "sha256": "f7e2d54334693de871eb00877ad8982733c367534c0185e959da5a4ed62b86bc",
+          "filename_year": 2026,
+          "raw_hash_valid": true,
+          "text_sha256": "31e15765869f67a272d254456458399d6c078cc7edc7edeae413b1904c5b5434",
+          "text_path": "etl/runtime/audit2-documents/text/f7e2d54334693de871eb00877ad8982733c367534c0185e959da5a4ed62b86bc.txt",
+          "text_chars": 16019,
+          "status": "available"
+        }
+      ],
+      "operation_status": "unknown",
+      "publication_state": "research_only",
+      "input_sha256": "7022894d929e7a6455f94860c372bf20093041b2def215ccbf35ba63084ed005",
+      "input_path": "etl/runtime/seoul-gap37-20261019/inputs/B000001908.txt",
+      "line_map_path": "etl/runtime/seoul-gap37-20261019/inputs/B000001908.lines.json"
+    },
+    {
+      "school_id": "B000001909",
+      "school_name": "예일초등학교",
+      "sources": [
+        {
+          "name": "방과후학교계(완료).hwp",
+          "sha256": "0dc3259e24127e3adc6b74c90fe4a7dcca6d800067dd8c394de12ef0571abe9d",
+          "filename_year": null,
+          "raw_hash_valid": true,
+          "text_sha256": "b39a8dc65d4eeed427016d01d95a0949822c8f20eeded0b53cc2585d55767e5a",
+          "text_path": "etl/runtime/audit2-documents/text/0dc3259e24127e3adc6b74c90fe4a7dcca6d800067dd8c394de12ef0571abe9d.txt",
+          "text_chars": 8013,
+          "status": "available"
+        }
+      ],
+      "operation_status": "unknown",
+      "publication_state": "research_only",
+      "input_sha256": "2d1100364da636f37067a007f6c96fd58cbae810abd846bcff4e30d252f6f594",
+      "input_path": "etl/runtime/seoul-gap37-20261019/inputs/B000001909.txt",
+      "line_map_path": "etl/runtime/seoul-gap37-20261019/inputs/B000001909.lines.json"
+    },
+    {
+      "school_id": "B000001926",
+      "school_name": "경기초등학교",
+      "sources": [
+        {
+          "name": "2026학년도 경기초 방과후학교 운영계획(개인정보 마스킹).hwp",
+          "sha256": "97584960196412f9d7d77c2a1d76ff13d7affac01c6f4486f4e7dd5c0abe75c7",
+          "filename_year": 2026,
+          "raw_hash_valid": true,
+          "text_sha256": "ee6a11868237babfe8c98b1996c0b91901451c1554e10daec343e064ec9850c2",
+          "text_path": "etl/runtime/audit2-documents/text/97584960196412f9d7d77c2a1d76ff13d7affac01c6f4486f4e7dd5c0abe75c7.txt",
+          "text_chars": 10690,
+          "status": "available"
+        }
+      ],
+      "operation_status": "unknown",
+      "publication_state": "research_only",
+      "input_sha256": "783e4b46c346713ae176adcdbf6fdae054192d861b4c53c5417fcafb1c81fc28",
+      "input_path": "etl/runtime/seoul-gap37-20261019/inputs/B000001926.txt",
+      "line_map_path": "etl/runtime/seoul-gap37-20261019/inputs/B000001926.lines.json"
+    },
+    {
+      "school_id": "B000001927",
+      "school_name": "이화여자대학교사범대학부속초등학교",
+      "sources": [
+        {
+          "name": "2026학년도 방과후학교 운영 계획.hwp",
+          "sha256": "3dca6d72fe013c9a789b32680c9248c112e2508bfcefcd9e5cb90c72b8e43f74",
+          "filename_year": 2026,
+          "raw_hash_valid": true,
+          "text_sha256": "94f64e541eb734d85f1ea48702b413a0e57e90d5017e10a6219c560fbc71cfe5",
+          "text_path": "etl/runtime/audit2-documents/text/3dca6d72fe013c9a789b32680c9248c112e2508bfcefcd9e5cb90c72b8e43f74.txt",
+          "text_chars": 23202,
+          "status": "available"
+        }
+      ],
+      "operation_status": "unknown",
+      "publication_state": "research_only",
+      "input_sha256": "7c10f1094508d819d9a34d447b8d7071d3e7076f6925f18c43433ca1fb1f327e",
+      "input_path": "etl/runtime/seoul-gap37-20261019/inputs/B000001927.txt",
+      "line_map_path": "etl/runtime/seoul-gap37-20261019/inputs/B000001927.lines.json"
+    },
+    {
+      "school_id": "B000001928",
+      "school_name": "추계초등학교",
+      "sources": [
+        {
+          "name": "2025 방과후학교 지원 현황.hwp",
+          "sha256": "2b9c6a583888630859aae05993cf0212d220b26c3b19441be8143e3e228906ac",
+          "filename_year": 2025,
+          "raw_hash_valid": true,
+          "text_sha256": "65fa4c4fa22c9d83569a5cf3102be28b303004d760022723cda5b70a14d48cba",
+          "text_path": "etl/runtime/audit2-documents/text/2b9c6a583888630859aae05993cf0212d220b26c3b19441be8143e3e228906ac.txt",
+          "text_chars": 3350,
+          "status": "excluded_other_year"
+        },
+        {
+          "name": "2026 방과후학교 운영 현황.hwp",
+          "sha256": "9f3b5a90afb2b2763107a9ae736bfb8984bf9fb4ffab2dbc4ce75d6285cf7240",
+          "filename_year": 2026,
+          "raw_hash_valid": true,
+          "text_sha256": "0a41d624b7c362aebb543be8dc5de517d01e94e3705ada530051c3a54ca4deda",
+          "text_path": "etl/runtime/audit2-documents/text/9f3b5a90afb2b2763107a9ae736bfb8984bf9fb4ffab2dbc4ce75d6285cf7240.txt",
+          "text_chars": 3745,
+          "status": "available"
+        },
+        {
+          "name": "2026 방과후학교 운영계획서.hwp",
+          "sha256": "7bd2af5b0827508c83c5d8c1581d38ce5bcdbf30133f9a1c41757c7e8076b9ad",
+          "filename_year": 2026,
+          "raw_hash_valid": true,
+          "text_sha256": "a4faea15ccaa3bf870c3e4f7c0e05bc10aaa55edf60648e055c090cb8296fbd0",
+          "text_path": "etl/runtime/audit2-documents/text/7bd2af5b0827508c83c5d8c1581d38ce5bcdbf30133f9a1c41757c7e8076b9ad.txt",
+          "text_chars": 6095,
+          "status": "available"
+        }
+      ],
+      "operation_status": "unknown",
+      "publication_state": "research_only",
+      "input_sha256": "f585d9508038a090113e474c53941528745b230deb317583b51ba61473ea711e",
+      "input_path": "etl/runtime/seoul-gap37-20261019/inputs/B000001928.txt",
+      "line_map_path": "etl/runtime/seoul-gap37-20261019/inputs/B000001928.lines.json"
+    },
+    {
+      "school_id": "B000001929",
+      "school_name": "명지초등학교",
+      "sources": [
+        {
+          "name": "2026학년도 돌?교실 운영계획.hwp",
+          "sha256": "10c251bad05bac8e86a72e5f6c3855474a053ce7855adeeb62ecdea646eb5b2e",
+          "filename_year": 2026,
+          "raw_hash_valid": true,
+          "text_sha256": "28a8f4eed34cc96d39bf2e79e48aa225020a0839e907564adea73c39b7454944",
+          "text_path": "etl/runtime/audit2-documents/text/10c251bad05bac8e86a72e5f6c3855474a053ce7855adeeb62ecdea646eb5b2e.txt",
+          "text_chars": 4516,
+          "status": "available"
+        },
+        {
+          "name": "2026학년도 방과후교실 운영계획.hwp",
+          "sha256": "d7546f1aab8f22b968498c8a0f4159c4cf691c2faecc29319de6cca9e2a6fc74",
+          "filename_year": 2026,
+          "raw_hash_valid": true,
+          "text_sha256": "74ed41e10fec715fc6af00114664b53f51ba557eec8fc5446a7383fbfe298c9c",
+          "text_path": "etl/runtime/audit2-documents/text/d7546f1aab8f22b968498c8a0f4159c4cf691c2faecc29319de6cca9e2a6fc74.txt",
+          "text_chars": 12442,
+          "status": "available"
+        }
+      ],
+      "operation_status": "unknown",
+      "publication_state": "research_only",
+      "input_sha256": "5f3d0fadedfdd2bcbb356c471127e98eb4a3129edaab6af5934f828f9ecc3373",
+      "input_path": "etl/runtime/seoul-gap37-20261019/inputs/B000001929.txt",
+      "line_map_path": "etl/runtime/seoul-gap37-20261019/inputs/B000001929.lines.json"
+    },
+    {
+      "school_id": "B000001951",
+      "school_name": "홍익대학교사범대학부속초등학교",
+      "sources": [
+        {
+          "name": "2026학년도 학운위 회의 자료(방과후).hwp",
+          "sha256": "7653580aa48835080ac4465a416d2024014c29f71ff3396e4111932fd5da0d7a",
+          "filename_year": 2026,
+          "raw_hash_valid": true,
+          "text_sha256": "8fad61f9a388c7200b4d5fd9582cabe4f5ef405477bba4b3a240ad6681fa553e",
+          "text_path": "etl/runtime/audit2-documents/text/7653580aa48835080ac4465a416d2024014c29f71ff3396e4111932fd5da0d7a.txt",
+          "text_chars": 4107,
+          "status": "available"
+        }
+      ],
+      "operation_status": "unknown",
+      "publication_state": "research_only",
+      "input_sha256": "9c45c7969352131c2fd3236af769b7cbbd5e63e9661bc7183c7526c57f3a3c9e",
+      "input_path": "etl/runtime/seoul-gap37-20261019/inputs/B000001951.txt",
+      "line_map_path": "etl/runtime/seoul-gap37-20261019/inputs/B000001951.lines.json"
+    },
+    {
+      "school_id": "B000001993",
+      "school_name": "동광초등학교",
+      "sources": [
+        {
+          "name": "2026학년도 업체위탁 학교 특색 방과후학교A(중국어·PBL)·돌봄교실 연간운영계획.hwp",
+          "sha256": "f2725476e4c68a5f0fbe5a96c4df585934bc963fec7213ab95f88a8e56edcac0",
+          "filename_year": 2026,
+          "raw_hash_valid": true,
+          "text_sha256": "84f5bafa4839af9b9f68f91d500992eadb0f3535be5fae4cb91195d4e6921412",
+          "text_path": "etl/runtime/audit2-documents/text/f2725476e4c68a5f0fbe5a96c4df585934bc963fec7213ab95f88a8e56edcac0.txt",
+          "text_chars": 15745,
+          "status": "available"
+        },
+        {
+          "name": "2026학년도 업체위탁 학교 특색 방과후학교A(1인 1악기)·소질 적성 방과후학교B 연간운영계획.hwp",
+          "sha256": "f92e73f9240dd560570e005f9056deb654c14fd1f7533e8a618aa45b096f6b17",
+          "filename_year": 2026,
+          "raw_hash_valid": true,
+          "text_sha256": "d5037d14df8e2010647649fe774581e700478e03c9442f56077504ee728868d8",
+          "text_path": "etl/runtime/audit2-documents/text/f92e73f9240dd560570e005f9056deb654c14fd1f7533e8a618aa45b096f6b17.txt",
+          "text_chars": 17504,
+          "status": "available"
+        }
+      ],
+      "operation_status": "unknown",
+      "publication_state": "research_only",
+      "input_sha256": "979590e7a24a8b699db5a71255e8fd8a622f196288aa971ddeebbc26f19888dd",
+      "input_path": "etl/runtime/seoul-gap37-20261019/inputs/B000001993.txt",
+      "line_map_path": "etl/runtime/seoul-gap37-20261019/inputs/B000001993.lines.json"
+    },
+    {
+      "school_id": "B000002038",
+      "school_name": "동북초등학교",
+      "sources": [
+        {
+          "name": "(동북초) 2026 방과후운영계획.pdf",
+          "sha256": "af3a01169466ec2eab88057caa4c853905d51702813f475766e6292b3c4664eb",
+          "filename_year": 2026,
+          "raw_hash_valid": true,
+          "text_sha256": "412d6ae6f58c4cf169d80351b2536edc78aab02415dc023a9297951bcace20bf",
+          "text_path": "etl/runtime/audit2-documents/text/af3a01169466ec2eab88057caa4c853905d51702813f475766e6292b3c4664eb.txt",
+          "text_chars": 12694,
+          "status": "available"
+        },
+        {
+          "name": "(동북초) 2026 돌봄교실운영계획.pdf",
+          "sha256": "f1d7510d880c1577f095102bf8fb47515c5652d32341f3368f8be8a9e064fa31",
+          "filename_year": 2026,
+          "raw_hash_valid": true,
+          "text_sha256": "5fa9432c8aac53261ae7649430b867f8a158cd2ccfbda7279a6707493ca44272",
+          "text_path": "etl/runtime/audit2-documents/text/f1d7510d880c1577f095102bf8fb47515c5652d32341f3368f8be8a9e064fa31.txt",
+          "text_chars": 14293,
+          "status": "available"
+        }
+      ],
+      "operation_status": "unknown",
+      "publication_state": "research_only",
+      "input_sha256": "e806307e80126d77a4712c954abe4e693e558476017bf5dccf7bcbab4b9188a1",
+      "input_path": "etl/runtime/seoul-gap37-20261019/inputs/B000002038.txt",
+      "line_map_path": "etl/runtime/seoul-gap37-20261019/inputs/B000002038.lines.json"
+    },
+    {
+      "school_id": "B000002039",
+      "school_name": "한신초등학교",
+      "sources": [
+        {
+          "name": "2026학년도 방과후·돌봄 운영계획서(한신초) - 에듀파인 업로드 2월 말.hwp",
+          "sha256": "fe34fa4f1515b275b21fd27e8e143310244ae234de9f970b354641efc7683e97",
+          "filename_year": 2026,
+          "raw_hash_valid": true,
+          "text_sha256": "735d1747b2467e787c4a0cf6ad243a92202e4a722f1167b38e6673764179d0b9",
+          "text_path": "etl/runtime/audit2-documents/text/fe34fa4f1515b275b21fd27e8e143310244ae234de9f970b354641efc7683e97.txt",
+          "text_chars": 18153,
+          "status": "available"
+        }
+      ],
+      "operation_status": "unknown",
+      "publication_state": "research_only",
+      "input_sha256": "e7ab24d3dabfceb1593c82ed4f30a66a676dd326034cb40f865d2a26df127bc0",
+      "input_path": "etl/runtime/seoul-gap37-20261019/inputs/B000002039.txt",
+      "line_map_path": "etl/runtime/seoul-gap37-20261019/inputs/B000002039.lines.json"
+    },
+    {
+      "school_id": "B000002078",
+      "school_name": "청원초등학교",
+      "sources": [
+        {
+          "name": "2026학년도 1학기 화목방과후학교 운영 계획.hwp",
+          "sha256": "273184ed67fb940170a4e237c41de8058aa28624584776939ac2fee36e287c5c",
+          "filename_year": 2026,
+          "raw_hash_valid": true,
+          "text_sha256": "4c67789d2d47725d17b94644c408e6b560488ebc30a69e14b328c2d90df1c3da",
+          "text_path": "etl/runtime/audit2-documents/text/273184ed67fb940170a4e237c41de8058aa28624584776939ac2fee36e287c5c.txt",
+          "text_chars": 1417,
+          "status": "available"
+        }
+      ],
+      "operation_status": "unknown",
+      "publication_state": "research_only",
+      "input_sha256": "79116d5a5204a605fe4ca61394abc6f13280b5681ea0866ea702ebacded64d3d",
+      "input_path": "etl/runtime/seoul-gap37-20261019/inputs/B000002078.txt",
+      "line_map_path": "etl/runtime/seoul-gap37-20261019/inputs/B000002078.lines.json"
+    },
+    {
+      "school_id": "B000002079",
+      "school_name": "태강삼육초등학교",
+      "sources": [
+        {
+          "name": "방과후학교 지원 현황(2025학년도).hwp",
+          "sha256": "a85d46400bf0aa0299f63dff8498aaa88c7f3fef0ca1e69ea1ae707d28445254",
+          "filename_year": 2025,
+          "raw_hash_valid": true,
+          "text_sha256": "5b4b5ede9717810e31c62cd1980656cd304f01d94c8a95e5269f4f373cd3bd39",
+          "text_path": "etl/runtime/audit2-documents/text/a85d46400bf0aa0299f63dff8498aaa88c7f3fef0ca1e69ea1ae707d28445254.txt",
+          "text_chars": 1690,
+          "status": "excluded_other_year"
+        },
+        {
+          "name": "(2026학년도)돌봄교실 운영계획안.hwpx",
+          "sha256": "866b4a85f83bd538370a43954149bc79635315e42b4fbeacf85fdd50316233e8",
+          "filename_year": 2026,
+          "raw_hash_valid": true,
+          "text_sha256": "dd92111e6c8f516631f3310a2c5db5ce3ef2f8378cf5968abdb6a1c91d519258",
+          "text_path": "etl/runtime/audit2-documents/text/866b4a85f83bd538370a43954149bc79635315e42b4fbeacf85fdd50316233e8.txt",
+          "text_chars": 5775,
+          "status": "available"
+        },
+        {
+          "name": "방과후학교 운영현황(2026학년도 4월 신청자 명단).xlsx",
+          "sha256": "040617b1a40a4d567be407627ec163493b76cc21d983523bbeb881fa6c82662a",
+          "filename_year": 2026,
+          "raw_hash_valid": true,
+          "text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text_path": "etl/runtime/audit2-documents/text/040617b1a40a4d567be407627ec163493b76cc21d983523bbeb881fa6c82662a.txt",
+          "text_chars": 0,
+          "status": "excluded_applicant_list"
+        },
+        {
+          "name": "(2026학년도)특기교육부 교육과정 운영계획.hwpx",
+          "sha256": "82dd6f01b0a51f4cafabf59b6c6822710be1bfe03cc2bc4009e275f7a3184455",
+          "filename_year": 2026,
+          "raw_hash_valid": true,
+          "text_sha256": "a1b88c6bf45f831cafc9fbcba5c0e1be81b6e1e2a9c55b815eb654af0e805761",
+          "text_path": "etl/runtime/audit2-documents/text/82dd6f01b0a51f4cafabf59b6c6822710be1bfe03cc2bc4009e275f7a3184455.txt",
+          "text_chars": 19783,
+          "status": "available"
+        }
+      ],
+      "operation_status": "unknown",
+      "publication_state": "research_only",
+      "input_sha256": "36bdab91cbd7b081473dcc7da6a90b5ed2152ac86fc845234c65d8aeea7ff774",
+      "input_path": "etl/runtime/seoul-gap37-20261019/inputs/B000002079.txt",
+      "line_map_path": "etl/runtime/seoul-gap37-20261019/inputs/B000002079.lines.json"
+    },
+    {
+      "school_id": "B000002080",
+      "school_name": "화랑초등학교",
+      "sources": [
+        {
+          "name": "2026 방과후학교 운영 계획.hwp",
+          "sha256": "4290331ed282789b0fbe2d2f7bccd9cf6382844b49b45663481e39b7e6314a30",
+          "filename_year": 2026,
+          "raw_hash_valid": true,
+          "text_sha256": "e1b7688bcb587ed169d9955d7f3b51bf2c44c143a9a7c59ec002bd16157226ce",
+          "text_path": "etl/runtime/audit2-documents/text/4290331ed282789b0fbe2d2f7bccd9cf6382844b49b45663481e39b7e6314a30.txt",
+          "text_chars": 17354,
+          "status": "available"
+        }
+      ],
+      "operation_status": "unknown",
+      "publication_state": "research_only",
+      "input_sha256": "9e7f3a0ec2bd26fa33d0ca0c2bf92fcc203b3141440e9368ea500bf4b0b8068e",
+      "input_path": "etl/runtime/seoul-gap37-20261019/inputs/B000002080.txt",
+      "line_map_path": "etl/runtime/seoul-gap37-20261019/inputs/B000002080.lines.json"
+    },
+    {
+      "school_id": "B000002081",
+      "school_name": "상명초등학교",
+      "sources": [
+        {
+          "name": "(학운위) 2026학년도 방과후학교 연간 운영계획.hwp",
+          "sha256": "c9e33b70f4b5f8b1bd2039d0fd548ddc01a7854d46d4592510a0872526c6ea7c",
+          "filename_year": 2026,
+          "raw_hash_valid": true,
+          "text_sha256": "84819691f79bad0739a78b214508c34f5cd110378ea0fc8d2df37881348b2c47",
+          "text_path": "etl/runtime/audit2-documents/text/c9e33b70f4b5f8b1bd2039d0fd548ddc01a7854d46d4592510a0872526c6ea7c.txt",
+          "text_chars": 9888,
+          "status": "available"
+        }
+      ],
+      "operation_status": "unknown",
+      "publication_state": "research_only",
+      "input_sha256": "269e617595265c8e28bbfcdca1d41f57f4b5fdef4470a40a5d3423d219991242",
+      "input_path": "etl/runtime/seoul-gap37-20261019/inputs/B000002081.txt",
+      "line_map_path": "etl/runtime/seoul-gap37-20261019/inputs/B000002081.lines.json"
+    },
+    {
+      "school_id": "B000002094",
+      "school_name": "운현초등학교",
+      "sources": [
+        {
+          "name": "꿈과 소질을 키워가는 방과후 학교 운영.hwpx",
+          "sha256": "e9bb7dad344fcc3cadc16fc83772cd87aad1ef7edd2732e1252f4db32385800a",
+          "filename_year": null,
+          "raw_hash_valid": true,
+          "text_sha256": "347c75efb4448fca4f52a8a4d6edd3a962e50b4439b82ea83b5b42f1154583df",
+          "text_path": "etl/runtime/audit2-documents/text/e9bb7dad344fcc3cadc16fc83772cd87aad1ef7edd2732e1252f4db32385800a.txt",
+          "text_chars": 10460,
+          "status": "available"
+        }
+      ],
+      "operation_status": "unknown",
+      "publication_state": "research_only",
+      "input_sha256": "41baeb1c832885e9ec3fc7905ca9c4592c57f1c840837120434dbc24baf46a46",
+      "input_path": "etl/runtime/seoul-gap37-20261019/inputs/B000002094.txt",
+      "line_map_path": "etl/runtime/seoul-gap37-20261019/inputs/B000002094.lines.json"
+    },
+    {
+      "school_id": "B000002095",
+      "school_name": "상명대학교사범대학부속초등학교",
+      "sources": [
+        {
+          "name": "2026 방과후학교 운영계획(0226).hwpx",
+          "sha256": "e650108c16203d655e56aa344b40f43d469ab3ffd1fb4e5350be57f6fc8cb427",
+          "filename_year": 2026,
+          "raw_hash_valid": true,
+          "text_sha256": "e1e28c11d872050fcfbc64f9eb8cea76e648329bda163c9c1cd4dd5d5ed93f19",
+          "text_path": "etl/runtime/audit2-documents/text/e650108c16203d655e56aa344b40f43d469ab3ffd1fb4e5350be57f6fc8cb427.txt",
+          "text_chars": 13999,
+          "status": "available"
+        }
+      ],
+      "operation_status": "unknown",
+      "publication_state": "research_only",
+      "input_sha256": "ef6f3129b69a7472ea8f20bcc1fae5166fda96651235050af34e7db38765bd60",
+      "input_path": "etl/runtime/seoul-gap37-20261019/inputs/B000002095.txt",
+      "line_map_path": "etl/runtime/seoul-gap37-20261019/inputs/B000002095.lines.json"
+    },
+    {
+      "school_id": "B000002105",
+      "school_name": "리라초등학교",
+      "sources": [
+        {
+          "name": "방과후 운영계획(2026).hwp",
+          "sha256": "70af588185f7f23cd0fad8f033eb514c69747badeff71f9bcbcb55419dcfe359",
+          "filename_year": 2026,
+          "raw_hash_valid": true,
+          "text_sha256": "0a0b54039f4d99a7f4260582edae35c5c818fae95531d73e5360b52df20e237f",
+          "text_path": "etl/runtime/audit2-documents/text/70af588185f7f23cd0fad8f033eb514c69747badeff71f9bcbcb55419dcfe359.txt",
+          "text_chars": 9358,
+          "status": "available"
+        }
+      ],
+      "operation_status": "unknown",
+      "publication_state": "research_only",
+      "input_sha256": "6dad002a941310716806157786f78247fb4c2105ba9a58cd54be0658c59a75af",
+      "input_path": "etl/runtime/seoul-gap37-20261019/inputs/B000002105.txt",
+      "line_map_path": "etl/runtime/seoul-gap37-20261019/inputs/B000002105.lines.json"
+    },
+    {
+      "school_id": "B000002106",
+      "school_name": "숭의초등학교",
+      "sources": [
+        {
+          "name": "2026학년도 방과후학교 연간 운영계획.pdf",
+          "sha256": "71bcec0e899a101d52896e4a66f4f52240643d0c44b78d602dbed6f75ce26481",
+          "filename_year": 2026,
+          "raw_hash_valid": true,
+          "text_sha256": "155196f9df133671a632693ff3fc9ec2dce47f316ff46b015fba6f4fd6b57e28",
+          "text_path": "etl/runtime/audit2-documents/text/71bcec0e899a101d52896e4a66f4f52240643d0c44b78d602dbed6f75ce26481.txt",
+          "text_chars": 1229,
+          "status": "available"
+        }
+      ],
+      "operation_status": "unknown",
+      "publication_state": "research_only",
+      "input_sha256": "9ab92aa1712aad76735b9c5887cfb993a4e81ffacf805a69ae51e343e7fb5fc4",
+      "input_path": "etl/runtime/seoul-gap37-20261019/inputs/B000002106.txt",
+      "line_map_path": "etl/runtime/seoul-gap37-20261019/inputs/B000002106.lines.json"
+    },
+    {
+      "school_id": "B000002107",
+      "school_name": "동산초등학교",
+      "sources": [
+        {
+          "name": "2026학년도 동산초등학교 방과후 프로그램 운영 계획.hwp",
+          "sha256": "9310267d673bd4b104908edbaee43e4cec3f763d820aff5be46dde6c49c2c0d2",
+          "filename_year": 2026,
+          "raw_hash_valid": true,
+          "text_sha256": "441d00516fbe3608269ee333cc2c2298ac2827de1bcebf106417c56fea0a54c2",
+          "text_path": "etl/runtime/audit2-documents/text/9310267d673bd4b104908edbaee43e4cec3f763d820aff5be46dde6c49c2c0d2.txt",
+          "text_chars": 25353,
+          "status": "available"
+        }
+      ],
+      "operation_status": "unknown",
+      "publication_state": "research_only",
+      "input_sha256": "438fa06b77753d3e8013d1e18af2627ca4a686af3637fd799fa2fcc3c2087597",
+      "input_path": "etl/runtime/seoul-gap37-20261019/inputs/B000002107.txt",
+      "line_map_path": "etl/runtime/seoul-gap37-20261019/inputs/B000002107.lines.json"
+    },
+    {
+      "school_id": "B000002122",
+      "school_name": "신광초등학교",
+      "sources": [
+        {
+          "name": "2026 방과후학교 운영 세부계획서.pdf",
+          "sha256": "b0a2457a799036f0afd9e38e0dcf826f2ed2c7d289cffb8b65ce961eedc6216a",
+          "filename_year": 2026,
+          "raw_hash_valid": true,
+          "text_sha256": "260fdc77df7b01bc4b7c0642bc408977542cc1c66aaf58d5ef75029fd9560a57",
+          "text_path": "etl/runtime/audit2-documents/text/b0a2457a799036f0afd9e38e0dcf826f2ed2c7d289cffb8b65ce961eedc6216a.txt",
+          "text_chars": 6454,
+          "status": "available"
+        }
+      ],
+      "operation_status": "unknown",
+      "publication_state": "research_only",
+      "input_sha256": "2be676a424ac73980a6515a2e402c2d6988ee59d584db5cfb76e0e8943637379",
+      "input_path": "etl/runtime/seoul-gap37-20261019/inputs/B000002122.txt",
+      "line_map_path": "etl/runtime/seoul-gap37-20261019/inputs/B000002122.lines.json"
+    },
+    {
+      "school_id": "B000002251",
+      "school_name": "유석초등학교",
+      "sources": [
+        {
+          "name": "2026학년도 유석초 일반 방과후교실 위탁운영계획.hwp",
+          "sha256": "26319495351db301ed800b5d8ee6d22cb26a796baa57257c1ba74904665a75bc",
+          "filename_year": 2026,
+          "raw_hash_valid": true,
+          "text_sha256": "1aec79e5c778118fc119495edf3590f5424c94f1e1fe693a5ec68a36fae0128f",
+          "text_path": "etl/runtime/audit2-documents/text/26319495351db301ed800b5d8ee6d22cb26a796baa57257c1ba74904665a75bc.txt",
+          "text_chars": 54292,
+          "status": "available"
+        },
+        {
+          "name": "2026학년도 영어 방과후교실 위탁운영계획.hwp",
+          "sha256": "0b540538692ee6f9710ed87923d90987328438233a39d842386828f9493243f6",
+          "filename_year": 2026,
+          "raw_hash_valid": true,
+          "text_sha256": "1d50656509917bde59600e092dbac11a1172aef0d0f8f21c79d66842179a5b9f",
+          "text_path": "etl/runtime/audit2-documents/text/0b540538692ee6f9710ed87923d90987328438233a39d842386828f9493243f6.txt",
+          "text_chars": 34372,
+          "status": "available"
+        }
+      ],
+      "operation_status": "unknown",
+      "publication_state": "research_only",
+      "input_sha256": "94bea2fd1c38a00f1da0f62db804910d58c43b77c962a35aa3744c7ed819c244",
+      "input_path": "etl/runtime/seoul-gap37-20261019/inputs/B000002251.txt",
+      "line_map_path": "etl/runtime/seoul-gap37-20261019/inputs/B000002251.lines.json"
+    },
+    {
+      "school_id": "B000002274",
+      "school_name": "계성초등학교",
+      "sources": [
+        {
+          "name": "8. 방과후교육운영부(2026_완료).hwpx",
+          "sha256": "f39e1ea7fec08318bdf70070519db09dd7c5ad91ac673e72749d55eeeb0c6b7d",
+          "filename_year": 2026,
+          "raw_hash_valid": true,
+          "text_sha256": "fa545a7ada38cb1e5760bfadcaf509563c741621c16b665e3a68fb0a8d472422",
+          "text_path": "etl/runtime/audit2-documents/text/f39e1ea7fec08318bdf70070519db09dd7c5ad91ac673e72749d55eeeb0c6b7d.txt",
+          "text_chars": 9920,
+          "status": "available"
+        }
+      ],
+      "operation_status": "unknown",
+      "publication_state": "research_only",
+      "input_sha256": "ddbe274e76ada14e41dd2e374239f89f1356625acd1da85baffd0ce872d60d77",
+      "input_path": "etl/runtime/seoul-gap37-20261019/inputs/B000002274.txt",
+      "line_map_path": "etl/runtime/seoul-gap37-20261019/inputs/B000002274.lines.json"
+    },
+    {
+      "school_id": "B000002324",
+      "school_name": "중앙대학교사범대학부속초등학교",
+      "sources": [
+        {
+          "name": "2026학년도 방과후학교 운영계획.hwp",
+          "sha256": "c24c6b40e92bb2960111f71199a57f1387b759968a0120b1b22e7704c3351e05",
+          "filename_year": 2026,
+          "raw_hash_valid": true,
+          "text_sha256": "a56fbd5afe01a467cbdf8f3f673d60e9960c81c3d029c38d773b69ba7c73ed68",
+          "text_path": "etl/runtime/audit2-documents/text/c24c6b40e92bb2960111f71199a57f1387b759968a0120b1b22e7704c3351e05.txt",
+          "text_chars": 9105,
+          "status": "available"
+        }
+      ],
+      "operation_status": "unknown",
+      "publication_state": "research_only",
+      "input_sha256": "2961b03cf3159d208a2b2f0d10ebd4e684bccd53cdd1d0757ac155cdc145b4c0",
+      "input_path": "etl/runtime/seoul-gap37-20261019/inputs/B000002324.txt",
+      "line_map_path": "etl/runtime/seoul-gap37-20261019/inputs/B000002324.lines.json"
+    },
+    {
+      "school_id": "B000002366",
+      "school_name": "한양초등학교",
+      "sources": [
+        {
+          "name": "2026학년도 한양초 방과후교실  운영 계획.hwp",
+          "sha256": "59956853eb81823519f17e904ffe6406da14dc242de3cea21ad38109a6df80b7",
+          "filename_year": 2026,
+          "raw_hash_valid": true,
+          "text_sha256": "91b11b70cf50c9b0425dba12924a84e23fa86eefb7ce89c4ef5138b1ac9035a5",
+          "text_path": "etl/runtime/audit2-documents/text/59956853eb81823519f17e904ffe6406da14dc242de3cea21ad38109a6df80b7.txt",
+          "text_chars": 17241,
+          "status": "available"
+        }
+      ],
+      "operation_status": "unknown",
+      "publication_state": "research_only",
+      "input_sha256": "14d102dde4a3102a3ff99f7241a65c63ca1faa392294197500518857e56db704",
+      "input_path": "etl/runtime/seoul-gap37-20261019/inputs/B000002366.txt",
+      "line_map_path": "etl/runtime/seoul-gap37-20261019/inputs/B000002366.lines.json"
+    },
+    {
+      "school_id": "B000002386",
+      "school_name": "세종초등학교",
+      "sources": [
+        {
+          "name": "2026 방과후교실 연간운영계획.hwp",
+          "sha256": "800badcf6d145ad8c7131ba3e372f8e152d1afaa2b9182cbd6c939565018ba9e",
+          "filename_year": 2026,
+          "raw_hash_valid": true,
+          "text_sha256": "1119443ac81580420722e7b05d827521b183f604a61fbe4163ee65714768ca15",
+          "text_path": "etl/runtime/audit2-documents/text/800badcf6d145ad8c7131ba3e372f8e152d1afaa2b9182cbd6c939565018ba9e.txt",
+          "text_chars": 18265,
+          "status": "available"
+        }
+      ],
+      "operation_status": "unknown",
+      "publication_state": "research_only",
+      "input_sha256": "e71ea44b810ccf1e5ec4bde2fbcee8dcade55da84eb3c60aa9217ed252988bca",
+      "input_path": "etl/runtime/seoul-gap37-20261019/inputs/B000002386.txt",
+      "line_map_path": "etl/runtime/seoul-gap37-20261019/inputs/B000002386.lines.json"
+    },
+    {
+      "school_id": "B000002387",
+      "school_name": "경복초등학교",
+      "sources": [
+        {
+          "name": "2026 경복초등학교 방과후학교 운영계획서(보고용).hwp",
+          "sha256": "48231760de66d3c48b7c42ac57893dedba4a905df65daf970b434414ebd88edc",
+          "filename_year": 2026,
+          "raw_hash_valid": true,
+          "text_sha256": "ac6785171613ca9612ce85e67aaf45fe5f8a7735dd99ea5f6143876f38c76ada",
+          "text_path": "etl/runtime/audit2-documents/text/48231760de66d3c48b7c42ac57893dedba4a905df65daf970b434414ebd88edc.txt",
+          "text_chars": 3403,
+          "status": "available"
+        }
+      ],
+      "operation_status": "unknown",
+      "publication_state": "research_only",
+      "input_sha256": "ee9a50f69eae8e18f6e76667bbab8f642cc08ab097a07e1dc6457beb8fe7fa19",
+      "input_path": "etl/runtime/seoul-gap37-20261019/inputs/B000002387.txt",
+      "line_map_path": "etl/runtime/seoul-gap37-20261019/inputs/B000002387.lines.json"
+    },
+    {
+      "school_id": "B000002388",
+      "school_name": "성동초등학교",
+      "sources": [
+        {
+          "name": "2026학년도 1학기 방과후교실 운영 계획.hwp",
+          "sha256": "aa217fe8aad34602f1a6e52c83462e4311070c9c07976c254eae236cd4fa7c0b",
+          "filename_year": 2026,
+          "raw_hash_valid": true,
+          "text_sha256": "cb94032f1b9b902ffe791e0b37c636f3cc60a68661429d231fd25dada07927e3",
+          "text_path": "etl/runtime/audit2-documents/text/aa217fe8aad34602f1a6e52c83462e4311070c9c07976c254eae236cd4fa7c0b.txt",
+          "text_chars": 9467,
+          "status": "available"
+        }
+      ],
+      "operation_status": "unknown",
+      "publication_state": "research_only",
+      "input_sha256": "3ed0decdda6620aea81029ce29d5a5de311894f7af36363dc3cc1e062c440d20",
+      "input_path": "etl/runtime/seoul-gap37-20261019/inputs/B000002388.txt",
+      "line_map_path": "etl/runtime/seoul-gap37-20261019/inputs/B000002388.lines.json"
+    },
+    {
+      "school_id": "B000002413",
+      "school_name": "성신초등학교",
+      "sources": [
+        {
+          "name": "(정보공시)2026학년도 성신초등학교 방과후 프로그램 운영계획.hwp",
+          "sha256": "1651e4ede790515c92343b3418d0024b495a522ab7d21d5a0822e1787e20ab21",
+          "filename_year": 2026,
+          "raw_hash_valid": true,
+          "text_sha256": "78b8b2b8d9bb61b6c81b03493faa08a1238435785defd5846c25b309c13e7cae",
+          "text_path": "etl/runtime/audit2-documents/text/1651e4ede790515c92343b3418d0024b495a522ab7d21d5a0822e1787e20ab21.txt",
+          "text_chars": 10616,
+          "status": "available"
+        }
+      ],
+      "operation_status": "unknown",
+      "publication_state": "research_only",
+      "input_sha256": "8129265e3f54f7ac66d1ab682fa01e8dd3c81e66908b60c421312ff0ec7b8dfd",
+      "input_path": "etl/runtime/seoul-gap37-20261019/inputs/B000002413.txt",
+      "line_map_path": "etl/runtime/seoul-gap37-20261019/inputs/B000002413.lines.json"
+    },
+    {
+      "school_id": "B000002414",
+      "school_name": "우촌초등학교",
+      "sources": [
+        {
+          "name": "2026학년도 1학기 우촌초등학교 방과후학교 운영 계획.hwpx",
+          "sha256": "492db7743a83b98fbaecd1bae9c83d90b3705c1fe9dc9b84fce54491bd32ae9b",
+          "filename_year": 2026,
+          "raw_hash_valid": true,
+          "text_sha256": "0340c1f145a93393a617e10b0f264cbc03948c94363de3f9079a50951b8e1d7e",
+          "text_path": "etl/runtime/audit2-documents/text/492db7743a83b98fbaecd1bae9c83d90b3705c1fe9dc9b84fce54491bd32ae9b.txt",
+          "text_chars": 3337,
+          "status": "available"
+        }
+      ],
+      "operation_status": "unknown",
+      "publication_state": "research_only",
+      "input_sha256": "ddb514fad3deb40b4347c66e1211185722cd387daf513b4e86a7a5f33acc321e",
+      "input_path": "etl/runtime/seoul-gap37-20261019/inputs/B000002414.txt",
+      "line_map_path": "etl/runtime/seoul-gap37-20261019/inputs/B000002414.lines.json"
+    },
+    {
+      "school_id": "B000002415",
+      "school_name": "대광초등학교",
+      "sources": [
+        {
+          "name": "방과후학교운영계획.hwpx",
+          "sha256": "e448893032be9ae98f74433340231c211be67741e34fe0258f414a4d5452de5b",
+          "filename_year": null,
+          "raw_hash_valid": true,
+          "text_sha256": "5fc622813cd5b7dd817c10c9c5f9acf77a44f6db59569488ea9500a91cb4afca",
+          "text_path": "etl/runtime/audit2-documents/text/e448893032be9ae98f74433340231c211be67741e34fe0258f414a4d5452de5b.txt",
+          "text_chars": 10486,
+          "status": "available"
+        }
+      ],
+      "operation_status": "unknown",
+      "publication_state": "research_only",
+      "input_sha256": "500c8025dc5a0372a30fffed0934cee3bae1e4f65c7a34d48d1a8f7f693174ac",
+      "input_path": "etl/runtime/seoul-gap37-20261019/inputs/B000002415.txt",
+      "line_map_path": "etl/runtime/seoul-gap37-20261019/inputs/B000002415.lines.json"
+    },
+    {
+      "school_id": "B000002416",
+      "school_name": "광운초등학교",
+      "sources": [
+        {
+          "name": "2026년 방과후학교 운영계획.hwp",
+          "sha256": "f62d7a3b4e577630dfdd2c3e01bad8d30432a4de1f21a6267fbbfcfc28c4b304",
+          "filename_year": 2026,
+          "raw_hash_valid": true,
+          "text_sha256": "d583203d407b99fc31417f99969b27a0fd963d819b877a5b3ccff3428a5502a4",
+          "text_path": "etl/runtime/audit2-documents/text/f62d7a3b4e577630dfdd2c3e01bad8d30432a4de1f21a6267fbbfcfc28c4b304.txt",
+          "text_chars": 5454,
+          "status": "available"
+        }
+      ],
+      "operation_status": "unknown",
+      "publication_state": "research_only",
+      "input_sha256": "f686507b0b1f95dddb158380ba53a8f4e33094bef73da33d9d420f3bcecb6827",
+      "input_path": "etl/runtime/seoul-gap37-20261019/inputs/B000002416.txt",
+      "line_map_path": "etl/runtime/seoul-gap37-20261019/inputs/B000002416.lines.json"
+    },
+    {
+      "school_id": "B000002417",
+      "school_name": "매원초등학교",
+      "sources": [
+        {
+          "name": "방과후학교부(완성-260212).hwp",
+          "sha256": "3ba1fa20e8677c0b880a52c71693d6096ae57926bac11bae965524db915d2be8",
+          "filename_year": null,
+          "raw_hash_valid": true,
+          "text_sha256": "b81da5ef552cd6c7edbfa36c04d9d75f4777381db449fb3f72a5e0a17c8af9cb",
+          "text_path": "etl/runtime/audit2-documents/text/3ba1fa20e8677c0b880a52c71693d6096ae57926bac11bae965524db915d2be8.txt",
+          "text_chars": 18702,
+          "status": "available"
+        }
+      ],
+      "operation_status": "unknown",
+      "publication_state": "research_only",
+      "input_sha256": "bd935f9429779b978f16be95f72cf07857b64216d9fae8d71b6e441da7032caa",
+      "input_path": "etl/runtime/seoul-gap37-20261019/inputs/B000002417.txt",
+      "line_map_path": "etl/runtime/seoul-gap37-20261019/inputs/B000002417.lines.json"
+    },
+    {
+      "school_id": "B000002431",
+      "school_name": "영훈초등학교",
+      "sources": [
+        {
+          "name": "2026학년도 방과후·돌봄·학년특별프로그램 운영 계획(탑재용).hwp",
+          "sha256": "b2b7eed7b1cbbc2e06f8c24a891354affa0791fc1a790e3c8c05d4ade27851be",
+          "filename_year": 2026,
+          "raw_hash_valid": true,
+          "text_sha256": "18cc67cc44544cf8712dab791176d340794cf58f70be3ce34400c19a2197ac35",
+          "text_path": "etl/runtime/audit2-documents/text/b2b7eed7b1cbbc2e06f8c24a891354affa0791fc1a790e3c8c05d4ade27851be.txt",
+          "text_chars": 21564,
+          "status": "available"
+        }
+      ],
+      "operation_status": "unknown",
+      "publication_state": "research_only",
+      "input_sha256": "2402d82d69cf55375529cf187a8e8b2cd53fe19cca07f26cd3df66cbfcb828f3",
+      "input_path": "etl/runtime/seoul-gap37-20261019/inputs/B000002431.txt",
+      "line_map_path": "etl/runtime/seoul-gap37-20261019/inputs/B000002431.lines.json"
+    }
+  ],
+  "no_network": true,
+  "no_db_writes": true,
+  "no_shared_output_writes": true
+}

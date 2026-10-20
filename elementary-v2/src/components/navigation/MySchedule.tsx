@@ -112,7 +112,7 @@ export default function MySchedule({ school, entryYear, saved }: {
             <button type="button" className="my-button" onClick={() => removeEntry(e.id)} aria-label={`${e.label} 일정 삭제`}>일정 삭제</button>
           </div>)}
         </details>
-        <p className="my-help">미확인 시간은 배치·공백 계산을 하지 않아요. 돌봄 운영 시간은 이용 가능이나 1학년 대상 확정을 뜻하지 않아요. 방학 일정은 별도 확인이 필요해요.</p>
+        <p className="my-help">돌봄 시간이 없으면 아침 08:00–09:00, 오후 17:00 종료를 기본 가정으로 표시해요. 실제 운영·이용 가능 여부는 학교에 확인해 주세요. 그 외 미확인 시간은 배치·공백 계산을 하지 않아요.</p>
         <button type="button" className="my-button" onClick={() => {
           if (window.confirm('이 학교의 시간표 초안을 삭제할까요? 관심 학교는 유지됩니다.')) persist(deletePlan(readPlans(), plan.schoolId), '시간표 초안을 삭제했어요.')
         }}>이 초안 삭제</button>

@@ -266,6 +266,15 @@ def fixture(records: list[dict]) -> dict[str, dict]:
                                          for o in r['options']]} for r in records}
 
 
+def assert_no_school_loss(summary_rows: list[dict], existing_ids: set[str]) -> None:
+    """Refuse a whole-snapshot apply when any existing school is absent from inputs."""
+    incoming = {row['school_id'] for row in summary_rows}
+    missing = existing_ids - incoming
+    if missing:
+        raise ValueError(f'Apply aborted before writes: {len(missing)} existing schools are absent from inputs. '
+                         'Include every reviewed output, including seoul_gap37_reviewed. No schools removed.')
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument('--outputs', action='append', required=True, type=Path)
@@ -290,6 +299,17 @@ def main() -> None:
     if args.apply:
         from etl.collect_care_data import credentials, rest
         url, service_key, _ = credentials()
+        # Partial input must never erase schools that an earlier reviewed release added.
+        # Check every page before the first write; one short API page is not a full baseline.
+        existing_ids: set[str] = set()
+        offset = 0
+        while True:
+            page = rest(url, service_key, f'school_afterschool_summary?select=school_id&order=school_id&limit=500&offset={offset}')
+            existing_ids.update(row['school_id'] for row in page)
+            if len(page) < 500:
+                break
+            offset += 500
+        assert_no_school_loss(rows['school_afterschool_summary'], existing_ids)
         for table, conflict in (('school_afterschool_summary', 'school_id'), ('school_afterschool_programs', 'school_id,seq')):
             items = rows[table]
             for start in range(0, len(items), 500):

@@ -1,0 +1,32 @@
+{
+  "schools": 40,
+  "districts": 25,
+  "source_files": 72,
+  "hash_verified_source_files": 72,
+  "operation_status": {
+    "unknown": 40
+  },
+  "plan_status": {
+    "planned": 27,
+    "not_found": 11,
+    "conditional": 2
+  },
+  "time_status": {
+    "stated": 26,
+    "source_conflict": 1,
+    "not_found": 11,
+    "open_end": 2
+  },
+  "field_populated": {
+    "start_time": 28,
+    "end_time": 27,
+    "target_grades": 24,
+    "eligibility_raw": 26,
+    "application_window": 0,
+    "capacity": 7
+  },
+  "complete_clock_pairs": 26,
+  "escort_verified": 0,
+  "legacy_regex_detected_schools": 26,
+  "denominator": "all 40 sampled schools; planned field coverage, not live-service coverage"
+}

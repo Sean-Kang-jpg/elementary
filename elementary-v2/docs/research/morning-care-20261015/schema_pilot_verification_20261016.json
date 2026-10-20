@@ -1,0 +1,202 @@
+{
+  "checked_on": "2026-10-16",
+  "timezone": "Asia/Seoul",
+  "project": "elementary_v2.0",
+  "project_id": "vsgeksumgvcrkzjwvlgs",
+  "scope": "private care_research schema and 40-school pilot; no public serving writes",
+  "migrations": [
+    {
+      "version": "20261015121639",
+      "name": "create_morning_care_research"
+    },
+    {
+      "version": "20261015202142",
+      "name": "index_morning_care_research_foreign_keys"
+    },
+    {
+      "version": "20261015202510",
+      "name": "allow_partial_morning_care_schedule_fields"
+    }
+  ],
+  "audit": {
+    "counts": {
+      "batches": 1,
+      "sources": 72,
+      "services": 40,
+      "schedules": 40,
+      "assertions": 283,
+      "escort_links": 0,
+      "observations": 40,
+      "source_links": 72
+    },
+    "coverage": {
+      "capacity": 7,
+      "end_time": 27,
+      "start_time": 28,
+      "target_grades": 24
+    },
+    "rls_tables": 8,
+    "browser_usage": {
+      "anon": false,
+      "authenticated": false
+    },
+    "public_baseline": {
+      "rows": 2014,
+      "morning_hours": 477
+    }
+  },
+  "database_tests": {
+    "result": "passed",
+    "database_constraint_and_role_tests": 19,
+    "observations": 40,
+    "assertions": 283,
+    "existing_public_care_rows": 2014
+  },
+  "python_tests": {
+    "count": 22,
+    "result": "passed",
+    "modules": [
+      "etl.tests.test_load_morning_care_research",
+      "etl.tests.test_morning_care_research",
+      "etl.tests.test_schoolinfo_care_plans",
+      "etl.tests.test_collect_care_data"
+    ]
+  },
+  "idempotency": {
+    "same_payload_runs": 2,
+    "batch_count_after": 1,
+    "observations_after": 40,
+    "verified_on": "2026-10-15",
+    "batch_id": "a44487ea-c6b9-42b4-83fc-d2334c5ae09c",
+    "payload_sha256": "ebf12548356480acce94be03245ce21b516ffff9d5ef49e20a685d12b070c3d4"
+  },
+  "advisors": {
+    "security": [
+      {
+        "name": "rls_enabled_no_policy",
+        "level": "INFO",
+        "detail": "Table \\`care_research.care_service_assertions\\` has RLS enabled, but no policies exist",
+        "remediation": "https://supabase.com/docs/guides/database/database-linter?lint=0008_rls_enabled_no_policy"
+      },
+      {
+        "name": "rls_enabled_no_policy",
+        "level": "INFO",
+        "detail": "Table \\`care_research.care_service_observations\\` has RLS enabled, but no policies exist",
+        "remediation": "https://supabase.com/docs/guides/database/database-linter?lint=0008_rls_enabled_no_policy"
+      },
+      {
+        "name": "rls_enabled_no_policy",
+        "level": "INFO",
+        "detail": "Table \\`care_research.care_service_schedules\\` has RLS enabled, but no policies exist",
+        "remediation": "https://supabase.com/docs/guides/database/database-linter?lint=0008_rls_enabled_no_policy"
+      },
+      {
+        "name": "rls_enabled_no_policy",
+        "level": "INFO",
+        "detail": "Table \\`care_research.care_service_sources\\` has RLS enabled, but no policies exist",
+        "remediation": "https://supabase.com/docs/guides/database/database-linter?lint=0008_rls_enabled_no_policy"
+      },
+      {
+        "name": "rls_enabled_no_policy",
+        "level": "INFO",
+        "detail": "Table \\`care_research.care_services\\` has RLS enabled, but no policies exist",
+        "remediation": "https://supabase.com/docs/guides/database/database-linter?lint=0008_rls_enabled_no_policy"
+      },
+      {
+        "name": "rls_enabled_no_policy",
+        "level": "INFO",
+        "detail": "Table \\`care_research.ingestion_batches\\` has RLS enabled, but no policies exist",
+        "remediation": "https://supabase.com/docs/guides/database/database-linter?lint=0008_rls_enabled_no_policy"
+      },
+      {
+        "name": "rls_enabled_no_policy",
+        "level": "INFO",
+        "detail": "Table \\`care_research.observation_sources\\` has RLS enabled, but no policies exist",
+        "remediation": "https://supabase.com/docs/guides/database/database-linter?lint=0008_rls_enabled_no_policy"
+      },
+      {
+        "name": "rls_enabled_no_policy",
+        "level": "INFO",
+        "detail": "Table \\`care_research.school_service_links\\` has RLS enabled, but no policies exist",
+        "remediation": "https://supabase.com/docs/guides/database/database-linter?lint=0008_rls_enabled_no_policy"
+      }
+    ],
+    "performance": [
+      {
+        "name": "unused_index",
+        "level": "INFO",
+        "detail": "Index \\`care_services_school_idx\\` on table \\`care_research.care_services\\` has not been used",
+        "remediation": "https://supabase.com/docs/guides/database/database-linter?lint=0005_unused_index"
+      },
+      {
+        "name": "unused_index",
+        "level": "INFO",
+        "detail": "Index \\`care_observations_operation_source_idx\\` on table \\`care_research.care_service_observations\\` has not been used",
+        "remediation": "https://supabase.com/docs/guides/database/database-linter?lint=0005_unused_index"
+      },
+      {
+        "name": "unused_index",
+        "level": "INFO",
+        "detail": "Index \\`care_observations_escort_source_idx\\` on table \\`care_research.care_service_observations\\` has not been used",
+        "remediation": "https://supabase.com/docs/guides/database/database-linter?lint=0005_unused_index"
+      },
+      {
+        "name": "unused_index",
+        "level": "INFO",
+        "detail": "Index \\`care_observations_supersedes_idx\\` on table \\`care_research.care_service_observations\\` has not been used",
+        "remediation": "https://supabase.com/docs/guides/database/database-linter?lint=0005_unused_index"
+      },
+      {
+        "name": "unused_index",
+        "level": "INFO",
+        "detail": "Index \\`care_assertions_source_idx\\` on table \\`care_research.care_service_assertions\\` has not been used",
+        "remediation": "https://supabase.com/docs/guides/database/database-linter?lint=0005_unused_index"
+      },
+      {
+        "name": "unused_index",
+        "level": "INFO",
+        "detail": "Index \\`care_assertions_schedule_idx\\` on table \\`care_research.care_service_assertions\\` has not been used",
+        "remediation": "https://supabase.com/docs/guides/database/database-linter?lint=0005_unused_index"
+      },
+      {
+        "name": "unused_index",
+        "level": "INFO",
+        "detail": "Index \\`school_service_links_school_idx\\` on table \\`care_research.school_service_links\\` has not been used",
+        "remediation": "https://supabase.com/docs/guides/database/database-linter?lint=0005_unused_index"
+      },
+      {
+        "name": "unused_index",
+        "level": "INFO",
+        "detail": "Index \\`school_service_links_source_idx\\` on table \\`care_research.school_service_links\\` has not been used",
+        "remediation": "https://supabase.com/docs/guides/database/database-linter?lint=0005_unused_index"
+      },
+      {
+        "name": "unused_index",
+        "level": "INFO",
+        "detail": "Index \\`care_services_center_fk_idx\\` on table \\`care_research.care_services\\` has not been used",
+        "remediation": "https://supabase.com/docs/guides/database/database-linter?lint=0005_unused_index"
+      },
+      {
+        "name": "unused_index",
+        "level": "INFO",
+        "detail": "Index \\`care_assertions_observation_source_idx\\` on table \\`care_research.care_service_assertions\\` has not been used",
+        "remediation": "https://supabase.com/docs/guides/database/database-linter?lint=0005_unused_index"
+      }
+    ],
+    "new_private_warning_or_error_count": 0,
+    "unindexed_private_foreign_key_count": 0,
+    "notes": [
+      "RLS-without-policy INFO is intentional default deny in an inaccessible private schema; actual anon/authenticated CRUD denial tested.",
+      "Unused-index INFO is retained for new tables and foreign-key coverage. Existing project-wide issues are outside this change."
+    ]
+  },
+  "earlier_review_failure": {
+    "action": "final read-only count audit",
+    "cause": "usage limit prevented automatic review; not an unsafe-action determination",
+    "resolved": "same query successfully re-executed on 2026-10-16"
+  },
+  "public_client_contract_changed": false,
+  "scheduled_refresh_created": false,
+  "public_read_model_created": false,
+  "partial_field_regression": "Known target grades/capacity can be stored with missing clock; verified in loader and rollback-only DB fixture."
+}

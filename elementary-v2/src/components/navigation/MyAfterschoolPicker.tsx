@@ -15,6 +15,7 @@ export interface EntryDraft {
   start: string
   end: string
   source: ScheduleEntry['source']
+  kind?: 'care' | 'afterschool'
 }
 
 const FILTERS = ['전체', '돌봄', '맞춤형', '방과후'] as const
@@ -60,7 +61,10 @@ export default function MyAfterschoolPicker({ schoolId, entries, onAdd, onRemove
   const search = query.trim().toLocaleLowerCase()
   const matches = (text: string) => text.toLocaleLowerCase().includes(search)
   const courses = options.filter((o) => (filter === '전체' || filter === o.kind) && matches(`${o.name} ${o.variant ?? ''} ${o.category}`))
-  const careOptions = care ? careEntriesFromHours(care).filter((e) => (filter === '전체' || filter === '돌봄') && matches(e.label)) : []
+  const careOptions = errors.includes('돌봄') ? [] : careEntriesFromHours(care ?? {
+    school_id: schoolId, source_year: 0, status: 'school_check_needed', afternoon_end: null,
+    extended_end: null, extended_condition: null, morning_hours: null, grades: null, source: '운영시간 미확인',
+  }).filter((e) => (filter === '전체' || filter === '돌봄') && matches(e.label))
   const selectedCount = entries.filter((e) => e.kind !== 'school' && (weekday ? isProgramDaySelected(e, weekday) : included(e))).length
   // 등급은 방과후·맞춤형 중 나은 쪽이라(2026-10-15) A 학교에도 시간 없는 반이 있다. 안내는 반 기준으로 한다
   const untimed = options.filter((o) => o.sections.some((s) => !s.days || !s.end)).length
@@ -72,7 +76,7 @@ export default function MyAfterschoolPicker({ schoolId, entries, onAdd, onRemove
     {loading ? <p role="status" className="my-help">학교 강좌·돌봄 자료를 불러오는 중…</p> : <>
       {errors.length > 0 && <div className="my-actions"><p role="alert" className="my-warning">{errors.join('·')} 자료를 불러오지 못했어요.</p><button type="button" className="my-button" onClick={() => setRetry((n) => n + 1)}>자료 다시 불러오기</button></div>}
       {!errors.includes('돌봄') && (filter === '전체' || filter === '돌봄') && matches('아침돌봄 아침 돌봄') && <MorningCareScheduleChoice key={schoolId} schoolId={schoolId} info={morningCareFromLegacy(care)} entries={entries} onAdd={onAdd} onRemove={onRemove} weekday={weekday} onToggleDay={onToggleDay} />}
-      {(data?.options.length || care) ? <>
+      {(!errors.includes('돌봄') || data?.options.length || care) ? <>
         <div className="my-course-filters" role="group" aria-label="프로그램 유형">
           {FILTERS.map((value) => <button type="button" key={value} aria-pressed={filter === value} onClick={() => setFilter(value)}>{value}</button>)}
         </div>
@@ -86,11 +90,17 @@ export default function MyAfterschoolPicker({ schoolId, entries, onAdd, onRemove
             const selected = weekday ? isProgramDaySelected(existing, weekday) : included(existing)
             const time = `${entry.startsAfterSchool ? '하교 후' : formatMinutes(entry.start!)}–${entry.end === null ? '종료 미확인' : formatMinutes(entry.end)}`
             return <li key={entry.id}>
-              <small>{weekday ? `${'월화수목금'[weekday - 1]}요일에 선택` : '월~금'} · {care!.source_year}학년도 · 대상 {care!.grades ?? '학교 확인 필요'}</small>
-              <button type="button" className="my-course-choice my-course-choice--care" aria-pressed={selected} aria-label={`${scheduleEntryHeading(entry)} ${weekday ? `${'월화수목금'[weekday - 1]}요일` : '월~금'} ${time} ${selected ? '선택 해제' : '시간표에 넣기'}`} onClick={() => weekday && onToggleDay ? onToggleDay(entry, weekday) : selected ? onRemove(entry.id) : onAdd({ ...(existing ?? entry), participation: 'planned', transitionIn: 'unknown' })}>
-                <span className="my-course-choice__lines"><b><ScheduleSubjectIcon entry={entry} /><span className="my-entry-title">{scheduleEntryHeading(entry)}</span></b><span>{time}</span></span><i aria-hidden="true">{selected ? '✓' : '+'}</i>
+              <small>{weekday ? `${'월화수목금'[weekday - 1]}요일에 선택` : '월~금'} · {care ? `${care.source_year}학년도` : '학년도 미확인'} · 대상 {care?.grades ?? '학교 확인 필요'}</small>
+              <button type="button" className="my-course-choice my-course-choice--care" aria-pressed={selected} aria-label={`${scheduleEntryHeading(entry)} ${weekday ? `${'월화수목금'[weekday - 1]}요일` : '월~금'} ${time} ${selected ? '선택 해제' : entry.end === null ? '종료시간 입력' : '시간표에 넣기'}`} onClick={() => {
+                if (!selected && entry.end === null && !existing?.end) onDraft({ id: entry.id, kind: 'care', label: entry.label, start: formatMinutes(entry.start!), end: '', source: undefined })
+                else if (weekday && onToggleDay) onToggleDay(entry, weekday)
+                else if (selected) onRemove(entry.id)
+                else onAdd({ ...(existing ?? entry), participation: 'planned', transitionIn: 'unknown' })
+              }}>
+                <span className="my-course-choice__lines"><b><ScheduleSubjectIcon entry={entry} /><span className="my-entry-title">{scheduleEntryHeading(entry)}</span></b><span>{time}{entry.timeAssumption && ' · 기본 가정'}</span></span><i aria-hidden="true">{selected ? '✓' : '+'}</i>
               </button>
-              {entry.label === '저녁·연장 돌봄' && care!.extended_condition && <small>{care!.extended_condition}</small>}
+              {entry.timeAssumption && <small>운영시간 미확인 · 계획용 기본 시간이에요.</small>}
+              {entry.label === '저녁·연장 돌봄' && <small>{care?.extended_condition ?? (entry.end === null ? '오후돌봄 이후로 이어져요. 확인한 종료시간을 입력해 주세요.' : '')}</small>}
             </li>
           })}
           {courses.map((option) => <li key={`${option.kind}-${option.name}-${option.variant ?? ''}`}>

@@ -16,7 +16,9 @@ describe('아침돌봄 기존 자료 호환', () => {
       const info = morningCareFromLegacy({ ...care, morning_hours: value })
       assert.equal(info.status, 'unknown')
       assert.equal(info.startTime, null)
-      assert.equal(morningCareEntry(care.school_id, info, [1]), null)
+      assert.equal(morningCareEntry(care.school_id, info, [1])?.start, 480)
+      assert.equal(morningCareEntry(care.school_id, info, [1])?.end, 540)
+      assert.match(morningCareEntry(care.school_id, info, [1])!.timeAssumption!, /기본 가정/)
     }
   })
   it('시간 기재만 옮기며 등교시각·대상·요일·신청 조건은 채우지 않는다', () => {
@@ -59,9 +61,10 @@ describe('기존 시간표에 아침돌봄 연결', () => {
     assert.equal(isMorningCareEntry(entry), true)
     assert.match(entry.source!.version, /2025.*QA 운영계획.*요일 사용자 선택/)
   })
-  it('A의 명시 상태를 받을 수 있고 미운영·미확인에는 시각이 있어도 일정을 만들지 않는다', () => {
+  it('미확인은 기본 가정으로 배치하고 명시 미운영은 선택하지 않는다', () => {
     const info = { ...unknownMorningCare(), startTime: '07:30', endTime: '08:40' }
-    assert.equal(morningCareEntry('S1', info, [1]), null)
+    assert.equal(morningCareEntry('S1', info, [1])?.start, 480)
+    assert.equal(morningCareEntry('S1', info, [1])?.evidence, 'estimated')
     assert.equal(morningCareEntry('S1', { ...info, status: 'not_operating' }, [1]), null)
     assert.equal(morningCareEntry('S1', { ...info, status: 'operating' }, [1])?.evidence, 'school-plan')
   })

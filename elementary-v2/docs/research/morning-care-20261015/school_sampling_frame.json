@@ -1,0 +1,4248 @@
+{
+  "checked_on": "2026-10-15",
+  "source": "Supabase school_master read-only",
+  "schools": [
+    {
+      "school_id": "B000001838",
+      "school_name": "서울휘경초등학교",
+      "road_address": "서울특별시 동대문구 망우로6길 48",
+      "homepage": "http://hwykyung.sen.es.kr",
+      "schoolinfo_code": "S010001433"
+    },
+    {
+      "school_id": "B000001839",
+      "school_name": "서울동답초등학교",
+      "road_address": "서울특별시 동대문구 답십리로60길 12",
+      "homepage": "http://dongdab.sen.es.kr",
+      "schoolinfo_code": "S010001399"
+    },
+    {
+      "school_id": "B000001840",
+      "school_name": "서울답십리초등학교",
+      "road_address": "서울특별시 동대문구 전농로3길 23",
+      "homepage": "http://dapsimni.sen.es.kr",
+      "schoolinfo_code": "S010001398"
+    },
+    {
+      "school_id": "B000001841",
+      "school_name": "서울신답초등학교",
+      "road_address": "서울특별시 동대문구 천호대로 177",
+      "homepage": "http://shindap.sen.es.kr/",
+      "schoolinfo_code": "S010001413"
+    },
+    {
+      "school_id": "B000001842",
+      "school_name": "서울용두초등학교",
+      "road_address": "서울특별시 동대문구 천호대로13길 43",
+      "homepage": "http://yongdu.sen.es.kr",
+      "schoolinfo_code": "S010001417"
+    },
+    {
+      "school_id": "B000001843",
+      "school_name": "서울이문초등학교",
+      "road_address": "서울특별시 동대문구 신이문로 16",
+      "homepage": "http://imun.sen.es.kr",
+      "schoolinfo_code": "S010001419"
+    },
+    {
+      "school_id": "B000001844",
+      "school_name": "서울군자초등학교",
+      "road_address": "서울특별시 동대문구 한천로6길 21",
+      "homepage": "http://kunja.sen.es.kr",
+      "schoolinfo_code": "S010001397"
+    },
+    {
+      "school_id": "B000001845",
+      "school_name": "서울장평초등학교",
+      "road_address": "서울특별시 동대문구 답십리로69길 27",
+      "homepage": "http://jang-pyung.sen.es.kr",
+      "schoolinfo_code": "S010001420"
+    },
+    {
+      "school_id": "B000001846",
+      "school_name": "서울안평초등학교",
+      "road_address": "서울특별시 동대문구 장한로14길 61",
+      "homepage": "http://anpyeong.sen.es.kr",
+      "schoolinfo_code": "S010001416"
+    },
+    {
+      "school_id": "B000001847",
+      "school_name": "서울배봉초등학교",
+      "road_address": "서울특별시 동대문구 사가정로 193",
+      "homepage": "http://baebong.sen.es.kr",
+      "schoolinfo_code": "S010001409"
+    },
+    {
+      "school_id": "B000001848",
+      "school_name": "서울전동초등학교",
+      "road_address": "서울특별시 동대문구 전농로16길 61",
+      "homepage": "https://jeondong.sen.es.kr",
+      "schoolinfo_code": "S010001423"
+    },
+    {
+      "school_id": "B000001849",
+      "school_name": "서울전곡초등학교",
+      "road_address": "서울특별시 동대문구 전농로 172",
+      "homepage": "http://jeongok.sen.es.kr",
+      "schoolinfo_code": "S010001421"
+    },
+    {
+      "school_id": "B000001850",
+      "school_name": "서울전농초등학교",
+      "road_address": "서울특별시 동대문구 사가정로 66",
+      "homepage": "http://jeonnong.sen.es.kr",
+      "schoolinfo_code": "S010001422"
+    },
+    {
+      "school_id": "B000001851",
+      "school_name": "서울홍파초등학교",
+      "road_address": "서울특별시 동대문구 고산자로 518",
+      "homepage": "http://hongpa.sen.es.kr",
+      "schoolinfo_code": "S010001432"
+    },
+    {
+      "school_id": "B000001852",
+      "school_name": "서울종암초등학교",
+      "road_address": "서울특별시 동대문구 무학로44길 25",
+      "homepage": "http://jongam.sen.es.kr",
+      "schoolinfo_code": "S010001424"
+    },
+    {
+      "school_id": "B000001853",
+      "school_name": "서울홍릉초등학교",
+      "road_address": "서울특별시 동대문구 회기로 90",
+      "homepage": "http://hongneung.sen.es.kr",
+      "schoolinfo_code": "S010001431"
+    },
+    {
+      "school_id": "B000001854",
+      "school_name": "서울청량초등학교",
+      "road_address": "서울특별시 동대문구 회기로25길 31",
+      "homepage": "http://chongryang.sen.es.kr",
+      "schoolinfo_code": "S010001430"
+    },
+    {
+      "school_id": "B000001855",
+      "school_name": "서울휘봉초등학교",
+      "road_address": "서울특별시 동대문구 장안벚꽃로 309",
+      "homepage": "http://hwibong.sen.es.kr",
+      "schoolinfo_code": "S010005283"
+    },
+    {
+      "school_id": "B000001856",
+      "school_name": "경희초등학교",
+      "road_address": "서울특별시 동대문구 경희대로 26",
+      "homepage": "http://kyunghee.sen.es.kr",
+      "schoolinfo_code": "S010001394"
+    },
+    {
+      "school_id": "B000001857",
+      "school_name": "서울삼육초등학교",
+      "road_address": "서울특별시 동대문구 회기로10길 63",
+      "homepage": "http://seoul36.sen.es.kr",
+      "schoolinfo_code": "S010001396"
+    },
+    {
+      "school_id": "B000001858",
+      "school_name": "은석초등학교",
+      "road_address": "서울특별시 동대문구 장안벚꽃로 205",
+      "homepage": "http://eunseok.sen.es.kr/index.do",
+      "schoolinfo_code": "S010001434"
+    },
+    {
+      "school_id": "B000001859",
+      "school_name": "서울면목초등학교",
+      "road_address": "서울특별시 중랑구 면목로 434",
+      "homepage": "http://myeonmok.sen.es.kr",
+      "schoolinfo_code": "S010001404"
+    },
+    {
+      "school_id": "B000001860",
+      "school_name": "서울면남초등학교",
+      "road_address": "서울특별시 중랑구 면목로30나길 38",
+      "homepage": "http://myunnam.sen.es.kr",
+      "schoolinfo_code": "S010001402"
+    },
+    {
+      "school_id": "B000001861",
+      "school_name": "서울동원초등학교",
+      "road_address": "서울특별시 중랑구 송림길 114",
+      "homepage": "http://dongwon.sen.es.kr",
+      "schoolinfo_code": "S010001400"
+    },
+    {
+      "school_id": "B000001862",
+      "school_name": "서울면북초등학교",
+      "road_address": "서울특별시 중랑구 용마공원로5길 32",
+      "homepage": "http://myeonbuk.sen.es.kr",
+      "schoolinfo_code": "S010001405"
+    },
+    {
+      "school_id": "B000001863",
+      "school_name": "서울망우초등학교",
+      "road_address": "서울특별시 중랑구 망우로72길 49",
+      "homepage": "http://mangwoo.sen.es.kr",
+      "schoolinfo_code": "S010001401"
+    },
+    {
+      "school_id": "B000001864",
+      "school_name": "서울면일초등학교",
+      "road_address": "서울특별시 중랑구 용마산로100길 13",
+      "homepage": "http://myeonil.sen.es.kr",
+      "schoolinfo_code": "S010001406"
+    },
+    {
+      "school_id": "B000001866",
+      "school_name": "서울중곡초등학교",
+      "road_address": "서울특별시 중랑구 면목로23길 20",
+      "homepage": "http://cg.sen.es.kr",
+      "schoolinfo_code": "S010001425"
+    },
+    {
+      "school_id": "B000001867",
+      "school_name": "서울면동초등학교",
+      "road_address": "서울특별시 중랑구 면목로57길 32",
+      "homepage": "http://myeondong.sen.es.kr",
+      "schoolinfo_code": "S010001403"
+    },
+    {
+      "school_id": "B000001868",
+      "school_name": "서울중목초등학교",
+      "road_address": "서울특별시 중랑구 동일로 665",
+      "homepage": "http://joongmok.sen.es.kr",
+      "schoolinfo_code": "S010001427"
+    },
+    {
+      "school_id": "B000001869",
+      "school_name": "서울중랑초등학교",
+      "road_address": "서울특별시 중랑구 봉우재로6길 26",
+      "homepage": "http://jungnang.sen.es.kr",
+      "schoolinfo_code": "S010001426"
+    },
+    {
+      "school_id": "B000001870",
+      "school_name": "서울원묵초등학교",
+      "road_address": "서울특별시 중랑구 숙선옹주로 109",
+      "homepage": "http://wonmuk.sen.es.kr",
+      "schoolinfo_code": "S010001418"
+    },
+    {
+      "school_id": "B000001871",
+      "school_name": "서울묵현초등학교",
+      "road_address": "서울특별시 중랑구 동일로157길 75",
+      "homepage": "http://mh.sen.es.kr",
+      "schoolinfo_code": "S010005236"
+    },
+    {
+      "school_id": "B000001872",
+      "school_name": "서울신묵초등학교",
+      "road_address": "서울특별시 중랑구 동일로149길 46",
+      "homepage": "http://sinmook.sen.es.kr",
+      "schoolinfo_code": "S010001414"
+    },
+    {
+      "school_id": "B000001873",
+      "school_name": "서울상봉초등학교",
+      "road_address": "서울특별시 중랑구 동일로126가길 11",
+      "homepage": "http://sang-bong.sen.es.kr",
+      "schoolinfo_code": "S010001411"
+    },
+    {
+      "school_id": "B000001874",
+      "school_name": "서울신현초등학교",
+      "road_address": "서울특별시 중랑구 봉화산로 188",
+      "homepage": "http://shinhyun.sen.es.kr",
+      "schoolinfo_code": "S010001415"
+    },
+    {
+      "school_id": "B000001875",
+      "school_name": "서울신내초등학교",
+      "road_address": "서울특별시 중랑구 용마산로125나길 22",
+      "homepage": "http://sinne.sen.es.kr",
+      "schoolinfo_code": "S010001412"
+    },
+    {
+      "school_id": "B000001876",
+      "school_name": "서울중화초등학교",
+      "road_address": "서울특별시 중랑구 신내로7가길 22",
+      "homepage": "http://junghwa.sen.es.kr",
+      "schoolinfo_code": "S010001428"
+    },
+    {
+      "school_id": "B000001877",
+      "school_name": "서울봉화초등학교",
+      "road_address": "서울특별시 중랑구 신내로15길 110",
+      "homepage": "http://bonghwa.sen.es.kr",
+      "schoolinfo_code": "S010001410"
+    },
+    {
+      "school_id": "B000001878",
+      "school_name": "서울묵동초등학교",
+      "road_address": "서울특별시 중랑구 동일로138길 27",
+      "homepage": "http://mookdong.sen.es.kr",
+      "schoolinfo_code": "S010001408"
+    },
+    {
+      "school_id": "B000001879",
+      "school_name": "서울중흥초등학교",
+      "road_address": "서울특별시 중랑구 봉화산로 82",
+      "homepage": "http://jung-heung.sen.es.kr",
+      "schoolinfo_code": "S010001429"
+    },
+    {
+      "school_id": "B000001880",
+      "school_name": "금성초등학교",
+      "road_address": "서울특별시 중랑구 신내로21길 55",
+      "homepage": "http://www.kumsung.net",
+      "schoolinfo_code": "S010001395"
+    },
+    {
+      "school_id": "B000001881",
+      "school_name": "서울은빛초등학교",
+      "road_address": "서울특별시 은평구 진관3로 73-17",
+      "homepage": "http://ev.sen.es.kr",
+      "schoolinfo_code": "S010005557"
+    },
+    {
+      "school_id": "B000001882",
+      "school_name": "서울신도초등학교",
+      "road_address": "서울특별시 은평구 진관1로 77-23",
+      "homepage": "http://sindo.sen.es.kr",
+      "schoolinfo_code": "S010001994"
+    },
+    {
+      "school_id": "B000001883",
+      "school_name": "서울은진초등학교",
+      "road_address": "서울특별시 은평구 진관1로 21-20",
+      "homepage": "http://eunjin.sen.es.kr",
+      "schoolinfo_code": "S010005581"
+    },
+    {
+      "school_id": "B000001884",
+      "school_name": "서울진관초등학교",
+      "road_address": "서울특별시 은평구 진관4로 78-16",
+      "homepage": "http://jingwan.sen.es.kr",
+      "schoolinfo_code": "S010005505"
+    },
+    {
+      "school_id": "B000001885",
+      "school_name": "서울북한산초등학교",
+      "road_address": "서울특별시 은평구 대서문길 42-3",
+      "homepage": "http://bukhansan.sen.es.kr",
+      "schoolinfo_code": "S010001983"
+    },
+    {
+      "school_id": "B000001886",
+      "school_name": "서울갈현초등학교",
+      "road_address": "서울특별시 은평구 연서로29길 31",
+      "homepage": "http://galhyun.sen.es.kr",
+      "schoolinfo_code": "S010001968"
+    },
+    {
+      "school_id": "B000001887",
+      "school_name": "서울구현초등학교",
+      "road_address": "서울특별시 은평구 갈현로15길 51",
+      "homepage": "http://guhyun.sen.es.kr",
+      "schoolinfo_code": "S010005577"
+    },
+    {
+      "school_id": "B000001888",
+      "school_name": "서울구산초등학교",
+      "road_address": "서울특별시 은평구 서오릉로15길 16",
+      "homepage": "http://gusan.sen.es.kr",
+      "schoolinfo_code": "S010001971"
+    },
+    {
+      "school_id": "B000001889",
+      "school_name": "서울은평초등학교",
+      "road_address": "서울특별시 은평구 은평로 239",
+      "homepage": "http://eunpyeong.sen.es.kr",
+      "schoolinfo_code": "S010002008"
+    },
+    {
+      "school_id": "B000001890",
+      "school_name": "서울녹번초등학교",
+      "road_address": "서울특별시 은평구 녹번로1길 1",
+      "homepage": "http://nokbun.sen.es.kr",
+      "schoolinfo_code": "S010001973"
+    },
+    {
+      "school_id": "B000001891",
+      "school_name": "서울수리초등학교",
+      "road_address": "서울특별시 은평구 불광로14길 10-10",
+      "homepage": "http://suri.sen.es.kr",
+      "schoolinfo_code": "S010005559"
+    },
+    {
+      "school_id": "B000001892",
+      "school_name": "서울대조초등학교",
+      "road_address": "서울특별시 은평구 연서로18길 17",
+      "homepage": "http://daejo.sen.es.kr",
+      "schoolinfo_code": "S010001976"
+    },
+    {
+      "school_id": "B000001893",
+      "school_name": "서울연신초등학교",
+      "road_address": "서울특별시 은평구 연서로 347",
+      "homepage": "http://yeonsin.sen.es.kr",
+      "schoolinfo_code": "S010002002"
+    },
+    {
+      "school_id": "B000001894",
+      "school_name": "서울불광초등학교",
+      "road_address": "서울특별시 은평구 불광로 51",
+      "homepage": "http://bulgwang.sen.es.kr",
+      "schoolinfo_code": "S010001984"
+    },
+    {
+      "school_id": "B000001895",
+      "school_name": "서울연천초등학교",
+      "road_address": "서울특별시 은평구 연서로34길 22",
+      "homepage": "http://yc1985.sen.es.kr",
+      "schoolinfo_code": "S010002004"
+    },
+    {
+      "school_id": "B000001896",
+      "school_name": "서울연광초등학교",
+      "road_address": "서울특별시 은평구 연서로35길 37",
+      "homepage": "http://yeonkwang.sen.es.kr",
+      "schoolinfo_code": "S010005213"
+    },
+    {
+      "school_id": "B000001897",
+      "school_name": "서울수색초등학교",
+      "road_address": "서울특별시 은평구 수색로16길 21",
+      "homepage": "http://susaek.sen.es.kr",
+      "schoolinfo_code": "S010001993"
+    },
+    {
+      "school_id": "B000001898",
+      "school_name": "서울신사초등학교",
+      "road_address": "서울특별시 은평구 가좌로 275-2",
+      "homepage": "http://shinsa.sen.es.kr",
+      "schoolinfo_code": "S010001996"
+    },
+    {
+      "school_id": "B000001899",
+      "school_name": "서울서신초등학교",
+      "road_address": "서울특별시 은평구 은평터널로 150",
+      "homepage": "http://susin.sen.es.kr",
+      "schoolinfo_code": "S010005247"
+    },
+    {
+      "school_id": "B000001900",
+      "school_name": "서울상신초등학교",
+      "road_address": "서울특별시 은평구 가좌로 361",
+      "homepage": "http://sangsin.sen.es.kr",
+      "schoolinfo_code": "S010001985"
+    },
+    {
+      "school_id": "B000001901",
+      "school_name": "서울역촌초등학교",
+      "road_address": "서울특별시 은평구 은평로3길 25",
+      "homepage": "http://yeokchon.sen.es.kr",
+      "schoolinfo_code": "S010002000"
+    },
+    {
+      "school_id": "B000001902",
+      "school_name": "서울은명초등학교",
+      "road_address": "서울특별시 은평구 은평로4길 21-9",
+      "homepage": "http://em.sen.es.kr",
+      "schoolinfo_code": "S010005502"
+    },
+    {
+      "school_id": "B000001903",
+      "school_name": "서울연은초등학교",
+      "road_address": "서울특별시 은평구 백련산로2길 35",
+      "homepage": "http://yeoneun.sen.es.kr",
+      "schoolinfo_code": "S010002003"
+    },
+    {
+      "school_id": "B000001904",
+      "school_name": "서울응암초등학교",
+      "road_address": "서울특별시 은평구 가좌로6길 20",
+      "homepage": "http://eungam.sen.es.kr",
+      "schoolinfo_code": "S010002009"
+    },
+    {
+      "school_id": "B000001905",
+      "school_name": "서울증산초등학교",
+      "road_address": "서울특별시 은평구 증산서길 61",
+      "homepage": "https://jeungsancho.sen.es.kr",
+      "schoolinfo_code": "S010002012"
+    },
+    {
+      "school_id": "B000001906",
+      "school_name": "서울대은초등학교",
+      "road_address": "서울특별시 은평구 통일로69길 12-15",
+      "homepage": "https://daeeun.sen.es.kr",
+      "schoolinfo_code": "S010001975"
+    },
+    {
+      "school_id": "B000001907",
+      "school_name": "충암초등학교",
+      "road_address": "서울특별시 은평구 가좌로5길 5",
+      "homepage": "http://choongam.sen.es.kr",
+      "schoolinfo_code": "S010002025"
+    },
+    {
+      "school_id": "B000001908",
+      "school_name": "선일초등학교",
+      "road_address": "서울특별시 은평구 갈현로29길 27",
+      "homepage": "http://sunil.sen.es.kr",
+      "schoolinfo_code": "S010002019"
+    },
+    {
+      "school_id": "B000001909",
+      "school_name": "예일초등학교",
+      "road_address": "서울특별시 은평구 연서로 117",
+      "homepage": "https://yale.sen.es.kr/",
+      "schoolinfo_code": "S010002021"
+    },
+    {
+      "school_id": "B000001912",
+      "school_name": "서울미동초등학교",
+      "road_address": "서울특별시 서대문구 충정로 52",
+      "homepage": "http://midong.sen.es.kr",
+      "schoolinfo_code": "S010001980"
+    },
+    {
+      "school_id": "B000001913",
+      "school_name": "서울금화초등학교",
+      "road_address": "서울특별시 서대문구 통일로 165",
+      "homepage": "http://geumhwa.sen.es.kr",
+      "schoolinfo_code": "S010001972"
+    },
+    {
+      "school_id": "B000001914",
+      "school_name": "서울홍은초등학교",
+      "road_address": "서울특별시 서대문구 세검정로 105",
+      "homepage": "http://hongeun.sen.es.kr",
+      "schoolinfo_code": "S010002017"
+    },
+    {
+      "school_id": "B000001915",
+      "school_name": "서울홍제초등학교",
+      "road_address": "서울특별시 서대문구 홍은중앙로 13",
+      "homepage": "http://hongje.sen.es.kr",
+      "schoolinfo_code": "S010002018"
+    },
+    {
+      "school_id": "B000001916",
+      "school_name": "서울북성초등학교",
+      "road_address": "서울특별시 서대문구 북아현로1나길 22",
+      "homepage": "http://seoulbuksung.sen.es.kr",
+      "schoolinfo_code": "S010001982"
+    },
+    {
+      "school_id": "B000001917",
+      "school_name": "서울연가초등학교",
+      "road_address": "서울특별시 서대문구 증가로12가길 49-50",
+      "homepage": "http://yeonga.sen.es.kr",
+      "schoolinfo_code": "S010002001"
+    },
+    {
+      "school_id": "B000001918",
+      "school_name": "서울대신초등학교",
+      "road_address": "서울특별시 서대문구 이화여대2길 27",
+      "homepage": "http://sds.sen.es.kr",
+      "schoolinfo_code": "S010001974"
+    },
+    {
+      "school_id": "B000001919",
+      "school_name": "서울북가좌초등학교",
+      "road_address": "서울특별시 서대문구 거북골로19길 20",
+      "homepage": "http://bukgajwa.sen.es.kr",
+      "schoolinfo_code": "S010001981"
+    },
+    {
+      "school_id": "B000001920",
+      "school_name": "서울연희초등학교",
+      "road_address": "서울특별시 서대문구 연희로 136",
+      "homepage": "http://yeonhui.sen.es.kr",
+      "schoolinfo_code": "S010002005"
+    },
+    {
+      "school_id": "B000001921",
+      "school_name": "서울창서초등학교",
+      "road_address": "서울특별시 서대문구 연세로5나길 30-3",
+      "homepage": "http://scs.sen.es.kr",
+      "schoolinfo_code": "S010002013"
+    },
+    {
+      "school_id": "B000001922",
+      "school_name": "서울홍연초등학교",
+      "road_address": "서울특별시 서대문구 백련사길 55",
+      "homepage": "http://hyc.sen.es.kr",
+      "schoolinfo_code": "S010002016"
+    },
+    {
+      "school_id": "B000001923",
+      "school_name": "서울안산초등학교",
+      "road_address": "서울특별시 서대문구 통일로 321",
+      "homepage": "http://ansan.sen.es.kr",
+      "schoolinfo_code": "S010001999"
+    },
+    {
+      "school_id": "B000001924",
+      "school_name": "서울인왕초등학교",
+      "road_address": "서울특별시 서대문구 세무서길 33-9",
+      "homepage": "http://inwang.sen.es.kr",
+      "schoolinfo_code": "S010002010"
+    },
+    {
+      "school_id": "B000001925",
+      "school_name": "서울고은초등학교",
+      "road_address": "서울특별시 서대문구 모래내로 441",
+      "homepage": "http://goeun.sen.es.kr",
+      "schoolinfo_code": "S010001969"
+    },
+    {
+      "school_id": "B000001926",
+      "school_name": "경기초등학교",
+      "road_address": "서울특별시 서대문구 경기대로9길 10",
+      "homepage": "http://kyonggi.sen.es.kr",
+      "schoolinfo_code": "S010001966"
+    },
+    {
+      "school_id": "B000001927",
+      "school_name": "이화여자대학교사범대학부속초등학교",
+      "road_address": "서울특별시 서대문구 성산로 512-39",
+      "homepage": "http://ewha.sen.es.kr",
+      "schoolinfo_code": "S010002023"
+    },
+    {
+      "school_id": "B000001928",
+      "school_name": "추계초등학교",
+      "road_address": "서울특별시 서대문구 북아현로11가길 7",
+      "homepage": "http://chugye.sen.es.kr",
+      "schoolinfo_code": "S010002024"
+    },
+    {
+      "school_id": "B000001929",
+      "school_name": "명지초등학교",
+      "road_address": "서울특별시 서대문구 명지2길 32-20",
+      "homepage": "http://www.myongji.net",
+      "schoolinfo_code": "S010001967"
+    },
+    {
+      "school_id": "B000001930",
+      "school_name": "서울공덕초등학교",
+      "road_address": "서울특별시 마포구 만리재옛길 13",
+      "homepage": "http://kongduck.sen.es.kr",
+      "schoolinfo_code": "S010001970"
+    },
+    {
+      "school_id": "B000001931",
+      "school_name": "서울창천초등학교",
+      "road_address": "서울특별시 마포구 백범로1길 56",
+      "homepage": "http://changchon.sen.es.kr",
+      "schoolinfo_code": "S010002014"
+    },
+    {
+      "school_id": "B000001932",
+      "school_name": "서울용강초등학교",
+      "road_address": "서울특별시 마포구 백범로17길 9",
+      "homepage": "http://yonggang.sen.es.kr",
+      "schoolinfo_code": "S010002007"
+    },
+    {
+      "school_id": "B000001933",
+      "school_name": "서울마포초등학교",
+      "road_address": "서울특별시 마포구 도화2길 64",
+      "homepage": "http://mapo.sen.es.kr",
+      "schoolinfo_code": "S010001978"
+    },
+    {
+      "school_id": "B000001934",
+      "school_name": "서울동교초등학교",
+      "road_address": "서울특별시 마포구 월드컵로25길 86",
+      "homepage": "http://donggyo.sen.es.kr",
+      "schoolinfo_code": "S010001977"
+    },
+    {
+      "school_id": "B000001935",
+      "school_name": "서울망원초등학교",
+      "road_address": "서울특별시 마포구 방울내로5길 28",
+      "homepage": "http://mangwon.sen.es.kr",
+      "schoolinfo_code": "S010001979"
+    },
+    {
+      "school_id": "B000001936",
+      "school_name": "서울서강초등학교",
+      "road_address": "서울특별시 마포구 독막로 113",
+      "homepage": "http://seogang.sen.es.kr",
+      "schoolinfo_code": "S010001987"
+    },
+    {
+      "school_id": "B000001937",
+      "school_name": "서울하늘초등학교",
+      "road_address": "서울특별시 마포구 월드컵북로 502-14",
+      "homepage": "http://sky.sen.es.kr",
+      "schoolinfo_code": "S010005555"
+    },
+    {
+      "school_id": "B000001938",
+      "school_name": "서울서교초등학교",
+      "road_address": "서울특별시 마포구 와우산로23길 20-27",
+      "homepage": "http://seokyo.sen.es.kr",
+      "schoolinfo_code": "S010001988"
+    },
+    {
+      "school_id": "B000001939",
+      "school_name": "서울성원초등학교",
+      "road_address": "서울특별시 마포구 월드컵로36길 34",
+      "homepage": "http://sungwon.sen.es.kr",
+      "schoolinfo_code": "S010001991"
+    },
+    {
+      "school_id": "B000001940",
+      "school_name": "서울성서초등학교",
+      "road_address": "서울특별시 마포구 성미산로7길 24",
+      "homepage": "http://sseo.sen.es.kr",
+      "schoolinfo_code": "S010001990"
+    },
+    {
+      "school_id": "B000001941",
+      "school_name": "서울중동초등학교",
+      "road_address": "서울특별시 마포구 월드컵북로 152",
+      "homepage": "http://jungdong.sen.es.kr",
+      "schoolinfo_code": "S010002011"
+    },
+    {
+      "school_id": "B000001942",
+      "school_name": "서울신석초등학교",
+      "road_address": "서울특별시 마포구 대흥로 33",
+      "homepage": "http://sinseok.sen.es.kr",
+      "schoolinfo_code": "S010001997"
+    },
+    {
+      "school_id": "B000001943",
+      "school_name": "서울아현초등학교",
+      "road_address": "서울특별시 마포구 굴레방로 6",
+      "homepage": "http://ahyun.sen.es.kr",
+      "schoolinfo_code": "S010001998"
+    },
+    {
+      "school_id": "B000001944",
+      "school_name": "서울소의초등학교",
+      "road_address": "서울특별시 마포구 마포대로24길 42",
+      "homepage": "http://soeui.sen.es.kr",
+      "schoolinfo_code": "S010001992"
+    },
+    {
+      "school_id": "B000001945",
+      "school_name": "서울한서초등학교",
+      "road_address": "서울특별시 마포구 대흥로24바길 27",
+      "homepage": "http://hanseo.sen.es.kr",
+      "schoolinfo_code": "S010002015"
+    },
+    {
+      "school_id": "B000001946",
+      "school_name": "서울염리초등학교",
+      "road_address": "서울특별시 마포구 토정로37길 37",
+      "homepage": "https://yeomri.sen.es.kr",
+      "schoolinfo_code": "S010002006"
+    },
+    {
+      "school_id": "B000001947",
+      "school_name": "서울신북초등학교",
+      "road_address": "서울특별시 마포구 월드컵북로38길 26",
+      "homepage": "http://sinbuk.sen.es.kr",
+      "schoolinfo_code": "S010001995"
+    },
+    {
+      "school_id": "B000001948",
+      "school_name": "서울성산초등학교",
+      "road_address": "서울특별시 마포구 양화로3길 94",
+      "homepage": "http://ssc.sen.es.kr",
+      "schoolinfo_code": "S010001989"
+    },
+    {
+      "school_id": "B000001949",
+      "school_name": "서울상지초등학교",
+      "road_address": "서울특별시 마포구 월드컵로42길 30",
+      "homepage": "http://seoulsangji.sen.es.kr",
+      "schoolinfo_code": "S010005370"
+    },
+    {
+      "school_id": "B000001950",
+      "school_name": "서울상암초등학교",
+      "road_address": "서울특별시 마포구 월드컵북로 353",
+      "homepage": "http://sangam.sen.es.kr/",
+      "schoolinfo_code": "S010001986"
+    },
+    {
+      "school_id": "B000001951",
+      "school_name": "홍익대학교사범대학부속초등학교",
+      "road_address": "서울특별시 마포구 성미산로 51",
+      "homepage": "http://hongik.sen.es.kr",
+      "schoolinfo_code": "S010002026"
+    },
+    {
+      "school_id": "B000001952",
+      "school_name": "서울천왕초등학교",
+      "road_address": "서울특별시 구로구 천왕로1길 11",
+      "homepage": "http://cheonwang.sen.es.kr",
+      "schoolinfo_code": "S010005553"
+    },
+    {
+      "school_id": "B000001953",
+      "school_name": "서울영일초등학교",
+      "road_address": "서울특별시 구로구 남부순환로105길 218",
+      "homepage": "http://syoungil.sen.es.kr",
+      "schoolinfo_code": "S010001246"
+    },
+    {
+      "school_id": "B000001954",
+      "school_name": "서울미래초등학교",
+      "road_address": "서울특별시 구로구 새말로 73",
+      "homepage": "http://mirae.sen.es.kr",
+      "schoolinfo_code": "S010001227"
+    },
+    {
+      "school_id": "B000001955",
+      "school_name": "서울고원초등학교",
+      "road_address": "서울특별시 구로구 경인로46길 13",
+      "homepage": "http://gowon.sen.es.kr",
+      "schoolinfo_code": "S010005214"
+    },
+    {
+      "school_id": "B000001956",
+      "school_name": "서울고산초등학교",
+      "road_address": "서울특별시 구로구 중앙로 6",
+      "homepage": "http://kohsan.sen.es.kr",
+      "schoolinfo_code": "S010001202"
+    },
+    {
+      "school_id": "B000001957",
+      "school_name": "서울개웅초등학교",
+      "road_address": "서울특별시 구로구 개봉로11길 98",
+      "homepage": "http://gaewoong.sen.es.kr",
+      "schoolinfo_code": "S010001201"
+    },
+    {
+      "school_id": "B000001958",
+      "school_name": "서울개명초등학교",
+      "road_address": "서울특별시 구로구 개봉로1다길 16-9",
+      "homepage": "http://kaemyong.sen.es.kr",
+      "schoolinfo_code": "S010001199"
+    },
+    {
+      "school_id": "B000001959",
+      "school_name": "서울온수초등학교",
+      "road_address": "서울특별시 구로구 부일로 893",
+      "homepage": "http://onsu.sen.es.kr",
+      "schoolinfo_code": "S010001251"
+    },
+    {
+      "school_id": "B000001960",
+      "school_name": "서울매봉초등학교",
+      "road_address": "서울특별시 구로구 고척로21길 55",
+      "homepage": "http://maebong.sen.es.kr",
+      "schoolinfo_code": "S010001222"
+    },
+    {
+      "school_id": "B000001961",
+      "school_name": "서울개봉초등학교",
+      "road_address": "서울특별시 구로구 개봉로16길 30-11",
+      "homepage": "http://gaebong.sen.es.kr",
+      "schoolinfo_code": "S010001200"
+    },
+    {
+      "school_id": "B000001962",
+      "school_name": "서울고척초등학교",
+      "road_address": "서울특별시 구로구 경서로 31",
+      "homepage": "http://gocheok.sen.es.kr",
+      "schoolinfo_code": "S010001203"
+    },
+    {
+      "school_id": "B000001963",
+      "school_name": "서울덕의초등학교",
+      "road_address": "서울특별시 구로구 고척로 213",
+      "homepage": "http://dukeui.sen.es.kr",
+      "schoolinfo_code": "S010001216"
+    },
+    {
+      "school_id": "B000001964",
+      "school_name": "서울세곡초등학교",
+      "road_address": "서울특별시 구로구 고척로33길 34",
+      "homepage": "http://segok.sen.es.kr",
+      "schoolinfo_code": "S010001229"
+    },
+    {
+      "school_id": "B000001965",
+      "school_name": "서울동구로초등학교",
+      "road_address": "서울특별시 구로구 구로중앙로14길 43",
+      "homepage": "http://dongguro.sen.es.kr",
+      "schoolinfo_code": "S010001220"
+    },
+    {
+      "school_id": "B000001966",
+      "school_name": "서울신구로초등학교",
+      "road_address": "서울특별시 구로구 가마산로27길 69",
+      "homepage": "http://singuro.sen.es.kr",
+      "schoolinfo_code": "S010001231"
+    },
+    {
+      "school_id": "B000001967",
+      "school_name": "서울영서초등학교",
+      "road_address": "서울특별시 구로구 도림로20길 57",
+      "homepage": "http://youngseo.sen.es.kr",
+      "schoolinfo_code": "S010001243"
+    },
+    {
+      "school_id": "B000001968",
+      "school_name": "서울구로남초등학교",
+      "road_address": "서울특별시 구로구 디지털로27길 76",
+      "homepage": "http://guronam.sen.es.kr",
+      "schoolinfo_code": "S010001204"
+    },
+    {
+      "school_id": "B000001969",
+      "school_name": "서울구로초등학교",
+      "road_address": "서울특별시 구로구 구로중앙로27나길 9",
+      "homepage": "http://guro.sen.es.kr",
+      "schoolinfo_code": "S010001205"
+    },
+    {
+      "school_id": "B000001970",
+      "school_name": "서울구일초등학교",
+      "road_address": "서울특별시 구로구 구일로 68",
+      "homepage": "http://guil.sen.es.kr",
+      "schoolinfo_code": "S010001206"
+    },
+    {
+      "school_id": "B000001971",
+      "school_name": "서울신미림초등학교",
+      "road_address": "서울특별시 구로구 신도림로 26",
+      "homepage": "http://sinmirim.sen.es.kr",
+      "schoolinfo_code": "S010001234"
+    },
+    {
+      "school_id": "B000001972",
+      "school_name": "서울신도림초등학교",
+      "road_address": "서울특별시 구로구 신도림로19길 44",
+      "homepage": "http://sindorim.sen.es.kr",
+      "schoolinfo_code": "S010001233"
+    },
+    {
+      "school_id": "B000001973",
+      "school_name": "서울오류초등학교",
+      "road_address": "서울특별시 구로구 경인로19길 39",
+      "homepage": "http://oryu.sen.es.kr",
+      "schoolinfo_code": "S010001249"
+    },
+    {
+      "school_id": "B000001974",
+      "school_name": "서울오정초등학교",
+      "road_address": "서울특별시 구로구 경인로2길 10",
+      "homepage": "http://ojung.sen.es.kr",
+      "schoolinfo_code": "S010001250"
+    },
+    {
+      "school_id": "B000001975",
+      "school_name": "서울오류남초등학교",
+      "road_address": "서울특별시 구로구 서해안로24길 22",
+      "homepage": "http://oryunam.sen.es.kr",
+      "schoolinfo_code": "S010001248"
+    },
+    {
+      "school_id": "B000001976",
+      "school_name": "서울두산초등학교",
+      "road_address": "서울특별시 금천구 범안로11길 3",
+      "homepage": "http://doosan.sen.es.kr",
+      "schoolinfo_code": "S010001221"
+    },
+    {
+      "school_id": "B000001977",
+      "school_name": "서울문교초등학교",
+      "road_address": "서울특별시 금천구 독산로54길 102",
+      "homepage": "http://mungyo.sen.es.kr",
+      "schoolinfo_code": "S010001223"
+    },
+    {
+      "school_id": "B000001978",
+      "school_name": "서울영남초등학교",
+      "road_address": "서울특별시 금천구 문성로 62-15",
+      "homepage": "http://seoulyeongnam.sen.es.kr",
+      "schoolinfo_code": "S010001239"
+    },
+    {
+      "school_id": "B000001979",
+      "school_name": "서울금동초등학교",
+      "road_address": "서울특별시 금천구 금하로30길 53",
+      "homepage": "http://geumdong.sen.es.kr/",
+      "schoolinfo_code": "S010005177"
+    },
+    {
+      "school_id": "B000001980",
+      "school_name": "서울문백초등학교",
+      "road_address": "서울특별시 금천구 시흥대로47길 43-1",
+      "homepage": "https://munbaek.sen.es.kr",
+      "schoolinfo_code": "S010001225"
+    },
+    {
+      "school_id": "B000001981",
+      "school_name": "서울신흥초등학교",
+      "road_address": "서울특별시 금천구 독산로36나길 21",
+      "homepage": "http://sinheung.sen.es.kr",
+      "schoolinfo_code": "S010001236"
+    },
+    {
+      "school_id": "B000001982",
+      "school_name": "서울가산초등학교",
+      "road_address": "서울특별시 금천구 남부순환로 1304-11",
+      "homepage": "http://gasan.sen.es.kr",
+      "schoolinfo_code": "S010001198"
+    },
+    {
+      "school_id": "B000001983",
+      "school_name": "서울정심초등학교",
+      "road_address": "서울특별시 금천구 독산로78다길 89",
+      "homepage": "http://jungshim.sen.es.kr",
+      "schoolinfo_code": "S010001254"
+    },
+    {
+      "school_id": "B000001984",
+      "school_name": "서울문성초등학교",
+      "road_address": "서울특별시 금천구 시흥대로 460",
+      "homepage": "http://munsung.sen.es.kr",
+      "schoolinfo_code": "S010001226"
+    },
+    {
+      "school_id": "B000001985",
+      "school_name": "서울독산초등학교",
+      "road_address": "서울특별시 금천구 시흥대로104길 31",
+      "homepage": "http://doksan.sen.es.kr",
+      "schoolinfo_code": "S010001219"
+    },
+    {
+      "school_id": "B000001986",
+      "school_name": "서울안천초등학교",
+      "road_address": "서울특별시 금천구 한내로 69-16",
+      "homepage": "http://ancheon.sen.es.kr",
+      "schoolinfo_code": "S010001237"
+    },
+    {
+      "school_id": "B000001987",
+      "school_name": "서울금천초등학교",
+      "road_address": "서울특별시 금천구 탑골로5길 60",
+      "homepage": "http://kumcheon.sen.es.kr",
+      "schoolinfo_code": "S010001208"
+    },
+    {
+      "school_id": "B000001988",
+      "school_name": "서울탑동초등학교",
+      "road_address": "서울특별시 금천구 탑골로 47-3",
+      "homepage": "http://topdong.sen.es.kr",
+      "schoolinfo_code": "S010001255"
+    },
+    {
+      "school_id": "B000001989",
+      "school_name": "서울백산초등학교",
+      "road_address": "서울특별시 금천구 시흥대로38길 78",
+      "homepage": "http://backsan.sen.es.kr",
+      "schoolinfo_code": "S010001228"
+    },
+    {
+      "school_id": "B000001990",
+      "school_name": "서울금산초등학교",
+      "road_address": "서울특별시 금천구 시흥대로24길 57",
+      "homepage": "http://gumsan.sen.es.kr",
+      "schoolinfo_code": "S010001207"
+    },
+    {
+      "school_id": "B000001992",
+      "school_name": "서울시흥초등학교",
+      "road_address": "서울특별시 금천구 독산로23길 26",
+      "homepage": "http://siheung.sen.es.kr",
+      "schoolinfo_code": "S010001230"
+    },
+    {
+      "school_id": "B000001993",
+      "school_name": "동광초등학교",
+      "road_address": "서울특별시 금천구 탑골로10길 45",
+      "homepage": "http://donggwang.sen.es.kr ",
+      "schoolinfo_code": "S010001197"
+    },
+    {
+      "school_id": "B000001994",
+      "school_name": "서울여의도초등학교",
+      "road_address": "서울특별시 영등포구 여의대방로 439",
+      "homepage": "http://yeouido.sen.es.kr",
+      "schoolinfo_code": "S010001238"
+    },
+    {
+      "school_id": "B000001995",
+      "school_name": "서울영원초등학교",
+      "road_address": "서울특별시 영등포구 도영로22길 31",
+      "homepage": "http://syw.sen.es.kr",
+      "schoolinfo_code": "S010001245"
+    },
+    {
+      "school_id": "B000001996",
+      "school_name": "서울영중초등학교",
+      "road_address": "서울특별시 영등포구 양산로 185",
+      "homepage": "http://youngjoong.sen.es.kr",
+      "schoolinfo_code": "S010001247"
+    },
+    {
+      "school_id": "B000001997",
+      "school_name": "서울영동초등학교",
+      "road_address": "서울특별시 영등포구 국회대로53길 20",
+      "homepage": "http://youngdong.sen.es.kr",
+      "schoolinfo_code": "S010001240"
+    },
+    {
+      "school_id": "B000001998",
+      "school_name": "서울당서초등학교",
+      "road_address": "서울특별시 영등포구 당산로 187",
+      "homepage": "http://dangseo.sen.es.kr",
+      "schoolinfo_code": "S010001210"
+    },
+    {
+      "school_id": "B000001999",
+      "school_name": "서울도림초등학교",
+      "road_address": "서울특별시 영등포구 가마산로65길 22",
+      "homepage": "http://seouldorim.sen.es.kr",
+      "schoolinfo_code": "S010001217"
+    },
+    {
+      "school_id": "B000002000",
+      "school_name": "서울대동초등학교",
+      "road_address": "서울특별시 영등포구 대림로21길 6",
+      "homepage": "http://daedong.sen.es.kr",
+      "schoolinfo_code": "S010001213"
+    },
+    {
+      "school_id": "B000002001",
+      "school_name": "서울영등포초등학교",
+      "road_address": "서울특별시 영등포구 경인로 756",
+      "homepage": "http://ydp.sen.es.kr",
+      "schoolinfo_code": "S010001241"
+    },
+    {
+      "school_id": "B000002002",
+      "school_name": "서울영문초등학교",
+      "road_address": "서울특별시 영등포구 문래로 56",
+      "homepage": "http://youngmoon.sen.es.kr",
+      "schoolinfo_code": "S010005254"
+    },
+    {
+      "school_id": "B000002003",
+      "school_name": "서울선유초등학교",
+      "road_address": "서울특별시 영등포구 선유로43가길 14",
+      "homepage": "http://seonyu.sen.es.kr",
+      "schoolinfo_code": "S010005372"
+    },
+    {
+      "school_id": "B000002004",
+      "school_name": "서울당중초등학교",
+      "road_address": "서울특별시 영등포구 선유로 131",
+      "homepage": "http://dangjung.sen.es.kr",
+      "schoolinfo_code": "S010001211"
+    },
+    {
+      "school_id": "B000002005",
+      "school_name": "서울도신초등학교",
+      "road_address": "서울특별시 영등포구 도림로53길 32-9",
+      "homepage": "http://doshin.sen.es.kr",
+      "schoolinfo_code": "S010001218"
+    },
+    {
+      "school_id": "B000002006",
+      "school_name": "서울신영초등학교",
+      "road_address": "서울특별시 영등포구 도신로4길 32",
+      "homepage": "http://shinyoung.sen.es.kr",
+      "schoolinfo_code": "S010001235"
+    },
+    {
+      "school_id": "B000002007",
+      "school_name": "서울신대림초등학교",
+      "road_address": "서울특별시 영등포구 대림로8길 25",
+      "homepage": "http://sdr.sen.es.kr",
+      "schoolinfo_code": "S010001232"
+    },
+    {
+      "school_id": "B000002008",
+      "school_name": "서울영림초등학교",
+      "road_address": "서울특별시 영등포구 시흥대로173길 14",
+      "homepage": "http://younglim.sen.es.kr",
+      "schoolinfo_code": "S010001242"
+    },
+    {
+      "school_id": "B000002009",
+      "school_name": "서울문래초등학교",
+      "road_address": "서울특별시 영등포구 문래로 104",
+      "homepage": "http://mullae.sen.es.kr",
+      "schoolinfo_code": "S010001224"
+    },
+    {
+      "school_id": "B000002010",
+      "school_name": "서울영신초등학교",
+      "road_address": "서울특별시 영등포구 도신로60길 23",
+      "homepage": "http://youngsin.sen.es.kr",
+      "schoolinfo_code": "S010001244"
+    },
+    {
+      "school_id": "B000002011",
+      "school_name": "서울대영초등학교",
+      "road_address": "서울특별시 영등포구 신길로23길 43",
+      "homepage": "http://daeyoung.sen.es.kr",
+      "schoolinfo_code": "S010001215"
+    },
+    {
+      "school_id": "B000002012",
+      "school_name": "서울우신초등학교",
+      "road_address": "서울특별시 영등포구 신길로 190",
+      "homepage": "http://usin.sen.es.kr",
+      "schoolinfo_code": "S010001252"
+    },
+    {
+      "school_id": "B000002013",
+      "school_name": "서울대방초등학교",
+      "road_address": "서울특별시 영등포구 여의대방로35길 14",
+      "homepage": "http://daebang.sen.es.kr",
+      "schoolinfo_code": "S010001214"
+    },
+    {
+      "school_id": "B000002014",
+      "school_name": "서울대길초등학교",
+      "road_address": "서울특별시 영등포구 대방천로 206",
+      "homepage": "http://idaegil.sen.es.kr",
+      "schoolinfo_code": "S010001212"
+    },
+    {
+      "school_id": "B000002015",
+      "school_name": "서울당산초등학교",
+      "road_address": "서울특별시 영등포구 선유로55길 32",
+      "homepage": "http://dangsan.sen.es.kr",
+      "schoolinfo_code": "S010001209"
+    },
+    {
+      "school_id": "B000002016",
+      "school_name": "서울윤중초등학교",
+      "road_address": "서울특별시 영등포구 여의나루로2길 14",
+      "homepage": "http://yunjung.sen.es.kr",
+      "schoolinfo_code": "S010001253"
+    },
+    {
+      "school_id": "B000002017",
+      "school_name": "서울초당초등학교",
+      "road_address": "서울특별시 도봉구 해등로32길 11",
+      "homepage": "http://chodang.sen.es.kr",
+      "schoolinfo_code": "S010001788"
+    },
+    {
+      "school_id": "B000002018",
+      "school_name": "서울신학초등학교",
+      "road_address": "서울특별시 도봉구 방학로 247-21",
+      "homepage": "http://seoulsinhak.sen.es.kr",
+      "schoolinfo_code": "S010001763"
+    },
+    {
+      "school_id": "B000002019",
+      "school_name": "서울창경초등학교",
+      "road_address": "서울특별시 도봉구 도봉로129길 54",
+      "homepage": "http://changkyung.sen.es.kr",
+      "schoolinfo_code": "S010001781"
+    },
+    {
+      "school_id": "B000002020",
+      "school_name": "서울창림초등학교",
+      "road_address": "서울특별시 도봉구 덕릉로63길 46",
+      "homepage": "http://changlim.sen.es.kr",
+      "schoolinfo_code": "S010001784"
+    },
+    {
+      "school_id": "B000002021",
+      "school_name": "서울누원초등학교",
+      "road_address": "서울특별시 도봉구 마들로 859-44",
+      "homepage": "http://nuwon.sen.es.kr",
+      "schoolinfo_code": "S010001741"
+    },
+    {
+      "school_id": "B000002022",
+      "school_name": "서울오봉초등학교",
+      "road_address": "서울특별시 도봉구 시루봉로 285",
+      "homepage": "https://obong.sen.es.kr",
+      "schoolinfo_code": "S010001768"
+    },
+    {
+      "school_id": "B000002023",
+      "school_name": "서울도봉초등학교",
+      "road_address": "서울특별시 도봉구 도봉로173길 96",
+      "homepage": "http://dobong.sen.es.kr",
+      "schoolinfo_code": "S010001743"
+    },
+    {
+      "school_id": "B000002024",
+      "school_name": "서울방학초등학교",
+      "road_address": "서울특별시 도봉구 도당로9길 34",
+      "homepage": "http://banghakcho.sen.es.kr",
+      "schoolinfo_code": "S010001745"
+    },
+    {
+      "school_id": "B000002025",
+      "school_name": "서울신방학초등학교",
+      "road_address": "서울특별시 도봉구 시루봉로 173",
+      "homepage": "https://sbh.sen.es.kr",
+      "schoolinfo_code": "S010001760"
+    },
+    {
+      "school_id": "B000002026",
+      "school_name": "서울창도초등학교",
+      "road_address": "서울특별시 도봉구 방학로 32-28",
+      "homepage": "http://changdo.sen.es.kr",
+      "schoolinfo_code": "S010001782"
+    },
+    {
+      "school_id": "B000002027",
+      "school_name": "서울숭미초등학교",
+      "road_address": "서울특별시 도봉구 노해로 179",
+      "homepage": "http://sungmi.sen.es.kr",
+      "schoolinfo_code": "S010001758"
+    },
+    {
+      "school_id": "B000002028",
+      "school_name": "서울쌍문초등학교",
+      "road_address": "서울특별시 도봉구 우이천로 360",
+      "homepage": "http://ssangmun.sen.es.kr",
+      "schoolinfo_code": "S010001765"
+    },
+    {
+      "school_id": "B000002029",
+      "school_name": "서울백운초등학교",
+      "road_address": "서울특별시 도봉구 삼양로146길 17",
+      "homepage": "http://s-baegun.sen.es.kr",
+      "schoolinfo_code": "S010001746"
+    },
+    {
+      "school_id": "B000002030",
+      "school_name": "서울월천초등학교",
+      "road_address": "서울특별시 도봉구 노해로70길 96",
+      "homepage": "http://wol.sen.es.kr",
+      "schoolinfo_code": "S010001774"
+    },
+    {
+      "school_id": "B000002031",
+      "school_name": "서울자운초등학교",
+      "road_address": "서울특별시 도봉구 마들로13길 166",
+      "homepage": "http://jawoon.sen.es.kr",
+      "schoolinfo_code": "S010001776"
+    },
+    {
+      "school_id": "B000002032",
+      "school_name": "서울가인초등학교",
+      "road_address": "서울특별시 도봉구 도봉로136다길 4",
+      "homepage": "http://seoulgain.sen.es.kr",
+      "schoolinfo_code": "S010005215"
+    },
+    {
+      "school_id": "B000002033",
+      "school_name": "서울창동초등학교",
+      "road_address": "서울특별시 도봉구 해등로16길 81",
+      "homepage": "changdong-s.sen.es.kr",
+      "schoolinfo_code": "S010001783"
+    },
+    {
+      "school_id": "B000002034",
+      "school_name": "서울창원초등학교",
+      "road_address": "서울특별시 도봉구 해등로 103",
+      "homepage": "http://changwon.sen.es.kr",
+      "schoolinfo_code": "S010001785"
+    },
+    {
+      "school_id": "B000002035",
+      "school_name": "서울창일초등학교",
+      "road_address": "서울특별시 도봉구 노해로66길 84",
+      "homepage": "http://changil.sen.es.kr",
+      "schoolinfo_code": "S010001786"
+    },
+    {
+      "school_id": "B000002036",
+      "school_name": "서울신창초등학교",
+      "road_address": "서울특별시 도봉구 덕릉로60길 93",
+      "homepage": "http://shinchang.sen.es.kr",
+      "schoolinfo_code": "S010001762"
+    },
+    {
+      "school_id": "B000002037",
+      "school_name": "서울신화초등학교",
+      "road_address": "서울특별시 도봉구 우이천로 120",
+      "homepage": "http://sinhwa.sen.es.kr",
+      "schoolinfo_code": "S010001764"
+    },
+    {
+      "school_id": "B000002038",
+      "school_name": "동북초등학교",
+      "road_address": "서울특별시 도봉구 시루봉로 53",
+      "homepage": "http://dongbuk.sen.es.kr",
+      "schoolinfo_code": "S010001733"
+    },
+    {
+      "school_id": "B000002039",
+      "school_name": "한신초등학교",
+      "road_address": "서울특별시 도봉구 노해로49길 69",
+      "homepage": "https://ihansin.sen.es.kr",
+      "schoolinfo_code": "S010001794"
+    },
+    {
+      "school_id": "B000002040",
+      "school_name": "서울신계초등학교",
+      "road_address": "서울특별시 노원구 초안산로 29",
+      "homepage": "http://singye.sen.es.kr",
+      "schoolinfo_code": "S010001759"
+    },
+    {
+      "school_id": "B000002041",
+      "school_name": "서울녹천초등학교",
+      "road_address": "서울특별시 노원구 마들로3길 34",
+      "homepage": "http://nokcheon.sen.es.kr",
+      "schoolinfo_code": "S010001740"
+    },
+    {
+      "school_id": "B000002042",
+      "school_name": "서울덕암초등학교",
+      "road_address": "서울특별시 노원구 덕릉로112길 68",
+      "homepage": "http://deokam.sen.es.kr",
+      "schoolinfo_code": "S010005178"
+    },
+    {
+      "school_id": "B000002043",
+      "school_name": "서울온곡초등학교",
+      "road_address": "서울특별시 노원구 한글비석로52길 59",
+      "homepage": "http://ongok.sen.es.kr",
+      "schoolinfo_code": "S010001769"
+    },
+    {
+      "school_id": "B000002044",
+      "school_name": "서울상원초등학교",
+      "road_address": "서울특별시 노원구 한글비석로54길 119",
+      "homepage": "http://sangwon.sen.es.kr",
+      "schoolinfo_code": "S010001752"
+    },
+    {
+      "school_id": "B000002045",
+      "school_name": "서울불암초등학교",
+      "road_address": "서울특별시 노원구 중계로 178",
+      "homepage": "http://bulam.sen.es.kr",
+      "schoolinfo_code": "S010001747"
+    },
+    {
+      "school_id": "B000002046",
+      "school_name": "서울수암초등학교",
+      "road_address": "서울특별시 노원구 중계로12길 9",
+      "homepage": "http://suam.sen.es.kr",
+      "schoolinfo_code": "S010001757"
+    },
+    {
+      "school_id": "B000002047",
+      "school_name": "서울중계초등학교",
+      "road_address": "서울특별시 노원구 한글비석로19길 39",
+      "homepage": "http://jg.sen.es.kr",
+      "schoolinfo_code": "S010001777"
+    },
+    {
+      "school_id": "B000002048",
+      "school_name": "서울연촌초등학교",
+      "road_address": "서울특별시 노원구 공릉로58길 36",
+      "homepage": "http://yeonchon.sen.es.kr",
+      "schoolinfo_code": "S010001767"
+    },
+    {
+      "school_id": "B000002049",
+      "school_name": "서울태랑초등학교",
+      "road_address": "서울특별시 노원구 화랑로51나길 31",
+      "homepage": "http://taerang.sen.es.kr",
+      "schoolinfo_code": "S010001789"
+    },
+    {
+      "school_id": "B000002050",
+      "school_name": "서울태릉초등학교",
+      "road_address": "서울특별시 노원구 노원로1길 36",
+      "homepage": "http://taereung.sen.es.kr",
+      "schoolinfo_code": "S010001790"
+    },
+    {
+      "school_id": "B000002051",
+      "school_name": "서울공연초등학교",
+      "road_address": "서울특별시 노원구 동일로192가길 16",
+      "homepage": "http://gongyeon.sen.es.kr",
+      "schoolinfo_code": "S010001737"
+    },
+    {
+      "school_id": "B000002052",
+      "school_name": "서울용원초등학교",
+      "road_address": "서울특별시 노원구 섬밭로 144",
+      "homepage": "http://yong1.sen.es.kr",
+      "schoolinfo_code": "S010001771"
+    },
+    {
+      "school_id": "B000002053",
+      "school_name": "서울공릉초등학교",
+      "road_address": "서울특별시 노원구 동일로173길 12",
+      "homepage": "http://gongrung.sen.es.kr",
+      "schoolinfo_code": "S010001736"
+    },
+    {
+      "school_id": "B000002054",
+      "school_name": "서울신상계초등학교",
+      "road_address": "서울특별시 노원구 상계로 267",
+      "homepage": "http://sinsanggye.sen.es.kr",
+      "schoolinfo_code": "S010001761"
+    },
+    {
+      "school_id": "B000002055",
+      "school_name": "서울상계초등학교",
+      "road_address": "서울특별시 노원구 상계로9길 39",
+      "homepage": "http://sanggye.sen.es.kr",
+      "schoolinfo_code": "S010001749"
+    },
+    {
+      "school_id": "B000002056",
+      "school_name": "서울계상초등학교",
+      "road_address": "서울특별시 노원구 한글비석로41가길 24",
+      "homepage": "http://kyesang.sen.es.kr",
+      "schoolinfo_code": "S010001735"
+    },
+    {
+      "school_id": "B000002057",
+      "school_name": "서울상곡초등학교",
+      "road_address": "서울특별시 노원구 노원로38길 34",
+      "homepage": "http://sanggok.sen.es.kr",
+      "schoolinfo_code": "S010001750"
+    },
+    {
+      "school_id": "B000002058",
+      "school_name": "서울상월초등학교",
+      "road_address": "서울특별시 노원구 동일로221길 27",
+      "homepage": "sw.sen.es.kr",
+      "schoolinfo_code": "S010001753"
+    },
+    {
+      "school_id": "B000002059",
+      "school_name": "서울당현초등학교",
+      "road_address": "서울특별시 노원구 동일로213길 52",
+      "homepage": "http://danghyeon.sen.es.kr",
+      "schoolinfo_code": "S010001742"
+    },
+    {
+      "school_id": "B000002060",
+      "school_name": "서울상천초등학교",
+      "road_address": "서울특별시 노원구 덕릉로 443",
+      "homepage": "http://sangcheon.sen.es.kr",
+      "schoolinfo_code": "S010001754"
+    },
+    {
+      "school_id": "B000002061",
+      "school_name": "서울동일초등학교",
+      "road_address": "서울특별시 노원구 한글비석로 566",
+      "homepage": "http://dongil.sen.es.kr/",
+      "schoolinfo_code": "S010001744"
+    },
+    {
+      "school_id": "B000002062",
+      "school_name": "서울노원초등학교",
+      "road_address": "서울특별시 노원구 동일로230나길 32",
+      "homepage": "http://nowon.sen.es.kr",
+      "schoolinfo_code": "S010001738"
+    },
+    {
+      "school_id": "B000002063",
+      "school_name": "서울노일초등학교",
+      "road_address": "서울특별시 노원구 동일로 1625",
+      "homepage": "http://noil.sen.es.kr",
+      "schoolinfo_code": "S010001739"
+    },
+    {
+      "school_id": "B000002064",
+      "school_name": "서울수락초등학교",
+      "road_address": "서울특별시 노원구 동일로 1745",
+      "homepage": "http://surak.sen.es.kr",
+      "schoolinfo_code": "S010001756"
+    },
+    {
+      "school_id": "B000002065",
+      "school_name": "서울한천초등학교",
+      "road_address": "서울특별시 노원구 마들로 45",
+      "homepage": "https://hancheon.sen.es.kr",
+      "schoolinfo_code": "S010001791"
+    },
+    {
+      "school_id": "B000002066",
+      "school_name": "서울연지초등학교",
+      "road_address": "서울특별시 노원구 월계로55길 48",
+      "homepage": "http://seoulyeonji.sen.es.kr",
+      "schoolinfo_code": "S010001766"
+    },
+    {
+      "school_id": "B000002067",
+      "school_name": "서울선곡초등학교",
+      "road_address": "서울특별시 노원구 광운로2길 1",
+      "homepage": "http://sungok.sen.es.kr",
+      "schoolinfo_code": "S010001755"
+    },
+    {
+      "school_id": "B000002068",
+      "school_name": "서울월계초등학교",
+      "road_address": "서울특별시 노원구 월계로45가길 10",
+      "homepage": "http://wolgye.sen.es.kr",
+      "schoolinfo_code": "S010001773"
+    },
+    {
+      "school_id": "B000002069",
+      "school_name": "서울원광초등학교",
+      "road_address": "서울특별시 노원구 덕릉로76길 18",
+      "homepage": "http://wonkwang.sen.es.kr",
+      "schoolinfo_code": "S010001772"
+    },
+    {
+      "school_id": "B000002070",
+      "school_name": "서울을지초등학교",
+      "road_address": "서울특별시 노원구 중계로 239",
+      "homepage": "http://eulji.sen.es.kr",
+      "schoolinfo_code": "S010001775"
+    },
+    {
+      "school_id": "B000002071",
+      "school_name": "서울중원초등학교",
+      "road_address": "서울특별시 노원구 섬밭로 316",
+      "homepage": "http://jungwon.sen.es.kr",
+      "schoolinfo_code": "S010001778"
+    },
+    {
+      "school_id": "B000002072",
+      "school_name": "서울청계초등학교",
+      "road_address": "서울특별시 노원구 공릉로 431",
+      "homepage": "http://scg.sen.es.kr",
+      "schoolinfo_code": "S010001787"
+    },
+    {
+      "school_id": "B000002073",
+      "school_name": "서울용동초등학교",
+      "road_address": "서울특별시 노원구 한글비석로1길 81-11",
+      "homepage": "http://yongdong.sen.es.kr",
+      "schoolinfo_code": "S010001770"
+    },
+    {
+      "school_id": "B000002074",
+      "school_name": "서울중현초등학교",
+      "road_address": "서울특별시 노원구 섬밭로 181",
+      "homepage": "http://joonghyun.sen.es.kr",
+      "schoolinfo_code": "S010001780"
+    },
+    {
+      "school_id": "B000002075",
+      "school_name": "서울중평초등학교",
+      "road_address": "서울특별시 노원구 섬밭로 241",
+      "homepage": "http://jungpyong.sen.es.kr",
+      "schoolinfo_code": "S010001779"
+    },
+    {
+      "school_id": "B000002076",
+      "school_name": "서울상경초등학교",
+      "road_address": "서울특별시 노원구 수락산로 237",
+      "homepage": "http://sanggyeong.sen.es.kr",
+      "schoolinfo_code": "S010001748"
+    },
+    {
+      "school_id": "B000002077",
+      "school_name": "서울상수초등학교",
+      "road_address": "서울특별시 노원구 동일로216길 66",
+      "homepage": "http://sangsoo.sen.es.kr",
+      "schoolinfo_code": "S010001751"
+    },
+    {
+      "school_id": "B000002078",
+      "school_name": "청원초등학교",
+      "road_address": "서울특별시 노원구 한글비석로 506",
+      "homepage": "http://cheongwon.sen.es.kr",
+      "schoolinfo_code": "S010001792"
+    },
+    {
+      "school_id": "B000002079",
+      "school_name": "태강삼육초등학교",
+      "road_address": "서울특별시 노원구 화랑로 815",
+      "homepage": "http://taegang.sen.es.kr",
+      "schoolinfo_code": "S010001793"
+    },
+    {
+      "school_id": "B000002080",
+      "school_name": "화랑초등학교",
+      "road_address": "서울특별시 노원구 화랑로 621",
+      "homepage": "http://hwarang-s.sen.es.kr",
+      "schoolinfo_code": "S010001795"
+    },
+    {
+      "school_id": "B000002081",
+      "school_name": "상명초등학교",
+      "road_address": "서울특별시 노원구 덕릉로 541",
+      "homepage": "https://smcho.sen.es.kr/",
+      "schoolinfo_code": "S010001734"
+    },
+    {
+      "school_id": "B000002082",
+      "school_name": "서울대학교사범대학부설초등학교",
+      "road_address": "서울특별시 종로구 대학로 64",
+      "homepage": "http://snu.sen.es.kr",
+      "schoolinfo_code": "S000003563"
+    },
+    {
+      "school_id": "B000002083",
+      "school_name": "서울청운초등학교",
+      "road_address": "서울특별시 종로구 자하문로 105",
+      "homepage": "http://chungwoon.sen.es.kr",
+      "schoolinfo_code": "S010002394"
+    },
+    {
+      "school_id": "B000002084",
+      "school_name": "서울매동초등학교",
+      "road_address": "서울특별시 종로구 사직로9길 19",
+      "homepage": "http://maedong.sen.es.kr",
+      "schoolinfo_code": "S010002377"
+    },
+    {
+      "school_id": "B000002085",
+      "school_name": "서울재동초등학교",
+      "road_address": "서울특별시 종로구 북촌로4길 7",
+      "homepage": "http://jaedong.sen.es.kr",
+      "schoolinfo_code": "S010002391"
+    },
+    {
+      "school_id": "B000002086",
+      "school_name": "서울교동초등학교",
+      "road_address": "서울특별시 종로구 삼일대로 446",
+      "homepage": "http://kyodong.sen.es.kr",
+      "schoolinfo_code": "S010002370"
+    },
+    {
+      "school_id": "B000002087",
+      "school_name": "서울혜화초등학교",
+      "road_address": "서울특별시 종로구 혜화로 32",
+      "homepage": "http://hyehwa.sen.es.kr",
+      "schoolinfo_code": "S010002399"
+    },
+    {
+      "school_id": "B000002088",
+      "school_name": "서울명신초등학교",
+      "road_address": "서울특별시 종로구 낙산길 250",
+      "homepage": "http://myungshin.sen.es.kr",
+      "schoolinfo_code": "S010002378"
+    },
+    {
+      "school_id": "B000002089",
+      "school_name": "서울독립문초등학교",
+      "road_address": "서울특별시 종로구 통일로12길 23",
+      "homepage": "http://dnm.sen.es.kr",
+      "schoolinfo_code": "S010002376"
+    },
+    {
+      "school_id": "B000002091",
+      "school_name": "서울세검정초등학교",
+      "road_address": "서울특별시 종로구 세검정로9길 1",
+      "homepage": "http://segumjung.sen.es.kr",
+      "schoolinfo_code": "S010002383"
+    },
+    {
+      "school_id": "B000002092",
+      "school_name": "서울창신초등학교",
+      "road_address": "서울특별시 종로구 지봉로 73",
+      "homepage": "http://chang-shin.sen.es.kr",
+      "schoolinfo_code": "S010002392"
+    },
+    {
+      "school_id": "B000002093",
+      "school_name": "서울효제초등학교",
+      "road_address": "서울특별시 종로구 대학로 12",
+      "homepage": "https://hyoje.sen.es.kr/",
+      "schoolinfo_code": "S010002400"
+    },
+    {
+      "school_id": "B000002094",
+      "school_name": "운현초등학교",
+      "road_address": "서울특별시 종로구 삼일대로 460",
+      "homepage": "http://unhyun.sen.es.kr",
+      "schoolinfo_code": "S010002405"
+    },
+    {
+      "school_id": "B000002095",
+      "school_name": "상명대학교사범대학부속초등학교",
+      "road_address": "서울특별시 종로구 홍지문2길 1",
+      "homepage": "http://sangmyung-ae.sen.es.kr",
+      "schoolinfo_code": "S010002368"
+    },
+    {
+      "school_id": "B000002096",
+      "school_name": "서울남산초등학교",
+      "road_address": "서울특별시 중구 퇴계로22길 17",
+      "homepage": "https://namsan.sen.es.kr",
+      "schoolinfo_code": "S010002372"
+    },
+    {
+      "school_id": "B000002097",
+      "school_name": "서울덕수초등학교",
+      "road_address": "서울특별시 중구 덕수궁길 140",
+      "homepage": "http://deoksoo.sen.es.kr",
+      "schoolinfo_code": "S010002375"
+    },
+    {
+      "school_id": "B000002098",
+      "school_name": "서울봉래초등학교",
+      "road_address": "서울특별시 중구 손기정로 73",
+      "homepage": "http://seoul-bongrae.sen.es.kr",
+      "schoolinfo_code": "S010002380"
+    },
+    {
+      "school_id": "B000002099",
+      "school_name": "서울광희초등학교",
+      "road_address": "서울특별시 중구 다산로 269",
+      "homepage": "http://gwanghee.sen.es.kr",
+      "schoolinfo_code": "S010002369"
+    },
+    {
+      "school_id": "B000002100",
+      "school_name": "서울장충초등학교",
+      "road_address": "서울특별시 중구 청구로17길 40",
+      "homepage": "http://jangchung.sen.es.kr",
+      "schoolinfo_code": "S010002390"
+    },
+    {
+      "school_id": "B000002101",
+      "school_name": "서울신당초등학교",
+      "road_address": "서울특별시 중구 난계로 141",
+      "homepage": "http://shindang.sen.es.kr",
+      "schoolinfo_code": "S010005374"
+    },
+    {
+      "school_id": "B000002102",
+      "school_name": "서울흥인초등학교",
+      "road_address": "서울특별시 중구 청구로6길 11",
+      "homepage": "http://heungin.sen.es.kr",
+      "schoolinfo_code": "S010002402"
+    },
+    {
+      "school_id": "B000002103",
+      "school_name": "서울청구초등학교",
+      "road_address": "서울특별시 중구 다산로 170",
+      "homepage": "http://cheonggu.sen.es.kr",
+      "schoolinfo_code": "S010002393"
+    },
+    {
+      "school_id": "B000002104",
+      "school_name": "서울충무초등학교",
+      "road_address": "서울특별시 중구 퇴계로50길 13",
+      "homepage": "http://seoulchungmu.sen.es.kr",
+      "schoolinfo_code": "S010002396"
+    },
+    {
+      "school_id": "B000002105",
+      "school_name": "리라초등학교",
+      "road_address": "서울특별시 중구 소파로2길 7",
+      "homepage": "http://www.lila.es.kr",
+      "schoolinfo_code": "S010002367"
+    },
+    {
+      "school_id": "B000002106",
+      "school_name": "숭의초등학교",
+      "road_address": "서울특별시 중구 소파로2길 10",
+      "homepage": "http://soongeui.sen.es.kr",
+      "schoolinfo_code": "S010002403"
+    },
+    {
+      "school_id": "B000002107",
+      "school_name": "동산초등학교",
+      "road_address": "서울특별시 중구 매봉18길 109",
+      "homepage": "http://seoul-dongsan.sen.es.kr",
+      "schoolinfo_code": "S010002366"
+    },
+    {
+      "school_id": "B000002108",
+      "school_name": "서울용산초등학교",
+      "road_address": "서울특별시 용산구 한강대로57길 33",
+      "homepage": "http://yongsan.sen.es.kr",
+      "schoolinfo_code": "S010002386"
+    },
+    {
+      "school_id": "B000002109",
+      "school_name": "서울원효초등학교",
+      "road_address": "서울특별시 용산구 효창원로13길 38",
+      "homepage": "http://wonhyo.sen.es.kr",
+      "schoolinfo_code": "S010002388"
+    },
+    {
+      "school_id": "B000002110",
+      "school_name": "서울청파초등학교",
+      "road_address": "서울특별시 용산구 효창원로 228",
+      "homepage": "http://s-cheongpa.sen.es.kr",
+      "schoolinfo_code": "S010002395"
+    },
+    {
+      "school_id": "B000002111",
+      "school_name": "서울후암초등학교",
+      "road_address": "서울특별시 용산구 두텁바위로 140",
+      "homepage": "http://huam.sen.es.kr",
+      "schoolinfo_code": "S010002401"
+    },
+    {
+      "school_id": "B000002112",
+      "school_name": "서울이태원초등학교",
+      "road_address": "서울특별시 용산구 녹사평대로40길 19",
+      "homepage": "http://itaewon.sen.es.kr",
+      "schoolinfo_code": "S010002389"
+    },
+    {
+      "school_id": "B000002113",
+      "school_name": "서울서빙고초등학교",
+      "road_address": "서울특별시 용산구 서빙고로51길 14",
+      "homepage": "http://seobinggo.sen.es.kr",
+      "schoolinfo_code": "S010002382"
+    },
+    {
+      "school_id": "B000002114",
+      "school_name": "서울용암초등학교",
+      "road_address": "서울특별시 용산구 녹사평대로60길 39",
+      "homepage": "http://yongam.sen.es.kr",
+      "schoolinfo_code": "S010002387"
+    },
+    {
+      "school_id": "B000002116",
+      "school_name": "서울한강초등학교",
+      "road_address": "서울특별시 용산구 한강대로14길 9",
+      "homepage": "http://hangang.sen.es.kr",
+      "schoolinfo_code": "S010002397"
+    },
+    {
+      "school_id": "B000002117",
+      "school_name": "서울한남초등학교",
+      "road_address": "서울특별시 용산구 한남대로 112",
+      "homepage": "http://hannam.sen.es.kr",
+      "schoolinfo_code": "S010002398"
+    },
+    {
+      "school_id": "B000002118",
+      "school_name": "서울금양초등학교",
+      "road_address": "서울특별시 용산구 효창원로 137",
+      "homepage": "http://keumyang.sen.es.kr",
+      "schoolinfo_code": "S010002371"
+    },
+    {
+      "school_id": "B000002119",
+      "school_name": "서울삼광초등학교",
+      "road_address": "서울특별시 용산구 두텁바위로1나길 19",
+      "homepage": "http://seoulsamkwang.sen.es.kr",
+      "schoolinfo_code": "S010002381"
+    },
+    {
+      "school_id": "B000002120",
+      "school_name": "서울남정초등학교",
+      "road_address": "서울특별시 용산구 원효로64길 17-10",
+      "homepage": "http://seoul-nj.sen.es.kr",
+      "schoolinfo_code": "S010002373"
+    },
+    {
+      "school_id": "B000002121",
+      "school_name": "서울신용산초등학교",
+      "road_address": "서울특별시 용산구 이촌로 255",
+      "homepage": "http://sys.sen.es.kr",
+      "schoolinfo_code": "S010002385"
+    },
+    {
+      "school_id": "B000002122",
+      "school_name": "신광초등학교",
+      "road_address": "서울특별시 용산구 청파로 263",
+      "homepage": "https://skes.sen.es.kr/",
+      "schoolinfo_code": "S010002404"
+    },
+    {
+      "school_id": "B000002123",
+      "school_name": "서울방이초등학교",
+      "road_address": "서울특별시 송파구 위례성대로10길 4",
+      "homepage": "http://bangi.sen.es.kr",
+      "schoolinfo_code": "S010000921"
+    },
+    {
+      "school_id": "B000002124",
+      "school_name": "서울가락초등학교",
+      "road_address": "서울특별시 송파구 송파대로37길 45",
+      "homepage": "https://garak.sen.es.kr/",
+      "schoolinfo_code": "S010000898"
+    },
+    {
+      "school_id": "B000002125",
+      "school_name": "서울평화초등학교",
+      "road_address": "서울특별시 송파구 송파대로26길 22",
+      "homepage": "http://pyunghwa.sen.es.kr",
+      "schoolinfo_code": "S010000951"
+    },
+    {
+      "school_id": "B000002126",
+      "school_name": "서울중대초등학교",
+      "road_address": "서울특별시 송파구 송파대로36길 8",
+      "homepage": "http://joongdae.sen.es.kr",
+      "schoolinfo_code": "S010000946"
+    },
+    {
+      "school_id": "B000002127",
+      "school_name": "서울문덕초등학교",
+      "road_address": "서울특별시 송파구 송이로34길 60",
+      "homepage": "http://moondeok.sen.es.kr",
+      "schoolinfo_code": "S010000918"
+    },
+    {
+      "school_id": "B000002128",
+      "school_name": "서울문정초등학교",
+      "road_address": "서울특별시 송파구 문정로5길 20",
+      "homepage": "http://moonjung.sen.es.kr",
+      "schoolinfo_code": "S010000919"
+    },
+    {
+      "school_id": "B000002129",
+      "school_name": "서울가원초등학교",
+      "road_address": "서울특별시 송파구 중대로4길 8",
+      "homepage": "http://gawon.sen.es.kr",
+      "schoolinfo_code": "S010000899"
+    },
+    {
+      "school_id": "B000002130",
+      "school_name": "서울문현초등학교",
+      "road_address": "서울특별시 송파구 충민로 137",
+      "homepage": "http://s-mh.sen.es.kr",
+      "schoolinfo_code": "S010005386"
+    },
+    {
+      "school_id": "B000002131",
+      "school_name": "서울잠일초등학교",
+      "road_address": "서울특별시 송파구 올림픽로 95",
+      "homepage": "http://jamil.sen.es.kr",
+      "schoolinfo_code": "S010000944"
+    },
+    {
+      "school_id": "B000002132",
+      "school_name": "서울잠신초등학교",
+      "road_address": "서울특별시 송파구 잠실로 32",
+      "homepage": "http://jamshin.sen.es.kr",
+      "schoolinfo_code": "S010000942"
+    },
+    {
+      "school_id": "B000002133",
+      "school_name": "서울송전초등학교",
+      "road_address": "서울특별시 송파구 석촌호수로 159",
+      "homepage": "http://ssj.sen.es.kr",
+      "schoolinfo_code": "S010000930"
+    },
+    {
+      "school_id": "B000002134",
+      "school_name": "서울잠동초등학교",
+      "road_address": "서울특별시 송파구 올림픽로35길 122",
+      "homepage": "http://jamdong.sen.es.kr",
+      "schoolinfo_code": "S010000941"
+    },
+    {
+      "school_id": "B000002135",
+      "school_name": "서울잠실초등학교",
+      "road_address": "서울특별시 송파구 올림픽로35길 20",
+      "homepage": "http://jamsil.sen.es.kr",
+      "schoolinfo_code": "S010000943"
+    },
+    {
+      "school_id": "B000002136",
+      "school_name": "서울잠현초등학교",
+      "road_address": "서울특별시 송파구 올림픽로37길 109",
+      "homepage": "http://jamhyun.sen.es.kr",
+      "schoolinfo_code": "S010005504"
+    },
+    {
+      "school_id": "B000002137",
+      "school_name": "서울신가초등학교",
+      "road_address": "서울특별시 송파구 송이로 75",
+      "homepage": "http://singa.sen.es.kr",
+      "schoolinfo_code": "S010000932"
+    },
+    {
+      "school_id": "B000002138",
+      "school_name": "서울가주초등학교",
+      "road_address": "서울특별시 송파구 오금로40길 37",
+      "homepage": "http://gaju.sen.es.kr",
+      "schoolinfo_code": "S010000900"
+    },
+    {
+      "school_id": "B000002139",
+      "school_name": "서울가동초등학교",
+      "road_address": "서울특별시 송파구 중대로20길 47",
+      "homepage": "http://gadong.sen.es.kr",
+      "schoolinfo_code": "S010000897"
+    },
+    {
+      "school_id": "B000002140",
+      "school_name": "서울영풍초등학교",
+      "road_address": "서울특별시 송파구 오금로57길 15",
+      "homepage": "http://youngpung.sen.es.kr",
+      "schoolinfo_code": "S010000937"
+    },
+    {
+      "school_id": "B000002141",
+      "school_name": "서울거원초등학교",
+      "road_address": "서울특별시 송파구 양산로2길 26",
+      "homepage": "http://guhwon.sen.es.kr",
+      "schoolinfo_code": "S010000905"
+    },
+    {
+      "school_id": "B000002142",
+      "school_name": "서울남천초등학교",
+      "road_address": "서울특별시 송파구 성내천로 207",
+      "homepage": "http://s-namcheon.sen.es.kr",
+      "schoolinfo_code": "S010000910"
+    },
+    {
+      "school_id": "B000002143",
+      "school_name": "서울마천초등학교",
+      "road_address": "서울특별시 송파구 마천로61다길 24",
+      "homepage": "http://smacheon.sen.es.kr",
+      "schoolinfo_code": "S010000913"
+    },
+    {
+      "school_id": "B000002144",
+      "school_name": "서울오륜초등학교",
+      "road_address": "서울특별시 송파구 양재대로 1196",
+      "homepage": "http://oryun.sen.es.kr",
+      "schoolinfo_code": "S010000939"
+    },
+    {
+      "school_id": "B000002145",
+      "school_name": "서울세륜초등학교",
+      "road_address": "서울특별시 송파구 양재대로 1264",
+      "homepage": "http://seryun.sen.es.kr",
+      "schoolinfo_code": "S010000929"
+    },
+    {
+      "school_id": "B000002146",
+      "school_name": "서울방산초등학교",
+      "road_address": "서울특별시 송파구 오금로27길 42",
+      "homepage": "http://sbangsan.sen.es.kr",
+      "schoolinfo_code": "S010000920"
+    },
+    {
+      "school_id": "B000002147",
+      "school_name": "서울삼전초등학교",
+      "road_address": "서울특별시 송파구 백제고분로28길 19",
+      "homepage": "http://samjeon.sen.es.kr",
+      "schoolinfo_code": "S010000922"
+    },
+    {
+      "school_id": "B000002148",
+      "school_name": "서울석촌초등학교",
+      "road_address": "서울특별시 송파구 가락로11길 26",
+      "homepage": "http://seokchon.sen.es.kr",
+      "schoolinfo_code": "S010000924"
+    },
+    {
+      "school_id": "B000002149",
+      "school_name": "서울송파초등학교",
+      "road_address": "서울특별시 송파구 백제고분로 400",
+      "homepage": "http://songpa.sen.es.kr",
+      "schoolinfo_code": "S010000931"
+    },
+    {
+      "school_id": "B000002150",
+      "school_name": "서울오금초등학교",
+      "road_address": "서울특별시 송파구 위례성대로22길 11",
+      "homepage": "http://ogum.sen.es.kr",
+      "schoolinfo_code": "S010000938"
+    },
+    {
+      "school_id": "B000002151",
+      "school_name": "서울거여초등학교",
+      "road_address": "서울특별시 송파구 마천로25길 18",
+      "homepage": "http://geo-yeo.sen.es.kr",
+      "schoolinfo_code": "S010000904"
+    },
+    {
+      "school_id": "B000002152",
+      "school_name": "서울개롱초등학교",
+      "road_address": "서울특별시 송파구 문정로 211",
+      "homepage": "http://gaerong.sen.es.kr",
+      "schoolinfo_code": "S010005503"
+    },
+    {
+      "school_id": "B000002153",
+      "school_name": "서울잠전초등학교",
+      "road_address": "서울특별시 송파구 올림픽로12길 51",
+      "homepage": "http://jamjeon.sen.es.kr",
+      "schoolinfo_code": "S010000945"
+    },
+    {
+      "school_id": "B000002154",
+      "school_name": "서울풍납초등학교",
+      "road_address": "서울특별시 송파구 풍성로 43",
+      "homepage": "http://poongnap.sen.es.kr",
+      "schoolinfo_code": "S010000952"
+    },
+    {
+      "school_id": "B000002155",
+      "school_name": "서울토성초등학교",
+      "road_address": "서울특별시 송파구 풍성로20길 44",
+      "homepage": "http://stosung.sen.es.kr",
+      "schoolinfo_code": "S010000950"
+    },
+    {
+      "school_id": "B000002156",
+      "school_name": "서울풍성초등학교",
+      "road_address": "서울특별시 송파구 강동대로2길 13",
+      "homepage": "http://poongsung.sen.es.kr",
+      "schoolinfo_code": "S010000953"
+    },
+    {
+      "school_id": "B000002157",
+      "school_name": "서울아주초등학교",
+      "road_address": "서울특별시 송파구 올림픽로4길 59",
+      "homepage": "http://aju.sen.es.kr",
+      "schoolinfo_code": "S010000936"
+    },
+    {
+      "school_id": "B000002158",
+      "school_name": "서울버들초등학교",
+      "road_address": "서울특별시 송파구 석촌호수로 81",
+      "homepage": "https://seoulbeodle.sen.es.kr/",
+      "schoolinfo_code": "S010005384"
+    },
+    {
+      "school_id": "B000002159",
+      "school_name": "서울신천초등학교",
+      "road_address": "서울특별시 송파구 올림픽로 215",
+      "homepage": "http://sh.sen.es.kr",
+      "schoolinfo_code": "S010000935"
+    },
+    {
+      "school_id": "B000002160",
+      "school_name": "서울둔촌초등학교",
+      "road_address": "서울특별시 강동구 양재대로88길 27",
+      "homepage": "https://doonchon.sen.es.kr/",
+      "schoolinfo_code": "S010000912"
+    },
+    {
+      "school_id": "B000002161",
+      "school_name": "서울선린초등학교",
+      "road_address": "서울특별시 강동구 진황도로61길 29",
+      "homepage": "http://sunrin.sen.es.kr",
+      "schoolinfo_code": "S010000925"
+    },
+    {
+      "school_id": "B000002162",
+      "school_name": "서울고명초등학교",
+      "road_address": "서울특별시 강동구 고덕로46길 53",
+      "homepage": "http://gomyung.sen.es.kr",
+      "schoolinfo_code": "S010000907"
+    },
+    {
+      "school_id": "B000002163",
+      "school_name": "서울묘곡초등학교",
+      "road_address": "서울특별시 강동구 동남로79길 46",
+      "homepage": "http://myogok.sen.es.kr",
+      "schoolinfo_code": "S010000917"
+    },
+    {
+      "school_id": "B000002164",
+      "school_name": "서울강일초등학교",
+      "road_address": "서울특별시 강동구 아리수로98길 24",
+      "homepage": "http://gangil.sen.es.kr",
+      "schoolinfo_code": "S010000903"
+    },
+    {
+      "school_id": "B000002165",
+      "school_name": "서울고덕초등학교",
+      "road_address": "서울특별시 강동구 아리수로82길 42",
+      "homepage": "http://goduk.sen.es.kr",
+      "schoolinfo_code": "S010000906"
+    },
+    {
+      "school_id": "B000002166",
+      "school_name": "서울강덕초등학교",
+      "road_address": "서울특별시 강동구 동남로82길 94-54",
+      "homepage": "http://gangdeok.sen.es.kr",
+      "schoolinfo_code": "S010000901"
+    },
+    {
+      "school_id": "B000002167",
+      "school_name": "서울명덕초등학교",
+      "road_address": "서울특별시 강동구 양재대로156길 11",
+      "homepage": "http://myungduk.sen.es.kr",
+      "schoolinfo_code": "S010000914"
+    },
+    {
+      "school_id": "B000002168",
+      "school_name": "서울신명초등학교",
+      "road_address": "서울특별시 강동구 명일로24길 33",
+      "homepage": "http://shinmyung.sen.es.kr",
+      "schoolinfo_code": "S010000933"
+    },
+    {
+      "school_id": "B000002169",
+      "school_name": "서울길동초등학교",
+      "road_address": "서울특별시 강동구 양재대로116길 69",
+      "homepage": "http://gildong.sen.es.kr",
+      "schoolinfo_code": "S010000909"
+    },
+    {
+      "school_id": "B000002170",
+      "school_name": "서울천동초등학교",
+      "road_address": "서울특별시 강동구 성안로 200",
+      "homepage": "http://scd.sen.es.kr",
+      "schoolinfo_code": "S010000947"
+    },
+    {
+      "school_id": "B000002171",
+      "school_name": "서울한산초등학교",
+      "road_address": "서울특별시 강동구 풍성로 261",
+      "homepage": "http://hansan.sen.es.kr/",
+      "schoolinfo_code": "S010000954"
+    },
+    {
+      "school_id": "B000002172",
+      "school_name": "서울위례초등학교",
+      "road_address": "서울특별시 강동구 명일로 23",
+      "homepage": "http://wirye.sen.es.kr",
+      "schoolinfo_code": "S010000940"
+    },
+    {
+      "school_id": "B000002173",
+      "school_name": "서울명원초등학교",
+      "road_address": "서울특별시 강동구 명일로 364",
+      "homepage": "http://myongwon.sen.es.kr",
+      "schoolinfo_code": "S010000915"
+    },
+    {
+      "school_id": "B000002174",
+      "school_name": "서울대명초등학교",
+      "road_address": "서울특별시 강동구 상암로 271",
+      "homepage": "http://daemyeong.sen.es.kr",
+      "schoolinfo_code": "S010000911"
+    },
+    {
+      "school_id": "B000002175",
+      "school_name": "서울고일초등학교",
+      "road_address": "서울특별시 강동구 구천면로93길 20",
+      "homepage": "http://goil.sen.es.kr",
+      "schoolinfo_code": "S010000908"
+    },
+    {
+      "school_id": "B000002176",
+      "school_name": "서울상일초등학교",
+      "road_address": "서울특별시 강동구 천호대로 1477",
+      "homepage": "http://seoulsangil.sen.es.kr",
+      "schoolinfo_code": "S010000923"
+    },
+    {
+      "school_id": "B000002177",
+      "school_name": "서울강명초등학교",
+      "road_address": "서울특별시 강동구 상일로 74-1",
+      "homepage": "http://gme.sen.es.kr",
+      "schoolinfo_code": "S010005527"
+    },
+    {
+      "school_id": "B000002178",
+      "school_name": "서울성일초등학교",
+      "road_address": "서울특별시 강동구 성내로15길 33",
+      "homepage": "http://seongil.sen.es.kr",
+      "schoolinfo_code": "S010000928"
+    },
+    {
+      "school_id": "B000002179",
+      "school_name": "서울성내초등학교",
+      "road_address": "서울특별시 강동구 성내로3길 19",
+      "homepage": "http://seongnae.sen.es.kr",
+      "schoolinfo_code": "S010000927"
+    },
+    {
+      "school_id": "B000002180",
+      "school_name": "서울명일초등학교",
+      "road_address": "서울특별시 강동구 고덕로38길 8",
+      "homepage": "http://myeongil.sen.es.kr",
+      "schoolinfo_code": "S010000916"
+    },
+    {
+      "school_id": "B000002181",
+      "school_name": "서울천일초등학교",
+      "road_address": "서울특별시 강동구 구천면로 266",
+      "homepage": "https://chunil.sen.es.kr",
+      "schoolinfo_code": "S010000948"
+    },
+    {
+      "school_id": "B000002182",
+      "school_name": "서울천호초등학교",
+      "road_address": "서울특별시 강동구 구천면로 310-11",
+      "homepage": "http://chunho.sen.es.kr",
+      "schoolinfo_code": "S010000949"
+    },
+    {
+      "school_id": "B000002183",
+      "school_name": "서울강동초등학교",
+      "road_address": "서울특별시 강동구 상암로14길 77",
+      "homepage": "http://gangdong.sen.es.kr",
+      "schoolinfo_code": "S010000902"
+    },
+    {
+      "school_id": "B000002184",
+      "school_name": "서울선사초등학교",
+      "road_address": "서울특별시 강동구 올림픽로 837",
+      "homepage": "http://sunsa.sen.es.kr",
+      "schoolinfo_code": "S010000926"
+    },
+    {
+      "school_id": "B000002185",
+      "school_name": "서울신암초등학교",
+      "road_address": "서울특별시 강동구 올림픽로93길 33-16",
+      "homepage": "http://shinam.sen.es.kr",
+      "schoolinfo_code": "S010000934"
+    },
+    {
+      "school_id": "B000002186",
+      "school_name": "서울신은초등학교",
+      "road_address": "서울특별시 양천구 신정이펜2로 30",
+      "homepage": "http://se.sen.es.kr",
+      "schoolinfo_code": "S010005548"
+    },
+    {
+      "school_id": "B000002187",
+      "school_name": "서울목원초등학교",
+      "road_address": "서울특별시 양천구 목동중앙로 204",
+      "homepage": "http://mokwon.sen.es.kr",
+      "schoolinfo_code": "S010001024"
+    },
+    {
+      "school_id": "B000002188",
+      "school_name": "서울경인초등학교",
+      "road_address": "서울특별시 양천구 안양천로 1009",
+      "homepage": "http://kyongin.sen.es.kr",
+      "schoolinfo_code": "S010001011"
+    },
+    {
+      "school_id": "B000002189",
+      "school_name": "서울서정초등학교",
+      "road_address": "서울특별시 양천구 목동로8길 19",
+      "homepage": "http://sj.sen.es.kr",
+      "schoolinfo_code": "S010001029"
+    },
+    {
+      "school_id": "B000002190",
+      "school_name": "서울목운초등학교",
+      "road_address": "서울특별시 양천구 목동동로 235",
+      "homepage": "https://mogun.sen.es.kr/",
+      "schoolinfo_code": "S010005507"
+    },
+    {
+      "school_id": "B000002191",
+      "school_name": "서울계남초등학교",
+      "road_address": "서울특별시 양천구 목동동로2길 54",
+      "homepage": "http://gyenam.sen.es.kr",
+      "schoolinfo_code": "S010001012"
+    },
+    {
+      "school_id": "B000002192",
+      "school_name": "서울은정초등학교",
+      "road_address": "서울특별시 양천구 목동남로 85",
+      "homepage": "http://eunjung.sen.es.kr",
+      "schoolinfo_code": "S010001054"
+    },
+    {
+      "school_id": "B000002193",
+      "school_name": "서울신서초등학교",
+      "road_address": "서울특별시 양천구 목동서로10길 35",
+      "homepage": "http://sinseo.sen.es.kr",
+      "schoolinfo_code": "S010001036"
+    },
+    {
+      "school_id": "B000002194",
+      "school_name": "서울양명초등학교",
+      "road_address": "서울특별시 양천구 중앙로 204",
+      "homepage": "http://yangmyung.sen.es.kr",
+      "schoolinfo_code": "S010001042"
+    },
+    {
+      "school_id": "B000002195",
+      "school_name": "서울신기초등학교",
+      "road_address": "서울특별시 양천구 신정로 292",
+      "homepage": "http://singi.sen.es.kr",
+      "schoolinfo_code": "S010002495"
+    },
+    {
+      "school_id": "B000002196",
+      "school_name": "서울남명초등학교",
+      "road_address": "서울특별시 양천구 중앙로23길 3",
+      "homepage": "http://nammyeong.sen.es.kr",
+      "schoolinfo_code": "S010001015"
+    },
+    {
+      "school_id": "B000002197",
+      "school_name": "서울양목초등학교",
+      "road_address": "서울특별시 양천구 목동로11길 30",
+      "homepage": "http://yangmok.sen.es.kr",
+      "schoolinfo_code": "S010001043"
+    },
+    {
+      "school_id": "B000002198",
+      "school_name": "서울갈산초등학교",
+      "road_address": "서울특별시 양천구 목동로 31",
+      "homepage": "http://galsan.sen.es.kr",
+      "schoolinfo_code": "S010001006"
+    },
+    {
+      "school_id": "B000002199",
+      "school_name": "서울강신초등학교",
+      "road_address": "서울특별시 양천구 월정로 280",
+      "homepage": "http://kangsin.sen.es.kr",
+      "schoolinfo_code": "S010001008"
+    },
+    {
+      "school_id": "B000002200",
+      "school_name": "서울양화초등학교",
+      "road_address": "서울특별시 양천구 목동중앙북로16길 57",
+      "homepage": "http://yanghwa.sen.es.kr",
+      "schoolinfo_code": "S010001046"
+    },
+    {
+      "school_id": "B000002201",
+      "school_name": "서울정목초등학교",
+      "road_address": "서울특별시 양천구 목동중앙로3길 30-10",
+      "homepage": "http://jeongmok.sen.es.kr",
+      "schoolinfo_code": "S010001056"
+    },
+    {
+      "school_id": "B000002202",
+      "school_name": "서울양원초등학교",
+      "road_address": "서울특별시 양천구 화곡로 16",
+      "homepage": "http://yangwon.sen.es.kr",
+      "schoolinfo_code": "S010001044"
+    },
+    {
+      "school_id": "B000002203",
+      "school_name": "서울신원초등학교",
+      "road_address": "서울특별시 양천구 남부순환로58길 32",
+      "homepage": "http://shinwon.sen.es.kr",
+      "schoolinfo_code": "S010001037"
+    },
+    {
+      "school_id": "B000002204",
+      "school_name": "서울강서초등학교",
+      "road_address": "서울특별시 양천구 오목로 31",
+      "homepage": "http://gangseo.sen.es.kr",
+      "schoolinfo_code": "S010001007"
+    },
+    {
+      "school_id": "B000002205",
+      "school_name": "서울신강초등학교",
+      "road_address": "서울특별시 양천구 중앙로55길 72",
+      "homepage": "http://singang.sen.es.kr",
+      "schoolinfo_code": "S010001032"
+    },
+    {
+      "school_id": "B000002206",
+      "school_name": "서울양강초등학교",
+      "road_address": "서울특별시 양천구 오목로 101",
+      "homepage": "http://yanggang.sen.es.kr",
+      "schoolinfo_code": "S010001040"
+    },
+    {
+      "school_id": "B000002207",
+      "school_name": "서울신남초등학교",
+      "road_address": "서울특별시 양천구 남부순환로83길 44",
+      "homepage": "http://sinnam.sen.es.kr",
+      "schoolinfo_code": "S010001034"
+    },
+    {
+      "school_id": "B000002208",
+      "school_name": "서울강월초등학교",
+      "road_address": "서울특별시 양천구 신월로 97",
+      "homepage": "http://gangwol.sen.es.kr",
+      "schoolinfo_code": "S010001009"
+    },
+    {
+      "school_id": "B000002209",
+      "school_name": "서울목동초등학교",
+      "road_address": "서울특별시 양천구 목동동로12길 12",
+      "homepage": "http://smd.sen.es.kr",
+      "schoolinfo_code": "S010001023"
+    },
+    {
+      "school_id": "B000002210",
+      "school_name": "서울신목초등학교",
+      "road_address": "서울특별시 양천구 신목로5길 11-6",
+      "homepage": "http://sinmoc.sen.es.kr",
+      "schoolinfo_code": "S010001035"
+    },
+    {
+      "school_id": "B000002211",
+      "school_name": "서울지향초등학교",
+      "road_address": "서울특별시 양천구 신정로11길 74",
+      "homepage": "http://jihyang.sen.es.kr",
+      "schoolinfo_code": "S010001057"
+    },
+    {
+      "school_id": "B000002212",
+      "school_name": "서울장수초등학교",
+      "road_address": "서울특별시 양천구 신정로13가길 30",
+      "homepage": "http://jangsoo.sen.es.kr",
+      "schoolinfo_code": "S010005280"
+    },
+    {
+      "school_id": "B000002213",
+      "school_name": "서울양동초등학교",
+      "road_address": "서울특별시 양천구 오목로23길 24",
+      "homepage": "http://yangdong.sen.es.kr",
+      "schoolinfo_code": "S010001041"
+    },
+    {
+      "school_id": "B000002214",
+      "school_name": "서울월촌초등학교",
+      "road_address": "서울특별시 양천구 목동중앙로 132",
+      "homepage": "http://swc.sen.es.kr",
+      "schoolinfo_code": "S010001053"
+    },
+    {
+      "school_id": "B000002215",
+      "school_name": "서울영도초등학교",
+      "road_address": "서울특별시 양천구 목동중앙로 70",
+      "homepage": "http://youngdo.sen.es.kr",
+      "schoolinfo_code": "S010001050"
+    },
+    {
+      "school_id": "B000002216",
+      "school_name": "서울화일초등학교",
+      "road_address": "서울특별시 강서구 까치산로10길 70",
+      "homepage": "http://hwail.sen.es.kr",
+      "schoolinfo_code": "S010005259"
+    },
+    {
+      "school_id": "B000002217",
+      "school_name": "서울우장초등학교",
+      "road_address": "서울특별시 강서구 화곡로 263",
+      "homepage": "http://ujang.sen.es.kr",
+      "schoolinfo_code": "S010001051"
+    },
+    {
+      "school_id": "B000002218",
+      "school_name": "서울신정초등학교",
+      "road_address": "서울특별시 강서구 곰달래로31가길 27",
+      "homepage": "http://sinjeong.sen.es.kr",
+      "schoolinfo_code": "S010001039"
+    },
+    {
+      "school_id": "B000002219",
+      "school_name": "서울신곡초등학교",
+      "road_address": "서울특별시 강서구 등촌로13자길 42-14",
+      "homepage": "http://sg.sen.es.kr",
+      "schoolinfo_code": "S010001033"
+    },
+    {
+      "school_id": "B000002220",
+      "school_name": "서울등마초등학교",
+      "road_address": "서울특별시 강서구 등촌로35길 12",
+      "homepage": "http://dma.sen.es.kr",
+      "schoolinfo_code": "S010005546"
+    },
+    {
+      "school_id": "B000002221",
+      "school_name": "서울등양초등학교",
+      "road_address": "서울특별시 강서구 강서로56나길 140",
+      "homepage": "http://dungyang.sen.es.kr",
+      "schoolinfo_code": "S010001019"
+    },
+    {
+      "school_id": "B000002222",
+      "school_name": "서울염경초등학교",
+      "road_address": "서울특별시 강서구 양천로69길 49",
+      "homepage": "http://yeomkyoung.sen.es.kr",
+      "schoolinfo_code": "S010005253"
+    },
+    {
+      "school_id": "B000002223",
+      "school_name": "서울염창초등학교",
+      "road_address": "서울특별시 강서구 양천로 646-28",
+      "homepage": "http://yeomchang.sen.es.kr",
+      "schoolinfo_code": "S010001049"
+    },
+    {
+      "school_id": "B000002225",
+      "school_name": "서울치현초등학교",
+      "road_address": "서울특별시 강서구 방화대로47길 43",
+      "homepage": "http://chihyeon.sen.es.kr",
+      "schoolinfo_code": "S010001058"
+    },
+    {
+      "school_id": "B000002226",
+      "school_name": "서울삼정초등학교",
+      "road_address": "서울특별시 강서구 금낭화로 222",
+      "homepage": "https://esamjeong.sen.es.kr",
+      "schoolinfo_code": "S010001028"
+    },
+    {
+      "school_id": "B000002227",
+      "school_name": "서울정곡초등학교",
+      "road_address": "서울특별시 강서구 방화대로50길 22",
+      "homepage": "http://jk.sen.es.kr",
+      "schoolinfo_code": "S010001055"
+    },
+    {
+      "school_id": "B000002228",
+      "school_name": "서울가곡초등학교",
+      "road_address": "서울특별시 강서구 공항대로36길 74",
+      "homepage": "http://gagok.sen.es.kr",
+      "schoolinfo_code": "S010001004"
+    },
+    {
+      "school_id": "B000002229",
+      "school_name": "서울발산초등학교",
+      "road_address": "서울특별시 강서구 강서로45길 113",
+      "homepage": "http://balsan.sen.es.kr",
+      "schoolinfo_code": "S010001025"
+    },
+    {
+      "school_id": "B000002230",
+      "school_name": "서울양천초등학교",
+      "road_address": "서울특별시 강서구 양천로 329",
+      "homepage": "http://yangcheun.sen.es.kr",
+      "schoolinfo_code": "S010001045"
+    },
+    {
+      "school_id": "B000002232",
+      "school_name": "서울탑산초등학교",
+      "road_address": "서울특별시 강서구 허준로 109",
+      "homepage": "http://top.sen.es.kr",
+      "schoolinfo_code": "S010001059"
+    },
+    {
+      "school_id": "B000002233",
+      "school_name": "서울가양초등학교",
+      "road_address": "서울특별시 강서구 허준로 186",
+      "homepage": "http://kayang.sen.es.kr",
+      "schoolinfo_code": "S010001005"
+    },
+    {
+      "school_id": "B000002235",
+      "school_name": "서울송정초등학교",
+      "road_address": "서울특별시 강서구 공항대로3길 18",
+      "homepage": "http://sjes.sen.es.kr",
+      "schoolinfo_code": "S010001030"
+    },
+    {
+      "school_id": "B000002236",
+      "school_name": "서울내발산초등학교",
+      "road_address": "서울특별시 강서구 강서로46길 23",
+      "homepage": "http://nbs.sen.es.kr",
+      "schoolinfo_code": "S010001016"
+    },
+    {
+      "school_id": "B000002237",
+      "school_name": "서울등촌초등학교",
+      "road_address": "서울특별시 강서구 등촌로39길 71",
+      "homepage": "http://deungchon.sen.es.kr",
+      "schoolinfo_code": "S010001021"
+    },
+    {
+      "school_id": "B000002238",
+      "school_name": "서울백석초등학교",
+      "road_address": "서울특별시 강서구 공항대로 491",
+      "homepage": "http://bsbs.sen.es.kr",
+      "schoolinfo_code": "S010001027"
+    },
+    {
+      "school_id": "B000002239",
+      "school_name": "서울송화초등학교",
+      "road_address": "서울특별시 강서구 방화대로34길 2",
+      "homepage": "https://songhwa.sen.es.kr/",
+      "schoolinfo_code": "S010001031"
+    },
+    {
+      "school_id": "B000002240",
+      "school_name": "서울개화초등학교",
+      "road_address": "서울특별시 강서구 양천로 11",
+      "homepage": "http://gaehwa.sen.es.kr",
+      "schoolinfo_code": "S010001010"
+    },
+    {
+      "school_id": "B000002241",
+      "school_name": "서울방화초등학교",
+      "road_address": "서울특별시 강서구 양천로6길 92",
+      "homepage": "http://banghwa.sen.es.kr",
+      "schoolinfo_code": "S010001026"
+    },
+    {
+      "school_id": "B000002242",
+      "school_name": "서울염동초등학교",
+      "road_address": "서울특별시 강서구 양천로73길 17",
+      "homepage": "http://yeomdong.sen.es.kr",
+      "schoolinfo_code": "S010001048"
+    },
+    {
+      "school_id": "B000002243",
+      "school_name": "서울화곡초등학교",
+      "road_address": "서울특별시 강서구 초록마을로 28",
+      "homepage": "http://hwagok.sen.es.kr",
+      "schoolinfo_code": "S010001060"
+    },
+    {
+      "school_id": "B000002244",
+      "school_name": "서울월정초등학교",
+      "road_address": "서울특별시 강서구 월정로 176",
+      "homepage": "http://woljung.sen.es.kr",
+      "schoolinfo_code": "S010001052"
+    },
+    {
+      "school_id": "B000002245",
+      "school_name": "서울신월초등학교",
+      "road_address": "서울특별시 강서구 강서로31길 48",
+      "homepage": "http://ssinwol.sen.es.kr",
+      "schoolinfo_code": "S010001038"
+    },
+    {
+      "school_id": "B000002246",
+      "school_name": "서울등서초등학교",
+      "road_address": "서울특별시 강서구 화곡로58길 86",
+      "homepage": "http://deungseo.sen.es.kr",
+      "schoolinfo_code": "S010001018"
+    },
+    {
+      "school_id": "B000002247",
+      "school_name": "서울등명초등학교",
+      "road_address": "서울특별시 강서구 강서로56나길 34",
+      "homepage": "http://dungmyong.sen.es.kr",
+      "schoolinfo_code": "S010001017"
+    },
+    {
+      "school_id": "B000002248",
+      "school_name": "서울등현초등학교",
+      "road_address": "서울특별시 강서구 화곡로65길 124",
+      "homepage": "http://deunghyun.sen.es.kr",
+      "schoolinfo_code": "S010001022"
+    },
+    {
+      "school_id": "B000002249",
+      "school_name": "서울등원초등학교",
+      "road_address": "서울특별시 강서구 화곡로65길 90",
+      "homepage": "http://deungwon.sen.es.kr",
+      "schoolinfo_code": "S010001020"
+    },
+    {
+      "school_id": "B000002250",
+      "school_name": "서울수명초등학교",
+      "road_address": "서울특별시 강서구 수명로1길 84",
+      "homepage": "http://sumyeong.sen.es.kr",
+      "schoolinfo_code": "S010005496"
+    },
+    {
+      "school_id": "B000002251",
+      "school_name": "유석초등학교",
+      "road_address": "서울특별시 강서구 화곡로69길 9",
+      "homepage": "http://yooseok.sen.es.kr",
+      "schoolinfo_code": "S010001061"
+    },
+    {
+      "school_id": "B000002252",
+      "school_name": "서울우면초등학교",
+      "road_address": "서울특별시 서초구 태봉로 59",
+      "homepage": "http://woomyeon.sen.es.kr",
+      "schoolinfo_code": "S010005549"
+    },
+    {
+      "school_id": "B000002253",
+      "school_name": "서울교육대학교부설초등학교",
+      "road_address": "서울특별시 서초구 서초중앙로 96",
+      "homepage": "http://snueps.sen.es.kr/",
+      "schoolinfo_code": "S000003511"
+    },
+    {
+      "school_id": "B000002254",
+      "school_name": "서울신중초등학교",
+      "road_address": "서울특별시 서초구 남부순환로317길 15",
+      "homepage": "http://sinjung.sen.es.kr",
+      "schoolinfo_code": "S010000768"
+    },
+    {
+      "school_id": "B000002255",
+      "school_name": "서울서원초등학교",
+      "road_address": "서울특별시 서초구 고무래로 63",
+      "homepage": " https://seo-won.sen.es.kr/",
+      "schoolinfo_code": "S010000761"
+    },
+    {
+      "school_id": "B000002256",
+      "school_name": "서울원촌초등학교",
+      "road_address": "서울특별시 서초구 사평대로45길 26",
+      "homepage": "http://wonchon.sen.es.kr",
+      "schoolinfo_code": "S010000780"
+    },
+    {
+      "school_id": "B000002257",
+      "school_name": "서울잠원초등학교",
+      "road_address": "서울특별시 서초구 신반포로16길 15-25",
+      "homepage": "http://jamwon.sen.es.kr",
+      "schoolinfo_code": "S010000783"
+    },
+    {
+      "school_id": "B000002258",
+      "school_name": "서울반원초등학교",
+      "road_address": "서울특별시 서초구 잠원로3길 28",
+      "homepage": "http://banwon.sen.es.kr",
+      "schoolinfo_code": "S010000753"
+    },
+    {
+      "school_id": "B000002259",
+      "school_name": "서울매헌초등학교",
+      "road_address": "서울특별시 서초구 언남길 8",
+      "homepage": "http://maeheon.sen.es.kr",
+      "schoolinfo_code": "S010005495"
+    },
+    {
+      "school_id": "B000002262",
+      "school_name": "서울방일초등학교",
+      "road_address": "서울특별시 서초구 방배로18길 52",
+      "homepage": "http://bangil.sen.es.kr",
+      "schoolinfo_code": "S010000756"
+    },
+    {
+      "school_id": "B000002263",
+      "school_name": "서울이수초등학교",
+      "road_address": "서울특별시 서초구 방배천로4길 23",
+      "homepage": "http://isu.sen.es.kr",
+      "schoolinfo_code": "S010000781"
+    },
+    {
+      "school_id": "B000002264",
+      "school_name": "서울서래초등학교",
+      "road_address": "서울특별시 서초구 방배로 260",
+      "homepage": "http://seorae.sen.es.kr",
+      "schoolinfo_code": "S010000760"
+    },
+    {
+      "school_id": "B000002265",
+      "school_name": "서울방배초등학교",
+      "road_address": "서울특별시 서초구 방배중앙로13길 26",
+      "homepage": "http://bangbae.sen.es.kr",
+      "schoolinfo_code": "S010000755"
+    },
+    {
+      "school_id": "B000002266",
+      "school_name": "서울방현초등학교",
+      "road_address": "서울특별시 서초구 효령로4길 58",
+      "homepage": "http://banghyun.sen.es.kr",
+      "schoolinfo_code": "S010000757"
+    },
+    {
+      "school_id": "B000002267",
+      "school_name": "서울서초초등학교",
+      "road_address": "서울특별시 서초구 서운로 178",
+      "homepage": "http://seocho.sen.es.kr",
+      "schoolinfo_code": "S010000764"
+    },
+    {
+      "school_id": "B000002268",
+      "school_name": "서울서이초등학교",
+      "road_address": "서울특별시 서초구 서운로 35",
+      "homepage": "https://seoi.sen.es.kr",
+      "schoolinfo_code": "S010000762"
+    },
+    {
+      "school_id": "B000002269",
+      "school_name": "서울서일초등학교",
+      "road_address": "서울특별시 서초구 남부순환로339길 38",
+      "homepage": "http://seoulseoil.sen.es.kr",
+      "schoolinfo_code": "S010000763"
+    },
+    {
+      "school_id": "B000002270",
+      "school_name": "서울원명초등학교",
+      "road_address": "서울특별시 서초구 고무래로 90-6",
+      "homepage": "http://wonmyong.sen.es.kr",
+      "schoolinfo_code": "S010000779"
+    },
+    {
+      "school_id": "B000002271",
+      "school_name": "서울양재초등학교",
+      "road_address": "서울특별시 서초구 바우뫼로18길 14",
+      "homepage": "http://yangjae.sen.es.kr",
+      "schoolinfo_code": "S010000770"
+    },
+    {
+      "school_id": "B000002272",
+      "school_name": "서울우암초등학교",
+      "road_address": "서울특별시 서초구 바우뫼로7길 38",
+      "homepage": "http://wooam.sen.es.kr",
+      "schoolinfo_code": "S010000778"
+    },
+    {
+      "school_id": "B000002273",
+      "school_name": "서울신동초등학교",
+      "road_address": "서울특별시 서초구 나루터로 15",
+      "homepage": "http://sindong.sen.es.kr",
+      "schoolinfo_code": "S010000767"
+    },
+    {
+      "school_id": "B000002274",
+      "school_name": "계성초등학교",
+      "road_address": "서울특별시 서초구 신반포로19길 23",
+      "homepage": "http://www.gyeseong1882.es.kr",
+      "schoolinfo_code": "S010002365"
+    },
+    {
+      "school_id": "B000002275",
+      "school_name": "서울봉은초등학교",
+      "road_address": "서울특별시 강남구 학동로 610",
+      "homepage": "http://bongeun.sen.es.kr",
+      "schoolinfo_code": "S010000758"
+    },
+    {
+      "school_id": "B000002276",
+      "school_name": "서울대왕초등학교",
+      "road_address": "서울특별시 강남구 헌릉로618길 8",
+      "homepage": "http://daewang.sen.es.kr",
+      "schoolinfo_code": "S010000746"
+    },
+    {
+      "school_id": "B000002277",
+      "school_name": "서울수서초등학교",
+      "road_address": "서울특별시 강남구 광평로51길 46",
+      "homepage": "http://suseo.sen.es.kr",
+      "schoolinfo_code": "S010000765"
+    },
+    {
+      "school_id": "B000002278",
+      "school_name": "서울대모초등학교",
+      "road_address": "서울특별시 강남구 광평로20길 27",
+      "homepage": "http://daemo.sen.es.kr",
+      "schoolinfo_code": "S010000745"
+    },
+    {
+      "school_id": "B000002279",
+      "school_name": "서울대진초등학교",
+      "road_address": "서울특별시 강남구 개포로109길 74",
+      "homepage": "http://seouldaejin.sen.es.kr",
+      "schoolinfo_code": "S010000747"
+    },
+    {
+      "school_id": "B000002280",
+      "school_name": "서울양전초등학교",
+      "road_address": "서울특별시 강남구 개포로 513",
+      "homepage": "http://yangjeon.sen.es.kr",
+      "schoolinfo_code": "S010000771"
+    },
+    {
+      "school_id": "B000002281",
+      "school_name": "서울구룡초등학교",
+      "road_address": "서울특별시 강남구 개포로 263",
+      "homepage": "http://kuryong.sen.es.kr",
+      "schoolinfo_code": "S010000741"
+    },
+    {
+      "school_id": "B000002282",
+      "school_name": "서울언주초등학교",
+      "road_address": "서울특별시 강남구 남부순환로363길 19",
+      "homepage": "http://eonju.sen.es.kr/",
+      "schoolinfo_code": "S010000774"
+    },
+    {
+      "school_id": "B000002283",
+      "school_name": "서울대치초등학교",
+      "road_address": "서울특별시 강남구 양재천로 363",
+      "homepage": "http://daechi.sen.es.kr/",
+      "schoolinfo_code": "S010000749"
+    },
+    {
+      "school_id": "B000002284",
+      "school_name": "서울도곡초등학교",
+      "road_address": "서울특별시 강남구 선릉로64길 33",
+      "homepage": "http://dogok.sen.es.kr",
+      "schoolinfo_code": "S010000751"
+    },
+    {
+      "school_id": "B000002285",
+      "school_name": "서울대도초등학교",
+      "road_address": "서울특별시 강남구 선릉로 209",
+      "homepage": "http://sdaedo.sen.es.kr",
+      "schoolinfo_code": "S010000744"
+    },
+    {
+      "school_id": "B000002286",
+      "school_name": "서울개일초등학교",
+      "road_address": "서울특별시 강남구 개포로 401",
+      "homepage": "http://gaeil.sen.es.kr",
+      "schoolinfo_code": "S010000738"
+    },
+    {
+      "school_id": "B000002288",
+      "school_name": "서울개원초등학교",
+      "road_address": "서울특별시 강남구 선릉로 29",
+      "homepage": "https://gaewon.sen.es.kr",
+      "schoolinfo_code": "S010000737"
+    },
+    {
+      "school_id": "B000002289",
+      "school_name": "서울논현초등학교",
+      "road_address": "서울특별시 강남구 강남대로120길 33",
+      "homepage": "http://nonhyun.sen.es.kr",
+      "schoolinfo_code": "S010000742"
+    },
+    {
+      "school_id": "B000002290",
+      "school_name": "서울학동초등학교",
+      "road_address": "서울특별시 강남구 선릉로115길 42",
+      "homepage": "http://hakdong.sen.es.kr/",
+      "schoolinfo_code": "S010000786"
+    },
+    {
+      "school_id": "B000002291",
+      "school_name": "서울대곡초등학교",
+      "road_address": "서울특별시 강남구 남부순환로 3022",
+      "homepage": "http://seouldaegok.sen.es.kr",
+      "schoolinfo_code": "S010000743"
+    },
+    {
+      "school_id": "B000002292",
+      "school_name": "서울대현초등학교",
+      "road_address": "서울특별시 강남구 역삼로98길 16",
+      "homepage": "http://daehyun.sen.es.kr",
+      "schoolinfo_code": "S010000750"
+    },
+    {
+      "school_id": "B000002293",
+      "school_name": "서울삼릉초등학교",
+      "road_address": "서울특별시 강남구 봉은사로63길 22",
+      "homepage": "http://srng.sen.es.kr",
+      "schoolinfo_code": "S010000759"
+    },
+    {
+      "school_id": "B000002294",
+      "school_name": "서울왕북초등학교",
+      "road_address": "서울특별시 강남구 광평로31길 74",
+      "homepage": "http://wangbuk.sen.es.kr",
+      "schoolinfo_code": "S010000777"
+    },
+    {
+      "school_id": "B000002295",
+      "school_name": "서울신구초등학교",
+      "road_address": "서울특별시 강남구 압구정로18길 28",
+      "homepage": "http://shingu.sen.es.kr",
+      "schoolinfo_code": "S010000766"
+    },
+    {
+      "school_id": "B000002296",
+      "school_name": "서울압구정초등학교",
+      "road_address": "서울특별시 강남구 압구정로39길 29",
+      "homepage": "https://apgujeong.sen.es.kr/",
+      "schoolinfo_code": "S010000769"
+    },
+    {
+      "school_id": "B000002297",
+      "school_name": "서울도성초등학교",
+      "road_address": "서울특별시 강남구 역삼로 313",
+      "homepage": "http://seouldoseong.sen.es.kr",
+      "schoolinfo_code": "S010000752"
+    },
+    {
+      "school_id": "B000002298",
+      "school_name": "서울역삼초등학교",
+      "road_address": "서울특별시 강남구 강남대로66길 21",
+      "homepage": "http://yeoksam.sen.es.kr",
+      "schoolinfo_code": "S010000775"
+    },
+    {
+      "school_id": "B000002299",
+      "school_name": "서울대청초등학교",
+      "road_address": "서울특별시 강남구 양재대로55길 28",
+      "homepage": "http://daecheong.sen.es.kr",
+      "schoolinfo_code": "S010000748"
+    },
+    {
+      "school_id": "B000002300",
+      "school_name": "서울영희초등학교",
+      "road_address": "서울특별시 강남구 일원로 21",
+      "homepage": "http://younghee.sen.es.kr",
+      "schoolinfo_code": "S010000776"
+    },
+    {
+      "school_id": "B000002301",
+      "school_name": "서울일원초등학교",
+      "road_address": "서울특별시 강남구 영동대로4길 20",
+      "homepage": "http://ilwon.sen.es.kr",
+      "schoolinfo_code": "S010000782"
+    },
+    {
+      "school_id": "B000002302",
+      "school_name": "서울언북초등학교",
+      "road_address": "서울특별시 강남구 삼성로135길 42",
+      "homepage": "http://eonbuk.sen.es.kr",
+      "schoolinfo_code": "S010000773"
+    },
+    {
+      "school_id": "B000002303",
+      "school_name": "서울청담초등학교",
+      "road_address": "서울특별시 강남구 압구정로71길 9",
+      "homepage": "http://cheongdam.sen.es.kr",
+      "schoolinfo_code": "S010000784"
+    },
+    {
+      "school_id": "B000002304",
+      "school_name": "서울포이초등학교",
+      "road_address": "서울특별시 강남구 개포로22길 87",
+      "homepage": "http://poi.sen.es.kr",
+      "schoolinfo_code": "S010000785"
+    },
+    {
+      "school_id": "B000002305",
+      "school_name": "서울신상도초등학교",
+      "road_address": "서울특별시 동작구 장승배기로 14",
+      "homepage": "http://shinsangdo.sen.es.kr",
+      "schoolinfo_code": "S010001600"
+    },
+    {
+      "school_id": "B000002306",
+      "school_name": "서울강남초등학교",
+      "road_address": "서울특별시 동작구 강남초등길 15",
+      "homepage": "http://gangnam.sen.es.kr",
+      "schoolinfo_code": "S010001576"
+    },
+    {
+      "school_id": "B000002307",
+      "school_name": "서울노량진초등학교",
+      "road_address": "서울특별시 동작구 장승배기로 160",
+      "homepage": "http://noryangjin.sen.es.kr",
+      "schoolinfo_code": "S010001585"
+    },
+    {
+      "school_id": "B000002308",
+      "school_name": "서울본동초등학교",
+      "road_address": "서울특별시 동작구 노량진로26길 16-40",
+      "homepage": "http://bondong.sen.es.kr",
+      "schoolinfo_code": "S010001591"
+    },
+    {
+      "school_id": "B000002309",
+      "school_name": "서울은로초등학교",
+      "road_address": "서울특별시 동작구 서달로 115",
+      "homepage": "http://eunlo.sen.es.kr",
+      "schoolinfo_code": "S010001607"
+    },
+    {
+      "school_id": "B000002310",
+      "school_name": "서울동작초등학교",
+      "road_address": "서울특별시 동작구 동작대로29길 214",
+      "homepage": "http://dongjak.sen.es.kr",
+      "schoolinfo_code": "S010001588"
+    },
+    {
+      "school_id": "B000002311",
+      "school_name": "서울삼일초등학교",
+      "road_address": "서울특별시 동작구 사당로23나길 27",
+      "homepage": "http://samil.sen.es.kr",
+      "schoolinfo_code": "S010005387"
+    },
+    {
+      "school_id": "B000002312",
+      "school_name": "서울행림초등학교",
+      "road_address": "서울특별시 동작구 솔밭로 47",
+      "homepage": "http://hrim.sen.es.kr",
+      "schoolinfo_code": "S010001611"
+    },
+    {
+      "school_id": "B000002313",
+      "school_name": "서울신남성초등학교",
+      "road_address": "서울특별시 동작구 사당로 146",
+      "homepage": "http://shinnamsung.sen.es.kr",
+      "schoolinfo_code": "S010001597"
+    },
+    {
+      "school_id": "B000002314",
+      "school_name": "서울영화초등학교",
+      "road_address": "서울특별시 동작구 등용로8길 3",
+      "homepage": "http://younghwa.sen.es.kr",
+      "schoolinfo_code": "S010001604"
+    },
+    {
+      "school_id": "B000002315",
+      "school_name": "서울신길초등학교",
+      "road_address": "서울특별시 동작구 알마타길 16",
+      "homepage": "http://singil.sen.es.kr",
+      "schoolinfo_code": "S010001596"
+    },
+    {
+      "school_id": "B000002316",
+      "school_name": "서울대림초등학교",
+      "road_address": "서울특별시 동작구 대방동1길 22",
+      "homepage": "http://seouldaelim.sen.es.kr",
+      "schoolinfo_code": "S010001587"
+    },
+    {
+      "school_id": "B000002317",
+      "school_name": "서울영본초등학교",
+      "road_address": "서울특별시 동작구 만양로12가길 69",
+      "homepage": "http://yeongbon.sen.es.kr",
+      "schoolinfo_code": "S010001603"
+    },
+    {
+      "school_id": "B000002318",
+      "school_name": "서울남성초등학교",
+      "road_address": "서울특별시 동작구 사당로23길 57-14",
+      "homepage": "http://namsung.sen.es.kr",
+      "schoolinfo_code": "S010001584"
+    },
+    {
+      "school_id": "B000002319",
+      "school_name": "서울남사초등학교",
+      "road_address": "서울특별시 동작구 동작대로13길 22",
+      "homepage": "http://namsa.sen.es.kr",
+      "schoolinfo_code": "S010001583"
+    },
+    {
+      "school_id": "B000002320",
+      "school_name": "서울상도초등학교",
+      "road_address": "서울특별시 동작구 성대로21길 62",
+      "homepage": "http://seoulsangdo.sen.es.kr",
+      "schoolinfo_code": "S010001595"
+    },
+    {
+      "school_id": "B000002321",
+      "school_name": "서울보라매초등학교",
+      "road_address": "서울특별시 동작구 여의대방로16길 30",
+      "homepage": "http://boramae.sen.es.kr",
+      "schoolinfo_code": "S010005251"
+    },
+    {
+      "school_id": "B000002322",
+      "school_name": "서울문창초등학교",
+      "road_address": "서울특별시 동작구 신대방2길 14",
+      "homepage": "http://munchang.sen.es.kr",
+      "schoolinfo_code": "S010001589"
+    },
+    {
+      "school_id": "B000002323",
+      "school_name": "서울흑석초등학교",
+      "road_address": "서울특별시 동작구 현충로 87",
+      "homepage": "http://heukseok.sen.es.kr",
+      "schoolinfo_code": "S010001612"
+    },
+    {
+      "school_id": "B000002324",
+      "school_name": "중앙대학교사범대학부속초등학교",
+      "road_address": "서울특별시 동작구 서달로 135",
+      "homepage": "https://cau.sen.es.kr",
+      "schoolinfo_code": "S010001613"
+    },
+    {
+      "school_id": "B000002325",
+      "school_name": "서울원신초등학교",
+      "road_address": "서울특별시 관악구 광신길 177",
+      "homepage": "http://wonshin.sen.es.kr",
+      "schoolinfo_code": "S010001606"
+    },
+    {
+      "school_id": "B000002326",
+      "school_name": "서울남부초등학교",
+      "road_address": "서울특별시 관악구 남부순환로163길 14",
+      "homepage": "http://seoulnambu.sen.es.kr",
+      "schoolinfo_code": "S010001582"
+    },
+    {
+      "school_id": "B000002327",
+      "school_name": "서울신우초등학교",
+      "road_address": "서울특별시 관악구 호암로 498",
+      "homepage": "http://seoulsinwoo.sen.es.kr",
+      "schoolinfo_code": "S010001602"
+    },
+    {
+      "school_id": "B000002328",
+      "school_name": "서울신림초등학교",
+      "road_address": "서울특별시 관악구 문성로28길 31",
+      "homepage": "http://sillim.sen.es.kr",
+      "schoolinfo_code": "S010001598"
+    },
+    {
+      "school_id": "B000002329",
+      "school_name": "서울조원초등학교",
+      "road_address": "서울특별시 관악구 조원로 67",
+      "homepage": "http://jowon.sen.es.kr",
+      "schoolinfo_code": "S010005257"
+    },
+    {
+      "school_id": "B000002330",
+      "school_name": "서울난곡초등학교",
+      "road_address": "서울특별시 관악구 난곡로35길 102",
+      "homepage": "http://nangok.sen.es.kr",
+      "schoolinfo_code": "S010001579"
+    },
+    {
+      "school_id": "B000002331",
+      "school_name": "서울삼성초등학교",
+      "road_address": "서울특별시 관악구 대학7길 52",
+      "homepage": "http://samseong.sen.es.kr",
+      "schoolinfo_code": "S010001594"
+    },
+    {
+      "school_id": "B000002332",
+      "school_name": "서울미성초등학교",
+      "road_address": "서울특별시 관악구 문성로 79",
+      "homepage": "http://misung.sen.es.kr",
+      "schoolinfo_code": "S010001590"
+    },
+    {
+      "school_id": "B000002333",
+      "school_name": "서울봉현초등학교",
+      "road_address": "서울특별시 관악구 성현로 117",
+      "homepage": "http://bonghyun.sen.es.kr",
+      "schoolinfo_code": "S010005179"
+    },
+    {
+      "school_id": "B000002334",
+      "school_name": "서울청룡초등학교",
+      "road_address": "서울특별시 관악구 관악로5길 61",
+      "homepage": "http://chungryong.sen.es.kr",
+      "schoolinfo_code": "S010001610"
+    },
+    {
+      "school_id": "B000002335",
+      "school_name": "서울봉천초등학교",
+      "road_address": "서울특별시 관악구 행운1라길 17",
+      "homepage": "http://bongcheon.sen.es.kr",
+      "schoolinfo_code": "S010001592"
+    },
+    {
+      "school_id": "B000002336",
+      "school_name": "서울원당초등학교",
+      "road_address": "서울특별시 관악구 봉천로 505",
+      "homepage": "http://wondang.sen.es.kr",
+      "schoolinfo_code": "S010001605"
+    },
+    {
+      "school_id": "B000002337",
+      "school_name": "서울사당초등학교",
+      "road_address": "서울특별시 관악구 남현4길 51",
+      "homepage": "http://sadang.sen.es.kr",
+      "schoolinfo_code": "S010001593"
+    },
+    {
+      "school_id": "B000002338",
+      "school_name": "서울인헌초등학교",
+      "road_address": "서울특별시 관악구 낙성대로 23",
+      "homepage": "http://inhun.sen.es.kr",
+      "schoolinfo_code": "S010001609"
+    },
+    {
+      "school_id": "B000002339",
+      "school_name": "서울당곡초등학교",
+      "road_address": "서울특별시 관악구 보라매로2길 23",
+      "homepage": "http://danggok.sen.es.kr",
+      "schoolinfo_code": "S010001586"
+    },
+    {
+      "school_id": "B000002340",
+      "school_name": "서울신봉초등학교",
+      "road_address": "서울특별시 관악구 양녕로6나길 1",
+      "homepage": "http://sinbong.sen.es.kr",
+      "schoolinfo_code": "S010001599"
+    },
+    {
+      "school_id": "B000002341",
+      "school_name": "서울구암초등학교",
+      "road_address": "서울특별시 관악구 구암길 1",
+      "homepage": "http://seoulguam.sen.es.kr",
+      "schoolinfo_code": "S010001578"
+    },
+    {
+      "school_id": "B000002342",
+      "school_name": "서울은천초등학교",
+      "road_address": "서울특별시 관악구 은천로 69",
+      "homepage": "http://euncheon.sen.es.kr",
+      "schoolinfo_code": "S010001608"
+    },
+    {
+      "school_id": "B000002343",
+      "school_name": "서울관악초등학교",
+      "road_address": "서울특별시 관악구 청룡4길 49",
+      "homepage": "http://seoul-kwanak.sen.es.kr",
+      "schoolinfo_code": "S010001577"
+    },
+    {
+      "school_id": "B000002344",
+      "school_name": "서울난우초등학교",
+      "road_address": "서울특별시 관악구 난우길 40",
+      "homepage": "http://nanwoo.sen.es.kr",
+      "schoolinfo_code": "S010001580"
+    },
+    {
+      "school_id": "B000002345",
+      "school_name": "서울난향초등학교",
+      "road_address": "서울특별시 관악구 난향길 9",
+      "homepage": "http://nanhyang.sen.es.kr",
+      "schoolinfo_code": "S010001581"
+    },
+    {
+      "school_id": "B000002346",
+      "school_name": "서울신성초등학교",
+      "road_address": "서울특별시 관악구 신림로 114",
+      "homepage": "http://sss.sen.es.kr",
+      "schoolinfo_code": "S010001601"
+    },
+    {
+      "school_id": "B000002347",
+      "school_name": "서울행당초등학교",
+      "road_address": "서울특별시 성동구 고산자로8길 6",
+      "homepage": "http://hd.sen.es.kr",
+      "schoolinfo_code": "S010002194"
+    },
+    {
+      "school_id": "B000002348",
+      "school_name": "서울동호초등학교",
+      "road_address": "서울특별시 성동구 매봉길 49-35",
+      "homepage": "http://dongho.sen.es.kr",
+      "schoolinfo_code": "S010005551"
+    },
+    {
+      "school_id": "B000002349",
+      "school_name": "서울경동초등학교",
+      "road_address": "서울특별시 성동구 성수일로 34",
+      "homepage": "http://kyungdong.sen.es.kr",
+      "schoolinfo_code": "S010002164"
+    },
+    {
+      "school_id": "B000002350",
+      "school_name": "서울경수초등학교",
+      "road_address": "서울특별시 성동구 뚝섬로13길 22",
+      "homepage": "http://ks.sen.es.kr",
+      "schoolinfo_code": "S010002165"
+    },
+    {
+      "school_id": "B000002351",
+      "school_name": "서울금북초등학교",
+      "road_address": "서울특별시 성동구 행당로1길 13",
+      "homepage": "http://gb.sen.es.kr",
+      "schoolinfo_code": "S010002171"
+    },
+    {
+      "school_id": "B000002352",
+      "school_name": "서울금호초등학교",
+      "road_address": "서울특별시 성동구 무수막길 69",
+      "homepage": "http://geumho.sen.es.kr",
+      "schoolinfo_code": "S010002173"
+    },
+    {
+      "school_id": "B000002353",
+      "school_name": "서울옥수초등학교",
+      "road_address": "서울특별시 성동구 금호로1길 25",
+      "homepage": "http://oksu.sen.es.kr",
+      "schoolinfo_code": "S010002184"
+    },
+    {
+      "school_id": "B000002354",
+      "school_name": "서울금옥초등학교",
+      "road_address": "서울특별시 성동구 독서당로 251",
+      "homepage": "https://geumok.sen.es.kr",
+      "schoolinfo_code": "S010002172"
+    },
+    {
+      "school_id": "B000002355",
+      "school_name": "서울동명초등학교",
+      "road_address": "서울특별시 성동구 마장로29길 29",
+      "homepage": "http://dgmg.sen.es.kr/index.do",
+      "schoolinfo_code": "S010002174"
+    },
+    {
+      "school_id": "B000002356",
+      "school_name": "서울마장초등학교",
+      "road_address": "서울특별시 성동구 마장로35나길 31",
+      "homepage": "http://majang.sen.es.kr",
+      "schoolinfo_code": "S010005244"
+    },
+    {
+      "school_id": "B000002357",
+      "school_name": "서울사근초등학교",
+      "road_address": "서울특별시 성동구 사근동11길 16",
+      "homepage": "http://sageun.sen.es.kr",
+      "schoolinfo_code": "S010002178"
+    },
+    {
+      "school_id": "B000002358",
+      "school_name": "서울경일초등학교",
+      "road_address": "서울특별시 성동구 뚝섬로 332",
+      "homepage": "https://kyongil.sen.es.kr",
+      "schoolinfo_code": "S010002166"
+    },
+    {
+      "school_id": "B000002359",
+      "school_name": "서울성수초등학교",
+      "road_address": "서울특별시 성동구 아차산로17길 21",
+      "homepage": "http://sungsu.sen.es.kr",
+      "schoolinfo_code": "S010002179"
+    },
+    {
+      "school_id": "B000002360",
+      "school_name": "서울송원초등학교",
+      "road_address": "서울특별시 성동구 동일로43길 9",
+      "homepage": "http://ssw.sen.es.kr",
+      "schoolinfo_code": "S010005513"
+    },
+    {
+      "school_id": "B000002361",
+      "school_name": "서울옥정초등학교",
+      "road_address": "서울특별시 성동구 한림말길 43",
+      "homepage": "http://okjeong.sen.es.kr",
+      "schoolinfo_code": "S010002185"
+    },
+    {
+      "school_id": "B000002362",
+      "school_name": "서울용답초등학교",
+      "road_address": "서울특별시 성동구 용답25길 1",
+      "homepage": "http://yd.sen.es.kr",
+      "schoolinfo_code": "S010002187"
+    },
+    {
+      "school_id": "B000002363",
+      "school_name": "서울응봉초등학교",
+      "road_address": "서울특별시 성동구 독서당로62길 28",
+      "homepage": "http://eb.sen.es.kr",
+      "schoolinfo_code": "S010002189"
+    },
+    {
+      "school_id": "B000002364",
+      "school_name": "서울무학초등학교",
+      "road_address": "서울특별시 성동구 무학봉15길 21",
+      "homepage": "http://muhag.sen.es.kr",
+      "schoolinfo_code": "S010002177"
+    },
+    {
+      "school_id": "B000002365",
+      "school_name": "서울행현초등학교",
+      "road_address": "서울특별시 성동구 행당로 95",
+      "homepage": "http://haenghyun.sen.es.kr",
+      "schoolinfo_code": "S010005269"
+    },
+    {
+      "school_id": "B000002366",
+      "school_name": "한양초등학교",
+      "road_address": "서울특별시 성동구 살곶이길 208",
+      "homepage": "http://www.hye.or.kr",
+      "schoolinfo_code": "S010002198"
+    },
+    {
+      "school_id": "B000002367",
+      "school_name": "서울양진초등학교",
+      "road_address": "서울특별시 광진구 워커힐로 32",
+      "homepage": "http://yjs.sen.es.kr",
+      "schoolinfo_code": "S010005241"
+    },
+    {
+      "school_id": "B000002368",
+      "school_name": "서울광남초등학교",
+      "road_address": "서울특별시 광진구 아차산로70길 35",
+      "homepage": "http://gwangnam.sen.es.kr",
+      "schoolinfo_code": "S010002167"
+    },
+    {
+      "school_id": "B000002369",
+      "school_name": "서울광장초등학교",
+      "road_address": "서울특별시 광진구 광장로1길 27",
+      "homepage": "http://kwangjang.sen.es.kr",
+      "schoolinfo_code": "S010002168"
+    },
+    {
+      "school_id": "B000002370",
+      "school_name": "서울동의초등학교",
+      "road_address": "서울특별시 광진구 영화사로 111",
+      "homepage": "http://dongeui.sen.es.kr",
+      "schoolinfo_code": "S010002175"
+    },
+    {
+      "school_id": "B000002371",
+      "school_name": "서울광진초등학교",
+      "road_address": "서울특별시 광진구 자양로40길 41",
+      "homepage": "http://gwangjin.sen.es.kr",
+      "schoolinfo_code": "S010005203"
+    },
+    {
+      "school_id": "B000002372",
+      "school_name": "서울구남초등학교",
+      "road_address": "서울특별시 광진구 구의강변로 69",
+      "homepage": "http://gunam.sen.es.kr",
+      "schoolinfo_code": "S010002169"
+    },
+    {
+      "school_id": "B000002373",
+      "school_name": "서울장안초등학교",
+      "road_address": "서울특별시 광진구 군자로 74",
+      "homepage": "http://jangan.sen.es.kr",
+      "schoolinfo_code": "S010002191"
+    },
+    {
+      "school_id": "B000002374",
+      "school_name": "서울자양초등학교",
+      "road_address": "서울특별시 광진구 아차산로44길 26",
+      "homepage": "http://jayang.sen.es.kr/",
+      "schoolinfo_code": "S010002190"
+    },
+    {
+      "school_id": "B000002375",
+      "school_name": "서울동자초등학교",
+      "road_address": "서울특별시 광진구 뚝섬로 561",
+      "homepage": "http://dongja.sen.es.kr",
+      "schoolinfo_code": "S010002176"
+    },
+    {
+      "school_id": "B000002376",
+      "school_name": "서울신양초등학교",
+      "road_address": "서울특별시 광진구 능동로 42",
+      "homepage": "http://sinyang.sen.es.kr",
+      "schoolinfo_code": "S010002181"
+    },
+    {
+      "school_id": "B000002377",
+      "school_name": "서울신자초등학교",
+      "road_address": "서울특별시 광진구 뚝섬로46길 64",
+      "homepage": "http://sinja.sen.es.kr",
+      "schoolinfo_code": "S010002182"
+    },
+    {
+      "school_id": "B000002378",
+      "school_name": "서울성자초등학교",
+      "road_address": "서울특별시 광진구 뚝섬로56길 7",
+      "homepage": "http://seongja.sen.es.kr",
+      "schoolinfo_code": "S010002180"
+    },
+    {
+      "school_id": "B000002379",
+      "school_name": "서울양남초등학교",
+      "road_address": "서울특별시 광진구 뚝섬로64길 71",
+      "homepage": "http://s-yangnam.sen.es.kr",
+      "schoolinfo_code": "S010002183"
+    },
+    {
+      "school_id": "B000002380",
+      "school_name": "서울용마초등학교",
+      "road_address": "서울특별시 광진구 천호대로113길 10",
+      "homepage": "http://ymc.sen.es.kr",
+      "schoolinfo_code": "S010002188"
+    },
+    {
+      "school_id": "B000002381",
+      "school_name": "서울중광초등학교",
+      "road_address": "서울특별시 광진구 긴고랑로13길 59",
+      "homepage": "http://jkschool.sen.es.kr",
+      "schoolinfo_code": "S010002192"
+    },
+    {
+      "school_id": "B000002382",
+      "school_name": "서울중마초등학교",
+      "road_address": "서울특별시 광진구 동일로72길 43",
+      "homepage": "http://jungma.sen.es.kr",
+      "schoolinfo_code": "S010002193"
+    },
+    {
+      "school_id": "B000002383",
+      "school_name": "서울용곡초등학교",
+      "road_address": "서울특별시 광진구 용마산로22길 82",
+      "homepage": "http://yonggok.sen.es.kr",
+      "schoolinfo_code": "S010002186"
+    },
+    {
+      "school_id": "B000002385",
+      "school_name": "서울구의초등학교",
+      "road_address": "서울특별시 광진구 광나루로30길 49",
+      "homepage": "http://guui.sen.es.kr",
+      "schoolinfo_code": "S010002170"
+    },
+    {
+      "school_id": "B000002386",
+      "school_name": "세종초등학교",
+      "road_address": "서울특별시 광진구 군자로 114",
+      "homepage": "http://sejong.sen.es.kr",
+      "schoolinfo_code": "S010002197"
+    },
+    {
+      "school_id": "B000002387",
+      "school_name": "경복초등학교",
+      "road_address": "서울특별시 광진구 천호대로130길 58",
+      "homepage": "http://www.kbes.kr",
+      "schoolinfo_code": "S010002163"
+    },
+    {
+      "school_id": "B000002388",
+      "school_name": "성동초등학교",
+      "road_address": "서울특별시 광진구 자양로4길 63",
+      "homepage": "http://sungdong.sen.es.kr",
+      "schoolinfo_code": "S010002196"
+    },
+    {
+      "school_id": "B000002389",
+      "school_name": "서울돈암초등학교",
+      "road_address": "서울특별시 성북구 동소문로13길 38",
+      "homepage": "http://donam.sen.es.kr",
+      "schoolinfo_code": "S010002294"
+    },
+    {
+      "school_id": "B000002390",
+      "school_name": "서울정덕초등학교",
+      "road_address": "서울특별시 성북구 아리랑로 63",
+      "homepage": "http://jeongdeok.sen.es.kr",
+      "schoolinfo_code": "S010002321"
+    },
+    {
+      "school_id": "B000002391",
+      "school_name": "서울삼선초등학교",
+      "road_address": "서울특별시 성북구 보문로29길 106",
+      "homepage": "https://samsun.sen.es.kr",
+      "schoolinfo_code": "S010002300"
+    },
+    {
+      "school_id": "B000002392",
+      "school_name": "서울안암초등학교",
+      "road_address": "서울특별시 성북구 고려대로7가길 39",
+      "homepage": "http://anam.sen.es.kr",
+      "schoolinfo_code": "S010002312"
+    },
+    {
+      "school_id": "B000002393",
+      "school_name": "서울동신초등학교",
+      "road_address": "서울특별시 성북구 보문사길 50",
+      "homepage": "http://dongsin.sen.es.kr",
+      "schoolinfo_code": "S010002295"
+    },
+    {
+      "school_id": "B000002394",
+      "school_name": "서울숭덕초등학교",
+      "road_address": "서울특별시 성북구 정릉로 279",
+      "homepage": "http://soongduck.sen.es.kr",
+      "schoolinfo_code": "S010002309"
+    },
+    {
+      "school_id": "B000002395",
+      "school_name": "서울길원초등학교",
+      "road_address": "서울특별시 성북구 길음로15길 55",
+      "homepage": "http://gilwon.sen.es.kr",
+      "schoolinfo_code": "S010005272"
+    },
+    {
+      "school_id": "B000002396",
+      "school_name": "서울숭곡초등학교",
+      "road_address": "서울특별시 성북구 종암로40길 30",
+      "homepage": "http://soonggok.sen.es.kr",
+      "schoolinfo_code": "S010002308"
+    },
+    {
+      "school_id": "B000002397",
+      "school_name": "서울장월초등학교",
+      "road_address": "서울특별시 성북구 한천로101길 66",
+      "homepage": "http://jangwol.sen.es.kr",
+      "schoolinfo_code": "S010005282"
+    },
+    {
+      "school_id": "B000002398",
+      "school_name": "서울월곡초등학교",
+      "road_address": "서울특별시 성북구 장월로3길 42",
+      "homepage": "http://swg.sen.es.kr",
+      "schoolinfo_code": "S010002315"
+    },
+    {
+      "school_id": "B000002399",
+      "school_name": "서울길음초등학교",
+      "road_address": "서울특별시 성북구 길음로 142",
+      "homepage": "http://gireum.sen.es.kr",
+      "schoolinfo_code": "S010002293"
+    },
+    {
+      "school_id": "B000002400",
+      "school_name": "서울미아초등학교",
+      "road_address": "서울특별시 성북구 삼양로 77",
+      "homepage": "http://mia.sen.es.kr",
+      "schoolinfo_code": "S010002296"
+    },
+    {
+      "school_id": "B000002401",
+      "school_name": "서울개운초등학교",
+      "road_address": "서울특별시 성북구 정릉로48길 52",
+      "homepage": " http://gaewoon.sen.es.kr/",
+      "schoolinfo_code": "S010002292"
+    },
+    {
+      "school_id": "B000002402",
+      "school_name": "서울석계초등학교",
+      "road_address": "서울특별시 성북구 한천로58길 273",
+      "homepage": "http://sukgye.sen.es.kr",
+      "schoolinfo_code": "S010005249"
+    },
+    {
+      "school_id": "B000002403",
+      "school_name": "서울석관초등학교",
+      "road_address": "서울특별시 성북구 돌곶이로22길 21",
+      "homepage": "http://seokgwan.sen.es.kr",
+      "schoolinfo_code": "S010002302"
+    },
+    {
+      "school_id": "B000002404",
+      "school_name": "서울성북초등학교",
+      "road_address": "서울특별시 성북구 성북로 102-10",
+      "homepage": "http://sungbuk.sen.es.kr",
+      "schoolinfo_code": "S010002303"
+    },
+    {
+      "school_id": "B000002405",
+      "school_name": "서울장위초등학교",
+      "road_address": "서울특별시 성북구 장월로8가길 41",
+      "homepage": "http://jangwicho.sen.es.kr",
+      "schoolinfo_code": "S010002320"
+    },
+    {
+      "school_id": "B000002406",
+      "school_name": "서울장곡초등학교",
+      "road_address": "서울특별시 성북구 장월로23길 16",
+      "homepage": "http://janggok.sen.es.kr",
+      "schoolinfo_code": "S010002319"
+    },
+    {
+      "school_id": "B000002407",
+      "school_name": "서울정수초등학교",
+      "road_address": "서울특별시 성북구 정릉로24길 58",
+      "homepage": "http://jungsu.sen.es.kr",
+      "schoolinfo_code": "S010002323"
+    },
+    {
+      "school_id": "B000002408",
+      "school_name": "서울정릉초등학교",
+      "road_address": "서울특별시 성북구 솔샘로25가길 8",
+      "homepage": "http://jeongneung.sen.es.kr",
+      "schoolinfo_code": "S010002322"
+    },
+    {
+      "school_id": "B000002409",
+      "school_name": "서울청덕초등학교",
+      "road_address": "서울특별시 성북구 정릉로9라길 11",
+      "homepage": "http://cheongdeok.sen.es.kr",
+      "schoolinfo_code": "S010002324"
+    },
+    {
+      "school_id": "B000002410",
+      "school_name": "서울일신초등학교",
+      "road_address": "서울특별시 성북구 월곡로 74",
+      "homepage": "http://ilshin.sen.es.kr",
+      "schoolinfo_code": "S010002318"
+    },
+    {
+      "school_id": "B000002411",
+      "school_name": "서울숭례초등학교",
+      "road_address": "서울특별시 성북구 종암로5길 14",
+      "homepage": "http://sungrye.sen.es.kr",
+      "schoolinfo_code": "S010002310"
+    },
+    {
+      "school_id": "B000002412",
+      "school_name": "서울숭인초등학교",
+      "road_address": "서울특별시 성북구 오패산로16길 37",
+      "homepage": "http://soongin.sen.es.kr",
+      "schoolinfo_code": "S010002311"
+    },
+    {
+      "school_id": "B000002413",
+      "school_name": "성신초등학교",
+      "road_address": "서울특별시 성북구 북악산로 918",
+      "homepage": "http://sungshin.sen.es.kr",
+      "schoolinfo_code": "S010002326"
+    },
+    {
+      "school_id": "B000002414",
+      "school_name": "우촌초등학교",
+      "road_address": "서울특별시 성북구 성북로4길 52-1",
+      "homepage": "https://uchon.sen.es.kr/",
+      "schoolinfo_code": "S010002328"
+    },
+    {
+      "school_id": "B000002415",
+      "school_name": "대광초등학교",
+      "road_address": "서울특별시 성북구 안암로 5",
+      "homepage": "http://daegwang.sen.es.kr",
+      "schoolinfo_code": "S010002290"
+    },
+    {
+      "school_id": "B000002416",
+      "school_name": "광운초등학교",
+      "road_address": "서울특별시 성북구 한천로 694",
+      "homepage": "http://kwangwoon.sen.es.kr",
+      "schoolinfo_code": "S010002289"
+    },
+    {
+      "school_id": "B000002417",
+      "school_name": "매원초등학교",
+      "road_address": "서울특별시 성북구 북악산로 870",
+      "homepage": "http://maewon.sen.es.kr",
+      "schoolinfo_code": "S010002291"
+    },
+    {
+      "school_id": "B000002418",
+      "school_name": "서울번동초등학교",
+      "road_address": "서울특별시 강북구 오현로 204",
+      "homepage": "http://beondong.sen.es.kr",
+      "schoolinfo_code": "S010002298"
+    },
+    {
+      "school_id": "B000002419",
+      "school_name": "서울오현초등학교",
+      "road_address": "서울특별시 강북구 월계로 221",
+      "homepage": "http://ohhyun.sen.es.kr",
+      "schoolinfo_code": "S010002313"
+    },
+    {
+      "school_id": "B000002420",
+      "school_name": "서울삼양초등학교",
+      "road_address": "서울특별시 강북구 삼양로49길 17",
+      "homepage": "http://samyang.sen.es.kr",
+      "schoolinfo_code": "S010002301"
+    },
+    {
+      "school_id": "B000002421",
+      "school_name": "서울삼각산초등학교",
+      "road_address": "서울특별시 강북구 삼양로19길 141",
+      "homepage": "http://samgaksan.sen.es.kr",
+      "schoolinfo_code": "S010002299"
+    },
+    {
+      "school_id": "B000002422",
+      "school_name": "서울송천초등학교",
+      "road_address": "서울특별시 강북구 삼양로20길 29",
+      "homepage": "http://song-cheon.sen.es.kr",
+      "schoolinfo_code": "S010002305"
+    },
+    {
+      "school_id": "B000002423",
+      "school_name": "서울송중초등학교",
+      "road_address": "서울특별시 강북구 오현로 9",
+      "homepage": "http://songjoong.sen.es.kr",
+      "schoolinfo_code": "S010002304"
+    },
+    {
+      "school_id": "B000002424",
+      "school_name": "서울화계초등학교",
+      "road_address": "서울특별시 강북구 솔매로50가길 25",
+      "homepage": "http://hwagye.sen.es.kr",
+      "schoolinfo_code": "S010002325"
+    },
+    {
+      "school_id": "B000002425",
+      "school_name": "서울미양초등학교",
+      "road_address": "서울특별시 강북구 솔샘로 195",
+      "homepage": "http://mi-yang.sen.es.kr",
+      "schoolinfo_code": "S010002297"
+    },
+    {
+      "school_id": "B000002426",
+      "school_name": "서울수송초등학교",
+      "road_address": "서울특별시 강북구 한천로124길 14",
+      "homepage": "http://soosong.sen.es.kr",
+      "schoolinfo_code": "S010002306"
+    },
+    {
+      "school_id": "B000002427",
+      "school_name": "서울수유초등학교",
+      "road_address": "서울특별시 강북구 삼양로74길 39",
+      "homepage": "http://suyu.sen.es.kr",
+      "schoolinfo_code": "S010002307"
+    },
+    {
+      "school_id": "B000002428",
+      "school_name": "서울인수초등학교",
+      "road_address": "서울특별시 강북구 인수봉로 269",
+      "homepage": "http://insu.sen.es.kr",
+      "schoolinfo_code": "S010002317"
+    },
+    {
+      "school_id": "B000002429",
+      "school_name": "서울우이초등학교",
+      "road_address": "서울특별시 강북구 삼양로99길 36",
+      "homepage": "http://wooi.sen.es.kr",
+      "schoolinfo_code": "S010002314"
+    },
+    {
+      "school_id": "B000002430",
+      "school_name": "서울유현초등학교",
+      "road_address": "서울특별시 강북구 인수봉로37길 24",
+      "homepage": "http://youhyeon.sen.es.kr",
+      "schoolinfo_code": "S010002316"
+    },
+    {
+      "school_id": "B000002431",
+      "school_name": "영훈초등학교",
+      "road_address": "서울특별시 강북구 도봉로13가길 19",
+      "homepage": "http://www.younghoon.es.kr",
+      "schoolinfo_code": "S010002327"
+    },
+    {
+      "school_id": "B000022754",
+      "school_name": "서울세명초등학교",
+      "road_address": "서울특별시 강남구 자곡로 55",
+      "homepage": "http://semyung.sen.es.kr",
+      "schoolinfo_code": "S010005832"
+    },
+    {
+      "school_id": "B000022762",
+      "school_name": "서울공진초등학교",
+      "road_address": "서울특별시 강서구 마곡서로 33",
+      "homepage": "http://kongjin.sen.es.kr",
+      "schoolinfo_code": "S010001013"
+    },
+    {
+      "school_id": "B000022763",
+      "school_name": "서울공항초등학교",
+      "road_address": "서울특별시 강서구 마곡서1로 68",
+      "homepage": "http://konghang.sen.es.kr",
+      "schoolinfo_code": "S010001014"
+    },
+    {
+      "school_id": "B000022774",
+      "school_name": "서울상현초등학교",
+      "road_address": "서울특별시 동작구 상도로58길 21",
+      "homepage": "http://ssh.sen.es.kr",
+      "schoolinfo_code": "S010005567"
+    },
+    {
+      "school_id": "B000024031",
+      "school_name": "서울가재울초등학교",
+      "road_address": "서울특별시 서대문구 모래내로15길 61",
+      "homepage": "http://gajaeul.sen.es.kr",
+      "schoolinfo_code": "S010005597"
+    },
+    {
+      "school_id": "B000024069",
+      "school_name": "서울개포초등학교",
+      "road_address": "서울특별시 강남구 삼성로4길 30",
+      "homepage": "https://gaepo.sen.es.kr/",
+      "schoolinfo_code": "S010000739"
+    },
+    {
+      "school_id": "B000024102",
+      "school_name": "서울어울초등학교",
+      "road_address": "서울특별시 은평구 통일로 650",
+      "homepage": "http://urwool.sen.es.kr",
+      "schoolinfo_code": "S010005601"
+    },
+    {
+      "school_id": "B000024205",
+      "school_name": "서울강솔초등학교",
+      "road_address": "서울특별시 강동구 고덕로97길 80",
+      "homepage": "http://gangsol.sen.es.kr",
+      "schoolinfo_code": "S010006385"
+    },
+    {
+      "school_id": "B000024206",
+      "school_name": "서울고현초등학교",
+      "road_address": "서울특별시 강동구 상일로11길 110",
+      "homepage": "http://gohyeon.sen.es.kr",
+      "schoolinfo_code": "S010005600"
+    },
+    {
+      "school_id": "B000024506",
+      "school_name": "서울우솔초등학교",
+      "road_address": "서울특별시 서초구 양재대로2길 74",
+      "homepage": "http://woosol.sen.es.kr",
+      "schoolinfo_code": "S010005830"
+    },
+    {
+      "school_id": "B000024775",
+      "school_name": "서울금나래초등학교",
+      "road_address": "서울특별시 금천구 시흥대로79길 37",
+      "homepage": "http://geumnarae.sen.es.kr",
+      "schoolinfo_code": "S010006386"
+    },
+    {
+      "school_id": "B000025000",
+      "school_name": "서울자곡초등학교",
+      "road_address": "서울특별시 강남구 자곡로 150",
+      "homepage": "http://jagok.sen.es.kr",
+      "schoolinfo_code": "S010005831"
+    },
+    {
+      "school_id": "B000025001",
+      "school_name": "서울율현초등학교",
+      "road_address": "서울특별시 강남구 밤고개로21길 15",
+      "homepage": "http://yulhyeon.sen.es.kr",
+      "schoolinfo_code": "S010005828"
+    },
+    {
+      "school_id": "B000025276",
+      "school_name": "서울새솔초등학교",
+      "road_address": "서울특별시 중랑구 신내역로1길 164",
+      "homepage": "http://saesol.sen.es.kr",
+      "schoolinfo_code": "S010005606"
+    },
+    {
+      "school_id": "B000025289",
+      "school_name": "서울송례초등학교",
+      "road_address": "서울특별시 송파구 위례순환로 439",
+      "homepage": "http://sree.sen.es.kr",
+      "schoolinfo_code": "S010006043"
+    },
+    {
+      "school_id": "B000025372",
+      "school_name": "서울해누리초등학교",
+      "road_address": "서울특별시 송파구 송파대로37길 95",
+      "homepage": "http://haenuri.sen.es.kr",
+      "schoolinfo_code": "S010006433"
+    },
+    {
+      "school_id": "B000025373",
+      "school_name": "서울위례솔초등학교",
+      "road_address": "서울특별시 송파구 위례북로2길 12",
+      "homepage": "https://wiryesol.sen.es.kr",
+      "schoolinfo_code": "S010005599"
+    },
+    {
+      "school_id": "B000025375",
+      "school_name": "서울위례별초등학교",
+      "road_address": "서울특별시 송파구 위례광장로 243",
+      "homepage": "http://westar.sen.es.kr",
+      "schoolinfo_code": "S010006211"
+    },
+    {
+      "school_id": "B000025384",
+      "school_name": "서울강빛초등학교",
+      "road_address": "서울특별시 강동구 아리수로93다길 1",
+      "homepage": "http://gbe.sen.es.kr",
+      "schoolinfo_code": "S010006543"
+    },
+    {
+      "school_id": "B000025614",
+      "school_name": "서울하늘숲초등학교",
+      "road_address": "서울특별시 구로구 오리로 1106",
+      "homepage": "http://skyf.sen.es.kr",
+      "schoolinfo_code": "S010006431"
+    },
+    {
+      "school_id": "B000025891",
+      "school_name": "서울언남초등학교",
+      "road_address": "서울특별시 서초구 헌릉로8길 42",
+      "homepage": "http://eonnam.sen.es.kr",
+      "schoolinfo_code": "S010000772"
+    },
+    {
+      "school_id": "B000026183",
+      "school_name": "서울항동초등학교",
+      "road_address": "서울특별시 구로구 연동로 178",
+      "homepage": "http://hangdong.sen.es.kr",
+      "schoolinfo_code": "S010006432"
+    },
+    {
+      "school_id": "B000026371",
+      "school_name": "서울숭신초등학교",
+      "road_address": "서울특별시 성동구 마장로 161",
+      "homepage": "http://soongshin.sen.es.kr",
+      "schoolinfo_code": "S010002384"
+    },
+    {
+      "school_id": "B000027451",
+      "school_name": "서울양원숲초등학교",
+      "road_address": "서울특별시 중랑구 양원역로 95",
+      "homepage": "https://yangwonsoop.sen.es.kr/index.do",
+      "schoolinfo_code": "S010006476"
+    },
+    {
+      "school_id": "B000030583",
+      "school_name": "서울개현초등학교",
+      "road_address": "서울특별시 강남구 선릉로 15",
+      "homepage": "https://gaehyeon.sen.es.kr",
+      "schoolinfo_code": "S010006510"
+    }
+  ]
+}

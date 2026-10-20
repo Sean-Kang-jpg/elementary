@@ -1,5 +1,6 @@
 import type { SchoolAfterschoolOption, SchoolAfterschoolSection, SchoolCareHours, SchoolDayEstimate } from '../../types'
 import type { EvidenceStatus, Minutes, ParticipationStatus, ScheduleEntry, Weekday } from './types'
+import { DEFAULT_AFTERNOON_END } from './carePlanning.ts'
 
 /** 'HH:MM' 또는 PostgREST의 'HH:MM:SS'. 읽을 수 없으면 null — 추측하지 않는다. */
 export const toMinutes = (value: string | null | undefined): Minutes | null => {
@@ -40,7 +41,7 @@ const ALL_WEEKDAYS: Weekday[] = [1, 2, 3, 4, 5]
 
 /**
  * 학교 돌봄 운영 시간을 후보 일정으로 바꾼다. 기본(오후)과 저녁·연장은 따로 신청·선발되므로
- * 별개 일정이다(2026-10-08 사용자 결정). 둘 다 '방과후'부터 시작한다.
+ * 별개 일정이다. 오후는 하교부터, 저녁은 오후돌봄 종료부터 시작한다.
  * 참여 상태는 부모가 고른다 — 기본값 considering은 점유 시간에 들어가지 않는다.
  */
 export const careEntriesFromHours = (
@@ -48,9 +49,10 @@ export const careEntriesFromHours = (
   participation: { afternoon?: ParticipationStatus; extended?: ParticipationStatus } = {},
 ): ScheduleEntry[] => {
   const evidence: EvidenceStatus = care.status === 'stated' ? 'estimated' : 'unknown'
-  const afternoonEnd = care.status === 'stated' ? toMinutes(care.afternoon_end) : null
+  const publishedAfternoonEnd = care.status === 'stated' ? toMinutes(care.afternoon_end) : null
+  const afternoonEnd = publishedAfternoonEnd ?? DEFAULT_AFTERNOON_END
   const extendedEnd = care.status === 'stated' ? toMinutes(care.extended_end) : null
-  const source = { ref: `school_care_hours:${care.school_id}`, version: String(care.source_year) }
+  const source = { ref: `school_care_hours:${care.school_id}`, version: care.source_year ? String(care.source_year) : '학년도 미확인' }
   const entries: ScheduleEntry[] = [{
     id: `care-${care.school_id}-afternoon`,
     kind: 'care',
@@ -59,13 +61,14 @@ export const careEntriesFromHours = (
     start: null,
     startsAfterSchool: true,
     end: afternoonEnd,
-    evidence: afternoonEnd === null ? 'unknown' : evidence,
+    evidence: publishedAfternoonEnd === null ? 'estimated' : evidence,
+    ...(publishedAfternoonEnd === null ? { timeAssumption: '17:00 종료 기본 가정' } : {}),
     participation: participation.afternoon ?? 'considering',
     transitionIn: 'confirmed',
     term: 'semester',
     source,
   }]
-  if (extendedEnd !== null && afternoonEnd !== null && extendedEnd > afternoonEnd) {
+  if (extendedEnd === null || extendedEnd > afternoonEnd) {
     entries.push({
       id: `care-${care.school_id}-extended`,
       kind: 'care',
@@ -73,7 +76,7 @@ export const careEntriesFromHours = (
       weekdays: ALL_WEEKDAYS,
       start: afternoonEnd,
       end: extendedEnd,
-      evidence,
+      evidence: extendedEnd === null ? 'unknown' : evidence,
       participation: participation.extended ?? 'considering',
       transitionIn: 'confirmed',
       term: 'semester',
