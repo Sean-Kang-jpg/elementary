@@ -1,0 +1,2334 @@
+{
+  "source_manifest": "pilot_manifest_20261020.json",
+  "missing_dismissal": 150,
+  "summary": {
+    "all": {
+      "no_clock": 134,
+      "not_audited": 9,
+      "unreadable": 2,
+      "excluded": 2,
+      "not_reviewed": 2,
+      "no_attachment": 1
+    },
+    "operating_pilot": {
+      "no_clock": 10,
+      "not_audited": 7
+    },
+    "by_stage": {
+      "1": {
+        "no_clock": 67,
+        "not_audited": 8,
+        "unreadable": 1,
+        "excluded": 2
+      },
+      "2": {
+        "no_clock": 41,
+        "not_reviewed": 1,
+        "no_attachment": 1,
+        "not_audited": 1
+      },
+      "3": {
+        "no_clock": 26,
+        "not_reviewed": 1,
+        "unreadable": 1
+      }
+    }
+  },
+  "schools": [
+    {
+      "school_id": "B000003745",
+      "school_name": "낙생초등학교",
+      "area": "bundang",
+      "stage": 1,
+      "operating_pilot": true,
+      "reason": "no_clock",
+      "trail": [
+        {
+          "wave": "expansion",
+          "clock_status": "no_clock_detected",
+          "reason": "no_clock"
+        }
+      ]
+    },
+    {
+      "school_id": "B000003766",
+      "school_name": "늘푸른초등학교",
+      "area": "bundang",
+      "stage": 1,
+      "operating_pilot": true,
+      "reason": "no_clock",
+      "trail": [
+        {
+          "wave": "expansion",
+          "clock_status": "no_clock_detected",
+          "reason": "no_clock"
+        }
+      ]
+    },
+    {
+      "school_id": "B000003755",
+      "school_name": "백현초등학교",
+      "area": "bundang",
+      "stage": 1,
+      "operating_pilot": true,
+      "reason": "no_clock",
+      "trail": [
+        {
+          "wave": "expansion",
+          "clock_status": "no_clock_detected",
+          "reason": "no_clock"
+        }
+      ]
+    },
+    {
+      "school_id": "B000003752",
+      "school_name": "불곡초등학교",
+      "area": "bundang",
+      "stage": 1,
+      "operating_pilot": true,
+      "reason": "not_audited",
+      "trail": [
+        {
+          "wave": "poc",
+          "clock_status": "no_clock_detected",
+          "reason": "no_clock"
+        },
+        {
+          "wave": "expansion",
+          "clock_status": null,
+          "reason": "not_audited"
+        }
+      ]
+    },
+    {
+      "school_id": "B000003753",
+      "school_name": "성남매송초등학교",
+      "area": "bundang",
+      "stage": 1,
+      "operating_pilot": true,
+      "reason": "not_audited",
+      "trail": [
+        {
+          "wave": "poc",
+          "clock_status": "no_clock_detected",
+          "reason": "no_clock"
+        },
+        {
+          "wave": "expansion",
+          "clock_status": null,
+          "reason": "not_audited"
+        }
+      ]
+    },
+    {
+      "school_id": "B000003754",
+      "school_name": "성남미금초등학교",
+      "area": "bundang",
+      "stage": 1,
+      "operating_pilot": true,
+      "reason": "not_audited",
+      "trail": [
+        {
+          "wave": "poc",
+          "clock_status": "no_clock_detected",
+          "reason": "no_clock"
+        },
+        {
+          "wave": "expansion",
+          "clock_status": null,
+          "reason": "not_audited"
+        }
+      ]
+    },
+    {
+      "school_id": "B000003742",
+      "school_name": "성남송현초등학교",
+      "area": "bundang",
+      "stage": 1,
+      "operating_pilot": true,
+      "reason": "not_audited",
+      "trail": [
+        {
+          "wave": "poc",
+          "clock_status": "no_clock_detected",
+          "reason": "no_clock"
+        },
+        {
+          "wave": "expansion",
+          "clock_status": null,
+          "reason": "not_audited"
+        }
+      ]
+    },
+    {
+      "school_id": "B000003772",
+      "school_name": "수내초등학교",
+      "area": "bundang",
+      "stage": 1,
+      "operating_pilot": true,
+      "reason": "no_clock",
+      "trail": [
+        {
+          "wave": "expansion",
+          "clock_status": "no_clock_detected",
+          "reason": "no_clock"
+        }
+      ]
+    },
+    {
+      "school_id": "B000003746",
+      "school_name": "신백현초등학교",
+      "area": "bundang",
+      "stage": 1,
+      "operating_pilot": true,
+      "reason": "not_audited",
+      "trail": [
+        {
+          "wave": "poc",
+          "clock_status": "no_clock_detected",
+          "reason": "no_clock"
+        },
+        {
+          "wave": "expansion",
+          "clock_status": null,
+          "reason": "not_audited"
+        }
+      ]
+    },
+    {
+      "school_id": "B000003762",
+      "school_name": "야탑초등학교",
+      "area": "bundang",
+      "stage": 1,
+      "operating_pilot": true,
+      "reason": "no_clock",
+      "trail": [
+        {
+          "wave": "expansion",
+          "clock_status": "no_clock_detected",
+          "reason": "no_clock"
+        }
+      ]
+    },
+    {
+      "school_id": "B000003767",
+      "school_name": "중탑초등학교",
+      "area": "bundang",
+      "stage": 1,
+      "operating_pilot": true,
+      "reason": "no_clock",
+      "trail": [
+        {
+          "wave": "expansion",
+          "clock_status": "no_clock_detected",
+          "reason": "no_clock"
+        }
+      ]
+    },
+    {
+      "school_id": "B000026906",
+      "school_name": "판교대장초등학교",
+      "area": "bundang",
+      "stage": 1,
+      "operating_pilot": true,
+      "reason": "not_audited",
+      "trail": [
+        {
+          "wave": "poc",
+          "clock_status": "no_clock_detected",
+          "reason": "no_clock"
+        },
+        {
+          "wave": "expansion",
+          "clock_status": null,
+          "reason": "not_audited"
+        }
+      ]
+    },
+    {
+      "school_id": "B000003765",
+      "school_name": "한솔초등학교",
+      "area": "bundang",
+      "stage": 1,
+      "operating_pilot": true,
+      "reason": "not_audited",
+      "trail": [
+        {
+          "wave": "poc",
+          "clock_status": "no_clock_detected",
+          "reason": "no_clock"
+        },
+        {
+          "wave": "expansion",
+          "clock_status": null,
+          "reason": "not_audited"
+        }
+      ]
+    },
+    {
+      "school_id": "B000030583",
+      "school_name": "서울개현초등학교",
+      "area": "gangnam",
+      "stage": 1,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "trail": [
+        {
+          "wave": "expansion",
+          "clock_status": "no_clock_detected",
+          "reason": "no_clock"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002289",
+      "school_name": "서울논현초등학교",
+      "area": "gangnam",
+      "stage": 1,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "trail": [
+        {
+          "wave": "expansion",
+          "clock_status": "no_clock_detected",
+          "reason": "no_clock"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002291",
+      "school_name": "서울대곡초등학교",
+      "area": "gangnam",
+      "stage": 1,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "trail": [
+        {
+          "wave": "expansion",
+          "clock_status": "no_clock_detected",
+          "reason": "no_clock"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002285",
+      "school_name": "서울대도초등학교",
+      "area": "gangnam",
+      "stage": 1,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "trail": [
+        {
+          "wave": "expansion",
+          "clock_status": "no_clock_detected",
+          "reason": "no_clock"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002279",
+      "school_name": "서울대진초등학교",
+      "area": "gangnam",
+      "stage": 1,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "trail": [
+        {
+          "wave": "expansion",
+          "clock_status": "no_clock_detected",
+          "reason": "no_clock"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002299",
+      "school_name": "서울대청초등학교",
+      "area": "gangnam",
+      "stage": 1,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "trail": [
+        {
+          "wave": "expansion",
+          "clock_status": "no_clock_detected",
+          "reason": "no_clock"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002275",
+      "school_name": "서울봉은초등학교",
+      "area": "gangnam",
+      "stage": 1,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "trail": [
+        {
+          "wave": "expansion",
+          "clock_status": "no_clock_detected",
+          "reason": "no_clock"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002277",
+      "school_name": "서울수서초등학교",
+      "area": "gangnam",
+      "stage": 1,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "trail": [
+        {
+          "wave": "expansion",
+          "clock_status": "no_clock_detected",
+          "reason": "no_clock"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002296",
+      "school_name": "서울압구정초등학교",
+      "area": "gangnam",
+      "stage": 1,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "trail": [
+        {
+          "wave": "expansion",
+          "clock_status": "no_clock_detected",
+          "reason": "no_clock"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002298",
+      "school_name": "서울역삼초등학교",
+      "area": "gangnam",
+      "stage": 1,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "trail": [
+        {
+          "wave": "expansion",
+          "clock_status": "no_clock_detected",
+          "reason": "no_clock"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002300",
+      "school_name": "서울영희초등학교",
+      "area": "gangnam",
+      "stage": 1,
+      "operating_pilot": false,
+      "reason": "unreadable",
+      "trail": [
+        {
+          "wave": "expansion",
+          "clock_status": "unreadable",
+          "reason": "unreadable"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002294",
+      "school_name": "서울왕북초등학교",
+      "area": "gangnam",
+      "stage": 1,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "trail": [
+        {
+          "wave": "expansion",
+          "clock_status": "no_clock_detected",
+          "reason": "no_clock"
+        }
+      ]
+    },
+    {
+      "school_id": "B000025001",
+      "school_name": "서울율현초등학교",
+      "area": "gangnam",
+      "stage": 1,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "trail": [
+        {
+          "wave": "expansion",
+          "clock_status": "no_clock_detected",
+          "reason": "no_clock"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002303",
+      "school_name": "서울청담초등학교",
+      "area": "gangnam",
+      "stage": 1,
+      "operating_pilot": false,
+      "reason": "excluded",
+      "trail": [
+        {
+          "wave": "expansion",
+          "clock_status": "clock_found",
+          "reason": "excluded"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002304",
+      "school_name": "서울포이초등학교",
+      "area": "gangnam",
+      "stage": 1,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "trail": [
+        {
+          "wave": "expansion",
+          "clock_status": "no_clock_detected",
+          "reason": "no_clock"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002290",
+      "school_name": "서울학동초등학교",
+      "area": "gangnam",
+      "stage": 1,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "trail": [
+        {
+          "wave": "expansion",
+          "clock_status": "no_clock_detected",
+          "reason": "no_clock"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002274",
+      "school_name": "계성초등학교",
+      "area": "seocho",
+      "stage": 1,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "trail": [
+        {
+          "wave": "expansion",
+          "clock_status": "no_clock_detected",
+          "reason": "no_clock"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002253",
+      "school_name": "서울교육대학교부설초등학교",
+      "area": "seocho",
+      "stage": 1,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "trail": [
+        {
+          "wave": "expansion",
+          "clock_status": "no_clock_detected",
+          "reason": "no_clock"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002259",
+      "school_name": "서울매헌초등학교",
+      "area": "seocho",
+      "stage": 1,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "trail": [
+        {
+          "wave": "expansion",
+          "clock_status": "no_clock_detected",
+          "reason": "no_clock"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002258",
+      "school_name": "서울반원초등학교",
+      "area": "seocho",
+      "stage": 1,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "trail": [
+        {
+          "wave": "expansion",
+          "clock_status": "no_clock_detected",
+          "reason": "no_clock"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002262",
+      "school_name": "서울방일초등학교",
+      "area": "seocho",
+      "stage": 1,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "trail": [
+        {
+          "wave": "expansion",
+          "clock_status": "no_clock_detected",
+          "reason": "no_clock"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002266",
+      "school_name": "서울방현초등학교",
+      "area": "seocho",
+      "stage": 1,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "trail": [
+        {
+          "wave": "expansion",
+          "clock_status": "no_clock_detected",
+          "reason": "no_clock"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002264",
+      "school_name": "서울서래초등학교",
+      "area": "seocho",
+      "stage": 1,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "trail": [
+        {
+          "wave": "expansion",
+          "clock_status": "no_clock_detected",
+          "reason": "no_clock"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002255",
+      "school_name": "서울서원초등학교",
+      "area": "seocho",
+      "stage": 1,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "trail": [
+        {
+          "wave": "expansion",
+          "clock_status": "no_clock_detected",
+          "reason": "no_clock"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002268",
+      "school_name": "서울서이초등학교",
+      "area": "seocho",
+      "stage": 1,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "trail": [
+        {
+          "wave": "expansion",
+          "clock_status": "no_clock_detected",
+          "reason": "no_clock"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002269",
+      "school_name": "서울서일초등학교",
+      "area": "seocho",
+      "stage": 1,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "trail": [
+        {
+          "wave": "expansion",
+          "clock_status": "no_clock_detected",
+          "reason": "no_clock"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002273",
+      "school_name": "서울신동초등학교",
+      "area": "seocho",
+      "stage": 1,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "trail": [
+        {
+          "wave": "expansion",
+          "clock_status": "clock_heading_only",
+          "reason": "no_clock"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002254",
+      "school_name": "서울신중초등학교",
+      "area": "seocho",
+      "stage": 1,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "trail": [
+        {
+          "wave": "expansion",
+          "clock_status": "no_clock_detected",
+          "reason": "no_clock"
+        }
+      ]
+    },
+    {
+      "school_id": "B000025891",
+      "school_name": "서울언남초등학교",
+      "area": "seocho",
+      "stage": 1,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "trail": [
+        {
+          "wave": "expansion",
+          "clock_status": "clock_heading_only",
+          "reason": "no_clock"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002272",
+      "school_name": "서울우암초등학교",
+      "area": "seocho",
+      "stage": 1,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "trail": [
+        {
+          "wave": "expansion",
+          "clock_status": "no_clock_detected",
+          "reason": "no_clock"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002270",
+      "school_name": "서울원명초등학교",
+      "area": "seocho",
+      "stage": 1,
+      "operating_pilot": false,
+      "reason": "excluded",
+      "trail": [
+        {
+          "wave": "expansion",
+          "clock_status": "clock_found",
+          "reason": "excluded"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002257",
+      "school_name": "서울잠원초등학교",
+      "area": "seocho",
+      "stage": 1,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "trail": [
+        {
+          "wave": "expansion",
+          "clock_status": "no_clock_detected",
+          "reason": "no_clock"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002139",
+      "school_name": "서울가동초등학교",
+      "area": "songpa",
+      "stage": 1,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "trail": [
+        {
+          "wave": "expansion",
+          "clock_status": "no_clock_detected",
+          "reason": "no_clock"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002129",
+      "school_name": "서울가원초등학교",
+      "area": "songpa",
+      "stage": 1,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "trail": [
+        {
+          "wave": "expansion",
+          "clock_status": "clock_heading_only",
+          "reason": "no_clock"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002138",
+      "school_name": "서울가주초등학교",
+      "area": "songpa",
+      "stage": 1,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "trail": [
+        {
+          "wave": "expansion",
+          "clock_status": "no_clock_detected",
+          "reason": "no_clock"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002152",
+      "school_name": "서울개롱초등학교",
+      "area": "songpa",
+      "stage": 1,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "trail": [
+        {
+          "wave": "expansion",
+          "clock_status": "no_clock_detected",
+          "reason": "no_clock"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002151",
+      "school_name": "서울거여초등학교",
+      "area": "songpa",
+      "stage": 1,
+      "operating_pilot": false,
+      "reason": "not_audited",
+      "trail": [
+        {
+          "wave": "poc",
+          "clock_status": "no_clock_detected",
+          "reason": "no_clock"
+        },
+        {
+          "wave": "expansion",
+          "clock_status": null,
+          "reason": "not_audited"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002141",
+      "school_name": "서울거원초등학교",
+      "area": "songpa",
+      "stage": 1,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "trail": [
+        {
+          "wave": "expansion",
+          "clock_status": "no_clock_detected",
+          "reason": "no_clock"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002143",
+      "school_name": "서울마천초등학교",
+      "area": "songpa",
+      "stage": 1,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "trail": [
+        {
+          "wave": "expansion",
+          "clock_status": "no_clock_detected",
+          "reason": "no_clock"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002127",
+      "school_name": "서울문덕초등학교",
+      "area": "songpa",
+      "stage": 1,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "trail": [
+        {
+          "wave": "expansion",
+          "clock_status": "no_clock_detected",
+          "reason": "no_clock"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002128",
+      "school_name": "서울문정초등학교",
+      "area": "songpa",
+      "stage": 1,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "trail": [
+        {
+          "wave": "expansion",
+          "clock_status": "no_clock_detected",
+          "reason": "no_clock"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002146",
+      "school_name": "서울방산초등학교",
+      "area": "songpa",
+      "stage": 1,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "trail": [
+        {
+          "wave": "expansion",
+          "clock_status": "no_clock_detected",
+          "reason": "no_clock"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002158",
+      "school_name": "서울버들초등학교",
+      "area": "songpa",
+      "stage": 1,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "trail": [
+        {
+          "wave": "expansion",
+          "clock_status": "no_clock_detected",
+          "reason": "no_clock"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002147",
+      "school_name": "서울삼전초등학교",
+      "area": "songpa",
+      "stage": 1,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "trail": [
+        {
+          "wave": "expansion",
+          "clock_status": "no_clock_detected",
+          "reason": "no_clock"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002148",
+      "school_name": "서울석촌초등학교",
+      "area": "songpa",
+      "stage": 1,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "trail": [
+        {
+          "wave": "expansion",
+          "clock_status": "no_clock_detected",
+          "reason": "no_clock"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002145",
+      "school_name": "서울세륜초등학교",
+      "area": "songpa",
+      "stage": 1,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "trail": [
+        {
+          "wave": "expansion",
+          "clock_status": "no_clock_detected",
+          "reason": "no_clock"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002133",
+      "school_name": "서울송전초등학교",
+      "area": "songpa",
+      "stage": 1,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "trail": [
+        {
+          "wave": "expansion",
+          "clock_status": "no_clock_detected",
+          "reason": "no_clock"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002149",
+      "school_name": "서울송파초등학교",
+      "area": "songpa",
+      "stage": 1,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "trail": [
+        {
+          "wave": "expansion",
+          "clock_status": "no_clock_detected",
+          "reason": "no_clock"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002137",
+      "school_name": "서울신가초등학교",
+      "area": "songpa",
+      "stage": 1,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "trail": [
+        {
+          "wave": "expansion",
+          "clock_status": "no_clock_detected",
+          "reason": "no_clock"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002159",
+      "school_name": "서울신천초등학교",
+      "area": "songpa",
+      "stage": 1,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "trail": [
+        {
+          "wave": "expansion",
+          "clock_status": "no_clock_detected",
+          "reason": "no_clock"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002140",
+      "school_name": "서울영풍초등학교",
+      "area": "songpa",
+      "stage": 1,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "trail": [
+        {
+          "wave": "expansion",
+          "clock_status": "no_clock_detected",
+          "reason": "no_clock"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002150",
+      "school_name": "서울오금초등학교",
+      "area": "songpa",
+      "stage": 1,
+      "operating_pilot": true,
+      "reason": "no_clock",
+      "trail": [
+        {
+          "wave": "expansion",
+          "clock_status": "no_clock_detected",
+          "reason": "no_clock"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002144",
+      "school_name": "서울오륜초등학교",
+      "area": "songpa",
+      "stage": 1,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "trail": [
+        {
+          "wave": "expansion",
+          "clock_status": "no_clock_detected",
+          "reason": "no_clock"
+        }
+      ]
+    },
+    {
+      "school_id": "B000025375",
+      "school_name": "서울위례별초등학교",
+      "area": "songpa",
+      "stage": 1,
+      "operating_pilot": true,
+      "reason": "no_clock",
+      "trail": [
+        {
+          "wave": "expansion",
+          "clock_status": "no_clock_detected",
+          "reason": "no_clock"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002134",
+      "school_name": "서울잠동초등학교",
+      "area": "songpa",
+      "stage": 1,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "trail": [
+        {
+          "wave": "expansion",
+          "clock_status": "no_clock_detected",
+          "reason": "no_clock"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002135",
+      "school_name": "서울잠실초등학교",
+      "area": "songpa",
+      "stage": 1,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "trail": [
+        {
+          "wave": "expansion",
+          "clock_status": "no_clock_detected",
+          "reason": "no_clock"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002131",
+      "school_name": "서울잠일초등학교",
+      "area": "songpa",
+      "stage": 1,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "trail": [
+        {
+          "wave": "expansion",
+          "clock_status": "no_clock_detected",
+          "reason": "no_clock"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002153",
+      "school_name": "서울잠전초등학교",
+      "area": "songpa",
+      "stage": 1,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "trail": [
+        {
+          "wave": "expansion",
+          "clock_status": "no_clock_detected",
+          "reason": "no_clock"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002136",
+      "school_name": "서울잠현초등학교",
+      "area": "songpa",
+      "stage": 1,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "trail": [
+        {
+          "wave": "expansion",
+          "clock_status": "no_clock_detected",
+          "reason": "no_clock"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002125",
+      "school_name": "서울평화초등학교",
+      "area": "songpa",
+      "stage": 1,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "trail": [
+        {
+          "wave": "expansion",
+          "clock_status": "no_clock_detected",
+          "reason": "no_clock"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002154",
+      "school_name": "서울풍납초등학교",
+      "area": "songpa",
+      "stage": 1,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "trail": [
+        {
+          "wave": "expansion",
+          "clock_status": "no_clock_detected",
+          "reason": "no_clock"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002156",
+      "school_name": "서울풍성초등학교",
+      "area": "songpa",
+      "stage": 1,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "trail": [
+        {
+          "wave": "expansion",
+          "clock_status": "clock_heading_only",
+          "reason": "no_clock"
+        }
+      ]
+    },
+    {
+      "school_id": "B000025372",
+      "school_name": "서울해누리초등학교",
+      "area": "songpa",
+      "stage": 1,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "trail": [
+        {
+          "wave": "expansion",
+          "clock_status": "no_clock_detected",
+          "reason": "no_clock"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002172",
+      "school_name": "서울위례초등학교",
+      "area": "wirye",
+      "stage": 1,
+      "operating_pilot": true,
+      "reason": "no_clock",
+      "trail": [
+        {
+          "wave": "wave2_seoul",
+          "clock_status": "no_clock_detected",
+          "reason": "no_clock"
+        }
+      ]
+    },
+    {
+      "school_id": "B000023087",
+      "school_name": "위례초등학교",
+      "area": "wirye",
+      "stage": 1,
+      "operating_pilot": true,
+      "reason": "no_clock",
+      "trail": [
+        {
+          "wave": "wave3_gyeonggi",
+          "clock_status": "no_clock_detected",
+          "reason": "no_clock"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002081",
+      "school_name": "상명초등학교",
+      "area": "nowon",
+      "stage": 2,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "trail": [
+        {
+          "wave": "wave2_seoul",
+          "clock_status": "no_clock_detected",
+          "reason": "no_clock"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002053",
+      "school_name": "서울공릉초등학교",
+      "area": "nowon",
+      "stage": 2,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "trail": [
+        {
+          "wave": "wave2_seoul",
+          "clock_status": "no_clock_detected",
+          "reason": "no_clock"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002062",
+      "school_name": "서울노원초등학교",
+      "area": "nowon",
+      "stage": 2,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "trail": [
+        {
+          "wave": "wave2_seoul",
+          "clock_status": "clock_heading_only",
+          "reason": "no_clock"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002041",
+      "school_name": "서울녹천초등학교",
+      "area": "nowon",
+      "stage": 2,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "trail": [
+        {
+          "wave": "wave2_seoul",
+          "clock_status": "clock_heading_only",
+          "reason": "no_clock"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002042",
+      "school_name": "서울덕암초등학교",
+      "area": "nowon",
+      "stage": 2,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "trail": [
+        {
+          "wave": "wave2_seoul",
+          "clock_status": "no_clock_detected",
+          "reason": "no_clock"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002061",
+      "school_name": "서울동일초등학교",
+      "area": "nowon",
+      "stage": 2,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "trail": [
+        {
+          "wave": "wave2_seoul",
+          "clock_status": "no_clock_detected",
+          "reason": "no_clock"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002045",
+      "school_name": "서울불암초등학교",
+      "area": "nowon",
+      "stage": 2,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "trail": [
+        {
+          "wave": "wave2_seoul",
+          "clock_status": "no_clock_detected",
+          "reason": "no_clock"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002076",
+      "school_name": "서울상경초등학교",
+      "area": "nowon",
+      "stage": 2,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "trail": [
+        {
+          "wave": "wave2_seoul",
+          "clock_status": "no_clock_detected",
+          "reason": "no_clock"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002055",
+      "school_name": "서울상계초등학교",
+      "area": "nowon",
+      "stage": 2,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "trail": [
+        {
+          "wave": "wave2_seoul",
+          "clock_status": "no_clock_detected",
+          "reason": "no_clock"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002077",
+      "school_name": "서울상수초등학교",
+      "area": "nowon",
+      "stage": 2,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "trail": [
+        {
+          "wave": "wave2_seoul",
+          "clock_status": "no_clock_detected",
+          "reason": "no_clock"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002067",
+      "school_name": "서울선곡초등학교",
+      "area": "nowon",
+      "stage": 2,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "trail": [
+        {
+          "wave": "wave2_seoul",
+          "clock_status": "no_clock_detected",
+          "reason": "no_clock"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002064",
+      "school_name": "서울수락초등학교",
+      "area": "nowon",
+      "stage": 2,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "trail": [
+        {
+          "wave": "wave2_seoul",
+          "clock_status": "no_clock_detected",
+          "reason": "no_clock"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002046",
+      "school_name": "서울수암초등학교",
+      "area": "nowon",
+      "stage": 2,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "trail": [
+        {
+          "wave": "wave2_seoul",
+          "clock_status": "clock_heading_only",
+          "reason": "no_clock"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002054",
+      "school_name": "서울신상계초등학교",
+      "area": "nowon",
+      "stage": 2,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "trail": [
+        {
+          "wave": "wave2_seoul",
+          "clock_status": "no_clock_detected",
+          "reason": "no_clock"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002066",
+      "school_name": "서울연지초등학교",
+      "area": "nowon",
+      "stage": 2,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "trail": [
+        {
+          "wave": "wave2_seoul",
+          "clock_status": "no_clock_detected",
+          "reason": "no_clock"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002073",
+      "school_name": "서울용동초등학교",
+      "area": "nowon",
+      "stage": 2,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "trail": [
+        {
+          "wave": "wave2_seoul",
+          "clock_status": "no_clock_detected",
+          "reason": "no_clock"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002052",
+      "school_name": "서울용원초등학교",
+      "area": "nowon",
+      "stage": 2,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "trail": [
+        {
+          "wave": "wave2_seoul",
+          "clock_status": "clock_heading_only",
+          "reason": "no_clock"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002069",
+      "school_name": "서울원광초등학교",
+      "area": "nowon",
+      "stage": 2,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "trail": [
+        {
+          "wave": "wave2_seoul",
+          "clock_status": "no_clock_detected",
+          "reason": "no_clock"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002068",
+      "school_name": "서울월계초등학교",
+      "area": "nowon",
+      "stage": 2,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "trail": [
+        {
+          "wave": "wave2_seoul",
+          "clock_status": "no_clock_detected",
+          "reason": "no_clock"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002070",
+      "school_name": "서울을지초등학교",
+      "area": "nowon",
+      "stage": 2,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "trail": [
+        {
+          "wave": "wave2_seoul",
+          "clock_status": "no_clock_detected",
+          "reason": "no_clock"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002047",
+      "school_name": "서울중계초등학교",
+      "area": "nowon",
+      "stage": 2,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "trail": [
+        {
+          "wave": "wave2_seoul",
+          "clock_status": "no_clock_detected",
+          "reason": "no_clock"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002071",
+      "school_name": "서울중원초등학교",
+      "area": "nowon",
+      "stage": 2,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "trail": [
+        {
+          "wave": "wave2_seoul",
+          "clock_status": "no_clock_detected",
+          "reason": "no_clock"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002075",
+      "school_name": "서울중평초등학교",
+      "area": "nowon",
+      "stage": 2,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "trail": [
+        {
+          "wave": "wave2_seoul",
+          "clock_status": "no_clock_detected",
+          "reason": "no_clock"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002074",
+      "school_name": "서울중현초등학교",
+      "area": "nowon",
+      "stage": 2,
+      "operating_pilot": false,
+      "reason": "not_reviewed",
+      "trail": [
+        {
+          "wave": "wave2_seoul",
+          "clock_status": "clock_found",
+          "reason": "not_reviewed"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002072",
+      "school_name": "서울청계초등학교",
+      "area": "nowon",
+      "stage": 2,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "trail": [
+        {
+          "wave": "wave2_seoul",
+          "clock_status": "no_clock_detected",
+          "reason": "no_clock"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002049",
+      "school_name": "서울태랑초등학교",
+      "area": "nowon",
+      "stage": 2,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "trail": [
+        {
+          "wave": "wave2_seoul",
+          "clock_status": "no_clock_detected",
+          "reason": "no_clock"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002050",
+      "school_name": "서울태릉초등학교",
+      "area": "nowon",
+      "stage": 2,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "trail": [
+        {
+          "wave": "wave2_seoul",
+          "clock_status": "clock_heading_only",
+          "reason": "no_clock"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002078",
+      "school_name": "청원초등학교",
+      "area": "nowon",
+      "stage": 2,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "trail": [
+        {
+          "wave": "wave2_seoul",
+          "clock_status": "no_clock_detected",
+          "reason": "no_clock"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002079",
+      "school_name": "태강삼육초등학교",
+      "area": "nowon",
+      "stage": 2,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "trail": [
+        {
+          "wave": "wave2_seoul",
+          "clock_status": "no_clock_detected",
+          "reason": "no_clock"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002199",
+      "school_name": "서울강신초등학교",
+      "area": "yangcheon",
+      "stage": 2,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "trail": [
+        {
+          "wave": "wave2_seoul",
+          "clock_status": "no_clock_detected",
+          "reason": "no_clock"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002208",
+      "school_name": "서울강월초등학교",
+      "area": "yangcheon",
+      "stage": 2,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "trail": [
+        {
+          "wave": "wave2_seoul",
+          "clock_status": "no_clock_detected",
+          "reason": "no_clock"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002188",
+      "school_name": "서울경인초등학교",
+      "area": "yangcheon",
+      "stage": 2,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "trail": [
+        {
+          "wave": "wave2_seoul",
+          "clock_status": "no_clock_detected",
+          "reason": "no_clock"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002190",
+      "school_name": "서울목운초등학교",
+      "area": "yangcheon",
+      "stage": 2,
+      "operating_pilot": false,
+      "reason": "no_attachment",
+      "trail": [
+        {
+          "wave": "wave2_seoul",
+          "clock_status": "no_attachment",
+          "reason": "no_attachment"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002187",
+      "school_name": "서울목원초등학교",
+      "area": "yangcheon",
+      "stage": 2,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "trail": [
+        {
+          "wave": "wave2_seoul",
+          "clock_status": "no_clock_detected",
+          "reason": "no_clock"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002189",
+      "school_name": "서울서정초등학교",
+      "area": "yangcheon",
+      "stage": 2,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "trail": [
+        {
+          "wave": "wave2_seoul",
+          "clock_status": "no_clock_detected",
+          "reason": "no_clock"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002205",
+      "school_name": "서울신강초등학교",
+      "area": "yangcheon",
+      "stage": 2,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "trail": [
+        {
+          "wave": "wave2_seoul",
+          "clock_status": "no_clock_detected",
+          "reason": "no_clock"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002207",
+      "school_name": "서울신남초등학교",
+      "area": "yangcheon",
+      "stage": 2,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "trail": [
+        {
+          "wave": "wave2_seoul",
+          "clock_status": "no_clock_detected",
+          "reason": "no_clock"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002193",
+      "school_name": "서울신서초등학교",
+      "area": "yangcheon",
+      "stage": 2,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "trail": [
+        {
+          "wave": "wave2_seoul",
+          "clock_status": "no_clock_detected",
+          "reason": "no_clock"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002203",
+      "school_name": "서울신원초등학교",
+      "area": "yangcheon",
+      "stage": 2,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "trail": [
+        {
+          "wave": "wave2_seoul",
+          "clock_status": "no_clock_detected",
+          "reason": "no_clock"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002186",
+      "school_name": "서울신은초등학교",
+      "area": "yangcheon",
+      "stage": 2,
+      "operating_pilot": false,
+      "reason": "not_audited",
+      "trail": [
+        {
+          "wave": "poc",
+          "clock_status": "no_clock_detected",
+          "reason": "no_clock"
+        },
+        {
+          "wave": "wave2_seoul",
+          "clock_status": null,
+          "reason": "not_audited"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002213",
+      "school_name": "서울양동초등학교",
+      "area": "yangcheon",
+      "stage": 2,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "trail": [
+        {
+          "wave": "wave2_seoul",
+          "clock_status": "no_clock_detected",
+          "reason": "no_clock"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002202",
+      "school_name": "서울양원초등학교",
+      "area": "yangcheon",
+      "stage": 2,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "trail": [
+        {
+          "wave": "wave2_seoul",
+          "clock_status": "no_clock_detected",
+          "reason": "no_clock"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002214",
+      "school_name": "서울월촌초등학교",
+      "area": "yangcheon",
+      "stage": 2,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "trail": [
+        {
+          "wave": "wave2_seoul",
+          "clock_status": "no_clock_detected",
+          "reason": "no_clock"
+        }
+      ]
+    },
+    {
+      "school_id": "B000002201",
+      "school_name": "서울정목초등학교",
+      "area": "yangcheon",
+      "stage": 2,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "trail": [
+        {
+          "wave": "wave2_seoul",
+          "clock_status": "no_clock_detected",
+          "reason": "no_clock"
+        }
+      ]
+    },
+    {
+      "school_id": "B000003867",
+      "school_name": "관양초등학교",
+      "area": "dongan",
+      "stage": 3,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "trail": [
+        {
+          "wave": "wave3_gyeonggi",
+          "clock_status": "no_clock_detected",
+          "reason": "no_clock"
+        }
+      ]
+    },
+    {
+      "school_id": "B000003860",
+      "school_name": "귀인초등학교",
+      "area": "dongan",
+      "stage": 3,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "trail": [
+        {
+          "wave": "wave3_gyeonggi",
+          "clock_status": "no_clock_detected",
+          "reason": "no_clock"
+        }
+      ]
+    },
+    {
+      "school_id": "B000003858",
+      "school_name": "동안초등학교",
+      "area": "dongan",
+      "stage": 3,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "trail": [
+        {
+          "wave": "wave3_gyeonggi",
+          "clock_status": "no_clock_detected",
+          "reason": "no_clock"
+        }
+      ]
+    },
+    {
+      "school_id": "B000003861",
+      "school_name": "민백초등학교",
+      "area": "dongan",
+      "stage": 3,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "trail": [
+        {
+          "wave": "wave3_gyeonggi",
+          "clock_status": "no_clock_detected",
+          "reason": "no_clock"
+        }
+      ]
+    },
+    {
+      "school_id": "B000003862",
+      "school_name": "범계초등학교",
+      "area": "dongan",
+      "stage": 3,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "trail": [
+        {
+          "wave": "wave3_gyeonggi",
+          "clock_status": "no_clock_detected",
+          "reason": "no_clock"
+        }
+      ]
+    },
+    {
+      "school_id": "B000003852",
+      "school_name": "샘모루초등학교",
+      "area": "dongan",
+      "stage": 3,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "trail": [
+        {
+          "wave": "wave3_gyeonggi",
+          "clock_status": "no_clock_detected",
+          "reason": "no_clock"
+        }
+      ]
+    },
+    {
+      "school_id": "B000003865",
+      "school_name": "안양남초등학교",
+      "area": "dongan",
+      "stage": 3,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "trail": [
+        {
+          "wave": "wave3_gyeonggi",
+          "clock_status": "no_clock_detected",
+          "reason": "no_clock"
+        }
+      ]
+    },
+    {
+      "school_id": "B000003873",
+      "school_name": "안양신기초등학교",
+      "area": "dongan",
+      "stage": 3,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "trail": [
+        {
+          "wave": "wave3_gyeonggi",
+          "clock_status": "clock_heading_only",
+          "reason": "no_clock"
+        }
+      ]
+    },
+    {
+      "school_id": "B000003853",
+      "school_name": "안양중앙초등학교",
+      "area": "dongan",
+      "stage": 3,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "trail": [
+        {
+          "wave": "wave3_gyeonggi",
+          "clock_status": "no_clock_detected",
+          "reason": "no_clock"
+        }
+      ]
+    },
+    {
+      "school_id": "B000003859",
+      "school_name": "평촌초등학교",
+      "area": "dongan",
+      "stage": 3,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "trail": [
+        {
+          "wave": "wave3_gyeonggi",
+          "clock_status": "no_clock_detected",
+          "reason": "no_clock"
+        }
+      ]
+    },
+    {
+      "school_id": "B000004277",
+      "school_name": "광명광덕초등학교",
+      "area": "gwangmyeong",
+      "stage": 3,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "trail": [
+        {
+          "wave": "wave3_gyeonggi",
+          "clock_status": "no_clock_detected",
+          "reason": "no_clock"
+        }
+      ]
+    },
+    {
+      "school_id": "B000004270",
+      "school_name": "광명남초등학교",
+      "area": "gwangmyeong",
+      "stage": 3,
+      "operating_pilot": false,
+      "reason": "not_reviewed",
+      "trail": [
+        {
+          "wave": "wave3_gyeonggi",
+          "clock_status": "clock_found",
+          "reason": "not_reviewed"
+        }
+      ]
+    },
+    {
+      "school_id": "B000004269",
+      "school_name": "광명서초등학교",
+      "area": "gwangmyeong",
+      "stage": 3,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "trail": [
+        {
+          "wave": "wave3_gyeonggi",
+          "clock_status": "no_clock_detected",
+          "reason": "no_clock"
+        }
+      ]
+    },
+    {
+      "school_id": "B000004272",
+      "school_name": "광문초등학교",
+      "area": "gwangmyeong",
+      "stage": 3,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "trail": [
+        {
+          "wave": "wave3_gyeonggi",
+          "clock_status": "no_clock_detected",
+          "reason": "no_clock"
+        }
+      ]
+    },
+    {
+      "school_id": "B000004271",
+      "school_name": "광일초등학교",
+      "area": "gwangmyeong",
+      "stage": 3,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "trail": [
+        {
+          "wave": "wave3_gyeonggi",
+          "clock_status": "no_clock_detected",
+          "reason": "no_clock"
+        }
+      ]
+    },
+    {
+      "school_id": "B000004273",
+      "school_name": "서면초등학교",
+      "area": "gwangmyeong",
+      "stage": 3,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "trail": [
+        {
+          "wave": "wave3_gyeonggi",
+          "clock_status": "no_clock_detected",
+          "reason": "no_clock"
+        }
+      ]
+    },
+    {
+      "school_id": "B000004266",
+      "school_name": "안서초등학교",
+      "area": "gwangmyeong",
+      "stage": 3,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "trail": [
+        {
+          "wave": "wave3_gyeonggi",
+          "clock_status": "no_clock_detected",
+          "reason": "no_clock"
+        }
+      ]
+    },
+    {
+      "school_id": "B000004265",
+      "school_name": "연서초등학교",
+      "area": "gwangmyeong",
+      "stage": 3,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "trail": [
+        {
+          "wave": "wave3_gyeonggi",
+          "clock_status": "no_clock_detected",
+          "reason": "no_clock"
+        }
+      ]
+    },
+    {
+      "school_id": "B000003993",
+      "school_name": "동천초등학교",
+      "area": "suji",
+      "stage": 3,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "trail": [
+        {
+          "wave": "wave3_gyeonggi",
+          "clock_status": "no_clock_detected",
+          "reason": "no_clock"
+        }
+      ]
+    },
+    {
+      "school_id": "B000025542",
+      "school_name": "매봉초등학교",
+      "area": "suji",
+      "stage": 3,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "trail": [
+        {
+          "wave": "wave3_gyeonggi",
+          "clock_status": "no_clock_detected",
+          "reason": "no_clock"
+        }
+      ]
+    },
+    {
+      "school_id": "B000003980",
+      "school_name": "서원초등학교",
+      "area": "suji",
+      "stage": 3,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "trail": [
+        {
+          "wave": "wave3_gyeonggi",
+          "clock_status": "no_clock_detected",
+          "reason": "no_clock"
+        }
+      ]
+    },
+    {
+      "school_id": "B000003978",
+      "school_name": "솔개초등학교",
+      "area": "suji",
+      "stage": 3,
+      "operating_pilot": false,
+      "reason": "unreadable",
+      "trail": [
+        {
+          "wave": "wave3_gyeonggi",
+          "clock_status": "unreadable",
+          "reason": "unreadable"
+        }
+      ]
+    },
+    {
+      "school_id": "B000003995",
+      "school_name": "수지초등학교",
+      "area": "suji",
+      "stage": 3,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "trail": [
+        {
+          "wave": "wave3_gyeonggi",
+          "clock_status": "no_clock_detected",
+          "reason": "no_clock"
+        }
+      ]
+    },
+    {
+      "school_id": "B000003985",
+      "school_name": "신리초등학교",
+      "area": "suji",
+      "stage": 3,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "trail": [
+        {
+          "wave": "wave3_gyeonggi",
+          "clock_status": "no_clock_detected",
+          "reason": "no_clock"
+        }
+      ]
+    },
+    {
+      "school_id": "B000003979",
+      "school_name": "용인심곡초등학교",
+      "area": "suji",
+      "stage": 3,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "trail": [
+        {
+          "wave": "wave3_gyeonggi",
+          "clock_status": "no_clock_detected",
+          "reason": "no_clock"
+        }
+      ]
+    },
+    {
+      "school_id": "B000003977",
+      "school_name": "용인한빛초등학교",
+      "area": "suji",
+      "stage": 3,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "trail": [
+        {
+          "wave": "wave3_gyeonggi",
+          "clock_status": "no_clock_detected",
+          "reason": "no_clock"
+        }
+      ]
+    },
+    {
+      "school_id": "B000003999",
+      "school_name": "죽전초등학교",
+      "area": "suji",
+      "stage": 3,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "trail": [
+        {
+          "wave": "wave3_gyeonggi",
+          "clock_status": "no_clock_detected",
+          "reason": "no_clock"
+        }
+      ]
+    },
+    {
+      "school_id": "B000003997",
+      "school_name": "풍덕초등학교",
+      "area": "suji",
+      "stage": 3,
+      "operating_pilot": false,
+      "reason": "no_clock",
+      "trail": [
+        {
+          "wave": "wave3_gyeonggi",
+          "clock_status": "no_clock_detected",
+          "reason": "no_clock"
+        }
+      ]
+    }
+  ]
+}
