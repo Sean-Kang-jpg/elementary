@@ -9,7 +9,8 @@ import ScheduleSubjectIcon from './ScheduleSubjectIcon'
 
 const timeLabel = ({ entry, start, end, section }: DayTimelineItem) => section === 'school'
   ? `하교 ${end === null ? '시각 미확인' : `${formatMinutes(end)} (예상)`}`
-  : start === null || end === null ? '시간 확인 필요' : `${formatMinutes(start)}–${formatMinutes(end)}${entry.participation === 'considering' ? ' · 후보' : ''}`
+  : entry.startsAfterSchool && start === null && end !== null ? `하교 후–${formatMinutes(end)}${entry.timeAssumption ? ' · 기본 가정' : ''} · 시작 확인 필요`
+  : start === null || end === null ? '시간 확인 필요' : `${formatMinutes(start)}–${formatMinutes(end)}${entry.timeAssumption ? ' · 기본 가정' : ''}${entry.participation === 'considering' ? ' · 후보' : ''}`
 
 export default function MyScheduleDay({ day, entries, selectedId, onSelect, onCreate, composer }: {
   day: DayPlan

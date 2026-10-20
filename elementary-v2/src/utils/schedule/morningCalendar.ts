@@ -1,4 +1,5 @@
 import type { ScheduleEntry } from './types'
+import { withCarePlanningDefaults } from './carePlanning.ts'
 
 export interface MorningCalendarView {
   start: number | null
@@ -15,7 +16,7 @@ const known = (entry: ScheduleEntry): boolean => entry.start !== null && entry.e
 
 /** Display only. Never invent arrival times or modify source/participation data. */
 export const morningCalendarView = (entries: ScheduleEntry[]): MorningCalendarView | null => {
-  const visible = entries.filter((entry) => !['cancelled', 'rejected'].includes(entry.participation) && entry.term !== 'vacation')
+  const visible = entries.filter((entry) => !['cancelled', 'rejected'].includes(entry.participation) && entry.term !== 'vacation').map(withCarePlanningDefaults)
   const care = visible.filter(isMorningCalendarCare)
   if (!care.length) return null
   const timed = visible.filter((entry) => entry.kind !== 'school' && known(entry) && entry.start! < 720)

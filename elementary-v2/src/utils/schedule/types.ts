@@ -40,6 +40,8 @@ export interface ScheduleEntry {
   /** start가 앞 일정의 끝을 따라간다(돌봄은 '방과후'부터). start보다 우선한다. */
   startsAfterSchool?: boolean
   evidence: EvidenceStatus
+  /** Time chosen for a draft, distinct from published operating hours. */
+  timeAssumption?: string
   /** 학교 정규수업은 참여 여부를 묻지 않으므로 'confirmed'로 둔다. */
   participation: ParticipationStatus
   /** 이 일정 직전 일정에서 넘어오는 규칙. 없으면 unknown으로 본다. */

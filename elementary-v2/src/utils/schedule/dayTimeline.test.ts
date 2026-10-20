@@ -25,7 +25,9 @@ describe('reference-style day timeline', () => {
     const result = items([entry('school', { kind: 'school', start: null, end: null }),
       entry('unknown-course', { start: null }), entry('unknown-morning', { kind: 'care', label: '아침 돌봄', start: null, end: null })])
     assert.deepEqual(result.map(({ entry }) => entry.id), ['unknown-morning', 'school', 'unknown-course'])
-    assert.ok(result.every(({ start, end }) => start === null && end === null))
+    assert.deepEqual([result[0].start, result[0].end], [480, 540])
+    assert.match(result[0].entry.timeAssumption!, /기본 가정/)
+    assert.ok(result.slice(1).every(({ start, end }) => start === null && end === null))
   })
   it('resolves after-dismissal care and preserves overlap with selected courses and candidates', () => {
     const result = items([entry('school', { kind: 'school', end: 780 }), entry('care', { kind: 'care', startsAfterSchool: true, start: null, end: 1020 }),

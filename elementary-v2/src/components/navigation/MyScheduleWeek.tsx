@@ -11,19 +11,22 @@ import MorningCalendarBand from './MorningCalendarBand'
 import { isMorningCalendarCare, morningCalendarView } from '../../utils/schedule/morningCalendar'
 import MyScheduleDay from './MyScheduleDay'
 import ScheduleAddCard from './ScheduleAddCard'
+import { withCarePlanningDefaults } from '../../utils/schedule/carePlanning'
 
 const DAYS = ['월', '화', '수', '목', '금']
 const STATUS: Record<ParticipationStatus, string> = { considering: '후보', planned: '계획에 포함', applying: '신청 중', confirmed: '참여 확정', rejected: '미선정', cancelled: '취소' }
 const percent = (minutes: number) => (minutes - CALENDAR_START) / (CALENDAR_END - CALENDAR_START) * 100
 const timing = (entry: ScheduleEntry, day: DayPlan) => {
+  entry = withCarePlanningDefaults(entry)
   if (entry.kind === 'school') return `하교 ${day.dismissal.at === null ? '미확인' : `${formatMinutes(day.dismissal.at)} (예상)`}`
   const start = entry.startsAfterSchool ? day.dismissal.at : entry.start
   return `${entry.startsAfterSchool ? start === null ? '하교 후 (시각 미확인)' : `${formatMinutes(start)} (하교 후)` : start === null ? '시작 미확인' : formatMinutes(start)} ~ ${entry.end === null ? '종료 미확인' : formatMinutes(entry.end)}`
 }
 const compactTime = (entry: ScheduleEntry, day: DayPlan) => {
+  entry = withCarePlanningDefaults(entry)
   if (entry.kind === 'school') return `하교 ${day.dismissal.at === null ? '미확인' : formatMinutes(day.dismissal.at)}`
   const start = entry.startsAfterSchool ? day.dismissal.at : entry.start
-  return `${start === null ? entry.startsAfterSchool ? '하교 후' : '시작 미확인' : formatMinutes(start)}–${entry.end === null ? '종료 미확인' : formatMinutes(entry.end)}`
+  return `${start === null ? entry.startsAfterSchool ? '하교 후' : '시작 미확인' : formatMinutes(start)}–${entry.end === null ? '종료 미확인' : formatMinutes(entry.end)}${entry.timeAssumption ? ' · 기본 가정' : ''}`
 }
 
 export default function MyScheduleWeek({ schoolId, entries, onSave, onAdd, onRemove, onToggleDay }: {
@@ -123,6 +126,8 @@ export default function MyScheduleWeek({ schoolId, entries, onSave, onAdd, onRem
             visible.filter((entry) => entry.kind === 'school' || isMorningCalendarCare(entry)).forEach((entry) => drawn.add(entry.id))
             placed.filter((block) => block.entry.kind !== 'school' && morning.start !== null && morning.end !== null && block.start < morning.end && block.end > morning.start).forEach((block) => drawn.add(block.entry.id))
           }
+          const endOnly = visible.map(withCarePlanningDefaults).filter((entry) => !drawn.has(entry.id) && entry.kind === 'care' && entry.startsAfterSchool && entry.end !== null && entry.end >= CALENDAR_START && entry.end <= CALENDAR_END)
+          endOnly.forEach((entry) => drawn.add(entry.id))
           const undrawn = visible.filter((entry) => !drawn.has(entry.id))
           const conflicts = day.overlaps.filter((overlap) => overlap.type === 'conflict')
           const careOverlap = day.overlaps.filter((overlap) => overlap.type === 'care_afterschool')
@@ -158,6 +163,10 @@ export default function MyScheduleWeek({ schoolId, entries, onSave, onAdd, onRem
                   <b><ScheduleSubjectIcon entry={entry} /><span className="my-entry-title">{scheduleEntryHeading(entry)}</span></b><span className="my-week__time">{compactTime(entry, day)}</span>
                 </button>
               })}
+              {endOnly.map((entry) => <button key={entry.id} type="button" className="my-week__entry my-week__entry--care" style={{ top: `${percent(entry.end!)}%`, height: 'auto', minHeight: 36, left: 3, right: 3 }}
+                aria-label={`${entry.label} ${formatMinutes(entry.end!)} 종료${entry.timeAssumption ? ' · 기본 가정' : ''} · 시작 확인 필요`} onClick={() => setSelected({ id: entry.id, weekday: day.weekday })}>
+                <b>{entry.label} · {formatMinutes(entry.end!)} 종료</b><span>시작 확인 필요{entry.timeAssumption && ' · 기본 가정'}</span>
+              </button>)}
               {!visible.length && <span className="my-week__empty">일정 없음</span>}
               {preview?.weekday === day.weekday && <div className="my-calendar-draft" style={{ top: `${percent(preview.start)}%`, height: `${(preview.end - preview.start) / (CALENDAR_END - CALENDAR_START) * 100}%` }}>
                 <b>{interaction.movingId ? '일정 이동' : '새 일정'}</b><span>{formatMinutes(preview.start)}–{formatMinutes(preview.end)}</span>
@@ -181,6 +190,7 @@ export default function MyScheduleWeek({ schoolId, entries, onSave, onAdd, onRem
     {selectedEntry && selectedDay && <div className="my-week-detail" role="status">
       <div className="my-course-picker__heading"><b>{DAYS[selectedDay.weekday - 1]}요일 · {selectedEntry.label}</b><button type="button" className="my-button" onClick={() => setSelected(null)}>닫기</button></div>
       <p>{scheduleKindLabel(selectedEntry)} · {timing(selectedEntry, selectedDay)} · {selectedEntry.kind === 'school' ? '자료 기반 예상' : STATUS[selectedEntry.participation]}</p>
+      {withCarePlanningDefaults(selectedEntry).timeAssumption && <p className="my-help">{withCarePlanningDefaults(selectedEntry).timeAssumption} · 실제 운영시간은 학교 확인이 필요해요.</p>}
       {selectedEntry.source && <small>학년도/확인 기준 {selectedEntry.source.version}</small>}
       {canEditCalendarEntry(selectedEntry) && <button type="button" className="my-button" onClick={() => editAt(selectedEntry, selectedDay.weekday)}>요일·시간 수정</button>}
     </div>}

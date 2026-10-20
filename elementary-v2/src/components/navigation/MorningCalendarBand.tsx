@@ -22,8 +22,8 @@ export default function MorningCalendarBand({ view, day, entries, onSelect }: {
         className={`my-week__entry my-week__entry--${block.entry.kind}${block.entry.participation === 'considering' ? ' my-week__candidate' : ''}`}
         style={{ top: (from - view.start!) * 1.2, height: (to - from) * 1.2, left: `calc(${lane / lanes * 100}% + 3px)`, width: `calc(${100 / lanes}% - 6px)` }}
         data-band="morning" data-start={block.start} data-end={block.end}
-        aria-label={`${'월화수목금'[day.weekday - 1]}요일 ${block.entry.label} ${formatMinutes(block.start)}–${formatMinutes(block.end)}`} onClick={() => onSelect(block.entry.id)}>
-        <b><ScheduleSubjectIcon entry={block.entry} /><span className="my-entry-title">{scheduleEntryHeading(block.entry)}</span></b><span className="my-week__time">{formatMinutes(block.start)}–{formatMinutes(block.end)}</span>
+        aria-label={`${'월화수목금'[day.weekday - 1]}요일 ${block.entry.label} ${formatMinutes(block.start)}–${formatMinutes(block.end)}${block.entry.timeAssumption ? ' · 기본 가정' : ''}`} onClick={() => onSelect(block.entry.id)}>
+        <b><ScheduleSubjectIcon entry={block.entry} /><span className="my-entry-title">{scheduleEntryHeading(block.entry)}</span></b><span className="my-week__time">{formatMinutes(block.start)}–{formatMinutes(block.end)}{block.entry.timeAssumption && ' · 기본 가정'}</span>
       </button>)}
       {!calendar.length && <span className="my-week__empty">선택한 아침 일정 없음</span>}
     </div>}

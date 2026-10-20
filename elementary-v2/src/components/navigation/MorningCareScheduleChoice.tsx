@@ -4,6 +4,7 @@ import { morningCareEntry, morningCareEntryId } from '../../utils/schedule/morni
 import type { ScheduleEntry, Weekday } from '../../utils/schedule/types'
 import { morningCareStatusLabel } from '../../utils/morningCare'
 import { isProgramDaySelected } from '../../utils/schedule/programSelection'
+import { formatMinutes } from '../../utils/schedule/fromSchoolData'
 
 const DAYS: Weekday[] = [1, 2, 3, 4, 5]
 export default function MorningCareScheduleChoice({ schoolId, info, entries, onAdd, onRemove, weekday, onToggleDay }: {
@@ -18,13 +19,14 @@ export default function MorningCareScheduleChoice({ schoolId, info, entries, onA
   const selected = weekday ? isProgramDaySelected(existing, weekday) : existing && !['cancelled', 'rejected', 'considering'].includes(existing.participation)
   if (weekday) return available && entry ? <div className="my-course-section" data-testid="morning-care-choice">
     <button type="button" className="my-course-choice my-course-choice--care" aria-pressed={Boolean(selected)} onClick={() => onToggleDay?.(entry, weekday)}>
-      <span className="my-course-choice__lines"><b>아침돌봄 · {'월화수목금'[weekday - 1]}요일</b><span>{info.startTime}–{info.endTime}</span></span><i aria-hidden="true">{selected ? '✓' : '+'}</i>
-    </button><small>대상·신청 조건·이용 요일은 학교 확인 필요</small>
+      <span className="my-course-choice__lines"><b>아침돌봄 · {'월화수목금'[weekday - 1]}요일</b><span>{formatMinutes(entry.start!)}–{formatMinutes(entry.end!)}{entry.timeAssumption && ' · 기본 가정'}</span></span><i aria-hidden="true">{selected ? '✓' : '+'}</i>
+    </button><small>{entry.timeAssumption && '운영시간 미확인 · 계획용 기본 시간이에요. '}대상·신청 조건·이용 요일은 학교 확인 필요</small>
   </div> : null
   return <div className="my-entry-form" data-testid="morning-care-choice">
     <h4>아침돌봄 · {morningCareStatusLabel[info.status]}</h4>
     <p className="my-help">{info.startTime ?? '시작 미확인'} ~ {info.endTime ?? '종료 미확인'} · {info.schoolYear ? `${info.schoolYear}학년도` : '학년도 미확인'} · 대상 {info.grades ?? '미확인'}</p>
     <p className="my-help">출처: {info.source ?? '미확인'}. 이용 요일·대상학년·신청 조건은 학교에 확인해 주세요. 선택은 참여 확정과 별개예요.</p>
+    {available && morningCareEntry(schoolId, info, [1])?.timeAssumption && <p className="my-help">08:00–09:00 기본 가정으로 배치해요. 학교의 실제 운영시간은 미확인이에요.</p>}
     {available ? <>
       {!weekday && <fieldset className="my-actions"><legend>아침돌봄 이용 요일 선택</legend>
         {DAYS.map((day) => <label key={day} className="inline-flex min-h-11 items-center gap-1 px-2"><input type="checkbox" checked={days.includes(day)} onChange={(event) => setDays((current) => event.target.checked ? [...current, day].sort() : current.filter((d) => d !== day))} />{' '}{'월화수목금'[day - 1]}</label>)}

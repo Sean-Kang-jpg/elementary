@@ -23,9 +23,9 @@ describe('morning calendar with compressed lessons', () => {
     assert.deepEqual(morningCalendarView([care, personal, school])?.hours, [6, 7, 8, 9])
     assert.equal(morningCalendarView([care, personal, school])?.end, 540)
   })
-  it('recognizes directly entered morning care and never invents a clock for unknown times', () => {
+  it('uses the labelled morning planning window while keeping invalid clocks unknown', () => {
     assert.equal(isMorningCalendarCare({ ...care, label: '개인 돌봄', source: undefined }), true)
-    assert.deepEqual(morningCalendarView([{ ...care, start: null, end: null }]), { start: null, end: null, height: 0, hours: [], hasUnknown: true })
+    assert.deepEqual(morningCalendarView([{ ...care, start: null, end: null }]), { start: 480, end: 540, height: 72, hours: [8, 9], hasUnknown: false })
     assert.equal(morningCalendarView([{ ...care, start: 520, end: 450 }])?.hasUnknown, true)
   })
   it('lays out morning overlaps with the same clipping and lane rules as the afternoon', () => {

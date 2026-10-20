@@ -72,15 +72,19 @@ describe('school data → entries', () => {
     ])
   })
 
-  it('splits afternoon and extended care, and leaves unknown hours unknown', () => {
+  it('splits care and marks missing afternoon hours as a planning assumption', () => {
     const entries = careEntriesFromHours(care)
     assert.deepEqual(entries.map((item) => [item.label, item.start, item.end, item.participation]), [
       ['오후 돌봄', null, 1020, 'considering'],
       ['저녁·연장 돌봄', 1020, 1140, 'considering'],
     ])
     const unknown = careEntriesFromHours({ ...care, status: 'school_check_needed' })
-    assert.equal(unknown.length, 1)
-    assert.equal(unknown[0].evidence, 'unknown')
+    assert.equal(unknown.length, 2)
+    assert.equal(unknown[0].end, 1020)
+    assert.equal(unknown[0].evidence, 'estimated')
+    assert.match(unknown[0].timeAssumption!, /基本|기본 가정/)
+    assert.equal(unknown[1].start, 1020)
+    assert.equal(unknown[1].end, null)
   })
 })
 

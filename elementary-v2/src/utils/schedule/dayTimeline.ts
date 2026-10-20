@@ -1,6 +1,7 @@
 import type { DayPlan } from './engine'
 import { isMorningCalendarCare } from './morningCalendar.ts'
 import type { ScheduleEntry } from './types'
+import { withCarePlanningDefaults } from './carePlanning.ts'
 
 export interface DayTimelineItem {
   entry: ScheduleEntry
@@ -16,11 +17,15 @@ export function dayTimelineItems(day: DayPlan, entries: ScheduleEntry[]): DayTim
   return entries.filter((entry) => entry.weekdays.includes(day.weekday)
     && entry.term !== 'vacation' && !['cancelled', 'rejected'].includes(entry.participation))
     .map((entry): DayTimelineItem => {
+      entry = withCarePlanningDefaults(entry)
       if (entry.kind === 'school') return { entry, start: null, end: day.dismissal.at, section: 'school' }
       const block = placed.get(entry.id)
+      if (!block && entry.kind === 'care' && entry.startsAfterSchool && entry.end !== null) {
+        return { entry, start: null, end: entry.end, section: 'afternoon' }
+      }
       const section = isMorningCalendarCare(entry) || (block && block.start < 720) ? 'morning' : block ? 'afternoon' : 'unknown'
-      return { entry, start: block?.start ?? null, end: block?.end ?? null, section }
+      return { entry: block?.entry ?? entry, start: block?.start ?? null, end: block?.end ?? null, section }
     })
     .sort((a, b) => order[a.section] - order[b.section]
-      || (a.start ?? Infinity) - (b.start ?? Infinity) || (a.end ?? Infinity) - (b.end ?? Infinity))
+      || (a.start ?? a.end ?? Infinity) - (b.start ?? b.end ?? Infinity) || (a.end ?? Infinity) - (b.end ?? Infinity))
 }
