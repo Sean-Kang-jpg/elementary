@@ -47,6 +47,27 @@ def _local(tag: str) -> str:
 
 
 def _hwpx_cell_text(tc) -> str:
+    if any(_local(node.tag) == 'tbl' for node in tc.iter()):
+        # A table can sit inside a text-box cell. Flattening all descendant <t>
+        # nodes loses its weekday columns even though the inner grid is intact.
+        parts, text = [], []
+
+        def walk(node) -> None:
+            if _local(node.tag) == 'tbl':
+                if text:
+                    parts.append(' '.join(text))
+                    text.clear()
+                parts.extend(_hwpx_table(node))
+                return
+            if _local(node.tag) == 't' and node.text and node.text.strip():
+                text.append(node.text.strip())
+            for child in node:
+                walk(child)
+
+        walk(tc)
+        if text:
+            parts.append(' '.join(text))
+        return ' / '.join(parts)
     return ' '.join(t.text.strip() for t in tc.iter() if _local(t.tag) == 't' and t.text and t.text.strip())
 
 

@@ -44,6 +44,8 @@ HHMM = re.compile(r'^\d{2}:\d{2}$')
 PRIOR_YEAR = re.compile(r'20(1\d|2[0-5])')
 COLUMNS_V1 = ['kind', 'name', 'variant', 'section', 'grades_raw', 'days', 'start', 'end', 'grade1', 'line']
 COLUMNS_V2 = ['kind', 'name', 'variant', 'section', 'grades_raw', 'days', 'start', 'end', 'grade1', 'term', 'line']
+COLUMNS_V3 = ['kind', 'name', 'variant', 'section', 'grades_raw', 'grade_source', 'days', 'start', 'end',
+              'grade1', 'period', 'term', 'line']
 # a section counts as lower-grade when its grade text tops out at this grade
 LOWER_GRADE_MAX = 3
 # Set to True only after the user has confirmed the reviewed set; --apply refuses otherwise.
@@ -123,7 +125,10 @@ def grade_upper(grades_raw: str | None) -> int | None:
 
 def clean_row(values: list) -> dict[str, Any] | None:
     """One extractor row after the review rules, or None when it is not a grade-1 offer this year."""
-    row = dict(zip(COLUMNS_V2 if len(values) == 11 else COLUMNS_V1, values))
+    columns = COLUMNS_V3 if len(values) == 13 else COLUMNS_V2 if len(values) == 11 else COLUMNS_V1
+    row = dict(zip(columns, values))
+    if len(values) == 13 and row.get('period') != '학기':
+        return None
     if row.get('grade1') == 'false' or PRIOR_YEAR.search(str(row.get('term') or '')):
         return None
     if row.get('kind') == '맞춤형' and not row.get('grades_raw') and row.get('grade1') in ('true', 'unknown'):

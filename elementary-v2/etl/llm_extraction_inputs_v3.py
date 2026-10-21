@@ -6,8 +6,8 @@ and untimed course lists never reached the extractor: 84% of the 맞춤형 names
 re-extraction were not in the first input (2026-10-20). v3 gives the whole document instead, with
 merged cells repeated on every row they cover (etl/school_document_tables.py).
 
-When a school published the same plan as HWP/HWPX and PDF, only the HWP/HWPX is used (it keeps the
-table grid); a PDF is used only when it is the school's only file.
+When a school published the same named plan as HWP/HWPX and PDF, prefer the structured version.
+Keep a differently named PDF: it may contain the courses while the HWP contains only care hours.
 
     python -m etl.llm_extraction_inputs_v3 --ids etl/runtime/llm_extraction/batches/v3_test30_ids.txt
 """
@@ -42,8 +42,13 @@ def write_input(school: dict, out: Path) -> dict:
         source = next(iter(sorted(DOCS.glob(f"{f.get('sha256')}.*"))), None) if f.get('sha256') else None
         if source:
             sources.append((f.get('name') or source.name, source))
-    structured = [s for s in sources if s[1].suffix.lower() in ('.hwp', '.hwpx')]
-    chosen = structured or sources
+    def plan_name(name: str) -> str:
+        return re.sub(r'\s+', '', Path(name).stem).casefold()
+
+    structured_names = {plan_name(name) for name, path in sources
+                        if path.suffix.lower() in ('.hwp', '.hwpx')}
+    chosen = [(name, path) for name, path in sources
+              if path.suffix.lower() != '.pdf' or plan_name(name) not in structured_names]
     parts, used = [], []
     for name, source in chosen:
         kind, text = grid_text(source.read_bytes())

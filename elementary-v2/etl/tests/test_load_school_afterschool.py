@@ -35,6 +35,18 @@ class CleanRowTest(unittest.TestCase):
     def test_v1_rows_without_term(self):
         self.assertEqual(clean_row(ROW[:9] + [12])['name'], '컴퓨터')
 
+    def test_v3_columns_keep_grade_source_day_and_times_separate(self):
+        values = ROW[:5] + ['row'] + ROW[5:9] + ['학기'] + ROW[9:]
+        row = clean_row(values)
+        self.assertEqual((row['grade_source'], row['days'], row['start'], row['end']),
+                         ('row', '수목', '13:00', '14:20'))
+        self.assertEqual((row['grade1'], row['term'], row['line']), ('true', '1분기', 12))
+
+    def test_v3_morning_saturday_and_vacation_do_not_reach_card(self):
+        for period in ('아침', '토요', '방학', None):
+            values = ROW[:5] + ['row'] + ROW[5:9] + [period] + ROW[9:]
+            self.assertIsNone(clean_row(values))
+
 
 class SchoolRecordTest(unittest.TestCase):
     def test_tiers_and_option_counting(self):
