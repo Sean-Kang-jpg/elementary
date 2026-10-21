@@ -8,6 +8,7 @@ import json
 from collections import Counter, defaultdict
 from pathlib import Path
 
+from academy_institutions import neis_key
 from academy_subjects import classify
 
 BASE_DIR = Path(__file__).resolve().parent
@@ -45,6 +46,28 @@ def split_subjects(value: str) -> list[str]:
     return [item.strip() for item in normalized.split(",") if item.strip()]
 
 
+def institution_list(rows: list[dict]) -> list[dict]:
+    """The institutions at one address, one entry per institution.
+
+    key: the institution key shared with academy_institutions.py (neis:{교육청}-{지정번호}),
+    so a timetable entry or a frontyard post can name the institution, not just its name.
+    Rows without a key fall back to merging by name, type and realm as before.
+    subjects: the name-derived categories the map colours and filters by
+    (academy_subjects.py); realm alone files most academies as 입시.
+    """
+    by_identity: dict[tuple, dict] = {}
+    for row in rows:
+        name = (row.get("ACA_NM") or "이름 없음").strip()
+        institution_type = (row.get("ACA_INSTI_SC_NM") or "미상").strip()
+        realm = (row.get("REALM_SC_NM") or "미상").strip()
+        key = neis_key(row)
+        item = {"name": name, "type": institution_type, "realm": realm, "subjects": classify(name, realm, institution_type)}
+        if key:
+            item["key"] = key
+        by_identity.setdefault((key,) if key else ("", name, institution_type, realm), item)
+    return sorted(by_identity.values(), key=lambda item: (item["name"], item["type"], item["realm"], item.get("key", "")))
+
+
 def main() -> None:
     snapshot = latest_snapshot()
     geocode_file = RUNTIME_DIR / "academy_geocodes_all.csv"
@@ -71,14 +94,7 @@ def main() -> None:
             for row in rows
             for subject in split_subjects(row.get("LE_CRSE_LIST_NM") or row.get("LE_CRSE_NM") or "")
         )
-        institutions = sorted({
-            (
-                (row.get("ACA_NM") or "이름 없음").strip(),
-                (row.get("ACA_INSTI_SC_NM") or "미상").strip(),
-                (row.get("REALM_SC_NM") or "미상").strip(),
-            )
-            for row in rows
-        })
+        institutions = institution_list(rows)
         markers.append({
             "address_id": hashlib.sha256(address.encode("utf-8")).hexdigest()[:24],
             "region": rows[0]["_region"],
@@ -90,12 +106,7 @@ def main() -> None:
             "academy_count": len(rows),
             "institution_type_counts": json.dumps(dict(institution_types.most_common()), ensure_ascii=False),
             "realm_counts": json.dumps(dict(realms.most_common()), ensure_ascii=False),
-            "institutions": json.dumps([
-                # subjects: the name-derived categories the map colours and filters
-                # by (academy_subjects.py); realm alone files most academies as 입시.
-                {"name": name, "type": institution_type, "realm": realm, "subjects": classify(name, realm, institution_type)}
-                for name, institution_type, realm in institutions
-            ], ensure_ascii=False),
+            "institutions": json.dumps(institutions, ensure_ascii=False),
             "top_subjects": " | ".join(name for name, _ in subjects.most_common(5)),
             "source_snapshot": snapshot.name,
         })

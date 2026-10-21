@@ -26,10 +26,14 @@ def parse_object(value: str) -> dict[str, int]:
     return {str(key): int(count) for key, count in parsed.items()}
 
 
-def parse_array(value: str) -> list[dict[str, str]]:
+def parse_array(value: str) -> list[dict[str, Any]]:
+    # Keep every field the marker builder wrote. This used to rebuild each item from
+    # name/type/realm only, which dropped `subjects` (and would drop `key`): the
+    # 2026-10-06 refresh output carried no subjects for any of 134,556 academies.
     parsed = json.loads(value or "[]")
     return [
         {
+            **item,
             "name": str(item.get("name") or ""),
             "type": str(item.get("type") or ""),
             "realm": str(item.get("realm") or ""),
@@ -37,6 +41,17 @@ def parse_array(value: str) -> list[dict[str, str]]:
         for item in parsed
         if isinstance(item, dict)
     ]
+
+
+def identity(item: dict[str, Any]) -> tuple:
+    """Same institution: the same key, or for keyless rows the same name/type/realm."""
+    return (item["key"],) if item.get("key") else ("", item["name"], item["type"], item["realm"])
+
+
+def dojo_key(row: dict[str, Any]) -> str:
+    # Same rule as academy_institutions.dojo_key (kept in step by a test). Inlined because
+    # this module is also imported as etl.merge_sports_dojo_markers, where a bare import fails.
+    return f"dojo:{row['source_id']}" if row.get("local_gov_code") and row.get("source_id") else ""
 
 
 def district_from_address(address: str) -> str:
@@ -62,6 +77,7 @@ def dojo_marker(row: dict[str, Any], source_name: str) -> dict[str, Any]:
             "type": "체육도장업",
             "realm": row["sport_type"],
             "subjects": ["sports"],
+            **({"key": key} if (key := dojo_key(row)) else {}),
         }],
         "top_subjects": row["sport_type"],
         "source_snapshot": source_name,
@@ -84,11 +100,8 @@ def merge_marker(target: dict[str, Any], addition: dict[str, Any]) -> None:
         counts = Counter(target[field])
         counts.update(addition[field])
         target[field] = dict(counts)
-    known = {(item["name"], item["type"], item["realm"]) for item in target["institutions"]}
-    target["institutions"].extend(
-        item for item in addition["institutions"]
-        if (item["name"], item["type"], item["realm"]) not in known
-    )
+    known = {identity(item) for item in target["institutions"]}
+    target["institutions"].extend(item for item in addition["institutions"] if identity(item) not in known)
     subjects = [item.strip() for item in str(target.get("top_subjects") or "").split("|") if item.strip()]
     if addition["top_subjects"] not in subjects:
         subjects.append(addition["top_subjects"])

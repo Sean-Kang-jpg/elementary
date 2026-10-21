@@ -72,5 +72,18 @@ class DiffEntriesTest(unittest.TestCase):
         self.assertNotIn("테헤란로", str(diff))
 
 
+class MarkerInstitutionKeyTest(unittest.TestCase):
+    def test_markers_carry_the_institution_key_and_keep_same_name_neighbours(self) -> None:
+        rows = [
+            {"ACA_NM": "가수학", "ACA_INSTI_SC_NM": "학원", "REALM_SC_NM": "입시.검정 및 보습", "ATPT_OFCDC_SC_CODE": "B10", "ACA_ASNUM": "1"},
+            {"ACA_NM": "가수학", "ACA_INSTI_SC_NM": "학원", "REALM_SC_NM": "입시.검정 및 보습", "ATPT_OFCDC_SC_CODE": "B10", "ACA_ASNUM": "2"},
+            {"ACA_NM": "가수학", "ACA_INSTI_SC_NM": "학원", "REALM_SC_NM": "입시.검정 및 보습", "ATPT_OFCDC_SC_CODE": "B10", "ACA_ASNUM": "2"},
+            {"ACA_NM": "번호없음", "ACA_INSTI_SC_NM": "교습소", "REALM_SC_NM": "예능(대)"},
+        ]
+        items = build_academy_marker_snapshot.institution_list(rows)
+        self.assertEqual([item.get("key") for item in items], ["neis:B10-1", "neis:B10-2", None])
+        self.assertEqual(items[0]["subjects"], ["math"])
+
+
 if __name__ == "__main__":
     unittest.main()

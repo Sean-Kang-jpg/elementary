@@ -38,15 +38,29 @@ def normalize_address(value: str) -> str:
     return " ".join(str(value or "").split())
 
 
+def neis_key(row: dict[str, Any]) -> str:
+    """A NEIS academy's key, or "" when the row lacks either part. The public markers
+    (build_academy_marker_snapshot.py) carry the same key, so the frontyard providers
+    table (SQL 33) and a parent's timetable can point at one institution."""
+    office, number = (row.get("ATPT_OFCDC_SC_CODE") or "").strip(), (row.get("ACA_ASNUM") or "").strip()
+    return f"neis:{office}-{number}" if office and number else ""
+
+
+def dojo_key(row: dict[str, Any]) -> str:
+    """A sports dojo's key from a collect_sports_dojo_snapshot.py row, or "" for a
+    snapshot collected before source_id carried the local government code."""
+    return f"dojo:{row['source_id']}" if row.get("local_gov_code") and row.get("source_id") else ""
+
+
 def academy_entries(rows: Iterable[dict[str, Any]]) -> list[dict[str, str]]:
     entries = []
     for row in rows:
         realm = (row.get("REALM_SC_NM") or "").strip()
-        office, number = (row.get("ATPT_OFCDC_SC_CODE") or "").strip(), (row.get("ACA_ASNUM") or "").strip()
-        if realm in EXCLUDED_REALMS or not office or not number:
+        key = neis_key(row)
+        if realm in EXCLUDED_REALMS or not key:
             continue
         entries.append({
-            "institution_key": f"neis:{office}-{number}",
+            "institution_key": key,
             "source": "neis",
             "name": (row.get("ACA_NM") or "").strip(),
             "institution_type": (row.get("ACA_INSTI_SC_NM") or "").strip(),
@@ -68,7 +82,7 @@ def dojo_entries(rows: Iterable[dict[str, Any]]) -> list[dict[str, str]]:
         if not row.get("local_gov_code"):
             raise ValueError("sports-dojo snapshot has no local_gov_code; recollect it")
         entries.append({
-            "institution_key": f"dojo:{row['source_id']}",
+            "institution_key": dojo_key(row),
             "source": "dojo",
             "name": row.get("institution_name", ""),
             "institution_type": "체육도장업",
