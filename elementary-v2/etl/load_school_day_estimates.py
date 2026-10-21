@@ -66,7 +66,7 @@ REVIEW_SETS = [
     {'name': 'pivot_pilot_15ra', 'clock': '../pivot/p2_school_day_review_pilot_20261021.json',
      'estimates': '../pivot/p2_dismissal_estimates_pilot_20261021.json', 'care': '../pivot/p2_care_review_pilot_20261021.json',
      'clock_source': '학교알리미 15-라 방과후·돌봄 운영 계획 2026년 5월 공시(초1~2 맞춤형 시간표)',
-     'reviewed_on': '2026-10-21', 'confirmed': False},  # awaiting user confirmation
+     'reviewed_on': '2026-10-21', 'confirmed': True},  # user confirmed 2026-10-21
 ]
 
 

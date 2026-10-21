@@ -1,14 +1,14 @@
 {
   "schema_version": "grade1-dismissal-estimates-v1",
   "evidence_state": "estimated_from_2026_sources",
-  "review_state": "assistant first pass from original 학교알리미 15-라 after-school/care plans (2-가 has no bell schedule for these schools); awaiting user confirmation",
+  "review_state": "assistant first pass from original 학교알리미 15-라 after-school/care plans (2-가 has no bell schedule for these schools); user confirmed 2026-10-21",
   "publish_status": "not_approved",
   "no_operational_upload": true,
   "summary": {
-    "schools": 10,
-    "complete": 10,
+    "schools": 12,
+    "complete": 12,
     "with_period_conflict": 0,
-    "inferred_days": 5
+    "inferred_days": 15
   },
   "schools": [
     {
@@ -405,6 +405,86 @@
           "periods": 5,
           "periods_source": "NEIS term1_regular",
           "dismissal": "13:40",
+          "note": "inferred"
+        }
+      },
+      "period_conflicts": [],
+      "status": "complete"
+    },
+    {
+      "school_id": "B000003753",
+      "school_name": "성남매송초등학교",
+      "confidence": "low",
+      "lunch_position": "after_p4",
+      "days": {
+        "월": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:40",
+          "note": "inferred"
+        },
+        "화": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:40",
+          "note": "inferred"
+        },
+        "수": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:00",
+          "note": "inferred"
+        },
+        "목": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:40",
+          "note": "inferred"
+        },
+        "금": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:00",
+          "note": "inferred"
+        }
+      },
+      "period_conflicts": [],
+      "status": "complete"
+    },
+    {
+      "school_id": "B000003772",
+      "school_name": "수내초등학교",
+      "confidence": "low",
+      "lunch_position": "after_p4",
+      "days": {
+        "월": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:00",
+          "note": "inferred"
+        },
+        "화": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:35",
+          "note": "inferred"
+        },
+        "수": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:35",
+          "note": "inferred"
+        },
+        "목": {
+          "periods": 5,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:35",
+          "note": "inferred"
+        },
+        "금": {
+          "periods": 4,
+          "periods_source": "NEIS term1_regular",
+          "dismissal": "13:00",
           "note": "inferred"
         }
       },
