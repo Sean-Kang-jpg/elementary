@@ -16,6 +16,12 @@ SLOTS = {'4': ['13:00', '14:20'], '5': ['13:50', '15:10'], '2': ['10:40', '12:00
 
 
 class ResolvePeriodSlotsTest(unittest.TestCase):
+    def test_grade1_periods_do_not_fill_paid_or_other_grade_courses(self):
+        for fields in ({'kind': '방과후'}, {'grades_raw': '2학년', 'grade1': 'false'},
+                       {'grades_raw': '1~2학년'}, {'period': '방학'}):
+            candidate = row(**fields)
+            self.assertEqual(resolve_period_slots([candidate], SLOTS, PERIODS), [candidate])
+
     def test_each_weekday_gets_the_slot_for_its_period_count(self):
         mon, wed = resolve_period_slots([row(days='월'), row(days='수', name='놀이영어')], SLOTS, PERIODS)
         self.assertEqual((mon['start'], mon['end'], mon['time_source']), ('13:50', '15:10', 'period_slot'))

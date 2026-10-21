@@ -21,9 +21,10 @@ merge_terms
 from __future__ import annotations
 
 from typing import Iterable
+import re
 
 WEEKDAYS = '월화수목금'
-MERGE_KEY = ('kind', 'name', 'variant', 'section', 'grades_raw', 'days', 'start', 'end', 'grade1', 'period', 'place')
+MERGE_KEY = ('kind', 'name', 'variant', 'section', 'grades_raw', 'days', 'start', 'end', 'grade1', 'period', 'place', 'time_source')
 
 
 def resolve_period_slots(rows: Iterable[dict], slots: dict, periods: dict[str, int]) -> list[dict]:
@@ -31,7 +32,11 @@ def resolve_period_slots(rows: Iterable[dict], slots: dict, periods: dict[str, i
     by_period = {int(k): v for k, v in (slots or {}).items() if v and len(v) == 2}
     out: list[dict] = []
     for row in rows:
-        if row.get('start') or row.get('end') or not row.get('days') or not by_period:
+        # Grade-1 regular periods cannot determine paid-course or grade-2/mixed-grade times.
+        grades = re.findall(r'[1-6]', str(row.get('grades_raw') or ''))
+        eligible = (row.get('kind') == '맞춤형' and row.get('grade1') == 'true'
+                    and row.get('period') == '학기' and grades and set(grades) == {'1'})
+        if not eligible or row.get('start') or row.get('end') or not row.get('days') or not by_period:
             out.append(row)
             continue
         filled = []
