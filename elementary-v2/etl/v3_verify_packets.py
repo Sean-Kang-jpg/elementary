@@ -22,6 +22,8 @@ V3 = ROOT / 'etl/runtime/llm_extraction/outputs_v3/test30'
 OUT = ROOT / 'etl/runtime/llm_extraction/verify_v3'
 COLUMNS_V3 = ['kind', 'name', 'variant', 'section', 'grades_raw', 'grade_source', 'days', 'start', 'end',
               'grade1', 'period', 'term', 'line']
+# 2026-10-21: 운영장소 added before the line number (14 columns)
+COLUMNS_V3_14 = COLUMNS_V3[:12] + ['place', 'line']
 
 
 def shown(row: dict) -> list:
@@ -42,7 +44,7 @@ def main() -> None:
     v3: dict[str, list] = {}
     for path in sorted(V3.glob('batch_*.json')):
         for school in json.loads(path.read_text(encoding='utf-8')):
-            rows = [dict(zip(COLUMNS_V3, values)) for values in school.get('rows', [])]
+            rows = [dict(zip(COLUMNS_V3_14 if len(values) == 14 else COLUMNS_V3, values)) for values in school.get('rows', [])]
             v3[school['school_id']] = [shown(r) for r in rows if r.get('period') == '학기' and r.get('grade1') != 'false']
     OUT.mkdir(parents=True, exist_ok=True)
     rng = random.Random(20261020)
