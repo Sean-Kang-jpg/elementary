@@ -5,7 +5,8 @@ weekday, NEIS wins over document periods), with two differences: the NEIS period
 up across every Audit 2 candidates file, and a 4-period day whose lunch end was read from the
 5th-period start is marked `inferred` like an inferred 5th-period end.
 
-    python -m etl.build_pivot_dismissal_estimates
+    python -m etl.build_pivot_dismissal_estimates                       # operating pilot
+    python -m etl.build_pivot_dismissal_estimates --review <review.json>  # writes estimates/care next to it
 """
 from __future__ import annotations
 
@@ -33,7 +34,14 @@ def neis_candidates() -> dict[str, dict]:
 
 
 def main() -> None:
-    review = json.loads(REVIEW.read_text(encoding='utf-8'))
+    import argparse
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--review', type=Path, default=REVIEW)
+    args = parser.parse_args()
+    review_path = args.review
+    out = OUT if review_path == REVIEW else review_path.with_name(review_path.name.replace('school_day_review', 'dismissal_estimates'))
+    care_out = CARE_OUT if review_path == REVIEW else review_path.with_name(review_path.name.replace('school_day_review', 'care_review'))
+    review = json.loads(review_path.read_text(encoding='utf-8'))
     candidates = neis_candidates()
     rows = []
     for school in review['schools']:
@@ -66,11 +74,11 @@ def main() -> None:
     summary = {'schools': len(rows), 'complete': sum(r['status'] == 'complete' for r in rows),
                'with_period_conflict': sum(bool(r['period_conflicts']) for r in rows),
                'inferred_days': sum(v['note'] == 'inferred' for r in rows for v in r['days'].values())}
-    OUT.write_text(json.dumps({'schema_version': 'grade1-dismissal-estimates-v1', 'evidence_state': 'estimated_from_2026_sources',
+    out.write_text(json.dumps({'schema_version': 'grade1-dismissal-estimates-v1', 'evidence_state': 'estimated_from_2026_sources',
                                'review_state': review['reviewer'], 'publish_status': 'not_approved', 'no_operational_upload': True,
                                'summary': summary, 'schools': rows}, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
     # care hours for these schools are already published from earlier waves; the loader's set needs a care file
-    CARE_OUT.write_text(json.dumps({'schema_version': 'care-review-v1', 'note': 'care hours already published by earlier waves',
+    care_out.write_text(json.dumps({'schema_version': 'care-review-v1', 'note': 'care hours already published by earlier waves',
                                     'schools': []}, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
     print(json.dumps(summary, ensure_ascii=False))
     for r in rows:

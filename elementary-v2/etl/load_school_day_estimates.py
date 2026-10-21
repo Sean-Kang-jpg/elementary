@@ -67,6 +67,21 @@ REVIEW_SETS = [
      'estimates': '../pivot/p2_dismissal_estimates_pilot_20261021.json', 'care': '../pivot/p2_care_review_pilot_20261021.json',
      'clock_source': '학교알리미 15-라 방과후·돌봄 운영 계획 2026년 5월 공시(초1~2 맞춤형 시간표)',
      'reviewed_on': '2026-10-21', 'confirmed': True},  # user confirmed 2026-10-21
+    # 어디초 2.0 P2 stage 1 (강남·서초·송파): same 15-라 method, expansion approved by the user 2026-10-21
+    {'name': 'pivot_stage1_15ra', 'clock': '../pivot/p2_school_day_review_stage1_20261021.json',
+     'estimates': '../pivot/p2_dismissal_estimates_stage1_20261021.json', 'care': '../pivot/p2_care_review_stage1_20261021.json',
+     'clock_source': '학교알리미 15-라 방과후·돌봄 운영 계획 2026년 5월 공시(초1~2 맞춤형·돌봄 시간표)',
+     'reviewed_on': '2026-10-21', 'confirmed': True},
+    # 어디초 2.0 P2 stage 2 (양천·노원): same 15-라 method, expansion approved by the user 2026-10-21
+    {'name': 'pivot_stage2_15ra', 'clock': '../pivot/p2_school_day_review_stage2_20261021.json',
+     'estimates': '../pivot/p2_dismissal_estimates_stage2_20261021.json', 'care': '../pivot/p2_care_review_stage2_20261021.json',
+     'clock_source': '학교알리미 15-라 방과후·돌봄 운영 계획 2026년 5월 공시(초1~2 맞춤형·돌봄 시간표)',
+     'reviewed_on': '2026-10-21', 'confirmed': True},
+    # 어디초 2.0 P2 stage 3 (수지·동안·광명): same 15-라 method, expansion approved by the user 2026-10-21
+    {'name': 'pivot_stage3_15ra', 'clock': '../pivot/p2_school_day_review_stage3_20261021.json',
+     'estimates': '../pivot/p2_dismissal_estimates_stage3_20261021.json', 'care': '../pivot/p2_care_review_stage3_20261021.json',
+     'clock_source': '학교알리미 15-라 방과후·돌봄 운영 계획 2026년 5월 공시(초1~2 맞춤형·돌봄 시간표)',
+     'reviewed_on': '2026-10-21', 'confirmed': True},
 ]
 
 

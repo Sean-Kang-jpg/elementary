@@ -1,0 +1,967 @@
+{
+  "schema_version": "school-day-review-v1",
+  "reviewed_at": "2026-10-21",
+  "reviewer": "assistant from original 15-라 plans; user approved the 15-라 method and start-time rule 2026-10-21",
+  "source": "학교알리미 15-라 방과후·돌봄 운영 계획 2026년 5월 공시(초1~2 맞춤형·돌봄 시간표)",
+  "method": "Reviewer's readings for P2 stage 1 (서울 강남·서초·송파, 61 schools), 2026-10-21.\n\nEach tuple is read from the 15-라 original: (school_id, p4_end, lunch_start, lunch_end, lunch_position,\np5_end, doc_periods, confidence, inferred, evidence). Values in a \"13:00~13:40 | X | 정규수업 |\" grid\nare stated (the slot is the 5th period on the 정규수업 days; lunch ends when it starts). Values read\nfrom 맞춤형 start times only follow the 2026-10-21 rule: 4-period dismissal = that day's start,\n5th-period end = start - 10 min, and are inferred.",
+  "schools": [
+    {
+      "school_id": "B000030583",
+      "school_name": "서울개현초등학교",
+      "p4_end": null,
+      "lunch": [
+        null,
+        "13:00"
+      ],
+      "lunch_position": "after_p4",
+      "p5_end": "13:40",
+      "doc_periods": [
+        4,
+        5,
+        4,
+        5,
+        5
+      ],
+      "confidence": "low",
+      "inferred": [
+        "lunch_end_from_program_start",
+        "p5_end_from_program_start"
+      ],
+      "note": "맞춤형 1A: 월·수 13:00~, 화·목·금 13:50~",
+      "evidence": {
+        "source": "학교알리미 15-라 방과후·돌봄 운영 계획 2026년 5월 공시(초1~2 맞춤형·돌봄 시간표)",
+        "text": "맞춤형 1A: 월·수 13:00~, 화·목·금 13:50~"
+      }
+    },
+    {
+      "school_id": "B000002289",
+      "school_name": "서울논현초등학교",
+      "p4_end": "12:10",
+      "lunch": [
+        "12:10",
+        "13:00"
+      ],
+      "lunch_position": "after_p4",
+      "p5_end": null,
+      "doc_periods": null,
+      "confidence": "medium",
+      "inferred": [],
+      "note": "09:10~12:10 정규수업(4교시) / 12:10~13:00 점심시간. 5교시 날 시각은 표가 모호해 비움",
+      "evidence": {
+        "source": "학교알리미 15-라 방과후·돌봄 운영 계획 2026년 5월 공시(초1~2 맞춤형·돌봄 시간표)",
+        "text": "09:10~12:10 정규수업(4교시) / 12:10~13:00 점심시간. 5교시 날 시각은 표가 모호해 비움"
+      }
+    },
+    {
+      "school_id": "B000002285",
+      "school_name": "서울대도초등학교",
+      "p4_end": null,
+      "lunch": [
+        null,
+        "12:40"
+      ],
+      "lunch_position": "after_p4",
+      "p5_end": "13:20",
+      "doc_periods": [
+        5,
+        5,
+        4,
+        5,
+        4
+      ],
+      "confidence": "medium",
+      "inferred": [],
+      "note": "12:40~13:20 | 정규수업 | 정규수업 | (수요일)프로그램 | 정규수업 | (금요일)프로그램",
+      "evidence": {
+        "source": "학교알리미 15-라 방과후·돌봄 운영 계획 2026년 5월 공시(초1~2 맞춤형·돌봄 시간표)",
+        "text": "12:40~13:20 | 정규수업 | 정규수업 | (수요일)프로그램 | 정규수업 | (금요일)프로그램"
+      }
+    },
+    {
+      "school_id": "B000002279",
+      "school_name": "서울대진초등학교",
+      "p4_end": null,
+      "lunch": [
+        null,
+        "12:40"
+      ],
+      "lunch_position": "after_p4",
+      "p5_end": null,
+      "doc_periods": [
+        5,
+        5,
+        4,
+        5,
+        4
+      ],
+      "confidence": "medium",
+      "inferred": [],
+      "note": "12:40~13:30 (50분) | 정규수업 | 정규수업 | 관리시간(10분) | 정규수업 | 관리시간. 5교시 종료가 13:20인지 13:30인지 모호해 비움",
+      "evidence": {
+        "source": "학교알리미 15-라 방과후·돌봄 운영 계획 2026년 5월 공시(초1~2 맞춤형·돌봄 시간표)",
+        "text": "12:40~13:30 (50분) | 정규수업 | 정규수업 | 관리시간(10분) | 정규수업 | 관리시간. 5교시 종료가 13:20인지 13:30인지 모호해 비움"
+      }
+    },
+    {
+      "school_id": "B000002299",
+      "school_name": "서울대청초등학교",
+      "p4_end": null,
+      "lunch": [
+        null,
+        "12:50"
+      ],
+      "lunch_position": "after_p4",
+      "p5_end": "13:40",
+      "doc_periods": null,
+      "confidence": "medium",
+      "inferred": [],
+      "note": "~12:50 | 정규수업 / 13:00~13:40 | 창의수학 | 창의빛깔미술 | 정규수업",
+      "evidence": {
+        "source": "학교알리미 15-라 방과후·돌봄 운영 계획 2026년 5월 공시(초1~2 맞춤형·돌봄 시간표)",
+        "text": "~12:50 | 정규수업 / 13:00~13:40 | 창의수학 | 창의빛깔미술 | 정규수업"
+      }
+    },
+    {
+      "school_id": "B000002275",
+      "school_name": "서울봉은초등학교",
+      "p4_end": null,
+      "lunch": [
+        null,
+        "12:50"
+      ],
+      "lunch_position": "after_p4",
+      "p5_end": "13:20",
+      "doc_periods": [
+        4,
+        5,
+        5,
+        5,
+        4
+      ],
+      "confidence": "medium",
+      "inferred": [],
+      "note": "12:50~13:20 월요맞춤형 | 정규수업 | 정규수업 | 정규수업 | 금요맞춤형",
+      "evidence": {
+        "source": "학교알리미 15-라 방과후·돌봄 운영 계획 2026년 5월 공시(초1~2 맞춤형·돌봄 시간표)",
+        "text": "12:50~13:20 월요맞춤형 | 정규수업 | 정규수업 | 정규수업 | 금요맞춤형"
+      }
+    },
+    {
+      "school_id": "B000002296",
+      "school_name": "서울압구정초등학교",
+      "p4_end": null,
+      "lunch": [
+        null,
+        "12:50"
+      ],
+      "lunch_position": "after_p4",
+      "p5_end": "13:40",
+      "doc_periods": [
+        4,
+        5,
+        4,
+        5,
+        5
+      ],
+      "confidence": "high",
+      "inferred": [],
+      "note": "정규수업 하교 시간 월,수: 12:50 / 화,목,금: 13:40",
+      "evidence": {
+        "source": "학교알리미 15-라 방과후·돌봄 운영 계획 2026년 5월 공시(초1~2 맞춤형·돌봄 시간표)",
+        "text": "정규수업 하교 시간 월,수: 12:50 / 화,목,금: 13:40"
+      }
+    },
+    {
+      "school_id": "B000002298",
+      "school_name": "서울역삼초등학교",
+      "p4_end": null,
+      "lunch": [
+        null,
+        "13:00"
+      ],
+      "lunch_position": "after_p4",
+      "p5_end": null,
+      "doc_periods": [
+        4,
+        5,
+        4,
+        5,
+        5
+      ],
+      "confidence": "low",
+      "inferred": [
+        "lunch_end_from_program_start"
+      ],
+      "note": "돌봄 13:00~13:30 | 독서활동 | 5교시 | 독서활동 | 5교시 | 5교시. 5교시 종료 미상",
+      "evidence": {
+        "source": "학교알리미 15-라 방과후·돌봄 운영 계획 2026년 5월 공시(초1~2 맞춤형·돌봄 시간표)",
+        "text": "돌봄 13:00~13:30 | 독서활동 | 5교시 | 독서활동 | 5교시 | 5교시. 5교시 종료 미상"
+      }
+    },
+    {
+      "school_id": "B000002294",
+      "school_name": "서울왕북초등학교",
+      "p4_end": "12:50",
+      "lunch": [
+        null,
+        null
+      ],
+      "lunch_position": "before_p4",
+      "p5_end": "13:40",
+      "doc_periods": [
+        5,
+        5,
+        4,
+        5,
+        4
+      ],
+      "confidence": "medium",
+      "inferred": [
+        "p5_end_from_program_start"
+      ],
+      "note": "12:10~12:50 정규수업(4교시) / 맞춤형 월·화·목 13:50~, 수·금 13:00~. 점심이 4교시 앞",
+      "evidence": {
+        "source": "학교알리미 15-라 방과후·돌봄 운영 계획 2026년 5월 공시(초1~2 맞춤형·돌봄 시간표)",
+        "text": "12:10~12:50 정규수업(4교시) / 맞춤형 월·화·목 13:50~, 수·금 13:00~. 점심이 4교시 앞"
+      }
+    },
+    {
+      "school_id": "B000002303",
+      "school_name": "서울청담초등학교",
+      "p4_end": null,
+      "lunch": [
+        null,
+        "12:50"
+      ],
+      "lunch_position": "after_p4",
+      "p5_end": null,
+      "doc_periods": null,
+      "confidence": "low",
+      "inferred": [
+        "lunch_end_from_program_start"
+      ],
+      "note": "학기중(정규수업 종료후 2시간) | 수, 금 | 12:50 ~ 14:10. 5교시 날 미상",
+      "evidence": {
+        "source": "학교알리미 15-라 방과후·돌봄 운영 계획 2026년 5월 공시(초1~2 맞춤형·돌봄 시간표)",
+        "text": "학기중(정규수업 종료후 2시간) | 수, 금 | 12:50 ~ 14:10. 5교시 날 미상"
+      }
+    },
+    {
+      "school_id": "B000002304",
+      "school_name": "서울포이초등학교",
+      "p4_end": null,
+      "lunch": [
+        null,
+        "12:50"
+      ],
+      "lunch_position": "after_p4",
+      "p5_end": "13:40",
+      "doc_periods": null,
+      "confidence": "medium",
+      "inferred": [
+        "p5_end_from_program_start"
+      ],
+      "note": "1학년 ~12:50 정규수업 / 맞춤형 13:00~ 또는 13:50~",
+      "evidence": {
+        "source": "학교알리미 15-라 방과후·돌봄 운영 계획 2026년 5월 공시(초1~2 맞춤형·돌봄 시간표)",
+        "text": "1학년 ~12:50 정규수업 / 맞춤형 13:00~ 또는 13:50~"
+      }
+    },
+    {
+      "school_id": "B000002258",
+      "school_name": "서울반원초등학교",
+      "p4_end": null,
+      "lunch": [
+        null,
+        "12:40"
+      ],
+      "lunch_position": "after_p4",
+      "p5_end": "13:20",
+      "doc_periods": [
+        4,
+        5,
+        5,
+        5,
+        4
+      ],
+      "confidence": "medium",
+      "inferred": [],
+      "note": "12:40~13:20 | 미술놀이 | 정규수업 | 정규수업 | 정규수업 | 어린이 말하기",
+      "evidence": {
+        "source": "학교알리미 15-라 방과후·돌봄 운영 계획 2026년 5월 공시(초1~2 맞춤형·돌봄 시간표)",
+        "text": "12:40~13:20 | 미술놀이 | 정규수업 | 정규수업 | 정규수업 | 어린이 말하기"
+      }
+    },
+    {
+      "school_id": "B000002266",
+      "school_name": "서울방현초등학교",
+      "p4_end": null,
+      "lunch": [
+        null,
+        "13:00"
+      ],
+      "lunch_position": "after_p4",
+      "p5_end": "13:40",
+      "doc_periods": [
+        4,
+        5,
+        5,
+        5,
+        4
+      ],
+      "confidence": "medium",
+      "inferred": [],
+      "note": "1학년 | 13:00~13:40 | 교육연극 | 정규 수업 | 정규 수업 | 정규 수업 | 교육연극",
+      "evidence": {
+        "source": "학교알리미 15-라 방과후·돌봄 운영 계획 2026년 5월 공시(초1~2 맞춤형·돌봄 시간표)",
+        "text": "1학년 | 13:00~13:40 | 교육연극 | 정규 수업 | 정규 수업 | 정규 수업 | 교육연극"
+      }
+    },
+    {
+      "school_id": "B000002254",
+      "school_name": "서울신중초등학교",
+      "p4_end": null,
+      "lunch": [
+        null,
+        "13:00"
+      ],
+      "lunch_position": "after_p4",
+      "p5_end": "13:40",
+      "doc_periods": null,
+      "confidence": "high",
+      "inferred": [],
+      "note": "09:00~13:40 정규 수업(5교시) | 09:00~13:00 정규 수업(4교시)",
+      "evidence": {
+        "source": "학교알리미 15-라 방과후·돌봄 운영 계획 2026년 5월 공시(초1~2 맞춤형·돌봄 시간표)",
+        "text": "09:00~13:40 정규 수업(5교시) | 09:00~13:00 정규 수업(4교시)"
+      }
+    },
+    {
+      "school_id": "B000002257",
+      "school_name": "서울잠원초등학교",
+      "p4_end": null,
+      "lunch": [
+        null,
+        "13:00"
+      ],
+      "lunch_position": "after_p4",
+      "p5_end": "13:40",
+      "doc_periods": [
+        5,
+        5,
+        4,
+        5,
+        4
+      ],
+      "confidence": "medium",
+      "inferred": [],
+      "note": "13:00~13:40 | 정규수업 | 정규수업 | 메이키 메이커 | 정규수업 | 예쁜 손글씨",
+      "evidence": {
+        "source": "학교알리미 15-라 방과후·돌봄 운영 계획 2026년 5월 공시(초1~2 맞춤형·돌봄 시간표)",
+        "text": "13:00~13:40 | 정규수업 | 정규수업 | 메이키 메이커 | 정규수업 | 예쁜 손글씨"
+      }
+    },
+    {
+      "school_id": "B000002129",
+      "school_name": "서울가원초등학교",
+      "p4_end": null,
+      "lunch": [
+        null,
+        "13:00"
+      ],
+      "lunch_position": "after_p4",
+      "p5_end": "13:40",
+      "doc_periods": [
+        5,
+        5,
+        4,
+        5,
+        4
+      ],
+      "confidence": "medium",
+      "inferred": [],
+      "note": "13:00~13:40 정규수업 정규수업 과학꿈나무 정규수업 나도 피카소",
+      "evidence": {
+        "source": "학교알리미 15-라 방과후·돌봄 운영 계획 2026년 5월 공시(초1~2 맞춤형·돌봄 시간표)",
+        "text": "13:00~13:40 정규수업 정규수업 과학꿈나무 정규수업 나도 피카소"
+      }
+    },
+    {
+      "school_id": "B000002138",
+      "school_name": "서울가주초등학교",
+      "p4_end": null,
+      "lunch": [
+        null,
+        "12:50"
+      ],
+      "lunch_position": "after_p4",
+      "p5_end": "13:30",
+      "doc_periods": null,
+      "confidence": "medium",
+      "inferred": [],
+      "note": "12:50~13:30 | 정규수업 | 입실확인·맞춤형 | 정규수업 | 정규수업",
+      "evidence": {
+        "source": "학교알리미 15-라 방과후·돌봄 운영 계획 2026년 5월 공시(초1~2 맞춤형·돌봄 시간표)",
+        "text": "12:50~13:30 | 정규수업 | 입실확인·맞춤형 | 정규수업 | 정규수업"
+      }
+    },
+    {
+      "school_id": "B000002152",
+      "school_name": "서울개롱초등학교",
+      "p4_end": null,
+      "lunch": [
+        null,
+        "13:00"
+      ],
+      "lunch_position": "after_p4",
+      "p5_end": "13:40",
+      "doc_periods": null,
+      "confidence": "low",
+      "inferred": [
+        "lunch_end_from_program_start",
+        "p5_end_from_program_start"
+      ],
+      "note": "맞춤형 13:00~13:40 1학년 두 요일, 13:50~ 나머지",
+      "evidence": {
+        "source": "학교알리미 15-라 방과후·돌봄 운영 계획 2026년 5월 공시(초1~2 맞춤형·돌봄 시간표)",
+        "text": "맞춤형 13:00~13:40 1학년 두 요일, 13:50~ 나머지"
+      }
+    },
+    {
+      "school_id": "B000002143",
+      "school_name": "서울마천초등학교",
+      "p4_end": null,
+      "lunch": [
+        null,
+        "12:50"
+      ],
+      "lunch_position": "after_p4",
+      "p5_end": "13:30",
+      "doc_periods": [
+        4,
+        5,
+        5,
+        5,
+        4
+      ],
+      "confidence": "low",
+      "inferred": [
+        "lunch_end_from_program_start",
+        "p5_end_from_program_start"
+      ],
+      "note": "맞춤형 월,금 12:50~14:50 / 화,수,목 13:40~15:40",
+      "evidence": {
+        "source": "학교알리미 15-라 방과후·돌봄 운영 계획 2026년 5월 공시(초1~2 맞춤형·돌봄 시간표)",
+        "text": "맞춤형 월,금 12:50~14:50 / 화,수,목 13:40~15:40"
+      }
+    },
+    {
+      "school_id": "B000002127",
+      "school_name": "서울문덕초등학교",
+      "p4_end": null,
+      "lunch": [
+        null,
+        "13:00"
+      ],
+      "lunch_position": "after_p4",
+      "p5_end": "13:40",
+      "doc_periods": [
+        4,
+        5,
+        4,
+        5,
+        5
+      ],
+      "confidence": "medium",
+      "inferred": [],
+      "note": "13:00~13:40 | 미술공작 | 정규수업 | 창의력수학 | 정규수업 | 정규수업",
+      "evidence": {
+        "source": "학교알리미 15-라 방과후·돌봄 운영 계획 2026년 5월 공시(초1~2 맞춤형·돌봄 시간표)",
+        "text": "13:00~13:40 | 미술공작 | 정규수업 | 창의력수학 | 정규수업 | 정규수업"
+      }
+    },
+    {
+      "school_id": "B000002158",
+      "school_name": "서울버들초등학교",
+      "p4_end": "12:50",
+      "lunch": [
+        null,
+        null
+      ],
+      "lunch_position": "before_p4",
+      "p5_end": "13:40",
+      "doc_periods": [
+        4,
+        5,
+        4,
+        5,
+        5
+      ],
+      "confidence": "high",
+      "inferred": [],
+      "note": "09:00~12:50 정규수업(1~3교시) → 점심 → 정규수업(4교시) / 13:00~13:40 | 언어놀이 | 정규수업 | 신체놀이 | 정규수업 | 정규수업",
+      "evidence": {
+        "source": "학교알리미 15-라 방과후·돌봄 운영 계획 2026년 5월 공시(초1~2 맞춤형·돌봄 시간표)",
+        "text": "09:00~12:50 정규수업(1~3교시) → 점심 → 정규수업(4교시) / 13:00~13:40 | 언어놀이 | 정규수업 | 신체놀이 | 정규수업 | 정규수업"
+      }
+    },
+    {
+      "school_id": "B000002147",
+      "school_name": "서울삼전초등학교",
+      "p4_end": null,
+      "lunch": [
+        null,
+        "13:00"
+      ],
+      "lunch_position": "after_p4",
+      "p5_end": "13:40",
+      "doc_periods": [
+        4,
+        5,
+        5,
+        5,
+        4
+      ],
+      "confidence": "low",
+      "inferred": [
+        "lunch_end_from_program_start",
+        "p5_end_from_program_start"
+      ],
+      "note": "(월,금) 13:00~14:50 (화,수,목) 13:50~15:40 | 수놀이 | 정규수업(5교시) x3 | 세계문화",
+      "evidence": {
+        "source": "학교알리미 15-라 방과후·돌봄 운영 계획 2026년 5월 공시(초1~2 맞춤형·돌봄 시간표)",
+        "text": "(월,금) 13:00~14:50 (화,수,목) 13:50~15:40 | 수놀이 | 정규수업(5교시) x3 | 세계문화"
+      }
+    },
+    {
+      "school_id": "B000002148",
+      "school_name": "서울석촌초등학교",
+      "p4_end": null,
+      "lunch": [
+        null,
+        "13:00"
+      ],
+      "lunch_position": "after_p4",
+      "p5_end": "13:40",
+      "doc_periods": [
+        4,
+        5,
+        4,
+        5,
+        5
+      ],
+      "confidence": "medium",
+      "inferred": [],
+      "note": "13:00~13:40 | 맞춤형 | 정규수업 | 맞춤형 | 정규수업 | 정규수업",
+      "evidence": {
+        "source": "학교알리미 15-라 방과후·돌봄 운영 계획 2026년 5월 공시(초1~2 맞춤형·돌봄 시간표)",
+        "text": "13:00~13:40 | 맞춤형 | 정규수업 | 맞춤형 | 정규수업 | 정규수업"
+      }
+    },
+    {
+      "school_id": "B000002137",
+      "school_name": "서울신가초등학교",
+      "p4_end": null,
+      "lunch": [
+        null,
+        "12:50"
+      ],
+      "lunch_position": "after_p4",
+      "p5_end": "13:30",
+      "doc_periods": [
+        4,
+        5,
+        4,
+        5,
+        5
+      ],
+      "confidence": "low",
+      "inferred": [
+        "lunch_end_from_program_start",
+        "p5_end_from_program_start"
+      ],
+      "note": "맞춤형 12:50~14:50 (월,수) 13:40~15:40 (화,목,금)",
+      "evidence": {
+        "source": "학교알리미 15-라 방과후·돌봄 운영 계획 2026년 5월 공시(초1~2 맞춤형·돌봄 시간표)",
+        "text": "맞춤형 12:50~14:50 (월,수) 13:40~15:40 (화,목,금)"
+      }
+    },
+    {
+      "school_id": "B000002159",
+      "school_name": "서울신천초등학교",
+      "p4_end": null,
+      "lunch": [
+        null,
+        "12:50"
+      ],
+      "lunch_position": "after_p4",
+      "p5_end": "13:40",
+      "doc_periods": null,
+      "confidence": "low",
+      "inferred": [
+        "lunch_end_from_program_start",
+        "p5_end_from_program_start"
+      ],
+      "note": "1학년 맞춤형 12:50-14:50 / 13:50-15:10",
+      "evidence": {
+        "source": "학교알리미 15-라 방과후·돌봄 운영 계획 2026년 5월 공시(초1~2 맞춤형·돌봄 시간표)",
+        "text": "1학년 맞춤형 12:50-14:50 / 13:50-15:10"
+      }
+    },
+    {
+      "school_id": "B000002140",
+      "school_name": "서울영풍초등학교",
+      "p4_end": "12:20",
+      "lunch": [
+        "12:20",
+        "13:00"
+      ],
+      "lunch_position": "after_p4",
+      "p5_end": "13:40",
+      "doc_periods": null,
+      "confidence": "medium",
+      "inferred": [
+        "p5_end_from_program_start"
+      ],
+      "note": "09:00~12:20 정규수업(1~4교시) / 12:20~13:00 점심시간. 5교시 날 맞춤형 13:50~",
+      "evidence": {
+        "source": "학교알리미 15-라 방과후·돌봄 운영 계획 2026년 5월 공시(초1~2 맞춤형·돌봄 시간표)",
+        "text": "09:00~12:20 정규수업(1~4교시) / 12:20~13:00 점심시간. 5교시 날 맞춤형 13:50~"
+      }
+    },
+    {
+      "school_id": "B000002144",
+      "school_name": "서울오륜초등학교",
+      "p4_end": "12:10",
+      "lunch": [
+        "12:10",
+        "12:40"
+      ],
+      "lunch_position": "after_p4",
+      "p5_end": null,
+      "doc_periods": null,
+      "confidence": "medium",
+      "inferred": [],
+      "note": "09:00-12:10 정규수업(4교시) / 12:10-12:40 점심시간. 12:40-13:40 칸의 5교시 종료가 모호해 비움",
+      "evidence": {
+        "source": "학교알리미 15-라 방과후·돌봄 운영 계획 2026년 5월 공시(초1~2 맞춤형·돌봄 시간표)",
+        "text": "09:00-12:10 정규수업(4교시) / 12:10-12:40 점심시간. 12:40-13:40 칸의 5교시 종료가 모호해 비움"
+      }
+    },
+    {
+      "school_id": "B000002134",
+      "school_name": "서울잠동초등학교",
+      "p4_end": null,
+      "lunch": [
+        null,
+        "13:00"
+      ],
+      "lunch_position": "after_p4",
+      "p5_end": "13:40",
+      "doc_periods": [
+        4,
+        5,
+        5,
+        5,
+        4
+      ],
+      "confidence": "medium",
+      "inferred": [],
+      "note": "13:00~13:40 | 신체놀이 | 정규수업 | 정규수업 | 정규수업 | 책놀이",
+      "evidence": {
+        "source": "학교알리미 15-라 방과후·돌봄 운영 계획 2026년 5월 공시(초1~2 맞춤형·돌봄 시간표)",
+        "text": "13:00~13:40 | 신체놀이 | 정규수업 | 정규수업 | 정규수업 | 책놀이"
+      }
+    },
+    {
+      "school_id": "B000002131",
+      "school_name": "서울잠일초등학교",
+      "p4_end": null,
+      "lunch": [
+        null,
+        "12:50"
+      ],
+      "lunch_position": "after_p4",
+      "p5_end": "13:40",
+      "doc_periods": null,
+      "confidence": "medium",
+      "inferred": [],
+      "note": "9:00~12:50 정규수업(4교시 기준) / 12:50~13:40 정규수업(5교시)",
+      "evidence": {
+        "source": "학교알리미 15-라 방과후·돌봄 운영 계획 2026년 5월 공시(초1~2 맞춤형·돌봄 시간표)",
+        "text": "9:00~12:50 정규수업(4교시 기준) / 12:50~13:40 정규수업(5교시)"
+      }
+    },
+    {
+      "school_id": "B000002153",
+      "school_name": "서울잠전초등학교",
+      "p4_end": null,
+      "lunch": [
+        null,
+        "12:50"
+      ],
+      "lunch_position": "after_p4",
+      "p5_end": "13:40",
+      "doc_periods": [
+        4,
+        5,
+        5,
+        5,
+        4
+      ],
+      "confidence": "high",
+      "inferred": [],
+      "note": "정규수업(~12:50) | 정규수업(~13:40) / 12:50~ (월·금) 13:40~ (화·수·목)",
+      "evidence": {
+        "source": "학교알리미 15-라 방과후·돌봄 운영 계획 2026년 5월 공시(초1~2 맞춤형·돌봄 시간표)",
+        "text": "정규수업(~12:50) | 정규수업(~13:40) / 12:50~ (월·금) 13:40~ (화·수·목)"
+      }
+    },
+    {
+      "school_id": "B000002136",
+      "school_name": "서울잠현초등학교",
+      "p4_end": null,
+      "lunch": [
+        null,
+        "13:00"
+      ],
+      "lunch_position": "after_p4",
+      "p5_end": "13:40",
+      "doc_periods": [
+        4,
+        5,
+        4,
+        5,
+        5
+      ],
+      "confidence": "medium",
+      "inferred": [],
+      "note": "1학년 | 13:00~13:40 | 숲놀이 | 정규수업 | 창의미술 | 정규수업 | 정규수업",
+      "evidence": {
+        "source": "학교알리미 15-라 방과후·돌봄 운영 계획 2026년 5월 공시(초1~2 맞춤형·돌봄 시간표)",
+        "text": "1학년 | 13:00~13:40 | 숲놀이 | 정규수업 | 창의미술 | 정규수업 | 정규수업"
+      }
+    },
+    {
+      "school_id": "B000002125",
+      "school_name": "서울평화초등학교",
+      "p4_end": null,
+      "lunch": [
+        null,
+        "12:50"
+      ],
+      "lunch_position": "after_p4",
+      "p5_end": "13:30",
+      "doc_periods": null,
+      "confidence": "medium",
+      "inferred": [],
+      "note": "12:50~13:30 | 악기놀이 | 정규수업 | 뉴스포츠",
+      "evidence": {
+        "source": "학교알리미 15-라 방과후·돌봄 운영 계획 2026년 5월 공시(초1~2 맞춤형·돌봄 시간표)",
+        "text": "12:50~13:30 | 악기놀이 | 정규수업 | 뉴스포츠"
+      }
+    },
+    {
+      "school_id": "B000002156",
+      "school_name": "서울풍성초등학교",
+      "p4_end": null,
+      "lunch": [
+        null,
+        "13:00"
+      ],
+      "lunch_position": "after_p4",
+      "p5_end": "13:40",
+      "doc_periods": null,
+      "confidence": "medium",
+      "inferred": [],
+      "note": "13:00~13:40 | 칼림바 | 생활체육 | 13:00~13:40 | 5교시 수업 | 5교시 수업 | 5교시 수업",
+      "evidence": {
+        "source": "학교알리미 15-라 방과후·돌봄 운영 계획 2026년 5월 공시(초1~2 맞춤형·돌봄 시간표)",
+        "text": "13:00~13:40 | 칼림바 | 생활체육 | 13:00~13:40 | 5교시 수업 | 5교시 수업 | 5교시 수업"
+      }
+    },
+    {
+      "school_id": "B000025372",
+      "school_name": "서울해누리초등학교",
+      "p4_end": null,
+      "lunch": [
+        null,
+        "12:50"
+      ],
+      "lunch_position": "after_p4",
+      "p5_end": "13:40",
+      "doc_periods": null,
+      "confidence": "high",
+      "inferred": [],
+      "note": "정규수업 | 09:00~12:50 (4교시) | 09:00~13:40(5교시)",
+      "evidence": {
+        "source": "학교알리미 15-라 방과후·돌봄 운영 계획 2026년 5월 공시(초1~2 맞춤형·돌봄 시간표)",
+        "text": "정규수업 | 09:00~12:50 (4교시) | 09:00~13:40(5교시)"
+      }
+    }
+  ],
+  "unresolved": [
+    {
+      "school_id": "B000002291",
+      "school_name": "서울대곡초등학교",
+      "reason": "no_clock",
+      "note": "방학·도시락 일과표뿐(08:40~12:50 정규수업 칸이 학기 시정인지 불명)"
+    },
+    {
+      "school_id": "B000002277",
+      "school_name": "서울수서초등학교",
+      "reason": "no_clock",
+      "note": "돌봄 \"방과후~14:30\"만"
+    },
+    {
+      "school_id": "B000002300",
+      "school_name": "서울영희초등학교",
+      "reason": "no_clock",
+      "note": "단서 없음"
+    },
+    {
+      "school_id": "B000025001",
+      "school_name": "서울율현초등학교",
+      "reason": "no_clock",
+      "note": "단서 없음"
+    },
+    {
+      "school_id": "B000002290",
+      "school_name": "서울학동초등학교",
+      "reason": "no_clock",
+      "note": "단서 없음"
+    },
+    {
+      "school_id": "B000002274",
+      "school_name": "계성초등학교",
+      "reason": "no_clock",
+      "note": "사립. 1학년 영어 12:40~13:20(화·금)뿐"
+    },
+    {
+      "school_id": "B000002253",
+      "school_name": "서울교육대학교부설초등학교",
+      "reason": "no_clock",
+      "note": "단서 없음"
+    },
+    {
+      "school_id": "B000002259",
+      "school_name": "서울매헌초등학교",
+      "reason": "no_clock",
+      "note": "단서 없음"
+    },
+    {
+      "school_id": "B000002262",
+      "school_name": "서울방일초등학교",
+      "reason": "no_clock",
+      "note": "\"정규반 수업 09:00~13:00\"이 학기 시정인지 불명"
+    },
+    {
+      "school_id": "B000002264",
+      "school_name": "서울서래초등학교",
+      "reason": "no_clock",
+      "note": "돌봄 \"정규수업후~14:10\"만"
+    },
+    {
+      "school_id": "B000002255",
+      "school_name": "서울서원초등학교",
+      "reason": "no_clock",
+      "note": "돌봄 \"정규수업후~13:00\"만"
+    },
+    {
+      "school_id": "B000002268",
+      "school_name": "서울서이초등학교",
+      "reason": "no_clock",
+      "note": "\"정규수업 후 13:00~16:40\"만"
+    },
+    {
+      "school_id": "B000002269",
+      "school_name": "서울서일초등학교",
+      "reason": "no_clock",
+      "note": "돌봄 점심 지도 11:30~12:30만"
+    },
+    {
+      "school_id": "B000025891",
+      "school_name": "서울언남초등학교",
+      "reason": "no_clock",
+      "note": "단서 없음"
+    },
+    {
+      "school_id": "B000002272",
+      "school_name": "서울우암초등학교",
+      "reason": "no_clock",
+      "note": "돌봄 \"방과후~13:50\"만"
+    },
+    {
+      "school_id": "B000002270",
+      "school_name": "서울원명초등학교",
+      "reason": "no_clock",
+      "note": "돌봄 13:50~만"
+    },
+    {
+      "school_id": "B000002273",
+      "school_name": "서울신동초등학교",
+      "reason": "no_clock",
+      "note": "돌봄 \"정규 수업후~13:00\"만"
+    },
+    {
+      "school_id": "B000002139",
+      "school_name": "서울가동초등학교",
+      "reason": "no_clock",
+      "note": "돌봄 \"방과후~13:40\"만"
+    },
+    {
+      "school_id": "B000002151",
+      "school_name": "서울거여초등학교",
+      "reason": "no_clock",
+      "note": "맞춤형 끝나는 시각(14:35, 15:20)만"
+    },
+    {
+      "school_id": "B000002141",
+      "school_name": "서울거원초등학교",
+      "reason": "no_clock",
+      "note": "단서 없음"
+    },
+    {
+      "school_id": "B000002128",
+      "school_name": "서울문정초등학교",
+      "reason": "no_clock",
+      "note": "단서 없음"
+    },
+    {
+      "school_id": "B000002146",
+      "school_name": "서울방산초등학교",
+      "reason": "no_clock",
+      "note": "단서 없음"
+    },
+    {
+      "school_id": "B000002145",
+      "school_name": "서울세륜초등학교",
+      "reason": "no_clock",
+      "note": "단서 없음"
+    },
+    {
+      "school_id": "B000002133",
+      "school_name": "서울송전초등학교",
+      "reason": "no_clock",
+      "note": "단서 없음"
+    },
+    {
+      "school_id": "B000002149",
+      "school_name": "서울송파초등학교",
+      "reason": "no_clock",
+      "note": "단서 없음"
+    },
+    {
+      "school_id": "B000002135",
+      "school_name": "서울잠실초등학교",
+      "reason": "no_clock",
+      "note": "2025 문서뿐"
+    },
+    {
+      "school_id": "B000002154",
+      "school_name": "서울풍납초등학교",
+      "reason": "no_clock",
+      "note": "2학년 맞춤형만"
+    }
+  ]
+}
