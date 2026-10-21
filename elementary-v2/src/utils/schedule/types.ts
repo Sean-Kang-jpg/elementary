@@ -49,6 +49,8 @@ export interface ScheduleEntry {
   term?: ActiveTerm
   /** 어디서 왔나. 새 자료가 와도 사용자 수정을 덮지 않도록 출처와 판을 남긴다. */
   source?: { ref: string; version: string }
+  /** 돌봄교실 안에서 운영하는 맞춤형처럼, 그날 돌봄을 이용해야 참여할 수 있는 일정(careDependency.ts). */
+  requiresCare?: boolean
   /** 부모가 출처 값을 고치거나 지운 기록. 새 판 자료가 와도 이 필드는 덮지 않는다(S03). */
   userOverride?: UserOverride
 }
