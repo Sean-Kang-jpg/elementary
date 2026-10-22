@@ -1,0 +1,112 @@
+{
+  "schema_version": "pivot-p1-review-gate-v3",
+  "no_operational_upload": true,
+  "stage1_passed": true,
+  "stage2_authorized_by_gate": true,
+  "shown_rows": 267,
+  "correct_rows": 267,
+  "accuracy_lower_bound": 1.0,
+  "schools": [
+    {
+      "school_id": "B000003739",
+      "shown_rows": 39,
+      "correct_rows": 39,
+      "accuracy_lower_bound": 1.0,
+      "incomplete_grade1_custom_rows": [],
+      "grade1_custom_inventory_complete": true,
+      "place_review_complete": true,
+      "derived_grade1_custom_rows": [],
+      "participation_review_complete": true,
+      "care_hours_review_complete": true,
+      "care_activity_schedule_gaps": [],
+      "advisory_issues": [],
+      "participation_groups": 20,
+      "passed": true
+    },
+    {
+      "school_id": "B000003745",
+      "shown_rows": 78,
+      "correct_rows": 78,
+      "accuracy_lower_bound": 1.0,
+      "incomplete_grade1_custom_rows": [],
+      "grade1_custom_inventory_complete": true,
+      "place_review_complete": true,
+      "derived_grade1_custom_rows": [],
+      "participation_review_complete": true,
+      "care_hours_review_complete": true,
+      "care_activity_schedule_gaps": [],
+      "advisory_issues": [],
+      "participation_groups": 38,
+      "passed": true
+    },
+    {
+      "school_id": "B000003753",
+      "shown_rows": 38,
+      "correct_rows": 38,
+      "accuracy_lower_bound": 1.0,
+      "incomplete_grade1_custom_rows": [],
+      "grade1_custom_inventory_complete": true,
+      "place_review_complete": true,
+      "derived_grade1_custom_rows": [],
+      "participation_review_complete": true,
+      "care_hours_review_complete": true,
+      "care_activity_schedule_gaps": [
+        38,
+        40,
+        42,
+        44,
+        46,
+        48
+      ],
+      "advisory_issues": [
+        "돌봄 6종: 5월 운영계획 L518은 합친 구간·요일 미공시. 2월 오리엔테이션에는 5종의 요일과 수13:10~14:30/목13:50~15:10/통상14:00~14:50이 있으나 5월 구간·미술 포함 구성과 달라 최신 주간표 없이는 결합 불가.",
+        "돌봄 내부 6종은 과목별 선택 강좌로 취급하지 않음. 요일·개별 시각은 미확인 상태를 그대로 보존."
+      ],
+      "participation_groups": 24,
+      "passed": true
+    },
+    {
+      "school_id": "B000003766",
+      "shown_rows": 62,
+      "correct_rows": 62,
+      "accuracy_lower_bound": 1.0,
+      "incomplete_grade1_custom_rows": [],
+      "grade1_custom_inventory_complete": true,
+      "place_review_complete": true,
+      "derived_grade1_custom_rows": [],
+      "participation_review_complete": true,
+      "care_hours_review_complete": true,
+      "care_activity_schedule_gaps": [],
+      "advisory_issues": [],
+      "participation_groups": 28,
+      "passed": true
+    },
+    {
+      "school_id": "B000024240",
+      "shown_rows": 50,
+      "correct_rows": 50,
+      "accuracy_lower_bound": 1.0,
+      "incomplete_grade1_custom_rows": [],
+      "grade1_custom_inventory_complete": true,
+      "place_review_complete": true,
+      "derived_grade1_custom_rows": [
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46
+      ],
+      "participation_review_complete": true,
+      "care_hours_review_complete": true,
+      "care_activity_schedule_gaps": [],
+      "advisory_issues": [],
+      "participation_groups": 21,
+      "passed": true
+    }
+  ]
+}

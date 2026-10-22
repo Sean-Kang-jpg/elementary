@@ -11,13 +11,15 @@ from pathlib import Path
 
 from etl.afterschool_rules import resolve_period_slots
 from etl.load_school_afterschool import clean_row, load_period_estimates
+from etl.pivot_p1_participation import validate_groups, care_hours_complete, expected_mode
 
 TEST_IDS = {'B000003766', 'B000003745', 'B000003753', 'B000003739', 'B000024240'}
 
 
 def evaluate(outputs: Path, review: dict, period_estimates: dict | None = None,
              period_digest: str | None = None) -> dict:
-    v2 = review.get('schema_version') == 'pivot-p1-source-review-v2'
+    v3 = review.get('schema_version') == 'pivot-p1-source-review-v3'
+    v2 = v3 or review.get('schema_version') == 'pivot-p1-source-review-v2'
     if period_estimates is not None and (not v2 or review.get('period_estimates_sha256') != period_digest
                                        or period_digest is None):
         raise ValueError('period estimates must match the reviewed fingerprint')
@@ -48,7 +50,8 @@ def evaluate(outputs: Path, review: dict, period_estimates: dict | None = None,
         if any(d['verdict'] not in ('correct', 'wrong', 'needs_source_check') for d in decisions):
             raise ValueError(f'{sid}: unknown review verdict')
         correct = sum(d['verdict'] == 'correct' for d in decisions)
-        incomplete, derived = [], []
+        groups = validate_groups(rows, assessment) if v3 else []
+        incomplete, derived, care_gaps = [], [], []
         for i, row in enumerate(rows, 1):
             if row[0] != '맞춤형' or row[9] != 'true' or row[10] != '학기':
                 continue
@@ -56,7 +59,10 @@ def evaluate(outputs: Path, review: dict, period_estimates: dict | None = None,
             resolved = resolve_period_slots([cleaned], school.get('period_slots', {}),
                                              (period_estimates or {}).get(sid, {})) if v2 else [cleaned]
             if any(not r.get(k) for r in resolved for k in ('days', 'start', 'end')):
-                incomplete.append(i)
+                if v3 and expected_mode(row) == 'care_activity':
+                    care_gaps.append(i)
+                else:
+                    incomplete.append(i)
             if any(r.get('time_source') == 'period_slot' for r in resolved):
                 derived.append(i)
         custom_count = sum(row[0] == '맞춤형' and row[9] == 'true' and row[10] == '학기' for row in rows)
@@ -64,15 +70,22 @@ def evaluate(outputs: Path, review: dict, period_estimates: dict | None = None,
                               and custom_count == assessment['expected_grade1_custom_rows'])
         share = correct / len(shown) if shown else 0
         place_complete = not v2 or assessment.get('place_review_complete') is True
+        participation_complete = not v3 or assessment.get('participation_review_complete') is True
+        hours_complete = not v3 or care_hours_complete(assessment, groups)
         results.append({'school_id': sid, 'shown_rows': len(shown), 'correct_rows': correct,
                         'accuracy_lower_bound': round(share, 4), 'incomplete_grade1_custom_rows': incomplete,
                         'grade1_custom_inventory_complete': inventory_complete,
                         **({'place_review_complete': place_complete, 'derived_grade1_custom_rows': derived} if v2 else {}),
+                        **({'participation_review_complete': participation_complete,
+                            'care_hours_review_complete': hours_complete,
+                            'care_activity_schedule_gaps': care_gaps,
+                            'advisory_issues': assessment.get('advisory_issues', []),
+                            'participation_groups': len(groups)} if v3 else {}),
                         'passed': share >= .9 and not incomplete and inventory_complete and place_complete
-                                  and not assessment['blocking_issues']})
+                                  and participation_complete and hours_complete and not assessment['blocking_issues']})
     total = sum(s['shown_rows'] for s in results)
     correct = sum(s['correct_rows'] for s in results)
-    return {'schema_version': 'pivot-p1-review-gate-v2' if v2 else 'pivot-p1-review-gate-v1', 'no_operational_upload': True,
+    return {'schema_version': 'pivot-p1-review-gate-v3' if v3 else 'pivot-p1-review-gate-v2' if v2 else 'pivot-p1-review-gate-v1', 'no_operational_upload': True,
             'stage1_passed': all(s['passed'] for s in results),
             'stage2_authorized_by_gate': all(s['passed'] for s in results),
             'shown_rows': total, 'correct_rows': correct,

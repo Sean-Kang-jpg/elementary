@@ -11,6 +11,21 @@ from etl.school_document_tables import hwpx_grid_text
 
 
 class PivotP1V3InputTests(unittest.TestCase):
+    def test_full_document_keeps_the_tail_beyond_the_legacy_cap(self):
+        with tempfile.TemporaryDirectory() as folder:
+            docs, out = Path(folder) / 'docs', Path(folder) / 'out'
+            docs.mkdir(); out.mkdir()
+            (docs / 'long.hwpx').write_bytes(b'fixture')
+            text = 'A' * 100050 + '\nTAIL: final programme row'
+            school = {'school_id': 'X', 'files': [{'name': 'plan.hwpx', 'sha256': 'long'}]}
+            with patch('etl.llm_extraction_inputs_v3.DOCS', docs), patch(
+                    'etl.llm_extraction_inputs_v3.grid_text', return_value=('hwpx', text)):
+                capped = write_input(school, out)
+                self.assertTrue(capped['truncated'])
+                full = write_input(school, out, max_chars=None)
+            self.assertFalse(full['truncated'])
+            self.assertIn('TAIL: final programme row', (out / 'X.txt').read_text(encoding='utf8'))
+
     def write(self, files):
         with tempfile.TemporaryDirectory() as folder:
             docs, out = Path(folder) / "docs", Path(folder) / "out"
