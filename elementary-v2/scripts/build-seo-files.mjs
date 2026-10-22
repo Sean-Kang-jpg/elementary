@@ -176,10 +176,12 @@ const sitemapIndex = (files, origin, lastmod) =>
 const robotsTxt = (origin) => `# ${origin}
 #
 # 학교·아파트 상세는 색인 대상이다. 관리자 화면은 아니다.
+# 학교앞마당은 학교마다 글이 쌓이기 전에는 색인하지 않는다(빈 페이지 6,302장).
 
 User-agent: *
 Allow: /
 Disallow: /admin/
+Disallow: /frontyard
 
 Sitemap: ${origin}/sitemap.xml
 `

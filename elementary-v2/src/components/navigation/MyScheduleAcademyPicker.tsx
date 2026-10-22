@@ -3,7 +3,7 @@ import { getAcademiesNearSchool } from '../../services/dataService'
 import type { AcademyAddress } from '../../types'
 import { ACADEMY_CATEGORIES, getInstitutionCategories, type AcademyCategoryKey } from '../../utils/academyCategories'
 
-export default function MyScheduleAcademyPicker({ schoolId, onChoose }: { schoolId: string; onChoose: (label: string) => void }) {
+export default function MyScheduleAcademyPicker({ schoolId, onChoose }: { schoolId: string; onChoose: (label: string, providerKey?: string) => void }) {
   const [category, setCategory] = useState<AcademyCategoryKey | null>(null)
   const [data, setData] = useState<AcademyAddress[] | null>(null)
   const [error, setError] = useState(false)
@@ -35,7 +35,7 @@ export default function MyScheduleAcademyPicker({ schoolId, onChoose }: { school
       {error ? <div role="alert"><p className="my-help">주변 학원 자료를 불러오지 못했어요.</p><button className="my-button" type="button" onClick={() => setRetry((n) => n + 1)}>학원 다시 불러오기</button></div>
         : data === null ? <p role="status" className="my-help">근처 학원을 찾고 있어요…</p>
           : <ul className="my-academy-results" aria-label="선택 분야 근처 학원 목록">
-            {rows.map((item, index) => <li key={`${item.addressId}-${item.name}-${index}`}><button type="button" onClick={() => onChoose(`${ACADEMY_CATEGORIES.find((item) => item.key === category)!.label} · ${item.name}`.slice(0, 80))}>
+            {rows.map((item, index) => <li key={`${item.addressId}-${item.name}-${index}`}><button type="button" onClick={() => onChoose(`${ACADEMY_CATEGORIES.find((item) => item.key === category)!.label} · ${item.name}`.slice(0, 80), item.key)}>
               <b>{item.name}</b><span>{item.type} · 가까운 배정 아파트에서 {Math.round(item.distance).toLocaleString()}m</span>
             </button></li>)}
             {!rows.length && <li className="my-help">조건에 맞는 학원이 조회되지 않았어요. 분야·검색어를 바꾸거나 직접 입력할 수 있어요.</li>}

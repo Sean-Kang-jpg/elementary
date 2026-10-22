@@ -53,6 +53,16 @@ export interface ScheduleEntry {
   requiresCare?: boolean
   /** 부모가 출처 값을 고치거나 지운 기록. 새 판 자료가 와도 이 필드는 덮지 않는다(S03). */
   userOverride?: UserOverride
+  /**
+   * 학교앞마당 [모집해요] 글에서 담았다면 그 글 ID(docs/product/FRONTYARD_PLAN.md). 어디서 왔는지만
+   * 남긴다 — source와 달리 편집을 막지 않고, 글이 바뀌어도 이 일정은 그대로다.
+   */
+  frontyardPostId?: string
+  /**
+   * 고른 학원·기관의 키(etl/academy_institutions.py의 institution_key, SQL 33 providers). 이름이 바뀌거나
+   * 같은 이름의 학원이 있어도 어느 기관인지 남긴다. 키가 실리기 전 자료에서 고른 학원에는 없다.
+   */
+  providerKey?: string
 }
 
 export interface UserOverride {

@@ -1196,6 +1196,7 @@
 .my-week-detail { margin: 8px 0; padding: 12px; border: 1px solid var(--warm-border); border-radius: 12px; background: var(--warm-bg); font-size: 13px; }
 .my-week-detail p { margin: 6px 0; }
 .my-week-detail small { color: var(--warm-muted); }
+.my-week-detail a.my-button { display: inline-flex; align-items: center; margin: 6px 6px 0 0; text-decoration: none; }
 .my-calendar-help { font-size: 12px; }
 .my-week-nav { display: none; gap: 6px; }
 .my-week-nav button { flex: 1; min-height: 44px; border: 1px solid var(--warm-border); border-radius: 10px; background: var(--warm-surface); color: var(--warm-text); cursor: pointer; }
@@ -1271,6 +1272,9 @@
 .my-academy-results span { color: #667c87; font-size: 11px; }
 .my-add-card__academy-time { margin-top: 16px; padding-top: 12px; border-top: 1px solid #d5e0e6; }
 .my-add-card__academy-time h5 { margin: 0; overflow-wrap: anywhere; font-size: 14px; }
+.my-add-card__frontyard { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: 4px 0 14px; }
+.my-add-card__frontyard .my-help { flex-basis: 100%; margin: 0; }
+.my-add-card__frontyard .my-button { display: inline-flex; align-items: center; text-decoration: none; }
 .my-add-card button:focus-visible, .my-add-card h4:focus-visible { outline: 2px solid #4b6271; outline-offset: 2px; }
 .my-agenda__card:focus-visible, .my-agenda__add:focus-visible, .my-calendar-view button:focus-visible { outline: 2px solid #4b6271; outline-offset: 3px; }
 @media (max-width: 480px) {
@@ -2579,3 +2583,153 @@
   color: var(--warm-muted);
   font-size: 12px;
 }
+
+/* ---- 학교앞마당 (2026-10-21, FRONTYARD_PLAN) --------------------------------- */
+
+.frontyard-school {
+  display: flex;
+  width: 100%;
+  min-height: 52px;
+  align-items: center;
+  gap: 10px;
+  margin: 16px 0 0;
+  padding: 0 16px;
+  border: 0;
+  border-radius: 14px;
+  background: #f4f1ee;
+  color: var(--warm-text);
+  font-size: 15px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.frontyard-school strong { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.frontyard-school-pick { margin-top: 10px; }
+.frontyard-page .timetable-picks { margin-top: 10px; }
+
+.frontyard-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin: 14px 0 4px;
+}
+
+.frontyard-action {
+  display: flex;
+  min-height: 112px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  padding: 16px;
+  border: 1px solid var(--warm-border-strong);
+  border-radius: 16px;
+  background: var(--warm-surface);
+  color: var(--warm-text);
+  text-align: left;
+  cursor: pointer;
+}
+
+.frontyard-action svg { margin-bottom: 8px; color: var(--warm-muted); }
+.frontyard-action strong { font-size: 16px; }
+.frontyard-action small { color: var(--warm-muted); font-size: 12.5px; line-height: 1.45; }
+.frontyard-action[aria-pressed='true'] { border-color: var(--warm-accent); background: var(--warm-accent-soft); }
+
+.frontyard-chips {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 8px;
+  margin: 14px -16px 0;
+  padding: 2px 16px 6px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.frontyard-chips::-webkit-scrollbar { display: none; }
+.frontyard-chips .pref-chip { flex: none; min-height: 36px; padding: 6px 14px; font-size: 14px; }
+.frontyard-chips__divider { flex: none; width: 1px; height: 20px; background: var(--warm-border-strong); }
+.frontyard-composer .frontyard-chips { margin: 6px 0 0; padding: 0; flex-wrap: wrap; overflow: visible; }
+
+.frontyard-slot { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: 8px 0 0; color: var(--warm-muted); font-size: 13px; }
+.frontyard-slot button {
+  display: inline-flex; min-height: 32px; align-items: center; gap: 4px; padding: 4px 10px;
+  border: 1px solid var(--warm-accent); border-radius: 999px; background: var(--warm-accent-soft);
+  color: var(--warm-accent-strong); font-size: 13px; font-weight: 700; cursor: pointer;
+}
+
+.frontyard-list { margin: 10px 0 0; padding: 0; list-style: none; }
+.frontyard-list > li + li { border-top: 1px solid var(--warm-border); }
+
+.frontyard-card { padding: 18px 0; }
+.frontyard-card h3 { margin: 8px 0 4px; font-size: 16px; font-weight: 700; line-height: 1.45; }
+.frontyard-card h3 a { color: inherit; text-decoration: none; }
+.frontyard-card h3 a svg { display: inline; margin-left: 4px; vertical-align: -1px; color: var(--warm-faint); }
+.frontyard-card__meta { margin: 0; color: var(--warm-muted); font-size: 13.5px; }
+.frontyard-card__body { margin: 6px 0 0; font-size: 14px; line-height: 1.6; }
+.frontyard-card__provider { margin: 6px 0 0; color: var(--warm-faint); font-size: 12.5px; }
+.frontyard-card--notice h3 { font-size: 15px; font-weight: 600; }
+
+.frontyard-tag {
+  display: inline-block;
+  margin-right: 6px;
+  padding: 2px 8px;
+  border-radius: 6px;
+  background: #f1efed;
+  color: #4a4542;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.frontyard-tag--offer { background: #e8f1fb; color: #24548a; }
+.frontyard-tag--seek { background: var(--warm-peach-soft); color: var(--warm-peach); }
+.frontyard-tag--notice { background: var(--warm-sage-soft); color: var(--warm-sage); }
+.frontyard-tag--sample { background: transparent; border: 1px dashed var(--warm-border-strong); color: var(--warm-faint); font-weight: 500; }
+
+.frontyard-card__actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 12px; }
+.frontyard-card__actions .my-button { display: inline-flex; align-items: center; gap: 5px; min-height: 38px; text-decoration: none; }
+
+.frontyard-interest {
+  display: inline-flex; min-height: 38px; align-items: center; gap: 6px; padding: 6px 12px;
+  border: 1px solid var(--warm-border-strong); border-radius: 999px; background: var(--warm-surface);
+  color: var(--warm-text); font-size: 13px; cursor: pointer;
+}
+
+.frontyard-interest[aria-pressed='true'] { border-color: var(--warm-accent); background: var(--warm-accent-soft); color: var(--warm-accent-strong); font-weight: 700; }
+.frontyard-interest b { font-variant-numeric: tabular-nums; }
+
+.frontyard-report {
+  display: inline-flex; min-height: 38px; align-items: center; gap: 4px; margin-left: auto; padding: 4px 6px;
+  border: 0; background: transparent; color: var(--warm-faint); font-size: 12px; cursor: pointer;
+}
+
+.frontyard-report-reasons { margin: 8px 0 0; padding: 0; list-style: none; border: 1px solid var(--warm-border); border-radius: 12px; }
+.frontyard-report-reasons li + li { border-top: 1px solid var(--warm-border); }
+.frontyard-report-reasons button { width: 100%; min-height: 42px; padding: 8px 12px; border: 0; background: transparent; text-align: left; font-size: 13px; cursor: pointer; }
+
+.frontyard-empty { margin: 18px 0 0; padding: 18px; border: 1px dashed var(--warm-border-strong); border-radius: 16px; text-align: center; }
+.frontyard-empty p { margin: 0 0 6px; }
+
+.frontyard-more, .frontyard-back {
+  display: block; width: 100%; min-height: 44px; margin: 8px 0 0; border: 1px solid var(--warm-border);
+  border-radius: 12px; background: var(--warm-surface); color: var(--warm-text); font-size: 14px; cursor: pointer;
+}
+
+.frontyard-back { width: auto; padding: 0 14px; margin: 0 0 12px; }
+.frontyard-note { margin-top: 18px; }
+
+.frontyard-composer fieldset { margin: 14px 0 0; padding: 0; border: 0; }
+.frontyard-composer legend { font-size: 14px; font-weight: 700; }
+.frontyard-composer .my-field { margin-top: 14px; }
+.frontyard-composer textarea { width: 100%; padding: 9px; border: 1px solid var(--warm-border-strong); border-radius: 8px; font: inherit; }
+.frontyard-time { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px; font-size: 13px; }
+.frontyard-time label { display: flex; align-items: center; gap: 6px; }
+.frontyard-time input, .frontyard-time select, .frontyard-budget input {
+  min-height: 40px; padding: 4px 8px; border: 1px solid var(--warm-border-strong); border-radius: 8px; background: #fff;
+}
+
+.frontyard-checks { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; margin-top: 12px; font-size: 14px; }
+.frontyard-checks label { display: inline-flex; align-items: center; gap: 6px; }
+.frontyard-error { margin: 10px 0 0; color: #b42318; font-size: 13px; font-weight: 600; }
+.frontyard-composer__buttons { display: flex; justify-content: flex-end; gap: 8px; margin-top: 14px; }
+.frontyard-composer__buttons .my-button { text-decoration: none; display: inline-flex; align-items: center; }
+.frontyard-offer-steps { margin: 8px 0 0; padding-left: 20px; color: var(--warm-muted); font-size: 13.5px; }

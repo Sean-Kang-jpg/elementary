@@ -12,6 +12,9 @@ import { isMorningCalendarCare, morningCalendarView } from '../../utils/schedule
 import MyScheduleDay from './MyScheduleDay'
 import ScheduleAddCard from './ScheduleAddCard'
 import { withCarePlanningDefaults } from '../../utils/schedule/carePlanning'
+import { followLink } from '../content/contentLinks'
+import { FRONTYARD_ENABLED } from '../../utils/features'
+import { frontyardPath } from '../../utils/urlState'
 
 const DAYS = ['월', '화', '수', '목', '금']
 const STATUS: Record<ParticipationStatus, string> = { considering: '후보', planned: '계획에 포함', applying: '신청 중', confirmed: '참여 확정', rejected: '미선정', cancelled: '취소' }
@@ -29,8 +32,9 @@ const compactTime = (entry: ScheduleEntry, day: DayPlan) => {
   return `${start === null ? entry.startsAfterSchool ? '하교 후' : '시작 미확인' : formatMinutes(start)}–${entry.end === null ? '종료 미확인' : formatMinutes(entry.end)}${entry.timeAssumption ? ' · 기본 가정' : ''}`
 }
 
-export default function MyScheduleWeek({ schoolId, entries, onSave, onAdd, onRemove, onToggleDay }: {
+export default function MyScheduleWeek({ schoolId, entries, onSave, onAdd, onRemove, onToggleDay, onNavigate }: {
   schoolId: string; entries: ScheduleEntry[]; onSave: (change: CalendarChange) => ScheduleEntry | null
+  onNavigate?: (path: string) => void
   onAdd: (entry: ScheduleEntry) => boolean; onRemove: (id: string) => boolean
   onToggleDay: (entry: ScheduleEntry, weekday: Weekday) => boolean
 }) {
@@ -80,7 +84,7 @@ export default function MyScheduleWeek({ schoolId, entries, onSave, onAdd, onRem
     save({ ...range, original, fromWeekday, label: original.label, kind: original.kind })
   } })
   const preview = interaction.preview ?? cursor
-  const composer = adding ? <ScheduleAddCard key={adding.weekday} schoolId={schoolId} entries={entries} range={adding} onAdd={onAdd} onRemove={onRemove} onToggleDay={onToggleDay} onSave={save}
+  const composer = adding ? <ScheduleAddCard key={adding.weekday} schoolId={schoolId} entries={entries} range={adding} onNavigate={onNavigate} onAdd={onAdd} onRemove={onRemove} onToggleDay={onToggleDay} onSave={save}
     onChangeDay={(weekday) => { setSelected(null); jumpTo(weekday); setAdding({ ...adding, weekday }) }} onClose={() => setAdding(null)} /> : undefined
   return <div className={`my-week-section my-week-section--${view}`} onKeyDown={(event) => {
     if (event.key === 'Escape' && (interaction.onEscape() || cursor)) { setCursor(null); event.preventDefault(); event.stopPropagation() }
@@ -193,9 +197,22 @@ export default function MyScheduleWeek({ schoolId, entries, onSave, onAdd, onRem
       {withCarePlanningDefaults(selectedEntry).timeAssumption && <p className="my-help">{withCarePlanningDefaults(selectedEntry).timeAssumption} · 실제 운영시간은 학교 확인이 필요해요.</p>}
       {selectedEntry.source && <small>학년도/확인 기준 {selectedEntry.source.version}</small>}
       {canEditCalendarEntry(selectedEntry) && <button type="button" className="my-button" onClick={() => editAt(selectedEntry, selectedDay.weekday)}>요일·시간 수정</button>}
+      {onNavigate && FRONTYARD_ENABLED && <AlternativesLink schoolId={schoolId} entry={selectedEntry} day={selectedDay} onNavigate={onNavigate} />}
     </div>}
     <p className="my-calendar-feedback" aria-live="polite">{notice}</p>
     {editor && <CalendarEntryDialog draft={editor} onSave={save} onClose={() => setEditor(null)} />}
     {view === 'week' && <p className="my-help my-calendar-help">{morning ? '아침돌봄은 선택한 요일에만 표시해요. 정규수업은 위에서 축약하고 오후에는 예상 하교까지 수업 중으로 표시해요. 19시 이후 일정은 표시 범위를 넘어 이어질 수 있어요.' : '시간이 확인된 일정만 시간축에 배치해요. 정규수업은 예상 하교 시각까지 표시하며, 12시 이전·19시 이후 일정은 표시 범위를 넘어 이어질 수 있어요.'}</p>}
   </div>
+}
+
+/**
+ * 기존 일정 자리에서 다른 프로그램을 찾는다("화요일 15시 학원 대신", 인수인계서 5.3). 그 요일·시간으로 학교앞마당을
+ * 열 뿐, 이 일정은 지우거나 바꾸지 않는다. 정규수업이나 시각을 모르는 일정에는 두지 않는다.
+ */
+function AlternativesLink({ schoolId, entry, day, onNavigate }: { schoolId: string; entry: ScheduleEntry; day: DayPlan; onNavigate: (path: string) => void }) {
+  if (entry.kind === 'school') return null
+  const start = entry.startsAfterSchool ? day.dismissal.at : entry.start
+  if (start === null || entry.end === null || start >= entry.end) return null
+  const path = frontyardPath(schoolId, { weekday: day.weekday, start: formatMinutes(start), end: formatMinutes(entry.end) })
+  return <a className="my-button" href={path} onClick={(event) => followLink(event, path, onNavigate)}>이 시간에 다른 프로그램 알아보기</a>
 }

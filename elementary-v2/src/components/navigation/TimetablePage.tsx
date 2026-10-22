@@ -1,13 +1,14 @@
 import { useEffect, useState } from 'react'
-import { CalendarClock, Search, Star } from 'lucide-react'
+import { CalendarClock, Star } from 'lucide-react'
 import type { School } from '../../types'
-import { getSchoolDetail, searchSchoolsByName } from '../../services/dataService'
+import { getSchoolDetail } from '../../services/dataService'
 import { readFavorites, subscribeFavorites, type FavoriteRecord } from '../../utils/favorites'
 import { readPlans, subscribePlans } from '../../utils/schedule/plans'
 import { displaySchoolName } from '../../utils/schoolName'
 import { track } from '../../utils/analytics'
 import SchoolDayEstimateCard from '../school/SchoolDayEstimateCard'
 import MySchedule from './MySchedule'
+import SchoolSearch from '../search/SchoolNameSearch'
 
 interface TimetablePageProps {
   schoolId: string | null
@@ -127,56 +128,10 @@ export default function TimetablePage({ schoolId, entryYear, onSchoolChange, onN
               </section>
             ))}
             <MySchedule key={schoolId} school={{ id: schoolId, name, displayName: shownName ?? undefined }} entryYear={entryYear}
-              saved={savedSchools.some((item) => item.id === schoolId)} />
+              saved={savedSchools.some((item) => item.id === schoolId)} onNavigate={onNavigate} />
           </>
         ))}
       </div>
     </section>
-  )
-}
-
-function SchoolSearch({ onPick }: { onPick: (schoolId: string) => void }) {
-  const [term, setTerm] = useState('')
-  const [results, setResults] = useState<School[]>([])
-  const [state, setState] = useState<'idle' | 'loading' | 'error'>('idle')
-  useEffect(() => {
-    const query = term.trim()
-    let active = true
-    if (query.length < 2) { setResults([]); setState('idle'); return }
-    setResults([])
-    setState('loading')
-    const timer = window.setTimeout(() => {
-      searchSchoolsByName(query)
-        .then((rows) => { if (active) { setResults(rows); setState('idle') } })
-        .catch(() => { if (active) { setResults([]); setState('error') } })
-    }, 250)
-    return () => { active = false; window.clearTimeout(timer) }
-  }, [term])
-  const query = term.trim()
-
-  return (
-    <div className="timetable-search">
-      <label className="timetable-search__field">
-        <Search size={17} aria-hidden="true" />
-        <span className="sr-only">초등학교 이름</span>
-        <input type="search" value={term} placeholder="초등학교 이름 (예: 대현초)" autoComplete="off"
-          onChange={(event) => setTerm(event.target.value)} />
-      </label>
-      {query.length >= 2 && (
-        <ul className="timetable-search__results" aria-live="polite">
-          {state === 'loading' && !results.length && <li className="my-help">찾는 중…</li>}
-          {state === 'error' && <li className="my-help">검색하지 못했어요. 잠시 뒤 다시 시도해 주세요.</li>}
-          {state === 'idle' && !results.length && <li className="my-help">‘{query}’ 학교를 찾지 못했어요.</li>}
-          {results.map((item) => (
-            <li key={item.school_id}>
-              <button type="button" onClick={() => { onPick(item.school_id); setTerm('') }}>
-                <strong>{displaySchoolName(item.school_name, item.address)}</strong>
-                <small>{item.address}</small>
-              </button>
-            </li>
-          ))}
-        </ul>
-      )}
-    </div>
   )
 }

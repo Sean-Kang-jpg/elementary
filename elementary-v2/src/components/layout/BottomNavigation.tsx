@@ -1,28 +1,23 @@
-import { BookOpen, CalendarClock, Home, Map, UserRound } from 'lucide-react'
-import type { MouseEvent } from 'react'
+import { BookOpen, CalendarClock, Map, MessagesSquare } from 'lucide-react'
 import { VIEW_PATHS, type AppView } from '../../utils/urlState'
+import { FRONTYARD_ENABLED } from '../../utils/features'
+import { followLink } from '../content/contentLinks'
 
 interface BottomNavigationProps {
   activeView: AppView
   onNavigate: (path: string) => void
 }
 
+// 2026-10-21: 홈 탭은 상단 로고로, MY는 상단 오른쪽 아이콘으로 옮겼다(AppTopBar). 메뉴는 넷이다.
 const items = [
-  { id: 'home', label: '홈', icon: Home },
   { id: 'map', label: '학교 찾기', icon: Map },
   { id: 'guide', label: '입학 준비', icon: BookOpen },
-  { id: 'learn', label: '학습 준비', icon: CalendarClock },
-  { id: 'my', label: 'MY', icon: UserRound },
+  { id: 'timetable', label: '시간표', icon: CalendarClock },
+  ...(FRONTYARD_ENABLED ? [{ id: 'frontyard', label: '앞마당', icon: MessagesSquare }] as const : []),
 ] as const
 
 export default function BottomNavigation({ activeView, onNavigate }: BottomNavigationProps) {
   // 진짜 링크로 둔다. 화면마다 주소가 있으므로 새 탭으로 열기와 주소 복사가 그대로 된다.
-  const follow = (event: MouseEvent<HTMLAnchorElement>, path: string) => {
-    if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || event.button !== 0) return
-    event.preventDefault()
-    onNavigate(path)
-  }
-
   return (
     <nav className="app-gnb" aria-label="주요 메뉴">
       {items.map(({ id, label, icon: Icon }) => {
@@ -36,7 +31,7 @@ export default function BottomNavigation({ activeView, onNavigate }: BottomNavig
           <a
             key={id}
             href={path}
-            onClick={(event) => follow(event, path)}
+            onClick={(event) => followLink(event, path, onNavigate)}
             aria-current={isActive ? 'page' : undefined}
             className={`app-gnb__item ${isActive ? 'app-gnb__item--active' : ''}`}
           >

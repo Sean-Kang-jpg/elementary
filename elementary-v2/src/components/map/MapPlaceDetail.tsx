@@ -6,11 +6,15 @@ import BottomSheet from '../ui/BottomSheet'
 import DetailTabs from '../ui/DetailTabs'
 import DataFreshness from '../ui/DataFreshness'
 import CareCenterMorningInfo from '../care/CareCenterMorningInfo'
+import AcademyTimetableForm from './AcademyTimetableForm'
 
-export default function MapPlaceDetail({ place }: { place: SelectedMapPlace }) {
+export default function MapPlaceDetail({ place, onNavigate }: { place: SelectedMapPlace; onNavigate: (path: string) => void }) {
   const { dispatch } = useAppContext()
   const [tab, setTab] = useState<'overview' | 'source'>('overview')
   const [snap, setSnap] = useState(1)
+  // 시간표에 담는 양식을 연 학원(목록 순번)과 담은 뒤의 안내.
+  const [adding, setAdding] = useState<number | null>(null)
+  const [added, setAdded] = useState<{ index: number; message: string } | null>(null)
   const isCare = place.kind === 'care'
   const title = isCare ? place.data.name : `배움·활동 시설 ${place.data.institution_count}곳`
   return (
@@ -47,11 +51,21 @@ export default function MapPlaceDetail({ place }: { place: SelectedMapPlace }) {
                   <span key={category.key} className="rounded-full px-2 py-0.5 text-xs" style={{ color: category.color, backgroundColor: category.softColor }}>{category.label}</span>
                 ))}</div>
                 <small className="text-gray-500">{[institution.type, institution.realm].filter(Boolean).join(' · ')}</small>
+                {institution.name && (
+                  <button type="button" className="map-academy-add" aria-expanded={adding === index}
+                    onClick={() => { setAdded(null); setAdding(adding === index ? null : index) }}>내 시간표에 추가</button>
+                )}
+                {adding === index && (
+                  <AcademyTimetableForm label={`${getInstitutionCategories(institution)[0]?.label ?? '학원'} · ${institution.name}`}
+                    providerKey={institution.key} onNavigate={onNavigate}
+                    onDone={(message) => { setAdding(null); setAdded({ index, message }) }} />
+                )}
+                {added?.index === index && <p className="map-academy-form__done" role="status">{added.message}</p>}
               </li>
             ))}
           </ul>
           {!place.data.institutions.length && <p className="text-sm text-gray-600">기관명 정보 확인 중입니다.</p>}
-          <p className="text-xs text-gray-600">초등학생 대상 강좌와 모집 여부는 기관에 확인하세요.</p>
+          <p className="text-xs text-gray-600">초등학생 대상 강좌와 모집 여부는 기관에 확인하세요. 시간표에 담아도 학원 신청이 되지는 않아요.</p>
         </> : <>
           <p className="text-sm">출처: NEIS 학원·교습소정보 및 체육도장업 인허가</p>
           <p className="text-xs text-gray-600">분야는 기관명·공시 분류를 바탕으로 나눈 참고 정보이며 초등 대상 강좌의 확정 분류가 아닙니다. 직선거리는 단지 중심 또는 동별 좌표를 기준으로 계산합니다.</p>

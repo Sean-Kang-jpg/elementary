@@ -9,6 +9,8 @@ export interface CalendarChange extends CalendarRange {
   kind: Exclude<EntryKind, 'school'>
   original?: ScheduleEntry
   fromWeekday?: Weekday
+  /** 주변 학원에서 골라 넣는 일정이면 그 기관의 키. 고칠 때는 원래 일정의 키를 그대로 둔다. */
+  providerKey?: string
 }
 
 export const canEditCalendarEntry = (entry: ScheduleEntry): boolean => entry.kind !== 'school' && entry.source === undefined
@@ -49,6 +51,7 @@ export const applyCalendarChange = (entries: ScheduleEntry[], change: CalendarCh
     ...original, id, label: change.label.trim(), kind: change.kind, weekdays: [change.weekday], start: change.start, end: change.end,
     startsAfterSchool: false, evidence: 'estimated', participation: original?.participation ?? 'considering',
     transitionIn: 'unknown', term: original?.term ?? 'semester', userOverride: undefined,
+    ...(change.providerKey ? { providerKey: change.providerKey } : {}),
   }
   const next = original ? entries.flatMap((item) => item.id !== original!.id ? [item] : remaining.length ? [{ ...item, weekdays: remaining }, entry] : [entry]) : [...entries, entry]
   return { ok: true, entries: next, entry }

@@ -351,6 +351,41 @@ says the table is missing, so the code can ship first.
 
 Rollback: `DROP TABLE social_links;` — nothing else references it.
 
+## 33: 학교앞마당 (frontyard) and server-saved timetables (2026-10-21) — 초안, 운영 미적용
+
+`sql/33_create_frontyard.sql` adds three separate kinds of data: the provider master and
+provider programs (public only when published), private parent timetables (owner only, never
+promoted to provider data), and public posts split by 말머리 — `offer` [모집해요] waits for
+admin approval, `seek` [찾아요] publishes at once and hides itself after three reports, `notice`
+[어디초 소식] is admin only and shown to many schools from one row by `scope`. Browsers get
+SELECT only; every write goes through a SECURITY DEFINER function that checks who may write
+which 말머리, blocks contact details in public text and rate-limits. Plan and decisions:
+`docs/product/FRONTYARD_PLAN.md`.
+
+This is the first migration browsers write through, and the first that needs an auth session
+for ordinary visitors. Before applying:
+
+1. Supabase Auth: turn on Anonymous sign-ins and the captcha (Turnstile) — user action.
+2. With an anonymous session (role `authenticated`), confirm every existing public read still
+   works: `school_master` and `school_apartment_serving` (SQL 10 policies have no `TO` clause),
+   the SQL 14/23/26/30 tables, and the RPCs. If any answers 401/42501, fix the grant first —
+   otherwise turning anonymous sessions on empties the map.
+3. Privacy policy revised (timetable storage, retention, deletion, de-identified aggregates).
+
+Then:
+
+4. Apply in the SQL editor after the user approves. Run after 12.
+5. As anon: `GET /rest/v1/frontyard_posts?select=*` → 200 `[]`; `POST` → 401/42501;
+   `rpc/create_frontyard_post` → 42501 (no session); `rpc/frontyard_feed` → 200.
+6. As anonymous session A: create a [찾아요] post (published), an [모집해요] post (pending, not in
+   the feed), a [어디초 소식] post (42501); a body with a phone number → 22023; a fourth post the
+   same day → 54000. Save a timetable, read it back; as session B the same rows read `[]`.
+7. As B: toggle interest twice (count 1 → 0); three different sessions report → post hidden.
+
+Rollback: drop the twelve tables and twelve functions in reverse order — nothing earlier
+references them. Parent timetables also live in device storage, so a rollback loses only the
+server copy.
+
 ## Morning-care private research schema (2026-10-15/16)
 
 Applied to `elementary_v2.0` with Supabase migration tools; public serving contracts are unchanged.

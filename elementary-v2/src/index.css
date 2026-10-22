@@ -1467,3 +1467,147 @@ button.apartment-card:hover {
     top: 16px;
   }
 }
+
+/*
+ * Top bar (2026-10-21): the 홈 tab became the logo and MY became an icon, on every
+ * screen. Off the map it is a bar above <main>; on the map it would cost map height,
+ * so the logo and MY sit either side of the search box instead (.app-header__row).
+ */
+:root {
+  --app-topbar-height: 52px;
+}
+
+.app-topbar {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: var(--layer-header);
+  display: flex;
+  height: var(--app-topbar-height);
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--warm-border, #f2e6dc);
+  background: rgba(255, 255, 255, 0.98);
+  padding: 0 8px 0 16px;
+}
+
+.app-main--below-topbar {
+  top: var(--app-topbar-height);
+}
+
+.app-topbar__home {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  gap: 8px;
+  color: var(--warm-text, #2d2926);
+  font-size: 17px;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  text-decoration: none;
+}
+
+.app-topbar__home img {
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+}
+
+.app-topbar__my {
+  display: inline-flex;
+  width: 44px;
+  height: 44px;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  color: #667085;
+}
+
+.app-topbar__my[aria-current='page'] {
+  color: var(--warm-accent, #e8664f);
+}
+
+.app-topbar__home:focus-visible,
+.app-topbar__my:focus-visible {
+  outline: 2px solid var(--warm-accent-strong, #c94f3a);
+  outline-offset: 2px;
+  border-radius: 10px;
+}
+
+.app-header__row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* On the map the two links float over tiles, so they get the search box's white and shadow. */
+.app-topbar__home--compact,
+.app-topbar__my--compact {
+  width: 44px;
+  height: 44px;
+  flex: none;
+  justify-content: center;
+  border-radius: 999px;
+  background: #fff;
+  box-shadow: var(--app-elevation-floating);
+}
+
+.app-topbar__home--compact img {
+  width: 26px;
+  height: 26px;
+}
+
+@media (min-width: 1024px) {
+  .app-topbar {
+    left: var(--app-rail-width);
+    padding: 0 16px 0 24px;
+  }
+
+  /* Inside the desktop panel the row sits on white, not on the map. */
+  .app-map-panel .app-topbar__home--compact,
+  .app-map-panel .app-topbar__my--compact {
+    box-shadow: none;
+  }
+}
+
+/* Map academy detail: add one institution to the parent's timetable (2026-10-22, FRONTYARD_PLAN). */
+.map-academy-add {
+  margin-top: 6px;
+  min-height: 36px;
+  padding: 4px 12px;
+  border: 1px solid #d0d5dd;
+  border-radius: 999px;
+  background: #fff;
+  color: #344054;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.map-academy-add[aria-expanded='true'] { border-color: #e8664f; color: #b8452f; }
+
+.map-academy-form {
+  display: grid;
+  gap: 10px;
+  margin-top: 10px;
+  padding: 12px;
+  border-radius: 10px;
+  background: #f9fafb;
+  font-size: 13px;
+}
+
+.map-academy-form label { display: flex; align-items: center; gap: 6px; }
+.map-academy-form select,
+.map-academy-form input[type='time'] { min-height: 40px; padding: 4px 8px; border: 1px solid #d0d5dd; border-radius: 8px; background: #fff; }
+.map-academy-form__days { display: flex; gap: 6px; }
+.map-academy-form__days button { min-width: 40px; min-height: 40px; border: 1px solid #d0d5dd; border-radius: 999px; background: #fff; font-weight: 600; }
+.map-academy-form__days button[aria-pressed='true'] { border-color: #e8664f; background: #fff0eb; color: #b8452f; }
+.map-academy-form__times,
+.map-academy-form__status { display: flex; flex-wrap: wrap; gap: 12px; }
+.map-academy-form__note { margin: 0; color: #667085; font-size: 12px; }
+.map-academy-form__error { margin: 0; color: #b42318; font-weight: 600; }
+.map-academy-form__submit { min-height: 44px; border: 0; border-radius: 10px; background: #c94f3a; color: #fff; font-weight: 700; }
+.map-academy-form__done,
+.map-academy-form__empty { margin: 8px 0 0; color: #344054; font-size: 13px; }
+.map-academy-form__empty a { color: #b8452f; font-weight: 700; text-decoration: underline; }

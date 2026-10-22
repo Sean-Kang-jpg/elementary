@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { MousePointerClick } from 'lucide-react'
 import Header from './Header'
+import AppTopBar from './AppTopBar'
 import Sidebar from './Sidebar'
 import BottomNavigation from './BottomNavigation'
 import { MapScreenContext, PanelSlotContext } from './panelSlot'
@@ -23,7 +24,7 @@ function MainLayoutContent({ children, sidebar, activeView, onNavigate }: MainLa
         <div className="app-viewport relative w-full overflow-hidden">
           {activeView === 'map' && (
             <div className="app-map-panel">
-              <Header />
+              <Header onNavigate={onNavigate} />
               <div ref={setPanelSlot} className="app-map-panel__body">
                 <div className="app-map-panel__empty">
                   <MousePointerClick size={28} aria-hidden="true" />
@@ -33,7 +34,8 @@ function MainLayoutContent({ children, sidebar, activeView, onNavigate }: MainLa
             </div>
           )}
           {sidebar && <Sidebar>{sidebar}</Sidebar>}
-          <main className="app-main absolute inset-0 pb-app-gnb">{children}</main>
+          {activeView !== 'map' && <AppTopBar onNavigate={onNavigate} myActive={activeView === 'my'} />}
+          <main className={`app-main absolute inset-0 pb-app-gnb${activeView === 'map' ? '' : ' app-main--below-topbar'}`}>{children}</main>
           <BottomNavigation activeView={activeView} onNavigate={onNavigate} />
         </div>
       </PanelSlotContext.Provider>

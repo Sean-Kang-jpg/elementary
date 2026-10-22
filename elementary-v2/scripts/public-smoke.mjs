@@ -636,8 +636,8 @@ try {
   // 즐겨찾기 became MY on 2026-10-04; its old address is corrected, not lost.
   run(['open', new URL('/favorites', baseUrl).toString()])
   await waitFor(
-    "location.pathname === '/my' && document.querySelector('#my-title') && document.querySelector('.app-gnb__item--active')?.getAttribute('href') === '/my'",
-    'the old /favorites address opens MY at /my with the MY tab active',
+    "location.pathname === '/my' && document.querySelector('#my-title') && document.querySelector('.app-topbar__my')?.getAttribute('aria-current') === 'page'",
+    'the old /favorites address opens MY at /my with the MY icon active',
   )
   run(['eval', "[...document.querySelectorAll('[aria-label=\"관심 후보 유형\"] button')].find(b => b.textContent.startsWith('아파트')).click(); 'apartment candidates'"])
   await waitFor("document.querySelectorAll('.my-saved li').length === 1", 'MY lists the apartment saved from its detail')
@@ -647,18 +647,24 @@ try {
     'a saved apartment opens that apartment, not only its school',
   )
   run(['eval', "localStorage.removeItem('elementary-favorites-v1'); 'cleaned up'"])
-  // 학습 준비 became the fourth of five tabs on 2026-10-08. Its timetable entry leads to the map.
+  // 2026-10-21: four tabs. 홈 became the top-bar logo and MY its right-hand icon; 학습 준비 kept its
+  // address under 입학 준비. 앞마당 is the fourth tab only where VITE_FRONTYARD_ENABLED (or dev) is on.
   run(['open', new URL('/learn', baseUrl).toString()])
   await waitFor(
-    "document.querySelector('#learn-title') && document.querySelector('.app-gnb__item--active')?.getAttribute('href') === '/learn'",
-    '/learn opens 학습 준비 with its tab active',
+    "document.querySelector('#learn-title') && document.querySelector('.app-gnb__item--active')?.getAttribute('href') === '/guide'",
+    '/learn opens 학습 준비 under the 입학 준비 tab',
   )
   assertPage(
-    "[...document.querySelectorAll('.app-gnb__item')].map((item) => item.getAttribute('href')).join(' ') === '/ /map /guide /learn /my'",
-    'the bottom navigation is 홈, 학교 찾기, 입학 준비, 학습 준비, MY in that order',
+    "['/map /guide /timetable', '/map /guide /timetable /frontyard'].includes([...document.querySelectorAll('.app-gnb__item')].map((item) => item.getAttribute('href')).join(' '))",
+    'the bottom navigation is 학교 찾기, 입학 준비, 시간표 (and 앞마당) in that order',
+  )
+  assertPage(
+    "document.querySelector('.app-topbar__home')?.getAttribute('href') === '/' && document.querySelector('.app-topbar__my')?.getAttribute('href') === '/my'",
+    'the top bar carries the logo to the home and the MY icon',
   )
   run(['eval', "document.querySelector('.content-page a[href=\"/map\"]').click(); 'to map'"])
   await waitFor("location.pathname === '/map' && document.querySelector('.app-gnb__item--active')?.getAttribute('href') === '/map'", 'the timetable entry on 학습 준비 opens 학교 찾기')
+  assertPage("document.querySelector('.app-header__row .app-topbar__home') && document.querySelector('.app-header__row .app-topbar__my')", 'the map keeps the logo and MY beside its search box')
   // Learning-item view and read-to-the-end events (measurement plan A-02). The debug switch
   // records events instead of sending them and is read at load, so set it, load, then clear it.
   run(['eval', "localStorage.setItem('wherecho:analytics-debug', '1'); 'debug on'"], { quiet: true })

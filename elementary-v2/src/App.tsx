@@ -13,6 +13,7 @@ import NewsPage from './components/navigation/NewsPage'
 import PrivacyPage from './components/navigation/PrivacyPage'
 import LearnPage from './components/navigation/LearnPage'
 import TimetablePage from './components/navigation/TimetablePage'
+import FrontyardPage from './components/frontyard/FrontyardPage'
 import LearnItemPage from './components/content/LearnItemPage'
 import GuideListPage from './components/content/GuideListPage'
 import GuidePage from './components/content/GuidePage'
@@ -21,7 +22,7 @@ import ChecklistPage from './components/content/ChecklistPage'
 import AreaPage from './components/content/AreaPage'
 import checklistContent from './content/checklist.json'
 import { hasSavedProfile, readProfile, saveProfile, type Profile } from './utils/profile'
-import { FAQ_PAGE, findGuide, findLearning, LEARNING_CATEGORIES } from './content'
+import { FAQ_PAGE, findGuide, findLearning } from './content'
 import { readEntryYear } from './utils/entryYear'
 import { getApartmentByPublicKey, getSchoolDetail } from './services/dataService'
 import type { FavoriteRecord } from './utils/favorites'
@@ -31,6 +32,7 @@ import {
   guidePath,
   learnPath,
   timetablePath,
+  frontyardPath,
   parseRoute,
   schoolPath,
   setCanonical,
@@ -88,6 +90,16 @@ function MapApplication() {
     window.history.replaceState({}, '', timetablePath(schoolId))
     setTimetableSchool(schoolId)
   }, [])
+  // 학교앞마당에서 고른 학교. 주소의 `?school=`과 같다. 시간 조건(`?day=&from=&to=`)은 화면이 읽는다.
+  const [frontyardSchool, setFrontyardSchool] = useState<string | null>(() => {
+    const route = parseRoute(window.location.pathname, window.location.search)
+    return route.kind === 'frontyard' ? route.schoolId : null
+  })
+  const changeFrontyardSchool = useCallback((schoolId: string) => {
+    // 학교를 바꾸면 시간 조건은 그 학교 것이 아니므로 뺀다. 같은 화면 안의 선택이라 기록을 쌓지 않는다.
+    window.history.replaceState({}, '', frontyardPath(schoolId))
+    setFrontyardSchool(schoolId)
+  }, [])
   // 지역 허브 화면 안에서 어느 지역인지. 허브 주소가 아니면 쓰지 않는다.
   const [areaRoute, setAreaRoute] = useState<string>(() => {
     const route = parseRoute(window.location.pathname, window.location.search)
@@ -130,6 +142,7 @@ function MapApplication() {
     setGuideSlug(route.kind === 'guide' ? route.slug : null)
     setLearnSlug(route.kind === 'learn' ? route.slug : null)
     if (route.kind === 'timetable') setTimetableSchool(route.schoolId)
+    if (route.kind === 'frontyard') setFrontyardSchool(route.schoolId)
     if (route.kind === 'area') setAreaRoute(route.path)
   }
   // 주소를 읽어 선택을 복원하는 동안에는 선택을 보고 주소를 쓰면 안 된다.
@@ -451,10 +464,9 @@ function MapApplication() {
     checkConnections()
   }, [])
 
-  // 선택·준비물 콘텐츠는 주소는 /learn이어도 입학 준비 메뉴 소속이다(2026-10-08 결정).
-  // 시간표 미리 짜보기는 학습 준비 메뉴 안의 화면이다(2026-10-19 결정).
-  const navView: AppView = view === 'timetable' ? 'learn' : view === 'learn' && learnItem
-    && LEARNING_CATEGORIES.find((category) => category.id === learnItem.category)?.menu === 'guide' ? 'guide' : view
+  // 학습 준비 메뉴는 2026-10-21에 없어졌다(메뉴 넷: 학교 찾기·입학 준비·시간표·앞마당). /learn과 그 글은
+  // 주소를 지키고 입학 준비 아래에 둔다. 글은 앞마당의 '어디초 소식'으로도 보인다.
+  const navView: AppView = view === 'learn' ? 'guide' : view
 
   return (
     <MainLayout sidebar={<FilterPanel />} activeView={navView} onNavigate={(path) => navigate(path, 'nav')}>
@@ -500,6 +512,10 @@ function MapApplication() {
         <TimetablePage schoolId={timetableSchool} entryYear={entryYear} onSchoolChange={changeTimetableSchool}
           onNavigate={(path) => navigate(path, 'related')} />
       )}
+      {view === 'frontyard' && (
+        <FrontyardPage schoolId={frontyardSchool} onSchoolChange={changeFrontyardSchool}
+          onNavigate={(path) => navigate(path, 'related')} />
+      )}
       {view === 'privacy' && <PrivacyPage />}
       
       {connectionStatus.supabase === 'error' && (
@@ -533,7 +549,8 @@ function MapApplication() {
         onOpenGuide={(path) => navigate(path, 'detail')}
       />
       {view === 'map' && state.selectedMapPlace && (
-        <MapPlaceDetail key={state.selectedMapPlace.kind === 'care' ? state.selectedMapPlace.data.center_id : state.selectedMapPlace.data.address_id} place={state.selectedMapPlace} />
+        <MapPlaceDetail key={state.selectedMapPlace.kind === 'care' ? state.selectedMapPlace.data.center_id : state.selectedMapPlace.data.address_id} place={state.selectedMapPlace}
+          onNavigate={(path) => navigate(path, 'detail')} />
       )}
     </MainLayout>
   )
@@ -550,6 +567,7 @@ const TITLES: Record<AppView, string> = {
   checklist: `${checklistContent.title} | 어디초`,
   learn: '학습 준비 | 어디초',
   timetable: '초1 시간표 미리 짜보기 | 어디초',
+  frontyard: '학교앞마당 | 어디초',
   area: '지역별 초등학교 배정 현황 | 어디초',
 }
 

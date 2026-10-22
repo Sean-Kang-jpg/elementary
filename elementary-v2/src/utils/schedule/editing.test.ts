@@ -53,3 +53,15 @@ describe('direct calendar editing', () => {
     assert.deepEqual(applyCalendarChange([original], { ...change, start: 965, end: 905 }, 'new'), { ok: false, reason: 'invalid' })
   })
 })
+
+describe('academy provider key', () => {
+  it('keeps the chosen institution key on a new entry and on later moves', () => {
+    const added = applyCalendarChange([], { weekday: 2, start: 900, end: 960, label: '수학 · 가수학', kind: 'personal', providerKey: 'neis:B10-1' }, 'a1')
+    assert.equal(added.ok, true)
+    if (!added.ok) return
+    assert.equal(added.entry.providerKey, 'neis:B10-1')
+    const moved = applyCalendarChange(added.entries, { weekday: 2, start: 930, end: 990, label: '수학 · 가수학', kind: 'personal', original: added.entry, fromWeekday: 2 }, 'a2')
+    assert.equal(moved.ok, true)
+    if (moved.ok) assert.equal(moved.entry.providerKey, 'neis:B10-1')
+  })
+})

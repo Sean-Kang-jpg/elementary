@@ -22,12 +22,14 @@ const timing = (e: ScheduleEntry) => e.kind === 'school'
  * 한 학교의 시간표 초안을 만들고 고친다. 학교는 시간표 미리 짜보기 화면(`/timetable`)이 고른다 —
  * 2026-10-19부터 관심 학교로 저장하지 않아도 짤 수 있고, MY에는 요약만 남았다.
  */
-export default function MySchedule({ school, entryYear, saved }: {
+export default function MySchedule({ school, entryYear, saved, onNavigate }: {
   /** displayName은 화면 표기(광역시 접두 생략)용. 초안에는 공식 이름을 저장한다. */
   school: { id: string; name: string; displayName?: string }
   entryYear: number | null
   /** 관심 학교로 저장한 학교인지. 저장과 시간표는 별개라 안내만 달라진다. */
   saved: boolean
+  /** 빈 시간에서 학교앞마당으로 넘어갈 때 쓴다. 없으면 그 버튼을 그리지 않는다. */
+  onNavigate?: (path: string) => void
 }) {
   const [store, setStore] = useState(readPlans)
   const [message, setMessage] = useState('')
@@ -98,7 +100,7 @@ export default function MySchedule({ school, entryYear, saved }: {
           {entryYear !== plan.entryYear && ' · 현재 입학연도와 달라요. 자료를 다시 확인해 주세요.'}
           {!saved && ' · 관심 학교에 저장하지 않은 학교예요. 시간표는 이 기기에 따로 보관돼요.'}
         </p>
-        <MyScheduleWeek key={`week-${plan.schoolId}`} schoolId={plan.schoolId} entries={plan.entries} onSave={saveCalendarEntry} onAdd={addEntry} onRemove={removeEntry}
+        <MyScheduleWeek key={`week-${plan.schoolId}`} schoolId={plan.schoolId} onNavigate={onNavigate} entries={plan.entries} onSave={saveCalendarEntry} onAdd={addEntry} onRemove={removeEntry}
           onToggleDay={(entry, weekday) => changeEntries((entries) => toggleProgramDay(entries, entry, weekday))} />
         <details className="my-entry-list"><summary>선택한 일정 관리 ({plan.entries.length})</summary>
           {plan.entries.map((e) => <div className="my-entry" key={e.id}>
