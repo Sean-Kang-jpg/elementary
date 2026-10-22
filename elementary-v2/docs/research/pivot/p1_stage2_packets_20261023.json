@@ -1,0 +1,1517 @@
+{
+  "schema_version": "pivot-p1-stage2-source-packets-v1",
+  "manifest_sha256": "e5c81abf5ab02904255508a3ea84c85038c74264855e975cf6ab0112790512ac",
+  "schools_processed": 39,
+  "method": "lossless source packets; no normalized course extraction",
+  "source_review_complete": false,
+  "blind_sample_verification_complete": false,
+  "publish_status": "not_approved",
+  "no_operational_upload": true,
+  "schools": [
+    {
+      "school_id": "B000003751",
+      "school_name": "구미초등학교",
+      "input_sha256": "2ba276c49271cac6469b92d793bb71588f9172ad117cc7d97131e7cb4544850d",
+      "numbered_lines": 759,
+      "full_input": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000003751/full_input.txt",
+      "chunks": [
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000003751/source_001.txt",
+          "first_line": 1,
+          "last_line": 244,
+          "sha256": "73c5054487e81a7c551cd2857e7f435855fb8ef67ec54843240c4a29cd597de9"
+        },
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000003751/source_002.txt",
+          "first_line": 245,
+          "last_line": 526,
+          "sha256": "4e15fc393b5490bd28ea69b757bc5ec1b44c9f56aba99f7040377b65ccd3cf72"
+        },
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000003751/source_003.txt",
+          "first_line": 527,
+          "last_line": 739,
+          "sha256": "b3c1cb9445ff6dfe7f4ceac785716ebe1f1a32fd8dbdb698be2019c55a77b224"
+        },
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000003751/source_004.txt",
+          "first_line": 740,
+          "last_line": 759,
+          "sha256": "c12845b389d940df33447c8958a452d1c676792d8ce16ee8ed6f752bdcaaa1d8"
+        }
+      ],
+      "supplemental_visual_sources": [],
+      "risk_flags": [
+        "example_schedule_must_not_be_treated_as_confirmed",
+        "closure_and_term_scope_require_review"
+      ],
+      "source_review_status": "pending"
+    },
+    {
+      "school_id": "B000003770",
+      "school_name": "내정초등학교",
+      "input_sha256": "6b70ffccdbaa887fa75ade08f38ca65fa13d9011ed348e03d83209845dd17edd",
+      "numbered_lines": 611,
+      "full_input": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000003770/full_input.txt",
+      "chunks": [
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000003770/source_001.txt",
+          "first_line": 1,
+          "last_line": 281,
+          "sha256": "80e559d3ee89279f28c2491550f717cb77abf2fd5623e407f60755153be830ad"
+        },
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000003770/source_002.txt",
+          "first_line": 282,
+          "last_line": 470,
+          "sha256": "8978b29448c2e1bb3674a4fc1e5820acfb5a79ca743eea16527b8affe091ef69"
+        },
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000003770/source_003.txt",
+          "first_line": 471,
+          "last_line": 611,
+          "sha256": "d4657a5ee38e6b00bd47d6a169787f2f1a823a3f5f6f557410b02fb32c067929"
+        }
+      ],
+      "supplemental_visual_sources": [],
+      "risk_flags": [
+        "example_schedule_must_not_be_treated_as_confirmed",
+        "closure_and_term_scope_require_review"
+      ],
+      "source_review_status": "pending"
+    },
+    {
+      "school_id": "B000003768",
+      "school_name": "돌마초등학교",
+      "input_sha256": "3aa1025f7d15059afa870d003a94707d5fbcaaab8d59eac34bdb1e7c085bfea0",
+      "numbered_lines": 591,
+      "full_input": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000003768/full_input.txt",
+      "chunks": [
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000003768/source_001.txt",
+          "first_line": 1,
+          "last_line": 263,
+          "sha256": "391e0cbbd56166406fbbfba6d2f25de1e96d01a3d2b115357d04c5af92cf5adb"
+        },
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000003768/source_002.txt",
+          "first_line": 264,
+          "last_line": 476,
+          "sha256": "481e02bdd8bd23a34e181fefa9f9faf5097f9f43d882f7e6f7baf46c74fd9cb7"
+        },
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000003768/source_003.txt",
+          "first_line": 477,
+          "last_line": 591,
+          "sha256": "5e4fa30c3e138feebef0919d8384a071d8cdec9cc21b6467af70d519d088b8e3"
+        }
+      ],
+      "supplemental_visual_sources": [],
+      "risk_flags": [
+        "closure_and_term_scope_require_review"
+      ],
+      "source_review_status": "pending"
+    },
+    {
+      "school_id": "B000003755",
+      "school_name": "백현초등학교",
+      "input_sha256": "f5773f4fb90b46e5d0fa06bbeb61167d51d6a0b5dd47d7c917e81abeaa174323",
+      "numbered_lines": 674,
+      "full_input": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000003755/full_input.txt",
+      "chunks": [
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000003755/source_001.txt",
+          "first_line": 1,
+          "last_line": 259,
+          "sha256": "6999f9439b9a6b8e441bfbd107988b5720b2b9374c569ceff2e703f68ebe9125"
+        },
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000003755/source_002.txt",
+          "first_line": 260,
+          "last_line": 505,
+          "sha256": "1311aaa6ab07691d9ec5cc55bcb23226b9414230e81adefc125bf49f141406c4"
+        },
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000003755/source_003.txt",
+          "first_line": 506,
+          "last_line": 674,
+          "sha256": "f822c25bd1df1813ef8c36dc2d146b326a68dacf285137786df2ef473ef1f182"
+        }
+      ],
+      "supplemental_visual_sources": [],
+      "risk_flags": [
+        "example_schedule_must_not_be_treated_as_confirmed",
+        "closure_and_term_scope_require_review"
+      ],
+      "source_review_status": "pending"
+    },
+    {
+      "school_id": "B000003743",
+      "school_name": "보평초등학교",
+      "input_sha256": "3fad355a372dd419d113294d27aca2ec1cfe75d3327afc2d34ed9d1150458bf0",
+      "numbered_lines": 759,
+      "full_input": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000003743/full_input.txt",
+      "chunks": [
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000003743/source_001.txt",
+          "first_line": 1,
+          "last_line": 203,
+          "sha256": "45f6af22ceb10d1469b6fdf6a206e410981ee51f199c0b18332524552e704068"
+        },
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000003743/source_002.txt",
+          "first_line": 204,
+          "last_line": 429,
+          "sha256": "cc90f17fb59618415c44d9db6d6d6256d4f42ac4d4bda06558fd23ec2aa84068"
+        },
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000003743/source_003.txt",
+          "first_line": 430,
+          "last_line": 602,
+          "sha256": "f380286e6c7581d9f8490e0731ea3826fba482a090b70c99928a58556763dc7f"
+        },
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000003743/source_004.txt",
+          "first_line": 603,
+          "last_line": 753,
+          "sha256": "457f815a6e4386e82882e1eefca3c38f6b7983ef6c000fc56ef1fd664889d1c4"
+        },
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000003743/source_005.txt",
+          "first_line": 754,
+          "last_line": 759,
+          "sha256": "4ca34dba4ebcc15f3257b14ff27e6b1f6664a6474b6e1a387d3d37e9c066ad75"
+        }
+      ],
+      "supplemental_visual_sources": [],
+      "risk_flags": [
+        "closure_and_term_scope_require_review"
+      ],
+      "source_review_status": "pending"
+    },
+    {
+      "school_id": "B000003761",
+      "school_name": "분당초등학교",
+      "input_sha256": "dac97404abe386bdc7cbed634fbff54c78b4c13f045768c3a055efb23afc36f1",
+      "numbered_lines": 864,
+      "full_input": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000003761/full_input.txt",
+      "chunks": [
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000003761/source_001.txt",
+          "first_line": 1,
+          "last_line": 177,
+          "sha256": "0e2df5317bbda00fc9f2416078bcee1a91332610bd7a32f1c50e97f0e0aa3fb5"
+        },
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000003761/source_002.txt",
+          "first_line": 178,
+          "last_line": 436,
+          "sha256": "4c4337c4298bfa7c4931801dbe78c9c175db8f21899389db878bdd86be652ccc"
+        },
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000003761/source_003.txt",
+          "first_line": 437,
+          "last_line": 645,
+          "sha256": "1ba9a40192e7442023a0ca0a1d386cfb5cff5c81ae197a9168c5be87c1febc7a"
+        },
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000003761/source_004.txt",
+          "first_line": 646,
+          "last_line": 767,
+          "sha256": "6e5ee13b61032eff34a596393dbf1395aa0794ea3ad6a0e639272d1faccaefbb"
+        },
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000003761/source_005.txt",
+          "first_line": 768,
+          "last_line": 864,
+          "sha256": "f05f5279b1d864299a226ff3facbdad451921accfc73965dfbccdb78be12d052"
+        }
+      ],
+      "supplemental_visual_sources": [],
+      "risk_flags": [
+        "example_schedule_must_not_be_treated_as_confirmed",
+        "closure_and_term_scope_require_review"
+      ],
+      "source_review_status": "pending"
+    },
+    {
+      "school_id": "B000003752",
+      "school_name": "불곡초등학교",
+      "input_sha256": "2123049b2a518eed528ce186ede2a3a13632fd6127fa66024b42124d6f9c87b8",
+      "numbered_lines": 140,
+      "full_input": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000003752/full_input.txt",
+      "chunks": [
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000003752/source_001.txt",
+          "first_line": 1,
+          "last_line": 51,
+          "sha256": "84f08285029360611eb731104c94333ff96d5b5ec9878cda7a237dbbb9e1a3d0"
+        },
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000003752/source_002.txt",
+          "first_line": 52,
+          "last_line": 140,
+          "sha256": "3a1b64916862d10acbcd2f5c756761aefede7959604a90f8b79f8b8d1136e1ab"
+        }
+      ],
+      "supplemental_visual_sources": [],
+      "risk_flags": [
+        "flattened_text_requires_pdf_visual_table_review",
+        "example_schedule_must_not_be_treated_as_confirmed",
+        "closure_and_term_scope_require_review"
+      ],
+      "source_review_status": "pending"
+    },
+    {
+      "school_id": "B000003756",
+      "school_name": "불정초등학교",
+      "input_sha256": "ab3d554cf14751497e32db40b49184758662eda3e0f55e9032ed4e80778e1a4f",
+      "numbered_lines": 681,
+      "full_input": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000003756/full_input.txt",
+      "chunks": [
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000003756/source_001.txt",
+          "first_line": 1,
+          "last_line": 292,
+          "sha256": "4185dfeab2d30019589d18846f97c554b48d70db4a9e43774b4b5d87f65a749c"
+        },
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000003756/source_002.txt",
+          "first_line": 293,
+          "last_line": 525,
+          "sha256": "cd21f155d44e8f8d337c6ab78663fb0cf98d9eacdb726942250d1a265ce38fda"
+        },
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000003756/source_003.txt",
+          "first_line": 526,
+          "last_line": 681,
+          "sha256": "0ee631be7a32afc279fcbe5032de5ef8eee5e453468b38ccce4a7380e608ad2e"
+        }
+      ],
+      "supplemental_visual_sources": [],
+      "risk_flags": [
+        "example_schedule_must_not_be_treated_as_confirmed",
+        "closure_and_term_scope_require_review"
+      ],
+      "source_review_status": "pending"
+    },
+    {
+      "school_id": "B000003747",
+      "school_name": "산운초등학교",
+      "input_sha256": "475a59abb5f3b92b75a0d95706e0b4a52aadb27a94129c3f30160d570a328a6c",
+      "numbered_lines": 457,
+      "full_input": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000003747/full_input.txt",
+      "chunks": [
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000003747/source_001.txt",
+          "first_line": 1,
+          "last_line": 203,
+          "sha256": "1885bc3fc7d696d28aaa98f89a64d52db0d44499c08a913b5624593e17c990bb"
+        },
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000003747/source_002.txt",
+          "first_line": 204,
+          "last_line": 450,
+          "sha256": "94da8fe197cd0b4111f44fca512e94508d85c6f1eacb96b3c0d6a2e282f86dda"
+        },
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000003747/source_003.txt",
+          "first_line": 451,
+          "last_line": 457,
+          "sha256": "b68809d1f10dfa5e2bd46cecc896597d70951fea1aaeb9f3738c034080f3142b"
+        }
+      ],
+      "supplemental_visual_sources": [],
+      "risk_flags": [
+        "closure_and_term_scope_require_review"
+      ],
+      "source_review_status": "pending"
+    },
+    {
+      "school_id": "B000003741",
+      "school_name": "상탑초등학교",
+      "input_sha256": "7cbf32ca54660b4a428bffe197ff2b79dedb36d54a3df38115d22acfc32ef419",
+      "numbered_lines": 414,
+      "full_input": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000003741/full_input.txt",
+      "chunks": [
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000003741/source_001.txt",
+          "first_line": 1,
+          "last_line": 280,
+          "sha256": "f9cb9029c1238aa952ca88dbf6cdb609adcad50cbedb24b10166cc9ec8392322"
+        },
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000003741/source_002.txt",
+          "first_line": 281,
+          "last_line": 414,
+          "sha256": "32611c0f03b85f29cac50ab084605cb7beec2ab28319f0af62f18aef0a4a3288"
+        }
+      ],
+      "supplemental_visual_sources": [],
+      "risk_flags": [
+        "closure_and_term_scope_require_review"
+      ],
+      "source_review_status": "pending"
+    },
+    {
+      "school_id": "B000003758",
+      "school_name": "서당초등학교",
+      "input_sha256": "8bc5eb5e8e43708aa1c2c1d7d222e8e60396d7d909294427ec73674fcb2a2506",
+      "numbered_lines": 591,
+      "full_input": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000003758/full_input.txt",
+      "chunks": [
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000003758/source_001.txt",
+          "first_line": 1,
+          "last_line": 75,
+          "sha256": "c4ca33d8436b8ada3b5504cdeafef8850c9ea4335de3fc76dda226694010f9d0"
+        },
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000003758/source_002.txt",
+          "first_line": 76,
+          "last_line": 176,
+          "sha256": "88dfa4dbf4500c0ca7b4b0691269fc80cd331a77fa3fd062ecc3c79da95b621d"
+        },
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000003758/source_003.txt",
+          "first_line": 177,
+          "last_line": 478,
+          "sha256": "b20dccd6451d7ea7e3768f3d55f09cdd1e670a04925039163894cb00651f186e"
+        },
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000003758/source_004.txt",
+          "first_line": 479,
+          "last_line": 591,
+          "sha256": "bb7be6e5803506210056bda92b44589b67fc1c39a48a31916671031fb76bfdaa"
+        }
+      ],
+      "supplemental_visual_sources": [
+        {
+          "school": "seodang-e",
+          "post_id": "1948588",
+          "post_url": "https://www.goesn.kr/seodang-e/na/ntt/selectNttInfo.do?mi=19778&nttSn=1948588",
+          "name": "inline image",
+          "url": "https://www.goesn.kr/dext5editordata/2026/08/20260820_105630965_47668.jpg",
+          "file": "etl/runtime/pivot_p1_stage2_sources_20261023/1948588_image_0.jpg",
+          "sha256": "83eea414472a703ee7961922f92b544dbd2bf4b97feeeee1f773aa0eccaedb19"
+        },
+        {
+          "school": "seodang-e",
+          "post_id": "1948588",
+          "post_url": "https://www.goesn.kr/seodang-e/na/ntt/selectNttInfo.do?mi=19778&nttSn=1948588",
+          "name": "inline image",
+          "url": "https://www.goesn.kr/dext5editordata/2026/08/20260820_105623107_62550.jpg",
+          "file": "etl/runtime/pivot_p1_stage2_sources_20261023/1948588_image_1.jpg",
+          "sha256": "f345984a27b29e53f65a55f501c72f25a6c1f2353e625fdcd85e33b1705755fe"
+        }
+      ],
+      "risk_flags": [
+        "closure_and_term_scope_require_review",
+        "supplemental_images_must_be_read_alongside_text"
+      ],
+      "source_review_status": "pending"
+    },
+    {
+      "school_id": "B000003760",
+      "school_name": "서현초등학교",
+      "input_sha256": "0bb59acd4f51a41cdd5618379bf79192683c2682886e375a1d3843615cdbcc9d",
+      "numbered_lines": 129,
+      "full_input": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000003760/full_input.txt",
+      "chunks": [
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000003760/source_001.txt",
+          "first_line": 1,
+          "last_line": 49,
+          "sha256": "f9db07b6699e69cd5af7d8b9994dcdb315223d912a5e2f993e7d5fca89ebc056"
+        },
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000003760/source_002.txt",
+          "first_line": 50,
+          "last_line": 112,
+          "sha256": "5960b4a2d31eab82e34afc521a94c19d594a603ce4a1cac12daa2402c0ae407a"
+        },
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000003760/source_003.txt",
+          "first_line": 113,
+          "last_line": 129,
+          "sha256": "5e7d0903b508d99a200917b8b9e7da39eed53e18fe9aee68d181a556778a09a2"
+        }
+      ],
+      "supplemental_visual_sources": [],
+      "risk_flags": [
+        "flattened_text_requires_pdf_visual_table_review",
+        "example_schedule_must_not_be_treated_as_confirmed",
+        "closure_and_term_scope_require_review"
+      ],
+      "source_review_status": "pending"
+    },
+    {
+      "school_id": "B000003754",
+      "school_name": "성남미금초등학교",
+      "input_sha256": "ddaf69c30639baa113e31b3be62042e223f54108f6eac64e77cd4d597e736c52",
+      "numbered_lines": 1662,
+      "full_input": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000003754/full_input.txt",
+      "chunks": [
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000003754/source_001.txt",
+          "first_line": 1,
+          "last_line": 65,
+          "sha256": "9939757a7e55fbca11c27cbb824c69364b3b252c9a59e77b4e2295284f3af960"
+        },
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000003754/source_002.txt",
+          "first_line": 66,
+          "last_line": 202,
+          "sha256": "c081b91bd17fc7658933905a8f04fbb2100fe6176dbf7161c94e3ea44e2a5a44"
+        },
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000003754/source_003.txt",
+          "first_line": 203,
+          "last_line": 422,
+          "sha256": "935ea05e4e75c7a13c9f56b66767a4841f135b466a27ae4e496d542d0f4322e2"
+        },
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000003754/source_004.txt",
+          "first_line": 423,
+          "last_line": 579,
+          "sha256": "652fc5a87d5c873676b0e43091c539f3efb7fabb2026b836b3c362965ee2fc73"
+        },
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000003754/source_005.txt",
+          "first_line": 580,
+          "last_line": 695,
+          "sha256": "ff29608ec6632153653facdb7b389155a7f42b09a55b89015d8d385b26149972"
+        },
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000003754/source_006.txt",
+          "first_line": 696,
+          "last_line": 821,
+          "sha256": "e67d04a090be88e9ad602a5f58bd672698dc6ac193a7ec72082578c7bac710bc"
+        },
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000003754/source_007.txt",
+          "first_line": 822,
+          "last_line": 1054,
+          "sha256": "7dddab0234d4e05daec65c84ef990e9c9fa099a055185ba74aa0895a621e1736"
+        },
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000003754/source_008.txt",
+          "first_line": 1055,
+          "last_line": 1257,
+          "sha256": "918f5568c6728fea5dffcf4dc2e7e9a84de03c2c005227385946eb250ced3547"
+        },
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000003754/source_009.txt",
+          "first_line": 1258,
+          "last_line": 1457,
+          "sha256": "92849d9e4c69f718363a0dedcdbd494914814153fc463060901b29b1ca10c6de"
+        },
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000003754/source_010.txt",
+          "first_line": 1458,
+          "last_line": 1627,
+          "sha256": "14d82bdb81aa093b7283029694d7fe323bb0873d8189f7a75e984a54c7861d29"
+        },
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000003754/source_011.txt",
+          "first_line": 1628,
+          "last_line": 1662,
+          "sha256": "1091b90062fb08f5f9632d1db320e5de5c33279a8a2c82564e3c3ad6e51e611b"
+        }
+      ],
+      "supplemental_visual_sources": [],
+      "risk_flags": [
+        "example_schedule_must_not_be_treated_as_confirmed",
+        "closure_and_term_scope_require_review",
+        "long_source_preserved_in_full"
+      ],
+      "source_review_status": "pending"
+    },
+    {
+      "school_id": "B000003742",
+      "school_name": "성남송현초등학교",
+      "input_sha256": "9f3b89a5dd11f1a19e999fc277292c7e3b81cff4d2ddafd87f3825961e836189",
+      "numbered_lines": 675,
+      "full_input": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000003742/full_input.txt",
+      "chunks": [
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000003742/source_001.txt",
+          "first_line": 1,
+          "last_line": 240,
+          "sha256": "d93feb7e8d38869b79405246df4e9e65c1f0e316c3912f0c06844d0fa471db08"
+        },
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000003742/source_002.txt",
+          "first_line": 241,
+          "last_line": 417,
+          "sha256": "ab2b00f1361813400a5c8c500b2efdac7d11ae2c8231b58fe4e6c37218227645"
+        },
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000003742/source_003.txt",
+          "first_line": 418,
+          "last_line": 600,
+          "sha256": "28b8105647cbf31d39e86adc3bdb297615de217350d21d89c182dcc0aa650bfe"
+        },
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000003742/source_004.txt",
+          "first_line": 601,
+          "last_line": 675,
+          "sha256": "5fe92df576d1bdf45599351d32cfbbd71ef1e8be76bc97f86da7b957baf0dc5f"
+        }
+      ],
+      "supplemental_visual_sources": [],
+      "risk_flags": [
+        "closure_and_term_scope_require_review"
+      ],
+      "source_review_status": "pending"
+    },
+    {
+      "school_id": "B000003737",
+      "school_name": "성남신기초등학교",
+      "input_sha256": "eeb6f6a6bdbd81ffa38a1a430afea4b87d6d5f3d47e662b34101b9d800caaa84",
+      "numbered_lines": 623,
+      "full_input": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000003737/full_input.txt",
+      "chunks": [
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000003737/source_001.txt",
+          "first_line": 1,
+          "last_line": 235,
+          "sha256": "a43b3717918e109c1fd6c870a91b784b7e5a02ed2f96d95cb0746e2eb286b594"
+        },
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000003737/source_002.txt",
+          "first_line": 236,
+          "last_line": 379,
+          "sha256": "4afdac16f15de9555709dc427498fb0f9b6f75a93fd528970f6772e63217fe63"
+        },
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000003737/source_003.txt",
+          "first_line": 380,
+          "last_line": 513,
+          "sha256": "939164f1123e4fbeef083a6cab011efd7d67043e5e958061a37f5f9203234ebd"
+        },
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000003737/source_004.txt",
+          "first_line": 514,
+          "last_line": 623,
+          "sha256": "edb0d99771c8313e76c80554de1da44578cddb85e4e4241e802cd2923f17f3ae"
+        }
+      ],
+      "supplemental_visual_sources": [],
+      "risk_flags": [
+        "example_schedule_must_not_be_treated_as_confirmed",
+        "closure_and_term_scope_require_review"
+      ],
+      "source_review_status": "pending"
+    },
+    {
+      "school_id": "B000003764",
+      "school_name": "성남장안초등학교",
+      "input_sha256": "96e560bfba5a897f060ecddfa5c272792397d58c00ef26545fa23de2949342fd",
+      "numbered_lines": 217,
+      "full_input": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000003764/full_input.txt",
+      "chunks": [
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000003764/source_001.txt",
+          "first_line": 1,
+          "last_line": 157,
+          "sha256": "a23745c9a0737e8d1e765de337b9d667612b909a28d3827630f106570b4b08f4"
+        },
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000003764/source_002.txt",
+          "first_line": 158,
+          "last_line": 217,
+          "sha256": "bf3c6aec616b7f77bfefb59b05a8c1e5c4f37d5ae06c82c88d60c880d0454ec3"
+        }
+      ],
+      "supplemental_visual_sources": [],
+      "risk_flags": [],
+      "source_review_status": "pending"
+    },
+    {
+      "school_id": "B000003771",
+      "school_name": "성남정자초등학교",
+      "input_sha256": "affdf8e2b2073d1aa6bb1e12350b40cd0520c1a0d066993ac5ce8ed0f7712639",
+      "numbered_lines": 475,
+      "full_input": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000003771/full_input.txt",
+      "chunks": [
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000003771/source_001.txt",
+          "first_line": 1,
+          "last_line": 266,
+          "sha256": "e82dc3725801bb3aaea21f070991b26d26ff1d2929f075500bd4d35b629f828d"
+        },
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000003771/source_002.txt",
+          "first_line": 267,
+          "last_line": 475,
+          "sha256": "e20f8bf885b81c787e5317f414fdc4b6150eec86558c4646ae118ec0556833ce"
+        }
+      ],
+      "supplemental_visual_sources": [],
+      "risk_flags": [
+        "example_schedule_must_not_be_treated_as_confirmed",
+        "closure_and_term_scope_require_review"
+      ],
+      "source_review_status": "pending"
+    },
+    {
+      "school_id": "B000024167",
+      "school_name": "성남화랑초등학교",
+      "input_sha256": "ae7948e082f958869d3ec8221d9226905ecb035c3e50a31cec67616b9bffaa0a",
+      "numbered_lines": 1066,
+      "full_input": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000024167/full_input.txt",
+      "chunks": [
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000024167/source_001.txt",
+          "first_line": 1,
+          "last_line": 249,
+          "sha256": "305cd3db26476d197fdd6d39f3d219dc4ea602339ff86640bfa90bd5f5b86310"
+        },
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000024167/source_002.txt",
+          "first_line": 250,
+          "last_line": 503,
+          "sha256": "b4c84ce33b67f33d4ef4303edc6f5faa1e4ec838fd8adb6ccad7b9c771a23b60"
+        },
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000024167/source_003.txt",
+          "first_line": 504,
+          "last_line": 735,
+          "sha256": "c9f2243a3d04d865ea6f4ca8f2a3a81d28b10900535130ebf72cbae717456c6a"
+        },
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000024167/source_004.txt",
+          "first_line": 736,
+          "last_line": 972,
+          "sha256": "9fc6fdee3dd64189fbd29493e59470e6fb054524031e76ed456089c4615b6665"
+        },
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000024167/source_005.txt",
+          "first_line": 973,
+          "last_line": 1066,
+          "sha256": "f1f9eac36701077e1b7e871aee0926ff81b2dfe7945fbf4cc94b56d5eaa3b43a"
+        }
+      ],
+      "supplemental_visual_sources": [],
+      "risk_flags": [
+        "example_schedule_must_not_be_treated_as_confirmed",
+        "closure_and_term_scope_require_review"
+      ],
+      "source_review_status": "pending"
+    },
+    {
+      "school_id": "B000003772",
+      "school_name": "수내초등학교",
+      "input_sha256": "c8f441067445a7817984c1bbe2f05d871d06e350ebe2dd0f8f659995084d6892",
+      "numbered_lines": 475,
+      "full_input": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000003772/full_input.txt",
+      "chunks": [
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000003772/source_001.txt",
+          "first_line": 1,
+          "last_line": 153,
+          "sha256": "94d7882a7446138b1ab0fee9cc2c17220071d71c1d140b648261a19d3c3a99e4"
+        },
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000003772/source_002.txt",
+          "first_line": 154,
+          "last_line": 396,
+          "sha256": "b0e30b24df1d1d53af57b389ad43199c4e854b834f9be3ec8d48056ed70bee73"
+        },
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000003772/source_003.txt",
+          "first_line": 397,
+          "last_line": 475,
+          "sha256": "7752f1feee915c4ac59c530beedb90382a82204a71beba1f1821603ab034baf2"
+        }
+      ],
+      "supplemental_visual_sources": [],
+      "risk_flags": [
+        "closure_and_term_scope_require_review"
+      ],
+      "source_review_status": "pending"
+    },
+    {
+      "school_id": "B000003746",
+      "school_name": "신백현초등학교",
+      "input_sha256": "067ab9d72411dae2b396c246d69071bf5b70bca8483e49fed94a32e2e2419557",
+      "numbered_lines": 1227,
+      "full_input": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000003746/full_input.txt",
+      "chunks": [
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000003746/source_001.txt",
+          "first_line": 1,
+          "last_line": 258,
+          "sha256": "260240a987aa9ffaf2afc39004772ce91566025a7ab2ca0c6e6098eddc4217e0"
+        },
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000003746/source_002.txt",
+          "first_line": 259,
+          "last_line": 491,
+          "sha256": "85699fce20d52d330848386304235adba546c0425bd4f81e31308dbb8337a439"
+        },
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000003746/source_003.txt",
+          "first_line": 492,
+          "last_line": 693,
+          "sha256": "7a0ce4e52625fe96de85bd0fdbcbfbb56d6b167aafd179b879b9eb40e872a43f"
+        },
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000003746/source_004.txt",
+          "first_line": 694,
+          "last_line": 943,
+          "sha256": "7dd03e7a3fe08f0934500a7c3cd0d0146490a9f3986b2e069aab20f87c6b1a42"
+        },
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000003746/source_005.txt",
+          "first_line": 944,
+          "last_line": 1172,
+          "sha256": "a58af23680bd6d50c794e7c6dd614171f02971d8cb225e1c3f204cfc5380dba5"
+        },
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000003746/source_006.txt",
+          "first_line": 1173,
+          "last_line": 1227,
+          "sha256": "170d90a951454f55797b93ed8f2688c0cd61b8083072287ac847d59fce171d59"
+        }
+      ],
+      "supplemental_visual_sources": [],
+      "risk_flags": [
+        "example_schedule_must_not_be_treated_as_confirmed",
+        "closure_and_term_scope_require_review"
+      ],
+      "source_review_status": "pending"
+    },
+    {
+      "school_id": "B000003740",
+      "school_name": "안말초등학교",
+      "input_sha256": "5a189d97f0643d45e1fdbe312d5a0408ddd4a4b27067abfc1e3bedde8e4865df",
+      "numbered_lines": 59,
+      "full_input": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000003740/full_input.txt",
+      "chunks": [
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000003740/source_001.txt",
+          "first_line": 1,
+          "last_line": 48,
+          "sha256": "d1951aabae997a2c7e3aec309396ced54425b71cd46327ccdaabb58af7ccf66c"
+        },
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000003740/source_002.txt",
+          "first_line": 49,
+          "last_line": 59,
+          "sha256": "b80e436d8f83c2202eb324d1d30b705078944f180548b5812dde2a021de208df"
+        }
+      ],
+      "supplemental_visual_sources": [],
+      "risk_flags": [
+        "flattened_text_requires_pdf_visual_table_review"
+      ],
+      "source_review_status": "pending"
+    },
+    {
+      "school_id": "B000003762",
+      "school_name": "야탑초등학교",
+      "input_sha256": "77a26b6cd09ce0bd08f6a3a2696934ccbe5eed992e49ee5b8cf223b9efb90746",
+      "numbered_lines": 547,
+      "full_input": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000003762/full_input.txt",
+      "chunks": [
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000003762/source_001.txt",
+          "first_line": 1,
+          "last_line": 202,
+          "sha256": "43ada5c5f23f11e92cc1212b8936cdbbc46f3dec5c14401c6793ae38fa98a573"
+        },
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000003762/source_002.txt",
+          "first_line": 203,
+          "last_line": 430,
+          "sha256": "f282ab437ff327934c6c2308e97ff5b790fb87aa599f573b8c03bb1ac7f8fef2"
+        },
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000003762/source_003.txt",
+          "first_line": 431,
+          "last_line": 547,
+          "sha256": "45ce05fa1f8c45dafa9098d0ba8f90143ee8c68d6315cf3db2c3799d303e039c"
+        }
+      ],
+      "supplemental_visual_sources": [],
+      "risk_flags": [
+        "example_schedule_must_not_be_treated_as_confirmed",
+        "closure_and_term_scope_require_review"
+      ],
+      "source_review_status": "pending"
+    },
+    {
+      "school_id": "B000003759",
+      "school_name": "양영초등학교",
+      "input_sha256": "b82d7dc979637a7a614c21ca29f1fb985994d80523a5f1168e6c51758158b431",
+      "numbered_lines": 86,
+      "full_input": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000003759/full_input.txt",
+      "chunks": [
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000003759/source_001.txt",
+          "first_line": 1,
+          "last_line": 68,
+          "sha256": "21f9f0d06664c16bc45dcae6f97450ba210c37f5b67718d727cffd00a2f9804a"
+        },
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000003759/source_002.txt",
+          "first_line": 69,
+          "last_line": 86,
+          "sha256": "fab0b3d8e0344b50b815a1796d465d04d8b4a0c9f820b2d4fdb4c1ab6d6ed679"
+        }
+      ],
+      "supplemental_visual_sources": [],
+      "risk_flags": [
+        "flattened_text_requires_pdf_visual_table_review",
+        "closure_and_term_scope_require_review"
+      ],
+      "source_review_status": "pending"
+    },
+    {
+      "school_id": "B000003750",
+      "school_name": "오리초등학교",
+      "input_sha256": "ffd6625b2579a1579192477c4f8ff26bdfa4737ad5b7c9d99f1586594ab23197",
+      "numbered_lines": 368,
+      "full_input": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000003750/full_input.txt",
+      "chunks": [
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000003750/source_001.txt",
+          "first_line": 1,
+          "last_line": 180,
+          "sha256": "c96588dec97dfce3992a6c947843dc994b4679a4af49b75d86b88ad35ffe6b63"
+        },
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000003750/source_002.txt",
+          "first_line": 181,
+          "last_line": 368,
+          "sha256": "909008a4f1547925e2c3bbac7845d7b0813fe543e3b3a80d3e9014ed9c4e168c"
+        }
+      ],
+      "supplemental_visual_sources": [],
+      "risk_flags": [
+        "closure_and_term_scope_require_review"
+      ],
+      "source_review_status": "pending"
+    },
+    {
+      "school_id": "B000003748",
+      "school_name": "운중초등학교",
+      "input_sha256": "0a13d8e7829ab9318d2d8fc0478261984dde3647797f905cda51fd842c952023",
+      "numbered_lines": 643,
+      "full_input": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000003748/full_input.txt",
+      "chunks": [
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000003748/source_001.txt",
+          "first_line": 1,
+          "last_line": 250,
+          "sha256": "97a51088a84e3cf6748ef8669631de9f4b565b0611b48023eb92880fd4d7ff86"
+        },
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000003748/source_002.txt",
+          "first_line": 251,
+          "last_line": 427,
+          "sha256": "bee69a97d32b406a6082124e6dcfdd0ef2f133441ca834d12a0214f5d32cfbfe"
+        },
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000003748/source_003.txt",
+          "first_line": 428,
+          "last_line": 643,
+          "sha256": "87efeb7e04a84266644ffc92b8d64feac51726b3ab5408a8ebc5990f8185b714"
+        }
+      ],
+      "supplemental_visual_sources": [],
+      "risk_flags": [
+        "example_schedule_must_not_be_treated_as_confirmed",
+        "closure_and_term_scope_require_review"
+      ],
+      "source_review_status": "pending"
+    },
+    {
+      "school_id": "B000003763",
+      "school_name": "이매초등학교",
+      "input_sha256": "734629c73d231239530b1c9239bc329aade0de4d593a45faa6575e2689408d1d",
+      "numbered_lines": 509,
+      "full_input": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000003763/full_input.txt",
+      "chunks": [
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000003763/source_001.txt",
+          "first_line": 1,
+          "last_line": 224,
+          "sha256": "abdaf27dccfda59036fd94c5479f690927f4883838992562bbb3a1ef5eebfca2"
+        },
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000003763/source_002.txt",
+          "first_line": 225,
+          "last_line": 438,
+          "sha256": "bbada6c1f212fa2f041544b3b67e0317ebcec65d5a108eec7b204d0dbd05e0ea"
+        },
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000003763/source_003.txt",
+          "first_line": 439,
+          "last_line": 509,
+          "sha256": "74ca24e8156ea5252fc640407fcfa911b3ec5ace7375a0ab780632c06c1a7096"
+        }
+      ],
+      "supplemental_visual_sources": [],
+      "risk_flags": [
+        "example_schedule_must_not_be_treated_as_confirmed",
+        "closure_and_term_scope_require_review"
+      ],
+      "source_review_status": "pending"
+    },
+    {
+      "school_id": "B000003767",
+      "school_name": "중탑초등학교",
+      "input_sha256": "587e0e187f45a0ee3312bf8feeb616afbb48eba742afc0f2ebeeca347aad7739",
+      "numbered_lines": 339,
+      "full_input": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000003767/full_input.txt",
+      "chunks": [
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000003767/source_001.txt",
+          "first_line": 1,
+          "last_line": 197,
+          "sha256": "e47056b22ff27ed030513e3c8f3d04e9c6902d32cdcc95df7244ef68426f7b66"
+        },
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000003767/source_002.txt",
+          "first_line": 198,
+          "last_line": 339,
+          "sha256": "9f9f829d19b5593114921e79b5979ec0b5c37f7c00b99c5ad897387b0583e39e"
+        }
+      ],
+      "supplemental_visual_sources": [],
+      "risk_flags": [
+        "closure_and_term_scope_require_review"
+      ],
+      "source_review_status": "pending"
+    },
+    {
+      "school_id": "B000003749",
+      "school_name": "청솔초등학교",
+      "input_sha256": "d803e06be6477fc56b2e886bc51b028e6359b23fccbe152a6241914cece74c7b",
+      "numbered_lines": 443,
+      "full_input": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000003749/full_input.txt",
+      "chunks": [
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000003749/source_001.txt",
+          "first_line": 1,
+          "last_line": 208,
+          "sha256": "8c90943290609b1abef2f8ea6953449275dc9ba55b6c8fc0269e46f2045eeccb"
+        },
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000003749/source_002.txt",
+          "first_line": 209,
+          "last_line": 443,
+          "sha256": "2db7611eed607e3d8a60f4ba84c09730230684076d8ac41263b5882e4046a93d"
+        }
+      ],
+      "supplemental_visual_sources": [],
+      "risk_flags": [
+        "closure_and_term_scope_require_review"
+      ],
+      "source_review_status": "pending"
+    },
+    {
+      "school_id": "B000003738",
+      "school_name": "초림초등학교",
+      "input_sha256": "e883212f06d333a46ccdad9c8ece0c89ee8219a646b1b4546df15a64679aa31d",
+      "numbered_lines": 45,
+      "full_input": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000003738/full_input.txt",
+      "chunks": [
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000003738/source_001.txt",
+          "first_line": 1,
+          "last_line": 37,
+          "sha256": "d72d0afd51befba50d07296d57f91341ec27c0bc5c2a69ea7b2fee44375164ff"
+        },
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000003738/source_002.txt",
+          "first_line": 38,
+          "last_line": 45,
+          "sha256": "ace84ce8cd50326bfa1f2b13f6118fcba797c4f92627d227f8c426ca30f1fdbe"
+        }
+      ],
+      "supplemental_visual_sources": [],
+      "risk_flags": [
+        "flattened_text_requires_pdf_visual_table_review",
+        "closure_and_term_scope_require_review"
+      ],
+      "source_review_status": "pending"
+    },
+    {
+      "school_id": "B000003757",
+      "school_name": "탄천초등학교",
+      "input_sha256": "1f3d764ae6fe0bc8c2a5f9a11f04086c61a859f712056a81d4185111a9367d41",
+      "numbered_lines": 554,
+      "full_input": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000003757/full_input.txt",
+      "chunks": [
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000003757/source_001.txt",
+          "first_line": 1,
+          "last_line": 278,
+          "sha256": "0caab81b5317cb36165814179b6bb344e3ac71a5489fd44ac60eb96e7d3d9acb"
+        },
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000003757/source_002.txt",
+          "first_line": 279,
+          "last_line": 504,
+          "sha256": "0f8548d74dcf683387c7f35a3965e532cbded8e75d9e5d90193344fba52d3e5c"
+        },
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000003757/source_003.txt",
+          "first_line": 505,
+          "last_line": 554,
+          "sha256": "74a717312b51baae6702d476f1799c5c2c7dd1465e0f7f38e9326b993df8ace9"
+        }
+      ],
+      "supplemental_visual_sources": [],
+      "risk_flags": [
+        "example_schedule_must_not_be_treated_as_confirmed",
+        "closure_and_term_scope_require_review"
+      ],
+      "source_review_status": "pending"
+    },
+    {
+      "school_id": "B000026906",
+      "school_name": "판교대장초등학교",
+      "input_sha256": "2103350a5596121a7f3dbbebeed032d9bb8ca04631a946669ff4b681c83782a9",
+      "numbered_lines": 509,
+      "full_input": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000026906/full_input.txt",
+      "chunks": [
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000026906/source_001.txt",
+          "first_line": 1,
+          "last_line": 159,
+          "sha256": "0e769862ae138cb97e4c980c40477118261a71e61b3fe619f2623c8c43c3511d"
+        },
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000026906/source_002.txt",
+          "first_line": 160,
+          "last_line": 361,
+          "sha256": "3b5a85a411320a80182dfe83e67e883b346037bbd23c6a774c4166e6e163b16e"
+        },
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000026906/source_003.txt",
+          "first_line": 362,
+          "last_line": 509,
+          "sha256": "d14082d4791b0ea5601973ed1a81848aedc325e2cac112fc96440ad0224abb2e"
+        }
+      ],
+      "supplemental_visual_sources": [],
+      "risk_flags": [
+        "closure_and_term_scope_require_review"
+      ],
+      "source_review_status": "pending"
+    },
+    {
+      "school_id": "B000003744",
+      "school_name": "판교초등학교",
+      "input_sha256": "f07cf79ea6cd5d41e5327bf871517e971a1b17e5d43cc901753ad493be6397e9",
+      "numbered_lines": 439,
+      "full_input": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000003744/full_input.txt",
+      "chunks": [
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000003744/source_001.txt",
+          "first_line": 1,
+          "last_line": 237,
+          "sha256": "b6d181ba56eeba403271b35f396694b7067f699625038533a721c3a375ec053d"
+        },
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000003744/source_002.txt",
+          "first_line": 238,
+          "last_line": 402,
+          "sha256": "2dd236595152ce738bee1da42b33938172e102a5ab1df9c9cf1d498dc7eb50b7"
+        },
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000003744/source_003.txt",
+          "first_line": 403,
+          "last_line": 439,
+          "sha256": "aaeb169828e5186520adc51ced0517c411e6354fe246a27fe3a70d517f30a876"
+        }
+      ],
+      "supplemental_visual_sources": [],
+      "risk_flags": [
+        "example_schedule_must_not_be_treated_as_confirmed",
+        "closure_and_term_scope_require_review"
+      ],
+      "source_review_status": "pending"
+    },
+    {
+      "school_id": "B000003769",
+      "school_name": "하탑초등학교",
+      "input_sha256": "039f15037741796a9fb657bd027757ac4eadddc718d56b03414828b56ec38fff",
+      "numbered_lines": 553,
+      "full_input": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000003769/full_input.txt",
+      "chunks": [
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000003769/source_001.txt",
+          "first_line": 1,
+          "last_line": 291,
+          "sha256": "5037735182c0782191ba0219852ca34b418c4482c00279fd590511813e798f1f"
+        },
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000003769/source_002.txt",
+          "first_line": 292,
+          "last_line": 530,
+          "sha256": "300e16b5d782cb367a3b7748dbc0f61422f9e16d43b8600267aa84e443231a73"
+        },
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000003769/source_003.txt",
+          "first_line": 531,
+          "last_line": 553,
+          "sha256": "f8a656131c8df6358931036fd1fefa8c322ad0276e00a5a30f0c12ab4ee27a88"
+        }
+      ],
+      "supplemental_visual_sources": [],
+      "risk_flags": [
+        "example_schedule_must_not_be_treated_as_confirmed",
+        "closure_and_term_scope_require_review"
+      ],
+      "source_review_status": "pending"
+    },
+    {
+      "school_id": "B000003765",
+      "school_name": "한솔초등학교",
+      "input_sha256": "71e14151e00dae2427ad089f5f6c229502aa3034b97200c1baff8ba5216b9ac2",
+      "numbered_lines": 608,
+      "full_input": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000003765/full_input.txt",
+      "chunks": [
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000003765/source_001.txt",
+          "first_line": 1,
+          "last_line": 271,
+          "sha256": "36190c24214dc6a86f426a4721fdbb4894a23bf3ad729e09db2c3087d7cb52e7"
+        },
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000003765/source_002.txt",
+          "first_line": 272,
+          "last_line": 515,
+          "sha256": "483ef967a346968c82ab22ba32a0322124efdae2bbc940d038e4855fbc046460"
+        },
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000003765/source_003.txt",
+          "first_line": 516,
+          "last_line": 608,
+          "sha256": "8b95bb2fe09d87e5d9ebced3224ec4b79d52033b826fec106b1e1f14b5d1449e"
+        }
+      ],
+      "supplemental_visual_sources": [],
+      "risk_flags": [
+        "example_schedule_must_not_be_treated_as_confirmed",
+        "closure_and_term_scope_require_review"
+      ],
+      "source_review_status": "pending"
+    },
+    {
+      "school_id": "B000023089",
+      "school_name": "위례숲초등학교",
+      "input_sha256": "290d05b2df7584595049b1a5eb6456e11c3ff854c1e0b846604f0d017b813a83",
+      "numbered_lines": 428,
+      "full_input": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000023089/full_input.txt",
+      "chunks": [
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000023089/source_001.txt",
+          "first_line": 1,
+          "last_line": 212,
+          "sha256": "8160da4b6c336a0e7bdbccfce7bb93a87f9e4ab686463ad2642d759071aa1b7b"
+        },
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000023089/source_002.txt",
+          "first_line": 213,
+          "last_line": 428,
+          "sha256": "d613ae816bf864a5b4c7a130540ec83a9d9f38adc33b835ae8484b3dca44347a"
+        }
+      ],
+      "supplemental_visual_sources": [],
+      "risk_flags": [
+        "closure_and_term_scope_require_review"
+      ],
+      "source_review_status": "pending"
+    },
+    {
+      "school_id": "B000024241",
+      "school_name": "위례중앙초등학교",
+      "input_sha256": "7976f5b95680f3e825fd3e3038354c388a364bc383416239eeeb414262e281af",
+      "numbered_lines": 2134,
+      "full_input": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000024241/full_input.txt",
+      "chunks": [
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000024241/source_001.txt",
+          "first_line": 1,
+          "last_line": 175,
+          "sha256": "35e118980959258fca2712bbdcf97259294e5c994a6380a853edccea44b40ff9"
+        },
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000024241/source_002.txt",
+          "first_line": 176,
+          "last_line": 300,
+          "sha256": "c66ebc5714e007c2bc2564892b0b498607a7de081712ef588fdba0e070d85f0c"
+        },
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000024241/source_003.txt",
+          "first_line": 301,
+          "last_line": 426,
+          "sha256": "fef9db73758b730eedfd69d2d0ed2d60fdf547522a223173d56a0b8cc6de9021"
+        },
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000024241/source_004.txt",
+          "first_line": 427,
+          "last_line": 593,
+          "sha256": "7fce5cca8519db8df0fc6153b914cbd6ddd6920c9eb18475f4a67e4437c79c2d"
+        },
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000024241/source_005.txt",
+          "first_line": 594,
+          "last_line": 826,
+          "sha256": "536b057ea2764474890d24c6058cf0a571701ccba68f0348958bf4e980f818ba"
+        },
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000024241/source_006.txt",
+          "first_line": 827,
+          "last_line": 1039,
+          "sha256": "ed6a341d2034ee3227b02a4cb2ccc7fa2f3cddf3869d78ee27bda60e3a2a5280"
+        },
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000024241/source_007.txt",
+          "first_line": 1040,
+          "last_line": 1201,
+          "sha256": "a7b8f87058bca80bde9fe4dfb5393d845382370166fc97e31a9b8ad3b8f1d550"
+        },
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000024241/source_008.txt",
+          "first_line": 1202,
+          "last_line": 1404,
+          "sha256": "352941abc9066065e13dbdc249970c052f91d46e1705fda13539fbca0e2a939a"
+        },
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000024241/source_009.txt",
+          "first_line": 1405,
+          "last_line": 1612,
+          "sha256": "e74b9d3c9680b777e2f589a1e1a2c54904ed3db918c6c3965c804ac3737f8e45"
+        },
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000024241/source_010.txt",
+          "first_line": 1613,
+          "last_line": 1823,
+          "sha256": "e8ee5088abefb38003a7a3028ddb1a6fb7f8482ba457f39d46f076e510c7b8ca"
+        },
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000024241/source_011.txt",
+          "first_line": 1824,
+          "last_line": 1991,
+          "sha256": "2f445e0393b94e41abc57b6958c80c6ae921bc778ade06591ad7995d96032783"
+        },
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000024241/source_012.txt",
+          "first_line": 1992,
+          "last_line": 2134,
+          "sha256": "a56ac236beb2867ed8bb2910f13b3d58ba1142ee43189d19d71d3d7e5f2aa4b7"
+        }
+      ],
+      "supplemental_visual_sources": [],
+      "risk_flags": [
+        "example_schedule_must_not_be_treated_as_confirmed",
+        "closure_and_term_scope_require_review",
+        "long_source_preserved_in_full"
+      ],
+      "source_review_status": "pending"
+    },
+    {
+      "school_id": "B000023087",
+      "school_name": "위례초등학교",
+      "input_sha256": "a2762d97cc6198b7e1a926b84185b44e04ed54eb4669ba34a00dfee0db186c07",
+      "numbered_lines": 475,
+      "full_input": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000023087/full_input.txt",
+      "chunks": [
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000023087/source_001.txt",
+          "first_line": 1,
+          "last_line": 163,
+          "sha256": "1d4b13d587b312bdb77e703ea032ad3d0f1f6a8af3d6d8111216d14a01543b43"
+        },
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000023087/source_002.txt",
+          "first_line": 164,
+          "last_line": 332,
+          "sha256": "b330fe195e1d3deee6f9c45eff75c871d8301359789fa8dca608dfda5e2760c8"
+        },
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000023087/source_003.txt",
+          "first_line": 333,
+          "last_line": 475,
+          "sha256": "6db14868a99fd4f0ac11efdd72c1884b7e0cdb0877fbef776a12441624bc7c62"
+        }
+      ],
+      "supplemental_visual_sources": [],
+      "risk_flags": [
+        "example_schedule_must_not_be_treated_as_confirmed",
+        "closure_and_term_scope_require_review"
+      ],
+      "source_review_status": "pending"
+    },
+    {
+      "school_id": "B000024239",
+      "school_name": "위례푸른초등학교",
+      "input_sha256": "573c834aa50c39ac6c8fc369b25662bb11a90eaa3e451c85f63911e61b8be3c1",
+      "numbered_lines": 510,
+      "full_input": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000024239/full_input.txt",
+      "chunks": [
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000024239/source_001.txt",
+          "first_line": 1,
+          "last_line": 177,
+          "sha256": "9defe43175fd6dcfd982e91dd37a1f4363bed5533f8b572df9afac7205b98f22"
+        },
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000024239/source_002.txt",
+          "first_line": 178,
+          "last_line": 348,
+          "sha256": "d05555489d5172f9990d9c8ade94077918cc11ab7b6bb16deb61754e1c0d7798"
+        },
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000024239/source_003.txt",
+          "first_line": 349,
+          "last_line": 454,
+          "sha256": "a09b027a58157690bdbb928bb1b3acd265718ed266614f0ae200842fedd6188f"
+        },
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000024239/source_004.txt",
+          "first_line": 455,
+          "last_line": 510,
+          "sha256": "c92835a685899d60abbede2a7838ff52a912c68d8e48ba7378c870cacaf9de29"
+        }
+      ],
+      "supplemental_visual_sources": [],
+      "risk_flags": [
+        "closure_and_term_scope_require_review"
+      ],
+      "source_review_status": "pending"
+    },
+    {
+      "school_id": "B000024238",
+      "school_name": "위례한빛초등학교",
+      "input_sha256": "0abcb9bc0e27189eb421725c95eacec9d37fea5034ac63df37da661d20ceb05c",
+      "numbered_lines": 3272,
+      "full_input": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000024238/full_input.txt",
+      "chunks": [
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000024238/source_001.txt",
+          "first_line": 1,
+          "last_line": 153,
+          "sha256": "e0d64b91bc069b30fdfd53ce07747b639b4dff06d5bae20eba6b830c865dfeb5"
+        },
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000024238/source_002.txt",
+          "first_line": 154,
+          "last_line": 247,
+          "sha256": "1139386c8e0e132f492d66615f209e25e438ff00548a97a427b3cd74c4041d67"
+        },
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000024238/source_003.txt",
+          "first_line": 248,
+          "last_line": 381,
+          "sha256": "0d387258b25099e694dc1c8a697d33ed95399586ec95348a1f0802fa15da61a7"
+        },
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000024238/source_004.txt",
+          "first_line": 382,
+          "last_line": 577,
+          "sha256": "367418368c3c05cf4351460485b3a6a185c84259ec274d94197059617de63d87"
+        },
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000024238/source_005.txt",
+          "first_line": 578,
+          "last_line": 780,
+          "sha256": "72d802de5bdbca60a4f7aca1e1ae47b78a6faba6d142ebc61e1f63d7551ee86b"
+        },
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000024238/source_006.txt",
+          "first_line": 781,
+          "last_line": 994,
+          "sha256": "a5520b1d6cad220c342d964cc76ff703866fb9c2f390863dda74dca57219c6b4"
+        },
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000024238/source_007.txt",
+          "first_line": 995,
+          "last_line": 1184,
+          "sha256": "a5a0339f80aa3a478fffbc55680b0f3cf1eebe2eed8adaf04577872ae3118e82"
+        },
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000024238/source_008.txt",
+          "first_line": 1185,
+          "last_line": 1323,
+          "sha256": "5487fb315645edeb7201863a97b2f7607f4ca5f808a66766abcf8901550510db"
+        },
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000024238/source_009.txt",
+          "first_line": 1324,
+          "last_line": 1522,
+          "sha256": "ecca42dbfed8944564a4fb8cf19c20edb2cf11d371378f4f09e2d733b23646cf"
+        },
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000024238/source_010.txt",
+          "first_line": 1523,
+          "last_line": 1694,
+          "sha256": "eb76aced0a6253e7427bfa02f22f877b180ac7b38a67c63dc6173ee36cf41a63"
+        },
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000024238/source_011.txt",
+          "first_line": 1695,
+          "last_line": 1916,
+          "sha256": "e9b0ffd5cbed5a348c516ebe92919f7f46dc8e44c16ceb3f2b6eec875f0c661e"
+        },
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000024238/source_012.txt",
+          "first_line": 1917,
+          "last_line": 2178,
+          "sha256": "f279fb13cfbd8738b8e1be915749a22fb392cb0a176b3d042b664f18d23f97fe"
+        },
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000024238/source_013.txt",
+          "first_line": 2179,
+          "last_line": 2409,
+          "sha256": "6be930aae64146d595231a6978e5ffe73c65b91b10a7958c7bc4f464e395c192"
+        },
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000024238/source_014.txt",
+          "first_line": 2410,
+          "last_line": 2649,
+          "sha256": "f4922159d2e1618571e665ae0db51fd97e1bd9dc4187052e44d73a94ea524070"
+        },
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000024238/source_015.txt",
+          "first_line": 2650,
+          "last_line": 2929,
+          "sha256": "3368206a1365719a00ffb6e45adf7398d919d637d4dc08232450c1790afefe54"
+        },
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000024238/source_016.txt",
+          "first_line": 2930,
+          "last_line": 3192,
+          "sha256": "b313b5d10ccc53525324b70868430ad5975ebf50ef961df9fae8f4d3ee8b4b5f"
+        },
+        {
+          "file": "etl/runtime/pivot_p1_stage2_packets_20261023_v2/B000024238/source_017.txt",
+          "first_line": 3193,
+          "last_line": 3272,
+          "sha256": "0ced218ed84e9ddf0ae413981b8d7dcc4804c1a65ca2cb0072ebe1060089d2b7"
+        }
+      ],
+      "supplemental_visual_sources": [],
+      "risk_flags": [
+        "example_schedule_must_not_be_treated_as_confirmed",
+        "closure_and_term_scope_require_review",
+        "long_source_preserved_in_full"
+      ],
+      "source_review_status": "pending"
+    }
+  ],
+  "verification": {
+    "all_input_hashes_checked": 39,
+    "all_supplemental_source_hashes_checked": 9,
+    "all_chunk_hashes_checked": 151,
+    "supplemental_image_dependencies_preserved": 2
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "schema_version": "pivot-p1-stage2-rejected-trial-v1",
+  "processed_schools": 39,
+  "rejected_candidate_rows": 1891,
+  "accepted_v3_rows": 0,
+  "accepted_v3_schools": 0,
+  "trial_is_not_v3_extraction": true,
+  "rejection_reasons": [
+    "Merged/flattened tables omit courses or shift cells",
+    "Inherited headings misclassify term, period and programme kind",
+    "Broad grade pattern can mistake a date for a grade",
+    "Name cleanup can remove real programme words or retain instructor names"
+  ],
+  "zero_candidate_schools": [
+    {
+      "school_id": "B000003752",
+      "school_name": "불곡초등학교",
+      "reason": "flattened_pdf",
+      "detail": "PDF 표가 한 줄 텍스트로 결합; 원문 페이지 표 재구성 필요"
+    },
+    {
+      "school_id": "B000003758",
+      "school_name": "서당초등학교",
+      "reason": "flattened_pdf_and_image",
+      "detail": "연간계획 PDF 평탄화; 8월 2학기 이미지로 1·2학년 및 수익자 표 직접 대조"
+    },
+    {
+      "school_id": "B000003760",
+      "school_name": "서현초등학교",
+      "reason": "flattened_pdf",
+      "detail": "돌봄·수익자 모두 PDF 평탄화; 표 행·병합 셀 시각 확인 필요"
+    },
+    {
+      "school_id": "B000003772",
+      "school_name": "수내초등학교",
+      "reason": "overbroad_exclusion",
+      "detail": "수강료 표의 교재명 열 때문에 시간표 전체를 필터링한 규칙 오류"
+    },
+    {
+      "school_id": "B000003740",
+      "school_name": "안말초등학교",
+      "reason": "flattened_pdf",
+      "detail": "PDF 시간표의 표 구조 복구·시각 검수 필요"
+    },
+    {
+      "school_id": "B000003759",
+      "school_name": "양영초등학교",
+      "reason": "flattened_pdf",
+      "detail": "PDF 표 평탄화; 폐강 표기를 포함해 행 복원 필요"
+    },
+    {
+      "school_id": "B000003749",
+      "school_name": "청솔초등학교",
+      "reason": "unsupported_header",
+      "detail": "HWP 학년별 주간표의 헤더·상태 처리 미지원"
+    },
+    {
+      "school_id": "B000003738",
+      "school_name": "초림초등학교",
+      "reason": "flattened_pdf",
+      "detail": "PDF 수익자 표의 이름·대상·시각이 연결됨; 열 복구 필요"
+    },
+    {
+      "school_id": "B000024239",
+      "school_name": "위례푸른초등학교",
+      "reason": "heading_context_failure",
+      "detail": "HWP 시간표는 있으나 유형 제목을 인식하지 못해 후보 차단"
+    }
+  ],
+  "other_schools": "30 schools produced candidates but all remain rejected; nonzero counts do not establish coverage or accuracy.",
+  "candidate_source_snapshot": "Before 1956017 source was appended to Migeum input; do not reuse against current hashes.",
+  "publish_status": "not_approved",
+  "no_operational_upload": true
+}

@@ -4,7 +4,7 @@
   "extraction_executed": false,
   "no_operational_upload": true,
   "cohort_size": 39,
-  "ready_count": 37,
+  "ready_count": 39,
   "schools": [
     {
       "school_id": "B000003751",
@@ -229,22 +229,45 @@
     {
       "school_id": "B000003758",
       "school_name": "서당초등학교",
-      "area": "bundang",
-      "road_address": "경기도 성남시 분당구 돌마로476번길 30",
-      "grade1_students": 92,
-      "ready": false,
-      "reason": "unsupported financial/roster XLS is not a verified 2026 programme source",
-      "missing": [
-        "1분기 수업료(3학년포함).xls"
-      ],
-      "needs_alternative_2026_programme_source": true,
-      "available_plan_files": [
+      "ready": true,
+      "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_stage2_20261023/B000003758.txt",
+      "input_sha256": "8bc5eb5e8e43708aa1c2c1d7d222e8e60396d7d909294427ec73674fcb2a2506",
+      "chars": 43193,
+      "truncated": false,
+      "full_document": true,
+      "source_files": [
+        {
+          "name": "2026학년도 방과후 돌봄 연간 운영계획.pdf",
+          "sha256": "1b673c6df385f2801988e0e087d192371873c0bcd058b331a511a9f8233ffda7",
+          "post_url": "https://www.goesn.kr/seodang-e/na/ntt/selectNttInfo.do?mi=19778&nttSn=1936454"
+        },
         {
           "name": "2026학년도 서당초 돌봄교실 운영 계획.hwp",
-          "file_academic_year": 2026,
           "sha256": "f1b330c152b9fdf23521210e41b489d07de1660f0daa05ccfb06813489b4d6a6"
         }
-      ]
+      ],
+      "source_kind": "official 2026 programme plans and notices; no roster/collection XLS",
+      "supplemental_visual_sources": [
+        {
+          "school": "seodang-e",
+          "post_id": "1948588",
+          "post_url": "https://www.goesn.kr/seodang-e/na/ntt/selectNttInfo.do?mi=19778&nttSn=1948588",
+          "name": "inline image",
+          "url": "https://www.goesn.kr/dext5editordata/2026/08/20260820_105630965_47668.jpg",
+          "file": "etl/runtime/pivot_p1_stage2_sources_20261023/1948588_image_0.jpg",
+          "sha256": "83eea414472a703ee7961922f92b544dbd2bf4b97feeeee1f773aa0eccaedb19"
+        },
+        {
+          "school": "seodang-e",
+          "post_id": "1948588",
+          "post_url": "https://www.goesn.kr/seodang-e/na/ntt/selectNttInfo.do?mi=19778&nttSn=1948588",
+          "name": "inline image",
+          "url": "https://www.goesn.kr/dext5editordata/2026/08/20260820_105623107_62550.jpg",
+          "file": "etl/runtime/pivot_p1_stage2_sources_20261023/1948588_image_1.jpg",
+          "sha256": "f345984a27b29e53f65a55f501c72f25a6c1f2353e625fdcd85e33b1705755fe"
+        }
+      ],
+      "visual_source_note": "These images are not OCR text in the numbered input. Read the original two images alongside it; visual review is recorded separately."
     },
     {
       "school_id": "B000003760",
@@ -273,45 +296,48 @@
     {
       "school_id": "B000003754",
       "school_name": "성남미금초등학교",
-      "area": "bundang",
-      "road_address": "경기도 성남시 분당구 미금로 151",
-      "grade1_students": 88,
-      "ready": false,
-      "reason": "unsupported financial/roster XLS is not a verified 2026 programme source",
-      "missing": [
-        "2026학년도 1분기 수익자 방과후 교육 징수명단.xls"
-      ],
-      "needs_alternative_2026_programme_source": true,
-      "available_plan_files": [
+      "ready": true,
+      "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_stage2_20261023/B000003754.txt",
+      "input_sha256": "ddaf69c30639baa113e31b3be62042e223f54108f6eac64e77cd4d597e736c52",
+      "chars": 143820,
+      "truncated": false,
+      "full_document": true,
+      "source_files": [
         {
-          "name": "2025 성남미금초 돌봄교실 주간학습안내(8월 4주).hwp",
-          "file_academic_year": 2025,
-          "sha256": "491cd6061c0a357d8cf3b842a0f8c25ebeee56901a61d2bb67b857144df5ebb3"
+          "name": "2026학년도 방과후돌봄-수익자 방과후 연간계획안.pdf",
+          "sha256": "9cd6a5f77de2ebbb9dc43fe6e545048c91caa7cbb480c61abf4d19849ccad84a",
+          "post_url": "https://www.goesn.kr/snmg-e/na/ntt/selectNttInfo.do?mi=11321&nttSn=1921198"
         },
         {
-          "name": "2025 성남미금초 돌봄교실 주간학습안내(5월 3주).hwp",
-          "file_academic_year": 2025,
-          "sha256": "561f62da3980616791d7503abe9b044d196ce578f20e652eda093d0cf20deac5"
+          "name": "_(최종)2026학년도 3분기 성남미금초 방과후.hwp",
+          "sha256": "0f755ee2edc394b45204d05d595953b5f107c2f73dcd11276176ce7649220139",
+          "post_url": "https://www.goesn.kr/snmg-e/na/ntt/selectNttInfo.do?mi=11321&nttSn=1954759"
         },
         {
-          "name": "2025 성남미금초 돌봄교실 주간학습안내(3월1주).hwp",
-          "file_academic_year": 2025,
-          "sha256": "d0a3c44cd1812c284831fb32233de047ad9079532dde23db3a5b5051951508db"
-        },
-        {
-          "name": "[가정통신문]2025학년도 늘봄학교 1~4분기 선택형교육(수익자 부담) 정산서 공개_(2.19).hwp",
-          "file_academic_year": 2025,
-          "sha256": "d03c8082157c84c9ceb7a63a522682736763889a1240c09b129ca5442bc12931"
+          "name": "[가정통신문]2026학년도성남미금초 방과후돌봄 학교 교육활동 공개주간 운영계획.pdf",
+          "sha256": "a6465879480eebfc142babdff822dab4c600a0aafec3cf4f0be6e86bb1c4faf3",
+          "post_url": "https://www.goesn.kr/snmg-e/na/ntt/selectNttInfo.do?mi=11321&nttSn=1925922"
         },
         {
           "name": "2026학년도성남미금초 돌봄교실 운영 계획_.hwp",
-          "file_academic_year": 2026,
           "sha256": "0075370405d2cbe64553825e19e59c2aaadc002be309294679c1fc2eef2eb698"
         },
         {
           "name": "2026학년도 성남미금초 방과후돌봄학교 통합 운영 계획(안)_.hwp",
-          "file_academic_year": 2026,
           "sha256": "6265ac1b183a923c6377dfb042de3932399a047d3c545eba0727b1968c5f9a6f"
+        }
+      ],
+      "source_kind": "official 2026 programme plans and notices; no roster/collection XLS",
+      "previous_input_sha256": "e24f637f2a87e7e9b66817e78a84bea175e90e0d1fece4dbb15007894655c6ec",
+      "supplemental_sources": [
+        {
+          "school": "snmg-e",
+          "post_id": "1956017",
+          "post_url": "https://www.goesn.kr/snmg-e/na/ntt/selectNttInfo.do?mi=11204&nttSn=1956017",
+          "name": "_2026학년도 3분기 초1,2맞춤형 교육활동 수강신청 안내문.pdf",
+          "url": "https://www.goesn.kr/upload/snmg-e/na/bbs_10584/2026/09/CC3646EB-98FD-17EE-3735-8331E0B50225.pdf",
+          "file": "etl/runtime/pivot_p1_stage2_sources_20261023/1956017_0.pdf",
+          "sha256": "241f0168c646175173206c5688fd820d8b698d2988d92084323e707da99f051c"
         }
       ]
     },
@@ -846,5 +872,7 @@
       ],
       "full_document": true
     }
-  ]
+  ],
+  "updated_on": "2026-10-23",
+  "note": "39 full inputs prepared. Candidate heuristic rejected; source packets are not completed v3 extraction."
 }
