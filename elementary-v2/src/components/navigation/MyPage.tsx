@@ -10,6 +10,7 @@ import ChecklistBanner from '../content/ChecklistBanner'
 import { followLink } from '../content/contentLinks'
 import { displaySchoolName } from '../../utils/schoolName'
 import MyTimetableSummary from './MyTimetableSummary'
+import MySavedAcademies from './MySavedAcademies'
 import MyCandidateInfo from './MyCandidateInfo'
 
 interface MyPageProps {
@@ -63,6 +64,7 @@ export default function MyPage({ onNavigate, onOpenSaved, entryYear, onEntryYear
         </section>
         <ChecklistBanner onNavigate={onNavigate} />
         <MyTimetableSummary onNavigate={onNavigate} />
+        <MySavedAcademies onNavigate={onNavigate} />
 
         <div className="hub-guides-head">
           <h2>관심 후보</h2>

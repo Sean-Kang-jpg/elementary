@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useAppContext } from '../../contexts/AppContext'
 import type { SelectedMapPlace } from '../../utils/mapTopics'
 import { getInstitutionCategories } from '../../utils/academyCategories'
@@ -7,6 +7,7 @@ import DetailTabs from '../ui/DetailTabs'
 import DataFreshness from '../ui/DataFreshness'
 import CareCenterMorningInfo from '../care/CareCenterMorningInfo'
 import AcademyTimetableForm from './AcademyTimetableForm'
+import { readSavedAcademies, sameAcademy, subscribeSavedAcademies, toggleSavedAcademy } from '../../utils/savedAcademies'
 
 export default function MapPlaceDetail({ place, onNavigate }: { place: SelectedMapPlace; onNavigate: (path: string) => void }) {
   const { dispatch } = useAppContext()
@@ -15,6 +16,8 @@ export default function MapPlaceDetail({ place, onNavigate }: { place: SelectedM
   // 시간표에 담는 양식을 연 학원(목록 순번)과 담은 뒤의 안내.
   const [adding, setAdding] = useState<number | null>(null)
   const [added, setAdded] = useState<{ index: number; message: string } | null>(null)
+  const [saved, setSaved] = useState(readSavedAcademies)
+  useEffect(() => subscribeSavedAcademies(() => setSaved(readSavedAcademies())), [])
   const isCare = place.kind === 'care'
   const title = isCare ? place.data.name : `배움·활동 시설 ${place.data.institution_count}곳`
   return (
@@ -51,10 +54,25 @@ export default function MapPlaceDetail({ place, onNavigate }: { place: SelectedM
                   <span key={category.key} className="rounded-full px-2 py-0.5 text-xs" style={{ color: category.color, backgroundColor: category.softColor }}>{category.label}</span>
                 ))}</div>
                 <small className="text-gray-500">{[institution.type, institution.realm].filter(Boolean).join(' · ')}</small>
-                {institution.name && (
-                  <button type="button" className="map-academy-add" aria-expanded={adding === index}
-                    onClick={() => { setAdded(null); setAdding(adding === index ? null : index) }}>내 시간표에 추가</button>
-                )}
+                {institution.name && place.kind === 'activity' && (() => {
+                  const identity = { name: institution.name, addressId: place.data.address_id, providerKey: institution.key }
+                  const isSaved = saved.some((item) => sameAcademy(item, identity))
+                  return (
+                    <div className="map-academy-actions">
+                      <button type="button" className="map-academy-add" aria-expanded={adding === index}
+                        onClick={() => { setAdded(null); setAdding(adding === index ? null : index) }}>내 시간표에 추가</button>
+                      <button type="button" className="map-academy-add" aria-pressed={isSaved}
+                        onClick={() => {
+                          try {
+                            const on = toggleSavedAcademy({ ...identity, category: getInstitutionCategories(institution)[0]?.label ?? '학원', area: `${place.data.region} ${place.data.district}` })
+                            setAdded({ index, message: on ? '관심 학원에 저장했어요. MY에서 볼 수 있어요.' : '관심 학원에서 뺐어요.' })
+                          } catch (error) {
+                            setAdded({ index, message: error instanceof Error && error.message.includes('까지') ? error.message : '이 브라우저에 저장하지 못했어요.' })
+                          }
+                        }}>{isSaved ? '관심 학원 ✓' : '관심 학원 저장'}</button>
+                    </div>
+                  )
+                })()}
                 {adding === index && (
                   <AcademyTimetableForm label={`${getInstitutionCategories(institution)[0]?.label ?? '학원'} · ${institution.name}`}
                     providerKey={institution.key} onNavigate={onNavigate}

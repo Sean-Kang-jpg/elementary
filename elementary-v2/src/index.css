@@ -1611,3 +1611,5 @@ button.apartment-card:hover {
 .map-academy-form__done,
 .map-academy-form__empty { margin: 8px 0 0; color: #344054; font-size: 13px; }
 .map-academy-form__empty a { color: #b8452f; font-weight: 700; text-decoration: underline; }
+.map-academy-actions { display: flex; flex-wrap: wrap; gap: 6px; }
+.map-academy-add[aria-pressed='true'] { border-color: #e8664f; background: #fff0eb; color: #b8452f; }

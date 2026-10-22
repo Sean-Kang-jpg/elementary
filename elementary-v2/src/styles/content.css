@@ -2733,3 +2733,9 @@
 .frontyard-composer__buttons { display: flex; justify-content: flex-end; gap: 8px; margin-top: 14px; }
 .frontyard-composer__buttons .my-button { text-decoration: none; display: inline-flex; align-items: center; }
 .frontyard-offer-steps { margin: 8px 0 0; padding-left: 20px; color: var(--warm-muted); font-size: 13.5px; }
+.my-saved-academies h2 small { margin-left: 4px; color: var(--warm-muted); font-size: 14px; font-weight: 600; }
+.my-saved-academies ul { margin: 8px 0 0; padding: 0; list-style: none; }
+.my-saved-academies li { display: flex; align-items: center; gap: 10px; padding: 10px 0; border-top: 1px solid var(--warm-border); }
+.my-saved-academies li strong, .my-saved-academies li small { display: block; }
+.my-saved-academies li small { color: var(--warm-muted); font-size: 12.5px; }
+.my-saved-academies__map { display: inline-block; margin-top: 10px; color: var(--warm-accent-strong); font-size: 14px; font-weight: 700; }
