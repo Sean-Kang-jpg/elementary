@@ -88,7 +88,8 @@ def evaluate(manifest_path: Path, review_path: Path) -> dict:
         lines=numbered_lines(read_bound(assessment['input_file'],assessment['input_sha256']).decode('utf8'))
         if assessment['source_read_lines']!=[1,len(lines)]:
             raise ValueError('Declared source read must cover the complete input')
-        expected_sources={s['sha256'] for s in expected.get('source_files',[])}
+        expected_sources={s['sha256'] for key in ('source_files','supplemental_sources','supplemental_visual_sources')
+                          for s in expected.get(key,[])}
         if not expected_sources or {s['sha256'] for s in assessment['source_files']}!=expected_sources:
             raise ValueError('Original document fingerprints differ from manifest')
         for source in assessment['source_files']:
@@ -105,6 +106,15 @@ def evaluate(manifest_path: Path, review_path: Path) -> dict:
                 or any(d['verdict']!='source_faithful' for d in decisions)):
             raise ValueError('Every raw row needs one source-fidelity decision')
         groups=validate_groups(rows,assessment)
+        conflicts=assessment.get('field_conflicts',[])
+        for conflict in conflicts:
+            members=conflict.get('rows',[]);alternatives=conflict.get('alternatives',[])
+            if (conflict.get('field')!='start/end' or not members or len(alternatives)<2
+                    or any(type(i) is not int or not 1<=i<=len(rows) for i in members)
+                    or any(type(v.get('line')) is not int or not 1<=v['line']<=len(lines) for v in alternatives)):
+                raise ValueError('Clock conflicts need valid rows and source alternatives')
+            if any(rows[i-1][7] is not None or rows[i-1][8] is not None for i in members):
+                raise ValueError('Unresolved clock conflicts must keep raw clocks null')
         closed=assessment.get('excluded_closed_rows',[])
         for excluded in closed:
             if (excluded.get('status')!='closed_in_source_plan' or not excluded.get('name')
@@ -131,6 +141,7 @@ def evaluate(manifest_path: Path, review_path: Path) -> dict:
                         'structural_and_fingerprint_checks_passed':True,
                         'participation_groups':len(groups),'mandatory_grade1_custom_gaps':gaps,
                         'excluded_closed_rows':len(closed),
+                        'unresolved_clock_conflicts':len(conflicts),
                         'care_activity_hours_verified':care_hours_complete(assessment,groups)
                             if any(g['mode']=='care_activity' for g in groups) else None,
                         'unconfirmed_conditional_rows':sorted(conditional),

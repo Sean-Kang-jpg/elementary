@@ -117,6 +117,30 @@ class Stage2AuditTests(unittest.TestCase):
                 self.assertEqual(result['care_regular'],1)
                 self.assertFalse(result['ready_for_operational_review'])
 
+    def test_unresolved_conflict_cannot_silently_choose_one_clock(self):
+        with tempfile.TemporaryDirectory() as name:
+            root=Path(name);manifest,review,a,rows=self.fixture(root)
+            a['field_conflicts']=[{'rows':[1],'field':'start/end','alternatives':[
+                {'line':1,'start':'13:30','end':'14:20'}, {'line':2,'start':'13:40','end':'14:30'}]}]
+            write(review,{'schema_version':'pivot-p1-stage2-manual-source-review-v1','schools':[a]})
+            self.assertEqual(evaluate(manifest,review)['schools'][0]['unresolved_clock_conflicts'],1)
+            rows[0][7:9]=['13:30','14:20']
+            a['output_sha256']=write(Path(a['output_file']),[{'school_id':'S0','rows':rows}])
+            write(review,{'schema_version':'pivot-p1-stage2-manual-source-review-v1','schools':[a]})
+            with self.assertRaisesRegex(ValueError,'keep raw clocks null'):evaluate(manifest,review)
+
+    def test_supplemental_original_cannot_be_omitted_from_fingerprints(self):
+        with tempfile.TemporaryDirectory() as name:
+            root=Path(name);manifest,review,a,_=self.fixture(root)
+            extra=root/'latest.pdf';extra.write_bytes(b'latest term original')
+            source={'file':str(extra),'sha256':hashlib.sha256(extra.read_bytes()).hexdigest()}
+            data=json.loads(manifest.read_text(encoding='utf8'))
+            data['schools'][0]['supplemental_sources']=[source];write(manifest,data)
+            with self.assertRaisesRegex(ValueError,'document fingerprints'):evaluate(manifest,review)
+            a['source_files'].append(source)
+            write(review,{'schema_version':'pivot-p1-stage2-manual-source-review-v1','schools':[a]})
+            self.assertEqual(evaluate(manifest,review)['schools_with_source_extraction'],1)
+
 
 if __name__=='__main__':
     unittest.main()

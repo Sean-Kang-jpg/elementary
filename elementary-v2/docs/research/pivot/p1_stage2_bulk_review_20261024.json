@@ -1,0 +1,3121 @@
+{
+  "schema_version": "pivot-p1-stage2-manual-source-review-v1",
+  "reviewed_on": "2026-10-24",
+  "method": "same assistant reads full numbered source and visually checks course tables; no independent blind claim",
+  "schools": [
+    {
+      "school_id": "B000003738",
+      "school_name": "초림초등학교",
+      "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_stage2_20261023/B000003738.txt",
+      "input_sha256": "e883212f06d333a46ccdad9c8ece0c89ee8219a646b1b4546df15a64679aa31d",
+      "source_files": [
+        {
+          "file": "etl/runtime/audit2-documents/a672dfdfe3c8f428ec0c0c69cc96669ef2389c670b841b99d0c91666626d8f3c.pdf",
+          "sha256": "a672dfdfe3c8f428ec0c0c69cc96669ef2389c670b841b99d0c91666626d8f3c"
+        }
+      ],
+      "output_file": "docs/research/pivot/p1_stage2_manual_20261023/batch_stage2_B000003738.json",
+      "output_sha256": "97011c24d9260d081950b6823cc4048f775c775aba9705473bc7eaf5b995ea3c",
+      "source_read_lines": [
+        1,
+        45
+      ],
+      "source_pages": 17,
+      "visually_reviewed_pages": [
+        3,
+        4
+      ],
+      "inventory": {
+        "paid": 38,
+        "custom_regular_grade1": 5,
+        "custom_regular_grade2": 5,
+        "custom_morning": 1,
+        "raw_total": 49
+      },
+      "source_inventory_complete": true,
+      "participation_review_complete": true,
+      "participation_groups": [
+        {
+          "group_id": "chorim-01",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            1,
+            2
+          ],
+          "evidence": {
+            "input_lines": [
+              16
+            ],
+            "basis": "수익자 강좌·반 표 및 학기 전 신청; 초1·2 학년별 맞춤형 주간 편성. 전 차시 참여 및 요일별 수강 가능, 수업중 퇴실 제한 L16."
+          }
+        },
+        {
+          "group_id": "chorim-02",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            3,
+            4
+          ],
+          "evidence": {
+            "input_lines": [
+              16
+            ],
+            "basis": "수익자 강좌·반 표 및 학기 전 신청; 초1·2 학년별 맞춤형 주간 편성. 전 차시 참여 및 요일별 수강 가능, 수업중 퇴실 제한 L16."
+          }
+        },
+        {
+          "group_id": "chorim-03",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            5
+          ],
+          "evidence": {
+            "input_lines": [
+              16
+            ],
+            "basis": "수익자 강좌·반 표 및 학기 전 신청; 초1·2 학년별 맞춤형 주간 편성. 전 차시 참여 및 요일별 수강 가능, 수업중 퇴실 제한 L16."
+          }
+        },
+        {
+          "group_id": "chorim-04",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            7
+          ],
+          "evidence": {
+            "input_lines": [
+              16
+            ],
+            "basis": "수익자 강좌·반 표 및 학기 전 신청; 초1·2 학년별 맞춤형 주간 편성. 전 차시 참여 및 요일별 수강 가능, 수업중 퇴실 제한 L16."
+          }
+        },
+        {
+          "group_id": "chorim-05",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            9
+          ],
+          "evidence": {
+            "input_lines": [
+              16
+            ],
+            "basis": "수익자 강좌·반 표 및 학기 전 신청; 초1·2 학년별 맞춤형 주간 편성. 전 차시 참여 및 요일별 수강 가능, 수업중 퇴실 제한 L16."
+          }
+        },
+        {
+          "group_id": "chorim-06",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            11,
+            12,
+            27,
+            28
+          ],
+          "evidence": {
+            "input_lines": [
+              16
+            ],
+            "basis": "수익자 강좌·반 표 및 학기 전 신청; 초1·2 학년별 맞춤형 주간 편성. 전 차시 참여 및 요일별 수강 가능, 수업중 퇴실 제한 L16."
+          }
+        },
+        {
+          "group_id": "chorim-07",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            13,
+            14
+          ],
+          "evidence": {
+            "input_lines": [
+              16
+            ],
+            "basis": "수익자 강좌·반 표 및 학기 전 신청; 초1·2 학년별 맞춤형 주간 편성. 전 차시 참여 및 요일별 수강 가능, 수업중 퇴실 제한 L16."
+          }
+        },
+        {
+          "group_id": "chorim-08",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            15,
+            16
+          ],
+          "evidence": {
+            "input_lines": [
+              16
+            ],
+            "basis": "수익자 강좌·반 표 및 학기 전 신청; 초1·2 학년별 맞춤형 주간 편성. 전 차시 참여 및 요일별 수강 가능, 수업중 퇴실 제한 L16."
+          }
+        },
+        {
+          "group_id": "chorim-09",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            17,
+            18
+          ],
+          "evidence": {
+            "input_lines": [
+              16
+            ],
+            "basis": "수익자 강좌·반 표 및 학기 전 신청; 초1·2 학년별 맞춤형 주간 편성. 전 차시 참여 및 요일별 수강 가능, 수업중 퇴실 제한 L16."
+          }
+        },
+        {
+          "group_id": "chorim-10",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            19,
+            20
+          ],
+          "evidence": {
+            "input_lines": [
+              16
+            ],
+            "basis": "수익자 강좌·반 표 및 학기 전 신청; 초1·2 학년별 맞춤형 주간 편성. 전 차시 참여 및 요일별 수강 가능, 수업중 퇴실 제한 L16."
+          }
+        },
+        {
+          "group_id": "chorim-11",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            21,
+            22
+          ],
+          "evidence": {
+            "input_lines": [
+              16
+            ],
+            "basis": "수익자 강좌·반 표 및 학기 전 신청; 초1·2 학년별 맞춤형 주간 편성. 전 차시 참여 및 요일별 수강 가능, 수업중 퇴실 제한 L16."
+          }
+        },
+        {
+          "group_id": "chorim-12",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            23
+          ],
+          "evidence": {
+            "input_lines": [
+              16
+            ],
+            "basis": "수익자 강좌·반 표 및 학기 전 신청; 초1·2 학년별 맞춤형 주간 편성. 전 차시 참여 및 요일별 수강 가능, 수업중 퇴실 제한 L16."
+          }
+        },
+        {
+          "group_id": "chorim-13",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            32,
+            34
+          ],
+          "evidence": {
+            "input_lines": [
+              16
+            ],
+            "basis": "수익자 강좌·반 표 및 학기 전 신청; 초1·2 학년별 맞춤형 주간 편성. 전 차시 참여 및 요일별 수강 가능, 수업중 퇴실 제한 L16."
+          }
+        },
+        {
+          "group_id": "chorim-14",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            36
+          ],
+          "evidence": {
+            "input_lines": [
+              16
+            ],
+            "basis": "수익자 강좌·반 표 및 학기 전 신청; 초1·2 학년별 맞춤형 주간 편성. 전 차시 참여 및 요일별 수강 가능, 수업중 퇴실 제한 L16."
+          }
+        },
+        {
+          "group_id": "chorim-15",
+          "mode": "class_day_bundle",
+          "individually_selectable": false,
+          "rows": [
+            39,
+            40,
+            41,
+            42,
+            43
+          ],
+          "evidence": {
+            "input_lines": [
+              14,
+              16
+            ],
+            "basis": "수익자 강좌·반 표 및 학기 전 신청; 초1·2 학년별 맞춤형 주간 편성. 전 차시 참여 및 요일별 수강 가능, 수업중 퇴실 제한 L16."
+          }
+        }
+      ],
+      "row_decisions": [
+        {
+          "row": 1,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 2,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 3,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 4,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 5,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 6,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 7,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 8,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 9,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 10,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 11,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 12,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 13,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 14,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 15,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 16,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 17,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 18,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 19,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 20,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 21,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 22,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 23,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 24,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 25,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 26,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 27,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 28,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 29,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 30,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 31,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 32,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 33,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 34,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 35,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 36,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 37,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 38,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 39,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 40,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 41,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 42,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 43,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 44,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 45,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 46,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 47,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 48,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 49,
+          "verdict": "source_faithful"
+        }
+      ],
+      "blocking_issues": [
+        "1학년 독립 맞춤형 5요일의 개별 시작·종료 미공시; 전체운영창으로 대체 금지",
+        "현재 학기 변경·폐강 공지 대조 미완료",
+        "독립 표본 검증 미실행"
+      ],
+      "advisory_issues": [
+        "아침독서 시각 미공시",
+        "돌봄 내부 세부 계획과 이용시간 미공시; 강좌 없음으로 단정하지 않음",
+        "표의 미술B14:50~16:10, 클라리넷B14:40~16:00 그대로 보존",
+        "토요 오케스트라 1학년 대상 아님"
+      ],
+      "eligibility_notes": [
+        "초1·2 맞춤형: 희망 학생, 전 차시 참석 필요, 요일별 수강 가능, 중도 입퇴실 제한",
+        "돌봄교실: 별도 신청 및 우선순위 선발; 맞춤형과 동일한 신청으로 단정하지 않음"
+      ],
+      "publish_ready": false,
+      "grade1_custom_inventory_complete": true
+    },
+    {
+      "school_id": "B000003740",
+      "school_name": "안말초등학교",
+      "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_stage2_20261023/B000003740.txt",
+      "input_sha256": "5a189d97f0643d45e1fdbe312d5a0408ddd4a4b27067abfc1e3bedde8e4865df",
+      "source_files": [
+        {
+          "file": "etl/runtime/audit2-documents/f2dd0995f8be25f44b5216aab380272d1f64d4cc49951eb3642eb0510829330f.pdf",
+          "sha256": "f2dd0995f8be25f44b5216aab380272d1f64d4cc49951eb3642eb0510829330f"
+        }
+      ],
+      "output_file": "docs/research/pivot/p1_stage2_manual_20261023/batch_stage2_B000003740.json",
+      "output_sha256": "a5a5d410e9ef504eb93533fa72d09decc9403ecc9c176c9fdf1a96de1827b375",
+      "source_read_lines": [
+        1,
+        59
+      ],
+      "source_pages": 18,
+      "visually_reviewed_pages": [
+        4,
+        5
+      ],
+      "inventory": {
+        "paid": 36,
+        "custom_regular_grade1": 10,
+        "custom_regular_grade2": 10,
+        "custom_regular_mixed": 10,
+        "raw_total": 66
+      },
+      "source_inventory_complete": true,
+      "participation_review_complete": true,
+      "participation_groups": [
+        {
+          "group_id": "anmal-01",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            1,
+            2
+          ],
+          "evidence": {
+            "input_lines": [
+              12,
+              21,
+              49
+            ],
+            "basis": "수익자: 초1~6 희망 학생·수익자 비용 및 부서별 반 편성. 맞춤형: 학년·교실별 주간 편성, 정규수업 후 2차시 운영; 과목명별 독립 선택을 주장하지 않음."
+          }
+        },
+        {
+          "group_id": "anmal-02",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            3,
+            4
+          ],
+          "evidence": {
+            "input_lines": [
+              12,
+              21,
+              49
+            ],
+            "basis": "수익자: 초1~6 희망 학생·수익자 비용 및 부서별 반 편성. 맞춤형: 학년·교실별 주간 편성, 정규수업 후 2차시 운영; 과목명별 독립 선택을 주장하지 않음."
+          }
+        },
+        {
+          "group_id": "anmal-03",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            5
+          ],
+          "evidence": {
+            "input_lines": [
+              12,
+              21,
+              49
+            ],
+            "basis": "수익자: 초1~6 희망 학생·수익자 비용 및 부서별 반 편성. 맞춤형: 학년·교실별 주간 편성, 정규수업 후 2차시 운영; 과목명별 독립 선택을 주장하지 않음."
+          }
+        },
+        {
+          "group_id": "anmal-04",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            7,
+            8
+          ],
+          "evidence": {
+            "input_lines": [
+              12,
+              21,
+              49
+            ],
+            "basis": "수익자: 초1~6 희망 학생·수익자 비용 및 부서별 반 편성. 맞춤형: 학년·교실별 주간 편성, 정규수업 후 2차시 운영; 과목명별 독립 선택을 주장하지 않음."
+          }
+        },
+        {
+          "group_id": "anmal-05",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            9
+          ],
+          "evidence": {
+            "input_lines": [
+              12,
+              21,
+              49
+            ],
+            "basis": "수익자: 초1~6 희망 학생·수익자 비용 및 부서별 반 편성. 맞춤형: 학년·교실별 주간 편성, 정규수업 후 2차시 운영; 과목명별 독립 선택을 주장하지 않음."
+          }
+        },
+        {
+          "group_id": "anmal-06",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            11
+          ],
+          "evidence": {
+            "input_lines": [
+              12,
+              21,
+              49
+            ],
+            "basis": "수익자: 초1~6 희망 학생·수익자 비용 및 부서별 반 편성. 맞춤형: 학년·교실별 주간 편성, 정규수업 후 2차시 운영; 과목명별 독립 선택을 주장하지 않음."
+          }
+        },
+        {
+          "group_id": "anmal-07",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            13,
+            14
+          ],
+          "evidence": {
+            "input_lines": [
+              12,
+              21,
+              23,
+              49
+            ],
+            "basis": "수익자: 초1~6 희망 학생·수익자 비용 및 부서별 반 편성. 맞춤형: 학년·교실별 주간 편성, 정규수업 후 2차시 운영; 과목명별 독립 선택을 주장하지 않음."
+          }
+        },
+        {
+          "group_id": "anmal-08",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            15
+          ],
+          "evidence": {
+            "input_lines": [
+              12,
+              23,
+              49
+            ],
+            "basis": "수익자: 초1~6 희망 학생·수익자 비용 및 부서별 반 편성. 맞춤형: 학년·교실별 주간 편성, 정규수업 후 2차시 운영; 과목명별 독립 선택을 주장하지 않음."
+          }
+        },
+        {
+          "group_id": "anmal-09",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            17,
+            18
+          ],
+          "evidence": {
+            "input_lines": [
+              12,
+              23,
+              49
+            ],
+            "basis": "수익자: 초1~6 희망 학생·수익자 비용 및 부서별 반 편성. 맞춤형: 학년·교실별 주간 편성, 정규수업 후 2차시 운영; 과목명별 독립 선택을 주장하지 않음."
+          }
+        },
+        {
+          "group_id": "anmal-10",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            19,
+            20
+          ],
+          "evidence": {
+            "input_lines": [
+              12,
+              23,
+              49
+            ],
+            "basis": "수익자: 초1~6 희망 학생·수익자 비용 및 부서별 반 편성. 맞춤형: 학년·교실별 주간 편성, 정규수업 후 2차시 운영; 과목명별 독립 선택을 주장하지 않음."
+          }
+        },
+        {
+          "group_id": "anmal-11",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            21,
+            22
+          ],
+          "evidence": {
+            "input_lines": [
+              12,
+              23,
+              25,
+              49
+            ],
+            "basis": "수익자: 초1~6 희망 학생·수익자 비용 및 부서별 반 편성. 맞춤형: 학년·교실별 주간 편성, 정규수업 후 2차시 운영; 과목명별 독립 선택을 주장하지 않음."
+          }
+        },
+        {
+          "group_id": "anmal-12",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            23
+          ],
+          "evidence": {
+            "input_lines": [
+              12,
+              25,
+              49
+            ],
+            "basis": "수익자: 초1~6 희망 학생·수익자 비용 및 부서별 반 편성. 맞춤형: 학년·교실별 주간 편성, 정규수업 후 2차시 운영; 과목명별 독립 선택을 주장하지 않음."
+          }
+        },
+        {
+          "group_id": "anmal-13",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            25,
+            26
+          ],
+          "evidence": {
+            "input_lines": [
+              12,
+              25,
+              49
+            ],
+            "basis": "수익자: 초1~6 희망 학생·수익자 비용 및 부서별 반 편성. 맞춤형: 학년·교실별 주간 편성, 정규수업 후 2차시 운영; 과목명별 독립 선택을 주장하지 않음."
+          }
+        },
+        {
+          "group_id": "anmal-14",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            27,
+            28
+          ],
+          "evidence": {
+            "input_lines": [
+              12,
+              25,
+              49
+            ],
+            "basis": "수익자: 초1~6 희망 학생·수익자 비용 및 부서별 반 편성. 맞춤형: 학년·교실별 주간 편성, 정규수업 후 2차시 운영; 과목명별 독립 선택을 주장하지 않음."
+          }
+        },
+        {
+          "group_id": "anmal-15",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            29,
+            30
+          ],
+          "evidence": {
+            "input_lines": [
+              12,
+              25,
+              49
+            ],
+            "basis": "수익자: 초1~6 희망 학생·수익자 비용 및 부서별 반 편성. 맞춤형: 학년·교실별 주간 편성, 정규수업 후 2차시 운영; 과목명별 독립 선택을 주장하지 않음."
+          }
+        },
+        {
+          "group_id": "anmal-16",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            31
+          ],
+          "evidence": {
+            "input_lines": [
+              12,
+              27,
+              49
+            ],
+            "basis": "수익자: 초1~6 희망 학생·수익자 비용 및 부서별 반 편성. 맞춤형: 학년·교실별 주간 편성, 정규수업 후 2차시 운영; 과목명별 독립 선택을 주장하지 않음."
+          }
+        },
+        {
+          "group_id": "anmal-17",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            35
+          ],
+          "evidence": {
+            "input_lines": [
+              12,
+              29,
+              49
+            ],
+            "basis": "수익자: 초1~6 희망 학생·수익자 비용 및 부서별 반 편성. 맞춤형: 학년·교실별 주간 편성, 정규수업 후 2차시 운영; 과목명별 독립 선택을 주장하지 않음."
+          }
+        },
+        {
+          "group_id": "anmal-18",
+          "mode": "class_day_bundle",
+          "individually_selectable": false,
+          "rows": [
+            37,
+            38,
+            39,
+            40,
+            41,
+            42,
+            43,
+            44,
+            45,
+            46
+          ],
+          "evidence": {
+            "input_lines": [
+              16,
+              17,
+              18,
+              19
+            ],
+            "basis": "수익자: 초1~6 희망 학생·수익자 비용 및 부서별 반 편성. 맞춤형: 학년·교실별 주간 편성, 정규수업 후 2차시 운영; 과목명별 독립 선택을 주장하지 않음."
+          }
+        },
+        {
+          "group_id": "anmal-19",
+          "mode": "class_day_bundle",
+          "individually_selectable": false,
+          "rows": [
+            57,
+            58,
+            59,
+            60,
+            61,
+            62,
+            63,
+            64,
+            65,
+            66
+          ],
+          "evidence": {
+            "input_lines": [
+              16,
+              17,
+              18,
+              19
+            ],
+            "basis": "수익자: 초1~6 희망 학생·수익자 비용 및 부서별 반 편성. 맞춤형: 학년·교실별 주간 편성, 정규수업 후 2차시 운영; 과목명별 독립 선택을 주장하지 않음."
+          }
+        }
+      ],
+      "row_decisions": [
+        {
+          "row": 1,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 2,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 3,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 4,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 5,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 6,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 7,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 8,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 9,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 10,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 11,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 12,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 13,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 14,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 15,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 16,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 17,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 18,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 19,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 20,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 21,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 22,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 23,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 24,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 25,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 26,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 27,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 28,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 29,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 30,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 31,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 32,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 33,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 34,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 35,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 36,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 37,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 38,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 39,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 40,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 41,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 42,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 43,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 44,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 45,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 46,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 47,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 48,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 49,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 50,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 51,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 52,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 53,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 54,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 55,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 56,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 57,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 58,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 59,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 60,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 61,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 62,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 63,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 64,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 65,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 66,
+          "verdict": "source_faithful"
+        }
+      ],
+      "conditional_rows": [
+        {
+          "rows": [
+            57,
+            58,
+            59,
+            60,
+            61,
+            62,
+            63,
+            64,
+            65,
+            66
+          ],
+          "condition": "1,2학년 신청 인원이 1개 학급 인원을 넘어갈 경우 개설",
+          "evidence_lines": [
+            19
+          ],
+          "confirmed_operating": false
+        }
+      ],
+      "blocking_issues": [
+        "통합반 개설 조건 충족 여부 미확인; 확정 운영 강좌로 표시 금지",
+        "학기·방학 날짜가 L12와 L14에서 다름; 현 학기 공지 대조 미완료",
+        "독립 표본 검증 미실행"
+      ],
+      "advisory_issues": [
+        "본문 제목은 2026 늘봄 운영 계획(안), 변경 가능성 보존",
+        "선택형 돌봄 활동·이용시간과 방학은 별도 계획; 미운영으로 단정하지 않음",
+        "마지막 수업 끝과 하교지도 구간을 구분: 수금14:30수업종료 뒤14:30~14:40하교, 월화목15:20수업종료 뒤15:20~15:30하교"
+      ],
+      "eligibility_notes": [
+        "맞춤형은 정규수업 종료 후 2차시, 학년·교실별 편성",
+        "통합반은 조건부 개설; 단독 과목 선택 강좌로 표시하지 않음",
+        "초1맞춤형과 돌봄 입급 동시 참여 가능 여부는 이 원문으로 확정하지 않음"
+      ],
+      "publish_ready": false,
+      "grade1_custom_inventory_complete": true
+    },
+    {
+      "school_id": "B000003764",
+      "school_name": "성남장안초등학교",
+      "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_stage2_20261023/B000003764.txt",
+      "input_sha256": "96e560bfba5a897f060ecddfa5c272792397d58c00ef26545fa23de2949342fd",
+      "source_files": [
+        {
+          "file": "etl/runtime/audit2-documents/9419234d8c6ba2d46d690106980029f51c10311666dec1214123e73284feff44.hwp",
+          "sha256": "9419234d8c6ba2d46d690106980029f51c10311666dec1214123e73284feff44"
+        }
+      ],
+      "output_file": "docs/research/pivot/p1_stage2_manual_20261023/batch_stage2_B000003764.json",
+      "output_sha256": "c4dff594413c014ca9507506bcd2096d41aa7fa2c341c8c4ee6de860391582b4",
+      "source_read_lines": [
+        1,
+        217
+      ],
+      "visually_reviewed_pages": [],
+      "inventory": {
+        "paid": 46,
+        "raw_total": 46
+      },
+      "source_inventory_complete": true,
+      "grade1_custom_inventory_complete": false,
+      "participation_review_complete": true,
+      "participation_groups": [
+        {
+          "group_id": "jangan-01",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            1,
+            2
+          ],
+          "evidence": {
+            "input_lines": [
+              11,
+              12,
+              13,
+              20,
+              64,
+              65
+            ],
+            "basis": "부서별 자발적 참여·수익자부담 및 A/B 반 시각. 학교 전체 대상1~6학년이며 반별 대상은 미공시."
+          }
+        },
+        {
+          "group_id": "jangan-02",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            3,
+            4
+          ],
+          "evidence": {
+            "input_lines": [
+              11,
+              12,
+              13,
+              20,
+              66,
+              67
+            ],
+            "basis": "부서별 자발적 참여·수익자부담 및 A/B 반 시각. 학교 전체 대상1~6학년이며 반별 대상은 미공시."
+          }
+        },
+        {
+          "group_id": "jangan-03",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            5,
+            6
+          ],
+          "evidence": {
+            "input_lines": [
+              11,
+              12,
+              13,
+              20,
+              68,
+              69
+            ],
+            "basis": "부서별 자발적 참여·수익자부담 및 A/B 반 시각. 학교 전체 대상1~6학년이며 반별 대상은 미공시."
+          }
+        },
+        {
+          "group_id": "jangan-04",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            7,
+            8
+          ],
+          "evidence": {
+            "input_lines": [
+              11,
+              12,
+              13,
+              20,
+              70,
+              71
+            ],
+            "basis": "부서별 자발적 참여·수익자부담 및 A/B 반 시각. 학교 전체 대상1~6학년이며 반별 대상은 미공시."
+          }
+        },
+        {
+          "group_id": "jangan-05",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            9,
+            10
+          ],
+          "evidence": {
+            "input_lines": [
+              11,
+              12,
+              13,
+              20,
+              72,
+              73
+            ],
+            "basis": "부서별 자발적 참여·수익자부담 및 A/B 반 시각. 학교 전체 대상1~6학년이며 반별 대상은 미공시."
+          }
+        },
+        {
+          "group_id": "jangan-06",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            11,
+            12
+          ],
+          "evidence": {
+            "input_lines": [
+              11,
+              12,
+              13,
+              20,
+              74,
+              75
+            ],
+            "basis": "부서별 자발적 참여·수익자부담 및 A/B 반 시각. 학교 전체 대상1~6학년이며 반별 대상은 미공시."
+          }
+        },
+        {
+          "group_id": "jangan-07",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            13,
+            14
+          ],
+          "evidence": {
+            "input_lines": [
+              11,
+              12,
+              13,
+              20,
+              76,
+              77
+            ],
+            "basis": "부서별 자발적 참여·수익자부담 및 A/B 반 시각. 학교 전체 대상1~6학년이며 반별 대상은 미공시."
+          }
+        },
+        {
+          "group_id": "jangan-08",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            15,
+            16
+          ],
+          "evidence": {
+            "input_lines": [
+              11,
+              12,
+              13,
+              20,
+              78,
+              79
+            ],
+            "basis": "부서별 자발적 참여·수익자부담 및 A/B 반 시각. 학교 전체 대상1~6학년이며 반별 대상은 미공시."
+          }
+        },
+        {
+          "group_id": "jangan-09",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            17,
+            18
+          ],
+          "evidence": {
+            "input_lines": [
+              11,
+              12,
+              13,
+              20,
+              80,
+              81
+            ],
+            "basis": "부서별 자발적 참여·수익자부담 및 A/B 반 시각. 학교 전체 대상1~6학년이며 반별 대상은 미공시."
+          }
+        },
+        {
+          "group_id": "jangan-10",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            19,
+            20
+          ],
+          "evidence": {
+            "input_lines": [
+              11,
+              12,
+              13,
+              20,
+              82,
+              83
+            ],
+            "basis": "부서별 자발적 참여·수익자부담 및 A/B 반 시각. 학교 전체 대상1~6학년이며 반별 대상은 미공시."
+          }
+        },
+        {
+          "group_id": "jangan-11",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            21,
+            22
+          ],
+          "evidence": {
+            "input_lines": [
+              11,
+              12,
+              13,
+              20,
+              84,
+              85
+            ],
+            "basis": "부서별 자발적 참여·수익자부담 및 A/B 반 시각. 학교 전체 대상1~6학년이며 반별 대상은 미공시."
+          }
+        },
+        {
+          "group_id": "jangan-12",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            23,
+            24
+          ],
+          "evidence": {
+            "input_lines": [
+              11,
+              12,
+              13,
+              20,
+              86,
+              87
+            ],
+            "basis": "부서별 자발적 참여·수익자부담 및 A/B 반 시각. 학교 전체 대상1~6학년이며 반별 대상은 미공시."
+          }
+        },
+        {
+          "group_id": "jangan-13",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            25,
+            26
+          ],
+          "evidence": {
+            "input_lines": [
+              11,
+              12,
+              13,
+              20,
+              88,
+              89
+            ],
+            "basis": "부서별 자발적 참여·수익자부담 및 A/B 반 시각. 학교 전체 대상1~6학년이며 반별 대상은 미공시."
+          }
+        },
+        {
+          "group_id": "jangan-14",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            27,
+            28
+          ],
+          "evidence": {
+            "input_lines": [
+              11,
+              12,
+              13,
+              20,
+              90,
+              91
+            ],
+            "basis": "부서별 자발적 참여·수익자부담 및 A/B 반 시각. 학교 전체 대상1~6학년이며 반별 대상은 미공시."
+          }
+        },
+        {
+          "group_id": "jangan-15",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            29,
+            30
+          ],
+          "evidence": {
+            "input_lines": [
+              11,
+              12,
+              13,
+              20,
+              92,
+              93
+            ],
+            "basis": "부서별 자발적 참여·수익자부담 및 A/B 반 시각. 학교 전체 대상1~6학년이며 반별 대상은 미공시."
+          }
+        },
+        {
+          "group_id": "jangan-16",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            31,
+            32
+          ],
+          "evidence": {
+            "input_lines": [
+              11,
+              12,
+              13,
+              20,
+              94,
+              95
+            ],
+            "basis": "부서별 자발적 참여·수익자부담 및 A/B 반 시각. 학교 전체 대상1~6학년이며 반별 대상은 미공시."
+          }
+        },
+        {
+          "group_id": "jangan-17",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            33,
+            34
+          ],
+          "evidence": {
+            "input_lines": [
+              11,
+              12,
+              13,
+              20,
+              96,
+              97
+            ],
+            "basis": "부서별 자발적 참여·수익자부담 및 A/B 반 시각. 학교 전체 대상1~6학년이며 반별 대상은 미공시."
+          }
+        },
+        {
+          "group_id": "jangan-18",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            35,
+            36
+          ],
+          "evidence": {
+            "input_lines": [
+              11,
+              12,
+              13,
+              20,
+              98,
+              99
+            ],
+            "basis": "부서별 자발적 참여·수익자부담 및 A/B 반 시각. 학교 전체 대상1~6학년이며 반별 대상은 미공시."
+          }
+        },
+        {
+          "group_id": "jangan-19",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            37,
+            38
+          ],
+          "evidence": {
+            "input_lines": [
+              11,
+              12,
+              13,
+              20,
+              100,
+              101
+            ],
+            "basis": "부서별 자발적 참여·수익자부담 및 A/B 반 시각. 학교 전체 대상1~6학년이며 반별 대상은 미공시."
+          }
+        },
+        {
+          "group_id": "jangan-20",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            39,
+            40
+          ],
+          "evidence": {
+            "input_lines": [
+              11,
+              12,
+              13,
+              20,
+              102,
+              103
+            ],
+            "basis": "부서별 자발적 참여·수익자부담 및 A/B 반 시각. 학교 전체 대상1~6학년이며 반별 대상은 미공시."
+          }
+        },
+        {
+          "group_id": "jangan-21",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            41,
+            42
+          ],
+          "evidence": {
+            "input_lines": [
+              11,
+              12,
+              13,
+              20,
+              104,
+              105
+            ],
+            "basis": "부서별 자발적 참여·수익자부담 및 A/B 반 시각. 학교 전체 대상1~6학년이며 반별 대상은 미공시."
+          }
+        },
+        {
+          "group_id": "jangan-22",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            43,
+            44
+          ],
+          "evidence": {
+            "input_lines": [
+              11,
+              12,
+              13,
+              20,
+              106,
+              107
+            ],
+            "basis": "부서별 자발적 참여·수익자부담 및 A/B 반 시각. 학교 전체 대상1~6학년이며 반별 대상은 미공시."
+          }
+        },
+        {
+          "group_id": "jangan-23",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            45,
+            46
+          ],
+          "evidence": {
+            "input_lines": [
+              11,
+              12,
+              13,
+              20,
+              108,
+              109
+            ],
+            "basis": "부서별 자발적 참여·수익자부담 및 A/B 반 시각. 학교 전체 대상1~6학년이며 반별 대상은 미공시."
+          }
+        }
+      ],
+      "row_decisions": [
+        {
+          "row": 1,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 2,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 3,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 4,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 5,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 6,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 7,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 8,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 9,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 10,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 11,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 12,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 13,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 14,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 15,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 16,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 17,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 18,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 19,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 20,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 21,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 22,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 23,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 24,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 25,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 26,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 27,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 28,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 29,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 30,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 31,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 32,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 33,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 34,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 35,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 36,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 37,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 38,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 39,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 40,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 41,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 42,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 43,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 44,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 45,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 46,
+          "verdict": "source_faithful"
+        }
+      ],
+      "blocking_issues": [
+        "초1·2 맞춤형 별도 원문·목록·요일·시각 미확보; 미운영으로 단정 금지",
+        "반별 학년 없이 학교 공통1~6학년만 공시; 현재 학기 신청안내 대조 미완료",
+        "독립 표본 검증 미실행"
+      ],
+      "advisory_issues": [
+        "주간표 장소와 세부표 장소가 일부 다름; 교실 위치 확정 미완료",
+        "연간4기 일정이 있으나 기수별 같은강좌 4배 복제하지 않음"
+      ],
+      "eligibility_notes": [
+        "학교 전체1~6학년 희망자 대상; A/B별 학년은 추정하지 않음"
+      ],
+      "publish_ready": false
+    },
+    {
+      "school_id": "B000003741",
+      "school_name": "상탑초등학교",
+      "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_stage2_20261023/B000003741.txt",
+      "input_sha256": "7cbf32ca54660b4a428bffe197ff2b79dedb36d54a3df38115d22acfc32ef419",
+      "source_files": [
+        {
+          "file": "etl/runtime/audit2-documents/8e9251ff2a4539b233b8b544e0789605d55ed9ae24653818c80639cb5306c0d4.hwpx",
+          "sha256": "8e9251ff2a4539b233b8b544e0789605d55ed9ae24653818c80639cb5306c0d4"
+        }
+      ],
+      "output_file": "docs/research/pivot/p1_stage2_manual_20261023/batch_stage2_B000003741.json",
+      "output_sha256": "daeb9dcc32b20665037aa72fcb6ddf7b5c7306f2147146e4e6771ce1c8780139",
+      "source_read_lines": [
+        1,
+        414
+      ],
+      "visually_reviewed_pages": [],
+      "inventory": {
+        "paid": 18,
+        "custom_regular_grade1": 5,
+        "custom_regular_grade2": 5,
+        "custom_regular_mixed": 5,
+        "custom_morning": 1,
+        "care_regular": 5,
+        "care_vacation": 10,
+        "raw_total": 44
+      },
+      "source_inventory_complete": true,
+      "grade1_custom_inventory_complete": true,
+      "participation_review_complete": true,
+      "participation_groups": [
+        {
+          "group_id": "B000003741-1",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            1,
+            2
+          ],
+          "evidence": {
+            "input_lines": [
+              65,
+              67,
+              94,
+              95,
+              336,
+              337
+            ],
+            "basis": "희망자 대상 수익자부담 부서·반별 신청"
+          }
+        },
+        {
+          "group_id": "B000003741-2",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            3
+          ],
+          "evidence": {
+            "input_lines": [
+              65,
+              67,
+              96,
+              336,
+              337
+            ],
+            "basis": "희망자 대상 수익자부담 부서·반별 신청"
+          }
+        },
+        {
+          "group_id": "B000003741-3",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            5,
+            6
+          ],
+          "evidence": {
+            "input_lines": [
+              65,
+              67,
+              98,
+              99,
+              336,
+              337
+            ],
+            "basis": "희망자 대상 수익자부담 부서·반별 신청"
+          }
+        },
+        {
+          "group_id": "B000003741-4",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            7,
+            8
+          ],
+          "evidence": {
+            "input_lines": [
+              65,
+              67,
+              100,
+              101,
+              336,
+              337
+            ],
+            "basis": "희망자 대상 수익자부담 부서·반별 신청"
+          }
+        },
+        {
+          "group_id": "B000003741-5",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            9
+          ],
+          "evidence": {
+            "input_lines": [
+              65,
+              67,
+              102,
+              336,
+              337
+            ],
+            "basis": "희망자 대상 수익자부담 부서·반별 신청"
+          }
+        },
+        {
+          "group_id": "B000003741-6",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            11,
+            12
+          ],
+          "evidence": {
+            "input_lines": [
+              65,
+              67,
+              104,
+              105,
+              336,
+              337
+            ],
+            "basis": "희망자 대상 수익자부담 부서·반별 신청"
+          }
+        },
+        {
+          "group_id": "B000003741-7",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            13
+          ],
+          "evidence": {
+            "input_lines": [
+              65,
+              67,
+              106,
+              336,
+              337
+            ],
+            "basis": "희망자 대상 수익자부담 부서·반별 신청"
+          }
+        },
+        {
+          "group_id": "B000003741-8",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            15,
+            16
+          ],
+          "evidence": {
+            "input_lines": [
+              65,
+              67,
+              108,
+              109,
+              336,
+              337
+            ],
+            "basis": "희망자 대상 수익자부담 부서·반별 신청"
+          }
+        },
+        {
+          "group_id": "B000003741-9",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            17
+          ],
+          "evidence": {
+            "input_lines": [
+              65,
+              67,
+              110,
+              336,
+              337
+            ],
+            "basis": "희망자 대상 수익자부담 부서·반별 신청"
+          }
+        },
+        {
+          "group_id": "B000003741-10",
+          "mode": "class_day_bundle",
+          "individually_selectable": false,
+          "rows": [
+            19,
+            20,
+            21,
+            22,
+            23
+          ],
+          "evidence": {
+            "input_lines": [
+              25,
+              27,
+              40,
+              58,
+              59,
+              60,
+              61
+            ],
+            "basis": "학년별 맞춤형 주간 편성, 전 차시 참여 및 요일 단위 수강"
+          }
+        },
+        {
+          "group_id": "B000003741-11",
+          "mode": "care_activity",
+          "individually_selectable": false,
+          "rows": [
+            30,
+            31,
+            32,
+            33,
+            34
+          ],
+          "evidence": {
+            "input_lines": [
+              132,
+              134,
+              143,
+              154,
+              155,
+              158
+            ],
+            "basis": "별도 돌봄 입급 대상 학생의 내부 활동; 과목별 독립 수강으로 표시하지 않음"
+          }
+        }
+      ],
+      "row_decisions": [
+        {
+          "row": 1,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 2,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 3,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 4,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 5,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 6,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 7,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 8,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 9,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 10,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 11,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 12,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 13,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 14,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 15,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 16,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 17,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 18,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 19,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 20,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 21,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 22,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 23,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 24,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 25,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 26,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 27,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 28,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 29,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 30,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 31,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 32,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 33,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 34,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 35,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 36,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 37,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 38,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 39,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 40,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 41,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 42,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 43,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 44,
+          "verdict": "source_faithful"
+        }
+      ],
+      "blocking_issues": [
+        "독립 초1 맞춤형 5요일 시작·종료 미공시",
+        "현재 학기 신청·변경 공지 대조 및 독립 표본 검증 미완료"
+      ],
+      "advisory_issues": [
+        "아침돌봄 운영 요일 미공시",
+        "돌봄 일반종료17:00; 돌봄1반 추가돌봄18:00은 별도 대상",
+        "금요일 수익자 시각은 학생 전수조사 후 변경 가능 L112",
+        "돌봄 표16:00~16:30 구간은 미공시; 활동을 만들어 채우지 않음"
+      ],
+      "eligibility_notes": [
+        "맞춤형은2차시 전차시 참여, 요일별 수강 가능; 수업중 입퇴실 제한",
+        "돌봄은1·2학년 별도입급·우선순위 선발",
+        "아침돌봄40분 모두 참석가능 학생만 신청; 초1~1학년 우선이라는 오기는 임의수정하지 않음"
+      ],
+      "publish_ready": false,
+      "care_hours_review_complete": true,
+      "care_hours": {
+        "days": "월화수목금",
+        "start_basis": "after_regular_classes",
+        "end": "17:00",
+        "evidence": {
+          "input_lines": [
+            154,
+            155,
+            156,
+            160,
+            161
+          ]
+        },
+        "additional_care": {
+          "end": "18:00",
+          "scope": "돌봄1반 추가돌봄",
+          "evidence_lines": [
+            161
+          ]
+        }
+      },
+      "care_vacation_hours": {
+        "published_start": "08:40",
+        "dismissal_window": [
+          "13:40",
+          "14:00"
+        ],
+        "additional_care_end": "15:40",
+        "additional_scope": "돌봄1반 신청자에 한함",
+        "evidence_lines": [
+          162,
+          164,
+          169,
+          170
+        ]
+      }
+    },
+    {
+      "school_id": "B000003759",
+      "school_name": "양영초등학교",
+      "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_stage2_20261023/B000003759.txt",
+      "input_sha256": "b82d7dc979637a7a614c21ca29f1fb985994d80523a5f1168e6c51758158b431",
+      "source_files": [
+        {
+          "file": "etl/runtime/audit2-documents/bd4e12a357cce2fa59e4c96ca45715795a78bf3bacf37e109442977728f8aa8f.pdf",
+          "sha256": "bd4e12a357cce2fa59e4c96ca45715795a78bf3bacf37e109442977728f8aa8f"
+        }
+      ],
+      "output_file": "docs/research/pivot/p1_stage2_manual_20261023/batch_stage2_B000003759.json",
+      "output_sha256": "047aa43c297c277e83427b30cec3d2b0bd9cdebe1acad101078b773c0f5fa05b",
+      "source_read_lines": [
+        1,
+        86
+      ],
+      "visually_reviewed_pages": [
+        5,
+        10
+      ],
+      "inventory": {
+        "paid": 10,
+        "custom_regular_mixed": 5,
+        "care_regular": 5,
+        "raw_total": 15
+      },
+      "source_inventory_complete": true,
+      "grade1_custom_inventory_complete": false,
+      "participation_review_complete": true,
+      "participation_groups": [
+        {
+          "group_id": "B000003759-1",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "evidence": {
+            "input_lines": [
+              24,
+              29,
+              52
+            ],
+            "basis": "희망자 대상 수익자부담 부서·반별 신청"
+          }
+        },
+        {
+          "group_id": "B000003759-2",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            5,
+            6
+          ],
+          "evidence": {
+            "input_lines": [
+              24,
+              29,
+              52
+            ],
+            "basis": "희망자 대상 수익자부담 부서·반별 신청"
+          }
+        },
+        {
+          "group_id": "B000003759-3",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            7,
+            8
+          ],
+          "evidence": {
+            "input_lines": [
+              24,
+              29,
+              52
+            ],
+            "basis": "희망자 대상 수익자부담 부서·반별 신청"
+          }
+        },
+        {
+          "group_id": "B000003759-4",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            9,
+            10
+          ],
+          "evidence": {
+            "input_lines": [
+              24,
+              29,
+              52
+            ],
+            "basis": "희망자 대상 수익자부담 부서·반별 신청"
+          }
+        },
+        {
+          "group_id": "B000003759-5",
+          "mode": "care_activity",
+          "individually_selectable": false,
+          "rows": [
+            11,
+            12,
+            13,
+            14,
+            15
+          ],
+          "evidence": {
+            "input_lines": [
+              55,
+              58,
+              60
+            ],
+            "basis": "별도 돌봄 입급 대상 학생의 내부 활동; 과목별 독립 수강으로 표시하지 않음"
+          }
+        }
+      ],
+      "row_decisions": [
+        {
+          "row": 1,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 2,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 3,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 4,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 5,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 6,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 7,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 8,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 9,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 10,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 11,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 12,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 13,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 14,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 15,
+          "verdict": "source_faithful"
+        }
+      ],
+      "blocking_issues": [
+        "독립 초1·2 맞춤형 운영 여부·목록·시각 별도자료 필요",
+        "폐강은2026년3월 기준이며 현재학기 재개강·변경 공지 대조 미완료",
+        "독립 표본 검증 미실행"
+      ],
+      "advisory_issues": [
+        "반별학년 미공시: 학교공통 대상1~6학년만 확인",
+        "3기 운영기간 시작연도가2025로 표기됨 L24; 2026으로 자동정정하지 않음",
+        "돌봄 특기적성창14:00~15:30과 강사별50/90분 설명 L63의 개별시각 대응은 미공시",
+        "돌봄 표를 방학 시간표로 복제하지 않음"
+      ],
+      "eligibility_notes": [
+        "돌봄은1~2학년 별도 연단위 신청, 우선순위 및 결원에 따른 입급",
+        "과목별독립선택은 수익자 강좌에 한정; 돌봄내활동은 입급종속",
+        "수익자는학교공통1~6학년이며 반별학년은 추정하지 않음"
+      ],
+      "publish_ready": false,
+      "source_pages": 18,
+      "excluded_closed_rows": [
+        {
+          "name": "요리교실",
+          "section": "A",
+          "days": "월",
+          "start": "13:50",
+          "end": "15:10",
+          "status": "closed_in_source_plan",
+          "evidence_lines": [
+            7,
+            29
+          ],
+          "visual_page": 5
+        },
+        {
+          "name": "요리교실",
+          "section": "B",
+          "days": "월",
+          "start": "15:15",
+          "end": "16:35",
+          "status": "closed_in_source_plan",
+          "evidence_lines": [
+            7,
+            29
+          ],
+          "visual_page": 5
+        },
+        {
+          "name": "음악줄넘기",
+          "section": "A",
+          "days": "목",
+          "start": "13:50",
+          "end": "15:10",
+          "status": "closed_in_source_plan",
+          "evidence_lines": [
+            7,
+            29
+          ],
+          "visual_page": 5
+        },
+        {
+          "name": "음악줄넘기",
+          "section": "B",
+          "days": "목",
+          "start": "15:15",
+          "end": "16:35",
+          "status": "closed_in_source_plan",
+          "evidence_lines": [
+            7,
+            29
+          ],
+          "visual_page": 5
+        },
+        {
+          "name": "3D펜 창의교실",
+          "section": "A",
+          "days": "수",
+          "start": "13:00",
+          "end": "14:20",
+          "status": "closed_in_source_plan",
+          "evidence_lines": [
+            7,
+            29
+          ],
+          "visual_page": 5
+        },
+        {
+          "name": "3D펜 창의교실",
+          "section": "B",
+          "days": "수",
+          "start": "14:25",
+          "end": "15:45",
+          "status": "closed_in_source_plan",
+          "evidence_lines": [
+            7,
+            29
+          ],
+          "visual_page": 5
+        },
+        {
+          "name": "로봇과학",
+          "section": "A",
+          "days": "화",
+          "start": "13:50",
+          "end": "15:10",
+          "status": "closed_in_source_plan",
+          "evidence_lines": [
+            7,
+            29
+          ],
+          "visual_page": 5
+        },
+        {
+          "name": "로봇과학",
+          "section": "B",
+          "days": "화",
+          "start": "15:15",
+          "end": "16:35",
+          "status": "closed_in_source_plan",
+          "evidence_lines": [
+            7,
+            29
+          ],
+          "visual_page": 5
+        },
+        {
+          "name": "바둑체스",
+          "section": "A",
+          "days": "금",
+          "start": "13:50",
+          "end": "15:10",
+          "status": "closed_in_source_plan",
+          "evidence_lines": [
+            7,
+            29
+          ],
+          "visual_page": 5
+        },
+        {
+          "name": "바둑체스",
+          "section": "B",
+          "days": "금",
+          "start": "15:15",
+          "end": "16:35",
+          "status": "closed_in_source_plan",
+          "evidence_lines": [
+            7,
+            29
+          ],
+          "visual_page": 5
+        }
+      ],
+      "care_hours_review_complete": true,
+      "care_hours": {
+        "days": "월화수목금",
+        "start_basis": "after_regular_classes",
+        "end": "19:00",
+        "published_window_start": "12:30",
+        "evidence": {
+          "input_lines": [
+            55,
+            60
+          ]
+        }
+      },
+      "care_vacation_hours": {
+        "start": "09:00",
+        "end": "15:30",
+        "evidence_lines": [
+          55
+        ]
+      }
+    },
+    {
+      "school_id": "B000003750",
+      "school_name": "오리초등학교",
+      "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_stage2_20261023/B000003750.txt",
+      "input_sha256": "ffd6625b2579a1579192477c4f8ff26bdfa4737ad5b7c9d99f1586594ab23197",
+      "source_files": [
+        {
+          "file": "etl/runtime/audit2-documents/f2f1d878fa29ec3a944f95baa0259c5381a1d31fb1c93015e8afa30eb5ddce56.hwpx",
+          "sha256": "f2f1d878fa29ec3a944f95baa0259c5381a1d31fb1c93015e8afa30eb5ddce56"
+        }
+      ],
+      "output_file": "docs/research/pivot/p1_stage2_bulk_20261024/batch_bulk_B000003750.json",
+      "output_sha256": "4026e4947820151266edfbab70843c6256e798cedfd1859d7ff4488ae2e96849",
+      "source_read_lines": [
+        1,
+        368
+      ],
+      "visually_reviewed_pages": [],
+      "inventory": {
+        "raw_total": 48,
+        "paid": 18,
+        "custom_regular_mixed": 20
+      },
+      "source_inventory_complete": true,
+      "grade1_custom_inventory_complete": true,
+      "participation_review_complete": true,
+      "participation_groups": [
+        {
+          "group_id": "ori-1",
+          "mode": "class_day_bundle",
+          "rows": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "individually_selectable": false,
+          "evidence": {
+            "input_lines": [
+              23,
+              30,
+              31,
+              32
+            ],
+            "basis": "요일별 및1차시/2차시만 신청가능. 하루2차시 모두참여필수로 일반화하지 않음."
+          }
+        },
+        {
+          "group_id": "ori-2",
+          "mode": "class_day_bundle",
+          "rows": [
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20
+          ],
+          "individually_selectable": false,
+          "evidence": {
+            "input_lines": [
+              23,
+              30,
+              31,
+              32
+            ],
+            "basis": "요일별 및1차시/2차시만 신청가능. 하루2차시 모두참여필수로 일반화하지 않음."
+          }
+        },
+        {
+          "group_id": "ori-3",
+          "mode": "course_choice",
+          "rows": [
+            31,
+            32,
+            33,
+            34,
+            35,
+            36
+          ],
+          "individually_selectable": true,
+          "evidence": {
+            "input_lines": [
+              102,
+              105,
+              141
+            ],
+            "basis": "수익자 강좌·반별 희망신청"
+          }
+        },
+        {
+          "group_id": "ori-4",
+          "mode": "course_choice",
+          "rows": [
+            37,
+            38
+          ],
+          "individually_selectable": true,
+          "evidence": {
+            "input_lines": [
+              102,
+              105,
+              141
+            ],
+            "basis": "수익자 강좌·반별 희망신청"
+          }
+        },
+        {
+          "group_id": "ori-5",
+          "mode": "course_choice",
+          "rows": [
+            39,
+            40
+          ],
+          "individually_selectable": true,
+          "evidence": {
+            "input_lines": [
+              102,
+              105,
+              141
+            ],
+            "basis": "수익자 강좌·반별 희망신청"
+          }
+        },
+        {
+          "group_id": "ori-6",
+          "mode": "course_choice",
+          "rows": [
+            41,
+            42
+          ],
+          "individually_selectable": true,
+          "evidence": {
+            "input_lines": [
+              102,
+              105,
+              141
+            ],
+            "basis": "수익자 강좌·반별 희망신청"
+          }
+        },
+        {
+          "group_id": "ori-7",
+          "mode": "course_choice",
+          "rows": [
+            43,
+            44
+          ],
+          "individually_selectable": true,
+          "evidence": {
+            "input_lines": [
+              102,
+              105,
+              141
+            ],
+            "basis": "수익자 강좌·반별 희망신청"
+          }
+        },
+        {
+          "group_id": "ori-8",
+          "mode": "course_choice",
+          "rows": [
+            45,
+            46
+          ],
+          "individually_selectable": true,
+          "evidence": {
+            "input_lines": [
+              102,
+              105,
+              141
+            ],
+            "basis": "수익자 강좌·반별 희망신청"
+          }
+        },
+        {
+          "group_id": "ori-9",
+          "mode": "course_choice",
+          "rows": [
+            47,
+            48
+          ],
+          "individually_selectable": true,
+          "evidence": {
+            "input_lines": [
+              102,
+              105,
+              141
+            ],
+            "basis": "수익자 강좌·반별 희망신청"
+          }
+        }
+      ],
+      "row_decisions": [
+        {
+          "row": 1,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 2,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 3,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 4,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 5,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 6,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 7,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 8,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 9,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 10,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 11,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 12,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 13,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 14,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 15,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 16,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 17,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 18,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 19,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 20,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 21,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 22,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 23,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 24,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 25,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 26,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 27,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 28,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 29,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 30,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 31,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 32,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 33,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 34,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 35,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 36,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 37,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 38,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 39,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 40,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 41,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 42,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 43,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 44,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 45,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 46,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 47,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 48,
+          "verdict": "source_faithful"
+        }
+      ],
+      "field_conflicts": [
+        {
+          "rows": [
+            34
+          ],
+          "field": "start/end",
+          "alternatives": [
+            {
+              "start": "13:40",
+              "end": "14:30",
+              "line": 142
+            },
+            {
+              "start": "13:30",
+              "end": "14:20",
+              "line": 153
+            }
+          ],
+          "resolution": "unresolved; raw clocks null"
+        }
+      ],
+      "blocking_issues": [
+        "영어 수요일A의시각충돌로시각미확정",
+        "맞춤형상하반기요약시각과수요일주간표차이;현재학기공지미대조",
+        "학교돌봄터·온동네센터의활동·이용시간별도자료필요",
+        "독립표본검증미실행"
+      ],
+      "advisory_issues": [
+        "방학행은명시된별도시간표에근거하며학기표복제아님",
+        "수익자는방학미운영",
+        "반별학년미공시;학교공통1~6학년"
+      ],
+      "eligibility_notes": [
+        "맞춤형은요일별및1차시만/2차시만신청가능 L31",
+        "수업차시도중입퇴실지양 L32",
+        "맞춤형은초1~2단일학급20명내외"
+      ],
+      "publish_ready": false
+    }
+  ],
+  "independent_blind_review_complete": false,
+  "publish_status": "not_approved",
+  "no_operational_upload": true
+}
