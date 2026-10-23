@@ -164,7 +164,11 @@ def transaction_rows(
             "registration_date": postgres_date(raw["registration_date"]),
             "cancellation_date": postgres_date(raw["cancellation_date"]),
             "cancellation_type": raw["cancellation_type"],
-            "raw_payload": raw["raw_payload"],
+            # The full MOLIT record stays in the private Storage snapshot this row points at
+            # (apartment_transaction_source_snapshot.object_path). Copying it here was 62% of
+            # every row and put the 500 MB free database over its limit within a month of
+            # monthly collection (2026-10-23). Nothing reads it back from the database.
+            "raw_payload": {},
         })
         canonical_id = link["canonical_complex_id"]
         candidates = [entities[item] for item in link["candidate_ids"] if item in entities]

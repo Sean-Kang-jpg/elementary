@@ -84,6 +84,8 @@ class UploadApartmentTransactionsTest(unittest.TestCase):
             entity_map(self.backfill), "2026-10-10", False,
         )
         self.assertEqual(rows["raw"][0]["contract_date"], "2026-09-08")
+        # The source record lives in Storage, not in the database row.
+        self.assertEqual(rows["raw"][0]["raw_payload"], {})
         self.assertEqual(rows["raw"][0]["registration_date"], "2026-09-09")
         self.assertEqual(rows["links"][0]["entity_id"], self.entity_id)
         self.assertEqual(rows["decisions"][0]["candidate_entity_id"], self.entity_id)

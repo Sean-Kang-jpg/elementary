@@ -413,3 +413,19 @@ The private-schema grants deny browser roles and grant server SELECT/INSERT only
 tables deliberately have no user policy. No public read model, frontend projection or recurring
 schedule was added. See [the implementation record](../docs/research/morning-care-20261015/SCHEMA_PILOT_20261016.md)
 for final advisor findings, reproducibility and the 606-school expansion boundary.
+
+## 34: reclaim database space (2026-10-23) — 사용자 실행 대기
+
+The free plan's 500 MB was at 491.97 MB. `sql/34_reclaim_database_space.sql` empties
+`apartment_transaction_raw.raw_payload` (the full MOLIT record, 62% of each row, also kept in
+private Storage under `molit-apartment-trade/` — all 280 files confirmed present), drops the empty
+legacy `schools` table and the redundant `school_apartment_serving_school_idx`. The uploader now
+sends `{}` for `raw_payload`, so the space does not come back with the next load.
+
+1. Part 1 in one run (a transaction). Part 2: each `VACUUM FULL` on its own, off-peak.
+2. Before and after: `select pg_size_pretty(pg_database_size(current_database()));` and the
+   per-table size query (top 25 by `pg_total_relation_size`).
+3. As anon: `school_apartment_serving` and `apartment_transaction_monthly_serving` still answer 200.
+
+Turning the monthly transaction schedule on adds roughly 15k rows a month; measure the growth
+after the first run before deciding the plan tier.
