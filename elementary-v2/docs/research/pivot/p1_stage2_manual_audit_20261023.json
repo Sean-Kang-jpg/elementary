@@ -1,11 +1,10 @@
 {
   "schema_version": "pivot-p1-stage2-partial-audit-v1",
   "manifest_sha256": "e5c81abf5ab02904255508a3ea84c85038c74264855e975cf6ab0112790512ac",
-  "review_sha256": "91a6d89539ab44a8b4e86febe5e77d4cd8ef1279198ceac12338718fc0d48794",
-  "schools_with_source_extraction": 3,
+  "review_sha256": "4465f35d83866514a0cd894b53705b465205a38b9a53bc8355ee372d5219d29a",
+  "schools_with_source_extraction": 5,
   "remaining_school_ids": [
     "B000003737",
-    "B000003741",
     "B000003742",
     "B000003743",
     "B000003744",
@@ -21,7 +20,6 @@
     "B000003756",
     "B000003757",
     "B000003758",
-    "B000003759",
     "B000003760",
     "B000003761",
     "B000003762",
@@ -41,7 +39,7 @@
     "B000024241",
     "B000026906"
   ],
-  "raw_rows": 161,
+  "raw_rows": 220,
   "source_fidelity_method": "same-assistant declarations; not independent accuracy or blind review",
   "all_39_source_extracted": false,
   "independent_blind_review_complete": false,
@@ -57,6 +55,8 @@
       "custom_regular_grade2": 5,
       "custom_regular_mixed": 0,
       "custom_morning": 1,
+      "care_regular": 0,
+      "care_vacation": 0,
       "input_sha256": "e883212f06d333a46ccdad9c8ece0c89ee8219a646b1b4546df15a64679aa31d",
       "output_sha256": "97011c24d9260d081950b6823cc4048f775c775aba9705473bc7eaf5b995ea3c",
       "declared_source_read_lines": [
@@ -72,6 +72,8 @@
         42,
         43
       ],
+      "excluded_closed_rows": 0,
+      "care_activity_hours_verified": null,
       "unconfirmed_conditional_rows": [],
       "grade1_custom_inventory_complete": true,
       "blocking_issues": [
@@ -90,6 +92,8 @@
       "custom_regular_grade2": 10,
       "custom_regular_mixed": 10,
       "custom_morning": 0,
+      "care_regular": 0,
+      "care_vacation": 0,
       "input_sha256": "5a189d97f0643d45e1fdbe312d5a0408ddd4a4b27067abfc1e3bedde8e4865df",
       "output_sha256": "a5a5d410e9ef504eb93533fa72d09decc9403ecc9c176c9fdf1a96de1827b375",
       "declared_source_read_lines": [
@@ -99,6 +103,8 @@
       "structural_and_fingerprint_checks_passed": true,
       "participation_groups": 19,
       "mandatory_grade1_custom_gaps": [],
+      "excluded_closed_rows": 0,
+      "care_activity_hours_verified": null,
       "unconfirmed_conditional_rows": [
         57,
         58,
@@ -128,6 +134,8 @@
       "custom_regular_grade2": 0,
       "custom_regular_mixed": 0,
       "custom_morning": 0,
+      "care_regular": 0,
+      "care_vacation": 0,
       "input_sha256": "96e560bfba5a897f060ecddfa5c272792397d58c00ef26545fa23de2949342fd",
       "output_sha256": "c4dff594413c014ca9507506bcd2096d41aa7fa2c341c8c4ee6de860391582b4",
       "declared_source_read_lines": [
@@ -137,11 +145,80 @@
       "structural_and_fingerprint_checks_passed": true,
       "participation_groups": 23,
       "mandatory_grade1_custom_gaps": [],
+      "excluded_closed_rows": 0,
+      "care_activity_hours_verified": null,
       "unconfirmed_conditional_rows": [],
       "grade1_custom_inventory_complete": false,
       "blocking_issues": [
         "초1·2 맞춤형 별도 원문·목록·요일·시각 미확보; 미운영으로 단정 금지",
         "반별 학년 없이 학교 공통1~6학년만 공시; 현재 학기 신청안내 대조 미완료",
+        "독립 표본 검증 미실행"
+      ],
+      "ready_for_operational_review": false
+    },
+    {
+      "school_id": "B000003741",
+      "school_name": "상탑초등학교",
+      "raw_total": 44,
+      "paid": 18,
+      "custom_regular_grade1": 5,
+      "custom_regular_grade2": 5,
+      "custom_regular_mixed": 5,
+      "custom_morning": 1,
+      "care_regular": 5,
+      "care_vacation": 10,
+      "input_sha256": "7cbf32ca54660b4a428bffe197ff2b79dedb36d54a3df38115d22acfc32ef419",
+      "output_sha256": "daeb9dcc32b20665037aa72fcb6ddf7b5c7306f2147146e4e6771ce1c8780139",
+      "declared_source_read_lines": [
+        1,
+        414
+      ],
+      "structural_and_fingerprint_checks_passed": true,
+      "participation_groups": 11,
+      "mandatory_grade1_custom_gaps": [
+        19,
+        20,
+        21,
+        22,
+        23
+      ],
+      "excluded_closed_rows": 0,
+      "care_activity_hours_verified": true,
+      "unconfirmed_conditional_rows": [],
+      "grade1_custom_inventory_complete": true,
+      "blocking_issues": [
+        "독립 초1 맞춤형 5요일 시작·종료 미공시",
+        "현재 학기 신청·변경 공지 대조 및 독립 표본 검증 미완료"
+      ],
+      "ready_for_operational_review": false
+    },
+    {
+      "school_id": "B000003759",
+      "school_name": "양영초등학교",
+      "raw_total": 15,
+      "paid": 10,
+      "custom_regular_grade1": 0,
+      "custom_regular_grade2": 0,
+      "custom_regular_mixed": 5,
+      "custom_morning": 0,
+      "care_regular": 5,
+      "care_vacation": 0,
+      "input_sha256": "b82d7dc979637a7a614c21ca29f1fb985994d80523a5f1168e6c51758158b431",
+      "output_sha256": "047aa43c297c277e83427b30cec3d2b0bd9cdebe1acad101078b773c0f5fa05b",
+      "declared_source_read_lines": [
+        1,
+        86
+      ],
+      "structural_and_fingerprint_checks_passed": true,
+      "participation_groups": 5,
+      "mandatory_grade1_custom_gaps": [],
+      "excluded_closed_rows": 10,
+      "care_activity_hours_verified": true,
+      "unconfirmed_conditional_rows": [],
+      "grade1_custom_inventory_complete": false,
+      "blocking_issues": [
+        "독립 초1·2 맞춤형 운영 여부·목록·시각 별도자료 필요",
+        "폐강은2026년3월 기준이며 현재학기 재개강·변경 공지 대조 미완료",
         "독립 표본 검증 미실행"
       ],
       "ready_for_operational_review": false

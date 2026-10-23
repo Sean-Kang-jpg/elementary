@@ -13,7 +13,7 @@ import json
 from pathlib import Path
 import re
 
-from etl.pivot_p1_participation import validate_groups
+from etl.pivot_p1_participation import validate_groups, care_hours_complete
 from etl.pivot_p1_stage2_packets import numbered_lines
 
 
@@ -34,6 +34,8 @@ def inventory(rows: list[list]) -> dict:
         'custom_regular_mixed':sum(r[0]=='맞춤형' and r[10]=='학기'
                                    and set(re.findall('[1-6]',r[4] or ''))=={'1','2'} for r in rows),
         'custom_morning':sum(r[0]=='맞춤형' and r[10]=='아침' for r in rows),
+        'care_regular':sum(r[0]=='맞춤형' and r[12]=='돌봄내' and r[10]=='학기' for r in rows),
+        'care_vacation':sum(r[0]=='맞춤형' and r[12]=='돌봄내' and r[10]=='방학' for r in rows),
     }
 
 
@@ -103,6 +105,15 @@ def evaluate(manifest_path: Path, review_path: Path) -> dict:
                 or any(d['verdict']!='source_faithful' for d in decisions)):
             raise ValueError('Every raw row needs one source-fidelity decision')
         groups=validate_groups(rows,assessment)
+        closed=assessment.get('excluded_closed_rows',[])
+        for excluded in closed:
+            if (excluded.get('status')!='closed_in_source_plan' or not excluded.get('name')
+                    or not excluded.get('evidence_lines')
+                    or any(type(n) is not int or not 1<=n<=len(lines) for n in excluded['evidence_lines'])):
+                raise ValueError('Closed courses need explicit source evidence')
+            if any((r[1],r[3],r[6])==(excluded['name'],excluded.get('section'),excluded.get('days'))
+                   for r in rows):
+                raise ValueError('A source-closed class cannot also be an operating raw row')
         conditional=set()
         for condition in assessment.get('conditional_rows',[]):
             members=condition['rows']
@@ -119,6 +130,9 @@ def evaluate(manifest_path: Path, review_path: Path) -> dict:
                         'declared_source_read_lines':assessment['source_read_lines'],
                         'structural_and_fingerprint_checks_passed':True,
                         'participation_groups':len(groups),'mandatory_grade1_custom_gaps':gaps,
+                        'excluded_closed_rows':len(closed),
+                        'care_activity_hours_verified':care_hours_complete(assessment,groups)
+                            if any(g['mode']=='care_activity' for g in groups) else None,
                         'unconfirmed_conditional_rows':sorted(conditional),
                         'grade1_custom_inventory_complete':assessment.get('grade1_custom_inventory_complete') is True,
                         'blocking_issues':assessment['blocking_issues'],

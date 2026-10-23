@@ -89,6 +89,34 @@ class Stage2AuditTests(unittest.TestCase):
                 row=rows[0].copy();row[column]=value
                 with self.subTest(column=column),self.assertRaises(ValueError):validate_rows([row],{1,2})
 
+    def test_closed_course_cannot_be_reported_as_operating(self):
+        with tempfile.TemporaryDirectory() as name:
+            root=Path(name);manifest,review,a,rows=self.fixture(root)
+            a['excluded_closed_rows']=[{'name':'책놀이','section':'통합반','days':'월',
+                                       'status':'closed_in_source_plan','evidence_lines':[2]}]
+            write(review,{'schema_version':'pivot-p1-stage2-manual-source-review-v1','schools':[a]})
+            with self.assertRaisesRegex(ValueError,'source-closed class'):
+                evaluate(manifest,review)
+            a['excluded_closed_rows'][0]['name']='other closed course'
+            write(review,{'schema_version':'pivot-p1-stage2-manual-source-review-v1','schools':[a]})
+            self.assertEqual(evaluate(manifest,review)['schools'][0]['excluded_closed_rows'],1)
+
+    def test_care_activity_hours_are_separate_from_activity_time(self):
+        with tempfile.TemporaryDirectory() as name:
+            root=Path(name);manifest,review,a,rows=self.fixture(root)
+            rows[0][12]='돌봄내';rows[0][7:9]=['14:00','15:00']
+            a['output_sha256']=write(Path(a['output_file']),[{'school_id':'S0','rows':rows}])
+            a['participation_groups'][0]['mode']='care_activity'
+            for complete in [False,True]:
+                a['care_hours_review_complete']=complete
+                a['care_hours']={'days':'월화수목금','start_basis':'after_regular_classes',
+                                 'end':'17:00','evidence':{'lines':[2]}}
+                write(review,{'schema_version':'pivot-p1-stage2-manual-source-review-v1','schools':[a]})
+                result=evaluate(manifest,review)['schools'][0]
+                self.assertEqual(result['care_activity_hours_verified'],complete)
+                self.assertEqual(result['care_regular'],1)
+                self.assertFalse(result['ready_for_operational_review'])
+
 
 if __name__=='__main__':
     unittest.main()
