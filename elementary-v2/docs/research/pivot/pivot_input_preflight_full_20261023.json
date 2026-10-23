@@ -1,0 +1,428 @@
+{
+  "ok": true,
+  "unique_input_count": 34,
+  "baseline_conflicts": [],
+  "manifests": [
+    {
+      "manifest": "F:\\sm\\vibe\\elementary\\pjt_250826\\elementary-v2\\etl\\pivot_input_baseline_20261023.json",
+      "baseline": "2026-10-23",
+      "ok": true,
+      "files": [
+        {
+          "role": "apartment-base",
+          "source_path": "../../archive/GAS/GAS/\uc784\uc2dc/apt_mst_info_202410.csv",
+          "status": "ok",
+          "issues": [],
+          "actual_byte_size": 13060240,
+          "actual_sha256": "9092f884b008d701349e6652d2e1f8453034302d95378d600a22442225a51853",
+          "expected_byte_size": 13060240,
+          "expected_sha256": "9092f884b008d701349e6652d2e1f8453034302d95378d600a22442225a51853"
+        },
+        {
+          "role": "legacy-kapt",
+          "source_path": "../../archive/legacy-v1/etl/data/kapt/20250801_apt_data.csv",
+          "status": "ok",
+          "issues": [],
+          "actual_byte_size": 16056434,
+          "actual_sha256": "8987cb940b2548fb8c732fa4b354dc3a52c3f4d97ba89365431f2a0356d77d61",
+          "expected_byte_size": 16056434,
+          "expected_sha256": "8987cb940b2548fb8c732fa4b354dc3a52c3f4d97ba89365431f2a0356d77d61"
+        },
+        {
+          "role": "academy-prior-dongs",
+          "source_path": "../../archive/elementary-v2-pre-operational-20260828/etl/local_outputs/building_refined_dongs.csv",
+          "status": "ok",
+          "issues": [],
+          "actual_byte_size": 2684528,
+          "actual_sha256": "85f1eb36ce9acdf67008bc9a2be33594ca798eeae3875aa8574ce3b828af8aa7",
+          "expected_byte_size": 2684528,
+          "expected_sha256": "85f1eb36ce9acdf67008bc9a2be33594ca798eeae3875aa8574ce3b828af8aa7"
+        }
+      ]
+    },
+    {
+      "manifest": "F:\\sm\\vibe\\elementary\\pjt_250826\\elementary-v2\\etl\\portable_inputs_manifest.json",
+      "baseline": "2026-09-07",
+      "ok": true,
+      "files": [
+        {
+          "role": "apartment-base",
+          "source_path": "../../archive/GAS/GAS/\uc784\uc2dc/apt_mst_info_202410.csv",
+          "status": "ok",
+          "issues": [],
+          "actual_byte_size": 13060240,
+          "actual_sha256": "9092f884b008d701349e6652d2e1f8453034302d95378d600a22442225a51853",
+          "expected_byte_size": 13060240,
+          "expected_sha256": "9092f884b008d701349e6652d2e1f8453034302d95378d600a22442225a51853"
+        },
+        {
+          "role": "reviewed-school-baseline",
+          "source_path": "etl/local_outputs_20260320/school_master_v1_20260320.json",
+          "status": "ok",
+          "issues": [],
+          "actual_byte_size": 3744850,
+          "actual_sha256": "0a9c64e7be89c347ebf547eff32daba9fa5c7d2dd6c1f57f25050a0b7532a5cb",
+          "expected_byte_size": 3744850,
+          "expected_sha256": "0a9c64e7be89c347ebf547eff32daba9fa5c7d2dd6c1f57f25050a0b7532a5cb"
+        },
+        {
+          "role": "kapt-basic",
+          "source_path": "etl/local_outputs_20260320/kapt_basic_20260904.csv",
+          "status": "ok",
+          "issues": [],
+          "actual_byte_size": 22132539,
+          "actual_sha256": "dd3b57a70d13338e08db5eb9dacaf93d5bc4448319a892e8345552005808bfd3",
+          "expected_byte_size": 22132539,
+          "expected_sha256": "dd3b57a70d13338e08db5eb9dacaf93d5bc4448319a892e8345552005808bfd3"
+        },
+        {
+          "role": "schoolinfo-basic",
+          "source_path": "etl/local_outputs_20260320/schoolinfo_2026_basic_capital.json",
+          "status": "ok",
+          "issues": [],
+          "actual_byte_size": 3033586,
+          "actual_sha256": "456f84819b23f008c9a24549953dde5a926f7f3fd48c7f774639496ffe1712ad",
+          "expected_byte_size": 3033586,
+          "expected_sha256": "456f84819b23f008c9a24549953dde5a926f7f3fd48c7f774639496ffe1712ad"
+        },
+        {
+          "role": "schoolinfo-grade-students",
+          "source_path": "etl/local_outputs_20260320/schoolinfo_2026_grade_students_capital.json",
+          "status": "ok",
+          "issues": [],
+          "actual_byte_size": 2344922,
+          "actual_sha256": "7b1721dbd1aedaeb75d118edd6598ec131a757fd8e79bd84417458b59a52169c",
+          "expected_byte_size": 2344922,
+          "expected_sha256": "7b1721dbd1aedaeb75d118edd6598ec131a757fd8e79bd84417458b59a52169c"
+        },
+        {
+          "role": "reviewed-assignment-baseline",
+          "source_path": "etl/local_outputs_20260320/apartment_point_assignments.csv",
+          "status": "ok",
+          "issues": [],
+          "actual_byte_size": 6156474,
+          "actual_sha256": "58526d7111e9445e208212f5577b734fcccb7c5735bc0a30fffd818bf00ddafe",
+          "expected_byte_size": 6156474,
+          "expected_sha256": "58526d7111e9445e208212f5577b734fcccb7c5735bc0a30fffd818bf00ddafe"
+        },
+        {
+          "role": "assignment-review-queue",
+          "source_path": "etl/local_outputs_20260320/assignment_review_queue.csv",
+          "status": "ok",
+          "issues": [],
+          "actual_byte_size": 75977,
+          "actual_sha256": "e26ba05bf897a342e1214592cf1827042c2da06d8cbabf92c181478d2636c43e",
+          "expected_byte_size": 75977,
+          "expected_sha256": "e26ba05bf897a342e1214592cf1827042c2da06d8cbabf92c181478d2636c43e"
+        },
+        {
+          "role": "assignment-review-resolutions",
+          "source_path": "etl/local_outputs_20260320/p1_resolved_cases.csv",
+          "status": "ok",
+          "issues": [],
+          "actual_byte_size": 5209,
+          "actual_sha256": "ef81589a9d651a5662fd650dc2bc1fdd83faefb83a55dfbe256166e0031e86eb",
+          "expected_byte_size": 5209,
+          "expected_sha256": "ef81589a9d651a5662fd650dc2bc1fdd83faefb83a55dfbe256166e0031e86eb"
+        }
+      ]
+    },
+    {
+      "manifest": "F:\\sm\\vibe\\elementary\\pjt_250826\\elementary-v2\\etl\\recurring_inputs_manifest.json",
+      "baseline": "2026-10-04.2",
+      "ok": true,
+      "files": [
+        {
+          "role": "apartment-base",
+          "source_path": "../../archive/GAS/GAS/\uc784\uc2dc/apt_mst_info_202410.csv",
+          "status": "ok",
+          "issues": [],
+          "actual_byte_size": 13060240,
+          "actual_sha256": "9092f884b008d701349e6652d2e1f8453034302d95378d600a22442225a51853",
+          "expected_byte_size": 13060240,
+          "expected_sha256": "9092f884b008d701349e6652d2e1f8453034302d95378d600a22442225a51853"
+        },
+        {
+          "role": "school-baseline:capital",
+          "source_path": "etl/local_outputs_20260320/school_master_v1_20260320.json",
+          "status": "ok",
+          "issues": [],
+          "actual_byte_size": 3744850,
+          "actual_sha256": "0a9c64e7be89c347ebf547eff32daba9fa5c7d2dd6c1f57f25050a0b7532a5cb",
+          "expected_byte_size": 3744850,
+          "expected_sha256": "0a9c64e7be89c347ebf547eff32daba9fa5c7d2dd6c1f57f25050a0b7532a5cb"
+        },
+        {
+          "role": "point-assignments:capital",
+          "source_path": "etl/local_outputs_20260320/apartment_point_assignments.csv",
+          "status": "ok",
+          "issues": [],
+          "actual_byte_size": 6156474,
+          "actual_sha256": "58526d7111e9445e208212f5577b734fcccb7c5735bc0a30fffd818bf00ddafe",
+          "expected_byte_size": 6156474,
+          "expected_sha256": "58526d7111e9445e208212f5577b734fcccb7c5735bc0a30fffd818bf00ddafe"
+        },
+        {
+          "role": "assignment-review-queue:capital",
+          "source_path": "etl/local_outputs_20260320/assignment_review_queue.csv",
+          "status": "ok",
+          "issues": [],
+          "actual_byte_size": 75977,
+          "actual_sha256": "e26ba05bf897a342e1214592cf1827042c2da06d8cbabf92c181478d2636c43e",
+          "expected_byte_size": 75977,
+          "expected_sha256": "e26ba05bf897a342e1214592cf1827042c2da06d8cbabf92c181478d2636c43e"
+        },
+        {
+          "role": "p1-resolved-cases:capital",
+          "source_path": "etl/local_outputs_20260320/p1_resolved_cases.csv",
+          "status": "ok",
+          "issues": [],
+          "actual_byte_size": 5209,
+          "actual_sha256": "ef81589a9d651a5662fd650dc2bc1fdd83faefb83a55dfbe256166e0031e86eb",
+          "expected_byte_size": 5209,
+          "expected_sha256": "ef81589a9d651a5662fd650dc2bc1fdd83faefb83a55dfbe256166e0031e86eb"
+        },
+        {
+          "role": "school-baseline:i10-m10-n10",
+          "source_path": "etl/local_outputs_20260320/school_master_v1_i10-m10-n10.json",
+          "status": "ok",
+          "issues": [],
+          "actual_byte_size": 1211177,
+          "actual_sha256": "c9515c1b0a5e246052fb786af1bc3cadba35e2e5746db7e80f2440a63353a4c4",
+          "expected_byte_size": 1211177,
+          "expected_sha256": "c9515c1b0a5e246052fb786af1bc3cadba35e2e5746db7e80f2440a63353a4c4"
+        },
+        {
+          "role": "point-assignments:i10-m10-n10",
+          "source_path": "etl/local_outputs_20260320/apartment_point_assignments_i10-m10-n10.csv",
+          "status": "ok",
+          "issues": [],
+          "actual_byte_size": 1002656,
+          "actual_sha256": "133644da11d0f947ef9d0046e8160f1607d4d8ecf37601e193ec3e46636fb13f",
+          "expected_byte_size": 1002656,
+          "expected_sha256": "133644da11d0f947ef9d0046e8160f1607d4d8ecf37601e193ec3e46636fb13f"
+        },
+        {
+          "role": "school-baseline:c10",
+          "source_path": "etl/local_outputs_20260320/school_master_v1_c10.json",
+          "status": "ok",
+          "issues": [],
+          "actual_byte_size": 493406,
+          "actual_sha256": "438af53b5da82a9a8b139d2a24376baac899f7e80b8ff8cbf705e426599c7a9f",
+          "expected_byte_size": 493406,
+          "expected_sha256": "438af53b5da82a9a8b139d2a24376baac899f7e80b8ff8cbf705e426599c7a9f"
+        },
+        {
+          "role": "point-assignments:c10",
+          "source_path": "etl/local_outputs_20260320/apartment_point_assignments_c10.csv",
+          "status": "ok",
+          "issues": [],
+          "actual_byte_size": 1483811,
+          "actual_sha256": "f14284ddfd7f91c89603abc78293128b94a6d6b4794772d45169bf1e2966ec03",
+          "expected_byte_size": 1483811,
+          "expected_sha256": "f14284ddfd7f91c89603abc78293128b94a6d6b4794772d45169bf1e2966ec03"
+        },
+        {
+          "role": "school-baseline:d10",
+          "source_path": "etl/local_outputs_20260320/school_master_v1_d10.json",
+          "status": "ok",
+          "issues": [],
+          "actual_byte_size": 388041,
+          "actual_sha256": "8df9acaeeb61f4f5cedd66f52531de83e4582f4d21f4205ac9bf52f1726dfa70",
+          "expected_byte_size": 388041,
+          "expected_sha256": "8df9acaeeb61f4f5cedd66f52531de83e4582f4d21f4205ac9bf52f1726dfa70"
+        },
+        {
+          "role": "point-assignments:d10",
+          "source_path": "etl/local_outputs_20260320/apartment_point_assignments_d10.csv",
+          "status": "ok",
+          "issues": [],
+          "actual_byte_size": 662992,
+          "actual_sha256": "11e1a070bffeb80a69ea05267c61d5bdc5e5b5dc6499b26215014a927d3011f7",
+          "expected_byte_size": 662992,
+          "expected_sha256": "11e1a070bffeb80a69ea05267c61d5bdc5e5b5dc6499b26215014a927d3011f7"
+        },
+        {
+          "role": "school-baseline:g10",
+          "source_path": "etl/local_outputs_20260320/school_master_v1_g10.json",
+          "status": "ok",
+          "issues": [],
+          "actual_byte_size": 253111,
+          "actual_sha256": "a417068bc0fb5d25c811769aa210f7b619e3a504e17ea5188b4009f141f4134a",
+          "expected_byte_size": 253111,
+          "expected_sha256": "a417068bc0fb5d25c811769aa210f7b619e3a504e17ea5188b4009f141f4134a"
+        },
+        {
+          "role": "point-assignments:g10",
+          "source_path": "etl/local_outputs_20260320/apartment_point_assignments_g10.csv",
+          "status": "ok",
+          "issues": [],
+          "actual_byte_size": 335718,
+          "actual_sha256": "6f2cbd68a307b37e8cadcce196d1e7e02f4aa04fef418af8ecaf448563a73446",
+          "expected_byte_size": 335718,
+          "expected_sha256": "6f2cbd68a307b37e8cadcce196d1e7e02f4aa04fef418af8ecaf448563a73446"
+        },
+        {
+          "role": "school-baseline:f10",
+          "source_path": "etl/local_outputs_20260320/school_master_v1_f10.json",
+          "status": "ok",
+          "issues": [],
+          "actual_byte_size": 252539,
+          "actual_sha256": "e0fbd4031be5067d46f507af656acbc5ec1a70b5bbc33fe55ee6d029894ace8d",
+          "expected_byte_size": 252539,
+          "expected_sha256": "e0fbd4031be5067d46f507af656acbc5ec1a70b5bbc33fe55ee6d029894ace8d"
+        },
+        {
+          "role": "point-assignments:f10",
+          "source_path": "etl/local_outputs_20260320/apartment_point_assignments_f10.csv",
+          "status": "ok",
+          "issues": [],
+          "actual_byte_size": 396983,
+          "actual_sha256": "f3c9affde0a9bc4159ef7ee77cfdec5a711a85505f97914b17cf7a97c053f2fe",
+          "expected_byte_size": 396983,
+          "expected_sha256": "f3c9affde0a9bc4159ef7ee77cfdec5a711a85505f97914b17cf7a97c053f2fe"
+        },
+        {
+          "role": "school-baseline:h10",
+          "source_path": "etl/local_outputs_20260320/school_master_v1_h10.json",
+          "status": "ok",
+          "issues": [],
+          "actual_byte_size": 202103,
+          "actual_sha256": "540e20c9111ff2337da6d96c030dbe115bcb651faa4f926080bd4515b8eb773b",
+          "expected_byte_size": 202103,
+          "expected_sha256": "540e20c9111ff2337da6d96c030dbe115bcb651faa4f926080bd4515b8eb773b"
+        },
+        {
+          "role": "point-assignments:h10",
+          "source_path": "etl/local_outputs_20260320/apartment_point_assignments_h10.csv",
+          "status": "ok",
+          "issues": [],
+          "actual_byte_size": 496833,
+          "actual_sha256": "f78d9ea3d8c9fb616c2b45c1aa1591b620e009ac5e9fb7433584feeb8173b96b",
+          "expected_byte_size": 496833,
+          "expected_sha256": "f78d9ea3d8c9fb616c2b45c1aa1591b620e009ac5e9fb7433584feeb8173b96b"
+        },
+        {
+          "role": "school-baseline:q10",
+          "source_path": "etl/local_outputs_20260320/school_master_v1_q10.json",
+          "status": "ok",
+          "issues": [],
+          "actual_byte_size": 724766,
+          "actual_sha256": "c4d92a042f7be8f267473fe3bd2523cb26a42d8b7f3343051db80c2a2dcce044",
+          "expected_byte_size": 724766,
+          "expected_sha256": "c4d92a042f7be8f267473fe3bd2523cb26a42d8b7f3343051db80c2a2dcce044"
+        },
+        {
+          "role": "point-assignments:q10",
+          "source_path": "etl/local_outputs_20260320/apartment_point_assignments_q10.csv",
+          "status": "ok",
+          "issues": [],
+          "actual_byte_size": 450563,
+          "actual_sha256": "1527751a0640a7878d07f74deaee1251d421c94b445a20fe3122055e2d1764f4",
+          "expected_byte_size": 450563,
+          "expected_sha256": "1527751a0640a7878d07f74deaee1251d421c94b445a20fe3122055e2d1764f4"
+        },
+        {
+          "role": "school-baseline:t10",
+          "source_path": "etl/local_outputs_20260320/school_master_v1_t10.json",
+          "status": "ok",
+          "issues": [],
+          "actual_byte_size": 199004,
+          "actual_sha256": "730b853329d388acf44bbac9dec68bcb4057c9b10bfef4db721b51df3798e1bd",
+          "expected_byte_size": 199004,
+          "expected_sha256": "730b853329d388acf44bbac9dec68bcb4057c9b10bfef4db721b51df3798e1bd"
+        },
+        {
+          "role": "point-assignments:t10",
+          "source_path": "etl/local_outputs_20260320/apartment_point_assignments_t10.csv",
+          "status": "ok",
+          "issues": [],
+          "actual_byte_size": 355415,
+          "actual_sha256": "7982901f9009f01b8ae8d9261d4c4ac3fe07f2948823897e39f4c67274a3ccb6",
+          "expected_byte_size": 355415,
+          "expected_sha256": "7982901f9009f01b8ae8d9261d4c4ac3fe07f2948823897e39f4c67274a3ccb6"
+        },
+        {
+          "role": "school-baseline:k10",
+          "source_path": "etl/local_outputs_20260320/school_master_v1_k10.json",
+          "status": "ok",
+          "issues": [],
+          "actual_byte_size": 593798,
+          "actual_sha256": "f12c58491d0477396523cdfc10d444698a723dc49529d9c63e6d2e46da03e850",
+          "expected_byte_size": 593798,
+          "expected_sha256": "f12c58491d0477396523cdfc10d444698a723dc49529d9c63e6d2e46da03e850"
+        },
+        {
+          "role": "point-assignments:k10",
+          "source_path": "etl/local_outputs_20260320/apartment_point_assignments_k10.csv",
+          "status": "ok",
+          "issues": [],
+          "actual_byte_size": 465576,
+          "actual_sha256": "8280c9917ad6a216d0566b4ed91868a8b5d866afe255122e1612bf0eaa8d21e4",
+          "expected_byte_size": 465576,
+          "expected_sha256": "8280c9917ad6a216d0566b4ed91868a8b5d866afe255122e1612bf0eaa8d21e4"
+        },
+        {
+          "role": "school-baseline:p10",
+          "source_path": "etl/local_outputs_20260320/school_master_v1_p10.json",
+          "status": "ok",
+          "issues": [],
+          "actual_byte_size": 679870,
+          "actual_sha256": "cf6390fab11f22d29c95957fe4d5f0e17edbd61d6c4e942c6ffe49a8de09f2e5",
+          "expected_byte_size": 679870,
+          "expected_sha256": "cf6390fab11f22d29c95957fe4d5f0e17edbd61d6c4e942c6ffe49a8de09f2e5"
+        },
+        {
+          "role": "point-assignments:p10",
+          "source_path": "etl/local_outputs_20260320/apartment_point_assignments_p10.csv",
+          "status": "ok",
+          "issues": [],
+          "actual_byte_size": 503455,
+          "actual_sha256": "d1f964fb1eda752d2527e7c31fb0427c4e3a44abb0f476ab13e56f0912c8f8a7",
+          "expected_byte_size": 503455,
+          "expected_sha256": "d1f964fb1eda752d2527e7c31fb0427c4e3a44abb0f476ab13e56f0912c8f8a7"
+        },
+        {
+          "role": "school-baseline:r10",
+          "source_path": "etl/local_outputs_20260320/school_master_v1_r10.json",
+          "status": "ok",
+          "issues": [],
+          "actual_byte_size": 782870,
+          "actual_sha256": "bb01e7c7964667dd07a58db93aa75463c8840c4a12a5a02c6c41b7a7f3866825",
+          "expected_byte_size": 782870,
+          "expected_sha256": "bb01e7c7964667dd07a58db93aa75463c8840c4a12a5a02c6c41b7a7f3866825"
+        },
+        {
+          "role": "point-assignments:r10",
+          "source_path": "etl/local_outputs_20260320/apartment_point_assignments_r10.csv",
+          "status": "ok",
+          "issues": [],
+          "actual_byte_size": 1024134,
+          "actual_sha256": "fd64e89b853de0b448969bd0a3a7b58fe35f4bf76d315a2814f23b5253b5336a",
+          "expected_byte_size": 1024134,
+          "expected_sha256": "fd64e89b853de0b448969bd0a3a7b58fe35f4bf76d315a2814f23b5253b5336a"
+        },
+        {
+          "role": "school-baseline:s10",
+          "source_path": "etl/local_outputs_20260320/school_master_v1_s10.json",
+          "status": "ok",
+          "issues": [],
+          "actual_byte_size": 856963,
+          "actual_sha256": "39b6eb7b572c5d5df8ad73bb4c59e21660f433a936d81d599106dfeb21d351d0",
+          "expected_byte_size": 856963,
+          "expected_sha256": "39b6eb7b572c5d5df8ad73bb4c59e21660f433a936d81d599106dfeb21d351d0"
+        },
+        {
+          "role": "point-assignments:s10",
+          "source_path": "etl/local_outputs_20260320/apartment_point_assignments_s10.csv",
+          "status": "ok",
+          "issues": [],
+          "actual_byte_size": 1120589,
+          "actual_sha256": "f764c23e755a354d957f9e07a4eb3a5a668806ce7cbbab9f61f407bc181b9479",
+          "expected_byte_size": 1120589,
+          "expected_sha256": "f764c23e755a354d957f9e07a4eb3a5a668806ce7cbbab9f61f407bc181b9479"
+        }
+      ]
+    }
+  ]
+}

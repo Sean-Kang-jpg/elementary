@@ -1,0 +1,28 @@
+{
+  "bundle_name": "pivot-local-input-observation",
+  "bundle_version": "2026-10-23",
+  "description": "Local observation only; not an approved production source version or a Storage bundle.",
+  "files": [
+    {
+      "role": "apartment-base",
+      "source_path": "../../archive/GAS/GAS/임시/apt_mst_info_202410.csv",
+      "bundle_path": "apartment/apt_mst_info_202410.csv",
+      "byte_size": 13060240,
+      "sha256": "9092f884b008d701349e6652d2e1f8453034302d95378d600a22442225a51853"
+    },
+    {
+      "role": "legacy-kapt",
+      "source_path": "../../archive/legacy-v1/etl/data/kapt/20250801_apt_data.csv",
+      "bundle_path": "apartment/20250801_apt_data.csv",
+      "byte_size": 16056434,
+      "sha256": "8987cb940b2548fb8c732fa4b354dc3a52c3f4d97ba89365431f2a0356d77d61"
+    },
+    {
+      "role": "academy-prior-dongs",
+      "source_path": "../../archive/elementary-v2-pre-operational-20260828/etl/local_outputs/building_refined_dongs.csv",
+      "bundle_path": "academy/building_refined_dongs.csv",
+      "byte_size": 2684528,
+      "sha256": "85f1eb36ce9acdf67008bc9a2be33594ca798eeae3875aa8574ce3b828af8aa7"
+    }
+  ]
+}
