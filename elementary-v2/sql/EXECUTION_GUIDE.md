@@ -418,8 +418,10 @@ for final advisor findings, reproducibility and the 606-school expansion boundar
 
 The free plan's 500 MB was at 491.97 MB. `sql/34_reclaim_database_space.sql` empties
 `apartment_transaction_raw.raw_payload` (the full MOLIT record, 62% of each row, also kept in
-private Storage under `molit-apartment-trade/` — all 280 files confirmed present), drops the empty
-legacy `schools` table and the redundant `school_apartment_serving_school_idx`. The uploader now
+private Storage under `molit-apartment-trade/` — all 280 files confirmed present) and drops the
+redundant `school_apartment_serving_school_idx`. Dropping the empty legacy `schools` table was taken
+out after the first run refused it (2BP01: legacy functions and the legacy `apartments` /
+`apartment_school_mappings` foreign keys depend on it); nothing changed in that run. The uploader now
 sends `{}` for `raw_payload`, so the space does not come back with the next load.
 
 1. Part 1 in one run (a transaction). Part 2: each `VACUUM FULL` on its own, off-peak.
