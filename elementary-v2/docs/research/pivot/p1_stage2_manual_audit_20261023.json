@@ -1,0 +1,150 @@
+{
+  "schema_version": "pivot-p1-stage2-partial-audit-v1",
+  "manifest_sha256": "e5c81abf5ab02904255508a3ea84c85038c74264855e975cf6ab0112790512ac",
+  "review_sha256": "91a6d89539ab44a8b4e86febe5e77d4cd8ef1279198ceac12338718fc0d48794",
+  "schools_with_source_extraction": 3,
+  "remaining_school_ids": [
+    "B000003737",
+    "B000003741",
+    "B000003742",
+    "B000003743",
+    "B000003744",
+    "B000003746",
+    "B000003747",
+    "B000003748",
+    "B000003749",
+    "B000003750",
+    "B000003751",
+    "B000003752",
+    "B000003754",
+    "B000003755",
+    "B000003756",
+    "B000003757",
+    "B000003758",
+    "B000003759",
+    "B000003760",
+    "B000003761",
+    "B000003762",
+    "B000003763",
+    "B000003765",
+    "B000003767",
+    "B000003768",
+    "B000003769",
+    "B000003770",
+    "B000003771",
+    "B000003772",
+    "B000023087",
+    "B000023089",
+    "B000024167",
+    "B000024238",
+    "B000024239",
+    "B000024241",
+    "B000026906"
+  ],
+  "raw_rows": 161,
+  "source_fidelity_method": "same-assistant declarations; not independent accuracy or blind review",
+  "all_39_source_extracted": false,
+  "independent_blind_review_complete": false,
+  "publish_status": "not_approved",
+  "no_operational_upload": true,
+  "schools": [
+    {
+      "school_id": "B000003738",
+      "school_name": "초림초등학교",
+      "raw_total": 49,
+      "paid": 38,
+      "custom_regular_grade1": 5,
+      "custom_regular_grade2": 5,
+      "custom_regular_mixed": 0,
+      "custom_morning": 1,
+      "input_sha256": "e883212f06d333a46ccdad9c8ece0c89ee8219a646b1b4546df15a64679aa31d",
+      "output_sha256": "97011c24d9260d081950b6823cc4048f775c775aba9705473bc7eaf5b995ea3c",
+      "declared_source_read_lines": [
+        1,
+        45
+      ],
+      "structural_and_fingerprint_checks_passed": true,
+      "participation_groups": 15,
+      "mandatory_grade1_custom_gaps": [
+        39,
+        40,
+        41,
+        42,
+        43
+      ],
+      "unconfirmed_conditional_rows": [],
+      "grade1_custom_inventory_complete": true,
+      "blocking_issues": [
+        "1학년 독립 맞춤형 5요일의 개별 시작·종료 미공시; 전체운영창으로 대체 금지",
+        "현재 학기 변경·폐강 공지 대조 미완료",
+        "독립 표본 검증 미실행"
+      ],
+      "ready_for_operational_review": false
+    },
+    {
+      "school_id": "B000003740",
+      "school_name": "안말초등학교",
+      "raw_total": 66,
+      "paid": 36,
+      "custom_regular_grade1": 10,
+      "custom_regular_grade2": 10,
+      "custom_regular_mixed": 10,
+      "custom_morning": 0,
+      "input_sha256": "5a189d97f0643d45e1fdbe312d5a0408ddd4a4b27067abfc1e3bedde8e4865df",
+      "output_sha256": "a5a5d410e9ef504eb93533fa72d09decc9403ecc9c176c9fdf1a96de1827b375",
+      "declared_source_read_lines": [
+        1,
+        59
+      ],
+      "structural_and_fingerprint_checks_passed": true,
+      "participation_groups": 19,
+      "mandatory_grade1_custom_gaps": [],
+      "unconfirmed_conditional_rows": [
+        57,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63,
+        64,
+        65,
+        66
+      ],
+      "grade1_custom_inventory_complete": true,
+      "blocking_issues": [
+        "통합반 개설 조건 충족 여부 미확인; 확정 운영 강좌로 표시 금지",
+        "학기·방학 날짜가 L12와 L14에서 다름; 현 학기 공지 대조 미완료",
+        "독립 표본 검증 미실행"
+      ],
+      "ready_for_operational_review": false
+    },
+    {
+      "school_id": "B000003764",
+      "school_name": "성남장안초등학교",
+      "raw_total": 46,
+      "paid": 46,
+      "custom_regular_grade1": 0,
+      "custom_regular_grade2": 0,
+      "custom_regular_mixed": 0,
+      "custom_morning": 0,
+      "input_sha256": "96e560bfba5a897f060ecddfa5c272792397d58c00ef26545fa23de2949342fd",
+      "output_sha256": "c4dff594413c014ca9507506bcd2096d41aa7fa2c341c8c4ee6de860391582b4",
+      "declared_source_read_lines": [
+        1,
+        217
+      ],
+      "structural_and_fingerprint_checks_passed": true,
+      "participation_groups": 23,
+      "mandatory_grade1_custom_gaps": [],
+      "unconfirmed_conditional_rows": [],
+      "grade1_custom_inventory_complete": false,
+      "blocking_issues": [
+        "초1·2 맞춤형 별도 원문·목록·요일·시각 미확보; 미운영으로 단정 금지",
+        "반별 학년 없이 학교 공통1~6학년만 공시; 현재 학기 신청안내 대조 미완료",
+        "독립 표본 검증 미실행"
+      ],
+      "ready_for_operational_review": false
+    }
+  ]
+}
