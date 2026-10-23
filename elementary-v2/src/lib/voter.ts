@@ -78,6 +78,15 @@ const captchaToken = async (siteKey: string): Promise<string> => {
   }
 }
 
+/**
+ * Options for any Supabase Auth sign-in once captcha protection is on. Supabase then asks
+ * every sign-in for a token — anonymous and password alike — so the admin login
+ * (EtlMonitoringPage) needs one too, or turning captcha on locks the operators out.
+ * Undefined while VITE_TURNSTILE_SITE_KEY is unset, which is right only while captcha is off.
+ */
+export const captchaOptions = async (): Promise<{ captchaToken: string } | undefined> =>
+  TURNSTILE_SITE_KEY ? { captchaToken: await captchaToken(TURNSTILE_SITE_KEY) } : undefined
+
 /** The current voter's id, or null when this browser has not voted yet. */
 export const currentVoter = async (): Promise<string | null> => {
   const { data } = await supabase.auth.getSession()
@@ -92,7 +101,7 @@ export const ensureVoter = async (): Promise<string> => {
   if (existing) return existing
   if (!signingIn) {
     signingIn = (async () => {
-      const options = TURNSTILE_SITE_KEY ? { captchaToken: await captchaToken(TURNSTILE_SITE_KEY) } : undefined
+      const options = await captchaOptions()
       const { data, error } = await supabase.auth.signInAnonymously(options ? { options } : undefined)
       if (error || !data.user) throw error ?? new Error('anonymous sign-in returned no user')
       return data.user.id

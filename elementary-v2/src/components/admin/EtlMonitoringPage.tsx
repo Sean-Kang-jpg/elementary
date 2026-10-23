@@ -1,6 +1,7 @@
 import { FormEvent, useCallback, useEffect, useMemo, useState } from 'react'
 import type { Session } from '@supabase/supabase-js'
 import { supabase } from '../../lib/supabase'
+import { captchaOptions } from '../../lib/voter'
 import { isEtlAdmin, loadEtlMonitoringData } from '../../services/monitoringService'
 import type { EtlMonitoringData, EtlRun, EtlSchedule } from '../../types/monitoring'
 import './etlMonitoring.css'
@@ -63,7 +64,15 @@ export function SignIn({ onSuccess, mark = 'ETL', title = '데이터 운영 모�
     event.preventDefault()
     setSubmitting(true)
     setError('')
-    const result = await supabase.auth.signInWithPassword({ email, password })
+    let options: Awaited<ReturnType<typeof captchaOptions>>
+    try {
+      options = await captchaOptions()
+    } catch {
+      setSubmitting(false)
+      setError('사람 확인(Turnstile)을 마치지 못했어요. 잠시 뒤 다시 시도해주세요.')
+      return
+    }
+    const result = await supabase.auth.signInWithPassword({ email, password, options })
     setSubmitting(false)
     if (result.error) {
       setError('로그인 정보를 확인해주세요.')
