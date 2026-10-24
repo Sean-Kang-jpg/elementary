@@ -348,9 +348,12 @@ const schoolPage = async (key) => {
       ['데이터 기준일', school.reference_date],
     ],
     trail: [...areaTrail(school.region, district), { name: school.school_name }],
-    sections: nearby.length
-      ? [`<h2>인근 학교와 비교</h2>${nearbySummary(school, nearby) ? `<p>${escapeHtml(nearbySummary(school, nearby))}</p>` : ''}${comparisonTable(school, nearby)}`]
-      : [],
+    sections: [
+      nearby.length
+        ? `<h2>인근 학교와 비교</h2>${nearbySummary(school, nearby) ? `<p>${escapeHtml(nearbySummary(school, nearby))}</p>` : ''}${comparisonTable(school, nearby)}`
+        : '',
+      guideLinks('함께 보면 좋은 가이드'),
+    ].filter(Boolean),
     links: assigned
       .filter((row) => row.complex_public_key)
       .sort((a, b) => (number(b.households) || 0) - (number(a.households) || 0))
@@ -610,6 +613,7 @@ const apartmentPage = async (key) => {
       groupHtml,
       neighboursHtml,
       academyAll != null ? '<p class="area-note">주변 학원·교습소·체육도장은 단지에서 잰 직선거리 기준이며 배정과는 관계가 없습니다.</p>' : '',
+      guideLinks('함께 보면 좋은 가이드'),
     ].filter(Boolean),
     // Links to the schools are in the table above; a list of the same names would repeat them.
     links: schoolTableHtml ? [] : schools.map((school) => ({
@@ -633,7 +637,20 @@ const apartmentPage = async (key) => {
  * content-page classes and is styled in src/styles/content.css.
  */
 
-const AREA_SCHOOL_FIELDS = 'school_id,school_name,region,road_address,legal_address,establishment_type,'
+/**
+ * The guides that answer what these pages raise - how assignment is decided and
+ * what to compare. Until these the guides and the data pages did not link each
+ * other at all, so neither carried a crawler to the other (docs/seo).
+ */
+const guideLinks = (title) => `<h2>${escapeHtml(title)}</h2><ul class="area-guides">`
+  + [
+    ['/guide/check-school-zone', '이사할 집의 배정 학교 확인하는 법'],
+    ['/guide/compare-schools', '학교를 비교할 때 볼 것'],
+    ['/guide/admission-timeline', '초등 입학까지 전체 일정'],
+  ].map(([href, text]) => `<li><a href="${href}">${escapeHtml(text)}</a></li>`).join('')
+  + '</ul>'
+
+const AREA_SCHOOL_FIELDS ='school_id,school_name,region,road_address,legal_address,establishment_type,'
   + 'grade1_students,grade1_classes,grade1_per_class,total_students,reference_date'
 
 const byName = (a, b) => a.school_name.localeCompare(b.school_name, 'ko')
@@ -736,6 +753,7 @@ const schoolListPage = async ({ region, district, schools }) => {
       complexes.size ? `<h2>학교별 주요 배정 아파트</h2>${schoolApartmentLists(sorted, assignedBySchool)}` : '',
       '<p class="area-note">학급당 학생 수는 1학년 기준이며, 평균은 학생 수 합계를 학급 수 합계로 나눈 값입니다. '
         + '사립·국립 초등학교는 통학구역 배정이 없습니다. 출처: 학교알리미, 학구도 공식 통학구역.</p>',
+      guideLinks('입학 준비 가이드'),
     ],
   }
 }
