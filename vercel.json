@@ -51,7 +51,19 @@
       "destination": "/learn/:slug/index.html"
     },
     {
-      "source": "/(.*)",
+      "source": "/(map|news|my|favorites|privacy|timetable|frontyard)",
+      "destination": "/app.html"
+    },
+    {
+      "source": "/admin/(etl|social)",
+      "destination": "/app.html"
+    },
+    {
+      "source": "/(plans|items|grade1)",
+      "destination": "/app.html"
+    },
+    {
+      "source": "/(plans|items|grade1)/:slug",
       "destination": "/app.html"
     }
   ]

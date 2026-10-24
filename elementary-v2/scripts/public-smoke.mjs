@@ -310,9 +310,17 @@ const assertHomeAndShellSplit = async () => {
   }
   process.stdout.write('PASS: /map, /my, /favorites, /timetable and /admin/etl are served the app shell, not the home\n')
 
+  // The shell is rewritten only to the screens the app has (vercel.json). An address
+  // that names nothing must answer 404, not the shell with 200 (docs/seo, soft 404).
+  for (const missingPath of ['/no-such-page-smoke', '/guide/no-such-guide-smoke', '/learn/no-such-item-smoke']) {
+    const response = await fetch(new URL(missingPath, baseUrl).toString())
+    if (response.status !== 404) throw new Error(`${missingPath} answered ${response.status}, not 404`)
+  }
+  process.stdout.write('PASS: unknown addresses answer 404\n')
+
   // Guides and the FAQ are static pages with their own head and content, so a
   // crawler that runs no JavaScript reads them (ADR-008 section 4).
-  for (const [pagePath, heading] of [['/guide', 'guides-title'], ['/guide/school-notice', 'guide-title'], ['/faq', 'faq-title'], ['/checklist', 'checklist-title']]) {
+  for (const [pagePath, heading] of [['/guide', 'guides-title'], ['/guide/school-notice', 'guide-title'], ['/faq', 'faq-title'], ['/checklist', 'checklist-title'], ['/learn', 'learn-title']]) {
     const body = await (await fetch(new URL(pagePath, baseUrl).toString())).text()
     const canonicals = body.match(/<link rel="canonical" href="([^"]*)"/g) || []
     const needsSummary = pagePath.startsWith('/guide/') && !body.includes('class="guide-summary')
@@ -320,7 +328,7 @@ const assertHomeAndShellSplit = async () => {
       throw new Error(`${pagePath} is not served as its own static page with one canonical naming it`)
     }
   }
-  process.stdout.write('PASS: /guide, a guide, /faq and /checklist are served as static pages with their own canonical\n')
+  process.stdout.write('PASS: /guide, a guide, /faq, /checklist and /learn are served as static pages with their own canonical\n')
 }
 
 try {

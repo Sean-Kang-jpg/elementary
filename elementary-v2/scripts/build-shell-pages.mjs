@@ -163,8 +163,9 @@ if (!/<link rel="canonical" href="[^"]+\/">/.test(home)) fail('the home lost its
 
 await fs.writeFile(path.join(outDir, 'app.html'), shell, 'utf8')
 await fs.writeFile(path.join(outDir, 'index.html'), home, 'utf8')
-// Vercel serves this for a rewrite that lands on a missing file - an unknown
-// guide address. The app opens there and shows the guide list.
+// Vercel serves this, with status 404, for any address no file or rewrite matches
+// - an unknown guide, a mistyped path. It is the shell, so the app still opens
+// (an unknown guide shows the list, anything else the home); a crawler sees 404.
 await fs.writeFile(path.join(outDir, '404.html'), shell, 'utf8')
 process.stdout.write('shell       dist/app.html, dist/404.html (no canonical, no og:url)\n')
 process.stdout.write('home        dist/index.html (prerendered home content)\n')
