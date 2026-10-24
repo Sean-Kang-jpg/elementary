@@ -150,6 +150,27 @@ const fetchAll = async ({ url, key }, table, select) => {
   return rows
 }
 
+/**
+ * The day the public data was last refreshed, from public_data_freshness() (SQL
+ * 22), in Korean time. The detail and hub pages are drawn from that data, so it
+ * is their files' lastmod. Null when the function is missing or fails: no date
+ * is better than a wrong one.
+ */
+const dataRefreshedOn = async ({ url, key }) => {
+  try {
+    const response = await fetch(`${url}/rest/v1/rpc/public_data_freshness`, {
+      method: 'POST',
+      headers: { apikey: key, Authorization: `Bearer ${key}`, 'Content-Type': 'application/json' },
+      body: '{}',
+    })
+    if (!response.ok) return null
+    const latest = (await response.json()).map((row) => Date.parse(row.refreshed_at)).filter(Number.isFinite).sort().at(-1)
+    return latest ? new Date(latest + 9 * 3600_000).toISOString().slice(0, 10) : null
+  } catch {
+    return null
+  }
+}
+
 const xmlEscape = (value) =>
   value.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
 
@@ -161,11 +182,14 @@ const urlSet = (paths, origin, lastmods = new Map()) =>
   + paths.map((p) => `  <url><loc>${xmlEscape(origin + encodeURI(p))}</loc>${lastmods.has(p) ? `<lastmod>${lastmods.get(p)}</lastmod>` : ''}</url>\n`).join('')
   + '</urlset>\n'
 
-const sitemapIndex = (files, origin, lastmod) =>
+// Each entry carries the date its file's content last changed, or nothing. It used
+// to be the build date, so every deploy (74 in October 2026) announced all eight
+// files as changed whether or not anything in them had.
+const sitemapIndex = (files, origin) =>
   '<?xml version="1.0" encoding="UTF-8"?>\n'
   + '<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
-  + files.map((file) =>
-    `  <sitemap><loc>${origin}/${file}</loc><lastmod>${lastmod}</lastmod></sitemap>\n`).join('')
+  + files.map(({ file, lastmod }) =>
+    `  <sitemap><loc>${origin}/${file}</loc>${lastmod ? `<lastmod>${lastmod}</lastmod>` : ''}</sitemap>\n`).join('')
   + '</sitemapindex>\n'
 
 /**
@@ -242,7 +266,7 @@ const main = async () => {
   const groupedAway = byKey.size - representatives.size
 
   const withoutKey = serving.filter((row) => !row.complex_public_key).length
-  const lastmod = new Date().toISOString().slice(0, 10)
+  const dataAsOf = await dataRefreshedOn(creds)
   const files = []
 
   // The home, the guides and the FAQ: the pages written as static HTML by
@@ -264,7 +288,10 @@ const main = async () => {
     for (const [index, page] of pages.entries()) {
       const file = `sitemap-${label}-${index + 1}.xml`
       await fs.writeFile(path.join(outDir, file), urlSet(page, origin, label === 'pages' ? contentLastmods : undefined), 'utf8')
-      files.push(file)
+      const lastmod = label === 'pages'
+        ? page.map((p) => contentLastmods.get(p)).filter(Boolean).sort().at(-1) ?? null
+        : dataAsOf
+      files.push({ file, lastmod })
     }
     console.log(`${label.padEnd(11)} ${paths.length.toLocaleString()} URLs in ${pages.length} file(s)`)
   }
@@ -273,8 +300,8 @@ const main = async () => {
   await fs.writeFile(path.join(outDir, 'robots.txt'), robotsTxt(origin), 'utf8')
   console.log(`robots      Sitemap -> ${origin}/sitemap.xml`)
 
-  await fs.writeFile(path.join(outDir, 'sitemap.xml'), sitemapIndex(files, origin, lastmod), 'utf8')
-  console.log(`index       ${files.length} sitemaps at ${origin}/sitemap.xml`)
+  await fs.writeFile(path.join(outDir, 'sitemap.xml'), sitemapIndex(files, origin), 'utf8')
+  console.log(`index       ${files.length} sitemaps at ${origin}/sitemap.xml (data as of ${dataAsOf ?? 'unknown - lastmod left out'})`)
 
   // A complex with no slug has no address, so it cannot be listed. Say so rather
   // than quietly publishing a smaller sitemap than the data would support.
