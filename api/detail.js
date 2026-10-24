@@ -989,11 +989,65 @@ const fetchShell = async (req) => {
   }
 }
 
+/* ---- Crawler counts -------------------------------------------------------
+ *
+ * Vercel's request log keeps about an hour and no User-Agent, so whether Naver's
+ * Yeti came, and what it got, could not be known (docs/seo). A crawler's request
+ * adds one to a daily counter (SQL 37): bot family, route type, status class and
+ * a latency bucket - no IP, no UA, no path. Browsers are not counted.
+ *
+ * Only requests that reach this function count: an edge cache hit never runs it.
+ * The write runs after the response, through Vercel's waitUntil when the runtime
+ * offers it, and never throws - a counter must not cost a page.
+ */
+const botFamily = (userAgent) => {
+  const ua = String(userAgent || '')
+  if (/Yeti/i.test(ua)) return 'yeti'
+  if (/Googlebot|Google-InspectionTool/i.test(ua)) return 'googlebot'
+  if (/bingbot/i.test(ua)) return 'bingbot'
+  if (/Daum/i.test(ua)) return 'daum'
+  if (/bot|crawler|spider/i.test(ua)) return 'other_bot'
+  return null
+}
+
+const msBucket = (ms) => (ms < 500 ? 'lt500' : ms < 1000 ? 'lt1000' : ms < 2000 ? 'lt2000' : ms < 5000 ? 'lt5000' : 'ge5000')
+
+const afterResponse = (promise) => {
+  const context = globalThis[Symbol.for('@vercel/request-context')]?.get?.()
+  if (context && typeof context.waitUntil === 'function') context.waitUntil(promise)
+}
+
+const countCrawl = (req, type, statusClass, startedAt) => {
+  try {
+    const bot = botFamily(req.headers['user-agent'])
+    if (!bot) return
+    const { url, key } = supabase()
+    const controller = new AbortController()
+    const timer = setTimeout(() => controller.abort(), 2000)
+    const write = fetch(`${url}/rest/v1/rpc/record_crawler_hit`, {
+      method: 'POST',
+      headers: { apikey: key, Authorization: `Bearer ${key}`, 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        p_bot: bot,
+        p_route_type: ['school', 'apt', 'area'].includes(type) ? type : 'other',
+        p_status_class: statusClass,
+        p_ms_bucket: msBucket(Date.now() - startedAt),
+      }),
+      signal: controller.signal,
+    }).catch(() => {}).finally(() => clearTimeout(timer))
+    afterResponse(write)
+  } catch {
+    // No credentials or no runtime context: skip the count, keep the page.
+  }
+}
+
 module.exports = async (req, res) => {
+  const startedAt = Date.now()
+  let type = null
   let shell = null
   try {
     const url = new URL(req.url, 'https://placeholder.invalid')
-    const type = url.searchParams.get('type')
+    type = url.searchParams.get('type')
     const slug = url.searchParams.get('slug') || ''
     const key = keyFromSlug(slug)
 
@@ -1014,6 +1068,7 @@ module.exports = async (req, res) => {
       res.setHeader('Content-Type', 'text/html; charset=utf-8')
       res.setHeader('Cache-Control', 'public, s-maxage=60')
       res.status(404).send(shell)
+      countCrawl(req, type, '4xx', startedAt)
       return
     }
 
@@ -1022,6 +1077,7 @@ module.exports = async (req, res) => {
     // hour meant almost every crawler request was a cold MISS of 1-3 s (docs/seo).
     res.setHeader('Cache-Control', 'public, s-maxage=86400, stale-while-revalidate=604800')
     res.status(200).send(inject(shell, page))
+    countCrawl(req, type, '2xx', startedAt)
   } catch (error) {
     // Fail open. A visitor gets the app exactly as before this existed; only the
     // crawler loses the prerendered head, and that is recoverable.
@@ -1031,9 +1087,11 @@ module.exports = async (req, res) => {
       res.setHeader('Content-Type', 'text/html; charset=utf-8')
       res.setHeader('Cache-Control', 'no-store')
       res.status(200).send(fallback)
+      countCrawl(req, type, 'fail_open', startedAt)
     } catch (shellError) {
       console.error('shell fetch failed too:', shellError && shellError.message)
       res.status(500).send('Temporarily unavailable')
+      countCrawl(req, type, '5xx', startedAt)
     }
   }
 }

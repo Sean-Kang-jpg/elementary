@@ -431,3 +431,17 @@ sends `{}` for `raw_payload`, so the space does not come back with the next load
 
 Turning the monthly transaction schedule on adds roughly 15k rows a month; measure the growth
 after the first run before deciding the plan tier.
+
+## 37: crawler daily counts (2026-10-24) — 사용자 실행 대기
+
+`api/detail.js` adds one to `crawler_daily_counts` for each crawler request it answers (bot family,
+route type, status class, latency bucket; no IP, no User-Agent, no path), so Naver Yeti's visits can be
+seen at all — Vercel's request log keeps about an hour and no User-Agent
+(`docs/seo/seo-crawler-access-audit.md`). Until 37 is applied the prerender skips the write silently.
+
+1. Run the transaction once, after `12`.
+2. Request a school page with a Yeti User-Agent, then
+   `select * from crawler_daily_counts order by day desc, hits desc limit 20;` shows a `yeti` row.
+3. Rollback is the two `DROP` statements in the file header.
+
+Counts cover only requests that reach the function; an edge cache hit is not counted.
