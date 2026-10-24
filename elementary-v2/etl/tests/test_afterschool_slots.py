@@ -1,0 +1,49 @@
+import unittest
+
+from etl.afterschool_slots import school_slots, slot_kind
+
+
+def row(**fields):
+    base = {'kind': '방과후', 'name': '창의미술', 'variant': None, 'section': 'A', 'grades_raw': '1~2', 'grade_source': 'row',
+            'days': '월', 'start': '13:00', 'end': '14:20', 'grade1': 'true', 'period': '학기', 'term': '2026 1기',
+            'place': None, 'line': 81}
+    return {**base, **fields}
+
+
+class SlotKindTest(unittest.TestCase):
+    def test_kinds(self):
+        self.assertEqual(slot_kind(row()), '저학년방과후')
+        self.assertEqual(slot_kind(row(kind='맞춤형', grades_raw=None, grade1='unknown')), '맞춤형')
+        self.assertIsNone(slot_kind(row(grades_raw='1~6')))          # all-grade class
+        self.assertIsNone(slot_kind(row(grades_raw=None, grade1='unknown')))
+        self.assertIsNone(slot_kind(row(period='방학')))
+        self.assertIsNone(slot_kind(row(grade1='false', grades_raw='3~6')))
+
+
+class SchoolSlotsTest(unittest.TestCase):
+    def test_courses_sharing_a_window_are_one_slot(self):
+        result = school_slots([row(), row(name='로봇과학', section='B'), row(days='화', start='13:50', end='15:10')])
+        self.assertEqual([(s['weekday'], s['start'], s['courses']) for s in result['slots']],
+                         [('월', '13:00', ['창의미술', '로봇과학']), ('화', '13:50', ['창의미술'])])
+        self.assertEqual(result['status'], 'ok')
+
+    def test_untimed_custom_days_and_conflicts_need_a_check(self):
+        rows = [row(kind='맞춤형', name='놀이체육', days='월', grades_raw=None, grade1='unknown'),
+                row(kind='맞춤형', name='음악놀이', days='화', start=None, end=None, grades_raw=None, grade1='unknown')]
+        result = school_slots(rows, conflicts=[['요일', '우쿨렐레 A', 'L129 / L141']])
+        self.assertEqual(result['status'], 'check')
+        self.assertEqual([c[0] for c in result['checks']], ['맞춤형시각없음', '원문불일치'])
+        self.assertEqual(result['checks'][0][1], '화')
+
+    def test_morning_rows_and_no_offer(self):
+        self.assertEqual(school_slots([row(start='08:00', end='08:50')])['slots'], [])
+        self.assertEqual(school_slots([])['status'], 'none')
+
+    def test_place_and_period_slot_are_kept(self):
+        rows = [row(kind='맞춤형', grades_raw=None, grade1='unknown', place='돌봄내', time_source='period_slot')]
+        slot = school_slots(rows)['slots'][0]
+        self.assertEqual((slot['place'], slot['time_source']), ('돌봄내', 'period_slot'))
+
+
+if __name__ == '__main__':
+    unittest.main()
