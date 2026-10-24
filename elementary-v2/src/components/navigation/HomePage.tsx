@@ -74,6 +74,22 @@ export default function HomePage({ onNavigate, entryYear, onEntryYearChange, pro
           <ChevronRight size={18} aria-hidden="true" />
         </a>
 
+        {/* 지역 허브로 가는 정적 링크. 검색로봇이 홈에서 학교까지 세 번에 닿는 길이다(docs/seo). */}
+        <section className="home-card home-areas" aria-labelledby="home-areas-title">
+          <h2 id="home-areas-title">{copy.areaCardTitle}</h2>
+          <p>{copy.areaCardBody}</p>
+          <ul className="home-areas__list">
+            {copy.areaRegions.map((region) => {
+              const path = `${VIEW_PATHS.area}/${region}`
+              return (
+                <li key={region}>
+                  <a href={path} onClick={(event) => followLink(event, path, onNavigate)}>{region}</a>
+                </li>
+              )
+            })}
+          </ul>
+        </section>
+
         <a href={VIEW_PATHS.learn} onClick={(event) => followLink(event, VIEW_PATHS.learn, onNavigate)} className="home-page__card">
           <span className="home-page__card-icon"><CalendarClock size={20} aria-hidden="true" /></span>
           <span className="min-w-0 flex-1">
