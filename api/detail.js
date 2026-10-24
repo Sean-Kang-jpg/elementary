@@ -994,7 +994,9 @@ module.exports = async (req, res) => {
     }
 
     res.setHeader('Content-Type', 'text/html; charset=utf-8')
-    res.setHeader('Cache-Control', 'public, s-maxage=3600, stale-while-revalidate=86400')
+    // A day, and a week stale: the data changes with the monthly ETL, while an
+    // hour meant almost every crawler request was a cold MISS of 1-3 s (docs/seo).
+    res.setHeader('Cache-Control', 'public, s-maxage=86400, stale-while-revalidate=604800')
     res.status(200).send(inject(shell, page))
   } catch (error) {
     // Fail open. A visitor gets the app exactly as before this existed; only the
