@@ -1,8 +1,8 @@
 -- 38: 1학년 오후 시간대 (시간표 엔진의 핵심층, 2026-10-24 초안 · 운영 미적용)
 --
 -- school_afterschool_slots   학교·요일별로 1학년이 쓸 수 있는 시간 창 하나가 한 행.
---                            맞춤형(무료, 돌봄 내 포함)과 저학년 방과후(대상 학년이 1학년을 포함하고
---                            3학년 이하에서 끝나는 반). 같은 창을 쓰는 강좌는 한 행이고 이름은 참고로만 둔다.
+--                            맞춤형(무료, 돌봄 내 포함), 저학년 방과후(1학년 포함·3학년 이하까지), 전학년 방과후
+--                            (1학년 포함·4학년 이상까지), 학년 미기재 방과후. 같은 창을 쓰는 강좌는 한 행이고 이름은 참고로만 둔다.
 -- school_afterschool_checks  사람이 확인할 항목: 맞춤형 시각 없음, 원문끼리 다름, PDF 원문.
 --
 -- 서울 30개교 측정(2026-10-24): 시간대 정확도 소네트 맹검 100%, Opus 재검토 99.2%(132개 중 131개).
@@ -18,7 +18,9 @@ CREATE TABLE IF NOT EXISTS school_afterschool_slots (
     school_id TEXT NOT NULL
         REFERENCES school_afterschool_summary(school_id)
         ON UPDATE CASCADE ON DELETE CASCADE,
-    kind TEXT NOT NULL CHECK (kind IN ('맞춤형', '저학년방과후')),
+    -- 저학년방과후: 1학년 포함·3학년 이하까지(진한 막대). 전학년방과후: 1학년 포함·4학년 이상까지,
+    -- 학년미기재방과후: 대상 학년 없음(둘 다 빗금 막대, 2026-10-24). 1학년이 대상이 아닌 반은 없다.
+    kind TEXT NOT NULL CHECK (kind IN ('맞춤형', '저학년방과후', '전학년방과후', '학년미기재방과후')),
     weekday SMALLINT NOT NULL CHECK (weekday BETWEEN 1 AND 5),      -- 1 = 월
     start_time TIME NOT NULL,
     end_time TIME NOT NULL,

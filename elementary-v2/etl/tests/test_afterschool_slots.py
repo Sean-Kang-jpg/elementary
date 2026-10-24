@@ -14,8 +14,8 @@ class SlotKindTest(unittest.TestCase):
     def test_kinds(self):
         self.assertEqual(slot_kind(row()), '저학년방과후')
         self.assertEqual(slot_kind(row(kind='맞춤형', grades_raw=None, grade1='unknown')), '맞춤형')
-        self.assertIsNone(slot_kind(row(grades_raw='1~6')))          # all-grade class
-        self.assertIsNone(slot_kind(row(grades_raw=None, grade1='unknown')))
+        self.assertEqual(slot_kind(row(grades_raw='1~6')), '전학년방과후')
+        self.assertEqual(slot_kind(row(grades_raw=None, grade1='unknown')), '학년미기재방과후')
         self.assertIsNone(slot_kind(row(period='방학')))
         self.assertIsNone(slot_kind(row(grade1='false', grades_raw='3~6')))
 
