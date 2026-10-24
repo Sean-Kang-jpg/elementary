@@ -1,8 +1,7 @@
 {
   "school_id": "B000003759",
   "checked_on": "2026-10-24",
-  "status": "official_post_discovered_attachment_not_retrieved",
-  "reason": "Attachment request timed out; subsequent automatic approval review failed due account usage limit. No attachment content verification.",
+  "status": "two_pdf_attachments_retrieved_and_compared",
   "posts": [
     {
       "posted_on": "2026-08-19",
@@ -19,5 +18,9 @@
       "html_sha256": "f55b5dce1587dde3e7c7eff13de494ca8808e254b8d11747b93eb6f1db9538a7"
     }
   ],
-  "publish_ready": false
+  "publish_ready": false,
+  "previous_failure_reason": "Attachment request timed out; subsequent automatic approval review failed due account usage limit. No attachment content verification.",
+  "retrieved_on": "2026-10-24",
+  "supplement_review_file": "docs/research/pivot/p1_stage2_yangyoung_supplement_20261024.json",
+  "no_operational_upload": true
 }
