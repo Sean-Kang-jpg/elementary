@@ -1,5 +1,11 @@
 # ETL 선행 점검과 작업 경계 — 2026-10-23
 
+## 2026-10-24 자동 실행 연결
+
+아래의 독립 도구 인계 기록 이후, 사용자 요청으로 `.github/workflows/etl-recurring.yml`에 연결했다. 복원·materialize 다음, 수집·적재 이전에 recurring 매니페스트 29개만 검사한다. 검사 실패 시 후속 ETL 단계는 실행되지 않으며 `recurring_input_preflight.json`은 기존 보고서 업로드에 포함된다. ZIP 내부 검증은 기존 복원 단계에 맡기고, 새 단계는 복사된 실제 원본 경로를 검증한다.
+
+`python -m unittest etl.tests.test_pivot_preflight_connection etl.tests.test_pivot_input_preflight etl.tests.test_portable_inputs` 12개 통과. 실제 recurring 목록 29개도 전부 일치했다. 새 연결 테스트는 실제 CLI subprocess의 정상·동일 크기 변조·파일 누락 종료 코드와 JSON을 검증하고, 워크플로의 단계 순서·매니페스트 범위·실패 허용 부재·보고서 보관 경로를 확인한다. GitHub Actions 원격 실행과 운영 적재는 수행하지 않았다. 직접 실행하는 로컬 `run_due_etl.py`는 변경하지 않았다.
+
 ## 인계 안내
 
 이번 변경은 입력을 검사하는 독립 명령이다. 앱 디렉터리에서 `python -m etl.pivot_input_preflight --all`을 실행하면 된다. 성공은 종료 코드 0, 입력 문제는 1, 목록 오류는 2이며 JSON 결과를 표준 출력으로 제공한다. 명령 자체는 보고서 파일을 만들지 않는다.

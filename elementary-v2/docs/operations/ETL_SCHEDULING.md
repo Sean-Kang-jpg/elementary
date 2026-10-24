@@ -25,6 +25,15 @@ The runner creates an untracked runtime manifest, rebuilds and audits all operat
 
 ## GitHub Actions (monthly, from 2026-10)
 
+2026-10-24: 복원 단계와 `Run due ETL groups` 사이에 로컬 입력 사전검사를 연결했다.
+`python -m etl.pivot_input_preflight --manifest etl/recurring_inputs_manifest.json`은
+복원된 원본 경로의 29개 입력을 검사한다. ZIP 내부 검증은 기존 복원기가 담당하고,
+이 단계는 복사된 뒤 빌더가 실제 읽을 파일을 확인한다. 종료 코드가 0이 아니면
+GitHub Actions의 기본 실패 처리로 수집·적재 단계를 시작하지 않는다.
+`etl/runtime/recurring_input_preflight.json`은 기존 `always()` 보고서 업로드에 포함된다.
+로컬 관측 기준이나 학원 캐시를 요구하는 `--all`은 자동 실행에 연결하지 않았다.
+직접 `run_due_etl.py`를 실행하는 로컬 경로는 변경하지 않았다.
+
 `.github/workflows/etl-recurring.yml` at the repository root runs the same `run_due_etl.py`
 on a GitHub runner, **once a month** (18:15 UTC on the 1st = 03:15 KST on the 2nd; the owner
 decided on 2026-10-04 that monthly is enough). `etl_schedules` still decides what is due:

@@ -65,6 +65,12 @@ jobs:
           --manifest etl/recurring_inputs_manifest.json
           --restore-dir etl/runtime/recurring-inputs
           --materialize
+      - name: Check materialized reviewed inputs
+        # Verify the files builders will read, after archive verification/copy.
+        # Use only the recurring contract; local legacy/academy inputs are separate.
+        run: |
+          mkdir -p etl/runtime
+          python -m etl.pivot_input_preflight --manifest etl/recurring_inputs_manifest.json > etl/runtime/recurring_input_preflight.json
       - name: Run due ETL groups
         env:
           MODE: ${{ github.event_name == 'schedule' && 'apply' || inputs.mode }}
