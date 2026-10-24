@@ -330,6 +330,22 @@ const schoolPage = async (key) => {
       school.reference_date ? `${school.reference_date} 기준 공식 통학구역 자료.` : null,
     ].filter(Boolean).join(', ').replace(/, ([^,]*기준)/, '. $1'),
     heading: `${school.school_name} 배정 아파트`,
+    // What the page is about, for engines that read schema.org: the school itself.
+    entity: {
+      '@type': 'ElementarySchool',
+      name: school.school_name,
+      ...(school.road_address || school.legal_address ? {
+        address: {
+          '@type': 'PostalAddress',
+          streetAddress: school.road_address || school.legal_address,
+          addressRegion: school.region,
+          addressCountry: 'KR',
+        },
+      } : {}),
+      ...(number(school.latitude) != null && number(school.longitude) != null
+        ? { geo: { '@type': 'GeoCoordinates', latitude: number(school.latitude), longitude: number(school.longitude) } }
+        : {}),
+    },
     facts: [
       ['지역', place],
       ['설립 유형', school.establishment_type],
@@ -903,6 +919,11 @@ const breadcrumbJson = (trail, canonical) => {
   return `<script type="application/ld+json">${json.replace(/</g, '\\u003c')}</script>`
 }
 
+/** A page's own schema.org entity, with its canonical as url. Same escaping as the trail. */
+const entityJson = (entity, canonical) => (entity
+  ? `<script type="application/ld+json">${JSON.stringify({ '@context': 'https://schema.org', ...entity, url: canonical }).replace(/</g, '\\u003c')}</script>`
+  : null)
+
 const inject = (shell, page) => {
   const canonical = ORIGIN + encodeURI(page.canonical)
   const head = [
@@ -915,6 +936,7 @@ const inject = (shell, page) => {
     // og:type, og:site_name and og:locale stay as the shell set them: they are
     // the same on every page, so repeating them here would only duplicate.
     breadcrumbJson(page.trail, canonical),
+    entityJson(page.entity, canonical),
   ].filter(Boolean).join('\n    ')
 
   return shell
