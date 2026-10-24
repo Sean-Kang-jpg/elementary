@@ -274,7 +274,8 @@ function MapApplication() {
       // 없는(또는 발행되지 않은) 콘텐츠 주소는 목록을 보여주고 주소도 목록으로 고친다.
       // 옛 별칭(/plans 등)으로 들어와도 목록 주소로 고친다.
       if (!learnItem && window.location.pathname !== VIEW_PATHS.learn) window.history.replaceState({}, '', VIEW_PATHS.learn)
-      setCanonical(learnItem?.status === 'published' ? learnPath(learnItem.slug) : null)
+      // 목록은 정적 페이지(/learn)가 있어 색인 대상이다. 검수 중인 글만 canonical이 없다.
+      setCanonical(learnItem ? (learnItem.status === 'published' ? learnPath(learnItem.slug) : null) : VIEW_PATHS.learn)
     }
     else if (view === 'guide') {
       // 없는 가이드 주소는 목록을 보여주고 주소도 목록으로 고친다.

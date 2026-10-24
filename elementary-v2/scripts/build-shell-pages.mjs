@@ -321,6 +321,33 @@ for (const item of content.learning ?? []) {
   }))
 }
 
+// The learning menu's first screen. The home and every learning item link here,
+// and it used to be the bare shell - no title of its own, no body. Same markup as
+// src/components/navigation/LearnPage.tsx, text only.
+const learnCard = (href, title, body) => `<a href="${escapeHtml(href)}" class="content-list__item content-list__item--card"><span class="min-w-0 flex-1"><strong>${escapeHtml(title)}</strong><small>${escapeHtml(body)}</small></span></a>`
+await writePage('/learn', contentPage({
+  pagePath: '/learn',
+  title: '학습 준비 | 어디초',
+  description: '초1 하루가 어떻게 흘러가는지 보고, 집에서 준비할 것을 골라요. 한글·수학·영어 입학 전 준비.',
+  body: '<section class="app-destination app-page content-page" aria-labelledby="learn-title"><div class="content-page__inner">'
+    + '<h1 id="learn-title">학습 준비</h1><p class="content-page__lead">초1 하루가 어떻게 흘러가는지 보고, 집에서 준비할 것을 골라요.</p>'
+    + '<h2>우리 학교 초1 시간표</h2>'
+    + learnCard('/timetable', '우리 아이 시간표 미리 짜보기', '학교를 고르면 하교 시각 위에 맞춤형·방과후·돌봄·주변 학원을 직접 넣어 봐요.')
+    + learnCard('/map', '학교별 요일별 예상 하교 시각', '학교 찾기에서 학교를 고르면 상세에서 볼 수 있어요. 일부 학교부터 넓혀 가요.')
+    + learnCard('/guide/first-weeks', '입학식과 입학 첫 주', '3월 첫 1~2주는 평소보다 일찍 끝나는 학교가 많아요.')
+    + '<h2>학습 가이드</h2>'
+    + learningTaxonomy.categories.filter((category) => category.menu === 'learn').map((category) => {
+      const items = (content.learning ?? []).filter((item) => item.status === 'published' && item.category === category.id)
+      return `<section class="content-list" aria-label="${escapeHtml(category.label)}"><h3 class="content-list__title">${escapeHtml(category.label)}</h3>`
+        + (items.length
+          ? items.map((item) => learnCard(`/learn/${item.slug}`, item.title,
+            category.subcategories.find((entry) => entry.id === item.subcategory)?.label ?? item.subcategory)).join('')
+          : `<div class="content-list__item content-list__item--card"><span class="min-w-0 flex-1"><strong>${escapeHtml(category.label)}</strong><small>${escapeHtml(category.note ?? '')} · 준비 중</small></span></div>`)
+        + '</section>'
+    }).join('')
+    + '</div></section>',
+}))
+
 await writePage('/faq', contentPage({
   pagePath: '/faq',
   title: `${structure.faqPage.title} | 어디초`,
