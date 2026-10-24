@@ -1,0 +1,15 @@
+{
+  "schema_version": "pivot-p1-stage2-blind-sample-plan-v1",
+  "selected_on": "2026-10-24",
+  "selection_method": "random.Random(20261024).sample(sorted(33 delegated school IDs),5); selected before viewing agent outputs",
+  "school_ids": [
+    "B000003755",
+    "B000003746",
+    "B000003765",
+    "B000003742",
+    "B000003756"
+  ],
+  "reviewer_requirement": "A fresh reviewer must freeze source-only expectations before opening extraction outputs; never review their own extraction",
+  "completed": false,
+  "publish_status": "not_approved"
+}

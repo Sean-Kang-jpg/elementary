@@ -770,7 +770,7 @@
     }
   ],
   "execution_plan": {
-    "delegation_status": "awaiting_explicit_user_authorization; no agents started",
+    "delegation_status": "authorized_by_user_2026-10-24; interrupted by account usage limit; completed school sidecars preserved",
     "primary_school_id": "B000003750",
     "proposed_parts": [
       {
@@ -825,6 +825,34 @@
         ]
       }
     ],
-    "isolation": "Each part writes only its assigned school raw files and its own review sidecar. Primary alone merges audits and commits. No DB/network writes or production output replacement."
+    "isolation": "Each part writes only its assigned school raw files and its own review sidecar. Primary alone merges audits and commits. No DB/network writes or production output replacement.",
+    "active_agents": {
+      "a": "/root/extract_part_a",
+      "b": "/root/extract_part_b",
+      "c": "/root/extract_part_c"
+    },
+    "completed_delegated_school_ids": [
+      "B000003744",
+      "B000003747",
+      "B000003748",
+      "B000003749",
+      "B000003752",
+      "B000003755",
+      "B000003756",
+      "B000003757",
+      "B000003760",
+      "B000003762",
+      "B000003763",
+      "B000003765",
+      "B000003767",
+      "B000003768",
+      "B000003769",
+      "B000003770",
+      "B000003771",
+      "B000003772",
+      "B000023087",
+      "B000023089",
+      "B000026906"
+    ]
   }
 }

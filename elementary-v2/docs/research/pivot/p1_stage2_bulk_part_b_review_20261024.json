@@ -1,0 +1,4482 @@
+{
+  "schema_version": "pivot-p1-stage2-manual-source-review-v1",
+  "reviewed_on": "2026-10-24",
+  "method": "same assistant reads full numbered source; no independent blind review claim",
+  "schools": [
+    {
+      "school_id": "B000023089",
+      "school_name": "위례숲초등학교",
+      "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_stage2_20261023/B000023089.txt",
+      "input_sha256": "290d05b2df7584595049b1a5eb6456e11c3ff854c1e0b846604f0d017b813a83",
+      "source_files": [
+        {
+          "file": "etl/runtime/audit2-documents/9665ff54c924201803f5403fca1228dda3ae91fb23077490edcbeaf3e8ca531a.hwp",
+          "sha256": "9665ff54c924201803f5403fca1228dda3ae91fb23077490edcbeaf3e8ca531a"
+        }
+      ],
+      "output_file": "docs/research/pivot/p1_stage2_bulk_20261024/batch_bulk_B000023089.json",
+      "output_sha256": "7cb7d318187f131fc769086cabdc2090d6fd999a3b1205ff9d5686eb9a3cbc2c",
+      "source_read_lines": [
+        1,
+        428
+      ],
+      "inventory": {
+        "raw_total": 59,
+        "paid": 59,
+        "custom_regular_grade1": 0,
+        "custom_regular_grade2": 0,
+        "custom_regular_mixed": 0,
+        "custom_morning": 0,
+        "care_regular": 0,
+        "care_vacation": 0
+      },
+      "source_inventory_complete": true,
+      "grade1_custom_inventory_complete": false,
+      "participation_review_complete": true,
+      "participation_groups": [
+        {
+          "group_id": "B000023089-1",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            1,
+            2
+          ],
+          "evidence": {
+            "input_lines": [
+              75,
+              76
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000023089-2",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            3,
+            5
+          ],
+          "evidence": {
+            "input_lines": [
+              77,
+              79
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000023089-3",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            7,
+            8
+          ],
+          "evidence": {
+            "input_lines": [
+              81,
+              82
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000023089-4",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            9
+          ],
+          "evidence": {
+            "input_lines": [
+              83
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000023089-5",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            11
+          ],
+          "evidence": {
+            "input_lines": [
+              85
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000023089-6",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            14,
+            15
+          ],
+          "evidence": {
+            "input_lines": [
+              88,
+              89
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000023089-7",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            16,
+            18
+          ],
+          "evidence": {
+            "input_lines": [
+              90,
+              92
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000023089-8",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            20
+          ],
+          "evidence": {
+            "input_lines": [
+              94
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000023089-9",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            22
+          ],
+          "evidence": {
+            "input_lines": [
+              96
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000023089-10",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            24
+          ],
+          "evidence": {
+            "input_lines": [
+              98
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000023089-11",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            26,
+            27
+          ],
+          "evidence": {
+            "input_lines": [
+              100,
+              101
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000023089-12",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            28,
+            29
+          ],
+          "evidence": {
+            "input_lines": [
+              102,
+              103
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000023089-13",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            30,
+            31
+          ],
+          "evidence": {
+            "input_lines": [
+              104,
+              105
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000023089-14",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            32
+          ],
+          "evidence": {
+            "input_lines": [
+              106
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000023089-15",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            34,
+            50
+          ],
+          "evidence": {
+            "input_lines": [
+              108,
+              124
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000023089-16",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            36,
+            37
+          ],
+          "evidence": {
+            "input_lines": [
+              110,
+              111
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000023089-17",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            38
+          ],
+          "evidence": {
+            "input_lines": [
+              112
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000023089-18",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            40
+          ],
+          "evidence": {
+            "input_lines": [
+              114
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000023089-19",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            42
+          ],
+          "evidence": {
+            "input_lines": [
+              116
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000023089-20",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            44
+          ],
+          "evidence": {
+            "input_lines": [
+              118
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000023089-21",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            46,
+            47
+          ],
+          "evidence": {
+            "input_lines": [
+              120,
+              121
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000023089-22",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            48,
+            49
+          ],
+          "evidence": {
+            "input_lines": [
+              122,
+              123
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000023089-23",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            53
+          ],
+          "evidence": {
+            "input_lines": [
+              127
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000023089-24",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            55
+          ],
+          "evidence": {
+            "input_lines": [
+              129
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000023089-25",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            56
+          ],
+          "evidence": {
+            "input_lines": [
+              130
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000023089-26",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            57
+          ],
+          "evidence": {
+            "input_lines": [
+              131
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000023089-27",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            58
+          ],
+          "evidence": {
+            "input_lines": [
+              132
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000023089-28",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            59
+          ],
+          "evidence": {
+            "input_lines": [
+              133
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        }
+      ],
+      "row_decisions": [
+        {
+          "row": 1,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 2,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 3,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 4,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 5,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 6,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 7,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 8,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 9,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 10,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 11,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 12,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 13,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 14,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 15,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 16,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 17,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 18,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 19,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 20,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 21,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 22,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 23,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 24,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 25,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 26,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 27,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 28,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 29,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 30,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 31,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 32,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 33,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 34,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 35,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 36,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 37,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 38,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 39,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 40,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 41,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 42,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 43,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 44,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 45,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 46,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 47,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 48,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 49,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 50,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 51,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 52,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 53,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 54,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 55,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 56,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 57,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 58,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 59,
+          "verdict": "source_faithful"
+        }
+      ],
+      "field_conflicts": [],
+      "excluded_closed_rows": [],
+      "conditional_rows": [],
+      "blocking_issues": [
+        "컴퓨터 반복행·병합 요일에 대한 원본 표 구조 추가 확인 필요",
+        "독립 초1맞춤형 및 돌봄 운영계획 미확보",
+        "독립 표본검증 미실행"
+      ],
+      "advisory_issues": [
+        "상세표59행과 개요19부서59반 대조; 컴퓨터 반복행 미병합",
+        "방학 공통 운영구간09~14시는 개별 반 시각으로 사용하지 않음"
+      ],
+      "eligibility_notes": [
+        "L134 방송댄스(월)·배드민턴(금)은 3학년 지원자 우선선정",
+        "L148 신청7명 미만 폐강 가능; 실제 폐강 확정 아님"
+      ],
+      "publish_ready": false,
+      "no_operational_upload": true
+    },
+    {
+      "school_id": "B000003749",
+      "school_name": "청솔초등학교",
+      "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_stage2_20261023/B000003749.txt",
+      "input_sha256": "d803e06be6477fc56b2e886bc51b028e6359b23fccbe152a6241914cece74c7b",
+      "source_files": [
+        {
+          "file": "etl/runtime/audit2-documents/aff6d192b7d353aac6483bf20c0e18c09b9b847264bd61979ed5663b208c590e.hwp",
+          "sha256": "aff6d192b7d353aac6483bf20c0e18c09b9b847264bd61979ed5663b208c590e"
+        }
+      ],
+      "output_file": "docs/research/pivot/p1_stage2_bulk_20261024/batch_bulk_B000003749.json",
+      "output_sha256": "1ae1b4e68b763fd3b2acfff619d214c32dcfb40b53b6340a64c924727b40a8be",
+      "source_read_lines": [
+        1,
+        443
+      ],
+      "inventory": {
+        "raw_total": 44,
+        "paid": 34,
+        "custom_regular_grade1": 5,
+        "custom_regular_grade2": 5,
+        "custom_regular_mixed": 0,
+        "custom_morning": 0,
+        "care_regular": 0,
+        "care_vacation": 0
+      },
+      "source_inventory_complete": true,
+      "grade1_custom_inventory_complete": true,
+      "participation_review_complete": true,
+      "participation_groups": [
+        {
+          "group_id": "B000003749-1",
+          "mode": "class_day_bundle",
+          "individually_selectable": false,
+          "rows": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "evidence": {
+            "input_lines": [
+              69
+            ],
+            "basis": "맞춤형 반·요일 편성 활동; 개별 강좌 신청으로 해석하지 않음"
+          }
+        },
+        {
+          "group_id": "B000003749-2",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            11,
+            12
+          ],
+          "evidence": {
+            "input_lines": [
+              132,
+              133
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000003749-3",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            13,
+            14
+          ],
+          "evidence": {
+            "input_lines": [
+              134,
+              135
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000003749-4",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            15
+          ],
+          "evidence": {
+            "input_lines": [
+              136
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000003749-5",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            17
+          ],
+          "evidence": {
+            "input_lines": [
+              138
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000003749-6",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            19,
+            20
+          ],
+          "evidence": {
+            "input_lines": [
+              140,
+              141
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000003749-7",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            21
+          ],
+          "evidence": {
+            "input_lines": [
+              142
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000003749-8",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            23
+          ],
+          "evidence": {
+            "input_lines": [
+              144
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000003749-9",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            25,
+            26
+          ],
+          "evidence": {
+            "input_lines": [
+              146,
+              147
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000003749-10",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            27,
+            28
+          ],
+          "evidence": {
+            "input_lines": [
+              148,
+              149
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000003749-11",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            29,
+            30
+          ],
+          "evidence": {
+            "input_lines": [
+              150,
+              151
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000003749-12",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            31,
+            32
+          ],
+          "evidence": {
+            "input_lines": [
+              152,
+              153
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000003749-13",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            33,
+            34
+          ],
+          "evidence": {
+            "input_lines": [
+              154,
+              155
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000003749-14",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            35,
+            36
+          ],
+          "evidence": {
+            "input_lines": [
+              156,
+              157
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000003749-15",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            37,
+            38
+          ],
+          "evidence": {
+            "input_lines": [
+              158,
+              159
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000003749-16",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            39,
+            40
+          ],
+          "evidence": {
+            "input_lines": [
+              160,
+              161
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000003749-17",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            41,
+            42
+          ],
+          "evidence": {
+            "input_lines": [
+              162,
+              163
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000003749-18",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            43
+          ],
+          "evidence": {
+            "input_lines": [
+              164
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        }
+      ],
+      "row_decisions": [
+        {
+          "row": 1,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 2,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 3,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 4,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 5,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 6,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 7,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 8,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 9,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 10,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 11,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 12,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 13,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 14,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 15,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 16,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 17,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 18,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 19,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 20,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 21,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 22,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 23,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 24,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 25,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 26,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 27,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 28,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 29,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 30,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 31,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 32,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 33,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 34,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 35,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 36,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 37,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 38,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 39,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 40,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 41,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 42,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 43,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 44,
+          "verdict": "source_faithful"
+        }
+      ],
+      "field_conflicts": [
+        {
+          "field": "start/end",
+          "rows": [
+            10
+          ],
+          "alternatives": [
+            {
+              "start": "12:40",
+              "end": "14:20",
+              "line": 73
+            },
+            {
+              "start": "13:40",
+              "end": "15:20",
+              "line": 77
+            }
+          ],
+          "resolution": "unresolved; raw clocks null"
+        }
+      ],
+      "excluded_closed_rows": [],
+      "conditional_rows": [],
+      "blocking_issues": [
+        "초2 금요일 맞춤형 시각 충돌",
+        "학교돌봄터 개별 프로그램 및 이용시간 미공시",
+        "독립 표본검증 미실행"
+      ],
+      "advisory_issues": [
+        "L79~86 학년 수업요일이 다를 때 강사 일일3차시 조건 편성; 초1·2 반별표와 중복 활동",
+        "L23~30의2025비교체계는2026운영행으로 추출하지 않음"
+      ],
+      "eligibility_notes": [
+        "L39 청솔돌봄터 입급학생 맞춤형 제외",
+        "L42 초1 우선, 초2 잔여인원 선발",
+        "L47 2학기는 추가신청만; L49·57 매일2차시 참여 우선",
+        "L58 차시종료 퇴실가능, 수업중간 퇴실불가; 방과후 참여는 가능"
+      ],
+      "publish_ready": false,
+      "no_operational_upload": true
+    },
+    {
+      "school_id": "B000003744",
+      "school_name": "판교초등학교",
+      "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_stage2_20261023/B000003744.txt",
+      "input_sha256": "f07cf79ea6cd5d41e5327bf871517e971a1b17e5d43cc901753ad493be6397e9",
+      "source_files": [
+        {
+          "file": "etl/runtime/audit2-documents/35a0afc8ae1ad89b49fef2c98536587d39dc9318c43c395def31e8c2b7881c09.hwp",
+          "sha256": "35a0afc8ae1ad89b49fef2c98536587d39dc9318c43c395def31e8c2b7881c09"
+        }
+      ],
+      "output_file": "docs/research/pivot/p1_stage2_bulk_20261024/batch_bulk_B000003744.json",
+      "output_sha256": "de8f213cfd83b4b73cc9c1a7a3967b7c55ccaf9ff95f690f7408229de39e2a68",
+      "source_read_lines": [
+        1,
+        439
+      ],
+      "inventory": {
+        "raw_total": 37,
+        "paid": 37,
+        "custom_regular_grade1": 0,
+        "custom_regular_grade2": 0,
+        "custom_regular_mixed": 0,
+        "custom_morning": 0,
+        "care_regular": 0,
+        "care_vacation": 0
+      },
+      "source_inventory_complete": true,
+      "grade1_custom_inventory_complete": false,
+      "participation_review_complete": true,
+      "participation_groups": [
+        {
+          "group_id": "B000003744-1",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            1,
+            2
+          ],
+          "evidence": {
+            "input_lines": [
+              96,
+              97
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000003744-2",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            3
+          ],
+          "evidence": {
+            "input_lines": [
+              98
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000003744-3",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            5
+          ],
+          "evidence": {
+            "input_lines": [
+              100
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000003744-4",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            7,
+            8
+          ],
+          "evidence": {
+            "input_lines": [
+              102,
+              103
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000003744-5",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            9
+          ],
+          "evidence": {
+            "input_lines": [
+              104
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000003744-6",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            13,
+            14,
+            15,
+            16
+          ],
+          "evidence": {
+            "input_lines": [
+              108,
+              109,
+              110,
+              111
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000003744-7",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            17,
+            18
+          ],
+          "evidence": {
+            "input_lines": [
+              112,
+              113
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000003744-8",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            19,
+            20
+          ],
+          "evidence": {
+            "input_lines": [
+              114,
+              115
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000003744-9",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            21,
+            22
+          ],
+          "evidence": {
+            "input_lines": [
+              116,
+              117
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000003744-10",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            23,
+            24
+          ],
+          "evidence": {
+            "input_lines": [
+              118,
+              119
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000003744-11",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            29,
+            30
+          ],
+          "evidence": {
+            "input_lines": [
+              124,
+              125
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000003744-12",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            31,
+            32
+          ],
+          "evidence": {
+            "input_lines": [
+              126,
+              127
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000003744-13",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            33,
+            34
+          ],
+          "evidence": {
+            "input_lines": [
+              128,
+              129
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000003744-14",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            37
+          ],
+          "evidence": {
+            "input_lines": [
+              174
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        }
+      ],
+      "row_decisions": [
+        {
+          "row": 1,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 2,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 3,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 4,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 5,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 6,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 7,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 8,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 9,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 10,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 11,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 12,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 13,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 14,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 15,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 16,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 17,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 18,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 19,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 20,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 21,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 22,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 23,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 24,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 25,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 26,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 27,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 28,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 29,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 30,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 31,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 32,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 33,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 34,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 35,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 36,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 37,
+          "verdict": "source_faithful"
+        }
+      ],
+      "field_conflicts": [],
+      "excluded_closed_rows": [],
+      "conditional_rows": [
+        {
+          "rows": [
+            37
+          ],
+          "condition": "강사 재계약 목록에만 존재; 상세17부서 운영계획과 불일치하여 실제 개설 미확정",
+          "evidence_lines": [
+            93,
+            174
+          ],
+          "confirmed_operating": false
+        }
+      ],
+      "blocking_issues": [
+        "제과제빵은 상세 운영표에 없고 재계약표에만 있어 개설·반·시각 추가 확인 필요",
+        "독립 초1맞춤형 및 돌봄 운영계획 미확보",
+        "독립 표본검증 미실행"
+      ],
+      "advisory_issues": [
+        "방학 오전 변경 운영만 공시되어 반별 시각 미공시",
+        "기수별운영구간은 반별시각이 아님",
+        "소프트웨어코딩 교재표의 다양한 과정은 개인선택·분반 여부 미공시"
+      ],
+      "eligibility_notes": [
+        "L86 기수 중간 신규신청 불가",
+        "L87 전입생 다음분기 신청",
+        "L138~141 1·3기 새로 선착순,2·4기 기존수강 우선"
+      ],
+      "publish_ready": false,
+      "no_operational_upload": true
+    },
+    {
+      "school_id": "B000003762",
+      "school_name": "야탑초등학교",
+      "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_stage2_20261023/B000003762.txt",
+      "input_sha256": "77a26b6cd09ce0bd08f6a3a2696934ccbe5eed992e49ee5b8cf223b9efb90746",
+      "source_files": [
+        {
+          "file": "etl/runtime/audit2-documents/9f40821dfa1b618b56c04ddb0f7db253d209f55cda8d704357cc8db221d5bb39.hwpx",
+          "sha256": "9f40821dfa1b618b56c04ddb0f7db253d209f55cda8d704357cc8db221d5bb39"
+        }
+      ],
+      "output_file": "docs/research/pivot/p1_stage2_bulk_20261024/batch_bulk_B000003762.json",
+      "output_sha256": "2274305062cca07444cf1af6d31b46c9417570b912ad364b87ad708d9ada2832",
+      "source_read_lines": [
+        1,
+        547
+      ],
+      "inventory": {
+        "raw_total": 81,
+        "paid": 49,
+        "custom_regular_grade1": 10,
+        "custom_regular_grade2": 10,
+        "custom_regular_mixed": 10,
+        "custom_morning": 2,
+        "care_regular": 0,
+        "care_vacation": 0
+      },
+      "source_inventory_complete": true,
+      "grade1_custom_inventory_complete": true,
+      "participation_review_complete": true,
+      "participation_groups": [
+        {
+          "group_id": "B000003762-1",
+          "mode": "class_day_bundle",
+          "individually_selectable": false,
+          "rows": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "evidence": {
+            "input_lines": [
+              76,
+              78,
+              80
+            ],
+            "basis": "맞춤형 반·요일 편성 활동; 개별 강좌 신청으로 해석하지 않음"
+          }
+        },
+        {
+          "group_id": "B000003762-2",
+          "mode": "class_day_bundle",
+          "individually_selectable": false,
+          "rows": [
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30
+          ],
+          "evidence": {
+            "input_lines": [
+              90,
+              92,
+              94
+            ],
+            "basis": "맞춤형 반·요일 편성 활동; 개별 강좌 신청으로 해석하지 않음"
+          }
+        },
+        {
+          "group_id": "B000003762-3",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            31,
+            32
+          ],
+          "evidence": {
+            "input_lines": [
+              99
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000003762-4",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            33,
+            34
+          ],
+          "evidence": {
+            "input_lines": [
+              100
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000003762-5",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            35,
+            36
+          ],
+          "evidence": {
+            "input_lines": [
+              101
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000003762-6",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            37
+          ],
+          "evidence": {
+            "input_lines": [
+              102
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000003762-7",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            39,
+            40
+          ],
+          "evidence": {
+            "input_lines": [
+              105
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000003762-8",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            41,
+            42
+          ],
+          "evidence": {
+            "input_lines": [
+              106
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000003762-9",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            43
+          ],
+          "evidence": {
+            "input_lines": [
+              107
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000003762-10",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            45
+          ],
+          "evidence": {
+            "input_lines": [
+              110
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000003762-11",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            47,
+            48
+          ],
+          "evidence": {
+            "input_lines": [
+              112
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000003762-12",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            49
+          ],
+          "evidence": {
+            "input_lines": [
+              113
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000003762-13",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            51,
+            52
+          ],
+          "evidence": {
+            "input_lines": [
+              114
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000003762-14",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            55,
+            56
+          ],
+          "evidence": {
+            "input_lines": [
+              117
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000003762-15",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            57,
+            58
+          ],
+          "evidence": {
+            "input_lines": [
+              118
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000003762-16",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            59
+          ],
+          "evidence": {
+            "input_lines": [
+              119
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000003762-17",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            61
+          ],
+          "evidence": {
+            "input_lines": [
+              121
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000003762-18",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            63,
+            64
+          ],
+          "evidence": {
+            "input_lines": [
+              123
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000003762-19",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            65,
+            66
+          ],
+          "evidence": {
+            "input_lines": [
+              124
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000003762-20",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            67,
+            68
+          ],
+          "evidence": {
+            "input_lines": [
+              125
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000003762-21",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            69,
+            70
+          ],
+          "evidence": {
+            "input_lines": [
+              126
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000003762-22",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            71
+          ],
+          "evidence": {
+            "input_lines": [
+              104
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000003762-23",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            72
+          ],
+          "evidence": {
+            "input_lines": [
+              111
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000003762-24",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            73
+          ],
+          "evidence": {
+            "input_lines": [
+              122
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000003762-25",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            74
+          ],
+          "evidence": {
+            "input_lines": [
+              127
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000003762-26",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            75
+          ],
+          "evidence": {
+            "input_lines": [
+              108
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000003762-27",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            76
+          ],
+          "evidence": {
+            "input_lines": [
+              108
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000003762-28",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            81
+          ],
+          "evidence": {
+            "input_lines": [
+              478
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        }
+      ],
+      "row_decisions": [
+        {
+          "row": 1,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 2,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 3,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 4,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 5,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 6,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 7,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 8,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 9,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 10,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 11,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 12,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 13,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 14,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 15,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 16,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 17,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 18,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 19,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 20,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 21,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 22,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 23,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 24,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 25,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 26,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 27,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 28,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 29,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 30,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 31,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 32,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 33,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 34,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 35,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 36,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 37,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 38,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 39,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 40,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 41,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 42,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 43,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 44,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 45,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 46,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 47,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 48,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 49,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 50,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 51,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 52,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 53,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 54,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 55,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 56,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 57,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 58,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 59,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 60,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 61,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 62,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 63,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 64,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 65,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 66,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 67,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 68,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 69,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 70,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 71,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 72,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 73,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 74,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 75,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 76,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 77,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 78,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 79,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 80,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 81,
+          "verdict": "source_faithful"
+        }
+      ],
+      "field_conflicts": [],
+      "excluded_closed_rows": [],
+      "conditional_rows": [
+        {
+          "rows": [
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30
+          ],
+          "condition": "L73 1·2학년 신청인원이1학급인원을넘는경우통합반개설",
+          "evidence_lines": [
+            73
+          ],
+          "confirmed_operating": false
+        },
+        {
+          "rows": [
+            79,
+            80
+          ],
+          "condition": "수요조사 후 최소6명 이상 수요시 아침프로그램운영",
+          "evidence_lines": [
+            147,
+            155
+          ],
+          "confirmed_operating": false
+        },
+        {
+          "rows": [
+            81
+          ],
+          "condition": "금요일생명과학은비용산출표에만있고상세시간표에없음",
+          "evidence_lines": [
+            106,
+            478
+          ],
+          "confirmed_operating": false
+        }
+      ],
+      "blocking_issues": [
+        "맞춤형통합반실제개설미확정",
+        "아침프로그램수요충족·요일미확정",
+        "금요일생명과학상세시간표미공시",
+        "별도돌봄교실운영계획미확보",
+        "독립표본검증미실행"
+      ],
+      "advisory_issues": [
+        "플롯은상세표원문명;비용표에는플룻표기",
+        "상세수익자표의비용이1분기기준이며기별로동일표복제하지않음"
+      ],
+      "eligibility_notes": [
+        "L64 1일2차시기준,불가피하면1차시가능",
+        "L65 쉬는시간만하교가능",
+        "L69 맞춤형과선택형돌봄중복신청불가",
+        "L73 통합반조건부",
+        "L149~155 아침학기중08:00~08:40,최소6명수요시운영"
+      ],
+      "publish_ready": false,
+      "no_operational_upload": true
+    },
+    {
+      "school_id": "B000003763",
+      "school_name": "이매초등학교",
+      "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_stage2_20261023/B000003763.txt",
+      "input_sha256": "734629c73d231239530b1c9239bc329aade0de4d593a45faa6575e2689408d1d",
+      "source_files": [
+        {
+          "file": "etl/runtime/audit2-documents/7117b817811deecf855c961e971753bbad5da08c6798c8d9ea295b080b773cf0.hwp",
+          "sha256": "7117b817811deecf855c961e971753bbad5da08c6798c8d9ea295b080b773cf0"
+        }
+      ],
+      "output_file": "docs/research/pivot/p1_stage2_bulk_20261024/batch_bulk_B000003763.json",
+      "output_sha256": "1280ee3384ff2cec61990619d2b6ae9ce71ee981212be49dd1349c8bec015634",
+      "source_read_lines": [
+        1,
+        509
+      ],
+      "inventory": {
+        "raw_total": 98,
+        "paid": 88,
+        "custom_regular_grade1": 0,
+        "custom_regular_grade2": 0,
+        "custom_regular_mixed": 5,
+        "custom_morning": 0,
+        "care_regular": 0,
+        "care_vacation": 0
+      },
+      "source_inventory_complete": true,
+      "grade1_custom_inventory_complete": true,
+      "participation_review_complete": true,
+      "participation_groups": [
+        {
+          "group_id": "B000003763-1",
+          "mode": "class_day_bundle",
+          "individually_selectable": false,
+          "rows": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "evidence": {
+            "input_lines": [
+              439
+            ],
+            "basis": "맞춤형 반·요일 편성 활동; 개별 강좌 신청으로 해석하지 않음"
+          }
+        },
+        {
+          "group_id": "B000003763-2",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            11
+          ],
+          "evidence": {
+            "input_lines": [
+              167
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000003763-3",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            13,
+            14
+          ],
+          "evidence": {
+            "input_lines": [
+              169,
+              170
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000003763-4",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            15,
+            16
+          ],
+          "evidence": {
+            "input_lines": [
+              171,
+              172
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000003763-5",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            17
+          ],
+          "evidence": {
+            "input_lines": [
+              173
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000003763-6",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            19,
+            20
+          ],
+          "evidence": {
+            "input_lines": [
+              175,
+              176
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000003763-7",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            21
+          ],
+          "evidence": {
+            "input_lines": [
+              177
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000003763-8",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            23
+          ],
+          "evidence": {
+            "input_lines": [
+              179
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000003763-9",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            25,
+            26
+          ],
+          "evidence": {
+            "input_lines": [
+              181,
+              182
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000003763-10",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            27
+          ],
+          "evidence": {
+            "input_lines": [
+              183
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000003763-11",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            29,
+            30
+          ],
+          "evidence": {
+            "input_lines": [
+              185,
+              186
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000003763-12",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            31,
+            32
+          ],
+          "evidence": {
+            "input_lines": [
+              187,
+              188
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000003763-13",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            33,
+            34
+          ],
+          "evidence": {
+            "input_lines": [
+              189,
+              190
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000003763-14",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            35,
+            36
+          ],
+          "evidence": {
+            "input_lines": [
+              191,
+              192
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000003763-15",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            37,
+            38
+          ],
+          "evidence": {
+            "input_lines": [
+              193,
+              194
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000003763-16",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            39
+          ],
+          "evidence": {
+            "input_lines": [
+              195
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000003763-17",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            41,
+            42
+          ],
+          "evidence": {
+            "input_lines": [
+              197,
+              198
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000003763-18",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            43,
+            44
+          ],
+          "evidence": {
+            "input_lines": [
+              199,
+              200
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000003763-19",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            45,
+            46
+          ],
+          "evidence": {
+            "input_lines": [
+              201,
+              202
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000003763-20",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            47,
+            48
+          ],
+          "evidence": {
+            "input_lines": [
+              203,
+              204
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000003763-21",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            50
+          ],
+          "evidence": {
+            "input_lines": [
+              206
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        }
+      ],
+      "row_decisions": [
+        {
+          "row": 1,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 2,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 3,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 4,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 5,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 6,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 7,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 8,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 9,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 10,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 11,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 12,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 13,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 14,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 15,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 16,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 17,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 18,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 19,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 20,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 21,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 22,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 23,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 24,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 25,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 26,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 27,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 28,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 29,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 30,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 31,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 32,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 33,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 34,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 35,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 36,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 37,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 38,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 39,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 40,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 41,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 42,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 43,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 44,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 45,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 46,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 47,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 48,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 49,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 50,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 51,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 52,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 53,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 54,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 55,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 56,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 57,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 58,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 59,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 60,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 61,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 62,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 63,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 64,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 65,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 66,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 67,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 68,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 69,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 70,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 71,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 72,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 73,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 74,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 75,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 76,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 77,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 78,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 79,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 80,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 81,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 82,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 83,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 84,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 85,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 86,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 87,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 88,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 89,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 90,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 91,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 92,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 93,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 94,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 95,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 96,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 97,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 98,
+          "verdict": "source_faithful"
+        }
+      ],
+      "field_conflicts": [
+        {
+          "field": "start/end",
+          "rows": [
+            16
+          ],
+          "alternatives": [
+            {
+              "start": "14:40",
+              "end": "16:00",
+              "line": 158
+            },
+            {
+              "start": "14:30",
+              "end": "15:50",
+              "line": 172
+            }
+          ],
+          "resolution": "unresolved; raw clocks null"
+        },
+        {
+          "field": "start/end",
+          "rows": [
+            22
+          ],
+          "alternatives": [
+            {
+              "start": "14:40",
+              "end": "16:00",
+              "line": 158
+            },
+            {
+              "start": "14:30",
+              "end": "15:50",
+              "line": 178
+            }
+          ],
+          "resolution": "unresolved; raw clocks null"
+        },
+        {
+          "field": "start/end",
+          "rows": [
+            32
+          ],
+          "alternatives": [
+            {
+              "start": "14:40",
+              "end": "16:00",
+              "line": 158
+            },
+            {
+              "start": "14:30",
+              "end": "15:50",
+              "line": 188
+            }
+          ],
+          "resolution": "unresolved; raw clocks null"
+        },
+        {
+          "field": "start/end",
+          "rows": [
+            40
+          ],
+          "alternatives": [
+            {
+              "start": "14:40",
+              "end": "16:00",
+              "line": 158
+            },
+            {
+              "start": "14:30",
+              "end": "15:50",
+              "line": 196
+            }
+          ],
+          "resolution": "unresolved; raw clocks null"
+        }
+      ],
+      "excluded_closed_rows": [],
+      "conditional_rows": [
+        {
+          "rows": [
+            27,
+            28,
+            71,
+            72
+          ],
+          "condition": "우천·미세먼지·폭염 등 상황에서 강당 수업 없이 휴강할 경우 개설 가능",
+          "evidence_lines": [
+            183,
+            184
+          ],
+          "confirmed_operating": false
+        }
+      ],
+      "blocking_issues": [
+        "수요일일반B반4개 개요·상세시각충돌",
+        "컴퓨터기초C 방학시각 미공시 및 컴퓨터방학A/B공통시간의세부확인필요",
+        "축구조건부개설미확정",
+        "돌봄교실활동표미확보",
+        "독립표본검증미실행"
+      ],
+      "advisory_issues": [
+        "22프로그램44반공시와상세44행대조",
+        "L436 수요조사예시를L439 확정요일별신청표와중복하지않음",
+        "방학시간표는별도표L159~162근거;기수별동일표복제아님"
+      ],
+      "eligibility_notes": [
+        "L86 희망조사후요일별신청2단계",
+        "L91 돌봄입급학생맞춤형참여불가",
+        "L93 같은강좌다른반중복신청전부취소",
+        "L439 맞춤형요일별신청가능,두차시모두수강,참여일수많은학생우선"
+      ],
+      "publish_ready": false,
+      "no_operational_upload": true,
+      "care_hours_review_complete": false,
+      "care_hours": {
+        "days": null,
+        "end": null,
+        "start_basis": null,
+        "evidence": {
+          "input_lines": [
+            34
+          ],
+          "basis": "나라·도란반17시,우리반19시종료만공시;요일·시작원문미확인"
+        }
+      }
+    },
+    {
+      "school_id": "B000003755",
+      "school_name": "백현초등학교",
+      "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_stage2_20261023/B000003755.txt",
+      "input_sha256": "f5773f4fb90b46e5d0fa06bbeb61167d51d6a0b5dd47d7c917e81abeaa174323",
+      "source_files": [
+        {
+          "file": "etl/runtime/audit2-documents/c841b05b0df3900dee9932549e8408954e5ea096bfd9f18bc5995232dcf9a23a.hwp",
+          "sha256": "c841b05b0df3900dee9932549e8408954e5ea096bfd9f18bc5995232dcf9a23a"
+        },
+        {
+          "file": "etl/runtime/audit2-documents/405118fb805552d50414874dde58844e5af4b561c71217d5659516935f6576ef.hwp",
+          "sha256": "405118fb805552d50414874dde58844e5af4b561c71217d5659516935f6576ef"
+        }
+      ],
+      "output_file": "docs/research/pivot/p1_stage2_bulk_20261024/batch_bulk_B000003755.json",
+      "output_sha256": "1eae6ecf214bbe99a3f8844b9c7b4ad2954db15975e978469ec6f4e0523784ed",
+      "source_read_lines": [
+        1,
+        674
+      ],
+      "inventory": {
+        "raw_total": 13,
+        "paid": 8,
+        "custom_regular_grade1": 0,
+        "custom_regular_grade2": 0,
+        "custom_regular_mixed": 5,
+        "custom_morning": 0,
+        "care_regular": 5,
+        "care_vacation": 0
+      },
+      "source_inventory_complete": true,
+      "grade1_custom_inventory_complete": false,
+      "participation_review_complete": true,
+      "participation_groups": [
+        {
+          "group_id": "B000003755-1",
+          "mode": "care_activity",
+          "individually_selectable": false,
+          "rows": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "evidence": {
+            "input_lines": [
+              64
+            ],
+            "basis": "돌봄 입급에 종속된 활동"
+          }
+        },
+        {
+          "group_id": "B000003755-2",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            6
+          ],
+          "evidence": {
+            "input_lines": [
+              448
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000003755-3",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            8
+          ],
+          "evidence": {
+            "input_lines": [
+              450
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000003755-4",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            10
+          ],
+          "evidence": {
+            "input_lines": [
+              454
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000003755-5",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            12
+          ],
+          "evidence": {
+            "input_lines": [
+              458
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        }
+      ],
+      "row_decisions": [
+        {
+          "row": 1,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 2,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 3,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 4,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 5,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 6,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 7,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 8,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 9,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 10,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 11,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 12,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 13,
+          "verdict": "source_faithful"
+        }
+      ],
+      "field_conflicts": [],
+      "excluded_closed_rows": [
+        {
+          "name": "축구",
+          "section": "A반",
+          "days": "화",
+          "status": "closed_in_source_plan",
+          "evidence_lines": [
+            452
+          ]
+        },
+        {
+          "name": "축구",
+          "section": "B반",
+          "days": "화",
+          "status": "closed_in_source_plan",
+          "evidence_lines": [
+            453
+          ]
+        },
+        {
+          "name": "음악줄넘기",
+          "section": "A반",
+          "days": "목",
+          "status": "closed_in_source_plan",
+          "evidence_lines": [
+            456
+          ]
+        },
+        {
+          "name": "음악줄넘기",
+          "section": "B반",
+          "days": "목",
+          "status": "closed_in_source_plan",
+          "evidence_lines": [
+            457
+          ]
+        }
+      ],
+      "conditional_rows": [],
+      "blocking_issues": [
+        "독립초1맞춤형프로그램계획미확보",
+        "돌봄특기적성개별수업시각미공시(전체활동창만)",
+        "독립표본검증미실행"
+      ],
+      "advisory_issues": [
+        "명시폐강4반은강사모집표·비용표에이름이남아있어도운영행으로복원하지않음",
+        "L4053분기16주와L41518주는기간주수불일치",
+        "2025강사모집표는본문연도혼재로현재시각근거로사용하지않음"
+      ],
+      "eligibility_notes": [
+        "돌봄1~2학년맞벌이·저소득·한부모등",
+        "수익자모집강좌는예정표이며L460강사모집어려우면미개설가능",
+        "L463수강인원적으면A/B합반가능"
+      ],
+      "publish_ready": false,
+      "no_operational_upload": true,
+      "care_hours_review_complete": true,
+      "care_hours": {
+        "days": "월화수목금",
+        "start_basis": "after_regular_classes",
+        "start": "12:30",
+        "end": "19:00",
+        "evidence": {
+          "input_lines": [
+            16,
+            36,
+            61
+          ],
+          "basis": "오후돌봄 학교정규수업이후12:30~19:00,요일별운영표월~금"
+        }
+      },
+      "care_activity_windows": [
+        {
+          "rows": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "start": "12:40",
+          "end": "15:20",
+          "evidence_lines": [
+            56,
+            63,
+            64
+          ],
+          "basis": "전체특기적성활동창;매일1시간실시하나개별시각미공시"
+        }
+      ]
+    },
+    {
+      "school_id": "B000023087",
+      "school_name": "위례초등학교",
+      "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_stage2_20261023/B000023087.txt",
+      "input_sha256": "a2762d97cc6198b7e1a926b84185b44e04ed54eb4669ba34a00dfee0db186c07",
+      "source_files": [
+        {
+          "file": "etl/runtime/audit2-documents/aa53a1aff0af001afb4c300819aa173161b5a2a2bac044ed866233e7d643f86a.hwp",
+          "sha256": "aa53a1aff0af001afb4c300819aa173161b5a2a2bac044ed866233e7d643f86a"
+        }
+      ],
+      "output_file": "docs/research/pivot/p1_stage2_bulk_20261024/batch_bulk_B000023087.json",
+      "output_sha256": "ab254d6ad6fbcdd74d990660ff7652e497979ddae1438020a2facb63f746cc15",
+      "source_read_lines": [
+        1,
+        475
+      ],
+      "inventory": {
+        "raw_total": 105,
+        "paid": 64,
+        "custom_regular_grade1": 10,
+        "custom_regular_grade2": 10,
+        "custom_regular_mixed": 0,
+        "custom_morning": 1,
+        "care_regular": 0,
+        "care_vacation": 0
+      },
+      "source_inventory_complete": true,
+      "grade1_custom_inventory_complete": true,
+      "participation_review_complete": true,
+      "participation_groups": [
+        {
+          "group_id": "B000023087-1",
+          "mode": "class_day_bundle",
+          "individually_selectable": false,
+          "rows": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "evidence": {
+            "input_lines": [
+              46
+            ],
+            "basis": "맞춤형 반·요일 편성 활동; 개별 강좌 신청으로 해석하지 않음"
+          }
+        },
+        {
+          "group_id": "B000023087-2",
+          "mode": "class_day_bundle",
+          "individually_selectable": false,
+          "rows": [
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "evidence": {
+            "input_lines": [
+              48
+            ],
+            "basis": "맞춤형 반·요일 편성 활동; 개별 강좌 신청으로 해석하지 않음"
+          }
+        },
+        {
+          "group_id": "B000023087-3",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            42,
+            43
+          ],
+          "evidence": {
+            "input_lines": [
+              155
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000023087-4",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            44
+          ],
+          "evidence": {
+            "input_lines": [
+              155
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000023087-5",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            46
+          ],
+          "evidence": {
+            "input_lines": [
+              155
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000023087-6",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            48
+          ],
+          "evidence": {
+            "input_lines": [
+              155
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000023087-7",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            50,
+            96
+          ],
+          "evidence": {
+            "input_lines": [
+              155,
+              144
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000023087-8",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            52,
+            78
+          ],
+          "evidence": {
+            "input_lines": [
+              156,
+              158
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000023087-9",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            54,
+            55
+          ],
+          "evidence": {
+            "input_lines": [
+              156
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000023087-10",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            58
+          ],
+          "evidence": {
+            "input_lines": [
+              156
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000023087-11",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            60,
+            61,
+            98,
+            99
+          ],
+          "evidence": {
+            "input_lines": [
+              156,
+              144
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000023087-12",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            62
+          ],
+          "evidence": {
+            "input_lines": [
+              157
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000023087-13",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            64,
+            65,
+            66,
+            67
+          ],
+          "evidence": {
+            "input_lines": [
+              157
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000023087-14",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            68,
+            69
+          ],
+          "evidence": {
+            "input_lines": [
+              157
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000023087-15",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            70,
+            100
+          ],
+          "evidence": {
+            "input_lines": [
+              157,
+              144
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000023087-16",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            72
+          ],
+          "evidence": {
+            "input_lines": [
+              158
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000023087-17",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            74
+          ],
+          "evidence": {
+            "input_lines": [
+              158
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000023087-18",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            76,
+            77
+          ],
+          "evidence": {
+            "input_lines": [
+              158
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000023087-19",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            82,
+            86,
+            87
+          ],
+          "evidence": {
+            "input_lines": [
+              159
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000023087-20",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            84
+          ],
+          "evidence": {
+            "input_lines": [
+              159
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000023087-21",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            88
+          ],
+          "evidence": {
+            "input_lines": [
+              159
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000023087-22",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            92,
+            93
+          ],
+          "evidence": {
+            "input_lines": [
+              160
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        }
+      ],
+      "row_decisions": [
+        {
+          "row": 1,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 2,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 3,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 4,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 5,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 6,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 7,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 8,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 9,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 10,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 11,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 12,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 13,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 14,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 15,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 16,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 17,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 18,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 19,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 20,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 21,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 22,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 23,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 24,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 25,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 26,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 27,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 28,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 29,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 30,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 31,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 32,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 33,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 34,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 35,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 36,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 37,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 38,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 39,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 40,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 41,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 42,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 43,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 44,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 45,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 46,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 47,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 48,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 49,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 50,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 51,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 52,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 53,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 54,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 55,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 56,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 57,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 58,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 59,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 60,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 61,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 62,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 63,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 64,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 65,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 66,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 67,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 68,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 69,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 70,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 71,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 72,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 73,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 74,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 75,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 76,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 77,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 78,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 79,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 80,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 81,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 82,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 83,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 84,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 85,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 86,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 87,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 88,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 89,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 90,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 91,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 92,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 93,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 94,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 95,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 96,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 97,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 98,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 99,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 100,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 101,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 102,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 103,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 104,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 105,
+          "verdict": "source_faithful"
+        }
+      ],
+      "field_conflicts": [],
+      "excluded_closed_rows": [],
+      "conditional_rows": [],
+      "blocking_issues": [
+        "맞춤형2반음악외구체활동명미공시",
+        "맞춤형조건부시각요일별교시수확인필요",
+        "금요일2학기변경표의반별종료·B시각미공시",
+        "아침개별학급·활동명·요일미공시",
+        "오후돌봄3실별도계획미확보",
+        "독립표본검증미실행"
+      ],
+      "advisory_issues": [
+        "맞춤형상세표는1학기기준예시;확정공지대조필요",
+        "방학활동은동일편성명과별도운영구간의계획결합;방학전합반가능",
+        "금요일2학기13시시작을1학기13:40과시각충돌로합치지않고기수별보존"
+      ],
+      "eligibility_notes": [
+        "L42 맞춤형최소주2회신청,연속2차시원칙,참여요일많은학생우선",
+        "L42 학급편성후상시접수,자리없으면대기",
+        "L93~95 연계8부서는기존수강생우선,겨울특강별도신청",
+        "L59 아침은방학·재량휴업·공휴일미운영"
+      ],
+      "publish_ready": false,
+      "no_operational_upload": true
+    }
+  ],
+  "independent_blind_review_complete": false,
+  "publish_status": "not_approved",
+  "no_operational_upload": true
+}
