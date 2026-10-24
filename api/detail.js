@@ -258,7 +258,8 @@ const schoolPage = async (key) => {
     query('school_apartment_serving', {
       select: 'canonical_complex_id,complex_name,households,complex_public_key,region,district,road_address',
       school_id: `eq.${key}`,
-      limit: '300',
+      // 300 cut 서울구로남초 (408 complexes) short, and its title said 298.
+      limit: '1000',
     }),
     // Care (SQL 23) is an extra, not the page: a failed read drops these facts
     // and keeps the rest, rather than failing the page open to the bare shell.
@@ -354,10 +355,11 @@ const schoolPage = async (key) => {
         : '',
       guideLinks('함께 보면 좋은 가이드'),
     ].filter(Boolean),
+    // Every complex, not the largest 60: the cap left 1,208 complexes that no page
+    // linked to, reachable only through the sitemap (docs/seo).
     links: assigned
       .filter((row) => row.complex_public_key)
       .sort((a, b) => (number(b.households) || 0) - (number(a.households) || 0))
-      .slice(0, 60)
       .map((row) => ({
         href: apartmentPath(row),
         text: `${row.complex_name}${number(row.households) ? ` · ${buildingsNote(row)}${withCommas(row.households)}세대` : ''}`,
