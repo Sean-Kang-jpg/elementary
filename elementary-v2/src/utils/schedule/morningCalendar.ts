@@ -1,5 +1,6 @@
-import type { ScheduleEntry } from './types'
+import type { ScheduleEntry, Weekday } from './types'
 import { withCarePlanningDefaults } from './carePlanning.ts'
+import { entryForDay } from './dayTimes.ts'
 
 export interface MorningCalendarView {
   start: number | null
@@ -16,7 +17,9 @@ const known = (entry: ScheduleEntry): boolean => entry.start !== null && entry.e
 
 /** Display only. Never invent arrival times or modify source/participation data. */
 export const morningCalendarView = (entries: ScheduleEntry[]): MorningCalendarView | null => {
-  const visible = entries.filter((entry) => !['cancelled', 'rejected'].includes(entry.participation) && entry.term !== 'vacation').map(withCarePlanningDefaults)
+  // 요일마다 시각이 다를 수 있어 그 요일들의 시각까지 넣어 띠의 높이를 정한다.
+  const visible = entries.filter((entry) => !['cancelled', 'rejected'].includes(entry.participation) && entry.term !== 'vacation')
+    .flatMap((entry) => [entry, ...Object.keys(entry.dayTimes ?? {}).map((day) => entryForDay(entry, Number(day) as Weekday))]).map(withCarePlanningDefaults)
   const care = visible.filter(isMorningCalendarCare)
   if (!care.length) return null
   const timed = visible.filter((entry) => entry.kind !== 'school' && known(entry) && entry.start! < 720)

@@ -147,16 +147,13 @@ const SchoolDayEstimateCard: React.FC<{
             <p className="rounded-md border border-gray-200 bg-gray-50 px-3 py-2.5 text-sm text-gray-700">공시에 돌봄 운영 시간이 없어요. 학교에 확인해 주세요.</p>
           )}
           {care?.status === 'stated' && (
-            <p className="mt-1.5 text-[11px] leading-4 text-gray-500">오후돌봄이 19시까지 운영되어도 별도 저녁돌봄 교실 공시값은 0실일 수 있습니다. 서로 다른 항목이며, 돌봄은 정원과 선발 순위가 있어 신청해도 이용하지 못할 수 있어요.</p>
+            <p className="mt-1.5 text-[11px] leading-4 text-gray-500">정원·선발 순위가 있어 신청해도 못 쓸 수 있어요.</p>
           )}
           <SchoolCarePanel school={school} onOpenGuide={onOpenGuide} embedded stats={careStats} hideProgramCount={Boolean(afterschool)} />
         </div>
       )}
 
-      {(day || care || careStats) && <p className="mt-2 text-[11px] leading-4 text-gray-500">
-        출처: {[day?.clock_source, day && day.periods_source !== '없음' ? day.periods_source : null, care?.source, careStats && !care ? `학교알리미 ${careStats.statistics_year}년 돌봄 공시` : null].filter(Boolean).join(' · ')}.
-        {' '}학교 사정으로 바뀔 수 있어요.
-      </p>}
+      {(day || care || careStats) && <SourceLine text={`출처: ${[day?.clock_source, day && day.periods_source !== '없음' ? day.periods_source : null, care?.source, careStats && !care ? `학교알리미 ${careStats.statistics_year}년 돌봄 공시` : null].filter(Boolean).join(' · ')}. 학교 사정으로 바뀔 수 있어요.`} />}
 
       {planLink && (
         <a href={timetablePath(school.school_id)} onClick={(event) => followLink(event, timetablePath(school.school_id), onOpenGuide)}
@@ -168,6 +165,17 @@ const SchoolDayEstimateCard: React.FC<{
       )}
     </section>
   )
+}
+
+/**
+ * 출처는 모바일 한 줄로 줄이고 누르면 펼친다(2026-10-24). 글은 DOM에 그대로 있어 검색 노출과 무관하다 —
+ * 크롤러용 상세 HTML은 api/detail.js가 따로 만든다.
+ */
+function SourceLine({ text }: { text: string }) {
+  const [open, setOpen] = useState(false)
+  return <p className="mt-2 text-[11px] leading-4 text-gray-500">
+    <button type="button" className={`block w-full text-left${open ? '' : ' truncate'}`} aria-expanded={open} onClick={() => setOpen((value) => !value)}>{text}</button>
+  </p>
 }
 
 export default SchoolDayEstimateCard

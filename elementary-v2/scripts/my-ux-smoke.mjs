@@ -69,7 +69,7 @@ try {
   click('내 시간표로 사용')
   await wait("JSON.parse(localStorage.getItem('elementary-schedule-plans-v1')).activeSchoolId === 'qa-school-b'", 'switch primary without deleting first draft')
   evalPage("location.reload(); true")
-  await wait("document.querySelector('.my-active-plan')?.textContent.includes('QA 후보 B')", 'reload restores active plan')
+  await wait("document.querySelector('.my-active-plan')?.textContent === '내 시간표' && document.querySelector('#my-schedule-title').textContent.includes('QA 후보 B')", 'reload restores active plan')
   click('주간 편집')
   await wait("JSON.parse(localStorage.getItem('elementary-schedule-plans-v1')).plans.find(p=>p.schoolId==='qa-school-a').entries[0].participation==='considering'", 'selection never confirms course participation')
   await wait("document.documentElement.scrollWidth <= innerWidth", 'mobile timetable layout has no horizontal overflow')

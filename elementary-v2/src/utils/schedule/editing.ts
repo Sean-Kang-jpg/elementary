@@ -50,7 +50,7 @@ export const applyCalendarChange = (entries: ScheduleEntry[], change: CalendarCh
   const entry: ScheduleEntry = {
     ...original, id, label: change.label.trim(), kind: change.kind, weekdays: [change.weekday], start: change.start, end: change.end,
     startsAfterSchool: false, evidence: 'estimated', participation: original?.participation ?? 'considering',
-    transitionIn: 'unknown', term: original?.term ?? 'semester', userOverride: undefined,
+    transitionIn: 'unknown', term: original?.term ?? 'semester', userOverride: undefined, dayTimes: undefined,
     ...(change.providerKey ? { providerKey: change.providerKey } : {}),
   }
   const next = original ? entries.flatMap((item) => item.id !== original!.id ? [item] : remaining.length ? [{ ...item, weekdays: remaining }, entry] : [entry]) : [...entries, entry]

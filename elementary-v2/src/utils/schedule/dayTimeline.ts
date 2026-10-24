@@ -2,6 +2,7 @@ import type { DayPlan } from './engine'
 import { isMorningCalendarCare } from './morningCalendar.ts'
 import type { ScheduleEntry } from './types'
 import { withCarePlanningDefaults } from './carePlanning.ts'
+import { entryForDay } from './dayTimes.ts'
 
 export interface DayTimelineItem {
   entry: ScheduleEntry
@@ -17,7 +18,7 @@ export function dayTimelineItems(day: DayPlan, entries: ScheduleEntry[]): DayTim
   return entries.filter((entry) => entry.weekdays.includes(day.weekday)
     && entry.term !== 'vacation' && !['cancelled', 'rejected'].includes(entry.participation))
     .map((entry): DayTimelineItem => {
-      entry = withCarePlanningDefaults(entry)
+      entry = withCarePlanningDefaults(entryForDay(entry, day.weekday))
       if (entry.kind === 'school') return { entry, start: null, end: day.dismissal.at, section: 'school' }
       const block = placed.get(entry.id)
       if (!block && entry.kind === 'care' && entry.startsAfterSchool && entry.end !== null) {

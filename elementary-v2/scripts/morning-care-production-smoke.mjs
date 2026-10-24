@@ -32,7 +32,6 @@ try {
   const panel = page.locator('[data-testid=school-morning-care]')
   await panel.getByText('운영시간 기재', { exact: true }).waitFor()
   assert.match(await panel.textContent(), /등교시각미확인/)
-  assert.match(await panel.textContent(), /아침돌봄 대상 미확인/)
   assert.ok((await panel.textContent()).includes(`${sample.source_year}학년도`))
   assert.ok((await panel.textContent()).includes(`${start} ~ ${end}`))
   await page.getByRole('button', { name: '시간표 초안 만들기', exact: true }).click()

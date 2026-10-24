@@ -7,6 +7,7 @@ import { displaySchoolName } from '../../utils/schoolName'
 import MyScheduleWeek from './MyScheduleWeek'
 import { applyCalendarChange, type CalendarChange } from '../../utils/schedule/editing'
 import { toggleProgramDay } from '../../utils/schedule/programSelection'
+import { removeEntryDay, repeatEntry, setEntryTimes } from '../../utils/schedule/dayTimes'
 
 const DAYS = ['월', '화', '수', '목', '금']
 const STATUS: Record<ParticipationStatus, string> = {
@@ -52,6 +53,12 @@ export default function MySchedule({ school, entryYear, saved, onNavigate }: {
     const latest = readPlans().plans.find((p) => p.schoolId === schoolId)
     return latest ? updatePlan({ ...latest, entries: change(latest.entries) }) : false
   }
+  /** 바꿀 수 없으면 null을 돌려주는 변경. 저장하지 않고 false로 끝난다. */
+  const changeEntriesIf = (change: (entries: ScheduleEntry[]) => ScheduleEntry[] | null) => {
+    const latest = readPlans().plans.find((p) => p.schoolId === schoolId)
+    const next = latest && change(latest.entries)
+    return next ? updatePlan({ ...latest, entries: next }) : false
+  }
   const addEntry = (entry: ScheduleEntry) => changeEntries((entries) => [...entries.filter((e) => e.id !== entry.id), entry])
   const removeEntry = (id: string) => changeEntries((entries) => entries.filter((e) => e.id !== id))
   const saveCalendarEntry = (change: CalendarChange): ScheduleEntry | null => {
@@ -81,30 +88,35 @@ export default function MySchedule({ school, entryYear, saved, onNavigate }: {
     } catch { if (alive.current) setMessage('학교 운영 자료를 불러오지 못했어요. 다시 시도하거나 자료 없이 초안을 만들 수 있어요.') }
     finally { if (alive.current) setLoading(false) }
   }
+  const shownName = school.displayName ?? displaySchoolName(school.name)
+  const isActive = plan !== undefined && store.activeSchoolId === plan.schoolId
   return (
-    <section className="my-schedule my-card" aria-labelledby="my-schedule-title">
-      <h2 id="my-schedule-title">3. {school.displayName ?? displaySchoolName(school.name)} 시간표 짜기</h2>
-      <p className="my-active-plan">{active ? `내 시간표 · ${displaySchoolName(active.schoolName)}` : '아직 내 시간표를 선택하지 않았어요'}</p>
-      <p className="my-help">학교별 초안을 비교한 뒤 하나를 내 시간표로 사용하세요. 학교 입학·프로그램 신청·참여 확정과는 별개예요.</p>
-      {!plan ? <div className="my-actions">
-        <button type="button" className="my-button my-button--primary" disabled={loading} onClick={() => void create()}>{loading ? '자료 확인 중…' : '시간표 초안 만들기'}</button>
-        <button type="button" className="my-button" disabled={loading} onClick={() => void create(true)}>자료 없이 직접 만들기</button>
-      </div> : <>
-        <div className="my-actions">
-          <span className="my-plan-badge">{store.activeSchoolId === plan.schoolId ? '내 시간표' : '후보 초안'}</span>
-          {store.activeSchoolId !== plan.schoolId
+    <section className={`my-schedule my-card${plan ? ' my-schedule--editing' : ''}`} aria-labelledby="my-schedule-title">
+      <div className="my-schedule__head">
+        <h2 id="my-schedule-title">{plan ? `${shownName} 시간표` : `3. ${shownName} 시간표 짜기`}</h2>
+        {plan && <div className="my-schedule__plan">
+          <p className="my-active-plan" title={active ? `내 시간표: ${displaySchoolName(active.schoolName)}` : undefined}>{isActive ? '내 시간표' : '후보 초안'}</p>
+          {!isActive
             ? <button type="button" className="my-button my-button--primary" onClick={() => persist(selectPlan(readPlans(), plan.schoolId), '내 시간표를 바꿨어요. 다른 초안은 그대로 보관돼요.')}>내 시간표로 사용</button>
             : <button type="button" className="my-button" onClick={() => persist(selectPlan(readPlans(), null), '내 시간표 선택을 해제했어요. 초안은 보관돼요.')}>선택 해제</button>}
+        </div>}
+      </div>
+      {!plan ? <>
+        <p className="my-help">학교 자료로 하교 시각을 먼저 넣고, 방과후·돌봄·학원을 요일마다 골라요. 이 기기에만 저장돼요.</p>
+        <div className="my-actions">
+          <button type="button" className="my-button my-button--primary" disabled={loading} onClick={() => void create()}>{loading ? '자료 확인 중…' : '시간표 초안 만들기'}</button>
+          <button type="button" className="my-button" disabled={loading} onClick={() => void create(true)}>자료 없이 직접 만들기</button>
         </div>
-        <p className="my-help">입학연도 {plan.entryYear ?? '미설정'} · 마지막 수정 {plan.updatedAt.slice(0, 10)}
-          {entryYear !== plan.entryYear && ' · 현재 입학연도와 달라요. 자료를 다시 확인해 주세요.'}
-          {!saved && ' · 관심 학교에 저장하지 않은 학교예요. 시간표는 이 기기에 따로 보관돼요.'}
-        </p>
+      </> : <>
         <MyScheduleWeek key={`week-${plan.schoolId}`} schoolId={plan.schoolId} onNavigate={onNavigate} entries={plan.entries} onSave={saveCalendarEntry} onAdd={addEntry} onRemove={removeEntry}
-          onToggleDay={(entry, weekday) => changeEntries((entries) => toggleProgramDay(entries, entry, weekday))} />
+          onToggleDay={(entry, weekday) => changeEntries((entries) => toggleProgramDay(entries, entry, weekday))}
+          onSetTimes={(id, days, time, label) => changeEntriesIf((entries) => setEntryTimes(entries, id, days, time, label))}
+          onRemoveDay={(id, weekday) => changeEntries((entries) => removeEntryDay(entries, id, weekday))}
+          onStatus={(id, status) => changeEntries((entries) => entries.map((item) => item.id === id ? { ...item, participation: status } : item))}
+          onRepeat={(id, from, targets) => changeEntriesIf((entries) => repeatEntry(entries, id, from, targets))} />
         <details className="my-entry-list"><summary>선택한 일정 관리 ({plan.entries.length})</summary>
           {plan.entries.map((e) => <div className="my-entry" key={e.id}>
-            <b>{e.label}</b><small>{e.weekdays.map((d) => DAYS[d - 1]).join('·')} · {timing(e)}</small>
+            <b>{e.label}</b><small>{e.weekdays.map((d) => DAYS[d - 1]).join('·')} · {timing(e)}{e.dayTimes && ' · 요일마다 시간 다름'}</small>
             <small>{e.source ? `출처 ${SOURCES[e.kind]} · 학년도/확인 기준 ${e.source.version}` : '사용자 입력 · 운영 자료와 별도 확인 필요'}</small>
             {e.kind !== 'school' && <label className="my-field">참여 상태 · {e.label}
               <select value={e.participation} onChange={(event) => changeEntries((entries) => entries.map((item) => item.id === e.id ? { ...item, participation: event.target.value as ParticipationStatus } : item))}>
@@ -114,10 +126,17 @@ export default function MySchedule({ school, entryYear, saved, onNavigate }: {
             <button type="button" className="my-button" onClick={() => removeEntry(e.id)} aria-label={`${e.label} 일정 삭제`}>일정 삭제</button>
           </div>)}
         </details>
-        <p className="my-help">돌봄 시간이 없으면 아침 08:00–09:00, 오후 17:00 종료를 기본 가정으로 표시해요. 실제 운영·이용 가능 여부는 학교에 확인해 주세요. 그 외 미확인 시간은 배치·공백 계산을 하지 않아요.</p>
-        <button type="button" className="my-button" onClick={() => {
-          if (window.confirm('이 학교의 시간표 초안을 삭제할까요? 관심 학교는 유지됩니다.')) persist(deletePlan(readPlans(), plan.schoolId), '시간표 초안을 삭제했어요.')
-        }}>이 초안 삭제</button>
+        <details className="my-schedule-notes"><summary>안내 · 초안 관리</summary>
+          <p className="my-help">입학연도 {plan.entryYear ?? '미설정'} · 마지막 수정 {plan.updatedAt.slice(0, 10)}
+            {entryYear !== plan.entryYear && ' · 현재 입학연도와 달라요. 자료를 다시 확인해 주세요.'}
+            {!saved && ' · 관심 학교에 저장하지 않은 학교예요. 시간표는 이 기기에 따로 보관돼요.'}
+          </p>
+          <p className="my-help">학교별 초안을 비교한 뒤 하나를 내 시간표로 사용하세요. 학교 입학·프로그램 신청·참여 확정과는 별개예요.</p>
+          <p className="my-help">돌봄 시간을 모르면 아침 08:00–09:00, 오후 17:00 종료를 기본으로 넣어요. 일정 카드를 눌러 실제 시간으로 바꿀 수 있어요. 운영·이용 가능 여부는 학교에 확인해 주세요.</p>
+          <button type="button" className="my-button" onClick={() => {
+            if (window.confirm('이 학교의 시간표 초안을 삭제할까요? 관심 학교는 유지됩니다.')) persist(deletePlan(readPlans(), plan.schoolId), '시간표 초안을 삭제했어요.')
+          }}>이 초안 삭제</button>
+        </details>
       </>}
       <p role="status" aria-live="polite" className="my-help">{message}</p>
     </section>

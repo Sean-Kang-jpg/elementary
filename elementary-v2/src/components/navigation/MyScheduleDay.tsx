@@ -50,6 +50,6 @@ export default function MyScheduleDay({ day, entries, selectedId, onSelect, onCr
         <small>이동·돌봄 복귀 조건은 학교에 확인해 주세요.</small>
       </>}
     </div>}
-    <p className="my-agenda__footnote">카드를 누르면 상세 정보를 볼 수 있어요. 카드 높이는 수업 길이와 비례하지 않아요.</p>
+    {items.length > 0 && <p className="my-agenda__footnote">카드를 누르면 시간·요일을 바꿀 수 있어요.</p>}
   </div>
 }

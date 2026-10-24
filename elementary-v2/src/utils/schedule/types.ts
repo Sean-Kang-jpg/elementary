@@ -63,6 +63,19 @@ export interface ScheduleEntry {
    * 같은 이름의 학원이 있어도 어느 기관인지 남긴다. 키가 실리기 전 자료에서 고른 학원에는 없다.
    */
   providerKey?: string
+  /**
+   * 요일마다 다른 시각(2026-10-23, dayTimes.ts). 화요일만 돌봄을 18시까지 쓰는 식이다. 없는 요일은
+   * start·end를 쓴다. 출처 시각은 그대로 두고 이 요일의 계획만 바꾼다.
+   */
+  dayTimes?: Partial<Record<Weekday, DayTime>>
+  /** 학교 강좌가 열리는 요일. 다른 요일로 복사하거나 넓히지 않도록 처음 고를 때 남긴다. */
+  offeredWeekdays?: Weekday[]
+}
+
+/** 'dismissal'이면 그날 하교 직후에 시작한다. */
+export interface DayTime {
+  start: Minutes | 'dismissal'
+  end: Minutes
 }
 
 export interface UserOverride {

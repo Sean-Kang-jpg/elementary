@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react'
-import { CalendarClock, Star } from 'lucide-react'
+import { useEffect, useRef, useState } from 'react'
+import { CalendarClock, Search, Star } from 'lucide-react'
 import type { School } from '../../types'
 import { getSchoolDetail } from '../../services/dataService'
 import { readFavorites, subscribeFavorites, type FavoriteRecord } from '../../utils/favorites'
@@ -27,18 +27,21 @@ const STEPS = ['학교 고르기', '시간표 확인', '직접 짜기']
  * 시간표는 별개라(후보 3곳 규칙) 여기서 바로 학교를 검색해 고른다. 초안은 MY와 같은 기기 저장소
  * (`plans.ts`)에 있고, MY는 그 요약만 보여 준다. 기기마다 다른 화면이라 색인하지 않는다.
  */
-export default function TimetablePage({ schoolId, entryYear, onSchoolChange, onNavigate }: TimetablePageProps) {
+export default function TimetablePage({ schoolId: routeSchoolId, entryYear, onSchoolChange, onNavigate }: TimetablePageProps) {
   const [plans, setPlans] = useState(readPlans)
   const [favorites, setFavorites] = useState<FavoriteRecord[]>(readFavorites)
   useEffect(() => subscribePlans(() => setPlans(readPlans())), [])
   useEffect(() => subscribeFavorites(() => setFavorites(readFavorites())), [])
   const savedSchools = favorites.filter((item) => item.kind === 'school')
 
-  // 주소에 학교가 없으면 내 시간표 → 가장 최근 초안 → 첫 관심 학교 순으로 이어서 연다.
+  // 주소에 학교가 없으면 내 시간표 → 가장 최근 초안 → 첫 관심 학교 순으로 이어서 연다. 첫 그림부터 그 학교로
+  // 그린다 — 주소를 고친 뒤에 다시 그리면 빈 화면이 한 번 보였다가 시간표가 펼쳐진다(2026-10-23).
   const fallbackId = plans.activeSchoolId ?? plans.plans[0]?.schoolId ?? savedSchools[0]?.id ?? null
+  const schoolId = routeSchoolId ?? fallbackId
   useEffect(() => {
-    if (!schoolId && fallbackId) onSchoolChange(fallbackId)
-  }, [schoolId, fallbackId, onSchoolChange])
+    if (!routeSchoolId && fallbackId) onSchoolChange(fallbackId)
+  }, [routeSchoolId, fallbackId, onSchoolChange])
+  const [searching, setSearching] = useState(false)
 
   // 고른 학교의 공개 자료. 운영 키가 아닌 옛 초안 ID는 null로 끝나고, 초안 편집은 그대로 된다.
   const [detail, setDetail] = useState<{ id: string; school: School | null } | null>(null)
@@ -61,6 +64,14 @@ export default function TimetablePage({ schoolId, entryYear, onSchoolChange, onN
   const shownName = school ? displaySchoolName(school.school_name, school.address, school.establishment_type) : name && displaySchoolName(name)
   const step = !schoolId ? 0 : plan ? 2 : 1
 
+  // 초안을 막 만들면 화면이 시간표 중심으로 바뀐다. 아래로 내려가 있던 자리 그대로면 시간표가 위로 잘려 보인다.
+  const page = useRef<HTMLElement>(null)
+  const hadPlan = useRef(Boolean(plan))
+  useEffect(() => {
+    if (plan && !hadPlan.current) page.current?.scrollTo({ top: 0 })
+    hadPlan.current = Boolean(plan)
+  }, [plan])
+
   // 이 화면에서 고를 수 있는 학교: 지금 고른 학교, 초안이 있는 학교, 관심 학교.
   const picks = [
     ...(schoolId && name && !plan && !savedSchools.some((item) => item.id === schoolId) ? [{ id: schoolId, name, label: '고른 학교' }] : []),
@@ -70,11 +81,50 @@ export default function TimetablePage({ schoolId, entryYear, onSchoolChange, onN
 
   const pick = (id: string, source: string) => {
     track('timetable_school_pick', { source })
+    setSearching(false)
     onSchoolChange(id)
   }
 
+  const chips = picks.length > 0 && (
+    <div className="timetable-picks" aria-label="이어서 짤 학교">
+      {picks.map((item) => (
+        <button key={item.id} type="button" data-school-id={item.id} aria-pressed={item.id === schoolId}
+          onClick={() => pick(item.id, item.label === '관심 학교' ? 'favorite' : 'plan')}>
+          {item.label === '관심 학교' && <Star size={13} aria-hidden="true" />}
+          {displaySchoolName(item.name)}<small>{item.label}</small>
+        </button>
+      ))}
+    </div>
+  )
+
+  // 초안이 있으면 시간표가 첫 화면이다. 안내·단계·운영 자료는 초안을 만들기 전에만 앞에 둔다.
+  if (schoolId && plan) {
+    return (
+      <section ref={page} className="app-destination app-page content-page timetable-page timetable-page--editing" aria-labelledby="timetable-title">
+        <div className="content-page__inner">
+          <div className="timetable-bar">
+            <h1 id="timetable-title">시간표</h1>
+            <button type="button" className="timetable-bar__search" aria-expanded={searching} onClick={() => setSearching((open) => !open)}>
+              <Search size={15} aria-hidden="true" /> 다른 학교
+            </button>
+          </div>
+          {chips}
+          {searching && <div className="timetable-bar__finder"><SchoolSearch onPick={(id) => pick(id, 'search')} /></div>}
+          <MySchedule key={schoolId} school={{ id: schoolId, name: name ?? plan.schoolName, displayName: shownName ?? undefined }} entryYear={entryYear}
+            saved={savedSchools.some((item) => item.id === schoolId)} onNavigate={onNavigate} />
+          {school && (
+            <details className="timetable-source my-card">
+              <summary>{shownName} 운영 자료 보기</summary>
+              <SchoolDayEstimateCard school={school} onOpenGuide={onNavigate} />
+            </details>
+          )}
+        </div>
+      </section>
+    )
+  }
+
   return (
-    <section className="app-destination app-page content-page timetable-page" aria-labelledby="timetable-title">
+    <section ref={page} className="app-destination app-page content-page timetable-page" aria-labelledby="timetable-title">
       <div className="content-page__inner">
         <p className="timetable-page__kicker"><CalendarClock size={16} aria-hidden="true" /> 맞춤형 · 방과후 · 돌봄 · 주변 학원</p>
         <h1 id="timetable-title">우리 아이 초등학교 시간표 미리 짜보기</h1>
@@ -91,17 +141,7 @@ export default function TimetablePage({ schoolId, entryYear, onSchoolChange, onN
         <section className="timetable-pick my-card" aria-labelledby="timetable-pick-title">
           <h2 id="timetable-pick-title">1. 학교 고르기</h2>
           <SchoolSearch onPick={(id) => pick(id, 'search')} />
-          {picks.length > 0 && (
-            <div className="timetable-picks" aria-label="이어서 짤 학교">
-              {picks.map((item) => (
-                <button key={item.id} type="button" data-school-id={item.id} aria-pressed={item.id === schoolId}
-                  onClick={() => pick(item.id, item.label === '관심 학교' ? 'favorite' : 'plan')}>
-                  {item.label === '관심 학교' && <Star size={13} aria-hidden="true" />}
-                  {displaySchoolName(item.name)}<small>{item.label}</small>
-                </button>
-              ))}
-            </div>
-          )}
+          {chips}
           <p className="my-help">관심 학교로 저장하지 않아도 짤 수 있어요. 시간표는 이 기기의 브라우저에만 저장돼요.</p>
         </section>
 
@@ -111,12 +151,7 @@ export default function TimetablePage({ schoolId, entryYear, onSchoolChange, onN
           <p className="my-help" role="status">이 학교를 찾지 못했어요. 위에서 다시 검색해 주세요.</p>
         ) : (
           <>
-            {school && (plan ? (
-              <details className="timetable-source my-card">
-                <summary>2. {shownName} 운영 자료 다시 보기</summary>
-                <SchoolDayEstimateCard school={school} onOpenGuide={onNavigate} />
-              </details>
-            ) : (
+            {school && (
               <section className="timetable-source my-card" aria-labelledby="timetable-source-title">
                 <h2 id="timetable-source-title">2. {shownName} 초1 하루 확인</h2>
                 <p className="my-help">학교가 공시한 운영계획으로 만든 예상이에요. 아래에서 초안을 만들면 하교 시각이 먼저 들어가고, 강좌·돌봄·학원은 직접 골라요.</p>
@@ -126,7 +161,7 @@ export default function TimetablePage({ schoolId, entryYear, onSchoolChange, onN
                 </button>
                 <SchoolDayEstimateCard school={school} onOpenGuide={onNavigate} />
               </section>
-            ))}
+            )}
             <MySchedule key={schoolId} school={{ id: schoolId, name, displayName: shownName ?? undefined }} entryYear={entryYear}
               saved={savedSchools.some((item) => item.id === schoolId)} onNavigate={onNavigate} />
           </>

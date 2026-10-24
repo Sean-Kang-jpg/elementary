@@ -48,8 +48,14 @@ const submit = () => {
   evaluate("document.querySelector('.my-calendar-form button[type=submit]').scrollIntoView({block:'center'}); true")
   run('click', '.my-calendar-form button[type=submit]')
 }
-const save = label => { run('fill', '.my-calendar-form input:not([type])', label); submit() }
-const chooseManual = () => run('click', '.my-add-card__tabs button:last-child')
+// 2026-10-24: 새 일정은 저장 뒤 '다른 요일에도 넣기'를 보이고 [완료]로 닫는다.
+const finish = () => evaluate("document.querySelector('.my-add-card__saved .my-button--primary')?.click(); true")
+const save = label => { run('fill', '.my-calendar-form input:not([type])', label); submit(); finish() }
+// Same CLI edge case as submit(): a tab on the viewport's bottom edge is clicked below the screen.
+const chooseManual = () => {
+  evaluate("document.querySelector('.my-add-card__tabs button:last-child').scrollIntoView({block:'center'}); true")
+  run('click', '.my-add-card__tabs button:last-child')
+}
 try {
   run('set', 'viewport', '1280', '1000')
   run('open', new URL('/timetable', base).href)

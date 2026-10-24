@@ -7,6 +7,7 @@ import ScheduleSubjectIcon from './ScheduleSubjectIcon'
 import type { ScheduleEntry, Weekday } from '../../utils/schedule/types'
 import { isProgramDaySelected } from '../../utils/schedule/programSelection'
 import MorningCareScheduleChoice from './MorningCareScheduleChoice'
+import RepeatDays from './RepeatDays'
 import { morningCareFromLegacy } from '../../utils/morningCare'
 
 export interface EntryDraft {
@@ -22,7 +23,7 @@ const FILTERS = ['전체', '돌봄', '맞춤형', '방과후'] as const
 const included = (entry?: ScheduleEntry) => Boolean(entry && ['planned', 'applying', 'confirmed'].includes(entry.participation))
 
 /** 선택한 반만 계획에 넣는다. 출처의 시간과 실제 신청·참여 여부는 별개다. */
-export default function MyAfterschoolPicker({ schoolId, entries, onAdd, onRemove, onDraft, weekday, onToggleDay }: {
+export default function MyAfterschoolPicker({ schoolId, entries, onAdd, onRemove, onDraft, weekday, onToggleDay, onRepeat, onRemoveDay }: {
   schoolId: string
   entries: ScheduleEntry[]
   onAdd: (entry: ScheduleEntry) => boolean
@@ -30,7 +31,12 @@ export default function MyAfterschoolPicker({ schoolId, entries, onAdd, onRemove
   onDraft: (draft: EntryDraft) => void
   weekday?: Weekday
   onToggleDay?: (entry: ScheduleEntry, weekday: Weekday) => boolean
+  /** 요일 카드에서 고른 항목을 다른 요일에도 넣는다. */
+  onRepeat?: (id: string, from: Weekday, targets: Weekday[]) => boolean
+  onRemoveDay?: (id: string, weekday: Weekday) => boolean
 }) {
+  const repeat = (id: string, selected: boolean) => weekday && selected && onRepeat && onRemoveDay
+    ? <RepeatDays entry={entries.find((e) => e.id === id)} weekday={weekday} onRepeat={onRepeat} onRemoveDay={onRemoveDay} /> : null
   const [data, setData] = useState<SchoolAfterschool | null>(null)
   const [care, setCare] = useState<SchoolCareHours | null>(null)
   const [loading, setLoading] = useState(true)
@@ -75,7 +81,7 @@ export default function MyAfterschoolPicker({ schoolId, entries, onAdd, onRemove
     {!weekday && <p className="my-help">돌봄과 방과후·맞춤형은 함께 선택할 수 있어요. 수업을 마친 뒤 돌봄으로 이어지는 계획도 만들 수 있어요.</p>}
     {loading ? <p role="status" className="my-help">학교 강좌·돌봄 자료를 불러오는 중…</p> : <>
       {errors.length > 0 && <div className="my-actions"><p role="alert" className="my-warning">{errors.join('·')} 자료를 불러오지 못했어요.</p><button type="button" className="my-button" onClick={() => setRetry((n) => n + 1)}>자료 다시 불러오기</button></div>}
-      {!errors.includes('돌봄') && (filter === '전체' || filter === '돌봄') && matches('아침돌봄 아침 돌봄') && <MorningCareScheduleChoice key={schoolId} schoolId={schoolId} info={morningCareFromLegacy(care)} entries={entries} onAdd={onAdd} onRemove={onRemove} weekday={weekday} onToggleDay={onToggleDay} />}
+      {!errors.includes('돌봄') && (filter === '전체' || filter === '돌봄') && matches('아침돌봄 아침 돌봄') && <MorningCareScheduleChoice key={schoolId} schoolId={schoolId} info={morningCareFromLegacy(care)} entries={entries} onAdd={onAdd} onRemove={onRemove} weekday={weekday} onToggleDay={onToggleDay} onRepeat={onRepeat} onRemoveDay={onRemoveDay} />}
       {(!errors.includes('돌봄') || data?.options.length || care) ? <>
         <div className="my-course-filters" role="group" aria-label="프로그램 유형">
           {FILTERS.map((value) => <button type="button" key={value} aria-pressed={filter === value} onClick={() => setFilter(value)}>{value}</button>)}
@@ -99,7 +105,8 @@ export default function MyAfterschoolPicker({ schoolId, entries, onAdd, onRemove
               }}>
                 <span className="my-course-choice__lines"><b><ScheduleSubjectIcon entry={entry} /><span className="my-entry-title">{scheduleEntryHeading(entry)}</span></b><span>{time}{entry.timeAssumption && ' · 기본 가정'}</span></span><i aria-hidden="true">{selected ? '✓' : '+'}</i>
               </button>
-              {entry.timeAssumption && <small>운영시간 미확인 · 계획용 기본 시간이에요.</small>}
+              {repeat(entry.id, selected)}
+              {entry.timeAssumption && <small>운영시간 미확인 · 계획용 기본 시간이에요. 넣은 뒤 시간표의 카드를 눌러 실제 시간으로 바꿀 수 있어요.</small>}
               {entry.label === '저녁·연장 돌봄' && <small>{care?.extended_condition ?? (entry.end === null ? '오후돌봄 이후로 이어져요. 확인한 종료시간을 입력해 주세요.' : '')}</small>}
             </li>
           })}
@@ -125,6 +132,7 @@ export default function MyAfterschoolPicker({ schoolId, entries, onAdd, onRemove
                     }}>
                     <span className="my-course-choice__lines"><b><ScheduleSubjectIcon entry={{ kind: 'afterschool', label: option.name }} /><span className="my-entry-title">{scheduleEntryHeading({ kind: 'afterschool', label: afterschoolSectionLabel(option, section) })}</span></b><span>{section.start ?? '시작 미확인'}–{section.end ?? '종료 미확인'}</span></span><i aria-hidden="true">{selected ? '✓' : '+'}</i>
                   </button>
+                  {repeat(id, selected)}
                 </div>
               })}
             </div>

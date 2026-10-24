@@ -1,5 +1,6 @@
 import type { DayContext, EvidenceStatus, Minutes, ParticipationStatus, PlanningWindow, ScheduleEntry, TransitionRule, Weekday } from './types'
 import { withCarePlanningDefaults } from './carePlanning.ts'
+import { entryForDay } from './dayTimes.ts'
 
 /**
  * 초1 시간표 계산 엔진 (Audit 2 §6.2, A2-S02). 순수 함수만 둔다 — 저장·화면·네트워크 없음.
@@ -106,7 +107,7 @@ export const computeDay = (
   window: PlanningWindow,
   context: DayContext = {},
 ): DayPlan => {
-  const today = entries.filter((entry) => activeOn(entry, weekday, context)).map(withCarePlanningDefaults)
+  const today = entries.filter((entry) => activeOn(entry, weekday, context)).map((entry) => withCarePlanningDefaults(entryForDay(entry, weekday)))
   const dismissal = resolveDismissal(today, context)
 
   const blocks: PlacedBlock[] = []

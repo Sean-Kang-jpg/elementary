@@ -5,12 +5,15 @@ import type { ScheduleEntry, Weekday } from '../../utils/schedule/types'
 import { morningCareStatusLabel } from '../../utils/morningCare'
 import { isProgramDaySelected } from '../../utils/schedule/programSelection'
 import { formatMinutes } from '../../utils/schedule/fromSchoolData'
+import RepeatDays from './RepeatDays'
 
 const DAYS: Weekday[] = [1, 2, 3, 4, 5]
-export default function MorningCareScheduleChoice({ schoolId, info, entries, onAdd, onRemove, weekday, onToggleDay }: {
+export default function MorningCareScheduleChoice({ schoolId, info, entries, onAdd, onRemove, weekday, onToggleDay, onRepeat, onRemoveDay }: {
   schoolId: string; info: MorningCareInfo; entries: ScheduleEntry[]
   onAdd: (entry: ScheduleEntry) => boolean; onRemove: (id: string) => boolean
   weekday?: Weekday; onToggleDay?: (entry: ScheduleEntry, weekday: Weekday) => boolean
+  onRepeat?: (id: string, from: Weekday, targets: Weekday[]) => boolean
+  onRemoveDay?: (id: string, weekday: Weekday) => boolean
 }) {
   const existing = entries.find((e) => e.id === morningCareEntryId(schoolId))
   const [days, setDays] = useState<Weekday[]>(existing?.weekdays ?? info.weekdays ?? [])
@@ -20,7 +23,7 @@ export default function MorningCareScheduleChoice({ schoolId, info, entries, onA
   if (weekday) return available && entry ? <div className="my-course-section" data-testid="morning-care-choice">
     <button type="button" className="my-course-choice my-course-choice--care" aria-pressed={Boolean(selected)} onClick={() => onToggleDay?.(entry, weekday)}>
       <span className="my-course-choice__lines"><b>아침돌봄 · {'월화수목금'[weekday - 1]}요일</b><span>{formatMinutes(entry.start!)}–{formatMinutes(entry.end!)}{entry.timeAssumption && ' · 기본 가정'}</span></span><i aria-hidden="true">{selected ? '✓' : '+'}</i>
-    </button><small>{entry.timeAssumption && '운영시간 미확인 · 계획용 기본 시간이에요. '}대상·신청 조건·이용 요일은 학교 확인 필요</small>
+    </button>{selected && onRepeat && onRemoveDay && <RepeatDays entry={existing} weekday={weekday} onRepeat={onRepeat} onRemoveDay={onRemoveDay} />}<small>{entry.timeAssumption && '운영시간 미확인 · 계획용 기본 시간이에요(넣은 뒤 카드를 눌러 바꿀 수 있어요). '}대상·신청 조건·이용 요일은 학교 확인 필요</small>
   </div> : null
   return <div className="my-entry-form" data-testid="morning-care-choice">
     <h4>아침돌봄 · {morningCareStatusLabel[info.status]}</h4>

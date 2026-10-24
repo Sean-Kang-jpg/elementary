@@ -5,18 +5,21 @@ import type { CalendarChange, CalendarRange } from '../../utils/schedule/editing
 import { formatMinutes } from '../../utils/schedule/fromSchoolData'
 import MyAfterschoolPicker, { type EntryDraft } from './MyAfterschoolPicker'
 import MyScheduleAcademyPicker from './MyScheduleAcademyPicker'
+import RepeatDays from './RepeatDays'
 import { CalendarEntryForm } from './CalendarEntryDialog'
 import { followLink } from '../content/contentLinks'
 import { FRONTYARD_ENABLED } from '../../utils/features'
 import { frontyardPath } from '../../utils/urlState'
 
-export default function ScheduleAddCard({ schoolId, entries, range, onAdd, onRemove, onToggleDay, onSave, onChangeDay, onClose, onNavigate }: {
+export default function ScheduleAddCard({ schoolId, entries, range, onAdd, onRemove, onToggleDay, onSave, onChangeDay, onClose, onNavigate, onRepeat, onRemoveDay }: {
   schoolId: string; entries: ScheduleEntry[]; range: CalendarRange
   onNavigate?: (path: string) => void
   onAdd: (entry: ScheduleEntry) => boolean; onRemove: (id: string) => boolean
   onToggleDay: (entry: ScheduleEntry, weekday: Weekday) => boolean
   onSave: (change: CalendarChange) => ScheduleEntry | null
   onChangeDay: (weekday: Weekday) => void; onClose: () => void
+  onRepeat: (id: string, from: Weekday, targets: Weekday[]) => boolean
+  onRemoveDay: (id: string, weekday: Weekday) => boolean
 }) {
   const heading = useRef<HTMLHeadingElement>(null)
   const [mode, setMode] = useState<'school' | 'academy' | 'manual'>('school')
@@ -24,15 +27,23 @@ export default function ScheduleAddCard({ schoolId, entries, range, onAdd, onRem
   const [academyKey, setAcademyKey] = useState<string | undefined>()
   const [feedback, setFeedback] = useState('')
   const [manualDraft, setManualDraft] = useState<EntryDraft | null>(null)
+  // 학원·직접 입력은 저장한 뒤 카드를 닫지 않고 '다른 요일에도 넣기'를 보인다(2026-10-24).
+  const [savedId, setSavedId] = useState<string | null>(null)
+  // 폼은 저장 직후 onClose를 부른다. 그때는 아직 state가 옛값이라 ref로 본다.
+  const justSaved = useRef(false)
+  const markSaved = (id: string) => { justSaved.current = true; setSavedId(id) }
+  const formClose = () => { if (!justSaved.current) onClose() }
+  // 같은 요일에서 새 구간을 고르면 저장 완료 화면을 닫고 다시 고르게 한다.
+  useEffect(() => { justSaved.current = false; setSavedId(null) }, [range.start, range.end])
   useEffect(() => { heading.current?.focus({ preventScroll: true }); heading.current?.scrollIntoView({ block: 'nearest' }) }, [])
   const save = (change: CalendarChange) => {
     if (mode === 'manual' && manualDraft) {
       const entry: ScheduleEntry = { id: manualDraft.id, label: change.label, kind: change.kind, weekdays: [change.weekday],
         start: change.start, end: change.end, evidence: 'estimated', participation: 'planned', transitionIn: 'unknown', term: 'semester' }
       if (!onAdd(entry)) return null
-      onClose(); return entry
+      markSaved(entry.id); return entry
     }
-    const saved = onSave(mode === 'academy' && academyKey ? { ...change, providerKey: academyKey } : change); if (saved) onClose(); return saved
+    const saved = onSave(mode === 'academy' && academyKey ? { ...change, providerKey: academyKey } : change); if (saved) markSaved(saved.id); return saved
   }
   return <section className="my-add-card" aria-label={`${'월화수목금'[range.weekday - 1]}요일 일정 선택 카드`} onKeyDown={(event) => {
     if (event.key === 'Escape') { event.stopPropagation(); onClose() }
@@ -46,15 +57,21 @@ export default function ScheduleAddCard({ schoolId, entries, range, onAdd, onRem
       <button type="button" aria-pressed={mode === 'academy'} onClick={() => setMode('academy')}>외부 학원</button>
       <button type="button" aria-pressed={mode === 'manual'} onClick={() => { setManualDraft(null); setMode('manual') }}>직접 입력</button>
     </div>
+    {savedId ? <div className="my-add-card__saved">
+      <p><b>{entries.find((entry) => entry.id === savedId)?.label ?? '일정'}</b>을(를) {'월화수목금'[range.weekday - 1]}요일에 넣었어요.</p>
+      <RepeatDays entry={entries.find((entry) => entry.id === savedId)} weekday={range.weekday} onRepeat={onRepeat} onRemoveDay={onRemoveDay} />
+      <button type="button" className="my-button my-button--primary" onClick={onClose}>완료</button>
+    </div> : <>
     {mode === 'school' && <MyAfterschoolPicker schoolId={schoolId} entries={entries} onAdd={onAdd} onRemove={onRemove}
       weekday={range.weekday} onToggleDay={(entry, weekday) => { const saved = onToggleDay(entry, weekday); setFeedback(saved ? '선택한 요일의 시간표에 반영했어요. 다른 과목·돌봄도 함께 선택할 수 있어요.' : '저장하지 못했어요. 다시 확인해 주세요.'); return saved }}
-      onDraft={(draft) => { setManualDraft(draft); setMode('manual') }} />}
+      onDraft={(draft) => { setManualDraft(draft); setMode('manual') }} onRepeat={onRepeat} onRemoveDay={onRemoveDay} />}
     {mode === 'academy' && <>
       <MyScheduleAcademyPicker schoolId={schoolId} onChoose={(label, key) => { setAcademy(label); setAcademyKey(key) }} />
-      {academy && <div className="my-add-card__academy-time"><h5>{academy}</h5><p className="my-help">학원을 골랐어요. 확인한 수업 시간을 직접 입력해 주세요.</p><CalendarEntryForm key={`${academy}-${range.weekday}`} unknownTimes draft={{ ...range, label: academy, kind: 'personal' }} onSave={save} onClose={onClose} /></div>}
+      {academy && <div className="my-add-card__academy-time"><h5>{academy}</h5><p className="my-help">학원을 골랐어요. 확인한 수업 시간을 직접 입력해 주세요.</p><CalendarEntryForm key={`${academy}-${range.weekday}`} unknownTimes draft={{ ...range, label: academy, kind: 'personal' }} onSave={save} onClose={formClose} /></div>}
     </>}
     {mode === 'manual' && <CalendarEntryForm key={`${range.weekday}-${manualDraft?.id ?? ''}`} draft={{ ...range, label: manualDraft?.label ?? '', kind: manualDraft?.kind ?? (manualDraft ? 'afterschool' : 'personal') }}
-      initialTimes={manualDraft ? { start: manualDraft.start, end: manualDraft.end } : undefined} planningSelection={Boolean(manualDraft)} onSave={save} onClose={onClose} />}
+      initialTimes={manualDraft ? { start: manualDraft.start, end: manualDraft.end } : undefined} planningSelection={Boolean(manualDraft)} onSave={save} onClose={formClose} />}
+    </>}
     <p className="my-help" role="status">{feedback}</p>
   </section>
 }

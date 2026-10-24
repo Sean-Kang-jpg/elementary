@@ -2739,3 +2739,75 @@
 .my-saved-academies li strong, .my-saved-academies li small { display: block; }
 .my-saved-academies li small { color: var(--warm-muted); font-size: 12.5px; }
 .my-saved-academies__map { display: inline-block; margin-top: 10px; color: var(--warm-accent-strong); font-size: 14px; font-weight: 700; }
+
+/* ---- 시간표 편집 중심 화면 (2026-10-23) -----------------------------------
+   초안이 있으면 시간표가 첫 화면이다. 카드를 누르면 아래에서 편집 시트가 올라온다. */
+.timetable-page--editing .content-page__inner { padding-top: 12px; }
+.timetable-bar { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.timetable-bar h1 { margin: 0; font-size: 22px; letter-spacing: -.4px; }
+.timetable-bar__search { display: inline-flex; align-items: center; gap: 5px; min-height: 40px; padding: 6px 12px; border: 1px solid var(--warm-border-strong); border-radius: 999px; background: var(--warm-surface); color: var(--warm-text); font-size: 13px; cursor: pointer; }
+.timetable-bar__search[aria-expanded="true"] { border-color: var(--warm-accent-strong); color: var(--warm-accent-strong); }
+.timetable-page--editing .timetable-picks { flex-wrap: nowrap; overflow-x: auto; margin-top: 10px; padding-bottom: 2px; scrollbar-width: none; }
+.timetable-page--editing .timetable-picks button { flex: none; min-height: 36px; }
+.timetable-bar__finder { margin-top: 10px; }
+.my-schedule--editing { margin-top: 12px; padding: 0; border: 0; background: transparent; }
+.my-schedule__head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 6px 10px; }
+.my-schedule--editing .my-schedule__head h2 { margin: 0; font-size: 17px; }
+.my-schedule__plan { display: flex; align-items: center; gap: 8px; min-width: 0; }
+.my-schedule__plan .my-active-plan { margin: 0; padding: 4px 9px; border-radius: 999px; background: var(--warm-accent-soft); color: var(--warm-accent-strong); font-size: 12px; font-weight: 700; }
+.my-schedule__plan .my-button { min-height: 34px; padding: 5px 10px; font-size: 12px; }
+.my-schedule--editing .my-week-section { margin: 12px 0; }
+.my-schedule--editing .my-week-section--day { margin: 12px 0; padding: 18px 16px; }
+.my-schedule--editing .my-calendar-toolbar { flex-wrap: wrap; }
+.my-schedule--editing .my-calendar-view { margin: 0; }
+.my-schedule--editing .my-calendar-view button { min-height: 38px; }
+.my-schedule--editing .my-week-section--day .my-week-nav { margin: 14px 0 20px; }
+.my-schedule--editing .my-entry-list, .my-schedule-notes { margin: 10px 0; padding: 12px 14px; border: 1px solid var(--warm-border); border-radius: 14px; background: var(--warm-surface); }
+.my-schedule-notes > summary, .my-schedule--editing .my-entry-list > summary { font-size: 14px; font-weight: 700; cursor: pointer; }
+.timetable-page--editing .timetable-source { margin-top: 10px; padding: 12px 14px; }
+.timetable-page--editing .timetable-source > summary { font-size: 14px; }
+
+dialog.my-entry-sheet { width: min(460px, calc(100vw - 24px)); margin: auto; padding: 18px 18px 20px; border: 0; border-radius: 22px; background: #fffcff; font-size: 14px; }
+.my-entry-sheet__head { position: relative; display: flex; align-items: center; gap: 10px; padding-right: 40px; }
+.my-entry-sheet__head small { color: var(--warm-muted); font-size: 12px; }
+.my-entry-sheet__head h3 { margin: 2px 0 0; font-size: 19px; }
+.my-entry-sheet__head .my-entry-icon { position: static; flex: none; width: 36px; height: 36px; opacity: 1; }
+.my-entry-sheet__close { position: absolute; top: -4px; right: -4px; display: grid; place-items: center; width: 44px; height: 44px; border: 0; border-radius: 50%; background: transparent; color: var(--warm-muted); cursor: pointer; }
+.my-entry-sheet__time { margin: 14px 0 4px; font-size: 18px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.my-entry-sheet__form fieldset { margin: 14px 0 0; padding: 0; border: 0; }
+.my-entry-sheet__form legend { margin-bottom: 6px; padding: 0; font-size: 13px; font-weight: 700; }
+.my-entry-sheet__form .my-field { margin: 8px 0; }
+.my-entry-sheet__form .my-field input:disabled { color: var(--warm-muted); background: var(--warm-bg); }
+.my-entry-sheet__check { display: flex; align-items: center; gap: 8px; min-height: 40px; font-size: 13px; }
+.my-entry-sheet__check input { width: 18px; height: 18px; accent-color: #7f6bad; }
+.my-entry-sheet__hint { margin: 4px 0 0; padding: 8px 10px; border-radius: 10px; background: #fff6e5; color: #7a5a17; font-size: 12px; line-height: 1.55; }
+.my-entry-sheet__chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.my-entry-sheet__chips button { min-width: 44px; min-height: 40px; padding: 6px 10px; border: 1px solid var(--warm-border-strong); border-radius: 12px; background: var(--warm-surface); color: var(--warm-text); font-size: 14px; font-weight: 600; cursor: pointer; }
+.my-entry-sheet__chips button[aria-pressed="true"] { border-color: #7f6bad; background: #7f6bad; color: #fff; }
+.my-entry-sheet__chips button:disabled { opacity: .35; cursor: not-allowed; }
+.my-entry-sheet__chips .my-entry-sheet__all { border-style: dashed; color: #655397; font-weight: 500; }
+.my-entry-sheet__form .my-warning:empty { display: none; }
+.my-entry-sheet__actions { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 12px; }
+.my-entry-sheet__source { display: block; margin-top: 10px; color: var(--warm-muted); font-size: 11.5px; }
+dialog.my-entry-sheet > a.my-button { display: flex; align-items: center; justify-content: center; margin-top: 10px; text-decoration: none; }
+@media (max-width: 640px) {
+  /* 휴대폰에서는 아래에서 올라오는 시트. 엄지가 닿는 곳에 저장 버튼이 온다. */
+  dialog.my-entry-sheet { width: 100%; max-width: none; max-height: 88dvh; margin: auto 0 0; border-radius: 22px 22px 0 0; padding-bottom: calc(20px + env(safe-area-inset-bottom)); animation: my-sheet-up .18s ease-out; }
+}
+@keyframes my-sheet-up { from { transform: translateY(24px); opacity: .6; } to { transform: none; opacity: 1; } }
+@media (prefers-reduced-motion: reduce) { dialog.my-entry-sheet { animation: none; } }
+
+@media (max-width: 480px) {
+  .my-schedule--editing .my-week-section--day { padding: 16px 8px; }
+}
+/* 고른 돌봄·강좌·학원 바로 아래 '다른 요일에도 넣기' (2026-10-24) */
+.my-repeat-days { display: flex; flex-wrap: wrap; align-items: center; gap: 5px; margin: 6px 0 2px; }
+.my-repeat-days > span { margin-right: 2px; color: #655397; font-size: 12px; font-weight: 600; }
+.my-repeat-days button { min-width: 36px; min-height: 34px; padding: 4px 8px; border: 1px solid #d7d0ef; border-radius: 10px; background: #fff; color: #4d4466; font-size: 13px; font-weight: 600; cursor: pointer; }
+.my-repeat-days button[aria-pressed="true"] { border-color: #7f6bad; background: #7f6bad; color: #fff; }
+.my-repeat-days button:disabled { opacity: .35; cursor: not-allowed; }
+.my-repeat-days .my-repeat-days__all { border-style: dashed; color: #655397; font-weight: 500; }
+.my-add-card__saved { padding: 12px; border-radius: 14px; background: #f7f4fc; }
+.my-add-card__saved p { margin: 0 0 4px; font-size: 14px; }
+.my-add-card__saved > .my-button { width: 100%; margin-top: 10px; }
+.my-add-card__saved > .my-button--primary { background: #7f6bad; }

@@ -13,6 +13,7 @@ export function toggleProgramDay(entries: ScheduleEntry[], candidate: ScheduleEn
   }
   const active = current && ['planned', 'applying', 'confirmed'].includes(current.participation)
   const entry: ScheduleEntry = { ...(current ?? candidate), weekdays: [...new Set([...(active ? current.weekdays : []), weekday])].sort(),
-    participation: active ? current.participation : 'planned', transitionIn: current?.transitionIn ?? 'unknown' }
+    participation: active ? current.participation : 'planned', transitionIn: current?.transitionIn ?? 'unknown',
+    ...(candidate.kind === 'afterschool' && candidate.source ? { offeredWeekdays: current?.offeredWeekdays ?? candidate.weekdays } : {}) }
   return [...entries.filter((item) => item.id !== entry.id), entry]
 }

@@ -102,7 +102,7 @@ try {
   await wait("document.querySelector('.my-week').scrollLeft<2", 'keyboard weekday navigation returns to Monday')
   run('click', '#my-week-day-1 .my-week__entry[data-start="870"]')
   await wait("document.querySelector('.my-week-detail')?.textContent.includes('맞춤형 QA 놀이')", 'short or overlapping event opens readable details')
-  evaluate("document.querySelector('.my-week-detail button').click(); true")
+  evaluate("document.querySelector('.my-week-detail button[aria-label=\"닫기\"]').click(); true")
   if (process.argv[3]) {
     run('scrollintoview', '.my-week-section')
     run('screenshot', process.argv[3])

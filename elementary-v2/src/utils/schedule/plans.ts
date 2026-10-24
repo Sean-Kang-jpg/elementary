@@ -29,6 +29,9 @@ const validEntry = (value: unknown): value is ScheduleEntry => {
     && (e.transitionIn === undefined || ['confirmed', 'prohibited', 'unknown'].includes(e.transitionIn))
     && (e.term === undefined || ['semester', 'vacation', 'both'].includes(e.term))
     && (e.source === undefined || (e.source !== null && typeof e.source.ref === 'string' && typeof e.source.version === 'string'))
+    && (e.dayTimes === undefined || (e.dayTimes !== null && typeof e.dayTimes === 'object' && Object.entries(e.dayTimes).every(([day, t]) =>
+      ['1', '2', '3', '4', '5'].includes(day) && t && (t.start === 'dismissal' || (t.start !== null && time(t.start))) && Number.isInteger(t.end) && time(t.end))))
+    && (e.offeredWeekdays === undefined || (Array.isArray(e.offeredWeekdays) && e.offeredWeekdays.every((day) => Number.isInteger(day) && day >= 1 && day <= 5)))
 }
 export const readPlans = (): PlanStore => {
   try {
