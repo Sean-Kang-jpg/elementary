@@ -47,7 +47,7 @@ try {
   await wait("document.querySelector('.checklist-banner').compareDocumentPosition(document.querySelector('.my-timetable-summary')) & Node.DOCUMENT_POSITION_FOLLOWING", 'checklist precedes the timetable summary')
   await wait("!document.querySelector('.my-schedule') && document.querySelector('.my-timetable-summary .timetable-cta')?.getAttribute('href') === '/timetable'", 'MY links to the timetable page instead of embedding the editor')
   evalPage("document.querySelector('.my-timetable-summary .timetable-cta').click(); true")
-  await wait("location.pathname === '/timetable' && new URLSearchParams(location.search).get('school') === 'qa-school-a' && document.querySelector('.app-gnb__item--active')?.getAttribute('href') === '/learn'", 'timetable opens the first saved school under the 학습 준비 tab')
+  await wait("location.pathname === '/timetable' && new URLSearchParams(location.search).get('school') === 'qa-school-a' && document.querySelector('.app-gnb__item--active')?.getAttribute('href') === '/timetable'", 'timetable opens the first saved school under the 시간표 tab')
   await wait("[...document.querySelectorAll('.my-schedule button')].some(button => button.textContent === '자료 없이 직접 만들기')", 'draft controls finish loading')
   click('자료 없이 직접 만들기')
   await wait("document.querySelector('.my-week-section')", 'manual draft without invented school hours')

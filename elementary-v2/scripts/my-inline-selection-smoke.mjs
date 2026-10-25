@@ -28,7 +28,8 @@ try {
     await card.locator('.my-course-picker[aria-busy=false]').waitFor()
   }
   const art = () => card.locator('[data-program-label="QA 미술 · A"]')
-  const care = () => card.locator('.my-course-choice--care').first()
+  // The morning-care choice (also .my-course-choice--care) now sits above; pick afternoon care by its label.
+  const care = () => card.locator('.my-course-choice--care[aria-label^="돌봄 · 오후"]')
   await open('월')
   assert.equal(await page.locator('.my-program-selection, .my-entry-form').count(), 0)
   assert.equal(await page.locator('.my-entry-list').count(), 1)
@@ -79,6 +80,8 @@ try {
   await form.getByLabel('시작', { exact: true }).fill('16:05')
   await form.getByLabel('종료', { exact: true }).fill('16:40')
   await form.getByRole('button', { name: '저장', exact: true }).click()
+  await card.locator('.my-add-card__saved').waitFor()
+  await card.getByRole('button', { name: '완료', exact: true }).click()
   await card.waitFor({ state: 'detached' })
   const academy = (await readEntries()).find(entry => entry.label.includes('QA 수학학원'))
   assert.deepEqual([academy.weekdays, academy.start, academy.end, academy.kind, academy.participation, academy.source], [[4],965,1000,'personal','considering',undefined])

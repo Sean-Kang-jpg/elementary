@@ -56,7 +56,14 @@ try {
   }
   await page.locator('.my-calendar-add').click()
   await page.locator('.my-add-card .my-course-picker[aria-busy=false]').waitFor()
-  assert.equal(await page.locator('.my-course-choice').evaluateAll(nodes => nodes.length > 0 && nodes.every(node => node.querySelector('.my-entry-icon svg') && node.querySelector('.my-entry-icon').textContent === '' && node.querySelector('.my-course-choice__lines').children.length === 2)), true)
+  // Morning care uses the same two text rows with a selection marker, without a subject icon.
+  const morning = page.locator('[data-testid=morning-care-choice] .my-course-choice')
+  assert.equal(await morning.count(), 1)
+  assert.equal(await morning.locator('.my-course-choice__lines').evaluate(node => node.children.length), 2)
+  assert.equal(await morning.getAttribute('aria-pressed'), 'false')
+  await morning.click()
+  assert.equal(await morning.getAttribute('aria-pressed'), 'true')
+  assert.equal(await page.locator('.my-course-choice:not([data-testid=morning-care-choice] button)').evaluateAll(nodes => nodes.length > 0 && nodes.every(node => node.querySelector('.my-entry-icon svg') && node.querySelector('.my-entry-icon').textContent === '' && node.querySelector('.my-course-choice__lines').children.length === 2)), true)
   await page.locator('.my-course-choice[data-program-label]').first().click()
   assert.equal(await page.locator('.my-course-choice[data-program-label]').first().getAttribute('aria-pressed'), 'true')
   console.log('PASS: source selection buttons also use simple SVG icons and remain selectable')

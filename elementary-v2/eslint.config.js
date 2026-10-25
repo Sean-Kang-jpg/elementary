@@ -8,6 +8,8 @@ export default [
       'dist/**',
       '.browser-test-profile/**',
       'etl/local_outputs_*/**',
+      // Local ETL artifacts, never committed (sessions park scratch .tsx there too).
+      'etl/runtime/**',
       'src/components/debug/**',
       'src/**/*_old.ts',
       'src/**/*_old.tsx',
