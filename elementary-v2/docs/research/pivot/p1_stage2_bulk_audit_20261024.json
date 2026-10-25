@@ -1,23 +1,17 @@
 {
   "schema_version": "pivot-p1-stage2-partial-audit-v1",
   "manifest_sha256": "e5c81abf5ab02904255508a3ea84c85038c74264855e975cf6ab0112790512ac",
-  "review_sha256": "0e6711cb5b91fb842cb37eec8cc0de7d4885af29b44bf5579511fcaa454222dd",
-  "schools_with_source_extraction": 27,
+  "review_sha256": "489dc3ab58fc6418e6998ce72b94a2242f2d8f50757b5589c21ac8e421f4d18f",
+  "schools_with_source_extraction": 33,
   "remaining_school_ids": [
-    "B000003737",
-    "B000003742",
     "B000003743",
     "B000003746",
-    "B000003751",
     "B000003754",
-    "B000003758",
-    "B000003761",
     "B000024167",
     "B000024238",
-    "B000024239",
     "B000024241"
   ],
-  "raw_rows": 1821,
+  "raw_rows": 2246,
   "source_fidelity_method": "same-assistant declarations; not independent accuracy or blind review",
   "all_39_source_extracted": false,
   "independent_blind_review_complete": false,
@@ -218,7 +212,7 @@
       "care_regular": 0,
       "care_vacation": 0,
       "input_sha256": "ffd6625b2579a1579192477c4f8ff26bdfa4737ad5b7c9d99f1586594ab23197",
-      "output_sha256": "4026e4947820151266edfbab70843c6256e798cedfd1859d7ff4488ae2e96849",
+      "output_sha256": "ef43063cabfea474c9876db6f0eff161fcf3d7941bc0a4dca9fb17e17f0f465d",
       "declared_source_read_lines": [
         1,
         368
@@ -251,7 +245,7 @@
       "care_regular": 0,
       "care_vacation": 0,
       "input_sha256": "587e0e187f45a0ee3312bf8feeb616afbb48eba742afc0f2ebeeca347aad7739",
-      "output_sha256": "63ac0a73393369953328961b687862fc264b68d6784ca4d1be559f303edb14b9",
+      "output_sha256": "4da156a0f5e2c0d23630cffd5506fcae43e482035193ef34df2f55f371c3d495",
       "declared_source_read_lines": [
         1,
         339
@@ -347,7 +341,7 @@
       "care_regular": 10,
       "care_vacation": 20,
       "input_sha256": "71e14151e00dae2427ad089f5f6c229502aa3034b97200c1baff8ba5216b9ac2",
-      "output_sha256": "e4221f8726d35c780f698b5700b8881ec8fdd46394d0440528d4598cfb08a9ab",
+      "output_sha256": "c8b619d6d742a6025300860ca9279474227250d3571b73c672b111642d64d8ee",
       "declared_source_read_lines": [
         1,
         608
@@ -479,7 +473,7 @@
       "care_regular": 10,
       "care_vacation": 10,
       "input_sha256": "0a13d8e7829ab9318d2d8fc0478261984dde3647797f905cda51fd842c952023",
-      "output_sha256": "6e2c7070f6ebe5bd4c0ac0e51b8925c759dab844cd2f30973c307f15f444938f",
+      "output_sha256": "080ce32d6474859f51e7f9b3ac4af3f2ef3eada445dd156bac0fe27da200eaba",
       "declared_source_read_lines": [
         1,
         643
@@ -522,6 +516,42 @@
         145,
         148,
         151
+      ],
+      "grade1_custom_inventory_complete": true,
+      "blocking_issues": [
+        "동일 에이전트 원문대조이며 독립 맹검 검수 미완료"
+      ],
+      "ready_for_operational_review": false
+    },
+    {
+      "school_id": "B000003758",
+      "school_name": "서당초등학교",
+      "raw_total": 128,
+      "paid": 58,
+      "custom_regular_grade1": 20,
+      "custom_regular_grade2": 15,
+      "custom_regular_mixed": 10,
+      "custom_morning": 5,
+      "care_regular": 10,
+      "care_vacation": 20,
+      "input_sha256": "8bc5eb5e8e43708aa1c2c1d7d222e8e60396d7d909294427ec73674fcb2a2506",
+      "output_sha256": "2984459713cbe40f7cb3dfd299006f63febf50333c0bb5d1ed744048346570ac",
+      "declared_source_read_lines": [
+        1,
+        591
+      ],
+      "structural_and_fingerprint_checks_passed": true,
+      "participation_groups": 22,
+      "mandatory_grade1_custom_gaps": [],
+      "excluded_closed_rows": 4,
+      "unresolved_clock_conflicts": 0,
+      "care_activity_hours_verified": true,
+      "unconfirmed_conditional_rows": [
+        16,
+        17,
+        18,
+        19,
+        20
       ],
       "grade1_custom_inventory_complete": true,
       "blocking_issues": [
@@ -573,7 +603,7 @@
       "care_regular": 0,
       "care_vacation": 0,
       "input_sha256": "d803e06be6477fc56b2e886bc51b028e6359b23fccbe152a6241914cece74c7b",
-      "output_sha256": "1ae1b4e68b763fd3b2acfff619d214c32dcfb40b53b6340a64c924727b40a8be",
+      "output_sha256": "5e8ddbf0de00c26b4d8abf0663c44679b17873da184fc12ef330f6f23b411052",
       "declared_source_read_lines": [
         1,
         443
@@ -687,7 +717,7 @@
       "care_regular": 0,
       "care_vacation": 0,
       "input_sha256": "734629c73d231239530b1c9239bc329aade0de4d593a45faa6575e2689408d1d",
-      "output_sha256": "1280ee3384ff2cec61990619d2b6ae9ce71ee981212be49dd1349c8bec015634",
+      "output_sha256": "0fa80fd62449c3537466240fd6a151757344662b3e0434cf9013341db134ce7b",
       "declared_source_read_lines": [
         1,
         509
@@ -747,9 +777,78 @@
       "ready_for_operational_review": false
     },
     {
+      "school_id": "B000024239",
+      "school_name": "위례푸른초등학교",
+      "raw_total": 56,
+      "paid": 46,
+      "custom_regular_grade1": 5,
+      "custom_regular_grade2": 5,
+      "custom_regular_mixed": 0,
+      "custom_morning": 0,
+      "care_regular": 0,
+      "care_vacation": 0,
+      "input_sha256": "573c834aa50c39ac6c8fc369b25662bb11a90eaa3e451c85f63911e61b8be3c1",
+      "output_sha256": "3c6e6bf2dbff29842f17ada627700b153ec047254a6fdf27590bb60c0b89d26f",
+      "declared_source_read_lines": [
+        1,
+        510
+      ],
+      "structural_and_fingerprint_checks_passed": true,
+      "participation_groups": 23,
+      "mandatory_grade1_custom_gaps": [],
+      "excluded_closed_rows": 0,
+      "unresolved_clock_conflicts": 0,
+      "care_activity_hours_verified": null,
+      "unconfirmed_conditional_rows": [],
+      "grade1_custom_inventory_complete": true,
+      "blocking_issues": [
+        "컴퓨터 개요4개반·상세표월수2개묶음행의신청단위모호성",
+        "돌봄교실원문계획미확보",
+        "독립표본검증미실행"
+      ],
+      "ready_for_operational_review": false
+    },
+    {
+      "school_id": "B000003761",
+      "school_name": "분당초등학교",
+      "raw_total": 63,
+      "paid": 22,
+      "custom_regular_grade1": 20,
+      "custom_regular_grade2": 10,
+      "custom_regular_mixed": 6,
+      "custom_morning": 1,
+      "care_regular": 4,
+      "care_vacation": 4,
+      "input_sha256": "dac97404abe386bdc7cbed634fbff54c78b4c13f045768c3a055efb23afc36f1",
+      "output_sha256": "c55848f557686fc4a2ba965b41b44ac76d8247a786eb36dab8e26f1ffabff4d3",
+      "declared_source_read_lines": [
+        1,
+        864
+      ],
+      "structural_and_fingerprint_checks_passed": true,
+      "participation_groups": 26,
+      "mandatory_grade1_custom_gaps": [
+        53,
+        54
+      ],
+      "excluded_closed_rows": 0,
+      "unresolved_clock_conflicts": 0,
+      "care_activity_hours_verified": false,
+      "unconfirmed_conditional_rows": [],
+      "grade1_custom_inventory_complete": false,
+      "blocking_issues": [
+        "수익자2026상세시간표미확보(확보상세표는2025제목)",
+        "맞춤형학급수·학년편성문장과3개표불일치;전체초1맞춤형목록완결미확정",
+        "맞춤형독서논술·종이접기요일시각미공시",
+        "돌봄전체이용요일미공시·방학개별활동시각미공시",
+        "독립표본검증미실행"
+      ],
+      "ready_for_operational_review": false
+    },
+    {
       "school_id": "B000023087",
       "school_name": "위례초등학교",
-      "raw_total": 105,
+      "raw_total": 85,
       "paid": 64,
       "custom_regular_grade1": 10,
       "custom_regular_grade2": 10,
@@ -758,7 +857,7 @@
       "care_regular": 0,
       "care_vacation": 0,
       "input_sha256": "a2762d97cc6198b7e1a926b84185b44e04ed54eb4669ba34a00dfee0db186c07",
-      "output_sha256": "ab254d6ad6fbcdd74d990660ff7652e497979ddae1438020a2facb63f746cc15",
+      "output_sha256": "1b3fef465b6fb76c058201ba52f191726c166ce46486130c4d8f175cabdd0bda",
       "declared_source_read_lines": [
         1,
         475
@@ -834,7 +933,7 @@
       "care_regular": 10,
       "care_vacation": 5,
       "input_sha256": "0bb59acd4f51a41cdd5618379bf79192683c2682886e375a1d3843615cdbcc9d",
-      "output_sha256": "843d71bd8e25c51d80bdeba34b7702204f16639da459f428b3f1f8b8a444d5e6",
+      "output_sha256": "1944e1200f831be069561ea9636a6833b3b9889b2665c76db4d4703f7994f6dc",
       "declared_source_read_lines": [
         1,
         129
@@ -994,7 +1093,7 @@
       "care_regular": 5,
       "care_vacation": 0,
       "input_sha256": "6b70ffccdbaa887fa75ade08f38ca65fa13d9011ed348e03d83209845dd17edd",
-      "output_sha256": "6a5c61dcac56bec7bec7875f11ac3335f544dbeed2584e8955521ff191b054d0",
+      "output_sha256": "2eeeefa6c76421a303b98007d229f020863de58ebadbfbb526735a6bb962b3fb",
       "declared_source_read_lines": [
         1,
         611
@@ -1022,6 +1121,142 @@
         "유료 일반운영표와 반별시간표 시각상충",
         "합창·오케스트라 세부운영 미공시",
         "2기 유료 시간표·여름 특별프로그램 별도계획 확보필요"
+      ],
+      "ready_for_operational_review": false
+    },
+    {
+      "school_id": "B000003751",
+      "school_name": "구미초등학교",
+      "raw_total": 56,
+      "paid": 22,
+      "custom_regular_grade1": 20,
+      "custom_regular_grade2": 5,
+      "custom_regular_mixed": 8,
+      "custom_morning": 1,
+      "care_regular": 6,
+      "care_vacation": 0,
+      "input_sha256": "2ba276c49271cac6469b92d793bb71588f9172ad117cc7d97131e7cb4544850d",
+      "output_sha256": "1b0808568fc988477b6aa030ea257dc5c35b6cfb32e52bd056c56cb50687dcd5",
+      "declared_source_read_lines": [
+        1,
+        759
+      ],
+      "structural_and_fingerprint_checks_passed": true,
+      "participation_groups": 24,
+      "mandatory_grade1_custom_gaps": [
+        26,
+        27
+      ],
+      "excluded_closed_rows": 1,
+      "unresolved_clock_conflicts": 0,
+      "care_activity_hours_verified": true,
+      "unconfirmed_conditional_rows": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        39,
+        40,
+        48
+      ],
+      "grade1_custom_inventory_complete": false,
+      "blocking_issues": [
+        "수익자 A/B반 개별시각·학년 미공시",
+        "맞춤형 예시 및 월별 실제 편성 확보필요",
+        "돌봄활동 개별시각 미공시",
+        "강사선정목록과 예시활동명 대응 미확인"
+      ],
+      "ready_for_operational_review": false
+    },
+    {
+      "school_id": "B000003742",
+      "school_name": "성남송현초등학교",
+      "raw_total": 76,
+      "paid": 56,
+      "custom_regular_grade1": 10,
+      "custom_regular_grade2": 10,
+      "custom_regular_mixed": 0,
+      "custom_morning": 0,
+      "care_regular": 0,
+      "care_vacation": 0,
+      "input_sha256": "9f3b89a5dd11f1a19e999fc277292c7e3b81cff4d2ddafd87f3825961e836189",
+      "output_sha256": "0cd3bdf3133cf70e266571f4cf0fbb437d6009f6af67f546573302c33479ea92",
+      "declared_source_read_lines": [
+        1,
+        675
+      ],
+      "structural_and_fingerprint_checks_passed": true,
+      "participation_groups": 27,
+      "mandatory_grade1_custom_gaps": [],
+      "excluded_closed_rows": 0,
+      "unresolved_clock_conflicts": 0,
+      "care_activity_hours_verified": null,
+      "unconfirmed_conditional_rows": [],
+      "grade1_custom_inventory_complete": true,
+      "blocking_issues": [
+        "영어 스피킹·파닉스 요일충돌",
+        "독서논술2 D 대상학년 상충",
+        "방학 실제 프로그램별 편성 미공시",
+        "돌봄교실 활동문서 미확보"
+      ],
+      "ready_for_operational_review": false
+    },
+    {
+      "school_id": "B000003737",
+      "school_name": "성남신기초등학교",
+      "raw_total": 66,
+      "paid": 39,
+      "custom_regular_grade1": 5,
+      "custom_regular_grade2": 5,
+      "custom_regular_mixed": 7,
+      "custom_morning": 0,
+      "care_regular": 7,
+      "care_vacation": 0,
+      "input_sha256": "eeb6f6a6bdbd81ffa38a1a430afea4b87d6d5f3d47e662b34101b9d800caaa84",
+      "output_sha256": "987f89cbb9f700208523b52f510f388b049dd142661dd85456870c6936266a16",
+      "declared_source_read_lines": [
+        1,
+        623
+      ],
+      "structural_and_fingerprint_checks_passed": true,
+      "participation_groups": 20,
+      "mandatory_grade1_custom_gaps": [],
+      "excluded_closed_rows": 0,
+      "unresolved_clock_conflicts": 5,
+      "care_activity_hours_verified": true,
+      "unconfirmed_conditional_rows": [
+        15,
+        16,
+        30,
+        31
+      ],
+      "grade1_custom_inventory_complete": true,
+      "blocking_issues": [
+        "유료 금요일B/C반·수요일플룻 시각 일반표와 상충",
+        "축구 강사 재채용중 실제개설 확인",
+        "영어뮤지컬2기 개강 확인",
+        "돌봄 프로그램 개별시각·명칭대응 미공시"
       ],
       "ready_for_operational_review": false
     }

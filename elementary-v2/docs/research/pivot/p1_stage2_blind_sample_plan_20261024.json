@@ -11,5 +11,9 @@
   ],
   "reviewer_requirement": "A fresh reviewer must freeze source-only expectations before opening extraction outputs; never review their own extraction",
   "completed": false,
-  "publish_status": "not_approved"
+  "publish_status": "not_approved",
+  "updated_on": "2026-10-25",
+  "audit_unit": "core time slots: 맞춤형, 저학년방과후; not course rows",
+  "policy_file": "F:\\sm\\vibe\\elementary\\pjt_250826\\elementary-v2\\docs\\operations\\PIVOT_SLOT_STANDARD.md",
+  "policy_sha256": "6b340cc0614cf25b6cd06fd90d745c64923735d774bb7b73317dadd5b97342f8"
 }

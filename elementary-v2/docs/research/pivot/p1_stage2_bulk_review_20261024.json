@@ -1,7 +1,7 @@
 {
   "schema_version": "pivot-p1-stage2-manual-source-review-v1",
-  "reviewed_on": "2026-10-24",
-  "method": "Extracting agent declarations from full numbered sources; primary structural and fingerprint integration; no independent blind accuracy claim",
+  "reviewed_on": "2026-10-25",
+  "method": "Full numbered-source extraction declarations; structural/hash/participation audit; slot-based independent sample pending",
   "schools": [
     {
       "school_id": "B000003738",
@@ -2690,7 +2690,7 @@
         }
       ],
       "output_file": "docs/research/pivot/p1_stage2_bulk_20261024/batch_bulk_B000003750.json",
-      "output_sha256": "4026e4947820151266edfbab70843c6256e798cedfd1859d7ff4488ae2e96849",
+      "output_sha256": "ef43063cabfea474c9876db6f0eff161fcf3d7941bc0a4dca9fb17e17f0f465d",
       "source_read_lines": [
         1,
         368
@@ -3126,7 +3126,7 @@
         }
       ],
       "output_file": "docs/research/pivot/p1_stage2_bulk_20261024/batch_bulk_B000003767.json",
-      "output_sha256": "63ac0a73393369953328961b687862fc264b68d6784ca4d1be559f303edb14b9",
+      "output_sha256": "4da156a0f5e2c0d23630cffd5506fcae43e482035193ef34df2f55f371c3d495",
       "source_read_lines": [
         1,
         339
@@ -5430,7 +5430,7 @@
         }
       ],
       "output_file": "docs/research/pivot/p1_stage2_bulk_20261024/batch_bulk_B000003765.json",
-      "output_sha256": "e4221f8726d35c780f698b5700b8881ec8fdd46394d0440528d4598cfb08a9ab",
+      "output_sha256": "c8b619d6d742a6025300860ca9279474227250d3571b73c672b111642d64d8ee",
       "source_read_lines": [
         1,
         608
@@ -8287,7 +8287,7 @@
         }
       ],
       "output_file": "docs/research/pivot/p1_stage2_bulk_20261024/batch_bulk_B000003748.json",
-      "output_sha256": "6e2c7070f6ebe5bd4c0ac0e51b8925c759dab844cd2f30973c307f15f444938f",
+      "output_sha256": "080ce32d6474859f51e7f9b3ac4af3f2ef3eada445dd156bac0fe27da200eaba",
       "source_read_lines": [
         1,
         643
@@ -9795,6 +9795,1244 @@
       }
     },
     {
+      "school_id": "B000003758",
+      "school_name": "서당초등학교",
+      "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_stage2_20261023/B000003758.txt",
+      "input_sha256": "8bc5eb5e8e43708aa1c2c1d7d222e8e60396d7d909294427ec73674fcb2a2506",
+      "source_files": [
+        {
+          "file": "etl/runtime/pivot_p1_stage2_sources_20261023/1936454_0.pdf",
+          "sha256": "1b673c6df385f2801988e0e087d192371873c0bcd058b331a511a9f8233ffda7"
+        },
+        {
+          "file": "etl/runtime/audit2-documents/f1b330c152b9fdf23521210e41b489d07de1660f0daa05ccfb06813489b4d6a6.hwp",
+          "sha256": "f1b330c152b9fdf23521210e41b489d07de1660f0daa05ccfb06813489b4d6a6"
+        },
+        {
+          "file": "etl/runtime/pivot_p1_stage2_sources_20261023/1948588_image_0.jpg",
+          "sha256": "83eea414472a703ee7961922f92b544dbd2bf4b97feeeee1f773aa0eccaedb19"
+        },
+        {
+          "file": "etl/runtime/pivot_p1_stage2_sources_20261023/1948588_image_1.jpg",
+          "sha256": "f345984a27b29e53f65a55f501c72f25a6c1f2353e625fdcd85e33b1705755fe"
+        }
+      ],
+      "output_file": "docs/research/pivot/p1_stage2_bulk_20261024/batch_bulk_B000003758.json",
+      "output_sha256": "2984459713cbe40f7cb3dfd299006f63febf50333c0bb5d1ed744048346570ac",
+      "source_read_lines": [
+        1,
+        591
+      ],
+      "inventory": {
+        "raw_total": 128,
+        "paid": 58,
+        "custom_regular_grade1": 20,
+        "custom_regular_grade2": 15,
+        "custom_regular_mixed": 10,
+        "custom_morning": 5,
+        "care_regular": 10,
+        "care_vacation": 20
+      },
+      "source_inventory_complete": true,
+      "grade1_custom_inventory_complete": true,
+      "participation_review_complete": true,
+      "participation_groups": [
+        {
+          "group_id": "B000003758-1",
+          "mode": "class_day_bundle",
+          "individually_selectable": false,
+          "rows": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "evidence": {
+            "input_lines": [
+              26
+            ],
+            "basis": "원문의 수익자 강좌별 선택 또는 맞춤형 학급 편성 활동; 개별 활동 신청으로 해석하지 않음"
+          }
+        },
+        {
+          "group_id": "B000003758-2",
+          "mode": "class_day_bundle",
+          "individually_selectable": false,
+          "rows": [
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "evidence": {
+            "input_lines": [
+              26
+            ],
+            "basis": "원문의 수익자 강좌별 선택 또는 맞춤형 학급 편성 활동; 개별 활동 신청으로 해석하지 않음"
+          }
+        },
+        {
+          "group_id": "B000003758-3",
+          "mode": "class_day_bundle",
+          "individually_selectable": false,
+          "rows": [
+            21,
+            22,
+            23,
+            24,
+            25
+          ],
+          "evidence": {
+            "input_lines": [
+              26
+            ],
+            "basis": "원문의 수익자 강좌별 선택 또는 맞춤형 학급 편성 활동; 개별 활동 신청으로 해석하지 않음"
+          }
+        },
+        {
+          "group_id": "B000003758-4",
+          "mode": "class_day_bundle",
+          "individually_selectable": false,
+          "rows": [
+            26,
+            27,
+            28,
+            29,
+            30
+          ],
+          "evidence": {
+            "input_lines": [
+              26
+            ],
+            "basis": "원문의 수익자 강좌별 선택 또는 맞춤형 학급 편성 활동; 개별 활동 신청으로 해석하지 않음"
+          }
+        },
+        {
+          "group_id": "B000003758-5",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            41,
+            70
+          ],
+          "evidence": {
+            "input_lines": [
+              38
+            ],
+            "basis": "원문의 수익자 강좌별 선택 또는 맞춤형 학급 편성 활동; 개별 활동 신청으로 해석하지 않음"
+          }
+        },
+        {
+          "group_id": "B000003758-6",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            43,
+            44,
+            72,
+            73
+          ],
+          "evidence": {
+            "input_lines": [
+              40
+            ],
+            "basis": "원문의 수익자 강좌별 선택 또는 맞춤형 학급 편성 활동; 개별 활동 신청으로 해석하지 않음"
+          }
+        },
+        {
+          "group_id": "B000003758-7",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            45,
+            74
+          ],
+          "evidence": {
+            "input_lines": [
+              40
+            ],
+            "basis": "원문의 수익자 강좌별 선택 또는 맞춤형 학급 편성 활동; 개별 활동 신청으로 해석하지 않음"
+          }
+        },
+        {
+          "group_id": "B000003758-8",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            46,
+            75
+          ],
+          "evidence": {
+            "input_lines": [
+              42
+            ],
+            "basis": "원문의 수익자 강좌별 선택 또는 맞춤형 학급 편성 활동; 개별 활동 신청으로 해석하지 않음"
+          }
+        },
+        {
+          "group_id": "B000003758-9",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            48,
+            77,
+            78
+          ],
+          "evidence": {
+            "input_lines": [
+              43
+            ],
+            "basis": "원문의 수익자 강좌별 선택 또는 맞춤형 학급 편성 활동; 개별 활동 신청으로 해석하지 않음"
+          }
+        },
+        {
+          "group_id": "B000003758-10",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            50,
+            51,
+            79,
+            80
+          ],
+          "evidence": {
+            "input_lines": [
+              43
+            ],
+            "basis": "원문의 수익자 강좌별 선택 또는 맞춤형 학급 편성 활동; 개별 활동 신청으로 해석하지 않음"
+          }
+        },
+        {
+          "group_id": "B000003758-11",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            52,
+            81
+          ],
+          "evidence": {
+            "input_lines": [
+              45
+            ],
+            "basis": "원문의 수익자 강좌별 선택 또는 맞춤형 학급 편성 활동; 개별 활동 신청으로 해석하지 않음"
+          }
+        },
+        {
+          "group_id": "B000003758-12",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            54,
+            83
+          ],
+          "evidence": {
+            "input_lines": [
+              47
+            ],
+            "basis": "원문의 수익자 강좌별 선택 또는 맞춤형 학급 편성 활동; 개별 활동 신청으로 해석하지 않음"
+          }
+        },
+        {
+          "group_id": "B000003758-13",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            56,
+            85
+          ],
+          "evidence": {
+            "input_lines": [
+              40
+            ],
+            "basis": "원문의 수익자 강좌별 선택 또는 맞춤형 학급 편성 활동; 개별 활동 신청으로 해석하지 않음"
+          }
+        },
+        {
+          "group_id": "B000003758-14",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            58,
+            87
+          ],
+          "evidence": {
+            "input_lines": [
+              40
+            ],
+            "basis": "원문의 수익자 강좌별 선택 또는 맞춤형 학급 편성 활동; 개별 활동 신청으로 해석하지 않음"
+          }
+        },
+        {
+          "group_id": "B000003758-15",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            60,
+            89
+          ],
+          "evidence": {
+            "input_lines": [
+              40
+            ],
+            "basis": "원문의 수익자 강좌별 선택 또는 맞춤형 학급 편성 활동; 개별 활동 신청으로 해석하지 않음"
+          }
+        },
+        {
+          "group_id": "B000003758-16",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            62,
+            91,
+            92
+          ],
+          "evidence": {
+            "input_lines": [
+              43
+            ],
+            "basis": "원문의 수익자 강좌별 선택 또는 맞춤형 학급 편성 활동; 개별 활동 신청으로 해석하지 않음"
+          }
+        },
+        {
+          "group_id": "B000003758-17",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            64,
+            65,
+            93,
+            94
+          ],
+          "evidence": {
+            "input_lines": [
+              43
+            ],
+            "basis": "원문의 수익자 강좌별 선택 또는 맞춤형 학급 편성 활동; 개별 활동 신청으로 해석하지 않음"
+          }
+        },
+        {
+          "group_id": "B000003758-18",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            66,
+            67
+          ],
+          "evidence": {
+            "input_lines": [
+              47
+            ],
+            "basis": "원문의 수익자 강좌별 선택 또는 맞춤형 학급 편성 활동; 개별 활동 신청으로 해석하지 않음"
+          }
+        },
+        {
+          "group_id": "B000003758-19",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            68,
+            69,
+            97
+          ],
+          "evidence": {
+            "input_lines": [
+              47
+            ],
+            "basis": "원문의 수익자 강좌별 선택 또는 맞춤형 학급 편성 활동; 개별 활동 신청으로 해석하지 않음"
+          }
+        },
+        {
+          "group_id": "B000003758-20",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            95
+          ],
+          "evidence": {
+            "input_lines": [
+              47
+            ],
+            "basis": "원문의 수익자 강좌별 선택 또는 맞춤형 학급 편성 활동; 개별 활동 신청으로 해석하지 않음"
+          }
+        },
+        {
+          "group_id": "B000003758-21",
+          "mode": "care_activity",
+          "individually_selectable": false,
+          "rows": [
+            99,
+            100,
+            101,
+            102,
+            103
+          ],
+          "evidence": {
+            "input_lines": [
+              249
+            ],
+            "basis": "원문의 수익자 강좌별 선택 또는 맞춤형 학급 편성 활동; 개별 활동 신청으로 해석하지 않음"
+          }
+        },
+        {
+          "group_id": "B000003758-22",
+          "mode": "care_activity",
+          "individually_selectable": false,
+          "rows": [
+            104,
+            105,
+            106,
+            107,
+            108
+          ],
+          "evidence": {
+            "input_lines": [
+              259
+            ],
+            "basis": "원문의 수익자 강좌별 선택 또는 맞춤형 학급 편성 활동; 개별 활동 신청으로 해석하지 않음"
+          }
+        }
+      ],
+      "row_decisions": [
+        {
+          "row": 1,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 2,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 3,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 4,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 5,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 6,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 7,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 8,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 9,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 10,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 11,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 12,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 13,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 14,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 15,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 16,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 17,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 18,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 19,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 20,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 21,
+          "verdict": "source_faithful",
+          "supplemental_visual_evidence": {
+            "file": "etl/runtime/pivot_p1_stage2_sources_20261023/1948588_image_0.jpg",
+            "basis": "2026학년도2학기 공식보충시간표 시각대조; 줄번호는 연간계획 해당강좌의 기준행"
+          }
+        },
+        {
+          "row": 22,
+          "verdict": "source_faithful",
+          "supplemental_visual_evidence": {
+            "file": "etl/runtime/pivot_p1_stage2_sources_20261023/1948588_image_0.jpg",
+            "basis": "2026학년도2학기 공식보충시간표 시각대조; 줄번호는 연간계획 해당강좌의 기준행"
+          }
+        },
+        {
+          "row": 23,
+          "verdict": "source_faithful",
+          "supplemental_visual_evidence": {
+            "file": "etl/runtime/pivot_p1_stage2_sources_20261023/1948588_image_0.jpg",
+            "basis": "2026학년도2학기 공식보충시간표 시각대조; 줄번호는 연간계획 해당강좌의 기준행"
+          }
+        },
+        {
+          "row": 24,
+          "verdict": "source_faithful",
+          "supplemental_visual_evidence": {
+            "file": "etl/runtime/pivot_p1_stage2_sources_20261023/1948588_image_0.jpg",
+            "basis": "2026학년도2학기 공식보충시간표 시각대조; 줄번호는 연간계획 해당강좌의 기준행"
+          }
+        },
+        {
+          "row": 25,
+          "verdict": "source_faithful",
+          "supplemental_visual_evidence": {
+            "file": "etl/runtime/pivot_p1_stage2_sources_20261023/1948588_image_0.jpg",
+            "basis": "2026학년도2학기 공식보충시간표 시각대조; 줄번호는 연간계획 해당강좌의 기준행"
+          }
+        },
+        {
+          "row": 26,
+          "verdict": "source_faithful",
+          "supplemental_visual_evidence": {
+            "file": "etl/runtime/pivot_p1_stage2_sources_20261023/1948588_image_0.jpg",
+            "basis": "2026학년도2학기 공식보충시간표 시각대조; 줄번호는 연간계획 해당강좌의 기준행"
+          }
+        },
+        {
+          "row": 27,
+          "verdict": "source_faithful",
+          "supplemental_visual_evidence": {
+            "file": "etl/runtime/pivot_p1_stage2_sources_20261023/1948588_image_0.jpg",
+            "basis": "2026학년도2학기 공식보충시간표 시각대조; 줄번호는 연간계획 해당강좌의 기준행"
+          }
+        },
+        {
+          "row": 28,
+          "verdict": "source_faithful",
+          "supplemental_visual_evidence": {
+            "file": "etl/runtime/pivot_p1_stage2_sources_20261023/1948588_image_0.jpg",
+            "basis": "2026학년도2학기 공식보충시간표 시각대조; 줄번호는 연간계획 해당강좌의 기준행"
+          }
+        },
+        {
+          "row": 29,
+          "verdict": "source_faithful",
+          "supplemental_visual_evidence": {
+            "file": "etl/runtime/pivot_p1_stage2_sources_20261023/1948588_image_0.jpg",
+            "basis": "2026학년도2학기 공식보충시간표 시각대조; 줄번호는 연간계획 해당강좌의 기준행"
+          }
+        },
+        {
+          "row": 30,
+          "verdict": "source_faithful",
+          "supplemental_visual_evidence": {
+            "file": "etl/runtime/pivot_p1_stage2_sources_20261023/1948588_image_0.jpg",
+            "basis": "2026학년도2학기 공식보충시간표 시각대조; 줄번호는 연간계획 해당강좌의 기준행"
+          }
+        },
+        {
+          "row": 31,
+          "verdict": "source_faithful",
+          "supplemental_visual_evidence": {
+            "file": "etl/runtime/pivot_p1_stage2_sources_20261023/1948588_image_0.jpg",
+            "basis": "2026학년도2학기 공식보충시간표 시각대조; 줄번호는 연간계획 해당강좌의 기준행"
+          }
+        },
+        {
+          "row": 32,
+          "verdict": "source_faithful",
+          "supplemental_visual_evidence": {
+            "file": "etl/runtime/pivot_p1_stage2_sources_20261023/1948588_image_0.jpg",
+            "basis": "2026학년도2학기 공식보충시간표 시각대조; 줄번호는 연간계획 해당강좌의 기준행"
+          }
+        },
+        {
+          "row": 33,
+          "verdict": "source_faithful",
+          "supplemental_visual_evidence": {
+            "file": "etl/runtime/pivot_p1_stage2_sources_20261023/1948588_image_0.jpg",
+            "basis": "2026학년도2학기 공식보충시간표 시각대조; 줄번호는 연간계획 해당강좌의 기준행"
+          }
+        },
+        {
+          "row": 34,
+          "verdict": "source_faithful",
+          "supplemental_visual_evidence": {
+            "file": "etl/runtime/pivot_p1_stage2_sources_20261023/1948588_image_0.jpg",
+            "basis": "2026학년도2학기 공식보충시간표 시각대조; 줄번호는 연간계획 해당강좌의 기준행"
+          }
+        },
+        {
+          "row": 35,
+          "verdict": "source_faithful",
+          "supplemental_visual_evidence": {
+            "file": "etl/runtime/pivot_p1_stage2_sources_20261023/1948588_image_0.jpg",
+            "basis": "2026학년도2학기 공식보충시간표 시각대조; 줄번호는 연간계획 해당강좌의 기준행"
+          }
+        },
+        {
+          "row": 36,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 37,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 38,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 39,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 40,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 41,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 42,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 43,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 44,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 45,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 46,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 47,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 48,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 49,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 50,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 51,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 52,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 53,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 54,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 55,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 56,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 57,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 58,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 59,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 60,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 61,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 62,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 63,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 64,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 65,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 66,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 67,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 68,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 69,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 70,
+          "verdict": "source_faithful",
+          "supplemental_visual_evidence": {
+            "file": "etl/runtime/pivot_p1_stage2_sources_20261023/1948588_image_1.jpg",
+            "basis": "2026학년도2학기 공식보충시간표 시각대조; 줄번호는 연간계획 해당강좌의 기준행"
+          }
+        },
+        {
+          "row": 71,
+          "verdict": "source_faithful",
+          "supplemental_visual_evidence": {
+            "file": "etl/runtime/pivot_p1_stage2_sources_20261023/1948588_image_1.jpg",
+            "basis": "2026학년도2학기 공식보충시간표 시각대조; 줄번호는 연간계획 해당강좌의 기준행"
+          }
+        },
+        {
+          "row": 72,
+          "verdict": "source_faithful",
+          "supplemental_visual_evidence": {
+            "file": "etl/runtime/pivot_p1_stage2_sources_20261023/1948588_image_1.jpg",
+            "basis": "2026학년도2학기 공식보충시간표 시각대조; 줄번호는 연간계획 해당강좌의 기준행"
+          }
+        },
+        {
+          "row": 73,
+          "verdict": "source_faithful",
+          "supplemental_visual_evidence": {
+            "file": "etl/runtime/pivot_p1_stage2_sources_20261023/1948588_image_1.jpg",
+            "basis": "2026학년도2학기 공식보충시간표 시각대조; 줄번호는 연간계획 해당강좌의 기준행"
+          }
+        },
+        {
+          "row": 74,
+          "verdict": "source_faithful",
+          "supplemental_visual_evidence": {
+            "file": "etl/runtime/pivot_p1_stage2_sources_20261023/1948588_image_1.jpg",
+            "basis": "2026학년도2학기 공식보충시간표 시각대조; 줄번호는 연간계획 해당강좌의 기준행"
+          }
+        },
+        {
+          "row": 75,
+          "verdict": "source_faithful",
+          "supplemental_visual_evidence": {
+            "file": "etl/runtime/pivot_p1_stage2_sources_20261023/1948588_image_1.jpg",
+            "basis": "2026학년도2학기 공식보충시간표 시각대조; 줄번호는 연간계획 해당강좌의 기준행"
+          }
+        },
+        {
+          "row": 76,
+          "verdict": "source_faithful",
+          "supplemental_visual_evidence": {
+            "file": "etl/runtime/pivot_p1_stage2_sources_20261023/1948588_image_1.jpg",
+            "basis": "2026학년도2학기 공식보충시간표 시각대조; 줄번호는 연간계획 해당강좌의 기준행"
+          }
+        },
+        {
+          "row": 77,
+          "verdict": "source_faithful",
+          "supplemental_visual_evidence": {
+            "file": "etl/runtime/pivot_p1_stage2_sources_20261023/1948588_image_1.jpg",
+            "basis": "2026학년도2학기 공식보충시간표 시각대조; 줄번호는 연간계획 해당강좌의 기준행"
+          }
+        },
+        {
+          "row": 78,
+          "verdict": "source_faithful",
+          "supplemental_visual_evidence": {
+            "file": "etl/runtime/pivot_p1_stage2_sources_20261023/1948588_image_1.jpg",
+            "basis": "2026학년도2학기 공식보충시간표 시각대조; 줄번호는 연간계획 해당강좌의 기준행"
+          }
+        },
+        {
+          "row": 79,
+          "verdict": "source_faithful",
+          "supplemental_visual_evidence": {
+            "file": "etl/runtime/pivot_p1_stage2_sources_20261023/1948588_image_1.jpg",
+            "basis": "2026학년도2학기 공식보충시간표 시각대조; 줄번호는 연간계획 해당강좌의 기준행"
+          }
+        },
+        {
+          "row": 80,
+          "verdict": "source_faithful",
+          "supplemental_visual_evidence": {
+            "file": "etl/runtime/pivot_p1_stage2_sources_20261023/1948588_image_1.jpg",
+            "basis": "2026학년도2학기 공식보충시간표 시각대조; 줄번호는 연간계획 해당강좌의 기준행"
+          }
+        },
+        {
+          "row": 81,
+          "verdict": "source_faithful",
+          "supplemental_visual_evidence": {
+            "file": "etl/runtime/pivot_p1_stage2_sources_20261023/1948588_image_1.jpg",
+            "basis": "2026학년도2학기 공식보충시간표 시각대조; 줄번호는 연간계획 해당강좌의 기준행"
+          }
+        },
+        {
+          "row": 82,
+          "verdict": "source_faithful",
+          "supplemental_visual_evidence": {
+            "file": "etl/runtime/pivot_p1_stage2_sources_20261023/1948588_image_1.jpg",
+            "basis": "2026학년도2학기 공식보충시간표 시각대조; 줄번호는 연간계획 해당강좌의 기준행"
+          }
+        },
+        {
+          "row": 83,
+          "verdict": "source_faithful",
+          "supplemental_visual_evidence": {
+            "file": "etl/runtime/pivot_p1_stage2_sources_20261023/1948588_image_1.jpg",
+            "basis": "2026학년도2학기 공식보충시간표 시각대조; 줄번호는 연간계획 해당강좌의 기준행"
+          }
+        },
+        {
+          "row": 84,
+          "verdict": "source_faithful",
+          "supplemental_visual_evidence": {
+            "file": "etl/runtime/pivot_p1_stage2_sources_20261023/1948588_image_1.jpg",
+            "basis": "2026학년도2학기 공식보충시간표 시각대조; 줄번호는 연간계획 해당강좌의 기준행"
+          }
+        },
+        {
+          "row": 85,
+          "verdict": "source_faithful",
+          "supplemental_visual_evidence": {
+            "file": "etl/runtime/pivot_p1_stage2_sources_20261023/1948588_image_1.jpg",
+            "basis": "2026학년도2학기 공식보충시간표 시각대조; 줄번호는 연간계획 해당강좌의 기준행"
+          }
+        },
+        {
+          "row": 86,
+          "verdict": "source_faithful",
+          "supplemental_visual_evidence": {
+            "file": "etl/runtime/pivot_p1_stage2_sources_20261023/1948588_image_1.jpg",
+            "basis": "2026학년도2학기 공식보충시간표 시각대조; 줄번호는 연간계획 해당강좌의 기준행"
+          }
+        },
+        {
+          "row": 87,
+          "verdict": "source_faithful",
+          "supplemental_visual_evidence": {
+            "file": "etl/runtime/pivot_p1_stage2_sources_20261023/1948588_image_1.jpg",
+            "basis": "2026학년도2학기 공식보충시간표 시각대조; 줄번호는 연간계획 해당강좌의 기준행"
+          }
+        },
+        {
+          "row": 88,
+          "verdict": "source_faithful",
+          "supplemental_visual_evidence": {
+            "file": "etl/runtime/pivot_p1_stage2_sources_20261023/1948588_image_1.jpg",
+            "basis": "2026학년도2학기 공식보충시간표 시각대조; 줄번호는 연간계획 해당강좌의 기준행"
+          }
+        },
+        {
+          "row": 89,
+          "verdict": "source_faithful",
+          "supplemental_visual_evidence": {
+            "file": "etl/runtime/pivot_p1_stage2_sources_20261023/1948588_image_1.jpg",
+            "basis": "2026학년도2학기 공식보충시간표 시각대조; 줄번호는 연간계획 해당강좌의 기준행"
+          }
+        },
+        {
+          "row": 90,
+          "verdict": "source_faithful",
+          "supplemental_visual_evidence": {
+            "file": "etl/runtime/pivot_p1_stage2_sources_20261023/1948588_image_1.jpg",
+            "basis": "2026학년도2학기 공식보충시간표 시각대조; 줄번호는 연간계획 해당강좌의 기준행"
+          }
+        },
+        {
+          "row": 91,
+          "verdict": "source_faithful",
+          "supplemental_visual_evidence": {
+            "file": "etl/runtime/pivot_p1_stage2_sources_20261023/1948588_image_1.jpg",
+            "basis": "2026학년도2학기 공식보충시간표 시각대조; 줄번호는 연간계획 해당강좌의 기준행"
+          }
+        },
+        {
+          "row": 92,
+          "verdict": "source_faithful",
+          "supplemental_visual_evidence": {
+            "file": "etl/runtime/pivot_p1_stage2_sources_20261023/1948588_image_1.jpg",
+            "basis": "2026학년도2학기 공식보충시간표 시각대조; 줄번호는 연간계획 해당강좌의 기준행"
+          }
+        },
+        {
+          "row": 93,
+          "verdict": "source_faithful",
+          "supplemental_visual_evidence": {
+            "file": "etl/runtime/pivot_p1_stage2_sources_20261023/1948588_image_1.jpg",
+            "basis": "2026학년도2학기 공식보충시간표 시각대조; 줄번호는 연간계획 해당강좌의 기준행"
+          }
+        },
+        {
+          "row": 94,
+          "verdict": "source_faithful",
+          "supplemental_visual_evidence": {
+            "file": "etl/runtime/pivot_p1_stage2_sources_20261023/1948588_image_1.jpg",
+            "basis": "2026학년도2학기 공식보충시간표 시각대조; 줄번호는 연간계획 해당강좌의 기준행"
+          }
+        },
+        {
+          "row": 95,
+          "verdict": "source_faithful",
+          "supplemental_visual_evidence": {
+            "file": "etl/runtime/pivot_p1_stage2_sources_20261023/1948588_image_1.jpg",
+            "basis": "2026학년도2학기 공식보충시간표 시각대조; 줄번호는 연간계획 해당강좌의 기준행"
+          }
+        },
+        {
+          "row": 96,
+          "verdict": "source_faithful",
+          "supplemental_visual_evidence": {
+            "file": "etl/runtime/pivot_p1_stage2_sources_20261023/1948588_image_1.jpg",
+            "basis": "2026학년도2학기 공식보충시간표 시각대조; 줄번호는 연간계획 해당강좌의 기준행"
+          }
+        },
+        {
+          "row": 97,
+          "verdict": "source_faithful",
+          "supplemental_visual_evidence": {
+            "file": "etl/runtime/pivot_p1_stage2_sources_20261023/1948588_image_1.jpg",
+            "basis": "2026학년도2학기 공식보충시간표 시각대조; 줄번호는 연간계획 해당강좌의 기준행"
+          }
+        },
+        {
+          "row": 98,
+          "verdict": "source_faithful",
+          "supplemental_visual_evidence": {
+            "file": "etl/runtime/pivot_p1_stage2_sources_20261023/1948588_image_1.jpg",
+            "basis": "2026학년도2학기 공식보충시간표 시각대조; 줄번호는 연간계획 해당강좌의 기준행"
+          }
+        },
+        {
+          "row": 99,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 100,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 101,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 102,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 103,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 104,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 105,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 106,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 107,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 108,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 109,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 110,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 111,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 112,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 113,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 114,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 115,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 116,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 117,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 118,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 119,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 120,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 121,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 122,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 123,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 124,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 125,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 126,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 127,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 128,
+          "verdict": "source_faithful"
+        }
+      ],
+      "blocking_issues": [
+        "동일 에이전트 원문대조이며 독립 맹검 검수 미완료"
+      ],
+      "advisory_issues": [
+        "2학기 수익자 명시폐강4반 보존; 1학기 실제운영완료 증빙없어 operating에서 함께 보류",
+        "맞춤형 방학 프로그램별·반별 세부시간표 미공개",
+        "돌봄 특기적성1시간창과50분 수업원칙 L237 차이는 실제창으로 기록"
+      ],
+      "eligibility_notes": [
+        "맞춤형 학급단위A/B/C/D 활동편성;2학기A/B/C만 표에 있음",
+        "돌봄 1~2학년 2학급, 교육비·한부모·맞벌이다자녀 순 L200~201,L284~290",
+        "수익자 강좌·반별 신청"
+      ],
+      "publish_ready": false,
+      "no_operational_upload": true,
+      "visually_reviewed_pages": [
+        5,
+        6,
+        8
+      ],
+      "visually_reviewed_sources": [
+        "etl/runtime/pivot_p1_stage2_sources_20261023/1948588_image_0.jpg",
+        "etl/runtime/pivot_p1_stage2_sources_20261023/1948588_image_1.jpg"
+      ],
+      "excluded_closed_rows": [
+        {
+          "name": "바둑",
+          "section": "B",
+          "days": "월",
+          "status": "closed_in_source_plan",
+          "evidence_lines": [
+            40
+          ],
+          "visual_evidence": {
+            "file": "etl/runtime/pivot_p1_stage2_sources_20261023/1948588_image_1.jpg",
+            "basis": "2학기 층별안내도에서 폐강 명시"
+          },
+          "earlier_plan": {
+            "term": "2026 연간 계획",
+            "source_line": 40
+          }
+        },
+        {
+          "name": "창의실험과학A",
+          "section": "C",
+          "days": "수",
+          "status": "closed_in_source_plan",
+          "evidence_lines": [
+            40
+          ],
+          "visual_evidence": {
+            "file": "etl/runtime/pivot_p1_stage2_sources_20261023/1948588_image_1.jpg",
+            "basis": "2학기 층별안내도에서 폐강 명시"
+          },
+          "earlier_plan": {
+            "term": "2026 연간 계획",
+            "source_line": 40
+          }
+        },
+        {
+          "name": "컴퓨터",
+          "section": "C",
+          "days": "수",
+          "status": "closed_in_source_plan",
+          "evidence_lines": [
+            40
+          ],
+          "visual_evidence": {
+            "file": "etl/runtime/pivot_p1_stage2_sources_20261023/1948588_image_1.jpg",
+            "basis": "2학기 층별안내도에서 폐강 명시"
+          },
+          "earlier_plan": {
+            "term": "2026 연간 계획",
+            "source_line": 40
+          }
+        },
+        {
+          "name": "우쿠렐레&리코더",
+          "section": "A",
+          "days": "금",
+          "status": "closed_in_source_plan",
+          "evidence_lines": [
+            47
+          ],
+          "visual_evidence": {
+            "file": "etl/runtime/pivot_p1_stage2_sources_20261023/1948588_image_1.jpg",
+            "basis": "2학기 층별안내도에서 폐강 명시"
+          },
+          "earlier_plan": {
+            "term": "2026 연간 계획",
+            "source_line": 47
+          }
+        }
+      ],
+      "care_hours_review_complete": true,
+      "care_hours": {
+        "days": "월화수목금",
+        "start_basis": "after_regular_classes",
+        "end": "19:00",
+        "evidence": {
+          "input_lines": [
+            204,
+            205,
+            246,
+            254
+          ],
+          "basis": "돌봄1실19시/돌봄2실17시; 전체학교 이용 최대19시"
+        },
+        "by_class": {
+          "돌봄1실": {
+            "end": "19:00"
+          },
+          "돌봄2실": {
+            "end": "17:00"
+          }
+        }
+      },
+      "general_period_schedules": {
+        "vacation_custom_morning": [
+          "08:10",
+          "08:50"
+        ],
+        "vacation_custom_afternoon": [
+          "09:00",
+          "10:30"
+        ],
+        "evidence_lines": [
+          20
+        ],
+        "course_mapping_confirmed": false
+      },
+      "conditional_rows": [
+        {
+          "rows": [
+            16,
+            17,
+            18,
+            19,
+            20
+          ],
+          "condition": "학생수 감소시 자연폐강 예정이며2학기 보충표D반 없음",
+          "evidence_lines": [
+            28
+          ],
+          "confirmed_operating": false
+        }
+      ]
+    },
+    {
       "school_id": "B000023089",
       "school_name": "위례숲초등학교",
       "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_stage2_20261023/B000023089.txt",
@@ -10511,7 +11749,7 @@
         }
       ],
       "output_file": "docs/research/pivot/p1_stage2_bulk_20261024/batch_bulk_B000003749.json",
-      "output_sha256": "1ae1b4e68b763fd3b2acfff619d214c32dcfb40b53b6340a64c924727b40a8be",
+      "output_sha256": "5e8ddbf0de00c26b4d8abf0663c44679b17873da184fc12ef330f6f23b411052",
       "source_read_lines": [
         1,
         443
@@ -12329,7 +13567,7 @@
         }
       ],
       "output_file": "docs/research/pivot/p1_stage2_bulk_20261024/batch_bulk_B000003763.json",
-      "output_sha256": "1280ee3384ff2cec61990619d2b6ae9ce71ee981212be49dd1349c8bec015634",
+      "output_sha256": "0fa80fd62449c3537466240fd6a151757344662b3e0434cf9013341db134ce7b",
       "source_read_lines": [
         1,
         509
@@ -13452,6 +14690,1369 @@
       ]
     },
     {
+      "school_id": "B000024239",
+      "school_name": "위례푸른초등학교",
+      "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_stage2_20261023/B000024239.txt",
+      "input_sha256": "573c834aa50c39ac6c8fc369b25662bb11a90eaa3e451c85f63911e61b8be3c1",
+      "source_files": [
+        {
+          "file": "etl/runtime/audit2-documents/b57b5d9a60516620ef14200fb20087736b1fbc9e06aa896d2a13c71d0515bea3.hwp",
+          "sha256": "b57b5d9a60516620ef14200fb20087736b1fbc9e06aa896d2a13c71d0515bea3"
+        }
+      ],
+      "output_file": "docs/research/pivot/p1_stage2_bulk_20261024/batch_bulk_B000024239.json",
+      "output_sha256": "3c6e6bf2dbff29842f17ada627700b153ec047254a6fdf27590bb60c0b89d26f",
+      "source_read_lines": [
+        1,
+        510
+      ],
+      "inventory": {
+        "raw_total": 56,
+        "paid": 46,
+        "custom_regular_grade1": 5,
+        "custom_regular_grade2": 5,
+        "custom_regular_mixed": 0,
+        "custom_morning": 0,
+        "care_regular": 0,
+        "care_vacation": 0
+      },
+      "source_inventory_complete": true,
+      "grade1_custom_inventory_complete": true,
+      "participation_review_complete": true,
+      "participation_groups": [
+        {
+          "group_id": "B000024239-1",
+          "mode": "class_day_bundle",
+          "individually_selectable": false,
+          "rows": [
+            1,
+            3,
+            5,
+            7,
+            9
+          ],
+          "evidence": {
+            "input_lines": [
+              61,
+              63,
+              65,
+              67,
+              69
+            ],
+            "basis": "맞춤형 반·요일 편성 활동; 개별 강좌 신청으로 해석하지 않음"
+          }
+        },
+        {
+          "group_id": "B000024239-2",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            11,
+            12
+          ],
+          "evidence": {
+            "input_lines": [
+              140,
+              141
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000024239-3",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            13,
+            14
+          ],
+          "evidence": {
+            "input_lines": [
+              142,
+              143
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000024239-4",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            15
+          ],
+          "evidence": {
+            "input_lines": [
+              144
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000024239-5",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            17,
+            18
+          ],
+          "evidence": {
+            "input_lines": [
+              146,
+              147
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000024239-6",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            19,
+            20
+          ],
+          "evidence": {
+            "input_lines": [
+              148,
+              149
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000024239-7",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            21
+          ],
+          "evidence": {
+            "input_lines": [
+              150
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000024239-8",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            23
+          ],
+          "evidence": {
+            "input_lines": [
+              152
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000024239-9",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            25,
+            26
+          ],
+          "evidence": {
+            "input_lines": [
+              154,
+              155
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000024239-10",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            27,
+            28
+          ],
+          "evidence": {
+            "input_lines": [
+              156,
+              157
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000024239-11",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            29,
+            30
+          ],
+          "evidence": {
+            "input_lines": [
+              158,
+              159
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000024239-12",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            31
+          ],
+          "evidence": {
+            "input_lines": [
+              160
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000024239-13",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            33,
+            34
+          ],
+          "evidence": {
+            "input_lines": [
+              162,
+              163
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000024239-14",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            35,
+            36
+          ],
+          "evidence": {
+            "input_lines": [
+              164,
+              165
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000024239-15",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            39
+          ],
+          "evidence": {
+            "input_lines": [
+              168
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000024239-16",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            41,
+            42
+          ],
+          "evidence": {
+            "input_lines": [
+              170,
+              171
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000024239-17",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            43,
+            44
+          ],
+          "evidence": {
+            "input_lines": [
+              172,
+              173
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000024239-18",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            45
+          ],
+          "evidence": {
+            "input_lines": [
+              174
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000024239-19",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            47,
+            48
+          ],
+          "evidence": {
+            "input_lines": [
+              176,
+              177
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000024239-20",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            49
+          ],
+          "evidence": {
+            "input_lines": [
+              178
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000024239-21",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            51,
+            52
+          ],
+          "evidence": {
+            "input_lines": [
+              180,
+              181
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000024239-22",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            53,
+            54
+          ],
+          "evidence": {
+            "input_lines": [
+              182,
+              183
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000024239-23",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            55,
+            56
+          ],
+          "evidence": {
+            "input_lines": [
+              184,
+              185
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        }
+      ],
+      "row_decisions": [
+        {
+          "row": 1,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 2,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 3,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 4,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 5,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 6,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 7,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 8,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 9,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 10,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 11,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 12,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 13,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 14,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 15,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 16,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 17,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 18,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 19,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 20,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 21,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 22,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 23,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 24,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 25,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 26,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 27,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 28,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 29,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 30,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 31,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 32,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 33,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 34,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 35,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 36,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 37,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 38,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 39,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 40,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 41,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 42,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 43,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 44,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 45,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 46,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 47,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 48,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 49,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 50,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 51,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 52,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 53,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 54,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 55,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 56,
+          "verdict": "source_faithful"
+        }
+      ],
+      "field_conflicts": [],
+      "excluded_closed_rows": [],
+      "conditional_rows": [],
+      "blocking_issues": [
+        "컴퓨터 개요4개반·상세표월수2개묶음행의신청단위모호성",
+        "돌봄교실원문계획미확보",
+        "독립표본검증미실행"
+      ],
+      "advisory_issues": [
+        "맞춤형방학09:10~10:30같은행공시,겨울방학모듈러교실실시",
+        "수익자방학은공통09:10~12:00구간뿐이고개별반시각미공시",
+        "오케스트라는상세표금요일이나장소표목요일표기차이;상세표금보존",
+        "맞춤형목록의3개월수강료칸은무료운영방침과구분하여강좌선택유료로해석하지않음"
+      ],
+      "eligibility_notes": [
+        "L34 맞춤형1~2학년희망학생",
+        "L188 수익자분기별모집,전입생중도신청가능",
+        "L191 1기추첨,L192 2·4기기존수강생우선50%이내",
+        "L1987명이하폐강가능은확정폐강아님"
+      ],
+      "publish_ready": false,
+      "no_operational_upload": true
+    },
+    {
+      "school_id": "B000003761",
+      "school_name": "분당초등학교",
+      "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_stage2_20261023/B000003761.txt",
+      "input_sha256": "dac97404abe386bdc7cbed634fbff54c78b4c13f045768c3a055efb23afc36f1",
+      "source_files": [
+        {
+          "file": "etl/runtime/audit2-documents/5dbd55026fed99e338f92f68d2899d1afe8e0d88bf21fd5637556a60be1bdd27.hwpx",
+          "sha256": "5dbd55026fed99e338f92f68d2899d1afe8e0d88bf21fd5637556a60be1bdd27"
+        },
+        {
+          "file": "etl/runtime/audit2-documents/7543bdab3d203a5c7ad8d377af41e2975d88f9eaadf81ca80bde3629f3f57f7f.hwpx",
+          "sha256": "7543bdab3d203a5c7ad8d377af41e2975d88f9eaadf81ca80bde3629f3f57f7f"
+        }
+      ],
+      "output_file": "docs/research/pivot/p1_stage2_bulk_20261024/batch_bulk_B000003761.json",
+      "output_sha256": "c55848f557686fc4a2ba965b41b44ac76d8247a786eb36dab8e26f1ffabff4d3",
+      "source_read_lines": [
+        1,
+        864
+      ],
+      "inventory": {
+        "raw_total": 63,
+        "paid": 22,
+        "custom_regular_grade1": 20,
+        "custom_regular_grade2": 10,
+        "custom_regular_mixed": 6,
+        "custom_morning": 1,
+        "care_regular": 4,
+        "care_vacation": 4
+      },
+      "source_inventory_complete": true,
+      "grade1_custom_inventory_complete": false,
+      "participation_review_complete": true,
+      "participation_groups": [
+        {
+          "group_id": "B000003761-1",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            1
+          ],
+          "evidence": {
+            "input_lines": [
+              72
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000003761-2",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            2
+          ],
+          "evidence": {
+            "input_lines": [
+              72
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000003761-3",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            3
+          ],
+          "evidence": {
+            "input_lines": [
+              73
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000003761-4",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            4
+          ],
+          "evidence": {
+            "input_lines": [
+              73
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000003761-5",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            5
+          ],
+          "evidence": {
+            "input_lines": [
+              74
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000003761-6",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            6
+          ],
+          "evidence": {
+            "input_lines": [
+              74
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000003761-7",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            7
+          ],
+          "evidence": {
+            "input_lines": [
+              75
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000003761-8",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            8
+          ],
+          "evidence": {
+            "input_lines": [
+              75
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000003761-9",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            9
+          ],
+          "evidence": {
+            "input_lines": [
+              76
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000003761-10",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            10
+          ],
+          "evidence": {
+            "input_lines": [
+              76
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000003761-11",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            11
+          ],
+          "evidence": {
+            "input_lines": [
+              77
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000003761-12",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            12
+          ],
+          "evidence": {
+            "input_lines": [
+              77
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000003761-13",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            13
+          ],
+          "evidence": {
+            "input_lines": [
+              78
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000003761-14",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            14
+          ],
+          "evidence": {
+            "input_lines": [
+              78
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000003761-15",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            15
+          ],
+          "evidence": {
+            "input_lines": [
+              79
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000003761-16",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            16
+          ],
+          "evidence": {
+            "input_lines": [
+              79
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000003761-17",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            17
+          ],
+          "evidence": {
+            "input_lines": [
+              80
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000003761-18",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            18
+          ],
+          "evidence": {
+            "input_lines": [
+              80
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000003761-19",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            19
+          ],
+          "evidence": {
+            "input_lines": [
+              81
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000003761-20",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            20
+          ],
+          "evidence": {
+            "input_lines": [
+              81
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000003761-21",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            21
+          ],
+          "evidence": {
+            "input_lines": [
+              82
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000003761-22",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            22
+          ],
+          "evidence": {
+            "input_lines": [
+              82
+            ],
+            "basis": "수익자 강좌별 신청"
+          }
+        },
+        {
+          "group_id": "B000003761-23",
+          "mode": "class_day_bundle",
+          "individually_selectable": false,
+          "rows": [
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32
+          ],
+          "evidence": {
+            "input_lines": [
+              164,
+              168,
+              172
+            ],
+            "basis": "맞춤형 반·요일 편성 활동; 개별 강좌 신청으로 해석하지 않음"
+          }
+        },
+        {
+          "group_id": "B000003761-24",
+          "mode": "class_day_bundle",
+          "individually_selectable": false,
+          "rows": [
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            40,
+            41,
+            42
+          ],
+          "evidence": {
+            "input_lines": [
+              165,
+              169,
+              173
+            ],
+            "basis": "맞춤형 반·요일 편성 활동; 개별 강좌 신청으로 해석하지 않음"
+          }
+        },
+        {
+          "group_id": "B000003761-25",
+          "mode": "class_day_bundle",
+          "individually_selectable": false,
+          "rows": [
+            53,
+            54
+          ],
+          "evidence": {
+            "input_lines": [
+              159
+            ],
+            "basis": "맞춤형 반·요일 편성 활동; 개별 강좌 신청으로 해석하지 않음"
+          }
+        },
+        {
+          "group_id": "B000003761-26",
+          "mode": "care_activity",
+          "individually_selectable": false,
+          "rows": [
+            55,
+            56,
+            57,
+            58
+          ],
+          "evidence": {
+            "input_lines": [
+              839,
+              840,
+              841,
+              842
+            ],
+            "basis": "돌봄 입급에 종속된 활동"
+          }
+        }
+      ],
+      "row_decisions": [
+        {
+          "row": 1,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 2,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 3,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 4,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 5,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 6,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 7,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 8,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 9,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 10,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 11,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 12,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 13,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 14,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 15,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 16,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 17,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 18,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 19,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 20,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 21,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 22,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 23,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 24,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 25,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 26,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 27,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 28,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 29,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 30,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 31,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 32,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 33,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 34,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 35,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 36,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 37,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 38,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 39,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 40,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 41,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 42,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 43,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 44,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 45,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 46,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 47,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 48,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 49,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 50,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 51,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 52,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 53,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 54,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 55,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 56,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 57,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 58,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 59,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 60,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 61,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 62,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 63,
+          "verdict": "source_faithful"
+        }
+      ],
+      "field_conflicts": [],
+      "excluded_closed_rows": [],
+      "conditional_rows": [],
+      "blocking_issues": [
+        "수익자2026상세시간표미확보(확보상세표는2025제목)",
+        "맞춤형학급수·학년편성문장과3개표불일치;전체초1맞춤형목록완결미확정",
+        "맞춤형독서논술·종이접기요일시각미공시",
+        "돌봄전체이용요일미공시·방학개별활동시각미공시",
+        "독립표본검증미실행"
+      ],
+      "advisory_issues": [
+        "L2252025기간의돌봄4활동표는제외;동일활동이2026기간L279·836명시로재등장해그부분만채택",
+        "아침학생관리형으로개별자기주도학습또는독서,요일미공시",
+        "방학6명이상희망시운영,여름·겨울각5일미운영",
+        "공통오후돌봄19시까지,방학08:30~15:30이용과개별활동시각분리"
+      ],
+      "eligibility_notes": [
+        "L148돌봄입급자맞춤형제외",
+        "L176매일2차시참여가능학생우선;L177특별사유시1차시·선택요일가능",
+        "L182대기10명이상시증설확정",
+        "L183통합학급1차시수강자위주",
+        "L750휴직중돌봄이용불가·주4회이상이용자우선"
+      ],
+      "publish_ready": false,
+      "no_operational_upload": true,
+      "care_hours_review_complete": false,
+      "care_hours": {
+        "days": null,
+        "start_basis": "after_regular_classes",
+        "end": "19:00",
+        "evidence": {
+          "input_lines": [
+            191,
+            736
+          ],
+          "basis": "학교정규수업이후19시종료확인;확보원문에월~금요일전체이용명시없음"
+        }
+      }
+    },
+    {
       "school_id": "B000023087",
       "school_name": "위례초등학교",
       "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_stage2_20261023/B000023087.txt",
@@ -13463,13 +16064,13 @@
         }
       ],
       "output_file": "docs/research/pivot/p1_stage2_bulk_20261024/batch_bulk_B000023087.json",
-      "output_sha256": "ab254d6ad6fbcdd74d990660ff7652e497979ddae1438020a2facb63f746cc15",
+      "output_sha256": "1b3fef465b6fb76c058201ba52f191726c166ce46486130c4d8f175cabdd0bda",
       "source_read_lines": [
         1,
         475
       ],
       "inventory": {
-        "raw_total": 105,
+        "raw_total": 85,
         "paid": 64,
         "custom_regular_grade1": 10,
         "custom_regular_grade2": 10,
@@ -13523,8 +16124,8 @@
           "mode": "course_choice",
           "individually_selectable": true,
           "rows": [
-            42,
-            43
+            22,
+            23
           ],
           "evidence": {
             "input_lines": [
@@ -13538,7 +16139,7 @@
           "mode": "course_choice",
           "individually_selectable": true,
           "rows": [
-            44
+            24
           ],
           "evidence": {
             "input_lines": [
@@ -13552,7 +16153,7 @@
           "mode": "course_choice",
           "individually_selectable": true,
           "rows": [
-            46
+            26
           ],
           "evidence": {
             "input_lines": [
@@ -13566,7 +16167,7 @@
           "mode": "course_choice",
           "individually_selectable": true,
           "rows": [
-            48
+            28
           ],
           "evidence": {
             "input_lines": [
@@ -13580,8 +16181,8 @@
           "mode": "course_choice",
           "individually_selectable": true,
           "rows": [
-            50,
-            96
+            30,
+            76
           ],
           "evidence": {
             "input_lines": [
@@ -13596,8 +16197,8 @@
           "mode": "course_choice",
           "individually_selectable": true,
           "rows": [
-            52,
-            78
+            32,
+            58
           ],
           "evidence": {
             "input_lines": [
@@ -13612,8 +16213,8 @@
           "mode": "course_choice",
           "individually_selectable": true,
           "rows": [
-            54,
-            55
+            34,
+            35
           ],
           "evidence": {
             "input_lines": [
@@ -13627,7 +16228,7 @@
           "mode": "course_choice",
           "individually_selectable": true,
           "rows": [
-            58
+            38
           ],
           "evidence": {
             "input_lines": [
@@ -13641,10 +16242,10 @@
           "mode": "course_choice",
           "individually_selectable": true,
           "rows": [
-            60,
-            61,
-            98,
-            99
+            40,
+            41,
+            78,
+            79
           ],
           "evidence": {
             "input_lines": [
@@ -13659,7 +16260,7 @@
           "mode": "course_choice",
           "individually_selectable": true,
           "rows": [
-            62
+            42
           ],
           "evidence": {
             "input_lines": [
@@ -13673,10 +16274,10 @@
           "mode": "course_choice",
           "individually_selectable": true,
           "rows": [
-            64,
-            65,
-            66,
-            67
+            44,
+            45,
+            46,
+            47
           ],
           "evidence": {
             "input_lines": [
@@ -13690,8 +16291,8 @@
           "mode": "course_choice",
           "individually_selectable": true,
           "rows": [
-            68,
-            69
+            48,
+            49
           ],
           "evidence": {
             "input_lines": [
@@ -13705,8 +16306,8 @@
           "mode": "course_choice",
           "individually_selectable": true,
           "rows": [
-            70,
-            100
+            50,
+            80
           ],
           "evidence": {
             "input_lines": [
@@ -13721,7 +16322,7 @@
           "mode": "course_choice",
           "individually_selectable": true,
           "rows": [
-            72
+            52
           ],
           "evidence": {
             "input_lines": [
@@ -13735,7 +16336,7 @@
           "mode": "course_choice",
           "individually_selectable": true,
           "rows": [
-            74
+            54
           ],
           "evidence": {
             "input_lines": [
@@ -13749,8 +16350,8 @@
           "mode": "course_choice",
           "individually_selectable": true,
           "rows": [
-            76,
-            77
+            56,
+            57
           ],
           "evidence": {
             "input_lines": [
@@ -13764,9 +16365,9 @@
           "mode": "course_choice",
           "individually_selectable": true,
           "rows": [
-            82,
-            86,
-            87
+            62,
+            66,
+            67
           ],
           "evidence": {
             "input_lines": [
@@ -13780,7 +16381,7 @@
           "mode": "course_choice",
           "individually_selectable": true,
           "rows": [
-            84
+            64
           ],
           "evidence": {
             "input_lines": [
@@ -13794,7 +16395,7 @@
           "mode": "course_choice",
           "individually_selectable": true,
           "rows": [
-            88
+            68
           ],
           "evidence": {
             "input_lines": [
@@ -13808,8 +16409,8 @@
           "mode": "course_choice",
           "individually_selectable": true,
           "rows": [
-            92,
-            93
+            72,
+            73
           ],
           "evidence": {
             "input_lines": [
@@ -14159,86 +16760,6 @@
         {
           "row": 85,
           "verdict": "source_faithful"
-        },
-        {
-          "row": 86,
-          "verdict": "source_faithful"
-        },
-        {
-          "row": 87,
-          "verdict": "source_faithful"
-        },
-        {
-          "row": 88,
-          "verdict": "source_faithful"
-        },
-        {
-          "row": 89,
-          "verdict": "source_faithful"
-        },
-        {
-          "row": 90,
-          "verdict": "source_faithful"
-        },
-        {
-          "row": 91,
-          "verdict": "source_faithful"
-        },
-        {
-          "row": 92,
-          "verdict": "source_faithful"
-        },
-        {
-          "row": 93,
-          "verdict": "source_faithful"
-        },
-        {
-          "row": 94,
-          "verdict": "source_faithful"
-        },
-        {
-          "row": 95,
-          "verdict": "source_faithful"
-        },
-        {
-          "row": 96,
-          "verdict": "source_faithful"
-        },
-        {
-          "row": 97,
-          "verdict": "source_faithful"
-        },
-        {
-          "row": 98,
-          "verdict": "source_faithful"
-        },
-        {
-          "row": 99,
-          "verdict": "source_faithful"
-        },
-        {
-          "row": 100,
-          "verdict": "source_faithful"
-        },
-        {
-          "row": 101,
-          "verdict": "source_faithful"
-        },
-        {
-          "row": 102,
-          "verdict": "source_faithful"
-        },
-        {
-          "row": 103,
-          "verdict": "source_faithful"
-        },
-        {
-          "row": 104,
-          "verdict": "source_faithful"
-        },
-        {
-          "row": 105,
-          "verdict": "source_faithful"
         }
       ],
       "field_conflicts": [],
@@ -14254,7 +16775,7 @@
       ],
       "advisory_issues": [
         "맞춤형상세표는1학기기준예시;확정공지대조필요",
-        "방학활동은동일편성명과별도운영구간의계획결합;방학전합반가능",
+        "방학09~10:30은note보존;동일운영기간행의학기시간과함께공시되어별도활동행생성하지않음",
         "금요일2학기13시시작을1학기13:40과시각충돌로합치지않고기수별보존"
       ],
       "eligibility_notes": [
@@ -15373,7 +17894,7 @@
         }
       ],
       "output_file": "docs/research/pivot/p1_stage2_bulk_20261024/batch_bulk_B000003760.json",
-      "output_sha256": "843d71bd8e25c51d80bdeba34b7702204f16639da459f428b3f1f8b8a444d5e6",
+      "output_sha256": "1944e1200f831be069561ea9636a6833b3b9889b2665c76db4d4703f7994f6dc",
       "source_read_lines": [
         1,
         129
@@ -19421,7 +21942,7 @@
         }
       ],
       "output_file": "docs/research/pivot/p1_stage2_bulk_20261024/batch_bulk_B000003770.json",
-      "output_sha256": "6a5c61dcac56bec7bec7875f11ac3335f544dbeed2584e8955521ff191b054d0",
+      "output_sha256": "2eeeefa6c76421a303b98007d229f020863de58ebadbfbb526735a6bb962b3fb",
       "source_read_lines": [
         1,
         611
@@ -20935,9 +23456,3333 @@
           ]
         }
       }
+    },
+    {
+      "school_id": "B000003751",
+      "school_name": "구미초등학교",
+      "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_stage2_20261023/B000003751.txt",
+      "input_sha256": "2ba276c49271cac6469b92d793bb71588f9172ad117cc7d97131e7cb4544850d",
+      "source_files": [
+        {
+          "file": "etl/runtime/audit2-documents/e03392530cd1a38b102b51d1561feec1cb31f1b7927bc9fbdae5087e16ca21bf.hwp",
+          "sha256": "e03392530cd1a38b102b51d1561feec1cb31f1b7927bc9fbdae5087e16ca21bf"
+        },
+        {
+          "file": "etl/runtime/audit2-documents/4837354a1c71dd0da5a16b34006f7a3aeac4b670665be9689fe909e1d8bdbe7b.hwp",
+          "sha256": "4837354a1c71dd0da5a16b34006f7a3aeac4b670665be9689fe909e1d8bdbe7b"
+        }
+      ],
+      "output_file": "docs/research/pivot/p1_stage2_bulk_20261024/batch_bulk_B000003751.json",
+      "output_sha256": "1b0808568fc988477b6aa030ea257dc5c35b6cfb32e52bd056c56cb50687dcd5",
+      "source_read_lines": [
+        1,
+        759
+      ],
+      "visually_reviewed_pages": [],
+      "inventory": {
+        "raw_total": 56,
+        "paid": 22,
+        "custom_regular_grade1": 20,
+        "custom_regular_grade2": 5,
+        "custom_regular_mixed": 8,
+        "custom_morning": 1,
+        "care_regular": 6,
+        "care_vacation": 0
+      },
+      "source_inventory_complete": true,
+      "grade1_custom_inventory_complete": false,
+      "participation_review_complete": true,
+      "participation_groups": [
+        {
+          "group_id": "B000003751-1",
+          "mode": "class_day_bundle",
+          "rows": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "individually_selectable": false,
+          "evidence": {
+            "input_lines": [
+              22,
+              26,
+              33,
+              41,
+              51,
+              67,
+              113,
+              124,
+              172,
+              183,
+              480,
+              515,
+              526,
+              588,
+              756
+            ],
+            "basis": "수익자 강좌별 신청; 독립 맞춤형 학급·요일 편성; 돌봄내 활동은 돌봄 입급에 종속. 원문 대상·반·기간에 따라 구분."
+          }
+        },
+        {
+          "group_id": "B000003751-2",
+          "mode": "class_day_bundle",
+          "rows": [
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20
+          ],
+          "individually_selectable": false,
+          "evidence": {
+            "input_lines": [
+              22,
+              26,
+              33,
+              41,
+              51,
+              67,
+              113,
+              124,
+              172,
+              183,
+              480,
+              515,
+              526,
+              588,
+              756
+            ],
+            "basis": "수익자 강좌별 신청; 독립 맞춤형 학급·요일 편성; 돌봄내 활동은 돌봄 입급에 종속. 원문 대상·반·기간에 따라 구분."
+          }
+        },
+        {
+          "group_id": "B000003751-3",
+          "mode": "class_day_bundle",
+          "rows": [
+            26,
+            27
+          ],
+          "individually_selectable": false,
+          "evidence": {
+            "input_lines": [
+              22,
+              26,
+              33,
+              41,
+              51,
+              67,
+              113,
+              124,
+              172,
+              183,
+              480,
+              515,
+              526,
+              588,
+              756
+            ],
+            "basis": "수익자 강좌별 신청; 독립 맞춤형 학급·요일 편성; 돌봄내 활동은 돌봄 입급에 종속. 원문 대상·반·기간에 따라 구분."
+          }
+        },
+        {
+          "group_id": "B000003751-4",
+          "mode": "course_choice",
+          "rows": [
+            29
+          ],
+          "individually_selectable": true,
+          "evidence": {
+            "input_lines": [
+              22,
+              26,
+              33,
+              41,
+              51,
+              67,
+              113,
+              124,
+              172,
+              183,
+              480,
+              515,
+              526,
+              588,
+              756
+            ],
+            "basis": "수익자 강좌별 신청; 독립 맞춤형 학급·요일 편성; 돌봄내 활동은 돌봄 입급에 종속. 원문 대상·반·기간에 따라 구분."
+          }
+        },
+        {
+          "group_id": "B000003751-5",
+          "mode": "course_choice",
+          "rows": [
+            30
+          ],
+          "individually_selectable": true,
+          "evidence": {
+            "input_lines": [
+              22,
+              26,
+              33,
+              41,
+              51,
+              67,
+              113,
+              124,
+              172,
+              183,
+              480,
+              515,
+              526,
+              588,
+              756
+            ],
+            "basis": "수익자 강좌별 신청; 독립 맞춤형 학급·요일 편성; 돌봄내 활동은 돌봄 입급에 종속. 원문 대상·반·기간에 따라 구분."
+          }
+        },
+        {
+          "group_id": "B000003751-6",
+          "mode": "course_choice",
+          "rows": [
+            31,
+            32
+          ],
+          "individually_selectable": true,
+          "evidence": {
+            "input_lines": [
+              22,
+              26,
+              33,
+              41,
+              51,
+              67,
+              113,
+              124,
+              172,
+              183,
+              480,
+              515,
+              526,
+              588,
+              756
+            ],
+            "basis": "수익자 강좌별 신청; 독립 맞춤형 학급·요일 편성; 돌봄내 활동은 돌봄 입급에 종속. 원문 대상·반·기간에 따라 구분."
+          }
+        },
+        {
+          "group_id": "B000003751-7",
+          "mode": "course_choice",
+          "rows": [
+            33
+          ],
+          "individually_selectable": true,
+          "evidence": {
+            "input_lines": [
+              22,
+              26,
+              33,
+              41,
+              51,
+              67,
+              113,
+              124,
+              172,
+              183,
+              480,
+              515,
+              526,
+              588,
+              756
+            ],
+            "basis": "수익자 강좌별 신청; 독립 맞춤형 학급·요일 편성; 돌봄내 활동은 돌봄 입급에 종속. 원문 대상·반·기간에 따라 구분."
+          }
+        },
+        {
+          "group_id": "B000003751-8",
+          "mode": "course_choice",
+          "rows": [
+            34
+          ],
+          "individually_selectable": true,
+          "evidence": {
+            "input_lines": [
+              22,
+              26,
+              33,
+              41,
+              51,
+              67,
+              113,
+              124,
+              172,
+              183,
+              480,
+              515,
+              526,
+              588,
+              756
+            ],
+            "basis": "수익자 강좌별 신청; 독립 맞춤형 학급·요일 편성; 돌봄내 활동은 돌봄 입급에 종속. 원문 대상·반·기간에 따라 구분."
+          }
+        },
+        {
+          "group_id": "B000003751-9",
+          "mode": "course_choice",
+          "rows": [
+            35
+          ],
+          "individually_selectable": true,
+          "evidence": {
+            "input_lines": [
+              22,
+              26,
+              33,
+              41,
+              51,
+              67,
+              113,
+              124,
+              172,
+              183,
+              480,
+              515,
+              526,
+              588,
+              756
+            ],
+            "basis": "수익자 강좌별 신청; 독립 맞춤형 학급·요일 편성; 돌봄내 활동은 돌봄 입급에 종속. 원문 대상·반·기간에 따라 구분."
+          }
+        },
+        {
+          "group_id": "B000003751-10",
+          "mode": "course_choice",
+          "rows": [
+            36
+          ],
+          "individually_selectable": true,
+          "evidence": {
+            "input_lines": [
+              22,
+              26,
+              33,
+              41,
+              51,
+              67,
+              113,
+              124,
+              172,
+              183,
+              480,
+              515,
+              526,
+              588,
+              756
+            ],
+            "basis": "수익자 강좌별 신청; 독립 맞춤형 학급·요일 편성; 돌봄내 활동은 돌봄 입급에 종속. 원문 대상·반·기간에 따라 구분."
+          }
+        },
+        {
+          "group_id": "B000003751-11",
+          "mode": "course_choice",
+          "rows": [
+            37
+          ],
+          "individually_selectable": true,
+          "evidence": {
+            "input_lines": [
+              22,
+              26,
+              33,
+              41,
+              51,
+              67,
+              113,
+              124,
+              172,
+              183,
+              480,
+              515,
+              526,
+              588,
+              756
+            ],
+            "basis": "수익자 강좌별 신청; 독립 맞춤형 학급·요일 편성; 돌봄내 활동은 돌봄 입급에 종속. 원문 대상·반·기간에 따라 구분."
+          }
+        },
+        {
+          "group_id": "B000003751-12",
+          "mode": "course_choice",
+          "rows": [
+            38
+          ],
+          "individually_selectable": true,
+          "evidence": {
+            "input_lines": [
+              22,
+              26,
+              33,
+              41,
+              51,
+              67,
+              113,
+              124,
+              172,
+              183,
+              480,
+              515,
+              526,
+              588,
+              756
+            ],
+            "basis": "수익자 강좌별 신청; 독립 맞춤형 학급·요일 편성; 돌봄내 활동은 돌봄 입급에 종속. 원문 대상·반·기간에 따라 구분."
+          }
+        },
+        {
+          "group_id": "B000003751-13",
+          "mode": "course_choice",
+          "rows": [
+            39,
+            40
+          ],
+          "individually_selectable": true,
+          "evidence": {
+            "input_lines": [
+              22,
+              26,
+              33,
+              41,
+              51,
+              67,
+              113,
+              124,
+              172,
+              183,
+              480,
+              515,
+              526,
+              588,
+              756
+            ],
+            "basis": "수익자 강좌별 신청; 독립 맞춤형 학급·요일 편성; 돌봄내 활동은 돌봄 입급에 종속. 원문 대상·반·기간에 따라 구분."
+          }
+        },
+        {
+          "group_id": "B000003751-14",
+          "mode": "course_choice",
+          "rows": [
+            41
+          ],
+          "individually_selectable": true,
+          "evidence": {
+            "input_lines": [
+              22,
+              26,
+              33,
+              41,
+              51,
+              67,
+              113,
+              124,
+              172,
+              183,
+              480,
+              515,
+              526,
+              588,
+              756
+            ],
+            "basis": "수익자 강좌별 신청; 독립 맞춤형 학급·요일 편성; 돌봄내 활동은 돌봄 입급에 종속. 원문 대상·반·기간에 따라 구분."
+          }
+        },
+        {
+          "group_id": "B000003751-15",
+          "mode": "course_choice",
+          "rows": [
+            42
+          ],
+          "individually_selectable": true,
+          "evidence": {
+            "input_lines": [
+              22,
+              26,
+              33,
+              41,
+              51,
+              67,
+              113,
+              124,
+              172,
+              183,
+              480,
+              515,
+              526,
+              588,
+              756
+            ],
+            "basis": "수익자 강좌별 신청; 독립 맞춤형 학급·요일 편성; 돌봄내 활동은 돌봄 입급에 종속. 원문 대상·반·기간에 따라 구분."
+          }
+        },
+        {
+          "group_id": "B000003751-16",
+          "mode": "course_choice",
+          "rows": [
+            43
+          ],
+          "individually_selectable": true,
+          "evidence": {
+            "input_lines": [
+              22,
+              26,
+              33,
+              41,
+              51,
+              67,
+              113,
+              124,
+              172,
+              183,
+              480,
+              515,
+              526,
+              588,
+              756
+            ],
+            "basis": "수익자 강좌별 신청; 독립 맞춤형 학급·요일 편성; 돌봄내 활동은 돌봄 입급에 종속. 원문 대상·반·기간에 따라 구분."
+          }
+        },
+        {
+          "group_id": "B000003751-17",
+          "mode": "course_choice",
+          "rows": [
+            44
+          ],
+          "individually_selectable": true,
+          "evidence": {
+            "input_lines": [
+              22,
+              26,
+              33,
+              41,
+              51,
+              67,
+              113,
+              124,
+              172,
+              183,
+              480,
+              515,
+              526,
+              588,
+              756
+            ],
+            "basis": "수익자 강좌별 신청; 독립 맞춤형 학급·요일 편성; 돌봄내 활동은 돌봄 입급에 종속. 원문 대상·반·기간에 따라 구분."
+          }
+        },
+        {
+          "group_id": "B000003751-18",
+          "mode": "course_choice",
+          "rows": [
+            45
+          ],
+          "individually_selectable": true,
+          "evidence": {
+            "input_lines": [
+              22,
+              26,
+              33,
+              41,
+              51,
+              67,
+              113,
+              124,
+              172,
+              183,
+              480,
+              515,
+              526,
+              588,
+              756
+            ],
+            "basis": "수익자 강좌별 신청; 독립 맞춤형 학급·요일 편성; 돌봄내 활동은 돌봄 입급에 종속. 원문 대상·반·기간에 따라 구분."
+          }
+        },
+        {
+          "group_id": "B000003751-19",
+          "mode": "course_choice",
+          "rows": [
+            46
+          ],
+          "individually_selectable": true,
+          "evidence": {
+            "input_lines": [
+              22,
+              26,
+              33,
+              41,
+              51,
+              67,
+              113,
+              124,
+              172,
+              183,
+              480,
+              515,
+              526,
+              588,
+              756
+            ],
+            "basis": "수익자 강좌별 신청; 독립 맞춤형 학급·요일 편성; 돌봄내 활동은 돌봄 입급에 종속. 원문 대상·반·기간에 따라 구분."
+          }
+        },
+        {
+          "group_id": "B000003751-20",
+          "mode": "course_choice",
+          "rows": [
+            47
+          ],
+          "individually_selectable": true,
+          "evidence": {
+            "input_lines": [
+              22,
+              26,
+              33,
+              41,
+              51,
+              67,
+              113,
+              124,
+              172,
+              183,
+              480,
+              515,
+              526,
+              588,
+              756
+            ],
+            "basis": "수익자 강좌별 신청; 독립 맞춤형 학급·요일 편성; 돌봄내 활동은 돌봄 입급에 종속. 원문 대상·반·기간에 따라 구분."
+          }
+        },
+        {
+          "group_id": "B000003751-21",
+          "mode": "course_choice",
+          "rows": [
+            48
+          ],
+          "individually_selectable": true,
+          "evidence": {
+            "input_lines": [
+              22,
+              26,
+              33,
+              41,
+              51,
+              67,
+              113,
+              124,
+              172,
+              183,
+              480,
+              515,
+              526,
+              588,
+              756
+            ],
+            "basis": "수익자 강좌별 신청; 독립 맞춤형 학급·요일 편성; 돌봄내 활동은 돌봄 입급에 종속. 원문 대상·반·기간에 따라 구분."
+          }
+        },
+        {
+          "group_id": "B000003751-22",
+          "mode": "course_choice",
+          "rows": [
+            49
+          ],
+          "individually_selectable": true,
+          "evidence": {
+            "input_lines": [
+              22,
+              26,
+              33,
+              41,
+              51,
+              67,
+              113,
+              124,
+              172,
+              183,
+              480,
+              515,
+              526,
+              588,
+              756
+            ],
+            "basis": "수익자 강좌별 신청; 독립 맞춤형 학급·요일 편성; 돌봄내 활동은 돌봄 입급에 종속. 원문 대상·반·기간에 따라 구분."
+          }
+        },
+        {
+          "group_id": "B000003751-23",
+          "mode": "course_choice",
+          "rows": [
+            50
+          ],
+          "individually_selectable": true,
+          "evidence": {
+            "input_lines": [
+              22,
+              26,
+              33,
+              41,
+              51,
+              67,
+              113,
+              124,
+              172,
+              183,
+              480,
+              515,
+              526,
+              588,
+              756
+            ],
+            "basis": "수익자 강좌별 신청; 독립 맞춤형 학급·요일 편성; 돌봄내 활동은 돌봄 입급에 종속. 원문 대상·반·기간에 따라 구분."
+          }
+        },
+        {
+          "group_id": "B000003751-24",
+          "mode": "care_activity",
+          "rows": [
+            51,
+            52,
+            53,
+            54,
+            55,
+            56
+          ],
+          "individually_selectable": false,
+          "evidence": {
+            "input_lines": [
+              22,
+              26,
+              33,
+              41,
+              51,
+              67,
+              113,
+              124,
+              172,
+              183,
+              480,
+              515,
+              526,
+              588,
+              756
+            ],
+            "basis": "수익자 강좌별 신청; 독립 맞춤형 학급·요일 편성; 돌봄내 활동은 돌봄 입급에 종속. 원문 대상·반·기간에 따라 구분."
+          }
+        }
+      ],
+      "row_decisions": [
+        {
+          "row": 1,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 2,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 3,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 4,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 5,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 6,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 7,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 8,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 9,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 10,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 11,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 12,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 13,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 14,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 15,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 16,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 17,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 18,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 19,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 20,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 21,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 22,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 23,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 24,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 25,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 26,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 27,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 28,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 29,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 30,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 31,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 32,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 33,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 34,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 35,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 36,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 37,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 38,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 39,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 40,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 41,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 42,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 43,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 44,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 45,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 46,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 47,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 48,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 49,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 50,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 51,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 52,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 53,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 54,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 55,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 56,
+          "verdict": "source_faithful"
+        }
+      ],
+      "blocking_issues": [
+        "수익자 A/B반 개별시각·학년 미공시",
+        "맞춤형 예시 및 월별 실제 편성 확보필요",
+        "돌봄활동 개별시각 미공시",
+        "강사선정목록과 예시활동명 대응 미확인"
+      ],
+      "advisory_issues": [
+        "수익자 영어뮤지컬 3차공고 지원자없어 미개설",
+        "아침돌봄 총칭 시간만 명시, 프로그램재량"
+      ],
+      "eligibility_notes": [
+        "맞춤형 과밀시 여건범위 증설 불가시 우선순위 L59~61",
+        "돌봄 입급순위·동일자격추첨 L543",
+        "돌봄 외부학원 후 재입실불가 L713"
+      ],
+      "publish_ready": false,
+      "excluded_closed_rows": [
+        {
+          "name": "영어뮤지컬",
+          "status": "closed_in_source_plan",
+          "evidence_lines": [
+            192
+          ],
+          "days": null,
+          "section": null
+        }
+      ],
+      "conditional_rows": [
+        {
+          "rows": [
+            39,
+            40
+          ],
+          "condition": "컴퓨터실 인터넷정비완료후 개설예정",
+          "evidence_lines": [
+            247
+          ],
+          "confirmed_operating": false
+        },
+        {
+          "rows": [
+            48
+          ],
+          "condition": "강사사직 후 추가공모 진행",
+          "evidence_lines": [
+            4,
+            253
+          ],
+          "confirmed_operating": false
+        },
+        {
+          "rows": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25
+          ],
+          "condition": "맞춤형 시간표 예시이며 월별 운영프로그램 상이",
+          "evidence_lines": [
+            33,
+            41,
+            51,
+            479
+          ],
+          "confirmed_operating": false
+        }
+      ],
+      "care_hours_review_complete": true,
+      "care_hours": {
+        "days": "월화수목금",
+        "end": "17:00",
+        "start_basis": "after_regular_classes",
+        "evidence": {
+          "input_lines": [
+            518,
+            526,
+            565,
+            722
+          ]
+        }
+      }
+    },
+    {
+      "school_id": "B000003742",
+      "school_name": "성남송현초등학교",
+      "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_stage2_20261023/B000003742.txt",
+      "input_sha256": "9f3b89a5dd11f1a19e999fc277292c7e3b81cff4d2ddafd87f3825961e836189",
+      "source_files": [
+        {
+          "file": "etl/runtime/audit2-documents/b8c2753b933aad2da693834442fca25e455f75cd5309ba999fc2d59f8b2898a4.hwp",
+          "sha256": "b8c2753b933aad2da693834442fca25e455f75cd5309ba999fc2d59f8b2898a4"
+        }
+      ],
+      "output_file": "docs/research/pivot/p1_stage2_bulk_20261024/batch_bulk_B000003742.json",
+      "output_sha256": "0cd3bdf3133cf70e266571f4cf0fbb437d6009f6af67f546573302c33479ea92",
+      "source_read_lines": [
+        1,
+        675
+      ],
+      "visually_reviewed_pages": [],
+      "inventory": {
+        "raw_total": 76,
+        "paid": 56,
+        "custom_regular_grade1": 10,
+        "custom_regular_grade2": 10,
+        "custom_regular_mixed": 0,
+        "custom_morning": 0,
+        "care_regular": 0,
+        "care_vacation": 0
+      },
+      "source_inventory_complete": true,
+      "grade1_custom_inventory_complete": true,
+      "participation_review_complete": true,
+      "participation_groups": [
+        {
+          "group_id": "B000003742-1",
+          "mode": "class_day_bundle",
+          "rows": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "individually_selectable": false,
+          "evidence": {
+            "input_lines": [
+              29,
+              30,
+              35,
+              36,
+              37,
+              95,
+              104,
+              113,
+              122,
+              133,
+              475,
+              477,
+              529
+            ],
+            "basis": "수익자 강좌별 신청; 독립 맞춤형 학급·요일 편성; 돌봄내 활동은 돌봄 입급에 종속. 원문 대상·반·기간에 따라 구분."
+          }
+        },
+        {
+          "group_id": "B000003742-2",
+          "mode": "class_day_bundle",
+          "rows": [
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "individually_selectable": false,
+          "evidence": {
+            "input_lines": [
+              29,
+              30,
+              35,
+              36,
+              37,
+              95,
+              104,
+              113,
+              122,
+              133,
+              475,
+              477,
+              529
+            ],
+            "basis": "수익자 강좌별 신청; 독립 맞춤형 학급·요일 편성; 돌봄내 활동은 돌봄 입급에 종속. 원문 대상·반·기간에 따라 구분."
+          }
+        },
+        {
+          "group_id": "B000003742-3",
+          "mode": "course_choice",
+          "rows": [
+            21,
+            22
+          ],
+          "individually_selectable": true,
+          "evidence": {
+            "input_lines": [
+              29,
+              30,
+              35,
+              36,
+              37,
+              95,
+              104,
+              113,
+              122,
+              133,
+              475,
+              477,
+              529
+            ],
+            "basis": "수익자 강좌별 신청; 독립 맞춤형 학급·요일 편성; 돌봄내 활동은 돌봄 입급에 종속. 원문 대상·반·기간에 따라 구분."
+          }
+        },
+        {
+          "group_id": "B000003742-4",
+          "mode": "course_choice",
+          "rows": [
+            23,
+            24
+          ],
+          "individually_selectable": true,
+          "evidence": {
+            "input_lines": [
+              29,
+              30,
+              35,
+              36,
+              37,
+              95,
+              104,
+              113,
+              122,
+              133,
+              475,
+              477,
+              529
+            ],
+            "basis": "수익자 강좌별 신청; 독립 맞춤형 학급·요일 편성; 돌봄내 활동은 돌봄 입급에 종속. 원문 대상·반·기간에 따라 구분."
+          }
+        },
+        {
+          "group_id": "B000003742-5",
+          "mode": "course_choice",
+          "rows": [
+            25,
+            26
+          ],
+          "individually_selectable": true,
+          "evidence": {
+            "input_lines": [
+              29,
+              30,
+              35,
+              36,
+              37,
+              95,
+              104,
+              113,
+              122,
+              133,
+              475,
+              477,
+              529
+            ],
+            "basis": "수익자 강좌별 신청; 독립 맞춤형 학급·요일 편성; 돌봄내 활동은 돌봄 입급에 종속. 원문 대상·반·기간에 따라 구분."
+          }
+        },
+        {
+          "group_id": "B000003742-6",
+          "mode": "course_choice",
+          "rows": [
+            27
+          ],
+          "individually_selectable": true,
+          "evidence": {
+            "input_lines": [
+              29,
+              30,
+              35,
+              36,
+              37,
+              95,
+              104,
+              113,
+              122,
+              133,
+              475,
+              477,
+              529
+            ],
+            "basis": "수익자 강좌별 신청; 독립 맞춤형 학급·요일 편성; 돌봄내 활동은 돌봄 입급에 종속. 원문 대상·반·기간에 따라 구분."
+          }
+        },
+        {
+          "group_id": "B000003742-7",
+          "mode": "course_choice",
+          "rows": [
+            29,
+            30
+          ],
+          "individually_selectable": true,
+          "evidence": {
+            "input_lines": [
+              29,
+              30,
+              35,
+              36,
+              37,
+              95,
+              104,
+              113,
+              122,
+              133,
+              475,
+              477,
+              529
+            ],
+            "basis": "수익자 강좌별 신청; 독립 맞춤형 학급·요일 편성; 돌봄내 활동은 돌봄 입급에 종속. 원문 대상·반·기간에 따라 구분."
+          }
+        },
+        {
+          "group_id": "B000003742-8",
+          "mode": "course_choice",
+          "rows": [
+            31,
+            32
+          ],
+          "individually_selectable": true,
+          "evidence": {
+            "input_lines": [
+              29,
+              30,
+              35,
+              36,
+              37,
+              95,
+              104,
+              113,
+              122,
+              133,
+              475,
+              477,
+              529
+            ],
+            "basis": "수익자 강좌별 신청; 독립 맞춤형 학급·요일 편성; 돌봄내 활동은 돌봄 입급에 종속. 원문 대상·반·기간에 따라 구분."
+          }
+        },
+        {
+          "group_id": "B000003742-9",
+          "mode": "course_choice",
+          "rows": [
+            33,
+            34
+          ],
+          "individually_selectable": true,
+          "evidence": {
+            "input_lines": [
+              29,
+              30,
+              35,
+              36,
+              37,
+              95,
+              104,
+              113,
+              122,
+              133,
+              475,
+              477,
+              529
+            ],
+            "basis": "수익자 강좌별 신청; 독립 맞춤형 학급·요일 편성; 돌봄내 활동은 돌봄 입급에 종속. 원문 대상·반·기간에 따라 구분."
+          }
+        },
+        {
+          "group_id": "B000003742-10",
+          "mode": "course_choice",
+          "rows": [
+            35,
+            36
+          ],
+          "individually_selectable": true,
+          "evidence": {
+            "input_lines": [
+              29,
+              30,
+              35,
+              36,
+              37,
+              95,
+              104,
+              113,
+              122,
+              133,
+              475,
+              477,
+              529
+            ],
+            "basis": "수익자 강좌별 신청; 독립 맞춤형 학급·요일 편성; 돌봄내 활동은 돌봄 입급에 종속. 원문 대상·반·기간에 따라 구분."
+          }
+        },
+        {
+          "group_id": "B000003742-11",
+          "mode": "course_choice",
+          "rows": [
+            37
+          ],
+          "individually_selectable": true,
+          "evidence": {
+            "input_lines": [
+              29,
+              30,
+              35,
+              36,
+              37,
+              95,
+              104,
+              113,
+              122,
+              133,
+              475,
+              477,
+              529
+            ],
+            "basis": "수익자 강좌별 신청; 독립 맞춤형 학급·요일 편성; 돌봄내 활동은 돌봄 입급에 종속. 원문 대상·반·기간에 따라 구분."
+          }
+        },
+        {
+          "group_id": "B000003742-12",
+          "mode": "course_choice",
+          "rows": [
+            39
+          ],
+          "individually_selectable": true,
+          "evidence": {
+            "input_lines": [
+              29,
+              30,
+              35,
+              36,
+              37,
+              95,
+              104,
+              113,
+              122,
+              133,
+              475,
+              477,
+              529
+            ],
+            "basis": "수익자 강좌별 신청; 독립 맞춤형 학급·요일 편성; 돌봄내 활동은 돌봄 입급에 종속. 원문 대상·반·기간에 따라 구분."
+          }
+        },
+        {
+          "group_id": "B000003742-13",
+          "mode": "course_choice",
+          "rows": [
+            41,
+            42
+          ],
+          "individually_selectable": true,
+          "evidence": {
+            "input_lines": [
+              29,
+              30,
+              35,
+              36,
+              37,
+              95,
+              104,
+              113,
+              122,
+              133,
+              475,
+              477,
+              529
+            ],
+            "basis": "수익자 강좌별 신청; 독립 맞춤형 학급·요일 편성; 돌봄내 활동은 돌봄 입급에 종속. 원문 대상·반·기간에 따라 구분."
+          }
+        },
+        {
+          "group_id": "B000003742-14",
+          "mode": "course_choice",
+          "rows": [
+            43,
+            44
+          ],
+          "individually_selectable": true,
+          "evidence": {
+            "input_lines": [
+              29,
+              30,
+              35,
+              36,
+              37,
+              95,
+              104,
+              113,
+              122,
+              133,
+              475,
+              477,
+              529
+            ],
+            "basis": "수익자 강좌별 신청; 독립 맞춤형 학급·요일 편성; 돌봄내 활동은 돌봄 입급에 종속. 원문 대상·반·기간에 따라 구분."
+          }
+        },
+        {
+          "group_id": "B000003742-15",
+          "mode": "course_choice",
+          "rows": [
+            45,
+            46
+          ],
+          "individually_selectable": true,
+          "evidence": {
+            "input_lines": [
+              29,
+              30,
+              35,
+              36,
+              37,
+              95,
+              104,
+              113,
+              122,
+              133,
+              475,
+              477,
+              529
+            ],
+            "basis": "수익자 강좌별 신청; 독립 맞춤형 학급·요일 편성; 돌봄내 활동은 돌봄 입급에 종속. 원문 대상·반·기간에 따라 구분."
+          }
+        },
+        {
+          "group_id": "B000003742-16",
+          "mode": "course_choice",
+          "rows": [
+            47,
+            48
+          ],
+          "individually_selectable": true,
+          "evidence": {
+            "input_lines": [
+              29,
+              30,
+              35,
+              36,
+              37,
+              95,
+              104,
+              113,
+              122,
+              133,
+              475,
+              477,
+              529
+            ],
+            "basis": "수익자 강좌별 신청; 독립 맞춤형 학급·요일 편성; 돌봄내 활동은 돌봄 입급에 종속. 원문 대상·반·기간에 따라 구분."
+          }
+        },
+        {
+          "group_id": "B000003742-17",
+          "mode": "course_choice",
+          "rows": [
+            49
+          ],
+          "individually_selectable": true,
+          "evidence": {
+            "input_lines": [
+              29,
+              30,
+              35,
+              36,
+              37,
+              95,
+              104,
+              113,
+              122,
+              133,
+              475,
+              477,
+              529
+            ],
+            "basis": "수익자 강좌별 신청; 독립 맞춤형 학급·요일 편성; 돌봄내 활동은 돌봄 입급에 종속. 원문 대상·반·기간에 따라 구분."
+          }
+        },
+        {
+          "group_id": "B000003742-18",
+          "mode": "course_choice",
+          "rows": [
+            53,
+            54
+          ],
+          "individually_selectable": true,
+          "evidence": {
+            "input_lines": [
+              29,
+              30,
+              35,
+              36,
+              37,
+              95,
+              104,
+              113,
+              122,
+              133,
+              475,
+              477,
+              529
+            ],
+            "basis": "수익자 강좌별 신청; 독립 맞춤형 학급·요일 편성; 돌봄내 활동은 돌봄 입급에 종속. 원문 대상·반·기간에 따라 구분."
+          }
+        },
+        {
+          "group_id": "B000003742-19",
+          "mode": "course_choice",
+          "rows": [
+            55
+          ],
+          "individually_selectable": true,
+          "evidence": {
+            "input_lines": [
+              29,
+              30,
+              35,
+              36,
+              37,
+              95,
+              104,
+              113,
+              122,
+              133,
+              475,
+              477,
+              529
+            ],
+            "basis": "수익자 강좌별 신청; 독립 맞춤형 학급·요일 편성; 돌봄내 활동은 돌봄 입급에 종속. 원문 대상·반·기간에 따라 구분."
+          }
+        },
+        {
+          "group_id": "B000003742-20",
+          "mode": "course_choice",
+          "rows": [
+            57,
+            58
+          ],
+          "individually_selectable": true,
+          "evidence": {
+            "input_lines": [
+              29,
+              30,
+              35,
+              36,
+              37,
+              95,
+              104,
+              113,
+              122,
+              133,
+              475,
+              477,
+              529
+            ],
+            "basis": "수익자 강좌별 신청; 독립 맞춤형 학급·요일 편성; 돌봄내 활동은 돌봄 입급에 종속. 원문 대상·반·기간에 따라 구분."
+          }
+        },
+        {
+          "group_id": "B000003742-21",
+          "mode": "course_choice",
+          "rows": [
+            59,
+            60
+          ],
+          "individually_selectable": true,
+          "evidence": {
+            "input_lines": [
+              29,
+              30,
+              35,
+              36,
+              37,
+              95,
+              104,
+              113,
+              122,
+              133,
+              475,
+              477,
+              529
+            ],
+            "basis": "수익자 강좌별 신청; 독립 맞춤형 학급·요일 편성; 돌봄내 활동은 돌봄 입급에 종속. 원문 대상·반·기간에 따라 구분."
+          }
+        },
+        {
+          "group_id": "B000003742-22",
+          "mode": "course_choice",
+          "rows": [
+            62
+          ],
+          "individually_selectable": true,
+          "evidence": {
+            "input_lines": [
+              29,
+              30,
+              35,
+              36,
+              37,
+              95,
+              104,
+              113,
+              122,
+              133,
+              475,
+              477,
+              529
+            ],
+            "basis": "수익자 강좌별 신청; 독립 맞춤형 학급·요일 편성; 돌봄내 활동은 돌봄 입급에 종속. 원문 대상·반·기간에 따라 구분."
+          }
+        },
+        {
+          "group_id": "B000003742-23",
+          "mode": "course_choice",
+          "rows": [
+            63
+          ],
+          "individually_selectable": true,
+          "evidence": {
+            "input_lines": [
+              29,
+              30,
+              35,
+              36,
+              37,
+              95,
+              104,
+              113,
+              122,
+              133,
+              475,
+              477,
+              529
+            ],
+            "basis": "수익자 강좌별 신청; 독립 맞춤형 학급·요일 편성; 돌봄내 활동은 돌봄 입급에 종속. 원문 대상·반·기간에 따라 구분."
+          }
+        },
+        {
+          "group_id": "B000003742-24",
+          "mode": "course_choice",
+          "rows": [
+            65,
+            66
+          ],
+          "individually_selectable": true,
+          "evidence": {
+            "input_lines": [
+              29,
+              30,
+              35,
+              36,
+              37,
+              95,
+              104,
+              113,
+              122,
+              133,
+              475,
+              477,
+              529
+            ],
+            "basis": "수익자 강좌별 신청; 독립 맞춤형 학급·요일 편성; 돌봄내 활동은 돌봄 입급에 종속. 원문 대상·반·기간에 따라 구분."
+          }
+        },
+        {
+          "group_id": "B000003742-25",
+          "mode": "course_choice",
+          "rows": [
+            67
+          ],
+          "individually_selectable": true,
+          "evidence": {
+            "input_lines": [
+              29,
+              30,
+              35,
+              36,
+              37,
+              95,
+              104,
+              113,
+              122,
+              133,
+              475,
+              477,
+              529
+            ],
+            "basis": "수익자 강좌별 신청; 독립 맞춤형 학급·요일 편성; 돌봄내 활동은 돌봄 입급에 종속. 원문 대상·반·기간에 따라 구분."
+          }
+        },
+        {
+          "group_id": "B000003742-26",
+          "mode": "course_choice",
+          "rows": [
+            69
+          ],
+          "individually_selectable": true,
+          "evidence": {
+            "input_lines": [
+              29,
+              30,
+              35,
+              36,
+              37,
+              95,
+              104,
+              113,
+              122,
+              133,
+              475,
+              477,
+              529
+            ],
+            "basis": "수익자 강좌별 신청; 독립 맞춤형 학급·요일 편성; 돌봄내 활동은 돌봄 입급에 종속. 원문 대상·반·기간에 따라 구분."
+          }
+        },
+        {
+          "group_id": "B000003742-27",
+          "mode": "course_choice",
+          "rows": [
+            71,
+            72
+          ],
+          "individually_selectable": true,
+          "evidence": {
+            "input_lines": [
+              29,
+              30,
+              35,
+              36,
+              37,
+              95,
+              104,
+              113,
+              122,
+              133,
+              475,
+              477,
+              529
+            ],
+            "basis": "수익자 강좌별 신청; 독립 맞춤형 학급·요일 편성; 돌봄내 활동은 돌봄 입급에 종속. 원문 대상·반·기간에 따라 구분."
+          }
+        }
+      ],
+      "row_decisions": [
+        {
+          "row": 1,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 2,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 3,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 4,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 5,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 6,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 7,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 8,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 9,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 10,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 11,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 12,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 13,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 14,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 15,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 16,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 17,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 18,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 19,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 20,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 21,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 22,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 23,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 24,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 25,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 26,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 27,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 28,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 29,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 30,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 31,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 32,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 33,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 34,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 35,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 36,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 37,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 38,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 39,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 40,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 41,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 42,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 43,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 44,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 45,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 46,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 47,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 48,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 49,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 50,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 51,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 52,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 53,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 54,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 55,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 56,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 57,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 58,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 59,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 60,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 61,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 62,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 63,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 64,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 65,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 66,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 67,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 68,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 69,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 70,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 71,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 72,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 73,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 74,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 75,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 76,
+          "verdict": "source_faithful"
+        }
+      ],
+      "blocking_issues": [
+        "영어 스피킹·파닉스 요일충돌",
+        "독서논술2 D 대상학년 상충",
+        "방학 실제 프로그램별 편성 미공시",
+        "돌봄교실 활동문서 미확보"
+      ],
+      "advisory_issues": [
+        "일반운영시간13~17과 농구/배드민턴17:10종료는 반별명시값을 보존"
+      ],
+      "eligibility_notes": [
+        "맞춤형 돌봄입급자 제외 L29,L41",
+        "2차시연속2일이상 우선신청,1차시후귀가는 자율귀가 L35~36",
+        "매일기본2차시 및 중도입퇴실 제한 L529"
+      ],
+      "publish_ready": false,
+      "non_clock_conflicts": [
+        {
+          "field": "days",
+          "rows": [
+            67,
+            69
+          ],
+          "alternatives": [
+            {
+              "line": 180,
+              "course": "스피킹",
+              "days": "화"
+            },
+            {
+              "line": 477,
+              "course": "스피킹",
+              "days": "목"
+            },
+            {
+              "line": 182,
+              "course": "파닉스",
+              "days": "목"
+            },
+            {
+              "line": 475,
+              "course": "파닉스",
+              "days": "화"
+            }
+          ]
+        },
+        {
+          "field": "grades",
+          "rows": [
+            40
+          ],
+          "alternatives": [
+            {
+              "line": 153,
+              "grades": "3~6"
+            },
+            {
+              "line": 448,
+              "grades": "4~6"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "school_id": "B000003737",
+      "school_name": "성남신기초등학교",
+      "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_stage2_20261023/B000003737.txt",
+      "input_sha256": "eeb6f6a6bdbd81ffa38a1a430afea4b87d6d5f3d47e662b34101b9d800caaa84",
+      "source_files": [
+        {
+          "file": "etl/runtime/audit2-documents/2df3e977378bdb193288520ae986616e72dd662c49d5aad1efa020f7e61b7cb6.hwp",
+          "sha256": "2df3e977378bdb193288520ae986616e72dd662c49d5aad1efa020f7e61b7cb6"
+        },
+        {
+          "file": "etl/runtime/audit2-documents/9c4339a472f52cde155178e78dc2ad40833916349b1f6c2b492531b49ed70604.hwpx",
+          "sha256": "9c4339a472f52cde155178e78dc2ad40833916349b1f6c2b492531b49ed70604"
+        }
+      ],
+      "output_file": "docs/research/pivot/p1_stage2_bulk_20261024/batch_bulk_B000003737.json",
+      "output_sha256": "987f89cbb9f700208523b52f510f388b049dd142661dd85456870c6936266a16",
+      "source_read_lines": [
+        1,
+        623
+      ],
+      "visually_reviewed_pages": [],
+      "inventory": {
+        "raw_total": 66,
+        "paid": 39,
+        "custom_regular_grade1": 5,
+        "custom_regular_grade2": 5,
+        "custom_regular_mixed": 7,
+        "custom_morning": 0,
+        "care_regular": 7,
+        "care_vacation": 0
+      },
+      "source_inventory_complete": true,
+      "grade1_custom_inventory_complete": true,
+      "participation_review_complete": true,
+      "participation_groups": [
+        {
+          "group_id": "B000003737-1",
+          "mode": "course_choice",
+          "rows": [
+            1,
+            2
+          ],
+          "individually_selectable": true,
+          "evidence": {
+            "input_lines": [
+              10,
+              11,
+              14,
+              40,
+              157,
+              179,
+              182,
+              183,
+              186,
+              192,
+              198,
+              205,
+              214,
+              218,
+              250,
+              259,
+              510,
+              578,
+              585,
+              587
+            ],
+            "basis": "수익자 강좌별 신청; 독립 맞춤형 학급·요일 편성; 돌봄내 활동은 돌봄 입급에 종속. 원문 대상·반·기간에 따라 구분."
+          }
+        },
+        {
+          "group_id": "B000003737-2",
+          "mode": "course_choice",
+          "rows": [
+            3
+          ],
+          "individually_selectable": true,
+          "evidence": {
+            "input_lines": [
+              10,
+              11,
+              14,
+              40,
+              157,
+              179,
+              182,
+              183,
+              186,
+              192,
+              198,
+              205,
+              214,
+              218,
+              250,
+              259,
+              510,
+              578,
+              585,
+              587
+            ],
+            "basis": "수익자 강좌별 신청; 독립 맞춤형 학급·요일 편성; 돌봄내 활동은 돌봄 입급에 종속. 원문 대상·반·기간에 따라 구분."
+          }
+        },
+        {
+          "group_id": "B000003737-3",
+          "mode": "course_choice",
+          "rows": [
+            5,
+            6
+          ],
+          "individually_selectable": true,
+          "evidence": {
+            "input_lines": [
+              10,
+              11,
+              14,
+              40,
+              157,
+              179,
+              182,
+              183,
+              186,
+              192,
+              198,
+              205,
+              214,
+              218,
+              250,
+              259,
+              510,
+              578,
+              585,
+              587
+            ],
+            "basis": "수익자 강좌별 신청; 독립 맞춤형 학급·요일 편성; 돌봄내 활동은 돌봄 입급에 종속. 원문 대상·반·기간에 따라 구분."
+          }
+        },
+        {
+          "group_id": "B000003737-4",
+          "mode": "course_choice",
+          "rows": [
+            7,
+            8
+          ],
+          "individually_selectable": true,
+          "evidence": {
+            "input_lines": [
+              10,
+              11,
+              14,
+              40,
+              157,
+              179,
+              182,
+              183,
+              186,
+              192,
+              198,
+              205,
+              214,
+              218,
+              250,
+              259,
+              510,
+              578,
+              585,
+              587
+            ],
+            "basis": "수익자 강좌별 신청; 독립 맞춤형 학급·요일 편성; 돌봄내 활동은 돌봄 입급에 종속. 원문 대상·반·기간에 따라 구분."
+          }
+        },
+        {
+          "group_id": "B000003737-5",
+          "mode": "course_choice",
+          "rows": [
+            9,
+            10,
+            11,
+            12
+          ],
+          "individually_selectable": true,
+          "evidence": {
+            "input_lines": [
+              10,
+              11,
+              14,
+              40,
+              157,
+              179,
+              182,
+              183,
+              186,
+              192,
+              198,
+              205,
+              214,
+              218,
+              250,
+              259,
+              510,
+              578,
+              585,
+              587
+            ],
+            "basis": "수익자 강좌별 신청; 독립 맞춤형 학급·요일 편성; 돌봄내 활동은 돌봄 입급에 종속. 원문 대상·반·기간에 따라 구분."
+          }
+        },
+        {
+          "group_id": "B000003737-6",
+          "mode": "course_choice",
+          "rows": [
+            13,
+            14
+          ],
+          "individually_selectable": true,
+          "evidence": {
+            "input_lines": [
+              10,
+              11,
+              14,
+              40,
+              157,
+              179,
+              182,
+              183,
+              186,
+              192,
+              198,
+              205,
+              214,
+              218,
+              250,
+              259,
+              510,
+              578,
+              585,
+              587
+            ],
+            "basis": "수익자 강좌별 신청; 독립 맞춤형 학급·요일 편성; 돌봄내 활동은 돌봄 입급에 종속. 원문 대상·반·기간에 따라 구분."
+          }
+        },
+        {
+          "group_id": "B000003737-7",
+          "mode": "course_choice",
+          "rows": [
+            15
+          ],
+          "individually_selectable": true,
+          "evidence": {
+            "input_lines": [
+              10,
+              11,
+              14,
+              40,
+              157,
+              179,
+              182,
+              183,
+              186,
+              192,
+              198,
+              205,
+              214,
+              218,
+              250,
+              259,
+              510,
+              578,
+              585,
+              587
+            ],
+            "basis": "수익자 강좌별 신청; 독립 맞춤형 학급·요일 편성; 돌봄내 활동은 돌봄 입급에 종속. 원문 대상·반·기간에 따라 구분."
+          }
+        },
+        {
+          "group_id": "B000003737-8",
+          "mode": "course_choice",
+          "rows": [
+            17
+          ],
+          "individually_selectable": true,
+          "evidence": {
+            "input_lines": [
+              10,
+              11,
+              14,
+              40,
+              157,
+              179,
+              182,
+              183,
+              186,
+              192,
+              198,
+              205,
+              214,
+              218,
+              250,
+              259,
+              510,
+              578,
+              585,
+              587
+            ],
+            "basis": "수익자 강좌별 신청; 독립 맞춤형 학급·요일 편성; 돌봄내 활동은 돌봄 입급에 종속. 원문 대상·반·기간에 따라 구분."
+          }
+        },
+        {
+          "group_id": "B000003737-9",
+          "mode": "course_choice",
+          "rows": [
+            18
+          ],
+          "individually_selectable": true,
+          "evidence": {
+            "input_lines": [
+              10,
+              11,
+              14,
+              40,
+              157,
+              179,
+              182,
+              183,
+              186,
+              192,
+              198,
+              205,
+              214,
+              218,
+              250,
+              259,
+              510,
+              578,
+              585,
+              587
+            ],
+            "basis": "수익자 강좌별 신청; 독립 맞춤형 학급·요일 편성; 돌봄내 활동은 돌봄 입급에 종속. 원문 대상·반·기간에 따라 구분."
+          }
+        },
+        {
+          "group_id": "B000003737-10",
+          "mode": "course_choice",
+          "rows": [
+            19,
+            20,
+            21
+          ],
+          "individually_selectable": true,
+          "evidence": {
+            "input_lines": [
+              10,
+              11,
+              14,
+              40,
+              157,
+              179,
+              182,
+              183,
+              186,
+              192,
+              198,
+              205,
+              214,
+              218,
+              250,
+              259,
+              510,
+              578,
+              585,
+              587
+            ],
+            "basis": "수익자 강좌별 신청; 독립 맞춤형 학급·요일 편성; 돌봄내 활동은 돌봄 입급에 종속. 원문 대상·반·기간에 따라 구분."
+          }
+        },
+        {
+          "group_id": "B000003737-11",
+          "mode": "course_choice",
+          "rows": [
+            22,
+            23
+          ],
+          "individually_selectable": true,
+          "evidence": {
+            "input_lines": [
+              10,
+              11,
+              14,
+              40,
+              157,
+              179,
+              182,
+              183,
+              186,
+              192,
+              198,
+              205,
+              214,
+              218,
+              250,
+              259,
+              510,
+              578,
+              585,
+              587
+            ],
+            "basis": "수익자 강좌별 신청; 독립 맞춤형 학급·요일 편성; 돌봄내 활동은 돌봄 입급에 종속. 원문 대상·반·기간에 따라 구분."
+          }
+        },
+        {
+          "group_id": "B000003737-12",
+          "mode": "course_choice",
+          "rows": [
+            24
+          ],
+          "individually_selectable": true,
+          "evidence": {
+            "input_lines": [
+              10,
+              11,
+              14,
+              40,
+              157,
+              179,
+              182,
+              183,
+              186,
+              192,
+              198,
+              205,
+              214,
+              218,
+              250,
+              259,
+              510,
+              578,
+              585,
+              587
+            ],
+            "basis": "수익자 강좌별 신청; 독립 맞춤형 학급·요일 편성; 돌봄내 활동은 돌봄 입급에 종속. 원문 대상·반·기간에 따라 구분."
+          }
+        },
+        {
+          "group_id": "B000003737-13",
+          "mode": "course_choice",
+          "rows": [
+            26,
+            27
+          ],
+          "individually_selectable": true,
+          "evidence": {
+            "input_lines": [
+              10,
+              11,
+              14,
+              40,
+              157,
+              179,
+              182,
+              183,
+              186,
+              192,
+              198,
+              205,
+              214,
+              218,
+              250,
+              259,
+              510,
+              578,
+              585,
+              587
+            ],
+            "basis": "수익자 강좌별 신청; 독립 맞춤형 학급·요일 편성; 돌봄내 활동은 돌봄 입급에 종속. 원문 대상·반·기간에 따라 구분."
+          }
+        },
+        {
+          "group_id": "B000003737-14",
+          "mode": "course_choice",
+          "rows": [
+            28
+          ],
+          "individually_selectable": true,
+          "evidence": {
+            "input_lines": [
+              10,
+              11,
+              14,
+              40,
+              157,
+              179,
+              182,
+              183,
+              186,
+              192,
+              198,
+              205,
+              214,
+              218,
+              250,
+              259,
+              510,
+              578,
+              585,
+              587
+            ],
+            "basis": "수익자 강좌별 신청; 독립 맞춤형 학급·요일 편성; 돌봄내 활동은 돌봄 입급에 종속. 원문 대상·반·기간에 따라 구분."
+          }
+        },
+        {
+          "group_id": "B000003737-15",
+          "mode": "course_choice",
+          "rows": [
+            30,
+            31
+          ],
+          "individually_selectable": true,
+          "evidence": {
+            "input_lines": [
+              10,
+              11,
+              14,
+              40,
+              157,
+              179,
+              182,
+              183,
+              186,
+              192,
+              198,
+              205,
+              214,
+              218,
+              250,
+              259,
+              510,
+              578,
+              585,
+              587
+            ],
+            "basis": "수익자 강좌별 신청; 독립 맞춤형 학급·요일 편성; 돌봄내 활동은 돌봄 입급에 종속. 원문 대상·반·기간에 따라 구분."
+          }
+        },
+        {
+          "group_id": "B000003737-16",
+          "mode": "course_choice",
+          "rows": [
+            32,
+            33
+          ],
+          "individually_selectable": true,
+          "evidence": {
+            "input_lines": [
+              10,
+              11,
+              14,
+              40,
+              157,
+              179,
+              182,
+              183,
+              186,
+              192,
+              198,
+              205,
+              214,
+              218,
+              250,
+              259,
+              510,
+              578,
+              585,
+              587
+            ],
+            "basis": "수익자 강좌별 신청; 독립 맞춤형 학급·요일 편성; 돌봄내 활동은 돌봄 입급에 종속. 원문 대상·반·기간에 따라 구분."
+          }
+        },
+        {
+          "group_id": "B000003737-17",
+          "mode": "course_choice",
+          "rows": [
+            34,
+            35,
+            36,
+            37
+          ],
+          "individually_selectable": true,
+          "evidence": {
+            "input_lines": [
+              10,
+              11,
+              14,
+              40,
+              157,
+              179,
+              182,
+              183,
+              186,
+              192,
+              198,
+              205,
+              214,
+              218,
+              250,
+              259,
+              510,
+              578,
+              585,
+              587
+            ],
+            "basis": "수익자 강좌별 신청; 독립 맞춤형 학급·요일 편성; 돌봄내 활동은 돌봄 입급에 종속. 원문 대상·반·기간에 따라 구분."
+          }
+        },
+        {
+          "group_id": "B000003737-18",
+          "mode": "course_choice",
+          "rows": [
+            38
+          ],
+          "individually_selectable": true,
+          "evidence": {
+            "input_lines": [
+              10,
+              11,
+              14,
+              40,
+              157,
+              179,
+              182,
+              183,
+              186,
+              192,
+              198,
+              205,
+              214,
+              218,
+              250,
+              259,
+              510,
+              578,
+              585,
+              587
+            ],
+            "basis": "수익자 강좌별 신청; 독립 맞춤형 학급·요일 편성; 돌봄내 활동은 돌봄 입급에 종속. 원문 대상·반·기간에 따라 구분."
+          }
+        },
+        {
+          "group_id": "B000003737-19",
+          "mode": "class_day_bundle",
+          "rows": [
+            40,
+            41,
+            42,
+            43,
+            44
+          ],
+          "individually_selectable": false,
+          "evidence": {
+            "input_lines": [
+              10,
+              11,
+              14,
+              40,
+              157,
+              179,
+              182,
+              183,
+              186,
+              192,
+              198,
+              205,
+              214,
+              218,
+              250,
+              259,
+              510,
+              578,
+              585,
+              587
+            ],
+            "basis": "수익자 강좌별 신청; 독립 맞춤형 학급·요일 편성; 돌봄내 활동은 돌봄 입급에 종속. 원문 대상·반·기간에 따라 구분."
+          }
+        },
+        {
+          "group_id": "B000003737-20",
+          "mode": "care_activity",
+          "rows": [
+            60,
+            61,
+            62,
+            63,
+            64,
+            65,
+            66
+          ],
+          "individually_selectable": false,
+          "evidence": {
+            "input_lines": [
+              10,
+              11,
+              14,
+              40,
+              157,
+              179,
+              182,
+              183,
+              186,
+              192,
+              198,
+              205,
+              214,
+              218,
+              250,
+              259,
+              510,
+              578,
+              585,
+              587
+            ],
+            "basis": "수익자 강좌별 신청; 독립 맞춤형 학급·요일 편성; 돌봄내 활동은 돌봄 입급에 종속. 원문 대상·반·기간에 따라 구분."
+          }
+        }
+      ],
+      "row_decisions": [
+        {
+          "row": 1,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 2,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 3,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 4,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 5,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 6,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 7,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 8,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 9,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 10,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 11,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 12,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 13,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 14,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 15,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 16,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 17,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 18,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 19,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 20,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 21,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 22,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 23,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 24,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 25,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 26,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 27,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 28,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 29,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 30,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 31,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 32,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 33,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 34,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 35,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 36,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 37,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 38,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 39,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 40,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 41,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 42,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 43,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 44,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 45,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 46,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 47,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 48,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 49,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 50,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 51,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 52,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 53,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 54,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 55,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 56,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 57,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 58,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 59,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 60,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 61,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 62,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 63,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 64,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 65,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 66,
+          "verdict": "source_faithful"
+        }
+      ],
+      "blocking_issues": [
+        "유료 금요일B/C반·수요일플룻 시각 일반표와 상충",
+        "축구 강사 재채용중 실제개설 확인",
+        "영어뮤지컬2기 개강 확인",
+        "돌봄 프로그램 개별시각·명칭대응 미공시"
+      ],
+      "advisory_issues": [
+        "겨울맞춤형은 석면공사로 미운영; 2학년 방학표 머리글 겨울포함에도 실제겨울행생성안함",
+        "돌봄겨울운영 미정 L33"
+      ],
+      "eligibility_notes": [
+        "맞춤형 돌봄입급자 제외, 다참여자우선·기준25명 L182,L186",
+        "맞춤형2차시 블록·중도입퇴실제한 L578,L585",
+        "돌봄 육아휴직중입급불가 L20~24,학원갔다재입급불가 L61"
+      ],
+      "publish_ready": false,
+      "field_conflicts": [
+        {
+          "field": "start/end",
+          "rows": [
+            4
+          ],
+          "alternatives": [
+            {
+              "start": "14:40",
+              "end": "16:00",
+              "line": 514
+            },
+            {
+              "start": "14:30",
+              "end": "15:50",
+              "line": 232
+            }
+          ],
+          "resolution": "unresolved; raw clocks null"
+        },
+        {
+          "field": "start/end",
+          "rows": [
+            6
+          ],
+          "alternatives": [
+            {
+              "start": "14:40",
+              "end": "16:00",
+              "line": 514
+            },
+            {
+              "start": "14:30",
+              "end": "15:50",
+              "line": 232
+            }
+          ],
+          "resolution": "unresolved; raw clocks null"
+        },
+        {
+          "field": "start/end",
+          "rows": [
+            12
+          ],
+          "alternatives": [
+            {
+              "start": "14:40",
+              "end": "16:00",
+              "line": 514
+            },
+            {
+              "start": "14:30",
+              "end": "15:50",
+              "line": 232
+            }
+          ],
+          "resolution": "unresolved; raw clocks null"
+        },
+        {
+          "field": "start/end",
+          "rows": [
+            19
+          ],
+          "alternatives": [
+            {
+              "start": "13:50",
+              "end": "15:10",
+              "line": 514
+            },
+            {
+              "start": "13:00",
+              "end": "14:20",
+              "line": 232
+            }
+          ],
+          "resolution": "unresolved; raw clocks null"
+        },
+        {
+          "field": "start/end",
+          "rows": [
+            21
+          ],
+          "alternatives": [
+            {
+              "start": "14:40",
+              "end": "16:00",
+              "line": 514
+            },
+            {
+              "start": "14:30",
+              "end": "15:50",
+              "line": 232
+            }
+          ],
+          "resolution": "unresolved; raw clocks null"
+        }
+      ],
+      "conditional_rows": [
+        {
+          "rows": [
+            15,
+            16,
+            30,
+            31
+          ],
+          "condition": "영어뮤지컬2기개강예정·축구강사재채용중",
+          "evidence_lines": [
+            259,
+            512
+          ],
+          "confirmed_operating": false
+        }
+      ],
+      "care_hours_review_complete": true,
+      "care_hours": {
+        "days": "월화수목금",
+        "end": "18:00",
+        "start_basis": "after_regular_classes",
+        "evidence": {
+          "input_lines": [
+            11,
+            40
+          ]
+        }
+      }
     }
   ],
   "independent_blind_review_complete": false,
   "publish_status": "not_approved",
-  "no_operational_upload": true
+  "no_operational_upload": true,
+  "slot_standard_applied_on": "2026-10-25"
 }

@@ -17,7 +17,7 @@
         }
       ],
       "output_file": "docs/research/pivot/p1_stage2_bulk_20261024/batch_bulk_B000003767.json",
-      "output_sha256": "63ac0a73393369953328961b687862fc264b68d6784ca4d1be559f303edb14b9",
+      "output_sha256": "4da156a0f5e2c0d23630cffd5506fcae43e482035193ef34df2f55f371c3d495",
       "source_read_lines": [
         1,
         339
@@ -2321,7 +2321,7 @@
         }
       ],
       "output_file": "docs/research/pivot/p1_stage2_bulk_20261024/batch_bulk_B000003765.json",
-      "output_sha256": "e4221f8726d35c780f698b5700b8881ec8fdd46394d0440528d4598cfb08a9ab",
+      "output_sha256": "c8b619d6d742a6025300860ca9279474227250d3571b73c672b111642d64d8ee",
       "source_read_lines": [
         1,
         608
@@ -5178,7 +5178,7 @@
         }
       ],
       "output_file": "docs/research/pivot/p1_stage2_bulk_20261024/batch_bulk_B000003748.json",
-      "output_sha256": "6e2c7070f6ebe5bd4c0ac0e51b8925c759dab844cd2f30973c307f15f444938f",
+      "output_sha256": "080ce32d6474859f51e7f9b3ac4af3f2ef3eada445dd156bac0fe27da200eaba",
       "source_read_lines": [
         1,
         643
@@ -6684,6 +6684,1244 @@
           "basis": "수업종료후19시 및 월~금 시간표"
         }
       }
+    },
+    {
+      "school_id": "B000003758",
+      "school_name": "서당초등학교",
+      "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_stage2_20261023/B000003758.txt",
+      "input_sha256": "8bc5eb5e8e43708aa1c2c1d7d222e8e60396d7d909294427ec73674fcb2a2506",
+      "source_files": [
+        {
+          "file": "etl/runtime/pivot_p1_stage2_sources_20261023/1936454_0.pdf",
+          "sha256": "1b673c6df385f2801988e0e087d192371873c0bcd058b331a511a9f8233ffda7"
+        },
+        {
+          "file": "etl/runtime/audit2-documents/f1b330c152b9fdf23521210e41b489d07de1660f0daa05ccfb06813489b4d6a6.hwp",
+          "sha256": "f1b330c152b9fdf23521210e41b489d07de1660f0daa05ccfb06813489b4d6a6"
+        },
+        {
+          "file": "etl/runtime/pivot_p1_stage2_sources_20261023/1948588_image_0.jpg",
+          "sha256": "83eea414472a703ee7961922f92b544dbd2bf4b97feeeee1f773aa0eccaedb19"
+        },
+        {
+          "file": "etl/runtime/pivot_p1_stage2_sources_20261023/1948588_image_1.jpg",
+          "sha256": "f345984a27b29e53f65a55f501c72f25a6c1f2353e625fdcd85e33b1705755fe"
+        }
+      ],
+      "output_file": "docs/research/pivot/p1_stage2_bulk_20261024/batch_bulk_B000003758.json",
+      "output_sha256": "2984459713cbe40f7cb3dfd299006f63febf50333c0bb5d1ed744048346570ac",
+      "source_read_lines": [
+        1,
+        591
+      ],
+      "inventory": {
+        "raw_total": 128,
+        "paid": 58,
+        "custom_regular_grade1": 20,
+        "custom_regular_grade2": 15,
+        "custom_regular_mixed": 10,
+        "custom_morning": 5,
+        "care_regular": 10,
+        "care_vacation": 20
+      },
+      "source_inventory_complete": true,
+      "grade1_custom_inventory_complete": true,
+      "participation_review_complete": true,
+      "participation_groups": [
+        {
+          "group_id": "B000003758-1",
+          "mode": "class_day_bundle",
+          "individually_selectable": false,
+          "rows": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "evidence": {
+            "input_lines": [
+              26
+            ],
+            "basis": "원문의 수익자 강좌별 선택 또는 맞춤형 학급 편성 활동; 개별 활동 신청으로 해석하지 않음"
+          }
+        },
+        {
+          "group_id": "B000003758-2",
+          "mode": "class_day_bundle",
+          "individually_selectable": false,
+          "rows": [
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "evidence": {
+            "input_lines": [
+              26
+            ],
+            "basis": "원문의 수익자 강좌별 선택 또는 맞춤형 학급 편성 활동; 개별 활동 신청으로 해석하지 않음"
+          }
+        },
+        {
+          "group_id": "B000003758-3",
+          "mode": "class_day_bundle",
+          "individually_selectable": false,
+          "rows": [
+            21,
+            22,
+            23,
+            24,
+            25
+          ],
+          "evidence": {
+            "input_lines": [
+              26
+            ],
+            "basis": "원문의 수익자 강좌별 선택 또는 맞춤형 학급 편성 활동; 개별 활동 신청으로 해석하지 않음"
+          }
+        },
+        {
+          "group_id": "B000003758-4",
+          "mode": "class_day_bundle",
+          "individually_selectable": false,
+          "rows": [
+            26,
+            27,
+            28,
+            29,
+            30
+          ],
+          "evidence": {
+            "input_lines": [
+              26
+            ],
+            "basis": "원문의 수익자 강좌별 선택 또는 맞춤형 학급 편성 활동; 개별 활동 신청으로 해석하지 않음"
+          }
+        },
+        {
+          "group_id": "B000003758-5",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            41,
+            70
+          ],
+          "evidence": {
+            "input_lines": [
+              38
+            ],
+            "basis": "원문의 수익자 강좌별 선택 또는 맞춤형 학급 편성 활동; 개별 활동 신청으로 해석하지 않음"
+          }
+        },
+        {
+          "group_id": "B000003758-6",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            43,
+            44,
+            72,
+            73
+          ],
+          "evidence": {
+            "input_lines": [
+              40
+            ],
+            "basis": "원문의 수익자 강좌별 선택 또는 맞춤형 학급 편성 활동; 개별 활동 신청으로 해석하지 않음"
+          }
+        },
+        {
+          "group_id": "B000003758-7",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            45,
+            74
+          ],
+          "evidence": {
+            "input_lines": [
+              40
+            ],
+            "basis": "원문의 수익자 강좌별 선택 또는 맞춤형 학급 편성 활동; 개별 활동 신청으로 해석하지 않음"
+          }
+        },
+        {
+          "group_id": "B000003758-8",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            46,
+            75
+          ],
+          "evidence": {
+            "input_lines": [
+              42
+            ],
+            "basis": "원문의 수익자 강좌별 선택 또는 맞춤형 학급 편성 활동; 개별 활동 신청으로 해석하지 않음"
+          }
+        },
+        {
+          "group_id": "B000003758-9",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            48,
+            77,
+            78
+          ],
+          "evidence": {
+            "input_lines": [
+              43
+            ],
+            "basis": "원문의 수익자 강좌별 선택 또는 맞춤형 학급 편성 활동; 개별 활동 신청으로 해석하지 않음"
+          }
+        },
+        {
+          "group_id": "B000003758-10",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            50,
+            51,
+            79,
+            80
+          ],
+          "evidence": {
+            "input_lines": [
+              43
+            ],
+            "basis": "원문의 수익자 강좌별 선택 또는 맞춤형 학급 편성 활동; 개별 활동 신청으로 해석하지 않음"
+          }
+        },
+        {
+          "group_id": "B000003758-11",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            52,
+            81
+          ],
+          "evidence": {
+            "input_lines": [
+              45
+            ],
+            "basis": "원문의 수익자 강좌별 선택 또는 맞춤형 학급 편성 활동; 개별 활동 신청으로 해석하지 않음"
+          }
+        },
+        {
+          "group_id": "B000003758-12",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            54,
+            83
+          ],
+          "evidence": {
+            "input_lines": [
+              47
+            ],
+            "basis": "원문의 수익자 강좌별 선택 또는 맞춤형 학급 편성 활동; 개별 활동 신청으로 해석하지 않음"
+          }
+        },
+        {
+          "group_id": "B000003758-13",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            56,
+            85
+          ],
+          "evidence": {
+            "input_lines": [
+              40
+            ],
+            "basis": "원문의 수익자 강좌별 선택 또는 맞춤형 학급 편성 활동; 개별 활동 신청으로 해석하지 않음"
+          }
+        },
+        {
+          "group_id": "B000003758-14",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            58,
+            87
+          ],
+          "evidence": {
+            "input_lines": [
+              40
+            ],
+            "basis": "원문의 수익자 강좌별 선택 또는 맞춤형 학급 편성 활동; 개별 활동 신청으로 해석하지 않음"
+          }
+        },
+        {
+          "group_id": "B000003758-15",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            60,
+            89
+          ],
+          "evidence": {
+            "input_lines": [
+              40
+            ],
+            "basis": "원문의 수익자 강좌별 선택 또는 맞춤형 학급 편성 활동; 개별 활동 신청으로 해석하지 않음"
+          }
+        },
+        {
+          "group_id": "B000003758-16",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            62,
+            91,
+            92
+          ],
+          "evidence": {
+            "input_lines": [
+              43
+            ],
+            "basis": "원문의 수익자 강좌별 선택 또는 맞춤형 학급 편성 활동; 개별 활동 신청으로 해석하지 않음"
+          }
+        },
+        {
+          "group_id": "B000003758-17",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            64,
+            65,
+            93,
+            94
+          ],
+          "evidence": {
+            "input_lines": [
+              43
+            ],
+            "basis": "원문의 수익자 강좌별 선택 또는 맞춤형 학급 편성 활동; 개별 활동 신청으로 해석하지 않음"
+          }
+        },
+        {
+          "group_id": "B000003758-18",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            66,
+            67
+          ],
+          "evidence": {
+            "input_lines": [
+              47
+            ],
+            "basis": "원문의 수익자 강좌별 선택 또는 맞춤형 학급 편성 활동; 개별 활동 신청으로 해석하지 않음"
+          }
+        },
+        {
+          "group_id": "B000003758-19",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            68,
+            69,
+            97
+          ],
+          "evidence": {
+            "input_lines": [
+              47
+            ],
+            "basis": "원문의 수익자 강좌별 선택 또는 맞춤형 학급 편성 활동; 개별 활동 신청으로 해석하지 않음"
+          }
+        },
+        {
+          "group_id": "B000003758-20",
+          "mode": "course_choice",
+          "individually_selectable": true,
+          "rows": [
+            95
+          ],
+          "evidence": {
+            "input_lines": [
+              47
+            ],
+            "basis": "원문의 수익자 강좌별 선택 또는 맞춤형 학급 편성 활동; 개별 활동 신청으로 해석하지 않음"
+          }
+        },
+        {
+          "group_id": "B000003758-21",
+          "mode": "care_activity",
+          "individually_selectable": false,
+          "rows": [
+            99,
+            100,
+            101,
+            102,
+            103
+          ],
+          "evidence": {
+            "input_lines": [
+              249
+            ],
+            "basis": "원문의 수익자 강좌별 선택 또는 맞춤형 학급 편성 활동; 개별 활동 신청으로 해석하지 않음"
+          }
+        },
+        {
+          "group_id": "B000003758-22",
+          "mode": "care_activity",
+          "individually_selectable": false,
+          "rows": [
+            104,
+            105,
+            106,
+            107,
+            108
+          ],
+          "evidence": {
+            "input_lines": [
+              259
+            ],
+            "basis": "원문의 수익자 강좌별 선택 또는 맞춤형 학급 편성 활동; 개별 활동 신청으로 해석하지 않음"
+          }
+        }
+      ],
+      "row_decisions": [
+        {
+          "row": 1,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 2,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 3,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 4,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 5,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 6,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 7,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 8,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 9,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 10,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 11,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 12,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 13,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 14,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 15,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 16,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 17,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 18,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 19,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 20,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 21,
+          "verdict": "source_faithful",
+          "supplemental_visual_evidence": {
+            "file": "etl/runtime/pivot_p1_stage2_sources_20261023/1948588_image_0.jpg",
+            "basis": "2026학년도2학기 공식보충시간표 시각대조; 줄번호는 연간계획 해당강좌의 기준행"
+          }
+        },
+        {
+          "row": 22,
+          "verdict": "source_faithful",
+          "supplemental_visual_evidence": {
+            "file": "etl/runtime/pivot_p1_stage2_sources_20261023/1948588_image_0.jpg",
+            "basis": "2026학년도2학기 공식보충시간표 시각대조; 줄번호는 연간계획 해당강좌의 기준행"
+          }
+        },
+        {
+          "row": 23,
+          "verdict": "source_faithful",
+          "supplemental_visual_evidence": {
+            "file": "etl/runtime/pivot_p1_stage2_sources_20261023/1948588_image_0.jpg",
+            "basis": "2026학년도2학기 공식보충시간표 시각대조; 줄번호는 연간계획 해당강좌의 기준행"
+          }
+        },
+        {
+          "row": 24,
+          "verdict": "source_faithful",
+          "supplemental_visual_evidence": {
+            "file": "etl/runtime/pivot_p1_stage2_sources_20261023/1948588_image_0.jpg",
+            "basis": "2026학년도2학기 공식보충시간표 시각대조; 줄번호는 연간계획 해당강좌의 기준행"
+          }
+        },
+        {
+          "row": 25,
+          "verdict": "source_faithful",
+          "supplemental_visual_evidence": {
+            "file": "etl/runtime/pivot_p1_stage2_sources_20261023/1948588_image_0.jpg",
+            "basis": "2026학년도2학기 공식보충시간표 시각대조; 줄번호는 연간계획 해당강좌의 기준행"
+          }
+        },
+        {
+          "row": 26,
+          "verdict": "source_faithful",
+          "supplemental_visual_evidence": {
+            "file": "etl/runtime/pivot_p1_stage2_sources_20261023/1948588_image_0.jpg",
+            "basis": "2026학년도2학기 공식보충시간표 시각대조; 줄번호는 연간계획 해당강좌의 기준행"
+          }
+        },
+        {
+          "row": 27,
+          "verdict": "source_faithful",
+          "supplemental_visual_evidence": {
+            "file": "etl/runtime/pivot_p1_stage2_sources_20261023/1948588_image_0.jpg",
+            "basis": "2026학년도2학기 공식보충시간표 시각대조; 줄번호는 연간계획 해당강좌의 기준행"
+          }
+        },
+        {
+          "row": 28,
+          "verdict": "source_faithful",
+          "supplemental_visual_evidence": {
+            "file": "etl/runtime/pivot_p1_stage2_sources_20261023/1948588_image_0.jpg",
+            "basis": "2026학년도2학기 공식보충시간표 시각대조; 줄번호는 연간계획 해당강좌의 기준행"
+          }
+        },
+        {
+          "row": 29,
+          "verdict": "source_faithful",
+          "supplemental_visual_evidence": {
+            "file": "etl/runtime/pivot_p1_stage2_sources_20261023/1948588_image_0.jpg",
+            "basis": "2026학년도2학기 공식보충시간표 시각대조; 줄번호는 연간계획 해당강좌의 기준행"
+          }
+        },
+        {
+          "row": 30,
+          "verdict": "source_faithful",
+          "supplemental_visual_evidence": {
+            "file": "etl/runtime/pivot_p1_stage2_sources_20261023/1948588_image_0.jpg",
+            "basis": "2026학년도2학기 공식보충시간표 시각대조; 줄번호는 연간계획 해당강좌의 기준행"
+          }
+        },
+        {
+          "row": 31,
+          "verdict": "source_faithful",
+          "supplemental_visual_evidence": {
+            "file": "etl/runtime/pivot_p1_stage2_sources_20261023/1948588_image_0.jpg",
+            "basis": "2026학년도2학기 공식보충시간표 시각대조; 줄번호는 연간계획 해당강좌의 기준행"
+          }
+        },
+        {
+          "row": 32,
+          "verdict": "source_faithful",
+          "supplemental_visual_evidence": {
+            "file": "etl/runtime/pivot_p1_stage2_sources_20261023/1948588_image_0.jpg",
+            "basis": "2026학년도2학기 공식보충시간표 시각대조; 줄번호는 연간계획 해당강좌의 기준행"
+          }
+        },
+        {
+          "row": 33,
+          "verdict": "source_faithful",
+          "supplemental_visual_evidence": {
+            "file": "etl/runtime/pivot_p1_stage2_sources_20261023/1948588_image_0.jpg",
+            "basis": "2026학년도2학기 공식보충시간표 시각대조; 줄번호는 연간계획 해당강좌의 기준행"
+          }
+        },
+        {
+          "row": 34,
+          "verdict": "source_faithful",
+          "supplemental_visual_evidence": {
+            "file": "etl/runtime/pivot_p1_stage2_sources_20261023/1948588_image_0.jpg",
+            "basis": "2026학년도2학기 공식보충시간표 시각대조; 줄번호는 연간계획 해당강좌의 기준행"
+          }
+        },
+        {
+          "row": 35,
+          "verdict": "source_faithful",
+          "supplemental_visual_evidence": {
+            "file": "etl/runtime/pivot_p1_stage2_sources_20261023/1948588_image_0.jpg",
+            "basis": "2026학년도2학기 공식보충시간표 시각대조; 줄번호는 연간계획 해당강좌의 기준행"
+          }
+        },
+        {
+          "row": 36,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 37,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 38,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 39,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 40,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 41,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 42,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 43,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 44,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 45,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 46,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 47,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 48,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 49,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 50,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 51,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 52,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 53,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 54,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 55,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 56,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 57,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 58,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 59,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 60,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 61,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 62,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 63,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 64,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 65,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 66,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 67,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 68,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 69,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 70,
+          "verdict": "source_faithful",
+          "supplemental_visual_evidence": {
+            "file": "etl/runtime/pivot_p1_stage2_sources_20261023/1948588_image_1.jpg",
+            "basis": "2026학년도2학기 공식보충시간표 시각대조; 줄번호는 연간계획 해당강좌의 기준행"
+          }
+        },
+        {
+          "row": 71,
+          "verdict": "source_faithful",
+          "supplemental_visual_evidence": {
+            "file": "etl/runtime/pivot_p1_stage2_sources_20261023/1948588_image_1.jpg",
+            "basis": "2026학년도2학기 공식보충시간표 시각대조; 줄번호는 연간계획 해당강좌의 기준행"
+          }
+        },
+        {
+          "row": 72,
+          "verdict": "source_faithful",
+          "supplemental_visual_evidence": {
+            "file": "etl/runtime/pivot_p1_stage2_sources_20261023/1948588_image_1.jpg",
+            "basis": "2026학년도2학기 공식보충시간표 시각대조; 줄번호는 연간계획 해당강좌의 기준행"
+          }
+        },
+        {
+          "row": 73,
+          "verdict": "source_faithful",
+          "supplemental_visual_evidence": {
+            "file": "etl/runtime/pivot_p1_stage2_sources_20261023/1948588_image_1.jpg",
+            "basis": "2026학년도2학기 공식보충시간표 시각대조; 줄번호는 연간계획 해당강좌의 기준행"
+          }
+        },
+        {
+          "row": 74,
+          "verdict": "source_faithful",
+          "supplemental_visual_evidence": {
+            "file": "etl/runtime/pivot_p1_stage2_sources_20261023/1948588_image_1.jpg",
+            "basis": "2026학년도2학기 공식보충시간표 시각대조; 줄번호는 연간계획 해당강좌의 기준행"
+          }
+        },
+        {
+          "row": 75,
+          "verdict": "source_faithful",
+          "supplemental_visual_evidence": {
+            "file": "etl/runtime/pivot_p1_stage2_sources_20261023/1948588_image_1.jpg",
+            "basis": "2026학년도2학기 공식보충시간표 시각대조; 줄번호는 연간계획 해당강좌의 기준행"
+          }
+        },
+        {
+          "row": 76,
+          "verdict": "source_faithful",
+          "supplemental_visual_evidence": {
+            "file": "etl/runtime/pivot_p1_stage2_sources_20261023/1948588_image_1.jpg",
+            "basis": "2026학년도2학기 공식보충시간표 시각대조; 줄번호는 연간계획 해당강좌의 기준행"
+          }
+        },
+        {
+          "row": 77,
+          "verdict": "source_faithful",
+          "supplemental_visual_evidence": {
+            "file": "etl/runtime/pivot_p1_stage2_sources_20261023/1948588_image_1.jpg",
+            "basis": "2026학년도2학기 공식보충시간표 시각대조; 줄번호는 연간계획 해당강좌의 기준행"
+          }
+        },
+        {
+          "row": 78,
+          "verdict": "source_faithful",
+          "supplemental_visual_evidence": {
+            "file": "etl/runtime/pivot_p1_stage2_sources_20261023/1948588_image_1.jpg",
+            "basis": "2026학년도2학기 공식보충시간표 시각대조; 줄번호는 연간계획 해당강좌의 기준행"
+          }
+        },
+        {
+          "row": 79,
+          "verdict": "source_faithful",
+          "supplemental_visual_evidence": {
+            "file": "etl/runtime/pivot_p1_stage2_sources_20261023/1948588_image_1.jpg",
+            "basis": "2026학년도2학기 공식보충시간표 시각대조; 줄번호는 연간계획 해당강좌의 기준행"
+          }
+        },
+        {
+          "row": 80,
+          "verdict": "source_faithful",
+          "supplemental_visual_evidence": {
+            "file": "etl/runtime/pivot_p1_stage2_sources_20261023/1948588_image_1.jpg",
+            "basis": "2026학년도2학기 공식보충시간표 시각대조; 줄번호는 연간계획 해당강좌의 기준행"
+          }
+        },
+        {
+          "row": 81,
+          "verdict": "source_faithful",
+          "supplemental_visual_evidence": {
+            "file": "etl/runtime/pivot_p1_stage2_sources_20261023/1948588_image_1.jpg",
+            "basis": "2026학년도2학기 공식보충시간표 시각대조; 줄번호는 연간계획 해당강좌의 기준행"
+          }
+        },
+        {
+          "row": 82,
+          "verdict": "source_faithful",
+          "supplemental_visual_evidence": {
+            "file": "etl/runtime/pivot_p1_stage2_sources_20261023/1948588_image_1.jpg",
+            "basis": "2026학년도2학기 공식보충시간표 시각대조; 줄번호는 연간계획 해당강좌의 기준행"
+          }
+        },
+        {
+          "row": 83,
+          "verdict": "source_faithful",
+          "supplemental_visual_evidence": {
+            "file": "etl/runtime/pivot_p1_stage2_sources_20261023/1948588_image_1.jpg",
+            "basis": "2026학년도2학기 공식보충시간표 시각대조; 줄번호는 연간계획 해당강좌의 기준행"
+          }
+        },
+        {
+          "row": 84,
+          "verdict": "source_faithful",
+          "supplemental_visual_evidence": {
+            "file": "etl/runtime/pivot_p1_stage2_sources_20261023/1948588_image_1.jpg",
+            "basis": "2026학년도2학기 공식보충시간표 시각대조; 줄번호는 연간계획 해당강좌의 기준행"
+          }
+        },
+        {
+          "row": 85,
+          "verdict": "source_faithful",
+          "supplemental_visual_evidence": {
+            "file": "etl/runtime/pivot_p1_stage2_sources_20261023/1948588_image_1.jpg",
+            "basis": "2026학년도2학기 공식보충시간표 시각대조; 줄번호는 연간계획 해당강좌의 기준행"
+          }
+        },
+        {
+          "row": 86,
+          "verdict": "source_faithful",
+          "supplemental_visual_evidence": {
+            "file": "etl/runtime/pivot_p1_stage2_sources_20261023/1948588_image_1.jpg",
+            "basis": "2026학년도2학기 공식보충시간표 시각대조; 줄번호는 연간계획 해당강좌의 기준행"
+          }
+        },
+        {
+          "row": 87,
+          "verdict": "source_faithful",
+          "supplemental_visual_evidence": {
+            "file": "etl/runtime/pivot_p1_stage2_sources_20261023/1948588_image_1.jpg",
+            "basis": "2026학년도2학기 공식보충시간표 시각대조; 줄번호는 연간계획 해당강좌의 기준행"
+          }
+        },
+        {
+          "row": 88,
+          "verdict": "source_faithful",
+          "supplemental_visual_evidence": {
+            "file": "etl/runtime/pivot_p1_stage2_sources_20261023/1948588_image_1.jpg",
+            "basis": "2026학년도2학기 공식보충시간표 시각대조; 줄번호는 연간계획 해당강좌의 기준행"
+          }
+        },
+        {
+          "row": 89,
+          "verdict": "source_faithful",
+          "supplemental_visual_evidence": {
+            "file": "etl/runtime/pivot_p1_stage2_sources_20261023/1948588_image_1.jpg",
+            "basis": "2026학년도2학기 공식보충시간표 시각대조; 줄번호는 연간계획 해당강좌의 기준행"
+          }
+        },
+        {
+          "row": 90,
+          "verdict": "source_faithful",
+          "supplemental_visual_evidence": {
+            "file": "etl/runtime/pivot_p1_stage2_sources_20261023/1948588_image_1.jpg",
+            "basis": "2026학년도2학기 공식보충시간표 시각대조; 줄번호는 연간계획 해당강좌의 기준행"
+          }
+        },
+        {
+          "row": 91,
+          "verdict": "source_faithful",
+          "supplemental_visual_evidence": {
+            "file": "etl/runtime/pivot_p1_stage2_sources_20261023/1948588_image_1.jpg",
+            "basis": "2026학년도2학기 공식보충시간표 시각대조; 줄번호는 연간계획 해당강좌의 기준행"
+          }
+        },
+        {
+          "row": 92,
+          "verdict": "source_faithful",
+          "supplemental_visual_evidence": {
+            "file": "etl/runtime/pivot_p1_stage2_sources_20261023/1948588_image_1.jpg",
+            "basis": "2026학년도2학기 공식보충시간표 시각대조; 줄번호는 연간계획 해당강좌의 기준행"
+          }
+        },
+        {
+          "row": 93,
+          "verdict": "source_faithful",
+          "supplemental_visual_evidence": {
+            "file": "etl/runtime/pivot_p1_stage2_sources_20261023/1948588_image_1.jpg",
+            "basis": "2026학년도2학기 공식보충시간표 시각대조; 줄번호는 연간계획 해당강좌의 기준행"
+          }
+        },
+        {
+          "row": 94,
+          "verdict": "source_faithful",
+          "supplemental_visual_evidence": {
+            "file": "etl/runtime/pivot_p1_stage2_sources_20261023/1948588_image_1.jpg",
+            "basis": "2026학년도2학기 공식보충시간표 시각대조; 줄번호는 연간계획 해당강좌의 기준행"
+          }
+        },
+        {
+          "row": 95,
+          "verdict": "source_faithful",
+          "supplemental_visual_evidence": {
+            "file": "etl/runtime/pivot_p1_stage2_sources_20261023/1948588_image_1.jpg",
+            "basis": "2026학년도2학기 공식보충시간표 시각대조; 줄번호는 연간계획 해당강좌의 기준행"
+          }
+        },
+        {
+          "row": 96,
+          "verdict": "source_faithful",
+          "supplemental_visual_evidence": {
+            "file": "etl/runtime/pivot_p1_stage2_sources_20261023/1948588_image_1.jpg",
+            "basis": "2026학년도2학기 공식보충시간표 시각대조; 줄번호는 연간계획 해당강좌의 기준행"
+          }
+        },
+        {
+          "row": 97,
+          "verdict": "source_faithful",
+          "supplemental_visual_evidence": {
+            "file": "etl/runtime/pivot_p1_stage2_sources_20261023/1948588_image_1.jpg",
+            "basis": "2026학년도2학기 공식보충시간표 시각대조; 줄번호는 연간계획 해당강좌의 기준행"
+          }
+        },
+        {
+          "row": 98,
+          "verdict": "source_faithful",
+          "supplemental_visual_evidence": {
+            "file": "etl/runtime/pivot_p1_stage2_sources_20261023/1948588_image_1.jpg",
+            "basis": "2026학년도2학기 공식보충시간표 시각대조; 줄번호는 연간계획 해당강좌의 기준행"
+          }
+        },
+        {
+          "row": 99,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 100,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 101,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 102,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 103,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 104,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 105,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 106,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 107,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 108,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 109,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 110,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 111,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 112,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 113,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 114,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 115,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 116,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 117,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 118,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 119,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 120,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 121,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 122,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 123,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 124,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 125,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 126,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 127,
+          "verdict": "source_faithful"
+        },
+        {
+          "row": 128,
+          "verdict": "source_faithful"
+        }
+      ],
+      "blocking_issues": [
+        "동일 에이전트 원문대조이며 독립 맹검 검수 미완료"
+      ],
+      "advisory_issues": [
+        "2학기 수익자 명시폐강4반 보존; 1학기 실제운영완료 증빙없어 operating에서 함께 보류",
+        "맞춤형 방학 프로그램별·반별 세부시간표 미공개",
+        "돌봄 특기적성1시간창과50분 수업원칙 L237 차이는 실제창으로 기록"
+      ],
+      "eligibility_notes": [
+        "맞춤형 학급단위A/B/C/D 활동편성;2학기A/B/C만 표에 있음",
+        "돌봄 1~2학년 2학급, 교육비·한부모·맞벌이다자녀 순 L200~201,L284~290",
+        "수익자 강좌·반별 신청"
+      ],
+      "publish_ready": false,
+      "no_operational_upload": true,
+      "visually_reviewed_pages": [
+        5,
+        6,
+        8
+      ],
+      "visually_reviewed_sources": [
+        "etl/runtime/pivot_p1_stage2_sources_20261023/1948588_image_0.jpg",
+        "etl/runtime/pivot_p1_stage2_sources_20261023/1948588_image_1.jpg"
+      ],
+      "excluded_closed_rows": [
+        {
+          "name": "바둑",
+          "section": "B",
+          "days": "월",
+          "status": "closed_in_source_plan",
+          "evidence_lines": [
+            40
+          ],
+          "visual_evidence": {
+            "file": "etl/runtime/pivot_p1_stage2_sources_20261023/1948588_image_1.jpg",
+            "basis": "2학기 층별안내도에서 폐강 명시"
+          },
+          "earlier_plan": {
+            "term": "2026 연간 계획",
+            "source_line": 40
+          }
+        },
+        {
+          "name": "창의실험과학A",
+          "section": "C",
+          "days": "수",
+          "status": "closed_in_source_plan",
+          "evidence_lines": [
+            40
+          ],
+          "visual_evidence": {
+            "file": "etl/runtime/pivot_p1_stage2_sources_20261023/1948588_image_1.jpg",
+            "basis": "2학기 층별안내도에서 폐강 명시"
+          },
+          "earlier_plan": {
+            "term": "2026 연간 계획",
+            "source_line": 40
+          }
+        },
+        {
+          "name": "컴퓨터",
+          "section": "C",
+          "days": "수",
+          "status": "closed_in_source_plan",
+          "evidence_lines": [
+            40
+          ],
+          "visual_evidence": {
+            "file": "etl/runtime/pivot_p1_stage2_sources_20261023/1948588_image_1.jpg",
+            "basis": "2학기 층별안내도에서 폐강 명시"
+          },
+          "earlier_plan": {
+            "term": "2026 연간 계획",
+            "source_line": 40
+          }
+        },
+        {
+          "name": "우쿠렐레&리코더",
+          "section": "A",
+          "days": "금",
+          "status": "closed_in_source_plan",
+          "evidence_lines": [
+            47
+          ],
+          "visual_evidence": {
+            "file": "etl/runtime/pivot_p1_stage2_sources_20261023/1948588_image_1.jpg",
+            "basis": "2학기 층별안내도에서 폐강 명시"
+          },
+          "earlier_plan": {
+            "term": "2026 연간 계획",
+            "source_line": 47
+          }
+        }
+      ],
+      "care_hours_review_complete": true,
+      "care_hours": {
+        "days": "월화수목금",
+        "start_basis": "after_regular_classes",
+        "end": "19:00",
+        "evidence": {
+          "input_lines": [
+            204,
+            205,
+            246,
+            254
+          ],
+          "basis": "돌봄1실19시/돌봄2실17시; 전체학교 이용 최대19시"
+        },
+        "by_class": {
+          "돌봄1실": {
+            "end": "19:00"
+          },
+          "돌봄2실": {
+            "end": "17:00"
+          }
+        }
+      },
+      "general_period_schedules": {
+        "vacation_custom_morning": [
+          "08:10",
+          "08:50"
+        ],
+        "vacation_custom_afternoon": [
+          "09:00",
+          "10:30"
+        ],
+        "evidence_lines": [
+          20
+        ],
+        "course_mapping_confirmed": false
+      },
+      "conditional_rows": [
+        {
+          "rows": [
+            16,
+            17,
+            18,
+            19,
+            20
+          ],
+          "condition": "학생수 감소시 자연폐강 예정이며2학기 보충표D반 없음",
+          "evidence_lines": [
+            28
+          ],
+          "confirmed_operating": false
+        }
+      ]
     }
   ]
 }
