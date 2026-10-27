@@ -76,7 +76,7 @@ export default function MyPage({ onNavigate, onOpenSaved, entryYear, onEntryYear
             {kind === 'school' ? '학교' : '아파트'} {saved.filter((item) => item.kind === kind).length}/3
           </button>)}
         </div>
-        <p className="my-help">학교·아파트 각각 최대 3곳. 후보 저장과 시간표 짜기는 별개예요. 기존 3곳 초과 기록은 삭제하지 않고 유지해요.</p>
+        <p className="my-help">학교·아파트 각각 최대 3곳. 학교는 시간표·배움/돌봄에서 함께 사용해요. 학교를 제거하면 해당 시간표도 삭제돼요. 기존 3곳 초과 기록은 삭제하지 않고 유지해요.</p>
         {!saved.some((item) => item.kind === candidateTab) ? (
           <div className="my-saved__empty">
             <p>학교나 아파트 상세에서 <Star size={14} aria-hidden="true" /> 를 누르면 관심 후보에 모여요.</p>
@@ -96,7 +96,7 @@ export default function MyPage({ onNavigate, onOpenSaved, entryYear, onEntryYear
                     <ChevronRight size={18} aria-hidden="true" />
                   </button>
                   <button type="button" className="my-saved__remove" aria-label={`${item.name} 저장 삭제`} onClick={() => {
-                    try { removeFavorite(item); setMessage('관심 후보에서 삭제했어요. 시간표 초안은 유지돼요.') }
+                    try { if (removeFavorite(item)) setMessage('목록에서 제거했어요. 학교의 시간표도 함께 삭제돼요.') }
                     catch { setMessage('삭제하지 못했어요. 브라우저 저장 설정을 확인해 주세요.') }
                   }}><Trash2 size={17} aria-hidden="true" /></button>
                 </div>

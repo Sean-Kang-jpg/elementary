@@ -1,3 +1,4 @@
+import { deletePlan, readPlans, writePlans } from './schedule/plans.ts'
 import type { Apartment, School } from '../types'
 
 const FAVORITES_KEY = 'elementary-favorites-v1'
@@ -78,6 +79,7 @@ export const toggleFavorite = (record: FavoriteRecord) => {
   if (!exists && favorites.filter((item) => item.kind === record.kind).length >= FAVORITE_LIMIT) {
     throw new Error(`${record.kind === 'school' ? '학교' : '아파트'}는 최대 3곳까지 저장할 수 있어요. 기존 후보를 삭제한 후 다시 저장해 주세요.`)
   }
+  if (exists) { removeFavorite(record); return isFavorite(record.kind, record.id) }
   const next = exists
     ? favorites.filter((item) => !sameFavorite(item, record))
     : [record, ...favorites]
@@ -100,8 +102,18 @@ export const refreshFavorite = (record: FavoriteRecord) => {
   writeFavorites(favorites)
 }
 
-export const removeFavorite = (record: FavoriteRecord) => {
-  writeFavorites(readFavorites().filter((item) => !sameFavorite(item, record)))
+export const removeFavorite = (record: FavoriteRecord): boolean => {
+  const before = readFavorites()
+  const plans = readPlans()
+  if (record.kind === 'school' && plans.plans.some((plan) => plan.schoolId === record.id)) {
+    if (!window.confirm(`${record.name}를 제거할까요? 작성한 시간표도 함께 삭제됩니다.`)) return false
+    // Commit both stores before notifying subscribers; roll back if the second write fails.
+    localStorage.setItem('elementary-favorites-v1', JSON.stringify(before.filter((item) => !sameFavorite(item, record))))
+    try { writePlans(deletePlan(plans, record.id)) }
+    catch (error) { localStorage.setItem('elementary-favorites-v1', JSON.stringify(before)); throw error }
+    window.dispatchEvent(new Event(FAVORITES_EVENT))
+  } else writeFavorites(before.filter((item) => !sameFavorite(item, record)))
+  return true
 }
 
 export const subscribeFavorites = (listener: () => void) => {

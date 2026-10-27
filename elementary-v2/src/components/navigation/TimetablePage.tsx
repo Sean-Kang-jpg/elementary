@@ -1,19 +1,18 @@
 import { useEffect, useRef, useState } from 'react'
-import { CalendarClock, Search, Star } from 'lucide-react'
+import { CalendarClock } from 'lucide-react'
 import type { School } from '../../types'
 import { getSchoolDetail } from '../../services/dataService'
 import { readFavorites, subscribeFavorites, type FavoriteRecord } from '../../utils/favorites'
 import { readPlans, subscribePlans } from '../../utils/schedule/plans'
 import { displaySchoolName } from '../../utils/schoolName'
-import { track } from '../../utils/analytics'
 import SchoolDayEstimateCard from '../school/SchoolDayEstimateCard'
 import MySchedule from './MySchedule'
-import SchoolSearch from '../search/SchoolNameSearch'
+import SchoolSelection from '../search/SchoolSelection'
 
 interface TimetablePageProps {
   schoolId: string | null
   entryYear: number | null
-  onSchoolChange: (schoolId: string) => void
+  onSchoolChange: (schoolId: string | null) => void
   onNavigate: (path: string) => void
 }
 
@@ -36,12 +35,11 @@ export default function TimetablePage({ schoolId: routeSchoolId, entryYear, onSc
 
   // 주소에 학교가 없으면 내 시간표 → 가장 최근 초안 → 첫 관심 학교 순으로 이어서 연다. 첫 그림부터 그 학교로
   // 그린다 — 주소를 고친 뒤에 다시 그리면 빈 화면이 한 번 보였다가 시간표가 펼쳐진다(2026-10-23).
-  const fallbackId = plans.activeSchoolId ?? plans.plans[0]?.schoolId ?? savedSchools[0]?.id ?? null
+  const fallbackId = savedSchools[0]?.id ?? null
   const schoolId = routeSchoolId ?? fallbackId
   useEffect(() => {
     if (!routeSchoolId && fallbackId) onSchoolChange(fallbackId)
   }, [routeSchoolId, fallbackId, onSchoolChange])
-  const [searching, setSearching] = useState(false)
 
   // 고른 학교의 공개 자료. 운영 키가 아닌 옛 초안 ID는 null로 끝나고, 초안 편집은 그대로 된다.
   const [detail, setDetail] = useState<{ id: string; school: School | null } | null>(null)
@@ -72,30 +70,7 @@ export default function TimetablePage({ schoolId: routeSchoolId, entryYear, onSc
     hadPlan.current = Boolean(plan)
   }, [plan])
 
-  // 이 화면에서 고를 수 있는 학교: 지금 고른 학교, 초안이 있는 학교, 관심 학교.
-  const picks = [
-    ...(schoolId && name && !plan && !savedSchools.some((item) => item.id === schoolId) ? [{ id: schoolId, name, label: '고른 학교' }] : []),
-    ...plans.plans.map((item) => ({ id: item.schoolId, name: item.schoolName, label: plans.activeSchoolId === item.schoolId ? '내 시간표' : '초안' })),
-    ...savedSchools.filter((item) => !plans.plans.some((p) => p.schoolId === item.id)).map((item) => ({ id: item.id, name: item.name, label: '관심 학교' })),
-  ]
-
-  const pick = (id: string, source: string) => {
-    track('timetable_school_pick', { source })
-    setSearching(false)
-    onSchoolChange(id)
-  }
-
-  const chips = picks.length > 0 && (
-    <div className="timetable-picks" aria-label="이어서 짤 학교">
-      {picks.map((item) => (
-        <button key={item.id} type="button" data-school-id={item.id} aria-pressed={item.id === schoolId}
-          onClick={() => pick(item.id, item.label === '관심 학교' ? 'favorite' : 'plan')}>
-          {item.label === '관심 학교' && <Star size={13} aria-hidden="true" />}
-          {displaySchoolName(item.name)}<small>{item.label}</small>
-        </button>
-      ))}
-    </div>
-  )
+  const chips = <SchoolSelection schoolId={schoolId} onChange={onSchoolChange} />
 
   // 초안이 있으면 시간표가 첫 화면이다. 안내·단계·운영 자료는 초안을 만들기 전에만 앞에 둔다.
   if (schoolId && plan) {
@@ -104,12 +79,10 @@ export default function TimetablePage({ schoolId: routeSchoolId, entryYear, onSc
         <div className="content-page__inner">
           <div className="timetable-bar">
             <h1 id="timetable-title">시간표</h1>
-            <button type="button" className="timetable-bar__search" aria-expanded={searching} onClick={() => setSearching((open) => !open)}>
-              <Search size={15} aria-hidden="true" /> 다른 학교
-            </button>
+
           </div>
           {chips}
-          {searching && <div className="timetable-bar__finder"><SchoolSearch onPick={(id) => pick(id, 'search')} /></div>}
+
           <MySchedule key={schoolId} school={{ id: schoolId, name: name ?? plan.schoolName, displayName: shownName ?? undefined }} entryYear={entryYear}
             saved={savedSchools.some((item) => item.id === schoolId)} onNavigate={onNavigate} />
           {school && (
@@ -140,9 +113,8 @@ export default function TimetablePage({ schoolId: routeSchoolId, entryYear, onSc
 
         <section className="timetable-pick my-card" aria-labelledby="timetable-pick-title">
           <h2 id="timetable-pick-title">1. 학교 고르기</h2>
-          <SchoolSearch onPick={(id) => pick(id, 'search')} />
           {chips}
-          <p className="my-help">관심 학교로 저장하지 않아도 짤 수 있어요. 시간표는 이 기기의 브라우저에만 저장돼요.</p>
+          <p className="my-help">학교는 최대 3곳까지 등록할 수 있어요. 시간표는 이 기기의 브라우저에만 저장돼요.</p>
         </section>
 
         {schoolId && (loadingDetail ? (

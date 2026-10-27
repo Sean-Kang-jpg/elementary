@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
-import { ChevronDown, MapPin, Megaphone, PencilLine, X } from 'lucide-react'
+import { MapPin, Megaphone, PencilLine, X } from 'lucide-react'
 import type { School } from '../../types'
 import { getSchoolDetail } from '../../services/dataService'
 import {
@@ -12,19 +12,17 @@ import {
   type FrontyardCategory,
   type FrontyardPost,
 } from '../../services/frontyardService'
-import { readPlans, subscribePlans } from '../../utils/schedule/plans'
-import { readFavorites } from '../../utils/favorites'
+import { readFavorites, subscribeFavorites } from '../../utils/favorites'
 import { displaySchoolName } from '../../utils/schoolName'
 import { frontyardPath, parseFrontyardSlot, type FrontyardSlot } from '../../utils/urlState'
-import { track } from '../../utils/analytics'
-import SchoolSearch from '../search/SchoolNameSearch'
+import SchoolSelection from '../search/SchoolSelection'
 import PostCard from './PostCard'
 import SeekComposer from './SeekComposer'
 import OfferRequest from './OfferRequest'
 
 interface FrontyardPageProps {
   schoolId: string | null
-  onSchoolChange: (schoolId: string) => void
+  onSchoolChange: (schoolId: string | null) => void
   onNavigate: (path: string) => void
 }
 
@@ -41,13 +39,12 @@ const FILL_UNTIL = 3
  * `?day=&from=&to=`가 시간 조건 칩이 된다.
  */
 export default function FrontyardPage({ schoolId, onSchoolChange, onNavigate }: FrontyardPageProps) {
-  const [plans, setPlans] = useState(readPlans)
-  useEffect(() => subscribePlans(() => setPlans(readPlans())), [])
+  const [favorites, setFavorites] = useState(readFavorites)
+  useEffect(() => subscribeFavorites(() => setFavorites(readFavorites())), [])
 
   // 대상 학교는 시간표를 짠 학교들에서 고른다(2026-10-22 사용자 결정). 주소에 학교가 없으면
   // 내 시간표 → 가장 최근 초안 → 첫 관심 학교 순으로 연다(시간표 화면과 같다). 다른 학교는 검색으로.
-  const fallbackId = plans.activeSchoolId ?? plans.plans[0]?.schoolId
-    ?? readFavorites().find((item) => item.kind === 'school')?.id ?? null
+  const fallbackId = favorites.find((item) => item.kind === 'school')?.id ?? null
   useEffect(() => {
     if (!schoolId && fallbackId) onSchoolChange(fallbackId)
   }, [schoolId, fallbackId, onSchoolChange])
@@ -63,7 +60,6 @@ export default function FrontyardPage({ schoolId, onSchoolChange, onNavigate }: 
   }, [schoolId])
   const current = school?.id === schoolId ? school.school : null
   const schoolName = current ? displaySchoolName(current.school_name, current.address, current.establishment_type) : null
-  const [picking, setPicking] = useState(false)
 
   const [slot, setSlot] = useState<FrontyardSlot | null>(() => parseFrontyardSlot(window.location.search))
   const [type, setType] = useState<TypeFilter>('all')
@@ -111,9 +107,9 @@ export default function FrontyardPage({ schoolId, onSchoolChange, onNavigate }: 
   const pinned = showNotices ? notices[0] : undefined
   const fillers = showNotices ? notices.slice(1, 1 + Math.max(0, FILL_UNTIL - posts.length)) : []
 
-  const pickSchool = (id: string) => {
-    track('frontyard_school_pick', { source: plans.plans.some((item) => item.schoolId === id) ? 'plan' : 'search' })
-    setPicking(false)
+  const pickSchool = (id: string | null) => {
+    if (id !== schoolId && composing && !window.confirm('학교를 변경하면 작성 중인 내용이 닫힙니다. 변경할까요?')) return
+    setComposing(null)
     setSlot(null)
     onSchoolChange(id)
   }
@@ -140,27 +136,11 @@ export default function FrontyardPage({ schoolId, onSchoolChange, onNavigate }: 
         <h1 id="frontyard-title">학교앞마당</h1>
         <p className="content-page__lead">우리 학교 주변의 수업과 돌봄, 필요한 소식을 함께 나눠요.</p>
 
-        <button type="button" className="frontyard-school" aria-expanded={picking || !schoolId} onClick={() => setPicking((open) => !open)}>
+        <div className="frontyard-school">
           <MapPin size={18} aria-hidden="true" />
           <strong>{schoolId ? `${schoolName ?? '학교'} 주변` : '학교를 골라 주세요'}</strong>
-          <ChevronDown size={18} aria-hidden="true" />
-        </button>
-        {plans.plans.length > 0 && (
-          <div className="timetable-picks" aria-label="시간표를 짠 학교">
-            {plans.plans.map((item) => (
-              <button key={item.schoolId} type="button" data-school-id={item.schoolId} aria-pressed={item.schoolId === schoolId}
-                onClick={() => pickSchool(item.schoolId)}>
-                {displaySchoolName(item.schoolName)}<small>{plans.activeSchoolId === item.schoolId ? '내 시간표' : '시간표 초안'}</small>
-              </button>
-            ))}
-          </div>
-        )}
-        {(picking || !schoolId) && (
-          <div className="frontyard-school-pick">
-            <SchoolSearch onPick={pickSchool} />
-            {!plans.plans.length && <p className="my-help">시간표를 짠 학교는 여기에 바로 골라 볼 수 있게 나와요.</p>}
-          </div>
-        )}
+        </div>
+        <SchoolSelection schoolId={schoolId} onChange={pickSchool} />
 
         {schoolId && (
           <>

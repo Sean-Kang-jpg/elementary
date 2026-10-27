@@ -25,7 +25,7 @@ import { hasSavedProfile, readProfile, saveProfile, type Profile } from './utils
 import { FAQ_PAGE, findGuide, findLearning } from './content'
 import { readEntryYear } from './utils/entryYear'
 import { getApartmentByPublicKey, getSchoolDetail } from './services/dataService'
-import type { FavoriteRecord } from './utils/favorites'
+import { readFavorites, subscribeFavorites, type FavoriteRecord } from './utils/favorites'
 import { initAnalytics, markEntry, rememberDetailEntry, takeEntry, track, trackPageView, type EntrySource } from './utils/analytics'
 import {
   apartmentPath,
@@ -85,7 +85,7 @@ function MapApplication() {
     const route = parseRoute(window.location.pathname, window.location.search)
     return route.kind === 'timetable' ? route.schoolId : null
   })
-  const changeTimetableSchool = useCallback((schoolId: string) => {
+  const changeTimetableSchool = useCallback((schoolId: string | null) => {
     // 학교를 바꿔 고르는 것은 같은 화면 안의 선택이라 기록을 쌓지 않는다.
     window.history.replaceState({}, '', timetablePath(schoolId))
     setTimetableSchool(schoolId)
@@ -95,11 +95,18 @@ function MapApplication() {
     const route = parseRoute(window.location.pathname, window.location.search)
     return route.kind === 'frontyard' ? route.schoolId : null
   })
-  const changeFrontyardSchool = useCallback((schoolId: string) => {
+  const changeFrontyardSchool = useCallback((schoolId: string | null) => {
     // 학교를 바꾸면 시간 조건은 그 학교 것이 아니므로 뺀다. 같은 화면 안의 선택이라 기록을 쌓지 않는다.
     window.history.replaceState({}, '', frontyardPath(schoolId))
     setFrontyardSchool(schoolId)
   }, [])
+  useEffect(() => subscribeFavorites(() => {
+    const schools = readFavorites().filter((item) => item.kind === 'school')
+    const remaining = schools[0]?.id ?? null
+    setTimetableSchool((id) => id && !schools.some((item) => item.id === id) ? remaining : id)
+    setFrontyardSchool((id) => id && !schools.some((item) => item.id === id) ? remaining : id)
+  }), [])
+
   // 지역 허브 화면 안에서 어느 지역인지. 허브 주소가 아니면 쓰지 않는다.
   const [areaRoute, setAreaRoute] = useState<string>(() => {
     const route = parseRoute(window.location.pathname, window.location.search)

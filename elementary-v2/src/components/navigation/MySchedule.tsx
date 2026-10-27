@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { getSchoolDayEstimate } from '../../services/dataService'
 import { formatMinutes, schoolEntriesFromEstimate } from '../../utils/schedule/fromSchoolData'
-import { deletePlan, readPlans, selectPlan, subscribePlans, upsertPlan, writePlans, type PlanStore, type SchoolPlan } from '../../utils/schedule/plans'
+import { deletePlan, readPlans, subscribePlans, upsertPlan, writePlans, type PlanStore, type SchoolPlan } from '../../utils/schedule/plans'
 import type { EntryKind, ParticipationStatus, ScheduleEntry } from '../../utils/schedule/types'
 import { displaySchoolName } from '../../utils/schoolName'
 import MyScheduleWeek from './MyScheduleWeek'
@@ -43,7 +43,6 @@ export default function MySchedule({ school, entryYear, saved, onNavigate }: {
   }, [])
   const schoolId = school.id
   const plan = store.plans.find((p) => p.schoolId === schoolId)
-  const active = store.plans.find((p) => p.schoolId === store.activeSchoolId)
   const persist = (next: PlanStore, success: string) => {
     try { writePlans(next); setStore(next); setMessage(success); return true }
     catch { setMessage('저장하지 못했어요. 브라우저 저장 공간·설정을 확인해 주세요. 변경 내용은 저장되지 않았어요.'); return false }
@@ -89,17 +88,11 @@ export default function MySchedule({ school, entryYear, saved, onNavigate }: {
     finally { if (alive.current) setLoading(false) }
   }
   const shownName = school.displayName ?? displaySchoolName(school.name)
-  const isActive = plan !== undefined && store.activeSchoolId === plan.schoolId
   return (
     <section className={`my-schedule my-card${plan ? ' my-schedule--editing' : ''}`} aria-labelledby="my-schedule-title">
       <div className="my-schedule__head">
         <h2 id="my-schedule-title">{plan ? `${shownName} 시간표` : `3. ${shownName} 시간표 짜기`}</h2>
-        {plan && <div className="my-schedule__plan">
-          <p className="my-active-plan" title={active ? `내 시간표: ${displaySchoolName(active.schoolName)}` : undefined}>{isActive ? '내 시간표' : '후보 초안'}</p>
-          {!isActive
-            ? <button type="button" className="my-button my-button--primary" onClick={() => persist(selectPlan(readPlans(), plan.schoolId), '내 시간표를 바꿨어요. 다른 초안은 그대로 보관돼요.')}>내 시간표로 사용</button>
-            : <button type="button" className="my-button" onClick={() => persist(selectPlan(readPlans(), null), '내 시간표 선택을 해제했어요. 초안은 보관돼요.')}>선택 해제</button>}
-        </div>}
+
       </div>
       {!plan ? <>
         <p className="my-help">학교 자료로 하교 시각을 먼저 넣고, 방과후·돌봄·학원을 요일마다 골라요. 이 기기에만 저장돼요.</p>
@@ -131,7 +124,7 @@ export default function MySchedule({ school, entryYear, saved, onNavigate }: {
             {entryYear !== plan.entryYear && ' · 현재 입학연도와 달라요. 자료를 다시 확인해 주세요.'}
             {!saved && ' · 관심 학교에 저장하지 않은 학교예요. 시간표는 이 기기에 따로 보관돼요.'}
           </p>
-          <p className="my-help">학교별 초안을 비교한 뒤 하나를 내 시간표로 사용하세요. 학교 입학·프로그램 신청·참여 확정과는 별개예요.</p>
+          <p className="my-help">위에서 학교를 바꾸면 해당 학교의 시간표를 볼 수 있어요. 학교 입학·프로그램 신청·참여 확정과는 별개예요.</p>
           <p className="my-help">돌봄 시간을 모르면 아침 08:00–09:00, 오후 17:00 종료를 기본으로 넣어요. 일정 카드를 눌러 실제 시간으로 바꿀 수 있어요. 운영·이용 가능 여부는 학교에 확인해 주세요.</p>
           <button type="button" className="my-button" onClick={() => {
             if (window.confirm('이 학교의 시간표 초안을 삭제할까요? 관심 학교는 유지됩니다.')) persist(deletePlan(readPlans(), plan.schoolId), '시간표 초안을 삭제했어요.')

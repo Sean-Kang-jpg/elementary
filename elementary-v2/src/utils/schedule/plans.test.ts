@@ -10,7 +10,7 @@ Object.defineProperty(globalThis, 'localStorage', { configurable: true, value: {
   setItem: (key: string, value: string) => { if (failWrites) throw new Error('quota'); values.set(key, value) },
   removeItem: (key: string) => values.delete(key),
 } })
-Object.defineProperty(globalThis, 'window', { configurable: true, value: new EventTarget() })
+Object.defineProperty(globalThis, 'window', { configurable: true, value: Object.assign(new EventTarget(), { confirm: () => true }) })
 const favorite = (id: string): FavoriteRecord => ({ kind: 'school', id, name: id, address: '', latitude: 0, longitude: 0 })
 const plan = (id: string): SchoolPlan => ({ schoolId: id, schoolName: id, entryYear: 2027, updatedAt: '2026-10-13',
   entries: [{ id: 'course', kind: 'afterschool', label: '미술', weekdays: [1], start: null, end: null, evidence: 'unknown', participation: 'considering' }] })
@@ -56,12 +56,21 @@ describe('MY candidate and timetable persistence', () => {
     assert.equal(selectPlan(selected, null).plans.length, 2)
     assert.throws(() => selectPlan(store, 'missing'))
   })
-  it('restores plans on reload; removing a favorite retains its timetable', () => {
+  it('removing a school deletes its timetable and keeps other schools', () => {
     saveFavorite(favorite('a'))
     writePlans(selectPlan(upsertPlan(emptyPlans(), plan('a')), 'a'))
     removeFavorite(favorite('a'))
-    assert.equal(readPlans().activeSchoolId, 'a')
-    assert.equal(readPlans().plans[0].entries[0].end, null)
+    assert.equal(readPlans().activeSchoolId, null)
+    assert.equal(readPlans().plans.length, 0)
+  })
+  it('cancelled removal preserves both school and timetable', () => {
+    saveFavorite(favorite('a'))
+    writePlans(upsertPlan(emptyPlans(), plan('a')))
+    window.confirm = () => false
+    assert.equal(removeFavorite(favorite('a')), false)
+    assert.equal(readFavorites().length, 1)
+    assert.equal(readPlans().plans.length, 1)
+    window.confirm = () => true
   })
   it('deleting the active draft clears only its selection', () => {
     const store = selectPlan(upsertPlan(upsertPlan(emptyPlans(), plan('a')), plan('b')), 'a')

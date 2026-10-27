@@ -31,7 +31,6 @@ export default function MyTimetableSummary({ onNavigate }: { onNavigate: (path: 
                     <strong>{displaySchoolName(plan.schoolName)}</strong>
                     <small>{extra ? `방과후·돌봄·학원 등 ${extra}개` : '아직 고른 일정 없음'} · {plan.updatedAt.slice(0, 10)} 수정</small>
                   </span>
-                  {store.activeSchoolId === plan.schoolId && <span className="my-plan-badge">내 시간표</span>}
                   <ChevronRight size={18} aria-hidden="true" />
                 </a>
               </li>
