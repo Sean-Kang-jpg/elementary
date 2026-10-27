@@ -133,11 +133,6 @@ const homeBody = [
   '<a href="/faq" class="home-link"><span><strong>자주 묻는 질문</strong><small>이사·배정·취학통지서</small></span></a>',
   '</div>',
   `<a href="/map" class="home-page__card"><span class="min-w-0 flex-1"><strong>${escapeHtml(copy.mapCardTitle)}</strong><small>${escapeHtml(copy.mapCardBody)}</small></span></a>`,
-  // Same section as HomePage.tsx: the region hubs, so a crawler reaches every
-  // school in three links from the home rather than through the footer.
-  `<section class="home-card home-areas" aria-labelledby="home-areas-title"><h2 id="home-areas-title">${escapeHtml(copy.areaCardTitle)}</h2><p>${escapeHtml(copy.areaCardBody)}</p><ul class="home-areas__list">`
-    + copy.areaRegions.map((region) => `<li><a href="${escapeHtml(encodeURI(`/area/${region}`))}">${escapeHtml(region)}</a></li>`).join('')
-    + '</ul></section>',
   `<a href="/learn" class="home-page__card"><span class="min-w-0 flex-1"><strong>${escapeHtml(copy.learnCardTitle)}</strong><small>${escapeHtml(copy.learnCardBody)}</small></span></a>`,
   '<footer class="home-page__footer"><a href="/area">지역별 학교 목록</a><a href="/privacy">개인정보처리방침</a></footer>',
   '</div></section>',
