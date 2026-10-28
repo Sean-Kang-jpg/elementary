@@ -1,0 +1,204 @@
+{
+  "batch": "priority-batch30",
+  "checked_on": "2026-10-29",
+  "no_operational_upload": true,
+  "independent_review": false,
+  "schools": [
+    {
+      "school_id": "B000003876",
+      "school_name": "비산초등학교",
+      "input": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000003876.txt",
+      "input_sha256": "fae47e01f26c1b9f616df01c2a60d0e89022b2b14bb17be1e6d13aa4afa3c4f4",
+      "output": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\outputs\\B000003876.json",
+      "output_sha256": "f52d66e194aaa9e55a35e94e15fdbd1cf8ccdc61b1033f91a17c96bb34ce7c53",
+      "review_method": "same-assistant whole-source read; not independent blind review",
+      "supplied_sources_read": true,
+      "rows": 35,
+      "grade1_rows": 18,
+      "custom_rows": 1,
+      "field_evidence": {
+        "4": {
+          "name_table": [
+            981
+          ],
+          "clock_column": 0
+        },
+        "5": {
+          "name_table": [
+            981
+          ],
+          "clock_column": 0
+        },
+        "6": {
+          "name_table": [
+            981
+          ],
+          "clock_column": 0
+        },
+        "7": {
+          "name_table": [
+            981
+          ],
+          "clock_column": 0
+        },
+        "10": {
+          "name_table": [
+            982
+          ],
+          "clock_column": 0
+        },
+        "11": {
+          "name_table": [
+            982
+          ],
+          "clock_column": 0
+        },
+        "12": {
+          "name_table": [
+            982
+          ],
+          "clock_column": 0
+        },
+        "13": {
+          "name_table": [
+            982
+          ],
+          "clock_column": 0
+        },
+        "16": {
+          "name_table": [
+            983
+          ],
+          "clock_column": 0
+        },
+        "17": {
+          "name_table": [
+            983
+          ],
+          "clock_column": 0
+        },
+        "18": {
+          "name_table": [
+            983
+          ],
+          "clock_column": 0
+        },
+        "19": {
+          "name_table": [
+            983
+          ],
+          "clock_column": 0
+        },
+        "22": {
+          "name_table": [
+            984
+          ],
+          "clock_column": 0
+        },
+        "23": {
+          "name_table": [
+            984
+          ],
+          "clock_column": 0
+        },
+        "24": {
+          "name_table": [
+            984
+          ],
+          "clock_column": 0
+        },
+        "25": {
+          "name_table": [
+            984
+          ],
+          "clock_column": 0
+        },
+        "26": {
+          "name_table": [
+            984
+          ],
+          "clock_column": 0
+        },
+        "27": {
+          "name_table": [
+            984
+          ],
+          "clock_column": 0
+        },
+        "30": {
+          "name_table": [
+            985
+          ],
+          "clock_column": 0
+        },
+        "31": {
+          "name_table": [
+            985
+          ],
+          "clock_column": 0
+        },
+        "32": {
+          "name_table": [
+            985
+          ],
+          "clock_column": 0
+        },
+        "33": {
+          "name_table": [
+            985
+          ],
+          "clock_column": 0
+        },
+        "34": {
+          "name_table": [
+            985
+          ],
+          "clock_column": 0
+        },
+        "35": {
+          "name_table": [
+            985
+          ],
+          "clock_column": 0
+        }
+      },
+      "blocking_issues": [
+        {
+          "code": "custom_courses_by_day_missing",
+          "lines": [
+            967,
+            970,
+            973
+          ],
+          "reason": "맞춤형 요일별 강좌·시간표 없음. 시정표상 1학기 월·화·목 13:50~15:20, 수·금 13:00~14:30 예상이나 7월 이후 \"추후 안내\""
+        }
+      ],
+      "additional_findings": [
+        {
+          "type": "pdf_visual_check",
+          "lines": [
+            980,
+            981,
+            982,
+            983,
+            984,
+            985
+          ],
+          "reason": "pdf_review/bisan-p5.png 병합 칸 확인"
+        },
+        {
+          "type": "care_hours_reported",
+          "lines": [
+            7
+          ],
+          "reason": "돌봄 학기중 방과후~19:00. 돌봄 시간 필드"
+        }
+      ],
+      "exclusions": [],
+      "production_apply_ready": false,
+      "approved_for_upload": false,
+      "table_visual_checked": true,
+      "table_visual_check": "pdf_review/bisan-p5.png (pdf.js render)"
+    }
+  ]
+}

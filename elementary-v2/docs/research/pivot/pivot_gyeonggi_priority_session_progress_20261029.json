@@ -5,19 +5,19 @@
   "summary": {
     "targets": 83,
     "source_prepared": 83,
-    "extracted_schools": 37,
-    "pending_extraction": 46,
-    "course_rows": 1165,
-    "slot_candidates": 377,
-    "remaining_source_evidence_indexed": 46,
+    "extracted_schools": 38,
+    "pending_extraction": 45,
+    "course_rows": 1200,
+    "slot_candidates": 382,
+    "remaining_source_evidence_indexed": 45,
     "visual_slot_checks": 32,
     "ok_candidates_after_visual": 14,
-    "schools_needing_checks": 23,
-    "unresolved_check_items": 163,
+    "schools_needing_checks": 24,
+    "unresolved_check_items": 169,
     "independent_review_complete": 0,
     "current_term_verified": 0,
     "production_applied": 0,
-    "extraction_percent": 44.6
+    "extraction_percent": 45.8
   },
   "effective_slot_review": [
     {
@@ -317,6 +317,44 @@
             "맞춤형 전 학급(2학기 시정 미공시)",
             "L217 / L217"
           ]
+        ]
+      ]
+    },
+    {
+      "school_id": "B000003876",
+      "school_name": "비산초등학교",
+      "slots": 5,
+      "status": "check",
+      "checks": [
+        [
+          "맞춤형시각없음",
+          "월",
+          null
+        ],
+        [
+          "맞춤형시각없음",
+          "화",
+          null
+        ],
+        [
+          "맞춤형시각없음",
+          "수",
+          null
+        ],
+        [
+          "맞춤형시각없음",
+          "목",
+          null
+        ],
+        [
+          "맞춤형시각없음",
+          "금",
+          null
+        ],
+        [
+          "PDF원문",
+          null,
+          null
         ]
       ]
     },
@@ -1761,17 +1799,6 @@
       "evidence_indexed": true
     },
     {
-      "school_id": "B000003876",
-      "school_name": "비산초등학교",
-      "area": "dongan",
-      "input": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000003876.txt",
-      "input_sha256": "fae47e01f26c1b9f616df01c2a60d0e89022b2b14bb17be1e6d13aa4afa3c4f4",
-      "evidence_index": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\remaining_evidence_index_20261025\\B000003876.json",
-      "evidence_windows": 14,
-      "status": "pending_full_source_extraction",
-      "evidence_indexed": true
-    },
-    {
       "school_id": "B000003852",
       "school_name": "샘모루초등학교",
       "area": "dongan",
@@ -2218,5 +2245,5 @@
     "pivot_gyeonggi_priority_slots_current_20261029.json",
     "pivot_gyeonggi_priority_all_current_verification_20261029.json"
   ],
-  "next_action": "Continue remaining 46 whole-source extractions and unresolved slot checks. Evidence index is navigation only."
+  "next_action": "Continue remaining 45 whole-source extractions and unresolved slot checks. Evidence index is navigation only."
 }
