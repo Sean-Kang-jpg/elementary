@@ -1,0 +1,236 @@
+{
+  "batch": "priority-batch13",
+  "checked_on": "2026-10-29",
+  "no_operational_upload": true,
+  "independent_review": false,
+  "schools": [
+    {
+      "school_id": "B000004260",
+      "school_name": "구름산초등학교",
+      "input": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000004260.txt",
+      "input_sha256": "961e0fb46e8891aa0500fda9d6f37b996d1a65218ec0da39e431d488f2ba312c",
+      "output": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\outputs\\B000004260.json",
+      "output_sha256": "0b8c0da98f4e7b7a3ed27a1718e63844b64038f817f1263ab9a31fab2d446b47",
+      "review_method": "same-assistant whole-source read; not independent blind review",
+      "supplied_sources_read": true,
+      "rows": 28,
+      "grade1_rows": 18,
+      "custom_rows": 0,
+      "field_evidence": {
+        "1": {
+          "source_span": [
+            1000,
+            1032
+          ]
+        },
+        "2": {
+          "source_span": [
+            1000,
+            1135
+          ]
+        },
+        "3": {
+          "source_span": [
+            1135,
+            1165
+          ]
+        },
+        "4": {
+          "source_span": [
+            1135,
+            1264
+          ]
+        },
+        "5": {
+          "source_span": [
+            1264,
+            1298
+          ]
+        },
+        "6": {
+          "source_span": [
+            1264,
+            1381
+          ]
+        },
+        "7": {
+          "source_span": [
+            1381,
+            1413
+          ]
+        },
+        "8": {
+          "source_span": [
+            1381,
+            1506
+          ]
+        },
+        "9": {
+          "source_span": [
+            1506,
+            1536
+          ]
+        },
+        "10": {
+          "source_span": [
+            1506,
+            1632
+          ]
+        },
+        "11": {
+          "source_span": [
+            1632,
+            1662
+          ]
+        },
+        "12": {
+          "source_span": [
+            338,
+            368
+          ],
+          "grades": [
+            13
+          ]
+        },
+        "13": {
+          "source_span": [
+            66,
+            98
+          ]
+        },
+        "14": {
+          "source_span": [
+            66,
+            174
+          ]
+        },
+        "15": {
+          "source_span": [
+            174,
+            206
+          ]
+        },
+        "16": {
+          "source_span": [
+            174,
+            317
+          ]
+        },
+        "17": {
+          "source_span": [
+            317,
+            350
+          ]
+        },
+        "18": {
+          "source_span": [
+            317,
+            431
+          ]
+        },
+        "19": {
+          "source_span": [
+            317,
+            451
+          ]
+        },
+        "20": {
+          "source_span": [
+            317,
+            471
+          ]
+        },
+        "21": {
+          "source_span": [
+            471,
+            503
+          ]
+        },
+        "22": {
+          "source_span": [
+            471,
+            609
+          ]
+        },
+        "23": {
+          "source_span": [
+            609,
+            640
+          ]
+        },
+        "24": {
+          "source_span": [
+            609,
+            764
+          ]
+        },
+        "25": {
+          "source_span": [
+            764,
+            794
+          ]
+        },
+        "26": {
+          "source_span": [
+            764,
+            904
+          ]
+        },
+        "27": {
+          "source_span": [
+            904,
+            938
+          ]
+        },
+        "28": {
+          "source_span": [
+            904,
+            1033
+          ]
+        }
+      },
+      "blocking_issues": [
+        {
+          "code": "quarter_example_label",
+          "lines": [
+            10
+          ],
+          "reason": "강좌안내 제목이 \"1분기 ... 강좌안내(예시)\"라 분기별 변경 가능. 현재 기수 공지 확인 필요"
+        }
+      ],
+      "additional_findings": [
+        {
+          "type": "custom_absent_in_supplied_sources",
+          "reason": "제공 첨부는 방과후·돌봄 계획 2개. 맞춤형 시간표 없음, 미운영으로 해석하지 않음"
+        },
+        {
+          "type": "care_hours_reported",
+          "lines": [
+            52,
+            55
+          ],
+          "reason": "오후돌봄 13:00~17:00(1개반 ~19:00), 1~2학년. 돌봄 시간 필드"
+        }
+      ],
+      "exclusions": [
+        {
+          "lines": [
+            58,
+            61,
+            62,
+            63
+          ],
+          "reason": "돌봄교실 단체활동(칼림바·토탈공예·전래놀이 등 50분)은 돌봄 일과 프로그램"
+        },
+        {
+          "lines": [
+            8
+          ],
+          "reason": "학기 중 13:00~16:40 공통 운영창·방학 오전은 반별 시간대 아님"
+        }
+      ],
+      "production_apply_ready": false,
+      "approved_for_upload": false
+    }
+  ]
+}

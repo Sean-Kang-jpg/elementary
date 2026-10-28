@@ -1,0 +1,334 @@
+{
+  "batch": "priority-batch14",
+  "checked_on": "2026-10-29",
+  "no_operational_upload": true,
+  "independent_review": false,
+  "schools": [
+    {
+      "school_id": "B000004000",
+      "school_name": "현암초등학교",
+      "input": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000004000.txt",
+      "input_sha256": "1e4727e06a1245c8eb2154621a8b1361016fb9c19836514c1e3a45c7b346287a",
+      "output": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\outputs\\B000004000.json",
+      "output_sha256": "674443999e3c2e54d7757ad846caa32cb3bb0d7de0ec8c9694ee36b66401223a",
+      "review_method": "same-assistant whole-source read; not independent blind review",
+      "supplied_sources_read": true,
+      "rows": 39,
+      "grade1_rows": 39,
+      "custom_rows": 18,
+      "field_evidence": {
+        "1": {
+          "grades": [
+            50
+          ],
+          "weekday_inherited_from": [
+            50
+          ]
+        },
+        "2": {
+          "grades": [
+            50
+          ],
+          "weekday_inherited_from": [
+            50
+          ]
+        },
+        "3": {
+          "grades": [
+            50
+          ],
+          "weekday_inherited_from": [
+            50
+          ]
+        },
+        "4": {
+          "grades": [
+            50
+          ],
+          "weekday_inherited_from": [
+            50
+          ]
+        },
+        "5": {
+          "grades": [
+            50
+          ],
+          "weekday_inherited_from": [
+            50
+          ]
+        },
+        "6": {
+          "grades": [
+            50
+          ],
+          "weekday_inherited_from": [
+            50
+          ]
+        },
+        "7": {
+          "grades": [
+            50
+          ],
+          "weekday_inherited_from": [
+            50
+          ]
+        },
+        "8": {
+          "grades": [
+            50
+          ],
+          "weekday_inherited_from": [
+            50
+          ]
+        },
+        "9": {
+          "grades": [
+            50
+          ],
+          "weekday_inherited_from": [
+            50
+          ]
+        },
+        "10": {
+          "grades": [
+            50
+          ],
+          "weekday_inherited_from": [
+            50
+          ]
+        },
+        "11": {
+          "grades": [
+            50
+          ],
+          "weekday_inherited_from": [
+            50
+          ]
+        },
+        "12": {
+          "grades": [
+            50
+          ],
+          "weekday_inherited_from": [
+            50
+          ]
+        },
+        "13": {
+          "grades": [
+            50
+          ],
+          "weekday_inherited_from": [
+            50
+          ]
+        },
+        "14": {
+          "grades": [
+            50
+          ],
+          "weekday_inherited_from": [
+            50
+          ]
+        },
+        "15": {
+          "grades": [
+            50
+          ],
+          "weekday_inherited_from": [
+            50
+          ]
+        },
+        "16": {
+          "grades": [
+            50
+          ],
+          "weekday_inherited_from": [
+            50
+          ]
+        },
+        "17": {
+          "grades": [
+            50
+          ],
+          "weekday_inherited_from": [
+            50
+          ]
+        },
+        "18": {
+          "grades": [
+            50
+          ],
+          "weekday_inherited_from": [
+            50
+          ]
+        },
+        "19": {
+          "grades": [
+            52
+          ]
+        },
+        "20": {
+          "grades": [
+            52
+          ]
+        },
+        "21": {
+          "grades": [
+            52
+          ]
+        },
+        "22": {
+          "grades": [
+            52
+          ]
+        },
+        "23": {
+          "grades": [
+            52
+          ]
+        },
+        "24": {
+          "grades": [
+            52
+          ]
+        },
+        "25": {
+          "grades": [
+            52
+          ]
+        },
+        "26": {
+          "grades": [
+            52
+          ]
+        },
+        "27": {
+          "grades": [
+            52
+          ]
+        },
+        "28": {
+          "grades": [
+            52
+          ]
+        },
+        "29": {
+          "grades": [
+            52
+          ]
+        },
+        "30": {
+          "grades": [
+            52
+          ]
+        },
+        "31": {
+          "grades": [
+            52
+          ]
+        },
+        "32": {
+          "grades": [
+            52
+          ]
+        },
+        "33": {
+          "grades": [
+            52
+          ]
+        },
+        "34": {
+          "grades": [
+            52
+          ]
+        },
+        "35": {
+          "grades": [
+            52
+          ]
+        },
+        "36": {
+          "grades": [
+            52
+          ]
+        },
+        "37": {
+          "grades": [
+            52
+          ]
+        },
+        "38": {
+          "grades": [
+            52
+          ]
+        },
+        "39": {
+          "grades": [
+            52
+          ]
+        }
+      },
+      "blocking_issues": [
+        {
+          "code": "timetable_based_on_prior_year",
+          "lines": [
+            47
+          ],
+          "reason": "\"현재 공사로 인해 시정표 및 특별실 미확정으로 25년 시정표를 기준으로 하여 작성\" — 2026 실제 시각 확인 필요"
+        },
+        {
+          "code": "weekday_source_conflict",
+          "lines": [
+            51,
+            53
+          ],
+          "reason": "악기놀이 L53은 \"목(주2회)\"인데 L51 표에는 목요일 2개반만 있음. 다른 강좌는 L53 요일과 표가 일치"
+        },
+        {
+          "code": "missing_class_times",
+          "lines": [
+            52,
+            58
+          ],
+          "reason": "수익자 21부서 반별 시각 미공시"
+        }
+      ],
+      "additional_findings": [
+        {
+          "type": "pdf_visual_and_coordinate_check",
+          "lines": [
+            50,
+            51
+          ],
+          "reason": "pdf_review/hyeonam-p3.png 렌더링 확인. 수·금은 5교시(12:50~13:30)부터, 월·화·목은 13:40부터 시작"
+        },
+        {
+          "type": "care_hours_reported",
+          "lines": [
+            8
+          ],
+          "reason": "돌봄 학기중 수업 종료 후~17:00(장미향기반)/~19:00(아이사랑반). 돌봄 시간 필드"
+        }
+      ],
+      "exclusions": [
+        {
+          "lines": [
+            15,
+            16
+          ],
+          "reason": "돌봄교실 특기적성(생활체육·창의미술 등 50분)은 돌봄 일과 프로그램"
+        },
+        {
+          "lines": [
+            20,
+            24
+          ],
+          "reason": "방학 중 돌봄 시간표"
+        }
+      ],
+      "production_apply_ready": false,
+      "approved_for_upload": false,
+      "table_visual_checked": true,
+      "table_visual_check": "pdf_review/hyeonam-p3.png (pdf.js render, p3)"
+    }
+  ]
+}

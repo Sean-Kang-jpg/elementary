@@ -1,13 +1,13 @@
 {
-  "checked_on": "20261028",
+  "checked_on": "20261029",
   "summary": {
     "new_targets": 83,
-    "transcribed_schools": 18,
-    "pending_extraction": 65,
-    "rows": 497,
-    "afterschool_rows": 433,
-    "custom_rows": 64,
-    "schools_with_source_blockers": 12,
+    "transcribed_schools": 22,
+    "pending_extraction": 61,
+    "rows": 617,
+    "afterschool_rows": 530,
+    "custom_rows": 87,
+    "schools_with_source_blockers": 16,
     "existing_p1_preserved": 44,
     "care_review_targets": 37,
     "no_operational_upload": true,
@@ -819,10 +819,10 @@
       "school_name": "구름산초등학교",
       "area": "gwangmyeong",
       "course_track": "new_priority",
-      "status": "pending_extraction",
-      "rows": 0,
+      "status": "source_conflicts_need_followup",
+      "rows": 28,
       "approved_for_upload": false,
-      "review_file": null
+      "review_file": "pivot_gyeonggi_priority_batch13_review_20261029.json"
     },
     {
       "school_id": "B000004258",
@@ -859,10 +859,10 @@
       "school_name": "소하초등학교",
       "area": "gwangmyeong",
       "course_track": "new_priority",
-      "status": "pending_extraction",
-      "rows": 0,
+      "status": "source_conflicts_need_followup",
+      "rows": 36,
       "approved_for_upload": false,
-      "review_file": null
+      "review_file": "pivot_gyeonggi_priority_batch11_review_20261029.json"
     },
     {
       "school_id": "B000004266",
@@ -889,10 +889,10 @@
       "school_name": "연서초등학교",
       "area": "gwangmyeong",
       "course_track": "new_priority",
-      "status": "pending_extraction",
-      "rows": 0,
+      "status": "source_conflicts_need_followup",
+      "rows": 17,
       "approved_for_upload": false,
-      "review_file": null
+      "review_file": "pivot_gyeonggi_priority_batch12_review_20261029.json"
     },
     {
       "school_id": "B000004267",
@@ -1259,10 +1259,10 @@
       "school_name": "현암초등학교",
       "area": "suji",
       "course_track": "new_priority",
-      "status": "pending_extraction",
-      "rows": 0,
+      "status": "source_conflicts_need_followup",
+      "rows": 39,
       "approved_for_upload": false,
-      "review_file": null
+      "review_file": "pivot_gyeonggi_priority_batch14_review_20261029.json"
     },
     {
       "school_id": "B000003983",
@@ -1300,7 +1300,7 @@
     "independently_reviewed_schools": 0,
     "production_applied_schools": 0
   },
-  "current_session_progress": "pivot_gyeonggi_priority_session_progress_20261028.json",
-  "current_slot_report": "pivot_gyeonggi_priority_slots_current_20261028.json",
+  "current_session_progress": "pivot_gyeonggi_priority_session_progress_20261029.json",
+  "current_slot_report": "pivot_gyeonggi_priority_slots_current_20261029.json",
   "current_checklist": "PIVOT_GYEONGGI_PRIORITY_SESSION_CHECKLIST.md"
 }

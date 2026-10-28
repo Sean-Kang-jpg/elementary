@@ -1,0 +1,121 @@
+{
+  "batch": "priority-batch11",
+  "checked_on": "2026-10-29",
+  "no_operational_upload": true,
+  "independent_review": false,
+  "schools": [
+    {
+      "school_id": "B000004261",
+      "school_name": "소하초등학교",
+      "input": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000004261.txt",
+      "input_sha256": "9a87119e1e702b21bda260eaa893e9618e104451240915b2ff8bf04dbdeb20cc",
+      "output": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\outputs\\B000004261.json",
+      "output_sha256": "3e927894ef4a62cb64d8dcfaaa6e8869436e2b4acd912bc7f623f0517930493e",
+      "review_method": "same-assistant whole-source read; not independent blind review",
+      "supplied_sources_read": true,
+      "rows": 36,
+      "grade1_rows": 21,
+      "custom_rows": 0,
+      "field_evidence": {},
+      "blocking_issues": [
+        {
+          "code": "missing_class_times",
+          "lines": [
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            40,
+            41,
+            42,
+            43,
+            44,
+            45,
+            46,
+            47,
+            48,
+            49,
+            50,
+            51,
+            52,
+            53,
+            54,
+            55,
+            56,
+            57,
+            58,
+            59,
+            60,
+            61,
+            62,
+            63,
+            64,
+            65,
+            66,
+            67,
+            68
+          ],
+          "reason": "반별 시작·종료 시각 미공시(수업길이만). 학교 시간표 공지 확인 필요"
+        }
+      ],
+      "additional_findings": [
+        {
+          "type": "custom_and_care_absent_in_supplied_sources",
+          "reason": "제공 첨부는 선택형교육 운영계획 1개. 맞춤형·돌봄 운영시간 근거 없음, 미운영으로 해석하지 않음"
+        }
+      ],
+      "exclusions": [
+        {
+          "lines": [
+            13,
+            69
+          ],
+          "reason": "학기 중 공통 운영창·방학 오전 안내는 반별 시간대 아님"
+        },
+        {
+          "lines": [
+            103,
+            104,
+            105,
+            106,
+            107,
+            108,
+            109,
+            110,
+            111,
+            112,
+            113,
+            114,
+            115,
+            116,
+            117,
+            118,
+            119,
+            120,
+            121,
+            122,
+            123,
+            124,
+            125,
+            126,
+            127,
+            128,
+            129,
+            130,
+            131,
+            132,
+            133,
+            134,
+            135
+          ],
+          "reason": "교재·재료비 표의 과정명은 반 편성 근거가 아니어서 과정 칸으로 쓰지 않음"
+        }
+      ],
+      "production_apply_ready": false,
+      "approved_for_upload": false
+    }
+  ]
+}

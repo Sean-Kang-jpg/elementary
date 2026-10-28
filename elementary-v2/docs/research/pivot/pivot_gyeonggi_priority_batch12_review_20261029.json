@@ -1,0 +1,197 @@
+{
+  "batch": "priority-batch12",
+  "checked_on": "2026-10-29",
+  "no_operational_upload": true,
+  "independent_review": false,
+  "schools": [
+    {
+      "school_id": "B000004265",
+      "school_name": "연서초등학교",
+      "input": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000004265.txt",
+      "input_sha256": "04c261d723790f5f3af2ea09a83a896fc7510d72b601a4639e80ec44ac507710",
+      "output": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\outputs\\B000004265.json",
+      "output_sha256": "c4deb7cea82fc8a2b9e491847c53ea12cac0ab21fcf8841d187366977c5de083",
+      "review_method": "same-assistant whole-source read; not independent blind review",
+      "supplied_sources_read": true,
+      "rows": 17,
+      "grade1_rows": 11,
+      "custom_rows": 5,
+      "field_evidence": {
+        "1": {
+          "grades": [
+            18
+          ],
+          "source_span": [
+            10,
+            34
+          ]
+        },
+        "2": {
+          "grades": [
+            18
+          ],
+          "source_span": [
+            10,
+            39
+          ]
+        },
+        "3": {
+          "grades": [
+            18
+          ],
+          "source_span": [
+            39,
+            61
+          ]
+        },
+        "4": {
+          "grades": [
+            18
+          ],
+          "source_span": [
+            39,
+            65
+          ]
+        },
+        "5": {
+          "grades": [
+            18
+          ],
+          "source_span": [
+            39,
+            69
+          ]
+        },
+        "6": {
+          "source_span": [
+            190,
+            212
+          ]
+        },
+        "7": {
+          "source_span": [
+            190,
+            247
+          ]
+        },
+        "8": {
+          "source_span": [
+            248,
+            270
+          ]
+        },
+        "9": {
+          "source_span": [
+            248,
+            307
+          ]
+        },
+        "10": {
+          "source_span": [
+            308,
+            328
+          ]
+        },
+        "11": {
+          "source_span": [
+            308,
+            367
+          ]
+        },
+        "12": {
+          "source_span": [
+            368,
+            388
+          ]
+        },
+        "13": {
+          "source_span": [
+            368,
+            424
+          ]
+        },
+        "14": {
+          "source_span": [
+            425,
+            446
+          ]
+        },
+        "15": {
+          "source_span": [
+            425,
+            486
+          ]
+        },
+        "16": {
+          "source_span": [
+            506,
+            526
+          ]
+        },
+        "17": {
+          "source_span": [
+            506,
+            567
+          ]
+        }
+      },
+      "blocking_issues": [
+        {
+          "code": "pdf_only_custom_pairing",
+          "lines": [
+            22
+          ],
+          "reason": "맞춤형 강좌-요일 짝은 PDF 좌표로만 확인. 미술놀이는 좌표가 없어(x=0) 남은 수요일 열로 판단. 학교 시간표 공지로 확인 필요"
+        }
+      ],
+      "additional_findings": [
+        {
+          "type": "pdf_text_coordinates",
+          "lines": [
+            22
+          ],
+          "reason": "p3 y510: 수,금 13:00~14:20 행 인성책놀이 x336(금). y494: 월,화,목 13:50~15:10 행 코딩&컴퓨터 x142~160(월)·놀이체육 x198(화)·창의팡팡 x294(목)"
+        },
+        {
+          "type": "paid_window_mismatch",
+          "lines": [
+            28,
+            29
+          ],
+          "reason": "수익자 운영시간 13:00~16:40(L28)인데 B반 종료 16:50. 1학년 반은 영향 없음"
+        },
+        {
+          "type": "care_hours_reported",
+          "lines": [
+            12,
+            15
+          ],
+          "reason": "돌봄 학기중 방과후~19:00, 17:00~19:00 연장. 돌봄 시간 필드이며 강좌 시간대 아님"
+        }
+      ],
+      "exclusions": [
+        {
+          "lines": [
+            15
+          ],
+          "reason": "돌봄교실 특기적성(보드게임·미술놀이·책놀이·창의영어·종이접기·전래놀이 14:00~15:00)은 돌봄 일과 활동"
+        },
+        {
+          "lines": [
+            18,
+            22
+          ],
+          "reason": "방학 09:00~10:30 맞춤형은 학기 시간대 아님"
+        },
+        {
+          "lines": [
+            74
+          ],
+          "reason": "온동네 돌봄센터 13~17시는 외부 센터 운영시간"
+        }
+      ],
+      "production_apply_ready": false,
+      "approved_for_upload": false
+    }
+  ]
+}
