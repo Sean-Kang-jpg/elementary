@@ -1,0 +1,98 @@
+{
+  "batch": "priority-batch20",
+  "checked_on": "2026-10-29",
+  "no_operational_upload": true,
+  "independent_review": false,
+  "schools": [
+    {
+      "school_id": "B000003996",
+      "school_name": "신월초등학교",
+      "input": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000003996.txt",
+      "input_sha256": "8d8ac3cc9aa1abcc4b506c630c2c4324d4ae4d310fc204655e0f45a9135633cd",
+      "output": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\outputs\\B000003996.json",
+      "output_sha256": "2d6ce97a068aa6007853357a1c92712aede55d64e8954df63be5c2e113b5675c",
+      "review_method": "same-assistant whole-source read; not independent blind review",
+      "supplied_sources_read": true,
+      "rows": 16,
+      "grade1_rows": 0,
+      "custom_rows": 0,
+      "field_evidence": {},
+      "blocking_issues": [
+        {
+          "code": "missing_class_details",
+          "lines": [
+            243,
+            244,
+            245,
+            246,
+            247,
+            248,
+            249,
+            250,
+            251,
+            252,
+            253,
+            254,
+            255,
+            256,
+            257,
+            258,
+            196
+          ],
+          "reason": "부서별 반 편성·대상 학년 미공시. 공통 A/B 시각만 있어 1학년 시간대 판정 불가. 학교 강좌 안내 확인 필요"
+        }
+      ],
+      "additional_findings": [
+        {
+          "type": "common_ab_window",
+          "lines": [
+            196,
+            197,
+            198,
+            199
+          ],
+          "reason": "1~4기 모두 A반 13:50~15:00, B반 15:10~16:20 (요일별 저학년 하교 편차 시 탄력 운영)"
+        },
+        {
+          "type": "custom_absent_in_supplied_sources",
+          "reason": "맞춤형 시간표 첨부 없음"
+        },
+        {
+          "type": "care_hours_reported",
+          "lines": [
+            379,
+            385
+          ],
+          "reason": "돌봄 12:30~19:00/17:00. 돌봄 시간 필드"
+        }
+      ],
+      "exclusions": [
+        {
+          "lines": [
+            442,
+            443,
+            444,
+            445,
+            446,
+            447,
+            448,
+            449,
+            450,
+            451,
+            452,
+            453,
+            454,
+            455,
+            456,
+            457,
+            458,
+            459
+          ],
+          "reason": "돌봄교실 일과표(놀이체육·책놀이 등 외부강사)는 돌봄 일과"
+        }
+      ],
+      "production_apply_ready": false,
+      "approved_for_upload": false
+    }
+  ]
+}

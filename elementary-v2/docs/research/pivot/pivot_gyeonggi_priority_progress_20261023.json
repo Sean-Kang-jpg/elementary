@@ -2,12 +2,12 @@
   "checked_on": "20261029",
   "summary": {
     "new_targets": 83,
-    "transcribed_schools": 27,
-    "pending_extraction": 56,
-    "rows": 769,
-    "afterschool_rows": 657,
+    "transcribed_schools": 28,
+    "pending_extraction": 55,
+    "rows": 785,
+    "afterschool_rows": 673,
     "custom_rows": 112,
-    "schools_with_source_blockers": 18,
+    "schools_with_source_blockers": 19,
     "existing_p1_preserved": 44,
     "care_review_targets": 37,
     "no_operational_upload": true,
@@ -1129,10 +1129,10 @@
       "school_name": "신월초등학교",
       "area": "suji",
       "course_track": "new_priority",
-      "status": "pending_extraction",
-      "rows": 0,
+      "status": "source_conflicts_need_followup",
+      "rows": 16,
       "approved_for_upload": false,
-      "review_file": null
+      "review_file": "pivot_gyeonggi_priority_batch20_review_20261029.json"
     },
     {
       "school_id": "B000003984",

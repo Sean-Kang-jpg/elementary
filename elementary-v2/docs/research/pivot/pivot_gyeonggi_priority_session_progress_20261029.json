@@ -5,19 +5,19 @@
   "summary": {
     "targets": 83,
     "source_prepared": 83,
-    "extracted_schools": 27,
-    "pending_extraction": 56,
-    "course_rows": 769,
+    "extracted_schools": 28,
+    "pending_extraction": 55,
+    "course_rows": 785,
     "slot_candidates": 268,
-    "remaining_source_evidence_indexed": 56,
+    "remaining_source_evidence_indexed": 55,
     "visual_slot_checks": 32,
     "ok_candidates_after_visual": 11,
-    "schools_needing_checks": 16,
-    "unresolved_check_items": 137,
+    "schools_needing_checks": 17,
+    "unresolved_check_items": 153,
     "independent_review_complete": 0,
     "current_term_verified": 0,
     "production_applied": 0,
-    "extraction_percent": 32.5
+    "extraction_percent": 33.7
   },
   "effective_slot_review": [
     {
@@ -400,6 +400,158 @@
             "방송댄스",
             null,
             "L105"
+          ]
+        ]
+      ]
+    },
+    {
+      "school_id": "B000003996",
+      "school_name": "신월초등학교",
+      "slots": 0,
+      "status": "check",
+      "checks": [
+        [
+          "방과후시각미확인",
+          "월",
+          [
+            "축구",
+            null,
+            "L243"
+          ]
+        ],
+        [
+          "방과후시각미확인",
+          "월",
+          [
+            "요리교실",
+            null,
+            "L244"
+          ]
+        ],
+        [
+          "방과후시각미확인",
+          "화",
+          [
+            "방송댄스",
+            null,
+            "L245"
+          ]
+        ],
+        [
+          "방과후시각미확인",
+          "화",
+          [
+            "로봇과학",
+            null,
+            "L246"
+          ]
+        ],
+        [
+          "방과후시각미확인",
+          "화",
+          [
+            "배드민턴",
+            null,
+            "L247"
+          ]
+        ],
+        [
+          "방과후시각미확인",
+          "화",
+          [
+            "클레이/토탈공예",
+            null,
+            "L248"
+          ]
+        ],
+        [
+          "방과후시각미확인",
+          "화",
+          [
+            "독서 역사논술",
+            null,
+            "L249"
+          ]
+        ],
+        [
+          "방과후시각미확인",
+          "수",
+          [
+            "탁구",
+            null,
+            "L250"
+          ]
+        ],
+        [
+          "방과후시각미확인",
+          "수",
+          [
+            "컴퓨터(A,C)",
+            null,
+            "L251"
+          ]
+        ],
+        [
+          "방과후시각미확인",
+          "수",
+          [
+            "우쿨렐레 기타",
+            null,
+            "L252"
+          ]
+        ],
+        [
+          "방과후시각미확인",
+          "수",
+          [
+            "드론항공",
+            null,
+            "L253"
+          ]
+        ],
+        [
+          "방과후시각미확인",
+          "목",
+          [
+            "키크기교실",
+            null,
+            "L254"
+          ]
+        ],
+        [
+          "방과후시각미확인",
+          "목",
+          [
+            "과학실험탐구",
+            null,
+            "L255"
+          ]
+        ],
+        [
+          "방과후시각미확인",
+          "금",
+          [
+            "컴퓨터(B,D)",
+            null,
+            "L256"
+          ]
+        ],
+        [
+          "방과후시각미확인",
+          "금",
+          [
+            "생명과학",
+            null,
+            "L257"
+          ]
+        ],
+        [
+          "방과후시각미확인",
+          "금",
+          [
+            "바둑체스",
+            null,
+            "L258"
           ]
         ]
       ]
@@ -1877,17 +2029,6 @@
       "evidence_indexed": true
     },
     {
-      "school_id": "B000003996",
-      "school_name": "신월초등학교",
-      "area": "suji",
-      "input": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000003996.txt",
-      "input_sha256": "8d8ac3cc9aa1abcc4b506c630c2c4324d4ae4d310fc204655e0f45a9135633cd",
-      "evidence_index": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\remaining_evidence_index_20261025\\B000003996.json",
-      "evidence_windows": 34,
-      "status": "pending_full_source_extraction",
-      "evidence_indexed": true
-    },
-    {
       "school_id": "B000003984",
       "school_name": "신일초등학교",
       "area": "suji",
@@ -2037,5 +2178,5 @@
     "pivot_gyeonggi_priority_slots_current_20261029.json",
     "pivot_gyeonggi_priority_all_current_verification_20261029.json"
   ],
-  "next_action": "Continue remaining 56 whole-source extractions and unresolved slot checks. Evidence index is navigation only."
+  "next_action": "Continue remaining 55 whole-source extractions and unresolved slot checks. Evidence index is navigation only."
 }
