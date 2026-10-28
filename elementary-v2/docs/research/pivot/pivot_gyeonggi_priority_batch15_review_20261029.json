@@ -1,0 +1,120 @@
+{
+  "batch": "priority-batch15",
+  "checked_on": "2026-10-29",
+  "no_operational_upload": true,
+  "independent_review": false,
+  "schools": [
+    {
+      "school_id": "B000004262",
+      "school_name": "안현초등학교",
+      "input": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000004262.txt",
+      "input_sha256": "f57193ba0db0bad99ebc3646f9e25cc4e11a7a89c1737e33983b56edde936807",
+      "output": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\outputs\\B000004262.json",
+      "output_sha256": "57396fb788532107a23cbe237b7b6317b8530956f1a47faa28b5e1655d58a623",
+      "review_method": "same-assistant whole-source read; not independent blind review",
+      "supplied_sources_read": true,
+      "rows": 43,
+      "grade1_rows": 33,
+      "custom_rows": 0,
+      "field_evidence": {
+        "2": {
+          "grades": [
+            46
+          ]
+        },
+        "6": {
+          "grades": [
+            46
+          ]
+        },
+        "8": {
+          "grades": [
+            46
+          ]
+        },
+        "12": {
+          "grades": [
+            46
+          ]
+        },
+        "19": {
+          "grades": [
+            47
+          ]
+        }
+      },
+      "blocking_issues": [
+        {
+          "code": "time_source_conflict",
+          "lines": [
+            43,
+            46
+          ],
+          "reason": "국악가야금 개관표 A 2:30~3:30·B 3:40~4:40, 강좌안내 A 2:20~3:20·B 3:30~4:30. 강좌안내 값 기록"
+        },
+        {
+          "code": "grade_source_conflict",
+          "lines": [
+            54,
+            79
+          ],
+          "reason": "컴퓨터1 강좌안내 A1~6·B1~3·C1~6·D1~6, 교재표 A3~6·B1~2·C3~6·D4~6"
+        },
+        {
+          "code": "quarter_example_label",
+          "lines": [
+            46
+          ],
+          "reason": "\"1분기 강좌안내(예시)\" — 현재 기수 공지 확인 필요"
+        }
+      ],
+      "additional_findings": [
+        {
+          "type": "pdf_visual_check",
+          "lines": [
+            46,
+            47,
+            50,
+            51,
+            52,
+            54,
+            55,
+            56,
+            57
+          ],
+          "reason": "pdf_review/anhyeon-p4.png·p5.png. 바이올린 C반은 병합 3~6 칸 아래지만 행 안에 1~6학년이 따로 있어 1~6 기록"
+        },
+        {
+          "type": "custom_absent_in_supplied_sources",
+          "reason": "맞춤형 시간표 첨부 없음. 돌봄 1반 초과 대기자를 초1·2 맞춤형으로 수용한다는 언급만(L6)"
+        },
+        {
+          "type": "care_hours_reported",
+          "lines": [
+            8
+          ],
+          "reason": "돌봄 학기중 정규수업 후~19:00. 돌봄 시간 필드"
+        }
+      ],
+      "exclusions": [
+        {
+          "lines": [
+            10,
+            23
+          ],
+          "reason": "돌봄교실 특강(생활체육·칼림바 등 50분)과 일과표는 돌봄 일과"
+        },
+        {
+          "lines": [
+            43
+          ],
+          "reason": "방학 중 오전 시각(괄호)은 학기 시간대 아님"
+        }
+      ],
+      "production_apply_ready": false,
+      "approved_for_upload": false,
+      "table_visual_checked": true,
+      "table_visual_check": "pdf_review/anhyeon-p4.png, anhyeon-p5.png (pdf.js render)"
+    }
+  ]
+}

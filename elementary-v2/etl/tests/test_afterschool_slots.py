@@ -46,6 +46,12 @@ class SchoolSlotsTest(unittest.TestCase):
         slots = school_slots(blocks + [other])['slots']
         self.assertEqual([(s['start'], s['end']) for s in slots], [('13:00', '14:30'), ('14:35', '15:15')])
 
+    def test_classes_differing_in_grade_or_variant_are_not_merged(self):
+        b = row(name='컴퓨터', section=None, variant='기초 한쇼', grades_raw='1~3학년', days='수', start='13:40', end='15:00')
+        c = row(name='컴퓨터', section=None, variant='코딩과 메타버스', grades_raw='1~6학년', days='수', start='15:10', end='16:30')
+        slots = school_slots([b, c])['slots']
+        self.assertEqual([(s['start'], s['end']) for s in slots], [('13:40', '15:00'), ('15:10', '16:30')])
+
     def test_a_care_room_span_is_not_a_custom_window(self):
         span = row(kind='맞춤형', name='특기적성', grades_raw=None, grade1='unknown', place='돌봄내', start='12:40', end='15:20')
         result = school_slots([span])

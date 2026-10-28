@@ -63,8 +63,10 @@ def _minutes(value: str) -> int:
 def merge_blocks(rows: Iterable[dict]) -> list[dict]:
     """One programme written as back-to-back 40-minute blocks ("13:00~13:40 | 13:50~14:30") is one window
     for a parent (불정초 B000003756, 2026-10-28: the blind key merged them, the extraction kept three
-    blocks). Rows of the same kind, name, section and single weekday whose times follow within
-    BLOCK_GAP_MINUTES are joined; anything else passes through."""
+    blocks). Rows of the same kind, name, section, course variant, grade text and single weekday whose
+    times follow within BLOCK_GAP_MINUTES are joined; anything else passes through. Grade and variant
+    matter when a PDF loses the section letter: 안현초 컴퓨터 B(1~3학년) and C(1~6학년) on Wednesday
+    are two classes, not one 13:40~16:30 window (2026-10-29)."""
     out: list[dict] = []
     indexed = [{**row, '_order': i} for i, row in enumerate(rows)]
     for row in sorted(indexed, key=lambda r: (r.get('kind') or '', r.get('name') or '', r.get('section') or '',
@@ -72,7 +74,7 @@ def merge_blocks(rows: Iterable[dict]) -> list[dict]:
         prev = out[-1] if out else None
         timed = HHMM.match(str(row.get('start') or '')) and HHMM.match(str(row.get('end') or ''))
         if (prev and timed and len(row.get('days') or '') == 1 and prev.get('_timed')
-                and all(prev.get(k) == row.get(k) for k in ('kind', 'name', 'section', 'days', 'period', 'grade1'))
+                and all(prev.get(k) == row.get(k) for k in ('kind', 'name', 'section', 'variant', 'grades_raw', 'days', 'period', 'grade1'))
                 and 0 <= _minutes(row['start']) - _minutes(prev['end']) <= BLOCK_GAP_MINUTES):
             prev['end'] = row['end']
             continue

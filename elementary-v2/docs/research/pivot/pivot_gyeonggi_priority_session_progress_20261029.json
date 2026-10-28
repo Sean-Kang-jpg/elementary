@@ -5,19 +5,19 @@
   "summary": {
     "targets": 83,
     "source_prepared": 83,
-    "extracted_schools": 22,
-    "pending_extraction": 61,
-    "course_rows": 617,
-    "slot_candidates": 197,
-    "remaining_source_evidence_indexed": 61,
+    "extracted_schools": 23,
+    "pending_extraction": 60,
+    "course_rows": 660,
+    "slot_candidates": 225,
+    "remaining_source_evidence_indexed": 60,
     "visual_slot_checks": 32,
     "ok_candidates_after_visual": 8,
-    "schools_needing_checks": 14,
-    "unresolved_check_items": 114,
+    "schools_needing_checks": 15,
+    "unresolved_check_items": 118,
     "independent_review_complete": 0,
     "current_term_verified": 0,
     "production_applied": 0,
-    "extraction_percent": 26.5
+    "extraction_percent": 27.7
   },
   "effective_slot_review": [
     {
@@ -1039,6 +1039,46 @@
       ]
     },
     {
+      "school_id": "B000004262",
+      "school_name": "안현초등학교",
+      "slots": 28,
+      "status": "check",
+      "checks": [
+        [
+          "원문불일치",
+          "시각",
+          [
+            "시각",
+            "국악가야금 A·B",
+            "L43 / L46"
+          ]
+        ],
+        [
+          "원문불일치",
+          "학년",
+          [
+            "학년",
+            "컴퓨터1 A~D",
+            "L54 / L79"
+          ]
+        ],
+        [
+          "원문불일치",
+          "학년",
+          [
+            "학년",
+            "컴퓨터",
+            "L54 / L79"
+          ]
+        ],
+        [
+          "PDF원문",
+          null,
+          null
+        ]
+      ]
+    },
+    {
       "school_id": "B000004265",
       "school_name": "연서초등학교",
       "slots": 8,
@@ -1514,17 +1554,6 @@
       "evidence_indexed": true
     },
     {
-      "school_id": "B000004262",
-      "school_name": "안현초등학교",
-      "area": "gwangmyeong",
-      "input": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000004262.txt",
-      "input_sha256": "f57193ba0db0bad99ebc3646f9e25cc4e11a7a89c1737e33983b56edde936807",
-      "evidence_index": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\remaining_evidence_index_20261025\\B000004262.json",
-      "evidence_windows": 16,
-      "status": "pending_full_source_extraction",
-      "evidence_indexed": true
-    },
-    {
       "school_id": "B000004278",
       "school_name": "철산초등학교",
       "area": "gwangmyeong",
@@ -1872,5 +1901,5 @@
     "pivot_gyeonggi_priority_slots_current_20261029.json",
     "pivot_gyeonggi_priority_all_current_verification_20261029.json"
   ],
-  "next_action": "Continue remaining 61 whole-source extractions and unresolved slot checks. Evidence index is navigation only."
+  "next_action": "Continue remaining 60 whole-source extractions and unresolved slot checks. Evidence index is navigation only."
 }
