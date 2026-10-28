@@ -1,0 +1,403 @@
+{
+  "inventory": {
+    "academy_source_rows": 138542,
+    "dojo_source_rows": 32878,
+    "care_source_rows": 1483,
+    "course_source_coverage": {
+      "학원": {
+        "institutions": 91360,
+        "nonblank_fields": {
+          "LE_CRSE_LIST_NM": 72446,
+          "LE_CRSE_NM": 78625,
+          "PSNBY_THCC_CNTNT": 1
+        }
+      },
+      "교습소": {
+        "institutions": 43244,
+        "nonblank_fields": {
+          "LE_CRSE_LIST_NM": 29468,
+          "LE_CRSE_NM": 35117,
+          "PSNBY_THCC_CNTNT": 28383
+        }
+      }
+    }
+  },
+  "registration_rows": 15842,
+  "registration_types": {
+    "학원": 9500,
+    "초등학교": 2261,
+    "교습소": 133,
+    "중학교": 94,
+    "고등학교": 30,
+    "유치원": 3591,
+    "거점형늘봄센터": 8,
+    "각종학교": 39,
+    "특수학교": 183,
+    "유아교육진흥원": 3
+  },
+  "excluded_nonproduction_region_rows": 4,
+  "excluded_region_counts": {
+    "테스트시도": 3,
+    "-": 1
+  },
+  "master_types": {
+    "교습소": 43244,
+    "학원": 91360,
+    "체육도장업": 16652,
+    "우리동네키움센터": 275,
+    "다함께돌봄센터": 1208
+  },
+  "by_type": {
+    "학원": {
+      "registration_rows": 9498,
+      "master_rows": 91360,
+      "statuses": {
+        "name_only_address_unverified": 678,
+        "matched": 7578,
+        "unmatched": 1241,
+        "ambiguous": 1
+      },
+      "matched_registration_rows": 7578,
+      "matched_master_institutions": 7563,
+      "comparison_available": true,
+      "registration_to_master_match_pct": 79.79,
+      "master_with_registration_pct": 8.28,
+      "methods": {
+        "name_address": 7385,
+        "suffix_normalized_name_address": 193
+      }
+    },
+    "교습소": {
+      "registration_rows": 133,
+      "master_rows": 43244,
+      "statuses": {
+        "matched": 107,
+        "name_only_address_unverified": 11,
+        "unmatched": 15
+      },
+      "matched_registration_rows": 107,
+      "matched_master_institutions": 107,
+      "comparison_available": true,
+      "registration_to_master_match_pct": 80.45,
+      "master_with_registration_pct": 0.25,
+      "methods": {
+        "name_address": 98,
+        "suffix_normalized_name_address": 9
+      }
+    },
+    "거점형늘봄센터": {
+      "registration_rows": 8,
+      "master_rows": 0,
+      "statuses": {
+        "unmatched": 8
+      },
+      "matched_registration_rows": 0,
+      "matched_master_institutions": 0,
+      "comparison_available": false,
+      "registration_to_master_match_pct": null,
+      "master_with_registration_pct": null,
+      "methods": {}
+    }
+  },
+  "grade_tiers": {
+    "grade1_explicit_candidate": 162,
+    "lower_grade_candidate": 268,
+    "elementary_label": 14919,
+    "unknown": 119255
+  },
+  "grade_flags_overlapping": {
+    "grade1_explicit_candidate": {
+      "institutions": 162,
+      "with_registration": 0,
+      "by_type": {
+        "교습소": 162
+      }
+    },
+    "lower_grade_candidate": {
+      "institutions": 269,
+      "with_registration": 1,
+      "by_type": {
+        "교습소": 269
+      }
+    },
+    "elementary_label": {
+      "institutions": 15194,
+      "with_registration": 16,
+      "by_type": {
+        "교습소": 15194
+      }
+    },
+    "beginner_not_grade": {
+      "institutions": 5567,
+      "with_registration": 40,
+      "by_type": {
+        "교습소": 5567
+      }
+    }
+  },
+  "grade_and_registration": {
+    "grade1_explicit_candidate": {
+      "institutions": 162,
+      "with_registration": 0,
+      "by_type": {
+        "학원": {
+          "institutions": 0,
+          "with_registration": 0
+        },
+        "교습소": {
+          "institutions": 162,
+          "with_registration": 0
+        }
+      },
+      "subjects": {
+        "language": 2,
+        "writing": 35,
+        "math": 70,
+        "english": 35,
+        "science": 2,
+        "arts": 16,
+        "other": 1,
+        "study": 1
+      }
+    },
+    "lower_grade_candidate": {
+      "institutions": 268,
+      "with_registration": 1,
+      "by_type": {
+        "학원": {
+          "institutions": 0,
+          "with_registration": 0
+        },
+        "교습소": {
+          "institutions": 268,
+          "with_registration": 1
+        }
+      },
+      "subjects": {
+        "math": 77,
+        "arts": 66,
+        "writing": 53,
+        "english": 67,
+        "other": 1,
+        "language": 3,
+        "study": 2,
+        "coding": 1
+      }
+    },
+    "elementary_label": {
+      "institutions": 14919,
+      "with_registration": 15,
+      "by_type": {
+        "학원": {
+          "institutions": 0,
+          "with_registration": 0
+        },
+        "교습소": {
+          "institutions": 14919,
+          "with_registration": 15
+        }
+      },
+      "subjects": {
+        "arts": 1263,
+        "english": 5214,
+        "math": 6009,
+        "writing": 1910,
+        "study": 111,
+        "science": 295,
+        "other": 111,
+        "coding": 14,
+        "language": 79
+      }
+    },
+    "unknown": {
+      "institutions": 119255,
+      "with_registration": 7654,
+      "by_type": {
+        "학원": {
+          "institutions": 91360,
+          "with_registration": 7563
+        },
+        "교습소": {
+          "institutions": 27895,
+          "with_registration": 91
+        }
+      },
+      "subjects": {}
+    }
+  },
+  "sports": {
+    "master_active_dojos": 16652,
+    "source_has_sports_category": false,
+    "match_rate": null,
+    "reason": "SchoolSafe source has no sports-facility category; absence is not non-registration."
+  },
+  "care": {
+    "master_rows": 1483,
+    "master_kinds": {
+      "우리동네키움센터": 275,
+      "다함께돌봄센터": 1208
+    },
+    "hub_master_available": false,
+    "hub_crosscheck_against_existing_care": [
+      {
+        "name": "늘봄창녕 따숨",
+        "region": "경상남도",
+        "same_name_keys": [],
+        "same_address_keys": []
+      },
+      {
+        "name": "충청북도교육청 제천 방과후돌봄센터",
+        "region": "충청북도",
+        "same_name_keys": [],
+        "same_address_keys": []
+      },
+      {
+        "name": "경남교육청 돌봄센터 늘봄진주",
+        "region": "경상남도",
+        "same_name_keys": [],
+        "same_address_keys": []
+      },
+      {
+        "name": "인천광역시교육청 동부 거점형 늘봄센터",
+        "region": "인천광역시",
+        "same_name_keys": [],
+        "same_address_keys": []
+      },
+      {
+        "name": "인천광역시교육청 남부 거점형 늘봄센터",
+        "region": "인천광역시",
+        "same_name_keys": [],
+        "same_address_keys": []
+      },
+      {
+        "name": "거점형늘봄센터 늘봄서울",
+        "region": "서울특별시",
+        "same_name_keys": [],
+        "same_address_keys": []
+      },
+      {
+        "name": "인천광역시교육청 서부 거점형 늘봄센터",
+        "region": "인천광역시",
+        "same_name_keys": [],
+        "same_address_keys": []
+      },
+      {
+        "name": "목포교육지원청 거점형늘봄센터 늘봄목포",
+        "region": "전라남도",
+        "same_name_keys": [],
+        "same_address_keys": []
+      }
+    ]
+  },
+  "by_region": {
+    "강원특별자치도": {
+      "registration_rows": 473,
+      "matched": 373
+    },
+    "경기도": {
+      "registration_rows": 2134,
+      "matched": 1648
+    },
+    "경상남도": {
+      "registration_rows": 929,
+      "matched": 771
+    },
+    "경상북도": {
+      "registration_rows": 778,
+      "matched": 652
+    },
+    "광주광역시": {
+      "registration_rows": 210,
+      "matched": 163
+    },
+    "대구광역시": {
+      "registration_rows": 477,
+      "matched": 395
+    },
+    "대전광역시": {
+      "registration_rows": 301,
+      "matched": 267
+    },
+    "부산광역시": {
+      "registration_rows": 622,
+      "matched": 498
+    },
+    "서울특별시": {
+      "registration_rows": 924,
+      "matched": 686
+    },
+    "세종특별자치시": {
+      "registration_rows": 103,
+      "matched": 87
+    },
+    "울산광역시": {
+      "registration_rows": 388,
+      "matched": 312
+    },
+    "인천광역시": {
+      "registration_rows": 417,
+      "matched": 243
+    },
+    "전라남도": {
+      "registration_rows": 340,
+      "matched": 243
+    },
+    "전북특별자치도": {
+      "registration_rows": 337,
+      "matched": 275
+    },
+    "제주특별자치도": {
+      "registration_rows": 180,
+      "matched": 160
+    },
+    "충청남도": {
+      "registration_rows": 595,
+      "matched": 531
+    },
+    "충청북도": {
+      "registration_rows": 431,
+      "matched": 381
+    }
+  },
+  "inputs": {
+    "registration": {
+      "file": "schoolsafe_all_20261028.xlsx",
+      "sha256": "ac4fc6023f31d5536174bdabff9976d4bb7551e2991a95756c92fe1feb52dad8"
+    },
+    "academies": {
+      "file": "acainsti_scope_20261007.json",
+      "sha256": "39e8106df6f53feefac22a6f58c220af2643e8a7a3285d191d04295ddc019565"
+    },
+    "dojos": {
+      "file": "sports_dojo_nationwide_20261007.json",
+      "sha256": "dd0d451e93364fbdf7a37426df7337f0db32dadb8da8eea61215c29fce72228e"
+    },
+    "care": {
+      "file": "care_centers_2026-10-07.json",
+      "sha256": "90b9069a797e2f1bfe0abdd0a92f33abf72c3b92c4ce5619660e55f8758237d8"
+    }
+  },
+  "source_url": "https://www.schoolsafe24.or.kr/front/scbus/scbusCmptncSchoolList.do?menuSn=170&upperMenuSn=146",
+  "matching_scope": "Offline existing snapshots, exact type+province+normalized name+address/building only. Name-only candidates are not matched. Grade labels are candidates, not confirmed enrolment.",
+  "download_metadata": {
+    "url": "https://www.schoolsafe24.or.kr/front/scbus/scbusCmptncExcelList.do",
+    "params": {
+      "menuSn": "170",
+      "upperMenuSn": "146",
+      "pageIndex": "1",
+      "listType": "LIST",
+      "schlCd": "",
+      "excelDown": "",
+      "searchRgnSeCd": "",
+      "searchCmptncSeCd": "",
+      "searchFcltNm": "",
+      "searchFcltSeCd": ""
+    },
+    "content_type": "application/x-msdownload;charset=UTF-8",
+    "content_disposition": "attachment;filename=%ED%86%B5%ED%95%99%EB%B2%84%EC%8A%A4_%EA%B4%80%ED%95%A0%EC%A7%80%EC%97%AD%EB%B3%84_%EA%B8%B0%EA%B4%80_%EB%A6%AC%EC%8A%A4%ED%8A%B8_20261028212339.xlsx",
+    "bytes": 1455486,
+    "source_filename": "통학버스_관할지역별_기관_리스트_20261028212339.xlsx"
+  },
+  "checked_on": "2026-10-28",
+  "grade_subject_tags_note": "Subject tags only computed for institutions with grade evidence; based on existing name/realm classifier, not newly parsed tuition-course subjects."
+}
