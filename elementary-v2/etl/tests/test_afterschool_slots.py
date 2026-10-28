@@ -52,6 +52,11 @@ class SchoolSlotsTest(unittest.TestCase):
         slots = school_slots([b, c])['slots']
         self.assertEqual([(s['start'], s['end']) for s in slots], [('13:40', '15:00'), ('15:10', '16:30')])
 
+    def test_blocks_merge_per_grade_when_grades_share_a_course_name(self):
+        rows = [row(kind='맞춤형', name='놀이연산', section=None, grades_raw=g, grade_source='table', days='수', start=a, end=b)
+                for g in ('초1', '초2') for a, b in (('12:50', '13:30'), ('13:40', '14:20'))]
+        self.assertEqual([(s['start'], s['end']) for s in school_slots(rows)['slots']], [('12:50', '14:20')])
+
     def test_back_to_back_full_classes_stay_separate(self):
         cube = [row(name='큐브', section=None, grades_raw='1~6학년', days='수', start=a, end=b)
                 for a, b in (('13:00', '14:00'), ('14:10', '15:10'))]

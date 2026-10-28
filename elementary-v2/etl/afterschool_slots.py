@@ -73,6 +73,7 @@ def merge_blocks(rows: Iterable[dict]) -> list[dict]:
     out: list[dict] = []
     indexed = [{**row, '_order': i} for i, row in enumerate(rows)]
     for row in sorted(indexed, key=lambda r: (r.get('kind') or '', r.get('name') or '', r.get('section') or '',
+                                              r.get('variant') or '', r.get('grades_raw') or '',
                                               r.get('days') or '', r.get('start') or '')):
         prev = out[-1] if out else None
         timed = HHMM.match(str(row.get('start') or '')) and HHMM.match(str(row.get('end') or ''))
