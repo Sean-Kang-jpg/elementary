@@ -3,18 +3,18 @@
   "standard_sha256": "b111d14fc829193154a332649efb9e8d29022fad541eb72e97fe67f14f910f06",
   "no_operational_upload": true,
   "summary": {
-    "schools": 26,
-    "course_rows": 750,
-    "slots": 258,
+    "schools": 27,
+    "course_rows": 769,
+    "slots": 268,
     "slot_kinds": {
-      "저학년방과후": 125,
-      "전학년방과후": 95,
-      "맞춤형": 37,
+      "저학년방과후": 128,
+      "전학년방과후": 97,
+      "맞춤형": 42,
       "학년미기재방과후": 1
     },
     "statuses": {
       "check": 19,
-      "ok": 7
+      "ok": 8
     }
   },
   "scope_limit": "Derived slot candidates, not independent validation or upload approval",
@@ -4575,6 +4575,479 @@
       "production_apply_ready": false,
       "input_sha256": "f0c71c8b05b8d7755c60041fb396cf94bd3c974cb3d53962147445bb813283ef",
       "output_sha256": "66603370bee6f4b3190bd1f3cda2a5c02578539bf2b18379f1186a89476420cc"
+    },
+    {
+      "school_id": "B000003869",
+      "school_name": "희성초등학교",
+      "rows": [
+        [
+          "맞춤형",
+          "음악",
+          null,
+          null,
+          "1, 2학년",
+          "school",
+          "월",
+          "13:00",
+          "13:40",
+          "true",
+          "학기",
+          "2026 연간",
+          null,
+          113
+        ],
+        [
+          "맞춤형",
+          "미술·공예",
+          null,
+          null,
+          "1, 2학년",
+          "school",
+          "수",
+          "13:00",
+          "13:40",
+          "true",
+          "학기",
+          "2026 연간",
+          null,
+          113
+        ],
+        [
+          "맞춤형",
+          "음악",
+          null,
+          null,
+          "1, 2학년",
+          "school",
+          "월",
+          "13:50",
+          "14:30",
+          "true",
+          "학기",
+          "2026 연간",
+          null,
+          114
+        ],
+        [
+          "맞춤형",
+          "놀이체육",
+          null,
+          null,
+          "1, 2학년",
+          "school",
+          "화",
+          "13:50",
+          "14:30",
+          "true",
+          "학기",
+          "2026 연간",
+          null,
+          114
+        ],
+        [
+          "맞춤형",
+          "미술·공예",
+          null,
+          null,
+          "1, 2학년",
+          "school",
+          "수",
+          "13:50",
+          "14:30",
+          "true",
+          "학기",
+          "2026 연간",
+          null,
+          114
+        ],
+        [
+          "맞춤형",
+          "놀이체육",
+          null,
+          null,
+          "1, 2학년",
+          "school",
+          "목",
+          "13:50",
+          "14:30",
+          "true",
+          "학기",
+          "2026 연간",
+          null,
+          114
+        ],
+        [
+          "맞춤형",
+          "독서·토론",
+          null,
+          null,
+          "1, 2학년",
+          "school",
+          "금",
+          "13:50",
+          "14:30",
+          "true",
+          "학기",
+          "2026 연간",
+          null,
+          114
+        ],
+        [
+          "맞춤형",
+          "놀이체육",
+          null,
+          null,
+          "1, 2학년",
+          "school",
+          "화",
+          "14:40",
+          "15:20",
+          "true",
+          "학기",
+          "2026 연간",
+          null,
+          115
+        ],
+        [
+          "맞춤형",
+          "놀이체육",
+          null,
+          null,
+          "1, 2학년",
+          "school",
+          "목",
+          "14:40",
+          "15:20",
+          "true",
+          "학기",
+          "2026 연간",
+          null,
+          115
+        ],
+        [
+          "맞춤형",
+          "독서·토론",
+          null,
+          null,
+          "1, 2학년",
+          "school",
+          "금",
+          "14:40",
+          "15:20",
+          "true",
+          "학기",
+          "2026 연간",
+          null,
+          115
+        ],
+        [
+          "방과후",
+          "방송댄스",
+          null,
+          "A",
+          "1-2",
+          "row",
+          "월",
+          "13:00",
+          "14:10",
+          "true",
+          "학기",
+          "2026 연간",
+          null,
+          215
+        ],
+        [
+          "방과후",
+          "방송댄스",
+          null,
+          "B",
+          "3-6",
+          "row",
+          "월",
+          "14:40",
+          "15:50",
+          "false",
+          "학기",
+          "2026 연간",
+          null,
+          216
+        ],
+        [
+          "방과후",
+          "과학실험",
+          null,
+          "A",
+          "1-4",
+          "row",
+          "화",
+          "13:50",
+          "15:00",
+          "true",
+          "학기",
+          "2026 연간",
+          null,
+          217
+        ],
+        [
+          "방과후",
+          "과학실험",
+          null,
+          "B",
+          "5-6",
+          "row",
+          "화",
+          "15:10",
+          "16:20",
+          "false",
+          "학기",
+          "2026 연간",
+          null,
+          218
+        ],
+        [
+          "방과후",
+          "체스",
+          null,
+          "A",
+          "1-2",
+          "row",
+          "수",
+          "13:00",
+          "14:10",
+          "true",
+          "학기",
+          "2026 연간",
+          null,
+          219
+        ],
+        [
+          "방과후",
+          "체스",
+          null,
+          "B",
+          "3-6",
+          "row",
+          "수",
+          "14:20",
+          "15:30",
+          "false",
+          "학기",
+          "2026 연간",
+          null,
+          220
+        ],
+        [
+          "방과후",
+          "창의바둑",
+          null,
+          "A",
+          "1-2",
+          "row",
+          "목",
+          "13:50",
+          "15:00",
+          "true",
+          "학기",
+          "2026 연간",
+          null,
+          221
+        ],
+        [
+          "방과후",
+          "창의바둑",
+          null,
+          "B",
+          "3-6",
+          "row",
+          "목",
+          "15:10",
+          "16:20",
+          "false",
+          "학기",
+          "2026 연간",
+          null,
+          223
+        ],
+        [
+          "방과후",
+          "큐브",
+          null,
+          "A",
+          "1-4",
+          "row",
+          "금",
+          "13:50",
+          "15:00",
+          "true",
+          "학기",
+          "2026 연간",
+          null,
+          224
+        ]
+      ],
+      "conflicts": [],
+      "period_slots": {},
+      "slots": [
+        {
+          "kind": "맞춤형",
+          "weekday": "월",
+          "start": "13:00",
+          "end": "14:30",
+          "courses": [
+            "음악"
+          ],
+          "place": null,
+          "time_source": "plan",
+          "source_rows": [],
+          "source_lines": []
+        },
+        {
+          "kind": "저학년방과후",
+          "weekday": "월",
+          "start": "13:00",
+          "end": "14:10",
+          "courses": [
+            "방송댄스"
+          ],
+          "place": null,
+          "time_source": "plan",
+          "source_rows": [
+            11
+          ],
+          "source_lines": [
+            215
+          ]
+        },
+        {
+          "kind": "맞춤형",
+          "weekday": "화",
+          "start": "13:50",
+          "end": "15:20",
+          "courses": [
+            "놀이체육"
+          ],
+          "place": null,
+          "time_source": "plan",
+          "source_rows": [],
+          "source_lines": []
+        },
+        {
+          "kind": "전학년방과후",
+          "weekday": "화",
+          "start": "13:50",
+          "end": "15:00",
+          "courses": [
+            "과학실험"
+          ],
+          "place": null,
+          "time_source": "plan",
+          "source_rows": [
+            13
+          ],
+          "source_lines": [
+            217
+          ]
+        },
+        {
+          "kind": "맞춤형",
+          "weekday": "수",
+          "start": "13:00",
+          "end": "14:30",
+          "courses": [
+            "미술·공예"
+          ],
+          "place": null,
+          "time_source": "plan",
+          "source_rows": [],
+          "source_lines": []
+        },
+        {
+          "kind": "저학년방과후",
+          "weekday": "수",
+          "start": "13:00",
+          "end": "14:10",
+          "courses": [
+            "체스"
+          ],
+          "place": null,
+          "time_source": "plan",
+          "source_rows": [
+            15
+          ],
+          "source_lines": [
+            219
+          ]
+        },
+        {
+          "kind": "맞춤형",
+          "weekday": "목",
+          "start": "13:50",
+          "end": "15:20",
+          "courses": [
+            "놀이체육"
+          ],
+          "place": null,
+          "time_source": "plan",
+          "source_rows": [],
+          "source_lines": []
+        },
+        {
+          "kind": "저학년방과후",
+          "weekday": "목",
+          "start": "13:50",
+          "end": "15:00",
+          "courses": [
+            "창의바둑"
+          ],
+          "place": null,
+          "time_source": "plan",
+          "source_rows": [
+            17
+          ],
+          "source_lines": [
+            221
+          ]
+        },
+        {
+          "kind": "맞춤형",
+          "weekday": "금",
+          "start": "13:50",
+          "end": "15:20",
+          "courses": [
+            "독서·토론"
+          ],
+          "place": null,
+          "time_source": "plan",
+          "source_rows": [],
+          "source_lines": []
+        },
+        {
+          "kind": "전학년방과후",
+          "weekday": "금",
+          "start": "13:50",
+          "end": "15:00",
+          "courses": [
+            "큐브"
+          ],
+          "place": null,
+          "time_source": "plan",
+          "source_rows": [
+            19
+          ],
+          "source_lines": [
+            224
+          ]
+        }
+      ],
+      "checks": [],
+      "status": "ok",
+      "reference_findings": [],
+      "source_pdf_only": false,
+      "independent_review_complete": false,
+      "approved_for_upload": false,
+      "production_apply_ready": false,
+      "input_sha256": "e8a8defe9b6cf81f55c3ad1cb356a3af9a2478ba3125261390958bb4f99cdad5",
+      "output_sha256": "c52390fc721a5bb1cd9d58c6c5c5618daff736ea22e0cce1ab93d4bff207ad9c"
     },
     {
       "school_id": "B000003978",

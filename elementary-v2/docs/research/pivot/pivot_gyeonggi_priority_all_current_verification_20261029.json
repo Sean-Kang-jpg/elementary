@@ -1,11 +1,11 @@
 {
-  "schools": 26,
-  "rows": 750,
+  "schools": 27,
+  "rows": 769,
   "kinds": {
-    "방과후": 648,
-    "맞춤형": 102
+    "방과후": 657,
+    "맞춤형": 112
   },
-  "grade1_rows": 518,
+  "grade1_rows": 533,
   "schools_with_blocking_issues": 18,
   "errors": {},
   "warnings": {

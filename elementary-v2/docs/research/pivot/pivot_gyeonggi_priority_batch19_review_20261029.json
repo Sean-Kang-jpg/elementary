@@ -1,0 +1,146 @@
+{
+  "batch": "priority-batch19",
+  "checked_on": "2026-10-29",
+  "no_operational_upload": true,
+  "independent_review": false,
+  "schools": [
+    {
+      "school_id": "B000003869",
+      "school_name": "희성초등학교",
+      "input": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000003869.txt",
+      "input_sha256": "e8a8defe9b6cf81f55c3ad1cb356a3af9a2478ba3125261390958bb4f99cdad5",
+      "output": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\outputs\\B000003869.json",
+      "output_sha256": "c52390fc721a5bb1cd9d58c6c5c5618daff736ea22e0cce1ab93d4bff207ad9c",
+      "review_method": "same-assistant whole-source read; not independent blind review",
+      "supplied_sources_read": true,
+      "rows": 19,
+      "grade1_rows": 15,
+      "custom_rows": 10,
+      "field_evidence": {
+        "1": {
+          "grades": [
+            110
+          ],
+          "weekday_header": [
+            112
+          ],
+          "weekday_column": 1
+        },
+        "2": {
+          "grades": [
+            110
+          ],
+          "weekday_header": [
+            112
+          ],
+          "weekday_column": 3
+        },
+        "3": {
+          "grades": [
+            110
+          ],
+          "weekday_header": [
+            112
+          ],
+          "weekday_column": 1
+        },
+        "4": {
+          "grades": [
+            110
+          ],
+          "weekday_header": [
+            112
+          ],
+          "weekday_column": 2
+        },
+        "5": {
+          "grades": [
+            110
+          ],
+          "weekday_header": [
+            112
+          ],
+          "weekday_column": 3
+        },
+        "6": {
+          "grades": [
+            110
+          ],
+          "weekday_header": [
+            112
+          ],
+          "weekday_column": 4
+        },
+        "7": {
+          "grades": [
+            110
+          ],
+          "weekday_header": [
+            112
+          ],
+          "weekday_column": 5
+        },
+        "8": {
+          "grades": [
+            110
+          ],
+          "weekday_header": [
+            112
+          ],
+          "weekday_column": 2
+        },
+        "9": {
+          "grades": [
+            110
+          ],
+          "weekday_header": [
+            112
+          ],
+          "weekday_column": 4
+        },
+        "10": {
+          "grades": [
+            110
+          ],
+          "weekday_header": [
+            112
+          ],
+          "weekday_column": 5
+        }
+      },
+      "blocking_issues": [],
+      "additional_findings": [
+        {
+          "type": "duplicate_source_row",
+          "lines": [
+            221,
+            222
+          ],
+          "reason": "창의바둑 A 1-2 목 13:50-15:00 행 2회 기재"
+        }
+      ],
+      "exclusions": [
+        {
+          "lines": [
+            222
+          ],
+          "reason": "L221과 동일 반복 행"
+        },
+        {
+          "lines": [
+            119
+          ],
+          "reason": "적응기간 13:00~14:30 한시 운영"
+        },
+        {
+          "lines": [
+            122
+          ],
+          "reason": "맞춤형 방학 09:30~11:00"
+        }
+      ],
+      "production_apply_ready": false,
+      "approved_for_upload": false
+    }
+  ]
+}
