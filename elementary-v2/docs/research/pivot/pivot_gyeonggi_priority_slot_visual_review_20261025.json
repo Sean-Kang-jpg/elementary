@@ -1,0 +1,1520 @@
+{
+  "checked_on": "2026-10-25",
+  "basis_packet": "docs\\research\\pivot\\pivot_gyeonggi_priority_slots_20261025.json",
+  "basis_packet_sha256": "082b3379b83077a2d2b801bff8701627bc5e935a6d5b5004db9ca66ce86b6ad7",
+  "summary": {
+    "visually_checked_schools": 3,
+    "visually_checked_slots": 32,
+    "resolved_pdf_pairing_checks": 3,
+    "after_visual_check_ok_candidates": 8,
+    "after_visual_check_needs_check": 5,
+    "unresolved_check_items": 42,
+    "independently_reviewed_schools": 0,
+    "production_applied_schools": 0
+  },
+  "school_verdicts": [
+    {
+      "school_id": "B000003858",
+      "school_name": "동안초등학교",
+      "checked_on": "2026-10-25",
+      "method": "same-assistant source-PDF table-image comparison of all listed slots",
+      "independent_review": false,
+      "pdf": "etl\\runtime\\audit2-documents\\300e81dec154dd6f99342622d8b1d9eeb6ebd5c4a003b94100c58f721941777a.pdf",
+      "pdf_sha256": "300e81dec154dd6f99342622d8b1d9eeb6ebd5c4a003b94100c58f721941777a",
+      "pages": [
+        3
+      ],
+      "rendered_images": [
+        {
+          "path": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\pdf_review\\dongan-review.png",
+          "sha256": "a188e27c739ac2b29fc95fb0b8b4b775dcf6276c8988e841341e3dd987aee334"
+        }
+      ],
+      "slot_packet_sha256": "4c0dfa3bc8a51fbeff923c5b33ed6ea6c78930316899a899585d303b1eeb3886",
+      "input_sha256": "fe8099e428c62707502bfc95ca04e6956024f8f4c29f1d2c6ed2de5eecf2f086",
+      "output_sha256": "f3231e6e1452ea06fdf12f09bbc489365a25f642b7b1e8bb5746b348f62e5996",
+      "verdicts": [
+        [
+          1,
+          "ok",
+          {
+            "source_lines": [
+              10
+            ],
+            "reason": "원본 표의 요일·학년·시각 대응을 시각 대조함"
+          }
+        ],
+        [
+          2,
+          "ok",
+          {
+            "source_lines": [
+              10
+            ],
+            "reason": "원본 표의 요일·학년·시각 대응을 시각 대조함"
+          }
+        ],
+        [
+          3,
+          "ok",
+          {
+            "source_lines": [
+              10
+            ],
+            "reason": "원본 표의 요일·학년·시각 대응을 시각 대조함"
+          }
+        ],
+        [
+          4,
+          "ok",
+          {
+            "source_lines": [
+              10
+            ],
+            "reason": "원본 표의 요일·학년·시각 대응을 시각 대조함"
+          }
+        ],
+        [
+          5,
+          "ok",
+          {
+            "source_lines": [
+              10
+            ],
+            "reason": "원본 표의 요일·학년·시각 대응을 시각 대조함"
+          }
+        ],
+        [
+          6,
+          "ok",
+          {
+            "source_lines": [
+              10
+            ],
+            "reason": "원본 표의 요일·학년·시각 대응을 시각 대조함"
+          }
+        ],
+        [
+          7,
+          "ok",
+          {
+            "source_lines": [
+              10
+            ],
+            "reason": "원본 표의 요일·학년·시각 대응을 시각 대조함"
+          }
+        ],
+        [
+          8,
+          "ok",
+          {
+            "source_lines": [
+              10
+            ],
+            "reason": "원본 표의 요일·학년·시각 대응을 시각 대조함"
+          }
+        ],
+        [
+          9,
+          "ok",
+          {
+            "source_lines": [
+              10
+            ],
+            "reason": "원본 표의 요일·학년·시각 대응을 시각 대조함"
+          }
+        ],
+        [
+          10,
+          "ok",
+          {
+            "source_lines": [
+              10
+            ],
+            "reason": "원본 표의 요일·학년·시각 대응을 시각 대조함"
+          }
+        ]
+      ],
+      "missing_slots_review": "not assessed against all school attachments; this resolves PDF table pairing only",
+      "wrong_slots": [],
+      "resolved_check": [
+        "PDF원문",
+        null,
+        null
+      ],
+      "current_term_verified": false,
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000003859",
+      "school_name": "평촌초등학교",
+      "checked_on": "2026-10-25",
+      "method": "same-assistant source-PDF table-image comparison of all listed slots",
+      "independent_review": false,
+      "pdf": "etl\\runtime\\audit2-documents\\1859aa07c9f7385991793ffd89a47632b2b5f0eade108df043e0f5b7ca7fa868.pdf",
+      "pdf_sha256": "1859aa07c9f7385991793ffd89a47632b2b5f0eade108df043e0f5b7ca7fa868",
+      "pages": [
+        2,
+        3
+      ],
+      "rendered_images": [
+        {
+          "path": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\pdf_review\\pyeongchon-slot-2.png",
+          "sha256": "173b82bedb38e3989692f078ab786a52777d6d51f4efc663ce3ac12997119ef7"
+        },
+        {
+          "path": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\pdf_review\\pyeongchon-slot-3.png",
+          "sha256": "f07e71f29aeb542b58389e0a6d78fd7b6d1fe16444bd8d4a1afa2bfb7b9d90f3"
+        }
+      ],
+      "slot_packet_sha256": "6fa166ef17c2e7d153cd538b63b6f04a6bbe4facced0c213cbc06ccfb39c78d0",
+      "input_sha256": "a1e5ec02d97b3079f7cd072fcaf1f431c2caf5be84492d596b7506237f19a1b6",
+      "output_sha256": "f2beb86bdb17d22f91f24d3577d0e5f3d8f0611212712ab8d31369bd3a08f482",
+      "verdicts": [
+        [
+          1,
+          "ok",
+          {
+            "source_lines": [
+              7
+            ],
+            "reason": "원본 표의 요일·학년·시각 대응을 시각 대조함"
+          }
+        ],
+        [
+          2,
+          "ok",
+          {
+            "source_lines": [
+              7
+            ],
+            "reason": "원본 표의 요일·학년·시각 대응을 시각 대조함"
+          }
+        ],
+        [
+          3,
+          "ok",
+          {
+            "source_lines": [
+              10
+            ],
+            "reason": "원본 표의 요일·학년·시각 대응을 시각 대조함"
+          }
+        ],
+        [
+          4,
+          "ok",
+          {
+            "source_lines": [
+              7,
+              10
+            ],
+            "reason": "원본 표의 요일·학년·시각 대응을 시각 대조함"
+          }
+        ],
+        [
+          5,
+          "ok",
+          {
+            "source_lines": [
+              10
+            ],
+            "reason": "원본 표의 요일·학년·시각 대응을 시각 대조함"
+          }
+        ],
+        [
+          6,
+          "ok",
+          {
+            "source_lines": [
+              10
+            ],
+            "reason": "원본 표의 요일·학년·시각 대응을 시각 대조함"
+          }
+        ],
+        [
+          7,
+          "ok",
+          {
+            "source_lines": [
+              10
+            ],
+            "reason": "원본 표의 요일·학년·시각 대응을 시각 대조함"
+          }
+        ]
+      ],
+      "missing_slots_review": "not assessed against all school attachments; this resolves PDF table pairing only",
+      "wrong_slots": [],
+      "resolved_check": [
+        "PDF원문",
+        null,
+        null
+      ],
+      "current_term_verified": false,
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000004272",
+      "school_name": "광문초등학교",
+      "checked_on": "2026-10-25",
+      "method": "same-assistant source-PDF table-image comparison of all listed slots",
+      "independent_review": false,
+      "pdf": "etl\\runtime\\audit2-documents\\dcf3b00649c477995bb7b1d2d6377ff961f486e3acdd508aa051b73453710f96.pdf",
+      "pdf_sha256": "dcf3b00649c477995bb7b1d2d6377ff961f486e3acdd508aa051b73453710f96",
+      "pages": [
+        4
+      ],
+      "rendered_images": [
+        {
+          "path": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\pdf_review\\gwangmun-paid.png",
+          "sha256": "c0ca84320f34d2809427db0830c9ea310499531fbfdbf09d7c6cc3bd126d2b4d"
+        }
+      ],
+      "slot_packet_sha256": "651bf0223ad443392e5232309de93d570332bd0fe99481a049c4d5f25c203902",
+      "input_sha256": "3170c6826576b474df9b77971e9c239cdec04bce62ee9354079128fb5292ab2b",
+      "output_sha256": "ca7e707b36f8795c8e87f44d7e9c6ec7e3336befd619a920c0fad0cb8345d9ef",
+      "verdicts": [
+        [
+          1,
+          "ok",
+          {
+            "source_lines": [
+              50
+            ],
+            "reason": "원본 표의 요일·학년·시각 대응을 시각 대조함"
+          }
+        ],
+        [
+          2,
+          "ok",
+          {
+            "source_lines": [
+              50
+            ],
+            "reason": "원본 표의 요일·학년·시각 대응을 시각 대조함"
+          }
+        ],
+        [
+          3,
+          "ok",
+          {
+            "source_lines": [
+              50
+            ],
+            "reason": "원본 표의 요일·학년·시각 대응을 시각 대조함"
+          }
+        ],
+        [
+          4,
+          "ok",
+          {
+            "source_lines": [
+              50
+            ],
+            "reason": "원본 표의 요일·학년·시각 대응을 시각 대조함"
+          }
+        ],
+        [
+          5,
+          "ok",
+          {
+            "source_lines": [
+              50
+            ],
+            "reason": "원본 표의 요일·학년·시각 대응을 시각 대조함"
+          }
+        ],
+        [
+          6,
+          "ok",
+          {
+            "source_lines": [
+              50
+            ],
+            "reason": "원본 표의 요일·학년·시각 대응을 시각 대조함"
+          }
+        ],
+        [
+          7,
+          "ok",
+          {
+            "source_lines": [
+              50
+            ],
+            "reason": "원본 표의 요일·학년·시각 대응을 시각 대조함"
+          }
+        ],
+        [
+          8,
+          "ok",
+          {
+            "source_lines": [
+              50
+            ],
+            "reason": "원본 표의 요일·학년·시각 대응을 시각 대조함"
+          }
+        ],
+        [
+          9,
+          "ok",
+          {
+            "source_lines": [
+              50
+            ],
+            "reason": "원본 표의 요일·학년·시각 대응을 시각 대조함"
+          }
+        ],
+        [
+          10,
+          "ok",
+          {
+            "source_lines": [
+              50
+            ],
+            "reason": "원본 표의 요일·학년·시각 대응을 시각 대조함"
+          }
+        ],
+        [
+          11,
+          "ok",
+          {
+            "source_lines": [
+              50
+            ],
+            "reason": "원본 표의 요일·학년·시각 대응을 시각 대조함"
+          }
+        ],
+        [
+          12,
+          "ok",
+          {
+            "source_lines": [
+              50,
+              51
+            ],
+            "reason": "원본 표의 요일·학년·시각 대응을 시각 대조함"
+          }
+        ],
+        [
+          13,
+          "ok",
+          {
+            "source_lines": [
+              51
+            ],
+            "reason": "원본 표의 요일·학년·시각 대응을 시각 대조함"
+          }
+        ],
+        [
+          14,
+          "ok",
+          {
+            "source_lines": [
+              51
+            ],
+            "reason": "원본 표의 요일·학년·시각 대응을 시각 대조함"
+          }
+        ],
+        [
+          15,
+          "ok",
+          {
+            "source_lines": [
+              51
+            ],
+            "reason": "원본 표의 요일·학년·시각 대응을 시각 대조함"
+          }
+        ]
+      ],
+      "missing_slots_review": "not assessed against all school attachments; this resolves PDF table pairing only",
+      "wrong_slots": [],
+      "resolved_check": [
+        "PDF원문",
+        null,
+        null
+      ],
+      "current_term_verified": false,
+      "approved_for_upload": false
+    }
+  ],
+  "school_status": [
+    {
+      "school_id": "B000003858",
+      "school_name": "동안초등학교",
+      "derived_status": "check",
+      "after_visual_check_status": "ok",
+      "listed_slots": 10,
+      "resolved_pdf_pairing": true,
+      "unresolved_checks": [],
+      "independent_review_complete": false,
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000003859",
+      "school_name": "평촌초등학교",
+      "derived_status": "check",
+      "after_visual_check_status": "ok",
+      "listed_slots": 7,
+      "resolved_pdf_pairing": true,
+      "unresolved_checks": [],
+      "independent_review_complete": false,
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000003862",
+      "school_name": "범계초등학교",
+      "derived_status": "ok",
+      "after_visual_check_status": "ok",
+      "listed_slots": 5,
+      "resolved_pdf_pairing": false,
+      "unresolved_checks": [],
+      "independent_review_complete": false,
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000003866",
+      "school_name": "안양관악초등학교",
+      "derived_status": "ok",
+      "after_visual_check_status": "ok",
+      "listed_slots": 14,
+      "resolved_pdf_pairing": false,
+      "unresolved_checks": [],
+      "independent_review_complete": false,
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000003989",
+      "school_name": "용인대덕초등학교",
+      "derived_status": "check",
+      "after_visual_check_status": "check",
+      "listed_slots": 0,
+      "resolved_pdf_pairing": false,
+      "unresolved_checks": [
+        [
+          "방과후시각미확인",
+          null,
+          [
+            "창의요리",
+            null,
+            "L100"
+          ]
+        ],
+        [
+          "방과후시각미확인",
+          null,
+          [
+            "기초영어",
+            null,
+            "L100"
+          ]
+        ],
+        [
+          "방과후시각미확인",
+          null,
+          [
+            "로봇과학",
+            null,
+            "L101"
+          ]
+        ],
+        [
+          "방과후시각미확인",
+          null,
+          [
+            "코딩",
+            null,
+            "L101"
+          ]
+        ],
+        [
+          "방과후시각미확인",
+          null,
+          [
+            "배드민턴",
+            null,
+            "L102"
+          ]
+        ],
+        [
+          "방과후시각미확인",
+          null,
+          [
+            "음악줄넘기",
+            null,
+            "L102"
+          ]
+        ],
+        [
+          "방과후시각미확인",
+          null,
+          [
+            "컴퓨터",
+            null,
+            "L103"
+          ]
+        ],
+        [
+          "방과후시각미확인",
+          null,
+          [
+            "과학탐구",
+            null,
+            "L103"
+          ]
+        ],
+        [
+          "방과후시각미확인",
+          null,
+          [
+            "우쿨렐레",
+            null,
+            "L104"
+          ]
+        ],
+        [
+          "방과후시각미확인",
+          null,
+          [
+            "토탈공예",
+            null,
+            "L104"
+          ]
+        ],
+        [
+          "방과후시각미확인",
+          null,
+          [
+            "창의미술",
+            null,
+            "L105"
+          ]
+        ],
+        [
+          "방과후시각미확인",
+          null,
+          [
+            "방송댄스",
+            null,
+            "L105"
+          ]
+        ]
+      ],
+      "independent_review_complete": false,
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000004001",
+      "school_name": "대청초등학교",
+      "derived_status": "check",
+      "after_visual_check_status": "check",
+      "listed_slots": 10,
+      "resolved_pdf_pairing": false,
+      "unresolved_checks": [
+        [
+          "방과후시각미확인",
+          "월",
+          [
+            "바둑체스",
+            null,
+            "L59"
+          ]
+        ],
+        [
+          "방과후시각미확인",
+          "수",
+          [
+            "드론항공",
+            null,
+            "L60"
+          ]
+        ],
+        [
+          "방과후시각미확인",
+          "목",
+          [
+            "창의과학",
+            null,
+            "L61"
+          ]
+        ],
+        [
+          "방과후시각미확인",
+          "화",
+          [
+            "컴퓨터기초(화)",
+            null,
+            "L62"
+          ]
+        ],
+        [
+          "방과후시각미확인",
+          "금",
+          [
+            "컴퓨터활용(금)",
+            null,
+            "L63"
+          ]
+        ],
+        [
+          "방과후시각미확인",
+          "금",
+          [
+            "전자로봇",
+            null,
+            "L64"
+          ]
+        ],
+        [
+          "방과후시각미확인",
+          "화",
+          [
+            "배드민턴(1)",
+            null,
+            "L65"
+          ]
+        ],
+        [
+          "방과후시각미확인",
+          "목",
+          [
+            "이야기한자",
+            null,
+            "L66"
+          ]
+        ],
+        [
+          "방과후시각미확인",
+          "화",
+          [
+            "연극뮤지컬",
+            null,
+            "L67"
+          ]
+        ],
+        [
+          "방과후시각미확인",
+          "화",
+          [
+            "토탈클레이",
+            null,
+            "L68"
+          ]
+        ],
+        [
+          "방과후시각미확인",
+          "수",
+          [
+            "방송댄스",
+            null,
+            "L69"
+          ]
+        ],
+        [
+          "방과후시각미확인",
+          "목",
+          [
+            "요리교실",
+            null,
+            "L70"
+          ]
+        ],
+        [
+          "방과후시각미확인",
+          "금",
+          [
+            "음악줄넘기",
+            null,
+            "L71"
+          ]
+        ],
+        [
+          "방과후시각미확인",
+          "월수",
+          [
+            "영어(주2회)",
+            null,
+            "L72"
+          ]
+        ],
+        [
+          "방과후시각미확인",
+          "목",
+          [
+            "배드민턴(2)",
+            null,
+            "L73"
+          ]
+        ],
+        [
+          "방과후시각미확인",
+          "수",
+          [
+            "마술",
+            null,
+            "L74"
+          ]
+        ],
+        [
+          "방과후시각미확인",
+          "월",
+          [
+            "큐브",
+            null,
+            "L75"
+          ]
+        ],
+        [
+          "방과후시각미확인",
+          "월",
+          [
+            "매직테니스",
+            null,
+            "L76"
+          ]
+        ],
+        [
+          "방과후시각미확인",
+          "금",
+          [
+            "웹툰",
+            null,
+            "L77"
+          ]
+        ]
+      ],
+      "independent_review_complete": false,
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000004259",
+      "school_name": "충현초등학교",
+      "derived_status": "ok",
+      "after_visual_check_status": "ok",
+      "listed_slots": 13,
+      "resolved_pdf_pairing": false,
+      "unresolved_checks": [],
+      "independent_review_complete": false,
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000004266",
+      "school_name": "안서초등학교",
+      "derived_status": "check",
+      "after_visual_check_status": "check",
+      "listed_slots": 7,
+      "resolved_pdf_pairing": false,
+      "unresolved_checks": [
+        [
+          "원문불일치",
+          "시각",
+          [
+            "시각",
+            "생활체육",
+            "L63 / L64"
+          ]
+        ]
+      ],
+      "independent_review_complete": false,
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000004267",
+      "school_name": "온신초등학교",
+      "derived_status": "ok",
+      "after_visual_check_status": "ok",
+      "listed_slots": 5,
+      "resolved_pdf_pairing": false,
+      "unresolved_checks": [],
+      "independent_review_complete": false,
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000004272",
+      "school_name": "광문초등학교",
+      "derived_status": "check",
+      "after_visual_check_status": "ok",
+      "listed_slots": 15,
+      "resolved_pdf_pairing": true,
+      "unresolved_checks": [],
+      "independent_review_complete": false,
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000004273",
+      "school_name": "서면초등학교",
+      "derived_status": "check",
+      "after_visual_check_status": "check",
+      "listed_slots": 18,
+      "resolved_pdf_pairing": false,
+      "unresolved_checks": [
+        [
+          "원문불일치",
+          "시각",
+          [
+            "시각",
+            "바둑 B반 / 축구교실 A반 / 축구교실 B반 / 쿠키&클레이 B반",
+            "L50 / L64 / L65 / L69"
+          ]
+        ],
+        [
+          "원문불일치",
+          "시각",
+          [
+            "시각",
+            "원어민영어 A반",
+            "L72"
+          ]
+        ],
+        [
+          "방과후시각미확인",
+          "수금",
+          [
+            "원어민영어",
+            "A반",
+            "L72"
+          ]
+        ]
+      ],
+      "independent_review_complete": false,
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000004274",
+      "school_name": "광명동초등학교",
+      "derived_status": "ok",
+      "after_visual_check_status": "ok",
+      "listed_slots": 9,
+      "resolved_pdf_pairing": false,
+      "unresolved_checks": [],
+      "independent_review_complete": false,
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000004275",
+      "school_name": "광명북초등학교",
+      "derived_status": "check",
+      "after_visual_check_status": "check",
+      "listed_slots": 11,
+      "resolved_pdf_pairing": false,
+      "unresolved_checks": [
+        [
+          "맞춤형시각없음",
+          "월",
+          null
+        ],
+        [
+          "맞춤형시각없음",
+          "화",
+          null
+        ],
+        [
+          "맞춤형시각없음",
+          "수",
+          null
+        ],
+        [
+          "맞춤형시각없음",
+          "목",
+          null
+        ],
+        [
+          "맞춤형시각없음",
+          "금",
+          null
+        ],
+        [
+          "원문불일치",
+          "요일",
+          [
+            "요일",
+            "배드민턴 A / 배드민턴 B",
+            "L184 / L185 / L212"
+          ]
+        ],
+        [
+          "원문불일치",
+          "요일",
+          [
+            "요일",
+            "요리 A / 요리 B",
+            "L201 / L202 / L213"
+          ]
+        ]
+      ],
+      "independent_review_complete": false,
+      "approved_for_upload": false
+    }
+  ],
+  "remaining_checks": [
+    {
+      "school_id": "B000003989",
+      "school_name": "용인대덕초등학교",
+      "check": [
+        "방과후시각미확인",
+        null,
+        [
+          "창의요리",
+          null,
+          "L100"
+        ]
+      ],
+      "state": "unresolved"
+    },
+    {
+      "school_id": "B000003989",
+      "school_name": "용인대덕초등학교",
+      "check": [
+        "방과후시각미확인",
+        null,
+        [
+          "기초영어",
+          null,
+          "L100"
+        ]
+      ],
+      "state": "unresolved"
+    },
+    {
+      "school_id": "B000003989",
+      "school_name": "용인대덕초등학교",
+      "check": [
+        "방과후시각미확인",
+        null,
+        [
+          "로봇과학",
+          null,
+          "L101"
+        ]
+      ],
+      "state": "unresolved"
+    },
+    {
+      "school_id": "B000003989",
+      "school_name": "용인대덕초등학교",
+      "check": [
+        "방과후시각미확인",
+        null,
+        [
+          "코딩",
+          null,
+          "L101"
+        ]
+      ],
+      "state": "unresolved"
+    },
+    {
+      "school_id": "B000003989",
+      "school_name": "용인대덕초등학교",
+      "check": [
+        "방과후시각미확인",
+        null,
+        [
+          "배드민턴",
+          null,
+          "L102"
+        ]
+      ],
+      "state": "unresolved"
+    },
+    {
+      "school_id": "B000003989",
+      "school_name": "용인대덕초등학교",
+      "check": [
+        "방과후시각미확인",
+        null,
+        [
+          "음악줄넘기",
+          null,
+          "L102"
+        ]
+      ],
+      "state": "unresolved"
+    },
+    {
+      "school_id": "B000003989",
+      "school_name": "용인대덕초등학교",
+      "check": [
+        "방과후시각미확인",
+        null,
+        [
+          "컴퓨터",
+          null,
+          "L103"
+        ]
+      ],
+      "state": "unresolved"
+    },
+    {
+      "school_id": "B000003989",
+      "school_name": "용인대덕초등학교",
+      "check": [
+        "방과후시각미확인",
+        null,
+        [
+          "과학탐구",
+          null,
+          "L103"
+        ]
+      ],
+      "state": "unresolved"
+    },
+    {
+      "school_id": "B000003989",
+      "school_name": "용인대덕초등학교",
+      "check": [
+        "방과후시각미확인",
+        null,
+        [
+          "우쿨렐레",
+          null,
+          "L104"
+        ]
+      ],
+      "state": "unresolved"
+    },
+    {
+      "school_id": "B000003989",
+      "school_name": "용인대덕초등학교",
+      "check": [
+        "방과후시각미확인",
+        null,
+        [
+          "토탈공예",
+          null,
+          "L104"
+        ]
+      ],
+      "state": "unresolved"
+    },
+    {
+      "school_id": "B000003989",
+      "school_name": "용인대덕초등학교",
+      "check": [
+        "방과후시각미확인",
+        null,
+        [
+          "창의미술",
+          null,
+          "L105"
+        ]
+      ],
+      "state": "unresolved"
+    },
+    {
+      "school_id": "B000003989",
+      "school_name": "용인대덕초등학교",
+      "check": [
+        "방과후시각미확인",
+        null,
+        [
+          "방송댄스",
+          null,
+          "L105"
+        ]
+      ],
+      "state": "unresolved"
+    },
+    {
+      "school_id": "B000004001",
+      "school_name": "대청초등학교",
+      "check": [
+        "방과후시각미확인",
+        "월",
+        [
+          "바둑체스",
+          null,
+          "L59"
+        ]
+      ],
+      "state": "unresolved"
+    },
+    {
+      "school_id": "B000004001",
+      "school_name": "대청초등학교",
+      "check": [
+        "방과후시각미확인",
+        "수",
+        [
+          "드론항공",
+          null,
+          "L60"
+        ]
+      ],
+      "state": "unresolved"
+    },
+    {
+      "school_id": "B000004001",
+      "school_name": "대청초등학교",
+      "check": [
+        "방과후시각미확인",
+        "목",
+        [
+          "창의과학",
+          null,
+          "L61"
+        ]
+      ],
+      "state": "unresolved"
+    },
+    {
+      "school_id": "B000004001",
+      "school_name": "대청초등학교",
+      "check": [
+        "방과후시각미확인",
+        "화",
+        [
+          "컴퓨터기초(화)",
+          null,
+          "L62"
+        ]
+      ],
+      "state": "unresolved"
+    },
+    {
+      "school_id": "B000004001",
+      "school_name": "대청초등학교",
+      "check": [
+        "방과후시각미확인",
+        "금",
+        [
+          "컴퓨터활용(금)",
+          null,
+          "L63"
+        ]
+      ],
+      "state": "unresolved"
+    },
+    {
+      "school_id": "B000004001",
+      "school_name": "대청초등학교",
+      "check": [
+        "방과후시각미확인",
+        "금",
+        [
+          "전자로봇",
+          null,
+          "L64"
+        ]
+      ],
+      "state": "unresolved"
+    },
+    {
+      "school_id": "B000004001",
+      "school_name": "대청초등학교",
+      "check": [
+        "방과후시각미확인",
+        "화",
+        [
+          "배드민턴(1)",
+          null,
+          "L65"
+        ]
+      ],
+      "state": "unresolved"
+    },
+    {
+      "school_id": "B000004001",
+      "school_name": "대청초등학교",
+      "check": [
+        "방과후시각미확인",
+        "목",
+        [
+          "이야기한자",
+          null,
+          "L66"
+        ]
+      ],
+      "state": "unresolved"
+    },
+    {
+      "school_id": "B000004001",
+      "school_name": "대청초등학교",
+      "check": [
+        "방과후시각미확인",
+        "화",
+        [
+          "연극뮤지컬",
+          null,
+          "L67"
+        ]
+      ],
+      "state": "unresolved"
+    },
+    {
+      "school_id": "B000004001",
+      "school_name": "대청초등학교",
+      "check": [
+        "방과후시각미확인",
+        "화",
+        [
+          "토탈클레이",
+          null,
+          "L68"
+        ]
+      ],
+      "state": "unresolved"
+    },
+    {
+      "school_id": "B000004001",
+      "school_name": "대청초등학교",
+      "check": [
+        "방과후시각미확인",
+        "수",
+        [
+          "방송댄스",
+          null,
+          "L69"
+        ]
+      ],
+      "state": "unresolved"
+    },
+    {
+      "school_id": "B000004001",
+      "school_name": "대청초등학교",
+      "check": [
+        "방과후시각미확인",
+        "목",
+        [
+          "요리교실",
+          null,
+          "L70"
+        ]
+      ],
+      "state": "unresolved"
+    },
+    {
+      "school_id": "B000004001",
+      "school_name": "대청초등학교",
+      "check": [
+        "방과후시각미확인",
+        "금",
+        [
+          "음악줄넘기",
+          null,
+          "L71"
+        ]
+      ],
+      "state": "unresolved"
+    },
+    {
+      "school_id": "B000004001",
+      "school_name": "대청초등학교",
+      "check": [
+        "방과후시각미확인",
+        "월수",
+        [
+          "영어(주2회)",
+          null,
+          "L72"
+        ]
+      ],
+      "state": "unresolved"
+    },
+    {
+      "school_id": "B000004001",
+      "school_name": "대청초등학교",
+      "check": [
+        "방과후시각미확인",
+        "목",
+        [
+          "배드민턴(2)",
+          null,
+          "L73"
+        ]
+      ],
+      "state": "unresolved"
+    },
+    {
+      "school_id": "B000004001",
+      "school_name": "대청초등학교",
+      "check": [
+        "방과후시각미확인",
+        "수",
+        [
+          "마술",
+          null,
+          "L74"
+        ]
+      ],
+      "state": "unresolved"
+    },
+    {
+      "school_id": "B000004001",
+      "school_name": "대청초등학교",
+      "check": [
+        "방과후시각미확인",
+        "월",
+        [
+          "큐브",
+          null,
+          "L75"
+        ]
+      ],
+      "state": "unresolved"
+    },
+    {
+      "school_id": "B000004001",
+      "school_name": "대청초등학교",
+      "check": [
+        "방과후시각미확인",
+        "월",
+        [
+          "매직테니스",
+          null,
+          "L76"
+        ]
+      ],
+      "state": "unresolved"
+    },
+    {
+      "school_id": "B000004001",
+      "school_name": "대청초등학교",
+      "check": [
+        "방과후시각미확인",
+        "금",
+        [
+          "웹툰",
+          null,
+          "L77"
+        ]
+      ],
+      "state": "unresolved"
+    },
+    {
+      "school_id": "B000004266",
+      "school_name": "안서초등학교",
+      "check": [
+        "원문불일치",
+        "시각",
+        [
+          "시각",
+          "생활체육",
+          "L63 / L64"
+        ]
+      ],
+      "state": "unresolved"
+    },
+    {
+      "school_id": "B000004273",
+      "school_name": "서면초등학교",
+      "check": [
+        "원문불일치",
+        "시각",
+        [
+          "시각",
+          "바둑 B반 / 축구교실 A반 / 축구교실 B반 / 쿠키&클레이 B반",
+          "L50 / L64 / L65 / L69"
+        ]
+      ],
+      "state": "unresolved"
+    },
+    {
+      "school_id": "B000004273",
+      "school_name": "서면초등학교",
+      "check": [
+        "원문불일치",
+        "시각",
+        [
+          "시각",
+          "원어민영어 A반",
+          "L72"
+        ]
+      ],
+      "state": "unresolved"
+    },
+    {
+      "school_id": "B000004273",
+      "school_name": "서면초등학교",
+      "check": [
+        "방과후시각미확인",
+        "수금",
+        [
+          "원어민영어",
+          "A반",
+          "L72"
+        ]
+      ],
+      "state": "unresolved"
+    },
+    {
+      "school_id": "B000004275",
+      "school_name": "광명북초등학교",
+      "check": [
+        "맞춤형시각없음",
+        "월",
+        null
+      ],
+      "state": "unresolved"
+    },
+    {
+      "school_id": "B000004275",
+      "school_name": "광명북초등학교",
+      "check": [
+        "맞춤형시각없음",
+        "화",
+        null
+      ],
+      "state": "unresolved"
+    },
+    {
+      "school_id": "B000004275",
+      "school_name": "광명북초등학교",
+      "check": [
+        "맞춤형시각없음",
+        "수",
+        null
+      ],
+      "state": "unresolved"
+    },
+    {
+      "school_id": "B000004275",
+      "school_name": "광명북초등학교",
+      "check": [
+        "맞춤형시각없음",
+        "목",
+        null
+      ],
+      "state": "unresolved"
+    },
+    {
+      "school_id": "B000004275",
+      "school_name": "광명북초등학교",
+      "check": [
+        "맞춤형시각없음",
+        "금",
+        null
+      ],
+      "state": "unresolved"
+    },
+    {
+      "school_id": "B000004275",
+      "school_name": "광명북초등학교",
+      "check": [
+        "원문불일치",
+        "요일",
+        [
+          "요일",
+          "배드민턴 A / 배드민턴 B",
+          "L184 / L185 / L212"
+        ]
+      ],
+      "state": "unresolved"
+    },
+    {
+      "school_id": "B000004275",
+      "school_name": "광명북초등학교",
+      "check": [
+        "원문불일치",
+        "요일",
+        [
+          "요일",
+          "요리 A / 요리 B",
+          "L201 / L202 / L213"
+        ]
+      ],
+      "state": "unresolved"
+    }
+  ],
+  "no_operational_upload": true,
+  "limit": "Pairing review of listed slots, not blind review, whole-school inventory completion, or current-term certification"
+}

@@ -1,0 +1,525 @@
+{
+  "checked_on": "2026-10-24",
+  "scope": "new-priority transcribed 13 schools only; existing P1 44 excluded",
+  "no_operational_upload": true,
+  "summary": {
+    "schools": 13,
+    "rows": 336,
+    "schools_with_source_issues": 7,
+    "source_issues": 11,
+    "schools_with_missing_fields": 4,
+    "rows_missing_grade": 12,
+    "rows_missing_weekday": 17,
+    "rows_missing_clock": 37,
+    "independent_review_complete": 0,
+    "production_apply_ready": 0
+  },
+  "schools": [
+    {
+      "school_id": "B000004274",
+      "school_name": "광명동초등학교",
+      "rows": 14,
+      "grade1_rows": 9,
+      "missing_fields_rows": {
+        "grade": 0,
+        "weekday": 0,
+        "clock": 0
+      },
+      "source_issue_count": 0,
+      "source_review": "pivot_gyeonggi_priority_batch01_review_20261023.json",
+      "output": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\outputs\\B000004274.json",
+      "output_sha256": "1e35042877dcfa552c173eb2c6635bf2138c544b6659734001281ebcfd63d8ba",
+      "independent_review_complete": false,
+      "current_term_verified": false,
+      "whole_school_inventory_complete": false,
+      "approved_for_upload": false,
+      "production_apply_ready": false,
+      "next_actions": [
+        "verify_current_term_notices",
+        "independent_completeness_review"
+      ]
+    },
+    {
+      "school_id": "B000004266",
+      "school_name": "안서초등학교",
+      "rows": 15,
+      "grade1_rows": 9,
+      "missing_fields_rows": {
+        "grade": 0,
+        "weekday": 0,
+        "clock": 0
+      },
+      "source_issue_count": 2,
+      "source_review": "pivot_gyeonggi_priority_batch01_review_20261023.json",
+      "output": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\outputs\\B000004266.json",
+      "output_sha256": "777a229fa121ccc55c21a02c0066dadd7157c6addd3ddceb1ff7465ad727016f",
+      "independent_review_complete": false,
+      "current_term_verified": false,
+      "whole_school_inventory_complete": false,
+      "approved_for_upload": false,
+      "production_apply_ready": false,
+      "next_actions": [
+        "resolve_documented_source_issues",
+        "verify_current_term_notices",
+        "independent_completeness_review"
+      ]
+    },
+    {
+      "school_id": "B000003859",
+      "school_name": "평촌초등학교",
+      "rows": 37,
+      "grade1_rows": 18,
+      "missing_fields_rows": {
+        "grade": 0,
+        "weekday": 0,
+        "clock": 0
+      },
+      "source_issue_count": 0,
+      "source_review": "pivot_gyeonggi_priority_batch01_review_20261023.json",
+      "output": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\outputs\\B000003859.json",
+      "output_sha256": "f2beb86bdb17d22f91f24d3577d0e5f3d8f0611212712ab8d31369bd3a08f482",
+      "independent_review_complete": false,
+      "current_term_verified": false,
+      "whole_school_inventory_complete": false,
+      "approved_for_upload": false,
+      "production_apply_ready": false,
+      "next_actions": [
+        "verify_current_term_notices",
+        "independent_completeness_review"
+      ]
+    },
+    {
+      "school_id": "B000004259",
+      "school_name": "충현초등학교",
+      "rows": 31,
+      "grade1_rows": 19,
+      "missing_fields_rows": {
+        "grade": 0,
+        "weekday": 0,
+        "clock": 0
+      },
+      "source_issue_count": 0,
+      "source_review": "pivot_gyeonggi_priority_batch01_review_20261023.json",
+      "output": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\outputs\\B000004259.json",
+      "output_sha256": "da17bb019d31fbc022eb001b94c9aa035be6c4075d465dee351c0b6b8c407189",
+      "independent_review_complete": false,
+      "current_term_verified": false,
+      "whole_school_inventory_complete": false,
+      "approved_for_upload": false,
+      "production_apply_ready": false,
+      "next_actions": [
+        "verify_current_term_notices",
+        "independent_completeness_review"
+      ]
+    },
+    {
+      "school_id": "B000004275",
+      "school_name": "광명북초등학교",
+      "rows": 26,
+      "grade1_rows": 18,
+      "missing_fields_rows": {
+        "grade": 0,
+        "weekday": 5,
+        "clock": 5
+      },
+      "source_issue_count": 3,
+      "source_review": "pivot_gyeonggi_priority_batch01_review_20261023.json",
+      "output": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\outputs\\B000004275.json",
+      "output_sha256": "5654854b895d152839fe54e732cbc7198e3b7373362151619bf28b5ded2de9e2",
+      "independent_review_complete": false,
+      "current_term_verified": false,
+      "whole_school_inventory_complete": false,
+      "approved_for_upload": false,
+      "production_apply_ready": false,
+      "next_actions": [
+        "resolve_documented_source_issues",
+        "obtain_missing_schedule_or_grade",
+        "verify_current_term_notices",
+        "independent_completeness_review"
+      ]
+    },
+    {
+      "school_id": "B000004001",
+      "school_name": "대청초등학교",
+      "rows": 39,
+      "grade1_rows": 29,
+      "missing_fields_rows": {
+        "grade": 0,
+        "weekday": 0,
+        "clock": 19
+      },
+      "source_issue_count": 1,
+      "source_review": "pivot_gyeonggi_priority_batch02_review_20261023.json",
+      "output": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\outputs\\B000004001.json",
+      "output_sha256": "b03e3fea8941bdea972a1d7dfe1f05f4610cfab91b4f754eb14c37f4d2f3e7c6",
+      "independent_review_complete": false,
+      "current_term_verified": false,
+      "whole_school_inventory_complete": false,
+      "approved_for_upload": false,
+      "production_apply_ready": false,
+      "next_actions": [
+        "resolve_documented_source_issues",
+        "obtain_missing_schedule_or_grade",
+        "verify_current_term_notices",
+        "independent_completeness_review"
+      ]
+    },
+    {
+      "school_id": "B000003862",
+      "school_name": "범계초등학교",
+      "rows": 24,
+      "grade1_rows": 11,
+      "missing_fields_rows": {
+        "grade": 0,
+        "weekday": 0,
+        "clock": 0
+      },
+      "source_issue_count": 0,
+      "source_review": "pivot_gyeonggi_priority_batch03_review_20261023.json",
+      "output": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\outputs\\B000003862.json",
+      "output_sha256": "25f624133fb20dcf68a431ef32ac04a603620baa748c347ec3446c8deefba425",
+      "independent_review_complete": false,
+      "current_term_verified": false,
+      "whole_school_inventory_complete": false,
+      "approved_for_upload": false,
+      "production_apply_ready": false,
+      "next_actions": [
+        "verify_current_term_notices",
+        "independent_completeness_review"
+      ]
+    },
+    {
+      "school_id": "B000004267",
+      "school_name": "온신초등학교",
+      "rows": 10,
+      "grade1_rows": 5,
+      "missing_fields_rows": {
+        "grade": 0,
+        "weekday": 0,
+        "clock": 0
+      },
+      "source_issue_count": 0,
+      "source_review": "pivot_gyeonggi_priority_batch03_review_20261023.json",
+      "output": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\outputs\\B000004267.json",
+      "output_sha256": "610830bbee7af5b0f86c4ca5c05b7cf147ac66c1bf23df724da02e07d01e3807",
+      "independent_review_complete": false,
+      "current_term_verified": false,
+      "whole_school_inventory_complete": false,
+      "approved_for_upload": false,
+      "production_apply_ready": false,
+      "next_actions": [
+        "verify_current_term_notices",
+        "independent_completeness_review"
+      ]
+    },
+    {
+      "school_id": "B000003866",
+      "school_name": "안양관악초등학교",
+      "rows": 19,
+      "grade1_rows": 15,
+      "missing_fields_rows": {
+        "grade": 0,
+        "weekday": 0,
+        "clock": 0
+      },
+      "source_issue_count": 1,
+      "source_review": "pivot_gyeonggi_priority_batch03_review_20261023.json",
+      "output": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\outputs\\B000003866.json",
+      "output_sha256": "419d099aee911aa94579b42041676a746f6f6c9fe99b4664e8d39ea89153af74",
+      "independent_review_complete": false,
+      "current_term_verified": false,
+      "whole_school_inventory_complete": false,
+      "approved_for_upload": false,
+      "production_apply_ready": false,
+      "next_actions": [
+        "resolve_documented_source_issues",
+        "verify_current_term_notices",
+        "independent_completeness_review"
+      ]
+    },
+    {
+      "school_id": "B000004273",
+      "school_name": "서면초등학교",
+      "rows": 32,
+      "grade1_rows": 22,
+      "missing_fields_rows": {
+        "grade": 0,
+        "weekday": 0,
+        "clock": 1
+      },
+      "source_issue_count": 2,
+      "source_review": "pivot_gyeonggi_priority_batch04_review_20261023.json",
+      "output": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\outputs\\B000004273.json",
+      "output_sha256": "931dc5bb538085616a218fedd6f01d05946cc95d01a944111ac7e43f3b26eb79",
+      "independent_review_complete": false,
+      "current_term_verified": false,
+      "whole_school_inventory_complete": false,
+      "approved_for_upload": false,
+      "production_apply_ready": false,
+      "next_actions": [
+        "resolve_documented_source_issues",
+        "obtain_missing_schedule_or_grade",
+        "verify_current_term_notices",
+        "independent_completeness_review"
+      ]
+    },
+    {
+      "school_id": "B000003989",
+      "school_name": "용인대덕초등학교",
+      "rows": 12,
+      "grade1_rows": 0,
+      "missing_fields_rows": {
+        "grade": 12,
+        "weekday": 12,
+        "clock": 12
+      },
+      "source_issue_count": 1,
+      "source_review": "pivot_gyeonggi_priority_batch04_review_20261023.json",
+      "output": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\outputs\\B000003989.json",
+      "output_sha256": "7c61e2c926228bda885c3c2ebb244f9addb368290548a6bda5c52cdb205a861b",
+      "independent_review_complete": false,
+      "current_term_verified": false,
+      "whole_school_inventory_complete": false,
+      "approved_for_upload": false,
+      "production_apply_ready": false,
+      "next_actions": [
+        "resolve_documented_source_issues",
+        "obtain_missing_schedule_or_grade",
+        "verify_current_term_notices",
+        "independent_completeness_review"
+      ]
+    },
+    {
+      "school_id": "B000004272",
+      "school_name": "광문초등학교",
+      "rows": 45,
+      "grade1_rows": 34,
+      "missing_fields_rows": {
+        "grade": 0,
+        "weekday": 0,
+        "clock": 0
+      },
+      "source_issue_count": 1,
+      "source_review": "pivot_gyeonggi_priority_batch05_review_20261024.json",
+      "output": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\outputs\\B000004272.json",
+      "output_sha256": "ca7e707b36f8795c8e87f44d7e9c6ec7e3336befd619a920c0fad0cb8345d9ef",
+      "independent_review_complete": false,
+      "current_term_verified": false,
+      "whole_school_inventory_complete": false,
+      "approved_for_upload": false,
+      "production_apply_ready": false,
+      "next_actions": [
+        "resolve_documented_source_issues",
+        "verify_current_term_notices",
+        "independent_completeness_review"
+      ]
+    },
+    {
+      "school_id": "B000003858",
+      "school_name": "동안초등학교",
+      "rows": 32,
+      "grade1_rows": 21,
+      "missing_fields_rows": {
+        "grade": 0,
+        "weekday": 0,
+        "clock": 0
+      },
+      "source_issue_count": 0,
+      "source_review": "pivot_gyeonggi_priority_sample_review_20261024.json",
+      "output": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\outputs\\B000003858.json",
+      "output_sha256": "f3231e6e1452ea06fdf12f09bbc489365a25f642b7b1e8bb5746b348f62e5996",
+      "independent_review_complete": false,
+      "current_term_verified": false,
+      "whole_school_inventory_complete": false,
+      "approved_for_upload": false,
+      "production_apply_ready": false,
+      "next_actions": [
+        "verify_current_term_notices",
+        "independent_completeness_review"
+      ]
+    }
+  ],
+  "followup_queue": [
+    {
+      "school_id": "B000004266",
+      "school_name": "안서초등학교",
+      "code": "duration_conflict",
+      "source_lines": [
+        63,
+        64
+      ],
+      "reason": "L64 13:40~14:20(40분)과 비고 80분·요금 차이; 실제 반 시각 확인 필요",
+      "state": "unresolved",
+      "resolution": null,
+      "source_review": "pivot_gyeonggi_priority_batch01_review_20261023.json"
+    },
+    {
+      "school_id": "B000004266",
+      "school_name": "안서초등학교",
+      "code": "duplicate_source_rows",
+      "source_lines": [
+        69,
+        70
+      ],
+      "reason": "컴퓨터코딩의 학년·요일·시각·수강료 모두 동일; 실제 별도 반인지 불명확",
+      "state": "unresolved",
+      "resolution": null,
+      "source_review": "pivot_gyeonggi_priority_batch01_review_20261023.json"
+    },
+    {
+      "school_id": "B000004275",
+      "school_name": "광명북초등학교",
+      "code": "weekday_source_conflict",
+      "source_lines": [
+        184,
+        185,
+        212
+      ],
+      "reason": "배드민턴 상세표 월 / 회계표 화",
+      "state": "unresolved",
+      "resolution": null,
+      "source_review": "pivot_gyeonggi_priority_batch01_review_20261023.json"
+    },
+    {
+      "school_id": "B000004275",
+      "school_name": "광명북초등학교",
+      "code": "weekday_source_conflict",
+      "source_lines": [
+        201,
+        202,
+        213
+      ],
+      "reason": "요리 상세표 금 / 회계표 월",
+      "state": "unresolved",
+      "resolution": null,
+      "source_review": "pivot_gyeonggi_priority_batch01_review_20261023.json"
+    },
+    {
+      "school_id": "B000004275",
+      "school_name": "광명북초등학교",
+      "code": "custom_example_only_schedule",
+      "source_lines": [
+        74,
+        75,
+        76,
+        77,
+        78,
+        79,
+        81
+      ],
+      "reason": "실제 프로그램명은 확인되나 요일·시각은 예시표뿐; 확인 전 시간표 배정 금지",
+      "state": "unresolved",
+      "resolution": null,
+      "source_review": "pivot_gyeonggi_priority_batch01_review_20261023.json"
+    },
+    {
+      "school_id": "B000004001",
+      "school_name": "대청초등학교",
+      "code": "missing_class_details",
+      "source_lines": [
+        59,
+        60,
+        61,
+        62,
+        63,
+        64,
+        65,
+        66,
+        67,
+        68,
+        69,
+        70,
+        71,
+        72,
+        73,
+        74,
+        75,
+        76,
+        77
+      ],
+      "reason": "유료 각2반의 반별 학년·시각 불명; 19개 프로그램을 38개반으로 복제하지 않음",
+      "state": "unresolved",
+      "resolution": null,
+      "source_review": "pivot_gyeonggi_priority_batch02_review_20261023.json"
+    },
+    {
+      "school_id": "B000003866",
+      "school_name": "안양관악초등학교",
+      "code": "programme_name_source_conflict",
+      "source_lines": [
+        33,
+        82,
+        83,
+        167
+      ],
+      "reason": "장소·강사 목록의 쿠키클레이&토탈공예와 상세표의 창의요리& 토탈공예가 다름. 상세표 명칭 보존 후 확인 필요",
+      "state": "unresolved",
+      "resolution": null,
+      "source_review": "pivot_gyeonggi_priority_batch03_review_20261023.json"
+    },
+    {
+      "school_id": "B000004273",
+      "school_name": "서면초등학교",
+      "code": "source_duration_conflict",
+      "source_lines": [
+        50,
+        64,
+        65,
+        69
+      ],
+      "reason": "바둑B·쿠키&클레이B는 시각차90분 대 표기80분, 축구A/B는60분 대80분. 원문 시각 보존",
+      "state": "unresolved",
+      "resolution": null,
+      "source_review": "pivot_gyeonggi_priority_batch04_review_20261023.json"
+    },
+    {
+      "school_id": "B000004273",
+      "school_name": "서면초등학교",
+      "code": "english_a_clock_mapping_ambiguous",
+      "source_lines": [
+        72
+      ],
+      "reason": "화13:40-14:25는 명시. 별도12:40-13:25는 요일 미표기로 수금 대응 미확인",
+      "state": "unresolved",
+      "resolution": null,
+      "source_review": "pivot_gyeonggi_priority_batch04_review_20261023.json"
+    },
+    {
+      "school_id": "B000003989",
+      "school_name": "용인대덕초등학교",
+      "code": "missing_schedule_and_grade",
+      "source_lines": [
+        99,
+        100,
+        101,
+        102,
+        103,
+        104,
+        105
+      ],
+      "reason": "부서명·횟수·총시간·수강료만 있고 대상학년과 실제 운영 요일/시각 없음",
+      "state": "unresolved",
+      "resolution": null,
+      "source_review": "pivot_gyeonggi_priority_batch04_review_20261023.json"
+    },
+    {
+      "school_id": "B000004272",
+      "school_name": "광문초등학교",
+      "code": "care_end_conditional_conflict",
+      "source_lines": [
+        3,
+        15
+      ],
+      "reason": "개요13~17시 또는13~19시 수요조사 결정과 상세13~17시가 병존. 기본17시 후보,19시 확정 불가",
+      "state": "unresolved",
+      "resolution": null,
+      "source_review": "pivot_gyeonggi_priority_batch05_review_20261024.json"
+    }
+  ],
+  "limits": [
+    "No new external school notices fetched in this review",
+    "Missing fields do not mean no programme operation",
+    "Same assistant evidence checking is not independent validation",
+    "A source issue about care does not automatically invalidate all paid programme rows; school-level hold used until field-level publication review"
+  ]
+}

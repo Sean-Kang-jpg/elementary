@@ -1,0 +1,36 @@
+{
+  "schools": 2,
+  "rows": 44,
+  "kinds": {
+    "방과후": 44
+  },
+  "grade1_rows": 22,
+  "schools_with_blocking_issues": 2,
+  "errors": {},
+  "warnings": {
+    "B000004273": [
+      {
+        "row": 4,
+        "code": "documented_duration_conflict",
+        "line": 50
+      },
+      {
+        "row": 18,
+        "code": "documented_duration_conflict",
+        "line": 64
+      },
+      {
+        "row": 19,
+        "code": "documented_duration_conflict",
+        "line": 65
+      },
+      {
+        "row": 23,
+        "code": "documented_duration_conflict",
+        "line": 69
+      }
+    ]
+  },
+  "no_operational_upload": true,
+  "scope_limit": "Evidence/shape checks only; not an independent completeness review or an upload approval"
+}

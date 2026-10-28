@@ -1,0 +1,376 @@
+{
+  "batch": "priority-batch10",
+  "checked_on": "2026-10-28",
+  "no_operational_upload": true,
+  "independent_review": false,
+  "schools": [
+    {
+      "school_id": "B000003998",
+      "school_name": "대지초등학교",
+      "input": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000003998.txt",
+      "input_sha256": "374a7f184fcdf10e1b717ee7559b0e7f476ffbb60669e1eb1821088709a90af8",
+      "output": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\outputs\\B000003998.json",
+      "output_sha256": "80d28a588f166eaf35209cf7bb340fb6720bc704dcfa99a62577bd81b6749c4e",
+      "review_method": "same-assistant source read and detailed-table comparison; not independent blind review",
+      "supplied_sources_read": true,
+      "rows": 39,
+      "grade1_rows": 39,
+      "custom_rows": 20,
+      "field_evidence": {
+        "1": {
+          "grades": [
+            59
+          ]
+        },
+        "2": {
+          "grades": [
+            59
+          ]
+        },
+        "3": {
+          "grades": [
+            59
+          ]
+        },
+        "4": {
+          "grades": [
+            59
+          ]
+        },
+        "5": {
+          "grades": [
+            59
+          ]
+        },
+        "6": {
+          "grades": [
+            59
+          ]
+        },
+        "7": {
+          "grades": [
+            59
+          ]
+        },
+        "8": {
+          "grades": [
+            59
+          ]
+        },
+        "9": {
+          "grades": [
+            59
+          ]
+        },
+        "10": {
+          "grades": [
+            59
+          ]
+        },
+        "11": {
+          "grades": [
+            59
+          ]
+        },
+        "12": {
+          "grades": [
+            59
+          ]
+        },
+        "13": {
+          "grades": [
+            59
+          ]
+        },
+        "14": {
+          "grades": [
+            59
+          ]
+        },
+        "15": {
+          "grades": [
+            59
+          ]
+        },
+        "16": {
+          "grades": [
+            59
+          ]
+        },
+        "17": {
+          "grades": [
+            59
+          ]
+        },
+        "18": {
+          "grades": [
+            59
+          ]
+        },
+        "19": {
+          "grades": [
+            59
+          ]
+        },
+        "20": {
+          "grades": [
+            44
+          ],
+          "weekday_header": [
+            47
+          ],
+          "weekday_column": 4
+        },
+        "21": {
+          "grades": [
+            44
+          ]
+        },
+        "22": {
+          "grades": [
+            44
+          ],
+          "weekday_header": [
+            47
+          ],
+          "weekday_column": 4
+        },
+        "23": {
+          "grades": [
+            44
+          ]
+        },
+        "24": {
+          "grades": [
+            44
+          ],
+          "weekday_header": [
+            47
+          ],
+          "weekday_column": 2
+        },
+        "25": {
+          "grades": [
+            44
+          ],
+          "weekday_header": [
+            47
+          ],
+          "weekday_column": 3
+        },
+        "26": {
+          "grades": [
+            44
+          ],
+          "weekday_header": [
+            47
+          ],
+          "weekday_column": 4
+        },
+        "27": {
+          "grades": [
+            44
+          ],
+          "weekday_header": [
+            47
+          ],
+          "weekday_column": 5
+        },
+        "28": {
+          "grades": [
+            44
+          ]
+        },
+        "29": {
+          "grades": [
+            44
+          ],
+          "weekday_header": [
+            47
+          ],
+          "weekday_column": 2
+        },
+        "30": {
+          "grades": [
+            44
+          ],
+          "weekday_header": [
+            47
+          ],
+          "weekday_column": 3
+        },
+        "31": {
+          "grades": [
+            44
+          ],
+          "weekday_header": [
+            47
+          ],
+          "weekday_column": 4
+        },
+        "32": {
+          "grades": [
+            44
+          ],
+          "weekday_header": [
+            47
+          ],
+          "weekday_column": 5
+        },
+        "33": {
+          "grades": [
+            44
+          ]
+        },
+        "34": {
+          "grades": [
+            44
+          ],
+          "weekday_header": [
+            47
+          ],
+          "weekday_column": 2
+        },
+        "35": {
+          "grades": [
+            44
+          ],
+          "weekday_header": [
+            47
+          ],
+          "weekday_column": 3
+        },
+        "36": {
+          "grades": [
+            44
+          ],
+          "weekday_header": [
+            47
+          ],
+          "weekday_column": 5
+        },
+        "37": {
+          "grades": [
+            44
+          ],
+          "weekday_header": [
+            47
+          ],
+          "weekday_column": 2
+        },
+        "38": {
+          "grades": [
+            44
+          ],
+          "weekday_header": [
+            47
+          ],
+          "weekday_column": 3
+        },
+        "39": {
+          "grades": [
+            44
+          ],
+          "weekday_header": [
+            47
+          ],
+          "weekday_column": 5
+        }
+      },
+      "blocking_issues": [
+        {
+          "code": "missing_class_details",
+          "lines": [
+            62,
+            63,
+            64,
+            65,
+            66,
+            67,
+            68,
+            69,
+            70,
+            71,
+            72,
+            73,
+            74,
+            75,
+            76,
+            77,
+            78,
+            79,
+            80
+          ],
+          "reason": "수익자각2반또는1반편성횟수만있고반별시간·학년미기재. 학교전체운영창을복제하지않음"
+        },
+        {
+          "code": "weekday_source_conflict",
+          "lines": [
+            47,
+            49,
+            50,
+            52,
+            53
+          ],
+          "reason": "맞춤형요일헤더금요일은col7,본문마지막교육셀은col6/span2. 원본HWPX주소·병합정보로도목/금경계불일치확인. 마지막열4행은요일미확인으로보존하고금요일확인필요"
+        }
+      ],
+      "additional_findings": [
+        {
+          "type": "native_hwpx_grid_review",
+          "lines": [
+            47,
+            49,
+            50,
+            52,
+            53
+          ],
+          "reason": "ZIP Contents/section의cellAddr/cellSpan/cellSz확인. 헤더목col5/span2·금col7,본문목col5/span1·마지막열col6/span2로열경계달라추정확정하지않음"
+        },
+        {
+          "type": "care_not_in_supplied_sources",
+          "reason": "제공첨부는방과후운영계획1개. 학교자체돌봄운영종료시각새근거없음"
+        },
+        {
+          "type": "custom_no_invented_groups",
+          "lines": [
+            44,
+            49,
+            50,
+            52,
+            53,
+            55,
+            56
+          ],
+          "reason": "2개반순환편성은같은요일시각의프로그램만묶고무명반을학년별반으로추정하지않음"
+        }
+      ],
+      "exclusions": [
+        {
+          "lines": [
+            39,
+            40
+          ],
+          "reason": "학교전체운영창및방학일반창은개별강좌시간대아님"
+        },
+        {
+          "lines": [
+            48,
+            51,
+            54,
+            57
+          ],
+          "reason": "정규수업·휴식·정리귀가를맞춤형강좌로생성하지않음"
+        },
+        {
+          "lines": [
+            382
+          ],
+          "reason": "전래놀이는강사현황에만등장하고맞춤형실제요일·시각표에없어별도시간대로생성하지않음"
+        }
+      ],
+      "production_apply_ready": false,
+      "approved_for_upload": false
+    }
+  ]
+}

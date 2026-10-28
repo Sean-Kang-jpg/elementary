@@ -1,0 +1,165 @@
+{
+  "batch": "priority-batch08",
+  "checked_on": "2026-10-28",
+  "no_operational_upload": true,
+  "independent_review": false,
+  "schools": [
+    {
+      "school_id": "B000003856",
+      "school_name": "나눔초등학교",
+      "input": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000003856.txt",
+      "input_sha256": "8631382fa7d01e6dc8a28d1cd446dccd6170ddf3315e595d628e5725e59986d4",
+      "output": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\outputs\\B000003856.json",
+      "output_sha256": "d18990a730b48e3d6776bb981e983943bdb343e43e8c6d9b657feeed104ae251",
+      "review_method": "same-assistant source read and detailed-table comparison; not independent blind review",
+      "supplied_sources_read": true,
+      "rows": 17,
+      "grade1_rows": 11,
+      "custom_rows": 5,
+      "field_evidence": {
+        "13": {
+          "grades": [
+            18
+          ]
+        },
+        "14": {
+          "grades": [
+            18
+          ]
+        },
+        "15": {
+          "grades": [
+            18
+          ]
+        },
+        "16": {
+          "grades": [
+            18
+          ]
+        },
+        "17": {
+          "grades": [
+            18
+          ]
+        }
+      },
+      "blocking_issues": [
+        {
+          "code": "care_custom_classification_pending",
+          "lines": [
+            18,
+            68,
+            76,
+            99,
+            100,
+            101,
+            102,
+            103,
+            104,
+            105,
+            111,
+            112,
+            114,
+            226
+          ],
+          "reason": "초1~2 돌봄학생 대상 외부강사50분 무상교육5요일을 돌봄내맞춤형 후보로 보존. 독립맞춤형 편성명과 구분하여 시간대 검수에서 분류확인 필요"
+        }
+      ],
+      "additional_findings": [
+        {
+          "type": "visual_table_review",
+          "lines": [
+            239,
+            264
+          ],
+          "reason": "PDF p3연간표와p10실제2학기표 시각 대조. 음악B 14:30~15:50 vs 상세14:20~15:40차이는3~6학년반에만 해당해1학년 시간대 변화없음"
+        },
+        {
+          "type": "current_term_plan_comparison",
+          "lines": [
+            239,
+            252,
+            253,
+            263,
+            264,
+            265,
+            267,
+            269,
+            271
+          ],
+          "reason": "제공PDF안의1·2학기 상세표를 연간표와 대조. 학교최신게시글조회 완료를 뜻하지 않음"
+        },
+        {
+          "type": "care_hours_source_conflict",
+          "lines": [
+            18,
+            94,
+            195
+          ],
+          "afternoon_end_candidate": "19:00",
+          "vacation_end": "15:30",
+          "reason": "운영표19시/귀가지도18:40~19시와 별도귀가규정18:40까지가 병존. 돌봄종료확정값 갱신보류"
+        },
+        {
+          "type": "care_access_restriction",
+          "lines": [
+            201
+          ],
+          "reason": "학원등 학교밖 이동후 재입실불가. 돌봄내활동을 독립신청 가능 강좌로 일반화하지 않음"
+        }
+      ],
+      "exclusions": [
+        {
+          "lines": [
+            85,
+            86,
+            87,
+            88,
+            89,
+            90,
+            91,
+            92,
+            93,
+            94,
+            145,
+            146,
+            147,
+            148,
+            149,
+            150,
+            151,
+            152,
+            153,
+            154
+          ],
+          "reason": "예시 일과·방학시간표의 자율활동을 학기중 강좌로 생성하지 않음"
+        },
+        {
+          "lines": [
+            129,
+            134,
+            135,
+            136,
+            137,
+            139
+          ],
+          "reason": "2027학년도 대비강사모집과2027.3~2028.2 예정창은2026학기중 시간대에서 제외"
+        },
+        {
+          "lines": [
+            273,
+            274
+          ],
+          "reason": "겨울방학 실제과목표는원문보존하되 이번학기중시간대검수대상에서제외"
+        }
+      ],
+      "production_apply_ready": false,
+      "approved_for_upload": false,
+      "table_visual_checked": true,
+      "visual_review_images": [
+        "etl/runtime/pivot_gyeonggi_priority_20261023/pdf_review/nanum-annual.png",
+        "etl/runtime/pivot_gyeonggi_priority_20261023/pdf_review/nanum-term2.png"
+      ]
+    }
+  ]
+}

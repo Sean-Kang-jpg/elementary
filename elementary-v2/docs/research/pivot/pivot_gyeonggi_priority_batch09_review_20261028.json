@@ -1,0 +1,119 @@
+{
+  "batch": "priority-batch09",
+  "checked_on": "2026-10-28",
+  "no_operational_upload": true,
+  "independent_review": false,
+  "schools": [
+    {
+      "school_id": "B000003978",
+      "school_name": "솔개초등학교",
+      "input": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000003978.txt",
+      "input_sha256": "4078984c9aabf10bf962619a81a5d58580de8c4f39e4feab08d7a4450aa7c93f",
+      "output": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\outputs\\B000003978.json",
+      "output_sha256": "0fb41df0af7ed3487e69b60ffcd198354931832185077923324ab2878c9f4877",
+      "review_method": "same-assistant source read and detailed-table comparison; not independent blind review",
+      "supplied_sources_read": true,
+      "rows": 54,
+      "grade1_rows": 30,
+      "custom_rows": 4,
+      "field_evidence": {},
+      "blocking_issues": [
+        {
+          "code": "grade_source_conflict",
+          "lines": [
+            8,
+            101
+          ],
+          "reason": "기타&우쿨렐레 초기상세표1~2학년과 방배치표1~4학년 충돌. 저학년/전학년 시간대분류 확인필요"
+        },
+        {
+          "code": "source_duration_conflict",
+          "lines": [
+            50,
+            51,
+            52,
+            57,
+            75,
+            100,
+            101
+          ],
+          "reason": "원어민영어 상세그룹창65/45/55분과 운영표30분차시쌍·주2회120분설명 상충. 실제요일·그룹시간을 임의수정하지 않음"
+        }
+      ],
+      "additional_findings": [
+        {
+          "type": "english_group_count_conflict",
+          "lines": [
+            50,
+            51,
+            52,
+            53,
+            213,
+            214,
+            215
+          ],
+          "reason": "A/B,C/D,E/F6반그룹표와A/B/C/D4개반문구차이. 시간대이외 참고층확인대상"
+        },
+        {
+          "type": "care_hours_per_room",
+          "lines": [
+            146,
+            147,
+            148
+          ],
+          "afternoon_end_candidates": {
+            "돌봄1반": "19:00",
+            "돌봄2반": "17:00"
+          },
+          "vacation_end": "15:00",
+          "morning": [
+            "08:00",
+            "08:40"
+          ],
+          "reason": "반별종료차이와아침돌봄·방학별도보존. 모든이용자가19시까지라고일반화하지않음"
+        },
+        {
+          "type": "custom_participation",
+          "lines": [
+            142,
+            143,
+            144,
+            145
+          ],
+          "reason": "선택형돌봄참여학생제외. 적응기/단축수업변경시각 미공시, 방학오전시각미공시라복제하지않음"
+        },
+        {
+          "type": "reference_names",
+          "lines": [
+            32,
+            42,
+            98,
+            99,
+            205,
+            210
+          ],
+          "reason": "한자/급수한자,창의수학/창의력수학등명칭차이는기본시간대합격과분리"
+        }
+      ],
+      "exclusions": [
+        {
+          "lines": [
+            138,
+            139,
+            140,
+            141
+          ],
+          "reason": "21부서전체공통창을과목으로추가복제하지않음"
+        },
+        {
+          "lines": [
+            148
+          ],
+          "reason": "아침돌봄일반이용창은학기중오후강좌시간대로생성하지않음"
+        }
+      ],
+      "production_apply_ready": false,
+      "approved_for_upload": false
+    }
+  ]
+}

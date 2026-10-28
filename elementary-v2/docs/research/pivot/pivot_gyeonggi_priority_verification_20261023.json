@@ -1,0 +1,15 @@
+{
+  "schools": 127,
+  "inputs_ready": 127,
+  "distinct_source_files": 211,
+  "new_course_targets": 83,
+  "existing_p1_targets": 44,
+  "care_review_targets": 37,
+  "care_targets_with_candidate_windows": 23,
+  "course_sample_schools": 1,
+  "course_sample_rows": 32,
+  "course_sample_grade1_rows": 21,
+  "errors": [],
+  "no_operational_upload": true,
+  "review_limit": "Source read and transcribed by the same assistant. No independent blind review. Remaining schools have not been extracted."
+}

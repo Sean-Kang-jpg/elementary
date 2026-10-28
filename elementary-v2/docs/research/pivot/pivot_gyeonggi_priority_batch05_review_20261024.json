@@ -1,0 +1,270 @@
+{
+  "batch": "priority-batch05",
+  "checked_on": "2026-10-24",
+  "no_operational_upload": true,
+  "independent_review": false,
+  "schools": [
+    {
+      "school_id": "B000004272",
+      "school_name": "광문초등학교",
+      "input": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000004272.txt",
+      "input_sha256": "3170c6826576b474df9b77971e9c239cdec04bce62ee9354079128fb5292ab2b",
+      "output": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\outputs\\B000004272.json",
+      "output_sha256": "ca7e707b36f8795c8e87f44d7e9c6ec7e3336befd619a920c0fad0cb8345d9ef",
+      "review_method": "same-assistant source read and detailed-table comparison; not independent blind review",
+      "supplied_sources_read": true,
+      "rows": 45,
+      "grade1_rows": 34,
+      "custom_rows": 0,
+      "field_evidence": {
+        "35": {
+          "weekday_inherited_from": [
+            50
+          ],
+          "pdf_capacity_clock_prefix": 25
+        },
+        "36": {
+          "weekday_inherited_from": [
+            50
+          ],
+          "pdf_capacity_clock_prefix": 25
+        },
+        "37": {
+          "weekday_inherited_from": [
+            50
+          ],
+          "pdf_capacity_clock_prefix": 25
+        },
+        "38": {
+          "weekday_inherited_from": [
+            50
+          ],
+          "pdf_capacity_clock_prefix": 25
+        },
+        "39": {
+          "weekday_inherited_from": [
+            50
+          ],
+          "pdf_capacity_clock_prefix": 25
+        },
+        "40": {
+          "weekday_inherited_from": [
+            50
+          ],
+          "pdf_capacity_clock_prefix": 25
+        },
+        "41": {
+          "weekday_inherited_from": [
+            50
+          ],
+          "pdf_capacity_clock_prefix": 25
+        },
+        "42": {
+          "weekday_inherited_from": [
+            50
+          ],
+          "pdf_capacity_clock_prefix": 25
+        },
+        "43": {
+          "weekday_inherited_from": [
+            50
+          ],
+          "pdf_capacity_clock_prefix": 25
+        },
+        "44": {
+          "weekday_inherited_from": [
+            50
+          ],
+          "pdf_capacity_clock_prefix": 25
+        },
+        "45": {
+          "weekday_inherited_from": [
+            50
+          ],
+          "pdf_capacity_clock_prefix": 25
+        },
+        "1": {
+          "pdf_capacity_clock_prefix": 25
+        },
+        "2": {
+          "pdf_capacity_clock_prefix": 25
+        },
+        "3": {
+          "pdf_capacity_clock_prefix": 25
+        },
+        "4": {
+          "pdf_capacity_clock_prefix": 25
+        },
+        "5": {
+          "pdf_capacity_clock_prefix": 25
+        },
+        "6": {
+          "pdf_capacity_clock_prefix": 25
+        },
+        "7": {
+          "pdf_capacity_clock_prefix": 25
+        },
+        "8": {
+          "pdf_capacity_clock_prefix": 25
+        },
+        "9": {
+          "pdf_capacity_clock_prefix": 25
+        },
+        "10": {
+          "pdf_capacity_clock_prefix": 25
+        },
+        "11": {
+          "pdf_capacity_clock_prefix": 25
+        },
+        "12": {
+          "pdf_capacity_clock_prefix": 25
+        },
+        "13": {
+          "pdf_capacity_clock_prefix": 25
+        },
+        "14": {
+          "pdf_capacity_clock_prefix": 25
+        },
+        "15": {
+          "pdf_capacity_clock_prefix": 25
+        },
+        "16": {
+          "pdf_capacity_clock_prefix": 25
+        },
+        "17": {
+          "pdf_capacity_clock_prefix": 25
+        },
+        "18": {
+          "pdf_capacity_clock_prefix": 25
+        },
+        "19": {
+          "pdf_capacity_clock_prefix": 25
+        },
+        "20": {
+          "pdf_capacity_clock_prefix": 25
+        },
+        "21": {
+          "pdf_capacity_clock_prefix": 25
+        },
+        "22": {
+          "pdf_capacity_clock_prefix": 25
+        },
+        "23": {
+          "pdf_capacity_clock_prefix": 25
+        },
+        "24": {
+          "pdf_capacity_clock_prefix": 25
+        },
+        "25": {
+          "pdf_capacity_clock_prefix": 25
+        },
+        "26": {
+          "pdf_capacity_clock_prefix": 25
+        },
+        "27": {
+          "pdf_capacity_clock_prefix": 25
+        },
+        "28": {
+          "pdf_capacity_clock_prefix": 25
+        },
+        "29": {
+          "pdf_capacity_clock_prefix": 25
+        },
+        "30": {
+          "pdf_capacity_clock_prefix": 25
+        },
+        "31": {
+          "pdf_capacity_clock_prefix": 25
+        },
+        "32": {
+          "pdf_capacity_clock_prefix": 25
+        },
+        "33": {
+          "pdf_capacity_clock_prefix": 25
+        },
+        "34": {
+          "pdf_capacity_clock_prefix": 25
+        }
+      },
+      "blocking_issues": [
+        {
+          "code": "care_end_conditional_conflict",
+          "lines": [
+            3,
+            15
+          ],
+          "reason": "개요13~17시 또는13~19시 수요조사 결정과 상세13~17시가 병존. 기본17시 후보,19시 확정 불가"
+        }
+      ],
+      "additional_findings": [
+        {
+          "type": "visual_table_review",
+          "lines": [
+            50,
+            51
+          ],
+          "reason": "방과후 PDF p4에서 합쳐진 컴퓨터 부서/요일/반/학년, 금요일 계속행 직접 대조. 동일 에이전트 검토이며 독립 검수가 아님"
+        },
+        {
+          "type": "existing_student_priority",
+          "lines": [
+            50
+          ],
+          "programmes": [
+            "배드민턴",
+            "농구"
+          ],
+          "reason": "기존우선은 우선선발 조건이며 신규학생 참여불가를 뜻하지 않음"
+        },
+        {
+          "type": "care_hours",
+          "lines": [
+            3,
+            15,
+            19
+          ],
+          "regular_end_candidate": "17:00",
+          "conditional_end_candidate": "19:00",
+          "vacation_end_candidate": "15:00",
+          "reason": "개요의 수요조사 조건과 상세표 차이 보존. DB 확정값으로 갱신하지 않음"
+        },
+        {
+          "type": "term_scope",
+          "lines": [
+            43,
+            45,
+            50
+          ],
+          "reason": "개별 강좌표는1기 명시. 방학 일반 운영창09:30~13:00을 개별 수업 시각으로 복제하지 않음"
+        }
+      ],
+      "exclusions": [
+        {
+          "lines": [
+            8,
+            19,
+            21
+          ],
+          "names": [
+            "미술",
+            "토탈공예",
+            "클레이",
+            "전래놀이",
+            "창의수학"
+          ],
+          "reason": "돌봄 입급학생 내부활동이며 시간표 예시 명시. 독립맞춤형 확정 강좌로 생성하지 않음"
+        },
+        {
+          "lines": [
+            40
+          ],
+          "reason": "광명광덕초 외부 온동네센터 설명으로 광문초 자체 돌봄 수업 아님"
+        }
+      ],
+      "production_apply_ready": false,
+      "approved_for_upload": false,
+      "table_visual_checked": true,
+      "visual_review_image": "etl/runtime/pivot_gyeonggi_priority_20261023/pdf_review/gwangmun-paid.png"
+    }
+  ]
+}

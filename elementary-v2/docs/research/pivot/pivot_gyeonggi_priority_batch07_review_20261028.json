@@ -1,0 +1,433 @@
+{
+  "batch": "priority-batch07",
+  "checked_on": "2026-10-28",
+  "no_operational_upload": true,
+  "independent_review": false,
+  "schools": [
+    {
+      "school_id": "B000003867",
+      "school_name": "관양초등학교",
+      "input": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000003867.txt",
+      "input_sha256": "f0c71c8b05b8d7755c60041fb396cf94bd3c974cb3d53962147445bb813283ef",
+      "output": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\outputs\\B000003867.json",
+      "output_sha256": "66603370bee6f4b3190bd1f3cda2a5c02578539bf2b18379f1186a89476420cc",
+      "review_method": "same-assistant source read and detailed-table comparison; not independent blind review",
+      "supplied_sources_read": true,
+      "rows": 32,
+      "grade1_rows": 21,
+      "custom_rows": 10,
+      "field_evidence": {
+        "1": {
+          "weekday_header": [
+            261
+          ],
+          "weekday_column": 5,
+          "weekday_marker": "●"
+        },
+        "2": {
+          "weekday_header": [
+            261
+          ],
+          "weekday_column": 5,
+          "weekday_marker": "●"
+        },
+        "3": {
+          "weekday_header": [
+            261
+          ],
+          "weekday_column": 6,
+          "weekday_marker": "●"
+        },
+        "4": {
+          "weekday_header": [
+            261
+          ],
+          "weekday_column": 6,
+          "weekday_marker": "●"
+        },
+        "5": {
+          "weekday_header": [
+            261
+          ],
+          "weekday_column": 3,
+          "weekday_marker": "●"
+        },
+        "6": {
+          "weekday_header": [
+            261
+          ],
+          "weekday_column": 3,
+          "weekday_marker": "●"
+        },
+        "7": {
+          "weekday_header": [
+            261
+          ],
+          "weekday_column": 7,
+          "weekday_marker": "●"
+        },
+        "8": {
+          "weekday_header": [
+            261
+          ],
+          "weekday_column": 7,
+          "weekday_marker": "●"
+        },
+        "9": {
+          "weekday_header": [
+            261
+          ],
+          "weekday_column": 5,
+          "weekday_marker": "●"
+        },
+        "10": {
+          "weekday_header": [
+            261
+          ],
+          "weekday_column": 5,
+          "weekday_marker": "●"
+        },
+        "11": {
+          "weekday_header": [
+            261
+          ],
+          "weekday_column": 5,
+          "weekday_marker": "●"
+        },
+        "12": {
+          "weekday_header": [
+            261
+          ],
+          "weekday_column": 5,
+          "weekday_marker": "●"
+        },
+        "13": {
+          "weekday_header": [
+            261
+          ],
+          "weekday_column": 6,
+          "weekday_marker": "●"
+        },
+        "14": {
+          "weekday_header": [
+            261
+          ],
+          "weekday_column": 6,
+          "weekday_marker": "●"
+        },
+        "15": {
+          "weekday_header": [
+            261
+          ],
+          "weekday_column": 5,
+          "weekday_marker": "●"
+        },
+        "16": {
+          "weekday_header": [
+            261
+          ],
+          "weekday_column": 5,
+          "weekday_marker": "●"
+        },
+        "17": {
+          "weekday_header": [
+            261
+          ],
+          "weekday_column": 7,
+          "weekday_marker": "●"
+        },
+        "18": {
+          "weekday_header": [
+            261
+          ],
+          "weekday_column": 7,
+          "weekday_marker": "●"
+        },
+        "19": {
+          "weekday_header": [
+            261
+          ],
+          "weekday_column": 3,
+          "weekday_marker": "●"
+        },
+        "20": {
+          "weekday_header": [
+            261
+          ],
+          "weekday_column": 3,
+          "weekday_marker": "●"
+        },
+        "21": {
+          "weekday_header": [
+            261
+          ],
+          "weekday_column": 3,
+          "weekday_marker": "●"
+        },
+        "22": {
+          "weekday_header": [
+            261
+          ],
+          "weekday_column": 3,
+          "weekday_marker": "●"
+        },
+        "23": {
+          "grades": [
+            168
+          ],
+          "weekday_header": [
+            202
+          ],
+          "weekday_column": 2,
+          "clock_column": 2
+        },
+        "24": {
+          "grades": [
+            168
+          ],
+          "weekday_header": [
+            202
+          ],
+          "weekday_column": 3,
+          "clock_column": 3
+        },
+        "25": {
+          "grades": [
+            168
+          ],
+          "weekday_header": [
+            202
+          ],
+          "weekday_column": 4,
+          "clock_column": 4
+        },
+        "26": {
+          "grades": [
+            168
+          ],
+          "weekday_header": [
+            202
+          ],
+          "weekday_column": 5,
+          "clock_column": 5
+        },
+        "27": {
+          "grades": [
+            168
+          ],
+          "weekday_header": [
+            202
+          ],
+          "weekday_column": 6,
+          "clock_column": 6
+        },
+        "28": {
+          "grades": [
+            168
+          ],
+          "weekday_header": [
+            202
+          ],
+          "weekday_column": 2,
+          "clock_column": 2,
+          "name_table": [
+            205
+          ]
+        },
+        "29": {
+          "grades": [
+            168
+          ],
+          "weekday_header": [
+            202
+          ],
+          "weekday_column": 3,
+          "clock_column": 3,
+          "name_table": [
+            205
+          ]
+        },
+        "30": {
+          "grades": [
+            168
+          ],
+          "weekday_header": [
+            202
+          ],
+          "weekday_column": 4,
+          "clock_column": 4,
+          "name_table": [
+            205
+          ]
+        },
+        "31": {
+          "grades": [
+            168
+          ],
+          "weekday_header": [
+            202
+          ],
+          "weekday_column": 5,
+          "clock_column": 5,
+          "name_table": [
+            205
+          ]
+        },
+        "32": {
+          "grades": [
+            168
+          ],
+          "weekday_header": [
+            202
+          ],
+          "weekday_column": 6,
+          "clock_column": 6,
+          "name_table": [
+            205
+          ]
+        }
+      },
+      "blocking_issues": [
+        {
+          "code": "care_custom_classification_pending",
+          "lines": [
+            28,
+            49,
+            51,
+            52,
+            54,
+            60
+          ],
+          "reason": "외부강사 돌봄 특별교육5요일은 보육전담사 일과와 분리 보존. 초1~2독립맞춤형과 다른 편성으로 돌봄내맞춤형 포함 여부 및 화/수 실제활동시간 확인 필요"
+        }
+      ],
+      "additional_findings": [
+        {
+          "type": "custom_participation",
+          "lines": [
+            168,
+            172,
+            179,
+            180,
+            208
+          ],
+          "reason": "방과후 및 돌봄 입급자 제외, 주5회 매일2차시 기본·중도입퇴실 제한. 3월1~3주 적응기. 방학오전2시간은 실제시각 없어 생성안함"
+        },
+        {
+          "type": "care_window",
+          "lines": [
+            28,
+            29,
+            30,
+            34,
+            35
+          ],
+          "afternoon_end": "19:00",
+          "vacation_end": "15:30",
+          "reason": "학기 방과후~19시, 방학/휴업08:30~15:30. 직원16:30퇴근과 구분"
+        },
+        {
+          "type": "care_education_candidates",
+          "lines": [
+            52,
+            60
+          ],
+          "activities": [
+            [
+              "전래놀이",
+              "월",
+              "13:50",
+              "14:40"
+            ],
+            [
+              "생활공예",
+              "화",
+              "13:50",
+              "15:40"
+            ],
+            [
+              "보드게임",
+              "수",
+              "12:50",
+              "14:40"
+            ],
+            [
+              "생활체육",
+              "목",
+              "13:50",
+              "14:40"
+            ],
+            [
+              "독서논술",
+              "금",
+              "13:50",
+              "14:40"
+            ]
+          ],
+          "reason": "실제 특별교육표를 보존. 화/수110분과 1회50분 안내·예시13:50~14:40이 달라 별도확인. 예시로 덮어쓰지 않음"
+        },
+        {
+          "type": "combined_custom_window",
+          "lines": [
+            202,
+            203,
+            204,
+            205,
+            206,
+            207
+          ],
+          "reason": "90분공시창 안에40분수업2차시와10분휴식; 합친창으로 보존하고 2학년반 중복 생성하지 않음"
+        },
+        {
+          "type": "reference_course_name",
+          "lines": [
+            282,
+            420
+          ],
+          "reason": "상세표 클레이 쿠키와 재계약목록 클레이토탈공예 명칭차이. 시간대같으면합격판정과 분리"
+        }
+      ],
+      "exclusions": [
+        {
+          "lines": [
+            51,
+            58,
+            61,
+            62,
+            63,
+            64,
+            65,
+            66,
+            67
+          ],
+          "reason": "보육전담사의 과제·간식·자유선택·창의일과·귀가지도를 강좌로 생성하지 않음"
+        },
+        {
+          "lines": [
+            147,
+            148,
+            149,
+            150,
+            151,
+            152,
+            153,
+            154,
+            155,
+            156,
+            157,
+            158,
+            159,
+            160,
+            161,
+            162,
+            163,
+            164
+          ],
+          "reason": "일반 정책 아침·저녁 돌봄그림은 학교실제 시각 근거로 사용하지 않음"
+        }
+      ],
+      "production_apply_ready": false,
+      "approved_for_upload": false
+    }
+  ]
+}

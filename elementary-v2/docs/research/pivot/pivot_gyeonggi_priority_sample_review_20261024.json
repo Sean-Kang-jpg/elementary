@@ -1,0 +1,234 @@
+{
+  "checked_on": "2026-10-24",
+  "independent_review": false,
+  "no_operational_upload": true,
+  "schools": [
+    {
+      "school_id": "B000003858",
+      "school_name": "동안초등학교",
+      "input": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000003858.txt",
+      "input_sha256": "fe8099e428c62707502bfc95ca04e6956024f8f4c29f1d2c6ed2de5eecf2f086",
+      "output": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\outputs\\B000003858.json",
+      "output_sha256": "f3231e6e1452ea06fdf12f09bbc489365a25f642b7b1e8bb5746b348f62e5996",
+      "review_method": "same-assistant second-pass table-image comparison; not independent review",
+      "supplied_sources_read": false,
+      "review_scope": "course table L10 / original PDF p3; not a new whole-document completeness review",
+      "table_visual_checked": true,
+      "visual_review_image": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\pdf_review\\dongan-review.png",
+      "rows": 32,
+      "grade1_rows": 21,
+      "custom_rows": 0,
+      "field_evidence": {
+        "1": {
+          "source_span": [
+            40,
+            111
+          ]
+        },
+        "2": {
+          "source_span": [
+            40,
+            111
+          ]
+        },
+        "3": {
+          "source_span": [
+            111,
+            156
+          ]
+        },
+        "4": {
+          "source_span": [
+            156,
+            206
+          ]
+        },
+        "5": {
+          "source_span": [
+            206,
+            293
+          ]
+        },
+        "6": {
+          "source_span": [
+            206,
+            293
+          ]
+        },
+        "7": {
+          "source_span": [
+            293,
+            384
+          ]
+        },
+        "8": {
+          "source_span": [
+            293,
+            384
+          ]
+        },
+        "9": {
+          "source_span": [
+            384,
+            468
+          ]
+        },
+        "10": {
+          "source_span": [
+            384,
+            468
+          ]
+        },
+        "11": {
+          "source_span": [
+            468,
+            532
+          ]
+        },
+        "12": {
+          "source_span": [
+            468,
+            532
+          ]
+        },
+        "13": {
+          "source_span": [
+            532,
+            622
+          ]
+        },
+        "14": {
+          "source_span": [
+            532,
+            622
+          ]
+        },
+        "15": {
+          "source_span": [
+            622,
+            690
+          ]
+        },
+        "16": {
+          "source_span": [
+            622,
+            690
+          ]
+        },
+        "17": {
+          "source_span": [
+            690,
+            794
+          ]
+        },
+        "18": {
+          "source_span": [
+            690,
+            794
+          ]
+        },
+        "19": {
+          "source_span": [
+            794,
+            864
+          ]
+        },
+        "20": {
+          "source_span": [
+            794,
+            864
+          ]
+        },
+        "21": {
+          "source_span": [
+            864,
+            928
+          ]
+        },
+        "22": {
+          "source_span": [
+            864,
+            928
+          ]
+        },
+        "23": {
+          "source_span": [
+            928,
+            994
+          ]
+        },
+        "24": {
+          "source_span": [
+            928,
+            994
+          ]
+        },
+        "25": {
+          "source_span": [
+            994,
+            1081
+          ]
+        },
+        "26": {
+          "source_span": [
+            994,
+            1081
+          ]
+        },
+        "27": {
+          "source_span": [
+            1081,
+            1146
+          ]
+        },
+        "28": {
+          "source_span": [
+            1081,
+            1146
+          ]
+        },
+        "29": {
+          "source_span": [
+            1146,
+            1227
+          ]
+        },
+        "30": {
+          "source_span": [
+            1146,
+            1227
+          ]
+        },
+        "31": {
+          "source_span": [
+            1227,
+            1297
+          ]
+        },
+        "32": {
+          "source_span": [
+            1227,
+            1297
+          ]
+        }
+      },
+      "blocking_issues": [],
+      "additional_findings": [
+        {
+          "type": "planned_course_closure_condition",
+          "lines": [
+            4
+          ],
+          "reason": "요리 폐강 가능성 안내는 확정 폐강 아님. 현행학기 운영 여부 추가확인 필요"
+        },
+        {
+          "type": "current_term_not_verified",
+          "reason": "연간계획 원문 표 대조이며 현재학기 신청·변경 공지 확인 전"
+        }
+      ],
+      "exclusions": [],
+      "production_apply_ready": false,
+      "approved_for_upload": false
+    }
+  ]
+}

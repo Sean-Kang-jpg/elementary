@@ -1,0 +1,5600 @@
+{
+  "schema_version": "pivot-gyeonggi-priority-preparation-v1",
+  "coverage_checked_on": "2026-10-23",
+  "no_operational_upload": true,
+  "source_manifest": "F:\\sm\\vibe\\elementary\\pjt_250826\\elementary-v2\\docs\\research\\pivot\\pilot_manifest_20261020.json",
+  "coverage_snapshot_sha256": "2587916472d77702d4113ee636d09c5ac6e242cb96c5e561885cb8dde2c77931",
+  "recovered_attachments": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\recovered_attachments.json",
+  "table_extractor": "F:\\sm\\vibe\\elementary\\.worktrees\\pivot-p1-v3-20261021\\elementary-v2\\etl\\school_document_tables.py",
+  "table_extractor_sha256": "4c0e31b82db166910b90db7e625ec1ae81e7ef67b0dc88f939146036864114f4",
+  "summary": {
+    "schools": 127,
+    "by_area": {
+      "bundang": 38,
+      "wirye": 6,
+      "dongan": 26,
+      "gwangmyeong": 25,
+      "suji": 32
+    },
+    "inputs_ready": 127,
+    "existing_p1": 44,
+    "new_course_targets": 83,
+    "care_review_targets": 37,
+    "course_extraction_completed_by_this_run": 0
+  },
+  "schools": [
+    {
+      "school_id": "B000003751",
+      "school_name": "구미초등학교",
+      "area": "bundang",
+      "road_address": "경기도 성남시 분당구 미금로22번길 25",
+      "coverage": {
+        "school_id": "B000003751",
+        "school_name": "구미초등학교",
+        "road_address": "경기도 성남시 분당구 미금로22번길 25",
+        "care_status": "stated",
+        "afternoon_end": "17:00:00",
+        "extended_end": null,
+        "morning_hours": null,
+        "care_year": 2026,
+        "has_afterschool": false,
+        "afterschool_year": null,
+        "grade1_options": null,
+        "custom_options": null,
+        "afterschool_snapshot": null
+      },
+      "input": "inputs/B000003751.txt",
+      "input_sha256": "47d82cc4f2bcbe3e9e1b988fe5091372b72cc1fea6100750543272e42186393b",
+      "input_chars": 46552,
+      "truncated": false,
+      "sources": [
+        {
+          "name": "2026학년도 방과후돌봄 운영 계획 수정(안).hwp",
+          "sha256": "e03392530cd1a38b102b51d1561feec1cb31f1b7927bc9fbdae5087e16ca21bf",
+          "format": "hwp",
+          "file_academic_year": 2026,
+          "chars": 23261
+        },
+        {
+          "name": "2026학년도 구미초 돌봄교실 연간 운영 계획서.hwp",
+          "sha256": "4837354a1c71dd0da5a16b34006f7a3aeac4b670665be9689fe909e1d8bdbe7b",
+          "format": "hwp",
+          "file_academic_year": 2026,
+          "chars": 18522
+        }
+      ],
+      "errors": [],
+      "input_ready": true,
+      "course_track": "existing_p1",
+      "course_extraction_status": "pending",
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000003745",
+      "school_name": "낙생초등학교",
+      "area": "bundang",
+      "road_address": "경기도 성남시 분당구 서판교로74번길 11",
+      "coverage": {
+        "school_id": "B000003745",
+        "school_name": "낙생초등학교",
+        "road_address": "경기도 성남시 분당구 서판교로74번길 11",
+        "care_status": "stated",
+        "afternoon_end": "19:00:00",
+        "extended_end": null,
+        "morning_hours": null,
+        "care_year": 2026,
+        "has_afterschool": false,
+        "afterschool_year": null,
+        "grade1_options": null,
+        "custom_options": null,
+        "afterschool_snapshot": null
+      },
+      "input": "inputs/B000003745.txt",
+      "input_sha256": "3ed1f54b8441ce07a8e272f9f44533a6dda6f2fbfcb1f81f84e95b9bad25b15d",
+      "input_chars": 31010,
+      "truncated": false,
+      "sources": [
+        {
+          "name": "2026학년도 낙생초 방과후·돌봄 운영계획.pdf",
+          "sha256": "df758272fc6751971fadcd468363f1972d78f064528570fbdac30f235808f59e",
+          "format": "pdf",
+          "file_academic_year": 2026,
+          "chars": 30284
+        }
+      ],
+      "errors": [],
+      "input_ready": true,
+      "course_track": "existing_p1",
+      "course_extraction_status": "pending",
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000003770",
+      "school_name": "내정초등학교",
+      "area": "bundang",
+      "road_address": "경기도 성남시 분당구 내정로174번길 19",
+      "coverage": {
+        "school_id": "B000003770",
+        "school_name": "내정초등학교",
+        "road_address": "경기도 성남시 분당구 내정로174번길 19",
+        "care_status": "stated",
+        "afternoon_end": "19:00:00",
+        "extended_end": null,
+        "morning_hours": null,
+        "care_year": 2026,
+        "has_afterschool": false,
+        "afterschool_year": null,
+        "grade1_options": null,
+        "custom_options": null,
+        "afterschool_snapshot": null
+      },
+      "input": "inputs/B000003770.txt",
+      "input_sha256": "dc98fcc97fc835d225be93b372e3dba8c6de61ea4e21d7b73e1e469a82565c68",
+      "input_chars": 37610,
+      "truncated": false,
+      "sources": [
+        {
+          "name": "2026학년도 내정초등학교 초등돌봄교실 운영 계획.hwp",
+          "sha256": "c83dc4341f8a1310367ad67747324a978d29293e33cfcbe6f85d0bb5c9f74905",
+          "format": "hwp",
+          "file_academic_year": 2026,
+          "chars": 8766
+        },
+        {
+          "name": "2026학년도 내정초등학교 방과후학교 운영 계획.hwpx",
+          "sha256": "4295f89ba5f7c40e56093a3750f53e2233e011bbbcaa25c0d0acdc3d93240955",
+          "format": "hwpx",
+          "file_academic_year": 2026,
+          "chars": 24960
+        }
+      ],
+      "errors": [],
+      "input_ready": true,
+      "course_track": "existing_p1",
+      "course_extraction_status": "pending",
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000003766",
+      "school_name": "늘푸른초등학교",
+      "area": "bundang",
+      "road_address": "경기도 성남시 분당구 정자일로 87",
+      "coverage": {
+        "school_id": "B000003766",
+        "school_name": "늘푸른초등학교",
+        "road_address": "경기도 성남시 분당구 정자일로 87",
+        "care_status": "stated",
+        "afternoon_end": "18:30:00",
+        "extended_end": null,
+        "morning_hours": "07:50-08:30",
+        "care_year": 2026,
+        "has_afterschool": false,
+        "afterschool_year": null,
+        "grade1_options": null,
+        "custom_options": null,
+        "afterschool_snapshot": null
+      },
+      "input": "inputs/B000003766.txt",
+      "input_sha256": "b9039be04cf5d2d642a5e9a6677764fe0d743dc0bb426304983fe67c9146045c",
+      "input_chars": 48903,
+      "truncated": false,
+      "sources": [
+        {
+          "name": "2026 돌봄교실 운영 계획.hwp",
+          "sha256": "d0ea014def380d8e7d4f9396535a1e2b791eb1322ed09c26e4e1c14aed78faeb",
+          "format": "hwp",
+          "file_academic_year": 2026,
+          "chars": 9770
+        },
+        {
+          "name": "2026학년도 방과후돌봄 운영계획.hwp",
+          "sha256": "24412e6460c0d3ab3be97e4665eb0b240a0894a8e7c11d7e7e3e6dbbd0ef8b03",
+          "format": "hwp",
+          "file_academic_year": 2026,
+          "chars": 34243
+        }
+      ],
+      "errors": [],
+      "input_ready": true,
+      "course_track": "existing_p1",
+      "course_extraction_status": "pending",
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000003739",
+      "school_name": "당촌초등학교",
+      "area": "bundang",
+      "road_address": "경기도 성남시 분당구 분당로 196",
+      "coverage": {
+        "school_id": "B000003739",
+        "school_name": "당촌초등학교",
+        "road_address": "경기도 성남시 분당구 분당로 196",
+        "care_status": "school_check_needed",
+        "afternoon_end": null,
+        "extended_end": null,
+        "morning_hours": null,
+        "care_year": 2026,
+        "has_afterschool": false,
+        "afterschool_year": null,
+        "grade1_options": null,
+        "custom_options": null,
+        "afterschool_snapshot": null
+      },
+      "input": "inputs/B000003739.txt",
+      "input_sha256": "e2e5a4d91ed40b1b13baba7a1bc18d1c277c804aea7617ae840e46b0698b2350",
+      "input_chars": 16383,
+      "truncated": false,
+      "sources": [
+        {
+          "name": "2026 방과후돌봄운영계획.hwpx",
+          "sha256": "59b9887e0ec1a378341f8b3f532650f182c1242d6f3c049a6ee42fae997512bd",
+          "format": "hwpx",
+          "file_academic_year": 2026,
+          "chars": 14885
+        }
+      ],
+      "errors": [],
+      "input_ready": true,
+      "course_track": "existing_p1",
+      "course_extraction_status": "pending",
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000003768",
+      "school_name": "돌마초등학교",
+      "area": "bundang",
+      "road_address": "경기도 성남시 분당구 야탑로 96-7",
+      "coverage": {
+        "school_id": "B000003768",
+        "school_name": "돌마초등학교",
+        "road_address": "경기도 성남시 분당구 야탑로 96-7",
+        "care_status": "school_check_needed",
+        "afternoon_end": null,
+        "extended_end": null,
+        "morning_hours": null,
+        "care_year": 2026,
+        "has_afterschool": false,
+        "afterschool_year": null,
+        "grade1_options": null,
+        "custom_options": null,
+        "afterschool_snapshot": null
+      },
+      "input": "inputs/B000003768.txt",
+      "input_sha256": "ed2cc002c77b65c315e6899c2a0f5e7c1cf63460dfde4754fcd72dd11369acf3",
+      "input_chars": 36914,
+      "truncated": false,
+      "sources": [
+        {
+          "name": "2026학년도 돌마초 방과후학교 운영 세부 추진계획(학교운영위원회 심의안).hwp",
+          "sha256": "4d7127208e54828d12f8f239a7743669e6fb36f32138b6e69cad5f61076a3fa8",
+          "format": "hwp",
+          "file_academic_year": 2026,
+          "chars": 33272
+        }
+      ],
+      "errors": [],
+      "input_ready": true,
+      "course_track": "existing_p1",
+      "course_extraction_status": "pending",
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000003755",
+      "school_name": "백현초등학교",
+      "area": "bundang",
+      "road_address": "경기도 성남시 분당구 백현로144번길 26",
+      "coverage": {
+        "school_id": "B000003755",
+        "school_name": "백현초등학교",
+        "road_address": "경기도 성남시 분당구 백현로144번길 26",
+        "care_status": "stated",
+        "afternoon_end": "19:00:00",
+        "extended_end": null,
+        "morning_hours": null,
+        "care_year": 2026,
+        "has_afterschool": false,
+        "afterschool_year": null,
+        "grade1_options": null,
+        "custom_options": null,
+        "afterschool_snapshot": null
+      },
+      "input": "inputs/B000003755.txt",
+      "input_sha256": "3b60abc1f19b9364fe3eefa6b765f02a7e33ba7bdede360f0cf0a4d6d501f132",
+      "input_chars": 39048,
+      "truncated": false,
+      "sources": [
+        {
+          "name": "2026학년도 돌봄교실 연간 운영 계획.hwp",
+          "sha256": "c841b05b0df3900dee9932549e8408954e5ea096bfd9f18bc5995232dcf9a23a",
+          "format": "hwp",
+          "file_academic_year": 2026,
+          "chars": 16993
+        },
+        {
+          "name": "2026학년도 수익자 방과후 연간 운영 계획.hwp",
+          "sha256": "405118fb805552d50414874dde58844e5af4b561c71217d5659516935f6576ef",
+          "format": "hwp",
+          "file_academic_year": 2026,
+          "chars": 17802
+        }
+      ],
+      "errors": [],
+      "input_ready": true,
+      "course_track": "existing_p1",
+      "course_extraction_status": "pending",
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000003743",
+      "school_name": "보평초등학교",
+      "area": "bundang",
+      "road_address": "경기도 성남시 분당구 동판교로 154",
+      "coverage": {
+        "school_id": "B000003743",
+        "school_name": "보평초등학교",
+        "road_address": "경기도 성남시 분당구 동판교로 154",
+        "care_status": "school_check_needed",
+        "afternoon_end": null,
+        "extended_end": null,
+        "morning_hours": null,
+        "care_year": 2026,
+        "has_afterschool": false,
+        "afterschool_year": null,
+        "grade1_options": null,
+        "custom_options": null,
+        "afterschool_snapshot": null
+      },
+      "input": "inputs/B000003743.txt",
+      "input_sha256": "1cec49f8c9de8087073632c546ddef01ca6026a7191eacc6d0fda778bf3d8d7c",
+      "input_chars": 57263,
+      "truncated": false,
+      "sources": [
+        {
+          "name": "2026학년도 방과후 운영 계획.hwp",
+          "sha256": "e49a72b0b79174a2abb518c9fda9457d17c46de98ae57162a2573f496e9a3d24",
+          "format": "hwp",
+          "file_academic_year": 2026,
+          "chars": 52637
+        }
+      ],
+      "errors": [],
+      "input_ready": true,
+      "course_track": "existing_p1",
+      "course_extraction_status": "pending",
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000003761",
+      "school_name": "분당초등학교",
+      "area": "bundang",
+      "road_address": "경기도 성남시 분당구 중앙공원로32번길 20",
+      "coverage": {
+        "school_id": "B000003761",
+        "school_name": "분당초등학교",
+        "road_address": "경기도 성남시 분당구 중앙공원로32번길 20",
+        "care_status": "stated",
+        "afternoon_end": "19:00:00",
+        "extended_end": null,
+        "morning_hours": null,
+        "care_year": 2026,
+        "has_afterschool": false,
+        "afterschool_year": null,
+        "grade1_options": null,
+        "custom_options": null,
+        "afterschool_snapshot": null
+      },
+      "input": "inputs/B000003761.txt",
+      "input_sha256": "8e5e0d5b42f7b9b5ad1d9097029f87df4c020775cd56212a4d95bc45524a6230",
+      "input_chars": 60954,
+      "truncated": false,
+      "sources": [
+        {
+          "name": "2026학년도 분당초 방과후돌봄학교 통합 운영계획.hwpx",
+          "sha256": "5dbd55026fed99e338f92f68d2899d1afe8e0d88bf21fd5637556a60be1bdd27",
+          "format": "hwpx",
+          "file_academic_year": 2026,
+          "chars": 49358
+        },
+        {
+          "name": "2026학년도 분당초등학교 돌봄교실 운영계획.hwpx",
+          "sha256": "7543bdab3d203a5c7ad8d377af41e2975d88f9eaadf81ca80bde3629f3f57f7f",
+          "format": "hwpx",
+          "file_academic_year": 2026,
+          "chars": 6195
+        }
+      ],
+      "errors": [],
+      "input_ready": true,
+      "course_track": "existing_p1",
+      "course_extraction_status": "pending",
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000003752",
+      "school_name": "불곡초등학교",
+      "area": "bundang",
+      "road_address": "경기도 성남시 분당구 무지개로 129",
+      "coverage": {
+        "school_id": "B000003752",
+        "school_name": "불곡초등학교",
+        "road_address": "경기도 성남시 분당구 무지개로 129",
+        "care_status": "stated",
+        "afternoon_end": "19:00:00",
+        "extended_end": null,
+        "morning_hours": null,
+        "care_year": 2026,
+        "has_afterschool": false,
+        "afterschool_year": null,
+        "grade1_options": null,
+        "custom_options": null,
+        "afterschool_snapshot": null
+      },
+      "input": "inputs/B000003752.txt",
+      "input_sha256": "32df9c28ae5955928197a9bc78d9fe7c385b15c5eae4ea869176d5e8512073e9",
+      "input_chars": 23536,
+      "truncated": false,
+      "sources": [
+        {
+          "name": "2026학년도 불곡초 방과후·돌봄 운영 계획.pdf",
+          "sha256": "4380b63cdc0bd7d72af16ffde1574d7d3a5b9e6834804c5dcacd081f2a9ceb5a",
+          "format": "pdf",
+          "file_academic_year": 2026,
+          "chars": 22617
+        }
+      ],
+      "errors": [],
+      "input_ready": true,
+      "course_track": "existing_p1",
+      "course_extraction_status": "pending",
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000003756",
+      "school_name": "불정초등학교",
+      "area": "bundang",
+      "road_address": "경기도 성남시 분당구 돌마로 250",
+      "coverage": {
+        "school_id": "B000003756",
+        "school_name": "불정초등학교",
+        "road_address": "경기도 성남시 분당구 돌마로 250",
+        "care_status": "stated",
+        "afternoon_end": "17:00:00",
+        "extended_end": "19:00:00",
+        "morning_hours": "08:00-08:40",
+        "care_year": 2026,
+        "has_afterschool": false,
+        "afterschool_year": null,
+        "grade1_options": null,
+        "custom_options": null,
+        "afterschool_snapshot": null
+      },
+      "input": "inputs/B000003756.txt",
+      "input_sha256": "bfe10d9aeeb51eee1facc2399a53cd82a441f1c88d22ce71f1bd36bbb2ca595f",
+      "input_chars": 36464,
+      "truncated": false,
+      "sources": [
+        {
+          "name": "2026학년도 초등돌봄교실 운영계획.hwpx",
+          "sha256": "d10d6406594ad8d97b12d00b211f0106e482504091621efc7717c4a2b641c30a",
+          "format": "hwpx",
+          "file_academic_year": 2026,
+          "chars": 4466
+        },
+        {
+          "name": "2026학년도 방과후돌봄 운영 계획 수정(안).hwp",
+          "sha256": "f7b9e10ff5999f271b650a54da6c720da3d3515d28f40a87ee61c3eafe0695e3",
+          "format": "hwp",
+          "file_academic_year": 2026,
+          "chars": 27703
+        }
+      ],
+      "errors": [],
+      "input_ready": true,
+      "course_track": "existing_p1",
+      "course_extraction_status": "pending",
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000003747",
+      "school_name": "산운초등학교",
+      "area": "bundang",
+      "road_address": "경기도 성남시 분당구 판교원로117번길 11",
+      "coverage": {
+        "school_id": "B000003747",
+        "school_name": "산운초등학교",
+        "road_address": "경기도 성남시 분당구 판교원로117번길 11",
+        "care_status": "stated",
+        "afternoon_end": "19:00:00",
+        "extended_end": null,
+        "morning_hours": null,
+        "care_year": 2026,
+        "has_afterschool": false,
+        "afterschool_year": null,
+        "grade1_options": null,
+        "custom_options": null,
+        "afterschool_snapshot": null
+      },
+      "input": "inputs/B000003747.txt",
+      "input_sha256": "9f48be4912dbc7ce00b380e967322bc0d25eb2cecb995a1be4041e4b1bb28827",
+      "input_chars": 28875,
+      "truncated": false,
+      "sources": [
+        {
+          "name": "2026학년도 산운초 늘봄학교(선택형교육) 운영 계획.hwp",
+          "sha256": "19596bd5c35f788c6d73b5552b52bbe0e0c053cd4ca0c7d4eae7c4361b41da22",
+          "format": "hwp",
+          "file_academic_year": 2026,
+          "chars": 16794
+        },
+        {
+          "name": "2026년 돌봄교실운영 계획.hwp",
+          "sha256": "9b735e117035c2cfd5561f288f9077cb052ba74c599bc67f28f6ed72420091fd",
+          "format": "hwp",
+          "file_academic_year": 2026,
+          "chars": 9131
+        }
+      ],
+      "errors": [],
+      "input_ready": true,
+      "course_track": "existing_p1",
+      "course_extraction_status": "pending",
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000003741",
+      "school_name": "상탑초등학교",
+      "area": "bundang",
+      "road_address": "경기도 성남시 분당구 판교로 647",
+      "coverage": {
+        "school_id": "B000003741",
+        "school_name": "상탑초등학교",
+        "road_address": "경기도 성남시 분당구 판교로 647",
+        "care_status": "stated",
+        "afternoon_end": "17:00:00",
+        "extended_end": "18:00:00",
+        "morning_hours": null,
+        "care_year": 2026,
+        "has_afterschool": false,
+        "afterschool_year": null,
+        "grade1_options": null,
+        "custom_options": null,
+        "afterschool_snapshot": null
+      },
+      "input": "inputs/B000003741.txt",
+      "input_sha256": "370aec1411565f3edf335adef34920a9408c45100e8802324fd9dac39c33bec7",
+      "input_chars": 21802,
+      "truncated": false,
+      "sources": [
+        {
+          "name": "2026학년도 상탑초 방과후돌봄 운영 계획.hwpx",
+          "sha256": "8e9251ff2a4539b233b8b544e0789605d55ed9ae24653818c80639cb5306c0d4",
+          "format": "hwpx",
+          "file_academic_year": 2026,
+          "chars": 19239
+        }
+      ],
+      "errors": [],
+      "input_ready": true,
+      "course_track": "existing_p1",
+      "course_extraction_status": "pending",
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000003758",
+      "school_name": "서당초등학교",
+      "area": "bundang",
+      "road_address": "경기도 성남시 분당구 돌마로476번길 30",
+      "coverage": {
+        "school_id": "B000003758",
+        "school_name": "서당초등학교",
+        "road_address": "경기도 성남시 분당구 돌마로476번길 30",
+        "care_status": "stated",
+        "afternoon_end": "17:00:00",
+        "extended_end": "19:00:00",
+        "morning_hours": null,
+        "care_year": 2026,
+        "has_afterschool": false,
+        "afterschool_year": null,
+        "grade1_options": null,
+        "custom_options": null,
+        "afterschool_snapshot": null
+      },
+      "input": "inputs/B000003758.txt",
+      "input_sha256": "a921b248fb3aa05d174e5eece17a8cf444dc10d0d246c001f724608c93f44b38",
+      "input_chars": 56997,
+      "truncated": false,
+      "sources": [
+        {
+          "name": "1분기 수업료(3학년포함).xls",
+          "sha256": "4888b37a21b108808139bc77562811489af602cf3d5ece5dd8d3648a0ca08aee",
+          "format": "xls",
+          "file_academic_year": null,
+          "chars": 33174,
+          "text_override": {
+            "text_file": "F:\\sm\\vibe\\elementary\\pjt_250826\\elementary-v2\\etl\\runtime\\pivot_gyeonggi_priority_20261023\\4888b37a21b108808139bc77562811489af602cf3d5ece5dd8d3648a0ca08aee.txt",
+            "text_sha256": "902c2d89725dea7cefd1a0794987c696656e6f751d1192f9f318f2b48927b38f",
+            "archive_file": "F:\\sm\\vibe\\elementary\\pjt_250826\\elementary-v2\\etl\\runtime\\pivot_gyeonggi_priority_20261023\\4888b37a21b108808139bc77562811489af602cf3d5ece5dd8d3648a0ca08aee.xls",
+            "format": "xls",
+            "method": "xlrd 2.0.2 read-only analysis; row-span labels repeated; original worksheets preserved"
+          }
+        },
+        {
+          "name": "2026학년도 서당초 돌봄교실 운영 계획.hwp",
+          "sha256": "f1b330c152b9fdf23521210e41b489d07de1660f0daa05ccfb06813489b4d6a6",
+          "format": "hwp",
+          "file_academic_year": 2026,
+          "chars": 17097
+        }
+      ],
+      "errors": [],
+      "input_ready": true,
+      "course_track": "existing_p1",
+      "course_extraction_status": "pending",
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000003760",
+      "school_name": "서현초등학교",
+      "area": "bundang",
+      "road_address": "경기도 성남시 분당구 중앙공원로39번길 12",
+      "coverage": {
+        "school_id": "B000003760",
+        "school_name": "서현초등학교",
+        "road_address": "경기도 성남시 분당구 중앙공원로39번길 12",
+        "care_status": "stated",
+        "afternoon_end": "19:00:00",
+        "extended_end": null,
+        "morning_hours": null,
+        "care_year": 2026,
+        "has_afterschool": false,
+        "afterschool_year": null,
+        "grade1_options": null,
+        "custom_options": null,
+        "afterschool_snapshot": null
+      },
+      "input": "inputs/B000003760.txt",
+      "input_sha256": "8c2951dab95d777836602d212b94a8c2ec7043815810062f432647ff6c2044ba",
+      "input_chars": 33849,
+      "truncated": false,
+      "sources": [
+        {
+          "name": "2026학년도 돌봄교실 운영계획.pdf",
+          "sha256": "f9f0bad595b5f78ba68c517b9226cef6ce64703d73da54e541c066225c489fb1",
+          "format": "pdf",
+          "file_academic_year": 2026,
+          "chars": 11617
+        },
+        {
+          "name": "(서현초등학교-3013 (첨부)) 2026학년도 수익자 방과후교육 운영 계획.pdf",
+          "sha256": "7da46fb9d19783e443392fd80a4894f85779bb90e19a4b468a36c3c416ab4478",
+          "format": "pdf",
+          "file_academic_year": 2026,
+          "chars": 21235
+        }
+      ],
+      "errors": [],
+      "input_ready": true,
+      "course_track": "existing_p1",
+      "course_extraction_status": "pending",
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000003753",
+      "school_name": "성남매송초등학교",
+      "area": "bundang",
+      "road_address": "경기도 성남시 분당구 탄천로 97",
+      "coverage": {
+        "school_id": "B000003753",
+        "school_name": "성남매송초등학교",
+        "road_address": "경기도 성남시 분당구 탄천로 97",
+        "care_status": "stated",
+        "afternoon_end": "19:00:00",
+        "extended_end": null,
+        "morning_hours": null,
+        "care_year": 2026,
+        "has_afterschool": false,
+        "afterschool_year": null,
+        "grade1_options": null,
+        "custom_options": null,
+        "afterschool_snapshot": null
+      },
+      "input": "inputs/B000003753.txt",
+      "input_sha256": "2809abd1c8165961a999f364e14bfc978b385a14fc04a82dc732511502ad211f",
+      "input_chars": 29429,
+      "truncated": false,
+      "sources": [
+        {
+          "name": "2026학년도 성남매송초 방과후돌봄 운영 계획.hwpx",
+          "sha256": "11895609a2a3bd03f6ab80cc613b65c2a71f078e82afc48631cc5d4c12b7843f",
+          "format": "hwpx",
+          "file_academic_year": 2026,
+          "chars": 13676
+        },
+        {
+          "name": "26.1. 2026.성남매송초 초등돌봄교실 운영계획.hwp",
+          "sha256": "bb4f3323b069469115dc3e8e8ed01fc5452b2bc05b6b73424e8b8698dea7a9f9",
+          "format": "hwp",
+          "file_academic_year": 2026,
+          "chars": 12053
+        }
+      ],
+      "errors": [],
+      "input_ready": true,
+      "course_track": "existing_p1",
+      "course_extraction_status": "pending",
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000003754",
+      "school_name": "성남미금초등학교",
+      "area": "bundang",
+      "road_address": "경기도 성남시 분당구 미금로 151",
+      "coverage": {
+        "school_id": "B000003754",
+        "school_name": "성남미금초등학교",
+        "road_address": "경기도 성남시 분당구 미금로 151",
+        "care_status": "stated",
+        "afternoon_end": "19:00:00",
+        "extended_end": null,
+        "morning_hours": null,
+        "care_year": 2026,
+        "has_afterschool": false,
+        "afterschool_year": null,
+        "grade1_options": null,
+        "custom_options": null,
+        "afterschool_snapshot": null
+      },
+      "input": "inputs/B000003754.txt",
+      "input_sha256": "7c16064f59f8e810f84cc1ce8ffc8b7721e7fabd4fdfb48b3c7a70ba34260af3",
+      "input_chars": 167794,
+      "truncated": false,
+      "sources": [
+        {
+          "name": "2025 성남미금초 돌봄교실 주간학습안내(8월 4주).hwp",
+          "sha256": "491cd6061c0a357d8cf3b842a0f8c25ebeee56901a61d2bb67b857144df5ebb3",
+          "format": "hwp",
+          "file_academic_year": 2025,
+          "chars": 2204
+        },
+        {
+          "name": "2025 성남미금초 돌봄교실 주간학습안내(5월 3주).hwp",
+          "sha256": "561f62da3980616791d7503abe9b044d196ce578f20e652eda093d0cf20deac5",
+          "format": "hwp",
+          "file_academic_year": 2025,
+          "chars": 2068
+        },
+        {
+          "name": "2025 성남미금초 돌봄교실 주간학습안내(3월1주).hwp",
+          "sha256": "d0a3c44cd1812c284831fb32233de047ad9079532dde23db3a5b5051951508db",
+          "format": "hwp",
+          "file_academic_year": 2025,
+          "chars": 1854
+        },
+        {
+          "name": "2026학년도 1분기 수익자 방과후 교육 징수명단.xls",
+          "sha256": "b6d6c5780ecfac0e1513f79fc5225dee2b1148ef94634c7ba3ce7355d26f7e06",
+          "format": "xls",
+          "file_academic_year": 2026,
+          "chars": 92359,
+          "text_override": {
+            "text_file": "F:\\sm\\vibe\\elementary\\pjt_250826\\elementary-v2\\etl\\runtime\\pivot_gyeonggi_priority_20261023\\b6d6c5780ecfac0e1513f79fc5225dee2b1148ef94634c7ba3ce7355d26f7e06.txt",
+            "text_sha256": "e367871cdb42a3809c16cc86213b03076a4111800130da81d2af66da5e9dea0e",
+            "archive_file": "F:\\sm\\vibe\\elementary\\pjt_250826\\elementary-v2\\etl\\runtime\\pivot_gyeonggi_priority_20261023\\b6d6c5780ecfac0e1513f79fc5225dee2b1148ef94634c7ba3ce7355d26f7e06.xls",
+            "format": "xls",
+            "method": "xlrd 2.0.2 read-only analysis; row-span labels repeated; original worksheets preserved"
+          }
+        },
+        {
+          "name": "[가정통신문]2025학년도 늘봄학교 1~4분기 선택형교육(수익자 부담) 정산서 공개_(2.19).hwp",
+          "sha256": "d03c8082157c84c9ceb7a63a522682736763889a1240c09b129ca5442bc12931",
+          "format": "hwp",
+          "file_academic_year": 2025,
+          "chars": 1353
+        },
+        {
+          "name": "2026학년도성남미금초 돌봄교실 운영 계획_.hwp",
+          "sha256": "0075370405d2cbe64553825e19e59c2aaadc002be309294679c1fc2eef2eb698",
+          "format": "hwp",
+          "file_academic_year": 2026,
+          "chars": 8920
+        },
+        {
+          "name": "2026학년도 성남미금초 방과후돌봄학교 통합 운영 계획(안)_.hwp",
+          "sha256": "6265ac1b183a923c6377dfb042de3932399a047d3c545eba0727b1968c5f9a6f",
+          "format": "hwp",
+          "file_academic_year": 2026,
+          "chars": 43623
+        }
+      ],
+      "errors": [],
+      "input_ready": true,
+      "course_track": "existing_p1",
+      "course_extraction_status": "pending",
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000003742",
+      "school_name": "성남송현초등학교",
+      "area": "bundang",
+      "road_address": "경기도 성남시 분당구 동판교로 258",
+      "coverage": {
+        "school_id": "B000003742",
+        "school_name": "성남송현초등학교",
+        "road_address": "경기도 성남시 분당구 동판교로 258",
+        "care_status": "school_check_needed",
+        "afternoon_end": null,
+        "extended_end": null,
+        "morning_hours": null,
+        "care_year": 2026,
+        "has_afterschool": false,
+        "afterschool_year": null,
+        "grade1_options": null,
+        "custom_options": null,
+        "afterschool_snapshot": null
+      },
+      "input": "inputs/B000003742.txt",
+      "input_sha256": "b2da73f0a5c2f35fe1bf77811de3857c23d6413f43707b50c399265aa946b8a1",
+      "input_chars": 47737,
+      "truncated": false,
+      "sources": [
+        {
+          "name": "2026?성남송현초 방과후학교?운영?계획.hwp",
+          "sha256": "b8c2753b933aad2da693834442fca25e455f75cd5309ba999fc2d59f8b2898a4",
+          "format": "hwp",
+          "file_academic_year": 2026,
+          "chars": 43608
+        }
+      ],
+      "errors": [],
+      "input_ready": true,
+      "course_track": "existing_p1",
+      "course_extraction_status": "pending",
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000003737",
+      "school_name": "성남신기초등학교",
+      "area": "bundang",
+      "road_address": "경기도 성남시 분당구 황새울로 74",
+      "coverage": {
+        "school_id": "B000003737",
+        "school_name": "성남신기초등학교",
+        "road_address": "경기도 성남시 분당구 황새울로 74",
+        "care_status": "stated",
+        "afternoon_end": "18:00:00",
+        "extended_end": null,
+        "morning_hours": null,
+        "care_year": 2026,
+        "has_afterschool": false,
+        "afterschool_year": null,
+        "grade1_options": null,
+        "custom_options": null,
+        "afterschool_snapshot": null
+      },
+      "input": "inputs/B000003737.txt",
+      "input_sha256": "8fdff4ef06534c41920957e8ae8eb3b758761c29c812fbfdbf19c4cfd95f6df8",
+      "input_chars": 53256,
+      "truncated": false,
+      "sources": [
+        {
+          "name": "2026학년도 성남신기초등학교 초등돌봄교실 운영 계획.hwp",
+          "sha256": "2df3e977378bdb193288520ae986616e72dd662c49d5aad1efa020f7e61b7cb6",
+          "format": "hwp",
+          "file_academic_year": 2026,
+          "chars": 7600
+        },
+        {
+          "name": "2026학년도 성남신기초등학교 방과후학교 운영 계획.hwpx",
+          "sha256": "9c4339a472f52cde155178e78dc2ad40833916349b1f6c2b492531b49ed70604",
+          "format": "hwpx",
+          "file_academic_year": 2026,
+          "chars": 41694
+        }
+      ],
+      "errors": [],
+      "input_ready": true,
+      "course_track": "existing_p1",
+      "course_extraction_status": "pending",
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000003764",
+      "school_name": "성남장안초등학교",
+      "area": "bundang",
+      "road_address": "경기도 성남시 분당구 장안로51번길 10",
+      "coverage": {
+        "school_id": "B000003764",
+        "school_name": "성남장안초등학교",
+        "road_address": "경기도 성남시 분당구 장안로51번길 10",
+        "care_status": "school_check_needed",
+        "afternoon_end": null,
+        "extended_end": null,
+        "morning_hours": null,
+        "care_year": 2026,
+        "has_afterschool": false,
+        "afterschool_year": null,
+        "grade1_options": null,
+        "custom_options": null,
+        "afterschool_snapshot": null
+      },
+      "input": "inputs/B000003764.txt",
+      "input_sha256": "115f62c70169fb997f52b6bff3f5935047979f6a70afa50937b0e8326b419796",
+      "input_chars": 17386,
+      "truncated": false,
+      "sources": [
+        {
+          "name": "2026학년도 성남장안초 방과후학교 운영계획(안).hwp",
+          "sha256": "9419234d8c6ba2d46d690106980029f51c10311666dec1214123e73284feff44",
+          "format": "hwp",
+          "file_academic_year": 2026,
+          "chars": 16000
+        }
+      ],
+      "errors": [],
+      "input_ready": true,
+      "course_track": "existing_p1",
+      "course_extraction_status": "pending",
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000003771",
+      "school_name": "성남정자초등학교",
+      "area": "bundang",
+      "road_address": "경기도 성남시 분당구 분당수서로 442",
+      "coverage": {
+        "school_id": "B000003771",
+        "school_name": "성남정자초등학교",
+        "road_address": "경기도 성남시 분당구 분당수서로 442",
+        "care_status": "school_check_needed",
+        "afternoon_end": null,
+        "extended_end": null,
+        "morning_hours": null,
+        "care_year": 2026,
+        "has_afterschool": false,
+        "afterschool_year": null,
+        "grade1_options": null,
+        "custom_options": null,
+        "afterschool_snapshot": null
+      },
+      "input": "inputs/B000003771.txt",
+      "input_sha256": "bb69068b1477731983204027efaf9fdf545053a6dbc2889b2830b73152738c4f",
+      "input_chars": 27012,
+      "truncated": false,
+      "sources": [
+        {
+          "name": "2026학년도 방과후 운영 계획 (1).hwp",
+          "sha256": "427beefd952d5246cf9f0457e3b5631abd440b0fe5b98b8fa7212b839fc9f6b6",
+          "format": "hwp",
+          "file_academic_year": 2026,
+          "chars": 24084
+        }
+      ],
+      "errors": [],
+      "input_ready": true,
+      "course_track": "existing_p1",
+      "course_extraction_status": "pending",
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000024167",
+      "school_name": "성남화랑초등학교",
+      "area": "bundang",
+      "road_address": "경기도 성남시 분당구 동판교로 77",
+      "coverage": {
+        "school_id": "B000024167",
+        "school_name": "성남화랑초등학교",
+        "road_address": "경기도 성남시 분당구 동판교로 77",
+        "care_status": "stated",
+        "afternoon_end": "17:00:00",
+        "extended_end": "19:00:00",
+        "morning_hours": "08:30-09:00",
+        "care_year": 2026,
+        "has_afterschool": false,
+        "afterschool_year": null,
+        "grade1_options": null,
+        "custom_options": null,
+        "afterschool_snapshot": null
+      },
+      "input": "inputs/B000024167.txt",
+      "input_sha256": "a9e0435fb20758cfb691e2edc2be7136f8f3604c9202dd8faa74904febd368aa",
+      "input_chars": 62789,
+      "truncated": false,
+      "sources": [
+        {
+          "name": "2026 성남화랑초 방과후·돌봄 통합 운영 계획 계획(난타 개설 및 환불규정 개정).hwp",
+          "sha256": "dfa24de1c1d8c3408ff3c0558dc260b3dfcdef6a16011b14aab7c382e829b943",
+          "format": "hwp",
+          "file_academic_year": 2026,
+          "chars": 56223
+        }
+      ],
+      "errors": [],
+      "input_ready": true,
+      "course_track": "existing_p1",
+      "course_extraction_status": "pending",
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000003772",
+      "school_name": "수내초등학교",
+      "area": "bundang",
+      "road_address": "경기도 성남시 분당구 백현로243번길 12",
+      "coverage": {
+        "school_id": "B000003772",
+        "school_name": "수내초등학교",
+        "road_address": "경기도 성남시 분당구 백현로243번길 12",
+        "care_status": "stated",
+        "afternoon_end": "18:00:00",
+        "extended_end": null,
+        "morning_hours": null,
+        "care_year": 2026,
+        "has_afterschool": false,
+        "afterschool_year": null,
+        "grade1_options": null,
+        "custom_options": null,
+        "afterschool_snapshot": null
+      },
+      "input": "inputs/B000003772.txt",
+      "input_sha256": "c13254a7cc9e580b35ad855afd1e3d9430d1cb90b7c016cd36315143aa78da5c",
+      "input_chars": 33437,
+      "truncated": false,
+      "sources": [
+        {
+          "name": "2026학년도 수내초 방과후·돌봄 운영 계획.hwpx",
+          "sha256": "0e9c6f3714da77c378da0a000df9dbe7ec47e9ede158ff76bb585fe1e8684565",
+          "format": "hwpx",
+          "file_academic_year": 2026,
+          "chars": 30507
+        }
+      ],
+      "errors": [],
+      "input_ready": true,
+      "course_track": "existing_p1",
+      "course_extraction_status": "pending",
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000003746",
+      "school_name": "신백현초등학교",
+      "area": "bundang",
+      "road_address": "경기도 성남시 분당구 판교역로14번길 42",
+      "coverage": {
+        "school_id": "B000003746",
+        "school_name": "신백현초등학교",
+        "road_address": "경기도 성남시 분당구 판교역로14번길 42",
+        "care_status": "stated",
+        "afternoon_end": "18:00:00",
+        "extended_end": null,
+        "morning_hours": null,
+        "care_year": 2026,
+        "has_afterschool": false,
+        "afterschool_year": null,
+        "grade1_options": null,
+        "custom_options": null,
+        "afterschool_snapshot": null
+      },
+      "input": "inputs/B000003746.txt",
+      "input_sha256": "e822f00b3fbf3f3403e7390396bf5f742523f7a76865f49642a00f9372aaa950",
+      "input_chars": 73922,
+      "truncated": false,
+      "sources": [
+        {
+          "name": "2026 신백현초 방과후·돌봄 통합 운영 계획 계획(환불 규정 개정).hwp",
+          "sha256": "3007f65ce6a28c67fda6b664931fc81509f24c49f890f212c1118088de3746e3",
+          "format": "hwp",
+          "file_academic_year": 2026,
+          "chars": 66238
+        }
+      ],
+      "errors": [],
+      "input_ready": true,
+      "course_track": "existing_p1",
+      "course_extraction_status": "pending",
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000003740",
+      "school_name": "안말초등학교",
+      "area": "bundang",
+      "road_address": "경기도 성남시 분당구 양현로 104",
+      "coverage": {
+        "school_id": "B000003740",
+        "school_name": "안말초등학교",
+        "road_address": "경기도 성남시 분당구 양현로 104",
+        "care_status": "school_check_needed",
+        "afternoon_end": null,
+        "extended_end": null,
+        "morning_hours": null,
+        "care_year": 2026,
+        "has_afterschool": false,
+        "afterschool_year": null,
+        "grade1_options": null,
+        "custom_options": null,
+        "afterschool_snapshot": null
+      },
+      "input": "inputs/B000003740.txt",
+      "input_sha256": "ce99ad67469334c1beaf6ec2b9b6cfcbbf96904723423c8161062c3d33540305",
+      "input_chars": 18209,
+      "truncated": false,
+      "sources": [
+        {
+          "name": "2026학년도 방과후학교 운영계획.pdf",
+          "sha256": "f2dd0995f8be25f44b5216aab380272d1f64d4cc49951eb3642eb0510829330f",
+          "format": "pdf",
+          "file_academic_year": 2026,
+          "chars": 17742
+        }
+      ],
+      "errors": [],
+      "input_ready": true,
+      "course_track": "existing_p1",
+      "course_extraction_status": "pending",
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000003762",
+      "school_name": "야탑초등학교",
+      "area": "bundang",
+      "road_address": "경기도 성남시 분당구 양현로 400",
+      "coverage": {
+        "school_id": "B000003762",
+        "school_name": "야탑초등학교",
+        "road_address": "경기도 성남시 분당구 양현로 400",
+        "care_status": "school_check_needed",
+        "afternoon_end": null,
+        "extended_end": null,
+        "morning_hours": null,
+        "care_year": 2026,
+        "has_afterschool": false,
+        "afterschool_year": null,
+        "grade1_options": null,
+        "custom_options": null,
+        "afterschool_snapshot": null
+      },
+      "input": "inputs/B000003762.txt",
+      "input_sha256": "17c87a45e2908f997605a9160001903123dfc7dae8c03620a79740a4f8110d7d",
+      "input_chars": 34992,
+      "truncated": false,
+      "sources": [
+        {
+          "name": "2026학년도 야탑초 방과후·돌봄 운영 계획(정보공시).hwpx",
+          "sha256": "9f40821dfa1b618b56c04ddb0f7db253d209f55cda8d704357cc8db221d5bb39",
+          "format": "hwpx",
+          "file_academic_year": 2026,
+          "chars": 31624
+        }
+      ],
+      "errors": [],
+      "input_ready": true,
+      "course_track": "existing_p1",
+      "course_extraction_status": "pending",
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000003759",
+      "school_name": "양영초등학교",
+      "area": "bundang",
+      "road_address": "경기도 성남시 분당구 불정로406번길 17",
+      "coverage": {
+        "school_id": "B000003759",
+        "school_name": "양영초등학교",
+        "road_address": "경기도 성남시 분당구 불정로406번길 17",
+        "care_status": "stated",
+        "afternoon_end": "19:00:00",
+        "extended_end": null,
+        "morning_hours": null,
+        "care_year": 2026,
+        "has_afterschool": false,
+        "afterschool_year": null,
+        "grade1_options": null,
+        "custom_options": null,
+        "afterschool_snapshot": null
+      },
+      "input": "inputs/B000003759.txt",
+      "input_sha256": "5484f0cf81ce2e48ac6a5fef137c4b933211dede98ebcdde3ff37b58dfe3138d",
+      "input_chars": 19995,
+      "truncated": false,
+      "sources": [
+        {
+          "name": "2026학년도 양영초 방과후돌봄 운영 계획(안).pdf",
+          "sha256": "bd4e12a357cce2fa59e4c96ca45715795a78bf3bacf37e109442977728f8aa8f",
+          "format": "pdf",
+          "file_academic_year": 2026,
+          "chars": 19385
+        }
+      ],
+      "errors": [],
+      "input_ready": true,
+      "course_track": "existing_p1",
+      "course_extraction_status": "pending",
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000003750",
+      "school_name": "오리초등학교",
+      "area": "bundang",
+      "road_address": "경기도 성남시 분당구 미금로 121",
+      "coverage": {
+        "school_id": "B000003750",
+        "school_name": "오리초등학교",
+        "road_address": "경기도 성남시 분당구 미금로 121",
+        "care_status": "school_check_needed",
+        "afternoon_end": null,
+        "extended_end": null,
+        "morning_hours": null,
+        "care_year": 2026,
+        "has_afterschool": false,
+        "afterschool_year": null,
+        "grade1_options": null,
+        "custom_options": null,
+        "afterschool_snapshot": null
+      },
+      "input": "inputs/B000003750.txt",
+      "input_sha256": "d72f2b87fdae5c14eb687080fa0ade71f903dd0b17e5be6a6acaab85bf85b1c8",
+      "input_chars": 23764,
+      "truncated": false,
+      "sources": [
+        {
+          "name": "2026학년도 오리초 방과후돌봄 운영 계획(안)(2.13.).hwpx",
+          "sha256": "f2f1d878fa29ec3a944f95baa0259c5381a1d31fb1c93015e8afa30eb5ddce56",
+          "format": "hwpx",
+          "file_academic_year": 2026,
+          "chars": 21467
+        }
+      ],
+      "errors": [],
+      "input_ready": true,
+      "course_track": "existing_p1",
+      "course_extraction_status": "pending",
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000003748",
+      "school_name": "운중초등학교",
+      "area": "bundang",
+      "road_address": "경기도 성남시 분당구 운중로45번길 8",
+      "coverage": {
+        "school_id": "B000003748",
+        "school_name": "운중초등학교",
+        "road_address": "경기도 성남시 분당구 운중로45번길 8",
+        "care_status": "stated",
+        "afternoon_end": "19:00:00",
+        "extended_end": null,
+        "morning_hours": null,
+        "care_year": 2026,
+        "has_afterschool": false,
+        "afterschool_year": null,
+        "grade1_options": null,
+        "custom_options": null,
+        "afterschool_snapshot": null
+      },
+      "input": "inputs/B000003748.txt",
+      "input_sha256": "d11718bdbac71f173f21cac40bada55b9e1fe34a0dc74677e2365c6449c1c6ba",
+      "input_chars": 40733,
+      "truncated": false,
+      "sources": [
+        {
+          "name": "2026학년도 돌봄교실 운영계획서.hwp",
+          "sha256": "2a3712bae2d303fb2520d8af4a0cc5131ff07e906495f24aa7a8f55b71b6509d",
+          "format": "hwp",
+          "file_academic_year": 2026,
+          "chars": 15457
+        },
+        {
+          "name": "2026학년도 초12맞춤형, 선택형교육 운영 계획.hwp",
+          "sha256": "89f6866734e3fe6463a33f7e9af9fff730fdbacb1a61a8739ce829a52e9942f7",
+          "format": "hwp",
+          "file_academic_year": 2026,
+          "chars": 21209
+        }
+      ],
+      "errors": [],
+      "input_ready": true,
+      "course_track": "existing_p1",
+      "course_extraction_status": "pending",
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000003763",
+      "school_name": "이매초등학교",
+      "area": "bundang",
+      "road_address": "경기도 성남시 분당구 양현로 146",
+      "coverage": {
+        "school_id": "B000003763",
+        "school_name": "이매초등학교",
+        "road_address": "경기도 성남시 분당구 양현로 146",
+        "care_status": "stated",
+        "afternoon_end": "17:00:00",
+        "extended_end": "19:00:00",
+        "morning_hours": null,
+        "care_year": 2026,
+        "has_afterschool": false,
+        "afterschool_year": null,
+        "grade1_options": null,
+        "custom_options": null,
+        "afterschool_snapshot": null
+      },
+      "input": "inputs/B000003763.txt",
+      "input_sha256": "42795e1f919ec13ad30a1d841ed5ee01bb9cfb4ca6c520c30da6fd710c2d0ea2",
+      "input_chars": 36110,
+      "truncated": false,
+      "sources": [
+        {
+          "name": "2026학년도 방과후 운영 계획.hwp",
+          "sha256": "7117b817811deecf855c961e971753bbad5da08c6798c8d9ea295b080b773cf0",
+          "format": "hwp",
+          "file_academic_year": 2026,
+          "chars": 32984
+        }
+      ],
+      "errors": [],
+      "input_ready": true,
+      "course_track": "existing_p1",
+      "course_extraction_status": "pending",
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000003767",
+      "school_name": "중탑초등학교",
+      "area": "bundang",
+      "road_address": "경기도 성남시 분당구 벌말로 68",
+      "coverage": {
+        "school_id": "B000003767",
+        "school_name": "중탑초등학교",
+        "road_address": "경기도 성남시 분당구 벌말로 68",
+        "care_status": "school_check_needed",
+        "afternoon_end": null,
+        "extended_end": null,
+        "morning_hours": null,
+        "care_year": 2026,
+        "has_afterschool": false,
+        "afterschool_year": null,
+        "grade1_options": null,
+        "custom_options": null,
+        "afterschool_snapshot": null
+      },
+      "input": "inputs/B000003767.txt",
+      "input_sha256": "351b819f588a29f867ff7528c1dfe818bb589b4499bb543a89a515e821fc81e3",
+      "input_chars": 23772,
+      "truncated": false,
+      "sources": [
+        {
+          "name": "2026학년도 중탑초 방과후[수익자, 초1-2 맞춤형 프로그램] 연간운영계획.hwp",
+          "sha256": "b911835ed93433897f3a96b813302de42259574b0f9ebf970ec20f38257d38dc",
+          "format": "hwp",
+          "file_academic_year": 2026,
+          "chars": 21641
+        }
+      ],
+      "errors": [],
+      "input_ready": true,
+      "course_track": "existing_p1",
+      "course_extraction_status": "pending",
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000003749",
+      "school_name": "청솔초등학교",
+      "area": "bundang",
+      "road_address": "경기도 성남시 분당구 금곡로 243",
+      "coverage": {
+        "school_id": "B000003749",
+        "school_name": "청솔초등학교",
+        "road_address": "경기도 성남시 분당구 금곡로 243",
+        "care_status": "school_check_needed",
+        "afternoon_end": null,
+        "extended_end": null,
+        "morning_hours": null,
+        "care_year": 2026,
+        "has_afterschool": false,
+        "afterschool_year": null,
+        "grade1_options": null,
+        "custom_options": null,
+        "afterschool_snapshot": null
+      },
+      "input": "inputs/B000003749.txt",
+      "input_sha256": "f9ab5561e9ddd5694ff081288595f0121fd45f7ec4bdcfbff88873cccbd995b6",
+      "input_chars": 27798,
+      "truncated": false,
+      "sources": [
+        {
+          "name": "2026학년도 방과후돌봄 운영계획.hwp",
+          "sha256": "aff6d192b7d353aac6483bf20c0e18c09b9b847264bd61979ed5663b208c590e",
+          "format": "hwp",
+          "file_academic_year": 2026,
+          "chars": 25067
+        }
+      ],
+      "errors": [],
+      "input_ready": true,
+      "course_track": "existing_p1",
+      "course_extraction_status": "pending",
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000003738",
+      "school_name": "초림초등학교",
+      "area": "bundang",
+      "road_address": "경기도 성남시 분당구 수내로90번길 26",
+      "coverage": {
+        "school_id": "B000003738",
+        "school_name": "초림초등학교",
+        "road_address": "경기도 성남시 분당구 수내로90번길 26",
+        "care_status": "school_check_needed",
+        "afternoon_end": null,
+        "extended_end": null,
+        "morning_hours": null,
+        "care_year": 2026,
+        "has_afterschool": false,
+        "afterschool_year": null,
+        "grade1_options": null,
+        "custom_options": null,
+        "afterschool_snapshot": null
+      },
+      "input": "inputs/B000003738.txt",
+      "input_sha256": "aeb75765dfb083db1d5abcefcbf70cc79db99439e885763b4ba4b256c8c6067a",
+      "input_chars": 18068,
+      "truncated": false,
+      "sources": [
+        {
+          "name": "2026학년도 초림초 방과후돌봄 운영 계획.pdf",
+          "sha256": "a672dfdfe3c8f428ec0c0c69cc96669ef2389c670b841b99d0c91666626d8f3c",
+          "format": "pdf",
+          "file_academic_year": 2026,
+          "chars": 17666
+        }
+      ],
+      "errors": [],
+      "input_ready": true,
+      "course_track": "existing_p1",
+      "course_extraction_status": "pending",
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000003757",
+      "school_name": "탄천초등학교",
+      "area": "bundang",
+      "road_address": "경기도 성남시 분당구 내정로 20",
+      "coverage": {
+        "school_id": "B000003757",
+        "school_name": "탄천초등학교",
+        "road_address": "경기도 성남시 분당구 내정로 20",
+        "care_status": "stated",
+        "afternoon_end": "18:00:00",
+        "extended_end": null,
+        "morning_hours": null,
+        "care_year": 2026,
+        "has_afterschool": false,
+        "afterschool_year": null,
+        "grade1_options": null,
+        "custom_options": null,
+        "afterschool_snapshot": null
+      },
+      "input": "inputs/B000003757.txt",
+      "input_sha256": "490c16b1ba6387a5dfb580c410412316494943ccdecef8184671299fad2937f4",
+      "input_chars": 31081,
+      "truncated": false,
+      "sources": [
+        {
+          "name": "2026학년도  돌봄교실 연간 운영 계획.hwp",
+          "sha256": "01bb31409493b4cc3753b09956a5a858a2039322fc288388eaef2796c92b5ddd",
+          "format": "hwp",
+          "file_academic_year": 2026,
+          "chars": 12152
+        },
+        {
+          "name": "2026학년도 방과후학교 연간운영계획.hwp",
+          "sha256": "8c22718ff502c1c81baaacf23a235678649667a18f976df6dd64ee46a61e8210",
+          "format": "hwp",
+          "file_academic_year": 2026,
+          "chars": 15399
+        }
+      ],
+      "errors": [],
+      "input_ready": true,
+      "course_track": "existing_p1",
+      "course_extraction_status": "pending",
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000026906",
+      "school_name": "판교대장초등학교",
+      "area": "bundang",
+      "road_address": "경기도 성남시 분당구 판교대장로5길 71",
+      "coverage": {
+        "school_id": "B000026906",
+        "school_name": "판교대장초등학교",
+        "road_address": "경기도 성남시 분당구 판교대장로5길 71",
+        "care_status": "school_check_needed",
+        "afternoon_end": null,
+        "extended_end": null,
+        "morning_hours": null,
+        "care_year": 2026,
+        "has_afterschool": false,
+        "afterschool_year": null,
+        "grade1_options": null,
+        "custom_options": null,
+        "afterschool_snapshot": null
+      },
+      "input": "inputs/B000026906.txt",
+      "input_sha256": "1491a9c2d6218d26ade2405076715754969bb270a3b9e1812c47f4b5d5d6f1b2",
+      "input_chars": 38165,
+      "truncated": false,
+      "sources": [
+        {
+          "name": "2026학년도 초등 방과후, 돌봄 운영 계획.hwp",
+          "sha256": "38f70909f8b0e98195808d0bd11d828172da4a31bd75102c60e9008ec487f6fd",
+          "format": "hwp",
+          "file_academic_year": 2026,
+          "chars": 35030
+        }
+      ],
+      "errors": [],
+      "input_ready": true,
+      "course_track": "existing_p1",
+      "course_extraction_status": "pending",
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000003744",
+      "school_name": "판교초등학교",
+      "area": "bundang",
+      "road_address": "경기도 성남시 분당구 판교원로 231",
+      "coverage": {
+        "school_id": "B000003744",
+        "school_name": "판교초등학교",
+        "road_address": "경기도 성남시 분당구 판교원로 231",
+        "care_status": "school_check_needed",
+        "afternoon_end": null,
+        "extended_end": null,
+        "morning_hours": null,
+        "care_year": 2026,
+        "has_afterschool": false,
+        "afterschool_year": null,
+        "grade1_options": null,
+        "custom_options": null,
+        "afterschool_snapshot": null
+      },
+      "input": "inputs/B000003744.txt",
+      "input_sha256": "7cacbfea56dd3e36520da32ebc15e22a55d190ec62cd419f44d0b461cfd1d3a7",
+      "input_chars": 31562,
+      "truncated": false,
+      "sources": [
+        {
+          "name": "2026학년도 판교초 방과후 프로그램 운영 계획.hwp",
+          "sha256": "35a0afc8ae1ad89b49fef2c98536587d39dc9318c43c395def31e8c2b7881c09",
+          "format": "hwp",
+          "file_academic_year": 2026,
+          "chars": 28847
+        }
+      ],
+      "errors": [],
+      "input_ready": true,
+      "course_track": "existing_p1",
+      "course_extraction_status": "pending",
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000003769",
+      "school_name": "하탑초등학교",
+      "area": "bundang",
+      "road_address": "경기도 성남시 분당구 양현로 262",
+      "coverage": {
+        "school_id": "B000003769",
+        "school_name": "하탑초등학교",
+        "road_address": "경기도 성남시 분당구 양현로 262",
+        "care_status": "stated",
+        "afternoon_end": "18:00:00",
+        "extended_end": null,
+        "morning_hours": null,
+        "care_year": 2026,
+        "has_afterschool": false,
+        "afterschool_year": null,
+        "grade1_options": null,
+        "custom_options": null,
+        "afterschool_snapshot": null
+      },
+      "input": "inputs/B000003769.txt",
+      "input_sha256": "48f87b7a667343740d21e191b8778682aabb69dbeaec33280c5bd6f5fb90abe4",
+      "input_chars": 29216,
+      "truncated": false,
+      "sources": [
+        {
+          "name": "2026학년도 하탑초 돌봄교실 운영계획.hwp",
+          "sha256": "bf3f6afd710e1b496b61cb364e4aa099e9a779209e305ed11705f1c0cfc661a9",
+          "format": "hwp",
+          "file_academic_year": 2026,
+          "chars": 11284
+        },
+        {
+          "name": "2026학년도 하탑초 방과후돌봄 운영 계획.hwp",
+          "sha256": "c6798b7db2ccb417ac5f325e73f4f21ec723ca317664a08808ef942cfb2e8617",
+          "format": "hwp",
+          "file_academic_year": 2026,
+          "chars": 14406
+        }
+      ],
+      "errors": [],
+      "input_ready": true,
+      "course_track": "existing_p1",
+      "course_extraction_status": "pending",
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000003765",
+      "school_name": "한솔초등학교",
+      "area": "bundang",
+      "road_address": "경기도 성남시 분당구 돌마로 303",
+      "coverage": {
+        "school_id": "B000003765",
+        "school_name": "한솔초등학교",
+        "road_address": "경기도 성남시 분당구 돌마로 303",
+        "care_status": "stated",
+        "afternoon_end": "19:00:00",
+        "extended_end": null,
+        "morning_hours": null,
+        "care_year": 2026,
+        "has_afterschool": false,
+        "afterschool_year": null,
+        "grade1_options": null,
+        "custom_options": null,
+        "afterschool_snapshot": null
+      },
+      "input": "inputs/B000003765.txt",
+      "input_sha256": "59f9c3e492c1d36d4f9e8af26a853a0d2e25d5930eef04dce3a4aeaa2ff77317",
+      "input_chars": 33185,
+      "truncated": false,
+      "sources": [
+        {
+          "name": "2026학년도 한솔초 선택형돌봄 운영 계획.hwp",
+          "sha256": "c66efd097d7f0ca452b06806eb3bcf9f24278cd3d53ce4256ef89a31971fa75f",
+          "format": "hwp",
+          "file_academic_year": 2026,
+          "chars": 14735
+        },
+        {
+          "name": "2026학년도 방과후학교 운영계획(한솔초).hwpx",
+          "sha256": "a93f9cd8c3e72b3045bdd2ea668bbc803719db396f10ca2c8da38eccd07e8609",
+          "format": "hwpx",
+          "file_academic_year": 2026,
+          "chars": 14591
+        }
+      ],
+      "errors": [],
+      "input_ready": true,
+      "course_track": "existing_p1",
+      "course_extraction_status": "pending",
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000024240",
+      "school_name": "위례고운초등학교",
+      "area": "wirye",
+      "road_address": "경기도 성남시 수정구 위례순환로 155",
+      "coverage": {
+        "school_id": "B000024240",
+        "school_name": "위례고운초등학교",
+        "road_address": "경기도 성남시 수정구 위례순환로 155",
+        "care_status": "stated",
+        "afternoon_end": "19:00:00",
+        "extended_end": null,
+        "morning_hours": null,
+        "care_year": 2026,
+        "has_afterschool": false,
+        "afterschool_year": null,
+        "grade1_options": null,
+        "custom_options": null,
+        "afterschool_snapshot": null
+      },
+      "input": "inputs/B000024240.txt",
+      "input_sha256": "ad10a3f9c39fff3b4d2e30c67a12346ecb65be2127d5900b428a169caa5995e0",
+      "input_chars": 45261,
+      "truncated": false,
+      "sources": [
+        {
+          "name": "2026학년도 돌봄교실 운영계획(위례고운초).hwp",
+          "sha256": "7391d417eaad9a7e51d3a3ec0081465c324bf914b9a0d35a2c65cf4bb744abd5",
+          "format": "hwp",
+          "file_academic_year": 2026,
+          "chars": 17808
+        },
+        {
+          "name": "※ 2026학년도 위례고운초 방과후·돌봄 운영 계획.pdf",
+          "sha256": "cc7d17fc87013f6f639c700729b1c763d638cb451b9b7dcfa65ca03b305bbbab",
+          "format": "pdf",
+          "file_academic_year": 2026,
+          "chars": 24631
+        }
+      ],
+      "errors": [],
+      "input_ready": true,
+      "course_track": "existing_p1",
+      "course_extraction_status": "pending",
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000023089",
+      "school_name": "위례숲초등학교",
+      "area": "wirye",
+      "road_address": "경기도 하남시 위례대로6길 65",
+      "coverage": {
+        "school_id": "B000023089",
+        "school_name": "위례숲초등학교",
+        "road_address": "경기도 하남시 위례대로6길 65",
+        "care_status": "school_check_needed",
+        "afternoon_end": null,
+        "extended_end": null,
+        "morning_hours": null,
+        "care_year": 2026,
+        "has_afterschool": false,
+        "afterschool_year": null,
+        "grade1_options": null,
+        "custom_options": null,
+        "afterschool_snapshot": null
+      },
+      "input": "inputs/B000023089.txt",
+      "input_sha256": "c8df5e3625dd3f101d2e3c90595dc5e88d4d9c6f498d6c25fef7e7ba74bdf66d",
+      "input_chars": 27095,
+      "truncated": false,
+      "sources": [
+        {
+          "name": "2026학년도 위례숲초 방과후프로그램 세부운영계획.hwp",
+          "sha256": "9665ff54c924201803f5403fca1228dda3ae91fb23077490edcbeaf3e8ca531a",
+          "format": "hwp",
+          "file_academic_year": 2026,
+          "chars": 24444
+        }
+      ],
+      "errors": [],
+      "input_ready": true,
+      "course_track": "existing_p1",
+      "course_extraction_status": "pending",
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000024241",
+      "school_name": "위례중앙초등학교",
+      "area": "wirye",
+      "road_address": "경기도 성남시 수정구 위례순환로 71",
+      "coverage": {
+        "school_id": "B000024241",
+        "school_name": "위례중앙초등학교",
+        "road_address": "경기도 성남시 수정구 위례순환로 71",
+        "care_status": "stated",
+        "afternoon_end": "19:00:00",
+        "extended_end": null,
+        "morning_hours": null,
+        "care_year": 2026,
+        "has_afterschool": false,
+        "afterschool_year": null,
+        "grade1_options": null,
+        "custom_options": null,
+        "afterschool_snapshot": null
+      },
+      "input": "inputs/B000024241.txt",
+      "input_sha256": "03b33146db72550218e79e2601c259f8b3205c754c44299bd52eadd479d81579",
+      "input_chars": 161457,
+      "truncated": false,
+      "sources": [
+        {
+          "name": "2026학년 위례중앙초 돌봄교실 운영 계획.hwpx",
+          "sha256": "5db42db748f07cc1607e90f44977c7ac5dca71dffba7b217335af0c01816ce7f",
+          "format": "hwpx",
+          "file_academic_year": 2026,
+          "chars": 8017
+        },
+        {
+          "name": "2026학년 위례중앙초 방과후돌봄 통합 운영 계획.hwpx",
+          "sha256": "39aa4bd8857b410bb36a6ea2c317d28b81f8f71f8377c2690fb53fb5f4f88f7b",
+          "format": "hwpx",
+          "file_academic_year": 2026,
+          "chars": 139283
+        }
+      ],
+      "errors": [],
+      "input_ready": true,
+      "course_track": "existing_p1",
+      "course_extraction_status": "pending",
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000023087",
+      "school_name": "위례초등학교",
+      "area": "wirye",
+      "road_address": "경기도 하남시 위례순환로 333",
+      "coverage": {
+        "school_id": "B000023087",
+        "school_name": "위례초등학교",
+        "road_address": "경기도 하남시 위례순환로 333",
+        "care_status": "school_check_needed",
+        "afternoon_end": null,
+        "extended_end": null,
+        "morning_hours": null,
+        "care_year": 2026,
+        "has_afterschool": false,
+        "afterschool_year": null,
+        "grade1_options": null,
+        "custom_options": null,
+        "afterschool_snapshot": null
+      },
+      "input": "inputs/B000023087.txt",
+      "input_sha256": "69d4a3c2d43dcecb2bafbbfe9ce4e02031bd223235f9b08de21adb3326138a09",
+      "input_chars": 38264,
+      "truncated": false,
+      "sources": [
+        {
+          "name": "(위례초등학교-2318 (첨부)) (1_연간계획)2026학년도 방과후·돌봄 운영계획(수정).hwp",
+          "sha256": "aa53a1aff0af001afb4c300819aa173161b5a2a2bac044ed866233e7d643f86a",
+          "format": "hwp",
+          "file_academic_year": 2026,
+          "chars": 35309
+        }
+      ],
+      "errors": [],
+      "input_ready": true,
+      "course_track": "existing_p1",
+      "course_extraction_status": "pending",
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000024239",
+      "school_name": "위례푸른초등학교",
+      "area": "wirye",
+      "road_address": "경기도 성남시 수정구 위례순환로 205",
+      "coverage": {
+        "school_id": "B000024239",
+        "school_name": "위례푸른초등학교",
+        "road_address": "경기도 성남시 수정구 위례순환로 205",
+        "care_status": "school_check_needed",
+        "afternoon_end": null,
+        "extended_end": null,
+        "morning_hours": null,
+        "care_year": 2026,
+        "has_afterschool": false,
+        "afterschool_year": null,
+        "grade1_options": null,
+        "custom_options": null,
+        "afterschool_snapshot": null
+      },
+      "input": "inputs/B000024239.txt",
+      "input_sha256": "b2cca34ac7da7836fd097f4e42775a1304bca5c14f5f11c3494ebba0d28073b1",
+      "input_chars": 50787,
+      "truncated": false,
+      "sources": [
+        {
+          "name": "2026학년도 방과후 프로그램 운영 계획(위례푸른초).hwp",
+          "sha256": "b57b5d9a60516620ef14200fb20087736b1fbc9e06aa896d2a13c71d0515bea3",
+          "format": "hwp",
+          "file_academic_year": 2026,
+          "chars": 47641
+        }
+      ],
+      "errors": [],
+      "input_ready": true,
+      "course_track": "existing_p1",
+      "course_extraction_status": "pending",
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000024238",
+      "school_name": "위례한빛초등학교",
+      "area": "wirye",
+      "road_address": "경기도 성남시 수정구 위례동로 55",
+      "coverage": {
+        "school_id": "B000024238",
+        "school_name": "위례한빛초등학교",
+        "road_address": "경기도 성남시 수정구 위례동로 55",
+        "care_status": "stated",
+        "afternoon_end": "17:00:00",
+        "extended_end": "19:00:00",
+        "morning_hours": null,
+        "care_year": 2026,
+        "has_afterschool": false,
+        "afterschool_year": null,
+        "grade1_options": null,
+        "custom_options": null,
+        "afterschool_snapshot": null
+      },
+      "input": "inputs/B000024238.txt",
+      "input_sha256": "004d83feda95e211eb9e69a88f6c25272aa61d6d8563db97a68dc6c415c4dff0",
+      "input_chars": 229983,
+      "truncated": false,
+      "sources": [
+        {
+          "name": "2026학년 위례한빛초 방과후돌봄 통합 운영 계획.hwpx",
+          "sha256": "405aeec689512645aaba37cc6741cc4a4254dba340106171ba60e2d63ee15dea",
+          "format": "hwpx",
+          "file_academic_year": 2026,
+          "chars": 190128
+        },
+        {
+          "name": "2026학년도 위례한빛초 돌봄교실 운영 계획.hwp",
+          "sha256": "e699797936c56fefd446a6f7d8af3b04c5a65e443bdb5d39b7689d36dd8caef2",
+          "format": "hwp",
+          "file_academic_year": 2026,
+          "chars": 17732
+        }
+      ],
+      "errors": [],
+      "input_ready": true,
+      "course_track": "existing_p1",
+      "course_extraction_status": "pending",
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000003867",
+      "school_name": "관양초등학교",
+      "area": "dongan",
+      "road_address": "경기도 안양시 동안구 관평로336번길 23",
+      "coverage": {
+        "school_id": "B000003867",
+        "school_name": "관양초등학교",
+        "road_address": "경기도 안양시 동안구 관평로336번길 23",
+        "care_status": "stated",
+        "afternoon_end": "19:00:00",
+        "extended_end": null,
+        "morning_hours": null,
+        "care_year": 2026,
+        "has_afterschool": false,
+        "afterschool_year": null,
+        "grade1_options": null,
+        "custom_options": null,
+        "afterschool_snapshot": null
+      },
+      "input": "inputs/B000003867.txt",
+      "input_sha256": "f0c71c8b05b8d7755c60041fb396cf94bd3c974cb3d53962147445bb813283ef",
+      "input_chars": 46321,
+      "truncated": false,
+      "sources": [
+        {
+          "name": "2026학년도 초등돌봄교실 연간운영계획.hwp",
+          "sha256": "417eeccff050757ce8c0b647e7a207459313267cf81a03a563741fc6505e8054",
+          "format": "hwp",
+          "file_academic_year": 2026,
+          "chars": 9186
+        },
+        {
+          "name": "2026학년도 방과후프로그램 운영계획.hwp",
+          "sha256": "8eebeff180fd1abc32aaeb0167cd7b2f24ef3632381957190ac35c460c313271",
+          "format": "hwp",
+          "file_academic_year": 2026,
+          "chars": 32376
+        }
+      ],
+      "errors": [],
+      "input_ready": true,
+      "course_track": "new_priority",
+      "course_extraction_status": "pending",
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000003860",
+      "school_name": "귀인초등학교",
+      "area": "dongan",
+      "road_address": "경기도 안양시 동안구 귀인로 248",
+      "coverage": {
+        "school_id": "B000003860",
+        "school_name": "귀인초등학교",
+        "road_address": "경기도 안양시 동안구 귀인로 248",
+        "care_status": "stated",
+        "afternoon_end": "19:00:00",
+        "extended_end": null,
+        "morning_hours": null,
+        "care_year": 2026,
+        "has_afterschool": false,
+        "afterschool_year": null,
+        "grade1_options": null,
+        "custom_options": null,
+        "afterschool_snapshot": null
+      },
+      "input": "inputs/B000003860.txt",
+      "input_sha256": "14f6ba9bebdc40c4fd97aeb6112212478a7cc675d7ea8507152493f05b087a77",
+      "input_chars": 76907,
+      "truncated": false,
+      "sources": [
+        {
+          "name": "2026 선택형돌봄교실 운영 계획(귀인초).hwp",
+          "sha256": "a631163a551b2cdb8770a00d97f73313d9febcaf29be665bd5eeab3a0efb4b66",
+          "format": "hwp",
+          "file_academic_year": 2026,
+          "chars": 33469
+        },
+        {
+          "name": "2026학년도 1학기 귀인초 방과후프로그램 운영 계획서.hwpx",
+          "sha256": "3d77c6dd53b2ebc25303a5c1f6094e14a9e918b2245cd8753f979ec535875b24",
+          "format": "hwpx",
+          "file_academic_year": 2026,
+          "chars": 4496
+        },
+        {
+          "name": "2026학년도 초1~2맞춤형방과후프로그램 운영계획안(귀인초).hwp",
+          "sha256": "46313777f7e0cf100566ec3cb9cd9d63aab2644fbdb827304a9e5af0c23720fa",
+          "format": "hwp",
+          "file_academic_year": 2026,
+          "chars": 29683
+        }
+      ],
+      "errors": [],
+      "input_ready": true,
+      "course_track": "new_priority",
+      "course_extraction_status": "pending",
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000003856",
+      "school_name": "나눔초등학교",
+      "area": "dongan",
+      "road_address": "경기도 안양시 동안구 흥안대로414번길 22",
+      "coverage": {
+        "school_id": "B000003856",
+        "school_name": "나눔초등학교",
+        "road_address": "경기도 안양시 동안구 흥안대로414번길 22",
+        "care_status": "stated",
+        "afternoon_end": "19:00:00",
+        "extended_end": null,
+        "morning_hours": null,
+        "care_year": 2026,
+        "has_afterschool": false,
+        "afterschool_year": null,
+        "grade1_options": null,
+        "custom_options": null,
+        "afterschool_snapshot": null
+      },
+      "input": "inputs/B000003856.txt",
+      "input_sha256": "8631382fa7d01e6dc8a28d1cd446dccd6170ddf3315e595d628e5725e59986d4",
+      "input_chars": 23344,
+      "truncated": false,
+      "sources": [
+        {
+          "name": "2026학년도  초등돌봄교실 운영 계획.hwp",
+          "sha256": "0fc43a74c0fbf4908568f311ec9f5ffcd7cadd2459a1d1061d5b5b0ac4ded260",
+          "format": "hwp",
+          "file_academic_year": 2026,
+          "chars": 10405
+        },
+        {
+          "name": "2026학년도 방과후학교 운영 계획.pdf",
+          "sha256": "573681ce17f308ba4ce912502a606903ae0740ff79c34107eb14e3e74f51226d",
+          "format": "pdf",
+          "file_academic_year": 2026,
+          "chars": 11091
+        }
+      ],
+      "errors": [],
+      "input_ready": true,
+      "course_track": "new_priority",
+      "course_extraction_status": "pending",
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000003870",
+      "school_name": "달안초등학교",
+      "area": "dongan",
+      "road_address": "경기도 안양시 동안구 동안로 178",
+      "coverage": {
+        "school_id": "B000003870",
+        "school_name": "달안초등학교",
+        "road_address": "경기도 안양시 동안구 동안로 178",
+        "care_status": "stated",
+        "afternoon_end": "19:00:00",
+        "extended_end": null,
+        "morning_hours": null,
+        "care_year": 2026,
+        "has_afterschool": false,
+        "afterschool_year": null,
+        "grade1_options": null,
+        "custom_options": null,
+        "afterschool_snapshot": null
+      },
+      "input": "inputs/B000003870.txt",
+      "input_sha256": "305fe209778e3d875957be6244cacbc6316cfc6001dbef902691be4ecab42ae4",
+      "input_chars": 31854,
+      "truncated": false,
+      "sources": [
+        {
+          "name": "2026학년도 초등돌봄교실 연간 운영 계획.hwpx",
+          "sha256": "da04e0d47db30ae168eec2abf220e346706e5c7b68bb960394cea080ef6c5df0",
+          "format": "hwpx",
+          "file_academic_year": 2026,
+          "chars": 11920
+        },
+        {
+          "name": "2026학년도 수익자방과후 프로그램 운영계획.hwp",
+          "sha256": "f483737098545b2d966c9d3f80500de7c01ec128b946477c997274d303c8ef77",
+          "format": "hwp",
+          "file_academic_year": 2026,
+          "chars": 16590
+        }
+      ],
+      "errors": [],
+      "input_ready": true,
+      "course_track": "new_priority",
+      "course_extraction_status": "pending",
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000003858",
+      "school_name": "동안초등학교",
+      "area": "dongan",
+      "road_address": "경기도 안양시 동안구 관평로138번길 36",
+      "coverage": {
+        "school_id": "B000003858",
+        "school_name": "동안초등학교",
+        "road_address": "경기도 안양시 동안구 관평로138번길 36",
+        "care_status": "school_check_needed",
+        "afternoon_end": null,
+        "extended_end": null,
+        "morning_hours": null,
+        "care_year": 2026,
+        "has_afterschool": false,
+        "afterschool_year": null,
+        "grade1_options": null,
+        "custom_options": null,
+        "afterschool_snapshot": null
+      },
+      "input": "inputs/B000003858.txt",
+      "input_sha256": "fe8099e428c62707502bfc95ca04e6956024f8f4c29f1d2c6ed2de5eecf2f086",
+      "input_chars": 10033,
+      "truncated": false,
+      "sources": [
+        {
+          "name": "2026 방과후 프로그램 운영 계획(안)_re.pdf",
+          "sha256": "300e81dec154dd6f99342622d8b1d9eeb6ebd5c4a003b94100c58f721941777a",
+          "format": "pdf",
+          "file_academic_year": 2026,
+          "chars": 9704
+        }
+      ],
+      "errors": [],
+      "input_ready": true,
+      "course_track": "new_priority",
+      "course_extraction_status": "pending",
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000003861",
+      "school_name": "민백초등학교",
+      "area": "dongan",
+      "road_address": "경기도 안양시 동안구 부림로 22",
+      "coverage": {
+        "school_id": "B000003861",
+        "school_name": "민백초등학교",
+        "road_address": "경기도 안양시 동안구 부림로 22",
+        "care_status": "stated",
+        "afternoon_end": "19:00:00",
+        "extended_end": null,
+        "morning_hours": null,
+        "care_year": 2026,
+        "has_afterschool": false,
+        "afterschool_year": null,
+        "grade1_options": null,
+        "custom_options": null,
+        "afterschool_snapshot": null
+      },
+      "input": "inputs/B000003861.txt",
+      "input_sha256": "f7a118fc7272ab4cd9aad8bbb633c54a7ecdb0c414b20e00f7566880a48c336c",
+      "input_chars": 76143,
+      "truncated": false,
+      "sources": [
+        {
+          "name": "2026학년도 초등 방과후·돌봄 운영 계획.hwpx",
+          "sha256": "5a95f2bc318314b02b006af5c044bd4634368b8ab3905ef3b9a6fbc81cfc3723",
+          "format": "hwpx",
+          "file_academic_year": 2026,
+          "chars": 34973
+        },
+        {
+          "name": "2025학년도 늘봄학교 연간운영계획(안).hwp",
+          "sha256": "ff001d1429290f1fdebc7cab0e919e00342dbb623729bab01ef7d0b39dc9eef3",
+          "format": "hwp",
+          "file_academic_year": 2025,
+          "chars": 33664
+        }
+      ],
+      "errors": [],
+      "input_ready": true,
+      "course_track": "new_priority",
+      "course_extraction_status": "pending",
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000003857",
+      "school_name": "벌말초등학교",
+      "area": "dongan",
+      "road_address": "경기도 안양시 동안구 학의로408번길 25",
+      "coverage": {
+        "school_id": "B000003857",
+        "school_name": "벌말초등학교",
+        "road_address": "경기도 안양시 동안구 학의로408번길 25",
+        "care_status": "stated",
+        "afternoon_end": "17:00:00",
+        "extended_end": "19:00:00",
+        "morning_hours": null,
+        "care_year": 2026,
+        "has_afterschool": false,
+        "afterschool_year": null,
+        "grade1_options": null,
+        "custom_options": null,
+        "afterschool_snapshot": null
+      },
+      "input": "inputs/B000003857.txt",
+      "input_sha256": "748a9c6b4b2f2a6557ac2d5e05282443fbe53064ef16d00726b9e7fe839723db",
+      "input_chars": 66678,
+      "truncated": false,
+      "sources": [
+        {
+          "name": "2026 벌말초등학교 방과후학교 운영계획(202604-정보공시).hwpx",
+          "sha256": "b50c79357565ad180989d531e961791030c00f99606752fbc3c1bec5d3457525",
+          "format": "hwpx",
+          "file_academic_year": 2026,
+          "chars": 60530
+        }
+      ],
+      "errors": [],
+      "input_ready": true,
+      "course_track": "new_priority",
+      "course_extraction_status": "pending",
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000003862",
+      "school_name": "범계초등학교",
+      "area": "dongan",
+      "road_address": "경기도 안양시 동안구 동안로 90",
+      "coverage": {
+        "school_id": "B000003862",
+        "school_name": "범계초등학교",
+        "road_address": "경기도 안양시 동안구 동안로 90",
+        "care_status": "school_check_needed",
+        "afternoon_end": null,
+        "extended_end": null,
+        "morning_hours": null,
+        "care_year": 2026,
+        "has_afterschool": false,
+        "afterschool_year": null,
+        "grade1_options": null,
+        "custom_options": null,
+        "afterschool_snapshot": null
+      },
+      "input": "inputs/B000003862.txt",
+      "input_sha256": "a7f13cd9bf3455536b963251495037150a6ab16924b938b14ddf9a1da0ae0d7f",
+      "input_chars": 17072,
+      "truncated": false,
+      "sources": [
+        {
+          "name": "2026학년도 수익자 방과후 프로그램 운영계획(정보공시).hwp",
+          "sha256": "6f13d502acd2ecb442902fd837324ef851478a6e20af22066ff738f72c6720d7",
+          "format": "hwp",
+          "file_academic_year": 2026,
+          "chars": 15234
+        }
+      ],
+      "errors": [],
+      "input_ready": true,
+      "course_track": "new_priority",
+      "course_extraction_status": "pending",
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000003855",
+      "school_name": "부림초등학교",
+      "area": "dongan",
+      "road_address": "경기도 안양시 동안구 달안로 161",
+      "coverage": {
+        "school_id": "B000003855",
+        "school_name": "부림초등학교",
+        "road_address": "경기도 안양시 동안구 달안로 161",
+        "care_status": "stated",
+        "afternoon_end": "17:00:00",
+        "extended_end": "19:00:00",
+        "morning_hours": null,
+        "care_year": 2026,
+        "has_afterschool": false,
+        "afterschool_year": null,
+        "grade1_options": null,
+        "custom_options": null,
+        "afterschool_snapshot": null
+      },
+      "input": "inputs/B000003855.txt",
+      "input_sha256": "65af0f74a0e85dc6e3e6b2d3c2460473dce0be57022601e7ab1a32e032f12894",
+      "input_chars": 71360,
+      "truncated": false,
+      "sources": [
+        {
+          "name": "2026학년도 부림초등학교 초등돌봄교실 운영 계획.hwp",
+          "sha256": "bc28ac1c6bcac796684b409b6499f063b70215bb6f792cd5ee60138f5204ab4d",
+          "format": "hwp",
+          "file_academic_year": 2026,
+          "chars": 28392
+        },
+        {
+          "name": "2026학년도 부림초등학교 방과후학교 운영 계획.hwp",
+          "sha256": "863cd979d69ed271233cb752963d39d8f5bf00752f81d29bb13f991b380e0faa",
+          "format": "hwp",
+          "file_academic_year": 2026,
+          "chars": 35490
+        }
+      ],
+      "errors": [],
+      "input_ready": true,
+      "course_track": "new_priority",
+      "course_extraction_status": "pending",
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000003876",
+      "school_name": "비산초등학교",
+      "area": "dongan",
+      "road_address": "경기도 안양시 동안구 운곡로 52",
+      "coverage": {
+        "school_id": "B000003876",
+        "school_name": "비산초등학교",
+        "road_address": "경기도 안양시 동안구 운곡로 52",
+        "care_status": "stated",
+        "afternoon_end": "17:00:00",
+        "extended_end": "19:00:00",
+        "morning_hours": "08:00-08:40",
+        "care_year": 2026,
+        "has_afterschool": false,
+        "afterschool_year": null,
+        "grade1_options": null,
+        "custom_options": null,
+        "afterschool_snapshot": null
+      },
+      "input": "inputs/B000003876.txt",
+      "input_sha256": "fae47e01f26c1b9f616df01c2a60d0e89022b2b14bb17be1e6d13aa4afa3c4f4",
+      "input_chars": 47067,
+      "truncated": false,
+      "sources": [
+        {
+          "name": "정보공시_2026학년도 비산초등학교 선택형돌봄교실 연간운영계획.pdf",
+          "sha256": "7c8d2cddda95fec70daff8cb010113455ced267a70cdbb397b5085b2f93e1565",
+          "format": "pdf",
+          "file_academic_year": 2026,
+          "chars": 16891
+        },
+        {
+          "name": "학교홈페이지_2026초등방과후운영계획_비산초.pdf",
+          "sha256": "6a6f83cb391e1cc0e279902a3f3ac6608e22ab03f0c64757c00b0f50fd2f48e8",
+          "format": "pdf",
+          "file_academic_year": 2026,
+          "chars": 23764
+        }
+      ],
+      "errors": [],
+      "input_ready": true,
+      "course_track": "new_priority",
+      "course_extraction_status": "pending",
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000003852",
+      "school_name": "샘모루초등학교",
+      "area": "dongan",
+      "road_address": "경기도 안양시 동안구 관악대로 155",
+      "coverage": {
+        "school_id": "B000003852",
+        "school_name": "샘모루초등학교",
+        "road_address": "경기도 안양시 동안구 관악대로 155",
+        "care_status": "stated",
+        "afternoon_end": "17:00:00",
+        "extended_end": "19:00:00",
+        "morning_hours": null,
+        "care_year": 2026,
+        "has_afterschool": false,
+        "afterschool_year": null,
+        "grade1_options": null,
+        "custom_options": null,
+        "afterschool_snapshot": null
+      },
+      "input": "inputs/B000003852.txt",
+      "input_sha256": "3a1b8ec6955b6792fe879e21593c60626bfaa6eaa7143a852c3320f240a49c04",
+      "input_chars": 48268,
+      "truncated": false,
+      "sources": [
+        {
+          "name": "2026학년도 초등 방과후·돌봄 운영 계획-홈페이지.hwp",
+          "sha256": "45b65da2b2d1304091a1fd3c1e1ab46c0286d041b610ef5723be79f8d4de8b9c",
+          "format": "hwp",
+          "file_academic_year": 2026,
+          "chars": 43246
+        }
+      ],
+      "errors": [],
+      "input_ready": true,
+      "course_track": "new_priority",
+      "course_extraction_status": "pending",
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000003866",
+      "school_name": "안양관악초등학교",
+      "area": "dongan",
+      "road_address": "경기도 안양시 동안구 일동로 201",
+      "coverage": {
+        "school_id": "B000003866",
+        "school_name": "안양관악초등학교",
+        "road_address": "경기도 안양시 동안구 일동로 201",
+        "care_status": "school_check_needed",
+        "afternoon_end": null,
+        "extended_end": null,
+        "morning_hours": null,
+        "care_year": 2026,
+        "has_afterschool": false,
+        "afterschool_year": null,
+        "grade1_options": null,
+        "custom_options": null,
+        "afterschool_snapshot": null
+      },
+      "input": "inputs/B000003866.txt",
+      "input_sha256": "bcaf94c910fa2429ea83afd67a632d84f8c9839f73c6fe89bb9236eb5753fb73",
+      "input_chars": 19456,
+      "truncated": false,
+      "sources": [
+        {
+          "name": "2026 안양관악초 방과후학교 운영 계획_연락처삭제.hwp",
+          "sha256": "966e16561e26e5e317a7018964a69c19165944364e4a36565551598345c06e82",
+          "format": "hwp",
+          "file_academic_year": 2026,
+          "chars": 17667
+        }
+      ],
+      "errors": [],
+      "input_ready": true,
+      "course_track": "new_priority",
+      "course_extraction_status": "pending",
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000003865",
+      "school_name": "안양남초등학교",
+      "area": "dongan",
+      "road_address": "경기도 안양시 동안구 흥안대로 275",
+      "coverage": {
+        "school_id": "B000003865",
+        "school_name": "안양남초등학교",
+        "road_address": "경기도 안양시 동안구 흥안대로 275",
+        "care_status": "school_check_needed",
+        "afternoon_end": null,
+        "extended_end": null,
+        "morning_hours": null,
+        "care_year": 2026,
+        "has_afterschool": false,
+        "afterschool_year": null,
+        "grade1_options": null,
+        "custom_options": null,
+        "afterschool_snapshot": null
+      },
+      "input": "inputs/B000003865.txt",
+      "input_sha256": "d12411717538e81e7419b5a8880fbf19bd68081ede4d76a35ebed6c3cbdb43a7",
+      "input_chars": 37722,
+      "truncated": false,
+      "sources": [
+        {
+          "name": "2026학년도 수익자 방과후 운영 계획.hwp",
+          "sha256": "82858f7bcde7846153466e5cf6e5f96834d8c83c90496d9cdf7fce553e28fb24",
+          "format": "hwp",
+          "file_academic_year": 2026,
+          "chars": 34141
+        }
+      ],
+      "errors": [],
+      "input_ready": true,
+      "course_track": "new_priority",
+      "course_extraction_status": "pending",
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000003864",
+      "school_name": "안양덕현초등학교",
+      "area": "dongan",
+      "road_address": "경기도 안양시 동안구 갈산로 34",
+      "coverage": {
+        "school_id": "B000003864",
+        "school_name": "안양덕현초등학교",
+        "road_address": "경기도 안양시 동안구 갈산로 34",
+        "care_status": "school_check_needed",
+        "afternoon_end": null,
+        "extended_end": null,
+        "morning_hours": null,
+        "care_year": 2026,
+        "has_afterschool": false,
+        "afterschool_year": null,
+        "grade1_options": null,
+        "custom_options": null,
+        "afterschool_snapshot": null
+      },
+      "input": "inputs/B000003864.txt",
+      "input_sha256": "2c0f65365081c4f34a70540343a944238f7796334fa8be1f3d69017b6f089140",
+      "input_chars": 35389,
+      "truncated": false,
+      "sources": [
+        {
+          "name": "2026학년도 초등 방과후 운영 계획(안).hwp",
+          "sha256": "001ee26d536db423f239cc422990678700dca554baa572090c296d2d5d7585e3",
+          "format": "hwp",
+          "file_academic_year": 2026,
+          "chars": 32135
+        }
+      ],
+      "errors": [],
+      "input_ready": true,
+      "course_track": "new_priority",
+      "course_extraction_status": "pending",
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000003872",
+      "school_name": "안양동초등학교",
+      "area": "dongan",
+      "road_address": "경기도 안양시 동안구 임곡로80번길 34",
+      "coverage": {
+        "school_id": "B000003872",
+        "school_name": "안양동초등학교",
+        "road_address": "경기도 안양시 동안구 임곡로80번길 34",
+        "care_status": "stated",
+        "afternoon_end": "17:00:00",
+        "extended_end": "19:00:00",
+        "morning_hours": null,
+        "care_year": 2026,
+        "has_afterschool": false,
+        "afterschool_year": null,
+        "grade1_options": null,
+        "custom_options": null,
+        "afterschool_snapshot": null
+      },
+      "input": "inputs/B000003872.txt",
+      "input_sha256": "301c92e6d9856641369c564143b0ad05a455304723ab58cddd561599feab974f",
+      "input_chars": 42431,
+      "truncated": false,
+      "sources": [
+        {
+          "name": "2026학년도 안양동초 초등돌봄교실 운영계획.hwp",
+          "sha256": "640ffd00eaff0187e5316c82dffc26a004f700e195837514a7349349ab26362e",
+          "format": "hwp",
+          "file_academic_year": 2026,
+          "chars": 13134
+        },
+        {
+          "name": "2026학년도 안양동초 방과후 학교 운영계획.hwp",
+          "sha256": "0700101561666432a90d80baac6fe65d087d4b28fbecf798416c8d7019d48d90",
+          "format": "hwp",
+          "file_academic_year": 2026,
+          "chars": 25166
+        }
+      ],
+      "errors": [],
+      "input_ready": true,
+      "course_track": "new_priority",
+      "course_extraction_status": "pending",
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000003854",
+      "school_name": "안양부안초등학교",
+      "area": "dongan",
+      "road_address": "경기도 안양시 동안구 달안로 113",
+      "coverage": {
+        "school_id": "B000003854",
+        "school_name": "안양부안초등학교",
+        "road_address": "경기도 안양시 동안구 달안로 113",
+        "care_status": "stated",
+        "afternoon_end": "17:00:00",
+        "extended_end": "19:00:00",
+        "morning_hours": null,
+        "care_year": 2026,
+        "has_afterschool": false,
+        "afterschool_year": null,
+        "grade1_options": null,
+        "custom_options": null,
+        "afterschool_snapshot": null
+      },
+      "input": "inputs/B000003854.txt",
+      "input_sha256": "2bf0e16eb47b0dc2958bdd003098a2fed360ed08e8f3f55e488b1ae97a90ce50",
+      "input_chars": 52053,
+      "truncated": false,
+      "sources": [
+        {
+          "name": "2026학년도 방과후 프로그램 운영계획.hwp",
+          "sha256": "15ea092ffdac470d85ad56060371b5ad4468cd860d161d96f241b85d9fd00410",
+          "format": "hwp",
+          "file_academic_year": 2026,
+          "chars": 17447
+        },
+        {
+          "name": "2026학년도 선택형 돌봄교실 운영계획.hwp",
+          "sha256": "3539b8d9b16081c8a6ae9717708d5b937ffe2f13f0a78a8692d51863808a3584",
+          "format": "hwp",
+          "file_academic_year": 2026,
+          "chars": 29232
+        }
+      ],
+      "errors": [],
+      "input_ready": true,
+      "course_track": "new_priority",
+      "course_extraction_status": "pending",
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000003871",
+      "school_name": "안양부흥초등학교",
+      "area": "dongan",
+      "road_address": "경기도 안양시 동안구 달안로 37",
+      "coverage": {
+        "school_id": "B000003871",
+        "school_name": "안양부흥초등학교",
+        "road_address": "경기도 안양시 동안구 달안로 37",
+        "care_status": "stated",
+        "afternoon_end": "17:00:00",
+        "extended_end": "19:00:00",
+        "morning_hours": null,
+        "care_year": 2026,
+        "has_afterschool": false,
+        "afterschool_year": null,
+        "grade1_options": null,
+        "custom_options": null,
+        "afterschool_snapshot": null
+      },
+      "input": "inputs/B000003871.txt",
+      "input_sha256": "e5000052a24f17139325036a6e734c989da7f781a2977d7b1ff2a581dee68a10",
+      "input_chars": 57498,
+      "truncated": false,
+      "sources": [
+        {
+          "name": "2026학년도 안양부흥초 방과후돌봄 운영계획_ 최종본(수정)0508.hwp",
+          "sha256": "7bd9261dcb4777285b50e6cd589bfa945e4073f4cd88d8b29ce34c4e41d02f7e",
+          "format": "hwp",
+          "file_academic_year": 2026,
+          "chars": 42754
+        },
+        {
+          "name": "2026학년도 안양부흥초 돌봄교실 운영계획.hwp",
+          "sha256": "8dc1c51667debef8685a1d6c14a8e065b05285a2678e2952be9807d48f360c5a",
+          "format": "hwp",
+          "file_academic_year": 2026,
+          "chars": 9184
+        }
+      ],
+      "errors": [],
+      "input_ready": true,
+      "course_track": "new_priority",
+      "course_extraction_status": "pending",
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000003873",
+      "school_name": "안양신기초등학교",
+      "area": "dongan",
+      "road_address": "경기도 안양시 동안구 동안로 26",
+      "coverage": {
+        "school_id": "B000003873",
+        "school_name": "안양신기초등학교",
+        "road_address": "경기도 안양시 동안구 동안로 26",
+        "care_status": "stated",
+        "afternoon_end": "17:00:00",
+        "extended_end": "19:00:00",
+        "morning_hours": null,
+        "care_year": 2026,
+        "has_afterschool": false,
+        "afterschool_year": null,
+        "grade1_options": null,
+        "custom_options": null,
+        "afterschool_snapshot": null
+      },
+      "input": "inputs/B000003873.txt",
+      "input_sha256": "ed24933e11edf979d215415439e5f6d7b3863f83de03949a145b535e69a5ff05",
+      "input_chars": 47040,
+      "truncated": false,
+      "sources": [
+        {
+          "name": "2026학년도 초등돌봄교실 연간 운영 계획.hwp",
+          "sha256": "e4450b026d01015ba9c4b0a72a5a96e88e022d5748a3412241ffc2dc675be915",
+          "format": "hwp",
+          "file_academic_year": 2026,
+          "chars": 18147
+        },
+        {
+          "name": "2026학년도 초등방과후프로그램(방과후,초12맞춤포함) 운영계획.hwp",
+          "sha256": "cd9408003b663377e691df8d0f86759a6a7e0f419fd4c847dd644f189753d106",
+          "format": "hwp",
+          "file_academic_year": 2026,
+          "chars": 24085
+        }
+      ],
+      "errors": [],
+      "input_ready": true,
+      "course_track": "new_priority",
+      "course_extraction_status": "pending",
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000003853",
+      "school_name": "안양중앙초등학교",
+      "area": "dongan",
+      "road_address": "경기도 안양시 동안구 경수대로883번길 11",
+      "coverage": {
+        "school_id": "B000003853",
+        "school_name": "안양중앙초등학교",
+        "road_address": "경기도 안양시 동안구 경수대로883번길 11",
+        "care_status": "stated",
+        "afternoon_end": "17:00:00",
+        "extended_end": "19:00:00",
+        "morning_hours": null,
+        "care_year": 2026,
+        "has_afterschool": false,
+        "afterschool_year": null,
+        "grade1_options": null,
+        "custom_options": null,
+        "afterschool_snapshot": null
+      },
+      "input": "inputs/B000003853.txt",
+      "input_sha256": "8ca623ffe96620225bcf4ce104202fa7a59e778601667cb997a90d3cf478c642",
+      "input_chars": 25718,
+      "truncated": false,
+      "sources": [
+        {
+          "name": "2026학년도 안양중앙초 오후돌봄 연간 운영 계획서.hwp",
+          "sha256": "a1ec1892fd228c6f27e23d5f1cd8a8e39a81bbfe6119c9f63c894c105a1f14ba",
+          "format": "hwp",
+          "file_academic_year": 2026,
+          "chars": 8075
+        },
+        {
+          "name": "2026학년도 초등 방과후.돌봄 운영 계획.hwpx",
+          "sha256": "c6b6855f5abefddc25281196578beb669eb68e64ba62d5e87fd51246e08444d2",
+          "format": "hwpx",
+          "file_academic_year": 2026,
+          "chars": 14575
+        }
+      ],
+      "errors": [],
+      "input_ready": true,
+      "course_track": "new_priority",
+      "course_extraction_status": "pending",
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000003868",
+      "school_name": "인덕원초등학교",
+      "area": "dongan",
+      "road_address": "경기도 안양시 동안구 관양로 311",
+      "coverage": {
+        "school_id": "B000003868",
+        "school_name": "인덕원초등학교",
+        "road_address": "경기도 안양시 동안구 관양로 311",
+        "care_status": "stated",
+        "afternoon_end": "17:00:00",
+        "extended_end": "19:00:00",
+        "morning_hours": null,
+        "care_year": 2026,
+        "has_afterschool": false,
+        "afterschool_year": null,
+        "grade1_options": null,
+        "custom_options": null,
+        "afterschool_snapshot": null
+      },
+      "input": "inputs/B000003868.txt",
+      "input_sha256": "17bf1ab4da4bd6a02f5960529b998903177e3f6bfbcaf84497062e7136c63415",
+      "input_chars": 48388,
+      "truncated": false,
+      "sources": [
+        {
+          "name": "인덕원초등학교 돌봄교실 운영 계획.hwpx",
+          "sha256": "7a01d51a497d126c8671051fb583a8d3e8ffb7df057bece7696e89367fec857e",
+          "format": "hwpx",
+          "file_academic_year": null,
+          "chars": 31027
+        },
+        {
+          "name": "인덕원초등학교 방과후 프로그램 운영 계획.hwp",
+          "sha256": "7fc3c2c0d6d8461d0c29aa60623a4a327eb7a770f9be5d2d92865291d24737c8",
+          "format": "hwp",
+          "file_academic_year": null,
+          "chars": 12349
+        }
+      ],
+      "errors": [],
+      "input_ready": true,
+      "course_track": "new_priority",
+      "course_extraction_status": "pending",
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000003859",
+      "school_name": "평촌초등학교",
+      "area": "dongan",
+      "road_address": "경기도 안양시 동안구 평촌대로180번길 56",
+      "coverage": {
+        "school_id": "B000003859",
+        "school_name": "평촌초등학교",
+        "road_address": "경기도 안양시 동안구 평촌대로180번길 56",
+        "care_status": "stated",
+        "afternoon_end": "19:00:00",
+        "extended_end": null,
+        "morning_hours": null,
+        "care_year": 2026,
+        "has_afterschool": false,
+        "afterschool_year": null,
+        "grade1_options": null,
+        "custom_options": null,
+        "afterschool_snapshot": null
+      },
+      "input": "inputs/B000003859.txt",
+      "input_sha256": "a1e5ec02d97b3079f7cd072fcaf1f431c2caf5be84492d596b7506237f19a1b6",
+      "input_chars": 13580,
+      "truncated": false,
+      "sources": [
+        {
+          "name": "2026학년도 평촌초 방과후 프로그램 운영 계획(안).pdf",
+          "sha256": "1859aa07c9f7385991793ffd89a47632b2b5f0eade108df043e0f5b7ca7fa868",
+          "format": "pdf",
+          "file_academic_year": 2026,
+          "chars": 9298
+        },
+        {
+          "name": "2026학년도 평촌초 선택형돌봄 운영계획.pdf",
+          "sha256": "f08ac285a5056f95983122af862017eef19064d8da2e9eed427cb34d48310505",
+          "format": "pdf",
+          "file_academic_year": 2026,
+          "chars": 3698
+        }
+      ],
+      "errors": [],
+      "input_ready": true,
+      "course_track": "new_priority",
+      "course_extraction_status": "pending",
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000003836",
+      "school_name": "해오름초등학교",
+      "area": "dongan",
+      "road_address": "경기도 안양시 동안구 동편로 117",
+      "coverage": {
+        "school_id": "B000003836",
+        "school_name": "해오름초등학교",
+        "road_address": "경기도 안양시 동안구 동편로 117",
+        "care_status": "stated",
+        "afternoon_end": "16:50:00",
+        "extended_end": "19:00:00",
+        "morning_hours": null,
+        "care_year": 2026,
+        "has_afterschool": false,
+        "afterschool_year": null,
+        "grade1_options": null,
+        "custom_options": null,
+        "afterschool_snapshot": null
+      },
+      "input": "inputs/B000003836.txt",
+      "input_sha256": "55ff52c99617070c76ec1cb92c59d568706d2e04fd550a491c5310b19b325b17",
+      "input_chars": 32842,
+      "truncated": false,
+      "sources": [
+        {
+          "name": "2026학년도 해오름초 초등돌봄교실 운영계획.hwpx",
+          "sha256": "49b533f4dd5c54acd324df52b0d8a617c9bc72746e4b4aa52e827d2c28cf9fed",
+          "format": "hwpx",
+          "file_academic_year": 2026,
+          "chars": 9482
+        },
+        {
+          "name": "2026학년도 해오름초등학교 방과후학교 운영 계획.hwp",
+          "sha256": "91ded004805048ba2b9386efcc6f20dd0fca3e6c4021a8d37fe25b20299227a7",
+          "format": "hwp",
+          "file_academic_year": 2026,
+          "chars": 19645
+        }
+      ],
+      "errors": [],
+      "input_ready": true,
+      "course_track": "new_priority",
+      "course_extraction_status": "pending",
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000003875",
+      "school_name": "호계초등학교",
+      "area": "dongan",
+      "road_address": "경기도 안양시 동안구 경수대로707번길 27",
+      "coverage": {
+        "school_id": "B000003875",
+        "school_name": "호계초등학교",
+        "road_address": "경기도 안양시 동안구 경수대로707번길 27",
+        "care_status": "stated",
+        "afternoon_end": "17:00:00",
+        "extended_end": "19:00:00",
+        "morning_hours": "08:00-08:40",
+        "care_year": 2026,
+        "has_afterschool": false,
+        "afterschool_year": null,
+        "grade1_options": null,
+        "custom_options": null,
+        "afterschool_snapshot": null
+      },
+      "input": "inputs/B000003875.txt",
+      "input_sha256": "0b4a3d2442e49d327bb4068348beb7882f665fc4fe51ffd53698673936a0e62e",
+      "input_chars": 38545,
+      "truncated": false,
+      "sources": [
+        {
+          "name": "2026학년도 초등돌봄교실 연간 운영 계획.hwp",
+          "sha256": "ac26547fd92cad01a91eaf727f74de83736c6a6bf8af9089a62d60938d183c0d",
+          "format": "hwp",
+          "file_academic_year": 2026,
+          "chars": 11463
+        },
+        {
+          "name": "2026학년도 호계초등학교 방과후학교운영계획.pdf",
+          "sha256": "792ef717159fa52a4537249229cf3b1faffdf06b3f2c3f3218414fb3e0698fef",
+          "format": "pdf",
+          "file_academic_year": 2026,
+          "chars": 25233
+        }
+      ],
+      "errors": [],
+      "input_ready": true,
+      "course_track": "new_priority",
+      "course_extraction_status": "pending",
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000003863",
+      "school_name": "호성초등학교",
+      "area": "dongan",
+      "road_address": "경기도 안양시 동안구 호성로 43-2",
+      "coverage": {
+        "school_id": "B000003863",
+        "school_name": "호성초등학교",
+        "road_address": "경기도 안양시 동안구 호성로 43-2",
+        "care_status": "stated",
+        "afternoon_end": "17:00:00",
+        "extended_end": "19:00:00",
+        "morning_hours": null,
+        "care_year": 2026,
+        "has_afterschool": false,
+        "afterschool_year": null,
+        "grade1_options": null,
+        "custom_options": null,
+        "afterschool_snapshot": null
+      },
+      "input": "inputs/B000003863.txt",
+      "input_sha256": "34cbaa8dd3dc41854f4788094d3b23cab554a2b8f3013767d83ba1ceb408053f",
+      "input_chars": 53852,
+      "truncated": false,
+      "sources": [
+        {
+          "name": "2026학년도 초등돌봄교실 운영 계획.hwp",
+          "sha256": "6284235f2ae7813c3ee4deb4da85c50ec89d92b8b4308c8b8cdbbf0e0ed34a64",
+          "format": "hwp",
+          "file_academic_year": 2026,
+          "chars": 15308
+        },
+        {
+          "name": "2026학년도 호성초 방과후(초1~2 맞춤형, 수익자방과후) 프로그램 운영 계획.hwpx",
+          "sha256": "892e39dbfc965e359cc77fe6af3d730623d69a3a63ade69fd5b531f91e0cd558",
+          "format": "hwpx",
+          "file_academic_year": 2026,
+          "chars": 32465
+        }
+      ],
+      "errors": [],
+      "input_ready": true,
+      "course_track": "new_priority",
+      "course_extraction_status": "pending",
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000003874",
+      "school_name": "호원초등학교",
+      "area": "dongan",
+      "road_address": "경기도 안양시 동안구 경수대로623번길 72",
+      "coverage": {
+        "school_id": "B000003874",
+        "school_name": "호원초등학교",
+        "road_address": "경기도 안양시 동안구 경수대로623번길 72",
+        "care_status": "stated",
+        "afternoon_end": "17:00:00",
+        "extended_end": "19:00:00",
+        "morning_hours": "07:40-08:40",
+        "care_year": 2026,
+        "has_afterschool": false,
+        "afterschool_year": null,
+        "grade1_options": null,
+        "custom_options": null,
+        "afterschool_snapshot": null
+      },
+      "input": "inputs/B000003874.txt",
+      "input_sha256": "90f6a5d6b772f1f80cabee0d52a0350765c25b568a962706f13fc3f383a7bc51",
+      "input_chars": 86612,
+      "truncated": false,
+      "sources": [
+        {
+          "name": "2026학년도 초등돌봄교실 운영계획_게시용.hwp",
+          "sha256": "b944f07d2708f09bc2970cc42a09e57ea62f40e6da4d2e9605fdc314449e67ad",
+          "format": "hwp",
+          "file_academic_year": 2026,
+          "chars": 20667
+        },
+        {
+          "name": "2026학년도 호원초 방과후·돌봄 운영계획(안)-게시용.hwpx",
+          "sha256": "256e4bea15693b9dfebe407639f776867854f7a03a73693e1673a403ac33ffc6",
+          "format": "hwpx",
+          "file_academic_year": 2026,
+          "chars": 57213
+        }
+      ],
+      "errors": [],
+      "input_ready": true,
+      "course_track": "new_priority",
+      "course_extraction_status": "pending",
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000003869",
+      "school_name": "희성초등학교",
+      "area": "dongan",
+      "road_address": "경기도 안양시 동안구 학의로 86",
+      "coverage": {
+        "school_id": "B000003869",
+        "school_name": "희성초등학교",
+        "road_address": "경기도 안양시 동안구 학의로 86",
+        "care_status": "school_check_needed",
+        "afternoon_end": null,
+        "extended_end": null,
+        "morning_hours": null,
+        "care_year": 2026,
+        "has_afterschool": false,
+        "afterschool_year": null,
+        "grade1_options": null,
+        "custom_options": null,
+        "afterschool_snapshot": null
+      },
+      "input": "inputs/B000003869.txt",
+      "input_sha256": "e8a8defe9b6cf81f55c3ad1cb356a3af9a2478ba3125261390958bb4f99cdad5",
+      "input_chars": 36004,
+      "truncated": false,
+      "sources": [
+        {
+          "name": "2026 희성초 방과후·돌봄 운영계획_게시.hwp",
+          "sha256": "03baa239acb6edd5b5a1d1ec190c15a3ccd93031b7b5131e86bc2d99513a6a7e",
+          "format": "hwp",
+          "file_academic_year": 2026,
+          "chars": 32206
+        }
+      ],
+      "errors": [],
+      "input_ready": true,
+      "course_track": "new_priority",
+      "course_extraction_status": "pending",
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000004264",
+      "school_name": "가림초등학교",
+      "area": "gwangmyeong",
+      "road_address": "경기도 광명시 금당로 11-7",
+      "coverage": {
+        "school_id": "B000004264",
+        "school_name": "가림초등학교",
+        "road_address": "경기도 광명시 금당로 11-7",
+        "care_status": "stated",
+        "afternoon_end": "17:00:00",
+        "extended_end": "19:00:00",
+        "morning_hours": null,
+        "care_year": 2026,
+        "has_afterschool": false,
+        "afterschool_year": null,
+        "grade1_options": null,
+        "custom_options": null,
+        "afterschool_snapshot": null
+      },
+      "input": "inputs/B000004264.txt",
+      "input_sha256": "0d05f41fc0e1543352550952e7bb0834310292cff6b1368f54eee489440371d8",
+      "input_chars": 24656,
+      "truncated": false,
+      "sources": [
+        {
+          "name": "2026학년도 초등돌봄교실 운영 계획.hwp",
+          "sha256": "99fc8edc9dc7fed35e8d75aa14ba6fabe4a73b5936044f555db49139c8b3e86b",
+          "format": "hwp",
+          "file_academic_year": 2026,
+          "chars": 9376
+        },
+        {
+          "name": "2026학년도 가림초 방과후학교 운영 계획.hwp",
+          "sha256": "2d6a7957b02aa54d407323b81733ba516639b5fd6b4f216fcfa9ba23db6f4007",
+          "format": "hwp",
+          "file_academic_year": 2026,
+          "chars": 12295
+        }
+      ],
+      "errors": [],
+      "input_ready": true,
+      "course_track": "new_priority",
+      "course_extraction_status": "pending",
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000004277",
+      "school_name": "광명광덕초등학교",
+      "area": "gwangmyeong",
+      "road_address": "경기도 광명시 오리로841번길 9",
+      "coverage": {
+        "school_id": "B000004277",
+        "school_name": "광명광덕초등학교",
+        "road_address": "경기도 광명시 오리로841번길 9",
+        "care_status": "stated",
+        "afternoon_end": "19:00:00",
+        "extended_end": null,
+        "morning_hours": "07:40-08:40",
+        "care_year": 2026,
+        "has_afterschool": false,
+        "afterschool_year": null,
+        "grade1_options": null,
+        "custom_options": null,
+        "afterschool_snapshot": null
+      },
+      "input": "inputs/B000004277.txt",
+      "input_sha256": "1a25343916efb6fba43ab8bfe6a78f486a11cf33cdfb75d6eab66c065a0f1ef1",
+      "input_chars": 55318,
+      "truncated": false,
+      "sources": [
+        {
+          "name": "2026학년도 광명광덕초 초등돌봄교실 운영 계획(정보공시용).hwp",
+          "sha256": "ce335bdf8d7aa9da281c607a7ee954e04fd18fc60b56f3f68d352934b1bef677",
+          "format": "hwp",
+          "file_academic_year": 2026,
+          "chars": 35134
+        },
+        {
+          "name": "2026학년도 광명광덕초 방과후학교 운영 계획(정보공시용).hwpx",
+          "sha256": "c46e225e16e8140d75cbe17f0e12d9f134d28eec09694c545e047fb39f661963",
+          "format": "hwpx",
+          "file_academic_year": 2026,
+          "chars": 14426
+        }
+      ],
+      "errors": [],
+      "input_ready": true,
+      "course_track": "new_priority",
+      "course_extraction_status": "pending",
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000004276",
+      "school_name": "광명광성초등학교",
+      "area": "gwangmyeong",
+      "road_address": "경기도 광명시 철산로 59",
+      "coverage": {
+        "school_id": "B000004276",
+        "school_name": "광명광성초등학교",
+        "road_address": "경기도 광명시 철산로 59",
+        "care_status": "stated",
+        "afternoon_end": "17:00:00",
+        "extended_end": "19:00:00",
+        "morning_hours": null,
+        "care_year": 2026,
+        "has_afterschool": false,
+        "afterschool_year": null,
+        "grade1_options": null,
+        "custom_options": null,
+        "afterschool_snapshot": null
+      },
+      "input": "inputs/B000004276.txt",
+      "input_sha256": "a1e70c3ce29a0e1e91ad76af37d955dbd3c0dc41c48a842f45afbefc5fd61c64",
+      "input_chars": 30023,
+      "truncated": false,
+      "sources": [
+        {
+          "name": "2026학년도 초등돌봄 연간 운영계획.hwp",
+          "sha256": "4985f7eeee3b98bdbb13bb17e624434646116943080957d54840afe0f8390965",
+          "format": "hwp",
+          "file_academic_year": 2026,
+          "chars": 5570
+        },
+        {
+          "name": "2026학년도 광명광성초 방과후 운영 계획.hwp",
+          "sha256": "a276b1100c5c405b2cda93a8676b35703b466e83b4a5071310f7d2927dcb567e",
+          "format": "hwp",
+          "file_academic_year": 2026,
+          "chars": 21436
+        }
+      ],
+      "errors": [],
+      "input_ready": true,
+      "course_track": "new_priority",
+      "course_extraction_status": "pending",
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000004270",
+      "school_name": "광명남초등학교",
+      "area": "gwangmyeong",
+      "road_address": "경기도 광명시 광명로 866-9",
+      "coverage": {
+        "school_id": "B000004270",
+        "school_name": "광명남초등학교",
+        "road_address": "경기도 광명시 광명로 866-9",
+        "care_status": "stated",
+        "afternoon_end": "17:00:00",
+        "extended_end": "19:00:00",
+        "morning_hours": null,
+        "care_year": 2026,
+        "has_afterschool": false,
+        "afterschool_year": null,
+        "grade1_options": null,
+        "custom_options": null,
+        "afterschool_snapshot": null
+      },
+      "input": "inputs/B000004270.txt",
+      "input_sha256": "9b5ad240471b1b7d2d31312f6841934f1dc023d6f35f02b6224e65f938dc9084",
+      "input_chars": 73319,
+      "truncated": false,
+      "sources": [
+        {
+          "name": "2025 방과후 자유수강 지원현황.xlsx",
+          "sha256": "4819ac8324857b6a0f6d8d30768d3395636dc64a214181d7c1d9780682a3e37a",
+          "format": "xlsx",
+          "file_academic_year": 2025,
+          "chars": 1712,
+          "text_override": {
+            "text_file": "F:\\sm\\vibe\\elementary\\pjt_250826\\elementary-v2\\etl\\runtime\\pivot_gyeonggi_priority_20261023\\4819ac8324857b6a0f6d8d30768d3395636dc64a214181d7c1d9780682a3e37a.txt",
+            "text_sha256": "0c257d4fa16e14c0ee9e40603e043ad1e0f6809b4d95c3345cb3ac79736ac019",
+            "format": "xlsx",
+            "method": "openpyxl read-only source analysis; cached formulas; row-span labels repeated"
+          }
+        },
+        {
+          "name": "2026운영현황(2026.04.30현재).xlsx",
+          "sha256": "80c05e1e65536a2ae32ff6c7ec92fa9e616ad20f534b260a60e2572dfb5acbb2",
+          "format": "xlsx",
+          "file_academic_year": 2026,
+          "chars": 21547,
+          "text_override": {
+            "text_file": "F:\\sm\\vibe\\elementary\\pjt_250826\\elementary-v2\\etl\\runtime\\pivot_gyeonggi_priority_20261023\\80c05e1e65536a2ae32ff6c7ec92fa9e616ad20f534b260a60e2572dfb5acbb2.txt",
+            "text_sha256": "b5d389b2661bf2dfc0eac8e105884b672d7b56aba2dd7931fec3c5f3e4cdd094",
+            "format": "xlsx",
+            "method": "openpyxl read-only source analysis; cached formulas; row-span labels repeated"
+          }
+        },
+        {
+          "name": "2026학년도 초등돌봄교실 운영현황.hwpx",
+          "sha256": "c6c56f7b054d0c6a20b8f0d335d930e2c011cb5de7c4f31a664390f4b1257b8e",
+          "format": "hwpx",
+          "file_academic_year": 2026,
+          "chars": 512
+        },
+        {
+          "name": "2026학년도 돌봄교실 운영 계획.hwp",
+          "sha256": "17c4f5626eae282a8bde9acf160fd44a2eb66eb4d461b7459bcc46efff489d52",
+          "format": "hwp",
+          "file_academic_year": 2026,
+          "chars": 20686
+        },
+        {
+          "name": "2026학년도 맞춤형, 방과후 연간 운영 계획.pdf",
+          "sha256": "ae467f1f0a5d67fb863ae9975f016209a64171ca5ea539082d73b60629af5077",
+          "format": "pdf",
+          "file_academic_year": 2026,
+          "chars": 23597
+        }
+      ],
+      "errors": [],
+      "input_ready": true,
+      "course_track": "new_priority",
+      "course_extraction_status": "pending",
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000004274",
+      "school_name": "광명동초등학교",
+      "area": "gwangmyeong",
+      "road_address": "경기도 광명시 연서일로 25",
+      "coverage": {
+        "school_id": "B000004274",
+        "school_name": "광명동초등학교",
+        "road_address": "경기도 광명시 연서일로 25",
+        "care_status": "school_check_needed",
+        "afternoon_end": null,
+        "extended_end": null,
+        "morning_hours": null,
+        "care_year": 2026,
+        "has_afterschool": false,
+        "afterschool_year": null,
+        "grade1_options": null,
+        "custom_options": null,
+        "afterschool_snapshot": null
+      },
+      "input": "inputs/B000004274.txt",
+      "input_sha256": "c488bc293bf23233345d9667bd1f8ea66ba830ddb6d22b65b01848b5e41a168f",
+      "input_chars": 9802,
+      "truncated": false,
+      "sources": [
+        {
+          "name": "2026년도 방과후학교 운영계획.hwpx",
+          "sha256": "012ccf711afd1ec49c7b9643c197a589589b4015370685f5bcf0650c602d4145",
+          "format": "hwpx",
+          "file_academic_year": 2026,
+          "chars": 8738
+        }
+      ],
+      "errors": [],
+      "input_ready": true,
+      "course_track": "new_priority",
+      "course_extraction_status": "pending",
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000004275",
+      "school_name": "광명북초등학교",
+      "area": "gwangmyeong",
+      "road_address": "경기도 광명시 시청로138번길 8",
+      "coverage": {
+        "school_id": "B000004275",
+        "school_name": "광명북초등학교",
+        "road_address": "경기도 광명시 시청로138번길 8",
+        "care_status": "school_check_needed",
+        "afternoon_end": null,
+        "extended_end": null,
+        "morning_hours": null,
+        "care_year": 2026,
+        "has_afterschool": false,
+        "afterschool_year": null,
+        "grade1_options": null,
+        "custom_options": null,
+        "afterschool_snapshot": null
+      },
+      "input": "inputs/B000004275.txt",
+      "input_sha256": "631053a2b317139d0e12c3013d34b6b595a25e81678647bb43affdc636cd1566",
+      "input_chars": 18622,
+      "truncated": false,
+      "sources": [
+        {
+          "name": "2026학년도 방과후 프로그램 1분기 운영 상황.hwpx",
+          "sha256": "e301ca2989167da6bbb9b8d75afc3435c0424e7096c74e33fa3760fe538f0e4c",
+          "format": "hwpx-image-transcript",
+          "file_academic_year": 2026,
+          "chars": 376,
+          "text_override": {
+            "text_file": "F:\\sm\\vibe\\elementary\\pjt_250826\\elementary-v2\\etl\\runtime\\pivot_gyeonggi_priority_20261023\\gwangmyeongbuk_image_transcript.txt",
+            "text_sha256": "a6288e4f02473e9ded6c3666ea174060c66e55e2760f0f9255d282bc0d09f01e",
+            "format": "hwpx-image-transcript",
+            "method": "manual transcription from sole embedded image; image supplies no weekday/time/grade/year"
+          }
+        },
+        {
+          "name": "2025학년도 방과후학교 운영 예산 목록.hwpx",
+          "sha256": "624dcfc7efaa12bcaa176fb9df5736b50cc47b0f844f22c8dda8c24422372dca",
+          "format": "hwpx",
+          "file_academic_year": 2025,
+          "chars": 53
+        },
+        {
+          "name": "2026학년도 방과후학교 운영 계획(안).hwpx",
+          "sha256": "d6312448208eb0e561374f916b7657c6d0085431dca42577532414df919a4284",
+          "format": "hwpx",
+          "file_academic_year": 2026,
+          "chars": 15710
+        }
+      ],
+      "errors": [],
+      "input_ready": true,
+      "course_track": "new_priority",
+      "course_extraction_status": "pending",
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000004269",
+      "school_name": "광명서초등학교",
+      "area": "gwangmyeong",
+      "road_address": "경기도 광명시 너부대로 5",
+      "coverage": {
+        "school_id": "B000004269",
+        "school_name": "광명서초등학교",
+        "road_address": "경기도 광명시 너부대로 5",
+        "care_status": "stated",
+        "afternoon_end": "17:00:00",
+        "extended_end": "19:00:00",
+        "morning_hours": "07:40-08:40",
+        "care_year": 2026,
+        "has_afterschool": false,
+        "afterschool_year": null,
+        "grade1_options": null,
+        "custom_options": null,
+        "afterschool_snapshot": null
+      },
+      "input": "inputs/B000004269.txt",
+      "input_sha256": "bd0ae7e652b7949984c2187717adfcc8b74dce108e0782fecae56d4023707c57",
+      "input_chars": 66630,
+      "truncated": false,
+      "sources": [
+        {
+          "name": "2026학년도 광명서초 방과후 돌봄 교육 운영 계획.hwp",
+          "sha256": "364bdc25c18e2d3f1e17a5ecf7c99e7d42e7999081acf4a604bb98821ccd5ac5",
+          "format": "hwp",
+          "file_academic_year": 2026,
+          "chars": 60097
+        }
+      ],
+      "errors": [],
+      "input_ready": true,
+      "course_track": "new_priority",
+      "course_extraction_status": "pending",
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000004268",
+      "school_name": "광명초등학교",
+      "area": "gwangmyeong",
+      "road_address": "경기도 광명시 광이로 21",
+      "coverage": {
+        "school_id": "B000004268",
+        "school_name": "광명초등학교",
+        "road_address": "경기도 광명시 광이로 21",
+        "care_status": "stated",
+        "afternoon_end": "19:00:00",
+        "extended_end": null,
+        "morning_hours": null,
+        "care_year": 2026,
+        "has_afterschool": false,
+        "afterschool_year": null,
+        "grade1_options": null,
+        "custom_options": null,
+        "afterschool_snapshot": null
+      },
+      "input": "inputs/B000004268.txt",
+      "input_sha256": "04bb93db6e18a7ce009b9ac4f3f5471bf2dcde511012184b5e8804f7ce676e62",
+      "input_chars": 44595,
+      "truncated": false,
+      "sources": [
+        {
+          "name": "2026학년도 늘봄학교 연간 운영 계획(안) 게시용.hwp",
+          "sha256": "2222323e25664c19e6006e89e4930297e0880acded75cee3c394ab009d9c4557",
+          "format": "hwp",
+          "file_academic_year": 2026,
+          "chars": 40018
+        }
+      ],
+      "errors": [],
+      "input_ready": true,
+      "course_track": "new_priority",
+      "course_extraction_status": "pending",
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000004272",
+      "school_name": "광문초등학교",
+      "area": "gwangmyeong",
+      "road_address": "경기도 광명시 덕단이로 29",
+      "coverage": {
+        "school_id": "B000004272",
+        "school_name": "광문초등학교",
+        "road_address": "경기도 광명시 덕단이로 29",
+        "care_status": "stated",
+        "afternoon_end": "17:00:00",
+        "extended_end": null,
+        "morning_hours": null,
+        "care_year": 2026,
+        "has_afterschool": false,
+        "afterschool_year": null,
+        "grade1_options": null,
+        "custom_options": null,
+        "afterschool_snapshot": null
+      },
+      "input": "inputs/B000004272.txt",
+      "input_sha256": "3170c6826576b474df9b77971e9c239cdec04bce62ee9354079128fb5292ab2b",
+      "input_chars": 22287,
+      "truncated": false,
+      "sources": [
+        {
+          "name": "2026학년도 광문초 돌봄 운영계획.pdf",
+          "sha256": "304925d71389edaffb60ad32b2a3a8bb05ca71a6ef25989b1c202ef0e1ff9897",
+          "format": "pdf",
+          "file_academic_year": 2026,
+          "chars": 10494
+        },
+        {
+          "name": "2026학년도 광문초 방과후학교 운영계획.pdf",
+          "sha256": "dcf3b00649c477995bb7b1d2d6377ff961f486e3acdd508aa051b73453710f96",
+          "format": "pdf",
+          "file_academic_year": 2026,
+          "chars": 11134
+        }
+      ],
+      "errors": [],
+      "input_ready": true,
+      "course_track": "new_priority",
+      "course_extraction_status": "pending",
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000004271",
+      "school_name": "광일초등학교",
+      "area": "gwangmyeong",
+      "road_address": "경기도 광명시 목감로 34-6",
+      "coverage": {
+        "school_id": "B000004271",
+        "school_name": "광일초등학교",
+        "road_address": "경기도 광명시 목감로 34-6",
+        "care_status": "school_check_needed",
+        "afternoon_end": null,
+        "extended_end": null,
+        "morning_hours": null,
+        "care_year": 2026,
+        "has_afterschool": false,
+        "afterschool_year": null,
+        "grade1_options": null,
+        "custom_options": null,
+        "afterschool_snapshot": null
+      },
+      "input": "inputs/B000004271.txt",
+      "input_sha256": "83c39f27987527ae83574b0dbf4357070fa5cf50886e350062ef0e596ffe778c",
+      "input_chars": 56147,
+      "truncated": false,
+      "sources": [
+        {
+          "name": "2026학년도 광일초 방과후 돌봄교육 운영 계획.hwp",
+          "sha256": "9de6414bd7ab40ab5e1214445e64dfc6e6a277bb3cbf1d2d255056449f6d3e74",
+          "format": "hwp",
+          "file_academic_year": 2026,
+          "chars": 50498
+        }
+      ],
+      "errors": [],
+      "input_ready": true,
+      "course_track": "new_priority",
+      "course_extraction_status": "pending",
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000004260",
+      "school_name": "구름산초등학교",
+      "area": "gwangmyeong",
+      "road_address": "경기도 광명시 한내일로 5",
+      "coverage": {
+        "school_id": "B000004260",
+        "school_name": "구름산초등학교",
+        "road_address": "경기도 광명시 한내일로 5",
+        "care_status": "stated",
+        "afternoon_end": "17:00:00",
+        "extended_end": "19:00:00",
+        "morning_hours": null,
+        "care_year": 2026,
+        "has_afterschool": false,
+        "afterschool_year": null,
+        "grade1_options": null,
+        "custom_options": null,
+        "afterschool_snapshot": null
+      },
+      "input": "inputs/B000004260.txt",
+      "input_sha256": "961e0fb46e8891aa0500fda9d6f37b996d1a65218ec0da39e431d488f2ba312c",
+      "input_chars": 30886,
+      "truncated": false,
+      "sources": [
+        {
+          "name": "2026학년도 방과후 프로그램 연간운영 계획.pdf",
+          "sha256": "bf5efd6d2d474f49e6d934c28847cbb221b2a91177b086b7e8d9c4320c75f4c8",
+          "format": "pdf",
+          "file_academic_year": 2026,
+          "chars": 12874
+        },
+        {
+          "name": "2026학년도 돌봄교실 연간운영 계획.pdf",
+          "sha256": "6401e381a36ef44ff2a60b03ac51ccaadcbf0a786cf077f7fe3c79399352359a",
+          "format": "pdf",
+          "file_academic_year": 2026,
+          "chars": 16957
+        }
+      ],
+      "errors": [],
+      "input_ready": true,
+      "course_track": "new_priority",
+      "course_extraction_status": "pending",
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000004258",
+      "school_name": "도덕초등학교",
+      "area": "gwangmyeong",
+      "road_address": "경기도 광명시 가마산로 28",
+      "coverage": {
+        "school_id": "B000004258",
+        "school_name": "도덕초등학교",
+        "road_address": "경기도 광명시 가마산로 28",
+        "care_status": "stated",
+        "afternoon_end": "17:00:00",
+        "extended_end": "19:00:00",
+        "morning_hours": null,
+        "care_year": 2026,
+        "has_afterschool": false,
+        "afterschool_year": null,
+        "grade1_options": null,
+        "custom_options": null,
+        "afterschool_snapshot": null
+      },
+      "input": "inputs/B000004258.txt",
+      "input_sha256": "d007461fbe02659d53764645ab4b34bd0abced44ce08ed02efc347ba5ea3039f",
+      "input_chars": 54700,
+      "truncated": false,
+      "sources": [
+        {
+          "name": "2026 초등돌봄교실 운영 계획.hwpx",
+          "sha256": "b184907164d1f042a759263adab680c2249c6a95834490381c0fc44ab48059d1",
+          "format": "hwpx",
+          "file_academic_year": 2026,
+          "chars": 6918
+        },
+        {
+          "name": "2026학년도 도덕초등학교 늘봄학교 운영 계획.hwp",
+          "sha256": "78e93bc3531d3b6e8c9dc8ee09a1c61cc55b8a284e4b6ee59723a63ee8bec459",
+          "format": "hwp",
+          "file_academic_year": 2026,
+          "chars": 42439
+        }
+      ],
+      "errors": [],
+      "input_ready": true,
+      "course_track": "new_priority",
+      "course_extraction_status": "pending",
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000024196",
+      "school_name": "빛가온초등학교",
+      "area": "gwangmyeong",
+      "road_address": "경기도 광명시 양달로10번길 8",
+      "coverage": {
+        "school_id": "B000024196",
+        "school_name": "빛가온초등학교",
+        "road_address": "경기도 광명시 양달로10번길 8",
+        "care_status": "stated",
+        "afternoon_end": "19:00:00",
+        "extended_end": null,
+        "morning_hours": null,
+        "care_year": 2026,
+        "has_afterschool": false,
+        "afterschool_year": null,
+        "grade1_options": null,
+        "custom_options": null,
+        "afterschool_snapshot": null
+      },
+      "input": "inputs/B000024196.txt",
+      "input_sha256": "9fdb6f1d8b53c42b6052f0135c0334ca0f7adfc4701d202a595ae8e12928d237",
+      "input_chars": 41571,
+      "truncated": false,
+      "sources": [
+        {
+          "name": "2026학년도 빛가온초 돌봄교실 운영계획.hwp",
+          "sha256": "1cb86896968aa1614b0d956931d6cf2312291d732ed44c1e2e07b0699f7b6c68",
+          "format": "hwp",
+          "file_academic_year": 2026,
+          "chars": 7831
+        },
+        {
+          "name": "2026학년도 방과후학교 운영계획(최종).hwp",
+          "sha256": "753e96e3c6988242ec555ff58cb0e57f96ddf0576843dd323f3b5d0ea9aca31a",
+          "format": "hwp",
+          "file_academic_year": 2026,
+          "chars": 29403
+        }
+      ],
+      "errors": [],
+      "input_ready": true,
+      "course_track": "new_priority",
+      "course_extraction_status": "pending",
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000004273",
+      "school_name": "서면초등학교",
+      "area": "gwangmyeong",
+      "road_address": "경기도 광명시 오리로 402",
+      "coverage": {
+        "school_id": "B000004273",
+        "school_name": "서면초등학교",
+        "road_address": "경기도 광명시 오리로 402",
+        "care_status": "school_check_needed",
+        "afternoon_end": null,
+        "extended_end": null,
+        "morning_hours": null,
+        "care_year": 2026,
+        "has_afterschool": false,
+        "afterschool_year": null,
+        "grade1_options": null,
+        "custom_options": null,
+        "afterschool_snapshot": null
+      },
+      "input": "inputs/B000004273.txt",
+      "input_sha256": "78de8d3c15dff14c3c2f580cb84a1e101df07e9c5e165d83534b02b91267079f",
+      "input_chars": 19916,
+      "truncated": false,
+      "sources": [
+        {
+          "name": "2026학년도 방과후학교 운영계획(최종).hwp",
+          "sha256": "d6dd014eaf0d160d464d8745c15ca1acb3922de3e47b8b5bea706523caa8b0f2",
+          "format": "hwp",
+          "file_academic_year": 2026,
+          "chars": 18009
+        }
+      ],
+      "errors": [],
+      "input_ready": true,
+      "course_track": "new_priority",
+      "course_extraction_status": "pending",
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000004261",
+      "school_name": "소하초등학교",
+      "area": "gwangmyeong",
+      "road_address": "경기도 광명시 소하일로 45",
+      "coverage": {
+        "school_id": "B000004261",
+        "school_name": "소하초등학교",
+        "road_address": "경기도 광명시 소하일로 45",
+        "care_status": "school_check_needed",
+        "afternoon_end": null,
+        "extended_end": null,
+        "morning_hours": null,
+        "care_year": 2026,
+        "has_afterschool": false,
+        "afterschool_year": null,
+        "grade1_options": null,
+        "custom_options": null,
+        "afterschool_snapshot": null
+      },
+      "input": "inputs/B000004261.txt",
+      "input_sha256": "9a87119e1e702b21bda260eaa893e9618e104451240915b2ff8bf04dbdeb20cc",
+      "input_chars": 24242,
+      "truncated": false,
+      "sources": [
+        {
+          "name": "2026학년도 소하초 선택형교육 운영 계획)12월29일.hwp",
+          "sha256": "d6e9f7759225a4a7ab92a0b2a74be8c082f4f93261715df5d06bdd8c3c57a065",
+          "format": "hwp",
+          "file_academic_year": 2026,
+          "chars": 22525
+        }
+      ],
+      "errors": [],
+      "input_ready": true,
+      "course_track": "new_priority",
+      "course_extraction_status": "pending",
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000004266",
+      "school_name": "안서초등학교",
+      "area": "gwangmyeong",
+      "road_address": "경기도 광명시 가학로 247-55",
+      "coverage": {
+        "school_id": "B000004266",
+        "school_name": "안서초등학교",
+        "road_address": "경기도 광명시 가학로 247-55",
+        "care_status": "school_check_needed",
+        "afternoon_end": null,
+        "extended_end": null,
+        "morning_hours": null,
+        "care_year": 2026,
+        "has_afterschool": false,
+        "afterschool_year": null,
+        "grade1_options": null,
+        "custom_options": null,
+        "afterschool_snapshot": null
+      },
+      "input": "inputs/B000004266.txt",
+      "input_sha256": "aa1c22cf72f1479eecd73612e902e16aa35bbf881b1448139c08c0f18e168215",
+      "input_chars": 12655,
+      "truncated": false,
+      "sources": [
+        {
+          "name": "2026학년도 방과후 프로그램 운영 계획.hwp",
+          "sha256": "9d55f7aecc01588cfd458d8cd6875eed47d035bbb83cfd911c7f5669b16a7350",
+          "format": "hwp",
+          "file_academic_year": 2026,
+          "chars": 11150
+        }
+      ],
+      "errors": [],
+      "input_ready": true,
+      "course_track": "new_priority",
+      "course_extraction_status": "pending",
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000004262",
+      "school_name": "안현초등학교",
+      "area": "gwangmyeong",
+      "road_address": "경기도 광명시 도덕공원로 5",
+      "coverage": {
+        "school_id": "B000004262",
+        "school_name": "안현초등학교",
+        "road_address": "경기도 광명시 도덕공원로 5",
+        "care_status": "stated",
+        "afternoon_end": "19:00:00",
+        "extended_end": null,
+        "morning_hours": null,
+        "care_year": 2026,
+        "has_afterschool": false,
+        "afterschool_year": null,
+        "grade1_options": null,
+        "custom_options": null,
+        "afterschool_snapshot": null
+      },
+      "input": "inputs/B000004262.txt",
+      "input_sha256": "f57193ba0db0bad99ebc3646f9e25cc4e11a7a89c1737e33983b56edde936807",
+      "input_chars": 33994,
+      "truncated": false,
+      "sources": [
+        {
+          "name": "2026학년도 안현초 초등돌봄교실 운영 계획.pdf",
+          "sha256": "21edff117b30af4e43d07bf11eb9422ec8bf5ea39e2ecf44e479d484477ea4d0",
+          "format": "pdf",
+          "file_academic_year": 2026,
+          "chars": 7551
+        },
+        {
+          "name": "2026학년도 안현초 방과후학교 운영 계획.pdf",
+          "sha256": "abc711fe207ee14683b2bda9ba0fedcb7222e4e3e5e4e437f99cf9c2600611e7",
+          "format": "pdf",
+          "file_academic_year": 2026,
+          "chars": 24900
+        }
+      ],
+      "errors": [],
+      "input_ready": true,
+      "course_track": "new_priority",
+      "course_extraction_status": "pending",
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000004265",
+      "school_name": "연서초등학교",
+      "area": "gwangmyeong",
+      "road_address": "경기도 광명시 안현로 80-2",
+      "coverage": {
+        "school_id": "B000004265",
+        "school_name": "연서초등학교",
+        "road_address": "경기도 광명시 안현로 80-2",
+        "care_status": "stated",
+        "afternoon_end": "19:00:00",
+        "extended_end": null,
+        "morning_hours": null,
+        "care_year": 2026,
+        "has_afterschool": false,
+        "afterschool_year": null,
+        "grade1_options": null,
+        "custom_options": null,
+        "afterschool_snapshot": null
+      },
+      "input": "inputs/B000004265.txt",
+      "input_sha256": "04c261d723790f5f3af2ea09a83a896fc7510d72b601a4639e80ec44ac507710",
+      "input_chars": 26451,
+      "truncated": false,
+      "sources": [
+        {
+          "name": "2026학년도 방과후학교연간운영계획(연서초 정보공시).pdf",
+          "sha256": "3b40422f04a474a7d94ac3f266994342b529b9dbd80f24a66977a29913619287",
+          "format": "pdf",
+          "file_academic_year": 2026,
+          "chars": 25813
+        }
+      ],
+      "errors": [],
+      "input_ready": true,
+      "course_track": "new_priority",
+      "course_extraction_status": "pending",
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000004267",
+      "school_name": "온신초등학교",
+      "area": "gwangmyeong",
+      "road_address": "경기도 광명시 범안로 657",
+      "coverage": {
+        "school_id": "B000004267",
+        "school_name": "온신초등학교",
+        "road_address": "경기도 광명시 범안로 657",
+        "care_status": "stated",
+        "afternoon_end": "19:00:00",
+        "extended_end": null,
+        "morning_hours": null,
+        "care_year": 2026,
+        "has_afterschool": false,
+        "afterschool_year": null,
+        "grade1_options": null,
+        "custom_options": null,
+        "afterschool_snapshot": null
+      },
+      "input": "inputs/B000004267.txt",
+      "input_sha256": "12c17bc3a7c23b812cea3a29e9eef48006ad68f32277ab537eaefbd7cb951927",
+      "input_chars": 19118,
+      "truncated": false,
+      "sources": [
+        {
+          "name": "2026학년도 온신초등학교 방과후·돌봄 운영계획.hwp",
+          "sha256": "967e947d616c10d14c2cadd7e362d24a56d58d6dea3b1134f7bc453b852b8b70",
+          "format": "hwp",
+          "file_academic_year": 2026,
+          "chars": 18921
+        }
+      ],
+      "errors": [],
+      "input_ready": true,
+      "course_track": "new_priority",
+      "course_extraction_status": "pending",
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000004278",
+      "school_name": "철산초등학교",
+      "area": "gwangmyeong",
+      "road_address": "경기도 광명시 하안로 392",
+      "coverage": {
+        "school_id": "B000004278",
+        "school_name": "철산초등학교",
+        "road_address": "경기도 광명시 하안로 392",
+        "care_status": "stated",
+        "afternoon_end": "17:00:00",
+        "extended_end": "19:00:00",
+        "morning_hours": null,
+        "care_year": 2026,
+        "has_afterschool": false,
+        "afterschool_year": null,
+        "grade1_options": null,
+        "custom_options": null,
+        "afterschool_snapshot": null
+      },
+      "input": "inputs/B000004278.txt",
+      "input_sha256": "6c10b34a5d20cf36a040f0bf113fa356e0b8aff4cd0d07e29b6ff06af05ebd39",
+      "input_chars": 41741,
+      "truncated": false,
+      "sources": [
+        {
+          "name": "2026학년도 방과후.돌봄 연간운영계획(돌봄3실운영계획포함).hwp",
+          "sha256": "31879f4c508de753cd3b646281a7370c03ed520cc507c79250e5fb83811ba927",
+          "format": "hwp",
+          "file_academic_year": 2026,
+          "chars": 38149
+        }
+      ],
+      "errors": [],
+      "input_ready": true,
+      "course_track": "new_priority",
+      "course_extraction_status": "pending",
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000004259",
+      "school_name": "충현초등학교",
+      "area": "gwangmyeong",
+      "road_address": "경기도 광명시 성채안로 16",
+      "coverage": {
+        "school_id": "B000004259",
+        "school_name": "충현초등학교",
+        "road_address": "경기도 광명시 성채안로 16",
+        "care_status": "school_check_needed",
+        "afternoon_end": null,
+        "extended_end": null,
+        "morning_hours": null,
+        "care_year": 2026,
+        "has_afterschool": false,
+        "afterschool_year": null,
+        "grade1_options": null,
+        "custom_options": null,
+        "afterschool_snapshot": null
+      },
+      "input": "inputs/B000004259.txt",
+      "input_sha256": "01d99a367db1a8771be19217628f306091fe4ee78e8dacfc22276b271f17cede",
+      "input_chars": 16460,
+      "truncated": false,
+      "sources": [
+        {
+          "name": "2026학년도 충현초 방과후학교 운영계획(정보공시).hwp",
+          "sha256": "f5577f504ce13dc41cfea40ac444694ef6d3e12999fb27459ca35d41084bcb39",
+          "format": "hwp",
+          "file_academic_year": 2026,
+          "chars": 15309
+        }
+      ],
+      "errors": [],
+      "input_ready": true,
+      "course_track": "new_priority",
+      "course_extraction_status": "pending",
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000004279",
+      "school_name": "하안남초등학교",
+      "area": "gwangmyeong",
+      "road_address": "경기도 광명시 금당로 71",
+      "coverage": {
+        "school_id": "B000004279",
+        "school_name": "하안남초등학교",
+        "road_address": "경기도 광명시 금당로 71",
+        "care_status": "stated",
+        "afternoon_end": "19:00:00",
+        "extended_end": null,
+        "morning_hours": null,
+        "care_year": 2026,
+        "has_afterschool": false,
+        "afterschool_year": null,
+        "grade1_options": null,
+        "custom_options": null,
+        "afterschool_snapshot": null
+      },
+      "input": "inputs/B000004279.txt",
+      "input_sha256": "6b68556c91394440a61c44bd6ba7d017d6163f9da8884f016a8994d14bf4b76f",
+      "input_chars": 22676,
+      "truncated": false,
+      "sources": [
+        {
+          "name": "2026학년도 초등오후돌봄교실 운영계획.hwp",
+          "sha256": "7abb4d4efebcf7ff08ee9d0f34a2c9a032e08e8e4884ce7308c8b39b2ad0f514",
+          "format": "hwp",
+          "file_academic_year": 2026,
+          "chars": 4878
+        },
+        {
+          "name": "2026학년도 하안남초 방과후학교 운영 계획(정보공시용).hwp",
+          "sha256": "bd4bffdf6c57c0a6baff403ae5a65dbe34baf4beb8b6eccfa67b2fa26235e24d",
+          "format": "hwp",
+          "file_academic_year": 2026,
+          "chars": 15067
+        }
+      ],
+      "errors": [],
+      "input_ready": true,
+      "course_track": "new_priority",
+      "course_extraction_status": "pending",
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000004281",
+      "school_name": "하안북초등학교",
+      "area": "gwangmyeong",
+      "road_address": "경기도 광명시 가림로 18",
+      "coverage": {
+        "school_id": "B000004281",
+        "school_name": "하안북초등학교",
+        "road_address": "경기도 광명시 가림로 18",
+        "care_status": "stated",
+        "afternoon_end": "19:00:00",
+        "extended_end": null,
+        "morning_hours": null,
+        "care_year": 2026,
+        "has_afterschool": false,
+        "afterschool_year": null,
+        "grade1_options": null,
+        "custom_options": null,
+        "afterschool_snapshot": null
+      },
+      "input": "inputs/B000004281.txt",
+      "input_sha256": "8eb865ec61fa61221286d70a4e918d976c3c076ab5881b3dc58dec11a38d1427",
+      "input_chars": 31480,
+      "truncated": false,
+      "sources": [
+        {
+          "name": "2026.초등돌봄(오후돌봄)교실.운영계획_정보공시.hwp",
+          "sha256": "adceb298ccdc4e0ff9e80ab68b8c2de54da1f2ff023395028ec00c2ef8e07732",
+          "format": "hwp",
+          "file_academic_year": 2026,
+          "chars": 12327
+        },
+        {
+          "name": "2026학년도 하안북초 방과후 운영 계획_정보공시.hwp",
+          "sha256": "151cd6d7e55316ab0edfd8f7c57bd6ea773471eadd3e223ada79e949577002de",
+          "format": "hwp",
+          "file_academic_year": 2026,
+          "chars": 16180
+        }
+      ],
+      "errors": [],
+      "input_ready": true,
+      "course_track": "new_priority",
+      "course_extraction_status": "pending",
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000004263",
+      "school_name": "하안초등학교",
+      "area": "gwangmyeong",
+      "road_address": "경기도 광명시 안현로 16",
+      "coverage": {
+        "school_id": "B000004263",
+        "school_name": "하안초등학교",
+        "road_address": "경기도 광명시 안현로 16",
+        "care_status": "stated",
+        "afternoon_end": "17:00:00",
+        "extended_end": "19:00:00",
+        "morning_hours": null,
+        "care_year": 2026,
+        "has_afterschool": false,
+        "afterschool_year": null,
+        "grade1_options": null,
+        "custom_options": null,
+        "afterschool_snapshot": null
+      },
+      "input": "inputs/B000004263.txt",
+      "input_sha256": "495b945443161071d8585c274cfb6488352d02b619add3f86e73aeaf84ce2390",
+      "input_chars": 41943,
+      "truncated": false,
+      "sources": [
+        {
+          "name": "2026학년도 오후돌봄교실 운영 계획.hwp",
+          "sha256": "562c51533dbaf66c7875b949ff995deb9a888d6bbd976144b551926a46804d9e",
+          "format": "hwp",
+          "file_academic_year": 2026,
+          "chars": 15182
+        },
+        {
+          "name": "2026 하안초 방과후학교 운영 계획(최종).hwp",
+          "sha256": "79f47f02679a68a42c8cfbdb464686738fdc0c72f4c60f17f498713206fa32c4",
+          "format": "hwp",
+          "file_academic_year": 2026,
+          "chars": 22407
+        }
+      ],
+      "errors": [],
+      "input_ready": true,
+      "course_track": "new_priority",
+      "course_extraction_status": "pending",
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000004280",
+      "school_name": "하일초등학교",
+      "area": "gwangmyeong",
+      "road_address": "경기도 광명시 철망산로 68",
+      "coverage": {
+        "school_id": "B000004280",
+        "school_name": "하일초등학교",
+        "road_address": "경기도 광명시 철망산로 68",
+        "care_status": "stated",
+        "afternoon_end": "17:00:00",
+        "extended_end": "19:00:00",
+        "morning_hours": null,
+        "care_year": 2026,
+        "has_afterschool": false,
+        "afterschool_year": null,
+        "grade1_options": null,
+        "custom_options": null,
+        "afterschool_snapshot": null
+      },
+      "input": "inputs/B000004280.txt",
+      "input_sha256": "6ea0388fdbe5a969f82fd65970c975a656b0ccb15aecb785577f71918178f075",
+      "input_chars": 63741,
+      "truncated": false,
+      "sources": [
+        {
+          "name": "2026학년도 초등돌봄교실 연간 운영계획(하일초).hwp",
+          "sha256": "923a45112de83cea094505cd62858aa87b29f9d60e1c5e0eeef7b340410d9a78",
+          "format": "hwp",
+          "file_academic_year": 2026,
+          "chars": 25797
+        },
+        {
+          "name": "2026학년도 하일초 방과후 학교 운영 계획.hwp",
+          "sha256": "99eb0d85d0cbf08de497a3f3cfa59d4688f9c21089b3e0eeec63a36fa34a66c7",
+          "format": "hwp",
+          "file_academic_year": 2026,
+          "chars": 31483
+        }
+      ],
+      "errors": [],
+      "input_ready": true,
+      "course_track": "new_priority",
+      "course_extraction_status": "pending",
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000003976",
+      "school_name": "고기초등학교",
+      "area": "suji",
+      "road_address": "경기도 용인시 수지구 고기로 385",
+      "coverage": {
+        "school_id": "B000003976",
+        "school_name": "고기초등학교",
+        "road_address": "경기도 용인시 수지구 고기로 385",
+        "care_status": "stated",
+        "afternoon_end": "19:00:00",
+        "extended_end": null,
+        "morning_hours": null,
+        "care_year": 2026,
+        "has_afterschool": false,
+        "afterschool_year": null,
+        "grade1_options": null,
+        "custom_options": null,
+        "afterschool_snapshot": null
+      },
+      "input": "inputs/B000003976.txt",
+      "input_sha256": "4d73e38be9464e085d5c8717868bae6148db7d5d677d3b1f77a189cd51bdb5bf",
+      "input_chars": 44237,
+      "truncated": false,
+      "sources": [
+        {
+          "name": "2026학년도 초등돌봄교실 운영계획.hwp",
+          "sha256": "5a3244ca5bf0facbcfececd66c6aef3b255939335256bfae470cc85d4c2eaadf",
+          "format": "hwp",
+          "file_academic_year": 2026,
+          "chars": 7531
+        },
+        {
+          "name": "2026학년도 방과후돌봄운영계획.hwpx",
+          "sha256": "6f6a3c4c06d9a382b225d68de7ec9374a40afa009ec61a96d123cd89478e46ff",
+          "format": "hwpx",
+          "file_academic_year": 2026,
+          "chars": 32407
+        }
+      ],
+      "errors": [],
+      "input_ready": true,
+      "course_track": "new_priority",
+      "course_extraction_status": "pending",
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000003998",
+      "school_name": "대지초등학교",
+      "area": "suji",
+      "road_address": "경기도 용인시 수지구 대지로51번길 6",
+      "coverage": {
+        "school_id": "B000003998",
+        "school_name": "대지초등학교",
+        "road_address": "경기도 용인시 수지구 대지로51번길 6",
+        "care_status": "school_check_needed",
+        "afternoon_end": null,
+        "extended_end": null,
+        "morning_hours": null,
+        "care_year": 2026,
+        "has_afterschool": false,
+        "afterschool_year": null,
+        "grade1_options": null,
+        "custom_options": null,
+        "afterschool_snapshot": null
+      },
+      "input": "inputs/B000003998.txt",
+      "input_sha256": "374a7f184fcdf10e1b717ee7559b0e7f476ffbb60669e1eb1821088709a90af8",
+      "input_chars": 24453,
+      "truncated": false,
+      "sources": [
+        {
+          "name": "2026학년도 대지초등학교 방과후 운영 계획.hwpx",
+          "sha256": "d8cc4c46fedbfee8a14bc6a4a0631816a62c7ca74c372a76c000fcdfdd38d758",
+          "format": "hwpx",
+          "file_academic_year": 2026,
+          "chars": 22057
+        }
+      ],
+      "errors": [],
+      "input_ready": true,
+      "course_track": "new_priority",
+      "course_extraction_status": "pending",
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000004001",
+      "school_name": "대청초등학교",
+      "area": "suji",
+      "road_address": "경기도 용인시 수지구 죽전로 276",
+      "coverage": {
+        "school_id": "B000004001",
+        "school_name": "대청초등학교",
+        "road_address": "경기도 용인시 수지구 죽전로 276",
+        "care_status": "school_check_needed",
+        "afternoon_end": null,
+        "extended_end": null,
+        "morning_hours": null,
+        "care_year": 2026,
+        "has_afterschool": false,
+        "afterschool_year": null,
+        "grade1_options": null,
+        "custom_options": null,
+        "afterschool_snapshot": null
+      },
+      "input": "inputs/B000004001.txt",
+      "input_sha256": "d103f2ba5bdb27ccf013f899a51fb2490f6512b105ea4c48b723f7b6419b8bce",
+      "input_chars": 23603,
+      "truncated": false,
+      "sources": [
+        {
+          "name": "대청초_2026년 방과후학교 운영계획.hwpx",
+          "sha256": "f1aeb10feead4a13518caa7f921e8d74d700a9d60e252bcd5b029f2f18f2db39",
+          "format": "hwpx",
+          "file_academic_year": 2026,
+          "chars": 21379
+        }
+      ],
+      "errors": [],
+      "input_ready": true,
+      "course_track": "new_priority",
+      "course_extraction_status": "pending",
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000003988",
+      "school_name": "대현초등학교",
+      "area": "suji",
+      "road_address": "경기도 용인시 수지구 용구대로2771번길 16",
+      "coverage": {
+        "school_id": "B000003988",
+        "school_name": "대현초등학교",
+        "road_address": "경기도 용인시 수지구 용구대로2771번길 16",
+        "care_status": "stated",
+        "afternoon_end": "17:00:00",
+        "extended_end": "19:00:00",
+        "morning_hours": null,
+        "care_year": 2026,
+        "has_afterschool": false,
+        "afterschool_year": null,
+        "grade1_options": null,
+        "custom_options": null,
+        "afterschool_snapshot": null
+      },
+      "input": "inputs/B000003988.txt",
+      "input_sha256": "659d89efe56ef83fb11d2ec8da8647c27e4f93ba93d367609bd742b665e620f4",
+      "input_chars": 32706,
+      "truncated": false,
+      "sources": [
+        {
+          "name": "2026학년도 방과후·돌봄 운영 계획.hwp",
+          "sha256": "797c553a1d308fdac27026baad944fe721ea7708f534cd076ee343cef92fcbc4",
+          "format": "hwp",
+          "file_academic_year": 2026,
+          "chars": 29457
+        }
+      ],
+      "errors": [],
+      "input_ready": true,
+      "course_track": "new_priority",
+      "course_extraction_status": "pending",
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000003993",
+      "school_name": "동천초등학교",
+      "area": "suji",
+      "road_address": "경기도 용인시 수지구 고기로 71",
+      "coverage": {
+        "school_id": "B000003993",
+        "school_name": "동천초등학교",
+        "road_address": "경기도 용인시 수지구 고기로 71",
+        "care_status": "stated",
+        "afternoon_end": "17:00:00",
+        "extended_end": "19:00:00",
+        "morning_hours": null,
+        "care_year": 2026,
+        "has_afterschool": false,
+        "afterschool_year": null,
+        "grade1_options": null,
+        "custom_options": null,
+        "afterschool_snapshot": null
+      },
+      "input": "inputs/B000003993.txt",
+      "input_sha256": "a4a3c15a7cf2b20a3066fe666748ab488079afb893487f1a1b2891877660955c",
+      "input_chars": 61320,
+      "truncated": false,
+      "sources": [
+        {
+          "name": "2026학년도 동천초 초등돌봄교실 운영 계획.hwp",
+          "sha256": "a967a734f563aef219c6b5d6e49224f8005a8839c75bd4385817b69919e6e709",
+          "format": "hwp",
+          "file_academic_year": 2026,
+          "chars": 17074
+        },
+        {
+          "name": "2026학년도 동천초등학교 방과후학교 운영계획.hwp",
+          "sha256": "ed83a2ddf4694f3c1d4ccf0a93fed913e4303b94eba0e637d71d9648ba86a0ef",
+          "format": "hwp",
+          "file_academic_year": 2026,
+          "chars": 37598
+        }
+      ],
+      "errors": [],
+      "input_ready": true,
+      "course_track": "new_priority",
+      "course_extraction_status": "pending",
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000025542",
+      "school_name": "매봉초등학교",
+      "area": "suji",
+      "road_address": "경기도 용인시 수지구 수지로 75-1",
+      "coverage": {
+        "school_id": "B000025542",
+        "school_name": "매봉초등학교",
+        "road_address": "경기도 용인시 수지구 수지로 75-1",
+        "care_status": "stated",
+        "afternoon_end": "19:00:00",
+        "extended_end": null,
+        "morning_hours": "07:50-08:30",
+        "care_year": 2026,
+        "has_afterschool": false,
+        "afterschool_year": null,
+        "grade1_options": null,
+        "custom_options": null,
+        "afterschool_snapshot": null
+      },
+      "input": "inputs/B000025542.txt",
+      "input_sha256": "1571836f8b1018478666eea3ebcb4c98a1c66988600bd38a674824df51df0ebd",
+      "input_chars": 66889,
+      "truncated": false,
+      "sources": [
+        {
+          "name": "초등돌봄교실 운영계획(매봉초).hwp",
+          "sha256": "2b16a3f6760a04f78ec6412f78d63afe31e7f3a62a9aaa998223c025c28dcd20",
+          "format": "hwp",
+          "file_academic_year": null,
+          "chars": 12962
+        },
+        {
+          "name": "방과후학교 운영계획(매봉초).hwp",
+          "sha256": "40be7d60128c2b46170f8540a75b8045a880fd1b9337f49aca9890030e5b88c2",
+          "format": "hwp",
+          "file_academic_year": null,
+          "chars": 47577
+        }
+      ],
+      "errors": [],
+      "input_ready": true,
+      "course_track": "new_priority",
+      "course_extraction_status": "pending",
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000004002",
+      "school_name": "상현초등학교",
+      "area": "suji",
+      "road_address": "경기도 용인시 수지구 만현로67번길 23",
+      "coverage": {
+        "school_id": "B000004002",
+        "school_name": "상현초등학교",
+        "road_address": "경기도 용인시 수지구 만현로67번길 23",
+        "care_status": "stated",
+        "afternoon_end": "19:00:00",
+        "extended_end": null,
+        "morning_hours": "08:00-09:00",
+        "care_year": 2026,
+        "has_afterschool": false,
+        "afterschool_year": null,
+        "grade1_options": null,
+        "custom_options": null,
+        "afterschool_snapshot": null
+      },
+      "input": "inputs/B000004002.txt",
+      "input_sha256": "99b4400212e0ae3f765cabcd70053f3c9f32904131a0437d73778584faf12e77",
+      "input_chars": 70963,
+      "truncated": false,
+      "sources": [
+        {
+          "name": "2026학년도 방과후돌봄 프로그램 운영계획.hwpx",
+          "sha256": "4a6cb14431ca27a3ba64f0ef52f5a48fb03d1eea8e3b4d19d191ac5bf98dcdf9",
+          "format": "hwpx",
+          "file_academic_year": 2026,
+          "chars": 55857
+        },
+        {
+          "name": "2026학년도 초등돌봄교실 운영계획.hwp",
+          "sha256": "56d39c470fd0df974fe2e57c4acd20e44fa4c3ff56ce0702d445ad343b44c5c7",
+          "format": "hwp",
+          "file_academic_year": 2026,
+          "chars": 8464
+        }
+      ],
+      "errors": [],
+      "input_ready": true,
+      "course_track": "new_priority",
+      "course_extraction_status": "pending",
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000003937",
+      "school_name": "새빛초등학교",
+      "area": "suji",
+      "road_address": "경기도 용인시 수지구 광교마을로 63",
+      "coverage": {
+        "school_id": "B000003937",
+        "school_name": "새빛초등학교",
+        "road_address": "경기도 용인시 수지구 광교마을로 63",
+        "care_status": "stated",
+        "afternoon_end": "17:00:00",
+        "extended_end": "19:00:00",
+        "morning_hours": null,
+        "care_year": 2026,
+        "has_afterschool": false,
+        "afterschool_year": null,
+        "grade1_options": null,
+        "custom_options": null,
+        "afterschool_snapshot": null
+      },
+      "input": "inputs/B000003937.txt",
+      "input_sha256": "cf3c39d93f72d134747d29e3928aee196f235d7899bce564c5528d183c12448e",
+      "input_chars": 62070,
+      "truncated": false,
+      "sources": [
+        {
+          "name": "2026학년도 초등돌봄교실 프로그램 연간 운영 계획(공시용).hwpx",
+          "sha256": "8b3607236db726cfe641c0240cdf89dc47cd0c38e0f432568db00fd351456efc",
+          "format": "hwpx",
+          "file_academic_year": 2026,
+          "chars": 29015
+        },
+        {
+          "name": "2026학년도 방과후 돌봄 운영 계획(정보공시).hwp",
+          "sha256": "b0c9bcce7273c0c666bd29e37a7f7cca85b5d78d206743b492c870a7955972dc",
+          "format": "hwp",
+          "file_academic_year": 2026,
+          "chars": 26879
+        }
+      ],
+      "errors": [],
+      "input_ready": true,
+      "course_track": "new_priority",
+      "course_extraction_status": "pending",
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000003980",
+      "school_name": "서원초등학교",
+      "area": "suji",
+      "road_address": "경기도 용인시 수지구 상현로 45",
+      "coverage": {
+        "school_id": "B000003980",
+        "school_name": "서원초등학교",
+        "road_address": "경기도 용인시 수지구 상현로 45",
+        "care_status": "stated",
+        "afternoon_end": "17:00:00",
+        "extended_end": "19:00:00",
+        "morning_hours": "07:50-08:30",
+        "care_year": 2026,
+        "has_afterschool": false,
+        "afterschool_year": null,
+        "grade1_options": null,
+        "custom_options": null,
+        "afterschool_snapshot": null
+      },
+      "input": "inputs/B000003980.txt",
+      "input_sha256": "3a08001d04b74ba22b41c7afb48d8b38c0ee9685ddc099540f9ab9924c68edbd",
+      "input_chars": 30392,
+      "truncated": false,
+      "sources": [
+        {
+          "name": "2026학년도 방과후 돌봄 운영 계획(안)..hwp",
+          "sha256": "de2fc13c5600aaea30a5bc21bf11d44cffa8ca28f1ec91259ccbe9a74dcabad7",
+          "format": "hwp",
+          "file_academic_year": 2026,
+          "chars": 27325
+        }
+      ],
+      "errors": [],
+      "input_ready": true,
+      "course_track": "new_priority",
+      "course_extraction_status": "pending",
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000003982",
+      "school_name": "성복초등학교",
+      "area": "suji",
+      "road_address": "경기도 용인시 수지구 성복2로78번길 52",
+      "coverage": {
+        "school_id": "B000003982",
+        "school_name": "성복초등학교",
+        "road_address": "경기도 용인시 수지구 성복2로78번길 52",
+        "care_status": "stated",
+        "afternoon_end": "19:00:00",
+        "extended_end": null,
+        "morning_hours": null,
+        "care_year": 2026,
+        "has_afterschool": false,
+        "afterschool_year": null,
+        "grade1_options": null,
+        "custom_options": null,
+        "afterschool_snapshot": null
+      },
+      "input": "inputs/B000003982.txt",
+      "input_sha256": "18b3703a9ff473a4dc2f530990cffcf0ef4fcf1235cc0e4fb262af55f6edba4a",
+      "input_chars": 65320,
+      "truncated": false,
+      "sources": [
+        {
+          "name": "2026학년도 방과후학교 연간 운영 계획(변경안).hwp",
+          "sha256": "3fa7a4b5ee14b38ac11059b552def9b8c7ef8371132c2453be1bc3e3261c6479",
+          "format": "hwp",
+          "file_academic_year": 2026,
+          "chars": 39225
+        },
+        {
+          "name": "2026학년도 돌봄교실 연간운영 계획.hwp",
+          "sha256": "4d7d3fa342a5fda02479ca510bac3f694587d43db0e1cfb9bf93c9dae123133b",
+          "format": "hwp",
+          "file_academic_year": 2026,
+          "chars": 19057
+        }
+      ],
+      "errors": [],
+      "input_ready": true,
+      "course_track": "new_priority",
+      "course_extraction_status": "pending",
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000004003",
+      "school_name": "성서초등학교",
+      "area": "suji",
+      "road_address": "경기도 용인시 수지구 성복2로 210",
+      "coverage": {
+        "school_id": "B000004003",
+        "school_name": "성서초등학교",
+        "road_address": "경기도 용인시 수지구 성복2로 210",
+        "care_status": "stated",
+        "afternoon_end": "19:00:00",
+        "extended_end": null,
+        "morning_hours": "07:50-08:30",
+        "care_year": 2026,
+        "has_afterschool": false,
+        "afterschool_year": null,
+        "grade1_options": null,
+        "custom_options": null,
+        "afterschool_snapshot": null
+      },
+      "input": "inputs/B000004003.txt",
+      "input_sha256": "a91110b9c1b2364639333bf2aa81706dc6e30d1b84a5804dd96e24ed04c4819c",
+      "input_chars": 74274,
+      "truncated": false,
+      "sources": [
+        {
+          "name": "2026학년도 성서초등학교 돌봄교실 운영 계획.hwp",
+          "sha256": "f38d162cfeb3ef2bf45bf9195d2d04179847fa05dfad64b3904b696fe2182b4c",
+          "format": "hwp",
+          "file_academic_year": 2026,
+          "chars": 20097
+        },
+        {
+          "name": "2026학년도 성서초등학교 방과후학교 운영 계획.hwp",
+          "sha256": "cab77adefc755888479864b7ea57ba9f6257d02ced7e1e9afcd888966e49bf0a",
+          "format": "hwp",
+          "file_academic_year": 2026,
+          "chars": 46456
+        }
+      ],
+      "errors": [],
+      "input_ready": true,
+      "course_track": "new_priority",
+      "course_extraction_status": "pending",
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000003946",
+      "school_name": "소현초등학교",
+      "area": "suji",
+      "road_address": "경기도 용인시 수지구 만현로133번길 78",
+      "coverage": {
+        "school_id": "B000003946",
+        "school_name": "소현초등학교",
+        "road_address": "경기도 용인시 수지구 만현로133번길 78",
+        "care_status": "stated",
+        "afternoon_end": "17:00:00",
+        "extended_end": null,
+        "morning_hours": null,
+        "care_year": 2026,
+        "has_afterschool": false,
+        "afterschool_year": null,
+        "grade1_options": null,
+        "custom_options": null,
+        "afterschool_snapshot": null
+      },
+      "input": "inputs/B000003946.txt",
+      "input_sha256": "72dcfe3819fd7c51392e479fd961c9da6be6a947dc568584e9cccc9b212ce2a7",
+      "input_chars": 108451,
+      "truncated": false,
+      "sources": [
+        {
+          "name": "2026학년도 소현초등학교 초등돌봄교실 운영계획서(최종).hwp",
+          "sha256": "1b295ed54233f50e0488f6a74e3d8304e84790d5e1f384f79eddeb46cfe18f3d",
+          "format": "hwp",
+          "file_academic_year": 2026,
+          "chars": 30547
+        },
+        {
+          "name": "2026학년도 소현초등학교 방과후돌봄 프로그램 운영계획.hwpx",
+          "sha256": "f180bafc140a5953d533ac265524459af803e7e7676c9adeef345ca1707408ea",
+          "format": "hwpx",
+          "file_academic_year": 2026,
+          "chars": 67869
+        }
+      ],
+      "errors": [],
+      "input_ready": true,
+      "course_track": "new_priority",
+      "course_extraction_status": "pending",
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000003994",
+      "school_name": "손곡초등학교",
+      "area": "suji",
+      "road_address": "경기도 용인시 수지구 손곡로 68",
+      "coverage": {
+        "school_id": "B000003994",
+        "school_name": "손곡초등학교",
+        "road_address": "경기도 용인시 수지구 손곡로 68",
+        "care_status": "stated",
+        "afternoon_end": "17:00:00",
+        "extended_end": "19:00:00",
+        "morning_hours": null,
+        "care_year": 2026,
+        "has_afterschool": false,
+        "afterschool_year": null,
+        "grade1_options": null,
+        "custom_options": null,
+        "afterschool_snapshot": null
+      },
+      "input": "inputs/B000003994.txt",
+      "input_sha256": "ee1e350dfe03a6c03c0d3fe32e4bad7b8243ff73b5d5fb158e37ec08a3a44228",
+      "input_chars": 77977,
+      "truncated": false,
+      "sources": [
+        {
+          "name": "2026학년도 손곡초 초등돌봄교실 운영 계획.hwpx",
+          "sha256": "b04cfbd3f1737a84f1c8fcd04eb7325de757d29474530891d0398e1ec78ed624",
+          "format": "hwpx",
+          "file_academic_year": 2026,
+          "chars": 32051
+        },
+        {
+          "name": "2026학년도 손곡초등학교 방과후학교 운영 계획.hwpx",
+          "sha256": "988d88206b0662b833d1dec38929e0a824754517e4c93d7aeeafa9d03b23f825",
+          "format": "hwpx",
+          "file_academic_year": 2026,
+          "chars": 38484
+        }
+      ],
+      "errors": [],
+      "input_ready": true,
+      "course_track": "new_priority",
+      "course_extraction_status": "pending",
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000003978",
+      "school_name": "솔개초등학교",
+      "area": "suji",
+      "road_address": "경기도 용인시 수지구 상현로 79",
+      "coverage": {
+        "school_id": "B000003978",
+        "school_name": "솔개초등학교",
+        "road_address": "경기도 용인시 수지구 상현로 79",
+        "care_status": "stated",
+        "afternoon_end": "17:00:00",
+        "extended_end": "19:00:00",
+        "morning_hours": "08:00-08:40",
+        "care_year": 2026,
+        "has_afterschool": false,
+        "afterschool_year": null,
+        "grade1_options": null,
+        "custom_options": null,
+        "afterschool_snapshot": null
+      },
+      "input": "inputs/B000003978.txt",
+      "input_sha256": "4078984c9aabf10bf962619a81a5d58580de8c4f39e4feab08d7a4450aa7c93f",
+      "input_chars": 23953,
+      "truncated": false,
+      "sources": [
+        {
+          "name": "3. 첨부2-2026학년도 방과후 프로그램 세부 운영 계획.hwp",
+          "sha256": "ed9347017f573d0c185f4b02b276d8c265ddc54ca61ae8905da6bcc7a0ee8727",
+          "format": "hwp",
+          "file_academic_year": 2026,
+          "chars": 9828
+        },
+        {
+          "name": "2. 첨부1-2026학년도 방과후 운영 계획-.hwp",
+          "sha256": "d959297a9ea98ebd4066f76fa1f2fc9e4eaa065db7dba06bbd340147559f859b",
+          "format": "hwp",
+          "file_academic_year": 2026,
+          "chars": 12194
+        }
+      ],
+      "errors": [],
+      "input_ready": true,
+      "course_track": "new_priority",
+      "course_extraction_status": "pending",
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000003995",
+      "school_name": "수지초등학교",
+      "area": "suji",
+      "road_address": "경기도 용인시 수지구 정평로13번길 30",
+      "coverage": {
+        "school_id": "B000003995",
+        "school_name": "수지초등학교",
+        "road_address": "경기도 용인시 수지구 정평로13번길 30",
+        "care_status": "school_check_needed",
+        "afternoon_end": null,
+        "extended_end": null,
+        "morning_hours": null,
+        "care_year": 2026,
+        "has_afterschool": false,
+        "afterschool_year": null,
+        "grade1_options": null,
+        "custom_options": null,
+        "afterschool_snapshot": null
+      },
+      "input": "inputs/B000003995.txt",
+      "input_sha256": "ecf9c53e8bcbd731fee3fbabc89dae8ac6a63e74b146b25eb3ef784c761fb981",
+      "input_chars": 53046,
+      "truncated": false,
+      "sources": [
+        {
+          "name": "2026학년도 수지초등학교 방과후학교 연간 운영 계획(변경안) (3).hwp",
+          "sha256": "8d9de0afe9bf6b51604a4ccaeb3644f143ae08a541579f3d265a9f50142d61e0",
+          "format": "hwp",
+          "file_academic_year": 2026,
+          "chars": 47961
+        }
+      ],
+      "errors": [],
+      "input_ready": true,
+      "course_track": "new_priority",
+      "course_extraction_status": "pending",
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000003985",
+      "school_name": "신리초등학교",
+      "area": "suji",
+      "road_address": "경기도 용인시 수지구 신봉1로48번길 6",
+      "coverage": {
+        "school_id": "B000003985",
+        "school_name": "신리초등학교",
+        "road_address": "경기도 용인시 수지구 신봉1로48번길 6",
+        "care_status": "stated",
+        "afternoon_end": "17:00:00",
+        "extended_end": "19:00:00",
+        "morning_hours": null,
+        "care_year": 2026,
+        "has_afterschool": false,
+        "afterschool_year": null,
+        "grade1_options": null,
+        "custom_options": null,
+        "afterschool_snapshot": null
+      },
+      "input": "inputs/B000003985.txt",
+      "input_sha256": "9e6e4e3cb626d291db487042f4189d860a09d8ea9f217f268ea883dd5f73e927",
+      "input_chars": 93201,
+      "truncated": false,
+      "sources": [
+        {
+          "name": "2026학년도 신리초 초등돌봄교실 운영계획.hwp",
+          "sha256": "5627a9d541857d1354d1016485dabcadfa9cb5f2c13225ce57b7035d286e9f4e",
+          "format": "hwp",
+          "file_academic_year": 2026,
+          "chars": 46473
+        },
+        {
+          "name": "2026학년도 신리초 방과후학교 운영 계획.hwpx",
+          "sha256": "9c6fb80d89b72fc9beb80e34122499348da7b940618da738609846676a789f5c",
+          "format": "hwpx",
+          "file_academic_year": 2026,
+          "chars": 38276
+        }
+      ],
+      "errors": [],
+      "input_ready": true,
+      "course_track": "new_priority",
+      "course_extraction_status": "pending",
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000003996",
+      "school_name": "신월초등학교",
+      "area": "suji",
+      "road_address": "경기도 용인시 수지구 풍덕천로 86",
+      "coverage": {
+        "school_id": "B000003996",
+        "school_name": "신월초등학교",
+        "road_address": "경기도 용인시 수지구 풍덕천로 86",
+        "care_status": "stated",
+        "afternoon_end": "17:00:00",
+        "extended_end": "19:00:00",
+        "morning_hours": null,
+        "care_year": 2026,
+        "has_afterschool": false,
+        "afterschool_year": null,
+        "grade1_options": null,
+        "custom_options": null,
+        "afterschool_snapshot": null
+      },
+      "input": "inputs/B000003996.txt",
+      "input_sha256": "8d8ac3cc9aa1abcc4b506c630c2c4324d4ae4d310fc204655e0f45a9135633cd",
+      "input_chars": 34809,
+      "truncated": false,
+      "sources": [
+        {
+          "name": "2026학년도 신월초 방과후학교 운영계획서.hwp",
+          "sha256": "435f1430683b87bcc0d43b4420d4bb7511bcf19cd2097857dd7b3c51ccb63dba",
+          "format": "hwp",
+          "file_academic_year": 2026,
+          "chars": 17455
+        },
+        {
+          "name": "2026 신월초 초등돌봄교실 운영 계획.hwp",
+          "sha256": "7d4b0a3da2278c1add5d5594014a7c2e620ef754a34592131756597ea76704da",
+          "format": "hwp",
+          "file_academic_year": 2026,
+          "chars": 13438
+        }
+      ],
+      "errors": [],
+      "input_ready": true,
+      "course_track": "new_priority",
+      "course_extraction_status": "pending",
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000003984",
+      "school_name": "신일초등학교",
+      "area": "suji",
+      "road_address": "경기도 용인시 수지구 신봉2로48번길 28",
+      "coverage": {
+        "school_id": "B000003984",
+        "school_name": "신일초등학교",
+        "road_address": "경기도 용인시 수지구 신봉2로48번길 28",
+        "care_status": "stated",
+        "afternoon_end": "19:00:00",
+        "extended_end": null,
+        "morning_hours": null,
+        "care_year": 2026,
+        "has_afterschool": false,
+        "afterschool_year": null,
+        "grade1_options": null,
+        "custom_options": null,
+        "afterschool_snapshot": null
+      },
+      "input": "inputs/B000003984.txt",
+      "input_sha256": "c289d0e7f03b3f8675eab9d64c2fba9723f4443da99c9d589aca3e0b3d92fed9",
+      "input_chars": 60932,
+      "truncated": false,
+      "sources": [
+        {
+          "name": "2026학년도 초등돌봄교실운영계획서(신일초).hwp",
+          "sha256": "82bdc788d2c4589017fb1026cdcc349f5bb82e5041a8364c14d669baeb61ab43",
+          "format": "hwp",
+          "file_academic_year": 2026,
+          "chars": 10302
+        },
+        {
+          "name": "2026학년도 수익자방과후 운영계획안(신일초).hwp",
+          "sha256": "ba5491609826b70599741ab883f718a08dc31bb823600a9836d13e35bfd560b5",
+          "format": "hwp",
+          "file_academic_year": 2026,
+          "chars": 46343
+        }
+      ],
+      "errors": [],
+      "input_ready": true,
+      "course_track": "new_priority",
+      "course_extraction_status": "pending",
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000003989",
+      "school_name": "용인대덕초등학교",
+      "area": "suji",
+      "road_address": "경기도 용인시 수지구 죽전로293번길 14",
+      "coverage": {
+        "school_id": "B000003989",
+        "school_name": "용인대덕초등학교",
+        "road_address": "경기도 용인시 수지구 죽전로293번길 14",
+        "care_status": "school_check_needed",
+        "afternoon_end": null,
+        "extended_end": null,
+        "morning_hours": null,
+        "care_year": 2026,
+        "has_afterschool": false,
+        "afterschool_year": null,
+        "grade1_options": null,
+        "custom_options": null,
+        "afterschool_snapshot": null
+      },
+      "input": "inputs/B000003989.txt",
+      "input_sha256": "4533139da82283436c249a858d2a574e322d9383f6b7b8f3cede9c46968e2761",
+      "input_chars": 20869,
+      "truncated": false,
+      "sources": [
+        {
+          "name": "2026년 대덕초 방과후학교 운영계획.hwp",
+          "sha256": "649ee200968fd01b24b45b5d12a17abdebdbffc4a6d56169ee05c76c909462e9",
+          "format": "hwp",
+          "file_academic_year": 2026,
+          "chars": 18686
+        }
+      ],
+      "errors": [],
+      "input_ready": true,
+      "course_track": "new_priority",
+      "course_extraction_status": "pending",
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000003986",
+      "school_name": "용인대일초등학교",
+      "area": "suji",
+      "road_address": "경기도 용인시 수지구 푸른솔로 98",
+      "coverage": {
+        "school_id": "B000003986",
+        "school_name": "용인대일초등학교",
+        "road_address": "경기도 용인시 수지구 푸른솔로 98",
+        "care_status": "stated",
+        "afternoon_end": "19:00:00",
+        "extended_end": null,
+        "morning_hours": null,
+        "care_year": 2026,
+        "has_afterschool": false,
+        "afterschool_year": null,
+        "grade1_options": null,
+        "custom_options": null,
+        "afterschool_snapshot": null
+      },
+      "input": "inputs/B000003986.txt",
+      "input_sha256": "eedb7f3d6da49930ca01e8cef417ea929c8f9a653a88cfefbd68ce58d6516759",
+      "input_chars": 62530,
+      "truncated": false,
+      "sources": [
+        {
+          "name": "2026학년도 방과후·돌봄 운영 계획(용인대일초) 수정본.hwp",
+          "sha256": "9d753c14d2a7290ce356587aecfa2414f875de20e83f36a4375e9628dd3a5563",
+          "format": "hwp",
+          "file_academic_year": 2026,
+          "chars": 30506
+        },
+        {
+          "name": "2026학년도 초등돌봄교실 연간운영 계획서(용인대일초).hwp",
+          "sha256": "a09d22c55433fc298cc5c90421ec4a22f4ce83f9228c2387cc51ed90388750ac",
+          "format": "hwp",
+          "file_academic_year": 2026,
+          "chars": 25474
+        }
+      ],
+      "errors": [],
+      "input_ready": true,
+      "course_track": "new_priority",
+      "course_extraction_status": "pending",
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000004004",
+      "school_name": "용인신봉초등학교",
+      "area": "suji",
+      "road_address": "경기도 용인시 수지구 신봉2로 115",
+      "coverage": {
+        "school_id": "B000004004",
+        "school_name": "용인신봉초등학교",
+        "road_address": "경기도 용인시 수지구 신봉2로 115",
+        "care_status": "school_check_needed",
+        "afternoon_end": null,
+        "extended_end": null,
+        "morning_hours": null,
+        "care_year": 2026,
+        "has_afterschool": false,
+        "afterschool_year": null,
+        "grade1_options": null,
+        "custom_options": null,
+        "afterschool_snapshot": null
+      },
+      "input": "inputs/B000004004.txt",
+      "input_sha256": "6cad194701b7366736f2775cb4d2f2cdcb1453f3a3f2ba6d62b14ec872206faa",
+      "input_chars": 32970,
+      "truncated": false,
+      "sources": [
+        {
+          "name": "2026학년도 방과후학교 운영계획(용인신봉초).hwp",
+          "sha256": "d278d09e6c9e8f1f117265c3af5c9295c48b22a1ffcb8ea2e1d5d9d50f7d4400",
+          "format": "hwp",
+          "file_academic_year": 2026,
+          "chars": 30950
+        }
+      ],
+      "errors": [],
+      "input_ready": true,
+      "course_track": "new_priority",
+      "course_extraction_status": "pending",
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000003987",
+      "school_name": "용인신촌초등학교",
+      "area": "suji",
+      "road_address": "경기도 용인시 수지구 죽전로27번길 14-19",
+      "coverage": {
+        "school_id": "B000003987",
+        "school_name": "용인신촌초등학교",
+        "road_address": "경기도 용인시 수지구 죽전로27번길 14-19",
+        "care_status": "stated",
+        "afternoon_end": "19:00:00",
+        "extended_end": null,
+        "morning_hours": null,
+        "care_year": 2026,
+        "has_afterschool": false,
+        "afterschool_year": null,
+        "grade1_options": null,
+        "custom_options": null,
+        "afterschool_snapshot": null
+      },
+      "input": "inputs/B000003987.txt",
+      "input_sha256": "7de792f0a03d46ad7401d9d5b867e71ee9997e0fc90c8f5621afdbad6202b7af",
+      "input_chars": 63202,
+      "truncated": false,
+      "sources": [
+        {
+          "name": "2026학년도 방과후 연간 운영 계획 - 수정본.hwp",
+          "sha256": "bf9b0d8ca9a5d130db07b4970e9fd3b016d5396baef60251770a16d73f7ad00f",
+          "format": "hwp",
+          "file_academic_year": 2026,
+          "chars": 42897
+        },
+        {
+          "name": "2026학년도 초등돌봄교실 운영 계획.hwp",
+          "sha256": "e2960a2a54547d0c5e6ef3571168719f4ac7428e075aba995521d98c578df697",
+          "format": "hwp",
+          "file_academic_year": 2026,
+          "chars": 13812
+        }
+      ],
+      "errors": [],
+      "input_ready": true,
+      "course_track": "new_priority",
+      "course_extraction_status": "pending",
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000003979",
+      "school_name": "용인심곡초등학교",
+      "area": "suji",
+      "road_address": "경기도 용인시 수지구 심곡로 59",
+      "coverage": {
+        "school_id": "B000003979",
+        "school_name": "용인심곡초등학교",
+        "road_address": "경기도 용인시 수지구 심곡로 59",
+        "care_status": "school_check_needed",
+        "afternoon_end": null,
+        "extended_end": null,
+        "morning_hours": null,
+        "care_year": 2026,
+        "has_afterschool": false,
+        "afterschool_year": null,
+        "grade1_options": null,
+        "custom_options": null,
+        "afterschool_snapshot": null
+      },
+      "input": "inputs/B000003979.txt",
+      "input_sha256": "00a5ba2de34f8cbdcaa53a117fc210068f8f7a80c1928a4a93cfd7a5d68671fe",
+      "input_chars": 46196,
+      "truncated": false,
+      "sources": [
+        {
+          "name": "2. 2026학년도 방과후학교 운영계획서(변경안).hwp",
+          "sha256": "e11b85d585b8bcf90c8d6a280c5ec0268b744e16deff6ea0e303f0890b8815df",
+          "format": "hwp",
+          "file_academic_year": 2026,
+          "chars": 41798
+        }
+      ],
+      "errors": [],
+      "input_ready": true,
+      "course_track": "new_priority",
+      "course_extraction_status": "pending",
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000003977",
+      "school_name": "용인한빛초등학교",
+      "area": "suji",
+      "road_address": "경기도 용인시 수지구 동천로153번길 23",
+      "coverage": {
+        "school_id": "B000003977",
+        "school_name": "용인한빛초등학교",
+        "road_address": "경기도 용인시 수지구 동천로153번길 23",
+        "care_status": "stated",
+        "afternoon_end": "17:00:00",
+        "extended_end": null,
+        "morning_hours": null,
+        "care_year": 2026,
+        "has_afterschool": false,
+        "afterschool_year": null,
+        "grade1_options": null,
+        "custom_options": null,
+        "afterschool_snapshot": null
+      },
+      "input": "inputs/B000003977.txt",
+      "input_sha256": "e5f891b70b98bd6fe2f9467ffd1a22eae220799e7e8b86ef278dde0171cef1e8",
+      "input_chars": 66968,
+      "truncated": false,
+      "sources": [
+        {
+          "name": "2026학년도 용인한빛초등학교 돌봄교실 운영 계획.hwp",
+          "sha256": "74aa02a3b72761dcaed12c58e7593d10dc3e9ea8ce974ed8055ccf79ee8180ec",
+          "format": "hwp",
+          "file_academic_year": 2026,
+          "chars": 18024
+        },
+        {
+          "name": "2026학년도 용인한빛초등학교 방과후학교 운영계획(2.23.).hwp",
+          "sha256": "cb326251c81ee9acd7404e0a644257cdb36840ea0a937c234bd12c2454d0518f",
+          "format": "hwp",
+          "file_academic_year": 2026,
+          "chars": 42093
+        }
+      ],
+      "errors": [],
+      "input_ready": true,
+      "course_track": "new_priority",
+      "course_extraction_status": "pending",
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000003990",
+      "school_name": "정평초등학교",
+      "area": "suji",
+      "road_address": "경기도 용인시 수지구 정평로 64",
+      "coverage": {
+        "school_id": "B000003990",
+        "school_name": "정평초등학교",
+        "road_address": "경기도 용인시 수지구 정평로 64",
+        "care_status": "stated",
+        "afternoon_end": "17:00:00",
+        "extended_end": null,
+        "morning_hours": null,
+        "care_year": 2026,
+        "has_afterschool": false,
+        "afterschool_year": null,
+        "grade1_options": null,
+        "custom_options": null,
+        "afterschool_snapshot": null
+      },
+      "input": "inputs/B000003990.txt",
+      "input_sha256": "f6e537d17dc0026bf71637e1d873c016d4c9e45eed6a027b0a1995ba4b06f127",
+      "input_chars": 80097,
+      "truncated": false,
+      "sources": [
+        {
+          "name": "2026학년도 정평초 초등돌봄교실 운영 계획.hwp",
+          "sha256": "a00dc034411295dd81d411c3960ff02097e83c18cbffba6a23bfa29b6d7201c9",
+          "format": "hwp",
+          "file_academic_year": 2026,
+          "chars": 31669
+        },
+        {
+          "name": "2026학년도 정평초 방과후학교 운영 계획.hwpx",
+          "sha256": "0bfb66a7da7336b37ad8bddd245667a9802c2e11926893aa3a10f12656f30f01",
+          "format": "hwpx",
+          "file_academic_year": 2026,
+          "chars": 41270
+        }
+      ],
+      "errors": [],
+      "input_ready": true,
+      "course_track": "new_priority",
+      "course_extraction_status": "pending",
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000003999",
+      "school_name": "죽전초등학교",
+      "area": "suji",
+      "road_address": "경기도 용인시 수지구 용구대로2772번길 15",
+      "coverage": {
+        "school_id": "B000003999",
+        "school_name": "죽전초등학교",
+        "road_address": "경기도 용인시 수지구 용구대로2772번길 15",
+        "care_status": "stated",
+        "afternoon_end": "17:00:00",
+        "extended_end": "19:00:00",
+        "morning_hours": null,
+        "care_year": 2026,
+        "has_afterschool": false,
+        "afterschool_year": null,
+        "grade1_options": null,
+        "custom_options": null,
+        "afterschool_snapshot": null
+      },
+      "input": "inputs/B000003999.txt",
+      "input_sha256": "98648c662ddc868834da132408bb49b007114bf65ae8f96877b2b2cdfaac98a0",
+      "input_chars": 32239,
+      "truncated": false,
+      "sources": [
+        {
+          "name": "2026학년도 초등돌봄교실 운영 계획서-26.5.8정보공시용(개인정보x).hwp",
+          "sha256": "2da72229c7d073be72e55d29c9fe63ae3866beb256023c2a4555e3bd0b35d8b9",
+          "format": "hwp",
+          "file_academic_year": 2026,
+          "chars": 10158
+        },
+        {
+          "name": "2026학년도 죽전초등학교 방과후학교 운영 계획 (홈페이지게시).hwpx",
+          "sha256": "55975b000e53ee995a018c6226f843686f62889aefe6522424822104e7cb386e",
+          "format": "hwpx",
+          "file_academic_year": 2026,
+          "chars": 18547
+        }
+      ],
+      "errors": [],
+      "input_ready": true,
+      "course_track": "new_priority",
+      "course_extraction_status": "pending",
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000003992",
+      "school_name": "토월초등학교",
+      "area": "suji",
+      "road_address": "경기도 용인시 수지구 수지로296번길 3",
+      "coverage": {
+        "school_id": "B000003992",
+        "school_name": "토월초등학교",
+        "road_address": "경기도 용인시 수지구 수지로296번길 3",
+        "care_status": "stated",
+        "afternoon_end": "17:00:00",
+        "extended_end": "19:00:00",
+        "morning_hours": null,
+        "care_year": 2026,
+        "has_afterschool": false,
+        "afterschool_year": null,
+        "grade1_options": null,
+        "custom_options": null,
+        "afterschool_snapshot": null
+      },
+      "input": "inputs/B000003992.txt",
+      "input_sha256": "8a830663abdd2845d42930fdf55340e02143061e5cefab14de2445b1cecc8222",
+      "input_chars": 78266,
+      "truncated": false,
+      "sources": [
+        {
+          "name": "2026학년도 오후 돌봄교실 운영 계획(안).hwp",
+          "sha256": "cb7e36b6305af703c883942a60a5fb7e9b7991f04facf88d6554d91ec9dffa48",
+          "format": "hwp",
+          "file_academic_year": 2026,
+          "chars": 26437
+        },
+        {
+          "name": "2026년  방과후학교 프로그램 운영 계획서(정보공시).hwpx",
+          "sha256": "31d02508e438ab62f6f457f26684c0887ae249bf5966d1834bfb33d0e3b2e6e1",
+          "format": "hwpx",
+          "file_academic_year": 2026,
+          "chars": 43712
+        }
+      ],
+      "errors": [],
+      "input_ready": true,
+      "course_track": "new_priority",
+      "course_extraction_status": "pending",
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000003997",
+      "school_name": "풍덕초등학교",
+      "area": "suji",
+      "road_address": "경기도 용인시 수지구 수지로 367",
+      "coverage": {
+        "school_id": "B000003997",
+        "school_name": "풍덕초등학교",
+        "road_address": "경기도 용인시 수지구 수지로 367",
+        "care_status": "stated",
+        "afternoon_end": "17:00:00",
+        "extended_end": "19:00:00",
+        "morning_hours": null,
+        "care_year": 2026,
+        "has_afterschool": false,
+        "afterschool_year": null,
+        "grade1_options": null,
+        "custom_options": null,
+        "afterschool_snapshot": null
+      },
+      "input": "inputs/B000003997.txt",
+      "input_sha256": "158bc8b3259e36b71da0a196cd61e94870f3ec3897d55cb06d58bda73dd34100",
+      "input_chars": 78221,
+      "truncated": false,
+      "sources": [
+        {
+          "name": "2026학년도 풍덕초등학교 초등돌봄교실 운영 계획.hwp",
+          "sha256": "58d29ec68b469d363e07a684a5218a0f41305e3ef9b8f0ea4b1b7d8318e577c8",
+          "format": "hwp",
+          "file_academic_year": 2026,
+          "chars": 23637
+        },
+        {
+          "name": "2026학년도 풍덕초등학교 방과후학교 운영 계획.hwpx",
+          "sha256": "17e2f7bbacb87b9d48d497486e7b1d2aff73d3d025f7918d482f8302f04a422c",
+          "format": "hwpx",
+          "file_academic_year": 2026,
+          "chars": 46895
+        }
+      ],
+      "errors": [],
+      "input_ready": true,
+      "course_track": "new_priority",
+      "course_extraction_status": "pending",
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000003991",
+      "school_name": "풍천초등학교",
+      "area": "suji",
+      "road_address": "경기도 용인시 수지구 진산로66번길 20",
+      "coverage": {
+        "school_id": "B000003991",
+        "school_name": "풍천초등학교",
+        "road_address": "경기도 용인시 수지구 진산로66번길 20",
+        "care_status": "school_check_needed",
+        "afternoon_end": null,
+        "extended_end": null,
+        "morning_hours": null,
+        "care_year": 2026,
+        "has_afterschool": false,
+        "afterschool_year": null,
+        "grade1_options": null,
+        "custom_options": null,
+        "afterschool_snapshot": null
+      },
+      "input": "inputs/B000003991.txt",
+      "input_sha256": "b3deb1cccce9ac0a5b0404ee72466fd9f280f97ab1c473b89f6cf5c55462cd33",
+      "input_chars": 39850,
+      "truncated": false,
+      "sources": [
+        {
+          "name": "2026학년도 풍천초 방과후학교 운영 계획.hwpx",
+          "sha256": "c6edba00022f211dc936b3ff8d8b19ac93fe099d58b6bead43adf42bfe2eecc2",
+          "format": "hwpx",
+          "file_academic_year": 2026,
+          "chars": 36435
+        }
+      ],
+      "errors": [],
+      "input_ready": true,
+      "course_track": "new_priority",
+      "course_extraction_status": "pending",
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000004000",
+      "school_name": "현암초등학교",
+      "area": "suji",
+      "road_address": "경기도 용인시 수지구 대지로 146",
+      "coverage": {
+        "school_id": "B000004000",
+        "school_name": "현암초등학교",
+        "road_address": "경기도 용인시 수지구 대지로 146",
+        "care_status": "stated",
+        "afternoon_end": "17:00:00",
+        "extended_end": "19:00:00",
+        "morning_hours": null,
+        "care_year": 2026,
+        "has_afterschool": false,
+        "afterschool_year": null,
+        "grade1_options": null,
+        "custom_options": null,
+        "afterschool_snapshot": null
+      },
+      "input": "inputs/B000004000.txt",
+      "input_sha256": "1e4727e06a1245c8eb2154621a8b1361016fb9c19836514c1e3a45c7b346287a",
+      "input_chars": 25304,
+      "truncated": false,
+      "sources": [
+        {
+          "name": "2026 초등돌봄교실 운영계획.pdf",
+          "sha256": "6a6017f2a3cdd7c4a19dcadb4b29fe88bbeb88fce4ac0024bb1c255cc0630ba5",
+          "format": "pdf",
+          "file_academic_year": 2026,
+          "chars": 7466
+        },
+        {
+          "name": "2026학년도 현암초 방과후학교 운영계획.pdf",
+          "sha256": "6d3cf1db88dcb7340e61aced1457e7e06fa23d90cc525db98d59224d368ba6bf",
+          "format": "pdf",
+          "file_academic_year": 2026,
+          "chars": 17012
+        }
+      ],
+      "errors": [],
+      "input_ready": true,
+      "course_track": "new_priority",
+      "course_extraction_status": "pending",
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000003983",
+      "school_name": "홍천초등학교",
+      "area": "suji",
+      "road_address": "경기도 용인시 수지구 신봉2로14번길 49",
+      "coverage": {
+        "school_id": "B000003983",
+        "school_name": "홍천초등학교",
+        "road_address": "경기도 용인시 수지구 신봉2로14번길 49",
+        "care_status": "stated",
+        "afternoon_end": "19:00:00",
+        "extended_end": null,
+        "morning_hours": null,
+        "care_year": 2026,
+        "has_afterschool": false,
+        "afterschool_year": null,
+        "grade1_options": null,
+        "custom_options": null,
+        "afterschool_snapshot": null
+      },
+      "input": "inputs/B000003983.txt",
+      "input_sha256": "53a0e0d1887dc346560642bb7e8d0f73e90bd21e9541bb861d5813834097057a",
+      "input_chars": 39516,
+      "truncated": false,
+      "sources": [
+        {
+          "name": "2026학년도 홍천초 초등돌봄교실 운영계획.hwp",
+          "sha256": "28ead077074187a660c7fc846030acb2c2f29f8500cbc9c806213aa7ec9c4d68",
+          "format": "hwp",
+          "file_academic_year": 2026,
+          "chars": 21307
+        },
+        {
+          "name": "2026학년도 홍천초 방과후학교 운영계획.hwp",
+          "sha256": "c95ff20e5f0d7459229896432d82f3b9a1322c2938c35ac0c1f2f1a7c7b147c2",
+          "format": "hwp",
+          "file_academic_year": 2026,
+          "chars": 14040
+        }
+      ],
+      "errors": [],
+      "input_ready": true,
+      "course_track": "new_priority",
+      "course_extraction_status": "pending",
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000003981",
+      "school_name": "효자초등학교",
+      "area": "suji",
+      "road_address": "경기도 용인시 수지구 성복1로 106-1",
+      "coverage": {
+        "school_id": "B000003981",
+        "school_name": "효자초등학교",
+        "road_address": "경기도 용인시 수지구 성복1로 106-1",
+        "care_status": "stated",
+        "afternoon_end": "19:00:00",
+        "extended_end": null,
+        "morning_hours": null,
+        "care_year": 2026,
+        "has_afterschool": false,
+        "afterschool_year": null,
+        "grade1_options": null,
+        "custom_options": null,
+        "afterschool_snapshot": null
+      },
+      "input": "inputs/B000003981.txt",
+      "input_sha256": "ff9e27af61c76c6f2a632a3bd112463a15aa20da5a395e7e97b276bf6784e004",
+      "input_chars": 96657,
+      "truncated": false,
+      "sources": [
+        {
+          "name": "2026학년도 효자초 초등돌봄교실 운영 계획.hwp",
+          "sha256": "19762f3498154a620b3841c0a9aa68789fe56b82d26ee378f6305694a70b4124",
+          "format": "hwp",
+          "file_academic_year": 2026,
+          "chars": 28303
+        },
+        {
+          "name": "2026학년도 방과후학교 연간 운영 계획.hwp",
+          "sha256": "358834374f5f58bbf4615dd901822e2f4a68d9299a46753037e5dec62fe287a6",
+          "format": "hwp",
+          "file_academic_year": 2026,
+          "chars": 58650
+        }
+      ],
+      "errors": [],
+      "input_ready": true,
+      "course_track": "new_priority",
+      "course_extraction_status": "pending",
+      "approved_for_upload": false
+    }
+  ]
+}

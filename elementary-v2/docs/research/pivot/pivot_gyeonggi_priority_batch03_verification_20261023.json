@@ -1,0 +1,13 @@
+{
+  "schools": 3,
+  "rows": 53,
+  "kinds": {
+    "방과후": 53
+  },
+  "grade1_rows": 31,
+  "schools_with_blocking_issues": 1,
+  "errors": {},
+  "warnings": {},
+  "no_operational_upload": true,
+  "scope_limit": "Evidence/shape checks only; not an independent completeness review or an upload approval"
+}

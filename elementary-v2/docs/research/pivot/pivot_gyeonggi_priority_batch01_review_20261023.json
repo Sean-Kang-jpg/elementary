@@ -1,0 +1,389 @@
+{
+  "batch": "priority-batch01",
+  "checked_on": "2026-10-23",
+  "no_operational_upload": true,
+  "independent_review": false,
+  "schools": [
+    {
+      "school_id": "B000004274",
+      "school_name": "광명동초등학교",
+      "input": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000004274.txt",
+      "input_sha256": "c488bc293bf23233345d9667bd1f8ea66ba830ddb6d22b65b01848b5e41a168f",
+      "output": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\outputs\\B000004274.json",
+      "output_sha256": "1e35042877dcfa552c173eb2c6635bf2138c544b6659734001281ebcfd63d8ba",
+      "review_method": "same-assistant whole-input read and source comparison; not independent blind review",
+      "supplied_sources_read": true,
+      "rows": 14,
+      "grade1_rows": 9,
+      "custom_rows": 0,
+      "blocking_issues": [],
+      "exclusions": [],
+      "additional_findings": [
+        {
+          "lines": [
+            158,
+            159
+          ],
+          "type": "unclassified_programme",
+          "name": "창의수학",
+          "reason": "교재·재료 목록에만 존재; 방과후/맞춤형 종류 및 실제 개설·대상·요일·시각 미확인"
+        }
+      ],
+      "visual_checks": [],
+      "production_apply_ready": false,
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000004266",
+      "school_name": "안서초등학교",
+      "input": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000004266.txt",
+      "input_sha256": "aa1c22cf72f1479eecd73612e902e16aa35bbf881b1448139c08c0f18e168215",
+      "output": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\outputs\\B000004266.json",
+      "output_sha256": "777a229fa121ccc55c21a02c0066dadd7157c6addd3ddceb1ff7465ad727016f",
+      "review_method": "same-assistant whole-input read and source comparison; not independent blind review",
+      "supplied_sources_read": true,
+      "rows": 15,
+      "grade1_rows": 9,
+      "custom_rows": 0,
+      "blocking_issues": [
+        {
+          "code": "duration_conflict",
+          "lines": [
+            63,
+            64
+          ],
+          "reason": "L64 13:40~14:20(40분)과 비고 80분·요금 차이; 실제 반 시각 확인 필요"
+        },
+        {
+          "code": "duplicate_source_rows",
+          "lines": [
+            69,
+            70
+          ],
+          "reason": "컴퓨터코딩의 학년·요일·시각·수강료 모두 동일; 실제 별도 반인지 불명확"
+        }
+      ],
+      "exclusions": [
+        {
+          "lines": [
+            76,
+            77,
+            78
+          ],
+          "reason": "무료 교내 영어; 맞춤형 표기 없음. 유료 방과후 또는 맞춤형으로 임의 분류하지 않음",
+          "names": [
+            "영어연극",
+            "생활영어",
+            "생활영어 영어문법"
+          ]
+        },
+        {
+          "lines": [
+            55,
+            72
+          ],
+          "reason": "미개설 시 대체 후보 강좌; 실제 개설로 단정하지 않음",
+          "names": [
+            "바둑",
+            "로봇과학",
+            "토탈미니어처"
+          ]
+        }
+      ],
+      "additional_findings": [],
+      "visual_checks": [],
+      "production_apply_ready": false,
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000003859",
+      "school_name": "평촌초등학교",
+      "input": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000003859.txt",
+      "input_sha256": "a1e5ec02d97b3079f7cd072fcaf1f431c2caf5be84492d596b7506237f19a1b6",
+      "output": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\outputs\\B000003859.json",
+      "output_sha256": "f2beb86bdb17d22f91f24d3577d0e5f3d8f0611212712ab8d31369bd3a08f482",
+      "review_method": "same-assistant whole-input read and source comparison; not independent blind review",
+      "supplied_sources_read": true,
+      "rows": 37,
+      "grade1_rows": 18,
+      "custom_rows": 0,
+      "blocking_issues": [],
+      "exclusions": [],
+      "additional_findings": [
+        {
+          "lines": [
+            4
+          ],
+          "type": "source_date_conflict",
+          "reason": "2026 운영계획에 1학기 종료연도 2025 표기; 일정은 임의 수정하지 않음"
+        },
+        {
+          "lines": [
+            39,
+            45
+          ],
+          "type": "afternoon_care",
+          "afternoon_end": "19:00",
+          "extended_end": null,
+          "reason": "학기중 선택형돌봄; 방학·재량휴업 시간과 구분; 기존 확인된 운영 값과 동일"
+        },
+        {
+          "lines": [
+            42,
+            45
+          ],
+          "type": "care_activities_not_custom",
+          "names": [
+            "보드게임",
+            "클레이",
+            "칼림바",
+            "종이접기"
+          ],
+          "reason": "돌봄 특기적성 프로그램으로만 명시; 맞춤형 판정하지 않음. 특강표 종료14:50과 일과표15:00도 다름"
+        }
+      ],
+      "visual_checks": [
+        "pdf_review/pyeongchon-2.png",
+        "pdf_review/pyeongchon-3.png"
+      ],
+      "production_apply_ready": false,
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000004259",
+      "school_name": "충현초등학교",
+      "input": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000004259.txt",
+      "input_sha256": "01d99a367db1a8771be19217628f306091fe4ee78e8dacfc22276b271f17cede",
+      "output": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\outputs\\B000004259.json",
+      "output_sha256": "da17bb019d31fbc022eb001b94c9aa035be6c4075d465dee351c0b6b8c407189",
+      "review_method": "same-assistant whole-input read and source comparison; not independent blind review",
+      "supplied_sources_read": true,
+      "rows": 31,
+      "grade1_rows": 19,
+      "custom_rows": 0,
+      "blocking_issues": [],
+      "exclusions": [
+        {
+          "lines": [
+            27
+          ],
+          "name": "토탈 미니어쳐",
+          "reason": "원문에 폐강 명시"
+        },
+        {
+          "lines": [
+            28
+          ],
+          "name": "토탈 미니어쳐",
+          "reason": "원문에 폐강 명시"
+        },
+        {
+          "lines": [
+            45
+          ],
+          "name": "영재큐브",
+          "reason": "원문에 폐강 명시"
+        },
+        {
+          "lines": [
+            46
+          ],
+          "name": "영재큐브",
+          "reason": "원문에 폐강 명시"
+        },
+        {
+          "lines": [
+            53
+          ],
+          "name": "역사탐험",
+          "reason": "원문에 폐강 명시"
+        },
+        {
+          "lines": [
+            54
+          ],
+          "name": "역사탐험",
+          "reason": "원문에 폐강 명시"
+        }
+      ],
+      "additional_findings": [],
+      "visual_checks": [],
+      "production_apply_ready": false,
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000004275",
+      "school_name": "광명북초등학교",
+      "input": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000004275.txt",
+      "input_sha256": "631053a2b317139d0e12c3013d34b6b595a25e81678647bb43affdc636cd1566",
+      "output": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\outputs\\B000004275.json",
+      "output_sha256": "5654854b895d152839fe54e732cbc7198e3b7373362151619bf28b5ded2de9e2",
+      "review_method": "same-assistant whole-input read and source comparison; not independent blind review",
+      "supplied_sources_read": true,
+      "rows": 26,
+      "grade1_rows": 18,
+      "custom_rows": 5,
+      "blocking_issues": [
+        {
+          "code": "weekday_source_conflict",
+          "lines": [
+            184,
+            185,
+            212
+          ],
+          "reason": "배드민턴 상세표 월 / 회계표 화"
+        },
+        {
+          "code": "weekday_source_conflict",
+          "lines": [
+            201,
+            202,
+            213
+          ],
+          "reason": "요리 상세표 금 / 회계표 월"
+        },
+        {
+          "code": "custom_example_only_schedule",
+          "lines": [
+            74,
+            75,
+            76,
+            77,
+            78,
+            79,
+            81
+          ],
+          "reason": "실제 프로그램명은 확인되나 요일·시각은 예시표뿐; 확인 전 시간표 배정 금지"
+        }
+      ],
+      "exclusions": [
+        {
+          "lines": [
+            16,
+            17,
+            18,
+            82
+          ],
+          "reason": "2025 학년도 자료 제외"
+        },
+        {
+          "lines": [
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14
+          ],
+          "reason": "참여현황 이미지의 프로그램은 상세 운영표와 중복 생성하지 않음"
+        }
+      ],
+      "additional_findings": [
+        {
+          "lines": [
+            302,
+            317,
+            318,
+            319,
+            320,
+            321,
+            322
+          ],
+          "type": "morning_care",
+          "start": "07:50",
+          "end": "08:40",
+          "grades": "1~6학년(1,2학년 우선)",
+          "condition": "학교 여건 및 학생 수요에 따라 변경 가능",
+          "status": "source_checked_candidate_not_uploaded"
+        },
+        {
+          "lines": [
+            348,
+            349
+          ],
+          "type": "external_care_not_school_afternoon",
+          "reason": "13~17은 광명광덕초 온동네센터 연계 운영시간; 광명북초 자체 오후돌봄 종료로 사용하지 않음"
+        }
+      ],
+      "visual_checks": [],
+      "production_apply_ready": false,
+      "approved_for_upload": false,
+      "field_evidence": {
+        "22": {
+          "grades": [
+            55,
+            71
+          ],
+          "kind": [
+            29,
+            43
+          ],
+          "term": [
+            57,
+            67
+          ]
+        },
+        "23": {
+          "grades": [
+            55,
+            71
+          ],
+          "kind": [
+            29,
+            43
+          ],
+          "term": [
+            57,
+            67
+          ]
+        },
+        "24": {
+          "grades": [
+            55,
+            71
+          ],
+          "kind": [
+            29,
+            43
+          ],
+          "term": [
+            57,
+            67
+          ]
+        },
+        "25": {
+          "grades": [
+            55,
+            71
+          ],
+          "kind": [
+            29,
+            43
+          ],
+          "term": [
+            57,
+            67
+          ]
+        },
+        "26": {
+          "grades": [
+            55,
+            71
+          ],
+          "kind": [
+            29,
+            43
+          ],
+          "term": [
+            57,
+            67
+          ]
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,615 @@
+{
+  "batch": "priority-batch02",
+  "checked_on": "2026-10-23",
+  "no_operational_upload": true,
+  "independent_review": false,
+  "schools": [
+    {
+      "school_id": "B000004001",
+      "school_name": "대청초등학교",
+      "input": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000004001.txt",
+      "input_sha256": "d103f2ba5bdb27ccf013f899a51fb2490f6512b105ea4c48b723f7b6419b8bce",
+      "output": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\outputs\\B000004001.json",
+      "output_sha256": "b03e3fea8941bdea972a1d7dfe1f05f4610cfab91b4f754eb14c37f4d2f3e7c6",
+      "review_method": "same-assistant whole-input read and source comparison; not independent blind review",
+      "supplied_sources_read": true,
+      "rows": 39,
+      "grade1_rows": 29,
+      "custom_rows": 20,
+      "field_evidence": {
+        "1": {
+          "grades": [
+            56
+          ],
+          "kind": [
+            55
+          ],
+          "term": [
+            27,
+            42
+          ]
+        },
+        "2": {
+          "grades": [
+            56
+          ],
+          "kind": [
+            55
+          ],
+          "term": [
+            27,
+            42
+          ]
+        },
+        "3": {
+          "grades": [
+            56
+          ],
+          "kind": [
+            55
+          ],
+          "term": [
+            27,
+            42
+          ]
+        },
+        "4": {
+          "grades": [
+            56
+          ],
+          "kind": [
+            55
+          ],
+          "term": [
+            27,
+            42
+          ]
+        },
+        "5": {
+          "grades": [
+            56
+          ],
+          "kind": [
+            55
+          ],
+          "term": [
+            27,
+            42
+          ]
+        },
+        "6": {
+          "grades": [
+            56
+          ],
+          "kind": [
+            55
+          ],
+          "term": [
+            27,
+            42
+          ]
+        },
+        "7": {
+          "grades": [
+            56
+          ],
+          "kind": [
+            55
+          ],
+          "term": [
+            27,
+            42
+          ]
+        },
+        "8": {
+          "grades": [
+            56
+          ],
+          "kind": [
+            55
+          ],
+          "term": [
+            27,
+            42
+          ]
+        },
+        "9": {
+          "grades": [
+            56
+          ],
+          "kind": [
+            55
+          ],
+          "term": [
+            27,
+            42
+          ]
+        },
+        "10": {
+          "grades": [
+            56
+          ],
+          "kind": [
+            55
+          ],
+          "term": [
+            27,
+            42
+          ]
+        },
+        "11": {
+          "grades": [
+            56
+          ],
+          "kind": [
+            55
+          ],
+          "term": [
+            27,
+            42
+          ]
+        },
+        "12": {
+          "grades": [
+            56
+          ],
+          "kind": [
+            55
+          ],
+          "term": [
+            27,
+            42
+          ]
+        },
+        "13": {
+          "grades": [
+            56
+          ],
+          "kind": [
+            55
+          ],
+          "term": [
+            27,
+            42
+          ]
+        },
+        "14": {
+          "grades": [
+            56
+          ],
+          "kind": [
+            55
+          ],
+          "term": [
+            27,
+            42
+          ]
+        },
+        "15": {
+          "grades": [
+            56
+          ],
+          "kind": [
+            55
+          ],
+          "term": [
+            27,
+            42
+          ]
+        },
+        "16": {
+          "grades": [
+            56
+          ],
+          "kind": [
+            55
+          ],
+          "term": [
+            27,
+            42
+          ]
+        },
+        "17": {
+          "grades": [
+            56
+          ],
+          "kind": [
+            55
+          ],
+          "term": [
+            27,
+            42
+          ]
+        },
+        "18": {
+          "grades": [
+            56
+          ],
+          "kind": [
+            55
+          ],
+          "term": [
+            27,
+            42
+          ]
+        },
+        "19": {
+          "grades": [
+            56
+          ],
+          "kind": [
+            55
+          ],
+          "term": [
+            27,
+            42
+          ]
+        },
+        "20": {
+          "weekday_header": [
+            47
+          ],
+          "weekday_column": 2
+        },
+        "21": {
+          "weekday_header": [
+            47
+          ],
+          "weekday_column": 2
+        },
+        "22": {
+          "weekday_header": [
+            47
+          ],
+          "weekday_column": 4
+        },
+        "23": {
+          "weekday_header": [
+            47
+          ],
+          "weekday_column": 4
+        },
+        "24": {
+          "weekday_header": [
+            47
+          ],
+          "weekday_column": 2
+        },
+        "25": {
+          "weekday_header": [
+            47
+          ],
+          "weekday_column": 2
+        },
+        "26": {
+          "weekday_header": [
+            47
+          ],
+          "weekday_column": 3
+        },
+        "27": {
+          "weekday_header": [
+            47
+          ],
+          "weekday_column": 3
+        },
+        "28": {
+          "weekday_header": [
+            47
+          ],
+          "weekday_column": 4
+        },
+        "29": {
+          "weekday_header": [
+            47
+          ],
+          "weekday_column": 4
+        },
+        "30": {
+          "weekday_header": [
+            47
+          ],
+          "weekday_column": 5
+        },
+        "31": {
+          "weekday_header": [
+            47
+          ],
+          "weekday_column": 5
+        },
+        "32": {
+          "weekday_header": [
+            47
+          ],
+          "weekday_column": 6
+        },
+        "33": {
+          "weekday_header": [
+            47
+          ],
+          "weekday_column": 6
+        },
+        "34": {
+          "weekday_header": [
+            47
+          ],
+          "weekday_column": 3
+        },
+        "35": {
+          "weekday_header": [
+            47
+          ],
+          "weekday_column": 3
+        },
+        "36": {
+          "weekday_header": [
+            47
+          ],
+          "weekday_column": 5
+        },
+        "37": {
+          "weekday_header": [
+            47
+          ],
+          "weekday_column": 5
+        },
+        "38": {
+          "weekday_header": [
+            47
+          ],
+          "weekday_column": 6
+        },
+        "39": {
+          "weekday_header": [
+            47
+          ],
+          "weekday_column": 6
+        }
+      },
+      "announced_classes": [
+        {
+          "source_line": 59,
+          "name": "바둑체스",
+          "announced_classes": 2,
+          "reason": "두 반의 반명·학년별 구분·시각은 미기재. 프로그램 단위 1행만 보존"
+        },
+        {
+          "source_line": 60,
+          "name": "드론항공",
+          "announced_classes": 2,
+          "reason": "두 반의 반명·학년별 구분·시각은 미기재. 프로그램 단위 1행만 보존"
+        },
+        {
+          "source_line": 61,
+          "name": "창의과학",
+          "announced_classes": 2,
+          "reason": "두 반의 반명·학년별 구분·시각은 미기재. 프로그램 단위 1행만 보존"
+        },
+        {
+          "source_line": 62,
+          "name": "컴퓨터기초(화)",
+          "announced_classes": 2,
+          "reason": "두 반의 반명·학년별 구분·시각은 미기재. 프로그램 단위 1행만 보존"
+        },
+        {
+          "source_line": 63,
+          "name": "컴퓨터활용(금)",
+          "announced_classes": 2,
+          "reason": "두 반의 반명·학년별 구분·시각은 미기재. 프로그램 단위 1행만 보존"
+        },
+        {
+          "source_line": 64,
+          "name": "전자로봇",
+          "announced_classes": 2,
+          "reason": "두 반의 반명·학년별 구분·시각은 미기재. 프로그램 단위 1행만 보존"
+        },
+        {
+          "source_line": 65,
+          "name": "배드민턴(1)",
+          "announced_classes": 2,
+          "reason": "두 반의 반명·학년별 구분·시각은 미기재. 프로그램 단위 1행만 보존"
+        },
+        {
+          "source_line": 66,
+          "name": "이야기한자",
+          "announced_classes": 2,
+          "reason": "두 반의 반명·학년별 구분·시각은 미기재. 프로그램 단위 1행만 보존"
+        },
+        {
+          "source_line": 67,
+          "name": "연극뮤지컬",
+          "announced_classes": 2,
+          "reason": "두 반의 반명·학년별 구분·시각은 미기재. 프로그램 단위 1행만 보존"
+        },
+        {
+          "source_line": 68,
+          "name": "토탈클레이",
+          "announced_classes": 2,
+          "reason": "두 반의 반명·학년별 구분·시각은 미기재. 프로그램 단위 1행만 보존"
+        },
+        {
+          "source_line": 69,
+          "name": "방송댄스",
+          "announced_classes": 2,
+          "reason": "두 반의 반명·학년별 구분·시각은 미기재. 프로그램 단위 1행만 보존"
+        },
+        {
+          "source_line": 70,
+          "name": "요리교실",
+          "announced_classes": 2,
+          "reason": "두 반의 반명·학년별 구분·시각은 미기재. 프로그램 단위 1행만 보존"
+        },
+        {
+          "source_line": 71,
+          "name": "음악줄넘기",
+          "announced_classes": 2,
+          "reason": "두 반의 반명·학년별 구분·시각은 미기재. 프로그램 단위 1행만 보존"
+        },
+        {
+          "source_line": 72,
+          "name": "영어(주2회)",
+          "announced_classes": 2,
+          "reason": "두 반의 반명·학년별 구분·시각은 미기재. 프로그램 단위 1행만 보존"
+        },
+        {
+          "source_line": 73,
+          "name": "배드민턴(2)",
+          "announced_classes": 2,
+          "reason": "두 반의 반명·학년별 구분·시각은 미기재. 프로그램 단위 1행만 보존"
+        },
+        {
+          "source_line": 74,
+          "name": "마술",
+          "announced_classes": 2,
+          "reason": "두 반의 반명·학년별 구분·시각은 미기재. 프로그램 단위 1행만 보존"
+        },
+        {
+          "source_line": 75,
+          "name": "큐브",
+          "announced_classes": 2,
+          "reason": "두 반의 반명·학년별 구분·시각은 미기재. 프로그램 단위 1행만 보존"
+        },
+        {
+          "source_line": 76,
+          "name": "매직테니스",
+          "announced_classes": 2,
+          "reason": "두 반의 반명·학년별 구분·시각은 미기재. 프로그램 단위 1행만 보존"
+        },
+        {
+          "source_line": 77,
+          "name": "웹툰",
+          "announced_classes": 2,
+          "reason": "두 반의 반명·학년별 구분·시각은 미기재. 프로그램 단위 1행만 보존"
+        }
+      ],
+      "participation_units": [
+        {
+          "weekday": "월",
+          "grade": "1학년",
+          "row_indices": [
+            20,
+            24
+          ],
+          "reason": "한 프로그램 2차시; 두 40분 수업 사이 쉬는시간은 합치지 않음"
+        },
+        {
+          "weekday": "월",
+          "grade": "2학년",
+          "row_indices": [
+            21,
+            25
+          ],
+          "reason": "한 프로그램 2차시; 두 40분 수업 사이 쉬는시간은 합치지 않음"
+        },
+        {
+          "weekday": "화",
+          "grade": "1학년",
+          "row_indices": [
+            26,
+            34
+          ],
+          "reason": "한 프로그램 2차시; 두 40분 수업 사이 쉬는시간은 합치지 않음"
+        },
+        {
+          "weekday": "화",
+          "grade": "2학년",
+          "row_indices": [
+            27,
+            35
+          ],
+          "reason": "한 프로그램 2차시; 두 40분 수업 사이 쉬는시간은 합치지 않음"
+        },
+        {
+          "weekday": "수",
+          "grade": "1학년",
+          "row_indices": [
+            22,
+            28
+          ],
+          "reason": "한 프로그램 2차시; 두 40분 수업 사이 쉬는시간은 합치지 않음"
+        },
+        {
+          "weekday": "수",
+          "grade": "2학년",
+          "row_indices": [
+            23,
+            29
+          ],
+          "reason": "한 프로그램 2차시; 두 40분 수업 사이 쉬는시간은 합치지 않음"
+        },
+        {
+          "weekday": "목",
+          "grade": "1학년",
+          "row_indices": [
+            30,
+            36
+          ],
+          "reason": "한 프로그램 2차시; 두 40분 수업 사이 쉬는시간은 합치지 않음"
+        },
+        {
+          "weekday": "목",
+          "grade": "2학년",
+          "row_indices": [
+            31,
+            37
+          ],
+          "reason": "한 프로그램 2차시; 두 40분 수업 사이 쉬는시간은 합치지 않음"
+        },
+        {
+          "weekday": "금",
+          "grade": "1학년",
+          "row_indices": [
+            32,
+            38
+          ],
+          "reason": "한 프로그램 2차시; 두 40분 수업 사이 쉬는시간은 합치지 않음"
+        },
+        {
+          "weekday": "금",
+          "grade": "2학년",
+          "row_indices": [
+            33,
+            39
+          ],
+          "reason": "한 프로그램 2차시; 두 40분 수업 사이 쉬는시간은 합치지 않음"
+        }
+      ],
+      "blocking_issues": [
+        {
+          "code": "missing_class_details",
+          "lines": [
+            59,
+            60,
+            61,
+            62,
+            63,
+            64,
+            65,
+            66,
+            67,
+            68,
+            69,
+            70,
+            71,
+            72,
+            73,
+            74,
+            75,
+            76,
+            77
+          ],
+          "reason": "유료 각2반의 반별 학년·시각 불명; 19개 프로그램을 38개반으로 복제하지 않음"
+        }
+      ],
+      "exclusions": [],
+      "additional_findings": [
+        {
+          "type": "afternoon_care_not_stated",
+          "reason": "맞춤형·방과후 운영계획만 확인. 16:00/16:30을 돌봄 종료로 사용하지 않음"
+        }
+      ],
+      "production_apply_ready": false,
+      "approved_for_upload": false
+    }
+  ]
+}

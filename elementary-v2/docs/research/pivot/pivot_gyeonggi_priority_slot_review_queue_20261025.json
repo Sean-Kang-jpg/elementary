@@ -1,0 +1,795 @@
+{
+  "checked_on": "2026-10-25",
+  "no_operational_upload": true,
+  "review_standard": "PIVOT_SLOT_STANDARD.md current four-kind definition; full-grade/unknown-grade are additional to the measured two-kind audit scope",
+  "schools": [
+    {
+      "school_id": "B000003858",
+      "school_name": "동안초등학교",
+      "source": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000003858.txt",
+      "source_sha256": "fe8099e428c62707502bfc95ca04e6956024f8f4c29f1d2c6ed2de5eecf2f086",
+      "slot_list": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\slot_review_packets_20261025\\B000003858.json",
+      "slot_list_sha256": "8b314abfa4b3c4cc1a0fd9c475c0f660de6323915f435d541949cba2114d81e1",
+      "slots": 10,
+      "derived_status": "check",
+      "independent_review_complete": false
+    },
+    {
+      "school_id": "B000003859",
+      "school_name": "평촌초등학교",
+      "source": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000003859.txt",
+      "source_sha256": "a1e5ec02d97b3079f7cd072fcaf1f431c2caf5be84492d596b7506237f19a1b6",
+      "slot_list": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\slot_review_packets_20261025\\B000003859.json",
+      "slot_list_sha256": "2de3cf294351dfb784be5e69ec08e8ebf4c356bce3fdfc83e92f07f7c7364f1b",
+      "slots": 7,
+      "derived_status": "check",
+      "independent_review_complete": false
+    },
+    {
+      "school_id": "B000003862",
+      "school_name": "범계초등학교",
+      "source": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000003862.txt",
+      "source_sha256": "a7f13cd9bf3455536b963251495037150a6ab16924b938b14ddf9a1da0ae0d7f",
+      "slot_list": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\slot_review_packets_20261025\\B000003862.json",
+      "slot_list_sha256": "f21537d348a83ce623722710d512e03d2f4da708977b7a6c003a2e7a782ab05a",
+      "slots": 5,
+      "derived_status": "ok",
+      "independent_review_complete": false
+    },
+    {
+      "school_id": "B000003866",
+      "school_name": "안양관악초등학교",
+      "source": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000003866.txt",
+      "source_sha256": "bcaf94c910fa2429ea83afd67a632d84f8c9839f73c6fe89bb9236eb5753fb73",
+      "slot_list": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\slot_review_packets_20261025\\B000003866.json",
+      "slot_list_sha256": "28a78cfcb80359b322d994568ce29b9a8eafd853fdc8f016890e458d6585db33",
+      "slots": 14,
+      "derived_status": "ok",
+      "independent_review_complete": false
+    },
+    {
+      "school_id": "B000003989",
+      "school_name": "용인대덕초등학교",
+      "source": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000003989.txt",
+      "source_sha256": "4533139da82283436c249a858d2a574e322d9383f6b7b8f3cede9c46968e2761",
+      "slot_list": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\slot_review_packets_20261025\\B000003989.json",
+      "slot_list_sha256": "a5338d955b09046ec0b16f3a9625b7955c763aae07dc722e474e6078745f932f",
+      "slots": 0,
+      "derived_status": "check",
+      "independent_review_complete": false
+    },
+    {
+      "school_id": "B000004001",
+      "school_name": "대청초등학교",
+      "source": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000004001.txt",
+      "source_sha256": "d103f2ba5bdb27ccf013f899a51fb2490f6512b105ea4c48b723f7b6419b8bce",
+      "slot_list": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\slot_review_packets_20261025\\B000004001.json",
+      "slot_list_sha256": "cd67158907fc043c62eaf30cdeca2fc4e2fadb7552923475d6aba00db5d9e2af",
+      "slots": 10,
+      "derived_status": "check",
+      "independent_review_complete": false
+    },
+    {
+      "school_id": "B000004259",
+      "school_name": "충현초등학교",
+      "source": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000004259.txt",
+      "source_sha256": "01d99a367db1a8771be19217628f306091fe4ee78e8dacfc22276b271f17cede",
+      "slot_list": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\slot_review_packets_20261025\\B000004259.json",
+      "slot_list_sha256": "ec509b1d4fd829fe5f6dc8c9c997fa1a83a885751f7803bc8b3a14e834b09042",
+      "slots": 13,
+      "derived_status": "ok",
+      "independent_review_complete": false
+    },
+    {
+      "school_id": "B000004266",
+      "school_name": "안서초등학교",
+      "source": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000004266.txt",
+      "source_sha256": "aa1c22cf72f1479eecd73612e902e16aa35bbf881b1448139c08c0f18e168215",
+      "slot_list": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\slot_review_packets_20261025\\B000004266.json",
+      "slot_list_sha256": "c95287e129462e02a4a9cab491f3eab4d80da347a4496861ddcd844c1ee6a232",
+      "slots": 7,
+      "derived_status": "check",
+      "independent_review_complete": false
+    },
+    {
+      "school_id": "B000004267",
+      "school_name": "온신초등학교",
+      "source": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000004267.txt",
+      "source_sha256": "12c17bc3a7c23b812cea3a29e9eef48006ad68f32277ab537eaefbd7cb951927",
+      "slot_list": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\slot_review_packets_20261025\\B000004267.json",
+      "slot_list_sha256": "5d763407d8bf2541e322dd3d1d6a75606b53c808363815c5a4a3a3c535793267",
+      "slots": 5,
+      "derived_status": "ok",
+      "independent_review_complete": false
+    },
+    {
+      "school_id": "B000004272",
+      "school_name": "광문초등학교",
+      "source": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000004272.txt",
+      "source_sha256": "3170c6826576b474df9b77971e9c239cdec04bce62ee9354079128fb5292ab2b",
+      "slot_list": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\slot_review_packets_20261025\\B000004272.json",
+      "slot_list_sha256": "a6968004c2dc72cd8bd68e40effdc3d4ce3951944556c349d81f862c127153ee",
+      "slots": 15,
+      "derived_status": "check",
+      "independent_review_complete": false
+    },
+    {
+      "school_id": "B000004273",
+      "school_name": "서면초등학교",
+      "source": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000004273.txt",
+      "source_sha256": "78de8d3c15dff14c3c2f580cb84a1e101df07e9c5e165d83534b02b91267079f",
+      "slot_list": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\slot_review_packets_20261025\\B000004273.json",
+      "slot_list_sha256": "81873e71651cd2fdcee1495ed12b4ecf1c9febfdf74543d2d8b06371d285349b",
+      "slots": 18,
+      "derived_status": "check",
+      "independent_review_complete": false
+    },
+    {
+      "school_id": "B000004274",
+      "school_name": "광명동초등학교",
+      "source": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000004274.txt",
+      "source_sha256": "c488bc293bf23233345d9667bd1f8ea66ba830ddb6d22b65b01848b5e41a168f",
+      "slot_list": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\slot_review_packets_20261025\\B000004274.json",
+      "slot_list_sha256": "c3af67d46cd6e6e71dac71bb9b108b732bdf09239608fd0ac7afdbe1c34234c5",
+      "slots": 9,
+      "derived_status": "ok",
+      "independent_review_complete": false
+    },
+    {
+      "school_id": "B000004275",
+      "school_name": "광명북초등학교",
+      "source": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000004275.txt",
+      "source_sha256": "631053a2b317139d0e12c3013d34b6b595a25e81678647bb43affdc636cd1566",
+      "slot_list": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\slot_review_packets_20261025\\B000004275.json",
+      "slot_list_sha256": "e130d8398de3d67d9fda1ffd420fddebfd59d923136dfc1185f3d30bf6272445",
+      "slots": 11,
+      "derived_status": "check",
+      "independent_review_complete": false
+    }
+  ],
+  "checks": [
+    {
+      "school_id": "B000003858",
+      "school_name": "동안초등학교",
+      "check": [
+        "PDF원문",
+        null,
+        null
+      ],
+      "input": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000003858.txt",
+      "state": "unresolved"
+    },
+    {
+      "school_id": "B000003859",
+      "school_name": "평촌초등학교",
+      "check": [
+        "PDF원문",
+        null,
+        null
+      ],
+      "input": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000003859.txt",
+      "state": "unresolved"
+    },
+    {
+      "school_id": "B000003989",
+      "school_name": "용인대덕초등학교",
+      "check": [
+        "방과후시각미확인",
+        null,
+        [
+          "창의요리",
+          null,
+          "L100"
+        ]
+      ],
+      "input": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000003989.txt",
+      "state": "unresolved"
+    },
+    {
+      "school_id": "B000003989",
+      "school_name": "용인대덕초등학교",
+      "check": [
+        "방과후시각미확인",
+        null,
+        [
+          "기초영어",
+          null,
+          "L100"
+        ]
+      ],
+      "input": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000003989.txt",
+      "state": "unresolved"
+    },
+    {
+      "school_id": "B000003989",
+      "school_name": "용인대덕초등학교",
+      "check": [
+        "방과후시각미확인",
+        null,
+        [
+          "로봇과학",
+          null,
+          "L101"
+        ]
+      ],
+      "input": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000003989.txt",
+      "state": "unresolved"
+    },
+    {
+      "school_id": "B000003989",
+      "school_name": "용인대덕초등학교",
+      "check": [
+        "방과후시각미확인",
+        null,
+        [
+          "코딩",
+          null,
+          "L101"
+        ]
+      ],
+      "input": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000003989.txt",
+      "state": "unresolved"
+    },
+    {
+      "school_id": "B000003989",
+      "school_name": "용인대덕초등학교",
+      "check": [
+        "방과후시각미확인",
+        null,
+        [
+          "배드민턴",
+          null,
+          "L102"
+        ]
+      ],
+      "input": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000003989.txt",
+      "state": "unresolved"
+    },
+    {
+      "school_id": "B000003989",
+      "school_name": "용인대덕초등학교",
+      "check": [
+        "방과후시각미확인",
+        null,
+        [
+          "음악줄넘기",
+          null,
+          "L102"
+        ]
+      ],
+      "input": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000003989.txt",
+      "state": "unresolved"
+    },
+    {
+      "school_id": "B000003989",
+      "school_name": "용인대덕초등학교",
+      "check": [
+        "방과후시각미확인",
+        null,
+        [
+          "컴퓨터",
+          null,
+          "L103"
+        ]
+      ],
+      "input": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000003989.txt",
+      "state": "unresolved"
+    },
+    {
+      "school_id": "B000003989",
+      "school_name": "용인대덕초등학교",
+      "check": [
+        "방과후시각미확인",
+        null,
+        [
+          "과학탐구",
+          null,
+          "L103"
+        ]
+      ],
+      "input": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000003989.txt",
+      "state": "unresolved"
+    },
+    {
+      "school_id": "B000003989",
+      "school_name": "용인대덕초등학교",
+      "check": [
+        "방과후시각미확인",
+        null,
+        [
+          "우쿨렐레",
+          null,
+          "L104"
+        ]
+      ],
+      "input": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000003989.txt",
+      "state": "unresolved"
+    },
+    {
+      "school_id": "B000003989",
+      "school_name": "용인대덕초등학교",
+      "check": [
+        "방과후시각미확인",
+        null,
+        [
+          "토탈공예",
+          null,
+          "L104"
+        ]
+      ],
+      "input": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000003989.txt",
+      "state": "unresolved"
+    },
+    {
+      "school_id": "B000003989",
+      "school_name": "용인대덕초등학교",
+      "check": [
+        "방과후시각미확인",
+        null,
+        [
+          "창의미술",
+          null,
+          "L105"
+        ]
+      ],
+      "input": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000003989.txt",
+      "state": "unresolved"
+    },
+    {
+      "school_id": "B000003989",
+      "school_name": "용인대덕초등학교",
+      "check": [
+        "방과후시각미확인",
+        null,
+        [
+          "방송댄스",
+          null,
+          "L105"
+        ]
+      ],
+      "input": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000003989.txt",
+      "state": "unresolved"
+    },
+    {
+      "school_id": "B000004001",
+      "school_name": "대청초등학교",
+      "check": [
+        "방과후시각미확인",
+        "월",
+        [
+          "바둑체스",
+          null,
+          "L59"
+        ]
+      ],
+      "input": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000004001.txt",
+      "state": "unresolved"
+    },
+    {
+      "school_id": "B000004001",
+      "school_name": "대청초등학교",
+      "check": [
+        "방과후시각미확인",
+        "수",
+        [
+          "드론항공",
+          null,
+          "L60"
+        ]
+      ],
+      "input": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000004001.txt",
+      "state": "unresolved"
+    },
+    {
+      "school_id": "B000004001",
+      "school_name": "대청초등학교",
+      "check": [
+        "방과후시각미확인",
+        "목",
+        [
+          "창의과학",
+          null,
+          "L61"
+        ]
+      ],
+      "input": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000004001.txt",
+      "state": "unresolved"
+    },
+    {
+      "school_id": "B000004001",
+      "school_name": "대청초등학교",
+      "check": [
+        "방과후시각미확인",
+        "화",
+        [
+          "컴퓨터기초(화)",
+          null,
+          "L62"
+        ]
+      ],
+      "input": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000004001.txt",
+      "state": "unresolved"
+    },
+    {
+      "school_id": "B000004001",
+      "school_name": "대청초등학교",
+      "check": [
+        "방과후시각미확인",
+        "금",
+        [
+          "컴퓨터활용(금)",
+          null,
+          "L63"
+        ]
+      ],
+      "input": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000004001.txt",
+      "state": "unresolved"
+    },
+    {
+      "school_id": "B000004001",
+      "school_name": "대청초등학교",
+      "check": [
+        "방과후시각미확인",
+        "금",
+        [
+          "전자로봇",
+          null,
+          "L64"
+        ]
+      ],
+      "input": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000004001.txt",
+      "state": "unresolved"
+    },
+    {
+      "school_id": "B000004001",
+      "school_name": "대청초등학교",
+      "check": [
+        "방과후시각미확인",
+        "화",
+        [
+          "배드민턴(1)",
+          null,
+          "L65"
+        ]
+      ],
+      "input": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000004001.txt",
+      "state": "unresolved"
+    },
+    {
+      "school_id": "B000004001",
+      "school_name": "대청초등학교",
+      "check": [
+        "방과후시각미확인",
+        "목",
+        [
+          "이야기한자",
+          null,
+          "L66"
+        ]
+      ],
+      "input": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000004001.txt",
+      "state": "unresolved"
+    },
+    {
+      "school_id": "B000004001",
+      "school_name": "대청초등학교",
+      "check": [
+        "방과후시각미확인",
+        "화",
+        [
+          "연극뮤지컬",
+          null,
+          "L67"
+        ]
+      ],
+      "input": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000004001.txt",
+      "state": "unresolved"
+    },
+    {
+      "school_id": "B000004001",
+      "school_name": "대청초등학교",
+      "check": [
+        "방과후시각미확인",
+        "화",
+        [
+          "토탈클레이",
+          null,
+          "L68"
+        ]
+      ],
+      "input": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000004001.txt",
+      "state": "unresolved"
+    },
+    {
+      "school_id": "B000004001",
+      "school_name": "대청초등학교",
+      "check": [
+        "방과후시각미확인",
+        "수",
+        [
+          "방송댄스",
+          null,
+          "L69"
+        ]
+      ],
+      "input": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000004001.txt",
+      "state": "unresolved"
+    },
+    {
+      "school_id": "B000004001",
+      "school_name": "대청초등학교",
+      "check": [
+        "방과후시각미확인",
+        "목",
+        [
+          "요리교실",
+          null,
+          "L70"
+        ]
+      ],
+      "input": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000004001.txt",
+      "state": "unresolved"
+    },
+    {
+      "school_id": "B000004001",
+      "school_name": "대청초등학교",
+      "check": [
+        "방과후시각미확인",
+        "금",
+        [
+          "음악줄넘기",
+          null,
+          "L71"
+        ]
+      ],
+      "input": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000004001.txt",
+      "state": "unresolved"
+    },
+    {
+      "school_id": "B000004001",
+      "school_name": "대청초등학교",
+      "check": [
+        "방과후시각미확인",
+        "월수",
+        [
+          "영어(주2회)",
+          null,
+          "L72"
+        ]
+      ],
+      "input": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000004001.txt",
+      "state": "unresolved"
+    },
+    {
+      "school_id": "B000004001",
+      "school_name": "대청초등학교",
+      "check": [
+        "방과후시각미확인",
+        "목",
+        [
+          "배드민턴(2)",
+          null,
+          "L73"
+        ]
+      ],
+      "input": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000004001.txt",
+      "state": "unresolved"
+    },
+    {
+      "school_id": "B000004001",
+      "school_name": "대청초등학교",
+      "check": [
+        "방과후시각미확인",
+        "수",
+        [
+          "마술",
+          null,
+          "L74"
+        ]
+      ],
+      "input": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000004001.txt",
+      "state": "unresolved"
+    },
+    {
+      "school_id": "B000004001",
+      "school_name": "대청초등학교",
+      "check": [
+        "방과후시각미확인",
+        "월",
+        [
+          "큐브",
+          null,
+          "L75"
+        ]
+      ],
+      "input": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000004001.txt",
+      "state": "unresolved"
+    },
+    {
+      "school_id": "B000004001",
+      "school_name": "대청초등학교",
+      "check": [
+        "방과후시각미확인",
+        "월",
+        [
+          "매직테니스",
+          null,
+          "L76"
+        ]
+      ],
+      "input": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000004001.txt",
+      "state": "unresolved"
+    },
+    {
+      "school_id": "B000004001",
+      "school_name": "대청초등학교",
+      "check": [
+        "방과후시각미확인",
+        "금",
+        [
+          "웹툰",
+          null,
+          "L77"
+        ]
+      ],
+      "input": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000004001.txt",
+      "state": "unresolved"
+    },
+    {
+      "school_id": "B000004266",
+      "school_name": "안서초등학교",
+      "check": [
+        "원문불일치",
+        "시각",
+        [
+          "시각",
+          "생활체육",
+          "L63 / L64"
+        ]
+      ],
+      "input": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000004266.txt",
+      "state": "unresolved"
+    },
+    {
+      "school_id": "B000004272",
+      "school_name": "광문초등학교",
+      "check": [
+        "PDF원문",
+        null,
+        null
+      ],
+      "input": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000004272.txt",
+      "state": "unresolved"
+    },
+    {
+      "school_id": "B000004273",
+      "school_name": "서면초등학교",
+      "check": [
+        "원문불일치",
+        "시각",
+        [
+          "시각",
+          "바둑 B반 / 축구교실 A반 / 축구교실 B반 / 쿠키&클레이 B반",
+          "L50 / L64 / L65 / L69"
+        ]
+      ],
+      "input": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000004273.txt",
+      "state": "unresolved"
+    },
+    {
+      "school_id": "B000004273",
+      "school_name": "서면초등학교",
+      "check": [
+        "원문불일치",
+        "시각",
+        [
+          "시각",
+          "원어민영어 A반",
+          "L72"
+        ]
+      ],
+      "input": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000004273.txt",
+      "state": "unresolved"
+    },
+    {
+      "school_id": "B000004273",
+      "school_name": "서면초등학교",
+      "check": [
+        "방과후시각미확인",
+        "수금",
+        [
+          "원어민영어",
+          "A반",
+          "L72"
+        ]
+      ],
+      "input": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000004273.txt",
+      "state": "unresolved"
+    },
+    {
+      "school_id": "B000004275",
+      "school_name": "광명북초등학교",
+      "check": [
+        "맞춤형시각없음",
+        "월",
+        null
+      ],
+      "input": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000004275.txt",
+      "state": "unresolved"
+    },
+    {
+      "school_id": "B000004275",
+      "school_name": "광명북초등학교",
+      "check": [
+        "맞춤형시각없음",
+        "화",
+        null
+      ],
+      "input": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000004275.txt",
+      "state": "unresolved"
+    },
+    {
+      "school_id": "B000004275",
+      "school_name": "광명북초등학교",
+      "check": [
+        "맞춤형시각없음",
+        "수",
+        null
+      ],
+      "input": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000004275.txt",
+      "state": "unresolved"
+    },
+    {
+      "school_id": "B000004275",
+      "school_name": "광명북초등학교",
+      "check": [
+        "맞춤형시각없음",
+        "목",
+        null
+      ],
+      "input": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000004275.txt",
+      "state": "unresolved"
+    },
+    {
+      "school_id": "B000004275",
+      "school_name": "광명북초등학교",
+      "check": [
+        "맞춤형시각없음",
+        "금",
+        null
+      ],
+      "input": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000004275.txt",
+      "state": "unresolved"
+    },
+    {
+      "school_id": "B000004275",
+      "school_name": "광명북초등학교",
+      "check": [
+        "원문불일치",
+        "요일",
+        [
+          "요일",
+          "배드민턴 A / 배드민턴 B",
+          "L184 / L185 / L212"
+        ]
+      ],
+      "input": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000004275.txt",
+      "state": "unresolved"
+    },
+    {
+      "school_id": "B000004275",
+      "school_name": "광명북초등학교",
+      "check": [
+        "원문불일치",
+        "요일",
+        [
+          "요일",
+          "요리 A / 요리 B",
+          "L201 / L202 / L213"
+        ]
+      ],
+      "input": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000004275.txt",
+      "state": "unresolved"
+    }
+  ]
+}

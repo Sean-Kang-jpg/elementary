@@ -1,0 +1,83 @@
+{
+  "batch": "priority-batch04",
+  "checked_on": "2026-10-23",
+  "no_operational_upload": true,
+  "independent_review": false,
+  "schools": [
+    {
+      "school_id": "B000004273",
+      "school_name": "서면초등학교",
+      "input": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000004273.txt",
+      "input_sha256": "78de8d3c15dff14c3c2f580cb84a1e101df07e9c5e165d83534b02b91267079f",
+      "output": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\outputs\\B000004273.json",
+      "output_sha256": "931dc5bb538085616a218fedd6f01d05946cc95d01a944111ac7e43f3b26eb79",
+      "review_method": "same-assistant source read and detailed-table comparison; not independent blind review",
+      "supplied_sources_read": true,
+      "rows": 32,
+      "grade1_rows": 22,
+      "custom_rows": 0,
+      "field_evidence": {},
+      "blocking_issues": [
+        {
+          "code": "source_duration_conflict",
+          "lines": [
+            50,
+            64,
+            65,
+            69
+          ],
+          "reason": "바둑B·쿠키&클레이B는 시각차90분 대 표기80분, 축구A/B는60분 대80분. 원문 시각 보존"
+        },
+        {
+          "code": "english_a_clock_mapping_ambiguous",
+          "lines": [
+            72
+          ],
+          "reason": "화13:40-14:25는 명시. 별도12:40-13:25는 요일 미표기로 수금 대응 미확인"
+        }
+      ],
+      "additional_findings": [
+        {
+          "type": "afternoon_care_not_stated",
+          "reason": "제공 방과후 계획에서 돌봄 종료 확인 불가"
+        }
+      ],
+      "exclusions": [],
+      "production_apply_ready": false,
+      "approved_for_upload": false
+    },
+    {
+      "school_id": "B000003989",
+      "school_name": "용인대덕초등학교",
+      "input": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000003989.txt",
+      "input_sha256": "4533139da82283436c249a858d2a574e322d9383f6b7b8f3cede9c46968e2761",
+      "output": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\outputs\\B000003989.json",
+      "output_sha256": "7c61e2c926228bda885c3c2ebb244f9addb368290548a6bda5c52cdb205a861b",
+      "review_method": "same-assistant source read and detailed-table comparison; not independent blind review",
+      "supplied_sources_read": true,
+      "rows": 12,
+      "grade1_rows": 0,
+      "custom_rows": 0,
+      "field_evidence": {},
+      "blocking_issues": [
+        {
+          "code": "missing_schedule_and_grade",
+          "lines": [
+            99,
+            100,
+            101,
+            102,
+            103,
+            104,
+            105
+          ],
+          "reason": "부서명·횟수·총시간·수강료만 있고 대상학년과 실제 운영 요일/시각 없음"
+        }
+      ],
+      "additional_findings": [],
+      "exclusions": [],
+      "production_apply_ready": false,
+      "approved_for_upload": false
+    }
+  ]
+}

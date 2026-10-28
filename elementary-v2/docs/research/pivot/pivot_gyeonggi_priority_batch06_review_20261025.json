@@ -1,0 +1,76 @@
+{
+  "batch": "priority-batch06",
+  "checked_on": "2026-10-25",
+  "no_operational_upload": true,
+  "independent_review": false,
+  "schools": [
+    {
+      "school_id": "B000004279",
+      "school_name": "하안남초등학교",
+      "input": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000004279.txt",
+      "input_sha256": "6b68556c91394440a61c44bd6ba7d017d6163f9da8884f016a8994d14bf4b76f",
+      "output": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\outputs\\B000004279.json",
+      "output_sha256": "0927ab11c2886b2986d4275a5de66d09e63cb0196a2627ba50cc7a9d4c85d03d",
+      "review_method": "same-assistant source read and detailed-table comparison; not independent blind review",
+      "supplied_sources_read": true,
+      "rows": 19,
+      "grade1_rows": 14,
+      "custom_rows": 0,
+      "field_evidence": {},
+      "blocking_issues": [
+        {
+          "code": "source_duration_conflict",
+          "lines": [
+            189
+          ],
+          "reason": "바이올린 표상13:50~15:50은120분이나 요일칸 주1회80분. 개별레슨 시간조정가능도 명시되어 신청자 실제 수업시각 확인 필요"
+        }
+      ],
+      "additional_findings": [
+        {
+          "type": "afternoon_care",
+          "lines": [
+            23,
+            24,
+            25
+          ],
+          "afternoon_end": "19:00",
+          "vacation_end": "15:00",
+          "reason": "학기 중13~19시, 방학09~15시 명시. 돌봄직원 시업11시를 학생 시작으로 쓰지 않음"
+        },
+        {
+          "type": "care_group_activity_inventory",
+          "lines": [
+            52,
+            63,
+            64,
+            65,
+            66,
+            67
+          ],
+          "reason": "외부강사 감성놀이·놀이요가·보드게임·종이접기·보드게임 5요일. 실제 활동시각 미기재, 독립 맞춤형 여부 별도확인; 보육일과로 임의 전환하지 않음"
+        },
+        {
+          "type": "custom_inventory_not_established",
+          "lines": [
+            277
+          ],
+          "reason": "초1~2맞춤형은 공개의날 일반 설명에만 등장. 실제 편성표 미확보라 미운영 확정하지 않음"
+        }
+      ],
+      "exclusions": [
+        {
+          "lines": [
+            161,
+            162,
+            163,
+            164
+          ],
+          "reason": "전체 운영창12:50~16:40 및 방학09~13시는 개별 시간대로 생성하지 않음"
+        }
+      ],
+      "production_apply_ready": false,
+      "approved_for_upload": false
+    }
+  ]
+}

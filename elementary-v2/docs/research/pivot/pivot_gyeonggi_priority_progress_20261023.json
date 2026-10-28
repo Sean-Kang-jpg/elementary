@@ -1,0 +1,1306 @@
+{
+  "checked_on": "20261028",
+  "summary": {
+    "new_targets": 83,
+    "transcribed_schools": 18,
+    "pending_extraction": 65,
+    "rows": 497,
+    "afterschool_rows": 433,
+    "custom_rows": 64,
+    "schools_with_source_blockers": 12,
+    "existing_p1_preserved": 44,
+    "care_review_targets": 37,
+    "no_operational_upload": true,
+    "counting_note": "Rows include programme-level records and 40-minute segments; not a count of distinct selectable classes."
+  },
+  "schools": [
+    {
+      "school_id": "B000003751",
+      "school_name": "구미초등학교",
+      "area": "bundang",
+      "course_track": "existing_p1",
+      "status": "existing_p1_track",
+      "rows": 0,
+      "approved_for_upload": false,
+      "review_file": null
+    },
+    {
+      "school_id": "B000003745",
+      "school_name": "낙생초등학교",
+      "area": "bundang",
+      "course_track": "existing_p1",
+      "status": "existing_p1_track",
+      "rows": 0,
+      "approved_for_upload": false,
+      "review_file": null
+    },
+    {
+      "school_id": "B000003770",
+      "school_name": "내정초등학교",
+      "area": "bundang",
+      "course_track": "existing_p1",
+      "status": "existing_p1_track",
+      "rows": 0,
+      "approved_for_upload": false,
+      "review_file": null
+    },
+    {
+      "school_id": "B000003766",
+      "school_name": "늘푸른초등학교",
+      "area": "bundang",
+      "course_track": "existing_p1",
+      "status": "existing_p1_track",
+      "rows": 0,
+      "approved_for_upload": false,
+      "review_file": null
+    },
+    {
+      "school_id": "B000003739",
+      "school_name": "당촌초등학교",
+      "area": "bundang",
+      "course_track": "existing_p1",
+      "status": "existing_p1_track",
+      "rows": 0,
+      "approved_for_upload": false,
+      "review_file": null
+    },
+    {
+      "school_id": "B000003768",
+      "school_name": "돌마초등학교",
+      "area": "bundang",
+      "course_track": "existing_p1",
+      "status": "existing_p1_track",
+      "rows": 0,
+      "approved_for_upload": false,
+      "review_file": null
+    },
+    {
+      "school_id": "B000003755",
+      "school_name": "백현초등학교",
+      "area": "bundang",
+      "course_track": "existing_p1",
+      "status": "existing_p1_track",
+      "rows": 0,
+      "approved_for_upload": false,
+      "review_file": null
+    },
+    {
+      "school_id": "B000003743",
+      "school_name": "보평초등학교",
+      "area": "bundang",
+      "course_track": "existing_p1",
+      "status": "existing_p1_track",
+      "rows": 0,
+      "approved_for_upload": false,
+      "review_file": null
+    },
+    {
+      "school_id": "B000003761",
+      "school_name": "분당초등학교",
+      "area": "bundang",
+      "course_track": "existing_p1",
+      "status": "existing_p1_track",
+      "rows": 0,
+      "approved_for_upload": false,
+      "review_file": null
+    },
+    {
+      "school_id": "B000003752",
+      "school_name": "불곡초등학교",
+      "area": "bundang",
+      "course_track": "existing_p1",
+      "status": "existing_p1_track",
+      "rows": 0,
+      "approved_for_upload": false,
+      "review_file": null
+    },
+    {
+      "school_id": "B000003756",
+      "school_name": "불정초등학교",
+      "area": "bundang",
+      "course_track": "existing_p1",
+      "status": "existing_p1_track",
+      "rows": 0,
+      "approved_for_upload": false,
+      "review_file": null
+    },
+    {
+      "school_id": "B000003747",
+      "school_name": "산운초등학교",
+      "area": "bundang",
+      "course_track": "existing_p1",
+      "status": "existing_p1_track",
+      "rows": 0,
+      "approved_for_upload": false,
+      "review_file": null
+    },
+    {
+      "school_id": "B000003741",
+      "school_name": "상탑초등학교",
+      "area": "bundang",
+      "course_track": "existing_p1",
+      "status": "existing_p1_track",
+      "rows": 0,
+      "approved_for_upload": false,
+      "review_file": null
+    },
+    {
+      "school_id": "B000003758",
+      "school_name": "서당초등학교",
+      "area": "bundang",
+      "course_track": "existing_p1",
+      "status": "existing_p1_track",
+      "rows": 0,
+      "approved_for_upload": false,
+      "review_file": null
+    },
+    {
+      "school_id": "B000003760",
+      "school_name": "서현초등학교",
+      "area": "bundang",
+      "course_track": "existing_p1",
+      "status": "existing_p1_track",
+      "rows": 0,
+      "approved_for_upload": false,
+      "review_file": null
+    },
+    {
+      "school_id": "B000003753",
+      "school_name": "성남매송초등학교",
+      "area": "bundang",
+      "course_track": "existing_p1",
+      "status": "existing_p1_track",
+      "rows": 0,
+      "approved_for_upload": false,
+      "review_file": null
+    },
+    {
+      "school_id": "B000003754",
+      "school_name": "성남미금초등학교",
+      "area": "bundang",
+      "course_track": "existing_p1",
+      "status": "existing_p1_track",
+      "rows": 0,
+      "approved_for_upload": false,
+      "review_file": null
+    },
+    {
+      "school_id": "B000003742",
+      "school_name": "성남송현초등학교",
+      "area": "bundang",
+      "course_track": "existing_p1",
+      "status": "existing_p1_track",
+      "rows": 0,
+      "approved_for_upload": false,
+      "review_file": null
+    },
+    {
+      "school_id": "B000003737",
+      "school_name": "성남신기초등학교",
+      "area": "bundang",
+      "course_track": "existing_p1",
+      "status": "existing_p1_track",
+      "rows": 0,
+      "approved_for_upload": false,
+      "review_file": null
+    },
+    {
+      "school_id": "B000003764",
+      "school_name": "성남장안초등학교",
+      "area": "bundang",
+      "course_track": "existing_p1",
+      "status": "existing_p1_track",
+      "rows": 0,
+      "approved_for_upload": false,
+      "review_file": null
+    },
+    {
+      "school_id": "B000003771",
+      "school_name": "성남정자초등학교",
+      "area": "bundang",
+      "course_track": "existing_p1",
+      "status": "existing_p1_track",
+      "rows": 0,
+      "approved_for_upload": false,
+      "review_file": null
+    },
+    {
+      "school_id": "B000024167",
+      "school_name": "성남화랑초등학교",
+      "area": "bundang",
+      "course_track": "existing_p1",
+      "status": "existing_p1_track",
+      "rows": 0,
+      "approved_for_upload": false,
+      "review_file": null
+    },
+    {
+      "school_id": "B000003772",
+      "school_name": "수내초등학교",
+      "area": "bundang",
+      "course_track": "existing_p1",
+      "status": "existing_p1_track",
+      "rows": 0,
+      "approved_for_upload": false,
+      "review_file": null
+    },
+    {
+      "school_id": "B000003746",
+      "school_name": "신백현초등학교",
+      "area": "bundang",
+      "course_track": "existing_p1",
+      "status": "existing_p1_track",
+      "rows": 0,
+      "approved_for_upload": false,
+      "review_file": null
+    },
+    {
+      "school_id": "B000003740",
+      "school_name": "안말초등학교",
+      "area": "bundang",
+      "course_track": "existing_p1",
+      "status": "existing_p1_track",
+      "rows": 0,
+      "approved_for_upload": false,
+      "review_file": null
+    },
+    {
+      "school_id": "B000003762",
+      "school_name": "야탑초등학교",
+      "area": "bundang",
+      "course_track": "existing_p1",
+      "status": "existing_p1_track",
+      "rows": 0,
+      "approved_for_upload": false,
+      "review_file": null
+    },
+    {
+      "school_id": "B000003759",
+      "school_name": "양영초등학교",
+      "area": "bundang",
+      "course_track": "existing_p1",
+      "status": "existing_p1_track",
+      "rows": 0,
+      "approved_for_upload": false,
+      "review_file": null
+    },
+    {
+      "school_id": "B000003750",
+      "school_name": "오리초등학교",
+      "area": "bundang",
+      "course_track": "existing_p1",
+      "status": "existing_p1_track",
+      "rows": 0,
+      "approved_for_upload": false,
+      "review_file": null
+    },
+    {
+      "school_id": "B000003748",
+      "school_name": "운중초등학교",
+      "area": "bundang",
+      "course_track": "existing_p1",
+      "status": "existing_p1_track",
+      "rows": 0,
+      "approved_for_upload": false,
+      "review_file": null
+    },
+    {
+      "school_id": "B000003763",
+      "school_name": "이매초등학교",
+      "area": "bundang",
+      "course_track": "existing_p1",
+      "status": "existing_p1_track",
+      "rows": 0,
+      "approved_for_upload": false,
+      "review_file": null
+    },
+    {
+      "school_id": "B000003767",
+      "school_name": "중탑초등학교",
+      "area": "bundang",
+      "course_track": "existing_p1",
+      "status": "existing_p1_track",
+      "rows": 0,
+      "approved_for_upload": false,
+      "review_file": null
+    },
+    {
+      "school_id": "B000003749",
+      "school_name": "청솔초등학교",
+      "area": "bundang",
+      "course_track": "existing_p1",
+      "status": "existing_p1_track",
+      "rows": 0,
+      "approved_for_upload": false,
+      "review_file": null
+    },
+    {
+      "school_id": "B000003738",
+      "school_name": "초림초등학교",
+      "area": "bundang",
+      "course_track": "existing_p1",
+      "status": "existing_p1_track",
+      "rows": 0,
+      "approved_for_upload": false,
+      "review_file": null
+    },
+    {
+      "school_id": "B000003757",
+      "school_name": "탄천초등학교",
+      "area": "bundang",
+      "course_track": "existing_p1",
+      "status": "existing_p1_track",
+      "rows": 0,
+      "approved_for_upload": false,
+      "review_file": null
+    },
+    {
+      "school_id": "B000026906",
+      "school_name": "판교대장초등학교",
+      "area": "bundang",
+      "course_track": "existing_p1",
+      "status": "existing_p1_track",
+      "rows": 0,
+      "approved_for_upload": false,
+      "review_file": null
+    },
+    {
+      "school_id": "B000003744",
+      "school_name": "판교초등학교",
+      "area": "bundang",
+      "course_track": "existing_p1",
+      "status": "existing_p1_track",
+      "rows": 0,
+      "approved_for_upload": false,
+      "review_file": null
+    },
+    {
+      "school_id": "B000003769",
+      "school_name": "하탑초등학교",
+      "area": "bundang",
+      "course_track": "existing_p1",
+      "status": "existing_p1_track",
+      "rows": 0,
+      "approved_for_upload": false,
+      "review_file": null
+    },
+    {
+      "school_id": "B000003765",
+      "school_name": "한솔초등학교",
+      "area": "bundang",
+      "course_track": "existing_p1",
+      "status": "existing_p1_track",
+      "rows": 0,
+      "approved_for_upload": false,
+      "review_file": null
+    },
+    {
+      "school_id": "B000024240",
+      "school_name": "위례고운초등학교",
+      "area": "wirye",
+      "course_track": "existing_p1",
+      "status": "existing_p1_track",
+      "rows": 0,
+      "approved_for_upload": false,
+      "review_file": null
+    },
+    {
+      "school_id": "B000023089",
+      "school_name": "위례숲초등학교",
+      "area": "wirye",
+      "course_track": "existing_p1",
+      "status": "existing_p1_track",
+      "rows": 0,
+      "approved_for_upload": false,
+      "review_file": null
+    },
+    {
+      "school_id": "B000024241",
+      "school_name": "위례중앙초등학교",
+      "area": "wirye",
+      "course_track": "existing_p1",
+      "status": "existing_p1_track",
+      "rows": 0,
+      "approved_for_upload": false,
+      "review_file": null
+    },
+    {
+      "school_id": "B000023087",
+      "school_name": "위례초등학교",
+      "area": "wirye",
+      "course_track": "existing_p1",
+      "status": "existing_p1_track",
+      "rows": 0,
+      "approved_for_upload": false,
+      "review_file": null
+    },
+    {
+      "school_id": "B000024239",
+      "school_name": "위례푸른초등학교",
+      "area": "wirye",
+      "course_track": "existing_p1",
+      "status": "existing_p1_track",
+      "rows": 0,
+      "approved_for_upload": false,
+      "review_file": null
+    },
+    {
+      "school_id": "B000024238",
+      "school_name": "위례한빛초등학교",
+      "area": "wirye",
+      "course_track": "existing_p1",
+      "status": "existing_p1_track",
+      "rows": 0,
+      "approved_for_upload": false,
+      "review_file": null
+    },
+    {
+      "school_id": "B000003867",
+      "school_name": "관양초등학교",
+      "area": "dongan",
+      "course_track": "new_priority",
+      "status": "source_conflicts_need_followup",
+      "rows": 32,
+      "approved_for_upload": false,
+      "review_file": "pivot_gyeonggi_priority_batch07_review_20261028.json"
+    },
+    {
+      "school_id": "B000003860",
+      "school_name": "귀인초등학교",
+      "area": "dongan",
+      "course_track": "new_priority",
+      "status": "pending_extraction",
+      "rows": 0,
+      "approved_for_upload": false,
+      "review_file": null
+    },
+    {
+      "school_id": "B000003856",
+      "school_name": "나눔초등학교",
+      "area": "dongan",
+      "course_track": "new_priority",
+      "status": "source_conflicts_need_followup",
+      "rows": 17,
+      "approved_for_upload": false,
+      "review_file": "pivot_gyeonggi_priority_batch08_review_20261028.json"
+    },
+    {
+      "school_id": "B000003870",
+      "school_name": "달안초등학교",
+      "area": "dongan",
+      "course_track": "new_priority",
+      "status": "pending_extraction",
+      "rows": 0,
+      "approved_for_upload": false,
+      "review_file": null
+    },
+    {
+      "school_id": "B000003858",
+      "school_name": "동안초등학교",
+      "area": "dongan",
+      "course_track": "new_priority",
+      "status": "transcribed_pending_independent_review",
+      "rows": 32,
+      "approved_for_upload": false,
+      "review_file": "pivot_gyeonggi_priority_sample_review_20261024.json"
+    },
+    {
+      "school_id": "B000003861",
+      "school_name": "민백초등학교",
+      "area": "dongan",
+      "course_track": "new_priority",
+      "status": "pending_extraction",
+      "rows": 0,
+      "approved_for_upload": false,
+      "review_file": null
+    },
+    {
+      "school_id": "B000003857",
+      "school_name": "벌말초등학교",
+      "area": "dongan",
+      "course_track": "new_priority",
+      "status": "pending_extraction",
+      "rows": 0,
+      "approved_for_upload": false,
+      "review_file": null
+    },
+    {
+      "school_id": "B000003862",
+      "school_name": "범계초등학교",
+      "area": "dongan",
+      "course_track": "new_priority",
+      "status": "transcribed_pending_independent_review",
+      "rows": 24,
+      "approved_for_upload": false,
+      "review_file": "pivot_gyeonggi_priority_batch03_review_20261023.json"
+    },
+    {
+      "school_id": "B000003855",
+      "school_name": "부림초등학교",
+      "area": "dongan",
+      "course_track": "new_priority",
+      "status": "pending_extraction",
+      "rows": 0,
+      "approved_for_upload": false,
+      "review_file": null
+    },
+    {
+      "school_id": "B000003876",
+      "school_name": "비산초등학교",
+      "area": "dongan",
+      "course_track": "new_priority",
+      "status": "pending_extraction",
+      "rows": 0,
+      "approved_for_upload": false,
+      "review_file": null
+    },
+    {
+      "school_id": "B000003852",
+      "school_name": "샘모루초등학교",
+      "area": "dongan",
+      "course_track": "new_priority",
+      "status": "pending_extraction",
+      "rows": 0,
+      "approved_for_upload": false,
+      "review_file": null
+    },
+    {
+      "school_id": "B000003866",
+      "school_name": "안양관악초등학교",
+      "area": "dongan",
+      "course_track": "new_priority",
+      "status": "source_conflicts_need_followup",
+      "rows": 19,
+      "approved_for_upload": false,
+      "review_file": "pivot_gyeonggi_priority_batch03_review_20261023.json"
+    },
+    {
+      "school_id": "B000003865",
+      "school_name": "안양남초등학교",
+      "area": "dongan",
+      "course_track": "new_priority",
+      "status": "pending_extraction",
+      "rows": 0,
+      "approved_for_upload": false,
+      "review_file": null
+    },
+    {
+      "school_id": "B000003864",
+      "school_name": "안양덕현초등학교",
+      "area": "dongan",
+      "course_track": "new_priority",
+      "status": "pending_extraction",
+      "rows": 0,
+      "approved_for_upload": false,
+      "review_file": null
+    },
+    {
+      "school_id": "B000003872",
+      "school_name": "안양동초등학교",
+      "area": "dongan",
+      "course_track": "new_priority",
+      "status": "pending_extraction",
+      "rows": 0,
+      "approved_for_upload": false,
+      "review_file": null
+    },
+    {
+      "school_id": "B000003854",
+      "school_name": "안양부안초등학교",
+      "area": "dongan",
+      "course_track": "new_priority",
+      "status": "pending_extraction",
+      "rows": 0,
+      "approved_for_upload": false,
+      "review_file": null
+    },
+    {
+      "school_id": "B000003871",
+      "school_name": "안양부흥초등학교",
+      "area": "dongan",
+      "course_track": "new_priority",
+      "status": "pending_extraction",
+      "rows": 0,
+      "approved_for_upload": false,
+      "review_file": null
+    },
+    {
+      "school_id": "B000003873",
+      "school_name": "안양신기초등학교",
+      "area": "dongan",
+      "course_track": "new_priority",
+      "status": "pending_extraction",
+      "rows": 0,
+      "approved_for_upload": false,
+      "review_file": null
+    },
+    {
+      "school_id": "B000003853",
+      "school_name": "안양중앙초등학교",
+      "area": "dongan",
+      "course_track": "new_priority",
+      "status": "pending_extraction",
+      "rows": 0,
+      "approved_for_upload": false,
+      "review_file": null
+    },
+    {
+      "school_id": "B000003868",
+      "school_name": "인덕원초등학교",
+      "area": "dongan",
+      "course_track": "new_priority",
+      "status": "pending_extraction",
+      "rows": 0,
+      "approved_for_upload": false,
+      "review_file": null
+    },
+    {
+      "school_id": "B000003859",
+      "school_name": "평촌초등학교",
+      "area": "dongan",
+      "course_track": "new_priority",
+      "status": "transcribed_pending_independent_review",
+      "rows": 37,
+      "approved_for_upload": false,
+      "review_file": "pivot_gyeonggi_priority_batch01_review_20261023.json"
+    },
+    {
+      "school_id": "B000003836",
+      "school_name": "해오름초등학교",
+      "area": "dongan",
+      "course_track": "new_priority",
+      "status": "pending_extraction",
+      "rows": 0,
+      "approved_for_upload": false,
+      "review_file": null
+    },
+    {
+      "school_id": "B000003875",
+      "school_name": "호계초등학교",
+      "area": "dongan",
+      "course_track": "new_priority",
+      "status": "pending_extraction",
+      "rows": 0,
+      "approved_for_upload": false,
+      "review_file": null
+    },
+    {
+      "school_id": "B000003863",
+      "school_name": "호성초등학교",
+      "area": "dongan",
+      "course_track": "new_priority",
+      "status": "pending_extraction",
+      "rows": 0,
+      "approved_for_upload": false,
+      "review_file": null
+    },
+    {
+      "school_id": "B000003874",
+      "school_name": "호원초등학교",
+      "area": "dongan",
+      "course_track": "new_priority",
+      "status": "pending_extraction",
+      "rows": 0,
+      "approved_for_upload": false,
+      "review_file": null
+    },
+    {
+      "school_id": "B000003869",
+      "school_name": "희성초등학교",
+      "area": "dongan",
+      "course_track": "new_priority",
+      "status": "pending_extraction",
+      "rows": 0,
+      "approved_for_upload": false,
+      "review_file": null
+    },
+    {
+      "school_id": "B000004264",
+      "school_name": "가림초등학교",
+      "area": "gwangmyeong",
+      "course_track": "new_priority",
+      "status": "pending_extraction",
+      "rows": 0,
+      "approved_for_upload": false,
+      "review_file": null
+    },
+    {
+      "school_id": "B000004277",
+      "school_name": "광명광덕초등학교",
+      "area": "gwangmyeong",
+      "course_track": "new_priority",
+      "status": "pending_extraction",
+      "rows": 0,
+      "approved_for_upload": false,
+      "review_file": null
+    },
+    {
+      "school_id": "B000004276",
+      "school_name": "광명광성초등학교",
+      "area": "gwangmyeong",
+      "course_track": "new_priority",
+      "status": "pending_extraction",
+      "rows": 0,
+      "approved_for_upload": false,
+      "review_file": null
+    },
+    {
+      "school_id": "B000004270",
+      "school_name": "광명남초등학교",
+      "area": "gwangmyeong",
+      "course_track": "new_priority",
+      "status": "pending_extraction",
+      "rows": 0,
+      "approved_for_upload": false,
+      "review_file": null
+    },
+    {
+      "school_id": "B000004274",
+      "school_name": "광명동초등학교",
+      "area": "gwangmyeong",
+      "course_track": "new_priority",
+      "status": "transcribed_pending_independent_review",
+      "rows": 14,
+      "approved_for_upload": false,
+      "review_file": "pivot_gyeonggi_priority_batch01_review_20261023.json"
+    },
+    {
+      "school_id": "B000004275",
+      "school_name": "광명북초등학교",
+      "area": "gwangmyeong",
+      "course_track": "new_priority",
+      "status": "source_conflicts_need_followup",
+      "rows": 26,
+      "approved_for_upload": false,
+      "review_file": "pivot_gyeonggi_priority_batch01_review_20261023.json"
+    },
+    {
+      "school_id": "B000004269",
+      "school_name": "광명서초등학교",
+      "area": "gwangmyeong",
+      "course_track": "new_priority",
+      "status": "pending_extraction",
+      "rows": 0,
+      "approved_for_upload": false,
+      "review_file": null
+    },
+    {
+      "school_id": "B000004268",
+      "school_name": "광명초등학교",
+      "area": "gwangmyeong",
+      "course_track": "new_priority",
+      "status": "pending_extraction",
+      "rows": 0,
+      "approved_for_upload": false,
+      "review_file": null
+    },
+    {
+      "school_id": "B000004272",
+      "school_name": "광문초등학교",
+      "area": "gwangmyeong",
+      "course_track": "new_priority",
+      "status": "source_conflicts_need_followup",
+      "rows": 45,
+      "approved_for_upload": false,
+      "review_file": "pivot_gyeonggi_priority_batch05_review_20261024.json"
+    },
+    {
+      "school_id": "B000004271",
+      "school_name": "광일초등학교",
+      "area": "gwangmyeong",
+      "course_track": "new_priority",
+      "status": "pending_extraction",
+      "rows": 0,
+      "approved_for_upload": false,
+      "review_file": null
+    },
+    {
+      "school_id": "B000004260",
+      "school_name": "구름산초등학교",
+      "area": "gwangmyeong",
+      "course_track": "new_priority",
+      "status": "pending_extraction",
+      "rows": 0,
+      "approved_for_upload": false,
+      "review_file": null
+    },
+    {
+      "school_id": "B000004258",
+      "school_name": "도덕초등학교",
+      "area": "gwangmyeong",
+      "course_track": "new_priority",
+      "status": "pending_extraction",
+      "rows": 0,
+      "approved_for_upload": false,
+      "review_file": null
+    },
+    {
+      "school_id": "B000024196",
+      "school_name": "빛가온초등학교",
+      "area": "gwangmyeong",
+      "course_track": "new_priority",
+      "status": "pending_extraction",
+      "rows": 0,
+      "approved_for_upload": false,
+      "review_file": null
+    },
+    {
+      "school_id": "B000004273",
+      "school_name": "서면초등학교",
+      "area": "gwangmyeong",
+      "course_track": "new_priority",
+      "status": "source_conflicts_need_followup",
+      "rows": 32,
+      "approved_for_upload": false,
+      "review_file": "pivot_gyeonggi_priority_batch04_review_20261023.json"
+    },
+    {
+      "school_id": "B000004261",
+      "school_name": "소하초등학교",
+      "area": "gwangmyeong",
+      "course_track": "new_priority",
+      "status": "pending_extraction",
+      "rows": 0,
+      "approved_for_upload": false,
+      "review_file": null
+    },
+    {
+      "school_id": "B000004266",
+      "school_name": "안서초등학교",
+      "area": "gwangmyeong",
+      "course_track": "new_priority",
+      "status": "source_conflicts_need_followup",
+      "rows": 15,
+      "approved_for_upload": false,
+      "review_file": "pivot_gyeonggi_priority_batch01_review_20261023.json"
+    },
+    {
+      "school_id": "B000004262",
+      "school_name": "안현초등학교",
+      "area": "gwangmyeong",
+      "course_track": "new_priority",
+      "status": "pending_extraction",
+      "rows": 0,
+      "approved_for_upload": false,
+      "review_file": null
+    },
+    {
+      "school_id": "B000004265",
+      "school_name": "연서초등학교",
+      "area": "gwangmyeong",
+      "course_track": "new_priority",
+      "status": "pending_extraction",
+      "rows": 0,
+      "approved_for_upload": false,
+      "review_file": null
+    },
+    {
+      "school_id": "B000004267",
+      "school_name": "온신초등학교",
+      "area": "gwangmyeong",
+      "course_track": "new_priority",
+      "status": "transcribed_pending_independent_review",
+      "rows": 10,
+      "approved_for_upload": false,
+      "review_file": "pivot_gyeonggi_priority_batch03_review_20261023.json"
+    },
+    {
+      "school_id": "B000004278",
+      "school_name": "철산초등학교",
+      "area": "gwangmyeong",
+      "course_track": "new_priority",
+      "status": "pending_extraction",
+      "rows": 0,
+      "approved_for_upload": false,
+      "review_file": null
+    },
+    {
+      "school_id": "B000004259",
+      "school_name": "충현초등학교",
+      "area": "gwangmyeong",
+      "course_track": "new_priority",
+      "status": "transcribed_pending_independent_review",
+      "rows": 31,
+      "approved_for_upload": false,
+      "review_file": "pivot_gyeonggi_priority_batch01_review_20261023.json"
+    },
+    {
+      "school_id": "B000004279",
+      "school_name": "하안남초등학교",
+      "area": "gwangmyeong",
+      "course_track": "new_priority",
+      "status": "source_conflicts_need_followup",
+      "rows": 19,
+      "approved_for_upload": false,
+      "review_file": "pivot_gyeonggi_priority_batch06_review_20261025.json"
+    },
+    {
+      "school_id": "B000004281",
+      "school_name": "하안북초등학교",
+      "area": "gwangmyeong",
+      "course_track": "new_priority",
+      "status": "pending_extraction",
+      "rows": 0,
+      "approved_for_upload": false,
+      "review_file": null
+    },
+    {
+      "school_id": "B000004263",
+      "school_name": "하안초등학교",
+      "area": "gwangmyeong",
+      "course_track": "new_priority",
+      "status": "pending_extraction",
+      "rows": 0,
+      "approved_for_upload": false,
+      "review_file": null
+    },
+    {
+      "school_id": "B000004280",
+      "school_name": "하일초등학교",
+      "area": "gwangmyeong",
+      "course_track": "new_priority",
+      "status": "pending_extraction",
+      "rows": 0,
+      "approved_for_upload": false,
+      "review_file": null
+    },
+    {
+      "school_id": "B000003976",
+      "school_name": "고기초등학교",
+      "area": "suji",
+      "course_track": "new_priority",
+      "status": "pending_extraction",
+      "rows": 0,
+      "approved_for_upload": false,
+      "review_file": null
+    },
+    {
+      "school_id": "B000003998",
+      "school_name": "대지초등학교",
+      "area": "suji",
+      "course_track": "new_priority",
+      "status": "source_conflicts_need_followup",
+      "rows": 39,
+      "approved_for_upload": false,
+      "review_file": "pivot_gyeonggi_priority_batch10_review_20261028.json"
+    },
+    {
+      "school_id": "B000004001",
+      "school_name": "대청초등학교",
+      "area": "suji",
+      "course_track": "new_priority",
+      "status": "source_conflicts_need_followup",
+      "rows": 39,
+      "approved_for_upload": false,
+      "review_file": "pivot_gyeonggi_priority_batch02_review_20261023.json"
+    },
+    {
+      "school_id": "B000003988",
+      "school_name": "대현초등학교",
+      "area": "suji",
+      "course_track": "new_priority",
+      "status": "pending_extraction",
+      "rows": 0,
+      "approved_for_upload": false,
+      "review_file": null
+    },
+    {
+      "school_id": "B000003993",
+      "school_name": "동천초등학교",
+      "area": "suji",
+      "course_track": "new_priority",
+      "status": "pending_extraction",
+      "rows": 0,
+      "approved_for_upload": false,
+      "review_file": null
+    },
+    {
+      "school_id": "B000025542",
+      "school_name": "매봉초등학교",
+      "area": "suji",
+      "course_track": "new_priority",
+      "status": "pending_extraction",
+      "rows": 0,
+      "approved_for_upload": false,
+      "review_file": null
+    },
+    {
+      "school_id": "B000004002",
+      "school_name": "상현초등학교",
+      "area": "suji",
+      "course_track": "new_priority",
+      "status": "pending_extraction",
+      "rows": 0,
+      "approved_for_upload": false,
+      "review_file": null
+    },
+    {
+      "school_id": "B000003937",
+      "school_name": "새빛초등학교",
+      "area": "suji",
+      "course_track": "new_priority",
+      "status": "pending_extraction",
+      "rows": 0,
+      "approved_for_upload": false,
+      "review_file": null
+    },
+    {
+      "school_id": "B000003980",
+      "school_name": "서원초등학교",
+      "area": "suji",
+      "course_track": "new_priority",
+      "status": "pending_extraction",
+      "rows": 0,
+      "approved_for_upload": false,
+      "review_file": null
+    },
+    {
+      "school_id": "B000003982",
+      "school_name": "성복초등학교",
+      "area": "suji",
+      "course_track": "new_priority",
+      "status": "pending_extraction",
+      "rows": 0,
+      "approved_for_upload": false,
+      "review_file": null
+    },
+    {
+      "school_id": "B000004003",
+      "school_name": "성서초등학교",
+      "area": "suji",
+      "course_track": "new_priority",
+      "status": "pending_extraction",
+      "rows": 0,
+      "approved_for_upload": false,
+      "review_file": null
+    },
+    {
+      "school_id": "B000003946",
+      "school_name": "소현초등학교",
+      "area": "suji",
+      "course_track": "new_priority",
+      "status": "pending_extraction",
+      "rows": 0,
+      "approved_for_upload": false,
+      "review_file": null
+    },
+    {
+      "school_id": "B000003994",
+      "school_name": "손곡초등학교",
+      "area": "suji",
+      "course_track": "new_priority",
+      "status": "pending_extraction",
+      "rows": 0,
+      "approved_for_upload": false,
+      "review_file": null
+    },
+    {
+      "school_id": "B000003978",
+      "school_name": "솔개초등학교",
+      "area": "suji",
+      "course_track": "new_priority",
+      "status": "source_conflicts_need_followup",
+      "rows": 54,
+      "approved_for_upload": false,
+      "review_file": "pivot_gyeonggi_priority_batch09_review_20261028.json"
+    },
+    {
+      "school_id": "B000003995",
+      "school_name": "수지초등학교",
+      "area": "suji",
+      "course_track": "new_priority",
+      "status": "pending_extraction",
+      "rows": 0,
+      "approved_for_upload": false,
+      "review_file": null
+    },
+    {
+      "school_id": "B000003985",
+      "school_name": "신리초등학교",
+      "area": "suji",
+      "course_track": "new_priority",
+      "status": "pending_extraction",
+      "rows": 0,
+      "approved_for_upload": false,
+      "review_file": null
+    },
+    {
+      "school_id": "B000003996",
+      "school_name": "신월초등학교",
+      "area": "suji",
+      "course_track": "new_priority",
+      "status": "pending_extraction",
+      "rows": 0,
+      "approved_for_upload": false,
+      "review_file": null
+    },
+    {
+      "school_id": "B000003984",
+      "school_name": "신일초등학교",
+      "area": "suji",
+      "course_track": "new_priority",
+      "status": "pending_extraction",
+      "rows": 0,
+      "approved_for_upload": false,
+      "review_file": null
+    },
+    {
+      "school_id": "B000003989",
+      "school_name": "용인대덕초등학교",
+      "area": "suji",
+      "course_track": "new_priority",
+      "status": "source_conflicts_need_followup",
+      "rows": 12,
+      "approved_for_upload": false,
+      "review_file": "pivot_gyeonggi_priority_batch04_review_20261023.json"
+    },
+    {
+      "school_id": "B000003986",
+      "school_name": "용인대일초등학교",
+      "area": "suji",
+      "course_track": "new_priority",
+      "status": "pending_extraction",
+      "rows": 0,
+      "approved_for_upload": false,
+      "review_file": null
+    },
+    {
+      "school_id": "B000004004",
+      "school_name": "용인신봉초등학교",
+      "area": "suji",
+      "course_track": "new_priority",
+      "status": "pending_extraction",
+      "rows": 0,
+      "approved_for_upload": false,
+      "review_file": null
+    },
+    {
+      "school_id": "B000003987",
+      "school_name": "용인신촌초등학교",
+      "area": "suji",
+      "course_track": "new_priority",
+      "status": "pending_extraction",
+      "rows": 0,
+      "approved_for_upload": false,
+      "review_file": null
+    },
+    {
+      "school_id": "B000003979",
+      "school_name": "용인심곡초등학교",
+      "area": "suji",
+      "course_track": "new_priority",
+      "status": "pending_extraction",
+      "rows": 0,
+      "approved_for_upload": false,
+      "review_file": null
+    },
+    {
+      "school_id": "B000003977",
+      "school_name": "용인한빛초등학교",
+      "area": "suji",
+      "course_track": "new_priority",
+      "status": "pending_extraction",
+      "rows": 0,
+      "approved_for_upload": false,
+      "review_file": null
+    },
+    {
+      "school_id": "B000003990",
+      "school_name": "정평초등학교",
+      "area": "suji",
+      "course_track": "new_priority",
+      "status": "pending_extraction",
+      "rows": 0,
+      "approved_for_upload": false,
+      "review_file": null
+    },
+    {
+      "school_id": "B000003999",
+      "school_name": "죽전초등학교",
+      "area": "suji",
+      "course_track": "new_priority",
+      "status": "pending_extraction",
+      "rows": 0,
+      "approved_for_upload": false,
+      "review_file": null
+    },
+    {
+      "school_id": "B000003992",
+      "school_name": "토월초등학교",
+      "area": "suji",
+      "course_track": "new_priority",
+      "status": "pending_extraction",
+      "rows": 0,
+      "approved_for_upload": false,
+      "review_file": null
+    },
+    {
+      "school_id": "B000003997",
+      "school_name": "풍덕초등학교",
+      "area": "suji",
+      "course_track": "new_priority",
+      "status": "pending_extraction",
+      "rows": 0,
+      "approved_for_upload": false,
+      "review_file": null
+    },
+    {
+      "school_id": "B000003991",
+      "school_name": "풍천초등학교",
+      "area": "suji",
+      "course_track": "new_priority",
+      "status": "pending_extraction",
+      "rows": 0,
+      "approved_for_upload": false,
+      "review_file": null
+    },
+    {
+      "school_id": "B000004000",
+      "school_name": "현암초등학교",
+      "area": "suji",
+      "course_track": "new_priority",
+      "status": "pending_extraction",
+      "rows": 0,
+      "approved_for_upload": false,
+      "review_file": null
+    },
+    {
+      "school_id": "B000003983",
+      "school_name": "홍천초등학교",
+      "area": "suji",
+      "course_track": "new_priority",
+      "status": "pending_extraction",
+      "rows": 0,
+      "approved_for_upload": false,
+      "review_file": null
+    },
+    {
+      "school_id": "B000003981",
+      "school_name": "효자초등학교",
+      "area": "suji",
+      "course_track": "new_priority",
+      "status": "pending_extraction",
+      "rows": 0,
+      "approved_for_upload": false,
+      "review_file": null
+    }
+  ],
+  "review_status_file": "pivot_gyeonggi_priority_review_status_20261024.json",
+  "all_transcribed_evidence_report": "pivot_gyeonggi_priority_all13_verification_20261024.json",
+  "slot_review_report": "pivot_gyeonggi_priority_slots_20261025.json",
+  "slot_review_queue": "pivot_gyeonggi_priority_slot_review_queue_20261025.json",
+  "slot_visual_review": "pivot_gyeonggi_priority_slot_visual_review_20261025.json",
+  "post_visual_slot_review_summary": {
+    "visually_checked_schools": 3,
+    "visually_checked_slots": 32,
+    "resolved_pdf_pairing_checks": 3,
+    "after_visual_check_ok_candidates": 8,
+    "after_visual_check_needs_check": 5,
+    "unresolved_check_items": 42,
+    "independently_reviewed_schools": 0,
+    "production_applied_schools": 0
+  },
+  "current_session_progress": "pivot_gyeonggi_priority_session_progress_20261028.json",
+  "current_slot_report": "pivot_gyeonggi_priority_slots_current_20261028.json",
+  "current_checklist": "PIVOT_GYEONGGI_PRIORITY_SESSION_CHECKLIST.md"
+}
