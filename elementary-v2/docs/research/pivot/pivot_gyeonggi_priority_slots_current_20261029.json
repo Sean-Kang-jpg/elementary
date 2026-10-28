@@ -3,18 +3,18 @@
   "standard_sha256": "b111d14fc829193154a332649efb9e8d29022fad541eb72e97fe67f14f910f06",
   "no_operational_upload": true,
   "summary": {
-    "schools": 33,
-    "course_rows": 993,
-    "slots": 319,
+    "schools": 34,
+    "course_rows": 1007,
+    "slots": 323,
     "slot_kinds": {
-      "저학년방과후": 153,
+      "저학년방과후": 157,
       "전학년방과후": 108,
       "맞춤형": 57,
       "학년미기재방과후": 1
     },
     "statuses": {
       "check": 23,
-      "ok": 10
+      "ok": 11
     }
   },
   "scope_limit": "Derived slot candidates, not independent validation or upload approval",
@@ -16717,6 +16717,336 @@
       "production_apply_ready": false,
       "input_sha256": "f57193ba0db0bad99ebc3646f9e25cc4e11a7a89c1737e33983b56edde936807",
       "output_sha256": "57396fb788532107a23cbe237b7b6317b8530956f1a47faa28b5e1655d58a623"
+    },
+    {
+      "school_id": "B000004263",
+      "school_name": "하안초등학교",
+      "rows": [
+        [
+          "방과후",
+          "방송댄스",
+          null,
+          "A",
+          "1-2학년",
+          "row",
+          "화",
+          "14:00",
+          "15:20",
+          "true",
+          "학기",
+          "2026 연간",
+          null,
+          457
+        ],
+        [
+          "방과후",
+          "방송댄스",
+          null,
+          "B",
+          "3-6학년",
+          "row",
+          "화",
+          "15:30",
+          "16:50",
+          "false",
+          "학기",
+          "2026 연간",
+          null,
+          458
+        ],
+        [
+          "방과후",
+          "컴퓨터 코딩",
+          null,
+          "A",
+          "1-2학년",
+          "row",
+          "화",
+          "14:00",
+          "15:20",
+          "true",
+          "학기",
+          "2026 연간",
+          null,
+          459
+        ],
+        [
+          "방과후",
+          "컴퓨터 코딩",
+          null,
+          "B",
+          "3-6학년",
+          "row",
+          "화",
+          "15:30",
+          "16:50",
+          "false",
+          "학기",
+          "2026 연간",
+          null,
+          460
+        ],
+        [
+          "방과후",
+          "키즈쿠킹",
+          null,
+          "A",
+          "1-2학년",
+          "row",
+          "화",
+          "14:00",
+          "15:20",
+          "true",
+          "학기",
+          "2026 연간",
+          null,
+          461
+        ],
+        [
+          "방과후",
+          "키즈쿠킹",
+          null,
+          "B",
+          "3-6학년",
+          "row",
+          "화",
+          "15:30",
+          "16:50",
+          "false",
+          "학기",
+          "2026 연간",
+          null,
+          462
+        ],
+        [
+          "방과후",
+          "융합과학",
+          null,
+          "A",
+          "1-2학년",
+          "row",
+          "수",
+          "13:20",
+          "14:40",
+          "true",
+          "학기",
+          "2026 연간",
+          null,
+          463
+        ],
+        [
+          "방과후",
+          "융합과학",
+          null,
+          "B",
+          "3-6학년",
+          "row",
+          "수",
+          "14:50",
+          "16:10",
+          "false",
+          "학기",
+          "2026 연간",
+          null,
+          464
+        ],
+        [
+          "방과후",
+          "위인(역사) 탐험대",
+          null,
+          "A",
+          "1-2학년",
+          "row",
+          "목",
+          "14:00",
+          "15:20",
+          "true",
+          "학기",
+          "2026 연간",
+          null,
+          465
+        ],
+        [
+          "방과후",
+          "위인(역사) 탐험대",
+          null,
+          "B",
+          "3-6학년",
+          "row",
+          "목",
+          "15:30",
+          "16:50",
+          "false",
+          "학기",
+          "2026 연간",
+          null,
+          466
+        ],
+        [
+          "방과후",
+          "영어",
+          null,
+          "A",
+          "1-2학년",
+          "row",
+          "금",
+          "14:00",
+          "15:20",
+          "true",
+          "학기",
+          "2026 연간",
+          null,
+          467
+        ],
+        [
+          "방과후",
+          "영어",
+          null,
+          "B",
+          "3-6학년",
+          "row",
+          "금",
+          "15:30",
+          "16:50",
+          "false",
+          "학기",
+          "2026 연간",
+          null,
+          468
+        ],
+        [
+          "방과후",
+          "독서논술",
+          null,
+          "A",
+          "1-2학년",
+          "row",
+          "금",
+          "14:00",
+          "15:20",
+          "true",
+          "학기",
+          "2026 연간",
+          null,
+          469
+        ],
+        [
+          "방과후",
+          "독서논술",
+          null,
+          "B",
+          "3-6학년",
+          "row",
+          "금",
+          "15:30",
+          "16:50",
+          "false",
+          "학기",
+          "2026 연간",
+          null,
+          470
+        ]
+      ],
+      "conflicts": [],
+      "period_slots": {},
+      "slots": [
+        {
+          "kind": "저학년방과후",
+          "weekday": "화",
+          "start": "14:00",
+          "end": "15:20",
+          "courses": [
+            "방송댄스",
+            "컴퓨터 코딩",
+            "키즈쿠킹"
+          ],
+          "place": null,
+          "time_source": "plan",
+          "source_rows": [
+            1,
+            3,
+            5
+          ],
+          "source_lines": [
+            457,
+            459,
+            461
+          ]
+        },
+        {
+          "kind": "저학년방과후",
+          "weekday": "수",
+          "start": "13:20",
+          "end": "14:40",
+          "courses": [
+            "융합과학"
+          ],
+          "place": null,
+          "time_source": "plan",
+          "source_rows": [
+            7
+          ],
+          "source_lines": [
+            463
+          ]
+        },
+        {
+          "kind": "저학년방과후",
+          "weekday": "목",
+          "start": "14:00",
+          "end": "15:20",
+          "courses": [
+            "위인(역사) 탐험대"
+          ],
+          "place": null,
+          "time_source": "plan",
+          "source_rows": [
+            9
+          ],
+          "source_lines": [
+            465
+          ]
+        },
+        {
+          "kind": "저학년방과후",
+          "weekday": "금",
+          "start": "14:00",
+          "end": "15:20",
+          "courses": [
+            "영어",
+            "독서논술"
+          ],
+          "place": null,
+          "time_source": "plan",
+          "source_rows": [
+            11,
+            13
+          ],
+          "source_lines": [
+            467,
+            469
+          ]
+        }
+      ],
+      "checks": [],
+      "status": "ok",
+      "reference_findings": [
+        {
+          "code": "program_list_mismatch",
+          "lines": [
+            384,
+            446,
+            457
+          ],
+          "reason": "개요 8개 과정(축구 포함) vs 시간표 7개, 월요일 2강좌 표기 vs 월요일 강좌 없음"
+        }
+      ],
+      "source_pdf_only": false,
+      "independent_review_complete": false,
+      "approved_for_upload": false,
+      "production_apply_ready": false,
+      "input_sha256": "495b945443161071d8585c274cfb6488352d02b619add3f86e73aeaf84ce2390",
+      "output_sha256": "a9f9fc8c536c9082faeb643529879071ab6ed0d9f51c5d15a9a942a9f86d5574"
     },
     {
       "school_id": "B000004265",

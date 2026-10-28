@@ -1,0 +1,64 @@
+{
+  "batch": "priority-batch26",
+  "checked_on": "2026-10-29",
+  "no_operational_upload": true,
+  "independent_review": false,
+  "schools": [
+    {
+      "school_id": "B000004263",
+      "school_name": "하안초등학교",
+      "input": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000004263.txt",
+      "input_sha256": "495b945443161071d8585c274cfb6488352d02b619add3f86e73aeaf84ce2390",
+      "output": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\outputs\\B000004263.json",
+      "output_sha256": "a9f9fc8c536c9082faeb643529879071ab6ed0d9f51c5d15a9a942a9f86d5574",
+      "review_method": "same-assistant whole-source read; not independent blind review",
+      "supplied_sources_read": true,
+      "rows": 14,
+      "grade1_rows": 7,
+      "custom_rows": 0,
+      "field_evidence": {},
+      "blocking_issues": [
+        {
+          "code": "program_list_mismatch",
+          "lines": [
+            384,
+            446,
+            457
+          ],
+          "reason": "개요 8개 과정(축구 포함) vs 시간표 7개, 월요일 2강좌 표기 vs 월요일 강좌 없음"
+        }
+      ],
+      "additional_findings": [
+        {
+          "type": "custom_schedule_absent",
+          "lines": [
+            26,
+            392
+          ],
+          "reason": "초1·2 맞춤형 운영 명시, 요일·시각표는 제공 첨부에 없음"
+        },
+        {
+          "type": "care_hours_reported",
+          "lines": [
+            112,
+            113
+          ],
+          "reason": "돌봄 누리반 방과후~19:00, 나래반 ~17:00. 돌봄 시간 필드"
+        }
+      ],
+      "exclusions": [
+        {
+          "lines": [
+            105,
+            106,
+            107,
+            158
+          ],
+          "reason": "돌봄교실 특기적성 시간표는 돌봄 일과"
+        }
+      ],
+      "production_apply_ready": false,
+      "approved_for_upload": false
+    }
+  ]
+}

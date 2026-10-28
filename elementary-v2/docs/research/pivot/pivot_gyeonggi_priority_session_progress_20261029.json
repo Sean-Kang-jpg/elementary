@@ -5,19 +5,19 @@
   "summary": {
     "targets": 83,
     "source_prepared": 83,
-    "extracted_schools": 33,
-    "pending_extraction": 50,
-    "course_rows": 993,
-    "slot_candidates": 319,
-    "remaining_source_evidence_indexed": 50,
+    "extracted_schools": 34,
+    "pending_extraction": 49,
+    "course_rows": 1007,
+    "slot_candidates": 323,
+    "remaining_source_evidence_indexed": 49,
     "visual_slot_checks": 32,
-    "ok_candidates_after_visual": 13,
+    "ok_candidates_after_visual": 14,
     "schools_needing_checks": 20,
     "unresolved_check_items": 156,
     "independent_review_complete": 0,
     "current_term_verified": 0,
     "production_applied": 0,
-    "extraction_percent": 39.8
+    "extraction_percent": 41.0
   },
   "effective_slot_review": [
     {
@@ -1455,6 +1455,13 @@
       ]
     },
     {
+      "school_id": "B000004263",
+      "school_name": "하안초등학교",
+      "slots": 4,
+      "status": "ok",
+      "checks": []
+    },
+    {
       "school_id": "B000004265",
       "school_name": "연서초등학교",
       "slots": 8,
@@ -1885,17 +1892,6 @@
       "evidence_indexed": true
     },
     {
-      "school_id": "B000004263",
-      "school_name": "하안초등학교",
-      "area": "gwangmyeong",
-      "input": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000004263.txt",
-      "input_sha256": "495b945443161071d8585c274cfb6488352d02b619add3f86e73aeaf84ce2390",
-      "evidence_index": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\remaining_evidence_index_20261025\\B000004263.json",
-      "evidence_windows": 35,
-      "status": "pending_full_source_extraction",
-      "evidence_indexed": true
-    },
-    {
       "school_id": "B000004280",
       "school_name": "하일초등학교",
       "area": "gwangmyeong",
@@ -2188,5 +2184,5 @@
     "pivot_gyeonggi_priority_slots_current_20261029.json",
     "pivot_gyeonggi_priority_all_current_verification_20261029.json"
   ],
-  "next_action": "Continue remaining 50 whole-source extractions and unresolved slot checks. Evidence index is navigation only."
+  "next_action": "Continue remaining 49 whole-source extractions and unresolved slot checks. Evidence index is navigation only."
 }

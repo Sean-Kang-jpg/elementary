@@ -2,12 +2,12 @@
   "checked_on": "20261029",
   "summary": {
     "new_targets": 83,
-    "transcribed_schools": 33,
-    "pending_extraction": 50,
-    "rows": 993,
-    "afterschool_rows": 826,
+    "transcribed_schools": 34,
+    "pending_extraction": 49,
+    "rows": 1007,
+    "afterschool_rows": 840,
     "custom_rows": 167,
-    "schools_with_source_blockers": 21,
+    "schools_with_source_blockers": 22,
     "existing_p1_preserved": 44,
     "care_review_targets": 37,
     "no_operational_upload": true,
@@ -949,10 +949,10 @@
       "school_name": "하안초등학교",
       "area": "gwangmyeong",
       "course_track": "new_priority",
-      "status": "pending_extraction",
-      "rows": 0,
+      "status": "source_conflicts_need_followup",
+      "rows": 14,
       "approved_for_upload": false,
-      "review_file": null
+      "review_file": "pivot_gyeonggi_priority_batch26_review_20261029.json"
     },
     {
       "school_id": "B000004280",
