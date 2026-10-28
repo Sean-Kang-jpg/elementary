@@ -5,19 +5,19 @@
   "summary": {
     "targets": 83,
     "source_prepared": 83,
-    "extracted_schools": 28,
-    "pending_extraction": 55,
-    "course_rows": 785,
-    "slot_candidates": 268,
-    "remaining_source_evidence_indexed": 55,
+    "extracted_schools": 29,
+    "pending_extraction": 54,
+    "course_rows": 833,
+    "slot_candidates": 279,
+    "remaining_source_evidence_indexed": 54,
     "visual_slot_checks": 32,
     "ok_candidates_after_visual": 11,
-    "schools_needing_checks": 17,
-    "unresolved_check_items": 153,
+    "schools_needing_checks": 18,
+    "unresolved_check_items": 154,
     "independent_review_complete": 0,
     "current_term_verified": 0,
     "production_applied": 0,
-    "extraction_percent": 33.7
+    "extraction_percent": 34.9
   },
   "effective_slot_review": [
     {
@@ -261,6 +261,23 @@
       "slots": 10,
       "status": "ok",
       "checks": []
+    },
+    {
+      "school_id": "B000003875",
+      "school_name": "호계초등학교",
+      "slots": 11,
+      "status": "check",
+      "checks": [
+        [
+          "원문불일치",
+          "시각",
+          [
+            "시각",
+            "맞춤형 전 학급(2학기 시정 미공시)",
+            "L217 / L217"
+          ]
+        ]
+      ]
     },
     {
       "school_id": "B000003978",
@@ -1732,17 +1749,6 @@
       "evidence_indexed": true
     },
     {
-      "school_id": "B000003875",
-      "school_name": "호계초등학교",
-      "area": "dongan",
-      "input": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000003875.txt",
-      "input_sha256": "0b4a3d2442e49d327bb4068348beb7882f665fc4fe51ffd53698673936a0e62e",
-      "evidence_index": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\remaining_evidence_index_20261025\\B000003875.json",
-      "evidence_windows": 31,
-      "status": "pending_full_source_extraction",
-      "evidence_indexed": true
-    },
-    {
       "school_id": "B000003863",
       "school_name": "호성초등학교",
       "area": "dongan",
@@ -2178,5 +2184,5 @@
     "pivot_gyeonggi_priority_slots_current_20261029.json",
     "pivot_gyeonggi_priority_all_current_verification_20261029.json"
   ],
-  "next_action": "Continue remaining 55 whole-source extractions and unresolved slot checks. Evidence index is navigation only."
+  "next_action": "Continue remaining 54 whole-source extractions and unresolved slot checks. Evidence index is navigation only."
 }

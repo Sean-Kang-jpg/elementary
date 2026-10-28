@@ -1,0 +1,82 @@
+{
+  "batch": "priority-batch21",
+  "checked_on": "2026-10-29",
+  "no_operational_upload": true,
+  "independent_review": false,
+  "schools": [
+    {
+      "school_id": "B000003875",
+      "school_name": "호계초등학교",
+      "input": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000003875.txt",
+      "input_sha256": "0b4a3d2442e49d327bb4068348beb7882f665fc4fe51ffd53698673936a0e62e",
+      "output": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\outputs\\B000003875.json",
+      "output_sha256": "808f679a909f7593edbfb62bd5f62df0302f85be39f882f70488da574193eeda",
+      "review_method": "same-assistant whole-source read; not independent blind review",
+      "supplied_sources_read": true,
+      "rows": 48,
+      "grade1_rows": 27,
+      "custom_rows": 15,
+      "field_evidence": {},
+      "blocking_issues": [
+        {
+          "code": "second_term_schedule_missing",
+          "lines": [
+            217,
+            230
+          ],
+          "reason": "맞춤형 요일별 시각은 1학기 시정 기준, 수익자 표도 1학기 안내. 2학기 시정·강좌 확인 필요"
+        }
+      ],
+      "additional_findings": [
+        {
+          "type": "pdf_visual_check",
+          "lines": [
+            217
+          ],
+          "reason": "pdf_review/hogye-p3.png: 맞춤형 표·시정표·학교행사 일정 확인"
+        },
+        {
+          "type": "care_hours_reported",
+          "lines": [
+            18,
+            19
+          ],
+          "reason": "돌봄1 방과후~19:00, 돌봄2 ~17:00. 돌봄 시간 필드"
+        }
+      ],
+      "exclusions": [
+        {
+          "lines": [
+            84,
+            85,
+            86,
+            87,
+            88,
+            89,
+            90,
+            91,
+            92,
+            93,
+            94,
+            95,
+            96,
+            97,
+            98,
+            99
+          ],
+          "reason": "돌봄교실 일과표 특기적성(보드·공예·전래)은 돌봄 일과"
+        },
+        {
+          "lines": [
+            217
+          ],
+          "reason": "학교행사일(3.3·7.24·8.19·12.31) 한시 맞춤형 시각과 방학 9:00~10:30은 학기 시간대 아님"
+        }
+      ],
+      "production_apply_ready": false,
+      "approved_for_upload": false,
+      "table_visual_checked": true,
+      "table_visual_check": "pdf_review/hogye-p3.png (pdf.js render)"
+    }
+  ]
+}
