@@ -1,6 +1,6 @@
 # 방과후 시간대 층 설계 (2026-10-24)
 
-상태: 설계와 빌더 코드(`etl/afterschool_slots.py`, 테스트 4개) 완료. SQL 38 초안, 운영 미적용. 근거: [시간대 정확도 측정](AFTERSCHOOL_V3_SLOT_AUDIT_20261024.md). 수집 기준: [파일럿 기준](../../operations/PIVOT_SLOT_STANDARD.md).
+상태: 설계와 빌더 코드(`etl/afterschool_slots.py`, 테스트 7개) 완료. 2026-10-28 블록 합치기·돌봄 운영 구간 제외 추가([분당·위례 맹검](AFTERSCHOOL_P1_BLIND_SLOT_CHECK_20261028.md)). SQL 38 초안, 운영 미적용. 근거: [시간대 정확도 측정](AFTERSCHOOL_V3_SLOT_AUDIT_20261024.md). 수집 기준: [파일럿 기준](../../operations/PIVOT_SLOT_STANDARD.md).
 
 ## 두 층
 

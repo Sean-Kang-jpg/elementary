@@ -39,6 +39,19 @@ class SchoolSlotsTest(unittest.TestCase):
         self.assertEqual(school_slots([row(start='08:00', end='08:50')])['slots'], [])
         self.assertEqual(school_slots([])['status'], 'none')
 
+    def test_back_to_back_blocks_of_one_programme_are_one_window(self):
+        blocks = [row(kind='맞춤형', name='칼림바', grades_raw=None, grade1='unknown', start=a, end=b)
+                  for a, b in (('13:00', '13:40'), ('13:50', '14:30'))]
+        other = row(kind='맞춤형', name='민속놀이', grades_raw=None, grade1='unknown', start='14:35', end='15:15')
+        slots = school_slots(blocks + [other])['slots']
+        self.assertEqual([(s['start'], s['end']) for s in slots], [('13:00', '14:30'), ('14:35', '15:15')])
+
+    def test_a_care_room_span_is_not_a_custom_window(self):
+        span = row(kind='맞춤형', name='특기적성', grades_raw=None, grade1='unknown', place='돌봄내', start='12:40', end='15:20')
+        result = school_slots([span])
+        self.assertEqual(result['slots'], [])
+        self.assertEqual(result['checks'], [['맞춤형시각없음', '월', None]])
+
     def test_place_and_period_slot_are_kept(self):
         rows = [row(kind='맞춤형', grades_raw=None, grade1='unknown', place='돌봄내', time_source='period_slot')]
         slot = school_slots(rows)['slots'][0]

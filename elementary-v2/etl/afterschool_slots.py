@@ -16,7 +16,7 @@ Sonnet blind check and 99.2% (131 of 132) against an Opus re-review, against 96%
 level. The two hatched kinds were not in that measurement.
 
 school_slots also reports what needs a person: weekdays where 맞춤형 rows exist but none has a
-time, the extractor's `conflicts` (the document disagrees with itself), and PDF-only sources,
+time (or only a span over CUSTOM_SPAN_MAX_MINUTES), the extractor's `conflicts` (the document disagrees with itself), and PDF-only sources,
 where weekday-time pairs are the one error the Opus review found.
 """
 from __future__ import annotations
@@ -48,7 +48,40 @@ def slot_kind(row: dict) -> str | None:
     return '학년미기재방과후' if row.get('grade1') == 'unknown' else None
 
 
+BLOCK_GAP_MINUTES = 10
+# A 맞춤형 'window' longer than this is the 돌봄 room's whole programme span ("12:40~15:20 특기적성",
+# 백현초 B000003755, 2026-10-28), not a class a parent can plan around: it is dropped and the day is
+# a 맞춤형시각없음 check. Real 맞춤형 classes run 40~90 minutes, merged blocks included.
+CUSTOM_SPAN_MAX_MINUTES = 120
+
+
+def _minutes(value: str) -> int:
+    hours, mins = value.split(':')
+    return int(hours) * 60 + int(mins)
+
+
+def merge_blocks(rows: Iterable[dict]) -> list[dict]:
+    """One programme written as back-to-back 40-minute blocks ("13:00~13:40 | 13:50~14:30") is one window
+    for a parent (불정초 B000003756, 2026-10-28: the blind key merged them, the extraction kept three
+    blocks). Rows of the same kind, name, section and single weekday whose times follow within
+    BLOCK_GAP_MINUTES are joined; anything else passes through."""
+    out: list[dict] = []
+    indexed = [{**row, '_order': i} for i, row in enumerate(rows)]
+    for row in sorted(indexed, key=lambda r: (r.get('kind') or '', r.get('name') or '', r.get('section') or '',
+                                              r.get('days') or '', r.get('start') or '')):
+        prev = out[-1] if out else None
+        timed = HHMM.match(str(row.get('start') or '')) and HHMM.match(str(row.get('end') or ''))
+        if (prev and timed and len(row.get('days') or '') == 1 and prev.get('_timed')
+                and all(prev.get(k) == row.get(k) for k in ('kind', 'name', 'section', 'days', 'period', 'grade1'))
+                and 0 <= _minutes(row['start']) - _minutes(prev['end']) <= BLOCK_GAP_MINUTES):
+            prev['end'] = row['end']
+            continue
+        out.append({**row, '_timed': bool(timed)})
+    return sorted(out, key=lambda r: r['_order'])   # keep the document's order for course names
+
+
 def school_slots(rows: Iterable[dict], conflicts: list | None = None, pdf_only: bool = False) -> dict:
+    rows = merge_blocks(rows)
     slots: dict[tuple, dict] = {}
     custom_days_with_rows: set[str] = set()
     for row in rows:
@@ -60,6 +93,8 @@ def school_slots(rows: Iterable[dict], conflicts: list | None = None, pdf_only: 
             custom_days_with_rows.update(days or WEEKDAYS)
         start, end = row.get('start'), row.get('end')
         if not days or not (HHMM.match(str(start or '')) and HHMM.match(str(end or ''))) or end <= NOON:
+            continue
+        if kind == '맞춤형' and _minutes(end) - _minutes(start) > CUSTOM_SPAN_MAX_MINUTES:
             continue
         for day in days:
             slot = slots.setdefault((kind, day, start, end), {
