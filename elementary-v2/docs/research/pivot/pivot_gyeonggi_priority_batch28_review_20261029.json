@@ -1,0 +1,327 @@
+{
+  "batch": "priority-batch28",
+  "checked_on": "2026-10-29",
+  "no_operational_upload": true,
+  "independent_review": false,
+  "schools": [
+    {
+      "school_id": "B000004271",
+      "school_name": "광일초등학교",
+      "input": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000004271.txt",
+      "input_sha256": "83c39f27987527ae83574b0dbf4357070fa5cf50886e350062ef0e596ffe778c",
+      "output": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\outputs\\B000004271.json",
+      "output_sha256": "078f20bd7c8ceee8f8198db170e253975f027972bb7417b6152b944dd84c383a",
+      "review_method": "same-assistant whole-source read; not independent blind review",
+      "supplied_sources_read": true,
+      "rows": 49,
+      "grade1_rows": 37,
+      "custom_rows": 25,
+      "field_evidence": {
+        "1": {
+          "grades": [
+            541
+          ],
+          "variant": [
+            541
+          ],
+          "weekday_header": [
+            541
+          ],
+          "weekday_column": 1
+        },
+        "2": {
+          "grades": [
+            541
+          ],
+          "variant": [
+            541
+          ],
+          "weekday_header": [
+            541
+          ],
+          "weekday_column": 1
+        },
+        "3": {
+          "grades": [
+            541
+          ],
+          "variant": [
+            541
+          ],
+          "weekday_header": [
+            541
+          ],
+          "weekday_column": 2
+        },
+        "4": {
+          "grades": [
+            541
+          ],
+          "variant": [
+            541
+          ],
+          "weekday_header": [
+            541
+          ],
+          "weekday_column": 2
+        },
+        "5": {
+          "grades": [
+            541
+          ],
+          "variant": [
+            541
+          ],
+          "weekday_header": [
+            541
+          ],
+          "weekday_column": 3
+        },
+        "6": {
+          "grades": [
+            541
+          ],
+          "variant": [
+            541
+          ],
+          "weekday_header": [
+            541
+          ],
+          "weekday_column": 4
+        },
+        "7": {
+          "grades": [
+            541
+          ],
+          "variant": [
+            541
+          ],
+          "weekday_header": [
+            541
+          ],
+          "weekday_column": 4
+        },
+        "8": {
+          "grades": [
+            541
+          ],
+          "variant": [
+            541
+          ],
+          "weekday_header": [
+            541
+          ],
+          "weekday_column": 5
+        },
+        "9": {
+          "grades": [
+            547
+          ],
+          "variant": [
+            547
+          ],
+          "weekday_header": [
+            547
+          ],
+          "weekday_column": 1
+        },
+        "10": {
+          "grades": [
+            547
+          ],
+          "variant": [
+            547
+          ],
+          "weekday_header": [
+            547
+          ],
+          "weekday_column": 1
+        },
+        "11": {
+          "grades": [
+            547
+          ],
+          "variant": [
+            547
+          ],
+          "weekday_header": [
+            547
+          ],
+          "weekday_column": 2
+        },
+        "12": {
+          "grades": [
+            547
+          ],
+          "variant": [
+            547
+          ],
+          "weekday_header": [
+            547
+          ],
+          "weekday_column": 2
+        },
+        "13": {
+          "grades": [
+            547
+          ],
+          "variant": [
+            547
+          ],
+          "weekday_header": [
+            547
+          ],
+          "weekday_column": 3
+        },
+        "14": {
+          "grades": [
+            547
+          ],
+          "variant": [
+            547
+          ],
+          "weekday_header": [
+            547
+          ],
+          "weekday_column": 4
+        },
+        "15": {
+          "grades": [
+            547
+          ],
+          "variant": [
+            547
+          ],
+          "weekday_header": [
+            547
+          ],
+          "weekday_column": 4
+        },
+        "16": {
+          "grades": [
+            547
+          ],
+          "variant": [
+            547
+          ]
+        },
+        "17": {
+          "grades": [
+            554
+          ],
+          "weekday_header": [
+            554
+          ],
+          "weekday_column": 1
+        },
+        "18": {
+          "grades": [
+            554
+          ],
+          "weekday_header": [
+            554
+          ],
+          "weekday_column": 1
+        },
+        "19": {
+          "grades": [
+            554
+          ]
+        },
+        "20": {
+          "grades": [
+            554
+          ]
+        },
+        "21": {
+          "grades": [
+            554
+          ]
+        },
+        "22": {
+          "grades": [
+            554
+          ],
+          "weekday_header": [
+            554
+          ],
+          "weekday_column": 6
+        },
+        "23": {
+          "grades": [
+            554
+          ],
+          "weekday_header": [
+            554
+          ],
+          "weekday_column": 6
+        },
+        "24": {
+          "grades": [
+            554
+          ],
+          "weekday_header": [
+            554
+          ],
+          "weekday_column": 7
+        },
+        "25": {
+          "grades": [
+            554
+          ],
+          "weekday_header": [
+            554
+          ],
+          "weekday_column": 7
+        }
+      },
+      "blocking_issues": [
+        {
+          "code": "timetable_based_on_prior_year",
+          "lines": [
+            539
+          ],
+          "reason": "맞춤형 시간표가 2025학년도 정규시간표 기준, 2026 변동 가능"
+        }
+      ],
+      "additional_findings": [
+        {
+          "type": "custom_day_windows",
+          "lines": [
+            498
+          ],
+          "reason": "1학년 월·화·목 13:50~15:10, 수·금 13:00~14:20 / 2학년 금 13:50~15:10"
+        },
+        {
+          "type": "misaligned_header_cells",
+          "lines": [
+            547,
+            554
+          ],
+          "reason": "머리글 빈 칸으로 열 대응 불가한 칸은 요일 미기록(시간대는 1반 행과 같음)"
+        },
+        {
+          "type": "duplicate_source_row",
+          "lines": [
+            97,
+            98,
+            99,
+            100
+          ],
+          "reason": "바이올린 A·B 교재별 2행씩"
+        }
+      ],
+      "exclusions": [
+        {
+          "lines": [
+            98,
+            100
+          ],
+          "reason": "바이올린 반복 행"
+        }
+      ],
+      "production_apply_ready": false,
+      "approved_for_upload": false
+    }
+  ]
+}

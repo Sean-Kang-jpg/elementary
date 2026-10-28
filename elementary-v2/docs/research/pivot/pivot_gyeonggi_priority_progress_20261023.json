@@ -2,12 +2,12 @@
   "checked_on": "20261029",
   "summary": {
     "new_targets": 83,
-    "transcribed_schools": 35,
-    "pending_extraction": 48,
-    "rows": 1056,
-    "afterschool_rows": 869,
-    "custom_rows": 187,
-    "schools_with_source_blockers": 23,
+    "transcribed_schools": 36,
+    "pending_extraction": 47,
+    "rows": 1105,
+    "afterschool_rows": 893,
+    "custom_rows": 212,
+    "schools_with_source_blockers": 24,
     "existing_p1_preserved": 44,
     "care_review_targets": 37,
     "no_operational_upload": true,
@@ -809,10 +809,10 @@
       "school_name": "광일초등학교",
       "area": "gwangmyeong",
       "course_track": "new_priority",
-      "status": "pending_extraction",
-      "rows": 0,
+      "status": "source_conflicts_need_followup",
+      "rows": 49,
       "approved_for_upload": false,
-      "review_file": null
+      "review_file": "pivot_gyeonggi_priority_batch28_review_20261029.json"
     },
     {
       "school_id": "B000004260",

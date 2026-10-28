@@ -5,19 +5,19 @@
   "summary": {
     "targets": 83,
     "source_prepared": 83,
-    "extracted_schools": 35,
-    "pending_extraction": 48,
-    "course_rows": 1056,
-    "slot_candidates": 330,
-    "remaining_source_evidence_indexed": 48,
+    "extracted_schools": 36,
+    "pending_extraction": 47,
+    "course_rows": 1105,
+    "slot_candidates": 348,
+    "remaining_source_evidence_indexed": 47,
     "visual_slot_checks": 32,
     "ok_candidates_after_visual": 14,
-    "schools_needing_checks": 21,
-    "unresolved_check_items": 161,
+    "schools_needing_checks": 22,
+    "unresolved_check_items": 162,
     "independent_review_complete": 0,
     "current_term_verified": 0,
     "production_applied": 0,
-    "extraction_percent": 42.2
+    "extraction_percent": 43.4
   },
   "effective_slot_review": [
     {
@@ -1532,6 +1532,23 @@
       ]
     },
     {
+      "school_id": "B000004271",
+      "school_name": "광일초등학교",
+      "slots": 18,
+      "status": "check",
+      "checks": [
+        [
+          "원문불일치",
+          "시각",
+          [
+            "시각",
+            "맞춤형 전 학급(2025 정규시간표 기준, 2026 변동 가능)",
+            "L539 / L498"
+          ]
+        ]
+      ]
+    },
+    {
       "school_id": "B000004272",
       "school_name": "광문초등학교",
       "slots": 15,
@@ -1870,17 +1887,6 @@
       "evidence_indexed": true
     },
     {
-      "school_id": "B000004271",
-      "school_name": "광일초등학교",
-      "area": "gwangmyeong",
-      "input": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000004271.txt",
-      "input_sha256": "83c39f27987527ae83574b0dbf4357070fa5cf50886e350062ef0e596ffe778c",
-      "evidence_index": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\remaining_evidence_index_20261025\\B000004271.json",
-      "evidence_windows": 57,
-      "status": "pending_full_source_extraction",
-      "evidence_indexed": true
-    },
-    {
       "school_id": "B000004258",
       "school_name": "도덕초등학교",
       "area": "gwangmyeong",
@@ -2206,5 +2212,5 @@
     "pivot_gyeonggi_priority_slots_current_20261029.json",
     "pivot_gyeonggi_priority_all_current_verification_20261029.json"
   ],
-  "next_action": "Continue remaining 48 whole-source extractions and unresolved slot checks. Evidence index is navigation only."
+  "next_action": "Continue remaining 47 whole-source extractions and unresolved slot checks. Evidence index is navigation only."
 }
