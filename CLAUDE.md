@@ -65,6 +65,15 @@ npm run typecheck
 
 ## Uncommitted Work At Handoff
 
+### 2026-10-29: 경기 우선 방과후 추출 18→40/83 (커밋만, 운영 DB 변경 없음)
+
+- 배움·돌봄 개편·SQL 35/39 기록·경기 추출·셔틀 감사를 머지·배포(`ad2e90b`), 이어 추출 22개교(batch11~32, 학교 1곳=배치 1개, 학교마다 커밋)
+- 진척: `docs/research/pivot/PIVOT_GYEONGGI_PRIORITY_SESSION_CHECKLIST.md`(갱신기가 자동 작성). 다음은 남은 43곳, 목록은 `pivot_gyeonggi_priority_session_progress_20261029.json`
+- 로컬 도구(`etl/runtime/pivot_gyeonggi_priority_20261023/`, git 제외): `batch_lib.py`(배치·검수 JSON 쓰기), `build_batchNN.py`(학교별),
+  `render_pdf_page.mjs`(pdf.js+Playwright로 PDF 쪽 PNG — 깨진 PDF 표는 이것으로 눈 대조 후 `table_visual_checked`), 각 학교 뒤 `python -m etl.runtime.pivot_gyeonggi_priority_20261023.refresh_checkpoint --date YYYYMMDD`
+- 규칙 수정(커밋됨): `afterschool_slots.merge_blocks`는 같은 학년·과정, 50분 이하 블록만 합친다(안현 컴퓨터 B/C, 광명광성 큐브, 안서 2개 창이 잘못 합쳐졌었음). 검사기는 머리글 학년도 None일 때 바로 아래 "2026학년도" 제목 줄을 인정(인덕원·매봉)
+- 주의: 원문에 맞춤형 시간표가 아예 없는 학교는 시간대 빌더가 알 수 없어 "통과후보"로 셀 수 있다. 학기·시정 불확실(1학기 표만, 2025 시정 기준)은 `conflicts`로 올려 확인 목록에 나오게 했다
+
 ### 2026-10-28: 시간표 smoke 정리 · 4번째 학교 안내 유지 · activeSchoolId 폐기 (운영 `release` = `8f207c4`)
 
 - `4dd7de5`(학교 선택 통합)·10-20 기본 가정·10-23 시간표 개편 뒤 실패하던 `my-ux`·`my-schedule`·`my-morning-calendar`를
