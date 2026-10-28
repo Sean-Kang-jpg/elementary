@@ -1,0 +1,246 @@
+{
+  "batch": "priority-batch27",
+  "checked_on": "2026-10-29",
+  "no_operational_upload": true,
+  "independent_review": false,
+  "schools": [
+    {
+      "school_id": "B000004268",
+      "school_name": "광명초등학교",
+      "input": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000004268.txt",
+      "input_sha256": "04bb93db6e18a7ce009b9ac4f3f5471bf2dcde511012184b5e8804f7ce676e62",
+      "output": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\outputs\\B000004268.json",
+      "output_sha256": "4e5e792a15e0b04d32d2f940ef1db9deb314438dcee3dff33dedf349ff3d42c0",
+      "review_method": "same-assistant whole-source read; not independent blind review",
+      "supplied_sources_read": true,
+      "rows": 49,
+      "grade1_rows": 34,
+      "custom_rows": 20,
+      "field_evidence": {
+        "1": {
+          "grades": [
+            14
+          ],
+          "weekday_header": [
+            74
+          ],
+          "weekday_column": 2
+        },
+        "2": {
+          "grades": [
+            14
+          ],
+          "weekday_header": [
+            74
+          ],
+          "weekday_column": 3
+        },
+        "3": {
+          "grades": [
+            14
+          ],
+          "weekday_header": [
+            74
+          ],
+          "weekday_column": 4
+        },
+        "4": {
+          "grades": [
+            14
+          ],
+          "weekday_header": [
+            74
+          ],
+          "weekday_column": 5
+        },
+        "5": {
+          "grades": [
+            14
+          ],
+          "weekday_header": [
+            74
+          ],
+          "weekday_column": 6
+        },
+        "6": {
+          "grades": [
+            14
+          ],
+          "weekday_header": [
+            74
+          ],
+          "weekday_column": 2
+        },
+        "7": {
+          "grades": [
+            14
+          ],
+          "weekday_header": [
+            74
+          ],
+          "weekday_column": 3
+        },
+        "8": {
+          "grades": [
+            14
+          ],
+          "weekday_header": [
+            74
+          ],
+          "weekday_column": 4
+        },
+        "9": {
+          "grades": [
+            14
+          ],
+          "weekday_header": [
+            74
+          ],
+          "weekday_column": 5
+        },
+        "10": {
+          "grades": [
+            14
+          ],
+          "weekday_header": [
+            74
+          ],
+          "weekday_column": 6
+        },
+        "11": {
+          "grades": [
+            14
+          ],
+          "weekday_header": [
+            74
+          ],
+          "weekday_column": 2
+        },
+        "12": {
+          "grades": [
+            14
+          ],
+          "weekday_header": [
+            74
+          ],
+          "weekday_column": 3
+        },
+        "13": {
+          "grades": [
+            14
+          ],
+          "weekday_header": [
+            74
+          ],
+          "weekday_column": 4
+        },
+        "14": {
+          "grades": [
+            14
+          ],
+          "weekday_header": [
+            74
+          ],
+          "weekday_column": 5
+        },
+        "15": {
+          "grades": [
+            14
+          ],
+          "weekday_header": [
+            74
+          ],
+          "weekday_column": 6
+        },
+        "16": {
+          "grades": [
+            14
+          ],
+          "weekday_header": [
+            74
+          ],
+          "weekday_column": 2
+        },
+        "17": {
+          "grades": [
+            14
+          ],
+          "weekday_header": [
+            74
+          ],
+          "weekday_column": 3
+        },
+        "18": {
+          "grades": [
+            14
+          ],
+          "weekday_header": [
+            74
+          ],
+          "weekday_column": 4
+        },
+        "19": {
+          "grades": [
+            14
+          ],
+          "weekday_header": [
+            74
+          ],
+          "weekday_column": 5
+        },
+        "20": {
+          "grades": [
+            14
+          ],
+          "weekday_header": [
+            74
+          ],
+          "weekday_column": 6
+        }
+      },
+      "blocking_issues": [
+        {
+          "code": "period_condition_only",
+          "lines": [
+            51,
+            61
+          ],
+          "reason": "맞춤형 시각이 그날 교시 수(4교시/5교시)에 따라 정해지나 1학년 요일별 시정표가 제공 첨부에 없음"
+        }
+      ],
+      "additional_findings": [
+        {
+          "type": "care_hours_reported",
+          "lines": [
+            315
+          ],
+          "reason": "돌봄 방과후~19:00. 돌봄 시간 필드"
+        }
+      ],
+      "exclusions": [
+        {
+          "lines": [
+            320,
+            321,
+            322,
+            323,
+            324,
+            325,
+            326,
+            327
+          ],
+          "reason": "돌봄교실 일과표(비즈 쥬얼리·전래 놀이 등)는 돌봄 일과"
+        },
+        {
+          "lines": [
+            51,
+            153
+          ],
+          "reason": "방학 시각"
+        }
+      ],
+      "production_apply_ready": false,
+      "approved_for_upload": false
+    }
+  ]
+}
