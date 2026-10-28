@@ -2,12 +2,12 @@
   "checked_on": "20261029",
   "summary": {
     "new_targets": 83,
-    "transcribed_schools": 30,
-    "pending_extraction": 53,
-    "rows": 861,
-    "afterschool_rows": 734,
-    "custom_rows": 127,
-    "schools_with_source_blockers": 20,
+    "transcribed_schools": 31,
+    "pending_extraction": 52,
+    "rows": 902,
+    "afterschool_rows": 755,
+    "custom_rows": 147,
+    "schools_with_source_blockers": 21,
     "existing_p1_preserved": 44,
     "care_review_targets": 37,
     "no_operational_upload": true,
@@ -589,10 +589,10 @@
       "school_name": "안양덕현초등학교",
       "area": "dongan",
       "course_track": "new_priority",
-      "status": "pending_extraction",
-      "rows": 0,
+      "status": "source_conflicts_need_followup",
+      "rows": 41,
       "approved_for_upload": false,
-      "review_file": null
+      "review_file": "pivot_gyeonggi_priority_batch23_review_20261029.json"
     },
     {
       "school_id": "B000003872",

@@ -1,0 +1,394 @@
+{
+  "batch": "priority-batch23",
+  "checked_on": "2026-10-29",
+  "no_operational_upload": true,
+  "independent_review": false,
+  "schools": [
+    {
+      "school_id": "B000003864",
+      "school_name": "안양덕현초등학교",
+      "input": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000003864.txt",
+      "input_sha256": "2c0f65365081c4f34a70540343a944238f7796334fa8be1f3d69017b6f089140",
+      "output": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\outputs\\B000003864.json",
+      "output_sha256": "fc5cdec5ff010e763d74d0c5cf3a83ab938e995e4b12868769d9c70dd052641d",
+      "review_method": "same-assistant whole-source read; not independent blind review",
+      "supplied_sources_read": true,
+      "rows": 41,
+      "grade1_rows": 17,
+      "custom_rows": 20,
+      "field_evidence": {
+        "1": {
+          "grades": [
+            94
+          ],
+          "variant": [
+            94
+          ],
+          "name_table": [
+            94
+          ],
+          "clock_column": 2,
+          "weekday_header": [
+            90
+          ],
+          "weekday_column": 2
+        },
+        "2": {
+          "grades": [
+            94
+          ],
+          "variant": [
+            94
+          ],
+          "name_table": [
+            94
+          ],
+          "clock_column": 3,
+          "weekday_header": [
+            90
+          ],
+          "weekday_column": 3
+        },
+        "3": {
+          "grades": [
+            94
+          ],
+          "variant": [
+            94
+          ],
+          "name_table": [
+            94
+          ],
+          "clock_column": 4,
+          "weekday_header": [
+            90
+          ],
+          "weekday_column": 4
+        },
+        "4": {
+          "grades": [
+            94
+          ],
+          "variant": [
+            94
+          ],
+          "name_table": [
+            94
+          ],
+          "clock_column": 5,
+          "weekday_header": [
+            90
+          ],
+          "weekday_column": 5
+        },
+        "5": {
+          "grades": [
+            94
+          ],
+          "variant": [
+            94
+          ],
+          "name_table": [
+            94
+          ],
+          "clock_column": 6,
+          "weekday_header": [
+            90
+          ],
+          "weekday_column": 6
+        },
+        "6": {
+          "grades": [
+            96
+          ],
+          "variant": [
+            96
+          ],
+          "name_table": [
+            96
+          ],
+          "clock_column": 2,
+          "weekday_header": [
+            90
+          ],
+          "weekday_column": 2
+        },
+        "7": {
+          "grades": [
+            96
+          ],
+          "variant": [
+            96
+          ],
+          "name_table": [
+            96
+          ],
+          "clock_column": 3,
+          "weekday_header": [
+            90
+          ],
+          "weekday_column": 3
+        },
+        "8": {
+          "grades": [
+            96
+          ],
+          "variant": [
+            96
+          ],
+          "name_table": [
+            96
+          ],
+          "clock_column": 4,
+          "weekday_header": [
+            90
+          ],
+          "weekday_column": 4
+        },
+        "9": {
+          "grades": [
+            96
+          ],
+          "variant": [
+            96
+          ],
+          "name_table": [
+            96
+          ],
+          "clock_column": 5,
+          "weekday_header": [
+            90
+          ],
+          "weekday_column": 5
+        },
+        "10": {
+          "grades": [
+            96
+          ],
+          "variant": [
+            96
+          ],
+          "name_table": [
+            96
+          ],
+          "clock_column": 6,
+          "weekday_header": [
+            90
+          ],
+          "weekday_column": 6
+        },
+        "11": {
+          "grades": [
+            98
+          ],
+          "variant": [
+            98
+          ],
+          "name_table": [
+            98
+          ],
+          "clock_column": 2,
+          "weekday_header": [
+            90
+          ],
+          "weekday_column": 2
+        },
+        "12": {
+          "grades": [
+            98
+          ],
+          "variant": [
+            98
+          ],
+          "name_table": [
+            98
+          ],
+          "clock_column": 3,
+          "weekday_header": [
+            90
+          ],
+          "weekday_column": 3
+        },
+        "13": {
+          "grades": [
+            98
+          ],
+          "variant": [
+            98
+          ],
+          "name_table": [
+            98
+          ],
+          "clock_column": 4,
+          "weekday_header": [
+            90
+          ],
+          "weekday_column": 4
+        },
+        "14": {
+          "grades": [
+            98
+          ],
+          "variant": [
+            98
+          ],
+          "name_table": [
+            98
+          ],
+          "clock_column": 5,
+          "weekday_header": [
+            90
+          ],
+          "weekday_column": 5
+        },
+        "15": {
+          "grades": [
+            98
+          ],
+          "variant": [
+            98
+          ],
+          "name_table": [
+            98
+          ],
+          "clock_column": 6,
+          "weekday_header": [
+            90
+          ],
+          "weekday_column": 6
+        },
+        "16": {
+          "grades": [
+            100
+          ],
+          "variant": [
+            100
+          ],
+          "name_table": [
+            100
+          ],
+          "clock_column": 2,
+          "weekday_header": [
+            90
+          ],
+          "weekday_column": 2
+        },
+        "17": {
+          "grades": [
+            100
+          ],
+          "variant": [
+            100
+          ],
+          "name_table": [
+            100
+          ],
+          "clock_column": 3,
+          "weekday_header": [
+            90
+          ],
+          "weekday_column": 3
+        },
+        "18": {
+          "grades": [
+            100
+          ],
+          "variant": [
+            100
+          ],
+          "name_table": [
+            100
+          ],
+          "clock_column": 4,
+          "weekday_header": [
+            90
+          ],
+          "weekday_column": 4
+        },
+        "19": {
+          "grades": [
+            100
+          ],
+          "variant": [
+            100
+          ],
+          "name_table": [
+            100
+          ],
+          "clock_column": 5,
+          "weekday_header": [
+            90
+          ],
+          "weekday_column": 5
+        },
+        "20": {
+          "grades": [
+            100
+          ],
+          "variant": [
+            100
+          ],
+          "name_table": [
+            100
+          ],
+          "clock_column": 6,
+          "weekday_header": [
+            90
+          ],
+          "weekday_column": 6
+        }
+      },
+      "blocking_issues": [
+        {
+          "code": "example_schedule_only",
+          "lines": [
+            91,
+            92,
+            93
+          ],
+          "reason": "맞춤형 요일별 시각은 \"(예)\" 1학기 기간 표기. 학년별 주간학습안내 시정에 따름(L105) — 2학기 확인 필요"
+        }
+      ],
+      "additional_findings": [
+        {
+          "type": "duplicate_source_row",
+          "lines": [
+            177,
+            195,
+            186,
+            187
+          ],
+          "reason": "컴자격·초3 중국어 행 반복"
+        },
+        {
+          "type": "custom_rule",
+          "lines": [
+            105,
+            106
+          ],
+          "reason": "4교시 날 13:00~14:30, 5교시 날 13:50~15:20, 쉬는 시간 포함 90분"
+        }
+      ],
+      "exclusions": [
+        {
+          "lines": [
+            177,
+            187
+          ],
+          "reason": "반복 행"
+        },
+        {
+          "lines": [
+            95,
+            97,
+            99,
+            101
+          ],
+          "reason": "맞춤형 교실 배정 행"
+        }
+      ],
+      "production_apply_ready": false,
+      "approved_for_upload": false
+    }
+  ]
+}
