@@ -65,6 +65,89 @@ npm run typecheck
 
 ## Uncommitted Work At Handoff
 
+### 2026-10-28: 시간표 smoke 정리 · 4번째 학교 안내 유지 · activeSchoolId 폐기 (운영 `release` = `8f207c4`)
+
+- `4dd7de5`(학교 선택 통합)·10-20 기본 가정·10-23 시간표 개편 뒤 실패하던 `my-ux`·`my-schedule`·`my-morning-calendar`를
+  새 규칙에 맞춤(`97b385e`). 학교 칩 버튼에 `data-school-id` 복원, 학교 상세 저장 버튼 이름은 이제 `내 학교에 추가`(아파트는 `MY에 저장` 그대로)
+- `my-ux` 후반부는 '내 시간표 지정' 대신 학교별 초안, 학교 제거 확인 창(취소 시 유지 / 저장 실패 시 둘 다 원상복구 / 칩 ×로 삭제),
+  4번째 학교 거절을 검사한다
+- **버그 수정**: 내 학교 3곳일 때 다른 학교 링크로 들어오면 첫 학교로 넘어가며 '최대 3곳' 안내가 떠야 하는데, 그 학교에 초안이 있으면
+  `TimetablePage`가 편집 배치로 바뀌며 `SchoolSelection`이 다시 만들어져 안내가 사라졌다. 안내 상태를 `TimetablePage`가 들게 함
+  (`message`/`onMessage` 선택 prop, 배움·돌봄 쪽 사용은 그대로)
+- `activeSchoolId` 폐기(`8f207c4`): 화면에선 없어졌는데 저장값이 남아 MY 요약 순서·지도 학원 시간표 넣기 기본 학교를 몰래 정했다.
+  이제 최근 수정순. 옛 저장값은 읽을 때 무시하고 다음 저장 때 빠진다. smoke 고정값의 `activeSchoolId:null`은 무해해서 둠
+- 검증: 단위 112개, lint·typecheck·build, 로컬 smoke 13종 전부 통과(`my-ux` 38·`my-schedule` 69·`my-morning-calendar` 8·`my-calendar-edit` 30·
+  `morning-care` 36·`p1-ux` 60 등, 위 배움·돌봄 미커밋 작업이 섞인 작업 트리 기준). 운영 public smoke 통과(`97b385e`·`8f207c4` 배포 후 각각)
+- 주의: agent-browser `open`은 replaceState로 바뀐 같은 경로(`/timetable?school=…`)에서 쿼리만 다른 주소로 이동하지 않을 때가 있어
+  smoke에서는 `location.href`로 옮긴다. `morning-care-smoke`는 `docs/research/track-b-morning-care/*.png`를 덮어쓰니 돌린 뒤 `git checkout`
+- 10-28 다른 세션이 이력을 다시 쓰며 커밋 하나(`ba8dde4`)가 빠졌다가 `97b385e`에 다시 담겼다. push 전에 `git log`로 내 커밋이 남았는지 확인
+
+### 2026-10-24: 배움·돌봄 메뉴명과 학교동네 문구 (미커밋·미배포)
+
+- GNB `앞마당` → `배움·돌봄`. 페이지 제목은 `우리 아이의 학교동네`, 화면 헤드라인은 `필요한 수업과 돌봄을 찾아보세요`,
+  설명은 `우리 학교 주변 프로그램을 찾고, 원하는 활동이 없다면 직접 요청해 보세요.`로 반영
+- 브라우저 타이틀과 시간표에서 이어지는 안내, 기획 문서와 public smoke 기대 문구도 함께 갱신. `/frontyard` 경로와 `frontyard` 내부 식별자는 유지
+- lint·typecheck·build 통과, 단위 테스트 111개 통과. 통합 브라우저에서 문구 확인
+- public smoke는 `agent-browser`의 연결 timeout으로 브라우저 검사 구간에서 중단(앞선 HTTP·정적 자산 점검은 통과)
+
+### 2026-10-24: 네이버 수집 저조 SEO 감사 Phase 1 (읽기 전용, 미커밋 문서만)
+
+- `elementary-v2/docs/seo/`: 사이트맵·렌더링·내부 링크·로봇 접근 감사 4편 + `seo-action-plan.md`(초안, 미적용) + `evidence/` 재현 스크립트.
+  `seo-review.md`는 Codex 검수 몫으로 비워 둠
+- 결론: 수집을 **막는** 결함 없음(사이트맵 52,292건·canonical·SSR·방화벽 정상). 확인된 결함은 홈이 링크하는 빈 셸(`/map`·`/learn`·`/timetable`),
+  soft 404, 상세 첫 응답 0.8~2.9 s(98% MISS), 가이드↔데이터 링크 단절, 인덱스 lastmod=빌드일, 0곳 학교 1,613, 고아 단지 1,208
+- Vercel 요청 기록은 UA 없음·보존 약 1시간이라 Yeti 방문 이력 복원 불가 → 수정안 P0-3(로봇 집계)이 SQL 승인 대기
+- 같은 날 수정 9건 커밋 `8a06f11`~`e7800bd`(목록은 `docs/seo/seo-action-plan.md` 6절). 다른 세션의 push로 origin/master에 올라갔고,
+  운영에는 홈 시·도 링크(`8a06f11`)만 release `c4bae23`에 섞여 나감. 나머지는 release 대기, SQL 37은 사용자 실행 대기
+- 2026-10-25 20:44 release `82657aa`로 전부 운영 반영. 10-27 확인: 운영 public smoke 69 PASS(없는 주소 404·`/learn` 정적 포함),
+  학교 JSON-LD·가이드 링크·구로남초 406곳·인덱스 lastmod(10-15/10-06) 정상. SQL 37은 아직 미적용(테이블 404)
+- 로컬 미push 커밋 `8d29d29`(홈 지역 링크 제거, 다른 세션)가 P1-1을 되돌린다 — push 전에 의도 확인 필요
+- 다음: 사용자가 서치어드바이저에서 10/6·10/9 수집 URL 확인(P0-1), RSS·수집 요청(P0-2), Codex 검수
+
+### 2026-10-23: Supabase 무료 한도 — DB 491.97/500 MB, 로그 1.51/1 GB (master `8b53857`)
+
+- 실측(사용자 SQL): 상위는 academy_address_serving 73 MB, apartment_transaction_raw 60 MB, school_apartment_serving 58 MB(인덱스 34),
+  실거래가 묶음 합계 약 145 MB. dead rows는 거의 0이라 bloat 가설은 틀림
+- 실거래가 `raw_payload`(원문 JSON, 행의 62%)는 Storage `etl-source-snapshots/molit-apartment-trade/`에 280개 전부 있음 → 적재기가
+  `{}`를 보내게 수정. **`sql/34_reclaim_database_space.sql`은 사용자 실행 대기**(1부 한 번, 2부 VACUUM FULL 한 줄씩, 새벽)
+- **월간 실거래가 일정을 켜면 월 약 40 MB 증가**(2개월에 raw+link 85 MB) — 켜기 전 34 적용·요금제 판단
+- 로그 10/12 약 600 MB 급증(실거래가 작업 병합일), 과금은 2027 초부터. 방문마다 testSupabaseConnection 요청 1회 — 제거 후보
+- 이 push에 다른 세션의 로컬 커밋 `2f1973a`(파일럿 ETL 읽기 전용 preflight)가 함께 올라감 — 화면 영향 없음
+
+### 2026-10-21: 학교앞마당·메뉴 4개·홈 첫 문장 (worktree `../.worktrees/frontyard`, 브랜치 `claude/frontyard`, 미커밋·미배포)
+
+- 기획 `elementary-v2/pivot_2`, 결정·계획 `docs/product/FRONTYARD_PLAN.md`(그 브랜치). 사용자 결정: 공개 게시판, 말머리
+  [모집해요]/[찾아요]/[어디초 소식], 방학·특강 제외, 익명 로그인 먼저, 별도 스테이징 없음
+- GNB: 홈 탭 → 상단 로고, MY → 상단 아이콘. 탭 = 학교 찾기·입학 준비·시간표·앞마당(앞마당은 `VITE_FRONTYARD_ENABLED=1` 또는 dev).
+  `/learn`은 입학 준비 탭 아래. **public-smoke의 탭 검사를 바꿨으니 운영 smoke는 배포된 판으로 돌릴 것**
+- 홈 h1 "우리 아이의 초등학교 생활, 미리 그려 보세요"(`content/home.json`), 문서 제목은 그대로
+- SQL `33_create_frontyard.sql` 초안(운영 미적용, pglast 문법 검사만). 적용 전 익명 로그인·Turnstile·처리방침·익명 세션 공개 읽기 확인
+- 검증: typecheck·lint·build·test:unit 101 통과, Playwright(시스템 Chrome)로 390/1280px 확인. agent-browser는 이 PC에서 응답 없음
+- 10-22 추가: 학원 마커 `institutions`에 기관 키 `key`(neis:/dojo:, 10/7 원천 134,579곳 전부), 시간표 학원 선택이 `providerKey` 저장,
+  시간표 빈칸 → 앞마당 두 버튼, 앞마당 대상 학교 = 시간표 초안 학교. **결함 수정**: `merge_sports_dojo_markers.parse_array`가
+  학원 `subjects`를 버려 10/6 갱신 산출물에 과목 0건(운영은 이후 백필로 복구된 듯). 고치지 않으면 11/2 실행이 과목을 다시 지운다 —
+  → **master `a15177d`로 커밋·push 완료(2026-10-22)**, 11/2 실행에 포함. 브랜치는 그 위로 옮김
+- 10-22 추가 2: 지도 학원 상세에 학원별 '내 시간표에 추가'(요일·시간 직접 입력, 예정/다니는 중), 기존 일정 선택 시
+  '이 시간에 다른 프로그램 알아보기'. 단위 103·build 통과, Playwright로 두 흐름 확인. 화면 변경은 브랜치에 미커밋
+- 10-23: 사용자가 `b2b31ce`(앞마당 1차본)를 master·release에 반영함. 그 위에 관심 학원 저장(Case C, 지도 '관심 학원 저장' + MY 목록,
+  `utils/savedAcademies.ts`)을 `60ad9e7`로 master push. **release push는 자동 모드 권한 판단에 막혀 미배포** — 사용자가
+  → 사용자가 권한 규칙 추가 후 **release `60ad9e7` 배포 완료(10-23)**. 운영 확인: 6개 경로 200, robots `Disallow: /frontyard`,
+  홈 h1 새 문구, 탭 /map /guide /timetable(앞마당 플래그 꺼짐), 로고·MY, 지도 검색창 옆 로고·MY, MY 관심 학원, /learn→입학 준비,
+  /frontyard 열림·예시 글 없음, 페이지 오류 0(Playwright). 전체 public smoke는 미실행(이 PC agent-browser 불가).
+  앞마당 메뉴(VITE_FRONTYARD_ENABLED)·익명 로그인·Turnstile·SQL 33·처리방침 개정은 미적용
+- 10-23~24: **시간표 탭 UX 개편 — master `2b65af6`, 10-24 release `8e58b25`로 운영 배포**(같이 나간 것: `bedf81d` 처리방침 앞마당 개정,
+  `8e58b25` 다른 세션의 ETL 사전 점검 워크플로). 운영 JS에 새 문구 확인, 운영 public smoke 통과. 초안이 있으면 시간표가 첫 화면(제목·학교 칩·'다른 학교'만),
+  안내 문단은 '안내 · 초안 관리' 접기로. 카드 탭 → 편집 시트(`EntryEditSheet.tsx`): 돌봄·방과후 포함 시작/종료·하교 직후,
+  적용 요일 칩, 참여 상태, 요일에서 빼기. 요일별 시각은 일정을 쪼개지 않고 `ScheduleEntry.dayTimes`(`utils/schedule/dayTimes.ts`,
+  엔진·dayTimeline·morningCalendar가 `entryForDay`로 풀어 씀), 강좌는 `offeredWeekdays` 밖 요일 금지. 하루 보기 아래
+  ~~하루 통째 복사~~ → **10-24 사용자 요청으로 항목별로 변경**: 돌봄·방과후 강좌·학원을 고른 바로 아래 '다른 요일에도 넣기' 칩
+  (`RepeatDays.tsx`, `repeatEntry`). 학원·직접 입력은 저장 뒤 카드가 '넣었어요 + 칩 + 완료'로 남는다.
+  10-24 학교 상세 하루 카드: 아침돌봄 상자 → 등교시각·아침돌봄 한 줄(출처는 title), 돌봄 안내·출처 줄 모바일 1줄(출처는 탭하면 펼침,
+  DOM에 남아 SEO 영향 없음 — 크롤러 HTML은 api/detail.js). **주의: 10-23 HEAD 비교용 임시 worktree 정리 중 junction을 따라
+  `node_modules`가 일부 지워져 `npm ci`로 복구함**(lockfile 변경 없음). 단위 111·tsc·lint(src)·build·public smoke 통과.
+  HEAD에서도 실패하던 smoke(변경 전부터): my-inline-selection, my-calendar-appearance, my-morning-calendar 끝부분, my-ux, my-schedule.
+  `npm run lint`는 `etl/runtime/parked/*.tsx` 파싱 오류 1건(로컬 산출물, src는 깨끗)
+
 ### 2026-10-20: 어디초 2.0 개편 컨셉 잠정 합의 (`d1c9278`, 운영 변경 없음)
 
 - 컨셉: `elementary-v2/docs/product/PIVOT_V2_CONCEPT.md` — A(학기 중 돌봄 공백)→B(방학 설계)→E(수요 기반 학원 연결, 가설).
