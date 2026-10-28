@@ -432,6 +432,57 @@ sends `{}` for `raw_payload`, so the space does not come back with the next load
 Turning the monthly transaction schedule on adds roughly 15k rows a month; measure the growth
 after the first run before deciding the plan tier.
 
+## 35: lock legacy public objects (2026-10-24) — 운영 적용 완료
+
+Security Advisor reported five CRITICAL findings, four of them the legacy objects already recorded in
+`docs/research/audit2/SCHEMA_BASELINE_20261006.md` §1 and §4: `schools`, `apartments` and
+`apartment_school_mappings` have RLS off with anon/authenticated write grants, and `index_usage_stats`
+is a definer view. `sql/35_lock_legacy_public_objects.sql` enables RLS with no policies, revokes the
+client grants and makes the view `security_invoker`. Nothing is dropped. No code in `src/`, `etl/`,
+`scripts/` or `../api/` reads these objects.
+
+`spatial_ref_sys` stays flagged: it belongs to the PostGIS extension, so enabling RLS fails with
+"must be owner", and its contents are the public EPSG list. Moving PostGIS out of `public` would touch
+every geometry column, so the finding is accepted.
+
+1. Run the transaction once. The `spatial_ref_sys` revoke is optional and may only warn.
+2. The two check queries at the bottom of the file: RLS true on all three, zero client grants.
+3. Public smoke against production; Security Advisor should then show only `spatial_ref_sys`.
+
+Applied through Supabase MCP as `lock_legacy_public_objects` on 2026-10-24.
+Verified RLS on all three tables, `security_invoker=true` on the view, and no effective table
+privileges for anon/authenticated on all four objects; service_role retains access.
+Security Advisor ERROR findings dropped from five to one (`spatial_ref_sys`); WARN findings remain.
+Production smoke passed home/canonical and app-shell checks, then stopped because
+`/no-such-page-smoke` returned HTTP 200 instead of 404. Full browser smoke did not pass.
+Direct local REST verification was unavailable because the Supabase hostname failed DNS resolution.
+
+## 39: harden function access (2026-10-25) — 운영 적용 완료
+
+Applied `sql/39_harden_function_access.sql` through Supabase MCP as
+`harden_function_access`. The two capacity RPCs now reject authenticated non-admins
+with SQLSTATE 42501, while ETL admins, service_role and direct database administrators
+retain access. Their result columns are unchanged. The three legacy write RPCs
+are executable only by service_role and database owners, not PUBLIC/anon/authenticated.
+Fixed search_path on 60 non-extension application functions to
+`pg_catalog, public, extensions, pg_temp`; verified anon/authenticated cannot CREATE
+in public or extensions before applying. No extension-owned functions were altered.
+
+Verification: rollback-only role tests checked non-admin denial on both capacity RPCs,
+an existing ETL admin's access to both, anon denial on all five RPCs, and authenticated
+denial on all three legacy writers. Service-role capacity queries succeeded. Anon reads
+of school_master, school_apartment_serving and apartment_transaction_monthly_serving
+still succeeded. School-name normalization, zero-distance PostGIS and contact-detection
+samples returned the same results before and after. Security Advisor no longer reports
+function_search_path_mutable (previously 60); its remaining ERROR is spatial_ref_sys.
+Other WARN findings remain, including executable definer functions (the advisor detects
+EXECUTE grants regardless of the new caller guard), GraphQL exposure and Auth settings.
+
+Production public smoke still stops at `/no-such-page-smoke` returning 200. The local
+release branch retains the catch-all rewrite to app.html; master already replaces it
+with explicit app routes. Resolving this requires a production release of the routing
+fix. No website release was performed as part of this database migration.
+
 ## 37: crawler daily counts (2026-10-24) — 사용자 실행 대기
 
 `api/detail.js` adds one to `crawler_daily_counts` for each crawler request it answers (bot family,
