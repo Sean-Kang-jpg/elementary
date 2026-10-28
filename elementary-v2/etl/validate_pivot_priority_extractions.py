@@ -27,6 +27,17 @@ def has_time(text: str, value: str) -> bool:
     return time_in(text, value)
 
 
+def attachment_is_2026(header_line: int, header: str, lines: dict[int, str], review: dict) -> bool:
+    """The input header carries the detected school year. When detection failed (None), a review may cite
+    the document's own title line, which must sit right under the header and say 2026학년도 (인덕원초
+    "2026학년도 방과후학교 운영 계획", 2026-10-29). A header naming another year is never overridden."""
+    if 'academic_year: 2026]' in header:
+        return True
+    title = review.get('attachment_year_titles', {}).get(str(header_line))
+    return ('academic_year: None]' in header and type(title) is int
+            and header_line < title <= header_line + 3 and '2026학년도' in lines.get(title, ''))
+
+
 def check_rows(rows: list, lines: dict[int, str], review: dict) -> tuple[list[str], list[dict]]:
     errors, warnings, seen = [], [], {}
     documented_lines = {line for issue in review.get('blocking_issues', []) for line in issue.get('lines', [])}
@@ -149,8 +160,8 @@ def check_rows(rows: list, lines: dict[int, str], review: dict) -> tuple[list[st
                 if line not in documented_lines:
                     errors.append(f'{prefix}: undocumented source duration conflict')
                 warnings.append({'row':index,'code':'documented_duration_conflict','line':line})
-        headers = [value for key,value in lines.items() if key <= line and value.startswith('[file: ')]
-        if not headers or 'academic_year: 2026]' not in headers[-1]:
+        headers = [(key,value) for key,value in lines.items() if key <= line and value.startswith('[file: ')]
+        if not headers or not attachment_is_2026(*headers[-1], lines, review):
             errors.append(f'{prefix}: cited attachment not identified as 2026')
         # Exclude only the source line from the semantic key: otherwise literal
         # repeated source rows would evade the duplicate check.

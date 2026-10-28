@@ -2,10 +2,10 @@
   "checked_on": "20261029",
   "summary": {
     "new_targets": 83,
-    "transcribed_schools": 31,
-    "pending_extraction": 52,
-    "rows": 902,
-    "afterschool_rows": 755,
+    "transcribed_schools": 32,
+    "pending_extraction": 51,
+    "rows": 936,
+    "afterschool_rows": 789,
     "custom_rows": 147,
     "schools_with_source_blockers": 21,
     "existing_p1_preserved": 44,
@@ -649,10 +649,10 @@
       "school_name": "인덕원초등학교",
       "area": "dongan",
       "course_track": "new_priority",
-      "status": "pending_extraction",
-      "rows": 0,
+      "status": "transcribed_pending_independent_review",
+      "rows": 34,
       "approved_for_upload": false,
-      "review_file": null
+      "review_file": "pivot_gyeonggi_priority_batch24_review_20261029.json"
     },
     {
       "school_id": "B000003859",

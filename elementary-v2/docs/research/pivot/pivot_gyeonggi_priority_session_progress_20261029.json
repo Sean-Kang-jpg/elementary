@@ -5,19 +5,19 @@
   "summary": {
     "targets": 83,
     "source_prepared": 83,
-    "extracted_schools": 31,
-    "pending_extraction": 52,
-    "course_rows": 902,
-    "slot_candidates": 297,
-    "remaining_source_evidence_indexed": 52,
+    "extracted_schools": 32,
+    "pending_extraction": 51,
+    "course_rows": 936,
+    "slot_candidates": 306,
+    "remaining_source_evidence_indexed": 51,
     "visual_slot_checks": 32,
-    "ok_candidates_after_visual": 11,
+    "ok_candidates_after_visual": 12,
     "schools_needing_checks": 20,
     "unresolved_check_items": 156,
     "independent_review_complete": 0,
     "current_term_verified": 0,
     "production_applied": 0,
-    "extraction_percent": 37.3
+    "extraction_percent": 38.6
   },
   "effective_slot_review": [
     {
@@ -271,6 +271,13 @@
           ]
         ]
       ]
+    },
+    {
+      "school_id": "B000003868",
+      "school_name": "인덕원초등학교",
+      "slots": 9,
+      "status": "ok",
+      "checks": []
     },
     {
       "school_id": "B000003869",
@@ -1739,17 +1746,6 @@
       "evidence_indexed": true
     },
     {
-      "school_id": "B000003868",
-      "school_name": "인덕원초등학교",
-      "area": "dongan",
-      "input": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000003868.txt",
-      "input_sha256": "17bf1ab4da4bd6a02f5960529b998903177e3f6bfbcaf84497062e7136c63415",
-      "evidence_index": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\remaining_evidence_index_20261025\\B000003868.json",
-      "evidence_windows": 0,
-      "status": "pending_full_source_extraction",
-      "evidence_indexed": true
-    },
-    {
       "school_id": "B000003836",
       "school_name": "해오름초등학교",
       "area": "dongan",
@@ -2196,5 +2192,5 @@
     "pivot_gyeonggi_priority_slots_current_20261029.json",
     "pivot_gyeonggi_priority_all_current_verification_20261029.json"
   ],
-  "next_action": "Continue remaining 52 whole-source extractions and unresolved slot checks. Evidence index is navigation only."
+  "next_action": "Continue remaining 51 whole-source extractions and unresolved slot checks. Evidence index is navigation only."
 }

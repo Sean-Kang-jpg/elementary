@@ -89,6 +89,16 @@ class PriorityEvidenceTests(unittest.TestCase):
         lines[1] = '[file: plan.hwpx; academic_year: 2026]'
         self.assertTrue(check_rows([self.row(start='12:50')],lines,{})[0])
 
+    def test_undetected_year_needs_a_2026_title_right_under_the_header(self):
+        lines = {1:'[file: plan.hwp; academic_year: None]', 2:'2026학년도 방과후학교 운영 계획 |',
+                 3:'미술 | 1학년 | 월 | 13:00~13:40 |'}
+        self.assertTrue(check_rows([self.row()],lines,{})[0])
+        self.assertFalse(check_rows([self.row()],lines,{'attachment_year_titles':{'1':2}})[0])
+        lines[2] = '2025학년도 방과후학교 운영 계획 |'
+        self.assertTrue(check_rows([self.row()],lines,{'attachment_year_titles':{'1':2}})[0])
+        lines[1], lines[2] = '[file: plan.hwp; academic_year: 2025]', '2026학년도 방과후학교 운영 계획 |'
+        self.assertTrue(check_rows([self.row()],lines,{'attachment_year_titles':{'1':2}})[0])
+
     def test_pdf_capacity_clock_join_requires_visual_evidence(self):
         lines={1:'[file: plan.pdf; academic_year: 2026]',3:'미술 | 1학년 | 월 | 251:45~2:25 |'}
         row=self.row(start='13:45'); row[8]='14:25'

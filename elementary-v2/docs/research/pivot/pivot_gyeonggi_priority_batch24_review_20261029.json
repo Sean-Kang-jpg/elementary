@@ -1,0 +1,64 @@
+{
+  "batch": "priority-batch24",
+  "checked_on": "2026-10-29",
+  "no_operational_upload": true,
+  "independent_review": false,
+  "schools": [
+    {
+      "school_id": "B000003868",
+      "school_name": "인덕원초등학교",
+      "input": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000003868.txt",
+      "input_sha256": "17bf1ab4da4bd6a02f5960529b998903177e3f6bfbcaf84497062e7136c63415",
+      "output": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\outputs\\B000003868.json",
+      "output_sha256": "704e714c35d5421482c112421f934383e19497137fbaeeb1039fbca71baf498b",
+      "review_method": "same-assistant whole-source read; not independent blind review",
+      "supplied_sources_read": true,
+      "rows": 34,
+      "grade1_rows": 21,
+      "custom_rows": 0,
+      "field_evidence": {},
+      "blocking_issues": [],
+      "additional_findings": [
+        {
+          "type": "attachment_year_from_title",
+          "lines": [
+            559,
+            560
+          ],
+          "reason": "머리글 academic_year None, 문서 제목이 2026학년도"
+        },
+        {
+          "type": "custom_absent_in_supplied_sources",
+          "reason": "맞춤형 시간표 첨부 없음"
+        },
+        {
+          "type": "care_hours_reported",
+          "lines": [
+            21,
+            22
+          ],
+          "reason": "돌봄 기린반 방과후~19:00, 토끼반 ~17:00. 돌봄 시간 필드"
+        }
+      ],
+      "exclusions": [
+        {
+          "lines": [
+            165,
+            178,
+            182,
+            207,
+            208,
+            209,
+            210
+          ],
+          "reason": "돌봄교실 특기적성 단체프로그램은 돌봄 일과"
+        }
+      ],
+      "production_apply_ready": false,
+      "approved_for_upload": false,
+      "attachment_year_titles": {
+        "559": 560
+      }
+    }
+  ]
+}
