@@ -49,6 +49,9 @@ def slot_kind(row: dict) -> str | None:
 
 
 BLOCK_GAP_MINUTES = 10
+# Only class-period blocks (40 minutes, 50 with a short activity) are joined. Two 60-minute classes of one
+# course back to back are two sections (광명광성초 큐브 13:00~14:00 and 14:10~15:10, 2026-10-29).
+BLOCK_MAX_MINUTES = 50
 # A 맞춤형 'window' longer than this is the 돌봄 room's whole programme span ("12:40~15:20 특기적성",
 # 백현초 B000003755, 2026-10-28), not a class a parent can plan around: it is dropped and the day is
 # a 맞춤형시각없음 check. Real 맞춤형 classes run 40~90 minutes, merged blocks included.
@@ -75,10 +78,12 @@ def merge_blocks(rows: Iterable[dict]) -> list[dict]:
         timed = HHMM.match(str(row.get('start') or '')) and HHMM.match(str(row.get('end') or ''))
         if (prev and timed and len(row.get('days') or '') == 1 and prev.get('_timed')
                 and all(prev.get(k) == row.get(k) for k in ('kind', 'name', 'section', 'variant', 'grades_raw', 'days', 'period', 'grade1'))
+                and prev['_block'] <= BLOCK_MAX_MINUTES and _minutes(row['end']) - _minutes(row['start']) <= BLOCK_MAX_MINUTES
                 and 0 <= _minutes(row['start']) - _minutes(prev['end']) <= BLOCK_GAP_MINUTES):
             prev['end'] = row['end']
             continue
-        out.append({**row, '_timed': bool(timed)})
+        out.append({**row, '_timed': bool(timed),
+                    '_block': _minutes(row['end']) - _minutes(row['start']) if timed else 0})
     return sorted(out, key=lambda r: r['_order'])   # keep the document's order for course names
 
 

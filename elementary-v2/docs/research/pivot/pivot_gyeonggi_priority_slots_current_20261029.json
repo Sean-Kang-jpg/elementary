@@ -3,22 +3,686 @@
   "standard_sha256": "b111d14fc829193154a332649efb9e8d29022fad541eb72e97fe67f14f910f06",
   "no_operational_upload": true,
   "summary": {
-    "schools": 23,
-    "course_rows": 660,
-    "slots": 225,
+    "schools": 25,
+    "course_rows": 726,
+    "slots": 246,
     "slot_kinds": {
-      "저학년방과후": 109,
-      "전학년방과후": 78,
+      "저학년방과후": 120,
+      "전학년방과후": 88,
       "맞춤형": 37,
       "학년미기재방과후": 1
     },
     "statuses": {
-      "check": 18,
-      "ok": 5
+      "check": 19,
+      "ok": 6
     }
   },
   "scope_limit": "Derived slot candidates, not independent validation or upload approval",
   "schools": [
+    {
+      "school_id": "B000003853",
+      "school_name": "안양중앙초등학교",
+      "rows": [
+        [
+          "맞춤형",
+          "동요교실",
+          null,
+          null,
+          "1학년",
+          "row",
+          "월",
+          null,
+          null,
+          "true",
+          "학기",
+          "2026 연간",
+          null,
+          241
+        ],
+        [
+          "맞춤형",
+          "놀이체육",
+          null,
+          null,
+          "1학년",
+          "row",
+          "화",
+          null,
+          null,
+          "true",
+          "학기",
+          "2026 연간",
+          null,
+          241
+        ],
+        [
+          "맞춤형",
+          "전래놀이",
+          null,
+          null,
+          "1학년",
+          "row",
+          "수",
+          null,
+          null,
+          "true",
+          "학기",
+          "2026 연간",
+          null,
+          241
+        ],
+        [
+          "맞춤형",
+          "창의미술",
+          null,
+          null,
+          "1학년",
+          "row",
+          "목",
+          null,
+          null,
+          "true",
+          "학기",
+          "2026 연간",
+          null,
+          241
+        ],
+        [
+          "맞춤형",
+          "융합음악",
+          null,
+          null,
+          "1학년",
+          "row",
+          "금",
+          null,
+          null,
+          "true",
+          "학기",
+          "2026 연간",
+          null,
+          241
+        ],
+        [
+          "맞춤형",
+          "융합음악",
+          null,
+          null,
+          "1학년",
+          "row",
+          "월",
+          null,
+          null,
+          "true",
+          "학기",
+          "2026 연간",
+          null,
+          242
+        ],
+        [
+          "맞춤형",
+          "전래놀이",
+          null,
+          null,
+          "1학년",
+          "row",
+          "화",
+          null,
+          null,
+          "true",
+          "학기",
+          "2026 연간",
+          null,
+          242
+        ],
+        [
+          "맞춤형",
+          "놀이체육",
+          null,
+          null,
+          "1학년",
+          "row",
+          "수",
+          null,
+          null,
+          "true",
+          "학기",
+          "2026 연간",
+          null,
+          242
+        ],
+        [
+          "맞춤형",
+          "동요교실",
+          null,
+          null,
+          "1학년",
+          "row",
+          "목",
+          null,
+          null,
+          "true",
+          "학기",
+          "2026 연간",
+          null,
+          242
+        ],
+        [
+          "맞춤형",
+          "창의미술",
+          null,
+          null,
+          "1학년",
+          "row",
+          "금",
+          null,
+          null,
+          "true",
+          "학기",
+          "2026 연간",
+          null,
+          242
+        ],
+        [
+          "맞춤형",
+          "전래놀이",
+          null,
+          null,
+          "2학년",
+          "row",
+          "월",
+          null,
+          null,
+          "false",
+          "학기",
+          "2026 연간",
+          null,
+          243
+        ],
+        [
+          "맞춤형",
+          "사고력교실",
+          null,
+          null,
+          "2학년",
+          "row",
+          "화",
+          null,
+          null,
+          "false",
+          "학기",
+          "2026 연간",
+          null,
+          243
+        ],
+        [
+          "맞춤형",
+          "창의독서",
+          null,
+          null,
+          "2학년",
+          "row",
+          "수",
+          null,
+          null,
+          "false",
+          "학기",
+          "2026 연간",
+          null,
+          243
+        ],
+        [
+          "맞춤형",
+          "함께 만드는 소리여행",
+          null,
+          null,
+          "2학년",
+          "row",
+          "목",
+          null,
+          null,
+          "false",
+          "학기",
+          "2026 연간",
+          null,
+          243
+        ],
+        [
+          "맞춤형",
+          "쑥쑥! 예술로 자라는 마음",
+          null,
+          null,
+          "2학년",
+          "row",
+          "금",
+          null,
+          null,
+          "false",
+          "학기",
+          "2026 연간",
+          null,
+          243
+        ],
+        [
+          "방과후",
+          "요리",
+          null,
+          null,
+          "1~6학년",
+          "school",
+          null,
+          null,
+          null,
+          "true",
+          "학기",
+          "2026 연간",
+          null,
+          279
+        ],
+        [
+          "방과후",
+          "영어",
+          null,
+          null,
+          "1~6학년",
+          "school",
+          null,
+          null,
+          null,
+          "true",
+          "학기",
+          "2026 연간",
+          null,
+          280
+        ],
+        [
+          "방과후",
+          "생명과학",
+          null,
+          null,
+          "1~6학년",
+          "school",
+          null,
+          null,
+          null,
+          "true",
+          "학기",
+          "2026 연간",
+          null,
+          281
+        ],
+        [
+          "방과후",
+          "주산암산",
+          null,
+          null,
+          "1~6학년",
+          "school",
+          null,
+          null,
+          null,
+          "true",
+          "학기",
+          "2026 연간",
+          null,
+          282
+        ],
+        [
+          "방과후",
+          "그리기",
+          null,
+          null,
+          "1~6학년",
+          "school",
+          null,
+          null,
+          null,
+          "true",
+          "학기",
+          "2026 연간",
+          null,
+          283
+        ],
+        [
+          "방과후",
+          "코딩",
+          null,
+          null,
+          "1~6학년",
+          "school",
+          null,
+          null,
+          null,
+          "true",
+          "학기",
+          "2026 연간",
+          null,
+          284
+        ],
+        [
+          "방과후",
+          "큐브",
+          null,
+          null,
+          "1~6학년",
+          "school",
+          null,
+          null,
+          null,
+          "true",
+          "학기",
+          "2026 연간",
+          null,
+          285
+        ],
+        [
+          "방과후",
+          "이야기한국사",
+          null,
+          null,
+          "1~6학년",
+          "school",
+          null,
+          null,
+          null,
+          "true",
+          "학기",
+          "2026 연간",
+          null,
+          286
+        ],
+        [
+          "방과후",
+          "컴퓨터일반",
+          null,
+          null,
+          "1~6학년",
+          "school",
+          null,
+          null,
+          null,
+          "true",
+          "학기",
+          "2026 연간",
+          null,
+          287
+        ],
+        [
+          "방과후",
+          "바이올린",
+          null,
+          null,
+          "1~6학년",
+          "school",
+          null,
+          null,
+          null,
+          "true",
+          "학기",
+          "2026 연간",
+          null,
+          288
+        ],
+        [
+          "방과후",
+          "바둑",
+          null,
+          null,
+          "1~6학년",
+          "school",
+          null,
+          null,
+          null,
+          "true",
+          "학기",
+          "2026 연간",
+          null,
+          289
+        ],
+        [
+          "방과후",
+          "배드민턴",
+          null,
+          null,
+          "1~6학년",
+          "school",
+          null,
+          null,
+          null,
+          "true",
+          "학기",
+          "2026 연간",
+          null,
+          290
+        ],
+        [
+          "방과후",
+          "생활체육",
+          null,
+          null,
+          "1~6학년",
+          "school",
+          null,
+          null,
+          null,
+          "true",
+          "학기",
+          "2026 연간",
+          null,
+          291
+        ],
+        [
+          "방과후",
+          "토탈공예",
+          null,
+          null,
+          "1~6학년",
+          "school",
+          null,
+          null,
+          null,
+          "true",
+          "학기",
+          "2026 연간",
+          null,
+          292
+        ]
+      ],
+      "conflicts": [],
+      "period_slots": {},
+      "slots": [],
+      "checks": [
+        [
+          "맞춤형시각없음",
+          "월",
+          null
+        ],
+        [
+          "맞춤형시각없음",
+          "화",
+          null
+        ],
+        [
+          "맞춤형시각없음",
+          "수",
+          null
+        ],
+        [
+          "맞춤형시각없음",
+          "목",
+          null
+        ],
+        [
+          "맞춤형시각없음",
+          "금",
+          null
+        ],
+        [
+          "방과후시각미확인",
+          null,
+          [
+            "요리",
+            null,
+            "L279"
+          ]
+        ],
+        [
+          "방과후시각미확인",
+          null,
+          [
+            "영어",
+            null,
+            "L280"
+          ]
+        ],
+        [
+          "방과후시각미확인",
+          null,
+          [
+            "생명과학",
+            null,
+            "L281"
+          ]
+        ],
+        [
+          "방과후시각미확인",
+          null,
+          [
+            "주산암산",
+            null,
+            "L282"
+          ]
+        ],
+        [
+          "방과후시각미확인",
+          null,
+          [
+            "그리기",
+            null,
+            "L283"
+          ]
+        ],
+        [
+          "방과후시각미확인",
+          null,
+          [
+            "코딩",
+            null,
+            "L284"
+          ]
+        ],
+        [
+          "방과후시각미확인",
+          null,
+          [
+            "큐브",
+            null,
+            "L285"
+          ]
+        ],
+        [
+          "방과후시각미확인",
+          null,
+          [
+            "이야기한국사",
+            null,
+            "L286"
+          ]
+        ],
+        [
+          "방과후시각미확인",
+          null,
+          [
+            "컴퓨터일반",
+            null,
+            "L287"
+          ]
+        ],
+        [
+          "방과후시각미확인",
+          null,
+          [
+            "바이올린",
+            null,
+            "L288"
+          ]
+        ],
+        [
+          "방과후시각미확인",
+          null,
+          [
+            "바둑",
+            null,
+            "L289"
+          ]
+        ],
+        [
+          "방과후시각미확인",
+          null,
+          [
+            "배드민턴",
+            null,
+            "L290"
+          ]
+        ],
+        [
+          "방과후시각미확인",
+          null,
+          [
+            "생활체육",
+            null,
+            "L291"
+          ]
+        ],
+        [
+          "방과후시각미확인",
+          null,
+          [
+            "토탈공예",
+            null,
+            "L292"
+          ]
+        ]
+      ],
+      "status": "check",
+      "reference_findings": [
+        {
+          "code": "missing_custom_times",
+          "lines": [
+            241,
+            242,
+            243
+          ],
+          "reason": "맞춤형 요일별 강좌는 있으나 시작·종료 시각 미공시. 학교 시정 확인 필요"
+        },
+        {
+          "code": "missing_class_schedule",
+          "lines": [
+            279,
+            280,
+            281,
+            282,
+            283,
+            284,
+            285,
+            286,
+            287,
+            288,
+            289,
+            290,
+            291,
+            292
+          ],
+          "reason": "선택형 부서 요일·시각 미공시(L293 \"시정을 고려하여 편성\")"
+        }
+      ],
+      "source_pdf_only": false,
+      "independent_review_complete": false,
+      "approved_for_upload": false,
+      "production_apply_ready": false,
+      "input_sha256": "8ca623ffe96620225bcf4ce104202fa7a59e778601667cb997a90d3cf478c642",
+      "output_sha256": "9ff7b89cd57e5eec3308360c838e1039132814754ed547fe2c6485d5948d27d5"
+    },
     {
       "school_id": "B000003856",
       "school_name": "나눔초등학교",
@@ -12524,14 +13188,35 @@
           "kind": "저학년방과후",
           "weekday": "월",
           "start": "13:40",
+          "end": "15:00",
+          "courses": [
+            "음악줄넘기 (음줄)"
+          ],
+          "place": null,
+          "time_source": "plan",
+          "source_rows": [
+            1
+          ],
+          "source_lines": [
+            57
+          ]
+        },
+        {
+          "kind": "저학년방과후",
+          "weekday": "월",
+          "start": "15:05",
           "end": "16:25",
           "courses": [
             "음악줄넘기 (음줄)"
           ],
           "place": null,
           "time_source": "plan",
-          "source_rows": [],
-          "source_lines": []
+          "source_rows": [
+            2
+          ],
+          "source_lines": [
+            58
+          ]
         },
         {
           "kind": "저학년방과후",
@@ -12554,14 +13239,37 @@
           "kind": "저학년방과후",
           "weekday": "수",
           "start": "13:40",
+          "end": "14:20",
+          "courses": [
+            "생활체육"
+          ],
+          "place": null,
+          "time_source": "plan",
+          "source_rows": [
+            7,
+            8
+          ],
+          "source_lines": [
+            63,
+            64
+          ]
+        },
+        {
+          "kind": "저학년방과후",
+          "weekday": "수",
+          "start": "14:25",
           "end": "15:45",
           "courses": [
             "생활체육"
           ],
           "place": null,
           "time_source": "plan",
-          "source_rows": [],
-          "source_lines": []
+          "source_rows": [
+            9
+          ],
+          "source_lines": [
+            65
+          ]
         },
         {
           "kind": "저학년방과후",
@@ -15929,6 +16637,970 @@
       "production_apply_ready": false,
       "input_sha256": "631053a2b317139d0e12c3013d34b6b595a25e81678647bb43affdc636cd1566",
       "output_sha256": "5654854b895d152839fe54e732cbc7198e3b7373362151619bf28b5ded2de9e2"
+    },
+    {
+      "school_id": "B000004276",
+      "school_name": "광명광성초등학교",
+      "rows": [
+        [
+          "방과후",
+          "로봇과학",
+          null,
+          null,
+          "1~3학년",
+          "row",
+          "월",
+          "13:50",
+          "15:10",
+          "true",
+          "학기",
+          "2026 연간",
+          null,
+          203
+        ],
+        [
+          "방과후",
+          "로봇과학",
+          null,
+          null,
+          "1~6학년",
+          "row",
+          "월",
+          "15:20",
+          "16:40",
+          "true",
+          "학기",
+          "2026 연간",
+          null,
+          203
+        ],
+        [
+          "방과후",
+          "독서논술",
+          null,
+          null,
+          "1~3학년",
+          "row",
+          "화",
+          "13:50",
+          "15:10",
+          "true",
+          "학기",
+          "2026 연간",
+          null,
+          203
+        ],
+        [
+          "방과후",
+          "독서논술",
+          null,
+          null,
+          "1~6학년",
+          "row",
+          "화",
+          "15:20",
+          "16:40",
+          "true",
+          "학기",
+          "2026 연간",
+          null,
+          203
+        ],
+        [
+          "방과후",
+          "바이올린",
+          null,
+          null,
+          "1~6학년",
+          "row",
+          "수",
+          "13:00",
+          "14:20",
+          "true",
+          "학기",
+          "2026 연간",
+          null,
+          203
+        ],
+        [
+          "방과후",
+          "바이올린",
+          null,
+          null,
+          "1~6학년",
+          "row",
+          "수",
+          "14:40",
+          "16:00",
+          "true",
+          "학기",
+          "2026 연간",
+          null,
+          203
+        ],
+        [
+          "방과후",
+          "과학실험",
+          null,
+          null,
+          "1~3학년",
+          "row",
+          "목",
+          "13:50",
+          "15:10",
+          "true",
+          "학기",
+          "2026 연간",
+          null,
+          203
+        ],
+        [
+          "방과후",
+          "과학실험",
+          null,
+          null,
+          "1~6학년",
+          "row",
+          "목",
+          "15:20",
+          "16:40",
+          "true",
+          "학기",
+          "2026 연간",
+          null,
+          203
+        ],
+        [
+          "방과후",
+          "창의보드게임",
+          null,
+          null,
+          "1~3학년",
+          "row",
+          "월",
+          "13:50",
+          "15:10",
+          "true",
+          "학기",
+          "2026 연간",
+          null,
+          204
+        ],
+        [
+          "방과후",
+          "창의보드게임",
+          null,
+          null,
+          "1~6학년",
+          "row",
+          "월",
+          "15:20",
+          "16:40",
+          "true",
+          "학기",
+          "2026 연간",
+          null,
+          204
+        ],
+        [
+          "방과후",
+          "음악줄넘기",
+          null,
+          null,
+          "1~3학년",
+          "row",
+          "화",
+          "13:50",
+          "14:50",
+          "true",
+          "학기",
+          "2026 연간",
+          null,
+          204
+        ],
+        [
+          "방과후",
+          "음악줄넘기",
+          null,
+          null,
+          "1~6학년",
+          "row",
+          "화",
+          "15:00",
+          "16:00",
+          "true",
+          "학기",
+          "2026 연간",
+          null,
+          204
+        ],
+        [
+          "방과후",
+          "쿠킹클레이&종이접기",
+          null,
+          null,
+          "1~3학년",
+          "row",
+          "수",
+          "13:00",
+          "14:20",
+          "true",
+          "학기",
+          "2026 연간",
+          null,
+          204
+        ],
+        [
+          "방과후",
+          "쿠킹클레이&종이접기",
+          null,
+          null,
+          "1~6학년",
+          "row",
+          "수",
+          "14:40",
+          "16:00",
+          "true",
+          "학기",
+          "2026 연간",
+          null,
+          204
+        ],
+        [
+          "방과후",
+          "스피치",
+          null,
+          null,
+          "1~3학년",
+          "row",
+          "목",
+          "13:50",
+          "15:10",
+          "true",
+          "학기",
+          "2026 연간",
+          null,
+          204
+        ],
+        [
+          "방과후",
+          "스피치",
+          null,
+          null,
+          "1~6학년",
+          "row",
+          "목",
+          "15:20",
+          "16:40",
+          "true",
+          "학기",
+          "2026 연간",
+          null,
+          204
+        ],
+        [
+          "방과후",
+          "농구",
+          null,
+          null,
+          "3~6학년",
+          "row",
+          "월",
+          "14:40",
+          "15:40",
+          "false",
+          "학기",
+          "2026 연간",
+          null,
+          205
+        ],
+        [
+          "방과후",
+          "농구",
+          null,
+          null,
+          "3~6학년",
+          "row",
+          "월",
+          "15:50",
+          "16:50",
+          "false",
+          "학기",
+          "2026 연간",
+          null,
+          205
+        ],
+        [
+          "방과후",
+          "컴퓨터",
+          null,
+          null,
+          "1~3학년",
+          "row",
+          "화",
+          "13:50",
+          "14:40",
+          "true",
+          "학기",
+          "2026 연간",
+          null,
+          205
+        ],
+        [
+          "방과후",
+          "컴퓨터",
+          null,
+          null,
+          "3~6학년",
+          "row",
+          "화",
+          "14:50",
+          "15:40",
+          "false",
+          "학기",
+          "2026 연간",
+          null,
+          205
+        ],
+        [
+          "방과후",
+          "컴퓨터",
+          null,
+          null,
+          "3~6학년",
+          "row",
+          "화",
+          "15:50",
+          "16:40",
+          "false",
+          "학기",
+          "2026 연간",
+          null,
+          205
+        ],
+        [
+          "방과후",
+          "축구",
+          null,
+          null,
+          "1~3학년",
+          "row",
+          "수",
+          "13:00",
+          "14:20",
+          "true",
+          "학기",
+          "2026 연간",
+          null,
+          205
+        ],
+        [
+          "방과후",
+          "축구",
+          null,
+          null,
+          "3~6학년",
+          "row",
+          "수",
+          "14:40",
+          "16:00",
+          "false",
+          "학기",
+          "2026 연간",
+          null,
+          205
+        ],
+        [
+          "방과후",
+          "컴퓨터",
+          null,
+          null,
+          "1~3학년",
+          "row",
+          "목",
+          "13:50",
+          "14:40",
+          "true",
+          "학기",
+          "2026 연간",
+          null,
+          205
+        ],
+        [
+          "방과후",
+          "컴퓨터",
+          null,
+          null,
+          "3~6학년",
+          "row",
+          "목",
+          "14:50",
+          "15:40",
+          "false",
+          "학기",
+          "2026 연간",
+          null,
+          205
+        ],
+        [
+          "방과후",
+          "컴퓨터",
+          null,
+          null,
+          "3~6학년",
+          "row",
+          "목",
+          "15:50",
+          "16:40",
+          "false",
+          "학기",
+          "2026 연간",
+          null,
+          205
+        ],
+        [
+          "방과후",
+          "티볼",
+          null,
+          null,
+          "3~6학년",
+          "row",
+          "화",
+          "14:40",
+          "16:00",
+          "false",
+          "학기",
+          "2026 연간",
+          null,
+          206
+        ],
+        [
+          "방과후",
+          "큐브",
+          null,
+          null,
+          "1~6학년",
+          "row",
+          "수",
+          "13:00",
+          "14:00",
+          "true",
+          "학기",
+          "2026 연간",
+          null,
+          206
+        ],
+        [
+          "방과후",
+          "큐브",
+          null,
+          null,
+          "1~6학년",
+          "row",
+          "수",
+          "14:10",
+          "15:10",
+          "true",
+          "학기",
+          "2026 연간",
+          null,
+          206
+        ],
+        [
+          "방과후",
+          "K-POP댄스",
+          null,
+          null,
+          "1~3학년",
+          "row",
+          "목",
+          "13:50",
+          "14:50",
+          "true",
+          "학기",
+          "2026 연간",
+          null,
+          206
+        ],
+        [
+          "방과후",
+          "K-POP댄스",
+          null,
+          null,
+          "1~6학년",
+          "row",
+          "목",
+          "15:00",
+          "16:00",
+          "true",
+          "학기",
+          "2026 연간",
+          null,
+          206
+        ],
+        [
+          "방과후",
+          "한자랑놀이랑",
+          null,
+          null,
+          "1~3학년",
+          "row",
+          "금",
+          "13:00",
+          "14:20",
+          "true",
+          "학기",
+          "2026 2학기",
+          null,
+          209
+        ],
+        [
+          "방과후",
+          "한자랑놀이랑",
+          null,
+          null,
+          "1~6학년",
+          "row",
+          "금",
+          "14:40",
+          "16:00",
+          "true",
+          "학기",
+          "2026 2학기",
+          null,
+          209
+        ],
+        [
+          "방과후",
+          "주산암산",
+          null,
+          null,
+          "1~3학년",
+          "row",
+          "금",
+          "13:00",
+          "14:20",
+          "true",
+          "학기",
+          "2026 2학기",
+          null,
+          210
+        ],
+        [
+          "방과후",
+          "주산암산",
+          null,
+          null,
+          "1~6학년",
+          "row",
+          "금",
+          "14:40",
+          "16:00",
+          "true",
+          "학기",
+          "2026 2학기",
+          null,
+          210
+        ],
+        [
+          "방과후",
+          "창의미술",
+          null,
+          null,
+          "1~3학년",
+          "row",
+          "금",
+          "13:00",
+          "14:20",
+          "true",
+          "학기",
+          "2026 2학기",
+          null,
+          211
+        ],
+        [
+          "방과후",
+          "창의미술",
+          null,
+          null,
+          "1~6학년",
+          "row",
+          "금",
+          "14:40",
+          "16:00",
+          "true",
+          "학기",
+          "2026 2학기",
+          null,
+          211
+        ]
+      ],
+      "conflicts": [],
+      "period_slots": {},
+      "slots": [
+        {
+          "kind": "저학년방과후",
+          "weekday": "월",
+          "start": "13:50",
+          "end": "15:10",
+          "courses": [
+            "로봇과학",
+            "창의보드게임"
+          ],
+          "place": null,
+          "time_source": "plan",
+          "source_rows": [
+            1,
+            9
+          ],
+          "source_lines": [
+            203,
+            204
+          ]
+        },
+        {
+          "kind": "전학년방과후",
+          "weekday": "월",
+          "start": "15:20",
+          "end": "16:40",
+          "courses": [
+            "로봇과학",
+            "창의보드게임"
+          ],
+          "place": null,
+          "time_source": "plan",
+          "source_rows": [
+            2,
+            10
+          ],
+          "source_lines": [
+            203,
+            204
+          ]
+        },
+        {
+          "kind": "저학년방과후",
+          "weekday": "화",
+          "start": "13:50",
+          "end": "15:10",
+          "courses": [
+            "독서논술"
+          ],
+          "place": null,
+          "time_source": "plan",
+          "source_rows": [
+            3
+          ],
+          "source_lines": [
+            203
+          ]
+        },
+        {
+          "kind": "저학년방과후",
+          "weekday": "화",
+          "start": "13:50",
+          "end": "14:50",
+          "courses": [
+            "음악줄넘기"
+          ],
+          "place": null,
+          "time_source": "plan",
+          "source_rows": [
+            11
+          ],
+          "source_lines": [
+            204
+          ]
+        },
+        {
+          "kind": "저학년방과후",
+          "weekday": "화",
+          "start": "13:50",
+          "end": "14:40",
+          "courses": [
+            "컴퓨터"
+          ],
+          "place": null,
+          "time_source": "plan",
+          "source_rows": [
+            19
+          ],
+          "source_lines": [
+            205
+          ]
+        },
+        {
+          "kind": "전학년방과후",
+          "weekday": "화",
+          "start": "15:00",
+          "end": "16:00",
+          "courses": [
+            "음악줄넘기"
+          ],
+          "place": null,
+          "time_source": "plan",
+          "source_rows": [
+            12
+          ],
+          "source_lines": [
+            204
+          ]
+        },
+        {
+          "kind": "전학년방과후",
+          "weekday": "화",
+          "start": "15:20",
+          "end": "16:40",
+          "courses": [
+            "독서논술"
+          ],
+          "place": null,
+          "time_source": "plan",
+          "source_rows": [
+            4
+          ],
+          "source_lines": [
+            203
+          ]
+        },
+        {
+          "kind": "저학년방과후",
+          "weekday": "수",
+          "start": "13:00",
+          "end": "14:20",
+          "courses": [
+            "쿠킹클레이&종이접기",
+            "축구"
+          ],
+          "place": null,
+          "time_source": "plan",
+          "source_rows": [
+            13,
+            22
+          ],
+          "source_lines": [
+            204,
+            205
+          ]
+        },
+        {
+          "kind": "전학년방과후",
+          "weekday": "수",
+          "start": "13:00",
+          "end": "14:20",
+          "courses": [
+            "바이올린"
+          ],
+          "place": null,
+          "time_source": "plan",
+          "source_rows": [
+            5
+          ],
+          "source_lines": [
+            203
+          ]
+        },
+        {
+          "kind": "전학년방과후",
+          "weekday": "수",
+          "start": "13:00",
+          "end": "14:00",
+          "courses": [
+            "큐브"
+          ],
+          "place": null,
+          "time_source": "plan",
+          "source_rows": [
+            28
+          ],
+          "source_lines": [
+            206
+          ]
+        },
+        {
+          "kind": "전학년방과후",
+          "weekday": "수",
+          "start": "14:10",
+          "end": "15:10",
+          "courses": [
+            "큐브"
+          ],
+          "place": null,
+          "time_source": "plan",
+          "source_rows": [
+            29
+          ],
+          "source_lines": [
+            206
+          ]
+        },
+        {
+          "kind": "전학년방과후",
+          "weekday": "수",
+          "start": "14:40",
+          "end": "16:00",
+          "courses": [
+            "바이올린",
+            "쿠킹클레이&종이접기"
+          ],
+          "place": null,
+          "time_source": "plan",
+          "source_rows": [
+            6,
+            14
+          ],
+          "source_lines": [
+            203,
+            204
+          ]
+        },
+        {
+          "kind": "저학년방과후",
+          "weekday": "목",
+          "start": "13:50",
+          "end": "15:10",
+          "courses": [
+            "과학실험",
+            "스피치"
+          ],
+          "place": null,
+          "time_source": "plan",
+          "source_rows": [
+            7,
+            15
+          ],
+          "source_lines": [
+            203,
+            204
+          ]
+        },
+        {
+          "kind": "저학년방과후",
+          "weekday": "목",
+          "start": "13:50",
+          "end": "14:40",
+          "courses": [
+            "컴퓨터"
+          ],
+          "place": null,
+          "time_source": "plan",
+          "source_rows": [
+            24
+          ],
+          "source_lines": [
+            205
+          ]
+        },
+        {
+          "kind": "저학년방과후",
+          "weekday": "목",
+          "start": "13:50",
+          "end": "14:50",
+          "courses": [
+            "K-POP댄스"
+          ],
+          "place": null,
+          "time_source": "plan",
+          "source_rows": [
+            30
+          ],
+          "source_lines": [
+            206
+          ]
+        },
+        {
+          "kind": "전학년방과후",
+          "weekday": "목",
+          "start": "15:00",
+          "end": "16:00",
+          "courses": [
+            "K-POP댄스"
+          ],
+          "place": null,
+          "time_source": "plan",
+          "source_rows": [
+            31
+          ],
+          "source_lines": [
+            206
+          ]
+        },
+        {
+          "kind": "전학년방과후",
+          "weekday": "목",
+          "start": "15:20",
+          "end": "16:40",
+          "courses": [
+            "과학실험",
+            "스피치"
+          ],
+          "place": null,
+          "time_source": "plan",
+          "source_rows": [
+            8,
+            16
+          ],
+          "source_lines": [
+            203,
+            204
+          ]
+        },
+        {
+          "kind": "저학년방과후",
+          "weekday": "금",
+          "start": "13:00",
+          "end": "14:20",
+          "courses": [
+            "한자랑놀이랑",
+            "주산암산",
+            "창의미술"
+          ],
+          "place": null,
+          "time_source": "plan",
+          "source_rows": [
+            32,
+            34,
+            36
+          ],
+          "source_lines": [
+            209,
+            210,
+            211
+          ]
+        },
+        {
+          "kind": "전학년방과후",
+          "weekday": "금",
+          "start": "14:40",
+          "end": "16:00",
+          "courses": [
+            "한자랑놀이랑",
+            "주산암산",
+            "창의미술"
+          ],
+          "place": null,
+          "time_source": "plan",
+          "source_rows": [
+            33,
+            35,
+            37
+          ],
+          "source_lines": [
+            209,
+            210,
+            211
+          ]
+        }
+      ],
+      "checks": [],
+      "status": "ok",
+      "reference_findings": [],
+      "source_pdf_only": false,
+      "independent_review_complete": false,
+      "approved_for_upload": false,
+      "production_apply_ready": false,
+      "input_sha256": "a1e70c3ce29a0e1e91ad76af37d955dbd3c0dc41c48a842f45afbefc5fd61c64",
+      "output_sha256": "3c091550440c30e58920f464bed4238d3b384d6b9e1e65331e19231a051ea749"
     },
     {
       "school_id": "B000004279",

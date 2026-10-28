@@ -52,6 +52,11 @@ class SchoolSlotsTest(unittest.TestCase):
         slots = school_slots([b, c])['slots']
         self.assertEqual([(s['start'], s['end']) for s in slots], [('13:40', '15:00'), ('15:10', '16:30')])
 
+    def test_back_to_back_full_classes_stay_separate(self):
+        cube = [row(name='큐브', section=None, grades_raw='1~6학년', days='수', start=a, end=b)
+                for a, b in (('13:00', '14:00'), ('14:10', '15:10'))]
+        self.assertEqual([(s['start'], s['end']) for s in school_slots(cube)['slots']], [('13:00', '14:00'), ('14:10', '15:10')])
+
     def test_a_care_room_span_is_not_a_custom_window(self):
         span = row(kind='맞춤형', name='특기적성', grades_raw=None, grade1='unknown', place='돌봄내', start='12:40', end='15:20')
         result = school_slots([span])

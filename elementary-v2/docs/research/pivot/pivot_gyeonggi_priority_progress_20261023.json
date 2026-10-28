@@ -2,12 +2,12 @@
   "checked_on": "20261029",
   "summary": {
     "new_targets": 83,
-    "transcribed_schools": 23,
-    "pending_extraction": 60,
-    "rows": 660,
-    "afterschool_rows": 573,
-    "custom_rows": 87,
-    "schools_with_source_blockers": 17,
+    "transcribed_schools": 25,
+    "pending_extraction": 58,
+    "rows": 726,
+    "afterschool_rows": 624,
+    "custom_rows": 102,
+    "schools_with_source_blockers": 18,
     "existing_p1_preserved": 44,
     "care_review_targets": 37,
     "no_operational_upload": true,
@@ -639,10 +639,10 @@
       "school_name": "안양중앙초등학교",
       "area": "dongan",
       "course_track": "new_priority",
-      "status": "pending_extraction",
-      "rows": 0,
+      "status": "source_conflicts_need_followup",
+      "rows": 29,
       "approved_for_upload": false,
-      "review_file": null
+      "review_file": "pivot_gyeonggi_priority_batch16_review_20261029.json"
     },
     {
       "school_id": "B000003868",
@@ -739,10 +739,10 @@
       "school_name": "광명광성초등학교",
       "area": "gwangmyeong",
       "course_track": "new_priority",
-      "status": "pending_extraction",
-      "rows": 0,
+      "status": "transcribed_pending_independent_review",
+      "rows": 37,
       "approved_for_upload": false,
-      "review_file": null
+      "review_file": "pivot_gyeonggi_priority_batch17_review_20261029.json"
     },
     {
       "school_id": "B000004270",
