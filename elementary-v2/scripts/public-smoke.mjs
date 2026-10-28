@@ -656,7 +656,7 @@ try {
   )
   run(['eval', "localStorage.removeItem('elementary-favorites-v1'); 'cleaned up'"])
   // 2026-10-21: four tabs. 홈 became the top-bar logo and MY its right-hand icon; 학습 준비 kept its
-  // address under 입학 준비. 앞마당 is the fourth tab only where VITE_FRONTYARD_ENABLED (or dev) is on.
+  // address under 입학 준비. 배움·돌봄 is the fourth tab only where VITE_FRONTYARD_ENABLED (or dev) is on.
   run(['open', new URL('/learn', baseUrl).toString()])
   await waitFor(
     "document.querySelector('#learn-title') && document.querySelector('.app-gnb__item--active')?.getAttribute('href') === '/guide'",
@@ -664,7 +664,7 @@ try {
   )
   assertPage(
     "['/map /guide /timetable', '/map /guide /timetable /frontyard'].includes([...document.querySelectorAll('.app-gnb__item')].map((item) => item.getAttribute('href')).join(' '))",
-    'the bottom navigation is 학교 찾기, 입학 준비, 시간표 (and 앞마당) in that order',
+    'the bottom navigation is 학교 찾기, 입학 준비, 시간표 (and 배움·돌봄) in that order',
   )
   assertPage(
     "document.querySelector('.app-topbar__home')?.getAttribute('href') === '/' && document.querySelector('.app-topbar__my')?.getAttribute('href') === '/my'",

@@ -2659,6 +2659,7 @@
 .frontyard-school strong { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .frontyard-school-pick { margin-top: 10px; }
 .frontyard-page .timetable-picks { margin-top: 10px; }
+.frontyard-page__eyebrow { margin: 8px 0 0; color: var(--warm-muted); font-size: 13px; font-weight: 700; }
 
 .frontyard-actions {
   display: grid;

@@ -13,7 +13,7 @@ const items = [
   { id: 'map', label: '학교 찾기', icon: Map },
   { id: 'guide', label: '입학 준비', icon: BookOpen },
   { id: 'timetable', label: '시간표', icon: CalendarClock },
-  ...(FRONTYARD_ENABLED ? [{ id: 'frontyard', label: '앞마당', icon: MessagesSquare }] as const : []),
+  ...(FRONTYARD_ENABLED ? [{ id: 'frontyard', label: '배움·돌봄', icon: MessagesSquare }] as const : []),
 ] as const
 
 export default function BottomNavigation({ activeView, onNavigate }: BottomNavigationProps) {

@@ -575,7 +575,7 @@ const TITLES: Record<AppView, string> = {
   checklist: `${checklistContent.title} | 어디초`,
   learn: '학습 준비 | 어디초',
   timetable: '초1 시간표 미리 짜보기 | 어디초',
-  frontyard: '학교앞마당 | 어디초',
+  frontyard: '우리 아이의 학교동네 | 어디초',
   area: '지역별 초등학교 배정 현황 | 어디초',
 }
 

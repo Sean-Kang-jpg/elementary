@@ -118,9 +118,9 @@ export default function FrontyardPage({ schoolId, onSchoolChange, onNavigate }: 
     return (
       <section className="app-destination app-page content-page frontyard-page" aria-labelledby="frontyard-title">
         <div className="content-page__inner">
-          <button type="button" className="frontyard-back" onClick={() => setAllNotices(false)}>← 학교앞마당으로</button>
+          <button type="button" className="frontyard-back" onClick={() => setAllNotices(false)}>← 배움·돌봄으로</button>
           <h1 id="frontyard-title">어디초 소식</h1>
-          <p className="content-page__lead">모든 학교 앞마당에 함께 보이는 학습 준비 글과 어디초 인스타그램 글이에요.</p>
+          <p className="content-page__lead">배움·돌봄에 함께 보이는 학습 준비 글과 어디초 인스타그램 글이에요.</p>
           <ul className="frontyard-list">
             {notices.map((post) => <li key={post.post_id}><PostCard post={post} schoolId={schoolId} onNavigate={onNavigate} /></li>)}
           </ul>
@@ -133,8 +133,9 @@ export default function FrontyardPage({ schoolId, onSchoolChange, onNavigate }: 
   return (
     <section className="app-destination app-page content-page frontyard-page" aria-labelledby="frontyard-title">
       <div className="content-page__inner">
-        <h1 id="frontyard-title">학교앞마당</h1>
-        <p className="content-page__lead">우리 학교 주변의 수업과 돌봄, 필요한 소식을 함께 나눠요.</p>
+        <p className="frontyard-page__eyebrow">우리 아이의 학교동네</p>
+        <h1 id="frontyard-title">필요한 수업과 돌봄을 찾아보세요</h1>
+        <p className="content-page__lead">우리 학교 주변 프로그램을 찾고, 원하는 활동이 없다면 직접 요청해 보세요.</p>
 
         <div className="frontyard-school">
           <MapPin size={18} aria-hidden="true" />

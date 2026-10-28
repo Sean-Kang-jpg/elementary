@@ -77,15 +77,15 @@ export default function ScheduleAddCard({ schoolId, entries, range, onAdd, onRem
 }
 
 /**
- * 빈 시간에서 학교앞마당으로(인수인계서 5절). 둘러보기는 그 요일·시간과 겹치는 글만 보이고,
+ * 빈 시간에서 배움·돌봄으로(인수인계서 5절). 둘러보기는 그 요일·시간과 겹치는 글만 보이고,
  * 알리기는 [찾아요] 쓰기를 같은 시간으로 채워 연다. 시간표는 건드리지 않는다.
  */
 function FrontyardLinks({ schoolId, range, onNavigate }: { schoolId: string; range: CalendarRange; onNavigate: (path: string) => void }) {
   const slot = { weekday: range.weekday, start: formatMinutes(range.start), end: formatMinutes(range.end) }
   const browse = frontyardPath(schoolId, slot)
   const ask = frontyardPath(schoolId, slot, { write: true })
-  return <div className="my-add-card__frontyard" aria-label="학교앞마당에서 찾기">
-    <p className="my-help">이 시간에 맞는 수업·돌봄을 학교앞마당에서 찾거나 알릴 수 있어요.</p>
+  return <div className="my-add-card__frontyard" aria-label="배움·돌봄에서 찾기">
+    <p className="my-help">이 시간에 맞는 수업·돌봄을 배움·돌봄에서 찾거나 알릴 수 있어요.</p>
     <a className="my-button" href={browse} onClick={(event) => followLink(event, browse, onNavigate)}>주변 활동 둘러보기</a>
     <a className="my-button" href={ask} onClick={(event) => followLink(event, ask, onNavigate)}>원하는 활동 알리기</a>
   </div>
