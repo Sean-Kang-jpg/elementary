@@ -2,11 +2,11 @@
   "checked_on": "20261029",
   "summary": {
     "new_targets": 83,
-    "transcribed_schools": 39,
-    "pending_extraction": 44,
-    "rows": 1243,
-    "afterschool_rows": 1005,
-    "custom_rows": 238,
+    "transcribed_schools": 40,
+    "pending_extraction": 43,
+    "rows": 1293,
+    "afterschool_rows": 1037,
+    "custom_rows": 256,
     "schools_with_source_blockers": 27,
     "existing_p1_preserved": 44,
     "care_review_targets": 37,
@@ -779,10 +779,10 @@
       "school_name": "광명서초등학교",
       "area": "gwangmyeong",
       "course_track": "new_priority",
-      "status": "pending_extraction",
-      "rows": 0,
+      "status": "transcribed_pending_independent_review",
+      "rows": 50,
       "approved_for_upload": false,
-      "review_file": null
+      "review_file": "pivot_gyeonggi_priority_batch32_review_20261029.json"
     },
     {
       "school_id": "B000004268",
