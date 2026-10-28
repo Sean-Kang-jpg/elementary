@@ -6,15 +6,14 @@ import { timetablePath } from '../../utils/urlState'
 import { followLink } from '../content/contentLinks'
 
 /**
- * MY의 시간표 칸 (2026-10-19). 짜는 일은 `/timetable`이 하고, 여기서는 이 기기에 있는 초안과
- * 어느 것이 내 시간표인지만 보여 주고 그 화면으로 보낸다. 두 화면이 같은 편집기를 갖지 않게 했다.
+ * MY의 시간표 칸 (2026-10-19). 짜는 일은 `/timetable`이 하고, 여기서는 이 기기에 있는 학교별 초안만
+ * 보여 주고 그 화면으로 보낸다. 두 화면이 같은 편집기를 갖지 않게 했다.
  */
 export default function MyTimetableSummary({ onNavigate }: { onNavigate: (path: string) => void }) {
   const [store, setStore] = useState(readPlans)
   useEffect(() => subscribePlans(() => setStore(readPlans())), [])
-  // 내 시간표를 맨 위에, 나머지는 최근에 고친 순서로.
-  const plans = [...store.plans].sort((a, b) =>
-    Number(b.schoolId === store.activeSchoolId) - Number(a.schoolId === store.activeSchoolId) || b.updatedAt.localeCompare(a.updatedAt))
+  // 최근에 고친 순서로.
+  const plans = [...store.plans].sort((a, b) => b.updatedAt.localeCompare(a.updatedAt))
 
   return (
     <section className="my-timetable-summary my-card" aria-labelledby="my-timetable-title">

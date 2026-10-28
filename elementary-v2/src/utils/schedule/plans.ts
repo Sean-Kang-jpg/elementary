@@ -9,12 +9,13 @@ export interface SchoolPlan {
   updatedAt: string
   entries: ScheduleEntry[]
 }
+// 2026-10-27까지는 학교 하나를 '내 시간표'로 고르는 activeSchoolId가 있었다. 저장소에 남아 있어도 읽지 않고,
+// 다음 저장 때 빠진다. 지금은 내 학교마다 시간표가 하나씩이다.
 export interface PlanStore {
   version: 1
-  activeSchoolId: string | null
   plans: SchoolPlan[]
 }
-export const emptyPlans = (): PlanStore => ({ version: 1, activeSchoolId: null, plans: [] })
+export const emptyPlans = (): PlanStore => ({ version: 1, plans: [] })
 const time = (value: unknown) => value === null || (Number.isInteger(value) && Number(value) >= 0 && Number(value) < 1440)
 const validEntry = (value: unknown): value is ScheduleEntry => {
   if (!value || typeof value !== 'object') return false
@@ -40,20 +41,14 @@ export const readPlans = (): PlanStore => {
     const plans = value.plans.filter((p) => p && typeof p.schoolId === 'string' && typeof p.schoolName === 'string'
       && (p.entryYear === null || Number.isInteger(p.entryYear)) && typeof p.updatedAt === 'string'
       && Array.isArray(p.entries) && p.entries.every(validEntry))
-    return { version: 1, plans, activeSchoolId: plans.some((p) => p.schoolId === value.activeSchoolId) ? value.activeSchoolId : null }
+    return { version: 1, plans }
   } catch { return emptyPlans() }
 }
 export const upsertPlan = (store: PlanStore, plan: SchoolPlan): PlanStore => ({
   ...store, plans: [plan, ...store.plans.filter((p) => p.schoolId !== plan.schoolId)],
 })
-/** Only selects a draft. Does not change enrollment or participation. */
-export const selectPlan = (store: PlanStore, schoolId: string | null): PlanStore => {
-  if (schoolId !== null && !store.plans.some((p) => p.schoolId === schoolId)) throw new Error('시간표 초안을 먼저 만들어 주세요.')
-  return { ...store, activeSchoolId: schoolId }
-}
 export const deletePlan = (store: PlanStore, schoolId: string): PlanStore => ({
   ...store, plans: store.plans.filter((p) => p.schoolId !== schoolId),
-  activeSchoolId: store.activeSchoolId === schoolId ? null : store.activeSchoolId,
 })
 export const writePlans = (store: PlanStore) => {
   // Notify only after a successful write; quota/privacy failures must not appear saved.

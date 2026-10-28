@@ -22,7 +22,7 @@ interface AcademyTimetableFormProps {
  */
 export default function AcademyTimetableForm({ label, providerKey, onNavigate, onDone }: AcademyTimetableFormProps) {
   const [store] = useState(readPlans)
-  const [schoolId, setSchoolId] = useState(store.activeSchoolId ?? store.plans[0]?.schoolId ?? '')
+  const [schoolId, setSchoolId] = useState(store.plans[0]?.schoolId ?? '')
   const [days, setDays] = useState<number[]>([])
   const [start, setStart] = useState('15:00')
   const [end, setEnd] = useState('16:00')

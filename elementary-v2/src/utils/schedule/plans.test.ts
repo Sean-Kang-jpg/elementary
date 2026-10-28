@@ -1,6 +1,6 @@
 import { beforeEach, describe, it } from 'node:test'
 import assert from 'node:assert/strict'
-import { deletePlan, emptyPlans, readPlans, selectPlan, upsertPlan, writePlans, type SchoolPlan } from './plans.ts'
+import { deletePlan, emptyPlans, readPlans, upsertPlan, writePlans, type SchoolPlan } from './plans.ts'
 import { isFavorite, readFavorites, refreshFavorite, removeFavorite, saveFavorite, toggleFavorite, type FavoriteRecord } from '../favorites.ts'
 
 const values = new Map<string, string>()
@@ -46,21 +46,14 @@ describe('MY candidate and timetable persistence', () => {
     toggleFavorite(apartment)
     assert.equal(readFavorites().length, 0)
   })
-  it('selects one plan without deleting drafts or confirming enrollment', () => {
-    const store = upsertPlan(upsertPlan(emptyPlans(), plan('a')), plan('b'))
-    const selected = selectPlan(selectPlan(store, 'a'), 'b')
-    assert.equal(selected.activeSchoolId, 'b')
-    assert.equal(selected.plans.length, 2)
-    assert.equal(selected.plans[0].entries[0].participation, 'considering')
-    assert.equal(store.activeSchoolId, null)
-    assert.equal(selectPlan(selected, null).plans.length, 2)
-    assert.throws(() => selectPlan(store, 'missing'))
+  it('drops the retired active-plan field from older storage and keeps every draft', () => {
+    values.set('elementary-schedule-plans-v1', JSON.stringify({ version: 1, activeSchoolId: 'b', plans: [plan('a'), plan('b')] }))
+    assert.deepEqual(readPlans(), { version: 1, plans: [plan('a'), plan('b')] })
   })
   it('removing a school deletes its timetable and keeps other schools', () => {
     saveFavorite(favorite('a'))
-    writePlans(selectPlan(upsertPlan(emptyPlans(), plan('a')), 'a'))
+    writePlans(upsertPlan(emptyPlans(), plan('a')))
     removeFavorite(favorite('a'))
-    assert.equal(readPlans().activeSchoolId, null)
     assert.equal(readPlans().plans.length, 0)
   })
   it('cancelled removal preserves both school and timetable', () => {
@@ -72,10 +65,9 @@ describe('MY candidate and timetable persistence', () => {
     assert.equal(readPlans().plans.length, 1)
     window.confirm = () => true
   })
-  it('deleting the active draft clears only its selection', () => {
-    const store = selectPlan(upsertPlan(upsertPlan(emptyPlans(), plan('a')), plan('b')), 'a')
-    assert.equal(deletePlan(store, 'a').activeSchoolId, null)
-    assert.equal(deletePlan(store, 'a').plans[0].schoolId, 'b')
+  it('deleting a draft keeps the other schools', () => {
+    const store = upsertPlan(upsertPlan(emptyPlans(), plan('a')), plan('b'))
+    assert.deepEqual(deletePlan(store, 'a').plans.map((p) => p.schoolId), ['b'])
   })
   it('rejects corrupt, unsupported and invalid weekday storage without guessing', () => {
     for (const raw of ['{', '{"version":2,"plans":[]}', JSON.stringify({ version: 1, activeSchoolId: 'a', plans: [{ ...plan('a'), entries: [{ ...plan('a').entries[0], weekdays: [7] }] }] })]) {
