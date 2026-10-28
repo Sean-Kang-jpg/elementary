@@ -1,0 +1,195 @@
+{
+  "batch": "priority-batch29",
+  "checked_on": "2026-10-29",
+  "no_operational_upload": true,
+  "independent_review": false,
+  "schools": [
+    {
+      "school_id": "B000004277",
+      "school_name": "광명광덕초등학교",
+      "input": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000004277.txt",
+      "input_sha256": "1a25343916efb6fba43ab8bfe6a78f486a11cf33cdfb75d6eab66c065a0f1ef1",
+      "output": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\outputs\\B000004277.json",
+      "output_sha256": "2beadd7ea3db1d6cdf459b65b29b35ac3a6be742e60a62c3b0d56e1a9bb78ecf",
+      "review_method": "same-assistant whole-source read; not independent blind review",
+      "supplied_sources_read": true,
+      "rows": 60,
+      "grade1_rows": 10,
+      "custom_rows": 20,
+      "field_evidence": {
+        "1": {
+          "grades": [
+            686
+          ]
+        },
+        "2": {
+          "grades": [
+            686
+          ]
+        },
+        "3": {
+          "grades": [
+            686
+          ]
+        },
+        "4": {
+          "grades": [
+            686
+          ]
+        },
+        "5": {
+          "grades": [
+            686
+          ]
+        },
+        "6": {
+          "grades": [
+            686
+          ]
+        },
+        "7": {
+          "grades": [
+            686
+          ]
+        },
+        "8": {
+          "grades": [
+            686
+          ]
+        },
+        "9": {
+          "grades": [
+            686
+          ]
+        },
+        "10": {
+          "grades": [
+            686
+          ]
+        },
+        "11": {
+          "grades": [
+            686
+          ]
+        },
+        "12": {
+          "grades": [
+            686
+          ]
+        },
+        "13": {
+          "grades": [
+            686
+          ]
+        },
+        "14": {
+          "grades": [
+            686
+          ]
+        },
+        "15": {
+          "grades": [
+            686
+          ]
+        },
+        "16": {
+          "grades": [
+            686
+          ]
+        },
+        "17": {
+          "grades": [
+            686
+          ]
+        },
+        "18": {
+          "grades": [
+            686
+          ]
+        },
+        "19": {
+          "grades": [
+            686
+          ]
+        },
+        "20": {
+          "grades": [
+            686
+          ]
+        }
+      },
+      "blocking_issues": [
+        {
+          "code": "first_half_only",
+          "lines": [
+            706,
+            709
+          ],
+          "reason": "맞춤형 시간표는 상반기·4.27.~ 기준, 2학기 확인 필요"
+        },
+        {
+          "code": "missing_class_grades",
+          "lines": [
+            821,
+            822,
+            823,
+            824,
+            825,
+            826,
+            827,
+            828,
+            829,
+            830,
+            831,
+            832,
+            833,
+            834,
+            835,
+            836,
+            837,
+            838
+          ],
+          "reason": "방과후 반별 대상 학년 미기재"
+        }
+      ],
+      "additional_findings": [
+        {
+          "type": "care_hours_reported",
+          "lines": [
+            28
+          ],
+          "reason": "돌봄 방과후~19:00. 돌봄 시간 필드"
+        },
+        {
+          "type": "morning_care_mentioned",
+          "lines": [
+            674
+          ],
+          "reason": "아침돌봄 1개 학급 운영 언급"
+        }
+      ],
+      "exclusions": [
+        {
+          "lines": [
+            703
+          ],
+          "reason": "초1 적응기(~3.20.) 표"
+        },
+        {
+          "lines": [
+            145,
+            179,
+            180,
+            181,
+            182,
+            183,
+            184
+          ],
+          "reason": "돌봄교실 특기적성은 돌봄 일과"
+        }
+      ],
+      "production_apply_ready": false,
+      "approved_for_upload": false
+    }
+  ]
+}

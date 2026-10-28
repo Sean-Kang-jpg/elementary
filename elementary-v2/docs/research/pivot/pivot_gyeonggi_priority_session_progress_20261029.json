@@ -5,19 +5,19 @@
   "summary": {
     "targets": 83,
     "source_prepared": 83,
-    "extracted_schools": 36,
-    "pending_extraction": 47,
-    "course_rows": 1105,
-    "slot_candidates": 348,
-    "remaining_source_evidence_indexed": 47,
+    "extracted_schools": 37,
+    "pending_extraction": 46,
+    "course_rows": 1165,
+    "slot_candidates": 377,
+    "remaining_source_evidence_indexed": 46,
     "visual_slot_checks": 32,
     "ok_candidates_after_visual": 14,
-    "schools_needing_checks": 22,
-    "unresolved_check_items": 162,
+    "schools_needing_checks": 23,
+    "unresolved_check_items": 163,
     "independent_review_complete": 0,
     "current_term_verified": 0,
     "production_applied": 0,
-    "extraction_percent": 43.4
+    "extraction_percent": 44.6
   },
   "effective_slot_review": [
     {
@@ -1656,6 +1656,23 @@
       "checks": []
     },
     {
+      "school_id": "B000004277",
+      "school_name": "광명광덕초등학교",
+      "slots": 29,
+      "status": "check",
+      "checks": [
+        [
+          "원문불일치",
+          "시각",
+          [
+            "시각",
+            "맞춤형(상반기 표만 공시, 하반기 미공시)",
+            "L706 / L709"
+          ]
+        ]
+      ]
+    },
+    {
       "school_id": "B000004279",
       "school_name": "하안남초등학교",
       "slots": 9,
@@ -1850,17 +1867,6 @@
       "input_sha256": "0d05f41fc0e1543352550952e7bb0834310292cff6b1368f54eee489440371d8",
       "evidence_index": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\remaining_evidence_index_20261025\\B000004264.json",
       "evidence_windows": 65,
-      "status": "pending_full_source_extraction",
-      "evidence_indexed": true
-    },
-    {
-      "school_id": "B000004277",
-      "school_name": "광명광덕초등학교",
-      "area": "gwangmyeong",
-      "input": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000004277.txt",
-      "input_sha256": "1a25343916efb6fba43ab8bfe6a78f486a11cf33cdfb75d6eab66c065a0f1ef1",
-      "evidence_index": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\remaining_evidence_index_20261025\\B000004277.json",
-      "evidence_windows": 46,
       "status": "pending_full_source_extraction",
       "evidence_indexed": true
     },
@@ -2212,5 +2218,5 @@
     "pivot_gyeonggi_priority_slots_current_20261029.json",
     "pivot_gyeonggi_priority_all_current_verification_20261029.json"
   ],
-  "next_action": "Continue remaining 47 whole-source extractions and unresolved slot checks. Evidence index is navigation only."
+  "next_action": "Continue remaining 46 whole-source extractions and unresolved slot checks. Evidence index is navigation only."
 }

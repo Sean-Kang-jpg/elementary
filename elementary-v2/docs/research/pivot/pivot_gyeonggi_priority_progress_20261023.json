@@ -2,12 +2,12 @@
   "checked_on": "20261029",
   "summary": {
     "new_targets": 83,
-    "transcribed_schools": 36,
-    "pending_extraction": 47,
-    "rows": 1105,
-    "afterschool_rows": 893,
-    "custom_rows": 212,
-    "schools_with_source_blockers": 24,
+    "transcribed_schools": 37,
+    "pending_extraction": 46,
+    "rows": 1165,
+    "afterschool_rows": 933,
+    "custom_rows": 232,
+    "schools_with_source_blockers": 25,
     "existing_p1_preserved": 44,
     "care_review_targets": 37,
     "no_operational_upload": true,
@@ -729,10 +729,10 @@
       "school_name": "광명광덕초등학교",
       "area": "gwangmyeong",
       "course_track": "new_priority",
-      "status": "pending_extraction",
-      "rows": 0,
+      "status": "source_conflicts_need_followup",
+      "rows": 60,
       "approved_for_upload": false,
-      "review_file": null
+      "review_file": "pivot_gyeonggi_priority_batch29_review_20261029.json"
     },
     {
       "school_id": "B000004276",
