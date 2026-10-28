@@ -70,7 +70,9 @@ export default function TimetablePage({ schoolId: routeSchoolId, entryYear, onSc
     hadPlan.current = Boolean(plan)
   }, [plan])
 
-  const chips = <SchoolSelection schoolId={schoolId} onChange={onSchoolChange} />
+  // 초안 유무로 레이아웃이 바뀌면 학교 목록이 다시 만들어진다. 4번째 학교 거절 같은 안내가 그때 사라지지 않게 여기서 든다.
+  const [pickMessage, setPickMessage] = useState('')
+  const chips = <SchoolSelection schoolId={schoolId} onChange={onSchoolChange} message={pickMessage} onMessage={setPickMessage} />
 
   // 초안이 있으면 시간표가 첫 화면이다. 안내·단계·운영 자료는 초안을 만들기 전에만 앞에 둔다.
   if (schoolId && plan) {
