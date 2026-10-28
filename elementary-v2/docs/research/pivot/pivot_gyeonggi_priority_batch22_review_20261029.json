@@ -1,0 +1,69 @@
+{
+  "batch": "priority-batch22",
+  "checked_on": "2026-10-29",
+  "no_operational_upload": true,
+  "independent_review": false,
+  "schools": [
+    {
+      "school_id": "B000003872",
+      "school_name": "안양동초등학교",
+      "input": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000003872.txt",
+      "input_sha256": "301c92e6d9856641369c564143b0ad05a455304723ab58cddd561599feab974f",
+      "output": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\outputs\\B000003872.json",
+      "output_sha256": "43f391b72fc6d9ccfc0333ffbfc33e1fa6f882e30d7495f2a3decd712ce3d196",
+      "review_method": "same-assistant whole-source read; not independent blind review",
+      "supplied_sources_read": true,
+      "rows": 28,
+      "grade1_rows": 18,
+      "custom_rows": 0,
+      "field_evidence": {},
+      "blocking_issues": [],
+      "additional_findings": [
+        {
+          "type": "semester_variant",
+          "lines": [
+            266,
+            267,
+            268,
+            269
+          ],
+          "reason": "수요일 1학기 시각 별도. 2학기 값 기록"
+        },
+        {
+          "type": "period_condition",
+          "lines": [
+            272,
+            273,
+            274
+          ],
+          "reason": "금요일 4교시인 날은 13:00~14:10(1-2)·14:20~15:30 운영"
+        },
+        {
+          "type": "custom_absent_in_supplied_sources",
+          "reason": "맞춤형 시간표 첨부 없음"
+        },
+        {
+          "type": "care_hours_reported",
+          "lines": [
+            28
+          ],
+          "reason": "돌봄 방과후~19:00/17:00. 돌봄 시간 필드"
+        }
+      ],
+      "exclusions": [
+        {
+          "lines": [
+            94,
+            95,
+            96,
+            97,
+            98
+          ],
+          "reason": "돌봄 특기적성(독서논술 등 13:50~16:20 창)은 돌봄 일과"
+        }
+      ],
+      "production_apply_ready": false,
+      "approved_for_upload": false
+    }
+  ]
+}
