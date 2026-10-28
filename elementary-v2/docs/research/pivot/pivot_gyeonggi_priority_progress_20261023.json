@@ -2,12 +2,12 @@
   "checked_on": "20261029",
   "summary": {
     "new_targets": 83,
-    "transcribed_schools": 38,
-    "pending_extraction": 45,
-    "rows": 1200,
-    "afterschool_rows": 967,
-    "custom_rows": 233,
-    "schools_with_source_blockers": 26,
+    "transcribed_schools": 39,
+    "pending_extraction": 44,
+    "rows": 1243,
+    "afterschool_rows": 1005,
+    "custom_rows": 238,
+    "schools_with_source_blockers": 27,
     "existing_p1_preserved": 44,
     "care_review_targets": 37,
     "no_operational_upload": true,
@@ -829,10 +829,10 @@
       "school_name": "도덕초등학교",
       "area": "gwangmyeong",
       "course_track": "new_priority",
-      "status": "pending_extraction",
-      "rows": 0,
+      "status": "source_conflicts_need_followup",
+      "rows": 43,
       "approved_for_upload": false,
-      "review_file": null
+      "review_file": "pivot_gyeonggi_priority_batch31_review_20261029.json"
     },
     {
       "school_id": "B000024196",

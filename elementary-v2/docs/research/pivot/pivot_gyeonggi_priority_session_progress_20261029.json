@@ -5,19 +5,19 @@
   "summary": {
     "targets": 83,
     "source_prepared": 83,
-    "extracted_schools": 38,
-    "pending_extraction": 45,
-    "course_rows": 1200,
-    "slot_candidates": 382,
-    "remaining_source_evidence_indexed": 45,
+    "extracted_schools": 39,
+    "pending_extraction": 44,
+    "course_rows": 1243,
+    "slot_candidates": 387,
+    "remaining_source_evidence_indexed": 44,
     "visual_slot_checks": 32,
     "ok_candidates_after_visual": 14,
-    "schools_needing_checks": 24,
-    "unresolved_check_items": 169,
+    "schools_needing_checks": 25,
+    "unresolved_check_items": 196,
     "independent_review_complete": 0,
     "current_term_verified": 0,
     "production_applied": 0,
-    "extraction_percent": 45.8
+    "extraction_percent": 47.0
   },
   "effective_slot_review": [
     {
@@ -1236,6 +1236,257 @@
       ]
     },
     {
+      "school_id": "B000004258",
+      "school_name": "도덕초등학교",
+      "slots": 5,
+      "status": "check",
+      "checks": [
+        [
+          "방과후시각미확인",
+          null,
+          [
+            "주산암산",
+            "A",
+            "L752"
+          ]
+        ],
+        [
+          "방과후시각미확인",
+          null,
+          [
+            "주산암산",
+            "B",
+            "L753"
+          ]
+        ],
+        [
+          "방과후시각미확인",
+          null,
+          [
+            "음악줄넘기",
+            "A",
+            "L754"
+          ]
+        ],
+        [
+          "방과후시각미확인",
+          null,
+          [
+            "음악줄넘기",
+            "B",
+            "L755"
+          ]
+        ],
+        [
+          "방과후시각미확인",
+          null,
+          [
+            "축 구",
+            "A",
+            "L756"
+          ]
+        ],
+        [
+          "방과후시각미확인",
+          null,
+          [
+            "축 구",
+            "B",
+            "L757"
+          ]
+        ],
+        [
+          "방과후시각미확인",
+          null,
+          [
+            "창의미술",
+            "A",
+            "L758"
+          ]
+        ],
+        [
+          "방과후시각미확인",
+          null,
+          [
+            "창의미술",
+            "B",
+            "L759"
+          ]
+        ],
+        [
+          "방과후시각미확인",
+          null,
+          [
+            "바둑체스",
+            "A",
+            "L760"
+          ]
+        ],
+        [
+          "방과후시각미확인",
+          null,
+          [
+            "바둑체스",
+            "B",
+            "L761"
+          ]
+        ],
+        [
+          "방과후시각미확인",
+          null,
+          [
+            "농구",
+            "A",
+            "L762"
+          ]
+        ],
+        [
+          "방과후시각미확인",
+          null,
+          [
+            "생명과학",
+            "A",
+            "L764"
+          ]
+        ],
+        [
+          "방과후시각미확인",
+          null,
+          [
+            "생명과학",
+            "B",
+            "L765"
+          ]
+        ],
+        [
+          "방과후시각미확인",
+          null,
+          [
+            "토탈공예",
+            "A",
+            "L766"
+          ]
+        ],
+        [
+          "방과후시각미확인",
+          null,
+          [
+            "토탈공예",
+            "B",
+            "L767"
+          ]
+        ],
+        [
+          "방과후시각미확인",
+          null,
+          [
+            "로봇과학",
+            "A",
+            "L768"
+          ]
+        ],
+        [
+          "방과후시각미확인",
+          null,
+          [
+            "로봇과학",
+            "B",
+            "L769"
+          ]
+        ],
+        [
+          "방과후시각미확인",
+          null,
+          [
+            "코딩",
+            "A",
+            "L770"
+          ]
+        ],
+        [
+          "방과후시각미확인",
+          null,
+          [
+            "방송댄스",
+            "A",
+            "L772"
+          ]
+        ],
+        [
+          "방과후시각미확인",
+          null,
+          [
+            "컴퓨터",
+            "A",
+            "L774"
+          ]
+        ],
+        [
+          "방과후시각미확인",
+          null,
+          [
+            "바이올린",
+            "A",
+            "L776"
+          ]
+        ],
+        [
+          "방과후시각미확인",
+          null,
+          [
+            "쿠킹클래스",
+            "A",
+            "L778"
+          ]
+        ],
+        [
+          "방과후시각미확인",
+          null,
+          [
+            "한자교육",
+            "A",
+            "L780"
+          ]
+        ],
+        [
+          "방과후시각미확인",
+          null,
+          [
+            "캘리그라피(손글씨)",
+            "A",
+            "L782"
+          ]
+        ],
+        [
+          "방과후시각미확인",
+          null,
+          [
+            "오카리나",
+            "A",
+            "L784"
+          ]
+        ],
+        [
+          "방과후시각미확인",
+          null,
+          [
+            "목공",
+            "A",
+            "L786"
+          ]
+        ],
+        [
+          "방과후시각미확인",
+          null,
+          [
+            "보드게임",
+            "A",
+            "L788"
+          ]
+        ]
+      ]
+    },
+    {
       "school_id": "B000004259",
       "school_name": "충현초등학교",
       "slots": 13,
@@ -1920,17 +2171,6 @@
       "evidence_indexed": true
     },
     {
-      "school_id": "B000004258",
-      "school_name": "도덕초등학교",
-      "area": "gwangmyeong",
-      "input": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000004258.txt",
-      "input_sha256": "d007461fbe02659d53764645ab4b34bd0abced44ce08ed02efc347ba5ea3039f",
-      "evidence_index": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\remaining_evidence_index_20261025\\B000004258.json",
-      "evidence_windows": 17,
-      "status": "pending_full_source_extraction",
-      "evidence_indexed": true
-    },
-    {
       "school_id": "B000024196",
       "school_name": "빛가온초등학교",
       "area": "gwangmyeong",
@@ -2245,5 +2485,5 @@
     "pivot_gyeonggi_priority_slots_current_20261029.json",
     "pivot_gyeonggi_priority_all_current_verification_20261029.json"
   ],
-  "next_action": "Continue remaining 45 whole-source extractions and unresolved slot checks. Evidence index is navigation only."
+  "next_action": "Continue remaining 44 whole-source extractions and unresolved slot checks. Evidence index is navigation only."
 }

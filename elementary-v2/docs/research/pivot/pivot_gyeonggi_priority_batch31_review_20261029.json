@@ -1,0 +1,145 @@
+{
+  "batch": "priority-batch31",
+  "checked_on": "2026-10-29",
+  "no_operational_upload": true,
+  "independent_review": false,
+  "schools": [
+    {
+      "school_id": "B000004258",
+      "school_name": "도덕초등학교",
+      "input": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000004258.txt",
+      "input_sha256": "d007461fbe02659d53764645ab4b34bd0abced44ce08ed02efc347ba5ea3039f",
+      "output": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\outputs\\B000004258.json",
+      "output_sha256": "2852e34a16a7462b6b8e4869a47fe63beff6896f90a3e71a0b9d50608cabc4b8",
+      "review_method": "same-assistant whole-source read; not independent blind review",
+      "supplied_sources_read": true,
+      "rows": 43,
+      "grade1_rows": 32,
+      "custom_rows": 5,
+      "field_evidence": {
+        "1": {
+          "weekday_header": [
+            339
+          ],
+          "weekday_column": 2
+        },
+        "2": {
+          "weekday_header": [
+            339
+          ],
+          "weekday_column": 4
+        },
+        "3": {
+          "weekday_header": [
+            339
+          ],
+          "weekday_column": 3
+        },
+        "4": {
+          "weekday_header": [
+            339
+          ],
+          "weekday_column": 5
+        },
+        "5": {
+          "weekday_header": [
+            339
+          ],
+          "weekday_column": 6
+        }
+      },
+      "blocking_issues": [
+        {
+          "code": "missing_class_schedule",
+          "lines": [
+            752,
+            789
+          ],
+          "reason": "선택형 교육 반별 요일·시각 미공시"
+        },
+        {
+          "code": "custom_course_undecided",
+          "lines": [
+            343,
+            344
+          ],
+          "reason": "맞춤형 과목 미정(시간대만 공시)"
+        }
+      ],
+      "additional_findings": [
+        {
+          "type": "care_hours_reported",
+          "lines": [
+            17,
+            37
+          ],
+          "reason": "돌봄 방과후~17:00(1실 ~19:00). 돌봄 시간 필드"
+        }
+      ],
+      "exclusions": [
+        {
+          "lines": [
+            341
+          ],
+          "reason": "1학년 3월 1~2주 적응기"
+        },
+        {
+          "lines": [
+            706,
+            707,
+            708,
+            709,
+            710,
+            711,
+            712,
+            713,
+            714,
+            715,
+            716,
+            717,
+            718,
+            719,
+            720,
+            721,
+            722,
+            723,
+            724,
+            725,
+            726,
+            727,
+            728,
+            729,
+            730,
+            731,
+            732,
+            733,
+            734,
+            735,
+            736,
+            737,
+            738,
+            739,
+            740,
+            741,
+            742,
+            743
+          ],
+          "reason": "1학기 표(2학기 표로 기록)"
+        },
+        {
+          "lines": [
+            62,
+            63,
+            64,
+            65,
+            66,
+            67
+          ],
+          "reason": "돌봄교실 특기적성 시간표는 돌봄 일과"
+        }
+      ],
+      "production_apply_ready": false,
+      "approved_for_upload": false
+    }
+  ]
+}
