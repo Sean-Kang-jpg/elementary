@@ -1,0 +1,227 @@
+{
+  "batch": "priority-batch18",
+  "checked_on": "2026-10-29",
+  "no_operational_upload": true,
+  "independent_review": false,
+  "schools": [
+    {
+      "school_id": "B000004281",
+      "school_name": "하안북초등학교",
+      "input": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000004281.txt",
+      "input_sha256": "8eb865ec61fa61221286d70a4e918d976c3c076ab5881b3dc58dec11a38d1427",
+      "output": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\outputs\\B000004281.json",
+      "output_sha256": "bae656c11cc6ca008aa91e5d4ec667b8770b6c078bf3e7bbe8ab42dba275f6cf",
+      "review_method": "same-assistant whole-source read; not independent blind review",
+      "supplied_sources_read": true,
+      "rows": 24,
+      "grade1_rows": 18,
+      "custom_rows": 0,
+      "field_evidence": {
+        "1": {
+          "weekday_header": [
+            274
+          ],
+          "weekday_column": 0,
+          "clock_column": 0
+        },
+        "2": {
+          "weekday_header": [
+            274
+          ],
+          "weekday_column": 0,
+          "clock_column": 0
+        },
+        "3": {
+          "weekday_header": [
+            274
+          ],
+          "weekday_column": 1,
+          "clock_column": 1
+        },
+        "4": {
+          "weekday_header": [
+            274
+          ],
+          "weekday_column": 1,
+          "clock_column": 1
+        },
+        "5": {
+          "weekday_header": [
+            274
+          ],
+          "weekday_column": 2,
+          "clock_column": 2
+        },
+        "6": {
+          "weekday_header": [
+            274
+          ],
+          "weekday_column": 2,
+          "clock_column": 2
+        },
+        "7": {
+          "weekday_header": [
+            274
+          ],
+          "weekday_column": 3,
+          "clock_column": 3
+        },
+        "8": {
+          "weekday_header": [
+            274
+          ],
+          "weekday_column": 3,
+          "clock_column": 3
+        },
+        "9": {
+          "weekday_header": [
+            274
+          ],
+          "weekday_column": 4,
+          "clock_column": 4
+        },
+        "10": {
+          "weekday_header": [
+            274
+          ],
+          "weekday_column": 4,
+          "clock_column": 4
+        },
+        "11": {
+          "weekday_header": [
+            274
+          ],
+          "weekday_column": 0,
+          "clock_column": 0
+        },
+        "12": {
+          "weekday_header": [
+            274
+          ],
+          "weekday_column": 1,
+          "clock_column": 1
+        },
+        "13": {
+          "weekday_header": [
+            274
+          ],
+          "weekday_column": 1,
+          "clock_column": 1
+        },
+        "14": {
+          "weekday_header": [
+            274
+          ],
+          "weekday_column": 2,
+          "clock_column": 2
+        },
+        "15": {
+          "weekday_header": [
+            274
+          ],
+          "weekday_column": 2,
+          "clock_column": 2
+        },
+        "16": {
+          "weekday_header": [
+            274
+          ],
+          "weekday_column": 3,
+          "clock_column": 3
+        },
+        "17": {
+          "weekday_header": [
+            274
+          ],
+          "weekday_column": 3,
+          "clock_column": 3
+        },
+        "18": {
+          "weekday_header": [
+            274
+          ],
+          "weekday_column": 4,
+          "clock_column": 4
+        },
+        "19": {
+          "weekday_header": [
+            274
+          ],
+          "weekday_column": 4,
+          "clock_column": 4
+        },
+        "20": {
+          "weekday_header": [
+            274
+          ],
+          "weekday_column": 0,
+          "clock_column": 0
+        },
+        "21": {
+          "weekday_header": [
+            274
+          ],
+          "weekday_column": 0,
+          "clock_column": 0
+        },
+        "22": {
+          "weekday_header": [
+            274
+          ],
+          "weekday_column": 1,
+          "clock_column": 1
+        },
+        "23": {
+          "weekday_header": [
+            274
+          ],
+          "weekday_column": 3,
+          "clock_column": 3
+        },
+        "24": {
+          "weekday_header": [
+            274
+          ],
+          "weekday_column": 4,
+          "clock_column": 4
+        }
+      },
+      "blocking_issues": [],
+      "additional_findings": [
+        {
+          "type": "source_typo",
+          "lines": [
+            276
+          ],
+          "reason": "컴퓨터 3-6학년 14:30-15::50 — 콜론 중복, 시각 미기록(1학년 대상 아님)"
+        },
+        {
+          "type": "custom_absent_in_supplied_sources",
+          "reason": "맞춤형 시간표 첨부 없음"
+        },
+        {
+          "type": "care_hours_reported",
+          "lines": [
+            21,
+            27
+          ],
+          "reason": "돌봄 학기중 방과후~19:00. 돌봄 시간 필드"
+        }
+      ],
+      "exclusions": [
+        {
+          "lines": [
+            53,
+            54,
+            55,
+            56,
+            57
+          ],
+          "reason": "돌봄교실 특강·자원봉사 수업은 돌봄 일과"
+        }
+      ],
+      "production_apply_ready": false,
+      "approved_for_upload": false
+    }
+  ]
+}

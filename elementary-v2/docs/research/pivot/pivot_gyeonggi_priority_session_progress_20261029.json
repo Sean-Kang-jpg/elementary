@@ -5,19 +5,19 @@
   "summary": {
     "targets": 83,
     "source_prepared": 83,
-    "extracted_schools": 25,
-    "pending_extraction": 58,
-    "course_rows": 726,
-    "slot_candidates": 246,
-    "remaining_source_evidence_indexed": 58,
+    "extracted_schools": 26,
+    "pending_extraction": 57,
+    "course_rows": 750,
+    "slot_candidates": 258,
+    "remaining_source_evidence_indexed": 57,
     "visual_slot_checks": 32,
-    "ok_candidates_after_visual": 9,
+    "ok_candidates_after_visual": 10,
     "schools_needing_checks": 16,
     "unresolved_check_items": 137,
     "independent_review_complete": 0,
     "current_term_verified": 0,
     "production_applied": 0,
-    "extraction_percent": 30.1
+    "extraction_percent": 31.3
   },
   "effective_slot_review": [
     {
@@ -1397,6 +1397,13 @@
           ]
         ]
       ]
+    },
+    {
+      "school_id": "B000004281",
+      "school_name": "하안북초등학교",
+      "slots": 12,
+      "status": "ok",
+      "checks": []
     }
   ],
   "pending_schools": [
@@ -1705,17 +1712,6 @@
       "input_sha256": "6c10b34a5d20cf36a040f0bf113fa356e0b8aff4cd0d07e29b6ff06af05ebd39",
       "evidence_index": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\remaining_evidence_index_20261025\\B000004278.json",
       "evidence_windows": 75,
-      "status": "pending_full_source_extraction",
-      "evidence_indexed": true
-    },
-    {
-      "school_id": "B000004281",
-      "school_name": "하안북초등학교",
-      "area": "gwangmyeong",
-      "input": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000004281.txt",
-      "input_sha256": "8eb865ec61fa61221286d70a4e918d976c3c076ab5881b3dc58dec11a38d1427",
-      "evidence_index": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\remaining_evidence_index_20261025\\B000004281.json",
-      "evidence_windows": 19,
       "status": "pending_full_source_extraction",
       "evidence_indexed": true
     },
@@ -2045,5 +2041,5 @@
     "pivot_gyeonggi_priority_slots_current_20261029.json",
     "pivot_gyeonggi_priority_all_current_verification_20261029.json"
   ],
-  "next_action": "Continue remaining 58 whole-source extractions and unresolved slot checks. Evidence index is navigation only."
+  "next_action": "Continue remaining 57 whole-source extractions and unresolved slot checks. Evidence index is navigation only."
 }
