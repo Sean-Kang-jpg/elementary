@@ -2,11 +2,11 @@
   "checked_on": "20261030",
   "summary": {
     "new_targets": 83,
-    "transcribed_schools": 82,
-    "pending_extraction": 1,
-    "rows": 3256,
-    "afterschool_rows": 2543,
-    "custom_rows": 713,
+    "transcribed_schools": 83,
+    "pending_extraction": 0,
+    "rows": 3331,
+    "afterschool_rows": 2598,
+    "custom_rows": 733,
     "schools_with_source_blockers": 42,
     "existing_p1_preserved": 44,
     "care_review_targets": 37,
@@ -1279,10 +1279,10 @@
       "school_name": "효자초등학교",
       "area": "suji",
       "course_track": "new_priority",
-      "status": "pending_extraction",
-      "rows": 0,
+      "status": "transcribed_pending_independent_review",
+      "rows": 75,
       "approved_for_upload": false,
-      "review_file": null
+      "review_file": "pivot_gyeonggi_priority_batch75_review_20261030.json"
     }
   ],
   "review_status_file": "pivot_gyeonggi_priority_review_status_20261024.json",

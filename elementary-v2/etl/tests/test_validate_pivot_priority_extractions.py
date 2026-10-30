@@ -37,6 +37,9 @@ class PriorityEvidenceTests(unittest.TestCase):
         self.assertFalse(check_rows([self.row()],lines,review)[0])
         review['field_evidence']['1']['weekday_column'] = 2
         self.assertTrue(check_rows([self.row()],lines,review)[0])
+        lines[2] = '운영시간 | 월요일(4, 5교시) | 화 (5교시) |'
+        review['field_evidence']['1']['weekday_column'] = 1
+        self.assertFalse(check_rows([self.row()],lines,review)[0])
 
     def test_merged_clock_cell_needs_a_checked_span_over_empty_cells(self):
         lines = {1:'[file: plan.hwpx; academic_year: 2026]',

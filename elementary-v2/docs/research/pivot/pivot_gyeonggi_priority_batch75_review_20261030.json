@@ -1,0 +1,341 @@
+{
+  "batch": "priority-batch75",
+  "checked_on": "2026-10-30",
+  "no_operational_upload": true,
+  "independent_review": false,
+  "schools": [
+    {
+      "school_id": "B000003981",
+      "school_name": "효자초등학교",
+      "input": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000003981.txt",
+      "input_sha256": "ff9e27af61c76c6f2a632a3bd112463a15aa20da5a395e7e97b276bf6784e004",
+      "output": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\outputs\\B000003981.json",
+      "output_sha256": "3a56b9dafa65e8194a97e123c1c1a6c2bc3a365597d59bdf130c991c8d3f68ec",
+      "review_method": "same-assistant whole-source read; not independent blind review",
+      "supplied_sources_read": true,
+      "rows": 75,
+      "grade1_rows": 44,
+      "custom_rows": 20,
+      "field_evidence": {
+        "1": {
+          "grades": [
+            647
+          ],
+          "name_table": [
+            646
+          ],
+          "clock_column": 3,
+          "weekday_header": [
+            643
+          ],
+          "weekday_column": 3
+        },
+        "2": {
+          "grades": [
+            647
+          ],
+          "name_table": [
+            646
+          ],
+          "clock_column": 4,
+          "weekday_header": [
+            643
+          ],
+          "weekday_column": 4
+        },
+        "3": {
+          "grades": [
+            647
+          ],
+          "name_table": [
+            646
+          ],
+          "clock_column": 5,
+          "weekday_header": [
+            643
+          ],
+          "weekday_column": 5
+        },
+        "4": {
+          "grades": [
+            647
+          ],
+          "name_table": [
+            646
+          ],
+          "clock_column": 6,
+          "weekday_header": [
+            643
+          ],
+          "weekday_column": 6
+        },
+        "5": {
+          "grades": [
+            647
+          ],
+          "name_table": [
+            646
+          ],
+          "clock_column": 7,
+          "weekday_header": [
+            643
+          ],
+          "weekday_column": 7
+        },
+        "6": {
+          "grades": [
+            652
+          ],
+          "name_table": [
+            651
+          ],
+          "clock_column": 3,
+          "weekday_header": [
+            643
+          ],
+          "weekday_column": 3
+        },
+        "7": {
+          "grades": [
+            652
+          ],
+          "name_table": [
+            651
+          ],
+          "clock_column": 4,
+          "weekday_header": [
+            643
+          ],
+          "weekday_column": 4
+        },
+        "8": {
+          "grades": [
+            652
+          ],
+          "name_table": [
+            651
+          ],
+          "clock_column": 5,
+          "weekday_header": [
+            643
+          ],
+          "weekday_column": 5
+        },
+        "9": {
+          "grades": [
+            652
+          ],
+          "name_table": [
+            651
+          ],
+          "clock_column": 6,
+          "weekday_header": [
+            643
+          ],
+          "weekday_column": 6
+        },
+        "10": {
+          "grades": [
+            652
+          ],
+          "name_table": [
+            651
+          ],
+          "clock_column": 7,
+          "weekday_header": [
+            643
+          ],
+          "weekday_column": 7
+        },
+        "11": {
+          "grades": [
+            660
+          ],
+          "name_table": [
+            659
+          ],
+          "clock_column": 3,
+          "weekday_header": [
+            656
+          ],
+          "weekday_column": 3
+        },
+        "12": {
+          "grades": [
+            660
+          ],
+          "name_table": [
+            659
+          ],
+          "clock_column": 4,
+          "weekday_header": [
+            656
+          ],
+          "weekday_column": 4
+        },
+        "13": {
+          "grades": [
+            660
+          ],
+          "name_table": [
+            659
+          ],
+          "clock_column": 5,
+          "weekday_header": [
+            656
+          ],
+          "weekday_column": 5
+        },
+        "14": {
+          "grades": [
+            660
+          ],
+          "name_table": [
+            659
+          ],
+          "clock_column": 6,
+          "weekday_header": [
+            656
+          ],
+          "weekday_column": 6
+        },
+        "15": {
+          "grades": [
+            660
+          ],
+          "name_table": [
+            659
+          ],
+          "clock_column": 7,
+          "weekday_header": [
+            656
+          ],
+          "weekday_column": 7
+        },
+        "16": {
+          "grades": [
+            665
+          ],
+          "name_table": [
+            664
+          ],
+          "clock_column": 3,
+          "weekday_header": [
+            656
+          ],
+          "weekday_column": 3
+        },
+        "17": {
+          "grades": [
+            665
+          ],
+          "name_table": [
+            664
+          ],
+          "clock_column": 4,
+          "weekday_header": [
+            656
+          ],
+          "weekday_column": 4
+        },
+        "18": {
+          "grades": [
+            665
+          ],
+          "name_table": [
+            664
+          ],
+          "clock_column": 5,
+          "weekday_header": [
+            656
+          ],
+          "weekday_column": 5
+        },
+        "19": {
+          "grades": [
+            665
+          ],
+          "name_table": [
+            664
+          ],
+          "clock_column": 6,
+          "weekday_header": [
+            656
+          ],
+          "weekday_column": 6
+        },
+        "20": {
+          "grades": [
+            665
+          ],
+          "name_table": [
+            664
+          ],
+          "clock_column": 7,
+          "weekday_header": [
+            656
+          ],
+          "weekday_column": 7
+        }
+      },
+      "blocking_issues": [],
+      "additional_findings": [
+        {
+          "type": "ended_period_variant",
+          "lines": [
+            657,
+            658,
+            659,
+            661
+          ],
+          "reason": "2학년 금 \"4.10.까지 5교시\" 열(13:40~15:20)은 4.10. 이후 미적용"
+        },
+        {
+          "type": "morning_care",
+          "lines": [
+            776
+          ],
+          "reason": "아침돌봄 07:50~08:30"
+        },
+        {
+          "type": "care_hours_reported",
+          "lines": [
+            15,
+            51
+          ],
+          "reason": "돌봄 학기 중 방과후~19:00"
+        }
+      ],
+      "exclusions": [
+        {
+          "lines": [
+            105,
+            106,
+            107,
+            108,
+            109
+          ],
+          "reason": "돌봄 계획 속 맞춤형 개요(방과후 계획 표가 상세)"
+        },
+        {
+          "lines": [
+            129,
+            130,
+            131,
+            132,
+            133,
+            134,
+            135,
+            136,
+            137,
+            138,
+            139
+          ],
+          "reason": "돌봄교실 일과표"
+        }
+      ],
+      "production_apply_ready": false,
+      "approved_for_upload": false
+    }
+  ]
+}

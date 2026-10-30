@@ -5,19 +5,19 @@
   "summary": {
     "targets": 83,
     "source_prepared": 83,
-    "extracted_schools": 82,
-    "pending_extraction": 1,
-    "course_rows": 3256,
-    "slot_candidates": 1012,
-    "remaining_source_evidence_indexed": 1,
+    "extracted_schools": 83,
+    "pending_extraction": 0,
+    "course_rows": 3331,
+    "slot_candidates": 1031,
+    "remaining_source_evidence_indexed": 0,
     "visual_slot_checks": 32,
     "ok_candidates_after_visual": 33,
-    "schools_needing_checks": 49,
-    "unresolved_check_items": 281,
+    "schools_needing_checks": 50,
+    "unresolved_check_items": 282,
     "independent_review_complete": 0,
     "current_term_verified": 0,
     "production_applied": 0,
-    "extraction_percent": 98.8
+    "extraction_percent": 100.0
   },
   "effective_slot_review": [
     {
@@ -745,6 +745,23 @@
             "시각",
             "맞춤형 수·목(시각 칸 비어 있음, 개요 13:50~15:10)",
             "L263 / L28"
+          ]
+        ]
+      ]
+    },
+    {
+      "school_id": "B000003981",
+      "school_name": "효자초등학교",
+      "slots": 19,
+      "status": "check",
+      "checks": [
+        [
+          "원문불일치",
+          "시각",
+          [
+            "시각",
+            "맞춤형 돌봄 개요(5교시 13:45~15:20, 4교시 13:10~14:45)",
+            "L105~109 / L648·L653"
           ]
         ]
       ]
@@ -2827,24 +2844,12 @@
       "checks": []
     }
   ],
-  "pending_schools": [
-    {
-      "school_id": "B000003981",
-      "school_name": "효자초등학교",
-      "area": "suji",
-      "input": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000003981.txt",
-      "input_sha256": "ff9e27af61c76c6f2a632a3bd112463a15aa20da5a395e7e97b276bf6784e004",
-      "evidence_index": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\remaining_evidence_index_20261025\\B000003981.json",
-      "evidence_windows": 137,
-      "status": "pending_full_source_extraction",
-      "evidence_indexed": true
-    }
-  ],
+  "pending_schools": [],
   "no_operational_upload": true,
   "boundaries": "new83 only; existing44 and other sessions outputs preserved",
   "checkpoint_files": [
     "pivot_gyeonggi_priority_slots_current_20261030.json",
     "pivot_gyeonggi_priority_all_current_verification_20261030.json"
   ],
-  "next_action": "Continue remaining 1 whole-source extractions and unresolved slot checks. Evidence index is navigation only."
+  "next_action": "Continue remaining 0 whole-source extractions and unresolved slot checks. Evidence index is navigation only."
 }
