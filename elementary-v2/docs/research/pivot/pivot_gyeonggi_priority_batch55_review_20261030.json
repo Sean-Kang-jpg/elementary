@@ -1,0 +1,285 @@
+{
+  "batch": "priority-batch55",
+  "checked_on": "2026-10-30",
+  "no_operational_upload": true,
+  "independent_review": false,
+  "schools": [
+    {
+      "school_id": "B000003987",
+      "school_name": "용인신촌초등학교",
+      "input": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000003987.txt",
+      "input_sha256": "7de792f0a03d46ad7401d9d5b867e71ee9997e0fc90c8f5621afdbad6202b7af",
+      "output": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\outputs\\B000003987.json",
+      "output_sha256": "9fb5f4e43958ba62b22ff04ef7e70dcc752432288908cf206f2155761be9997e",
+      "review_method": "same-assistant whole-source read; not independent blind review",
+      "supplied_sources_read": true,
+      "rows": 64,
+      "grade1_rows": 20,
+      "custom_rows": 20,
+      "field_evidence": {
+        "1": {
+          "grades": [
+            64
+          ],
+          "variant": [
+            140
+          ],
+          "weekday_header": [
+            141
+          ],
+          "weekday_column": 1
+        },
+        "2": {
+          "grades": [
+            64
+          ],
+          "variant": [
+            140
+          ],
+          "weekday_header": [
+            141
+          ],
+          "weekday_column": 3
+        },
+        "3": {
+          "grades": [
+            64
+          ],
+          "variant": [
+            140
+          ],
+          "weekday_header": [
+            141
+          ],
+          "weekday_column": 1
+        },
+        "4": {
+          "grades": [
+            64
+          ],
+          "variant": [
+            140
+          ],
+          "weekday_header": [
+            141
+          ],
+          "weekday_column": 2
+        },
+        "5": {
+          "grades": [
+            64
+          ],
+          "variant": [
+            140
+          ],
+          "weekday_header": [
+            141
+          ],
+          "weekday_column": 3
+        },
+        "6": {
+          "grades": [
+            64
+          ],
+          "variant": [
+            140
+          ],
+          "weekday_header": [
+            141
+          ],
+          "weekday_column": 4
+        },
+        "7": {
+          "grades": [
+            64
+          ],
+          "variant": [
+            140
+          ],
+          "weekday_header": [
+            141
+          ],
+          "weekday_column": 5
+        },
+        "8": {
+          "grades": [
+            64
+          ],
+          "variant": [
+            140
+          ],
+          "weekday_header": [
+            141
+          ],
+          "weekday_column": 2
+        },
+        "9": {
+          "grades": [
+            64
+          ],
+          "variant": [
+            140
+          ],
+          "weekday_header": [
+            141
+          ],
+          "weekday_column": 4
+        },
+        "10": {
+          "grades": [
+            64
+          ],
+          "variant": [
+            140
+          ],
+          "weekday_header": [
+            141
+          ],
+          "weekday_column": 5
+        },
+        "11": {
+          "grades": [
+            64
+          ],
+          "variant": [
+            147
+          ],
+          "weekday_header": [
+            148
+          ],
+          "weekday_column": 1
+        },
+        "12": {
+          "grades": [
+            64
+          ],
+          "variant": [
+            147
+          ],
+          "weekday_header": [
+            148
+          ],
+          "weekday_column": 3
+        },
+        "13": {
+          "grades": [
+            64
+          ],
+          "variant": [
+            147
+          ],
+          "weekday_header": [
+            148
+          ],
+          "weekday_column": 1
+        },
+        "14": {
+          "grades": [
+            64
+          ],
+          "variant": [
+            147
+          ],
+          "weekday_header": [
+            148
+          ],
+          "weekday_column": 2
+        },
+        "15": {
+          "grades": [
+            64
+          ],
+          "variant": [
+            147
+          ],
+          "weekday_header": [
+            148
+          ],
+          "weekday_column": 3
+        },
+        "16": {
+          "grades": [
+            64
+          ],
+          "variant": [
+            147
+          ],
+          "weekday_header": [
+            148
+          ],
+          "weekday_column": 4
+        },
+        "17": {
+          "grades": [
+            64
+          ],
+          "variant": [
+            147
+          ],
+          "weekday_header": [
+            148
+          ],
+          "weekday_column": 5
+        },
+        "18": {
+          "grades": [
+            64
+          ],
+          "variant": [
+            147
+          ],
+          "weekday_header": [
+            148
+          ],
+          "weekday_column": 2
+        },
+        "19": {
+          "grades": [
+            64
+          ],
+          "variant": [
+            147
+          ],
+          "weekday_header": [
+            148
+          ],
+          "weekday_column": 4
+        },
+        "20": {
+          "grades": [
+            64
+          ],
+          "variant": [
+            147
+          ],
+          "weekday_header": [
+            148
+          ],
+          "weekday_column": 5
+        }
+      },
+      "blocking_issues": [
+        {
+          "code": "missing_class_grades",
+          "lines": [
+            178,
+            221
+          ],
+          "reason": "방과후 A/B/C반 대상 학년 미기재"
+        }
+      ],
+      "additional_findings": [],
+      "exclusions": [
+        {
+          "lines": [
+            158,
+            162
+          ],
+          "reason": "방학 시간표"
+        }
+      ],
+      "production_apply_ready": false,
+      "approved_for_upload": false
+    }
+  ]
+}
