@@ -1,0 +1,32 @@
+{
+  "batch": "priority-batch39",
+  "checked_on": "2026-10-30",
+  "no_operational_upload": true,
+  "independent_review": false,
+  "schools": [
+    {
+      "school_id": "B000004004",
+      "school_name": "용인신봉초등학교",
+      "input": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000004004.txt",
+      "input_sha256": "6cad194701b7366736f2775cb4d2f2cdcb1453f3a3f2ba6d62b14ec872206faa",
+      "output": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\outputs\\B000004004.json",
+      "output_sha256": "e11d288c998667f113700b6fd3dd77565d384ec4f9744b96a3cb2ffd14b8e2a0",
+      "review_method": "same-assistant whole-source read; not independent blind review",
+      "supplied_sources_read": true,
+      "rows": 42,
+      "grade1_rows": 21,
+      "custom_rows": 0,
+      "field_evidence": {},
+      "blocking_issues": [],
+      "additional_findings": [
+        {
+          "type": "custom_and_care_absent_in_supplied_sources",
+          "reason": "제공 첨부는 방과후학교 운영계획 1개"
+        }
+      ],
+      "exclusions": [],
+      "production_apply_ready": false,
+      "approved_for_upload": false
+    }
+  ]
+}
