@@ -22,6 +22,14 @@ class PriorityEvidenceTests(unittest.TestCase):
         wrong = {'field_evidence':{'1':{'weekday_header':[2],'weekday_column':2}}}
         self.assertTrue(check_rows([self.row()],lines,wrong)[0])
 
+    def test_weekday_header_may_spell_out_yoil(self):
+        lines = {1:'[file: plan.hwp; academic_year: 2026]',
+                 2:'요일 | 월요일 | 화요일 |', 3:'13:00~13:40 | 1학년 미술 | 1학년 체육 |'}
+        review = {'field_evidence':{'1':{'weekday_header':[2],'weekday_column':1}}}
+        self.assertFalse(check_rows([self.row()],lines,review)[0])
+        review['field_evidence']['1']['weekday_column'] = 2
+        self.assertTrue(check_rows([self.row()],lines,review)[0])
+
     def test_separate_name_and_clock_grids_must_use_same_weekday_column(self):
         lines={1:'[file: plan.hwp; academic_year: 2026]',
                2:'구분 | 월 | 화 |',3:'기본 | 13:00~13:40 | 14:00~14:40 |',

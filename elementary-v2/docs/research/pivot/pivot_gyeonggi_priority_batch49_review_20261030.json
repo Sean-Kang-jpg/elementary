@@ -1,0 +1,221 @@
+{
+  "batch": "priority-batch49",
+  "checked_on": "2026-10-30",
+  "no_operational_upload": true,
+  "independent_review": false,
+  "schools": [
+    {
+      "school_id": "B000003995",
+      "school_name": "수지초등학교",
+      "input": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000003995.txt",
+      "input_sha256": "ecf9c53e8bcbd731fee3fbabc89dae8ac6a63e74b146b25eb3ef784c761fb981",
+      "output": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\outputs\\B000003995.json",
+      "output_sha256": "0a195dc1700208013466c259ad686b8005d17d7a782b0a95231e3297d449c2d1",
+      "review_method": "same-assistant whole-source read; not independent blind review",
+      "supplied_sources_read": true,
+      "rows": 67,
+      "grade1_rows": 19,
+      "custom_rows": 28,
+      "field_evidence": {
+        "1": {
+          "weekday_header": [
+            93
+          ],
+          "weekday_column": 2
+        },
+        "2": {
+          "weekday_header": [
+            93
+          ],
+          "weekday_column": 3
+        },
+        "3": {
+          "weekday_header": [
+            93
+          ],
+          "weekday_column": 4
+        },
+        "4": {
+          "weekday_header": [
+            93
+          ],
+          "weekday_column": 5
+        },
+        "5": {
+          "weekday_header": [
+            93
+          ],
+          "weekday_column": 2
+        },
+        "6": {
+          "weekday_header": [
+            93
+          ],
+          "weekday_column": 3
+        },
+        "7": {
+          "weekday_header": [
+            93
+          ],
+          "weekday_column": 5
+        },
+        "8": {
+          "weekday_header": [
+            93
+          ],
+          "weekday_column": 6
+        },
+        "9": {
+          "weekday_header": [
+            93
+          ],
+          "weekday_column": 3
+        },
+        "10": {
+          "weekday_header": [
+            93
+          ],
+          "weekday_column": 5
+        },
+        "11": {
+          "weekday_header": [
+            93
+          ],
+          "weekday_column": 6
+        },
+        "12": {
+          "weekday_header": [
+            93
+          ],
+          "weekday_column": 4
+        },
+        "13": {
+          "weekday_header": [
+            93
+          ],
+          "weekday_column": 6
+        },
+        "14": {
+          "weekday_header": [
+            93
+          ],
+          "weekday_column": 2
+        },
+        "15": {
+          "weekday_header": [
+            93
+          ],
+          "weekday_column": 3
+        },
+        "16": {
+          "weekday_header": [
+            93
+          ],
+          "weekday_column": 4
+        },
+        "17": {
+          "weekday_header": [
+            93
+          ],
+          "weekday_column": 5
+        },
+        "18": {
+          "weekday_header": [
+            93
+          ],
+          "weekday_column": 6
+        },
+        "19": {
+          "weekday_header": [
+            93
+          ],
+          "weekday_column": 2
+        },
+        "20": {
+          "weekday_header": [
+            93
+          ],
+          "weekday_column": 3
+        },
+        "21": {
+          "weekday_header": [
+            93
+          ],
+          "weekday_column": 4
+        },
+        "22": {
+          "weekday_header": [
+            93
+          ],
+          "weekday_column": 5
+        },
+        "23": {
+          "weekday_header": [
+            93
+          ],
+          "weekday_column": 6
+        },
+        "24": {
+          "weekday_header": [
+            93
+          ],
+          "weekday_column": 2
+        },
+        "25": {
+          "weekday_header": [
+            93
+          ],
+          "weekday_column": 3
+        },
+        "26": {
+          "weekday_header": [
+            93
+          ],
+          "weekday_column": 4
+        },
+        "27": {
+          "weekday_header": [
+            93
+          ],
+          "weekday_column": 5
+        },
+        "28": {
+          "weekday_header": [
+            93
+          ],
+          "weekday_column": 6
+        }
+      },
+      "blocking_issues": [],
+      "additional_findings": [
+        {
+          "type": "grade3_custom_possible",
+          "lines": [
+            74
+          ],
+          "reason": "3학년 맞춤형 8개 부서 추가 개설 예정 — 맞춤형 표의 학년 구분 없음"
+        }
+      ],
+      "exclusions": [
+        {
+          "lines": [
+            342
+          ],
+          "reason": "한자 B반 반복 행(장소만 다름)"
+        },
+        {
+          "lines": [
+            107,
+            108,
+            109,
+            110,
+            111
+          ],
+          "reason": "수익자 교실별 요일표는 반별 표로 대체"
+        }
+      ],
+      "production_apply_ready": false,
+      "approved_for_upload": false
+    }
+  ]
+}
