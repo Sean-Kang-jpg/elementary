@@ -1,0 +1,84 @@
+{
+  "batch": "priority-batch33",
+  "checked_on": "2026-10-30",
+  "no_operational_upload": true,
+  "independent_review": false,
+  "schools": [
+    {
+      "school_id": "B000004264",
+      "school_name": "가림초등학교",
+      "input": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000004264.txt",
+      "input_sha256": "0d05f41fc0e1543352550952e7bb0834310292cff6b1368f54eee489440371d8",
+      "output": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\outputs\\B000004264.json",
+      "output_sha256": "ba3b7a6c39b170821524de0a7b41489b6d7a613d48f46933a8306f15af4ef105",
+      "review_method": "same-assistant whole-source read; not independent blind review",
+      "supplied_sources_read": true,
+      "rows": 27,
+      "grade1_rows": 19,
+      "custom_rows": 0,
+      "field_evidence": {},
+      "blocking_issues": [],
+      "additional_findings": [
+        {
+          "type": "duration_label_mismatch",
+          "lines": [
+            268,
+            269,
+            270,
+            271,
+            272,
+            273,
+            274,
+            275,
+            276,
+            277,
+            278,
+            279,
+            280,
+            281,
+            282,
+            283,
+            284,
+            285,
+            286,
+            287,
+            288
+          ],
+          "reason": "80분 표기, 시각 범위 90분(쉬는 시간 포함 추정 안 함)"
+        },
+        {
+          "type": "custom_absent_in_supplied_sources",
+          "reason": "맞춤형 시간표 첨부 없음"
+        },
+        {
+          "type": "care_hours_reported",
+          "lines": [
+            44,
+            46
+          ],
+          "reason": "돌봄1반 ~19:00, 2반 ~17:00(전담사 근무). 돌봄 시간 필드"
+        }
+      ],
+      "exclusions": [
+        {
+          "lines": [
+            72,
+            73,
+            74,
+            75,
+            76,
+            77,
+            78,
+            79,
+            80,
+            81,
+            82
+          ],
+          "reason": "돌봄교실 특강 프로그램은 돌봄 일과"
+        }
+      ],
+      "production_apply_ready": false,
+      "approved_for_upload": false
+    }
+  ]
+}

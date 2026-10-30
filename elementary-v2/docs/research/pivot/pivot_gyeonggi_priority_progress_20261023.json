@@ -1,11 +1,11 @@
 {
-  "checked_on": "20261029",
+  "checked_on": "20261030",
   "summary": {
     "new_targets": 83,
-    "transcribed_schools": 40,
-    "pending_extraction": 43,
-    "rows": 1293,
-    "afterschool_rows": 1037,
+    "transcribed_schools": 41,
+    "pending_extraction": 42,
+    "rows": 1320,
+    "afterschool_rows": 1064,
     "custom_rows": 256,
     "schools_with_source_blockers": 27,
     "existing_p1_preserved": 44,
@@ -719,10 +719,10 @@
       "school_name": "가림초등학교",
       "area": "gwangmyeong",
       "course_track": "new_priority",
-      "status": "pending_extraction",
-      "rows": 0,
+      "status": "transcribed_pending_independent_review",
+      "rows": 27,
       "approved_for_upload": false,
-      "review_file": null
+      "review_file": "pivot_gyeonggi_priority_batch33_review_20261030.json"
     },
     {
       "school_id": "B000004277",
@@ -1300,7 +1300,7 @@
     "independently_reviewed_schools": 0,
     "production_applied_schools": 0
   },
-  "current_session_progress": "pivot_gyeonggi_priority_session_progress_20261029.json",
-  "current_slot_report": "pivot_gyeonggi_priority_slots_current_20261029.json",
+  "current_session_progress": "pivot_gyeonggi_priority_session_progress_20261030.json",
+  "current_slot_report": "pivot_gyeonggi_priority_slots_current_20261030.json",
   "current_checklist": "PIVOT_GYEONGGI_PRIORITY_SESSION_CHECKLIST.md"
 }
