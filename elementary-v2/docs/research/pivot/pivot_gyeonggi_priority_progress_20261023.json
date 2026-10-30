@@ -2,12 +2,12 @@
   "checked_on": "20261030",
   "summary": {
     "new_targets": 83,
-    "transcribed_schools": 49,
-    "pending_extraction": 34,
-    "rows": 1572,
-    "afterschool_rows": 1296,
-    "custom_rows": 276,
-    "schools_with_source_blockers": 30,
+    "transcribed_schools": 50,
+    "pending_extraction": 33,
+    "rows": 1632,
+    "afterschool_rows": 1346,
+    "custom_rows": 286,
+    "schools_with_source_blockers": 31,
     "existing_p1_preserved": 44,
     "care_review_targets": 37,
     "no_operational_upload": true,
@@ -1249,10 +1249,10 @@
       "school_name": "풍천초등학교",
       "area": "suji",
       "course_track": "new_priority",
-      "status": "pending_extraction",
-      "rows": 0,
+      "status": "source_conflicts_need_followup",
+      "rows": 60,
       "approved_for_upload": false,
-      "review_file": null
+      "review_file": "pivot_gyeonggi_priority_batch42_review_20261030.json"
     },
     {
       "school_id": "B000004000",

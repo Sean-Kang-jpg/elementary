@@ -1,0 +1,135 @@
+{
+  "batch": "priority-batch42",
+  "checked_on": "2026-10-30",
+  "no_operational_upload": true,
+  "independent_review": false,
+  "schools": [
+    {
+      "school_id": "B000003991",
+      "school_name": "풍천초등학교",
+      "input": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000003991.txt",
+      "input_sha256": "b3deb1cccce9ac0a5b0404ee72466fd9f280f97ab1c473b89f6cf5c55462cd33",
+      "output": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\outputs\\B000003991.json",
+      "output_sha256": "dadcee3f77e1c11e40b937d980d4aeb4ea12f089d8a31bf6c401749860c94b51",
+      "review_method": "same-assistant whole-source read; not independent blind review",
+      "supplied_sources_read": true,
+      "rows": 60,
+      "grade1_rows": 45,
+      "custom_rows": 10,
+      "field_evidence": {
+        "1": {
+          "grades": [
+            59
+          ],
+          "weekday_header": [
+            63
+          ],
+          "weekday_column": 1
+        },
+        "2": {
+          "grades": [
+            59
+          ],
+          "weekday_header": [
+            63
+          ],
+          "weekday_column": 2
+        },
+        "3": {
+          "grades": [
+            59
+          ],
+          "weekday_header": [
+            63
+          ],
+          "weekday_column": 3
+        },
+        "4": {
+          "grades": [
+            59
+          ],
+          "weekday_header": [
+            63
+          ],
+          "weekday_column": 4
+        },
+        "5": {
+          "grades": [
+            59
+          ],
+          "weekday_header": [
+            63
+          ],
+          "weekday_column": 5
+        },
+        "6": {
+          "grades": [
+            59
+          ],
+          "weekday_header": [
+            63
+          ],
+          "weekday_column": 1
+        },
+        "7": {
+          "grades": [
+            59
+          ],
+          "weekday_header": [
+            63
+          ],
+          "weekday_column": 2
+        },
+        "8": {
+          "grades": [
+            59
+          ],
+          "weekday_header": [
+            63
+          ],
+          "weekday_column": 3
+        },
+        "9": {
+          "grades": [
+            59
+          ],
+          "weekday_header": [
+            63
+          ],
+          "weekday_column": 4
+        },
+        "10": {
+          "grades": [
+            59
+          ],
+          "weekday_header": [
+            63
+          ],
+          "weekday_column": 5
+        }
+      },
+      "blocking_issues": [
+        {
+          "code": "missing_custom_times",
+          "lines": [
+            48,
+            62
+          ],
+          "reason": "맞춤형 요일별 시각 없음, 강좌 편성은 예시"
+        }
+      ],
+      "additional_findings": [
+        {
+          "type": "morning_care",
+          "lines": [
+            155
+          ],
+          "reason": "아침돌봄 08:00~08:40"
+        }
+      ],
+      "exclusions": [],
+      "production_apply_ready": false,
+      "approved_for_upload": false
+    }
+  ]
+}
