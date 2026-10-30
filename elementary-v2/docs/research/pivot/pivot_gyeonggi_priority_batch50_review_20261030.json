@@ -1,0 +1,51 @@
+{
+  "batch": "priority-batch50",
+  "checked_on": "2026-10-30",
+  "no_operational_upload": true,
+  "independent_review": false,
+  "schools": [
+    {
+      "school_id": "B000003854",
+      "school_name": "안양부안초등학교",
+      "input": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000003854.txt",
+      "input_sha256": "2bf0e16eb47b0dc2958bdd003098a2fed360ed08e8f3f55e488b1ae97a90ce50",
+      "output": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\outputs\\B000003854.json",
+      "output_sha256": "307a3a37d51a3da9ae749916770a92281c9bc50a12ba4f9309674c598f661d4c",
+      "review_method": "same-assistant whole-source read; not independent blind review",
+      "supplied_sources_read": true,
+      "rows": 23,
+      "grade1_rows": 11,
+      "custom_rows": 0,
+      "field_evidence": {},
+      "blocking_issues": [],
+      "additional_findings": [
+        {
+          "type": "custom_absent_in_supplied_sources",
+          "reason": "맞춤형 시간표 첨부 없음"
+        },
+        {
+          "type": "care_hours_reported",
+          "lines": [
+            386
+          ],
+          "reason": "돌봄3반 ~19:00, 1·2반 ~17:00"
+        }
+      ],
+      "exclusions": [
+        {
+          "lines": [
+            419,
+            420,
+            421,
+            422,
+            423,
+            459
+          ],
+          "reason": "돌봄교실 특별프로그램은 돌봄 일과"
+        }
+      ],
+      "production_apply_ready": false,
+      "approved_for_upload": false
+    }
+  ]
+}
