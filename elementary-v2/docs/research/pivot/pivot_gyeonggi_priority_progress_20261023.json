@@ -2,12 +2,12 @@
   "checked_on": "20261030",
   "summary": {
     "new_targets": 83,
-    "transcribed_schools": 64,
-    "pending_extraction": 19,
-    "rows": 2297,
-    "afterschool_rows": 1864,
-    "custom_rows": 433,
-    "schools_with_source_blockers": 34,
+    "transcribed_schools": 65,
+    "pending_extraction": 18,
+    "rows": 2311,
+    "afterschool_rows": 1868,
+    "custom_rows": 443,
+    "schools_with_source_blockers": 35,
     "existing_p1_preserved": 44,
     "care_review_targets": 37,
     "no_operational_upload": true,
@@ -1039,10 +1039,10 @@
       "school_name": "새빛초등학교",
       "area": "suji",
       "course_track": "new_priority",
-      "status": "pending_extraction",
-      "rows": 0,
+      "status": "source_conflicts_need_followup",
+      "rows": 14,
       "approved_for_upload": false,
-      "review_file": null
+      "review_file": "pivot_gyeonggi_priority_batch57_review_20261030.json"
     },
     {
       "school_id": "B000003980",

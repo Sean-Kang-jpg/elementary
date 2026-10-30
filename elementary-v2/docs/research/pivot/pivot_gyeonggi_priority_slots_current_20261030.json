@@ -3,17 +3,17 @@
   "standard_sha256": "b111d14fc829193154a332649efb9e8d29022fad541eb72e97fe67f14f910f06",
   "no_operational_upload": true,
   "summary": {
-    "schools": 64,
-    "course_rows": 2297,
-    "slots": 725,
+    "schools": 65,
+    "course_rows": 2311,
+    "slots": 733,
     "slot_kinds": {
-      "저학년방과후": 308,
+      "저학년방과후": 313,
       "전학년방과후": 223,
-      "맞춤형": 112,
+      "맞춤형": 115,
       "학년미기재방과후": 82
     },
     "statuses": {
-      "check": 39,
+      "check": 40,
       "ok": 25
     }
   },
@@ -15595,6 +15595,434 @@
       "production_apply_ready": false,
       "input_sha256": "fae47e01f26c1b9f616df01c2a60d0e89022b2b14bb17be1e6d13aa4afa3c4f4",
       "output_sha256": "f52d66e194aaa9e55a35e94e15fdbd1cf8ccdc61b1033f91a17c96bb34ce7c53"
+    },
+    {
+      "school_id": "B000003937",
+      "school_name": "새빛초등학교",
+      "rows": [
+        [
+          "맞춤형",
+          "종이접기· 클레이",
+          null,
+          null,
+          "2학년",
+          "table",
+          "월",
+          "13:00",
+          "14:20",
+          "false",
+          "학기",
+          "2026 연간",
+          null,
+          788
+        ],
+        [
+          "맞춤형",
+          "책놀이",
+          null,
+          null,
+          "2학년",
+          "table",
+          "화",
+          "13:50",
+          "15:10",
+          "false",
+          "학기",
+          "2026 연간",
+          null,
+          788
+        ],
+        [
+          "맞춤형",
+          "놀이체육",
+          null,
+          null,
+          "2학년",
+          "table",
+          "수",
+          null,
+          null,
+          "false",
+          "학기",
+          "2026 연간",
+          null,
+          789
+        ],
+        [
+          "맞춤형",
+          "보드게임",
+          null,
+          null,
+          "2학년",
+          "table",
+          "목",
+          null,
+          null,
+          "false",
+          "학기",
+          "2026 연간",
+          null,
+          789
+        ],
+        [
+          "맞춤형",
+          "놀이한자",
+          null,
+          null,
+          "2학년",
+          "table",
+          "금",
+          "13:00",
+          "14:20",
+          "false",
+          "학기",
+          "2026 연간",
+          null,
+          788
+        ],
+        [
+          "맞춤형",
+          "책놀이",
+          null,
+          null,
+          "1학년",
+          "table",
+          "월",
+          "13:00",
+          "14:20",
+          "true",
+          "학기",
+          "2026 연간",
+          null,
+          793
+        ],
+        [
+          "맞춤형",
+          "놀이체육",
+          null,
+          null,
+          "1학년",
+          "table",
+          "화",
+          "13:50",
+          "15:10",
+          "true",
+          "학기",
+          "2026 연간",
+          null,
+          793
+        ],
+        [
+          "맞춤형",
+          "종이접기· 클레이",
+          null,
+          null,
+          "1학년",
+          "table",
+          "수",
+          null,
+          null,
+          "true",
+          "학기",
+          "2026 연간",
+          null,
+          794
+        ],
+        [
+          "맞춤형",
+          "놀이한자",
+          null,
+          null,
+          "1학년",
+          "table",
+          "목",
+          null,
+          null,
+          "true",
+          "학기",
+          "2026 연간",
+          null,
+          794
+        ],
+        [
+          "맞춤형",
+          "보드게임",
+          null,
+          null,
+          "1학년",
+          "table",
+          "금",
+          "13:00",
+          "14:20",
+          "true",
+          "학기",
+          "2026 연간",
+          null,
+          793
+        ],
+        [
+          "방과후",
+          "수익자 방과후",
+          null,
+          "A",
+          "1-2학년",
+          "row",
+          "월",
+          "13:10",
+          "14:30",
+          "true",
+          "학기",
+          "2026 연간",
+          null,
+          589
+        ],
+        [
+          "방과후",
+          "수익자 방과후",
+          null,
+          "A",
+          "1-2학년",
+          "row",
+          "화수목금",
+          "13:50",
+          "15:10",
+          "true",
+          "학기",
+          "2026 연간",
+          null,
+          590
+        ],
+        [
+          "방과후",
+          "수익자 방과후",
+          null,
+          "B",
+          "3-6학년",
+          "row",
+          "월",
+          "14:40",
+          "16:00",
+          "false",
+          "학기",
+          "2026 연간",
+          null,
+          591
+        ],
+        [
+          "방과후",
+          "수익자 방과후",
+          null,
+          "B",
+          "3-6학년",
+          "row",
+          "화수목금",
+          "15:20",
+          "16:40",
+          "false",
+          "학기",
+          "2026 연간",
+          null,
+          592
+        ]
+      ],
+      "conflicts": [
+        [
+          "시각",
+          "맞춤형 수·목(시각 칸 비어 있음, 개요 13:50~15:10)",
+          "L788 / L594"
+        ],
+        [
+          "학년",
+          "늘봄1반(개요 2학년, 표 비고 1학년 적응기간)",
+          "L593 / L788"
+        ]
+      ],
+      "period_slots": {},
+      "slots": [
+        {
+          "kind": "맞춤형",
+          "weekday": "월",
+          "start": "13:00",
+          "end": "14:20",
+          "courses": [
+            "책놀이"
+          ],
+          "place": null,
+          "time_source": "plan",
+          "source_rows": [
+            6
+          ],
+          "source_lines": [
+            793
+          ]
+        },
+        {
+          "kind": "저학년방과후",
+          "weekday": "월",
+          "start": "13:10",
+          "end": "14:30",
+          "courses": [
+            "수익자 방과후"
+          ],
+          "place": null,
+          "time_source": "plan",
+          "source_rows": [
+            11
+          ],
+          "source_lines": [
+            589
+          ]
+        },
+        {
+          "kind": "맞춤형",
+          "weekday": "화",
+          "start": "13:50",
+          "end": "15:10",
+          "courses": [
+            "놀이체육"
+          ],
+          "place": null,
+          "time_source": "plan",
+          "source_rows": [
+            7
+          ],
+          "source_lines": [
+            793
+          ]
+        },
+        {
+          "kind": "저학년방과후",
+          "weekday": "화",
+          "start": "13:50",
+          "end": "15:10",
+          "courses": [
+            "수익자 방과후"
+          ],
+          "place": null,
+          "time_source": "plan",
+          "source_rows": [
+            12
+          ],
+          "source_lines": [
+            590
+          ]
+        },
+        {
+          "kind": "저학년방과후",
+          "weekday": "수",
+          "start": "13:50",
+          "end": "15:10",
+          "courses": [
+            "수익자 방과후"
+          ],
+          "place": null,
+          "time_source": "plan",
+          "source_rows": [
+            12
+          ],
+          "source_lines": [
+            590
+          ]
+        },
+        {
+          "kind": "저학년방과후",
+          "weekday": "목",
+          "start": "13:50",
+          "end": "15:10",
+          "courses": [
+            "수익자 방과후"
+          ],
+          "place": null,
+          "time_source": "plan",
+          "source_rows": [
+            12
+          ],
+          "source_lines": [
+            590
+          ]
+        },
+        {
+          "kind": "맞춤형",
+          "weekday": "금",
+          "start": "13:00",
+          "end": "14:20",
+          "courses": [
+            "보드게임"
+          ],
+          "place": null,
+          "time_source": "plan",
+          "source_rows": [
+            10
+          ],
+          "source_lines": [
+            793
+          ]
+        },
+        {
+          "kind": "저학년방과후",
+          "weekday": "금",
+          "start": "13:50",
+          "end": "15:10",
+          "courses": [
+            "수익자 방과후"
+          ],
+          "place": null,
+          "time_source": "plan",
+          "source_rows": [
+            12
+          ],
+          "source_lines": [
+            590
+          ]
+        }
+      ],
+      "checks": [
+        [
+          "맞춤형시각없음",
+          "수",
+          null
+        ],
+        [
+          "맞춤형시각없음",
+          "목",
+          null
+        ],
+        [
+          "원문불일치",
+          "시각",
+          [
+            "시각",
+            "맞춤형 수·목(시각 칸 비어 있음, 개요 13:50~15:10)",
+            "L788 / L594"
+          ]
+        ],
+        [
+          "원문불일치",
+          "학년",
+          [
+            "학년",
+            "늘봄1반(개요 2학년, 표 비고 1학년 적응기간)",
+            "L593 / L788"
+          ]
+        ]
+      ],
+      "status": "check",
+      "reference_findings": [
+        {
+          "code": "missing_class_schedule",
+          "lines": [
+            589,
+            650
+          ],
+          "reason": "수익자 부서별 요일·시각 미공시(공통 A/B 창만)"
+        }
+      ],
+      "source_pdf_only": false,
+      "independent_review_complete": false,
+      "approved_for_upload": false,
+      "production_apply_ready": false,
+      "input_sha256": "cf3c39d93f72d134747d29e3928aee196f235d7899bce564c5528d183c12448e",
+      "output_sha256": "217e4554d1a8896206b129ac9aa925a2bd546b84ac1163a9ecd7d16b68336769"
     },
     {
       "school_id": "B000003976",

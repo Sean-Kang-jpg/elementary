@@ -5,19 +5,19 @@
   "summary": {
     "targets": 83,
     "source_prepared": 83,
-    "extracted_schools": 64,
-    "pending_extraction": 19,
-    "course_rows": 2297,
-    "slot_candidates": 725,
-    "remaining_source_evidence_indexed": 19,
+    "extracted_schools": 65,
+    "pending_extraction": 18,
+    "course_rows": 2311,
+    "slot_candidates": 733,
+    "remaining_source_evidence_indexed": 18,
     "visual_slot_checks": 32,
     "ok_candidates_after_visual": 28,
-    "schools_needing_checks": 36,
-    "unresolved_check_items": 238,
+    "schools_needing_checks": 37,
+    "unresolved_check_items": 242,
     "independent_review_complete": 0,
     "current_term_verified": 0,
     "production_applied": 0,
-    "extraction_percent": 77.1
+    "extraction_percent": 78.3
   },
   "effective_slot_review": [
     {
@@ -481,6 +481,42 @@
           "PDF원문",
           null,
           null
+        ]
+      ]
+    },
+    {
+      "school_id": "B000003937",
+      "school_name": "새빛초등학교",
+      "slots": 8,
+      "status": "check",
+      "checks": [
+        [
+          "맞춤형시각없음",
+          "수",
+          null
+        ],
+        [
+          "맞춤형시각없음",
+          "목",
+          null
+        ],
+        [
+          "원문불일치",
+          "시각",
+          [
+            "시각",
+            "맞춤형 수·목(시각 칸 비어 있음, 개요 13:50~15:10)",
+            "L788 / L594"
+          ]
+        ],
+        [
+          "원문불일치",
+          "학년",
+          [
+            "학년",
+            "늘봄1반(개요 2학년, 표 비고 1학년 적응기간)",
+            "L593 / L788"
+          ]
         ]
       ]
     },
@@ -2508,17 +2544,6 @@
       "evidence_indexed": true
     },
     {
-      "school_id": "B000003937",
-      "school_name": "새빛초등학교",
-      "area": "suji",
-      "input": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000003937.txt",
-      "input_sha256": "cf3c39d93f72d134747d29e3928aee196f235d7899bce564c5528d183c12448e",
-      "evidence_index": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\remaining_evidence_index_20261025\\B000003937.json",
-      "evidence_windows": 55,
-      "status": "pending_full_source_extraction",
-      "evidence_indexed": true
-    },
-    {
       "school_id": "B000003982",
       "school_name": "성복초등학교",
       "area": "suji",
@@ -2646,5 +2671,5 @@
     "pivot_gyeonggi_priority_slots_current_20261030.json",
     "pivot_gyeonggi_priority_all_current_verification_20261030.json"
   ],
-  "next_action": "Continue remaining 19 whole-source extractions and unresolved slot checks. Evidence index is navigation only."
+  "next_action": "Continue remaining 18 whole-source extractions and unresolved slot checks. Evidence index is navigation only."
 }
