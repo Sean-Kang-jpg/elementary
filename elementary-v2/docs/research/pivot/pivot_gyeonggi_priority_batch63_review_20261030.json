@@ -1,0 +1,507 @@
+{
+  "batch": "priority-batch63",
+  "checked_on": "2026-10-30",
+  "no_operational_upload": true,
+  "independent_review": false,
+  "schools": [
+    {
+      "school_id": "B000003860",
+      "school_name": "귀인초등학교",
+      "input": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000003860.txt",
+      "input_sha256": "14f6ba9bebdc40c4fd97aeb6112212478a7cc675d7ea8507152493f05b087a77",
+      "output": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\outputs\\B000003860.json",
+      "output_sha256": "57339b7867817dfe152ddfb2c957c415e0d76b8e95b0ee84191e0ed2dd6d685e",
+      "review_method": "same-assistant whole-source read; not independent blind review",
+      "supplied_sources_read": true,
+      "rows": 62,
+      "grade1_rows": 46,
+      "custom_rows": 15,
+      "field_evidence": {
+        "1": {
+          "grades": [
+            829
+          ],
+          "weekday_header": [
+            867
+          ],
+          "weekday_column": 1
+        },
+        "2": {
+          "grades": [
+            829
+          ],
+          "weekday_header": [
+            867
+          ],
+          "weekday_column": 2
+        },
+        "3": {
+          "grades": [
+            829
+          ],
+          "weekday_header": [
+            867
+          ],
+          "weekday_column": 3
+        },
+        "4": {
+          "grades": [
+            829
+          ],
+          "weekday_header": [
+            867
+          ],
+          "weekday_column": 4
+        },
+        "5": {
+          "grades": [
+            829
+          ],
+          "weekday_header": [
+            867
+          ],
+          "weekday_column": 5
+        },
+        "6": {
+          "grades": [
+            829
+          ],
+          "weekday_header": [
+            867
+          ],
+          "weekday_column": 1
+        },
+        "7": {
+          "grades": [
+            829
+          ],
+          "weekday_header": [
+            867
+          ],
+          "weekday_column": 2
+        },
+        "8": {
+          "grades": [
+            829
+          ],
+          "weekday_header": [
+            867
+          ],
+          "weekday_column": 3
+        },
+        "9": {
+          "grades": [
+            829
+          ],
+          "weekday_header": [
+            867
+          ],
+          "weekday_column": 4
+        },
+        "10": {
+          "grades": [
+            829
+          ],
+          "weekday_header": [
+            867
+          ],
+          "weekday_column": 5
+        },
+        "11": {
+          "grades": [
+            829
+          ],
+          "weekday_header": [
+            867
+          ],
+          "weekday_column": 1
+        },
+        "12": {
+          "grades": [
+            829
+          ],
+          "weekday_header": [
+            867
+          ],
+          "weekday_column": 2
+        },
+        "13": {
+          "grades": [
+            829
+          ],
+          "weekday_header": [
+            867
+          ],
+          "weekday_column": 3
+        },
+        "14": {
+          "grades": [
+            829
+          ],
+          "weekday_header": [
+            867
+          ],
+          "weekday_column": 4
+        },
+        "15": {
+          "grades": [
+            829
+          ],
+          "weekday_header": [
+            867
+          ],
+          "weekday_column": 5
+        },
+        "16": {
+          "weekday_header": [
+            718
+          ],
+          "weekday_column": 1
+        },
+        "17": {
+          "weekday_header": [
+            718
+          ],
+          "weekday_column": 1
+        },
+        "18": {
+          "weekday_header": [
+            718
+          ],
+          "weekday_column": 2
+        },
+        "19": {
+          "weekday_header": [
+            718
+          ],
+          "weekday_column": 2
+        },
+        "20": {
+          "weekday_header": [
+            718
+          ],
+          "weekday_column": 3
+        },
+        "21": {
+          "weekday_header": [
+            718
+          ],
+          "weekday_column": 3
+        },
+        "22": {
+          "weekday_header": [
+            723
+          ],
+          "weekday_column": 4
+        },
+        "23": {
+          "weekday_header": [
+            723
+          ],
+          "weekday_column": 4
+        },
+        "24": {
+          "weekday_header": [
+            723
+          ],
+          "weekday_column": 3
+        },
+        "25": {
+          "weekday_header": [
+            723
+          ],
+          "weekday_column": 4
+        },
+        "26": {
+          "weekday_header": [
+            723
+          ],
+          "weekday_column": 4
+        },
+        "27": {
+          "weekday_header": [
+            723
+          ],
+          "weekday_column": 5
+        },
+        "28": {
+          "weekday_header": [
+            723
+          ],
+          "weekday_column": 5
+        },
+        "29": {
+          "weekday_header": [
+            723
+          ],
+          "weekday_column": 4
+        },
+        "30": {
+          "weekday_header": [
+            723
+          ],
+          "weekday_column": 4
+        },
+        "31": {
+          "weekday_header": [
+            723
+          ],
+          "weekday_column": 1
+        },
+        "32": {
+          "weekday_header": [
+            723
+          ],
+          "weekday_column": 1
+        },
+        "33": {
+          "weekday_header": [
+            723
+          ],
+          "weekday_column": 4
+        },
+        "34": {
+          "weekday_header": [
+            723
+          ],
+          "weekday_column": 4
+        },
+        "35": {
+          "weekday_header": [
+            723
+          ],
+          "weekday_column": 3
+        },
+        "36": {
+          "weekday_header": [
+            723
+          ],
+          "weekday_column": 3
+        },
+        "37": {
+          "weekday_header": [
+            723
+          ],
+          "weekday_column": 1
+        },
+        "38": {
+          "weekday_header": [
+            723
+          ],
+          "weekday_column": 1
+        },
+        "39": {
+          "weekday_header": [
+            723
+          ],
+          "weekday_column": 2
+        },
+        "40": {
+          "weekday_header": [
+            723
+          ],
+          "weekday_column": 2
+        },
+        "41": {
+          "weekday_header": [
+            723
+          ],
+          "weekday_column": 3
+        },
+        "42": {
+          "weekday_header": [
+            723
+          ],
+          "weekday_column": 3
+        },
+        "43": {
+          "weekday_header": [
+            723
+          ],
+          "weekday_column": 5
+        },
+        "44": {
+          "weekday_header": [
+            723
+          ],
+          "weekday_column": 5
+        },
+        "45": {
+          "weekday_header": [
+            723
+          ],
+          "weekday_column": 1
+        },
+        "46": {
+          "weekday_header": [
+            723
+          ],
+          "weekday_column": 1
+        },
+        "47": {
+          "weekday_header": [
+            723
+          ],
+          "weekday_column": 2
+        },
+        "48": {
+          "weekday_header": [
+            723
+          ],
+          "weekday_column": 2
+        },
+        "49": {
+          "weekday_header": [
+            723
+          ],
+          "weekday_column": 3
+        },
+        "50": {
+          "weekday_header": [
+            723
+          ],
+          "weekday_column": 3
+        },
+        "51": {
+          "weekday_header": [
+            723
+          ],
+          "weekday_column": 5
+        },
+        "52": {
+          "weekday_header": [
+            723
+          ],
+          "weekday_column": 5
+        },
+        "53": {
+          "weekday_header": [
+            723
+          ],
+          "weekday_column": 1
+        },
+        "54": {
+          "weekday_header": [
+            723
+          ],
+          "weekday_column": 1
+        },
+        "55": {
+          "weekday_header": [
+            723
+          ],
+          "weekday_column": 2
+        },
+        "56": {
+          "weekday_header": [
+            723
+          ],
+          "weekday_column": 2
+        },
+        "57": {
+          "weekday_header": [
+            723
+          ],
+          "weekday_column": 3
+        },
+        "58": {
+          "weekday_header": [
+            723
+          ],
+          "weekday_column": 4
+        },
+        "59": {
+          "weekday_header": [
+            723
+          ],
+          "weekday_column": 4
+        },
+        "60": {
+          "weekday_header": [
+            723
+          ],
+          "weekday_column": 5
+        },
+        "61": {
+          "weekday_header": [
+            723
+          ],
+          "weekday_column": 5
+        },
+        "62": {
+          "weekday_header": [
+            723
+          ],
+          "weekday_column": 5
+        }
+      },
+      "blocking_issues": [
+        {
+          "code": "period_condition_only",
+          "lines": [
+            872,
+            874,
+            878
+          ],
+          "reason": "맞춤형 시각은 1반 예시(월·화·목 5교시, 수·금 4교시)로만 제시 — 2·3반 요일 시정 동일 여부 미확인"
+        }
+      ],
+      "additional_findings": [
+        {
+          "type": "semester_one_only",
+          "lines": [
+            660
+          ],
+          "reason": "방과후는 1학기(2026.3.16.~7.24.) 계획"
+        },
+        {
+          "type": "grade_conflict",
+          "lines": [
+            704,
+            733
+          ],
+          "reason": "컴퓨터2 목 B반 대상: 신청 현황 D(목) 3~6, 시간표 4~6 — 시간표 기록"
+        },
+        {
+          "type": "alternating_venue",
+          "lines": [
+            734,
+            735
+          ],
+          "reason": "금요코딩드론 매월 1·4주 컴퓨터실, 2·3주 체육관(시각 동일 추정, 체육관 칸 시각 없음)"
+        },
+        {
+          "type": "care_hours_reported",
+          "lines": [
+            44,
+            45
+          ],
+          "reason": "오후돌봄①(1학년) ~19:00, ②(2학년) ~17:00"
+        }
+      ],
+      "exclusions": [
+        {
+          "lines": [
+            882,
+            883,
+            884,
+            885,
+            886,
+            887,
+            888,
+            889
+          ],
+          "reason": "방학 중 맞춤형 시간표"
+        },
+        {
+          "lines": [
+            496
+          ],
+          "reason": "돌봄 특기적성은 돌봄 일과 프로그램"
+        }
+      ],
+      "production_apply_ready": false,
+      "approved_for_upload": false
+    }
+  ]
+}

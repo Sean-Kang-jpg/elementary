@@ -2,12 +2,12 @@
   "checked_on": "20261030",
   "summary": {
     "new_targets": 83,
-    "transcribed_schools": 70,
-    "pending_extraction": 13,
-    "rows": 2558,
-    "afterschool_rows": 2040,
-    "custom_rows": 518,
-    "schools_with_source_blockers": 36,
+    "transcribed_schools": 71,
+    "pending_extraction": 12,
+    "rows": 2620,
+    "afterschool_rows": 2087,
+    "custom_rows": 533,
+    "schools_with_source_blockers": 37,
     "existing_p1_preserved": 44,
     "care_review_targets": 37,
     "no_operational_upload": true,
@@ -469,10 +469,10 @@
       "school_name": "귀인초등학교",
       "area": "dongan",
       "course_track": "new_priority",
-      "status": "pending_extraction",
-      "rows": 0,
+      "status": "source_conflicts_need_followup",
+      "rows": 62,
       "approved_for_upload": false,
-      "review_file": null
+      "review_file": "pivot_gyeonggi_priority_batch63_review_20261030.json"
     },
     {
       "school_id": "B000003856",
