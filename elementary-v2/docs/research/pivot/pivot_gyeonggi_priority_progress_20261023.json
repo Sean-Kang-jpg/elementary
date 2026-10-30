@@ -2,10 +2,10 @@
   "checked_on": "20261030",
   "summary": {
     "new_targets": 83,
-    "transcribed_schools": 47,
-    "pending_extraction": 36,
-    "rows": 1512,
-    "afterschool_rows": 1236,
+    "transcribed_schools": 48,
+    "pending_extraction": 35,
+    "rows": 1534,
+    "afterschool_rows": 1258,
     "custom_rows": 276,
     "schools_with_source_blockers": 30,
     "existing_p1_preserved": 44,
@@ -579,10 +579,10 @@
       "school_name": "안양남초등학교",
       "area": "dongan",
       "course_track": "new_priority",
-      "status": "pending_extraction",
-      "rows": 0,
+      "status": "transcribed_pending_independent_review",
+      "rows": 22,
       "approved_for_upload": false,
-      "review_file": null
+      "review_file": "pivot_gyeonggi_priority_batch40_review_20261030.json"
     },
     {
       "school_id": "B000003864",

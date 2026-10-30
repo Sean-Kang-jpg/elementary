@@ -1,0 +1,234 @@
+{
+  "batch": "priority-batch40",
+  "checked_on": "2026-10-30",
+  "no_operational_upload": true,
+  "independent_review": false,
+  "schools": [
+    {
+      "school_id": "B000003865",
+      "school_name": "안양남초등학교",
+      "input": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000003865.txt",
+      "input_sha256": "d12411717538e81e7419b5a8880fbf19bd68081ede4d76a35ebed6c3cbdb43a7",
+      "output": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\outputs\\B000003865.json",
+      "output_sha256": "3de1e3852017b86d3c6d6486554298fc01d4f6f86ac60bd3250b71773cdbb858",
+      "review_method": "same-assistant whole-source read; not independent blind review",
+      "supplied_sources_read": true,
+      "rows": 22,
+      "grade1_rows": 17,
+      "custom_rows": 0,
+      "field_evidence": {
+        "1": {
+          "weekday_header": [
+            176
+          ],
+          "weekday_column": 2,
+          "clock_column": 2
+        },
+        "2": {
+          "weekday_header": [
+            176
+          ],
+          "weekday_column": 2,
+          "clock_column": 2
+        },
+        "3": {
+          "weekday_header": [
+            176
+          ],
+          "weekday_column": 6,
+          "clock_column": 6
+        },
+        "4": {
+          "weekday_header": [
+            176
+          ],
+          "weekday_column": 3,
+          "clock_column": 3
+        },
+        "5": {
+          "weekday_header": [
+            176
+          ],
+          "weekday_column": 3,
+          "clock_column": 3
+        },
+        "6": {
+          "weekday_header": [
+            176
+          ],
+          "weekday_column": 3,
+          "clock_column": 3
+        },
+        "7": {
+          "weekday_header": [
+            176
+          ],
+          "weekday_column": 3,
+          "clock_column": 3
+        },
+        "8": {
+          "weekday_header": [
+            176
+          ],
+          "weekday_column": 3,
+          "clock_column": 3
+        },
+        "9": {
+          "weekday_header": [
+            176
+          ],
+          "weekday_column": 4,
+          "clock_column": 4
+        },
+        "10": {
+          "weekday_header": [
+            176
+          ],
+          "weekday_column": 4,
+          "clock_column": 4
+        },
+        "11": {
+          "weekday_header": [
+            176
+          ],
+          "weekday_column": 4,
+          "clock_column": 4
+        },
+        "12": {
+          "weekday_header": [
+            176
+          ],
+          "weekday_column": 4,
+          "clock_column": 4
+        },
+        "13": {
+          "weekday_header": [
+            176
+          ],
+          "weekday_column": 5,
+          "clock_column": 5
+        },
+        "14": {
+          "weekday_header": [
+            176
+          ],
+          "weekday_column": 5,
+          "clock_column": 5
+        },
+        "15": {
+          "weekday_header": [
+            176
+          ],
+          "weekday_column": 5,
+          "clock_column": 5
+        },
+        "16": {
+          "weekday_header": [
+            176
+          ],
+          "weekday_column": 5,
+          "clock_column": 5
+        },
+        "17": {
+          "weekday_header": [
+            176
+          ],
+          "weekday_column": 5,
+          "clock_column": 5
+        },
+        "18": {
+          "weekday_header": [
+            176
+          ],
+          "weekday_column": 5,
+          "clock_column": 5
+        },
+        "19": {
+          "weekday_header": [
+            176
+          ],
+          "weekday_column": 6,
+          "clock_column": 6
+        },
+        "20": {
+          "weekday_header": [
+            176
+          ],
+          "weekday_column": 6,
+          "clock_column": 6
+        },
+        "21": {
+          "weekday_header": [
+            176
+          ],
+          "weekday_column": 6,
+          "clock_column": 6
+        },
+        "22": {
+          "weekday_header": [
+            176
+          ],
+          "weekday_column": 6,
+          "clock_column": 6
+        }
+      },
+      "blocking_issues": [],
+      "additional_findings": [
+        {
+          "type": "duplicate_source_row",
+          "lines": [
+            179,
+            180,
+            185,
+            186
+          ],
+          "reason": "배드민턴·탁구 동일 행 반복"
+        },
+        {
+          "type": "custom_and_care_absent_in_supplied_sources",
+          "reason": "제공 첨부는 수익자 방과후 운영계획 1개"
+        }
+      ],
+      "exclusions": [
+        {
+          "lines": [
+            180,
+            186
+          ],
+          "reason": "반복 행"
+        },
+        {
+          "lines": [
+            387,
+            388,
+            389,
+            390,
+            391,
+            392,
+            393,
+            394,
+            395,
+            396,
+            397,
+            398,
+            399,
+            400,
+            401,
+            402,
+            403,
+            404,
+            405,
+            406,
+            407,
+            408,
+            409,
+            410
+          ],
+          "reason": "2025학년도 1학기 안내문"
+        }
+      ],
+      "production_apply_ready": false,
+      "approved_for_upload": false
+    }
+  ]
+}

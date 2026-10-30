@@ -5,19 +5,19 @@
   "summary": {
     "targets": 83,
     "source_prepared": 83,
-    "extracted_schools": 47,
-    "pending_extraction": 36,
-    "course_rows": 1512,
-    "slot_candidates": 473,
-    "remaining_source_evidence_indexed": 36,
+    "extracted_schools": 48,
+    "pending_extraction": 35,
+    "course_rows": 1534,
+    "slot_candidates": 485,
+    "remaining_source_evidence_indexed": 35,
     "visual_slot_checks": 32,
-    "ok_candidates_after_visual": 18,
+    "ok_candidates_after_visual": 19,
     "schools_needing_checks": 29,
     "unresolved_check_items": 212,
     "independent_review_complete": 0,
     "current_term_verified": 0,
     "production_applied": 0,
-    "extraction_percent": 56.6
+    "extraction_percent": 57.8
   },
   "effective_slot_review": [
     {
@@ -277,6 +277,13 @@
           ]
         ]
       ]
+    },
+    {
+      "school_id": "B000003865",
+      "school_name": "안양남초등학교",
+      "slots": 12,
+      "status": "ok",
+      "checks": []
     },
     {
       "school_id": "B000003866",
@@ -2206,17 +2213,6 @@
       "evidence_indexed": true
     },
     {
-      "school_id": "B000003865",
-      "school_name": "안양남초등학교",
-      "area": "dongan",
-      "input": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000003865.txt",
-      "input_sha256": "d12411717538e81e7419b5a8880fbf19bd68081ede4d76a35ebed6c3cbdb43a7",
-      "evidence_index": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\remaining_evidence_index_20261025\\B000003865.json",
-      "evidence_windows": 79,
-      "status": "pending_full_source_extraction",
-      "evidence_indexed": true
-    },
-    {
       "school_id": "B000003854",
       "school_name": "안양부안초등학교",
       "area": "dongan",
@@ -2553,5 +2549,5 @@
     "pivot_gyeonggi_priority_slots_current_20261030.json",
     "pivot_gyeonggi_priority_all_current_verification_20261030.json"
   ],
-  "next_action": "Continue remaining 36 whole-source extractions and unresolved slot checks. Evidence index is navigation only."
+  "next_action": "Continue remaining 35 whole-source extractions and unresolved slot checks. Evidence index is navigation only."
 }
