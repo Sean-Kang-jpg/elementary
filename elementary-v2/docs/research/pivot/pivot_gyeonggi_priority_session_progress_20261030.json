@@ -5,19 +5,19 @@
   "summary": {
     "targets": 83,
     "source_prepared": 83,
-    "extracted_schools": 75,
-    "pending_extraction": 8,
-    "course_rows": 2868,
-    "slot_candidates": 890,
-    "remaining_source_evidence_indexed": 8,
+    "extracted_schools": 76,
+    "pending_extraction": 7,
+    "course_rows": 2913,
+    "slot_candidates": 900,
+    "remaining_source_evidence_indexed": 7,
     "visual_slot_checks": 32,
     "ok_candidates_after_visual": 30,
-    "schools_needing_checks": 45,
-    "unresolved_check_items": 261,
+    "schools_needing_checks": 46,
+    "unresolved_check_items": 266,
     "independent_review_complete": 0,
     "current_term_verified": 0,
     "production_applied": 0,
-    "extraction_percent": 90.4
+    "extraction_percent": 91.6
   },
   "effective_slot_review": [
     {
@@ -1813,6 +1813,39 @@
       ]
     },
     {
+      "school_id": "B000004003",
+      "school_name": "성서초등학교",
+      "slots": 10,
+      "status": "check",
+      "checks": [
+        [
+          "맞춤형시각없음",
+          "월",
+          null
+        ],
+        [
+          "맞춤형시각없음",
+          "화",
+          null
+        ],
+        [
+          "맞춤형시각없음",
+          "수",
+          null
+        ],
+        [
+          "맞춤형시각없음",
+          "목",
+          null
+        ],
+        [
+          "맞춤형시각없음",
+          "금",
+          null
+        ]
+      ]
+    },
+    {
       "school_id": "B000004004",
       "school_name": "용인신봉초등학교",
       "slots": 6,
@@ -2676,17 +2709,6 @@
   ],
   "pending_schools": [
     {
-      "school_id": "B000004003",
-      "school_name": "성서초등학교",
-      "area": "suji",
-      "input": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000004003.txt",
-      "input_sha256": "a91110b9c1b2364639333bf2aa81706dc6e30d1b84a5804dd96e24ed04c4819c",
-      "evidence_index": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\remaining_evidence_index_20261025\\B000004003.json",
-      "evidence_windows": 75,
-      "status": "pending_full_source_extraction",
-      "evidence_indexed": true
-    },
-    {
       "school_id": "B000003946",
       "school_name": "소현초등학교",
       "area": "suji",
@@ -2770,5 +2792,5 @@
     "pivot_gyeonggi_priority_slots_current_20261030.json",
     "pivot_gyeonggi_priority_all_current_verification_20261030.json"
   ],
-  "next_action": "Continue remaining 8 whole-source extractions and unresolved slot checks. Evidence index is navigation only."
+  "next_action": "Continue remaining 7 whole-source extractions and unresolved slot checks. Evidence index is navigation only."
 }

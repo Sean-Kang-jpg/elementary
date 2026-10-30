@@ -54,6 +54,21 @@ class PriorityEvidenceTests(unittest.TestCase):
         review['field_evidence']['1'] = dict(fields, clock_column=3, weekday_column=3)
         self.assertTrue(check_rows([r],lines,review)[0])
 
+    def test_weekday_may_come_from_the_same_departments_row_in_another_table(self):
+        lines = {1:'[file: plan.hwp; academic_year: 2026]',
+                 2:'1 | 미술 | A반 (1-2) | 13:00~13:40 |', 3:'1 | 미술 | 27,840 | 11개월 | 화, 주1회80분 |',
+                 4:'2 | 체육 | 27,840 | 11개월 | 월, 주1회80분 |'}
+        r = self.row(line=2, days='화', grade='1-2')
+        review = {'field_evidence':{'1':{'weekday_refs':[3]}}}
+        self.assertFalse(check_rows([r],lines,review)[0])
+        # Another department's row, or a weekday found only inside "개월", is not evidence.
+        review['field_evidence']['1']['weekday_refs'] = [4]
+        self.assertTrue(check_rows([r],lines,review)[0])
+        lines[3] = '1 | 미술 | 27,840 | 11개월 | 주1회80분 |'
+        r = self.row(line=2, days='월', grade='1-2')
+        review['field_evidence']['1']['weekday_refs'] = [3]
+        self.assertTrue(check_rows([r],lines,review)[0])
+
     def test_separate_name_and_clock_grids_must_use_same_weekday_column(self):
         lines={1:'[file: plan.hwp; academic_year: 2026]',
                2:'구분 | 월 | 화 |',3:'기본 | 13:00~13:40 | 14:00~14:40 |',

@@ -114,6 +114,17 @@ def check_rows(rows: list, lines: dict[int, str], review: dict) -> tuple[list[st
                         errors.append(f'{prefix}: invalid inherited weekday evidence')
                     else:
                         day_text += '\n' + '\n'.join(lines[ref] for ref in inherited)
+                weekday_refs = fields.get('weekday_refs', [])
+                if weekday_refs:
+                    # A department's weekday may sit in another table of the same plan.
+                    # The referenced row must name the department, and only cells that
+                    # begin with a weekday count, so "개월" cannot supply 월.
+                    if (not isinstance(name, str) or any(type(ref) is not int or ref not in lines
+                            or squash(name) not in squash(lines[ref]) for ref in weekday_refs)):
+                        errors.append(f'{prefix}: invalid weekday reference')
+                    else:
+                        day_text += '\n' + '\n'.join(cell for ref in weekday_refs for cell in lines[ref].split('|')
+                                                     if re.match(r'\s*[월화수목금](?:[,.·\s]|$)', cell))
                 day_supported = day_supported and all(d in day_text for d in days)
             if not day_supported:
                 errors.append(f'{prefix}: weekday absent from cited line/header column or invalid')

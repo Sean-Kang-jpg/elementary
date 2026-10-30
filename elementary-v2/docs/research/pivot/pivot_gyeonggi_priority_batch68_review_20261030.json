@@ -1,0 +1,417 @@
+{
+  "batch": "priority-batch68",
+  "checked_on": "2026-10-30",
+  "no_operational_upload": true,
+  "independent_review": false,
+  "schools": [
+    {
+      "school_id": "B000004003",
+      "school_name": "성서초등학교",
+      "input": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000004003.txt",
+      "input_sha256": "a91110b9c1b2364639333bf2aa81706dc6e30d1b84a5804dd96e24ed04c4819c",
+      "output": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\outputs\\B000004003.json",
+      "output_sha256": "1fdbcea68e63df963247b73ea66c8a9504e038172bd40ddbcf8bc6253967ca9d",
+      "review_method": "same-assistant whole-source read; not independent blind review",
+      "supplied_sources_read": true,
+      "rows": 45,
+      "grade1_rows": 26,
+      "custom_rows": 10,
+      "field_evidence": {
+        "1": {
+          "grades": [
+            530
+          ],
+          "name_table": [
+            531,
+            532
+          ],
+          "clock_column": 1,
+          "weekday_header": [
+            530
+          ],
+          "weekday_column": 1
+        },
+        "2": {
+          "grades": [
+            530
+          ],
+          "name_table": [
+            531,
+            532
+          ],
+          "clock_column": 2,
+          "weekday_header": [
+            530
+          ],
+          "weekday_column": 2
+        },
+        "3": {
+          "grades": [
+            530
+          ],
+          "name_table": [
+            531,
+            532
+          ],
+          "clock_column": 3,
+          "weekday_header": [
+            530
+          ],
+          "weekday_column": 3
+        },
+        "4": {
+          "grades": [
+            530
+          ],
+          "name_table": [
+            531,
+            532
+          ],
+          "clock_column": 4,
+          "weekday_header": [
+            530
+          ],
+          "weekday_column": 4
+        },
+        "5": {
+          "grades": [
+            530
+          ],
+          "name_table": [
+            531,
+            532
+          ],
+          "clock_column": 5,
+          "weekday_header": [
+            530
+          ],
+          "weekday_column": 5
+        },
+        "6": {
+          "grades": [
+            533
+          ],
+          "name_table": [
+            534,
+            535
+          ],
+          "clock_column": 1,
+          "weekday_header": [
+            533
+          ],
+          "weekday_column": 1
+        },
+        "7": {
+          "grades": [
+            533
+          ],
+          "name_table": [
+            534,
+            535
+          ],
+          "clock_column": 2,
+          "weekday_header": [
+            533
+          ],
+          "weekday_column": 2
+        },
+        "8": {
+          "grades": [
+            533
+          ],
+          "name_table": [
+            534,
+            535
+          ],
+          "clock_column": 3,
+          "weekday_header": [
+            533
+          ],
+          "weekday_column": 3
+        },
+        "9": {
+          "grades": [
+            533
+          ],
+          "name_table": [
+            534,
+            535
+          ],
+          "clock_column": 4,
+          "weekday_header": [
+            533
+          ],
+          "weekday_column": 4
+        },
+        "10": {
+          "grades": [
+            533
+          ],
+          "name_table": [
+            534,
+            535
+          ],
+          "clock_column": 5,
+          "weekday_header": [
+            533
+          ],
+          "weekday_column": 5
+        },
+        "11": {
+          "weekday_refs": [
+            672
+          ]
+        },
+        "12": {
+          "weekday_refs": [
+            672
+          ]
+        },
+        "13": {
+          "weekday_refs": [
+            673
+          ]
+        },
+        "14": {
+          "weekday_refs": [
+            673
+          ]
+        },
+        "15": {
+          "weekday_refs": [
+            674
+          ]
+        },
+        "16": {
+          "weekday_refs": [
+            674
+          ]
+        },
+        "17": {
+          "weekday_refs": [
+            675
+          ]
+        },
+        "18": {
+          "weekday_refs": [
+            675
+          ]
+        },
+        "19": {
+          "weekday_refs": [
+            676
+          ]
+        },
+        "20": {
+          "weekday_refs": [
+            676
+          ]
+        },
+        "21": {
+          "weekday_refs": [
+            677
+          ]
+        },
+        "22": {
+          "weekday_refs": [
+            677
+          ]
+        },
+        "23": {
+          "weekday_refs": [
+            678
+          ]
+        },
+        "24": {
+          "weekday_refs": [
+            678
+          ]
+        },
+        "25": {
+          "weekday_refs": [
+            679
+          ]
+        },
+        "26": {
+          "weekday_refs": [
+            679
+          ]
+        },
+        "27": {
+          "weekday_refs": [
+            680
+          ]
+        },
+        "28": {
+          "weekday_refs": [
+            680
+          ]
+        },
+        "29": {
+          "weekday_refs": [
+            681
+          ]
+        },
+        "30": {
+          "weekday_refs": [
+            681
+          ]
+        },
+        "31": {
+          "weekday_refs": [
+            682
+          ]
+        },
+        "32": {
+          "weekday_refs": [
+            683
+          ]
+        },
+        "33": {
+          "weekday_refs": [
+            684
+          ]
+        },
+        "34": {
+          "weekday_refs": [
+            684
+          ]
+        },
+        "35": {
+          "weekday_refs": [
+            685
+          ]
+        },
+        "36": {
+          "weekday_refs": [
+            685
+          ]
+        },
+        "37": {
+          "weekday_refs": [
+            686
+          ]
+        },
+        "38": {
+          "weekday_refs": [
+            686
+          ]
+        },
+        "39": {
+          "weekday_refs": [
+            687
+          ]
+        },
+        "40": {
+          "weekday_refs": [
+            687
+          ]
+        },
+        "41": {
+          "weekday_refs": [
+            688
+          ]
+        },
+        "42": {
+          "weekday_refs": [
+            688
+          ]
+        },
+        "43": {
+          "weekday_refs": [
+            689
+          ]
+        },
+        "44": {
+          "weekday_refs": [
+            689
+          ]
+        },
+        "45": {
+          "weekday_refs": [
+            690
+          ]
+        }
+      },
+      "blocking_issues": [
+        {
+          "code": "period_condition_only",
+          "lines": [
+            525,
+            526,
+            527,
+            529,
+            530
+          ],
+          "reason": "맞춤형 시각은 4교시/5교시 날 시정표(L527·L529)와 요일 머리글의 교시 표기(L530)를 이어야 함"
+        }
+      ],
+      "additional_findings": [
+        {
+          "type": "weekday_from_fee_table",
+          "lines": [
+            672,
+            673,
+            674,
+            675,
+            676,
+            677,
+            678,
+            679,
+            680,
+            681,
+            682,
+            683,
+            684,
+            685,
+            686,
+            687,
+            688,
+            689,
+            690
+          ],
+          "reason": "개설 프로그램 표에 요일 칸이 없어 수강료 표의 부서별 수업요일 사용"
+        },
+        {
+          "type": "morning_care",
+          "lines": [
+            625
+          ],
+          "reason": "아침돌봄 07:50~08:30"
+        },
+        {
+          "type": "care_hours_reported",
+          "lines": [
+            55
+          ],
+          "reason": "돌봄 학기 중 방과 후~19:00"
+        }
+      ],
+      "exclusions": [
+        {
+          "lines": [
+            1164,
+            1165,
+            1166,
+            1167,
+            1168,
+            1169,
+            1170,
+            1171,
+            1172,
+            1173,
+            1174,
+            1175,
+            1176,
+            1177,
+            1178,
+            1179
+          ],
+          "reason": "출석부·수업일지 양식"
+        }
+      ],
+      "production_apply_ready": false,
+      "approved_for_upload": false
+    }
+  ]
+}
