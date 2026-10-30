@@ -1,0 +1,102 @@
+{
+  "batch": "priority-batch47",
+  "checked_on": "2026-10-30",
+  "no_operational_upload": true,
+  "independent_review": false,
+  "schools": [
+    {
+      "school_id": "B000003852",
+      "school_name": "샘모루초등학교",
+      "input": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000003852.txt",
+      "input_sha256": "3a1b8ec6955b6792fe879e21593c60626bfaa6eaa7143a852c3320f240a49c04",
+      "output": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\outputs\\B000003852.json",
+      "output_sha256": "6c61d1051fdc972bb4b4dfc3844e70b6018451396843d3f8e5f625e3cdb50309",
+      "review_method": "same-assistant whole-source read; not independent blind review",
+      "supplied_sources_read": true,
+      "rows": 47,
+      "grade1_rows": 28,
+      "custom_rows": 9,
+      "field_evidence": {
+        "1": {
+          "grades": [
+            106
+          ]
+        },
+        "2": {
+          "grades": [
+            106
+          ]
+        },
+        "3": {
+          "grades": [
+            106
+          ]
+        },
+        "4": {
+          "grades": [
+            106
+          ]
+        },
+        "5": {
+          "grades": [
+            106
+          ]
+        },
+        "6": {
+          "grades": [
+            106
+          ]
+        },
+        "7": {
+          "grades": [
+            106
+          ]
+        },
+        "8": {
+          "grades": [
+            106
+          ]
+        },
+        "9": {
+          "grades": [
+            106
+          ]
+        }
+      },
+      "blocking_issues": [],
+      "additional_findings": [],
+      "exclusions": [
+        {
+          "lines": [
+            76,
+            77,
+            78,
+            79,
+            80,
+            81,
+            82,
+            83,
+            84,
+            85,
+            86,
+            87,
+            88,
+            89
+          ],
+          "reason": "교실별 요약(부서 운영창·방학)"
+        },
+        {
+          "lines": [
+            209,
+            210,
+            213,
+            214
+          ],
+          "reason": "공통 A/B 시간 안내는 반별 표로 대체"
+        }
+      ],
+      "production_apply_ready": false,
+      "approved_for_upload": false
+    }
+  ]
+}

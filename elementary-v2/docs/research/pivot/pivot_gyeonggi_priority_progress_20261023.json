@@ -2,11 +2,11 @@
   "checked_on": "20261030",
   "summary": {
     "new_targets": 83,
-    "transcribed_schools": 54,
-    "pending_extraction": 29,
-    "rows": 1803,
-    "afterschool_rows": 1497,
-    "custom_rows": 306,
+    "transcribed_schools": 55,
+    "pending_extraction": 28,
+    "rows": 1850,
+    "afterschool_rows": 1535,
+    "custom_rows": 315,
     "schools_with_source_blockers": 31,
     "existing_p1_preserved": 44,
     "care_review_targets": 37,
@@ -559,10 +559,10 @@
       "school_name": "샘모루초등학교",
       "area": "dongan",
       "course_track": "new_priority",
-      "status": "pending_extraction",
-      "rows": 0,
+      "status": "transcribed_pending_independent_review",
+      "rows": 47,
       "approved_for_upload": false,
-      "review_file": null
+      "review_file": "pivot_gyeonggi_priority_batch47_review_20261030.json"
     },
     {
       "school_id": "B000003866",
