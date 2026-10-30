@@ -1,0 +1,228 @@
+{
+  "batch": "priority-batch58",
+  "checked_on": "2026-10-30",
+  "no_operational_upload": true,
+  "independent_review": false,
+  "schools": [
+    {
+      "school_id": "B000003986",
+      "school_name": "용인대일초등학교",
+      "input": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000003986.txt",
+      "input_sha256": "eedb7f3d6da49930ca01e8cef417ea929c8f9a653a88cfefbd68ce58d6516759",
+      "output": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\outputs\\B000003986.json",
+      "output_sha256": "10efa7278e84f85d1976279f5feaf8afb94d1ff6ebfe9a4645c6d56d36954cca",
+      "review_method": "same-assistant whole-source read; not independent blind review",
+      "supplied_sources_read": true,
+      "rows": 40,
+      "grade1_rows": 20,
+      "custom_rows": 20,
+      "field_evidence": {
+        "1": {
+          "grades": [
+            136
+          ],
+          "weekday_header": [
+            135
+          ],
+          "weekday_column": 5
+        },
+        "2": {
+          "grades": [
+            136
+          ]
+        },
+        "3": {
+          "grades": [
+            136
+          ],
+          "weekday_header": [
+            135
+          ],
+          "weekday_column": 9
+        },
+        "4": {
+          "grades": [
+            136
+          ]
+        },
+        "5": {
+          "grades": [
+            136
+          ],
+          "weekday_header": [
+            135
+          ],
+          "weekday_column": 1
+        },
+        "6": {
+          "grades": [
+            136
+          ]
+        },
+        "7": {
+          "grades": [
+            136
+          ],
+          "weekday_header": [
+            135
+          ],
+          "weekday_column": 3
+        },
+        "8": {
+          "grades": [
+            136
+          ]
+        },
+        "9": {
+          "grades": [
+            136
+          ],
+          "weekday_header": [
+            135
+          ],
+          "weekday_column": 5
+        },
+        "10": {
+          "grades": [
+            136
+          ]
+        },
+        "11": {
+          "grades": [
+            136
+          ],
+          "weekday_header": [
+            135
+          ],
+          "weekday_column": 7
+        },
+        "12": {
+          "grades": [
+            136
+          ]
+        },
+        "13": {
+          "grades": [
+            136
+          ],
+          "weekday_header": [
+            135
+          ],
+          "weekday_column": 9
+        },
+        "14": {
+          "grades": [
+            136
+          ]
+        },
+        "15": {
+          "grades": [
+            136
+          ],
+          "weekday_header": [
+            135
+          ],
+          "weekday_column": 1
+        },
+        "16": {
+          "grades": [
+            136
+          ]
+        },
+        "17": {
+          "grades": [
+            136
+          ],
+          "weekday_header": [
+            135
+          ],
+          "weekday_column": 3
+        },
+        "18": {
+          "grades": [
+            136
+          ]
+        },
+        "19": {
+          "grades": [
+            136
+          ],
+          "weekday_header": [
+            135
+          ],
+          "weekday_column": 7
+        },
+        "20": {
+          "grades": [
+            136
+          ]
+        }
+      },
+      "blocking_issues": [],
+      "additional_findings": [
+        {
+          "type": "grade2_columns_unaligned",
+          "lines": [
+            135,
+            136
+          ],
+          "reason": "요일 머리글이 1반 열 위에만 있음"
+        },
+        {
+          "type": "care_hours_reported",
+          "lines": [
+            600,
+            188
+          ],
+          "reason": "돌봄 방과후~19:00, 아침 독서 07:50~08:30"
+        }
+      ],
+      "exclusions": [
+        {
+          "lines": [
+            147,
+            148
+          ],
+          "reason": "방학 시간표"
+        },
+        {
+          "lines": [
+            730,
+            731,
+            732,
+            733,
+            734,
+            735,
+            736,
+            737,
+            738,
+            739,
+            740,
+            741,
+            742,
+            743,
+            744,
+            745,
+            746,
+            747,
+            748,
+            749,
+            750,
+            751,
+            752,
+            753,
+            754,
+            755,
+            756,
+            757,
+            758,
+            759
+          ],
+          "reason": "돌봄교실 일과표"
+        }
+      ],
+      "production_apply_ready": false,
+      "approved_for_upload": false
+    }
+  ]
+}

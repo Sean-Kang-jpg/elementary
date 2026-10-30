@@ -2,11 +2,11 @@
   "checked_on": "20261030",
   "summary": {
     "new_targets": 83,
-    "transcribed_schools": 65,
-    "pending_extraction": 18,
-    "rows": 2311,
-    "afterschool_rows": 1868,
-    "custom_rows": 443,
+    "transcribed_schools": 66,
+    "pending_extraction": 17,
+    "rows": 2351,
+    "afterschool_rows": 1888,
+    "custom_rows": 463,
     "schools_with_source_blockers": 35,
     "existing_p1_preserved": 44,
     "care_review_targets": 37,
@@ -1159,10 +1159,10 @@
       "school_name": "용인대일초등학교",
       "area": "suji",
       "course_track": "new_priority",
-      "status": "pending_extraction",
-      "rows": 0,
+      "status": "transcribed_pending_independent_review",
+      "rows": 40,
       "approved_for_upload": false,
-      "review_file": null
+      "review_file": "pivot_gyeonggi_priority_batch58_review_20261030.json"
     },
     {
       "school_id": "B000004004",
