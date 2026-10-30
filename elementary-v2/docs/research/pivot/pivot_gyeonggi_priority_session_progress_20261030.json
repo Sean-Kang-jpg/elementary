@@ -5,19 +5,19 @@
   "summary": {
     "targets": 83,
     "source_prepared": 83,
-    "extracted_schools": 72,
-    "pending_extraction": 11,
-    "course_rows": 2671,
-    "slot_candidates": 842,
-    "remaining_source_evidence_indexed": 11,
+    "extracted_schools": 73,
+    "pending_extraction": 10,
+    "course_rows": 2729,
+    "slot_candidates": 856,
+    "remaining_source_evidence_indexed": 10,
     "visual_slot_checks": 32,
     "ok_candidates_after_visual": 30,
-    "schools_needing_checks": 42,
-    "unresolved_check_items": 257,
+    "schools_needing_checks": 43,
+    "unresolved_check_items": 258,
     "independent_review_complete": 0,
     "current_term_verified": 0,
     "production_applied": 0,
-    "extraction_percent": 86.7
+    "extraction_percent": 88.0
   },
   "effective_slot_review": [
     {
@@ -225,6 +225,23 @@
       "slots": 5,
       "status": "ok",
       "checks": []
+    },
+    {
+      "school_id": "B000003855",
+      "school_name": "부림초등학교",
+      "slots": 14,
+      "status": "check",
+      "checks": [
+        [
+          "원문불일치",
+          "시각",
+          [
+            "시각",
+            "맞춤형 운영 시간(개요 월·수 12:50~14:30, 화·목·금 13:40~15:20 — 정리·하교 10분 포함)",
+            "L640 / L655~670"
+          ]
+        ]
+      ]
     },
     {
       "school_id": "B000003856",
@@ -2616,17 +2633,6 @@
   ],
   "pending_schools": [
     {
-      "school_id": "B000003855",
-      "school_name": "부림초등학교",
-      "area": "dongan",
-      "input": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000003855.txt",
-      "input_sha256": "65af0f74a0e85dc6e3e6b2d3c2460473dce0be57022601e7ab1a32e032f12894",
-      "evidence_index": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\remaining_evidence_index_20261025\\B000003855.json",
-      "evidence_windows": 94,
-      "status": "pending_full_source_extraction",
-      "evidence_indexed": true
-    },
-    {
       "school_id": "B000003874",
       "school_name": "호원초등학교",
       "area": "dongan",
@@ -2743,5 +2749,5 @@
     "pivot_gyeonggi_priority_slots_current_20261030.json",
     "pivot_gyeonggi_priority_all_current_verification_20261030.json"
   ],
-  "next_action": "Continue remaining 11 whole-source extractions and unresolved slot checks. Evidence index is navigation only."
+  "next_action": "Continue remaining 10 whole-source extractions and unresolved slot checks. Evidence index is navigation only."
 }

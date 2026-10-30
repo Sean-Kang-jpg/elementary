@@ -2,11 +2,11 @@
   "checked_on": "20261030",
   "summary": {
     "new_targets": 83,
-    "transcribed_schools": 72,
-    "pending_extraction": 11,
-    "rows": 2671,
-    "afterschool_rows": 2118,
-    "custom_rows": 553,
+    "transcribed_schools": 73,
+    "pending_extraction": 10,
+    "rows": 2729,
+    "afterschool_rows": 2156,
+    "custom_rows": 573,
     "schools_with_source_blockers": 37,
     "existing_p1_preserved": 44,
     "care_review_targets": 37,
@@ -539,10 +539,10 @@
       "school_name": "부림초등학교",
       "area": "dongan",
       "course_track": "new_priority",
-      "status": "pending_extraction",
-      "rows": 0,
+      "status": "transcribed_pending_independent_review",
+      "rows": 58,
       "approved_for_upload": false,
-      "review_file": null
+      "review_file": "pivot_gyeonggi_priority_batch65_review_20261030.json"
     },
     {
       "school_id": "B000003876",

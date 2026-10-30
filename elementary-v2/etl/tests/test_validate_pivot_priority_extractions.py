@@ -32,6 +32,11 @@ class PriorityEvidenceTests(unittest.TestCase):
         lines[2] = '일정 | (월) | (화) |'
         review['field_evidence']['1']['weekday_column'] = 1
         self.assertFalse(check_rows([self.row()],lines,review)[0])
+        # A header may note that day's regular periods: "월 (4교시)".
+        lines[2] = '운영시간 | 월 (4교시) | 화 (5교시) |'
+        self.assertFalse(check_rows([self.row()],lines,review)[0])
+        review['field_evidence']['1']['weekday_column'] = 2
+        self.assertTrue(check_rows([self.row()],lines,review)[0])
 
     def test_separate_name_and_clock_grids_must_use_same_weekday_column(self):
         lines={1:'[file: plan.hwp; academic_year: 2026]',
