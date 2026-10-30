@@ -1,0 +1,84 @@
+{
+  "batch": "priority-batch38",
+  "checked_on": "2026-10-30",
+  "no_operational_upload": true,
+  "independent_review": false,
+  "schools": [
+    {
+      "school_id": "B000003836",
+      "school_name": "해오름초등학교",
+      "input": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000003836.txt",
+      "input_sha256": "55ff52c99617070c76ec1cb92c59d568706d2e04fd550a491c5310b19b325b17",
+      "output": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\outputs\\B000003836.json",
+      "output_sha256": "03df7165da90570091a51e0ea9acebf79283b63a5be11281dff7eae99570b21b",
+      "review_method": "same-assistant whole-source read; not independent blind review",
+      "supplied_sources_read": true,
+      "rows": 31,
+      "grade1_rows": 21,
+      "custom_rows": 5,
+      "field_evidence": {
+        "1": {
+          "grades": [
+            228
+          ]
+        },
+        "2": {
+          "grades": [
+            228
+          ]
+        },
+        "3": {
+          "grades": [
+            228
+          ]
+        },
+        "4": {
+          "grades": [
+            228
+          ]
+        },
+        "5": {
+          "grades": [
+            228
+          ]
+        }
+      },
+      "blocking_issues": [
+        {
+          "code": "missing_custom_times",
+          "lines": [
+            232,
+            246
+          ],
+          "reason": "맞춤형 시작·종료 시각 미공시(정규수업 후 90분)"
+        }
+      ],
+      "additional_findings": [
+        {
+          "type": "care_hours_reported",
+          "lines": [
+            16,
+            17
+          ],
+          "reason": "돌봄1반 ~16:50, 2반 ~19:00. 돌봄 시간 필드"
+        }
+      ],
+      "exclusions": [
+        {
+          "lines": [
+            81,
+            91,
+            99,
+            100,
+            101,
+            102,
+            103
+          ],
+          "reason": "돌봄교실 단체활동은 돌봄 일과"
+        }
+      ],
+      "production_apply_ready": false,
+      "approved_for_upload": false
+    }
+  ]
+}

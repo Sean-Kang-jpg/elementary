@@ -2,12 +2,12 @@
   "checked_on": "20261030",
   "summary": {
     "new_targets": 83,
-    "transcribed_schools": 45,
-    "pending_extraction": 38,
-    "rows": 1439,
-    "afterschool_rows": 1168,
-    "custom_rows": 271,
-    "schools_with_source_blockers": 29,
+    "transcribed_schools": 46,
+    "pending_extraction": 37,
+    "rows": 1470,
+    "afterschool_rows": 1194,
+    "custom_rows": 276,
+    "schools_with_source_blockers": 30,
     "existing_p1_preserved": 44,
     "care_review_targets": 37,
     "no_operational_upload": true,
@@ -669,10 +669,10 @@
       "school_name": "해오름초등학교",
       "area": "dongan",
       "course_track": "new_priority",
-      "status": "pending_extraction",
-      "rows": 0,
+      "status": "source_conflicts_need_followup",
+      "rows": 31,
       "approved_for_upload": false,
-      "review_file": null
+      "review_file": "pivot_gyeonggi_priority_batch38_review_20261030.json"
     },
     {
       "school_id": "B000003875",

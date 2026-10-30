@@ -5,21 +5,54 @@
   "summary": {
     "targets": 83,
     "source_prepared": 83,
-    "extracted_schools": 45,
-    "pending_extraction": 38,
-    "course_rows": 1439,
-    "slot_candidates": 460,
-    "remaining_source_evidence_indexed": 38,
+    "extracted_schools": 46,
+    "pending_extraction": 37,
+    "course_rows": 1470,
+    "slot_candidates": 467,
+    "remaining_source_evidence_indexed": 37,
     "visual_slot_checks": 32,
     "ok_candidates_after_visual": 17,
-    "schools_needing_checks": 28,
-    "unresolved_check_items": 207,
+    "schools_needing_checks": 29,
+    "unresolved_check_items": 212,
     "independent_review_complete": 0,
     "current_term_verified": 0,
     "production_applied": 0,
-    "extraction_percent": 54.2
+    "extraction_percent": 55.4
   },
   "effective_slot_review": [
+    {
+      "school_id": "B000003836",
+      "school_name": "해오름초등학교",
+      "slots": 7,
+      "status": "check",
+      "checks": [
+        [
+          "맞춤형시각없음",
+          "월",
+          null
+        ],
+        [
+          "맞춤형시각없음",
+          "화",
+          null
+        ],
+        [
+          "맞춤형시각없음",
+          "수",
+          null
+        ],
+        [
+          "맞춤형시각없음",
+          "목",
+          null
+        ],
+        [
+          "맞춤형시각없음",
+          "금",
+          null
+        ]
+      ]
+    },
     {
       "school_id": "B000003853",
       "school_name": "안양중앙초등학교",
@@ -2210,17 +2243,6 @@
       "evidence_indexed": true
     },
     {
-      "school_id": "B000003836",
-      "school_name": "해오름초등학교",
-      "area": "dongan",
-      "input": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000003836.txt",
-      "input_sha256": "55ff52c99617070c76ec1cb92c59d568706d2e04fd550a491c5310b19b325b17",
-      "evidence_index": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\remaining_evidence_index_20261025\\B000003836.json",
-      "evidence_windows": 65,
-      "status": "pending_full_source_extraction",
-      "evidence_indexed": true
-    },
-    {
       "school_id": "B000003863",
       "school_name": "호성초등학교",
       "area": "dongan",
@@ -2535,5 +2557,5 @@
     "pivot_gyeonggi_priority_slots_current_20261030.json",
     "pivot_gyeonggi_priority_all_current_verification_20261030.json"
   ],
-  "next_action": "Continue remaining 38 whole-source extractions and unresolved slot checks. Evidence index is navigation only."
+  "next_action": "Continue remaining 37 whole-source extractions and unresolved slot checks. Evidence index is navigation only."
 }
