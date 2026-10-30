@@ -1,0 +1,161 @@
+{
+  "batch": "priority-batch70",
+  "checked_on": "2026-10-30",
+  "no_operational_upload": true,
+  "independent_review": false,
+  "schools": [
+    {
+      "school_id": "B000003994",
+      "school_name": "손곡초등학교",
+      "input": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000003994.txt",
+      "input_sha256": "ee1e350dfe03a6c03c0d3fe32e4bad7b8243ff73b5d5fb158e37ec08a3a44228",
+      "output": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\outputs\\B000003994.json",
+      "output_sha256": "575384475bc0e68557b8bf77748c442fd4325f1dae1df77acade79406496b49e",
+      "review_method": "same-assistant whole-source read; not independent blind review",
+      "supplied_sources_read": true,
+      "rows": 70,
+      "grade1_rows": 45,
+      "custom_rows": 15,
+      "field_evidence": {
+        "1": {
+          "weekday_header": [
+            555
+          ],
+          "weekday_column": 2
+        },
+        "2": {
+          "weekday_header": [
+            555
+          ],
+          "weekday_column": 3
+        },
+        "3": {
+          "weekday_header": [
+            555
+          ],
+          "weekday_column": 4
+        },
+        "4": {
+          "weekday_header": [
+            555
+          ],
+          "weekday_column": 5
+        },
+        "5": {
+          "weekday_header": [
+            555
+          ],
+          "weekday_column": 6
+        },
+        "6": {
+          "weekday_header": [
+            555
+          ],
+          "weekday_column": 2
+        },
+        "7": {
+          "weekday_header": [
+            555
+          ],
+          "weekday_column": 3
+        },
+        "8": {
+          "weekday_header": [
+            555
+          ],
+          "weekday_column": 4
+        },
+        "9": {
+          "weekday_header": [
+            555
+          ],
+          "weekday_column": 5
+        },
+        "10": {
+          "weekday_header": [
+            555
+          ],
+          "weekday_column": 6
+        },
+        "11": {
+          "weekday_header": [
+            555
+          ],
+          "weekday_column": 2
+        },
+        "12": {
+          "weekday_header": [
+            555
+          ],
+          "weekday_column": 3
+        },
+        "13": {
+          "weekday_header": [
+            555
+          ],
+          "weekday_column": 4
+        },
+        "14": {
+          "weekday_header": [
+            555
+          ],
+          "weekday_column": 5
+        },
+        "15": {
+          "weekday_header": [
+            555
+          ],
+          "weekday_column": 6
+        }
+      },
+      "blocking_issues": [
+        {
+          "code": "period_condition_only",
+          "lines": [
+            542,
+            555
+          ],
+          "reason": "맞춤형 시각이 그날 교시 수에 따라 정해지나 요일별 교시가 첨부에 없음"
+        }
+      ],
+      "additional_findings": [
+        {
+          "type": "repeated_source_row",
+          "lines": [
+            556,
+            557,
+            558,
+            559
+          ],
+          "reason": "1·2교시 같은 강좌"
+        },
+        {
+          "type": "morning_care",
+          "lines": [
+            582
+          ],
+          "reason": "아침돌봄 08:10~08:50"
+        },
+        {
+          "type": "care_hours_reported",
+          "lines": [
+            56
+          ],
+          "reason": "돌봄1반 ~19:00, 2·3반 ~17:00"
+        }
+      ],
+      "exclusions": [
+        {
+          "lines": [
+            584,
+            585,
+            586
+          ],
+          "reason": "아침돌봄 일과"
+        }
+      ],
+      "production_apply_ready": false,
+      "approved_for_upload": false
+    }
+  ]
+}
