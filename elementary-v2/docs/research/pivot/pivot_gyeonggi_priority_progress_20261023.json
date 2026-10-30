@@ -2,10 +2,10 @@
   "checked_on": "20261030",
   "summary": {
     "new_targets": 83,
-    "transcribed_schools": 60,
-    "pending_extraction": 23,
-    "rows": 2091,
-    "afterschool_rows": 1698,
+    "transcribed_schools": 61,
+    "pending_extraction": 22,
+    "rows": 2124,
+    "afterschool_rows": 1731,
     "custom_rows": 393,
     "schools_with_source_blockers": 32,
     "existing_p1_preserved": 44,
@@ -959,10 +959,10 @@
       "school_name": "하일초등학교",
       "area": "gwangmyeong",
       "course_track": "new_priority",
-      "status": "pending_extraction",
-      "rows": 0,
+      "status": "transcribed_pending_independent_review",
+      "rows": 33,
       "approved_for_upload": false,
-      "review_file": null
+      "review_file": "pivot_gyeonggi_priority_batch53_review_20261030.json"
     },
     {
       "school_id": "B000003976",
