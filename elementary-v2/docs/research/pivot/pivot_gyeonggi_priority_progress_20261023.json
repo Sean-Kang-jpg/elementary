@@ -2,12 +2,12 @@
   "checked_on": "20261030",
   "summary": {
     "new_targets": 83,
-    "transcribed_schools": 76,
-    "pending_extraction": 7,
-    "rows": 2913,
-    "afterschool_rows": 2270,
-    "custom_rows": 643,
-    "schools_with_source_blockers": 38,
+    "transcribed_schools": 77,
+    "pending_extraction": 6,
+    "rows": 2956,
+    "afterschool_rows": 2303,
+    "custom_rows": 653,
+    "schools_with_source_blockers": 39,
     "existing_p1_preserved": 44,
     "care_review_targets": 37,
     "no_operational_upload": true,
@@ -1079,10 +1079,10 @@
       "school_name": "소현초등학교",
       "area": "suji",
       "course_track": "new_priority",
-      "status": "pending_extraction",
-      "rows": 0,
+      "status": "source_conflicts_need_followup",
+      "rows": 43,
       "approved_for_upload": false,
-      "review_file": null
+      "review_file": "pivot_gyeonggi_priority_batch69_review_20261030.json"
     },
     {
       "school_id": "B000003994",

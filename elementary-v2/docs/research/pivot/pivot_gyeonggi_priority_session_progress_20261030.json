@@ -5,19 +5,19 @@
   "summary": {
     "targets": 83,
     "source_prepared": 83,
-    "extracted_schools": 76,
-    "pending_extraction": 7,
-    "course_rows": 2913,
-    "slot_candidates": 900,
-    "remaining_source_evidence_indexed": 7,
+    "extracted_schools": 77,
+    "pending_extraction": 6,
+    "course_rows": 2956,
+    "slot_candidates": 917,
+    "remaining_source_evidence_indexed": 6,
     "visual_slot_checks": 32,
-    "ok_candidates_after_visual": 30,
+    "ok_candidates_after_visual": 31,
     "schools_needing_checks": 46,
     "unresolved_check_items": 266,
     "independent_review_complete": 0,
     "current_term_verified": 0,
     "production_applied": 0,
-    "extraction_percent": 91.6
+    "extraction_percent": 92.8
   },
   "effective_slot_review": [
     {
@@ -638,6 +638,13 @@
           ]
         ]
       ]
+    },
+    {
+      "school_id": "B000003946",
+      "school_name": "소현초등학교",
+      "slots": 17,
+      "status": "ok",
+      "checks": []
     },
     {
       "school_id": "B000003976",
@@ -2709,17 +2716,6 @@
   ],
   "pending_schools": [
     {
-      "school_id": "B000003946",
-      "school_name": "소현초등학교",
-      "area": "suji",
-      "input": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000003946.txt",
-      "input_sha256": "72dcfe3819fd7c51392e479fd961c9da6be6a947dc568584e9cccc9b212ce2a7",
-      "evidence_index": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\remaining_evidence_index_20261025\\B000003946.json",
-      "evidence_windows": 85,
-      "status": "pending_full_source_extraction",
-      "evidence_indexed": true
-    },
-    {
       "school_id": "B000003994",
       "school_name": "손곡초등학교",
       "area": "suji",
@@ -2792,5 +2788,5 @@
     "pivot_gyeonggi_priority_slots_current_20261030.json",
     "pivot_gyeonggi_priority_all_current_verification_20261030.json"
   ],
-  "next_action": "Continue remaining 7 whole-source extractions and unresolved slot checks. Evidence index is navigation only."
+  "next_action": "Continue remaining 6 whole-source extractions and unresolved slot checks. Evidence index is navigation only."
 }
