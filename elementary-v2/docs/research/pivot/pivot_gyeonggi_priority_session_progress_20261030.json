@@ -5,19 +5,19 @@
   "summary": {
     "targets": 83,
     "source_prepared": 83,
-    "extracted_schools": 52,
-    "pending_extraction": 31,
-    "course_rows": 1733,
-    "slot_candidates": 553,
-    "remaining_source_evidence_indexed": 31,
+    "extracted_schools": 53,
+    "pending_extraction": 30,
+    "course_rows": 1777,
+    "slot_candidates": 565,
+    "remaining_source_evidence_indexed": 30,
     "visual_slot_checks": 32,
     "ok_candidates_after_visual": 21,
-    "schools_needing_checks": 31,
-    "unresolved_check_items": 218,
+    "schools_needing_checks": 32,
+    "unresolved_check_items": 219,
     "independent_review_complete": 0,
     "current_term_verified": 0,
     "production_applied": 0,
-    "extraction_percent": 62.7
+    "extraction_percent": 63.9
   },
   "effective_slot_review": [
     {
@@ -427,6 +427,23 @@
             "시각",
             "원어민영어 A/B / 원어민영어 C/D / 원어민영어 E/F",
             "L50 / L51 / L52 / L57 / L75 / L100 / L101"
+          ]
+        ]
+      ]
+    },
+    {
+      "school_id": "B000003979",
+      "school_name": "용인심곡초등학교",
+      "slots": 12,
+      "status": "check",
+      "checks": [
+        [
+          "원문불일치",
+          "요일",
+          [
+            "요일",
+            "컴퓨터 A·B 코딩(반 표기 월, 요일 칸 화·수, 교실표 화)",
+            "L159 / L120"
           ]
         ]
       ]
@@ -2497,17 +2514,6 @@
       "evidence_indexed": true
     },
     {
-      "school_id": "B000003979",
-      "school_name": "용인심곡초등학교",
-      "area": "suji",
-      "input": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000003979.txt",
-      "input_sha256": "00a5ba2de34f8cbdcaa53a117fc210068f8f7a80c1928a4a93cfd7a5d68671fe",
-      "evidence_index": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\remaining_evidence_index_20261025\\B000003979.json",
-      "evidence_windows": 106,
-      "status": "pending_full_source_extraction",
-      "evidence_indexed": true
-    },
-    {
       "school_id": "B000003977",
       "school_name": "용인한빛초등학교",
       "area": "suji",
@@ -2569,5 +2575,5 @@
     "pivot_gyeonggi_priority_slots_current_20261030.json",
     "pivot_gyeonggi_priority_all_current_verification_20261030.json"
   ],
-  "next_action": "Continue remaining 31 whole-source extractions and unresolved slot checks. Evidence index is navigation only."
+  "next_action": "Continue remaining 30 whole-source extractions and unresolved slot checks. Evidence index is navigation only."
 }
