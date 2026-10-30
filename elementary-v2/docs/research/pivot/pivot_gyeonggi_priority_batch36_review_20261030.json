@@ -1,0 +1,125 @@
+{
+  "batch": "priority-batch36",
+  "checked_on": "2026-10-30",
+  "no_operational_upload": true,
+  "independent_review": false,
+  "schools": [
+    {
+      "school_id": "B000003988",
+      "school_name": "대현초등학교",
+      "input": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000003988.txt",
+      "input_sha256": "659d89efe56ef83fb11d2ec8da8647c27e4f93ba93d367609bd742b665e620f4",
+      "output": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\outputs\\B000003988.json",
+      "output_sha256": "a5e920a69b248ec07d5b4fea3611a1848571db6151381dbb2d97288bedcf4d1d",
+      "review_method": "same-assistant whole-source read; not independent blind review",
+      "supplied_sources_read": true,
+      "rows": 34,
+      "grade1_rows": 5,
+      "custom_rows": 5,
+      "field_evidence": {
+        "1": {
+          "grades": [
+            307
+          ],
+          "weekday_header": [
+            308
+          ],
+          "weekday_column": 2
+        },
+        "2": {
+          "grades": [
+            307
+          ],
+          "weekday_header": [
+            308
+          ],
+          "weekday_column": 3
+        },
+        "3": {
+          "grades": [
+            307
+          ],
+          "weekday_header": [
+            308
+          ],
+          "weekday_column": 4
+        },
+        "4": {
+          "grades": [
+            307
+          ],
+          "weekday_header": [
+            308
+          ],
+          "weekday_column": 5
+        },
+        "5": {
+          "grades": [
+            307
+          ],
+          "weekday_header": [
+            308
+          ],
+          "weekday_column": 6
+        }
+      },
+      "blocking_issues": [
+        {
+          "code": "missing_class_grades",
+          "lines": [
+            231,
+            232,
+            233,
+            234,
+            235,
+            236,
+            237,
+            238,
+            239,
+            240,
+            241,
+            242,
+            243,
+            244,
+            245,
+            246,
+            247,
+            248,
+            249,
+            250,
+            251,
+            252,
+            253,
+            254,
+            255,
+            256,
+            257,
+            258,
+            259
+          ],
+          "reason": "수익자 반 대상 학년 미기재"
+        }
+      ],
+      "additional_findings": [
+        {
+          "type": "care_hours_reported",
+          "lines": [
+            133,
+            134
+          ],
+          "reason": "돌봄 1반 ~19:00, 2반 ~17:00. 돌봄 시간 필드"
+        }
+      ],
+      "exclusions": [
+        {
+          "lines": [
+            313
+          ],
+          "reason": "1학년 적응기 3.4·3.5 한시 운영"
+        }
+      ],
+      "production_apply_ready": false,
+      "approved_for_upload": false
+    }
+  ]
+}

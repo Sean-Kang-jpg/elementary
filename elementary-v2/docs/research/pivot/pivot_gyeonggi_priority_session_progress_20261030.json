@@ -5,19 +5,19 @@
   "summary": {
     "targets": 83,
     "source_prepared": 83,
-    "extracted_schools": 43,
-    "pending_extraction": 40,
-    "course_rows": 1398,
-    "slot_candidates": 437,
-    "remaining_source_evidence_indexed": 40,
+    "extracted_schools": 44,
+    "pending_extraction": 39,
+    "course_rows": 1432,
+    "slot_candidates": 453,
+    "remaining_source_evidence_indexed": 39,
     "visual_slot_checks": 32,
     "ok_candidates_after_visual": 16,
-    "schools_needing_checks": 27,
-    "unresolved_check_items": 201,
+    "schools_needing_checks": 28,
+    "unresolved_check_items": 207,
     "independent_review_complete": 0,
     "current_term_verified": 0,
     "production_applied": 0,
-    "extraction_percent": 51.8
+    "extraction_percent": 53.0
   },
   "effective_slot_review": [
     {
@@ -407,6 +407,48 @@
             "시각",
             "맞춤형 수·목(시각 칸 비어 있음, 개요 13:50~15:10)",
             "L263 / L28"
+          ]
+        ]
+      ]
+    },
+    {
+      "school_id": "B000003988",
+      "school_name": "대현초등학교",
+      "slots": 16,
+      "status": "check",
+      "checks": [
+        [
+          "맞춤형시각없음",
+          "월",
+          null
+        ],
+        [
+          "맞춤형시각없음",
+          "화",
+          null
+        ],
+        [
+          "맞춤형시각없음",
+          "수",
+          null
+        ],
+        [
+          "맞춤형시각없음",
+          "목",
+          null
+        ],
+        [
+          "맞춤형시각없음",
+          "금",
+          null
+        ],
+        [
+          "원문불일치",
+          "시각",
+          [
+            "시각",
+            "맞춤형 전 요일(“선택형교육 A와 시종 동일”만 기재)",
+            "L308 / L174"
           ]
         ]
       ]
@@ -2260,17 +2302,6 @@
       "evidence_indexed": true
     },
     {
-      "school_id": "B000003988",
-      "school_name": "대현초등학교",
-      "area": "suji",
-      "input": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000003988.txt",
-      "input_sha256": "659d89efe56ef83fb11d2ec8da8647c27e4f93ba93d367609bd742b665e620f4",
-      "evidence_index": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\remaining_evidence_index_20261025\\B000003988.json",
-      "evidence_windows": 75,
-      "status": "pending_full_source_extraction",
-      "evidence_indexed": true
-    },
-    {
       "school_id": "B000003993",
       "school_name": "동천초등학교",
       "area": "suji",
@@ -2508,5 +2539,5 @@
     "pivot_gyeonggi_priority_slots_current_20261030.json",
     "pivot_gyeonggi_priority_all_current_verification_20261030.json"
   ],
-  "next_action": "Continue remaining 40 whole-source extractions and unresolved slot checks. Evidence index is navigation only."
+  "next_action": "Continue remaining 39 whole-source extractions and unresolved slot checks. Evidence index is navigation only."
 }
