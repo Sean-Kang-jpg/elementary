@@ -1,0 +1,52 @@
+{
+  "batch": "priority-batch43",
+  "checked_on": "2026-10-30",
+  "no_operational_upload": true,
+  "independent_review": false,
+  "schools": [
+    {
+      "school_id": "B000004278",
+      "school_name": "철산초등학교",
+      "input": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000004278.txt",
+      "input_sha256": "6c10b34a5d20cf36a040f0bf113fa356e0b8aff4cd0d07e29b6ff06af05ebd39",
+      "output": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\outputs\\B000004278.json",
+      "output_sha256": "98f792b7e5376fe9408ae8bfcad12d7b76e573b49b4210fc0aca0b4b360fcd62",
+      "review_method": "same-assistant whole-source read; not independent blind review",
+      "supplied_sources_read": true,
+      "rows": 53,
+      "grade1_rows": 36,
+      "custom_rows": 10,
+      "field_evidence": {},
+      "blocking_issues": [],
+      "additional_findings": [
+        {
+          "type": "care_hours_reported",
+          "lines": [
+            15,
+            138
+          ],
+          "reason": "돌봄1 ~19:00, 2·3 ~17:00, 아침돌봄 08:00~08:40"
+        }
+      ],
+      "exclusions": [
+        {
+          "lines": [
+            75,
+            76,
+            82,
+            83
+          ],
+          "reason": "돌봄교실 일과표는 돌봄 일과"
+        },
+        {
+          "lines": [
+            182
+          ],
+          "reason": "방학 중 맞춤형 시간표"
+        }
+      ],
+      "production_apply_ready": false,
+      "approved_for_upload": false
+    }
+  ]
+}

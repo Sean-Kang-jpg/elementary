@@ -5,19 +5,19 @@
   "summary": {
     "targets": 83,
     "source_prepared": 83,
-    "extracted_schools": 50,
-    "pending_extraction": 33,
-    "course_rows": 1632,
-    "slot_candidates": 508,
-    "remaining_source_evidence_indexed": 33,
+    "extracted_schools": 51,
+    "pending_extraction": 32,
+    "course_rows": 1685,
+    "slot_candidates": 531,
+    "remaining_source_evidence_indexed": 32,
     "visual_slot_checks": 32,
     "ok_candidates_after_visual": 20,
-    "schools_needing_checks": 30,
-    "unresolved_check_items": 217,
+    "schools_needing_checks": 31,
+    "unresolved_check_items": 218,
     "independent_review_complete": 0,
     "current_term_verified": 0,
     "production_applied": 0,
-    "extraction_percent": 60.2
+    "extraction_percent": 61.4
   },
   "effective_slot_review": [
     {
@@ -2165,6 +2165,23 @@
       ]
     },
     {
+      "school_id": "B000004278",
+      "school_name": "철산초등학교",
+      "slots": 23,
+      "status": "check",
+      "checks": [
+        [
+          "원문불일치",
+          "시각",
+          [
+            "시각",
+            "미술(금) C·D반(공통 시각 칸 \"A반·B반\" 표기)",
+            "L271 / L272"
+          ]
+        ]
+      ]
+    },
+    {
       "school_id": "B000004279",
       "school_name": "하안남초등학교",
       "slots": 9,
@@ -2326,17 +2343,6 @@
       "input_sha256": "9fdb6f1d8b53c42b6052f0135c0334ca0f7adfc4701d202a595ae8e12928d237",
       "evidence_index": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\remaining_evidence_index_20261025\\B000024196.json",
       "evidence_windows": 68,
-      "status": "pending_full_source_extraction",
-      "evidence_indexed": true
-    },
-    {
-      "school_id": "B000004278",
-      "school_name": "철산초등학교",
-      "area": "gwangmyeong",
-      "input": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000004278.txt",
-      "input_sha256": "6c10b34a5d20cf36a040f0bf113fa356e0b8aff4cd0d07e29b6ff06af05ebd39",
-      "evidence_index": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\remaining_evidence_index_20261025\\B000004278.json",
-      "evidence_windows": 75,
       "status": "pending_full_source_extraction",
       "evidence_indexed": true
     },
@@ -2567,5 +2573,5 @@
     "pivot_gyeonggi_priority_slots_current_20261030.json",
     "pivot_gyeonggi_priority_all_current_verification_20261030.json"
   ],
-  "next_action": "Continue remaining 33 whole-source extractions and unresolved slot checks. Evidence index is navigation only."
+  "next_action": "Continue remaining 32 whole-source extractions and unresolved slot checks. Evidence index is navigation only."
 }
