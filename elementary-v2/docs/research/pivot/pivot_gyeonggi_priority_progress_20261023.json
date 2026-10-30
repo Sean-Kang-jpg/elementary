@@ -2,11 +2,11 @@
   "checked_on": "20261030",
   "summary": {
     "new_targets": 83,
-    "transcribed_schools": 67,
-    "pending_extraction": 16,
-    "rows": 2409,
-    "afterschool_rows": 1926,
-    "custom_rows": 483,
+    "transcribed_schools": 68,
+    "pending_extraction": 15,
+    "rows": 2459,
+    "afterschool_rows": 1966,
+    "custom_rows": 493,
     "schools_with_source_blockers": 35,
     "existing_p1_preserved": 44,
     "care_review_targets": 37,
@@ -519,10 +519,10 @@
       "school_name": "벌말초등학교",
       "area": "dongan",
       "course_track": "new_priority",
-      "status": "pending_extraction",
-      "rows": 0,
+      "status": "transcribed_pending_independent_review",
+      "rows": 50,
       "approved_for_upload": false,
-      "review_file": null
+      "review_file": "pivot_gyeonggi_priority_batch60_review_20261030.json"
     },
     {
       "school_id": "B000003862",
