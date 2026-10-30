@@ -3,18 +3,18 @@
   "standard_sha256": "b111d14fc829193154a332649efb9e8d29022fad541eb72e97fe67f14f910f06",
   "no_operational_upload": true,
   "summary": {
-    "schools": 44,
-    "course_rows": 1432,
-    "slots": 453,
+    "schools": 45,
+    "course_rows": 1439,
+    "slots": 460,
     "slot_kinds": {
-      "저학년방과후": 192,
-      "전학년방과후": 130,
+      "저학년방과후": 193,
+      "전학년방과후": 136,
       "맞춤형": 81,
       "학년미기재방과후": 50
     },
     "statuses": {
       "check": 31,
-      "ok": 13
+      "ok": 14
     }
   },
   "scope_limit": "Derived slot candidates, not independent validation or upload approval",
@@ -6687,6 +6687,256 @@
       "production_apply_ready": false,
       "input_sha256": "e8a8defe9b6cf81f55c3ad1cb356a3af9a2478ba3125261390958bb4f99cdad5",
       "output_sha256": "c52390fc721a5bb1cd9d58c6c5c5618daff736ea22e0cce1ab93d4bff207ad9c"
+    },
+    {
+      "school_id": "B000003870",
+      "school_name": "달안초등학교",
+      "rows": [
+        [
+          "방과후",
+          "축구",
+          null,
+          "A",
+          "1-2 3-6",
+          "row",
+          "월",
+          "15:00",
+          "16:00",
+          "true",
+          "학기",
+          "2026 8-12월",
+          null,
+          359
+        ],
+        [
+          "방과후",
+          "과학 실험",
+          null,
+          "A",
+          "1-3",
+          "row",
+          "목",
+          "13:40",
+          "14:40",
+          "true",
+          "학기",
+          "2026 8-12월",
+          null,
+          360
+        ],
+        [
+          "방과후",
+          "과학 실험",
+          null,
+          "B",
+          "3-6",
+          "row",
+          "목",
+          "14:50",
+          "15:50",
+          "false",
+          "학기",
+          "2026 8-12월",
+          null,
+          361
+        ],
+        [
+          "방과후",
+          "영재바둑",
+          null,
+          "A",
+          "1-6",
+          "row",
+          "금",
+          "13:50",
+          "14:50",
+          "true",
+          "학기",
+          "2026 8-12월",
+          null,
+          362
+        ],
+        [
+          "방과후",
+          "영재바둑",
+          null,
+          "B",
+          "1-6",
+          "row",
+          "금",
+          "15:00",
+          "16:00",
+          "true",
+          "학기",
+          "2026 8-12월",
+          null,
+          363
+        ],
+        [
+          "방과후",
+          "요리 탐구",
+          null,
+          "A",
+          "1-6",
+          "row",
+          "수",
+          "13:50",
+          "14:50",
+          "true",
+          "학기",
+          "2026 8-12월",
+          null,
+          364
+        ],
+        [
+          "방과후",
+          "바이 올린",
+          null,
+          "A",
+          "1-6",
+          "row",
+          "화목",
+          "14:40",
+          "15:40",
+          "true",
+          "학기",
+          "2026 8-12월",
+          null,
+          366
+        ]
+      ],
+      "conflicts": [],
+      "period_slots": {},
+      "slots": [
+        {
+          "kind": "전학년방과후",
+          "weekday": "월",
+          "start": "15:00",
+          "end": "16:00",
+          "courses": [
+            "축구"
+          ],
+          "place": null,
+          "time_source": "plan",
+          "source_rows": [
+            1
+          ],
+          "source_lines": [
+            359
+          ]
+        },
+        {
+          "kind": "전학년방과후",
+          "weekday": "화",
+          "start": "14:40",
+          "end": "15:40",
+          "courses": [
+            "바이 올린"
+          ],
+          "place": null,
+          "time_source": "plan",
+          "source_rows": [
+            7
+          ],
+          "source_lines": [
+            366
+          ]
+        },
+        {
+          "kind": "전학년방과후",
+          "weekday": "수",
+          "start": "13:50",
+          "end": "14:50",
+          "courses": [
+            "요리 탐구"
+          ],
+          "place": null,
+          "time_source": "plan",
+          "source_rows": [
+            6
+          ],
+          "source_lines": [
+            364
+          ]
+        },
+        {
+          "kind": "저학년방과후",
+          "weekday": "목",
+          "start": "13:40",
+          "end": "14:40",
+          "courses": [
+            "과학 실험"
+          ],
+          "place": null,
+          "time_source": "plan",
+          "source_rows": [
+            2
+          ],
+          "source_lines": [
+            360
+          ]
+        },
+        {
+          "kind": "전학년방과후",
+          "weekday": "목",
+          "start": "14:40",
+          "end": "15:40",
+          "courses": [
+            "바이 올린"
+          ],
+          "place": null,
+          "time_source": "plan",
+          "source_rows": [
+            7
+          ],
+          "source_lines": [
+            366
+          ]
+        },
+        {
+          "kind": "전학년방과후",
+          "weekday": "금",
+          "start": "13:50",
+          "end": "14:50",
+          "courses": [
+            "영재바둑"
+          ],
+          "place": null,
+          "time_source": "plan",
+          "source_rows": [
+            4
+          ],
+          "source_lines": [
+            362
+          ]
+        },
+        {
+          "kind": "전학년방과후",
+          "weekday": "금",
+          "start": "15:00",
+          "end": "16:00",
+          "courses": [
+            "영재바둑"
+          ],
+          "place": null,
+          "time_source": "plan",
+          "source_rows": [
+            5
+          ],
+          "source_lines": [
+            363
+          ]
+        }
+      ],
+      "checks": [],
+      "status": "ok",
+      "reference_findings": [],
+      "source_pdf_only": false,
+      "independent_review_complete": false,
+      "approved_for_upload": false,
+      "production_apply_ready": false,
+      "input_sha256": "305fe209778e3d875957be6244cacbc6316cfc6001dbef902691be4ecab42ae4",
+      "output_sha256": "f38fcfb84722c9c9ec8b42d0a279e3e2cb9395d806281a76f3bc738b60144ce9"
     },
     {
       "school_id": "B000003872",

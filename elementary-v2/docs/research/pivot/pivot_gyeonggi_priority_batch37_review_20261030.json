@@ -1,0 +1,111 @@
+{
+  "batch": "priority-batch37",
+  "checked_on": "2026-10-30",
+  "no_operational_upload": true,
+  "independent_review": false,
+  "schools": [
+    {
+      "school_id": "B000003870",
+      "school_name": "달안초등학교",
+      "input": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000003870.txt",
+      "input_sha256": "305fe209778e3d875957be6244cacbc6316cfc6001dbef902691be4ecab42ae4",
+      "output": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\outputs\\B000003870.json",
+      "output_sha256": "f38fcfb84722c9c9ec8b42d0a279e3e2cb9395d806281a76f3bc738b60144ce9",
+      "review_method": "same-assistant whole-source read; not independent blind review",
+      "supplied_sources_read": true,
+      "rows": 7,
+      "grade1_rows": 6,
+      "custom_rows": 0,
+      "field_evidence": {},
+      "blocking_issues": [],
+      "additional_findings": [
+        {
+          "type": "duplicate_source_row",
+          "lines": [
+            364,
+            365,
+            366,
+            367
+          ],
+          "reason": "요리 탐구·바이올린 A 행 반복(B반 시각 없음)"
+        },
+        {
+          "type": "custom_absent_in_supplied_sources",
+          "reason": "맞춤형 시간표 첨부 없음"
+        },
+        {
+          "type": "care_hours_reported",
+          "lines": [
+            56
+          ],
+          "reason": "돌봄 방과후~19:00. 돌봄 시간 필드"
+        }
+      ],
+      "exclusions": [
+        {
+          "lines": [
+            365,
+            367
+          ],
+          "reason": "반복 행"
+        },
+        {
+          "lines": [
+            336,
+            337,
+            338,
+            339,
+            340,
+            341,
+            342,
+            343,
+            344,
+            345,
+            346,
+            347,
+            348,
+            349,
+            350,
+            351,
+            352,
+            353,
+            354,
+            355,
+            356
+          ],
+          "reason": "3-5월·6-7월 표(8-12월 표와 동일)"
+        },
+        {
+          "lines": [
+            134,
+            135,
+            136,
+            137,
+            138,
+            139,
+            140,
+            141,
+            142,
+            143,
+            144,
+            145,
+            146,
+            147,
+            148,
+            149,
+            150,
+            151,
+            152,
+            153,
+            154,
+            155,
+            156
+          ],
+          "reason": "돌봄교실 특기적성은 돌봄 일과"
+        }
+      ],
+      "production_apply_ready": false,
+      "approved_for_upload": false
+    }
+  ]
+}
