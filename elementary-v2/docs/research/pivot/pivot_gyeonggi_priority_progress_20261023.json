@@ -2,11 +2,11 @@
   "checked_on": "20261030",
   "summary": {
     "new_targets": 83,
-    "transcribed_schools": 81,
-    "pending_extraction": 2,
-    "rows": 3171,
-    "afterschool_rows": 2473,
-    "custom_rows": 698,
+    "transcribed_schools": 82,
+    "pending_extraction": 1,
+    "rows": 3256,
+    "afterschool_rows": 2543,
+    "custom_rows": 713,
     "schools_with_source_blockers": 42,
     "existing_p1_preserved": 44,
     "care_review_targets": 37,
@@ -1239,10 +1239,10 @@
       "school_name": "풍덕초등학교",
       "area": "suji",
       "course_track": "new_priority",
-      "status": "pending_extraction",
-      "rows": 0,
+      "status": "transcribed_pending_independent_review",
+      "rows": 85,
       "approved_for_upload": false,
-      "review_file": null
+      "review_file": "pivot_gyeonggi_priority_batch74_review_20261030.json"
     },
     {
       "school_id": "B000003991",

@@ -5,19 +5,19 @@
   "summary": {
     "targets": 83,
     "source_prepared": 83,
-    "extracted_schools": 81,
-    "pending_extraction": 2,
-    "course_rows": 3171,
-    "slot_candidates": 987,
-    "remaining_source_evidence_indexed": 2,
+    "extracted_schools": 82,
+    "pending_extraction": 1,
+    "course_rows": 3256,
+    "slot_candidates": 1012,
+    "remaining_source_evidence_indexed": 1,
     "visual_slot_checks": 32,
-    "ok_candidates_after_visual": 32,
+    "ok_candidates_after_visual": 33,
     "schools_needing_checks": 49,
     "unresolved_check_items": 281,
     "independent_review_complete": 0,
     "current_term_verified": 0,
     "production_applied": 0,
-    "extraction_percent": 97.6
+    "extraction_percent": 98.8
   },
   "effective_slot_review": [
     {
@@ -1317,6 +1317,13 @@
           ]
         ]
       ]
+    },
+    {
+      "school_id": "B000003997",
+      "school_name": "풍덕초등학교",
+      "slots": 25,
+      "status": "ok",
+      "checks": []
     },
     {
       "school_id": "B000003998",
@@ -2822,17 +2829,6 @@
   ],
   "pending_schools": [
     {
-      "school_id": "B000003997",
-      "school_name": "풍덕초등학교",
-      "area": "suji",
-      "input": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000003997.txt",
-      "input_sha256": "158bc8b3259e36b71da0a196cd61e94870f3ec3897d55cb06d58bda73dd34100",
-      "evidence_index": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\remaining_evidence_index_20261025\\B000003997.json",
-      "evidence_windows": 65,
-      "status": "pending_full_source_extraction",
-      "evidence_indexed": true
-    },
-    {
       "school_id": "B000003981",
       "school_name": "효자초등학교",
       "area": "suji",
@@ -2850,5 +2846,5 @@
     "pivot_gyeonggi_priority_slots_current_20261030.json",
     "pivot_gyeonggi_priority_all_current_verification_20261030.json"
   ],
-  "next_action": "Continue remaining 2 whole-source extractions and unresolved slot checks. Evidence index is navigation only."
+  "next_action": "Continue remaining 1 whole-source extractions and unresolved slot checks. Evidence index is navigation only."
 }
