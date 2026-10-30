@@ -1,0 +1,139 @@
+{
+  "batch": "priority-batch48",
+  "checked_on": "2026-10-30",
+  "no_operational_upload": true,
+  "independent_review": false,
+  "schools": [
+    {
+      "school_id": "B000003873",
+      "school_name": "안양신기초등학교",
+      "input": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000003873.txt",
+      "input_sha256": "ed24933e11edf979d215415439e5f6d7b3863f83de03949a145b535e69a5ff05",
+      "output": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\outputs\\B000003873.json",
+      "output_sha256": "72417d2abfd9bdbc8f8f87cf8f7f896188e9edde7615fae920ed1e17ff19692f",
+      "review_method": "same-assistant whole-source read; not independent blind review",
+      "supplied_sources_read": true,
+      "rows": 42,
+      "grade1_rows": 30,
+      "custom_rows": 10,
+      "field_evidence": {
+        "1": {
+          "grades": [
+            451
+          ],
+          "name_table": [
+            451
+          ],
+          "clock_column": 2
+        },
+        "2": {
+          "grades": [
+            451
+          ],
+          "name_table": [
+            451
+          ],
+          "clock_column": 3
+        },
+        "3": {
+          "grades": [
+            451
+          ],
+          "name_table": [
+            451
+          ],
+          "clock_column": 4
+        },
+        "4": {
+          "grades": [
+            451
+          ],
+          "name_table": [
+            451
+          ],
+          "clock_column": 5
+        },
+        "5": {
+          "grades": [
+            451
+          ],
+          "name_table": [
+            451
+          ],
+          "clock_column": 6
+        },
+        "6": {
+          "grades": [
+            452
+          ],
+          "name_table": [
+            452
+          ],
+          "clock_column": 2
+        },
+        "7": {
+          "grades": [
+            452
+          ],
+          "name_table": [
+            452
+          ],
+          "clock_column": 3
+        },
+        "8": {
+          "grades": [
+            452
+          ],
+          "name_table": [
+            452
+          ],
+          "clock_column": 4
+        },
+        "9": {
+          "grades": [
+            452
+          ],
+          "name_table": [
+            452
+          ],
+          "clock_column": 5
+        },
+        "10": {
+          "grades": [
+            452
+          ],
+          "name_table": [
+            452
+          ],
+          "clock_column": 6
+        }
+      },
+      "blocking_issues": [],
+      "additional_findings": [
+        {
+          "type": "care_hours_reported",
+          "lines": [
+            17,
+            18
+          ],
+          "reason": "돌봄 보람반 ~17:00, 행복반 ~19:00"
+        }
+      ],
+      "exclusions": [
+        {
+          "lines": [
+            111,
+            112,
+            113,
+            114,
+            115,
+            116
+          ],
+          "reason": "돌봄교실 일과표는 돌봄 일과"
+        }
+      ],
+      "production_apply_ready": false,
+      "approved_for_upload": false
+    }
+  ]
+}
