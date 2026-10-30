@@ -2,12 +2,12 @@
   "checked_on": "20261030",
   "summary": {
     "new_targets": 83,
-    "transcribed_schools": 58,
-    "pending_extraction": 25,
-    "rows": 1982,
-    "afterschool_rows": 1629,
-    "custom_rows": 353,
-    "schools_with_source_blockers": 31,
+    "transcribed_schools": 59,
+    "pending_extraction": 24,
+    "rows": 2040,
+    "afterschool_rows": 1667,
+    "custom_rows": 373,
+    "schools_with_source_blockers": 32,
     "existing_p1_preserved": 44,
     "care_review_targets": 37,
     "no_operational_upload": true,
@@ -689,10 +689,10 @@
       "school_name": "호성초등학교",
       "area": "dongan",
       "course_track": "new_priority",
-      "status": "pending_extraction",
-      "rows": 0,
+      "status": "source_conflicts_need_followup",
+      "rows": 58,
       "approved_for_upload": false,
-      "review_file": null
+      "review_file": "pivot_gyeonggi_priority_batch51_review_20261030.json"
     },
     {
       "school_id": "B000003874",
