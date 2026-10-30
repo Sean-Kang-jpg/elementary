@@ -5,19 +5,19 @@
   "summary": {
     "targets": 83,
     "source_prepared": 83,
-    "extracted_schools": 68,
-    "pending_extraction": 15,
-    "course_rows": 2459,
-    "slot_candidates": 772,
-    "remaining_source_evidence_indexed": 15,
+    "extracted_schools": 69,
+    "pending_extraction": 14,
+    "course_rows": 2521,
+    "slot_candidates": 804,
+    "remaining_source_evidence_indexed": 14,
     "visual_slot_checks": 32,
     "ok_candidates_after_visual": 30,
-    "schools_needing_checks": 38,
-    "unresolved_check_items": 243,
+    "schools_needing_checks": 39,
+    "unresolved_check_items": 245,
     "independent_review_complete": 0,
     "current_term_verified": 0,
     "production_applied": 0,
-    "extraction_percent": 81.9
+    "extraction_percent": 83.1
   },
   "effective_slot_review": [
     {
@@ -543,6 +543,32 @@
       "slots": 10,
       "status": "ok",
       "checks": []
+    },
+    {
+      "school_id": "B000003977",
+      "school_name": "용인한빛초등학교",
+      "slots": 32,
+      "status": "check",
+      "checks": [
+        [
+          "원문불일치",
+          "요일",
+          [
+            "요일",
+            "독서토론논술 A·B(표 월, 요일별 현황 수)",
+            "L502 / L534"
+          ]
+        ],
+        [
+          "원문불일치",
+          "시각",
+          [
+            "시각",
+            "웹툰 A·B(표 14:30~15:50, 현황 13:40~15:00)",
+            "L520 / L537"
+          ]
+        ]
+      ]
     },
     {
       "school_id": "B000003978",
@@ -2608,17 +2634,6 @@
       "evidence_indexed": true
     },
     {
-      "school_id": "B000003977",
-      "school_name": "용인한빛초등학교",
-      "area": "suji",
-      "input": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000003977.txt",
-      "input_sha256": "e5f891b70b98bd6fe2f9467ffd1a22eae220799e7e8b86ef278dde0171cef1e8",
-      "evidence_index": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\remaining_evidence_index_20261025\\B000003977.json",
-      "evidence_windows": 86,
-      "status": "pending_full_source_extraction",
-      "evidence_indexed": true
-    },
-    {
       "school_id": "B000003990",
       "school_name": "정평초등학교",
       "area": "suji",
@@ -2669,5 +2684,5 @@
     "pivot_gyeonggi_priority_slots_current_20261030.json",
     "pivot_gyeonggi_priority_all_current_verification_20261030.json"
   ],
-  "next_action": "Continue remaining 15 whole-source extractions and unresolved slot checks. Evidence index is navigation only."
+  "next_action": "Continue remaining 14 whole-source extractions and unresolved slot checks. Evidence index is navigation only."
 }

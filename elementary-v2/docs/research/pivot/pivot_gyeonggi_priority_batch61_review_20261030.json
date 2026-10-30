@@ -1,0 +1,179 @@
+{
+  "batch": "priority-batch61",
+  "checked_on": "2026-10-30",
+  "no_operational_upload": true,
+  "independent_review": false,
+  "schools": [
+    {
+      "school_id": "B000003977",
+      "school_name": "용인한빛초등학교",
+      "input": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000003977.txt",
+      "input_sha256": "e5f891b70b98bd6fe2f9467ffd1a22eae220799e7e8b86ef278dde0171cef1e8",
+      "output": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\outputs\\B000003977.json",
+      "output_sha256": "7457745e66bbff3b6537717bf6a3a1490356276578ab393d1987e9a449910a36",
+      "review_method": "same-assistant whole-source read; not independent blind review",
+      "supplied_sources_read": true,
+      "rows": 62,
+      "grade1_rows": 44,
+      "custom_rows": 10,
+      "field_evidence": {
+        "1": {
+          "grades": [
+            437
+          ],
+          "name_table": [
+            437
+          ],
+          "clock_column": 1,
+          "weekday_header": [
+            435
+          ],
+          "weekday_column": 1
+        },
+        "2": {
+          "grades": [
+            437
+          ],
+          "name_table": [
+            437
+          ],
+          "clock_column": 2,
+          "weekday_header": [
+            435
+          ],
+          "weekday_column": 2
+        },
+        "3": {
+          "grades": [
+            437
+          ],
+          "name_table": [
+            437
+          ],
+          "clock_column": 3,
+          "weekday_header": [
+            435
+          ],
+          "weekday_column": 3
+        },
+        "4": {
+          "grades": [
+            437
+          ],
+          "name_table": [
+            437
+          ],
+          "clock_column": 4,
+          "weekday_header": [
+            435
+          ],
+          "weekday_column": 4
+        },
+        "5": {
+          "grades": [
+            437
+          ],
+          "name_table": [
+            437
+          ],
+          "clock_column": 5,
+          "weekday_header": [
+            435
+          ],
+          "weekday_column": 5
+        },
+        "6": {
+          "grades": [
+            438
+          ],
+          "name_table": [
+            438
+          ],
+          "clock_column": 1,
+          "weekday_header": [
+            435
+          ],
+          "weekday_column": 1
+        },
+        "7": {
+          "grades": [
+            438
+          ],
+          "name_table": [
+            438
+          ],
+          "clock_column": 2,
+          "weekday_header": [
+            435
+          ],
+          "weekday_column": 2
+        },
+        "8": {
+          "grades": [
+            438
+          ],
+          "name_table": [
+            438
+          ],
+          "clock_column": 3,
+          "weekday_header": [
+            435
+          ],
+          "weekday_column": 3
+        },
+        "9": {
+          "grades": [
+            438
+          ],
+          "name_table": [
+            438
+          ],
+          "clock_column": 4,
+          "weekday_header": [
+            435
+          ],
+          "weekday_column": 4
+        },
+        "10": {
+          "grades": [
+            438
+          ],
+          "name_table": [
+            438
+          ],
+          "clock_column": 5,
+          "weekday_header": [
+            435
+          ],
+          "weekday_column": 5
+        }
+      },
+      "blocking_issues": [],
+      "additional_findings": [
+        {
+          "type": "morning_care",
+          "lines": [
+            460
+          ],
+          "reason": "아침돌봄 08:10~08:50"
+        }
+      ],
+      "exclusions": [
+        {
+          "lines": [
+            147,
+            148,
+            149,
+            150,
+            151,
+            152,
+            153
+          ],
+          "reason": "돌봄교실 일과표"
+        }
+      ],
+      "production_apply_ready": false,
+      "approved_for_upload": false
+    }
+  ]
+}
