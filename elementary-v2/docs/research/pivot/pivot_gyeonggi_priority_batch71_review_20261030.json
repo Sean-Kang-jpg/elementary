@@ -1,0 +1,145 @@
+{
+  "batch": "priority-batch71",
+  "checked_on": "2026-10-30",
+  "no_operational_upload": true,
+  "independent_review": false,
+  "schools": [
+    {
+      "school_id": "B000003985",
+      "school_name": "신리초등학교",
+      "input": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000003985.txt",
+      "input_sha256": "9e6e4e3cb626d291db487042f4189d860a09d8ea9f217f268ea883dd5f73e927",
+      "output": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\outputs\\B000003985.json",
+      "output_sha256": "1d9f615c284d75a66ba36e70ff82cf0cc6894aada359941590cf5166eaafd04d",
+      "review_method": "same-assistant whole-source read; not independent blind review",
+      "supplied_sources_read": true,
+      "rows": 32,
+      "grade1_rows": 23,
+      "custom_rows": 5,
+      "field_evidence": {
+        "1": {
+          "grades": [
+            809
+          ],
+          "weekday_header": [
+            813
+          ],
+          "weekday_column": 1
+        },
+        "2": {
+          "grades": [
+            809
+          ],
+          "weekday_header": [
+            813
+          ],
+          "weekday_column": 2
+        },
+        "3": {
+          "grades": [
+            809
+          ],
+          "weekday_header": [
+            813
+          ],
+          "weekday_column": 3
+        },
+        "4": {
+          "grades": [
+            809
+          ],
+          "weekday_header": [
+            813
+          ],
+          "weekday_column": 4
+        },
+        "5": {
+          "grades": [
+            809
+          ],
+          "weekday_header": [
+            813
+          ],
+          "weekday_column": 5
+        }
+      },
+      "blocking_issues": [
+        {
+          "code": "missing_class_times",
+          "lines": [
+            798,
+            805
+          ],
+          "reason": "맞춤형 요일별 시각 미공시(1~2학년 수업 종료 시각에 맞춰 시작)"
+        },
+        {
+          "code": "example_course_names",
+          "lines": [
+            812,
+            814
+          ],
+          "reason": "맞춤형 프로그램이 \"예시\"로 표기"
+        }
+      ],
+      "additional_findings": [
+        {
+          "type": "care_hours_reported",
+          "lines": [
+            46,
+            47
+          ],
+          "reason": "오후돌봄 1반 ~19:00, 2반 ~17:00"
+        }
+      ],
+      "exclusions": [
+        {
+          "lines": [
+            1255,
+            1256,
+            1257,
+            1258,
+            1259,
+            1260,
+            1261,
+            1262,
+            1263,
+            1264,
+            1265,
+            1266,
+            1267,
+            1268,
+            1269,
+            1270,
+            1271,
+            1272,
+            1273,
+            1274,
+            1275,
+            1276,
+            1277,
+            1278,
+            1279
+          ],
+          "reason": "교실별 시간표(부서표와 같은 내용)"
+        },
+        {
+          "lines": [
+            1280,
+            1281,
+            1282,
+            1283,
+            1284,
+            1285,
+            1286,
+            1287,
+            1288,
+            1289
+          ],
+          "reason": "맞춤형 교재·업체표"
+        }
+      ],
+      "production_apply_ready": false,
+      "approved_for_upload": false
+    }
+  ]
+}

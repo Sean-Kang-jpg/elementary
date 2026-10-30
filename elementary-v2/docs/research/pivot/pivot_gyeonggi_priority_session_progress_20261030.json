@@ -5,19 +5,19 @@
   "summary": {
     "targets": 83,
     "source_prepared": 83,
-    "extracted_schools": 78,
-    "pending_extraction": 5,
-    "course_rows": 3026,
-    "slot_candidates": 940,
-    "remaining_source_evidence_indexed": 5,
+    "extracted_schools": 79,
+    "pending_extraction": 4,
+    "course_rows": 3058,
+    "slot_candidates": 952,
+    "remaining_source_evidence_indexed": 4,
     "visual_slot_checks": 32,
     "ok_candidates_after_visual": 31,
-    "schools_needing_checks": 47,
-    "unresolved_check_items": 271,
+    "schools_needing_checks": 48,
+    "unresolved_check_items": 276,
     "independent_review_complete": 0,
     "current_term_verified": 0,
     "production_applied": 0,
-    "extraction_percent": 94.0
+    "extraction_percent": 95.2
   },
   "effective_slot_review": [
     {
@@ -769,6 +769,39 @@
       "slots": 17,
       "status": "ok",
       "checks": []
+    },
+    {
+      "school_id": "B000003985",
+      "school_name": "신리초등학교",
+      "slots": 12,
+      "status": "check",
+      "checks": [
+        [
+          "맞춤형시각없음",
+          "월",
+          null
+        ],
+        [
+          "맞춤형시각없음",
+          "화",
+          null
+        ],
+        [
+          "맞춤형시각없음",
+          "수",
+          null
+        ],
+        [
+          "맞춤형시각없음",
+          "목",
+          null
+        ],
+        [
+          "맞춤형시각없음",
+          "금",
+          null
+        ]
+      ]
     },
     {
       "school_id": "B000003986",
@@ -2749,17 +2782,6 @@
   ],
   "pending_schools": [
     {
-      "school_id": "B000003985",
-      "school_name": "신리초등학교",
-      "area": "suji",
-      "input": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000003985.txt",
-      "input_sha256": "9e6e4e3cb626d291db487042f4189d860a09d8ea9f217f268ea883dd5f73e927",
-      "evidence_index": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\remaining_evidence_index_20261025\\B000003985.json",
-      "evidence_windows": 64,
-      "status": "pending_full_source_extraction",
-      "evidence_indexed": true
-    },
-    {
       "school_id": "B000003990",
       "school_name": "정평초등학교",
       "area": "suji",
@@ -2810,5 +2832,5 @@
     "pivot_gyeonggi_priority_slots_current_20261030.json",
     "pivot_gyeonggi_priority_all_current_verification_20261030.json"
   ],
-  "next_action": "Continue remaining 5 whole-source extractions and unresolved slot checks. Evidence index is navigation only."
+  "next_action": "Continue remaining 4 whole-source extractions and unresolved slot checks. Evidence index is navigation only."
 }
