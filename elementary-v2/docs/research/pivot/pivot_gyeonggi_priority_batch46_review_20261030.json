@@ -1,0 +1,165 @@
+{
+  "batch": "priority-batch46",
+  "checked_on": "2026-10-30",
+  "no_operational_upload": true,
+  "independent_review": false,
+  "schools": [
+    {
+      "school_id": "B000003976",
+      "school_name": "고기초등학교",
+      "input": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000003976.txt",
+      "input_sha256": "4d73e38be9464e085d5c8717868bae6148db7d5d677d3b1f77a189cd51bdb5bf",
+      "output": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\outputs\\B000003976.json",
+      "output_sha256": "8a9f17dbc8baf95e22efb35b86fe4195153f5fefb96dcf8cb823b403c6b7061a",
+      "review_method": "same-assistant whole-source read; not independent blind review",
+      "supplied_sources_read": true,
+      "rows": 26,
+      "grade1_rows": 18,
+      "custom_rows": 10,
+      "field_evidence": {
+        "1": {
+          "grades": [
+            185
+          ],
+          "weekday_header": [
+            225
+          ],
+          "weekday_column": 3
+        },
+        "2": {
+          "grades": [
+            185
+          ],
+          "weekday_header": [
+            225
+          ],
+          "weekday_column": 1
+        },
+        "3": {
+          "grades": [
+            185
+          ],
+          "weekday_header": [
+            225
+          ],
+          "weekday_column": 2
+        },
+        "4": {
+          "grades": [
+            185
+          ],
+          "weekday_header": [
+            225
+          ],
+          "weekday_column": 3
+        },
+        "5": {
+          "grades": [
+            185
+          ],
+          "weekday_header": [
+            225
+          ],
+          "weekday_column": 4
+        },
+        "6": {
+          "grades": [
+            185
+          ],
+          "weekday_header": [
+            225
+          ],
+          "weekday_column": 5
+        },
+        "7": {
+          "grades": [
+            185
+          ],
+          "weekday_header": [
+            225
+          ],
+          "weekday_column": 1
+        },
+        "8": {
+          "grades": [
+            185
+          ],
+          "weekday_header": [
+            225
+          ],
+          "weekday_column": 2
+        },
+        "9": {
+          "grades": [
+            185
+          ],
+          "weekday_header": [
+            225
+          ],
+          "weekday_column": 4
+        },
+        "10": {
+          "grades": [
+            185
+          ],
+          "weekday_header": [
+            225
+          ],
+          "weekday_column": 5
+        }
+      },
+      "blocking_issues": [],
+      "additional_findings": [
+        {
+          "type": "duration_label_mismatch",
+          "lines": [
+            267,
+            269
+          ],
+          "reason": "13:30~14:20(80분) 표기"
+        },
+        {
+          "type": "care_hours_reported",
+          "lines": [
+            14,
+            176
+          ],
+          "reason": "오후돌봄 12:40~19:00, 아침돌봄 7:50~8:30"
+        }
+      ],
+      "exclusions": [
+        {
+          "lines": [
+            60,
+            61,
+            62,
+            63,
+            64,
+            65,
+            66,
+            67,
+            68,
+            318,
+            319,
+            320,
+            321,
+            322,
+            323,
+            324
+          ],
+          "reason": "돌봄교실 일과표는 돌봄 일과"
+        },
+        {
+          "lines": [
+            309,
+            310,
+            311
+          ],
+          "reason": "종합 시간표의 맞춤형 행은 L226~228과 동일"
+        }
+      ],
+      "production_apply_ready": false,
+      "approved_for_upload": false
+    }
+  ]
+}
