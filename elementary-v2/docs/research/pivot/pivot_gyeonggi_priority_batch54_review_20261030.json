@@ -1,0 +1,66 @@
+{
+  "batch": "priority-batch54",
+  "checked_on": "2026-10-30",
+  "no_operational_upload": true,
+  "independent_review": false,
+  "schools": [
+    {
+      "school_id": "B000003984",
+      "school_name": "신일초등학교",
+      "input": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000003984.txt",
+      "input_sha256": "c289d0e7f03b3f8675eab9d64c2fba9723f4443da99c9d589aca3e0b3d92fed9",
+      "output": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\outputs\\B000003984.json",
+      "output_sha256": "3a445234da78cabb40ea87032f13958c8e5f126bad4794afcb4542784dd14249",
+      "review_method": "same-assistant whole-source read; not independent blind review",
+      "supplied_sources_read": true,
+      "rows": 39,
+      "grade1_rows": 28,
+      "custom_rows": 0,
+      "field_evidence": {},
+      "blocking_issues": [],
+      "additional_findings": [
+        {
+          "type": "custom_absent_in_supplied_sources",
+          "reason": "맞춤형 시간표 첨부 없음"
+        },
+        {
+          "type": "care_hours_reported",
+          "lines": [
+            63
+          ],
+          "reason": "돌봄 방과후~19:00"
+        }
+      ],
+      "exclusions": [
+        {
+          "lines": [
+            127,
+            128,
+            129,
+            130,
+            131,
+            132,
+            133,
+            134,
+            135,
+            136,
+            137,
+            138,
+            139,
+            140,
+            141,
+            142,
+            143,
+            144,
+            145,
+            146,
+            147
+          ],
+          "reason": "돌봄교실 일과표는 돌봄 일과"
+        }
+      ],
+      "production_apply_ready": false,
+      "approved_for_upload": false
+    }
+  ]
+}

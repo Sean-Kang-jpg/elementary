@@ -5,19 +5,19 @@
   "summary": {
     "targets": 83,
     "source_prepared": 83,
-    "extracted_schools": 61,
-    "pending_extraction": 22,
-    "course_rows": 2124,
-    "slot_candidates": 673,
-    "remaining_source_evidence_indexed": 22,
+    "extracted_schools": 62,
+    "pending_extraction": 21,
+    "course_rows": 2163,
+    "slot_candidates": 690,
+    "remaining_source_evidence_indexed": 21,
     "visual_slot_checks": 32,
-    "ok_candidates_after_visual": 27,
+    "ok_candidates_after_visual": 28,
     "schools_needing_checks": 34,
     "unresolved_check_items": 232,
     "independent_review_complete": 0,
     "current_term_verified": 0,
     "production_applied": 0,
-    "extraction_percent": 73.5
+    "extraction_percent": 74.7
   },
   "effective_slot_review": [
     {
@@ -565,6 +565,13 @@
       "school_id": "B000003983",
       "school_name": "홍천초등학교",
       "slots": 13,
+      "status": "ok",
+      "checks": []
+    },
+    {
+      "school_id": "B000003984",
+      "school_name": "신일초등학교",
+      "slots": 17,
       "status": "ok",
       "checks": []
     },
@@ -2528,17 +2535,6 @@
       "evidence_indexed": true
     },
     {
-      "school_id": "B000003984",
-      "school_name": "신일초등학교",
-      "area": "suji",
-      "input": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000003984.txt",
-      "input_sha256": "c289d0e7f03b3f8675eab9d64c2fba9723f4443da99c9d589aca3e0b3d92fed9",
-      "evidence_index": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\remaining_evidence_index_20261025\\B000003984.json",
-      "evidence_windows": 98,
-      "status": "pending_full_source_extraction",
-      "evidence_indexed": true
-    },
-    {
       "school_id": "B000003986",
       "school_name": "용인대일초등학교",
       "area": "suji",
@@ -2622,5 +2618,5 @@
     "pivot_gyeonggi_priority_slots_current_20261030.json",
     "pivot_gyeonggi_priority_all_current_verification_20261030.json"
   ],
-  "next_action": "Continue remaining 22 whole-source extractions and unresolved slot checks. Evidence index is navigation only."
+  "next_action": "Continue remaining 21 whole-source extractions and unresolved slot checks. Evidence index is navigation only."
 }

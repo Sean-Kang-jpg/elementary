@@ -2,10 +2,10 @@
   "checked_on": "20261030",
   "summary": {
     "new_targets": 83,
-    "transcribed_schools": 61,
-    "pending_extraction": 22,
-    "rows": 2124,
-    "afterschool_rows": 1731,
+    "transcribed_schools": 62,
+    "pending_extraction": 21,
+    "rows": 2163,
+    "afterschool_rows": 1770,
     "custom_rows": 393,
     "schools_with_source_blockers": 32,
     "existing_p1_preserved": 44,
@@ -1139,10 +1139,10 @@
       "school_name": "신일초등학교",
       "area": "suji",
       "course_track": "new_priority",
-      "status": "pending_extraction",
-      "rows": 0,
+      "status": "transcribed_pending_independent_review",
+      "rows": 39,
       "approved_for_upload": false,
-      "review_file": null
+      "review_file": "pivot_gyeonggi_priority_batch54_review_20261030.json"
     },
     {
       "school_id": "B000003989",
