@@ -1,0 +1,123 @@
+{
+  "batch": "priority-batch72",
+  "checked_on": "2026-10-30",
+  "no_operational_upload": true,
+  "independent_review": false,
+  "schools": [
+    {
+      "school_id": "B000003990",
+      "school_name": "정평초등학교",
+      "input": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000003990.txt",
+      "input_sha256": "f6e537d17dc0026bf71637e1d873c016d4c9e45eed6a027b0a1995ba4b06f127",
+      "output": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\outputs\\B000003990.json",
+      "output_sha256": "75da67663609278d52fe4235510da8c12393fe7048e0e552e94b303a8ff6502e",
+      "review_method": "same-assistant whole-source read; not independent blind review",
+      "supplied_sources_read": true,
+      "rows": 48,
+      "grade1_rows": 27,
+      "custom_rows": 10,
+      "field_evidence": {
+        "1": {
+          "weekday_header": [
+            616
+          ],
+          "weekday_column": 1
+        },
+        "2": {
+          "weekday_header": [
+            616
+          ],
+          "weekday_column": 2
+        },
+        "3": {
+          "weekday_header": [
+            616
+          ],
+          "weekday_column": 3
+        },
+        "4": {
+          "weekday_header": [
+            616
+          ],
+          "weekday_column": 4
+        },
+        "5": {
+          "weekday_header": [
+            616
+          ],
+          "weekday_column": 5
+        },
+        "6": {
+          "weekday_header": [
+            616
+          ],
+          "weekday_column": 1
+        },
+        "7": {
+          "weekday_header": [
+            616
+          ],
+          "weekday_column": 2
+        },
+        "8": {
+          "weekday_header": [
+            616
+          ],
+          "weekday_column": 3
+        },
+        "9": {
+          "weekday_header": [
+            616
+          ],
+          "weekday_column": 4
+        },
+        "10": {
+          "weekday_header": [
+            616
+          ],
+          "weekday_column": 5
+        }
+      },
+      "blocking_issues": [
+        {
+          "code": "missing_class_times",
+          "lines": [
+            601,
+            609
+          ],
+          "reason": "맞춤형 요일별 시각 미공시(1~2학년 수업 종료 시각에 맞춰 시작, 4교시 날 12:50)"
+        },
+        {
+          "code": "example_course_names",
+          "lines": [
+            615
+          ],
+          "reason": "맞춤형 프로그램이 \"예시\"로 표기"
+        }
+      ],
+      "additional_findings": [
+        {
+          "type": "care_hours_reported",
+          "lines": [
+            34,
+            42
+          ],
+          "reason": "오후돌봄 방과후~17:00"
+        }
+      ],
+      "exclusions": [
+        {
+          "lines": [
+            1132,
+            1133,
+            1134,
+            1135
+          ],
+          "reason": "교재 선정표"
+        }
+      ],
+      "production_apply_ready": false,
+      "approved_for_upload": false
+    }
+  ]
+}

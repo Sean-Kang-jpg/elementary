@@ -2,12 +2,12 @@
   "checked_on": "20261030",
   "summary": {
     "new_targets": 83,
-    "transcribed_schools": 79,
-    "pending_extraction": 4,
-    "rows": 3058,
-    "afterschool_rows": 2385,
-    "custom_rows": 673,
-    "schools_with_source_blockers": 41,
+    "transcribed_schools": 80,
+    "pending_extraction": 3,
+    "rows": 3106,
+    "afterschool_rows": 2423,
+    "custom_rows": 683,
+    "schools_with_source_blockers": 42,
     "existing_p1_preserved": 44,
     "care_review_targets": 37,
     "no_operational_upload": true,
@@ -1209,10 +1209,10 @@
       "school_name": "정평초등학교",
       "area": "suji",
       "course_track": "new_priority",
-      "status": "pending_extraction",
-      "rows": 0,
+      "status": "source_conflicts_need_followup",
+      "rows": 48,
       "approved_for_upload": false,
-      "review_file": null
+      "review_file": "pivot_gyeonggi_priority_batch72_review_20261030.json"
     },
     {
       "school_id": "B000003999",
