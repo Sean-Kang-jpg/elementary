@@ -1,0 +1,175 @@
+{
+  "batch": "priority-batch64",
+  "checked_on": "2026-10-30",
+  "no_operational_upload": true,
+  "independent_review": false,
+  "schools": [
+    {
+      "school_id": "B000003861",
+      "school_name": "민백초등학교",
+      "input": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000003861.txt",
+      "input_sha256": "f7a118fc7272ab4cd9aad8bbb633c54a7ecdb0c414b20e00f7566880a48c336c",
+      "output": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\outputs\\B000003861.json",
+      "output_sha256": "b8cd9e42099d49fa62217f4f00399178e348a5600cb3d4f1df203eb1758686d3",
+      "review_method": "same-assistant whole-source read; not independent blind review",
+      "supplied_sources_read": true,
+      "rows": 51,
+      "grade1_rows": 32,
+      "custom_rows": 20,
+      "field_evidence": {
+        "1": {
+          "grades": [
+            126
+          ]
+        },
+        "2": {
+          "grades": [
+            126
+          ]
+        },
+        "3": {
+          "grades": [
+            127
+          ]
+        },
+        "4": {
+          "grades": [
+            127
+          ]
+        },
+        "5": {
+          "grades": [
+            126
+          ]
+        },
+        "6": {
+          "grades": [
+            126
+          ]
+        },
+        "7": {
+          "grades": [
+            127
+          ]
+        },
+        "8": {
+          "grades": [
+            127
+          ]
+        },
+        "9": {
+          "grades": [
+            126
+          ]
+        },
+        "10": {
+          "grades": [
+            126
+          ]
+        },
+        "11": {
+          "grades": [
+            127
+          ]
+        },
+        "12": {
+          "grades": [
+            127
+          ]
+        },
+        "13": {
+          "grades": [
+            126
+          ]
+        },
+        "14": {
+          "grades": [
+            126
+          ]
+        },
+        "15": {
+          "grades": [
+            127
+          ]
+        },
+        "16": {
+          "grades": [
+            127
+          ]
+        },
+        "17": {
+          "grades": [
+            126
+          ]
+        },
+        "18": {
+          "grades": [
+            126
+          ]
+        },
+        "19": {
+          "grades": [
+            127
+          ]
+        },
+        "20": {
+          "grades": [
+            127
+          ]
+        }
+      },
+      "blocking_issues": [],
+      "additional_findings": [
+        {
+          "type": "semester_one_only",
+          "lines": [
+            182,
+            222
+          ],
+          "reason": "1학기 계획, 2학기 세부계획은 추후 수립"
+        },
+        {
+          "type": "care_hours_reported",
+          "lines": [
+            285
+          ],
+          "reason": "오후돌봄 12:30~19:00"
+        }
+      ],
+      "exclusions": [
+        {
+          "lines": [
+            575
+          ],
+          "reason": "2025학년도 늘봄 연간운영계획 첨부"
+        },
+        {
+          "lines": [
+            119,
+            120,
+            121
+          ],
+          "reason": "방학 중 맞춤형 시간"
+        },
+        {
+          "lines": [
+            166,
+            167,
+            168,
+            169,
+            170,
+            171,
+            172,
+            173,
+            174,
+            175,
+            176
+          ],
+          "reason": "교실별 시간표(부서표와 동일 내용)"
+        }
+      ],
+      "production_apply_ready": false,
+      "approved_for_upload": false
+    }
+  ]
+}
