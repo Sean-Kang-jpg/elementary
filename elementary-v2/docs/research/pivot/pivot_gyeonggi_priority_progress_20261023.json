@@ -2,10 +2,10 @@
   "checked_on": "20261030",
   "summary": {
     "new_targets": 83,
-    "transcribed_schools": 51,
-    "pending_extraction": 32,
-    "rows": 1685,
-    "afterschool_rows": 1389,
+    "transcribed_schools": 52,
+    "pending_extraction": 31,
+    "rows": 1733,
+    "afterschool_rows": 1437,
     "custom_rows": 296,
     "schools_with_source_blockers": 31,
     "existing_p1_preserved": 44,
@@ -839,10 +839,10 @@
       "school_name": "빛가온초등학교",
       "area": "gwangmyeong",
       "course_track": "new_priority",
-      "status": "pending_extraction",
-      "rows": 0,
+      "status": "transcribed_pending_independent_review",
+      "rows": 48,
       "approved_for_upload": false,
-      "review_file": null
+      "review_file": "pivot_gyeonggi_priority_batch44_review_20261030.json"
     },
     {
       "school_id": "B000004273",

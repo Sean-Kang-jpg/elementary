@@ -1,0 +1,51 @@
+{
+  "batch": "priority-batch44",
+  "checked_on": "2026-10-30",
+  "no_operational_upload": true,
+  "independent_review": false,
+  "schools": [
+    {
+      "school_id": "B000024196",
+      "school_name": "빛가온초등학교",
+      "input": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000024196.txt",
+      "input_sha256": "9fdb6f1d8b53c42b6052f0135c0334ca0f7adfc4701d202a595ae8e12928d237",
+      "output": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\outputs\\B000024196.json",
+      "output_sha256": "665be96fb2fca8f042f44d11098e10fa5ef1e645d49b8fc1220d4e9d580380fc",
+      "review_method": "same-assistant whole-source read; not independent blind review",
+      "supplied_sources_read": true,
+      "rows": 48,
+      "grade1_rows": 37,
+      "custom_rows": 0,
+      "field_evidence": {},
+      "blocking_issues": [],
+      "additional_findings": [
+        {
+          "type": "custom_absent_in_supplied_sources",
+          "reason": "맞춤형 시간표 첨부 없음"
+        },
+        {
+          "type": "care_hours_reported",
+          "lines": [
+            35
+          ],
+          "reason": "돌봄 방과후~19:00. 돌봄 시간 필드"
+        }
+      ],
+      "exclusions": [
+        {
+          "lines": [
+            123,
+            124,
+            125,
+            126,
+            127,
+            128
+          ],
+          "reason": "돌봄교실 특기적성은 돌봄 일과"
+        }
+      ],
+      "production_apply_ready": false,
+      "approved_for_upload": false
+    }
+  ]
+}
