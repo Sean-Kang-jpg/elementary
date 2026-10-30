@@ -2,11 +2,11 @@
   "checked_on": "20261030",
   "summary": {
     "new_targets": 83,
-    "transcribed_schools": 59,
-    "pending_extraction": 24,
-    "rows": 2040,
-    "afterschool_rows": 1667,
-    "custom_rows": 373,
+    "transcribed_schools": 60,
+    "pending_extraction": 23,
+    "rows": 2091,
+    "afterschool_rows": 1698,
+    "custom_rows": 393,
     "schools_with_source_blockers": 32,
     "existing_p1_preserved": 44,
     "care_review_targets": 37,
@@ -619,10 +619,10 @@
       "school_name": "안양부흥초등학교",
       "area": "dongan",
       "course_track": "new_priority",
-      "status": "pending_extraction",
-      "rows": 0,
+      "status": "transcribed_pending_independent_review",
+      "rows": 51,
       "approved_for_upload": false,
-      "review_file": null
+      "review_file": "pivot_gyeonggi_priority_batch52_review_20261030.json"
     },
     {
       "school_id": "B000003873",

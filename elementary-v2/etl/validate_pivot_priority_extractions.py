@@ -96,7 +96,7 @@ def check_rows(rows: list, lines: dict[int, str], review: dict) -> tuple[list[st
                 source_cells = evidence.split('|')
                 headers = [lines.get(ref,'').split('|') for ref in fields['weekday_header']]
                 day_supported = day_supported and type(column) is int and 0 <= column < len(source_cells) and any(
-                    column < len(header) and header[column].strip() in (days, days + '요일') for header in headers)
+                    column < len(header) and header[column].strip().strip('()') in (days, days + '요일') for header in headers)
                 if day_supported:
                     if fields.get('weekday_marker') is not None:
                         day_supported = fields['weekday_marker'] in ('●', '○', '✓', '✔') and source_cells[column].strip() == fields['weekday_marker']

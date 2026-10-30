@@ -29,6 +29,9 @@ class PriorityEvidenceTests(unittest.TestCase):
         self.assertFalse(check_rows([self.row()],lines,review)[0])
         review['field_evidence']['1']['weekday_column'] = 2
         self.assertTrue(check_rows([self.row()],lines,review)[0])
+        lines[2] = '일정 | (월) | (화) |'
+        review['field_evidence']['1']['weekday_column'] = 1
+        self.assertFalse(check_rows([self.row()],lines,review)[0])
 
     def test_separate_name_and_clock_grids_must_use_same_weekday_column(self):
         lines={1:'[file: plan.hwp; academic_year: 2026]',

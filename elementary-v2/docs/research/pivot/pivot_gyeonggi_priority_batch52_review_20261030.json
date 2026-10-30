@@ -1,0 +1,179 @@
+{
+  "batch": "priority-batch52",
+  "checked_on": "2026-10-30",
+  "no_operational_upload": true,
+  "independent_review": false,
+  "schools": [
+    {
+      "school_id": "B000003871",
+      "school_name": "안양부흥초등학교",
+      "input": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000003871.txt",
+      "input_sha256": "e5000052a24f17139325036a6e734c989da7f781a2977d7b1ff2a581dee68a10",
+      "output": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\outputs\\B000003871.json",
+      "output_sha256": "947eb178adca9c7554a9573003203972f3f06ea1958e89573bf6a42025c7de8e",
+      "review_method": "same-assistant whole-source read; not independent blind review",
+      "supplied_sources_read": true,
+      "rows": 51,
+      "grade1_rows": 24,
+      "custom_rows": 20,
+      "field_evidence": {
+        "1": {
+          "weekday_header": [
+            110
+          ],
+          "weekday_column": 2
+        },
+        "2": {
+          "weekday_header": [
+            110
+          ],
+          "weekday_column": 6
+        },
+        "3": {
+          "weekday_header": [
+            110
+          ],
+          "weekday_column": 2
+        },
+        "4": {
+          "weekday_header": [
+            110
+          ],
+          "weekday_column": 3
+        },
+        "5": {
+          "weekday_header": [
+            110
+          ],
+          "weekday_column": 4
+        },
+        "6": {
+          "weekday_header": [
+            110
+          ],
+          "weekday_column": 5
+        },
+        "7": {
+          "weekday_header": [
+            110
+          ],
+          "weekday_column": 6
+        },
+        "8": {
+          "weekday_header": [
+            110
+          ],
+          "weekday_column": 3
+        },
+        "9": {
+          "weekday_header": [
+            110
+          ],
+          "weekday_column": 4
+        },
+        "10": {
+          "weekday_header": [
+            110
+          ],
+          "weekday_column": 5
+        },
+        "11": {
+          "weekday_header": [
+            115
+          ],
+          "weekday_column": 2
+        },
+        "12": {
+          "weekday_header": [
+            115
+          ],
+          "weekday_column": 6
+        },
+        "13": {
+          "weekday_header": [
+            115
+          ],
+          "weekday_column": 2
+        },
+        "14": {
+          "weekday_header": [
+            115
+          ],
+          "weekday_column": 3
+        },
+        "15": {
+          "weekday_header": [
+            115
+          ],
+          "weekday_column": 4
+        },
+        "16": {
+          "weekday_header": [
+            115
+          ],
+          "weekday_column": 5
+        },
+        "17": {
+          "weekday_header": [
+            115
+          ],
+          "weekday_column": 6
+        },
+        "18": {
+          "weekday_header": [
+            115
+          ],
+          "weekday_column": 3
+        },
+        "19": {
+          "weekday_header": [
+            115
+          ],
+          "weekday_column": 4
+        },
+        "20": {
+          "weekday_header": [
+            115
+          ],
+          "weekday_column": 5
+        }
+      },
+      "blocking_issues": [],
+      "additional_findings": [
+        {
+          "type": "duplicate_source_row",
+          "lines": [
+            233,
+            235,
+            237,
+            239,
+            243
+          ],
+          "reason": "컴퓨터 반별 교육비·교재비 2행"
+        },
+        {
+          "type": "duration_label_mismatch",
+          "lines": [
+            234,
+            242
+          ],
+          "reason": "시각 범위와 분 표기 불일치"
+        }
+      ],
+      "exclusions": [
+        {
+          "lines": [
+            233,
+            235,
+            237,
+            239,
+            243
+          ],
+          "reason": "반복 행"
+        }
+      ],
+      "production_apply_ready": false,
+      "approved_for_upload": false
+    }
+  ]
+}
