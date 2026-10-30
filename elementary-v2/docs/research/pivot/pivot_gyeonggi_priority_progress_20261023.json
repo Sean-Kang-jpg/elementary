@@ -2,11 +2,11 @@
   "checked_on": "20261030",
   "summary": {
     "new_targets": 83,
-    "transcribed_schools": 80,
-    "pending_extraction": 3,
-    "rows": 3106,
-    "afterschool_rows": 2423,
-    "custom_rows": 683,
+    "transcribed_schools": 81,
+    "pending_extraction": 2,
+    "rows": 3171,
+    "afterschool_rows": 2473,
+    "custom_rows": 698,
     "schools_with_source_blockers": 42,
     "existing_p1_preserved": 44,
     "care_review_targets": 37,
@@ -1229,10 +1229,10 @@
       "school_name": "토월초등학교",
       "area": "suji",
       "course_track": "new_priority",
-      "status": "pending_extraction",
-      "rows": 0,
+      "status": "transcribed_pending_independent_review",
+      "rows": 65,
       "approved_for_upload": false,
-      "review_file": null
+      "review_file": "pivot_gyeonggi_priority_batch73_review_20261030.json"
     },
     {
       "school_id": "B000003997",

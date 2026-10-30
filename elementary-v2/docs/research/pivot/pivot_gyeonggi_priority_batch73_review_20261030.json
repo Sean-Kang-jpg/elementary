@@ -1,0 +1,459 @@
+{
+  "batch": "priority-batch73",
+  "checked_on": "2026-10-30",
+  "no_operational_upload": true,
+  "independent_review": false,
+  "schools": [
+    {
+      "school_id": "B000003992",
+      "school_name": "토월초등학교",
+      "input": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000003992.txt",
+      "input_sha256": "8a830663abdd2845d42930fdf55340e02143061e5cefab14de2445b1cecc8222",
+      "output": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\outputs\\B000003992.json",
+      "output_sha256": "1778eb9a1a5753e72e4845b68bc0ece5d640ad4e7095847a266edd38984bf700",
+      "review_method": "same-assistant whole-source read; not independent blind review",
+      "supplied_sources_read": true,
+      "rows": 65,
+      "grade1_rows": 43,
+      "custom_rows": 15,
+      "field_evidence": {
+        "1": {
+          "weekday_header": [
+            618
+          ],
+          "weekday_column": 3
+        },
+        "2": {
+          "weekday_header": [
+            618
+          ],
+          "weekday_column": 4
+        },
+        "3": {
+          "weekday_header": [
+            618
+          ],
+          "weekday_column": 5
+        },
+        "4": {
+          "weekday_header": [
+            618
+          ],
+          "weekday_column": 6
+        },
+        "5": {
+          "weekday_header": [
+            618
+          ],
+          "weekday_column": 7
+        },
+        "6": {
+          "weekday_header": [
+            618
+          ],
+          "weekday_column": 3
+        },
+        "7": {
+          "weekday_header": [
+            618
+          ],
+          "weekday_column": 4
+        },
+        "8": {
+          "weekday_header": [
+            618
+          ],
+          "weekday_column": 5
+        },
+        "9": {
+          "weekday_header": [
+            618
+          ],
+          "weekday_column": 6
+        },
+        "10": {
+          "weekday_header": [
+            618
+          ],
+          "weekday_column": 7
+        },
+        "11": {
+          "weekday_header": [
+            618
+          ],
+          "weekday_column": 3
+        },
+        "12": {
+          "weekday_header": [
+            618
+          ],
+          "weekday_column": 4
+        },
+        "13": {
+          "weekday_header": [
+            618
+          ],
+          "weekday_column": 5
+        },
+        "14": {
+          "weekday_header": [
+            618
+          ],
+          "weekday_column": 6
+        },
+        "15": {
+          "weekday_header": [
+            618
+          ],
+          "weekday_column": 7
+        },
+        "16": {
+          "weekday_header": [
+            624
+          ],
+          "weekday_column": 3
+        },
+        "17": {
+          "weekday_header": [
+            624
+          ],
+          "weekday_column": 3
+        },
+        "18": {
+          "weekday_header": [
+            624
+          ],
+          "weekday_column": 2
+        },
+        "19": {
+          "weekday_header": [
+            624
+          ],
+          "weekday_column": 2
+        },
+        "20": {
+          "weekday_header": [
+            624
+          ],
+          "weekday_column": 3
+        },
+        "21": {
+          "weekday_header": [
+            624
+          ],
+          "weekday_column": 3
+        },
+        "22": {
+          "weekday_header": [
+            624
+          ],
+          "weekday_column": 4
+        },
+        "23": {
+          "weekday_header": [
+            624
+          ],
+          "weekday_column": 4
+        },
+        "24": {
+          "weekday_header": [
+            624
+          ],
+          "weekday_column": 6
+        },
+        "25": {
+          "weekday_header": [
+            624
+          ],
+          "weekday_column": 6
+        },
+        "26": {
+          "weekday_header": [
+            624
+          ],
+          "weekday_column": 6
+        },
+        "27": {
+          "weekday_header": [
+            624
+          ],
+          "weekday_column": 3
+        },
+        "28": {
+          "weekday_header": [
+            624
+          ],
+          "weekday_column": 3
+        },
+        "29": {
+          "weekday_header": [
+            624
+          ],
+          "weekday_column": 2
+        },
+        "30": {
+          "weekday_header": [
+            624
+          ],
+          "weekday_column": 2
+        },
+        "31": {
+          "weekday_header": [
+            624
+          ],
+          "weekday_column": 2
+        },
+        "32": {
+          "weekday_header": [
+            624
+          ],
+          "weekday_column": 4
+        },
+        "33": {
+          "weekday_header": [
+            624
+          ],
+          "weekday_column": 4
+        },
+        "34": {
+          "weekday_header": [
+            624
+          ],
+          "weekday_column": 4
+        },
+        "35": {
+          "weekday_header": [
+            624
+          ],
+          "weekday_column": 6
+        },
+        "36": {
+          "weekday_header": [
+            624
+          ],
+          "weekday_column": 6
+        },
+        "37": {
+          "weekday_header": [
+            624
+          ],
+          "weekday_column": 6
+        },
+        "38": {
+          "weekday_header": [
+            624
+          ],
+          "weekday_column": 4
+        },
+        "39": {
+          "weekday_header": [
+            624
+          ],
+          "weekday_column": 4
+        },
+        "40": {
+          "weekday_header": [
+            624
+          ],
+          "weekday_column": 6
+        },
+        "41": {
+          "weekday_header": [
+            624
+          ],
+          "weekday_column": 6
+        },
+        "42": {
+          "weekday_header": [
+            624
+          ],
+          "weekday_column": 2
+        },
+        "43": {
+          "weekday_header": [
+            624
+          ],
+          "weekday_column": 2
+        },
+        "44": {
+          "weekday_header": [
+            624
+          ],
+          "weekday_column": 3
+        },
+        "45": {
+          "weekday_header": [
+            624
+          ],
+          "weekday_column": 3
+        },
+        "46": {
+          "weekday_header": [
+            624
+          ],
+          "weekday_column": 4
+        },
+        "47": {
+          "weekday_header": [
+            624
+          ],
+          "weekday_column": 4
+        },
+        "48": {
+          "weekday_header": [
+            624
+          ],
+          "weekday_column": 5
+        },
+        "49": {
+          "weekday_header": [
+            624
+          ],
+          "weekday_column": 5
+        },
+        "50": {
+          "weekday_header": [
+            624
+          ],
+          "weekday_column": 6
+        },
+        "51": {
+          "weekday_header": [
+            624
+          ],
+          "weekday_column": 6
+        },
+        "52": {
+          "weekday_header": [
+            624
+          ],
+          "weekday_column": 2
+        },
+        "53": {
+          "weekday_header": [
+            624
+          ],
+          "weekday_column": 2
+        },
+        "54": {
+          "weekday_header": [
+            624
+          ],
+          "weekday_column": 3
+        },
+        "55": {
+          "weekday_header": [
+            624
+          ],
+          "weekday_column": 3
+        },
+        "56": {
+          "weekday_header": [
+            624
+          ],
+          "weekday_column": 5
+        },
+        "57": {
+          "weekday_header": [
+            624
+          ],
+          "weekday_column": 5
+        },
+        "58": {
+          "weekday_header": [
+            624
+          ],
+          "weekday_column": 6
+        },
+        "59": {
+          "weekday_header": [
+            624
+          ],
+          "weekday_column": 6
+        },
+        "60": {
+          "weekday_header": [
+            624
+          ],
+          "weekday_column": 2
+        },
+        "61": {
+          "weekday_header": [
+            624
+          ],
+          "weekday_column": 2
+        },
+        "62": {
+          "weekday_header": [
+            624
+          ],
+          "weekday_column": 5
+        },
+        "63": {
+          "weekday_header": [
+            624
+          ],
+          "weekday_column": 5
+        },
+        "64": {
+          "weekday_header": [
+            624
+          ],
+          "weekday_column": 5
+        },
+        "65": {
+          "weekday_header": [
+            624
+          ],
+          "weekday_column": 5
+        }
+      },
+      "blocking_issues": [],
+      "additional_findings": [
+        {
+          "type": "morning_care",
+          "lines": [
+            612,
+            619
+          ],
+          "reason": "아침돌봄 8:00~8:40"
+        },
+        {
+          "type": "care_hours_reported",
+          "lines": [
+            35,
+            36
+          ],
+          "reason": "돌봄1반 ~19:00, 2반 ~17:00"
+        }
+      ],
+      "exclusions": [
+        {
+          "lines": [
+            611,
+            612,
+            613,
+            614,
+            615,
+            616,
+            617
+          ],
+          "reason": "맞춤형 일과 개요(반 행과 같은 시각)"
+        },
+        {
+          "lines": [
+            1209,
+            1210,
+            1211,
+            1212,
+            1213,
+            1214
+          ],
+          "reason": "출석부 양식"
+        }
+      ],
+      "production_apply_ready": false,
+      "approved_for_upload": false
+    }
+  ]
+}
