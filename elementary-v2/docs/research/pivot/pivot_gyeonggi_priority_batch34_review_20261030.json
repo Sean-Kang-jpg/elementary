@@ -1,0 +1,174 @@
+{
+  "batch": "priority-batch34",
+  "checked_on": "2026-10-30",
+  "no_operational_upload": true,
+  "independent_review": false,
+  "schools": [
+    {
+      "school_id": "B000003980",
+      "school_name": "서원초등학교",
+      "input": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000003980.txt",
+      "input_sha256": "3a08001d04b74ba22b41c7afb48d8b38c0ee9685ddc099540f9ab9924c68edbd",
+      "output": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\outputs\\B000003980.json",
+      "output_sha256": "2039031c9b3a54cb627fc4b8aa52b6c3e12d32dea8d95b751ff9471097d24fc3",
+      "review_method": "same-assistant whole-source read; not independent blind review",
+      "supplied_sources_read": true,
+      "rows": 50,
+      "grade1_rows": 26,
+      "custom_rows": 10,
+      "field_evidence": {
+        "1": {
+          "grades": [
+            28
+          ],
+          "name_table": [
+            264
+          ],
+          "clock_column": 1,
+          "weekday_header": [
+            262
+          ],
+          "weekday_column": 1
+        },
+        "2": {
+          "grades": [
+            28
+          ],
+          "name_table": [
+            264
+          ],
+          "clock_column": 2,
+          "weekday_header": [
+            262
+          ],
+          "weekday_column": 2
+        },
+        "3": {
+          "grades": [
+            28
+          ],
+          "weekday_header": [
+            262
+          ],
+          "weekday_column": 3
+        },
+        "4": {
+          "grades": [
+            28
+          ],
+          "weekday_header": [
+            262
+          ],
+          "weekday_column": 4
+        },
+        "5": {
+          "grades": [
+            28
+          ],
+          "name_table": [
+            264
+          ],
+          "clock_column": 5,
+          "weekday_header": [
+            262
+          ],
+          "weekday_column": 5
+        },
+        "6": {
+          "grades": [
+            30
+          ],
+          "name_table": [
+            269
+          ],
+          "clock_column": 1,
+          "weekday_header": [
+            267
+          ],
+          "weekday_column": 1
+        },
+        "7": {
+          "grades": [
+            30
+          ],
+          "name_table": [
+            269
+          ],
+          "clock_column": 2,
+          "weekday_header": [
+            267
+          ],
+          "weekday_column": 2
+        },
+        "8": {
+          "grades": [
+            30
+          ],
+          "weekday_header": [
+            267
+          ],
+          "weekday_column": 3
+        },
+        "9": {
+          "grades": [
+            30
+          ],
+          "weekday_header": [
+            267
+          ],
+          "weekday_column": 4
+        },
+        "10": {
+          "grades": [
+            30
+          ],
+          "name_table": [
+            269
+          ],
+          "clock_column": 5,
+          "weekday_header": [
+            267
+          ],
+          "weekday_column": 5
+        }
+      },
+      "blocking_issues": [],
+      "additional_findings": [
+        {
+          "type": "care_hours_reported",
+          "lines": [
+            31,
+            32,
+            33,
+            34
+          ],
+          "reason": "아침돌봄 7:50~8:30, 오후돌봄 ~19:00/~17:00"
+        },
+        {
+          "type": "friday_grade2_variant",
+          "lines": [
+            23
+          ],
+          "reason": "2학년 금요일 5교시 시 A 13:50~15:00, B 15:10~16:20"
+        }
+      ],
+      "exclusions": [
+        {
+          "lines": [
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30
+          ],
+          "reason": "개요 표(공통 창)는 반별 표(L84~)·맞춤형 표로 대체"
+        }
+      ],
+      "production_apply_ready": false,
+      "approved_for_upload": false
+    }
+  ]
+}
