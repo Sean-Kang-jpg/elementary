@@ -5,19 +5,19 @@
   "summary": {
     "targets": 83,
     "source_prepared": 83,
-    "extracted_schools": 66,
-    "pending_extraction": 17,
-    "course_rows": 2351,
-    "slot_candidates": 743,
-    "remaining_source_evidence_indexed": 17,
+    "extracted_schools": 67,
+    "pending_extraction": 16,
+    "course_rows": 2409,
+    "slot_candidates": 754,
+    "remaining_source_evidence_indexed": 16,
     "visual_slot_checks": 32,
-    "ok_candidates_after_visual": 29,
+    "ok_candidates_after_visual": 30,
     "schools_needing_checks": 37,
     "unresolved_check_items": 242,
     "independent_review_complete": 0,
     "current_term_verified": 0,
     "production_applied": 0,
-    "extraction_percent": 79.5
+    "extraction_percent": 80.7
   },
   "effective_slot_review": [
     {
@@ -596,6 +596,13 @@
           ]
         ]
       ]
+    },
+    {
+      "school_id": "B000003982",
+      "school_name": "성복초등학교",
+      "slots": 11,
+      "status": "ok",
+      "checks": []
     },
     {
       "school_id": "B000003983",
@@ -2551,17 +2558,6 @@
       "evidence_indexed": true
     },
     {
-      "school_id": "B000003982",
-      "school_name": "성복초등학교",
-      "area": "suji",
-      "input": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000003982.txt",
-      "input_sha256": "18b3703a9ff473a4dc2f530990cffcf0ef4fcf1235cc0e4fb262af55f6edba4a",
-      "evidence_index": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\remaining_evidence_index_20261025\\B000003982.json",
-      "evidence_windows": 153,
-      "status": "pending_full_source_extraction",
-      "evidence_indexed": true
-    },
-    {
       "school_id": "B000004003",
       "school_name": "성서초등학교",
       "area": "suji",
@@ -2667,5 +2663,5 @@
     "pivot_gyeonggi_priority_slots_current_20261030.json",
     "pivot_gyeonggi_priority_all_current_verification_20261030.json"
   ],
-  "next_action": "Continue remaining 17 whole-source extractions and unresolved slot checks. Evidence index is navigation only."
+  "next_action": "Continue remaining 16 whole-source extractions and unresolved slot checks. Evidence index is navigation only."
 }

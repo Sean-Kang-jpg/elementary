@@ -2,11 +2,11 @@
   "checked_on": "20261030",
   "summary": {
     "new_targets": 83,
-    "transcribed_schools": 66,
-    "pending_extraction": 17,
-    "rows": 2351,
-    "afterschool_rows": 1888,
-    "custom_rows": 463,
+    "transcribed_schools": 67,
+    "pending_extraction": 16,
+    "rows": 2409,
+    "afterschool_rows": 1926,
+    "custom_rows": 483,
     "schools_with_source_blockers": 35,
     "existing_p1_preserved": 44,
     "care_review_targets": 37,
@@ -1059,10 +1059,10 @@
       "school_name": "성복초등학교",
       "area": "suji",
       "course_track": "new_priority",
-      "status": "pending_extraction",
-      "rows": 0,
+      "status": "transcribed_pending_independent_review",
+      "rows": 58,
       "approved_for_upload": false,
-      "review_file": null
+      "review_file": "pivot_gyeonggi_priority_batch59_review_20261030.json"
     },
     {
       "school_id": "B000004003",
