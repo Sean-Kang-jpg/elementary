@@ -38,6 +38,22 @@ class PriorityEvidenceTests(unittest.TestCase):
         review['field_evidence']['1']['weekday_column'] = 2
         self.assertTrue(check_rows([self.row()],lines,review)[0])
 
+    def test_merged_clock_cell_needs_a_checked_span_over_empty_cells(self):
+        lines = {1:'[file: plan.hwpx; academic_year: 2026]',
+                 2:'구분 | 월 | 화 | 수 |', 3:'강좌 | 미술 | 체육 | 음악 |',
+                 4:'1차시 | 13:00~13:40 | | 12:00~12:40 |', 5:'대상 1학년'}
+        r = self.row(grade_source='table', days='화', line=4, name='체육')
+        fields = {'grades':[5],'name_table':[3],'clock_column':2,'weekday_header':[2],'weekday_column':2,
+                  'clock_colspan_from':1}
+        review = {'field_evidence':{'1':fields}}
+        self.assertTrue(check_rows([r],lines,review)[0])
+        review['table_span_checked'] = True
+        self.assertFalse(check_rows([r],lines,review)[0])
+        # The span may not reach across a cell that carries its own clock.
+        r = self.row(grade_source='table', days='수', line=4, name='음악')
+        review['field_evidence']['1'] = dict(fields, clock_column=3, weekday_column=3)
+        self.assertTrue(check_rows([r],lines,review)[0])
+
     def test_separate_name_and_clock_grids_must_use_same_weekday_column(self):
         lines={1:'[file: plan.hwp; academic_year: 2026]',
                2:'구분 | 월 | 화 |',3:'기본 | 13:00~13:40 | 14:00~14:40 |',

@@ -140,6 +140,17 @@ def check_rows(rows: list, lines: dict[int, str], review: dict) -> tuple[list[st
                 clock_evidence = ''
             else:
                 clock_evidence = cells[clock_column]
+                # A clock cell merged across weekdays leaves the later columns
+                # empty in the extracted text; the span must have been checked.
+                span_from = fields.get('clock_colspan_from')
+                if span_from is not None:
+                    if (review.get('table_span_checked') is not True or type(span_from) is not int
+                            or not 0 <= span_from < clock_column
+                            or any(cell.strip() for cell in cells[span_from + 1:clock_column + 1])):
+                        errors.append(f'{prefix}: invalid merged clock cell evidence')
+                        clock_evidence = ''
+                    else:
+                        clock_evidence = cells[span_from]
         capacity = fields.get('pdf_capacity_clock_prefix')
         if capacity is not None:
             if review.get('table_visual_checked') is not True or type(capacity) is not int or not 1 <= capacity <= 100:

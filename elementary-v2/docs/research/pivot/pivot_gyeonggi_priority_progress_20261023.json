@@ -2,11 +2,11 @@
   "checked_on": "20261030",
   "summary": {
     "new_targets": 83,
-    "transcribed_schools": 74,
-    "pending_extraction": 9,
-    "rows": 2784,
-    "afterschool_rows": 2191,
-    "custom_rows": 593,
+    "transcribed_schools": 75,
+    "pending_extraction": 8,
+    "rows": 2868,
+    "afterschool_rows": 2235,
+    "custom_rows": 633,
     "schools_with_source_blockers": 37,
     "existing_p1_preserved": 44,
     "care_review_targets": 37,
@@ -1029,10 +1029,10 @@
       "school_name": "상현초등학교",
       "area": "suji",
       "course_track": "new_priority",
-      "status": "pending_extraction",
-      "rows": 0,
+      "status": "transcribed_pending_independent_review",
+      "rows": 84,
       "approved_for_upload": false,
-      "review_file": null
+      "review_file": "pivot_gyeonggi_priority_batch67_review_20261030.json"
     },
     {
       "school_id": "B000003937",
