@@ -5,19 +5,19 @@
   "summary": {
     "targets": 83,
     "source_prepared": 83,
-    "extracted_schools": 73,
-    "pending_extraction": 10,
-    "course_rows": 2729,
-    "slot_candidates": 856,
-    "remaining_source_evidence_indexed": 10,
+    "extracted_schools": 74,
+    "pending_extraction": 9,
+    "course_rows": 2784,
+    "slot_candidates": 870,
+    "remaining_source_evidence_indexed": 9,
     "visual_slot_checks": 32,
     "ok_candidates_after_visual": 30,
-    "schools_needing_checks": 43,
-    "unresolved_check_items": 258,
+    "schools_needing_checks": 44,
+    "unresolved_check_items": 260,
     "independent_review_complete": 0,
     "current_term_verified": 0,
     "production_applied": 0,
-    "extraction_percent": 88.0
+    "extraction_percent": 89.2
   },
   "effective_slot_review": [
     {
@@ -518,6 +518,32 @@
             "시각",
             "금 건축교실·한자속독·코딩(4교시/5교시 날 조건)",
             "L431 / L442"
+          ]
+        ]
+      ]
+    },
+    {
+      "school_id": "B000003874",
+      "school_name": "호원초등학교",
+      "slots": 14,
+      "status": "check",
+      "checks": [
+        [
+          "원문불일치",
+          "과목",
+          [
+            "과목",
+            "맞춤형 2학년 수(13:00 독서교실, 13:50 독서논술)",
+            "L551 / L553"
+          ]
+        ],
+        [
+          "원문불일치",
+          "시각",
+          [
+            "시각",
+            "맞춤형 금(개요·편성표는 월·수, 화·목만 표기, 시간표는 금 13:50~15:20)",
+            "L524 / L543"
           ]
         ]
       ]
@@ -2633,17 +2659,6 @@
   ],
   "pending_schools": [
     {
-      "school_id": "B000003874",
-      "school_name": "호원초등학교",
-      "area": "dongan",
-      "input": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000003874.txt",
-      "input_sha256": "90f6a5d6b772f1f80cabee0d52a0350765c25b568a962706f13fc3f383a7bc51",
-      "evidence_index": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\remaining_evidence_index_20261025\\B000003874.json",
-      "evidence_windows": 94,
-      "status": "pending_full_source_extraction",
-      "evidence_indexed": true
-    },
-    {
       "school_id": "B000004002",
       "school_name": "상현초등학교",
       "area": "suji",
@@ -2749,5 +2764,5 @@
     "pivot_gyeonggi_priority_slots_current_20261030.json",
     "pivot_gyeonggi_priority_all_current_verification_20261030.json"
   ],
-  "next_action": "Continue remaining 10 whole-source extractions and unresolved slot checks. Evidence index is navigation only."
+  "next_action": "Continue remaining 9 whole-source extractions and unresolved slot checks. Evidence index is navigation only."
 }
