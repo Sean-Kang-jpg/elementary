@@ -1,0 +1,174 @@
+{
+  "batch": "priority-batch62",
+  "checked_on": "2026-10-30",
+  "no_operational_upload": true,
+  "independent_review": false,
+  "schools": [
+    {
+      "school_id": "B000004270",
+      "school_name": "광명남초등학교",
+      "input": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000004270.txt",
+      "input_sha256": "9b5ad240471b1b7d2d31312f6841934f1dc023d6f35f02b6224e65f938dc9084",
+      "output": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\outputs\\B000004270.json",
+      "output_sha256": "949943aa03543cfad2aee137a08b798701265603805772ebd5b005cbbd62fdcd",
+      "review_method": "same-assistant whole-source read; not independent blind review",
+      "supplied_sources_read": true,
+      "rows": 37,
+      "grade1_rows": 26,
+      "custom_rows": 15,
+      "field_evidence": {
+        "1": {
+          "grades": [
+            712
+          ]
+        },
+        "2": {
+          "grades": [
+            712
+          ]
+        },
+        "3": {
+          "grades": [
+            712
+          ]
+        },
+        "4": {
+          "grades": [
+            712
+          ]
+        },
+        "5": {
+          "grades": [
+            712
+          ]
+        },
+        "6": {
+          "grades": [
+            712
+          ]
+        },
+        "7": {
+          "grades": [
+            712
+          ]
+        },
+        "8": {
+          "grades": [
+            712
+          ]
+        },
+        "9": {
+          "grades": [
+            712
+          ]
+        },
+        "10": {
+          "grades": [
+            712
+          ]
+        },
+        "11": {
+          "grades": [
+            712
+          ]
+        },
+        "12": {
+          "grades": [
+            712
+          ]
+        },
+        "13": {
+          "grades": [
+            712
+          ]
+        },
+        "14": {
+          "grades": [
+            712
+          ]
+        },
+        "15": {
+          "grades": [
+            712
+          ]
+        }
+      },
+      "blocking_issues": [
+        {
+          "code": "period_condition_only",
+          "lines": [
+            715
+          ],
+          "reason": "맞춤형 시각이 그날 교시 수(4교시/5교시)에 따라 정해지나 1학년 요일별 시정표가 첨부에 없음"
+        }
+      ],
+      "additional_findings": [
+        {
+          "type": "pdf_visual_check",
+          "lines": [
+            716,
+            730
+          ],
+          "reason": "pdf_review/gmn_p3.png, gmn_p7.png 렌더링으로 반·요일·시각 대조"
+        },
+        {
+          "type": "care_hours_reported",
+          "lines": [
+            338,
+            362
+          ],
+          "reason": "돌봄 방과후~17:00(알찬반)/~19:00(마루반)"
+        }
+      ],
+      "exclusions": [
+        {
+          "lines": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21
+          ],
+          "reason": "2025 자유수강 지원현황"
+        },
+        {
+          "lines": [
+            22
+          ],
+          "reason": "2026 운영현황 xlsx는 학생 명단(개인정보) — 전사하지 않음"
+        },
+        {
+          "lines": [
+            400,
+            401,
+            402,
+            403,
+            404,
+            405
+          ],
+          "reason": "돌봄 특기적성은 돌봄 일과 프로그램"
+        }
+      ],
+      "production_apply_ready": false,
+      "approved_for_upload": false,
+      "table_visual_checked": true,
+      "table_visual_check": "pdf_review/gmn_p3.png, gmn_p7.png (pdf.js render)"
+    }
+  ]
+}
