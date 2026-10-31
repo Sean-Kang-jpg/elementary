@@ -1,5 +1,5 @@
 {
-  "checked_on": "20261030",
+  "checked_on": "20261031",
   "summary": {
     "new_targets": 83,
     "transcribed_schools": 83,
@@ -1300,7 +1300,7 @@
     "independently_reviewed_schools": 0,
     "production_applied_schools": 0
   },
-  "current_session_progress": "pivot_gyeonggi_priority_session_progress_20261030.json",
-  "current_slot_report": "pivot_gyeonggi_priority_slots_current_20261030.json",
+  "current_session_progress": "pivot_gyeonggi_priority_session_progress_20261031.json",
+  "current_slot_report": "pivot_gyeonggi_priority_slots_current_20261031.json",
   "current_checklist": "PIVOT_GYEONGGI_PRIORITY_SESSION_CHECKLIST.md"
 }

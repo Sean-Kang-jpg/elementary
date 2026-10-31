@@ -10,11 +10,11 @@
       "input": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\prepared_v3\\inputs\\B000003863.txt",
       "input_sha256": "34cbaa8dd3dc41854f4788094d3b23cab554a2b8f3013767d83ba1ceb408053f",
       "output": "etl\\runtime\\pivot_gyeonggi_priority_20261023\\outputs\\B000003863.json",
-      "output_sha256": "a480fba041cc2c462878012b57ca8ef6cf709b0458cbe899bf6a217179350bfc",
+      "output_sha256": "c8a9650750ba5392a1c52d073da8cbcf65356be71f7cb565581a332574220555",
       "review_method": "same-assistant whole-source read; not independent blind review",
       "supplied_sources_read": true,
       "rows": 58,
-      "grade1_rows": 10,
+      "grade1_rows": 42,
       "custom_rows": 20,
       "field_evidence": {
         "1": {
@@ -198,228 +198,344 @@
           "weekday_column": 11
         },
         "21": {
+          "grades": [
+            714
+          ],
           "weekday_header": [
             430
           ],
           "weekday_column": 1
         },
         "22": {
+          "grades": [
+            714
+          ],
           "weekday_header": [
             430
           ],
           "weekday_column": 1
         },
         "23": {
+          "grades": [
+            718
+          ],
           "weekday_header": [
             430
           ],
           "weekday_column": 2
         },
         "24": {
+          "grades": [
+            718
+          ],
           "weekday_header": [
             430
           ],
           "weekday_column": 2
         },
         "25": {
+          "grades": [
+            718
+          ],
           "weekday_header": [
             430
           ],
           "weekday_column": 1
         },
         "26": {
+          "grades": [
+            718
+          ],
           "weekday_header": [
             430
           ],
           "weekday_column": 1
         },
         "27": {
+          "grades": [
+            719
+          ],
           "weekday_header": [
             430
           ],
           "weekday_column": 2
         },
         "28": {
+          "grades": [
+            719
+          ],
           "weekday_header": [
             430
           ],
           "weekday_column": 2
         },
         "29": {
+          "grades": [
+            716
+          ],
           "weekday_header": [
             430
           ],
           "weekday_column": 3
         },
         "30": {
+          "grades": [
+            716
+          ],
           "weekday_header": [
             430
           ],
           "weekday_column": 3
         },
         "31": {
+          "grades": [
+            716
+          ],
           "weekday_header": [
             430
           ],
           "weekday_column": 4
         },
         "32": {
+          "grades": [
+            716
+          ],
           "weekday_header": [
             430
           ],
           "weekday_column": 4
         },
         "33": {
+          "grades": [
+            717
+          ],
           "weekday_header": [
             430
           ],
           "weekday_column": 5
         },
         "34": {
+          "grades": [
+            717
+          ],
           "weekday_header": [
             430
           ],
           "weekday_column": 5
         },
         "35": {
+          "grades": [
+            712
+          ],
           "weekday_header": [
             430
           ],
           "weekday_column": 1
         },
         "36": {
+          "grades": [
+            712
+          ],
           "weekday_header": [
             430
           ],
           "weekday_column": 1
         },
         "37": {
+          "grades": [
+            714
+          ],
           "weekday_header": [
             430
           ],
           "weekday_column": 2
         },
         "38": {
+          "grades": [
+            714
+          ],
           "weekday_header": [
             430
           ],
           "weekday_column": 2
         },
         "39": {
+          "grades": [
+            713
+          ],
           "weekday_header": [
             430
           ],
           "weekday_column": 3
         },
         "40": {
+          "grades": [
+            713
+          ],
           "weekday_header": [
             430
           ],
           "weekday_column": 3
         },
         "41": {
+          "grades": [
+            712
+          ],
           "weekday_header": [
             430
           ],
           "weekday_column": 4
         },
         "42": {
+          "grades": [
+            712
+          ],
           "weekday_header": [
             430
           ],
           "weekday_column": 4
         },
         "43": {
+          "grades": [
+            715
+          ],
           "weekday_header": [
             430
           ],
           "weekday_column": 5
         },
         "44": {
+          "grades": [
+            715
+          ],
           "weekday_header": [
             430
           ],
           "weekday_column": 5
         },
         "45": {
+          "grades": [
+            899,
+            901
+          ],
           "weekday_header": [
             430
           ],
           "weekday_column": 2
         },
         "46": {
+          "grades": [
+            900
+          ],
           "weekday_header": [
             430
           ],
           "weekday_column": 2
         },
         "47": {
+          "grades": [
+            899,
+            901
+          ],
           "weekday_header": [
             430
           ],
           "weekday_column": 3
         },
         "48": {
+          "grades": [
+            902
+          ],
           "weekday_header": [
             430
           ],
           "weekday_column": 3
         },
         "49": {
+          "grades": [
+            711
+          ],
           "weekday_header": [
             430
           ],
           "weekday_column": 1
         },
         "50": {
+          "grades": [
+            711
+          ],
           "weekday_header": [
             430
           ],
           "weekday_column": 1
         },
         "51": {
+          "grades": [
+            719
+          ],
           "weekday_header": [
             430
           ],
           "weekday_column": 3
         },
         "52": {
+          "grades": [
+            719
+          ],
           "weekday_header": [
             430
           ],
           "weekday_column": 3
         },
         "53": {
+          "grades": [
+            717
+          ],
           "weekday_header": [
             430
           ],
           "weekday_column": 5
         },
         "54": {
+          "grades": [
+            717
+          ],
           "weekday_header": [
             430
           ],
           "weekday_column": 5
         },
         "55": {
+          "grades": [
+            713
+          ],
           "weekday_header": [
             430
           ],
           "weekday_column": 2
         },
         "56": {
+          "grades": [
+            713
+          ],
           "weekday_header": [
             430
           ],
           "weekday_column": 2
         },
         "57": {
+          "grades": [
+            715
+          ],
           "weekday_header": [
             430
           ],
           "weekday_column": 4
         },
         "58": {
+          "grades": [
+            715
+          ],
           "weekday_header": [
             430
           ],
@@ -428,16 +544,15 @@
       },
       "blocking_issues": [
         {
-          "code": "missing_class_grades",
+          "code": "computer_class_grade_mapping",
           "lines": [
-            431,
-            432,
-            433,
             434,
-            435,
-            436
+            899,
+            900,
+            901,
+            902
           ],
-          "reason": "수익자 A/B반 대상 학년 미기재"
+          "reason": "컴퓨터 기초/응용·자격증과 교재표 A/B반의 대응은 교재 수준으로 추정"
         }
       ],
       "additional_findings": [

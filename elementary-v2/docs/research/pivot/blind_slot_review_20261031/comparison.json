@@ -1,0 +1,254 @@
+[
+ {
+  "school_id": "B000003852",
+  "school_name": "샘모루초등학교",
+  "ours": 14,
+  "blind": 13,
+  "matched": 13,
+  "only_ours": [
+   [
+    "맞춤형",
+    "금",
+    "13:45",
+    "15:15"
+   ]
+  ],
+  "only_blind": [],
+  "our_checks": [],
+  "blind_custom_untimed": [],
+  "blind_undeterminable": [],
+  "blind_conflicts": [
+   [
+    "시각",
+    "바이올린 수",
+    "L77 / L226"
+   ]
+  ],
+  "blind_note": "방과후는 반별 강좌표(L220-257)의 A반 기준; 주간 시간표(L76-81)의 긴 구간은 A+B 합친 구간이라 제외. 컴퓨터 활용(2~4학년)은 1학년 비대상으로 제외, 컴퓨터 창의A(1~4)는 전학년방과후. 맞춤형은 L91의 교시 조건보다 요일별 표(L166-174)를 채택."
+ },
+ {
+  "school_id": "B000003854",
+  "school_name": "안양부안초등학교",
+  "ours": 5,
+  "blind": 5,
+  "matched": 5,
+  "only_ours": [],
+  "only_blind": [],
+  "our_checks": [],
+  "blind_custom_untimed": [],
+  "blind_undeterminable": [],
+  "blind_conflicts": [],
+  "blind_note": "맞춤형 시간표 없음(돌봄 단체프로그램 13:00-16:30은 2025년 기준 표이자 120분 초과라 제외); 3~6학년반은 제외"
+ },
+ {
+  "school_id": "B000003858",
+  "school_name": "동안초등학교",
+  "ours": 10,
+  "blind": 10,
+  "matched": 10,
+  "only_ours": [],
+  "only_blind": [],
+  "our_checks": [
+   [
+    "PDF원문",
+    null,
+    null
+   ]
+  ],
+  "blind_custom_untimed": [],
+  "blind_undeterminable": [],
+  "blind_conflicts": [],
+  "blind_note": "원문에 맞춤형·돌봄 자료 없음, 방과후 강좌표만 있음(1:50 등 12시간제를 24시간제로 변환). 방송댄스는 원문 표기대로 화요일로 처리."
+ },
+ {
+  "school_id": "B000003862",
+  "school_name": "범계초등학교",
+  "ours": 5,
+  "blind": 5,
+  "matched": 5,
+  "only_ours": [],
+  "only_blind": [],
+  "our_checks": [],
+  "blind_custom_untimed": [],
+  "blind_undeterminable": [],
+  "blind_conflicts": [],
+  "blind_note": "수익자 방과후 계획 한 파일뿐, 맞춤형·돌봄 시각 없음; 1-2학년 반만 포함(3학년 이상 반 제외)"
+ },
+ {
+  "school_id": "B000003863",
+  "school_name": "호성초등학교",
+  "ours": 20,
+  "blind": 18,
+  "matched": 18,
+  "only_ours": [
+   [
+    "저학년방과후",
+    "수",
+    "13:00",
+    "14:20"
+   ],
+   [
+    "저학년방과후",
+    "화",
+    "13:50",
+    "15:10"
+   ]
+  ],
+  "only_blind": [],
+  "our_checks": [],
+  "blind_custom_untimed": [],
+  "blind_undeterminable": [],
+  "blind_conflicts": [],
+  "blind_note": "방과후 요일은 L431~436 표의 셀 위치로 추정(빈 셀 기준), 바이올린은 월 13:50으로 적힘(L435); 기타연주(3~6학년)·플룻(2~6학년)은 제외; A/B반은 별도 창; 돌봄교실 13:10~16:00 예시(L186)는 합친 운영구간이라 제외"
+ },
+ {
+  "school_id": "B000003986",
+  "school_name": "용인대일초등학교",
+  "ours": 10,
+  "blind": 10,
+  "matched": 10,
+  "only_ours": [],
+  "only_blind": [],
+  "our_checks": [],
+  "blind_custom_untimed": [],
+  "blind_undeterminable": [],
+  "blind_conflicts": [],
+  "blind_note": "맞춤형은 1반(1학년) 학기중 시간표 기준(L138-140); 방과후 A반(1~2학년)만 포함, B반(3~6학년) 제외; 돌봄교실 40분 특기적성/일과는 제외"
+ },
+ {
+  "school_id": "B000003994",
+  "school_name": "손곡초등학교",
+  "ours": 23,
+  "blind": 23,
+  "matched": 23,
+  "only_ours": [],
+  "only_blind": [],
+  "our_checks": [
+   [
+    "맞춤형시각없음",
+    "월",
+    null
+   ],
+   [
+    "맞춤형시각없음",
+    "화",
+    null
+   ],
+   [
+    "맞춤형시각없음",
+    "수",
+    null
+   ],
+   [
+    "맞춤형시각없음",
+    "목",
+    null
+   ],
+   [
+    "맞춤형시각없음",
+    "금",
+    null
+   ]
+  ],
+  "blind_custom_untimed": [],
+  "blind_undeterminable": [
+   "맞춤형(초1 월~금 프로그램)은 4교시 수업하는 날 13:00~14:30, 5교시 수업하는 날 13:50~15:20 (L542) — 요일별 교시 없음"
+  ],
+  "blind_conflicts": [],
+  "blind_note": "2026학년도 방과후 계획 기준; 맞춤형 요일별 시각 없음, 돌봄교실 주간표(L108-L116)는 시간대 정의 밖이라 제외"
+ },
+ {
+  "school_id": "B000004263",
+  "school_name": "하안초등학교",
+  "ours": 4,
+  "blind": 4,
+  "matched": 4,
+  "only_ours": [],
+  "only_blind": [],
+  "our_checks": [],
+  "blind_custom_untimed": [
+   "월",
+   "화",
+   "수",
+   "목",
+   "금"
+  ],
+  "blind_undeterminable": [],
+  "blind_conflicts": [],
+  "blind_note": "맞춤형은 초1,2 매일 2차시(L392)라 요일·시각 미기재; 월요일은 방과후 1~2학년 반 없음; 오후돌봄 14:00~15:40 외부강사 수업은 돌봄 활동이라 제외"
+ },
+ {
+  "school_id": "B000004265",
+  "school_name": "연서초등학교",
+  "ours": 8,
+  "blind": 8,
+  "matched": 8,
+  "only_ours": [],
+  "only_blind": [],
+  "our_checks": [
+   [
+    "PDF원문",
+    null,
+    null
+   ]
+  ],
+  "blind_custom_untimed": [],
+  "blind_undeterminable": [],
+  "blind_conflicts": [
+   [
+    "시각",
+    "맞춤형 운영시간 13:00~15:10(전체 구간)",
+    "L18 / L22"
+   ]
+  ],
+  "blind_note": "맞춤형은 L22 강좌표 요일별 시각 사용; 방과후 시각은 12시간제 표기를 24시간제로 환산, 3-6학년 B반 제외; 돌봄교실 일과(L15)는 제외"
+ },
+ {
+  "school_id": "B000004277",
+  "school_name": "광명광덕초등학교",
+  "ours": 29,
+  "blind": 28,
+  "matched": 27,
+  "only_ours": [
+   [
+    "맞춤형",
+    "수",
+    "13:00",
+    "13:40"
+   ],
+   [
+    "맞춤형",
+    "수",
+    "13:50",
+    "14:30"
+   ]
+  ],
+  "only_blind": [
+   [
+    "맞춤형",
+    "수",
+    "13:00",
+    "14:30",
+    [
+     706,
+     688
+    ]
+   ]
+  ],
+  "our_checks": [
+   [
+    "원문불일치",
+    "시각",
+    [
+     "시각",
+     "맞춤형(상반기 표만 공시, 하반기 미공시)",
+     "L706 / L709"
+    ]
+   ]
+  ],
+  "blind_custom_untimed": [],
+  "blind_undeterminable": [],
+  "blind_conflicts": [],
+  "blind_note": "맞춤형은 1학년 상반기 시간표(L706) 기준(3.20까지 적응기 표 L703은 다름); 방과후 반별 대상학년 미기재라 학년미기재로 분류; 돌봄교실 특기적성(L179-181)은 돌봄 활동이라 제외"
+ }
+]
