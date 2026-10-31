@@ -135,6 +135,25 @@ class SchoolRecordTest(unittest.TestCase):
         names = [o['name'] for o in records[0]['options'] if o['kind'] == '맞춤형']
         self.assertEqual((names, counts['schools']), (['놀이체육'], 1))   # Y was never in the base set
 
+    def test_slots_checks_and_review_items_reach_sql38_payload(self):
+        import json, tempfile
+        from pathlib import Path
+        v3 = ['맞춤형', '놀이체육', None, None, None, 'none', '월', '13:00', '13:40', 'unknown', '학기', '2026', '돌봄내', 7]
+        with tempfile.TemporaryDirectory() as tmp:
+            review = Path(tmp, 'review.json')
+            review.write_text(json.dumps({'schools': [
+                {'school_id': 'G', 'rows': [v3, v3[:6] + ['화', None, None] + v3[9:]],
+                 'conflicts': [['시각', '놀이체육', 'L7 / L9']], 'checks': [['방과후시각미확인', '수', ['로봇', 'A', 'L12']]]}]},
+                ensure_ascii=False), encoding='utf-8')
+            records, _ = build([], slot_reviews=[review])
+        rows = table_rows(records, '2026-10-31', include_sql38=True)
+        self.assertEqual([(s['kind'], s['weekday'], s['place']) for s in rows['school_afterschool_slots']], [('맞춤형', 1, '돌봄내')])
+        self.assertEqual([(c['reason'], c['weekday'], c['detail']) for c in rows['school_afterschool_checks']],
+                         [('맞춤형시각없음', 2, None), ('원문불일치', None, '시각 · 놀이체육 · L7 / L9'),
+                          ('방과후시각미확인', 3, '로봇 · A · L12')])
+        self.assertEqual(rows['school_afterschool_summary'][0]['slot_status'], 'check')
+        self.assertNotIn('school_afterschool_slots', table_rows(records, '2026-10-31'))
+
     def test_category(self):
         self.assertEqual(category('원어민영어 Starter'), '영어')
         self.assertEqual(category('펀펀 세계탐험'), '기타')

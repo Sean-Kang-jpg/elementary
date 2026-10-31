@@ -3,7 +3,7 @@
 -- school_afterschool_slots   학교·요일별로 1학년이 쓸 수 있는 시간 창 하나가 한 행.
 --                            맞춤형(무료, 돌봄 내 포함), 저학년 방과후(1학년 포함·3학년 이하까지), 전학년 방과후
 --                            (1학년 포함·4학년 이상까지), 학년 미기재 방과후. 같은 창을 쓰는 강좌는 한 행이고 이름은 참고로만 둔다.
--- school_afterschool_checks  사람이 확인할 항목: 맞춤형 시각 없음, 원문끼리 다름, PDF 원문.
+-- school_afterschool_checks  사람이 확인할 항목: 맞춤형 시각 없음, 원문끼리 다름, PDF 원문, 경기 검수 항목.
 --
 -- 서울 30개교 측정(2026-10-24): 시간대 정확도 소네트 맹검 100%, Opus 재검토 99.2%(132개 중 131개).
 -- 강좌 행(SQL 30 programs)은 참고층으로 그대로 둔다. 화면은 이 테이블이 없으면(PGRST205/42P01)
@@ -36,7 +36,9 @@ CREATE TABLE IF NOT EXISTS school_afterschool_checks (
         REFERENCES school_afterschool_summary(school_id)
         ON UPDATE CASCADE ON DELETE CASCADE,
     seq INTEGER NOT NULL CHECK (seq >= 1),
-    reason TEXT NOT NULL CHECK (reason IN ('맞춤형시각없음', '원문불일치', 'PDF원문')),
+    -- 앞의 셋은 etl/afterschool_slots.py가 만들고, 나머지는 경기 검수 단계의 항목이다(2026-10-31)
+    reason TEXT NOT NULL CHECK (reason IN ('맞춤형시각없음', '원문불일치', 'PDF원문', '방과후시각미확인',
+                                           '돌봄내분류확인', '맞춤형미확정행', '조건부개설미확인', '교시요일배정미확인')),
     weekday SMALLINT CHECK (weekday IS NULL OR weekday BETWEEN 1 AND 5),
     detail TEXT,                                                     -- 원문불일치: 무엇이 L번호 어디와 어디에서 다른지
     resolved_on DATE,                                                -- 학교 확인을 마친 날

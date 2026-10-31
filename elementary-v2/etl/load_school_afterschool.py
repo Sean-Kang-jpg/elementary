@@ -51,6 +51,10 @@ COLUMNS_V3 = ['kind', 'name', 'variant', 'section', 'grades_raw', 'grade_source'
 COLUMNS_V3_PLACE = COLUMNS_V3[:-1] + ['place', 'line']
 # a section counts as lower-grade when its grade text tops out at this grade
 LOWER_GRADE_MAX = 3
+# SQL 38 school_afterschool_checks.reason. The first three come from afterschool_slots; the rest are the
+# Gyeonggi review gates' own items, carried over from --slot-reviews (2026-10-31)
+CHECK_REASONS = ('맞춤형시각없음', '원문불일치', 'PDF원문', '방과후시각미확인', '돌봄내분류확인', '맞춤형미확정행',
+                 '조건부개설미확인', '교시요일배정미확인')
 # Set to True only after the user has confirmed the reviewed set; --apply refuses otherwise.
 CONFIRMED = True   # 2026-10-15: user approved publishing all 536 Seoul schools before the 30-school review
 
@@ -135,6 +139,7 @@ def clean_row(values: list) -> dict[str, Any] | None:
     row = dict(zip(columns, values))
     if len(values) in (13, 14) and row.get('period') != '학기':
         return None
+    row.setdefault('period', '학기')   # v1/v2 extraction kept 학기 rows only
     if row.get('grade1') == 'false' or PRIOR_YEAR.search(str(row.get('term') or '')):
         return None
     if row.get('kind') == '맞춤형' and not row.get('grades_raw') and row.get('grade1') in ('true', 'unknown'):
@@ -207,16 +212,29 @@ def school_record(school: dict, periods: dict[str, int] | None = None) -> dict[s
                 latest[d] = s['end']
     values = list(options.values())
     terms = sorted({s['term'] for o in values for s in o['sections'] if s['term']})
+    from etl.afterschool_slots import school_slots   # it imports grade_upper from here
+    slots = school_slots(rows, school.get('conflicts'), bool(school.get('pdf_only')))
+    seen = {json.dumps(c, ensure_ascii=False) for c in slots['checks']}
+    # a review gate's own items; its 맞춤형시각없음 is recomputed above (the builder's span rule may differ)
+    for check in school.get('review_checks', []):
+        key = json.dumps(check, ensure_ascii=False)
+        if check[0] != '맞춤형시각없음' and key not in seen:
+            seen.add(key)
+            slots['checks'].append(check)
+    if slots['checks']:
+        slots['status'] = 'check'
     return {'school_id': school['school_id'], 'tier': tier, 'options': values, 'latest': latest, 'timeline_basis': basis,
             'grade1_options': sum(o['grade1'] == 'true' for o in values),
             'custom_options': sum(o['kind'] == '맞춤형' for o in values),
             'unknown_grade_options': sum(o['grade1'] != 'true' for o in values),
-            'term_label': ', '.join(terms[:3]) or None, 'note': school.get('note')}
+            'term_label': ', '.join(terms[:3]) or None, 'note': school.get('note'),
+            'slots': slots['slots'], 'checks': slots['checks'], 'slot_status': slots['status']}
 
 
 def build(outputs: list[Path], custom: list[Path] | None = None,
           afterschool: list[Path] | None = None,
-          period_estimates: dict[str, dict[str, int]] | None = None) -> tuple[list[dict], dict[str, int]]:
+          period_estimates: dict[str, dict[str, int]] | None = None,
+          slot_reviews: list[Path] | None = None) -> tuple[list[dict], dict[str, int]]:
     # a later --outputs directory (e.g. a re-extraction) replaces the same school from an earlier one
     latest: dict[str, dict] = {}
     for directory in outputs:
@@ -241,6 +259,24 @@ def build(outputs: list[Path], custom: list[Path] | None = None,
                     base = latest[school['school_id']]
                     kept = [r for r in base.get('rows', []) if r[0] != '맞춤형']
                     latest[school['school_id']] = {**base, 'rows': kept + custom_rows(school)}
+    # --slot-reviews: a Gyeonggi review gate's file. A school that carries its rows (the 83-school packets) is
+    # an input; one without rows (the 44-school review) only adds its checks and period_slots to --outputs
+    for path in slot_reviews or []:
+        for review in json.loads(path.read_text(encoding='utf-8'))['schools']:
+            sid = review['school_id']
+            if review.get('rows') and sid not in latest:
+                latest[sid] = {'school_id': sid, 'rows': review['rows'], 'conflicts': review.get('conflicts', []),
+                               'period_slots': review.get('period_slots', {}), 'note': review.get('note'),
+                               'pdf_only': review.get('source_pdf_only', False)}
+            if sid not in latest:
+                raise ValueError(f'Reviewed school without extraction rows: {sid}')
+            unknown = {c[0] for c in review.get('checks', [])} - set(CHECK_REASONS)
+            if unknown:
+                raise ValueError(f'Unknown check reasons {sorted(unknown)} for {sid}')
+            school = latest[sid]
+            if not school.get('period_slots'):
+                school['period_slots'] = review.get('period_slots') or {}
+            school['review_checks'] = review.get('checks', [])
     records, counts = [], {'schools': 0, 'published': 0, 'A': 0, 'B': 0, 'C': 0, 'not_published': 0}
     for school in latest.values():
         counts['schools'] += 1
@@ -254,14 +290,32 @@ def build(outputs: list[Path], custom: list[Path] | None = None,
     return records, counts
 
 
-def table_rows(records: list[dict], snapshot: str, include_sql32: bool = False) -> dict[str, list[dict]]:
-    summary, programs = [], []
+def check_detail(check: list) -> str | None:
+    detail = check[2] if len(check) > 2 else None
+    if detail is None:
+        return None
+    return ' · '.join(str(x) for x in detail) if isinstance(detail, list) else str(detail)
+
+
+def table_rows(records: list[dict], snapshot: str, include_sql32: bool = False,
+               include_sql38: bool = False) -> dict[str, list[dict]]:
+    summary, programs, slots, checks = [], [], [], []
     for r in records:
+        if include_sql38:
+            for s in r['slots']:
+                slots.append({'school_id': r['school_id'], 'kind': s['kind'], 'weekday': WEEKDAYS.index(s['weekday']) + 1,
+                              'start_time': s['start'], 'end_time': s['end'], 'courses': s['courses'],
+                              'place': s['place'], 'time_source': s['time_source']})
+            for seq, c in enumerate(r['checks'], 1):
+                day = c[1] if len(c) > 1 and isinstance(c[1], str) and len(c[1]) == 1 and c[1] in WEEKDAYS else None
+                checks.append({'school_id': r['school_id'], 'seq': seq, 'reason': c[0],
+                               'weekday': WEEKDAYS.index(day) + 1 if day else None, 'detail': check_detail(c)})
         summary.append({'school_id': r['school_id'], 'source_year': SOURCE_YEAR, 'tier': r['tier'],
                         'grade1_options': r['grade1_options'], 'custom_options': r['custom_options'],
                         'unknown_grade_options': r['unknown_grade_options'],
                         **{column: r['latest'][d] for column, d in zip(DAY_COLUMNS, WEEKDAYS)}, 'timeline_basis': r['timeline_basis'],
-                        'term_label': r['term_label'], 'source': SOURCE, 'review_state': 'auto', 'snapshot_date': snapshot})
+                        'term_label': r['term_label'], 'source': SOURCE, 'review_state': 'auto', 'snapshot_date': snapshot,
+                        **({'slot_status': r['slot_status']} if include_sql38 else {})})
         seq = 0
         for option in r['options']:
             for s in option['sections']:
@@ -271,7 +325,10 @@ def table_rows(records: list[dict], snapshot: str, include_sql32: bool = False) 
                                  'grade1': s['grade1'], 'grades_raw': s['grades_raw'], 'grade_upper': s['grade_upper'], 'weekdays': s['days'],
                                  'start_time': s['start'], 'end_time': s['end'], 'term': s['term'],
                                  **({'place': s.get('place'), 'time_source': s.get('time_source')} if include_sql32 else {})})
-    return {'school_afterschool_summary': summary, 'school_afterschool_programs': programs}
+    out = {'school_afterschool_summary': summary, 'school_afterschool_programs': programs}
+    if include_sql38:
+        out.update({'school_afterschool_slots': slots, 'school_afterschool_checks': checks})
+    return out
 
 
 def fixture(records: list[dict]) -> dict[str, dict]:
@@ -320,19 +377,24 @@ def main() -> None:
                         help='Local reviewed grade1_dismissal_estimates JSON; no automatic DB fetch')
     parser.add_argument('--sql32-fields', action='store_true',
                         help='Include place/time_source in preview payload; requires SQL 32 before apply')
+    parser.add_argument('--sql38-fields', action='store_true',
+                        help='Also write slots, checks and summary.slot_status; requires SQL 38 before apply')
+    parser.add_argument('--slot-reviews', action='append', type=Path,
+                        help='Gyeonggi review/packet JSON: rows when it carries them, and its check items')
     parser.add_argument('--write-fixture', action='store_true')
     parser.add_argument('--apply', action='store_true')
     args = parser.parse_args()
     snapshot = date.today().isoformat()
     periods = load_period_estimates(args.period_estimates or [])
-    records, counts = build(args.outputs, args.custom_outputs, args.afterschool_outputs, periods)
-    rows = table_rows(records, snapshot, include_sql32=args.sql32_fields)
+    records, counts = build(args.outputs, args.custom_outputs, args.afterschool_outputs, periods, args.slot_reviews)
+    rows = table_rows(records, snapshot, include_sql32=args.sql32_fields, include_sql38=args.sql38_fields)
     metadata_required = any(s.get('place') or s.get('time_source') == 'period_slot'
                             for r in records for o in r['options'] for s in o['sections'])
     if args.apply and metadata_required and not args.sql32_fields:
         raise SystemExit('SQL 32 fields required: refusing to discard place/time provenance before upload')
     report = {'mode': 'apply' if args.apply else 'dry-run', 'snapshot_date': snapshot, **counts,
-              'rows': {table: len(items) for table, items in rows.items()}, 'confirmed': CONFIRMED}
+              'rows': {table: len(items) for table, items in rows.items()}, 'confirmed': CONFIRMED,
+              'slot_status': {k: sum(r['slot_status'] == k for r in records) for k in ('ok', 'check', 'none')}}
     PREVIEW.parent.mkdir(parents=True, exist_ok=True)
     PREVIEW.write_text(json.dumps(rows, ensure_ascii=False, indent=1), encoding='utf-8')
     if args.write_fixture:
@@ -362,6 +424,17 @@ def main() -> None:
                      headers={'Prefer': 'resolution=merge-duplicates,return=minimal'})
         # an older snapshot's school drops with its programs (cascade); stale sections of a kept school go too
         rest(url, service_key, f'school_afterschool_summary?snapshot_date=lt.{snapshot}', method='DELETE', headers={'Prefer': 'return=minimal'})
+        if args.sql38_fields:
+            # slots and checks are rebuilt per school: drop the school's old ones, then insert this snapshot's
+            loaded = [r['school_id'] for r in rows['school_afterschool_summary']]
+            for table in ('school_afterschool_slots', 'school_afterschool_checks'):
+                for start in range(0, len(loaded), 100):
+                    ids = ','.join(loaded[start:start + 100])
+                    rest(url, service_key, f'{table}?school_id=in.({ids})', method='DELETE', headers={'Prefer': 'return=minimal'})
+                items = rows[table]
+                for start in range(0, len(items), 500):
+                    rest(url, service_key, table, method='POST', data=items[start:start + 500],
+                         headers={'Prefer': 'return=minimal'})
         for r in rows['school_afterschool_summary']:
             last = max(p['seq'] for p in rows['school_afterschool_programs'] if p['school_id'] == r['school_id'])
             rest(url, service_key, f"school_afterschool_programs?school_id=eq.{r['school_id']}&seq=gt.{last}", method='DELETE',
