@@ -1,0 +1,4178 @@
+{
+  "reviewed_on": "2026-10-23",
+  "branch": "codex/pivot-p1-v3-20261021",
+  "review_method": "same-agent source comparison; participation-unit-aware review approved by user on 2026-10-23; not independent blind verification",
+  "scope": "P1 stage1 five schools only; stage2 39 schools not extracted; stage3 83 deferred",
+  "no_operational_upload": true,
+  "publish_status": "not_approved",
+  "schema_version": "pivot-p1-source-review-v3",
+  "base_commit": "096b51f",
+  "extraction_method": "targeted correction of frozen v14 review using 2026 second-term originals; participation metadata is a review sidecar, raw rows remain 14 columns",
+  "accuracy_definition": "correct representation / shown raw rows; faithful nulls may count as correct but mandatory missing weekdays/times independently block the gate",
+  "schools": [
+    {
+      "school_id": "B000003739",
+      "school_name": "당촌초등학교",
+      "output_file": "docs/research/pivot/p1_test5_participation_20261023/batch_test5_B000003739.json",
+      "output_sha256": "0f7ca06e230a53e8d0767cd761505e9e9c567d9dd0863cb18f160bf55c6724e4",
+      "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_participation_20261023/B000003739.txt",
+      "input_sha256": "59d21cac52ac30f6f389bf6ae5d24f6beb0a83c000649f0802317d0f20bca928",
+      "original_input_sha256": "ebc3f92afcf6fcca75ca9da220b7a00710c2142865ba47093fce8d51d5add415",
+      "raw_rows": 54,
+      "expected_grade1_custom_rows": 10,
+      "grade1_custom_inventory_complete": true,
+      "place_review_complete": true,
+      "blocking_issues": [],
+      "review_notes": [
+        "앞선 조사에서 늘봄 자료실의 2학기 신청 안내를 놓쳤음. post1949814의 2학기 표로 월수12:50~14:20/화목금13:40~15:10 확인.",
+        "10월 공개수업은 첫차시 요일·시작만 교차 확인; 공개수업 종료시각을 평상시 종료시각으로 대체하지 않음.",
+        "학교알리미 본문의 수금/화목토 충돌은 이력에 남기되, 더 구체적인 2학기 학교 안내로 해당 기간을 판정."
+      ],
+      "row_decisions": [
+        {
+          "row": 1,
+          "source_line": 196,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 3,
+          "source_line": 198,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 4,
+          "source_line": 199,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 5,
+          "source_line": 200,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 6,
+          "source_line": 201,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 7,
+          "source_line": 202,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 8,
+          "source_line": 204,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 9,
+          "source_line": 205,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 10,
+          "source_line": 206,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 11,
+          "source_line": 207,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 13,
+          "source_line": 209,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 14,
+          "source_line": 210,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 15,
+          "source_line": 211,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 16,
+          "source_line": 212,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 17,
+          "source_line": 213,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 18,
+          "source_line": 214,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 19,
+          "source_line": 215,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 20,
+          "source_line": 216,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 21,
+          "source_line": 217,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 25,
+          "source_line": 222,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 27,
+          "source_line": 224,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 28,
+          "source_line": 225,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 29,
+          "source_line": 240,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 30,
+          "source_line": 241,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 31,
+          "source_line": 229,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 32,
+          "source_line": 230,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 33,
+          "source_line": 231,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 35,
+          "source_line": 233,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 36,
+          "source_line": 234,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 39,
+          "source_line": 73,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 40,
+          "source_line": 75,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 41,
+          "source_line": 73,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 42,
+          "source_line": 75,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 43,
+          "source_line": 75,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 50,
+          "source_line": 244,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 51,
+          "source_line": 245,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 52,
+          "source_line": 246,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 53,
+          "source_line": 247,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 54,
+          "source_line": 248,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        }
+      ],
+      "eligibility_notes": [
+        "독립 초1~2 맞춤형은 돌봄교실과 중복 신청 불가. 요일·차시별 희망을 조사하지만 매일2차시 참여자를 우선."
+      ],
+      "advisory_issues": [],
+      "participation_review_complete": true,
+      "participation_groups": [
+        {
+          "group_id": "B000003739:1",
+          "mode": "course_choice",
+          "selection_unit": "course_section",
+          "individually_selectable": true,
+          "rows": [
+            1
+          ],
+          "participation_rule": "수익자 방과후 강좌·반별 신청",
+          "evidence": [
+            {
+              "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_participation_20261023/B000003739.txt",
+              "line": 196,
+              "input_sha256": "59d21cac52ac30f6f389bf6ae5d24f6beb0a83c000649f0802317d0f20bca928"
+            }
+          ]
+        },
+        {
+          "group_id": "B000003739:2",
+          "mode": "course_choice",
+          "selection_unit": "course_section",
+          "individually_selectable": true,
+          "rows": [
+            3,
+            4
+          ],
+          "participation_rule": "수익자 방과후 강좌·반별 신청",
+          "evidence": [
+            {
+              "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_participation_20261023/B000003739.txt",
+              "line": 198,
+              "input_sha256": "59d21cac52ac30f6f389bf6ae5d24f6beb0a83c000649f0802317d0f20bca928"
+            }
+          ]
+        },
+        {
+          "group_id": "B000003739:3",
+          "mode": "course_choice",
+          "selection_unit": "course_section",
+          "individually_selectable": true,
+          "rows": [
+            5,
+            6
+          ],
+          "participation_rule": "수익자 방과후 강좌·반별 신청",
+          "evidence": [
+            {
+              "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_participation_20261023/B000003739.txt",
+              "line": 200,
+              "input_sha256": "59d21cac52ac30f6f389bf6ae5d24f6beb0a83c000649f0802317d0f20bca928"
+            }
+          ]
+        },
+        {
+          "group_id": "B000003739:4",
+          "mode": "course_choice",
+          "selection_unit": "course_section",
+          "individually_selectable": true,
+          "rows": [
+            7,
+            8
+          ],
+          "participation_rule": "수익자 방과후 강좌·반별 신청",
+          "evidence": [
+            {
+              "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_participation_20261023/B000003739.txt",
+              "line": 202,
+              "input_sha256": "59d21cac52ac30f6f389bf6ae5d24f6beb0a83c000649f0802317d0f20bca928"
+            }
+          ]
+        },
+        {
+          "group_id": "B000003739:5",
+          "mode": "course_choice",
+          "selection_unit": "course_section",
+          "individually_selectable": true,
+          "rows": [
+            9,
+            10
+          ],
+          "participation_rule": "수익자 방과후 강좌·반별 신청",
+          "evidence": [
+            {
+              "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_participation_20261023/B000003739.txt",
+              "line": 205,
+              "input_sha256": "59d21cac52ac30f6f389bf6ae5d24f6beb0a83c000649f0802317d0f20bca928"
+            }
+          ]
+        },
+        {
+          "group_id": "B000003739:6",
+          "mode": "course_choice",
+          "selection_unit": "course_section",
+          "individually_selectable": true,
+          "rows": [
+            11
+          ],
+          "participation_rule": "수익자 방과후 강좌·반별 신청",
+          "evidence": [
+            {
+              "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_participation_20261023/B000003739.txt",
+              "line": 207,
+              "input_sha256": "59d21cac52ac30f6f389bf6ae5d24f6beb0a83c000649f0802317d0f20bca928"
+            }
+          ]
+        },
+        {
+          "group_id": "B000003739:7",
+          "mode": "course_choice",
+          "selection_unit": "course_section",
+          "individually_selectable": true,
+          "rows": [
+            13,
+            14
+          ],
+          "participation_rule": "수익자 방과후 강좌·반별 신청",
+          "evidence": [
+            {
+              "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_participation_20261023/B000003739.txt",
+              "line": 209,
+              "input_sha256": "59d21cac52ac30f6f389bf6ae5d24f6beb0a83c000649f0802317d0f20bca928"
+            }
+          ]
+        },
+        {
+          "group_id": "B000003739:8",
+          "mode": "course_choice",
+          "selection_unit": "course_section",
+          "individually_selectable": true,
+          "rows": [
+            15,
+            16
+          ],
+          "participation_rule": "수익자 방과후 강좌·반별 신청",
+          "evidence": [
+            {
+              "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_participation_20261023/B000003739.txt",
+              "line": 211,
+              "input_sha256": "59d21cac52ac30f6f389bf6ae5d24f6beb0a83c000649f0802317d0f20bca928"
+            }
+          ]
+        },
+        {
+          "group_id": "B000003739:9",
+          "mode": "course_choice",
+          "selection_unit": "course_section",
+          "individually_selectable": true,
+          "rows": [
+            17,
+            18
+          ],
+          "participation_rule": "수익자 방과후 강좌·반별 신청",
+          "evidence": [
+            {
+              "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_participation_20261023/B000003739.txt",
+              "line": 213,
+              "input_sha256": "59d21cac52ac30f6f389bf6ae5d24f6beb0a83c000649f0802317d0f20bca928"
+            }
+          ]
+        },
+        {
+          "group_id": "B000003739:10",
+          "mode": "course_choice",
+          "selection_unit": "course_section",
+          "individually_selectable": true,
+          "rows": [
+            19,
+            20
+          ],
+          "participation_rule": "수익자 방과후 강좌·반별 신청",
+          "evidence": [
+            {
+              "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_participation_20261023/B000003739.txt",
+              "line": 215,
+              "input_sha256": "59d21cac52ac30f6f389bf6ae5d24f6beb0a83c000649f0802317d0f20bca928"
+            }
+          ]
+        },
+        {
+          "group_id": "B000003739:11",
+          "mode": "course_choice",
+          "selection_unit": "course_section",
+          "individually_selectable": true,
+          "rows": [
+            21
+          ],
+          "participation_rule": "수익자 방과후 강좌·반별 신청",
+          "evidence": [
+            {
+              "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_participation_20261023/B000003739.txt",
+              "line": 217,
+              "input_sha256": "59d21cac52ac30f6f389bf6ae5d24f6beb0a83c000649f0802317d0f20bca928"
+            }
+          ]
+        },
+        {
+          "group_id": "B000003739:12",
+          "mode": "course_choice",
+          "selection_unit": "course_section",
+          "individually_selectable": true,
+          "rows": [
+            25
+          ],
+          "participation_rule": "수익자 방과후 강좌·반별 신청",
+          "evidence": [
+            {
+              "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_participation_20261023/B000003739.txt",
+              "line": 222,
+              "input_sha256": "59d21cac52ac30f6f389bf6ae5d24f6beb0a83c000649f0802317d0f20bca928"
+            }
+          ]
+        },
+        {
+          "group_id": "B000003739:13",
+          "mode": "course_choice",
+          "selection_unit": "course_section",
+          "individually_selectable": true,
+          "rows": [
+            27,
+            28
+          ],
+          "participation_rule": "수익자 방과후 강좌·반별 신청",
+          "evidence": [
+            {
+              "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_participation_20261023/B000003739.txt",
+              "line": 224,
+              "input_sha256": "59d21cac52ac30f6f389bf6ae5d24f6beb0a83c000649f0802317d0f20bca928"
+            }
+          ]
+        },
+        {
+          "group_id": "B000003739:14",
+          "mode": "course_choice",
+          "selection_unit": "course_section",
+          "individually_selectable": true,
+          "rows": [
+            29,
+            30
+          ],
+          "participation_rule": "수익자 방과후 강좌·반별 신청",
+          "evidence": [
+            {
+              "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_participation_20261023/B000003739.txt",
+              "line": 240,
+              "input_sha256": "59d21cac52ac30f6f389bf6ae5d24f6beb0a83c000649f0802317d0f20bca928"
+            }
+          ]
+        },
+        {
+          "group_id": "B000003739:15",
+          "mode": "course_choice",
+          "selection_unit": "course_section",
+          "individually_selectable": true,
+          "rows": [
+            31,
+            32
+          ],
+          "participation_rule": "수익자 방과후 강좌·반별 신청",
+          "evidence": [
+            {
+              "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_participation_20261023/B000003739.txt",
+              "line": 229,
+              "input_sha256": "59d21cac52ac30f6f389bf6ae5d24f6beb0a83c000649f0802317d0f20bca928"
+            }
+          ]
+        },
+        {
+          "group_id": "B000003739:16",
+          "mode": "course_choice",
+          "selection_unit": "course_section",
+          "individually_selectable": true,
+          "rows": [
+            33
+          ],
+          "participation_rule": "수익자 방과후 강좌·반별 신청",
+          "evidence": [
+            {
+              "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_participation_20261023/B000003739.txt",
+              "line": 231,
+              "input_sha256": "59d21cac52ac30f6f389bf6ae5d24f6beb0a83c000649f0802317d0f20bca928"
+            }
+          ]
+        },
+        {
+          "group_id": "B000003739:17",
+          "mode": "course_choice",
+          "selection_unit": "course_section",
+          "individually_selectable": true,
+          "rows": [
+            35
+          ],
+          "participation_rule": "수익자 방과후 강좌·반별 신청",
+          "evidence": [
+            {
+              "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_participation_20261023/B000003739.txt",
+              "line": 233,
+              "input_sha256": "59d21cac52ac30f6f389bf6ae5d24f6beb0a83c000649f0802317d0f20bca928"
+            }
+          ]
+        },
+        {
+          "group_id": "B000003739:18",
+          "mode": "course_choice",
+          "selection_unit": "course_section",
+          "individually_selectable": true,
+          "rows": [
+            36
+          ],
+          "participation_rule": "수익자 방과후 강좌·반별 신청",
+          "evidence": [
+            {
+              "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_participation_20261023/B000003739.txt",
+              "line": 234,
+              "input_sha256": "59d21cac52ac30f6f389bf6ae5d24f6beb0a83c000649f0802317d0f20bca928"
+            }
+          ]
+        },
+        {
+          "group_id": "B000003739:19",
+          "mode": "class_day_bundle",
+          "selection_unit": "class_day",
+          "individually_selectable": false,
+          "rows": [
+            39,
+            40,
+            41,
+            42,
+            43
+          ],
+          "participation_rule": "요일·차시 참여 희망 조사, 매일 2차시 참여 우선; 돌봄교실 중복 신청 불가",
+          "evidence": [
+            {
+              "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_participation_20261023/B000003739.txt",
+              "line": 249,
+              "input_sha256": "59d21cac52ac30f6f389bf6ae5d24f6beb0a83c000649f0802317d0f20bca928"
+            }
+          ]
+        },
+        {
+          "group_id": "B000003739:20",
+          "mode": "class_day_bundle",
+          "selection_unit": "class_day",
+          "individually_selectable": false,
+          "rows": [
+            50,
+            51,
+            52,
+            53,
+            54
+          ],
+          "participation_rule": "요일·차시 참여 희망 조사, 매일 2차시 참여 우선; 돌봄교실 중복 신청 불가",
+          "evidence": [
+            {
+              "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_participation_20261023/B000003739.txt",
+              "line": 249,
+              "input_sha256": "59d21cac52ac30f6f389bf6ae5d24f6beb0a83c000649f0802317d0f20bca928"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "school_id": "B000003745",
+      "school_name": "낙생초등학교",
+      "output_file": "docs/research/pivot/p1_test5_participation_20261023/batch_test5_B000003745.json",
+      "output_sha256": "c5f7d9c8df97f74c9f1d2634256bbe4ca19e09f5844eacd16ff6c3b8ece1412b",
+      "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_participation_20261023/B000003745.txt",
+      "input_sha256": "032f5b320f7f020c6268b7dfab3482173fa546f16e28a546aa4f6d76df8ce946",
+      "original_input_sha256": "defbe367e23a83d9101886cf7b3767b817d6f27d1f403af7da9a0ef91231e084",
+      "raw_rows": 113,
+      "expected_grade1_custom_rows": 15,
+      "grade1_custom_inventory_complete": true,
+      "place_review_complete": true,
+      "blocking_issues": [],
+      "review_notes": [
+        "1분기 폐강 2개 반을 연간 제공으로 취급하지 않음. 해금 A는 2·3·4분기, 합창 B는 확인된 3·4분기만 기록.",
+        "초1 적응기 5행과 돌봄 내부 강사 프로그램 10행 추가. 자유활동·간식 제외.",
+        "L27의 맞춤형 신청자는 돌봄 입급자 제외 조건을 별도 유의사항으로 보존."
+      ],
+      "row_decisions": [
+        {
+          "row": 1,
+          "source_line": 40,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 2,
+          "source_line": 40,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 3,
+          "source_line": 40,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 4,
+          "source_line": 40,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 5,
+          "source_line": 40,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 6,
+          "source_line": 40,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 7,
+          "source_line": 40,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 8,
+          "source_line": 40,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 11,
+          "source_line": 40,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 12,
+          "source_line": 40,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 13,
+          "source_line": 40,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 14,
+          "source_line": 40,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 15,
+          "source_line": 40,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 16,
+          "source_line": 40,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 17,
+          "source_line": 40,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 18,
+          "source_line": 40,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 19,
+          "source_line": 40,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 20,
+          "source_line": 40,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 22,
+          "source_line": 40,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 23,
+          "source_line": 40,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 24,
+          "source_line": 40,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 25,
+          "source_line": 40,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 26,
+          "source_line": 40,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 27,
+          "source_line": 40,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 28,
+          "source_line": 40,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 30,
+          "source_line": 43,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 32,
+          "source_line": 110,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 33,
+          "source_line": 43,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 34,
+          "source_line": 43,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 35,
+          "source_line": 43,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 36,
+          "source_line": 43,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 38,
+          "source_line": 43,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 39,
+          "source_line": 43,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 40,
+          "source_line": 43,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 41,
+          "source_line": 43,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 42,
+          "source_line": 43,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 44,
+          "source_line": 43,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 46,
+          "source_line": 43,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 47,
+          "source_line": 43,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 48,
+          "source_line": 43,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 50,
+          "source_line": 43,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 51,
+          "source_line": 43,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 52,
+          "source_line": 43,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 54,
+          "source_line": 43,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 55,
+          "source_line": 43,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 56,
+          "source_line": 43,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 58,
+          "source_line": 43,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 59,
+          "source_line": 43,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 60,
+          "source_line": 46,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 61,
+          "source_line": 111,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 62,
+          "source_line": 46,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 63,
+          "source_line": 46,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 64,
+          "source_line": 46,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 65,
+          "source_line": 46,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 66,
+          "source_line": 46,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 67,
+          "source_line": 46,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 68,
+          "source_line": 46,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 69,
+          "source_line": 46,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 70,
+          "source_line": 46,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 74,
+          "source_line": 46,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 76,
+          "source_line": 29,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 77,
+          "source_line": 29,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 78,
+          "source_line": 29,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 79,
+          "source_line": 29,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 80,
+          "source_line": 29,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 96,
+          "source_line": 110,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 97,
+          "source_line": 110,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 98,
+          "source_line": 111,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 99,
+          "source_line": 34,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 100,
+          "source_line": 34,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 101,
+          "source_line": 34,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 102,
+          "source_line": 34,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 103,
+          "source_line": 34,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 104,
+          "source_line": 65,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 105,
+          "source_line": 65,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 106,
+          "source_line": 65,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 107,
+          "source_line": 65,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 108,
+          "source_line": 65,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        }
+      ],
+      "advisory_issues": [],
+      "eligibility_notes": [
+        "독립 초1~2 맞춤형 신청 대상에서 돌봄 입급자를 제외. 돌봄 내부 프로그램은 별도 돌봄 입급자 대상."
+      ],
+      "participation_review_complete": true,
+      "care_hours_review_complete": true,
+      "care_hours": {
+        "days": "월화수목금",
+        "start_basis": "after_regular_classes",
+        "end": "19:00",
+        "evidence": [
+          {
+            "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_participation_20261023/B000003745.txt",
+            "line": 57,
+            "input_sha256": "032f5b320f7f020c6268b7dfab3482173fa546f16e28a546aa4f6d76df8ce946"
+          }
+        ]
+      },
+      "participation_groups": [
+        {
+          "group_id": "B000003745:1",
+          "mode": "course_choice",
+          "selection_unit": "course_section",
+          "individually_selectable": true,
+          "rows": [
+            1,
+            2
+          ],
+          "participation_rule": "수익자 방과후 강좌·반별 신청",
+          "evidence": [
+            {
+              "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_participation_20261023/B000003745.txt",
+              "line": 40,
+              "input_sha256": "032f5b320f7f020c6268b7dfab3482173fa546f16e28a546aa4f6d76df8ce946"
+            }
+          ]
+        },
+        {
+          "group_id": "B000003745:2",
+          "mode": "course_choice",
+          "selection_unit": "course_section",
+          "individually_selectable": true,
+          "rows": [
+            3,
+            4
+          ],
+          "participation_rule": "수익자 방과후 강좌·반별 신청",
+          "evidence": [
+            {
+              "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_participation_20261023/B000003745.txt",
+              "line": 40,
+              "input_sha256": "032f5b320f7f020c6268b7dfab3482173fa546f16e28a546aa4f6d76df8ce946"
+            }
+          ]
+        },
+        {
+          "group_id": "B000003745:3",
+          "mode": "course_choice",
+          "selection_unit": "course_section",
+          "individually_selectable": true,
+          "rows": [
+            5,
+            6
+          ],
+          "participation_rule": "수익자 방과후 강좌·반별 신청",
+          "evidence": [
+            {
+              "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_participation_20261023/B000003745.txt",
+              "line": 40,
+              "input_sha256": "032f5b320f7f020c6268b7dfab3482173fa546f16e28a546aa4f6d76df8ce946"
+            }
+          ]
+        },
+        {
+          "group_id": "B000003745:4",
+          "mode": "course_choice",
+          "selection_unit": "course_section",
+          "individually_selectable": true,
+          "rows": [
+            7,
+            8
+          ],
+          "participation_rule": "수익자 방과후 강좌·반별 신청",
+          "evidence": [
+            {
+              "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_participation_20261023/B000003745.txt",
+              "line": 40,
+              "input_sha256": "032f5b320f7f020c6268b7dfab3482173fa546f16e28a546aa4f6d76df8ce946"
+            }
+          ]
+        },
+        {
+          "group_id": "B000003745:5",
+          "mode": "course_choice",
+          "selection_unit": "course_section",
+          "individually_selectable": true,
+          "rows": [
+            11,
+            12
+          ],
+          "participation_rule": "수익자 방과후 강좌·반별 신청",
+          "evidence": [
+            {
+              "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_participation_20261023/B000003745.txt",
+              "line": 40,
+              "input_sha256": "032f5b320f7f020c6268b7dfab3482173fa546f16e28a546aa4f6d76df8ce946"
+            }
+          ]
+        },
+        {
+          "group_id": "B000003745:6",
+          "mode": "course_choice",
+          "selection_unit": "course_section",
+          "individually_selectable": true,
+          "rows": [
+            13,
+            14
+          ],
+          "participation_rule": "수익자 방과후 강좌·반별 신청",
+          "evidence": [
+            {
+              "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_participation_20261023/B000003745.txt",
+              "line": 40,
+              "input_sha256": "032f5b320f7f020c6268b7dfab3482173fa546f16e28a546aa4f6d76df8ce946"
+            }
+          ]
+        },
+        {
+          "group_id": "B000003745:7",
+          "mode": "course_choice",
+          "selection_unit": "course_section",
+          "individually_selectable": true,
+          "rows": [
+            15,
+            16
+          ],
+          "participation_rule": "수익자 방과후 강좌·반별 신청",
+          "evidence": [
+            {
+              "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_participation_20261023/B000003745.txt",
+              "line": 40,
+              "input_sha256": "032f5b320f7f020c6268b7dfab3482173fa546f16e28a546aa4f6d76df8ce946"
+            }
+          ]
+        },
+        {
+          "group_id": "B000003745:8",
+          "mode": "course_choice",
+          "selection_unit": "course_section",
+          "individually_selectable": true,
+          "rows": [
+            17,
+            18
+          ],
+          "participation_rule": "수익자 방과후 강좌·반별 신청",
+          "evidence": [
+            {
+              "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_participation_20261023/B000003745.txt",
+              "line": 40,
+              "input_sha256": "032f5b320f7f020c6268b7dfab3482173fa546f16e28a546aa4f6d76df8ce946"
+            }
+          ]
+        },
+        {
+          "group_id": "B000003745:9",
+          "mode": "course_choice",
+          "selection_unit": "course_section",
+          "individually_selectable": true,
+          "rows": [
+            19,
+            20
+          ],
+          "participation_rule": "수익자 방과후 강좌·반별 신청",
+          "evidence": [
+            {
+              "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_participation_20261023/B000003745.txt",
+              "line": 40,
+              "input_sha256": "032f5b320f7f020c6268b7dfab3482173fa546f16e28a546aa4f6d76df8ce946"
+            }
+          ]
+        },
+        {
+          "group_id": "B000003745:10",
+          "mode": "course_choice",
+          "selection_unit": "course_section",
+          "individually_selectable": true,
+          "rows": [
+            22,
+            23
+          ],
+          "participation_rule": "수익자 방과후 강좌·반별 신청",
+          "evidence": [
+            {
+              "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_participation_20261023/B000003745.txt",
+              "line": 40,
+              "input_sha256": "032f5b320f7f020c6268b7dfab3482173fa546f16e28a546aa4f6d76df8ce946"
+            }
+          ]
+        },
+        {
+          "group_id": "B000003745:11",
+          "mode": "course_choice",
+          "selection_unit": "course_section",
+          "individually_selectable": true,
+          "rows": [
+            24,
+            25
+          ],
+          "participation_rule": "수익자 방과후 강좌·반별 신청",
+          "evidence": [
+            {
+              "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_participation_20261023/B000003745.txt",
+              "line": 40,
+              "input_sha256": "032f5b320f7f020c6268b7dfab3482173fa546f16e28a546aa4f6d76df8ce946"
+            }
+          ]
+        },
+        {
+          "group_id": "B000003745:12",
+          "mode": "course_choice",
+          "selection_unit": "course_section",
+          "individually_selectable": true,
+          "rows": [
+            26,
+            27
+          ],
+          "participation_rule": "수익자 방과후 강좌·반별 신청",
+          "evidence": [
+            {
+              "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_participation_20261023/B000003745.txt",
+              "line": 40,
+              "input_sha256": "032f5b320f7f020c6268b7dfab3482173fa546f16e28a546aa4f6d76df8ce946"
+            }
+          ]
+        },
+        {
+          "group_id": "B000003745:13",
+          "mode": "course_choice",
+          "selection_unit": "course_section",
+          "individually_selectable": true,
+          "rows": [
+            28
+          ],
+          "participation_rule": "수익자 방과후 강좌·반별 신청",
+          "evidence": [
+            {
+              "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_participation_20261023/B000003745.txt",
+              "line": 40,
+              "input_sha256": "032f5b320f7f020c6268b7dfab3482173fa546f16e28a546aa4f6d76df8ce946"
+            }
+          ]
+        },
+        {
+          "group_id": "B000003745:14",
+          "mode": "course_choice",
+          "selection_unit": "course_section",
+          "individually_selectable": true,
+          "rows": [
+            30
+          ],
+          "participation_rule": "수익자 방과후 강좌·반별 신청",
+          "evidence": [
+            {
+              "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_participation_20261023/B000003745.txt",
+              "line": 43,
+              "input_sha256": "032f5b320f7f020c6268b7dfab3482173fa546f16e28a546aa4f6d76df8ce946"
+            }
+          ]
+        },
+        {
+          "group_id": "B000003745:15",
+          "mode": "course_choice",
+          "selection_unit": "course_section",
+          "individually_selectable": true,
+          "rows": [
+            32,
+            33,
+            96,
+            97
+          ],
+          "participation_rule": "수익자 방과후 강좌·반별 신청",
+          "evidence": [
+            {
+              "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_participation_20261023/B000003745.txt",
+              "line": 110,
+              "input_sha256": "032f5b320f7f020c6268b7dfab3482173fa546f16e28a546aa4f6d76df8ce946"
+            }
+          ]
+        },
+        {
+          "group_id": "B000003745:16",
+          "mode": "course_choice",
+          "selection_unit": "course_section",
+          "individually_selectable": true,
+          "rows": [
+            34,
+            35
+          ],
+          "participation_rule": "수익자 방과후 강좌·반별 신청",
+          "evidence": [
+            {
+              "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_participation_20261023/B000003745.txt",
+              "line": 43,
+              "input_sha256": "032f5b320f7f020c6268b7dfab3482173fa546f16e28a546aa4f6d76df8ce946"
+            }
+          ]
+        },
+        {
+          "group_id": "B000003745:17",
+          "mode": "course_choice",
+          "selection_unit": "course_section",
+          "individually_selectable": true,
+          "rows": [
+            36
+          ],
+          "participation_rule": "수익자 방과후 강좌·반별 신청",
+          "evidence": [
+            {
+              "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_participation_20261023/B000003745.txt",
+              "line": 43,
+              "input_sha256": "032f5b320f7f020c6268b7dfab3482173fa546f16e28a546aa4f6d76df8ce946"
+            }
+          ]
+        },
+        {
+          "group_id": "B000003745:18",
+          "mode": "course_choice",
+          "selection_unit": "course_section",
+          "individually_selectable": true,
+          "rows": [
+            38,
+            39
+          ],
+          "participation_rule": "수익자 방과후 강좌·반별 신청",
+          "evidence": [
+            {
+              "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_participation_20261023/B000003745.txt",
+              "line": 43,
+              "input_sha256": "032f5b320f7f020c6268b7dfab3482173fa546f16e28a546aa4f6d76df8ce946"
+            }
+          ]
+        },
+        {
+          "group_id": "B000003745:19",
+          "mode": "course_choice",
+          "selection_unit": "course_section",
+          "individually_selectable": true,
+          "rows": [
+            40,
+            41
+          ],
+          "participation_rule": "수익자 방과후 강좌·반별 신청",
+          "evidence": [
+            {
+              "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_participation_20261023/B000003745.txt",
+              "line": 43,
+              "input_sha256": "032f5b320f7f020c6268b7dfab3482173fa546f16e28a546aa4f6d76df8ce946"
+            }
+          ]
+        },
+        {
+          "group_id": "B000003745:20",
+          "mode": "course_choice",
+          "selection_unit": "course_section",
+          "individually_selectable": true,
+          "rows": [
+            42
+          ],
+          "participation_rule": "수익자 방과후 강좌·반별 신청",
+          "evidence": [
+            {
+              "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_participation_20261023/B000003745.txt",
+              "line": 43,
+              "input_sha256": "032f5b320f7f020c6268b7dfab3482173fa546f16e28a546aa4f6d76df8ce946"
+            }
+          ]
+        },
+        {
+          "group_id": "B000003745:21",
+          "mode": "course_choice",
+          "selection_unit": "course_section",
+          "individually_selectable": true,
+          "rows": [
+            44
+          ],
+          "participation_rule": "수익자 방과후 강좌·반별 신청",
+          "evidence": [
+            {
+              "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_participation_20261023/B000003745.txt",
+              "line": 43,
+              "input_sha256": "032f5b320f7f020c6268b7dfab3482173fa546f16e28a546aa4f6d76df8ce946"
+            }
+          ]
+        },
+        {
+          "group_id": "B000003745:22",
+          "mode": "course_choice",
+          "selection_unit": "course_section",
+          "individually_selectable": true,
+          "rows": [
+            46,
+            47
+          ],
+          "participation_rule": "수익자 방과후 강좌·반별 신청",
+          "evidence": [
+            {
+              "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_participation_20261023/B000003745.txt",
+              "line": 43,
+              "input_sha256": "032f5b320f7f020c6268b7dfab3482173fa546f16e28a546aa4f6d76df8ce946"
+            }
+          ]
+        },
+        {
+          "group_id": "B000003745:23",
+          "mode": "course_choice",
+          "selection_unit": "course_section",
+          "individually_selectable": true,
+          "rows": [
+            48
+          ],
+          "participation_rule": "수익자 방과후 강좌·반별 신청",
+          "evidence": [
+            {
+              "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_participation_20261023/B000003745.txt",
+              "line": 43,
+              "input_sha256": "032f5b320f7f020c6268b7dfab3482173fa546f16e28a546aa4f6d76df8ce946"
+            }
+          ]
+        },
+        {
+          "group_id": "B000003745:24",
+          "mode": "course_choice",
+          "selection_unit": "course_section",
+          "individually_selectable": true,
+          "rows": [
+            50,
+            51
+          ],
+          "participation_rule": "수익자 방과후 강좌·반별 신청",
+          "evidence": [
+            {
+              "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_participation_20261023/B000003745.txt",
+              "line": 43,
+              "input_sha256": "032f5b320f7f020c6268b7dfab3482173fa546f16e28a546aa4f6d76df8ce946"
+            }
+          ]
+        },
+        {
+          "group_id": "B000003745:25",
+          "mode": "course_choice",
+          "selection_unit": "course_section",
+          "individually_selectable": true,
+          "rows": [
+            52
+          ],
+          "participation_rule": "수익자 방과후 강좌·반별 신청",
+          "evidence": [
+            {
+              "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_participation_20261023/B000003745.txt",
+              "line": 43,
+              "input_sha256": "032f5b320f7f020c6268b7dfab3482173fa546f16e28a546aa4f6d76df8ce946"
+            }
+          ]
+        },
+        {
+          "group_id": "B000003745:26",
+          "mode": "course_choice",
+          "selection_unit": "course_section",
+          "individually_selectable": true,
+          "rows": [
+            54,
+            55
+          ],
+          "participation_rule": "수익자 방과후 강좌·반별 신청",
+          "evidence": [
+            {
+              "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_participation_20261023/B000003745.txt",
+              "line": 43,
+              "input_sha256": "032f5b320f7f020c6268b7dfab3482173fa546f16e28a546aa4f6d76df8ce946"
+            }
+          ]
+        },
+        {
+          "group_id": "B000003745:27",
+          "mode": "course_choice",
+          "selection_unit": "course_section",
+          "individually_selectable": true,
+          "rows": [
+            56
+          ],
+          "participation_rule": "수익자 방과후 강좌·반별 신청",
+          "evidence": [
+            {
+              "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_participation_20261023/B000003745.txt",
+              "line": 43,
+              "input_sha256": "032f5b320f7f020c6268b7dfab3482173fa546f16e28a546aa4f6d76df8ce946"
+            }
+          ]
+        },
+        {
+          "group_id": "B000003745:28",
+          "mode": "course_choice",
+          "selection_unit": "course_section",
+          "individually_selectable": true,
+          "rows": [
+            58,
+            59
+          ],
+          "participation_rule": "수익자 방과후 강좌·반별 신청",
+          "evidence": [
+            {
+              "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_participation_20261023/B000003745.txt",
+              "line": 43,
+              "input_sha256": "032f5b320f7f020c6268b7dfab3482173fa546f16e28a546aa4f6d76df8ce946"
+            }
+          ]
+        },
+        {
+          "group_id": "B000003745:29",
+          "mode": "course_choice",
+          "selection_unit": "course_section",
+          "individually_selectable": true,
+          "rows": [
+            60,
+            61,
+            98
+          ],
+          "participation_rule": "수익자 방과후 강좌·반별 신청",
+          "evidence": [
+            {
+              "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_participation_20261023/B000003745.txt",
+              "line": 46,
+              "input_sha256": "032f5b320f7f020c6268b7dfab3482173fa546f16e28a546aa4f6d76df8ce946"
+            }
+          ]
+        },
+        {
+          "group_id": "B000003745:30",
+          "mode": "course_choice",
+          "selection_unit": "course_section",
+          "individually_selectable": true,
+          "rows": [
+            62,
+            63
+          ],
+          "participation_rule": "수익자 방과후 강좌·반별 신청",
+          "evidence": [
+            {
+              "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_participation_20261023/B000003745.txt",
+              "line": 46,
+              "input_sha256": "032f5b320f7f020c6268b7dfab3482173fa546f16e28a546aa4f6d76df8ce946"
+            }
+          ]
+        },
+        {
+          "group_id": "B000003745:31",
+          "mode": "course_choice",
+          "selection_unit": "course_section",
+          "individually_selectable": true,
+          "rows": [
+            64,
+            65
+          ],
+          "participation_rule": "수익자 방과후 강좌·반별 신청",
+          "evidence": [
+            {
+              "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_participation_20261023/B000003745.txt",
+              "line": 46,
+              "input_sha256": "032f5b320f7f020c6268b7dfab3482173fa546f16e28a546aa4f6d76df8ce946"
+            }
+          ]
+        },
+        {
+          "group_id": "B000003745:32",
+          "mode": "course_choice",
+          "selection_unit": "course_section",
+          "individually_selectable": true,
+          "rows": [
+            66,
+            67
+          ],
+          "participation_rule": "수익자 방과후 강좌·반별 신청",
+          "evidence": [
+            {
+              "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_participation_20261023/B000003745.txt",
+              "line": 46,
+              "input_sha256": "032f5b320f7f020c6268b7dfab3482173fa546f16e28a546aa4f6d76df8ce946"
+            }
+          ]
+        },
+        {
+          "group_id": "B000003745:33",
+          "mode": "course_choice",
+          "selection_unit": "course_section",
+          "individually_selectable": true,
+          "rows": [
+            68,
+            69
+          ],
+          "participation_rule": "수익자 방과후 강좌·반별 신청",
+          "evidence": [
+            {
+              "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_participation_20261023/B000003745.txt",
+              "line": 46,
+              "input_sha256": "032f5b320f7f020c6268b7dfab3482173fa546f16e28a546aa4f6d76df8ce946"
+            }
+          ]
+        },
+        {
+          "group_id": "B000003745:34",
+          "mode": "course_choice",
+          "selection_unit": "course_section",
+          "individually_selectable": true,
+          "rows": [
+            70
+          ],
+          "participation_rule": "수익자 방과후 강좌·반별 신청",
+          "evidence": [
+            {
+              "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_participation_20261023/B000003745.txt",
+              "line": 46,
+              "input_sha256": "032f5b320f7f020c6268b7dfab3482173fa546f16e28a546aa4f6d76df8ce946"
+            }
+          ]
+        },
+        {
+          "group_id": "B000003745:35",
+          "mode": "course_choice",
+          "selection_unit": "course_section",
+          "individually_selectable": true,
+          "rows": [
+            74
+          ],
+          "participation_rule": "수익자 방과후 강좌·반별 신청",
+          "evidence": [
+            {
+              "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_participation_20261023/B000003745.txt",
+              "line": 46,
+              "input_sha256": "032f5b320f7f020c6268b7dfab3482173fa546f16e28a546aa4f6d76df8ce946"
+            }
+          ]
+        },
+        {
+          "group_id": "B000003745:36",
+          "mode": "class_day_bundle",
+          "selection_unit": "class_day",
+          "individually_selectable": false,
+          "rows": [
+            76,
+            77,
+            78,
+            79,
+            80
+          ],
+          "participation_rule": "매일 2차시 기본, 예외적으로 요일·차시 선택 가능; 돌봄 입급자 제외",
+          "evidence": [
+            {
+              "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_participation_20261023/B000003745.txt",
+              "line": 27,
+              "input_sha256": "032f5b320f7f020c6268b7dfab3482173fa546f16e28a546aa4f6d76df8ce946"
+            }
+          ]
+        },
+        {
+          "group_id": "B000003745:37",
+          "mode": "class_day_bundle",
+          "selection_unit": "class_day",
+          "individually_selectable": false,
+          "rows": [
+            99,
+            100,
+            101,
+            102,
+            103
+          ],
+          "participation_rule": "매일 2차시 기본, 예외적으로 요일·차시 선택 가능; 돌봄 입급자 제외",
+          "evidence": [
+            {
+              "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_participation_20261023/B000003745.txt",
+              "line": 27,
+              "input_sha256": "032f5b320f7f020c6268b7dfab3482173fa546f16e28a546aa4f6d76df8ce946"
+            }
+          ]
+        },
+        {
+          "group_id": "B000003745:38",
+          "mode": "care_activity",
+          "selection_unit": "care_enrollment",
+          "individually_selectable": false,
+          "rows": [
+            104,
+            105,
+            106,
+            107,
+            108
+          ],
+          "participation_rule": "매일 2차시 기본, 예외적으로 요일·차시 선택 가능; 돌봄 입급자 제외",
+          "evidence": [
+            {
+              "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_participation_20261023/B000003745.txt",
+              "line": 27,
+              "input_sha256": "032f5b320f7f020c6268b7dfab3482173fa546f16e28a546aa4f6d76df8ce946"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "school_id": "B000003753",
+      "school_name": "성남매송초등학교",
+      "output_file": "docs/research/pivot/p1_test5_participation_20261023/batch_test5_B000003753.json",
+      "output_sha256": "f8e85a12bd7aa19923dc9a3f781984025afaf08d519e12fe295ac60636bf8227",
+      "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_participation_20261023/B000003753.txt",
+      "input_sha256": "e24655ff3ce113f5a827b213c0f457f243652a2cedfd45eda0bd5e769e5838f0",
+      "original_input_sha256": "a069a558c236ca88fc7b6d7a3330a9f64f735a063497afb32a7edd05d1d0b00d",
+      "raw_rows": 49,
+      "expected_grade1_custom_rows": 16,
+      "grade1_custom_inventory_complete": true,
+      "place_review_complete": true,
+      "blocking_issues": [],
+      "review_notes": [
+        "L455·463의 1~2학년 대상과 L518 프로그램 목록을 보존. 전체 운영 구간을 각 강좌 시각으로 복제하지 않음.",
+        "간식·실내 자유활동·개별활동은 강좌에서 제외.",
+        "공식 돌봄 운영계획·오리엔테이션·2026 강사 모집 공고까지 확보. 모집 공고의 월화금 중 택1은 확정 요일로 사용하지 않음.",
+        "사용자 승인: 돌봄 내부 활동은 독립 강좌가 아닌 돌봄 입급 내 활동으로 분리. 보육 이용시간(방과후~19:00) 검증과 활동 세부 시간표 검증을 별도로 판정."
+      ],
+      "row_decisions": [
+        {
+          "row": 1,
+          "source_line": 46,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 2,
+          "source_line": 46,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 3,
+          "source_line": 46,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 4,
+          "source_line": 46,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 5,
+          "source_line": 46,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 6,
+          "source_line": 49,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 7,
+          "source_line": 49,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 8,
+          "source_line": 48,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 9,
+          "source_line": 49,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 10,
+          "source_line": 48,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 16,
+          "source_line": 74,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 17,
+          "source_line": 74,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 18,
+          "source_line": 74,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 19,
+          "source_line": 74,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 20,
+          "source_line": 74,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 21,
+          "source_line": 75,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 22,
+          "source_line": 75,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 23,
+          "source_line": 75,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 24,
+          "source_line": 75,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 25,
+          "source_line": 75,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 26,
+          "source_line": 76,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 27,
+          "source_line": 76,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 28,
+          "source_line": 76,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 29,
+          "source_line": 76,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 30,
+          "source_line": 76,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 31,
+          "source_line": 77,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 32,
+          "source_line": 77,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 33,
+          "source_line": 77,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 34,
+          "source_line": 77,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 35,
+          "source_line": 77,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 36,
+          "source_line": 78,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 37,
+          "source_line": 78,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 38,
+          "source_line": 518,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 40,
+          "source_line": 518,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 42,
+          "source_line": 518,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 44,
+          "source_line": 518,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 46,
+          "source_line": 518,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 48,
+          "source_line": 518,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        }
+      ],
+      "advisory_issues": [
+        "돌봄 6종: 5월 운영계획 L518은 합친 구간·요일 미공시. 2월 오리엔테이션에는 5종의 요일과 수13:10~14:30/목13:50~15:10/통상14:00~14:50이 있으나 5월 구간·미술 포함 구성과 달라 최신 주간표 없이는 결합 불가.",
+        "돌봄 내부 6종은 과목별 선택 강좌로 취급하지 않음. 요일·개별 시각은 미확인 상태를 그대로 보존."
+      ],
+      "eligibility_notes": [],
+      "participation_review_complete": true,
+      "care_hours_review_complete": true,
+      "care_hours": {
+        "days": "월화수목금",
+        "start_basis": "after_regular_classes",
+        "end": "19:00",
+        "evidence": [
+          {
+            "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_participation_20261023/B000003753.txt",
+            "line": 520,
+            "input_sha256": "e24655ff3ce113f5a827b213c0f457f243652a2cedfd45eda0bd5e769e5838f0"
+          }
+        ]
+      },
+      "participation_groups": [
+        {
+          "group_id": "B000003753:1",
+          "mode": "class_day_bundle",
+          "selection_unit": "class_day",
+          "individually_selectable": false,
+          "rows": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "participation_rule": "독립 맞춤형은 요일별 신청 가능, 하루 80분 원칙 및 중도 입퇴실 불가; 돌봄 내부는 단체 활동",
+          "evidence": [
+            {
+              "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_participation_20261023/B000003753.txt",
+              "line": 54,
+              "input_sha256": "e24655ff3ce113f5a827b213c0f457f243652a2cedfd45eda0bd5e769e5838f0"
+            }
+          ]
+        },
+        {
+          "group_id": "B000003753:2",
+          "mode": "class_day_bundle",
+          "selection_unit": "class_day",
+          "individually_selectable": false,
+          "rows": [
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "participation_rule": "독립 맞춤형은 요일별 신청 가능, 하루 80분 원칙 및 중도 입퇴실 불가; 돌봄 내부는 단체 활동",
+          "evidence": [
+            {
+              "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_participation_20261023/B000003753.txt",
+              "line": 54,
+              "input_sha256": "e24655ff3ce113f5a827b213c0f457f243652a2cedfd45eda0bd5e769e5838f0"
+            }
+          ]
+        },
+        {
+          "group_id": "B000003753:3",
+          "mode": "course_choice",
+          "selection_unit": "course_section",
+          "individually_selectable": true,
+          "rows": [
+            16
+          ],
+          "participation_rule": "수익자 방과후 강좌·반별 신청",
+          "evidence": [
+            {
+              "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_participation_20261023/B000003753.txt",
+              "line": 74,
+              "input_sha256": "e24655ff3ce113f5a827b213c0f457f243652a2cedfd45eda0bd5e769e5838f0"
+            }
+          ]
+        },
+        {
+          "group_id": "B000003753:4",
+          "mode": "course_choice",
+          "selection_unit": "course_section",
+          "individually_selectable": true,
+          "rows": [
+            17
+          ],
+          "participation_rule": "수익자 방과후 강좌·반별 신청",
+          "evidence": [
+            {
+              "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_participation_20261023/B000003753.txt",
+              "line": 74,
+              "input_sha256": "e24655ff3ce113f5a827b213c0f457f243652a2cedfd45eda0bd5e769e5838f0"
+            }
+          ]
+        },
+        {
+          "group_id": "B000003753:5",
+          "mode": "course_choice",
+          "selection_unit": "course_section",
+          "individually_selectable": true,
+          "rows": [
+            18
+          ],
+          "participation_rule": "수익자 방과후 강좌·반별 신청",
+          "evidence": [
+            {
+              "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_participation_20261023/B000003753.txt",
+              "line": 74,
+              "input_sha256": "e24655ff3ce113f5a827b213c0f457f243652a2cedfd45eda0bd5e769e5838f0"
+            }
+          ]
+        },
+        {
+          "group_id": "B000003753:6",
+          "mode": "course_choice",
+          "selection_unit": "course_section",
+          "individually_selectable": true,
+          "rows": [
+            19
+          ],
+          "participation_rule": "수익자 방과후 강좌·반별 신청",
+          "evidence": [
+            {
+              "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_participation_20261023/B000003753.txt",
+              "line": 74,
+              "input_sha256": "e24655ff3ce113f5a827b213c0f457f243652a2cedfd45eda0bd5e769e5838f0"
+            }
+          ]
+        },
+        {
+          "group_id": "B000003753:7",
+          "mode": "course_choice",
+          "selection_unit": "course_section",
+          "individually_selectable": true,
+          "rows": [
+            20
+          ],
+          "participation_rule": "수익자 방과후 강좌·반별 신청",
+          "evidence": [
+            {
+              "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_participation_20261023/B000003753.txt",
+              "line": 74,
+              "input_sha256": "e24655ff3ce113f5a827b213c0f457f243652a2cedfd45eda0bd5e769e5838f0"
+            }
+          ]
+        },
+        {
+          "group_id": "B000003753:8",
+          "mode": "course_choice",
+          "selection_unit": "course_section",
+          "individually_selectable": true,
+          "rows": [
+            21
+          ],
+          "participation_rule": "수익자 방과후 강좌·반별 신청",
+          "evidence": [
+            {
+              "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_participation_20261023/B000003753.txt",
+              "line": 75,
+              "input_sha256": "e24655ff3ce113f5a827b213c0f457f243652a2cedfd45eda0bd5e769e5838f0"
+            }
+          ]
+        },
+        {
+          "group_id": "B000003753:9",
+          "mode": "course_choice",
+          "selection_unit": "course_section",
+          "individually_selectable": true,
+          "rows": [
+            22
+          ],
+          "participation_rule": "수익자 방과후 강좌·반별 신청",
+          "evidence": [
+            {
+              "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_participation_20261023/B000003753.txt",
+              "line": 75,
+              "input_sha256": "e24655ff3ce113f5a827b213c0f457f243652a2cedfd45eda0bd5e769e5838f0"
+            }
+          ]
+        },
+        {
+          "group_id": "B000003753:10",
+          "mode": "course_choice",
+          "selection_unit": "course_section",
+          "individually_selectable": true,
+          "rows": [
+            23
+          ],
+          "participation_rule": "수익자 방과후 강좌·반별 신청",
+          "evidence": [
+            {
+              "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_participation_20261023/B000003753.txt",
+              "line": 75,
+              "input_sha256": "e24655ff3ce113f5a827b213c0f457f243652a2cedfd45eda0bd5e769e5838f0"
+            }
+          ]
+        },
+        {
+          "group_id": "B000003753:11",
+          "mode": "course_choice",
+          "selection_unit": "course_section",
+          "individually_selectable": true,
+          "rows": [
+            24
+          ],
+          "participation_rule": "수익자 방과후 강좌·반별 신청",
+          "evidence": [
+            {
+              "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_participation_20261023/B000003753.txt",
+              "line": 75,
+              "input_sha256": "e24655ff3ce113f5a827b213c0f457f243652a2cedfd45eda0bd5e769e5838f0"
+            }
+          ]
+        },
+        {
+          "group_id": "B000003753:12",
+          "mode": "course_choice",
+          "selection_unit": "course_section",
+          "individually_selectable": true,
+          "rows": [
+            25
+          ],
+          "participation_rule": "수익자 방과후 강좌·반별 신청",
+          "evidence": [
+            {
+              "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_participation_20261023/B000003753.txt",
+              "line": 75,
+              "input_sha256": "e24655ff3ce113f5a827b213c0f457f243652a2cedfd45eda0bd5e769e5838f0"
+            }
+          ]
+        },
+        {
+          "group_id": "B000003753:13",
+          "mode": "course_choice",
+          "selection_unit": "course_section",
+          "individually_selectable": true,
+          "rows": [
+            26
+          ],
+          "participation_rule": "수익자 방과후 강좌·반별 신청",
+          "evidence": [
+            {
+              "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_participation_20261023/B000003753.txt",
+              "line": 76,
+              "input_sha256": "e24655ff3ce113f5a827b213c0f457f243652a2cedfd45eda0bd5e769e5838f0"
+            }
+          ]
+        },
+        {
+          "group_id": "B000003753:14",
+          "mode": "course_choice",
+          "selection_unit": "course_section",
+          "individually_selectable": true,
+          "rows": [
+            27
+          ],
+          "participation_rule": "수익자 방과후 강좌·반별 신청",
+          "evidence": [
+            {
+              "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_participation_20261023/B000003753.txt",
+              "line": 76,
+              "input_sha256": "e24655ff3ce113f5a827b213c0f457f243652a2cedfd45eda0bd5e769e5838f0"
+            }
+          ]
+        },
+        {
+          "group_id": "B000003753:15",
+          "mode": "course_choice",
+          "selection_unit": "course_section",
+          "individually_selectable": true,
+          "rows": [
+            28,
+            30
+          ],
+          "participation_rule": "수익자 방과후 강좌·반별 신청",
+          "evidence": [
+            {
+              "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_participation_20261023/B000003753.txt",
+              "line": 76,
+              "input_sha256": "e24655ff3ce113f5a827b213c0f457f243652a2cedfd45eda0bd5e769e5838f0"
+            }
+          ]
+        },
+        {
+          "group_id": "B000003753:16",
+          "mode": "course_choice",
+          "selection_unit": "course_section",
+          "individually_selectable": true,
+          "rows": [
+            29
+          ],
+          "participation_rule": "수익자 방과후 강좌·반별 신청",
+          "evidence": [
+            {
+              "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_participation_20261023/B000003753.txt",
+              "line": 76,
+              "input_sha256": "e24655ff3ce113f5a827b213c0f457f243652a2cedfd45eda0bd5e769e5838f0"
+            }
+          ]
+        },
+        {
+          "group_id": "B000003753:17",
+          "mode": "course_choice",
+          "selection_unit": "course_section",
+          "individually_selectable": true,
+          "rows": [
+            31
+          ],
+          "participation_rule": "수익자 방과후 강좌·반별 신청",
+          "evidence": [
+            {
+              "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_participation_20261023/B000003753.txt",
+              "line": 77,
+              "input_sha256": "e24655ff3ce113f5a827b213c0f457f243652a2cedfd45eda0bd5e769e5838f0"
+            }
+          ]
+        },
+        {
+          "group_id": "B000003753:18",
+          "mode": "course_choice",
+          "selection_unit": "course_section",
+          "individually_selectable": true,
+          "rows": [
+            32
+          ],
+          "participation_rule": "수익자 방과후 강좌·반별 신청",
+          "evidence": [
+            {
+              "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_participation_20261023/B000003753.txt",
+              "line": 77,
+              "input_sha256": "e24655ff3ce113f5a827b213c0f457f243652a2cedfd45eda0bd5e769e5838f0"
+            }
+          ]
+        },
+        {
+          "group_id": "B000003753:19",
+          "mode": "course_choice",
+          "selection_unit": "course_section",
+          "individually_selectable": true,
+          "rows": [
+            33
+          ],
+          "participation_rule": "수익자 방과후 강좌·반별 신청",
+          "evidence": [
+            {
+              "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_participation_20261023/B000003753.txt",
+              "line": 77,
+              "input_sha256": "e24655ff3ce113f5a827b213c0f457f243652a2cedfd45eda0bd5e769e5838f0"
+            }
+          ]
+        },
+        {
+          "group_id": "B000003753:20",
+          "mode": "course_choice",
+          "selection_unit": "course_section",
+          "individually_selectable": true,
+          "rows": [
+            34
+          ],
+          "participation_rule": "수익자 방과후 강좌·반별 신청",
+          "evidence": [
+            {
+              "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_participation_20261023/B000003753.txt",
+              "line": 77,
+              "input_sha256": "e24655ff3ce113f5a827b213c0f457f243652a2cedfd45eda0bd5e769e5838f0"
+            }
+          ]
+        },
+        {
+          "group_id": "B000003753:21",
+          "mode": "course_choice",
+          "selection_unit": "course_section",
+          "individually_selectable": true,
+          "rows": [
+            35
+          ],
+          "participation_rule": "수익자 방과후 강좌·반별 신청",
+          "evidence": [
+            {
+              "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_participation_20261023/B000003753.txt",
+              "line": 77,
+              "input_sha256": "e24655ff3ce113f5a827b213c0f457f243652a2cedfd45eda0bd5e769e5838f0"
+            }
+          ]
+        },
+        {
+          "group_id": "B000003753:22",
+          "mode": "course_choice",
+          "selection_unit": "course_section",
+          "individually_selectable": true,
+          "rows": [
+            36
+          ],
+          "participation_rule": "수익자 방과후 강좌·반별 신청",
+          "evidence": [
+            {
+              "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_participation_20261023/B000003753.txt",
+              "line": 78,
+              "input_sha256": "e24655ff3ce113f5a827b213c0f457f243652a2cedfd45eda0bd5e769e5838f0"
+            }
+          ]
+        },
+        {
+          "group_id": "B000003753:23",
+          "mode": "course_choice",
+          "selection_unit": "course_section",
+          "individually_selectable": true,
+          "rows": [
+            37
+          ],
+          "participation_rule": "수익자 방과후 강좌·반별 신청",
+          "evidence": [
+            {
+              "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_participation_20261023/B000003753.txt",
+              "line": 78,
+              "input_sha256": "e24655ff3ce113f5a827b213c0f457f243652a2cedfd45eda0bd5e769e5838f0"
+            }
+          ]
+        },
+        {
+          "group_id": "B000003753:24",
+          "mode": "care_activity",
+          "selection_unit": "care_enrollment",
+          "individually_selectable": false,
+          "rows": [
+            38,
+            40,
+            42,
+            44,
+            46,
+            48
+          ],
+          "participation_rule": "독립 맞춤형은 요일별 신청 가능, 하루 80분 원칙 및 중도 입퇴실 불가; 돌봄 내부는 단체 활동",
+          "evidence": [
+            {
+              "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_participation_20261023/B000003753.txt",
+              "line": 54,
+              "input_sha256": "e24655ff3ce113f5a827b213c0f457f243652a2cedfd45eda0bd5e769e5838f0"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "school_id": "B000003766",
+      "school_name": "늘푸른초등학교",
+      "output_file": "docs/research/pivot/p1_test5_participation_20261023/batch_test5_B000003766.json",
+      "output_sha256": "01362d1e8451597c78e5d03233cb5e75d5f821202b09dde92baa478d128f19cf",
+      "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_participation_20261023/B000003766.txt",
+      "input_sha256": "ada7ec8281a578568f4b266ec12b43f9596f7cd1f6556bc8d22fb3d38aa58305",
+      "original_input_sha256": "7abb1c02703aa272a6ae424cfa3777cad78bdfa326acfd0ae9763bb3e15db578",
+      "raw_rows": 80,
+      "expected_grade1_custom_rows": 15,
+      "grade1_custom_inventory_complete": true,
+      "place_review_complete": true,
+      "blocking_issues": [],
+      "review_notes": [
+        "돌봄 두 반 시간은 L45·46의 명시된 반별 시각 적용. L47의 요일별 이름을 각각 기록. 운영 예시이므로 확정 개강 사실과 구별.",
+        "독립 초1·2 맞춤형은 L261 돌봄 입급자 제외 조건 및 L262 별도 교실 확인."
+      ],
+      "row_decisions": [
+        {
+          "row": 1,
+          "source_line": 324,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 2,
+          "source_line": 325,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 3,
+          "source_line": 326,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 4,
+          "source_line": 327,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 5,
+          "source_line": 328,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 6,
+          "source_line": 329,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 7,
+          "source_line": 330,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 8,
+          "source_line": 331,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 9,
+          "source_line": 332,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 10,
+          "source_line": 333,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 11,
+          "source_line": 334,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 12,
+          "source_line": 335,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 13,
+          "source_line": 336,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 14,
+          "source_line": 337,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 15,
+          "source_line": 338,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 16,
+          "source_line": 339,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 17,
+          "source_line": 340,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 18,
+          "source_line": 341,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 19,
+          "source_line": 342,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 20,
+          "source_line": 343,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 21,
+          "source_line": 344,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 22,
+          "source_line": 345,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 23,
+          "source_line": 346,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 24,
+          "source_line": 347,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 25,
+          "source_line": 348,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 26,
+          "source_line": 349,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 27,
+          "source_line": 350,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 28,
+          "source_line": 351,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 29,
+          "source_line": 352,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 30,
+          "source_line": 353,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 31,
+          "source_line": 354,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 32,
+          "source_line": 355,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 33,
+          "source_line": 356,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 34,
+          "source_line": 357,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 35,
+          "source_line": 358,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 36,
+          "source_line": 359,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 37,
+          "source_line": 360,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 38,
+          "source_line": 361,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 39,
+          "source_line": 362,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 40,
+          "source_line": 363,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 41,
+          "source_line": 364,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 42,
+          "source_line": 365,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 43,
+          "source_line": 366,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 44,
+          "source_line": 367,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 45,
+          "source_line": 368,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 46,
+          "source_line": 369,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 47,
+          "source_line": 370,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 50,
+          "source_line": 285,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 51,
+          "source_line": 285,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 52,
+          "source_line": 285,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 53,
+          "source_line": 285,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 54,
+          "source_line": 285,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 66,
+          "source_line": 47,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 67,
+          "source_line": 47,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 68,
+          "source_line": 47,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 69,
+          "source_line": 47,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 70,
+          "source_line": 47,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 71,
+          "source_line": 47,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 72,
+          "source_line": 47,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 73,
+          "source_line": 47,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 74,
+          "source_line": 47,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 75,
+          "source_line": 47,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        }
+      ],
+      "advisory_issues": [],
+      "eligibility_notes": [
+        "독립 초1~2 맞춤형 신청 대상에서 돌봄 입급자를 제외. 돌봄 내부 프로그램은 별도 돌봄 입급자 대상."
+      ],
+      "participation_review_complete": true,
+      "care_hours_review_complete": true,
+      "care_hours": {
+        "days": "월화수목금",
+        "start_basis": "after_regular_classes",
+        "end": "18:30",
+        "evidence": [
+          {
+            "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_participation_20261023/B000003766.txt",
+            "line": 16,
+            "input_sha256": "ada7ec8281a578568f4b266ec12b43f9596f7cd1f6556bc8d22fb3d38aa58305"
+          }
+        ]
+      },
+      "participation_groups": [
+        {
+          "group_id": "B000003766:1",
+          "mode": "course_choice",
+          "selection_unit": "course_section",
+          "individually_selectable": true,
+          "rows": [
+            1,
+            2
+          ],
+          "participation_rule": "수익자 방과후 강좌·반별 신청",
+          "evidence": [
+            {
+              "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_participation_20261023/B000003766.txt",
+              "line": 324,
+              "input_sha256": "ada7ec8281a578568f4b266ec12b43f9596f7cd1f6556bc8d22fb3d38aa58305"
+            }
+          ]
+        },
+        {
+          "group_id": "B000003766:2",
+          "mode": "course_choice",
+          "selection_unit": "course_section",
+          "individually_selectable": true,
+          "rows": [
+            3,
+            4
+          ],
+          "participation_rule": "수익자 방과후 강좌·반별 신청",
+          "evidence": [
+            {
+              "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_participation_20261023/B000003766.txt",
+              "line": 326,
+              "input_sha256": "ada7ec8281a578568f4b266ec12b43f9596f7cd1f6556bc8d22fb3d38aa58305"
+            }
+          ]
+        },
+        {
+          "group_id": "B000003766:3",
+          "mode": "course_choice",
+          "selection_unit": "course_section",
+          "individually_selectable": true,
+          "rows": [
+            5,
+            6
+          ],
+          "participation_rule": "수익자 방과후 강좌·반별 신청",
+          "evidence": [
+            {
+              "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_participation_20261023/B000003766.txt",
+              "line": 328,
+              "input_sha256": "ada7ec8281a578568f4b266ec12b43f9596f7cd1f6556bc8d22fb3d38aa58305"
+            }
+          ]
+        },
+        {
+          "group_id": "B000003766:4",
+          "mode": "course_choice",
+          "selection_unit": "course_section",
+          "individually_selectable": true,
+          "rows": [
+            7,
+            8
+          ],
+          "participation_rule": "수익자 방과후 강좌·반별 신청",
+          "evidence": [
+            {
+              "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_participation_20261023/B000003766.txt",
+              "line": 330,
+              "input_sha256": "ada7ec8281a578568f4b266ec12b43f9596f7cd1f6556bc8d22fb3d38aa58305"
+            }
+          ]
+        },
+        {
+          "group_id": "B000003766:5",
+          "mode": "course_choice",
+          "selection_unit": "course_section",
+          "individually_selectable": true,
+          "rows": [
+            9
+          ],
+          "participation_rule": "수익자 방과후 강좌·반별 신청",
+          "evidence": [
+            {
+              "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_participation_20261023/B000003766.txt",
+              "line": 332,
+              "input_sha256": "ada7ec8281a578568f4b266ec12b43f9596f7cd1f6556bc8d22fb3d38aa58305"
+            }
+          ]
+        },
+        {
+          "group_id": "B000003766:6",
+          "mode": "course_choice",
+          "selection_unit": "course_section",
+          "individually_selectable": true,
+          "rows": [
+            10,
+            11
+          ],
+          "participation_rule": "수익자 방과후 강좌·반별 신청",
+          "evidence": [
+            {
+              "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_participation_20261023/B000003766.txt",
+              "line": 333,
+              "input_sha256": "ada7ec8281a578568f4b266ec12b43f9596f7cd1f6556bc8d22fb3d38aa58305"
+            }
+          ]
+        },
+        {
+          "group_id": "B000003766:7",
+          "mode": "course_choice",
+          "selection_unit": "course_section",
+          "individually_selectable": true,
+          "rows": [
+            12,
+            13
+          ],
+          "participation_rule": "수익자 방과후 강좌·반별 신청",
+          "evidence": [
+            {
+              "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_participation_20261023/B000003766.txt",
+              "line": 335,
+              "input_sha256": "ada7ec8281a578568f4b266ec12b43f9596f7cd1f6556bc8d22fb3d38aa58305"
+            }
+          ]
+        },
+        {
+          "group_id": "B000003766:8",
+          "mode": "course_choice",
+          "selection_unit": "course_section",
+          "individually_selectable": true,
+          "rows": [
+            14,
+            15
+          ],
+          "participation_rule": "수익자 방과후 강좌·반별 신청",
+          "evidence": [
+            {
+              "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_participation_20261023/B000003766.txt",
+              "line": 337,
+              "input_sha256": "ada7ec8281a578568f4b266ec12b43f9596f7cd1f6556bc8d22fb3d38aa58305"
+            }
+          ]
+        },
+        {
+          "group_id": "B000003766:9",
+          "mode": "course_choice",
+          "selection_unit": "course_section",
+          "individually_selectable": true,
+          "rows": [
+            16,
+            17
+          ],
+          "participation_rule": "수익자 방과후 강좌·반별 신청",
+          "evidence": [
+            {
+              "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_participation_20261023/B000003766.txt",
+              "line": 339,
+              "input_sha256": "ada7ec8281a578568f4b266ec12b43f9596f7cd1f6556bc8d22fb3d38aa58305"
+            }
+          ]
+        },
+        {
+          "group_id": "B000003766:10",
+          "mode": "course_choice",
+          "selection_unit": "course_section",
+          "individually_selectable": true,
+          "rows": [
+            18
+          ],
+          "participation_rule": "수익자 방과후 강좌·반별 신청",
+          "evidence": [
+            {
+              "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_participation_20261023/B000003766.txt",
+              "line": 341,
+              "input_sha256": "ada7ec8281a578568f4b266ec12b43f9596f7cd1f6556bc8d22fb3d38aa58305"
+            }
+          ]
+        },
+        {
+          "group_id": "B000003766:11",
+          "mode": "course_choice",
+          "selection_unit": "course_section",
+          "individually_selectable": true,
+          "rows": [
+            19,
+            20
+          ],
+          "participation_rule": "수익자 방과후 강좌·반별 신청",
+          "evidence": [
+            {
+              "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_participation_20261023/B000003766.txt",
+              "line": 342,
+              "input_sha256": "ada7ec8281a578568f4b266ec12b43f9596f7cd1f6556bc8d22fb3d38aa58305"
+            }
+          ]
+        },
+        {
+          "group_id": "B000003766:12",
+          "mode": "course_choice",
+          "selection_unit": "course_section",
+          "individually_selectable": true,
+          "rows": [
+            21,
+            22
+          ],
+          "participation_rule": "수익자 방과후 강좌·반별 신청",
+          "evidence": [
+            {
+              "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_participation_20261023/B000003766.txt",
+              "line": 344,
+              "input_sha256": "ada7ec8281a578568f4b266ec12b43f9596f7cd1f6556bc8d22fb3d38aa58305"
+            }
+          ]
+        },
+        {
+          "group_id": "B000003766:13",
+          "mode": "course_choice",
+          "selection_unit": "course_section",
+          "individually_selectable": true,
+          "rows": [
+            23,
+            24
+          ],
+          "participation_rule": "수익자 방과후 강좌·반별 신청",
+          "evidence": [
+            {
+              "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_participation_20261023/B000003766.txt",
+              "line": 346,
+              "input_sha256": "ada7ec8281a578568f4b266ec12b43f9596f7cd1f6556bc8d22fb3d38aa58305"
+            }
+          ]
+        },
+        {
+          "group_id": "B000003766:14",
+          "mode": "course_choice",
+          "selection_unit": "course_section",
+          "individually_selectable": true,
+          "rows": [
+            25,
+            26
+          ],
+          "participation_rule": "수익자 방과후 강좌·반별 신청",
+          "evidence": [
+            {
+              "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_participation_20261023/B000003766.txt",
+              "line": 348,
+              "input_sha256": "ada7ec8281a578568f4b266ec12b43f9596f7cd1f6556bc8d22fb3d38aa58305"
+            }
+          ]
+        },
+        {
+          "group_id": "B000003766:15",
+          "mode": "course_choice",
+          "selection_unit": "course_section",
+          "individually_selectable": true,
+          "rows": [
+            27,
+            28
+          ],
+          "participation_rule": "수익자 방과후 강좌·반별 신청",
+          "evidence": [
+            {
+              "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_participation_20261023/B000003766.txt",
+              "line": 350,
+              "input_sha256": "ada7ec8281a578568f4b266ec12b43f9596f7cd1f6556bc8d22fb3d38aa58305"
+            }
+          ]
+        },
+        {
+          "group_id": "B000003766:16",
+          "mode": "course_choice",
+          "selection_unit": "course_section",
+          "individually_selectable": true,
+          "rows": [
+            29,
+            30
+          ],
+          "participation_rule": "수익자 방과후 강좌·반별 신청",
+          "evidence": [
+            {
+              "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_participation_20261023/B000003766.txt",
+              "line": 352,
+              "input_sha256": "ada7ec8281a578568f4b266ec12b43f9596f7cd1f6556bc8d22fb3d38aa58305"
+            }
+          ]
+        },
+        {
+          "group_id": "B000003766:17",
+          "mode": "course_choice",
+          "selection_unit": "course_section",
+          "individually_selectable": true,
+          "rows": [
+            31,
+            32
+          ],
+          "participation_rule": "수익자 방과후 강좌·반별 신청",
+          "evidence": [
+            {
+              "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_participation_20261023/B000003766.txt",
+              "line": 354,
+              "input_sha256": "ada7ec8281a578568f4b266ec12b43f9596f7cd1f6556bc8d22fb3d38aa58305"
+            }
+          ]
+        },
+        {
+          "group_id": "B000003766:18",
+          "mode": "course_choice",
+          "selection_unit": "course_section",
+          "individually_selectable": true,
+          "rows": [
+            33,
+            34
+          ],
+          "participation_rule": "수익자 방과후 강좌·반별 신청",
+          "evidence": [
+            {
+              "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_participation_20261023/B000003766.txt",
+              "line": 356,
+              "input_sha256": "ada7ec8281a578568f4b266ec12b43f9596f7cd1f6556bc8d22fb3d38aa58305"
+            }
+          ]
+        },
+        {
+          "group_id": "B000003766:19",
+          "mode": "course_choice",
+          "selection_unit": "course_section",
+          "individually_selectable": true,
+          "rows": [
+            35,
+            36
+          ],
+          "participation_rule": "수익자 방과후 강좌·반별 신청",
+          "evidence": [
+            {
+              "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_participation_20261023/B000003766.txt",
+              "line": 358,
+              "input_sha256": "ada7ec8281a578568f4b266ec12b43f9596f7cd1f6556bc8d22fb3d38aa58305"
+            }
+          ]
+        },
+        {
+          "group_id": "B000003766:20",
+          "mode": "course_choice",
+          "selection_unit": "course_section",
+          "individually_selectable": true,
+          "rows": [
+            37,
+            38
+          ],
+          "participation_rule": "수익자 방과후 강좌·반별 신청",
+          "evidence": [
+            {
+              "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_participation_20261023/B000003766.txt",
+              "line": 360,
+              "input_sha256": "ada7ec8281a578568f4b266ec12b43f9596f7cd1f6556bc8d22fb3d38aa58305"
+            }
+          ]
+        },
+        {
+          "group_id": "B000003766:21",
+          "mode": "course_choice",
+          "selection_unit": "course_section",
+          "individually_selectable": true,
+          "rows": [
+            39
+          ],
+          "participation_rule": "수익자 방과후 강좌·반별 신청",
+          "evidence": [
+            {
+              "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_participation_20261023/B000003766.txt",
+              "line": 362,
+              "input_sha256": "ada7ec8281a578568f4b266ec12b43f9596f7cd1f6556bc8d22fb3d38aa58305"
+            }
+          ]
+        },
+        {
+          "group_id": "B000003766:22",
+          "mode": "course_choice",
+          "selection_unit": "course_section",
+          "individually_selectable": true,
+          "rows": [
+            40,
+            41
+          ],
+          "participation_rule": "수익자 방과후 강좌·반별 신청",
+          "evidence": [
+            {
+              "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_participation_20261023/B000003766.txt",
+              "line": 363,
+              "input_sha256": "ada7ec8281a578568f4b266ec12b43f9596f7cd1f6556bc8d22fb3d38aa58305"
+            }
+          ]
+        },
+        {
+          "group_id": "B000003766:23",
+          "mode": "course_choice",
+          "selection_unit": "course_section",
+          "individually_selectable": true,
+          "rows": [
+            42,
+            43
+          ],
+          "participation_rule": "수익자 방과후 강좌·반별 신청",
+          "evidence": [
+            {
+              "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_participation_20261023/B000003766.txt",
+              "line": 365,
+              "input_sha256": "ada7ec8281a578568f4b266ec12b43f9596f7cd1f6556bc8d22fb3d38aa58305"
+            }
+          ]
+        },
+        {
+          "group_id": "B000003766:24",
+          "mode": "course_choice",
+          "selection_unit": "course_section",
+          "individually_selectable": true,
+          "rows": [
+            44,
+            45
+          ],
+          "participation_rule": "수익자 방과후 강좌·반별 신청",
+          "evidence": [
+            {
+              "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_participation_20261023/B000003766.txt",
+              "line": 367,
+              "input_sha256": "ada7ec8281a578568f4b266ec12b43f9596f7cd1f6556bc8d22fb3d38aa58305"
+            }
+          ]
+        },
+        {
+          "group_id": "B000003766:25",
+          "mode": "course_choice",
+          "selection_unit": "course_section",
+          "individually_selectable": true,
+          "rows": [
+            46,
+            47
+          ],
+          "participation_rule": "수익자 방과후 강좌·반별 신청",
+          "evidence": [
+            {
+              "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_participation_20261023/B000003766.txt",
+              "line": 369,
+              "input_sha256": "ada7ec8281a578568f4b266ec12b43f9596f7cd1f6556bc8d22fb3d38aa58305"
+            }
+          ]
+        },
+        {
+          "group_id": "B000003766:26",
+          "mode": "class_day_bundle",
+          "selection_unit": "class_day",
+          "individually_selectable": false,
+          "rows": [
+            50,
+            51,
+            52,
+            53,
+            54
+          ],
+          "participation_rule": "요일별 신청 가능, 매일 2차시 참여 우선; 돌봄 입급자 제외",
+          "evidence": [
+            {
+              "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_participation_20261023/B000003766.txt",
+              "line": 261,
+              "input_sha256": "ada7ec8281a578568f4b266ec12b43f9596f7cd1f6556bc8d22fb3d38aa58305"
+            }
+          ]
+        },
+        {
+          "group_id": "B000003766:27",
+          "mode": "care_activity",
+          "selection_unit": "care_enrollment",
+          "individually_selectable": false,
+          "rows": [
+            66,
+            67,
+            68,
+            69,
+            70
+          ],
+          "participation_rule": "요일별 신청 가능, 매일 2차시 참여 우선; 돌봄 입급자 제외",
+          "evidence": [
+            {
+              "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_participation_20261023/B000003766.txt",
+              "line": 261,
+              "input_sha256": "ada7ec8281a578568f4b266ec12b43f9596f7cd1f6556bc8d22fb3d38aa58305"
+            }
+          ]
+        },
+        {
+          "group_id": "B000003766:28",
+          "mode": "care_activity",
+          "selection_unit": "care_enrollment",
+          "individually_selectable": false,
+          "rows": [
+            71,
+            72,
+            73,
+            74,
+            75
+          ],
+          "participation_rule": "요일별 신청 가능, 매일 2차시 참여 우선; 돌봄 입급자 제외",
+          "evidence": [
+            {
+              "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_participation_20261023/B000003766.txt",
+              "line": 261,
+              "input_sha256": "ada7ec8281a578568f4b266ec12b43f9596f7cd1f6556bc8d22fb3d38aa58305"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "school_id": "B000024240",
+      "school_name": "위례고운초등학교",
+      "output_file": "docs/research/pivot/p1_test5_participation_20261023/batch_test5_B000024240.json",
+      "output_sha256": "7c26792d3f6b454117e69e7c0553ecf8375fce85d0fb3a10c4a55a5ba11b62bc",
+      "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_participation_20261023/B000024240.txt",
+      "input_sha256": "833c283c301c04dc217daee3ef11fe0dc7cd9f848027a19ecc05df5da981712b",
+      "original_input_sha256": "810d9f64998de77e51326a5fff3f10eae3a8465383bd8b81e689d7a1d5209950",
+      "raw_rows": 62,
+      "expected_grade1_custom_rows": 15,
+      "grade1_custom_inventory_complete": true,
+      "place_review_complete": true,
+      "blocking_issues": [],
+      "review_notes": [
+        "L24 연간 후보 4종 대신 공식 10월 사랑반의 실제 요일별 단체활동 5행으로 갱신. 독서놀이는 월간안내의 표기를 그대로 사용.",
+        "프로그램별 단체활동 계획 post1958926의 놀이체육 월수·책놀이 화·음악놀이 목 날짜와 월간표가 대응한다. 월간표 14:30~15:30을 사용.",
+        "정규 초1 맞춤형 A·B 10행은 원문 교시 조건과 별도 로컬 교시 자료로 파생하며 돌봄 사랑반과 구분한다. 10월 자료를 연간으로 일반화하지 않음."
+      ],
+      "row_decisions": [
+        {
+          "row": 1,
+          "source_line": 361,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 2,
+          "source_line": 361,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 3,
+          "source_line": 361,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 4,
+          "source_line": 361,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 5,
+          "source_line": 361,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 7,
+          "source_line": 361,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 8,
+          "source_line": 361,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 9,
+          "source_line": 361,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 10,
+          "source_line": 361,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 11,
+          "source_line": 361,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 12,
+          "source_line": 361,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 13,
+          "source_line": 361,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 14,
+          "source_line": 361,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 15,
+          "source_line": 361,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 16,
+          "source_line": 361,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 17,
+          "source_line": 361,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 18,
+          "source_line": 361,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 19,
+          "source_line": 361,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 20,
+          "source_line": 361,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 21,
+          "source_line": 361,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 22,
+          "source_line": 361,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 23,
+          "source_line": 361,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 24,
+          "source_line": 361,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 25,
+          "source_line": 361,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 26,
+          "source_line": 361,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 27,
+          "source_line": 361,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 28,
+          "source_line": 361,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 29,
+          "source_line": 361,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 30,
+          "source_line": 361,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 31,
+          "source_line": 361,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 32,
+          "source_line": 361,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 33,
+          "source_line": 361,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 34,
+          "source_line": 361,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 35,
+          "source_line": 361,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 36,
+          "source_line": 361,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 37,
+          "source_line": 348,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 38,
+          "source_line": 348,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 39,
+          "source_line": 348,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 40,
+          "source_line": 348,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 41,
+          "source_line": 348,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 42,
+          "source_line": 348,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 43,
+          "source_line": 348,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 44,
+          "source_line": 348,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 45,
+          "source_line": 348,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 46,
+          "source_line": 348,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 58,
+          "source_line": 436,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 59,
+          "source_line": 437,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 60,
+          "source_line": 438,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 61,
+          "source_line": 439,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        },
+        {
+          "row": 62,
+          "source_line": 440,
+          "verdict": "correct",
+          "reason": "원문 및 적용 학기·장소·참여 단위를 대조. 돌봄 내부 미공시 세부 일정은 null 그대로 보존하고 별도 경고."
+        }
+      ],
+      "advisory_issues": [],
+      "eligibility_notes": [],
+      "participation_review_complete": true,
+      "care_hours_review_complete": true,
+      "care_hours": {
+        "days": "월화수목금",
+        "start_basis": "after_regular_classes",
+        "end": "19:00",
+        "evidence": [
+          {
+            "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_participation_20261023/B000024240.txt",
+            "line": 34,
+            "input_sha256": "833c283c301c04dc217daee3ef11fe0dc7cd9f848027a19ecc05df5da981712b"
+          }
+        ]
+      },
+      "participation_groups": [
+        {
+          "group_id": "B000024240:1",
+          "mode": "course_choice",
+          "selection_unit": "course_section",
+          "individually_selectable": true,
+          "rows": [
+            1,
+            2
+          ],
+          "participation_rule": "수익자 방과후 강좌·반별 신청",
+          "evidence": [
+            {
+              "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_participation_20261023/B000024240.txt",
+              "line": 361,
+              "input_sha256": "833c283c301c04dc217daee3ef11fe0dc7cd9f848027a19ecc05df5da981712b"
+            }
+          ]
+        },
+        {
+          "group_id": "B000024240:2",
+          "mode": "course_choice",
+          "selection_unit": "course_section",
+          "individually_selectable": true,
+          "rows": [
+            3,
+            4
+          ],
+          "participation_rule": "수익자 방과후 강좌·반별 신청",
+          "evidence": [
+            {
+              "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_participation_20261023/B000024240.txt",
+              "line": 361,
+              "input_sha256": "833c283c301c04dc217daee3ef11fe0dc7cd9f848027a19ecc05df5da981712b"
+            }
+          ]
+        },
+        {
+          "group_id": "B000024240:3",
+          "mode": "course_choice",
+          "selection_unit": "course_section",
+          "individually_selectable": true,
+          "rows": [
+            5
+          ],
+          "participation_rule": "수익자 방과후 강좌·반별 신청",
+          "evidence": [
+            {
+              "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_participation_20261023/B000024240.txt",
+              "line": 361,
+              "input_sha256": "833c283c301c04dc217daee3ef11fe0dc7cd9f848027a19ecc05df5da981712b"
+            }
+          ]
+        },
+        {
+          "group_id": "B000024240:4",
+          "mode": "course_choice",
+          "selection_unit": "course_section",
+          "individually_selectable": true,
+          "rows": [
+            7,
+            8
+          ],
+          "participation_rule": "수익자 방과후 강좌·반별 신청",
+          "evidence": [
+            {
+              "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_participation_20261023/B000024240.txt",
+              "line": 361,
+              "input_sha256": "833c283c301c04dc217daee3ef11fe0dc7cd9f848027a19ecc05df5da981712b"
+            }
+          ]
+        },
+        {
+          "group_id": "B000024240:5",
+          "mode": "course_choice",
+          "selection_unit": "course_section",
+          "individually_selectable": true,
+          "rows": [
+            9,
+            10
+          ],
+          "participation_rule": "수익자 방과후 강좌·반별 신청",
+          "evidence": [
+            {
+              "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_participation_20261023/B000024240.txt",
+              "line": 361,
+              "input_sha256": "833c283c301c04dc217daee3ef11fe0dc7cd9f848027a19ecc05df5da981712b"
+            }
+          ]
+        },
+        {
+          "group_id": "B000024240:6",
+          "mode": "course_choice",
+          "selection_unit": "course_section",
+          "individually_selectable": true,
+          "rows": [
+            11,
+            12
+          ],
+          "participation_rule": "수익자 방과후 강좌·반별 신청",
+          "evidence": [
+            {
+              "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_participation_20261023/B000024240.txt",
+              "line": 361,
+              "input_sha256": "833c283c301c04dc217daee3ef11fe0dc7cd9f848027a19ecc05df5da981712b"
+            }
+          ]
+        },
+        {
+          "group_id": "B000024240:7",
+          "mode": "course_choice",
+          "selection_unit": "course_section",
+          "individually_selectable": true,
+          "rows": [
+            13,
+            14
+          ],
+          "participation_rule": "수익자 방과후 강좌·반별 신청",
+          "evidence": [
+            {
+              "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_participation_20261023/B000024240.txt",
+              "line": 361,
+              "input_sha256": "833c283c301c04dc217daee3ef11fe0dc7cd9f848027a19ecc05df5da981712b"
+            }
+          ]
+        },
+        {
+          "group_id": "B000024240:8",
+          "mode": "course_choice",
+          "selection_unit": "course_section",
+          "individually_selectable": true,
+          "rows": [
+            15,
+            16
+          ],
+          "participation_rule": "수익자 방과후 강좌·반별 신청",
+          "evidence": [
+            {
+              "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_participation_20261023/B000024240.txt",
+              "line": 361,
+              "input_sha256": "833c283c301c04dc217daee3ef11fe0dc7cd9f848027a19ecc05df5da981712b"
+            }
+          ]
+        },
+        {
+          "group_id": "B000024240:9",
+          "mode": "course_choice",
+          "selection_unit": "course_section",
+          "individually_selectable": true,
+          "rows": [
+            17,
+            18
+          ],
+          "participation_rule": "수익자 방과후 강좌·반별 신청",
+          "evidence": [
+            {
+              "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_participation_20261023/B000024240.txt",
+              "line": 361,
+              "input_sha256": "833c283c301c04dc217daee3ef11fe0dc7cd9f848027a19ecc05df5da981712b"
+            }
+          ]
+        },
+        {
+          "group_id": "B000024240:10",
+          "mode": "course_choice",
+          "selection_unit": "course_section",
+          "individually_selectable": true,
+          "rows": [
+            19,
+            20
+          ],
+          "participation_rule": "수익자 방과후 강좌·반별 신청",
+          "evidence": [
+            {
+              "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_participation_20261023/B000024240.txt",
+              "line": 361,
+              "input_sha256": "833c283c301c04dc217daee3ef11fe0dc7cd9f848027a19ecc05df5da981712b"
+            }
+          ]
+        },
+        {
+          "group_id": "B000024240:11",
+          "mode": "course_choice",
+          "selection_unit": "course_section",
+          "individually_selectable": true,
+          "rows": [
+            21,
+            22
+          ],
+          "participation_rule": "수익자 방과후 강좌·반별 신청",
+          "evidence": [
+            {
+              "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_participation_20261023/B000024240.txt",
+              "line": 361,
+              "input_sha256": "833c283c301c04dc217daee3ef11fe0dc7cd9f848027a19ecc05df5da981712b"
+            }
+          ]
+        },
+        {
+          "group_id": "B000024240:12",
+          "mode": "course_choice",
+          "selection_unit": "course_section",
+          "individually_selectable": true,
+          "rows": [
+            23,
+            24
+          ],
+          "participation_rule": "수익자 방과후 강좌·반별 신청",
+          "evidence": [
+            {
+              "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_participation_20261023/B000024240.txt",
+              "line": 361,
+              "input_sha256": "833c283c301c04dc217daee3ef11fe0dc7cd9f848027a19ecc05df5da981712b"
+            }
+          ]
+        },
+        {
+          "group_id": "B000024240:13",
+          "mode": "course_choice",
+          "selection_unit": "course_section",
+          "individually_selectable": true,
+          "rows": [
+            25,
+            26
+          ],
+          "participation_rule": "수익자 방과후 강좌·반별 신청",
+          "evidence": [
+            {
+              "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_participation_20261023/B000024240.txt",
+              "line": 361,
+              "input_sha256": "833c283c301c04dc217daee3ef11fe0dc7cd9f848027a19ecc05df5da981712b"
+            }
+          ]
+        },
+        {
+          "group_id": "B000024240:14",
+          "mode": "course_choice",
+          "selection_unit": "course_section",
+          "individually_selectable": true,
+          "rows": [
+            27,
+            28
+          ],
+          "participation_rule": "수익자 방과후 강좌·반별 신청",
+          "evidence": [
+            {
+              "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_participation_20261023/B000024240.txt",
+              "line": 361,
+              "input_sha256": "833c283c301c04dc217daee3ef11fe0dc7cd9f848027a19ecc05df5da981712b"
+            }
+          ]
+        },
+        {
+          "group_id": "B000024240:15",
+          "mode": "course_choice",
+          "selection_unit": "course_section",
+          "individually_selectable": true,
+          "rows": [
+            29,
+            30
+          ],
+          "participation_rule": "수익자 방과후 강좌·반별 신청",
+          "evidence": [
+            {
+              "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_participation_20261023/B000024240.txt",
+              "line": 361,
+              "input_sha256": "833c283c301c04dc217daee3ef11fe0dc7cd9f848027a19ecc05df5da981712b"
+            }
+          ]
+        },
+        {
+          "group_id": "B000024240:16",
+          "mode": "course_choice",
+          "selection_unit": "course_section",
+          "individually_selectable": true,
+          "rows": [
+            31,
+            32
+          ],
+          "participation_rule": "수익자 방과후 강좌·반별 신청",
+          "evidence": [
+            {
+              "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_participation_20261023/B000024240.txt",
+              "line": 361,
+              "input_sha256": "833c283c301c04dc217daee3ef11fe0dc7cd9f848027a19ecc05df5da981712b"
+            }
+          ]
+        },
+        {
+          "group_id": "B000024240:17",
+          "mode": "course_choice",
+          "selection_unit": "course_section",
+          "individually_selectable": true,
+          "rows": [
+            33,
+            34
+          ],
+          "participation_rule": "수익자 방과후 강좌·반별 신청",
+          "evidence": [
+            {
+              "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_participation_20261023/B000024240.txt",
+              "line": 361,
+              "input_sha256": "833c283c301c04dc217daee3ef11fe0dc7cd9f848027a19ecc05df5da981712b"
+            }
+          ]
+        },
+        {
+          "group_id": "B000024240:18",
+          "mode": "course_choice",
+          "selection_unit": "course_section",
+          "individually_selectable": true,
+          "rows": [
+            35,
+            36
+          ],
+          "participation_rule": "수익자 방과후 강좌·반별 신청",
+          "evidence": [
+            {
+              "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_participation_20261023/B000024240.txt",
+              "line": 361,
+              "input_sha256": "833c283c301c04dc217daee3ef11fe0dc7cd9f848027a19ecc05df5da981712b"
+            }
+          ]
+        },
+        {
+          "group_id": "B000024240:19",
+          "mode": "class_day_bundle",
+          "selection_unit": "class_day",
+          "individually_selectable": false,
+          "rows": [
+            37,
+            38,
+            39,
+            40,
+            41
+          ],
+          "participation_rule": "정규 맞춤형은 학년 A·B반별 80분; 돌봄 사랑반 단체활동은 돌봄 입급에 종속",
+          "evidence": [
+            {
+              "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_participation_20261023/B000024240.txt",
+              "line": 34,
+              "input_sha256": "833c283c301c04dc217daee3ef11fe0dc7cd9f848027a19ecc05df5da981712b"
+            }
+          ]
+        },
+        {
+          "group_id": "B000024240:20",
+          "mode": "class_day_bundle",
+          "selection_unit": "class_day",
+          "individually_selectable": false,
+          "rows": [
+            42,
+            43,
+            44,
+            45,
+            46
+          ],
+          "participation_rule": "정규 맞춤형은 학년 A·B반별 80분; 돌봄 사랑반 단체활동은 돌봄 입급에 종속",
+          "evidence": [
+            {
+              "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_participation_20261023/B000024240.txt",
+              "line": 34,
+              "input_sha256": "833c283c301c04dc217daee3ef11fe0dc7cd9f848027a19ecc05df5da981712b"
+            }
+          ]
+        },
+        {
+          "group_id": "B000024240:21",
+          "mode": "care_activity",
+          "selection_unit": "care_enrollment",
+          "individually_selectable": false,
+          "rows": [
+            58,
+            59,
+            60,
+            61,
+            62
+          ],
+          "participation_rule": "정규 맞춤형은 학년 A·B반별 80분; 돌봄 사랑반 단체활동은 돌봄 입급에 종속",
+          "evidence": [
+            {
+              "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_participation_20261023/B000024240.txt",
+              "line": 34,
+              "input_sha256": "833c283c301c04dc217daee3ef11fe0dc7cd9f848027a19ecc05df5da981712b"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "period_estimates_file": "docs/research/audit2/grade1_dismissal_estimates_expansion_20261008.json",
+  "period_estimates_sha256": "e341268d135a0288786e1958d356395f1c3b300d74a79991c83d6cf8b5f6de66",
+  "operational_readiness": "Requires application/loader participation-model integration and explicit user approval before DB apply",
+  "gate_policy": {
+    "course_choice": "review programme/section as selectable course",
+    "class_day_bundle": "require grade1 days and start/end; activity names are a fixed schedule within class/day participation",
+    "care_activity": "preserve individual activity gaps as advisories; require separately reviewed care hours and enrollment dependency; never expose as independent course"
+  }
+}

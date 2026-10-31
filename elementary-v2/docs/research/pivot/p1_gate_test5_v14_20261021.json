@@ -1,0 +1,84 @@
+{
+  "schema_version": "pivot-p1-review-gate-v2",
+  "no_operational_upload": true,
+  "stage1_passed": false,
+  "stage2_authorized_by_gate": false,
+  "shown_rows": 262,
+  "correct_rows": 260,
+  "accuracy_lower_bound": 0.9924,
+  "schools": [
+    {
+      "school_id": "B000003739",
+      "shown_rows": 34,
+      "correct_rows": 32,
+      "accuracy_lower_bound": 0.9412,
+      "incomplete_grade1_custom_rows": [],
+      "grade1_custom_inventory_complete": true,
+      "place_review_complete": true,
+      "derived_grade1_custom_rows": [],
+      "passed": false
+    },
+    {
+      "school_id": "B000003745",
+      "shown_rows": 78,
+      "correct_rows": 78,
+      "accuracy_lower_bound": 1.0,
+      "incomplete_grade1_custom_rows": [],
+      "grade1_custom_inventory_complete": true,
+      "place_review_complete": true,
+      "derived_grade1_custom_rows": [],
+      "passed": true
+    },
+    {
+      "school_id": "B000003753",
+      "shown_rows": 38,
+      "correct_rows": 38,
+      "accuracy_lower_bound": 1.0,
+      "incomplete_grade1_custom_rows": [
+        38,
+        40,
+        42,
+        44,
+        46,
+        48
+      ],
+      "grade1_custom_inventory_complete": true,
+      "place_review_complete": true,
+      "derived_grade1_custom_rows": [],
+      "passed": false
+    },
+    {
+      "school_id": "B000003766",
+      "shown_rows": 62,
+      "correct_rows": 62,
+      "accuracy_lower_bound": 1.0,
+      "incomplete_grade1_custom_rows": [],
+      "grade1_custom_inventory_complete": true,
+      "place_review_complete": true,
+      "derived_grade1_custom_rows": [],
+      "passed": true
+    },
+    {
+      "school_id": "B000024240",
+      "shown_rows": 50,
+      "correct_rows": 50,
+      "accuracy_lower_bound": 1.0,
+      "incomplete_grade1_custom_rows": [],
+      "grade1_custom_inventory_complete": true,
+      "place_review_complete": true,
+      "derived_grade1_custom_rows": [
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46
+      ],
+      "passed": true
+    }
+  ]
+}

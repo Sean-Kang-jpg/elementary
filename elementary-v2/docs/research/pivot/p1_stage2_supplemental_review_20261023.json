@@ -1,0 +1,673 @@
+{
+  "schema_version": "pivot-p1-stage2-supplemental-source-review-v1",
+  "reviewed_on": "2026-10-23",
+  "reviewer": "same assistant; independent blind verification pending",
+  "scope": "Selected current-term official schedules and enrollment rules for two source-gap schools. Not a complete v3 school extraction.",
+  "schools": [
+    {
+      "school_id": "B000003758",
+      "school_name": "서당초등학교",
+      "school_extraction_complete": false,
+      "sources": [
+        {
+          "school": "seodang-e",
+          "post_id": "1948588",
+          "post_url": "https://www.goesn.kr/seodang-e/na/ntt/selectNttInfo.do?mi=19778&nttSn=1948588",
+          "name": "inline image",
+          "url": "https://www.goesn.kr/dext5editordata/2026/08/20260820_105630965_47668.jpg",
+          "file": "etl/runtime/pivot_p1_stage2_sources_20261023/1948588_image_0.jpg",
+          "sha256": "83eea414472a703ee7961922f92b544dbd2bf4b97feeeee1f773aa0eccaedb19"
+        },
+        {
+          "school": "seodang-e",
+          "post_id": "1948588",
+          "post_url": "https://www.goesn.kr/seodang-e/na/ntt/selectNttInfo.do?mi=19778&nttSn=1948588",
+          "name": "inline image",
+          "url": "https://www.goesn.kr/dext5editordata/2026/08/20260820_105623107_62550.jpg",
+          "file": "etl/runtime/pivot_p1_stage2_sources_20261023/1948588_image_1.jpg",
+          "sha256": "f345984a27b29e53f65a55f501c72f25a6c1f2353e625fdcd85e33b1705755fe"
+        }
+      ],
+      "visual_review_complete_for_listed_images": true,
+      "custom_term": "2026학년도 2학기",
+      "custom_rows": [
+        {
+          "section": "A",
+          "grades_raw": "1학년",
+          "days": "월",
+          "activity_name": "책놀이",
+          "start_time": "13:50",
+          "end_time": "15:20",
+          "enrollment_mode": "class_day_bundle",
+          "individually_selectable": false,
+          "enrollment_rule_verified": false,
+          "source_cell": "오후늘봄/1학년/A/월"
+        },
+        {
+          "section": "A",
+          "grades_raw": "1학년",
+          "days": "화",
+          "activity_name": "음악놀이",
+          "start_time": "13:50",
+          "end_time": "15:20",
+          "enrollment_mode": "class_day_bundle",
+          "individually_selectable": false,
+          "enrollment_rule_verified": false,
+          "source_cell": "오후늘봄/1학년/A/화"
+        },
+        {
+          "section": "A",
+          "grades_raw": "1학년",
+          "days": "수",
+          "activity_name": "놀이체육",
+          "start_time": "13:00",
+          "end_time": "14:30",
+          "enrollment_mode": "class_day_bundle",
+          "individually_selectable": false,
+          "enrollment_rule_verified": false,
+          "source_cell": "오후늘봄/1학년/A/수"
+        },
+        {
+          "section": "A",
+          "grades_raw": "1학년",
+          "days": "목",
+          "activity_name": "창의수학&보드게임",
+          "start_time": "13:50",
+          "end_time": "15:20",
+          "enrollment_mode": "class_day_bundle",
+          "individually_selectable": false,
+          "enrollment_rule_verified": false,
+          "source_cell": "오후늘봄/1학년/A/목"
+        },
+        {
+          "section": "A",
+          "grades_raw": "1학년",
+          "days": "금",
+          "activity_name": "토탈공예",
+          "start_time": "13:00",
+          "end_time": "14:30",
+          "enrollment_mode": "class_day_bundle",
+          "individually_selectable": false,
+          "enrollment_rule_verified": false,
+          "source_cell": "오후늘봄/1학년/A/금"
+        },
+        {
+          "section": "B",
+          "grades_raw": "1학년",
+          "days": "월",
+          "activity_name": "창의수학&보드게임",
+          "start_time": "13:50",
+          "end_time": "15:20",
+          "enrollment_mode": "class_day_bundle",
+          "individually_selectable": false,
+          "enrollment_rule_verified": false,
+          "source_cell": "오후늘봄/1학년/B/월"
+        },
+        {
+          "section": "B",
+          "grades_raw": "1학년",
+          "days": "화",
+          "activity_name": "책놀이",
+          "start_time": "13:50",
+          "end_time": "15:20",
+          "enrollment_mode": "class_day_bundle",
+          "individually_selectable": false,
+          "enrollment_rule_verified": false,
+          "source_cell": "오후늘봄/1학년/B/화"
+        },
+        {
+          "section": "B",
+          "grades_raw": "1학년",
+          "days": "수",
+          "activity_name": "토탈공예",
+          "start_time": "13:00",
+          "end_time": "14:30",
+          "enrollment_mode": "class_day_bundle",
+          "individually_selectable": false,
+          "enrollment_rule_verified": false,
+          "source_cell": "오후늘봄/1학년/B/수"
+        },
+        {
+          "section": "B",
+          "grades_raw": "1학년",
+          "days": "목",
+          "activity_name": "음악놀이",
+          "start_time": "13:50",
+          "end_time": "15:20",
+          "enrollment_mode": "class_day_bundle",
+          "individually_selectable": false,
+          "enrollment_rule_verified": false,
+          "source_cell": "오후늘봄/1학년/B/목"
+        },
+        {
+          "section": "B",
+          "grades_raw": "1학년",
+          "days": "금",
+          "activity_name": "놀이체육",
+          "start_time": "13:00",
+          "end_time": "14:30",
+          "enrollment_mode": "class_day_bundle",
+          "individually_selectable": false,
+          "enrollment_rule_verified": false,
+          "source_cell": "오후늘봄/1학년/B/금"
+        },
+        {
+          "section": "C",
+          "grades_raw": "2학년",
+          "days": "월",
+          "activity_name": "놀이체육",
+          "start_time": "13:50",
+          "end_time": "15:20",
+          "enrollment_mode": "class_day_bundle",
+          "individually_selectable": false,
+          "enrollment_rule_verified": false,
+          "source_cell": "오후늘봄/2학년/C/월"
+        },
+        {
+          "section": "C",
+          "grades_raw": "2학년",
+          "days": "화",
+          "activity_name": "토탈공예",
+          "start_time": "13:50",
+          "end_time": "15:20",
+          "enrollment_mode": "class_day_bundle",
+          "individually_selectable": false,
+          "enrollment_rule_verified": false,
+          "source_cell": "오후늘봄/2학년/C/화"
+        },
+        {
+          "section": "C",
+          "grades_raw": "2학년",
+          "days": "수",
+          "activity_name": "창의수학&보드게임",
+          "start_time": "13:00",
+          "end_time": "14:30",
+          "enrollment_mode": "class_day_bundle",
+          "individually_selectable": false,
+          "enrollment_rule_verified": false,
+          "source_cell": "오후늘봄/2학년/C/수"
+        },
+        {
+          "section": "C",
+          "grades_raw": "2학년",
+          "days": "목",
+          "activity_name": "책놀이",
+          "start_time": "13:50",
+          "end_time": "15:20",
+          "enrollment_mode": "class_day_bundle",
+          "individually_selectable": false,
+          "enrollment_rule_verified": false,
+          "source_cell": "오후늘봄/2학년/C/목"
+        },
+        {
+          "section": "C",
+          "grades_raw": "2학년",
+          "days": "금",
+          "activity_name": "음악놀이",
+          "start_time": "13:50",
+          "end_time": "15:20",
+          "enrollment_mode": "class_day_bundle",
+          "individually_selectable": false,
+          "enrollment_rule_verified": false,
+          "source_cell": "오후늘봄/2학년/C/금"
+        }
+      ],
+      "morning": {
+        "name": "줄넘기&놀이체육",
+        "grades_raw": "1~2학년",
+        "days": "월화수목금",
+        "start_time": "08:00",
+        "end_time": "08:40",
+        "source_cell": "아침늘봄/merged weekday row"
+      },
+      "paid_rows": [
+        {
+          "name": "영재로봇",
+          "days": "월",
+          "grades_raw": "1~2",
+          "start_time": "13:50",
+          "end_time": "15:00",
+          "location": "1층 방과후실",
+          "enrollment_mode": "course_choice",
+          "source_cell": "1층 방과후실/월/영재로봇/1~2",
+          "note": null
+        },
+        {
+          "name": "영재로봇",
+          "days": "월",
+          "grades_raw": "3~6",
+          "start_time": "15:10",
+          "end_time": "16:20",
+          "location": "1층 방과후실",
+          "enrollment_mode": "course_choice",
+          "source_cell": "1층 방과후실/월/영재로봇/3~6",
+          "note": null
+        },
+        {
+          "name": "바이올린",
+          "days": "화",
+          "grades_raw": "1~4",
+          "start_time": "13:50",
+          "end_time": "14:50",
+          "location": "1층 방과후실",
+          "enrollment_mode": "course_choice",
+          "source_cell": "1층 방과후실/화/바이올린/1~4",
+          "note": null
+        },
+        {
+          "name": "바이올린",
+          "days": "화",
+          "grades_raw": "1~6",
+          "start_time": "15:00",
+          "end_time": "16:00",
+          "location": "1층 방과후실",
+          "enrollment_mode": "course_choice",
+          "source_cell": "1층 방과후실/화/바이올린/1~6",
+          "note": null
+        },
+        {
+          "name": "요리",
+          "days": "수",
+          "grades_raw": "1~2",
+          "start_time": "13:00",
+          "end_time": "14:10",
+          "location": "1층 방과후실",
+          "enrollment_mode": "course_choice",
+          "source_cell": "1층 방과후실/수/요리/1~2",
+          "note": null
+        },
+        {
+          "name": "요리",
+          "days": "수",
+          "grades_raw": "3~6",
+          "start_time": "14:20",
+          "end_time": "15:30",
+          "location": "1층 방과후실",
+          "enrollment_mode": "course_choice",
+          "source_cell": "1층 방과후실/수/요리/3~6",
+          "note": null
+        },
+        {
+          "name": "체스",
+          "days": "목",
+          "grades_raw": "1~2",
+          "start_time": "13:50",
+          "end_time": "14:50",
+          "location": "1층 방과후실",
+          "enrollment_mode": "course_choice",
+          "source_cell": "1층 방과후실/목/체스/1~2",
+          "note": null
+        },
+        {
+          "name": "체스",
+          "days": "목",
+          "grades_raw": "1~6",
+          "start_time": "15:00",
+          "end_time": "16:00",
+          "location": "1층 방과후실",
+          "enrollment_mode": "course_choice",
+          "source_cell": "1층 방과후실/목/체스/1~6",
+          "note": null
+        },
+        {
+          "name": "중국어&한자",
+          "days": "금",
+          "grades_raw": "1~2",
+          "start_time": "13:50",
+          "end_time": "14:50",
+          "location": "1층 방과후실",
+          "enrollment_mode": "course_choice",
+          "source_cell": "1층 방과후실/금/중국어&한자/1~2",
+          "note": null
+        },
+        {
+          "name": "중국어&한자",
+          "days": "금",
+          "grades_raw": "3~6",
+          "start_time": "15:00",
+          "end_time": "16:00",
+          "location": "1층 방과후실",
+          "enrollment_mode": "course_choice",
+          "source_cell": "1층 방과후실/금/중국어&한자/3~6",
+          "note": null
+        },
+        {
+          "name": "창의실험과학",
+          "days": "수",
+          "grades_raw": "1~2",
+          "start_time": "13:00",
+          "end_time": "14:00",
+          "location": "3층 교과교실",
+          "enrollment_mode": "course_choice",
+          "source_cell": "3층 교과교실/수/창의실험과학/1~2",
+          "note": null
+        },
+        {
+          "name": "창의실험과학",
+          "days": "수",
+          "grades_raw": "2~4",
+          "start_time": "14:10",
+          "end_time": "15:10",
+          "location": "3층 교과교실",
+          "enrollment_mode": "course_choice",
+          "source_cell": "3층 교과교실/수/창의실험과학/2~4",
+          "note": null
+        },
+        {
+          "name": "창의실험과학",
+          "days": "금",
+          "grades_raw": "1~2",
+          "start_time": "13:50",
+          "end_time": "14:50",
+          "location": "3층 교과교실",
+          "enrollment_mode": "course_choice",
+          "source_cell": "3층 교과교실/금/창의실험과학/1~2",
+          "note": null
+        },
+        {
+          "name": "창의실험과학",
+          "days": "금",
+          "grades_raw": "3~6",
+          "start_time": "15:00",
+          "end_time": "16:00",
+          "location": "3층 교과교실",
+          "enrollment_mode": "course_choice",
+          "source_cell": "3층 교과교실/금/창의실험과학/3~6",
+          "note": null
+        },
+        {
+          "name": "코딩",
+          "days": "화",
+          "grades_raw": "1~2",
+          "start_time": "13:50",
+          "end_time": "14:50",
+          "location": "4층 컴퓨터실",
+          "enrollment_mode": "course_choice",
+          "source_cell": "4층 컴퓨터실/화/코딩/1~2",
+          "note": null
+        },
+        {
+          "name": "코딩",
+          "days": "화",
+          "grades_raw": "3~6",
+          "start_time": "15:00",
+          "end_time": "16:00",
+          "location": "4층 컴퓨터실",
+          "enrollment_mode": "course_choice",
+          "source_cell": "4층 컴퓨터실/화/코딩/3~6",
+          "note": null
+        },
+        {
+          "name": "컴퓨터",
+          "days": "수",
+          "grades_raw": "1~2",
+          "start_time": "13:00",
+          "end_time": "14:00",
+          "location": "4층 컴퓨터실",
+          "enrollment_mode": "course_choice",
+          "source_cell": "4층 컴퓨터실/수/컴퓨터/1~2",
+          "note": null
+        },
+        {
+          "name": "컴퓨터",
+          "days": "수",
+          "grades_raw": "3~6",
+          "start_time": "14:10",
+          "end_time": "15:10",
+          "location": "4층 컴퓨터실",
+          "enrollment_mode": "course_choice",
+          "source_cell": "4층 컴퓨터실/수/컴퓨터/3~6",
+          "note": null
+        },
+        {
+          "name": "치어리딩",
+          "days": "화",
+          "grades_raw": "1~2",
+          "start_time": "13:50",
+          "end_time": "14:50",
+          "location": "5층 몸짓놀이터",
+          "enrollment_mode": "course_choice",
+          "source_cell": "5층 몸짓놀이터/화/치어리딩/1~2",
+          "note": null
+        },
+        {
+          "name": "치어리딩",
+          "days": "화",
+          "grades_raw": "1~6",
+          "start_time": "15:00",
+          "end_time": "16:00",
+          "location": "5층 몸짓놀이터",
+          "enrollment_mode": "course_choice",
+          "source_cell": "5층 몸짓놀이터/화/치어리딩/1~6",
+          "note": null
+        },
+        {
+          "name": "방송댄스",
+          "days": "목",
+          "grades_raw": "1~2",
+          "start_time": "13:50",
+          "end_time": "14:50",
+          "location": "5층 몸짓놀이터",
+          "enrollment_mode": "course_choice",
+          "source_cell": "5층 몸짓놀이터/목/방송댄스/1~2",
+          "note": null
+        },
+        {
+          "name": "방송댄스",
+          "days": "목",
+          "grades_raw": "1~6",
+          "start_time": "15:00",
+          "end_time": "16:00",
+          "location": "5층 몸짓놀이터",
+          "enrollment_mode": "course_choice",
+          "source_cell": "5층 몸짓놀이터/목/방송댄스/1~6",
+          "note": null
+        },
+        {
+          "name": "줄넘기",
+          "days": "월",
+          "grades_raw": "1~2",
+          "start_time": "13:50",
+          "end_time": "14:50",
+          "location": "체육관",
+          "enrollment_mode": "course_choice",
+          "source_cell": "체육관/월/줄넘기/1~2",
+          "note": "원문 1:50을 오후 문맥으로 13:50 해석"
+        },
+        {
+          "name": "줄넘기",
+          "days": "월",
+          "grades_raw": "1~6",
+          "start_time": "15:00",
+          "end_time": "16:00",
+          "location": "체육관",
+          "enrollment_mode": "course_choice",
+          "source_cell": "체육관/월/줄넘기/1~6",
+          "note": null
+        },
+        {
+          "name": "배드민턴",
+          "days": "수",
+          "grades_raw": "1~2",
+          "start_time": "13:00",
+          "end_time": "14:10",
+          "location": "체육관",
+          "enrollment_mode": "course_choice",
+          "source_cell": "체육관/수/배드민턴/1~2",
+          "note": null
+        },
+        {
+          "name": "배드민턴",
+          "days": "수",
+          "grades_raw": "3~6",
+          "start_time": "14:20",
+          "end_time": "15:30",
+          "location": "체육관",
+          "enrollment_mode": "course_choice",
+          "source_cell": "체육관/수/배드민턴/3~6",
+          "note": null
+        },
+        {
+          "name": "게임야구",
+          "days": "수",
+          "grades_raw": "1~2",
+          "start_time": "13:00",
+          "end_time": "14:10",
+          "location": "운동장",
+          "enrollment_mode": "course_choice",
+          "source_cell": "운동장/수/게임야구/1~2",
+          "note": null
+        },
+        {
+          "name": "게임야구",
+          "days": "수",
+          "grades_raw": "2~6",
+          "start_time": "14:20",
+          "end_time": "15:30",
+          "location": "운동장",
+          "enrollment_mode": "course_choice",
+          "source_cell": "운동장/수/게임야구/2~6",
+          "note": null
+        },
+        {
+          "name": "바둑",
+          "days": "월",
+          "grades_raw": "1~4",
+          "start_time": "13:50",
+          "end_time": "14:50",
+          "location": "4층 교과교실",
+          "enrollment_mode": "course_choice",
+          "source_cell": "4층 교과교실/월/바둑/1~4",
+          "note": null
+        }
+      ],
+      "paid_term_scope": "2026-08-20 게시 시간표; 제목에 적용 종료일 미공시",
+      "closed_rows": [
+        {
+          "name": "창의실험과학",
+          "days": "수",
+          "section": "3부",
+          "reason": "3부타임 폐강"
+        },
+        {
+          "name": "바둑",
+          "days": "월",
+          "section": "2부",
+          "reason": "2부타임 폐강"
+        },
+        {
+          "name": "컴퓨터",
+          "days": "수",
+          "section": "C",
+          "reason": "C반폐강"
+        },
+        {
+          "name": "우쿨렐레&리코더",
+          "days": "금",
+          "reason": "폐강"
+        }
+      ],
+      "remaining": [
+        "맞춤형 반·요일별 실제 신청 조건 원문 확인",
+        "연간계획의 방학·돌봄 내부 활동과 수익자 전체 목록 대조",
+        "독립 표본 검증"
+      ],
+      "chronology": [
+        {
+          "source": "연간계획 L20",
+          "status": "운영시간 요일에 화목토 표기; 같은 문서 L25 및 8월 이미지의 월화목과 불일치. 토요일 운영으로 추출 금지"
+        },
+        {
+          "source": "연간계획 L26~28",
+          "status": "1학년 A/B, 2학년 C/D가 실림. 8월 이미지에는 2학년 C만 있으므로 D를 현 학기 운영으로 자동 이월하지 않음; 폐강도 단정하지 않음"
+        },
+        {
+          "source": "2026-08-20 2학기 시간표 이미지",
+          "status": "1학년 수금 13:00~14:30, 월화목 13:50~15:20. 2학년은 수만 13:00~14:30, 월화목금 13:50~15:20. 현재 표 판정의 우선 근거"
+        }
+      ]
+    },
+    {
+      "school_id": "B000003754",
+      "school_name": "성남미금초등학교",
+      "school_extraction_complete": false,
+      "source": {
+        "school": "snmg-e",
+        "post_id": "1956017",
+        "post_url": "https://www.goesn.kr/snmg-e/na/ntt/selectNttInfo.do?mi=11204&nttSn=1956017",
+        "name": "_2026학년도 3분기 초1,2맞춤형 교육활동 수강신청 안내문.pdf",
+        "url": "https://www.goesn.kr/upload/snmg-e/na/bbs_10584/2026/09/CC3646EB-98FD-17EE-3735-8331E0B50225.pdf",
+        "file": "etl/runtime/pivot_p1_stage2_sources_20261023/1956017_0.pdf",
+        "sha256": "241f0168c646175173206c5688fd820d8b698d2988d92084323e707da99f051c"
+      },
+      "document_date": "2026-09-16",
+      "posted_on": "2026-09-17",
+      "visual_review_pages": [
+        1,
+        2
+      ],
+      "effective_from": "2026-09-28",
+      "effective_to": "2027-01-17",
+      "excluded_date": "2027-01-18",
+      "enrollment_mode": "class_day_bundle",
+      "individually_selectable": false,
+      "enrollment_rule_verified": true,
+      "grades_raw": "1~2학년",
+      "capacity_per_grade": 22,
+      "care_enrollees_excluded": true,
+      "conditional_windows": [
+        {
+          "period_slot": "4교시일",
+          "start_time": "13:00",
+          "end_time": "14:30"
+        },
+        {
+          "period_slot": "5교시일",
+          "start_time": "13:50",
+          "end_time": "15:20"
+        }
+      ],
+      "weekdays": "월화수목금",
+      "weekday_period_mapping": null,
+      "schedule_caveat": "원문은 기본 시간표 예시이며 실제 시간·내용은 학교 상황에 따라 변경 가능. 요일별 4/5교시 배정은 미공시.",
+      "participation_rules": [
+        "매일 2차시 기본",
+        "1순위 주5일 2차시",
+        "2순위 중간 퇴실 없이 2차시 참여하되 요일 선택",
+        "3순위 3일 이상",
+        "쉬는 시간 또는 2차시 종료 후 퇴실",
+        "특정 프로그램 선택 수강은 교내 방과후 수업 이용"
+      ],
+      "gap_care": {
+        "days": "월화수목금",
+        "start_time": "12:30",
+        "end_time": "15:00",
+        "location": "4층 방과후실",
+        "separate_application_required": false,
+        "model": "학생관리형 틈새돌봄; 오후 돌봄 입급이나 맞춤형 수강과 구분"
+      },
+      "chronology": [
+        {
+          "source": "연간 통합운영계획 L1140~L1147",
+          "status": "예시 시간표, 과목 배정 확정 아님"
+        },
+        {
+          "source": "2026-05-06 공개주간 안내 L747",
+          "status": "5/18~22 실제 공개수업 과목은 연간 예시와 다름; 연중 또는 2학기 일반화 금지"
+        },
+        {
+          "source": "2026-09-17 3분기 신청 안내 p1~2",
+          "status": "현 학기 신청 단위·운영창의 우선 근거; 개별 과목 요일 미공시"
+        }
+      ],
+      "remaining": [
+        "2026년 2학기 학년별 4/5교시 요일 대조",
+        "9월 수익자 안내 강좌 전체 목록·반별 요일 대조",
+        "돌봄 내부 활동 검수",
+        "독립 표본 검증"
+      ]
+    }
+  ],
+  "publish_status": "not_approved",
+  "no_operational_upload": true
+}

@@ -1,0 +1,26 @@
+{
+  "school_id": "B000003759",
+  "checked_on": "2026-10-24",
+  "status": "two_pdf_attachments_retrieved_and_compared",
+  "posts": [
+    {
+      "posted_on": "2026-08-19",
+      "title": "2026학년도 3분기 방과후학교 수강인원 현황 및 개강·폐강 강좌 목록 안내",
+      "url": "https://yy-e.goesn.kr/yy-e/na/ntt/selectNttInfo.do?mi=15932&nttSn=1948475",
+      "cached_html": "etl/runtime/pivot_p1_bulk_parent_sources_20261024/yangyoung_1948475.html",
+      "html_sha256": "200149fbebd4a7d4d60b6bb7f08751fa4b28ce1c7fe1d5c6a6d08270ac0d056b"
+    },
+    {
+      "posted_on": "2026-08-06",
+      "title": "2026학년도 3분기 방과후학교 수강생 모집 안내",
+      "url": "https://yy-e.goesn.kr/yy-e/na/ntt/selectNttInfo.do?mi=15932&nttSn=1946768",
+      "cached_html": "etl/runtime/pivot_p1_bulk_parent_sources_20261024/yangyoung_1946768.html",
+      "html_sha256": "f55b5dce1587dde3e7c7eff13de494ca8808e254b8d11747b93eb6f1db9538a7"
+    }
+  ],
+  "publish_ready": false,
+  "previous_failure_reason": "Attachment request timed out; subsequent automatic approval review failed due account usage limit. No attachment content verification.",
+  "retrieved_on": "2026-10-24",
+  "supplement_review_file": "docs/research/pivot/p1_stage2_yangyoung_supplement_20261024.json",
+  "no_operational_upload": true
+}

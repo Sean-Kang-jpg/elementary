@@ -1,0 +1,1483 @@
+{
+  "schema_version": "pivot-p1-source-review-v1",
+  "reviewed_on": "2026-10-21",
+  "base_commit": "252a427",
+  "branch": "codex/pivot-p1-v3-20261021",
+  "extraction_method": "Codex sequential v3 full-document reading; scripted JSON serialization; no Claude subagents/API run",
+  "review_method": "same-agent unblinded source comparison, not independent blind verification",
+  "scope": "P1 stage1 five schools only; stage2 39 schools not extracted; stage3 83 deferred",
+  "no_operational_upload": true,
+  "publish_status": "not_approved",
+  "accuracy_definition": "lower bound = correct / all shown rows; unresolved source conflicts count against it; not a blind accuracy estimate",
+  "schools": [
+    {
+      "school_id": "B000003739",
+      "school_name": "당촌초등학교",
+      "output_file": "etl/runtime/llm_extraction/outputs_afterschool/pivot_gyeonggi/batch_test5_B000003739.json",
+      "output_sha256": "3ab8add4cad9a4ae446bb3c9315fe633d80d7b85b75b48f0f1032f53991a2520",
+      "input_file": "etl/runtime/llm_extraction/inputs_v3/B000003739.txt",
+      "input_sha256": "ebc3f92afcf6fcca75ca9da220b7a00710c2142865ba47093fce8d51d5add415",
+      "raw_rows": 44,
+      "period_counts": {
+        "학기": 43,
+        "방학": 1
+      },
+      "blocking_issues": [
+        "맞춤형 본문 L59의 화목토, L64의 2학기 수금과 1학년 표 L72~78의 월수/화목금이 충돌. 월·금 2학기 시각 재확인 필요.",
+        "바둑 요일은 프로그램 배치표 L119 월요일과 세부 강좌표 L226~228 화요일이 충돌."
+      ],
+      "row_decisions": [
+        {
+          "row": 1,
+          "source_line": 196,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 3,
+          "source_line": 198,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 4,
+          "source_line": 199,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 5,
+          "source_line": 200,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 6,
+          "source_line": 201,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 7,
+          "source_line": 202,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 8,
+          "source_line": 204,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 9,
+          "source_line": 205,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 10,
+          "source_line": 206,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 11,
+          "source_line": 207,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 13,
+          "source_line": 209,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 14,
+          "source_line": 210,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 15,
+          "source_line": 211,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 16,
+          "source_line": 212,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 17,
+          "source_line": 213,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 18,
+          "source_line": 214,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 19,
+          "source_line": 215,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 20,
+          "source_line": 216,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 21,
+          "source_line": 217,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 25,
+          "source_line": 222,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 27,
+          "source_line": 224,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 28,
+          "source_line": 225,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 29,
+          "source_line": 226,
+          "verdict": "needs_source_check",
+          "reason": "동일 문서의 본문/배치표와 세부표가 충돌. 바둑 월/화 요일 확인."
+        },
+        {
+          "row": 30,
+          "source_line": 228,
+          "verdict": "needs_source_check",
+          "reason": "동일 문서의 본문/배치표와 세부표가 충돌. 바둑 월/화 요일 확인."
+        },
+        {
+          "row": 31,
+          "source_line": 229,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 32,
+          "source_line": 230,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 33,
+          "source_line": 231,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 35,
+          "source_line": 233,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 36,
+          "source_line": 234,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 39,
+          "source_line": 73,
+          "verdict": "needs_source_check",
+          "reason": "동일 문서의 본문/배치표와 세부표가 충돌. 맞춤형 요일별 학기 적용 확인."
+        },
+        {
+          "row": 40,
+          "source_line": 75,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 41,
+          "source_line": 73,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 42,
+          "source_line": 75,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 43,
+          "source_line": 75,
+          "verdict": "needs_source_check",
+          "reason": "동일 문서의 본문/배치표와 세부표가 충돌. 맞춤형 요일별 학기 적용 확인."
+        }
+      ],
+      "source_review_note": "맞춤형은 1학년 요일표 L72~78을 기록. L59/64 운영 문장은 화목토 및 2학기 수금으로 요일표와 충돌하므로 학교 확인 필요. 수익자 바둑 요일은 L119 월/L226 화로 충돌. 격자 중복 L203·227·235·238은 추가 반으로 세지 않고 마지막 명시 행의 대상 기록. 상이한 기수 표가 아닌 동일표 내 병합 중복 처리.",
+      "expected_grade1_custom_rows": 5,
+      "grade1_custom_inventory_complete": true
+    },
+    {
+      "school_id": "B000003745",
+      "school_name": "낙생초등학교",
+      "output_file": "etl/runtime/llm_extraction/outputs_afterschool/pivot_gyeonggi/batch_test5_B000003745.json",
+      "output_sha256": "6dd42238782c14856cb15b64d4896a700ae7551aaa6f4f2b8535c17f2158abf4",
+      "input_file": "etl/runtime/llm_extraction/inputs_v3/B000003745.txt",
+      "input_sha256": "defbe367e23a83d9101886cf7b3767b817d6f27d1f403af7da9a0ef91231e084",
+      "raw_rows": 95,
+      "period_counts": {
+        "학기": 85,
+        "방학": 10
+      },
+      "blocking_issues": [
+        "해금 A·합창 B 1분기 폐강 표기의 현재 개설 상태를 별도 확인해야 함. 학기표기에 폐강 조건을 유지하고 무조건 연간 운영으로 승인하지 않음."
+      ],
+      "row_decisions": [
+        {
+          "row": 1,
+          "source_line": 40,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 2,
+          "source_line": 40,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 3,
+          "source_line": 40,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 4,
+          "source_line": 40,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 5,
+          "source_line": 40,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 6,
+          "source_line": 40,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 7,
+          "source_line": 40,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 8,
+          "source_line": 40,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 11,
+          "source_line": 40,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 12,
+          "source_line": 40,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 13,
+          "source_line": 40,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 14,
+          "source_line": 40,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 15,
+          "source_line": 40,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 16,
+          "source_line": 40,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 17,
+          "source_line": 40,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 18,
+          "source_line": 40,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 19,
+          "source_line": 40,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 20,
+          "source_line": 40,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 22,
+          "source_line": 40,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 23,
+          "source_line": 40,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 24,
+          "source_line": 40,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 25,
+          "source_line": 40,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 26,
+          "source_line": 40,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 27,
+          "source_line": 40,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 28,
+          "source_line": 40,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 30,
+          "source_line": 43,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 32,
+          "source_line": 43,
+          "verdict": "needs_source_check",
+          "reason": "해금 A·합창 B 1분기 폐강 표기의 현재 개설 상태를 별도 확인해야 함. 학기표기에 폐강 조건을 유지하고 무조건 연간 운영으로 승인하지 않음."
+        },
+        {
+          "row": 33,
+          "source_line": 43,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 34,
+          "source_line": 43,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 35,
+          "source_line": 43,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 36,
+          "source_line": 43,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 38,
+          "source_line": 43,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 39,
+          "source_line": 43,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 40,
+          "source_line": 43,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 41,
+          "source_line": 43,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 42,
+          "source_line": 43,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 44,
+          "source_line": 43,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 46,
+          "source_line": 43,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 47,
+          "source_line": 43,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 48,
+          "source_line": 43,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 50,
+          "source_line": 43,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 51,
+          "source_line": 43,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 52,
+          "source_line": 43,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 54,
+          "source_line": 43,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 55,
+          "source_line": 43,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 56,
+          "source_line": 43,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 58,
+          "source_line": 43,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 59,
+          "source_line": 43,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 60,
+          "source_line": 46,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 61,
+          "source_line": 46,
+          "verdict": "needs_source_check",
+          "reason": "해금 A·합창 B 1분기 폐강 표기의 현재 개설 상태를 별도 확인해야 함. 학기표기에 폐강 조건을 유지하고 무조건 연간 운영으로 승인하지 않음."
+        },
+        {
+          "row": 62,
+          "source_line": 46,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 63,
+          "source_line": 46,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 64,
+          "source_line": 46,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 65,
+          "source_line": 46,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 66,
+          "source_line": 46,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 67,
+          "source_line": 46,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 68,
+          "source_line": 46,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 69,
+          "source_line": 46,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 70,
+          "source_line": 46,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 74,
+          "source_line": 46,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 76,
+          "source_line": 29,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 77,
+          "source_line": 29,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 78,
+          "source_line": 29,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 79,
+          "source_line": 29,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 80,
+          "source_line": 29,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        }
+      ],
+      "source_review_note": "PDF 요일별 맞춤형은 학년 표를 구분. 해금 A·합창 B는 1분기 폐강을 학기표기에 유지. 학기와 방학 시각이 한 행에 같이 있는 수익자 강좌는 학기 시간만 기록. 컴퓨터 교재의 수준명은 반 시간과 대응되지 않아 별도 강좌로 추정하지 않음.",
+      "expected_grade1_custom_rows": 5,
+      "grade1_custom_inventory_complete": true
+    },
+    {
+      "school_id": "B000003753",
+      "school_name": "성남매송초등학교",
+      "output_file": "etl/runtime/llm_extraction/outputs_afterschool/pivot_gyeonggi/batch_test5_B000003753.json",
+      "output_sha256": "719860698e6ea6a2d796d6d05d79e9b58ec78ae0cdf3e179805f08a6a3bf0d4e",
+      "input_file": "etl/runtime/llm_extraction/inputs_v3/B000003753.txt",
+      "input_sha256": "a069a558c236ca88fc7b6d7a3330a9f64f735a063497afb32a7edd05d1d0b00d",
+      "raw_rows": 37,
+      "period_counts": {
+        "학기": 37
+      },
+      "blocking_issues": [],
+      "row_decisions": [
+        {
+          "row": 1,
+          "source_line": 46,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 2,
+          "source_line": 46,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 3,
+          "source_line": 46,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 4,
+          "source_line": 46,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 5,
+          "source_line": 46,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 6,
+          "source_line": 49,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 7,
+          "source_line": 49,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 8,
+          "source_line": 48,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 9,
+          "source_line": 49,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 10,
+          "source_line": 48,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 16,
+          "source_line": 74,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 17,
+          "source_line": 74,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 18,
+          "source_line": 74,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 19,
+          "source_line": 74,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 20,
+          "source_line": 74,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 21,
+          "source_line": 75,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 22,
+          "source_line": 75,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 23,
+          "source_line": 75,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 24,
+          "source_line": 75,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 25,
+          "source_line": 75,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 26,
+          "source_line": 76,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 27,
+          "source_line": 76,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 28,
+          "source_line": 76,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 29,
+          "source_line": 76,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 30,
+          "source_line": 76,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 31,
+          "source_line": 77,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 32,
+          "source_line": 77,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 33,
+          "source_line": 77,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 34,
+          "source_line": 77,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 35,
+          "source_line": 77,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 36,
+          "source_line": 78,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 37,
+          "source_line": 78,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        }
+      ],
+      "source_review_note": "HWPX 중첩표 격자 복원으로 1학년 A반의 수·금 13:00~14:20, 월·화·목 13:50~15:10을 회복. B반/2학년 표는 각각 유지. 수익자 22개 강좌는 요일만 있고 반별 시작·종료가 없어 null. 돌봄 일과 제외.",
+      "expected_grade1_custom_rows": 10,
+      "grade1_custom_inventory_complete": true
+    },
+    {
+      "school_id": "B000003766",
+      "school_name": "늘푸른초등학교",
+      "output_file": "etl/runtime/llm_extraction/outputs_afterschool/pivot_gyeonggi/batch_test5_B000003766.json",
+      "output_sha256": "f1e8833d182516868a8c721aaa202451bcb4073b42f5de88a447b94930be5bf5",
+      "input_file": "etl/runtime/llm_extraction/inputs_v3/B000003766.txt",
+      "input_sha256": "7abb1c02703aa272a6ae424cfa3777cad78bdfa326acfd0ae9763bb3e15db578",
+      "raw_rows": 65,
+      "period_counts": {
+        "학기": 60,
+        "방학": 5
+      },
+      "blocking_issues": [],
+      "row_decisions": [
+        {
+          "row": 1,
+          "source_line": 324,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 2,
+          "source_line": 325,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 3,
+          "source_line": 326,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 4,
+          "source_line": 327,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 5,
+          "source_line": 328,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 6,
+          "source_line": 329,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 7,
+          "source_line": 330,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 8,
+          "source_line": 331,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 9,
+          "source_line": 332,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 10,
+          "source_line": 333,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 11,
+          "source_line": 334,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 12,
+          "source_line": 335,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 13,
+          "source_line": 336,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 14,
+          "source_line": 337,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 15,
+          "source_line": 338,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 16,
+          "source_line": 339,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 17,
+          "source_line": 340,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 18,
+          "source_line": 341,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 19,
+          "source_line": 342,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 20,
+          "source_line": 343,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 21,
+          "source_line": 344,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 22,
+          "source_line": 345,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 23,
+          "source_line": 346,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 24,
+          "source_line": 347,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 25,
+          "source_line": 348,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 26,
+          "source_line": 349,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 27,
+          "source_line": 350,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 28,
+          "source_line": 351,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 29,
+          "source_line": 352,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 30,
+          "source_line": 353,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 31,
+          "source_line": 354,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 32,
+          "source_line": 355,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 33,
+          "source_line": 356,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 34,
+          "source_line": 357,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 35,
+          "source_line": 358,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 36,
+          "source_line": 359,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 37,
+          "source_line": 360,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 38,
+          "source_line": 361,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 39,
+          "source_line": 362,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 40,
+          "source_line": 363,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 41,
+          "source_line": 364,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 42,
+          "source_line": 365,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 43,
+          "source_line": 366,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 44,
+          "source_line": 367,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 45,
+          "source_line": 368,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 46,
+          "source_line": 369,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 47,
+          "source_line": 370,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 50,
+          "source_line": 285,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 51,
+          "source_line": 285,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 52,
+          "source_line": 285,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 53,
+          "source_line": 285,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 54,
+          "source_line": 285,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        }
+      ],
+      "source_review_note": "업체위탁 강좌의 대상은 L316 학교 전체 1~6학년에서 기록. 2학년 월요일은 1·2학기 시각이 달라 분리. 돌봄교실 내부 일과 제외.",
+      "expected_grade1_custom_rows": 5,
+      "grade1_custom_inventory_complete": true
+    },
+    {
+      "school_id": "B000024240",
+      "school_name": "위례고운초등학교",
+      "output_file": "etl/runtime/llm_extraction/outputs_afterschool/pivot_gyeonggi/batch_test5_B000024240.json",
+      "output_sha256": "45cd2b149041dd378dc302bba3f72c036ecffbe9c739e8af12cb181b37491c2b",
+      "input_file": "etl/runtime/llm_extraction/inputs_v3/B000024240.txt",
+      "input_sha256": "810d9f64998de77e51326a5fff3f10eae3a8465383bd8b81e689d7a1d5209950",
+      "raw_rows": 57,
+      "period_counts": {
+        "학기": 56,
+        "방학": 1
+      },
+      "blocking_issues": [
+        "맞춤형 학기중 1학년 A·B반 10개 행의 시작·종료 미확인. 원문 L348은 2/4/5교시 후 조건별 시각만 명시하므로 요일별 교시 근거를 보완하기 전 배정하지 않음."
+      ],
+      "row_decisions": [
+        {
+          "row": 1,
+          "source_line": 361,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 2,
+          "source_line": 361,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 3,
+          "source_line": 361,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 4,
+          "source_line": 361,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 5,
+          "source_line": 361,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 7,
+          "source_line": 361,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 8,
+          "source_line": 361,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 9,
+          "source_line": 361,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 10,
+          "source_line": 361,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 11,
+          "source_line": 361,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 12,
+          "source_line": 361,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 13,
+          "source_line": 361,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 14,
+          "source_line": 361,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 15,
+          "source_line": 361,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 16,
+          "source_line": 361,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 17,
+          "source_line": 361,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 18,
+          "source_line": 361,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 19,
+          "source_line": 361,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 20,
+          "source_line": 361,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 21,
+          "source_line": 361,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 22,
+          "source_line": 361,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 23,
+          "source_line": 361,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 24,
+          "source_line": 361,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 25,
+          "source_line": 361,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 26,
+          "source_line": 361,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 27,
+          "source_line": 361,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 28,
+          "source_line": 361,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 29,
+          "source_line": 361,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 30,
+          "source_line": 361,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 31,
+          "source_line": 361,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 32,
+          "source_line": 361,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 33,
+          "source_line": 361,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 34,
+          "source_line": 361,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 35,
+          "source_line": 361,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 36,
+          "source_line": 361,
+          "verdict": "correct",
+          "reason": "해당 원문 행 및 표/학교 대상 문맥과 대조. 추정 시각 추가 없음."
+        },
+        {
+          "row": 37,
+          "source_line": 348,
+          "verdict": "needs_source_check",
+          "reason": "반·프로그램·요일은 확인. 요일별 정규 교시가 없어 조건형 시각을 배정하지 않음."
+        },
+        {
+          "row": 38,
+          "source_line": 348,
+          "verdict": "needs_source_check",
+          "reason": "반·프로그램·요일은 확인. 요일별 정규 교시가 없어 조건형 시각을 배정하지 않음."
+        },
+        {
+          "row": 39,
+          "source_line": 348,
+          "verdict": "needs_source_check",
+          "reason": "반·프로그램·요일은 확인. 요일별 정규 교시가 없어 조건형 시각을 배정하지 않음."
+        },
+        {
+          "row": 40,
+          "source_line": 348,
+          "verdict": "needs_source_check",
+          "reason": "반·프로그램·요일은 확인. 요일별 정규 교시가 없어 조건형 시각을 배정하지 않음."
+        },
+        {
+          "row": 41,
+          "source_line": 348,
+          "verdict": "needs_source_check",
+          "reason": "반·프로그램·요일은 확인. 요일별 정규 교시가 없어 조건형 시각을 배정하지 않음."
+        },
+        {
+          "row": 42,
+          "source_line": 348,
+          "verdict": "needs_source_check",
+          "reason": "반·프로그램·요일은 확인. 요일별 정규 교시가 없어 조건형 시각을 배정하지 않음."
+        },
+        {
+          "row": 43,
+          "source_line": 348,
+          "verdict": "needs_source_check",
+          "reason": "반·프로그램·요일은 확인. 요일별 정규 교시가 없어 조건형 시각을 배정하지 않음."
+        },
+        {
+          "row": 44,
+          "source_line": 348,
+          "verdict": "needs_source_check",
+          "reason": "반·프로그램·요일은 확인. 요일별 정규 교시가 없어 조건형 시각을 배정하지 않음."
+        },
+        {
+          "row": 45,
+          "source_line": 348,
+          "verdict": "needs_source_check",
+          "reason": "반·프로그램·요일은 확인. 요일별 정규 교시가 없어 조건형 시각을 배정하지 않음."
+        },
+        {
+          "row": 46,
+          "source_line": 348,
+          "verdict": "needs_source_check",
+          "reason": "반·프로그램·요일은 확인. 요일별 정규 교시가 없어 조건형 시각을 배정하지 않음."
+        }
+      ],
+      "source_review_note": "PDF는 돌봄 HWP와 다른 문서이므로 함께 읽음. 맞춤형은 반·요일별 프로그램을 기록했으나 시각표가 2/4/5교시 후 조건별이며 요일별 교시 수가 없어 학기중 시작·종료 null. 10:40~12:00 / 13:00~14:20 / 13:50~15:10 조건을 요일에 추정 배정하지 않음.",
+      "expected_grade1_custom_rows": 10,
+      "grade1_custom_inventory_complete": true
+    }
+  ]
+}

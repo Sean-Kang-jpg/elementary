@@ -1,0 +1,312 @@
+{
+  "schema_version": "pivot-p1-term-source-comparison-v1",
+  "school_id": "B000003759",
+  "school_name": "양영초등학교",
+  "reviewed_on": "2026-10-24",
+  "period": {
+    "label": "2026 3분기",
+    "start": "2026-08-17",
+    "end": "2026-11-06",
+    "non_operating_dates": [
+      "2026-08-17",
+      "2026-09-24",
+      "2026-09-25",
+      "2026-10-05",
+      "2026-10-09"
+    ]
+  },
+  "sources": [
+    {
+      "name": "2026학년도 3분기 방과후학교 수강모집 결과 개강·폐강 강좌 목록(공지용).pdf",
+      "file": "etl/runtime/pivot_p1_bulk_parent_sources_20261024/yangyoung_1948475_2.pdf",
+      "sha256": "d8a852321059a89bae385c8c00914fe12f0e5ebe3ab5eb6add302d7d2468cfd1",
+      "url": "https://www.goesn.kr/upload/yy-e/na/bbs_13266/2026/08/18C7E3DF-C45A-67AA-3A45-EE6417A1A119.pdf",
+      "post_url": "https://yy-e.goesn.kr/yy-e/na/ntt/selectNttInfo.do?mi=15932&nttSn=1948475",
+      "source_id": "results",
+      "posted_on": "2026-08-19",
+      "pages": 1
+    },
+    {
+      "name": "2026학년도 3분기 방과후학교 프로그램 안내문(게시용).pdf",
+      "file": "etl/runtime/pivot_p1_bulk_parent_sources_20261024/yangyoung_1946768_3.pdf",
+      "sha256": "ad71706debc57e384dd0df14fc63541f07ae3fa926280bc924f308f5f9d0d272",
+      "url": "https://www.goesn.kr/upload/yy-e/na/bbs_13266/2026/08/CBD33945-CDC0-F996-FB79-F32E75F22C63.pdf",
+      "post_url": "https://yy-e.goesn.kr/yy-e/na/ntt/selectNttInfo.do?mi=15932&nttSn=1946768",
+      "source_id": "recruitment",
+      "posted_on": "2026-08-06",
+      "pages": 3
+    }
+  ],
+  "source_pages_read": {
+    "recruitment": [
+      1,
+      2,
+      3
+    ],
+    "results": [
+      1
+    ]
+  },
+  "visually_checked_pages": {
+    "recruitment": [
+      2,
+      3
+    ],
+    "results": [
+      1
+    ]
+  },
+  "rows": [
+    {
+      "name": "컴퓨터",
+      "day": "월",
+      "section": "A",
+      "grades_raw": [
+        3,
+        4
+      ],
+      "grade1_eligible": false,
+      "start": "13:50",
+      "end": "15:10",
+      "status": "opened",
+      "participation_mode": "course_choice",
+      "room": "2층 컴퓨터실",
+      "evidence": [
+        {
+          "source_id": "recruitment",
+          "page": 2
+        },
+        {
+          "source_id": "results",
+          "page": 1
+        }
+      ],
+      "section_conflict": null
+    },
+    {
+      "name": "컴퓨터",
+      "day": "월",
+      "section": "B",
+      "grades_raw": [
+        4,
+        5,
+        6
+      ],
+      "grade1_eligible": false,
+      "start": "14:30",
+      "end": "15:50",
+      "status": "opened",
+      "participation_mode": "course_choice",
+      "room": "2층 컴퓨터실",
+      "evidence": [
+        {
+          "source_id": "recruitment",
+          "page": 2
+        },
+        {
+          "source_id": "results",
+          "page": 1
+        }
+      ],
+      "section_conflict": null
+    },
+    {
+      "name": "생명과학",
+      "day": "화",
+      "section": null,
+      "grades_raw": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "grade1_eligible": true,
+      "start": "14:30",
+      "end": "15:50",
+      "status": "opened",
+      "participation_mode": "course_choice",
+      "room": "3층 방과후1",
+      "evidence": [
+        {
+          "source_id": "recruitment",
+          "page": 2
+        },
+        {
+          "source_id": "results",
+          "page": 1
+        }
+      ],
+      "section_conflict": {
+        "recruitment": "A",
+        "results": "B",
+        "resolution": "unresolved; same subject/day/time, one class retained, no invented second class"
+      }
+    },
+    {
+      "name": "디지털애니웹툰",
+      "day": "수",
+      "section": null,
+      "grades_raw": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "grade1_eligible": true,
+      "start": "14:00",
+      "end": "15:20",
+      "status": "opened",
+      "participation_mode": "course_choice",
+      "room": "3층 방과후1",
+      "evidence": [
+        {
+          "source_id": "recruitment",
+          "page": 2
+        },
+        {
+          "source_id": "results",
+          "page": 1
+        }
+      ],
+      "section_conflict": {
+        "recruitment": "A",
+        "results": "B",
+        "resolution": "unresolved; same subject/day/time, one class retained, no invented second class"
+      }
+    },
+    {
+      "name": "요리교실",
+      "day": "목",
+      "section": "A",
+      "grades_raw": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "grade1_eligible": true,
+      "start": "13:50",
+      "end": "15:10",
+      "status": "closed_after_recruitment",
+      "participation_mode": "course_choice",
+      "room": "1층 과학실",
+      "evidence": [
+        {
+          "source_id": "recruitment",
+          "page": 2
+        },
+        {
+          "source_id": "results",
+          "page": 1
+        }
+      ],
+      "section_conflict": null
+    },
+    {
+      "name": "요리교실",
+      "day": "목",
+      "section": "B",
+      "grades_raw": [
+        3,
+        4,
+        5,
+        6
+      ],
+      "grade1_eligible": false,
+      "start": "14:30",
+      "end": "15:50",
+      "status": "opened",
+      "participation_mode": "course_choice",
+      "room": "1층 과학실",
+      "evidence": [
+        {
+          "source_id": "recruitment",
+          "page": 2
+        },
+        {
+          "source_id": "results",
+          "page": 1
+        }
+      ],
+      "section_conflict": null
+    },
+    {
+      "name": "탁구",
+      "day": "금",
+      "section": "A",
+      "grades_raw": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "grade1_eligible": true,
+      "start": "13:50",
+      "end": "15:10",
+      "status": "opened",
+      "participation_mode": "course_choice",
+      "room": "3층 방과후3",
+      "evidence": [
+        {
+          "source_id": "recruitment",
+          "page": 3
+        },
+        {
+          "source_id": "results",
+          "page": 1
+        }
+      ],
+      "section_conflict": null
+    },
+    {
+      "name": "탁구",
+      "day": "금",
+      "section": "B",
+      "grades_raw": [
+        3,
+        4,
+        5,
+        6
+      ],
+      "grade1_eligible": false,
+      "start": "14:30",
+      "end": "15:50",
+      "status": "opened",
+      "participation_mode": "course_choice",
+      "room": "3층 방과후3",
+      "evidence": [
+        {
+          "source_id": "recruitment",
+          "page": 3
+        },
+        {
+          "source_id": "results",
+          "page": 1
+        }
+      ],
+      "section_conflict": null
+    }
+  ],
+  "summary": {
+    "recruited_rows": 8,
+    "opened_rows": 7,
+    "closed_rows": 1,
+    "opened_grade1_eligible_rows": 3,
+    "unresolved_section_labels": 2
+  },
+  "canonical_annual_raw_replaced": false,
+  "aggregate_raw_rows_added": 0,
+  "independent_blind_review_complete": false,
+  "publish_ready": false,
+  "no_operational_upload": true,
+  "blocking_issues": [
+    "생명과학·디지털애니웹툰 반명 A/B 상충",
+    "컴퓨터 및 탁구 A/B 시각이 같은 공간에서 40분 겹침; 두 원문 시각을 보존하며 실제 운영 방식 별도 확인 필요",
+    "독립 초1~2 맞춤형 원문·목록은 이번 수익자 자료로 검증할 수 없음",
+    "3분기 개강 이후 변경 공지 전체 대조 및 독립 표본 검증 미완료"
+  ]
+}

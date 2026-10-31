@@ -1,0 +1,41 @@
+{
+  "retrieved_on": "2026-10-22",
+  "reviewed_on": "2026-10-23",
+  "files": [
+    {
+      "post_url": "https://www.goesn.kr/dangchon-e/na/ntt/selectNttInfo.do?mi=11716&nttSn=1949814",
+      "name": "inline image",
+      "url": "https://www.goesn.kr/dext5editordata/2026/08/20260825_114045713_29430.jpg",
+      "file": "etl/runtime/pivot_p1_followup_20261022/1949814_0.jpg",
+      "sha256": "6e9efcdb03085c23732c313f8f8658b6918e3a0c4f87099b6fd88b155a090713"
+    },
+    {
+      "post_url": "https://www.goesn.kr/dangchon-e/na/ntt/selectNttInfo.do?mi=11716&nttSn=1949814",
+      "name": "inline image",
+      "url": "https://www.goesn.kr/dext5editordata/2026/08/20260825_114055378_85070.jpg",
+      "file": "etl/runtime/pivot_p1_followup_20261022/1949814_1.jpg",
+      "sha256": "857f04c5bc8693fe210a47ce93b627011fc0ff831afe1f7ac4768429b2c50fc5"
+    },
+    {
+      "post_url": "https://www.goesn.kr/dangchon-e/na/ntt/selectNttInfo.do?mi=11716&nttSn=1961837",
+      "name": "inline image",
+      "url": "https://www.goesn.kr/dext5editordata/2026/10/20261014_141506461_05624.jpg",
+      "file": "etl/runtime/pivot_p1_followup_20261022/1961837_0.jpg",
+      "sha256": "d9d11d0baa17d4277e8a5fd3d602e482dbb980c023eff2c495dcae35252bbb90"
+    },
+    {
+      "post_url": "https://www.goesn.kr/dangchon-e/na/ntt/selectNttInfo.do?mi=11716&nttSn=1961837",
+      "name": "inline image",
+      "url": "https://www.goesn.kr/dext5editordata/2026/10/20261014_141513221_55956.jpg",
+      "file": "etl/runtime/pivot_p1_followup_20261022/1961837_1.jpg",
+      "sha256": "832afe6cc4ebecebe215ecaa66b8f9f9236c02950a8bcf4def573ef7cc005c12"
+    },
+    {
+      "post_url": "https://www.goesn.kr/snms-e/na/ntt/selectNttInfo.do?mi=13315&nttSn=1935460",
+      "name": "2026학년도 방과후돌봄 공개주간 운영 계획(매송초).pdf",
+      "url": "https://www.goesn.kr/upload/snms-e/na/bbs_11788/2026/06/F26F2DFF-F9E2-7E00-9AE9-F0803213E819.pdf",
+      "file": "etl/runtime/pivot_p1_followup_20261022/1935460_0.pdf",
+      "sha256": "4611e84fe38ee7c23134d2b7aee847ecaa885e6939ef4ae736da2bc22414fcf1"
+    }
+  ]
+}

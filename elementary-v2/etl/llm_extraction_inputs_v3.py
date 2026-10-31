@@ -6,8 +6,8 @@ and untimed course lists never reached the extractor: 84% of the 맞춤형 names
 re-extraction were not in the first input (2026-10-20). v3 gives the whole document instead, with
 merged cells repeated on every row they cover (etl/school_document_tables.py).
 
-When a school published the same plan as HWP/HWPX and PDF, only the HWP/HWPX is used (it keeps the
-table grid); a PDF is used only when it is the school's only file.
+When a school published the same named plan as HWP/HWPX and PDF, prefer the structured version.
+Keep a differently named PDF: it may contain the courses while the HWP contains only care hours.
 
     python -m etl.llm_extraction_inputs_v3 --ids etl/runtime/llm_extraction/batches/v3_test30_ids.txt
 """
@@ -36,14 +36,19 @@ def school_files() -> dict[str, dict]:
     return schools
 
 
-def write_input(school: dict, out: Path) -> dict:
+def write_input(school: dict, out: Path, max_chars: int | None = MAX_CHARS) -> dict:
     sources = []
     for f in school.get('files', []):
         source = next(iter(sorted(DOCS.glob(f"{f.get('sha256')}.*"))), None) if f.get('sha256') else None
         if source:
             sources.append((f.get('name') or source.name, source))
-    structured = [s for s in sources if s[1].suffix.lower() in ('.hwp', '.hwpx')]
-    chosen = structured or sources
+    def plan_name(name: str) -> str:
+        return re.sub(r'\s+', '', Path(name).stem).casefold()
+
+    structured_names = {plan_name(name) for name, path in sources
+                        if path.suffix.lower() in ('.hwp', '.hwpx')}
+    chosen = [(name, path) for name, path in sources
+              if path.suffix.lower() != '.pdf' or plan_name(name) not in structured_names]
     parts, used = [], []
     for name, source in chosen:
         kind, text = grid_text(source.read_bytes())
@@ -52,22 +57,25 @@ def write_input(school: dict, out: Path) -> dict:
         if text:
             parts.append(f'[file: {name}]\n{text}')
             used.append(kind)
-    body = '\n'.join(parts)[:MAX_CHARS] or '(첨부 텍스트 없음)'
+    full_body = '\n'.join(parts)
+    body = (full_body if max_chars is None else full_body[:max_chars]) or '(첨부 텍스트 없음)'
     numbered = [f'L{i}: {line}' for i, line in enumerate(body.splitlines(), 1)]
     header = [f"school_id: {school['school_id']}", f"school_name: {school.get('school_name', '')}", '', '[DOCUMENT]']
     (out / f"{school['school_id']}.txt").write_text('\n'.join(header + numbered) + '\n', encoding='utf-8')
     return {'school_id': school['school_id'], 'files': len(chosen), 'kinds': used, 'chars': len(body),
-            'truncated': len('\n'.join(parts)) > MAX_CHARS}
+            'truncated': max_chars is not None and len(full_body) > max_chars}
 
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument('--ids', type=Path, required=True)
     parser.add_argument('--out', type=Path, default=OUT)
+    parser.add_argument('--full-document', action='store_true', help='Keep every source line without a character cap')
     args = parser.parse_args()
     args.out.mkdir(parents=True, exist_ok=True)
     schools = school_files()
-    report = [write_input(schools[i], args.out) for i in args.ids.read_text(encoding='utf-8').split() if i in schools]
+    report = [write_input(schools[i], args.out, max_chars=None if args.full_document else MAX_CHARS)
+              for i in args.ids.read_text(encoding='utf-8').split() if i in schools]
     chars = sorted(r['chars'] for r in report)
     print(json.dumps({'written': len(report), 'median_chars': chars[len(chars) // 2], 'max_chars': chars[-1],
                       'truncated': [r['school_id'] for r in report if r['truncated']]}, ensure_ascii=False))

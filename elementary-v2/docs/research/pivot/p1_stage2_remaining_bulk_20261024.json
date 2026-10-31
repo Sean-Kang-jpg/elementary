@@ -1,0 +1,864 @@
+{
+  "schema_version": "pivot-p1-remaining-bulk-scope-v1",
+  "prepared_on": "2026-10-24",
+  "base_commit": "7509566",
+  "remaining_schools": 34,
+  "previous_completed_source_schools": [
+    "B000003738",
+    "B000003740",
+    "B000003741",
+    "B000003759",
+    "B000003764"
+  ],
+  "publish_status": "not_approved",
+  "no_operational_upload": true,
+  "schools": [
+    {
+      "school_id": "B000003751",
+      "school_name": "구미초등학교",
+      "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_stage2_20261023/B000003751.txt",
+      "input_sha256": "2ba276c49271cac6469b92d793bb71588f9172ad117cc7d97131e7cb4544850d",
+      "chars": 41861,
+      "input_verified": true,
+      "original_documents": [
+        {
+          "name": "2026학년도 방과후돌봄 운영 계획 수정(안).hwp",
+          "file": "etl/runtime/audit2-documents/e03392530cd1a38b102b51d1561feec1cb31f1b7927bc9fbdae5087e16ca21bf.hwp",
+          "sha256": "e03392530cd1a38b102b51d1561feec1cb31f1b7927bc9fbdae5087e16ca21bf",
+          "verified": true
+        },
+        {
+          "name": "2026학년도 구미초 돌봄교실 연간 운영 계획서.hwp",
+          "file": "etl/runtime/audit2-documents/4837354a1c71dd0da5a16b34006f7a3aeac4b670665be9689fe909e1d8bdbe7b.hwp",
+          "sha256": "4837354a1c71dd0da5a16b34006f7a3aeac4b670665be9689fe909e1d8bdbe7b",
+          "verified": true
+        }
+      ],
+      "supplemental_visual_sources": [],
+      "supplemental_documents": []
+    },
+    {
+      "school_id": "B000003770",
+      "school_name": "내정초등학교",
+      "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_stage2_20261023/B000003770.txt",
+      "input_sha256": "6b70ffccdbaa887fa75ade08f38ca65fa13d9011ed348e03d83209845dd17edd",
+      "chars": 33807,
+      "input_verified": true,
+      "original_documents": [
+        {
+          "name": "2026학년도 내정초등학교 초등돌봄교실 운영 계획.hwp",
+          "file": "etl/runtime/audit2-documents/c83dc4341f8a1310367ad67747324a978d29293e33cfcbe6f85d0bb5c9f74905.hwp",
+          "sha256": "c83dc4341f8a1310367ad67747324a978d29293e33cfcbe6f85d0bb5c9f74905",
+          "verified": true
+        },
+        {
+          "name": "2026학년도 내정초등학교 방과후학교 운영 계획.hwpx",
+          "file": "etl/runtime/audit2-documents/4295f89ba5f7c40e56093a3750f53e2233e011bbbcaa25c0d0acdc3d93240955.hwpx",
+          "sha256": "4295f89ba5f7c40e56093a3750f53e2233e011bbbcaa25c0d0acdc3d93240955",
+          "verified": true
+        }
+      ],
+      "supplemental_visual_sources": [],
+      "supplemental_documents": []
+    },
+    {
+      "school_id": "B000003768",
+      "school_name": "돌마초등학교",
+      "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_stage2_20261023/B000003768.txt",
+      "input_sha256": "3aa1025f7d15059afa870d003a94707d5fbcaaab8d59eac34bdb1e7c085bfea0",
+      "chars": 33326,
+      "input_verified": true,
+      "original_documents": [
+        {
+          "name": "2026학년도 돌마초 방과후학교 운영 세부 추진계획(학교운영위원회 심의안).hwp",
+          "file": "etl/runtime/audit2-documents/4d7127208e54828d12f8f239a7743669e6fb36f32138b6e69cad5f61076a3fa8.hwp",
+          "sha256": "4d7127208e54828d12f8f239a7743669e6fb36f32138b6e69cad5f61076a3fa8",
+          "verified": true
+        }
+      ],
+      "supplemental_visual_sources": [],
+      "supplemental_documents": []
+    },
+    {
+      "school_id": "B000003755",
+      "school_name": "백현초등학교",
+      "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_stage2_20261023/B000003755.txt",
+      "input_sha256": "f5773f4fb90b46e5d0fa06bbeb61167d51d6a0b5dd47d7c917e81abeaa174323",
+      "chars": 34867,
+      "input_verified": true,
+      "original_documents": [
+        {
+          "name": "2026학년도 돌봄교실 연간 운영 계획.hwp",
+          "file": "etl/runtime/audit2-documents/c841b05b0df3900dee9932549e8408954e5ea096bfd9f18bc5995232dcf9a23a.hwp",
+          "sha256": "c841b05b0df3900dee9932549e8408954e5ea096bfd9f18bc5995232dcf9a23a",
+          "verified": true
+        },
+        {
+          "name": "2026학년도 수익자 방과후 연간 운영 계획.hwp",
+          "file": "etl/runtime/audit2-documents/405118fb805552d50414874dde58844e5af4b561c71217d5659516935f6576ef.hwp",
+          "sha256": "405118fb805552d50414874dde58844e5af4b561c71217d5659516935f6576ef",
+          "verified": true
+        }
+      ],
+      "supplemental_visual_sources": [],
+      "supplemental_documents": []
+    },
+    {
+      "school_id": "B000003743",
+      "school_name": "보평초등학교",
+      "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_stage2_20261023/B000003743.txt",
+      "input_sha256": "3fad355a372dd419d113294d27aca2ec1cfe75d3327afc2d34ed9d1150458bf0",
+      "chars": 52667,
+      "input_verified": true,
+      "original_documents": [
+        {
+          "name": "2026학년도 방과후 운영 계획.hwp",
+          "file": "etl/runtime/audit2-documents/e49a72b0b79174a2abb518c9fda9457d17c46de98ae57162a2573f496e9a3d24.hwp",
+          "sha256": "e49a72b0b79174a2abb518c9fda9457d17c46de98ae57162a2573f496e9a3d24",
+          "verified": true
+        }
+      ],
+      "supplemental_visual_sources": [],
+      "supplemental_documents": []
+    },
+    {
+      "school_id": "B000003761",
+      "school_name": "분당초등학교",
+      "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_stage2_20261023/B000003761.txt",
+      "input_sha256": "dac97404abe386bdc7cbed634fbff54c78b4c13f045768c3a055efb23afc36f1",
+      "chars": 55633,
+      "input_verified": true,
+      "original_documents": [
+        {
+          "name": "2026학년도 분당초 방과후돌봄학교 통합 운영계획.hwpx",
+          "file": "etl/runtime/audit2-documents/5dbd55026fed99e338f92f68d2899d1afe8e0d88bf21fd5637556a60be1bdd27.hwpx",
+          "sha256": "5dbd55026fed99e338f92f68d2899d1afe8e0d88bf21fd5637556a60be1bdd27",
+          "verified": true
+        },
+        {
+          "name": "2026학년도 분당초등학교 돌봄교실 운영계획.hwpx",
+          "file": "etl/runtime/audit2-documents/7543bdab3d203a5c7ad8d377af41e2975d88f9eaadf81ca80bde3629f3f57f7f.hwpx",
+          "sha256": "7543bdab3d203a5c7ad8d377af41e2975d88f9eaadf81ca80bde3629f3f57f7f",
+          "verified": true
+        }
+      ],
+      "supplemental_visual_sources": [],
+      "supplemental_documents": []
+    },
+    {
+      "school_id": "B000003752",
+      "school_name": "불곡초등학교",
+      "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_stage2_20261023/B000003752.txt",
+      "input_sha256": "2123049b2a518eed528ce186ede2a3a13632fd6127fa66024b42124d6f9c87b8",
+      "chars": 22654,
+      "input_verified": true,
+      "original_documents": [
+        {
+          "name": "2026학년도 불곡초 방과후·돌봄 운영 계획.pdf",
+          "file": "etl/runtime/audit2-documents/4380b63cdc0bd7d72af16ffde1574d7d3a5b9e6834804c5dcacd081f2a9ceb5a.pdf",
+          "sha256": "4380b63cdc0bd7d72af16ffde1574d7d3a5b9e6834804c5dcacd081f2a9ceb5a",
+          "verified": true
+        }
+      ],
+      "supplemental_visual_sources": [],
+      "supplemental_documents": []
+    },
+    {
+      "school_id": "B000003756",
+      "school_name": "불정초등학교",
+      "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_stage2_20261023/B000003756.txt",
+      "input_sha256": "ab3d554cf14751497e32db40b49184758662eda3e0f55e9032ed4e80778e1a4f",
+      "chars": 32241,
+      "input_verified": true,
+      "original_documents": [
+        {
+          "name": "2026학년도 초등돌봄교실 운영계획.hwpx",
+          "file": "etl/runtime/audit2-documents/d10d6406594ad8d97b12d00b211f0106e482504091621efc7717c4a2b641c30a.hwpx",
+          "sha256": "d10d6406594ad8d97b12d00b211f0106e482504091621efc7717c4a2b641c30a",
+          "verified": true
+        },
+        {
+          "name": "2026학년도 방과후돌봄 운영 계획 수정(안).hwp",
+          "file": "etl/runtime/audit2-documents/f7b9e10ff5999f271b650a54da6c720da3d3515d28f40a87ee61c3eafe0695e3.hwp",
+          "sha256": "f7b9e10ff5999f271b650a54da6c720da3d3515d28f40a87ee61c3eafe0695e3",
+          "verified": true
+        }
+      ],
+      "supplemental_visual_sources": [],
+      "supplemental_documents": []
+    },
+    {
+      "school_id": "B000003747",
+      "school_name": "산운초등학교",
+      "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_stage2_20261023/B000003747.txt",
+      "input_sha256": "475a59abb5f3b92b75a0d95706e0b4a52aadb27a94129c3f30160d570a328a6c",
+      "chars": 25996,
+      "input_verified": true,
+      "original_documents": [
+        {
+          "name": "2026학년도 산운초 늘봄학교(선택형교육) 운영 계획.hwp",
+          "file": "etl/runtime/audit2-documents/19596bd5c35f788c6d73b5552b52bbe0e0c053cd4ca0c7d4eae7c4361b41da22.hwp",
+          "sha256": "19596bd5c35f788c6d73b5552b52bbe0e0c053cd4ca0c7d4eae7c4361b41da22",
+          "verified": true
+        },
+        {
+          "name": "2026년 돌봄교실운영 계획.hwp",
+          "file": "etl/runtime/audit2-documents/9b735e117035c2cfd5561f288f9077cb052ba74c599bc67f28f6ed72420091fd.hwp",
+          "sha256": "9b735e117035c2cfd5561f288f9077cb052ba74c599bc67f28f6ed72420091fd",
+          "verified": true
+        }
+      ],
+      "supplemental_visual_sources": [],
+      "supplemental_documents": []
+    },
+    {
+      "school_id": "B000003758",
+      "school_name": "서당초등학교",
+      "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_stage2_20261023/B000003758.txt",
+      "input_sha256": "8bc5eb5e8e43708aa1c2c1d7d222e8e60396d7d909294427ec73674fcb2a2506",
+      "chars": 43193,
+      "input_verified": true,
+      "original_documents": [
+        {
+          "name": "2026학년도 방과후 돌봄 연간 운영계획.pdf",
+          "file": "etl/runtime/pivot_p1_stage2_sources_20261023/1936454_0.pdf",
+          "sha256": "1b673c6df385f2801988e0e087d192371873c0bcd058b331a511a9f8233ffda7",
+          "verified": true
+        },
+        {
+          "name": "2026학년도 서당초 돌봄교실 운영 계획.hwp",
+          "file": "etl/runtime/audit2-documents/f1b330c152b9fdf23521210e41b489d07de1660f0daa05ccfb06813489b4d6a6.hwp",
+          "sha256": "f1b330c152b9fdf23521210e41b489d07de1660f0daa05ccfb06813489b4d6a6",
+          "verified": true
+        }
+      ],
+      "supplemental_visual_sources": [
+        {
+          "school": "seodang-e",
+          "post_id": "1948588",
+          "post_url": "https://www.goesn.kr/seodang-e/na/ntt/selectNttInfo.do?mi=19778&nttSn=1948588",
+          "name": "inline image",
+          "url": "https://www.goesn.kr/dext5editordata/2026/08/20260820_105630965_47668.jpg",
+          "file": "etl/runtime/pivot_p1_stage2_sources_20261023/1948588_image_0.jpg",
+          "sha256": "83eea414472a703ee7961922f92b544dbd2bf4b97feeeee1f773aa0eccaedb19"
+        },
+        {
+          "school": "seodang-e",
+          "post_id": "1948588",
+          "post_url": "https://www.goesn.kr/seodang-e/na/ntt/selectNttInfo.do?mi=19778&nttSn=1948588",
+          "name": "inline image",
+          "url": "https://www.goesn.kr/dext5editordata/2026/08/20260820_105623107_62550.jpg",
+          "file": "etl/runtime/pivot_p1_stage2_sources_20261023/1948588_image_1.jpg",
+          "sha256": "f345984a27b29e53f65a55f501c72f25a6c1f2353e625fdcd85e33b1705755fe"
+        }
+      ],
+      "supplemental_documents": []
+    },
+    {
+      "school_id": "B000003760",
+      "school_name": "서현초등학교",
+      "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_stage2_20261023/B000003760.txt",
+      "input_sha256": "0bb59acd4f51a41cdd5618379bf79192683c2682886e375a1d3843615cdbcc9d",
+      "chars": 32938,
+      "input_verified": true,
+      "original_documents": [
+        {
+          "name": "2026학년도 돌봄교실 운영계획.pdf",
+          "file": "etl/runtime/audit2-documents/f9f0bad595b5f78ba68c517b9226cef6ce64703d73da54e541c066225c489fb1.pdf",
+          "sha256": "f9f0bad595b5f78ba68c517b9226cef6ce64703d73da54e541c066225c489fb1",
+          "verified": true
+        },
+        {
+          "name": "(서현초등학교-3013 (첨부)) 2026학년도 수익자 방과후교육 운영 계획.pdf",
+          "file": "etl/runtime/audit2-documents/7da46fb9d19783e443392fd80a4894f85779bb90e19a4b468a36c3c416ab4478.pdf",
+          "sha256": "7da46fb9d19783e443392fd80a4894f85779bb90e19a4b468a36c3c416ab4478",
+          "verified": true
+        }
+      ],
+      "supplemental_visual_sources": [],
+      "supplemental_documents": []
+    },
+    {
+      "school_id": "B000003754",
+      "school_name": "성남미금초등학교",
+      "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_stage2_20261023/B000003754.txt",
+      "input_sha256": "ddaf69c30639baa113e31b3be62042e223f54108f6eac64e77cd4d597e736c52",
+      "chars": 143820,
+      "input_verified": true,
+      "original_documents": [
+        {
+          "name": "2026학년도 방과후돌봄-수익자 방과후 연간계획안.pdf",
+          "file": "etl/runtime/pivot_p1_stage2_sources_20261023/1921198_0.pdf",
+          "sha256": "9cd6a5f77de2ebbb9dc43fe6e545048c91caa7cbb480c61abf4d19849ccad84a",
+          "verified": true
+        },
+        {
+          "name": "_(최종)2026학년도 3분기 성남미금초 방과후.hwp",
+          "file": "etl/runtime/pivot_p1_stage2_sources_20261023/1954759_0.hwp",
+          "sha256": "0f755ee2edc394b45204d05d595953b5f107c2f73dcd11276176ce7649220139",
+          "verified": true
+        },
+        {
+          "name": "[가정통신문]2026학년도성남미금초 방과후돌봄 학교 교육활동 공개주간 운영계획.pdf",
+          "file": "etl/runtime/pivot_p1_stage2_sources_20261023/1925922_0.pdf",
+          "sha256": "a6465879480eebfc142babdff822dab4c600a0aafec3cf4f0be6e86bb1c4faf3",
+          "verified": true
+        },
+        {
+          "name": "2026학년도성남미금초 돌봄교실 운영 계획_.hwp",
+          "file": "etl/runtime/audit2-documents/0075370405d2cbe64553825e19e59c2aaadc002be309294679c1fc2eef2eb698.hwp",
+          "sha256": "0075370405d2cbe64553825e19e59c2aaadc002be309294679c1fc2eef2eb698",
+          "verified": true
+        },
+        {
+          "name": "2026학년도 성남미금초 방과후돌봄학교 통합 운영 계획(안)_.hwp",
+          "file": "etl/runtime/audit2-documents/6265ac1b183a923c6377dfb042de3932399a047d3c545eba0727b1968c5f9a6f.hwp",
+          "sha256": "6265ac1b183a923c6377dfb042de3932399a047d3c545eba0727b1968c5f9a6f",
+          "verified": true
+        }
+      ],
+      "supplemental_visual_sources": [],
+      "supplemental_documents": [
+        {
+          "school": "snmg-e",
+          "post_id": "1956017",
+          "post_url": "https://www.goesn.kr/snmg-e/na/ntt/selectNttInfo.do?mi=11204&nttSn=1956017",
+          "name": "_2026학년도 3분기 초1,2맞춤형 교육활동 수강신청 안내문.pdf",
+          "url": "https://www.goesn.kr/upload/snmg-e/na/bbs_10584/2026/09/CC3646EB-98FD-17EE-3735-8331E0B50225.pdf",
+          "file": "etl/runtime/pivot_p1_stage2_sources_20261023/1956017_0.pdf",
+          "sha256": "241f0168c646175173206c5688fd820d8b698d2988d92084323e707da99f051c"
+        }
+      ]
+    },
+    {
+      "school_id": "B000003742",
+      "school_name": "성남송현초등학교",
+      "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_stage2_20261023/B000003742.txt",
+      "input_sha256": "9f3b89a5dd11f1a19e999fc277292c7e3b81cff4d2ddafd87f3825961e836189",
+      "chars": 43643,
+      "input_verified": true,
+      "original_documents": [
+        {
+          "name": "2026?성남송현초 방과후학교?운영?계획.hwp",
+          "file": "etl/runtime/audit2-documents/b8c2753b933aad2da693834442fca25e455f75cd5309ba999fc2d59f8b2898a4.hwp",
+          "sha256": "b8c2753b933aad2da693834442fca25e455f75cd5309ba999fc2d59f8b2898a4",
+          "verified": true
+        }
+      ],
+      "supplemental_visual_sources": [],
+      "supplemental_documents": []
+    },
+    {
+      "school_id": "B000003737",
+      "school_name": "성남신기초등학교",
+      "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_stage2_20261023/B000003737.txt",
+      "input_sha256": "eeb6f6a6bdbd81ffa38a1a430afea4b87d6d5f3d47e662b34101b9d800caaa84",
+      "chars": 49379,
+      "input_verified": true,
+      "original_documents": [
+        {
+          "name": "2026학년도 성남신기초등학교 초등돌봄교실 운영 계획.hwp",
+          "file": "etl/runtime/audit2-documents/2df3e977378bdb193288520ae986616e72dd662c49d5aad1efa020f7e61b7cb6.hwp",
+          "sha256": "2df3e977378bdb193288520ae986616e72dd662c49d5aad1efa020f7e61b7cb6",
+          "verified": true
+        },
+        {
+          "name": "2026학년도 성남신기초등학교 방과후학교 운영 계획.hwpx",
+          "file": "etl/runtime/audit2-documents/9c4339a472f52cde155178e78dc2ad40833916349b1f6c2b492531b49ed70604.hwpx",
+          "sha256": "9c4339a472f52cde155178e78dc2ad40833916349b1f6c2b492531b49ed70604",
+          "verified": true
+        }
+      ],
+      "supplemental_visual_sources": [],
+      "supplemental_documents": []
+    },
+    {
+      "school_id": "B000003771",
+      "school_name": "성남정자초등학교",
+      "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_stage2_20261023/B000003771.txt",
+      "input_sha256": "affdf8e2b2073d1aa6bb1e12350b40cd0520c1a0d066993ac5ce8ed0f7712639",
+      "chars": 24118,
+      "input_verified": true,
+      "original_documents": [
+        {
+          "name": "2026학년도 방과후 운영 계획 (1).hwp",
+          "file": "etl/runtime/audit2-documents/427beefd952d5246cf9f0457e3b5631abd440b0fe5b98b8fa7212b839fc9f6b6.hwp",
+          "sha256": "427beefd952d5246cf9f0457e3b5631abd440b0fe5b98b8fa7212b839fc9f6b6",
+          "verified": true
+        }
+      ],
+      "supplemental_visual_sources": [],
+      "supplemental_documents": []
+    },
+    {
+      "school_id": "B000024167",
+      "school_name": "성남화랑초등학교",
+      "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_stage2_20261023/B000024167.txt",
+      "input_sha256": "ae7948e082f958869d3ec8221d9226905ecb035c3e50a31cec67616b9bffaa0a",
+      "chars": 56282,
+      "input_verified": true,
+      "original_documents": [
+        {
+          "name": "2026 성남화랑초 방과후·돌봄 통합 운영 계획 계획(난타 개설 및 환불규정 개정).hwp",
+          "file": "etl/runtime/audit2-documents/dfa24de1c1d8c3408ff3c0558dc260b3dfcdef6a16011b14aab7c382e829b943.hwp",
+          "sha256": "dfa24de1c1d8c3408ff3c0558dc260b3dfcdef6a16011b14aab7c382e829b943",
+          "verified": true
+        }
+      ],
+      "supplemental_visual_sources": [],
+      "supplemental_documents": []
+    },
+    {
+      "school_id": "B000003772",
+      "school_name": "수내초등학교",
+      "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_stage2_20261023/B000003772.txt",
+      "input_sha256": "c8f441067445a7817984c1bbe2f05d871d06e350ebe2dd0f8f659995084d6892",
+      "chars": 30545,
+      "input_verified": true,
+      "original_documents": [
+        {
+          "name": "2026학년도 수내초 방과후·돌봄 운영 계획.hwpx",
+          "file": "etl/runtime/audit2-documents/0e9c6f3714da77c378da0a000df9dbe7ec47e9ede158ff76bb585fe1e8684565.hwpx",
+          "sha256": "0e9c6f3714da77c378da0a000df9dbe7ec47e9ede158ff76bb585fe1e8684565",
+          "verified": true
+        }
+      ],
+      "supplemental_visual_sources": [],
+      "supplemental_documents": []
+    },
+    {
+      "school_id": "B000003746",
+      "school_name": "신백현초등학교",
+      "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_stage2_20261023/B000003746.txt",
+      "input_sha256": "067ab9d72411dae2b396c246d69071bf5b70bca8483e49fed94a32e2e2419557",
+      "chars": 66289,
+      "input_verified": true,
+      "original_documents": [
+        {
+          "name": "2026 신백현초 방과후·돌봄 통합 운영 계획 계획(환불 규정 개정).hwp",
+          "file": "etl/runtime/audit2-documents/3007f65ce6a28c67fda6b664931fc81509f24c49f890f212c1118088de3746e3.hwp",
+          "sha256": "3007f65ce6a28c67fda6b664931fc81509f24c49f890f212c1118088de3746e3",
+          "verified": true
+        }
+      ],
+      "supplemental_visual_sources": [],
+      "supplemental_documents": []
+    },
+    {
+      "school_id": "B000003762",
+      "school_name": "야탑초등학교",
+      "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_stage2_20261023/B000003762.txt",
+      "input_sha256": "77a26b6cd09ce0bd08f6a3a2696934ccbe5eed992e49ee5b8cf223b9efb90746",
+      "chars": 31668,
+      "input_verified": true,
+      "original_documents": [
+        {
+          "name": "2026학년도 야탑초 방과후·돌봄 운영 계획(정보공시).hwpx",
+          "file": "etl/runtime/audit2-documents/9f40821dfa1b618b56c04ddb0f7db253d209f55cda8d704357cc8db221d5bb39.hwpx",
+          "sha256": "9f40821dfa1b618b56c04ddb0f7db253d209f55cda8d704357cc8db221d5bb39",
+          "verified": true
+        }
+      ],
+      "supplemental_visual_sources": [],
+      "supplemental_documents": []
+    },
+    {
+      "school_id": "B000003750",
+      "school_name": "오리초등학교",
+      "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_stage2_20261023/B000003750.txt",
+      "input_sha256": "ffd6625b2579a1579192477c4f8ff26bdfa4737ad5b7c9d99f1586594ab23197",
+      "chars": 21514,
+      "input_verified": true,
+      "original_documents": [
+        {
+          "name": "2026학년도 오리초 방과후돌봄 운영 계획(안)(2.13.).hwpx",
+          "file": "etl/runtime/audit2-documents/f2f1d878fa29ec3a944f95baa0259c5381a1d31fb1c93015e8afa30eb5ddce56.hwpx",
+          "sha256": "f2f1d878fa29ec3a944f95baa0259c5381a1d31fb1c93015e8afa30eb5ddce56",
+          "verified": true
+        }
+      ],
+      "supplemental_visual_sources": [],
+      "supplemental_documents": []
+    },
+    {
+      "school_id": "B000003748",
+      "school_name": "운중초등학교",
+      "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_stage2_20261023/B000003748.txt",
+      "input_sha256": "0a13d8e7829ab9318d2d8fc0478261984dde3647797f905cda51fd842c952023",
+      "chars": 36738,
+      "input_verified": true,
+      "original_documents": [
+        {
+          "name": "2026학년도 돌봄교실 운영계획서.hwp",
+          "file": "etl/runtime/audit2-documents/2a3712bae2d303fb2520d8af4a0cc5131ff07e906495f24aa7a8f55b71b6509d.hwp",
+          "sha256": "2a3712bae2d303fb2520d8af4a0cc5131ff07e906495f24aa7a8f55b71b6509d",
+          "verified": true
+        },
+        {
+          "name": "2026학년도 초12맞춤형, 선택형교육 운영 계획.hwp",
+          "file": "etl/runtime/audit2-documents/89f6866734e3fe6463a33f7e9af9fff730fdbacb1a61a8739ce829a52e9942f7.hwp",
+          "sha256": "89f6866734e3fe6463a33f7e9af9fff730fdbacb1a61a8739ce829a52e9942f7",
+          "verified": true
+        }
+      ],
+      "supplemental_visual_sources": [],
+      "supplemental_documents": []
+    },
+    {
+      "school_id": "B000003763",
+      "school_name": "이매초등학교",
+      "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_stage2_20261023/B000003763.txt",
+      "input_sha256": "734629c73d231239530b1c9239bc329aade0de4d593a45faa6575e2689408d1d",
+      "chars": 33014,
+      "input_verified": true,
+      "original_documents": [
+        {
+          "name": "2026학년도 방과후 운영 계획.hwp",
+          "file": "etl/runtime/audit2-documents/7117b817811deecf855c961e971753bbad5da08c6798c8d9ea295b080b773cf0.hwp",
+          "sha256": "7117b817811deecf855c961e971753bbad5da08c6798c8d9ea295b080b773cf0",
+          "verified": true
+        }
+      ],
+      "supplemental_visual_sources": [],
+      "supplemental_documents": []
+    },
+    {
+      "school_id": "B000003767",
+      "school_name": "중탑초등학교",
+      "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_stage2_20261023/B000003767.txt",
+      "input_sha256": "587e0e187f45a0ee3312bf8feeb616afbb48eba742afc0f2ebeeca347aad7739",
+      "chars": 21696,
+      "input_verified": true,
+      "original_documents": [
+        {
+          "name": "2026학년도 중탑초 방과후[수익자, 초1-2 맞춤형 프로그램] 연간운영계획.hwp",
+          "file": "etl/runtime/audit2-documents/b911835ed93433897f3a96b813302de42259574b0f9ebf970ec20f38257d38dc.hwp",
+          "sha256": "b911835ed93433897f3a96b813302de42259574b0f9ebf970ec20f38257d38dc",
+          "verified": true
+        }
+      ],
+      "supplemental_visual_sources": [],
+      "supplemental_documents": []
+    },
+    {
+      "school_id": "B000003749",
+      "school_name": "청솔초등학교",
+      "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_stage2_20261023/B000003749.txt",
+      "input_sha256": "d803e06be6477fc56b2e886bc51b028e6359b23fccbe152a6241914cece74c7b",
+      "chars": 25098,
+      "input_verified": true,
+      "original_documents": [
+        {
+          "name": "2026학년도 방과후돌봄 운영계획.hwp",
+          "file": "etl/runtime/audit2-documents/aff6d192b7d353aac6483bf20c0e18c09b9b847264bd61979ed5663b208c590e.hwp",
+          "sha256": "aff6d192b7d353aac6483bf20c0e18c09b9b847264bd61979ed5663b208c590e",
+          "verified": true
+        }
+      ],
+      "supplemental_visual_sources": [],
+      "supplemental_documents": []
+    },
+    {
+      "school_id": "B000003757",
+      "school_name": "탄천초등학교",
+      "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_stage2_20261023/B000003757.txt",
+      "input_sha256": "1f3d764ae6fe0bc8c2a5f9a11f04086c61a859f712056a81d4185111a9367d41",
+      "chars": 27620,
+      "input_verified": true,
+      "original_documents": [
+        {
+          "name": "2026학년도  돌봄교실 연간 운영 계획.hwp",
+          "file": "etl/runtime/audit2-documents/01bb31409493b4cc3753b09956a5a858a2039322fc288388eaef2796c92b5ddd.hwp",
+          "sha256": "01bb31409493b4cc3753b09956a5a858a2039322fc288388eaef2796c92b5ddd",
+          "verified": true
+        },
+        {
+          "name": "2026학년도 방과후학교 연간운영계획.hwp",
+          "file": "etl/runtime/audit2-documents/8c22718ff502c1c81baaacf23a235678649667a18f976df6dd64ee46a61e8210.hwp",
+          "sha256": "8c22718ff502c1c81baaacf23a235678649667a18f976df6dd64ee46a61e8210",
+          "verified": true
+        }
+      ],
+      "supplemental_visual_sources": [],
+      "supplemental_documents": []
+    },
+    {
+      "school_id": "B000026906",
+      "school_name": "판교대장초등학교",
+      "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_stage2_20261023/B000026906.txt",
+      "input_sha256": "2103350a5596121a7f3dbbebeed032d9bb8ca04631a946669ff4b681c83782a9",
+      "chars": 35067,
+      "input_verified": true,
+      "original_documents": [
+        {
+          "name": "2026학년도 초등 방과후, 돌봄 운영 계획.hwp",
+          "file": "etl/runtime/audit2-documents/38f70909f8b0e98195808d0bd11d828172da4a31bd75102c60e9008ec487f6fd.hwp",
+          "sha256": "38f70909f8b0e98195808d0bd11d828172da4a31bd75102c60e9008ec487f6fd",
+          "verified": true
+        }
+      ],
+      "supplemental_visual_sources": [],
+      "supplemental_documents": []
+    },
+    {
+      "school_id": "B000003744",
+      "school_name": "판교초등학교",
+      "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_stage2_20261023/B000003744.txt",
+      "input_sha256": "f07cf79ea6cd5d41e5327bf871517e971a1b17e5d43cc901753ad493be6397e9",
+      "chars": 28886,
+      "input_verified": true,
+      "original_documents": [
+        {
+          "name": "2026학년도 판교초 방과후 프로그램 운영 계획.hwp",
+          "file": "etl/runtime/audit2-documents/35a0afc8ae1ad89b49fef2c98536587d39dc9318c43c395def31e8c2b7881c09.hwp",
+          "sha256": "35a0afc8ae1ad89b49fef2c98536587d39dc9318c43c395def31e8c2b7881c09",
+          "verified": true
+        }
+      ],
+      "supplemental_visual_sources": [],
+      "supplemental_documents": []
+    },
+    {
+      "school_id": "B000003769",
+      "school_name": "하탑초등학교",
+      "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_stage2_20261023/B000003769.txt",
+      "input_sha256": "039f15037741796a9fb657bd027757ac4eadddc718d56b03414828b56ec38fff",
+      "chars": 25761,
+      "input_verified": true,
+      "original_documents": [
+        {
+          "name": "2026학년도 하탑초 돌봄교실 운영계획.hwp",
+          "file": "etl/runtime/audit2-documents/bf3f6afd710e1b496b61cb364e4aa099e9a779209e305ed11705f1c0cfc661a9.hwp",
+          "sha256": "bf3f6afd710e1b496b61cb364e4aa099e9a779209e305ed11705f1c0cfc661a9",
+          "verified": true
+        },
+        {
+          "name": "2026학년도 하탑초 방과후돌봄 운영 계획.hwp",
+          "file": "etl/runtime/audit2-documents/c6798b7db2ccb417ac5f325e73f4f21ec723ca317664a08808ef942cfb2e8617.hwp",
+          "sha256": "c6798b7db2ccb417ac5f325e73f4f21ec723ca317664a08808ef942cfb2e8617",
+          "verified": true
+        }
+      ],
+      "supplemental_visual_sources": [],
+      "supplemental_documents": []
+    },
+    {
+      "school_id": "B000003765",
+      "school_name": "한솔초등학교",
+      "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_stage2_20261023/B000003765.txt",
+      "input_sha256": "71e14151e00dae2427ad089f5f6c229502aa3034b97200c1baff8ba5216b9ac2",
+      "chars": 29400,
+      "input_verified": true,
+      "original_documents": [
+        {
+          "name": "2026학년도 한솔초 선택형돌봄 운영 계획.hwp",
+          "file": "etl/runtime/audit2-documents/c66efd097d7f0ca452b06806eb3bcf9f24278cd3d53ce4256ef89a31971fa75f.hwp",
+          "sha256": "c66efd097d7f0ca452b06806eb3bcf9f24278cd3d53ce4256ef89a31971fa75f",
+          "verified": true
+        },
+        {
+          "name": "2026학년도 방과후학교 운영계획(한솔초).hwpx",
+          "file": "etl/runtime/audit2-documents/a93f9cd8c3e72b3045bdd2ea668bbc803719db396f10ca2c8da38eccd07e8609.hwpx",
+          "sha256": "a93f9cd8c3e72b3045bdd2ea668bbc803719db396f10ca2c8da38eccd07e8609",
+          "verified": true
+        }
+      ],
+      "supplemental_visual_sources": [],
+      "supplemental_documents": []
+    },
+    {
+      "school_id": "B000023089",
+      "school_name": "위례숲초등학교",
+      "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_stage2_20261023/B000023089.txt",
+      "input_sha256": "290d05b2df7584595049b1a5eb6456e11c3ff854c1e0b846604f0d017b813a83",
+      "chars": 24484,
+      "input_verified": true,
+      "original_documents": [
+        {
+          "name": "2026학년도 위례숲초 방과후프로그램 세부운영계획.hwp",
+          "file": "etl/runtime/audit2-documents/9665ff54c924201803f5403fca1228dda3ae91fb23077490edcbeaf3e8ca531a.hwp",
+          "sha256": "9665ff54c924201803f5403fca1228dda3ae91fb23077490edcbeaf3e8ca531a",
+          "verified": true
+        }
+      ],
+      "supplemental_visual_sources": [],
+      "supplemental_documents": []
+    },
+    {
+      "school_id": "B000024241",
+      "school_name": "위례중앙초등학교",
+      "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_stage2_20261023/B000024241.txt",
+      "input_sha256": "7976f5b95680f3e825fd3e3038354c388a364bc383416239eeeb414262e281af",
+      "chars": 147379,
+      "input_verified": true,
+      "original_documents": [
+        {
+          "name": "2026학년 위례중앙초 돌봄교실 운영 계획.hwpx",
+          "file": "etl/runtime/audit2-documents/5db42db748f07cc1607e90f44977c7ac5dca71dffba7b217335af0c01816ce7f.hwpx",
+          "sha256": "5db42db748f07cc1607e90f44977c7ac5dca71dffba7b217335af0c01816ce7f",
+          "verified": true
+        },
+        {
+          "name": "2026학년 위례중앙초 방과후돌봄 통합 운영 계획.hwpx",
+          "file": "etl/runtime/audit2-documents/39aa4bd8857b410bb36a6ea2c317d28b81f8f71f8377c2690fb53fb5f4f88f7b.hwpx",
+          "sha256": "39aa4bd8857b410bb36a6ea2c317d28b81f8f71f8377c2690fb53fb5f4f88f7b",
+          "verified": true
+        }
+      ],
+      "supplemental_visual_sources": [],
+      "supplemental_documents": []
+    },
+    {
+      "school_id": "B000023087",
+      "school_name": "위례초등학교",
+      "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_stage2_20261023/B000023087.txt",
+      "input_sha256": "a2762d97cc6198b7e1a926b84185b44e04ed54eb4669ba34a00dfee0db186c07",
+      "chars": 35372,
+      "input_verified": true,
+      "original_documents": [
+        {
+          "name": "(위례초등학교-2318 (첨부)) (1_연간계획)2026학년도 방과후·돌봄 운영계획(수정).hwp",
+          "file": "etl/runtime/audit2-documents/aa53a1aff0af001afb4c300819aa173161b5a2a2bac044ed866233e7d643f86a.hwp",
+          "sha256": "aa53a1aff0af001afb4c300819aa173161b5a2a2bac044ed866233e7d643f86a",
+          "verified": true
+        }
+      ],
+      "supplemental_visual_sources": [],
+      "supplemental_documents": []
+    },
+    {
+      "school_id": "B000024239",
+      "school_name": "위례푸른초등학교",
+      "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_stage2_20261023/B000024239.txt",
+      "input_sha256": "573c834aa50c39ac6c8fc369b25662bb11a90eaa3e451c85f63911e61b8be3c1",
+      "chars": 47683,
+      "input_verified": true,
+      "original_documents": [
+        {
+          "name": "2026학년도 방과후 프로그램 운영 계획(위례푸른초).hwp",
+          "file": "etl/runtime/audit2-documents/b57b5d9a60516620ef14200fb20087736b1fbc9e06aa896d2a13c71d0515bea3.hwp",
+          "sha256": "b57b5d9a60516620ef14200fb20087736b1fbc9e06aa896d2a13c71d0515bea3",
+          "verified": true
+        }
+      ],
+      "supplemental_visual_sources": [],
+      "supplemental_documents": []
+    },
+    {
+      "school_id": "B000024238",
+      "school_name": "위례한빛초등학교",
+      "input_file": "etl/runtime/llm_extraction/inputs_v3/pivot_p1_stage2_20261023/B000024238.txt",
+      "input_sha256": "0abcb9bc0e27189eb421725c95eacec9d37fea5034ac63df37da661d20ceb05c",
+      "chars": 207939,
+      "input_verified": true,
+      "original_documents": [
+        {
+          "name": "2026학년 위례한빛초 방과후돌봄 통합 운영 계획.hwpx",
+          "file": "etl/runtime/audit2-documents/405aeec689512645aaba37cc6741cc4a4254dba340106171ba60e2d63ee15dea.hwpx",
+          "sha256": "405aeec689512645aaba37cc6741cc4a4254dba340106171ba60e2d63ee15dea",
+          "verified": true
+        },
+        {
+          "name": "2026학년도 위례한빛초 돌봄교실 운영 계획.hwp",
+          "file": "etl/runtime/audit2-documents/e699797936c56fefd446a6f7d8af3b04c5a65e443bdb5d39b7689d36dd8caef2.hwp",
+          "sha256": "e699797936c56fefd446a6f7d8af3b04c5a65e443bdb5d39b7689d36dd8caef2",
+          "verified": true
+        }
+      ],
+      "supplemental_visual_sources": [],
+      "supplemental_documents": []
+    }
+  ],
+  "execution_plan": {
+    "delegation_status": "resumed; interrupted again by account usage limit; 2026-10-25 slot standard adopted; completed sidecars preserved",
+    "primary_school_id": "B000003750",
+    "proposed_parts": [
+      {
+        "part": "a",
+        "chars": 540682,
+        "school_ids": [
+          "B000024238",
+          "B000003743",
+          "B000003758",
+          "B000003748",
+          "B000026906",
+          "B000003768",
+          "B000003756",
+          "B000003765",
+          "B000003769",
+          "B000003752",
+          "B000003767"
+        ]
+      },
+      {
+        "part": "b",
+        "chars": 520366,
+        "school_ids": [
+          "B000024241",
+          "B000024167",
+          "B000003761",
+          "B000024239",
+          "B000023087",
+          "B000003755",
+          "B000003763",
+          "B000003762",
+          "B000003744",
+          "B000003749",
+          "B000023089"
+        ]
+      },
+      {
+        "part": "c",
+        "chars": 520016,
+        "school_ids": [
+          "B000003754",
+          "B000003746",
+          "B000003737",
+          "B000003742",
+          "B000003751",
+          "B000003770",
+          "B000003760",
+          "B000003772",
+          "B000003757",
+          "B000003747",
+          "B000003771"
+        ]
+      }
+    ],
+    "isolation": "Each part writes only its assigned school raw files and its own review sidecar. Primary alone merges audits and commits. No DB/network writes or production output replacement.",
+    "active_agents": {
+      "a": "/root/extract_part_a",
+      "b": "/root/extract_part_b",
+      "c": "/root/extract_part_c"
+    },
+    "completed_delegated_school_ids": [
+      "B000003737",
+      "B000003742",
+      "B000003744",
+      "B000003747",
+      "B000003748",
+      "B000003749",
+      "B000003751",
+      "B000003752",
+      "B000003755",
+      "B000003756",
+      "B000003757",
+      "B000003758",
+      "B000003760",
+      "B000003761",
+      "B000003762",
+      "B000003763",
+      "B000003765",
+      "B000003767",
+      "B000003768",
+      "B000003769",
+      "B000003770",
+      "B000003771",
+      "B000003772",
+      "B000023087",
+      "B000023089",
+      "B000024239",
+      "B000026906"
+    ]
+  }
+}

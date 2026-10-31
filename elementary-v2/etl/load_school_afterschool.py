@@ -33,6 +33,8 @@ from datetime import date
 from pathlib import Path
 from typing import Any
 
+from etl.afterschool_rules import merge_terms, resolve_period_slots
+
 ROOT = Path(__file__).resolve().parents[1]
 PREVIEW = ROOT / 'etl/runtime/school_afterschool_preview.json'
 FIXTURE = ROOT / 'src/dev-fixtures/school-afterschool.json'
@@ -44,6 +46,9 @@ HHMM = re.compile(r'^\d{2}:\d{2}$')
 PRIOR_YEAR = re.compile(r'20(1\d|2[0-5])')
 COLUMNS_V1 = ['kind', 'name', 'variant', 'section', 'grades_raw', 'days', 'start', 'end', 'grade1', 'line']
 COLUMNS_V2 = ['kind', 'name', 'variant', 'section', 'grades_raw', 'days', 'start', 'end', 'grade1', 'term', 'line']
+COLUMNS_V3 = ['kind', 'name', 'variant', 'section', 'grades_raw', 'grade_source', 'days', 'start', 'end',
+              'grade1', 'period', 'term', 'line']
+COLUMNS_V3_PLACE = COLUMNS_V3[:-1] + ['place', 'line']
 # a section counts as lower-grade when its grade text tops out at this grade
 LOWER_GRADE_MAX = 3
 # Set to True only after the user has confirmed the reviewed set; --apply refuses otherwise.
@@ -123,7 +128,13 @@ def grade_upper(grades_raw: str | None) -> int | None:
 
 def clean_row(values: list) -> dict[str, Any] | None:
     """One extractor row after the review rules, or None when it is not a grade-1 offer this year."""
-    row = dict(zip(COLUMNS_V2 if len(values) == 11 else COLUMNS_V1, values))
+    schemas = {10: COLUMNS_V1, 11: COLUMNS_V2, 13: COLUMNS_V3, 14: COLUMNS_V3_PLACE}
+    if len(values) not in schemas:
+        raise ValueError(f'Unsupported afterschool row width: {len(values)}')
+    columns = schemas[len(values)]
+    row = dict(zip(columns, values))
+    if len(values) in (13, 14) and row.get('period') != '학기':
+        return None
     if row.get('grade1') == 'false' or PRIOR_YEAR.search(str(row.get('term') or '')):
         return None
     if row.get('kind') == '맞춤형' and not row.get('grades_raw') and row.get('grade1') in ('true', 'unknown'):
@@ -141,6 +152,9 @@ def clean_row(values: list) -> dict[str, Any] | None:
     # '월~금(주1회)' names the range a class may fall on, not five meetings: without a time it says no day
     if row['days'] == WEEKDAYS and not row['start'] and not row['end']:
         row['days'] = None
+    if row.get('place') not in (None, '돌봄내'):
+        raise ValueError('Unsupported afterschool place')
+    row['time_source'] = 'plan' if row['start'] and row['end'] else None
     row['grade_upper'] = grade_upper(row.get('grades_raw'))
     if row['kind'] == '맞춤형' and row['grade_upper'] is None:
         row['grade_upper'] = 2
@@ -153,8 +167,9 @@ def custom_rows(school: dict) -> list[list]:
             for name, day, start, end, grades, line in school.get('rows', [])]
 
 
-def school_record(school: dict) -> dict[str, Any] | None:
+def school_record(school: dict, periods: dict[str, int] | None = None) -> dict[str, Any] | None:
     rows = [r for r in (clean_row(v) for v in school.get('rows', [])) if r]
+    rows = merge_terms(resolve_period_slots(rows, school.get('period_slots', {}), periods or {}))
     if not rows:
         return None
     # tier per kind, the better one wins: a 방과후 list without times must not hide timed 맞춤형 bars
@@ -179,7 +194,7 @@ def school_record(school: dict) -> dict[str, Any] | None:
             option['grade1'] = 'true'
         option['sections'].append({'section': r.get('section'), 'grades_raw': r.get('grades_raw'), 'grade1': r['grade1'],
                                    'grade_upper': r['grade_upper'], 'days': r['days'], 'start': r['start'], 'end': r['end'],
-                                   'term': r.get('term')})
+                                   'term': r.get('term'), 'place': r.get('place'), 'time_source': r.get('time_source')})
     # the same rule as the card's bars: grade-1 sections of 방과후, lower-grade ones when the school has any
     timed = [s for o in options.values() if o['kind'] == '방과후' for s in o['sections']
              if s['grade1'] == 'true' and s['days'] and s['end']]
@@ -200,7 +215,8 @@ def school_record(school: dict) -> dict[str, Any] | None:
 
 
 def build(outputs: list[Path], custom: list[Path] | None = None,
-          afterschool: list[Path] | None = None) -> tuple[list[dict], dict[str, int]]:
+          afterschool: list[Path] | None = None,
+          period_estimates: dict[str, dict[str, int]] | None = None) -> tuple[list[dict], dict[str, int]]:
     # a later --outputs directory (e.g. a re-extraction) replaces the same school from an earlier one
     latest: dict[str, dict] = {}
     for directory in outputs:
@@ -228,7 +244,7 @@ def build(outputs: list[Path], custom: list[Path] | None = None,
     records, counts = [], {'schools': 0, 'published': 0, 'A': 0, 'B': 0, 'C': 0, 'not_published': 0}
     for school in latest.values():
         counts['schools'] += 1
-        record = school_record(school)
+        record = school_record(school, (period_estimates or {}).get(school['school_id']))
         if record is None:
             counts['not_published'] += 1
             continue
@@ -238,7 +254,7 @@ def build(outputs: list[Path], custom: list[Path] | None = None,
     return records, counts
 
 
-def table_rows(records: list[dict], snapshot: str) -> dict[str, list[dict]]:
+def table_rows(records: list[dict], snapshot: str, include_sql32: bool = False) -> dict[str, list[dict]]:
     summary, programs = [], []
     for r in records:
         summary.append({'school_id': r['school_id'], 'source_year': SOURCE_YEAR, 'tier': r['tier'],
@@ -253,7 +269,8 @@ def table_rows(records: list[dict], snapshot: str) -> dict[str, list[dict]]:
                 programs.append({'school_id': r['school_id'], 'seq': seq, 'kind': option['kind'], 'name': option['name'],
                                  'variant': option['variant'], 'section': s['section'], 'category': option['category'],
                                  'grade1': s['grade1'], 'grades_raw': s['grades_raw'], 'grade_upper': s['grade_upper'], 'weekdays': s['days'],
-                                 'start_time': s['start'], 'end_time': s['end'], 'term': s['term']})
+                                 'start_time': s['start'], 'end_time': s['end'], 'term': s['term'],
+                                 **({'place': s.get('place'), 'time_source': s.get('time_source')} if include_sql32 else {})})
     return {'school_afterschool_summary': summary, 'school_afterschool_programs': programs}
 
 
@@ -262,8 +279,27 @@ def fixture(records: list[dict]) -> dict[str, dict]:
     return {r['school_id']: {'school_id': r['school_id'], 'source_year': SOURCE_YEAR, 'tier': r['tier'], 'term': r['term_label'], 'note': r['note'],
                              'options': [{**{k: o[k] for k in ('kind', 'name', 'variant', 'category', 'grade1')},
                                           'sections': [{**{k: s[k] for k in ('section', 'grade1', 'grade_upper', 'days', 'start', 'end')},
-                                                        'school_wide': s['grades_raw'] == SCHOOL_WIDE} for s in o['sections']]}
+                                                        'school_wide': s['grades_raw'] == SCHOOL_WIDE,
+                                                        'place': s.get('place'), 'time_source': s.get('time_source')} for s in o['sections']]}
                                          for o in r['options']]} for r in records}
+
+
+def load_period_estimates(paths: list[Path]) -> dict[str, dict[str, int]]:
+    """Read explicit local reviewed estimates; reject conflicting duplicate school/day counts."""
+    result: dict[str, dict[str, int]] = {}
+    for path in paths:
+        for school in json.loads(path.read_text(encoding='utf8'))['schools']:
+            days = result.setdefault(school['school_id'], {})
+            for day, value in school['days'].items():
+                count = value.get('periods')
+                if count is None:
+                    continue
+                if day not in WEEKDAYS or type(count) is not int or not 1 <= count <= 7:
+                    raise ValueError('Invalid grade-1 period estimate')
+                if day in days and days[day] != count:
+                    raise ValueError(f"Conflicting period estimate: {school['school_id']} {day}")
+                days[day] = count
+    return result
 
 
 def assert_no_school_loss(summary_rows: list[dict], existing_ids: set[str]) -> None:
@@ -280,12 +316,21 @@ def main() -> None:
     parser.add_argument('--outputs', action='append', required=True, type=Path)
     parser.add_argument('--custom-outputs', action='append', type=Path, help='맞춤형 re-extraction (llm_extraction_spec_custom.md)')
     parser.add_argument('--afterschool-outputs', action='append', type=Path, help='방과후-only re-extraction (wide inputs); keeps 맞춤형 rows')
+    parser.add_argument('--period-estimates', action='append', type=Path,
+                        help='Local reviewed grade1_dismissal_estimates JSON; no automatic DB fetch')
+    parser.add_argument('--sql32-fields', action='store_true',
+                        help='Include place/time_source in preview payload; requires SQL 32 before apply')
     parser.add_argument('--write-fixture', action='store_true')
     parser.add_argument('--apply', action='store_true')
     args = parser.parse_args()
     snapshot = date.today().isoformat()
-    records, counts = build(args.outputs, args.custom_outputs, args.afterschool_outputs)
-    rows = table_rows(records, snapshot)
+    periods = load_period_estimates(args.period_estimates or [])
+    records, counts = build(args.outputs, args.custom_outputs, args.afterschool_outputs, periods)
+    rows = table_rows(records, snapshot, include_sql32=args.sql32_fields)
+    metadata_required = any(s.get('place') or s.get('time_source') == 'period_slot'
+                            for r in records for o in r['options'] for s in o['sections'])
+    if args.apply and metadata_required and not args.sql32_fields:
+        raise SystemExit('SQL 32 fields required: refusing to discard place/time provenance before upload')
     report = {'mode': 'apply' if args.apply else 'dry-run', 'snapshot_date': snapshot, **counts,
               'rows': {table: len(items) for table, items in rows.items()}, 'confirmed': CONFIRMED}
     PREVIEW.parent.mkdir(parents=True, exist_ok=True)

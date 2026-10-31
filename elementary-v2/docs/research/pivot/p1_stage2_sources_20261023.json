@@ -1,0 +1,86 @@
+{
+  "retrieved_on": "2026-10-23",
+  "files": [
+    {
+      "school": "seodang-e",
+      "post_id": "1936454",
+      "post_url": "https://www.goesn.kr/seodang-e/na/ntt/selectNttInfo.do?mi=19778&nttSn=1936454",
+      "name": "2026학년도 방과후 돌봄 연간 운영계획.pdf",
+      "url": "https://www.goesn.kr/upload/seodang-e/na/bbs_15431/2026/06/7F2E5C79-7739-0D0C-CD33-BA1D82379670.pdf",
+      "file": "etl/runtime/pivot_p1_stage2_sources_20261023/1936454_0.pdf",
+      "sha256": "1b673c6df385f2801988e0e087d192371873c0bcd058b331a511a9f8233ffda7"
+    },
+    {
+      "school": "seodang-e",
+      "post_id": "1948588",
+      "post_url": "https://www.goesn.kr/seodang-e/na/ntt/selectNttInfo.do?mi=19778&nttSn=1948588",
+      "name": "inline image",
+      "url": "https://www.goesn.kr/dext5editordata/2026/08/20260820_105630965_47668.jpg",
+      "file": "etl/runtime/pivot_p1_stage2_sources_20261023/1948588_image_0.jpg",
+      "sha256": "83eea414472a703ee7961922f92b544dbd2bf4b97feeeee1f773aa0eccaedb19"
+    },
+    {
+      "school": "seodang-e",
+      "post_id": "1948588",
+      "post_url": "https://www.goesn.kr/seodang-e/na/ntt/selectNttInfo.do?mi=19778&nttSn=1948588",
+      "name": "inline image",
+      "url": "https://www.goesn.kr/dext5editordata/2026/08/20260820_105623107_62550.jpg",
+      "file": "etl/runtime/pivot_p1_stage2_sources_20261023/1948588_image_1.jpg",
+      "sha256": "f345984a27b29e53f65a55f501c72f25a6c1f2353e625fdcd85e33b1705755fe"
+    },
+    {
+      "school": "snmg-e",
+      "post_id": "1921198",
+      "post_url": "https://www.goesn.kr/snmg-e/na/ntt/selectNttInfo.do?mi=11321&nttSn=1921198",
+      "name": "2026학년도 방과후돌봄-수익자 방과후 연간계획안.pdf",
+      "url": "https://www.goesn.kr/upload/snmg-e/na/bbs_10647/2026/04/7F900561-0102-98C5-92FC-8A7D245618A7.pdf",
+      "file": "etl/runtime/pivot_p1_stage2_sources_20261023/1921198_0.pdf",
+      "sha256": "9cd6a5f77de2ebbb9dc43fe6e545048c91caa7cbb480c61abf4d19849ccad84a"
+    },
+    {
+      "school": "snmg-e",
+      "post_id": "1954759",
+      "post_url": "https://www.goesn.kr/snmg-e/na/ntt/selectNttInfo.do?mi=11321&nttSn=1954759",
+      "name": "_(최종)2026학년도 3분기 성남미금초 방과후.hwp",
+      "url": "https://www.goesn.kr/upload/snmg-e/na/bbs_10647/2026/09/DE5AD01C-328D-3BD5-4AEC-F2BC8F199006.hwp",
+      "file": "etl/runtime/pivot_p1_stage2_sources_20261023/1954759_0.hwp",
+      "sha256": "0f755ee2edc394b45204d05d595953b5f107c2f73dcd11276176ce7649220139"
+    },
+    {
+      "school": "snmg-e",
+      "post_id": "1954759",
+      "post_url": "https://www.goesn.kr/snmg-e/na/ntt/selectNttInfo.do?mi=11321&nttSn=1954759",
+      "name": "inline image",
+      "url": "https://www.goesn.kr/dext5editordata/2026/09/20260910_180603655_37456.jpeg",
+      "file": "etl/runtime/pivot_p1_stage2_sources_20261023/1954759_image_0.jpeg",
+      "sha256": "a6943a4dfb47f62a00590368d70e349f6cd12e2630dd2600fba563766bbc0559"
+    },
+    {
+      "school": "snmg-e",
+      "post_id": "1925922",
+      "post_url": "https://www.goesn.kr/snmg-e/na/ntt/selectNttInfo.do?mi=11321&nttSn=1925922",
+      "name": "[가정통신문]2026학년도성남미금초 방과후돌봄 학교 교육활동 공개주간 운영계획.pdf",
+      "url": "https://www.goesn.kr/upload/snmg-e/na/bbs_10647/2026/05/8AD85A1A-18B9-409B-0D54-CECA39C26FE9.pdf",
+      "file": "etl/runtime/pivot_p1_stage2_sources_20261023/1925922_0.pdf",
+      "sha256": "a6465879480eebfc142babdff822dab4c600a0aafec3cf4f0be6e86bb1c4faf3"
+    },
+    {
+      "school": "snmg-e",
+      "post_id": "1925922",
+      "post_url": "https://www.goesn.kr/snmg-e/na/ntt/selectNttInfo.do?mi=11321&nttSn=1925922",
+      "name": "inline image",
+      "url": "https://www.goesn.kr/dext5editordata/2026/05/20260506_113320289_84684.png",
+      "file": "etl/runtime/pivot_p1_stage2_sources_20261023/1925922_image_0.png",
+      "sha256": "1a828a160151d3ee496608a195095ea73684cccabaeab5eecc426d05389fe1f0"
+    },
+    {
+      "school": "snmg-e",
+      "post_id": "1956017",
+      "post_url": "https://www.goesn.kr/snmg-e/na/ntt/selectNttInfo.do?mi=11204&nttSn=1956017",
+      "name": "_2026학년도 3분기 초1,2맞춤형 교육활동 수강신청 안내문.pdf",
+      "url": "https://www.goesn.kr/upload/snmg-e/na/bbs_10584/2026/09/CC3646EB-98FD-17EE-3735-8331E0B50225.pdf",
+      "file": "etl/runtime/pivot_p1_stage2_sources_20261023/1956017_0.pdf",
+      "sha256": "241f0168c646175173206c5688fd820d8b698d2988d92084323e707da99f051c"
+    }
+  ]
+}

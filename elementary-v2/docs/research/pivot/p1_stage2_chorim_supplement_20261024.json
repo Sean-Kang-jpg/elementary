@@ -1,0 +1,31 @@
+{
+  "retrieved_on": "2026-10-24",
+  "files": [
+    {
+      "name": "(가통) 2026. 여름방학, 2학기 초1~2맞춤형 프로그램 수강신청 안내.pdf",
+      "file": "etl/runtime/pivot_p1_bulk_parent_sources_20261024/chorim_1943011_notice.pdf",
+      "sha256": "0fe3396fee5069cacd5d7124d0772313b84d3792b6b14161232fc151a62191d8",
+      "url": "https://www.goesn.kr/upload/chorim-e/na/bbs_20659/2026/07/D0B57F7B-A177-C955-5395-CDFEBDD6B887.pdf",
+      "post_url": "https://www.goesn.kr/chorim-e/na/ntt/selectNttInfo.do?mi=26609&nttSn=1943011",
+      "posted_on": "2026-07-10"
+    },
+    {
+      "name": "초1~2맞춤형 여름방학 부서별 운영계획1.pdf",
+      "file": "etl/runtime/pivot_p1_bulk_parent_sources_20261024/chorim_1943011_summer.pdf",
+      "sha256": "93596b192cf3913708f9a36433b59f35119e2c575f8e0fc486ecffaf82735ed9",
+      "url": "https://www.goesn.kr/upload/chorim-e/na/bbs_20659/2026/07/ABA17253-7B23-AAB6-A4CE-421173232669.pdf",
+      "post_url": "https://www.goesn.kr/chorim-e/na/ntt/selectNttInfo.do?mi=26609&nttSn=1943011",
+      "posted_on": "2026-07-10"
+    }
+  ],
+  "school_id": "B000003738",
+  "school_name": "초림초등학교",
+  "status": "supplemental_source_comparison_only",
+  "visual_review_pages": [
+    2
+  ],
+  "canonical_raw_replaced": false,
+  "independent_blind_review_complete": false,
+  "publish_ready": false,
+  "no_operational_upload": true
+}
