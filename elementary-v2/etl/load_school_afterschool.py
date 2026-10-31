@@ -411,7 +411,7 @@ def main() -> None:
         existing_ids: set[str] = set()
         offset = 0
         while True:
-            page = rest(url, service_key, f'school_afterschool_summary?select=school_id&order=school_id&limit=500&offset={offset}')
+            page, _ = rest(url, service_key, f'school_afterschool_summary?select=school_id&order=school_id&limit=500&offset={offset}')
             existing_ids.update(row['school_id'] for row in page)
             if len(page) < 500:
                 break
