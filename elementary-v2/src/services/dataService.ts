@@ -1,6 +1,6 @@
 import { supabase } from '../lib/supabase'
 import { UNLIMITED_APARTMENT_AGE } from '../types'
-import type { AcademyAddress, Apartment, ApartmentAcademySummary, ApartmentTransactionSummary, CareCenter, Coordinates, FilterState, MapBounds, School, SchoolAfterschool, SchoolAfterschoolOption, SchoolAfterschoolSection, SchoolCareHours, SchoolCareStatistics, SchoolDayEstimate, SchoolDayEstimateWeekday, SearchResult } from '../types'
+import type { AcademyAddress, Apartment, ApartmentAcademySummary, ApartmentTransactionSummary, CareCenter, Coordinates, FilterState, MapBounds, School, SchoolAfterschool, SchoolAfterschoolCheck, SchoolAfterschoolOption, SchoolAfterschoolSection, SchoolAfterschoolSlot, SchoolCareHours, SchoolCareStatistics, SchoolDayEstimate, SchoolDayEstimateWeekday, SearchResult } from '../types'
 import { regionCenter, regionHasCityLevel, regionsIntersectingBounds } from '../constants/regionRegistry'
 import { getSchoolNeighborhoodLabel } from '../utils/clusterUtils'
 import { DEFAULT_CENTERS, generateCacheKey, getDisplayMode } from '../utils/mapUtils'
@@ -1038,6 +1038,7 @@ export const getSchoolAfterschool = async (schoolId: string, fetchOptions: { all
     }
   }
   if (!summary.data) return null
+  const { slots, checks } = await getAfterschoolSlots(schoolId)
   const options = new Map<string, SchoolAfterschoolOption>()
   for (const row of (programs.data || []) as Array<Record<string, string | null> & { grade_upper: number | null }>) {
     const key = `${row.kind}|${row.name}|${row.variant ?? ''}`
@@ -1064,7 +1065,37 @@ export const getSchoolAfterschool = async (schoolId: string, fetchOptions: { all
     options.set(key, option)
   }
   const head = summary.data as { school_id: string; source_year: number; tier: SchoolAfterschool['tier']; term_label: string | null }
-  return { school_id: head.school_id, source_year: head.source_year, tier: head.tier, term: head.term_label, note: null, options: [...options.values()] }
+  return { school_id: head.school_id, source_year: head.source_year, tier: head.tier, term: head.term_label, note: null, options: [...options.values()], slots, checks }
+}
+
+let afterschoolSlotsAvailable = true
+
+/** SQL 38 시간대와 미해결 확인 항목. 테이블이 없으면 slots는 null이고 카드는 강좌 행으로 그린다. */
+const getAfterschoolSlots = async (schoolId: string): Promise<{ slots: SchoolAfterschoolSlot[] | null; checks: SchoolAfterschoolCheck[] }> => {
+  if (!afterschoolSlotsAvailable) return { slots: null, checks: [] }
+  const [slots, checks] = await Promise.all([
+    supabase.from('school_afterschool_slots').select('kind,weekday,start_time,end_time,courses,place,time_source').eq('school_id', schoolId),
+    supabase.from('school_afterschool_checks').select('seq,reason,weekday').eq('school_id', schoolId).is('resolved_on', null).order('seq'),
+  ])
+  for (const result of [slots, checks]) {
+    if (result.error) {
+      if (!CARE_NOT_DEPLOYED.has(result.error.code)) throw result.error
+      afterschoolSlotsAvailable = false
+      return { slots: null, checks: [] }
+    }
+  }
+  return {
+    slots: ((slots.data || []) as Array<Record<string, string | number | string[] | null>>).map((row) => ({
+      kind: row.kind as SchoolAfterschoolSlot['kind'],
+      weekday: Number(row.weekday),
+      start: String(row.start_time).slice(0, 5),
+      end: String(row.end_time).slice(0, 5),
+      courses: (row.courses as string[] | null) ?? [],
+      place: row.place === '돌봄내' ? '돌봄내' : null,
+      time_source: row.time_source === 'period_slot' ? 'period_slot' : 'plan',
+    })),
+    checks: ((checks.data || []) as Array<{ reason: string; weekday: number | null }>).map(({ reason, weekday }) => ({ reason, weekday })),
+  }
 }
 
 export const getCareCentersNear = async (latitude: number, longitude: number, maxDistanceM = 1000): Promise<CareCenter[]> => {

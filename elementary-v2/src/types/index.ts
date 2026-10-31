@@ -310,6 +310,23 @@ export interface SchoolAfterschoolOption {
   sections: SchoolAfterschoolSection[]
 }
 
+// SQL 38 시간대층: 학교·요일별 1학년 시간 창. 같은 창을 쓰는 강좌는 한 행이고 이름은 참고로만 둔다.
+export interface SchoolAfterschoolSlot {
+  kind: '맞춤형' | '저학년방과후' | '전학년방과후' | '학년미기재방과후'
+  weekday: number // 1 = 월
+  start: string // 'HH:MM'
+  end: string
+  courses: string[]
+  place: '돌봄내' | null // 돌봄을 다니는 아이만 참여
+  time_source: 'plan' | 'period_slot' // period_slot: '5교시 날' 같은 조건을 요일별 교시 수로 풀어 낸 시각
+}
+
+// SQL 38 school_afterschool_checks 중 아직 학교 확인을 마치지 않은 항목
+export interface SchoolAfterschoolCheck {
+  reason: string
+  weekday: number | null
+}
+
 export interface SchoolAfterschool {
   school_id: string
   source_year: number
@@ -318,6 +335,9 @@ export interface SchoolAfterschool {
   term: string | null
   options: SchoolAfterschoolOption[]
   note: string | null
+  // SQL 38이 없거나 개발용 예시면 null이고, 카드는 options로 막대를 그린다
+  slots?: SchoolAfterschoolSlot[] | null
+  checks?: SchoolAfterschoolCheck[]
 }
 
 // SQL 23 nearby_care_centers(): 다함께돌봄센터(서울 우리동네키움센터 포함).

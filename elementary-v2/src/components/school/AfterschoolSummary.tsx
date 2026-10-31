@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import type { SchoolAfterschool, SchoolAfterschoolOption, SchoolAfterschoolSection, SchoolCareHours, SchoolCareStatistics, SchoolDayEstimate } from '../../types'
+import type { SchoolAfterschool, SchoolAfterschoolOption, SchoolAfterschoolSection, SchoolAfterschoolSlot, SchoolCareHours, SchoolCareStatistics, SchoolDayEstimate } from '../../types'
 
 const WEEKDAYS = ['월', '화', '수', '목', '금'] as const
 // 막대의 시간축: 정오부터 19시 30분까지. 오전 수업은 하교 시각만 보면 되므로 그리지 않는다.
@@ -53,6 +53,39 @@ const daySpan = (
     }
   }
   return end === null ? null : { start, end }
+}
+
+/** daySpan과 같은 규칙을 SQL 38 시간대에 적용한다(weekday 1 = 월). */
+const slotSpan = (
+  slots: SchoolAfterschoolSlot[],
+  weekday: number,
+  include: (slot: SchoolAfterschoolSlot) => boolean,
+  dismissal: number | null,
+): Span | null => {
+  const earliest = Math.max(NOON, dismissal ?? 0)
+  let start: number | null = null
+  let end: number | null = null
+  for (const slot of slots) {
+    if (slot.weekday !== weekday || !include(slot)) continue
+    const e = toMin(slot.end) as number
+    if (e <= earliest) continue
+    const s = Math.max(toMin(slot.start) as number, earliest)
+    start = start === null ? s : Math.min(start, s)
+    end = end === null ? e : Math.max(end, e)
+  }
+  return end === null ? null : { start, end }
+}
+
+// 부모에게 보이는 확인 사유. 원문 줄 번호 같은 detail은 검수용이라 보이지 않는다
+const CHECK_LABELS: Record<string, string> = {
+  맞춤형시각없음: '맞춤형 시간이 운영계획에 없어요',
+  원문불일치: '운영계획 안에서 시간·요일이 서로 달라요',
+  PDF원문: '원문이 PDF라 자동 정리가 틀릴 수 있어요',
+  방과후시각미확인: '방과후 일부 강좌 시간이 적혀 있지 않아요',
+  돌봄내분류확인: '돌봄 안에서 하는 프로그램인지 확인이 필요해요',
+  맞춤형미확정행: '맞춤형 일부가 아직 정해지지 않았어요',
+  조건부개설미확인: '인원 등 개설 조건이 있어요',
+  교시요일배정미확인: '교시 기준 시간을 일부 요일에 맞추지 못했어요',
 }
 
 const Bar: React.FC<{ from: number; to: number; className: string; title: string; style?: React.CSSProperties }> = ({ from, to, className, title, style }) =>
@@ -115,32 +148,60 @@ const AfterschoolSummary: React.FC<{
   // (시간을 공시한 학교 중 17:00이 가장 많다: 서울 71%, 경기 56%). 학교 확인이 필요하다고 함께 쓴다.
   const careEstimated = careEnd === null && (careStats?.afternoon_care_rooms ?? 0) > 0
   const careBandEnd = careEnd ?? (careEstimated ? ESTIMATED_CARE_END : null)
-  const timedCourses = data !== null && data.tier !== 'C' && options.length > 0
-  // 저학년 반이 없는 학교만 전학년 반으로 그리고, 그렇다고 밝힌다
-  const lowerBasis = afterschool.some((o) => o.sections.some((s) => isLowerGrade(s) && isTimed(s)))
+  // SQL 38 시간대가 있으면 막대·데리러 가는 시각은 시간대로 그린다(시간대가 없는 학교는 'none').
+  // 없으면(적용 전, 개발용 예시) 지금처럼 강좌 행으로 그린다
+  const slots = data?.slots ?? null
+  const checks = data?.checks ?? []
+  const slotBased = slots !== null && slots.length > 0
+  const timedCourses = slots !== null ? slotBased : data !== null && data.tier !== 'C' && options.length > 0
+  // 저학년 반이 없는 학교만 전학년 반으로 그리고, 그렇다고 밝힌다. 시간대층은 전학년·학년 미기재를 늘 빗금으로 둔다
+  const lowerBasis = slotBased
+    ? slots.some((s) => s.kind === '저학년방과후')
+    : afterschool.some((o) => o.sections.some((s) => isLowerGrade(s) && isTimed(s)))
   const afterschoolSection = lowerBasis ? isLowerGrade : isGrade1
   // 진한 막대에 넣지 않은 방과후 반: 전학년 반과 대상 학년이 적혀 있지 않은 반. 빗금으로 이어 그린다
   // (방배초처럼 A반·B반을 시간으로만 나누고 학년을 적지 않은 학교는 이것만 있다, 2026-10-15)
   const allPaid = options.filter((o) => o.kind === '방과후')
   // 막대·데리러 가는 시각에 들어가지 못한 방과후 강좌: 반 어디에도 요일·종료 시각이 없다(서초초 26개 등)
   const untimedPaid = timedCourses ? allPaid.filter((o) => !o.sections.some(isTimed)).length : 0
-  const unknownGradeSections = allPaid.some((o) => o.sections.some((s) => !isGrade1(s) && isTimed(s)))
+  const unknownGradeSections = slotBased
+    ? slots.some((s) => s.kind === '학년미기재방과후')
+    : allPaid.some((o) => o.sections.some((s) => !isGrade1(s) && isTimed(s)))
   const extensionLabel = unknownGradeSections ? '전학년·학년 미기재 반' : '전학년 반(고학년 위주)'
 
   const rows = WEEKDAYS.map((label, index) => {
     const dismissal = toMin(day?.weekdays[index]?.dismissal)
-    const c = timedCourses ? daySpan(custom, label, undefined, dismissal) : null
-    const a = timedCourses ? daySpan(afterschool, label, afterschoolSection, dismissal) : null
+    const weekday = index + 1
+    // 돌봄내: 돌봄을 다니는 아이만 참여하는 창. 위 칸에 연하게 그리고 데리러 가는 시각에는 넣지 않는다
+    const careOnly = slotBased ? slotSpan(slots, weekday, (s) => s.place === '돌봄내' && s.kind !== '전학년방과후' && s.kind !== '학년미기재방과후', dismissal) : null
+    const c = !timedCourses ? null
+      : slotBased ? slotSpan(slots, weekday, (s) => s.kind === '맞춤형' && !s.place, dismissal) : daySpan(custom, label, undefined, dismissal)
+    const a = !timedCourses ? null
+      : slotBased ? slotSpan(slots, weekday, (s) => s.kind === '저학년방과후' && !s.place, dismissal) : daySpan(afterschool, label, afterschoolSection, dismissal)
     // 진한 막대 뒤로 더 늦게 이어지는 부분. 데리러 가는 시각에는 넣지 않는다
-    const all = timedCourses ? daySpan(allPaid, label, (s) => !afterschoolSection(s), dismissal) : null
+    const all = !timedCourses ? null
+      : slotBased ? slotSpan(slots, weekday, (s) => s.kind === '전학년방과후' || s.kind === '학년미기재방과후', dismissal)
+        : daySpan(allPaid, label, (s) => !afterschoolSection(s), dismissal)
+    // '5교시 날' 같은 조건을 요일별 교시 수로 풀어 낸 시각이 그날 막대에 있다
+    const estimated = slotBased && slots.some((s) => s.weekday === weekday && s.time_source === 'period_slot' && (toMin(s.end) as number) > Math.max(NOON, dismissal ?? 0))
+    const checked = checks.some((check) => check.weekday === weekday)
     const allFrom = all ? Math.max(all.start ?? a?.end ?? dismissal ?? all.end - 80, a?.end ?? 0) : null
     const ext = all && allFrom !== null && all.end > allFrom ? { start: allFrom, end: all.end } : null
     const pickup = Math.max(dismissal ?? 0, c?.end ?? 0, a?.end ?? 0) || null
     // 이 요일에 열리지만 시각이 없어 막대로 못 그린 방과후 강좌(서초초 '화(주 80분)' 등). 막대 위에 글로 쓴다
     const untimed = allPaid.filter((o) => !o.sections.some(isTimed) && o.sections.some((s) => s.days?.includes(label))).length
-    return { label, dismissal, c, a, ext, pickup, untimed }
+    return { label, dismissal, c, a, ext, pickup, untimed, careOnly, estimated, checked }
   })
   const hasExtension = rows.some((row) => row.ext)
+  const hasCareOnly = rows.some((row) => row.careOnly)
+  const estimatedDays = rows.filter((row) => row.estimated).map((row) => row.label)
+  // 확인 사유는 사유마다 한 번, 요일이 있으면 붙인다
+  const checkLines = [...checks.reduce((acc, check) => {
+    const days = acc.get(check.reason) ?? new Set<string>()
+    if (check.weekday) days.add(WEEKDAYS[check.weekday - 1])
+    return acc.set(check.reason, days)
+  }, new Map<string, Set<string>>())].map(([reason, days]) =>
+    `${CHECK_LABELS[reason] ?? '학교 확인이 필요한 부분이 있어요'}${days.size ? `(${WEEKDAYS.filter((d) => days.has(d)).join('·')})` : ''}`)
   const hasTimeline = timedCourses || careBandEnd !== null || rows.some((row) => row.dismissal !== null)
   if (!hasTimeline && options.length === 0) return null
 
@@ -185,7 +246,8 @@ const AfterschoolSummary: React.FC<{
           <div className="mb-1.5 flex flex-wrap gap-x-3 gap-y-1 text-[11px] text-gray-600" aria-hidden="true">
             <span className="inline-flex items-center gap-1"><i className="h-2.5 w-2.5 rounded-sm bg-gray-300" />수업</span>
             {timedCourses && <span className="inline-flex items-center gap-1"><i className="h-2.5 w-2.5 rounded-sm bg-emerald-500" />맞춤형</span>}
-            {timedCourses && <span className="inline-flex items-center gap-1"><i className="h-2.5 w-2.5 rounded-sm bg-amber-500" />{lowerBasis ? '방과후 저학년 반' : '방과후'}</span>}
+            {hasCareOnly && <span className="inline-flex items-center gap-1"><i className="h-2.5 w-2.5 rounded-sm border border-emerald-500 bg-emerald-100" />돌봄 이용 시</span>}
+            {timedCourses && (!slotBased || lowerBasis) && <span className="inline-flex items-center gap-1"><i className="h-2.5 w-2.5 rounded-sm bg-amber-500" />{lowerBasis ? '방과후 저학년 반' : '방과후'}</span>}
             {hasExtension && <span className="inline-flex items-center gap-1"><i className="h-2.5 w-2.5 rounded-sm border border-amber-500" style={ALL_GRADE_FILL} />{extensionLabel}</span>}
             {careEnd !== null && <span className="inline-flex items-center gap-1"><i className="h-2.5 w-2.5 rounded-sm border border-indigo-400 bg-indigo-100" />돌봄</span>}
             {careEstimated && <span className="inline-flex items-center gap-1"><i className="h-2.5 w-2.5 rounded-sm border border-dashed border-indigo-400 bg-indigo-50" />돌봄(17시 추정)</span>}
@@ -194,17 +256,20 @@ const AfterschoolSummary: React.FC<{
           <ol className="grid grid-cols-[1.25rem_minmax(0,1fr)] items-center gap-x-2 gap-y-1.5" aria-label="요일별 오후 일정">
             {rows.map((row) => (
               <li key={row.label} className="contents">
-                <span className="text-xs font-semibold text-gray-600">{row.label}</span>
+                <span className={`text-xs font-semibold ${row.checked ? 'text-amber-700' : 'text-gray-600'}`}>
+                  {row.label}{row.checked && <sup aria-hidden="true">!</sup>}
+                </span>
                 <div
                   className="relative h-6 rounded bg-gray-50"
                   role="img"
-                  aria-label={`${row.label}요일 ${row.dismissal ? `하교 ${fmt(row.dismissal)}` : '하교 시각 미확인'}${row.c ? `, 맞춤형 ~${fmt(row.c.end)}` : ''}${row.a ? `, 방과후 ~${fmt(row.a.end)}` : ''}${row.ext ? `, ${extensionLabel} ~${fmt(row.ext.end)}` : ''}${careEnd ? `, 돌봄 ~${fmt(careEnd)}` : careEstimated ? ', 돌봄 17:00까지로 추정, 학교 확인 필요' : ''}${untimedPaid && row.untimed ? `, 시간 미기재 방과후 ${row.untimed}개` : ''}`}
+                  aria-label={`${row.label}요일 ${row.dismissal ? `하교 ${fmt(row.dismissal)}` : '하교 시각 미확인'}${row.c ? `, 맞춤형 ~${fmt(row.c.end)}` : ''}${row.a ? `, 방과후 ~${fmt(row.a.end)}` : ''}${row.ext ? `, ${extensionLabel} ~${fmt(row.ext.end)}` : ''}${careEnd ? `, 돌봄 ~${fmt(careEnd)}` : careEstimated ? ', 돌봄 17:00까지로 추정, 학교 확인 필요' : ''}${untimedPaid && row.untimed ? `, 시간 미기재 방과후 ${row.untimed}개` : ''}${row.careOnly ? `, 돌봄 이용 시 ~${fmt(row.careOnly.end)}` : ''}${row.estimated ? ', 교시 기준 추정' : ''}${row.checked ? ', 학교 확인 필요' : ''}`}
                 >
                   {careEnd && <Bar from={row.dismissal ?? 13 * 60} to={careEnd} className="inset-y-0 rounded-sm border border-indigo-400 bg-indigo-100" title={`돌봄 ~${fmt(careEnd)}`} />}
                   {careEstimated && <Bar from={row.dismissal ?? 13 * 60} to={ESTIMATED_CARE_END} className="inset-y-0 rounded-sm border border-dashed border-indigo-400 bg-indigo-50/60" title="돌봄 17:00까지로 추정 · 학교 확인 필요" />}
                   {careEnd && careExt && <Bar from={careEnd} to={careExt} className="inset-y-0 rounded-r-sm border border-l-0 border-dashed border-indigo-400" title={`저녁·연장 ~${fmt(careExt)}`} />}
                   {row.dismissal && <Bar from={T0} to={row.dismissal} className="inset-y-1 rounded-sm bg-gray-300" title={`하교 ${fmt(row.dismissal)}`} />}
                   {/* 맞춤형은 위 칸, 방과후는 아래 칸: 시간이 겹쳐도 둘 다 보인다 */}
+                  {row.careOnly && <Bar from={row.careOnly.start ?? row.careOnly.end - 80} to={row.careOnly.end} className="top-1 h-[7px] rounded-sm border border-emerald-500 bg-emerald-100" title={`돌봄 이용 시 ~${fmt(row.careOnly.end)}`} />}
                   {row.c && <Bar from={row.c.start ?? row.dismissal ?? row.c.end - 80} to={row.c.end} className="top-1 h-[7px] rounded-sm bg-emerald-500" title={`맞춤형 ~${fmt(row.c.end)}`} />}
                   {row.a && <Bar from={row.a.start ?? row.dismissal ?? row.a.end - 80} to={row.a.end} className="top-[13px] h-[7px] rounded-sm bg-amber-500" title={`방과후 ~${fmt(row.a.end)}`} />}
                   {row.ext && <Bar from={row.ext.start} to={row.ext.end} className="top-[13px] h-[7px] rounded-sm border border-amber-500" style={ALL_GRADE_FILL} title={`전학년 반 ~${fmt(row.ext.end)}`} />}
@@ -220,6 +285,17 @@ const AfterschoolSummary: React.FC<{
           <div className="relative ml-[1.75rem] mt-1 h-3.5 text-[10px] text-gray-400" aria-hidden="true">
             {[12, 14, 16, 18].map((h) => <span key={h} className="absolute -translate-x-1/2" style={{ left: `${pct(h * 60)}%` }}>{h}시</span>)}
           </div>
+          {(estimatedDays.length > 0 || hasCareOnly) && (
+            <p className="mt-1 text-[11px] leading-4 text-gray-600" data-testid="school-afterschool-slot-notes">
+              {estimatedDays.length > 0 && `${estimatedDays.length === WEEKDAYS.length ? '막대' : estimatedDays.join('·')} 시간은 운영계획의 '5교시 날' 같은 조건을 요일별 교시 수에 맞춘 교시 기준 추정이에요. `}
+              {hasCareOnly && '연한 초록은 돌봄교실 안에서 하는 프로그램이라 돌봄을 다닐 때만 참여해요.'}
+            </p>
+          )}
+          {checkLines.length > 0 && (
+            <p className="mt-1 text-[11px] leading-4 text-amber-800" data-testid="school-afterschool-checks">
+              <span className="font-semibold">학교 확인 필요</span> · {checkLines.join(' · ')}
+            </p>
+          )}
           {untimedPaid > 0 && (
             <p className="mt-1 text-[11px] leading-4 text-amber-800" data-testid="school-afterschool-untimed">
               방과후 {untimedPaid}개 강좌는 운영계획에 {rows.some((row) => row.untimed) ? '요일만 있고 ' : ''}시간이 적혀 있지 않아 막대와 데리러 가는 시각에 넣지 않았어요. 신청 안내에서 시간을 확인하고, 시간표 미리 짜보기에서 직접 넣을 수 있어요.
@@ -243,8 +319,10 @@ const AfterschoolSummary: React.FC<{
             {rows.map((row) => <span key={row.label}>{row.label} <strong>{row.pickup ? fmt(row.pickup) : '–'}</strong></span>)}
           </p>
           <p className="mt-1 text-[11px] text-amber-800">
-            {lowerBasis || !afterschool.length
-              ? `그날 가장 늦게 끝나는 저학년 대상 반 기준이에요.${hasExtension ? ` 빗금은 ${unknownGradeSections ? '전학년 반이거나 대상 학년이 적혀 있지 않은 반이라' : '전학년 반이라'} 고르면 그만큼 늦어질 수 있어요.` : ' 고른 강좌에 따라 더 이를 수 있어요.'}`
+            {slotBased && !lowerBasis
+              ? `저학년 대상 반이 따로 적혀 있지 않아 맞춤형과 하교 기준이에요.${hasExtension ? ` 빗금은 ${unknownGradeSections ? '전학년 반이거나 대상 학년이 적혀 있지 않은 반이라' : '전학년 반이라'} 고르면 그만큼 늦어질 수 있어요.` : ''}`
+              : lowerBasis || !afterschool.length
+              ?`그날 가장 늦게 끝나는 저학년 대상 반 기준이에요.${hasExtension ? ` 빗금은 ${unknownGradeSections ? '전학년 반이거나 대상 학년이 적혀 있지 않은 반이라' : '전학년 반이라'} 고르면 그만큼 늦어질 수 있어요.` : ' 고른 강좌에 따라 더 이를 수 있어요.'}`
               : '저학년 반이 따로 적혀 있지 않아 전학년 대상 반 기준이에요. 늦은 반은 고학년용일 수 있어요.'}
           </p>
         </div>
