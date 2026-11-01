@@ -2,7 +2,7 @@
 // node --test로 바로 시험한다(UX_BACKLOG_PLAN_CENTERED.md UX-K0).
 
 /** 일정을 시작한 곳. plan_start·plan_item_add의 `from`과 같다(CODEX_UX_HANDOFF.md C-01). */
-export type PlanSource = 'guide' | 'home_worry' | 'school_detail' | 'apartment_detail' | 'result_page' | 'timetable' | 'my'
+export type PlanSource = 'home' | 'guide' | 'home_worry' | 'school_detail' | 'apartment_detail' | 'result_page' | 'timetable' | 'my'
 
 /** 우리집 일정의 두 면. */
 export type PlanFace = 'timeline' | 'week'
@@ -35,6 +35,8 @@ export interface RoadmapTaskLike {
   id: string
   text: string
   link?: string
+  /** 'MM-DD'. 시행령으로 정해진 날짜가 있는 할 일만(통학구역 확정·취학통지·연기 신청 마감). */
+  due?: string
 }
 
 /** roadmapFor()의 결과 중 일정이 쓰는 부분. roadmap.ts를 가져오지 않으려고 모양만 받는다. */
@@ -103,10 +105,16 @@ export const mergeTimeline = (
     entries.push({ ...entry, done: checked[entry.id] === true })
   }
   if (roadmap) {
-    const nowWhen: TimelineWhen = roadmap.stage === 'planning' ? { kind: 'anytime' } : { kind: 'month', month: roadmap.month }
-    for (const task of roadmap.now) push({ id: task.id, title: task.text, href: task.link, when: nowWhen, source: 'roadmap' })
+    // 날짜가 있는 할 일은 그 달이 속한 해로 읽는다. 이번 달 것은 올해라, 지난 날짜는 다음 해로 넘어가지 않고 놓친 일로 남는다.
+    const whenOf = (task: RoadmapTaskLike, month: number): TimelineWhen => {
+      if (task.due && /^\d{2}-\d{2}$/.test(task.due)) {
+        return { kind: 'date', date: `${now.getFullYear() + (month < roadmap.month ? 1 : 0)}-${task.due}` }
+      }
+      return roadmap.stage === 'planning' ? { kind: 'anytime' } : { kind: 'month', month }
+    }
+    for (const task of roadmap.now) push({ id: task.id, title: task.text, href: task.link, when: whenOf(task, roadmap.month), source: 'roadmap' })
     for (const group of roadmap.upcoming) {
-      for (const task of group.tasks) push({ id: task.id, title: task.text, href: task.link, when: { kind: 'month', month: group.month }, source: 'roadmap' })
+      for (const task of group.tasks) push({ id: task.id, title: task.text, href: task.link, when: whenOf(task, group.month), source: 'roadmap' })
     }
   }
   for (const item of pinned) push({ id: item.id, title: item.title, href: item.href, when: item.when, source: 'pinned' })
@@ -114,6 +122,42 @@ export const mergeTimeline = (
     .map((entry, index) => ({ entry, index, key: sortKey(entry.when, now) }))
     .sort((a, b) => a.key - b.key || a.index - b.index)
     .map(({ entry }) => entry)
+}
+
+/** 날짜 항목까지 남은 날. 오늘이면 0, 지났으면 음수. 날짜가 없는 항목은 null. */
+export const daysUntil = (when: TimelineWhen, now = new Date()): number | null => {
+  if (when.kind !== 'date') return null
+  const date = parseDate(when.date)
+  return date ? Math.round((date.getTime() - startOfDay(now).getTime()) / DAY) : null
+}
+
+export interface TimelineGroup {
+  /** 이 달(놓친 일 포함), 뒤의 달, 또는 null = 시기 없음. */
+  month: number | null
+  entries: TimelineEntry[]
+}
+
+/**
+ * 정렬된 일정을 달별로 묶는다. 지난 날짜와 이번 달 항목은 이번 달 묶음에 — 놓친 일을 따로 숨기지 않는다.
+ * 입학 1~2년 전처럼 시기 없는 항목은 맨 뒤 하나의 묶음.
+ */
+export const groupTimeline = (entries: TimelineEntry[], now = new Date()): TimelineGroup[] => {
+  const current = now.getMonth() + 1
+  const today = startOfDay(now)
+  const groups: TimelineGroup[] = []
+  for (const entry of entries) {
+    let month: number | null
+    if (entry.when.kind === 'anytime') month = null
+    else if (entry.when.kind === 'month') month = entry.when.month
+    else {
+      const date = parseDate(entry.when.date)
+      month = !date ? null : date < today ? current : date.getMonth() + 1
+    }
+    const existing = groups.find((group) => group.month === month)
+    if (existing) existing.entries.push(entry)
+    else groups.push({ month, entries: [entry] })
+  }
+  return groups
 }
 
 /** 마지막으로 연 뒤 지난 날 수(달력 기준). 기록이 없거나 깨졌으면 null. */

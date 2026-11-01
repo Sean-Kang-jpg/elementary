@@ -1,6 +1,6 @@
 import { describe, it } from 'node:test'
 import assert from 'node:assert/strict'
-import { daysSince, mergeTimeline, nextDateOf, validPinned, type PinnedItem, type RoadmapViewLike } from './familyPlanCore.ts'
+import { daysSince, daysUntil, groupTimeline, mergeTimeline, nextDateOf, validPinned, type PinnedItem, type RoadmapViewLike } from './familyPlanCore.ts'
 
 const pin = (id: string, when: PinnedItem['when']): PinnedItem => ({ id, title: id, href: `/guide/${id}`, when, addedAt: '2026-11-01T00:00:00.000Z' })
 
@@ -40,6 +40,35 @@ describe('family plan timeline', () => {
     assert.equal(entries.filter((e) => e.id === 'nov-a').length, 1)
     assert.equal(first?.source, 'roadmap')
     assert.equal(first?.done, true)
+  })
+
+  it('dates a task with a decree day in the year its month falls in, and keeps a passed one as missed', () => {
+    const roadmap: RoadmapViewLike = {
+      stage: 'admission',
+      month: 12,
+      now: [{ id: 'notice', text: '', due: '12-20' }],
+      upcoming: [{ month: 1, tasks: [{ id: 'jan-a', text: '' }] }],
+    }
+    const entries = mergeTimeline(roadmap, [], {}, new Date(2026, 11, 25))
+    assert.deepEqual(entries.map((e) => e.when), [{ kind: 'date', date: '2026-12-20' }, { kind: 'month', month: 1 }])
+    assert.equal(daysUntil(entries[0].when, new Date(2026, 11, 25)), -5)
+    const autumn: RoadmapViewLike = { stage: 'admission', month: 11, now: [], upcoming: [{ month: 12, tasks: [{ id: 'defer', text: '', due: '12-31' }] }] }
+    assert.deepEqual(mergeTimeline(autumn, [], {}, new Date(2026, 10, 1))[0].when, { kind: 'date', date: '2026-12-31' })
+  })
+
+  it('groups by month, folding missed dates into this month and undated items last', () => {
+    const now = new Date(2026, 10, 15)
+    const entries = mergeTimeline(admission(11), [
+      pin('missed', { kind: 'date', date: '2026-10-30' }),
+      pin('dec-date', { kind: 'date', date: '2026-12-20' }),
+      pin('free', { kind: 'anytime' }),
+    ], {}, now)
+    assert.deepEqual(groupTimeline(entries, now).map((g) => [g.month, g.entries.map((e) => e.id)]), [
+      [11, ['missed', 'nov-a']],
+      [12, ['dec-a', 'dec-date']],
+      [1, ['jan-a']],
+      [null, ['free']],
+    ])
   })
 
   it('shows planning-stage tasks without a month, after dated items', () => {

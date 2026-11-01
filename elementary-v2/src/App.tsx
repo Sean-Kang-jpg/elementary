@@ -24,6 +24,7 @@ import checklistContent from './content/checklist.json'
 import { hasSavedProfile, readProfile, saveProfile, type Profile } from './utils/profile'
 import { FAQ_PAGE, findGuide, findLearning } from './content'
 import { readEntryYear } from './utils/entryYear'
+import { startFamilyPlan } from './utils/familyPlan'
 import { getApartmentByPublicKey, getSchoolDetail } from './services/dataService'
 import { readFavorites, subscribeFavorites, type FavoriteRecord } from './utils/favorites'
 import { initAnalytics, markEntry, rememberDetailEntry, takeEntry, track, trackPageView, type EntrySource } from './utils/analytics'
@@ -135,6 +136,12 @@ function MapApplication() {
   }
   const changeEntryYear = (year: number) => {
     setEntryYear(year)
+    // 입학연도를 처음 고르는 것이 입학까지 일정의 시작이다. 프로필을 저장하기 전에 불러야 처음인지 안다.
+    startFamilyPlan({
+      from: view === 'my' ? 'my' : view === 'guide' || view === 'faq' ? 'guide' : view === 'timetable' ? 'timetable' : 'home',
+      face: 'timeline',
+      contentId: view === 'guide' ? guideSlug ?? undefined : undefined,
+    })
     changeProfile((current) => ({ ...current, entryYear: year }))
     // 어떤 입학연도가 고려되는지가 곧 아이 연령 분포다(PRD v2 11절의 리서치 신호).
     track('select_entry_year', { entry_year: year })

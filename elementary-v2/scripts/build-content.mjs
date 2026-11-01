@@ -265,6 +265,7 @@ for (const name of ['roadmap.json', 'checklist.json']) {
   for (const task of tasks) {
     checkPath(file, task.link)
     if (ids.has(task.id)) problem(file, `id ${task.id} is used twice`)
+    if (task.due !== undefined && !/^(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])$/.test(task.due)) problem(file, `${task.id} has due ${task.due}, not MM-DD`)
     ids.add(task.id)
   }
 }

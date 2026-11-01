@@ -5,7 +5,13 @@ import { readChecklist, subscribeProfile } from '../../utils/profile'
 import { VIEW_PATHS } from '../../utils/urlState'
 import { followLink } from './contentLinks'
 
-const TOTAL = checklist.groups.reduce((n, group) => n + group.items.length, 0)
+const IDS = checklist.groups.flatMap((group) => group.items.map((item) => item.id))
+const TOTAL = IDS.length
+// The checklist storage also holds roadmap ticks from 우리집 일정 (UX-03), so count only checklist items.
+const countDone = () => {
+  const checked = readChecklist()
+  return IDS.filter((id) => checked[id]).length
+}
 
 /**
  * A slim link to the checklist with this device's progress. Placed under every
@@ -13,8 +19,8 @@ const TOTAL = checklist.groups.reduce((n, group) => n + group.items.length, 0)
  * parent is reading.
  */
 export default function ChecklistBanner({ onNavigate }: { onNavigate: (path: string) => void }) {
-  const [done, setDone] = useState(() => Object.values(readChecklist()).filter(Boolean).length)
-  useEffect(() => subscribeProfile(() => setDone(Object.values(readChecklist()).filter(Boolean).length)), [])
+  const [done, setDone] = useState(countDone)
+  useEffect(() => subscribeProfile(() => setDone(countDone())), [])
   const percent = Math.round((done / TOTAL) * 100)
 
   return (

@@ -10,13 +10,13 @@
  * 여기서만 보낸다 — 화면마다 보내면 "처음 한 번"을 지킬 수 없다.
  */
 import { track } from './analytics'
-import { readChecklist, readProfile, hasSavedProfile, saveChecklist, subscribeProfile } from './profile'
+import { readChecklist, readProfile, hasSavedProfile, saveChecklist, subscribeProfile, type Profile } from './profile'
 import { roadmapFor } from './roadmap'
 import { readPlans, subscribePlans } from './schedule/plans'
 import { daysSince, mergeTimeline, validPinned, type PinnedItem, type PlanFace, type PlanSource, type TimelineEntry } from './familyPlanCore'
 
-export type { PinnedItem, PlanFace, PlanSource, TimelineEntry, TimelineWhen } from './familyPlanCore'
-export { nextDateOf } from './familyPlanCore'
+export type { PinnedItem, PlanFace, PlanSource, TimelineEntry, TimelineGroup, TimelineWhen } from './familyPlanCore'
+export { daysUntil, groupTimeline, nextDateOf } from './familyPlanCore'
 
 const KEY = 'wherecho:family-plan-v1'
 const EVENT = 'wherecho:family-plan-change'
@@ -109,9 +109,11 @@ export const removeFromPlan = (id: string): boolean => {
   return writeStore({ ...store, pinned: store.pinned.filter((item) => item.id !== id) })
 }
 
-/** 입학까지 면. 입학연도가 없으면 로드맵 없이 담은 항목만. */
-export const readTimeline = (now = new Date()): TimelineEntry[] => {
-  const profile = readProfile()
+/**
+ * 입학까지 면. 입학연도가 없으면 로드맵 없이 담은 항목만.
+ * `profile`은 화면이 이미 들고 있는 값(주소의 `?year=`가 저장값보다 앞선다)을 넘길 때만.
+ */
+export const readTimeline = (now = new Date(), profile: Profile = readProfile()): TimelineEntry[] => {
   const roadmap = profile.entryYear === null ? null : roadmapFor(profile.entryYear, profile, now)
   return mergeTimeline(roadmap, readStore().pinned, readChecklist(), now)
 }
@@ -122,6 +124,8 @@ export const setTimelineDone = (id: string, done: boolean): void => {
   if (done) checked[id] = true
   else delete checked[id]
   saveChecklist(checked)
+  // 체크리스트와 같은 이벤트(MEASUREMENT_PLAN 9절: 있는 이벤트를 쓴다). 체크할 때만.
+  if (done) track('check_checklist_item', { category: 'roadmap', item_id: id })
 }
 
 let visitNoted = false

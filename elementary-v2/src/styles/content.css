@@ -1699,6 +1699,76 @@
   color: var(--warm-faint);
 }
 
+/* 우리집 일정(UX-03): 점 대신 완료 체크, 날짜가 정해진 할 일에는 D-day. */
+.roadmap__tasks li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-bottom: 1px dashed var(--warm-border);
+}
+
+.roadmap__tasks li a,
+.roadmap__tasks li > span {
+  flex: 1;
+  min-width: 0;
+  border-bottom: 0;
+  padding-left: 0;
+}
+
+.roadmap__tasks li a::before,
+.roadmap__tasks li > span::before {
+  display: none;
+}
+
+.roadmap__tasks li a > span:first-child,
+.roadmap__tasks li > span > span:first-child {
+  flex: 1;
+}
+
+.roadmap__done {
+  flex: none;
+  width: 18px;
+  height: 18px;
+  margin: 0;
+  accent-color: var(--warm-sage);
+  cursor: pointer;
+}
+
+.roadmap__tasks li.is-done a > span:first-child,
+.roadmap__tasks li.is-done > span > span:first-child {
+  color: var(--warm-faint);
+  text-decoration: line-through;
+}
+
+.roadmap__due {
+  flex: none;
+  border-radius: 999px;
+  padding: 1px 8px;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 750;
+  white-space: nowrap;
+}
+
+.roadmap__due--soon {
+  color: var(--warm-accent-strong);
+  background: var(--warm-accent-soft);
+}
+
+.roadmap__due--later {
+  color: var(--warm-muted);
+  background: var(--warm-bg);
+}
+
+.roadmap__due--missed {
+  color: var(--warm-faint);
+  background: var(--warm-bg);
+}
+
+.roadmap__tasks li.is-done .roadmap__due {
+  opacity: 0.6;
+}
+
 .roadmap__timeline ol {
   position: relative;
   margin: 6px 0 0;

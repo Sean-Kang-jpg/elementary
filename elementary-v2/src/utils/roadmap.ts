@@ -18,6 +18,8 @@ export interface RoadmapTask {
   only?: 'private' | 'moving'
   /** Planning tasks that matter only in some months, such as the early-entry window. */
   onlyMonths?: number[]
+  /** 'MM-DD' fixed by the decree (zone decision, notice, deferral cutoff). Yearly examples carry none. */
+  due?: string
 }
 
 const ADMISSION = roadmap.admission as Record<string, RoadmapTask[]>

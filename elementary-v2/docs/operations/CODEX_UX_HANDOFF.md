@@ -76,13 +76,14 @@ Claude가 UX-K0·UX-03·UX-26을 하는 동안 Codex는 아래를 바꾸지 않�
 | `startFamilyPlan({ from, face, contentId })` | 일정을 여는 CTA. 처음일 때만 `plan_start` |
 | `addToPlan({ id, title, href, when }, { from, contentId })` → `boolean` | "내 일정에 넣기"(UX-09). 실패하면 false — 담겼다고 보이지 말 것. 처음 담을 때만 `plan_item_add` |
 | `isInPlan(id)`, `removeFromPlan(id)` | 담기 버튼의 ✓ 상태 |
-| `readTimeline(now?)` → `TimelineEntry[]` | 입학까지 면, 완료 표시(UX-10). 로드맵 + 담은 항목, 날짜순 |
-| `setTimelineDone(id, done)` | 완료 체크. 체크리스트와 같은 저장값 |
+| `readTimeline(now?, profile?)` → `TimelineEntry[]` | 입학까지 면, 완료 표시(UX-10). 로드맵 + 담은 항목, 날짜순. 시행령 날짜가 있는 할 일(`roadmap.json`의 `due`)은 날짜 항목 |
+| `groupTimeline(entries)`, `daysUntil(when)` | 달별 묶음(지난 날짜는 이번 달에), D-day. MY의 `RoadmapCard`가 쓰는 모양(UX-03) |
+| `setTimelineDone(id, done)` | 완료 체크. 체크리스트와 같은 저장값. 체크할 때 `check_checklist_item`(`category: 'roadmap'`) |
 | `notePlanVisit()` | 우리집 일정·홈 일정 카드가 열릴 때. `plan_return` |
 | `subscribeFamilyPlan(listener)` | 담은 항목·프로필·시간표 초안이 바뀔 때 |
 | `nextDateOf('MM-DD')` | 홈 선반의 `deadline`을 `when: { kind: 'date' }`로 바꿀 때 |
 
-`when`은 `{ kind: 'date', date: 'YYYY-MM-DD' }` · `{ kind: 'month', month }` · `{ kind: 'anytime' }`. `from`은 C-01 표의 값에 `timetable`·`my`가 더해진다.
+`when`은 `{ kind: 'date', date: 'YYYY-MM-DD' }` · `{ kind: 'month', month }` · `{ kind: 'anytime' }`. `from`은 C-01 표의 값에 `home`·`timetable`·`my`가 더해진다(입학연도를 처음 고른 화면, UX-03). 체크리스트 저장값에 로드맵 할 일의 완료도 들어가므로, 체크리스트 진행률은 `checklist.json`의 id만 센다.
 `plan_start`·`plan_item_add`·`plan_return`은 지금 `track()`으로 직접 보낸다. C-01이 병합되면 Claude가 타입 있는 함수로 바꾼다.
 
 ## 5. 작업 카드
