@@ -78,8 +78,9 @@ npm run typecheck
   같은 요일 돌봄이 없으면 반 아래 경고(개발 서버에서 확인)
 - 11-01 후속: `baaa69b`까지 release 배포·운영 스모크 통과. 확인 목록 도구 `etl/afterschool_checks_sheet.py`(export → CSV에 확인일 → resolve, 적재기가 재적재 때 `resolved_on`을 이어받음, `3ea6cb1`). 첫 목록 `etl/runtime/afterschool_checks/afterschool_checks_20261101.csv` 1,062건(맞춤형시각없음 724). 한솔초 정정 운영 재적재(`docs/research/pivot/p1_corrections_20261101/`, 확인 1,056건). 신백현초 맹검: 정답과 다른 7개는 원문끼리 다른 곳이라 추출이 기준대로 원문불일치로 남김(맹검 문서 1절, 판정 정정 `0fceda2`). 적재는 검수 게이트 뒤
 - 분당·위례 검수 파일을 적재에 쓴 그대로 master에 커밋(`9e6d5c8`). 결과 38개는 병합 커밋으로 이미 같은 내용이 있어, 적재 입력은 이제 모두 저장소에 있음
-- `ac065b3`(master만, **release 미배포** — 배포 승인 대기): MY 요일 카드에 그날 시간대가 먼저 나오고, 고르면 그 창의 강좌만, '이 시간대에 강좌명 직접 적기'(시각 채움, 돌봄내면 `requiresCare`)
-- 남은 것: `ac065b3` 배포, 확인 목록 사람 처리(CSV는 한솔초 정정 전 것이라 다시 export).
+- `ac065b3`(**release 배포·운영 스모크 통과 11-01**): MY 요일 카드에 그날 시간대가 먼저 나오고, 고르면 그 창의 강좌만, '이 시간대에 강좌명 직접 적기'(시각 채움, 돌봄내면 `requiresCare`)
+- 확인 목록: export가 학교별 질문지도 씀(`fc640b9`, `afterschool_school_questions_<날짜>.csv`, 222곳). 1,056건 대부분 원문에 시각이 없는 것(서울 맞춤형시각없음 634: 시각 빈 행 416·요일 없는 행 293·120분 초과 제외 15)이라 문서로는 못 닫고 학교 문의가 필요
+- 남은 것: 학교 문의(사용자), PDF원문 14곳 대조(83곳 8곳은 입력 파일이 sha 이름으로 안 찾아짐 — P1 입력 매니페스트 경로로 찾아 PDF를 표 단위로 볼 것).
   `my-inline-selection`·`care-planning-defaults` 스모크는 이 기기에 playwright가 없어 못 돌림
 
 ### 2026-10-30: 경기 우선 방과후 추출 완료 83/83 (커밋만, 운영 DB 변경 없음)
