@@ -65,11 +65,13 @@ npm run typecheck
 
 ## Uncommitted Work At Handoff
 
-### 2026-11-01: 우리집 일정 중심 UX 개편 — 백로그·Codex 분담 (문서만, master 커밋)
+### 2026-11-01: 우리집 일정 중심 UX 개편 — 백로그·API·입학까지 v0 (master 커밋, release 미배포)
 
 - 사용자 결정: 계획을 제품 중심에, GNB 시간표 → **우리집 일정**(입학까지 / 우리 아이 한 주, URL `/timetable` 유지), 홈은 고민에서 시작, MY는 프로필·설정만
-- 백로그 `elementary-v2/docs/product/UX_BACKLOG_PLAN_CENTERED.md`(UX-01~26), 분담·작업 카드 `elementary-v2/docs/operations/CODEX_UX_HANDOFF.md`(C-01~06)
-- 다음 첫 작업(Claude): UX-K0 `src/utils/familyPlan.ts` API 고정 → UX-03 입학까지 v0. Codex는 C-01·C-02·C-03 바로 시작 가능, C-04~06은 사용자 문구·사실 대기
+- 백로그 `elementary-v2/docs/product/UX_BACKLOG_PLAN_CENTERED.md`(UX-01~26), 분담·작업 카드 `elementary-v2/docs/operations/CODEX_UX_HANDOFF.md`(C-01~09)
+- master `4fce323`까지: UX-K0 `familyPlan.ts`(저장 키 `wherecho:family-plan-v1`, 순수 규칙 `familyPlanCore.ts`) · UX-03 MY 입학까지 카드에 시행령 날짜 D-day(`roadmap.json` `due`: 11-30·12-20·12-31)·완료 체크(체크리스트 저장값 공유, 진행률은 체크리스트 id만)·입학연도 첫 선택 시 `plan_start` · Codex C-01(타입 있는 퍼널 이벤트)·C-02(.ics, 날짜 있는 일정만) 검토·병합
+- 검증: lint·typecheck·build, test:unit 132, public smoke 115 PASS(3001). **로컬 smoke는 3001에서** — 3010·3011·3042 등은 지도 축소 검사에서 멈춘다(Naver 허용 호스트로 추정)
+- 다음: release 배포(사용자 승인), Codex C-03·C-07·C-08·C-09, Claude UX-26 우리집 일정 탭. 사용자 몫: C-04 홈 문구, C-06 추첨 결과 사실, 휴대폰 캘린더에 .ics 한 번 열어 보기
 
 ### 2026-10-31~11-01: 방과후 시간대층 운영 적재·화면 전환·배포 (커밋·배포 완료)
 
