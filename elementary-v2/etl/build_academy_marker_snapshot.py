@@ -9,6 +9,7 @@ from collections import Counter, defaultdict
 from pathlib import Path
 
 from academy_institutions import neis_key
+from academy_levels import classify_levels
 from academy_subjects import classify
 
 BASE_DIR = Path(__file__).resolve().parent
@@ -54,6 +55,8 @@ def institution_list(rows: list[dict]) -> list[dict]:
     Rows without a key fall back to merging by name, type and realm as before.
     subjects: the name-derived categories the map colours and filters by
     (academy_subjects.py); realm alone files most academies as 입시.
+    levels: the school levels the academy's own course list and fee items name
+    (academy_levels.py), left out when they name none - most academies.
     """
     by_identity: dict[tuple, dict] = {}
     for row in rows:
@@ -62,6 +65,9 @@ def institution_list(rows: list[dict]) -> list[dict]:
         realm = (row.get("REALM_SC_NM") or "미상").strip()
         key = neis_key(row)
         item = {"name": name, "type": institution_type, "realm": realm, "subjects": classify(name, realm, institution_type)}
+        levels = classify_levels(str(row.get("LE_CRSE_LIST_NM") or ""), str(row.get("PSNBY_THCC_CNTNT") or ""), name)
+        if levels:
+            item["levels"] = levels
         if key:
             item["key"] = key
         by_identity.setdefault((key,) if key else ("", name, institution_type, realm), item)

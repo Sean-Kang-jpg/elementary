@@ -48,11 +48,12 @@ class MergeSportsDojoMarkersTest(unittest.TestCase):
         # The 2026-10-06 refresh lost every academy's subjects here; the key must not go the same way.
         row = {
             "address_id": "a", "academy_count": "1", "institution_type_counts": "{}", "realm_counts": "{}",
-            "institutions": json.dumps([{"name": "가수학", "type": "학원", "realm": "입시", "subjects": ["math"], "key": "neis:B10-1"}]),
+            "institutions": json.dumps([{"name": "가수학", "type": "학원", "realm": "입시", "subjects": ["math"], "levels": ["elem"], "key": "neis:B10-1"}]),
         }
         [item] = academy_marker(row)["institutions"]
         self.assertEqual(item["subjects"], ["math"])
         self.assertEqual(item["key"], "neis:B10-1")
+        self.assertEqual(item["levels"], ["elem"])
 
     def test_same_name_institutions_with_different_keys_both_stay(self) -> None:
         target = {

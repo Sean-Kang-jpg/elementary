@@ -84,6 +84,17 @@ class MarkerInstitutionKeyTest(unittest.TestCase):
         self.assertEqual([item.get("key") for item in items], ["neis:B10-1", "neis:B10-2", None])
         self.assertEqual(items[0]["subjects"], ["math"])
 
+    def test_markers_carry_levels_only_when_the_courses_name_one(self) -> None:
+        rows = [
+            {"ACA_NM": "가수학", "ACA_INSTI_SC_NM": "학원", "REALM_SC_NM": "입시.검정 및 보습", "ATPT_OFCDC_SC_CODE": "B10", "ACA_ASNUM": "1",
+             "LE_CRSE_LIST_NM": "초등수학,중등수학", "PSNBY_THCC_CNTNT": " "},
+            {"ACA_NM": "나피아노", "ACA_INSTI_SC_NM": "교습소", "REALM_SC_NM": "예능(대)", "ATPT_OFCDC_SC_CODE": "B10", "ACA_ASNUM": "2",
+             "LE_CRSE_LIST_NM": "피아노(초급)", "PSNBY_THCC_CNTNT": "피아노:150000"},
+        ]
+        items = build_academy_marker_snapshot.institution_list(rows)
+        self.assertEqual(items[0]["levels"], ["elem", "secondary"])
+        self.assertNotIn("levels", items[1])
+
 
 if __name__ == "__main__":
     unittest.main()
