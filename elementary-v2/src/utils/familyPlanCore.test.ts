@@ -1,6 +1,6 @@
 import { describe, it } from 'node:test'
 import assert from 'node:assert/strict'
-import { daysSince, daysUntil, groupTimeline, mergeTimeline, nextDateOf, validPinned, type PinnedItem, type RoadmapViewLike } from './familyPlanCore.ts'
+import { daysSince, daysUntil, dueBadge, groupTimeline, mergeTimeline, nextDateOf, validPinned, type PinnedItem, type RoadmapViewLike } from './familyPlanCore.ts'
 
 const pin = (id: string, when: PinnedItem['when']): PinnedItem => ({ id, title: id, href: `/guide/${id}`, when, addedAt: '2026-11-01T00:00:00.000Z' })
 
@@ -84,6 +84,15 @@ describe('family plan helpers', () => {
     assert.equal(nextDateOf('11-01', new Date(2026, 10, 1)), '2026-11-01')
     assert.equal(nextDateOf('11-06', new Date(2026, 10, 10)), '2027-11-06')
     assert.equal(nextDateOf('1106', new Date(2026, 10, 10)), null)
+  })
+
+  it('labels a dated item by days left, soon within two weeks', () => {
+    const now = new Date(2026, 10, 1)
+    assert.deepEqual(dueBadge({ kind: 'date', date: '2026-11-01' }, now), { text: '오늘', tone: 'soon' })
+    assert.deepEqual(dueBadge({ kind: 'date', date: '2026-11-15' }, now), { text: 'D-14', tone: 'soon' })
+    assert.deepEqual(dueBadge({ kind: 'date', date: '2026-11-30' }, now), { text: 'D-29', tone: 'later' })
+    assert.deepEqual(dueBadge({ kind: 'date', date: '2026-10-31' }, now), { text: '지남', tone: 'missed' })
+    assert.equal(dueBadge({ kind: 'month', month: 12 }, now), null)
   })
 
   it('counts calendar days since the last visit', () => {

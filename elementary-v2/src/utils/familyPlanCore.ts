@@ -131,6 +131,14 @@ export const daysUntil = (when: TimelineWhen, now = new Date()): number | null =
   return date ? Math.round((date.getTime() - startOfDay(now).getTime()) / DAY) : null
 }
 
+/** 날짜 항목의 표시: D-12(2주 안이면 soon), 오늘, 지남. 날짜를 모르는 항목은 null. 입학까지 면과 홈 카드가 같이 쓴다. */
+export const dueBadge = (when: TimelineWhen, now = new Date()): { text: string; tone: 'soon' | 'later' | 'missed' } | null => {
+  const days = daysUntil(when, now)
+  if (days === null) return null
+  if (days < 0) return { text: '지남', tone: 'missed' }
+  return { text: days === 0 ? '오늘' : `D-${days}`, tone: days <= 14 ? 'soon' : 'later' }
+}
+
 export interface TimelineGroup {
   /** 이 달(놓친 일 포함), 뒤의 달, 또는 null = 시기 없음. */
   month: number | null

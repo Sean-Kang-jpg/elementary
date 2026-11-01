@@ -794,6 +794,13 @@ try {
     'picking a year on the home shows the days left and a way to the full roadmap',
   )
   assertPage("!document.querySelector('.roadmap .pref-chip') && !document.querySelector('.guide-stage')", 'the home keeps the full roadmap in 우리집 일정 and the guides under 입학 준비')
+  // UX-08c: a family with a plan sees it first, above the season list, with a way to each face.
+  assertPage(
+    "(() => { const card = document.querySelector('.plan-summary'); const week = card?.querySelector('a.plan-summary__week')?.getAttribute('href') || '';"
+    + " const shelf = document.querySelector('.home-shelf, .timetable-banner');"
+    + " return Boolean(card && shelf && card.compareDocumentPosition(shelf) & Node.DOCUMENT_POSITION_FOLLOWING) && week.startsWith('/timetable') })()",
+    'the home puts the 우리집 일정 card first, linking to both faces',
+  )
   run(['eval', "document.querySelector('.roadmap-summary__more').click(); 'to the hub'"])
   await waitFor("location.pathname === '/timetable' && document.querySelectorAll('.roadmap .pref-chip').length >= 2", 'the summary opens the roadmap in 우리집 일정')
   run(['eval', "document.querySelectorAll('.roadmap .pref-chip')[1].click(); 'private interest on'"])

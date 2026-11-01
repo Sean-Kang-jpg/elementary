@@ -259,7 +259,7 @@ MY(`/my`)에는 프로필·관심 후보·저장 학원만 남았다(UX-06). 입
 - 첫 항목은 항상 "우리 아이 배정 학교가 궁금해요" → 검색창 포커스(날짜 창 없음).
 - 누르면 `trackHomeWorryClick`(C-01), `markEntry('home')`.
 - 빌드 검증(UX-08b): 고민의 `href`가 있는 경로인지, 가이드면 `nextStep`이 있는지(C-03 병합 뒤).
-- 일정이 있는 사용자 카드(UX-08c)는 범위 밖. `RoadmapSummary` 자리는 그대로 둔다.
+- 일정이 있는 사용자 카드(UX-08c)는 2026-11-01에 들어갔다: `PlanSummary`(옛 `RoadmapSummary`)가 `HomeShelves` 바로 위에 있다. 고민 목록으로 바꿔도 이 카드는 목록 위에 둔다. 담은 고민의 ✓는 C-08의 `AddToPlanButton`이 맡는다.
 - C-08이 먼저 병합되면 시즌 항목의 `planId`와 "내 일정에 넣기" 버튼을 고민 항목으로 그대로 옮긴다.
 
 **막힌 이유**: 홈 제목·설명, 11~12월 고민 문구를 사용자가 정해야 한다.
@@ -274,7 +274,7 @@ MY(`/my`)에는 프로필·관심 후보·저장 학원만 남았다(UX-06). 입
 
 ### C-05 홈 하단 정리 (UX-12) — `blocked`(C-04), S
 
-**목표**: 지도·지역·학습 카드를 한 줄 보조 링크로 내리고 예시 학교 영역 제목을 "일정 예시"로.
+**목표**: 지도·지역·학습 카드를 한 줄 보조 링크로 내리고 예시 학교 영역 제목을 "일정 예시"로. 일정이 있는 가족에게는 `HomeShelves`의 `.timetable-banner`(시간표 미리 짜보기)를 숨긴다 — 위의 `PlanSummary`에 같은 길("우리 아이 한 주")이 있다(`hasFamilyPlan()`).
 
 **바꿀 파일**: `HomePage.tsx`, `src/content/home.json`, `build-shell-pages.mjs`, 관련 CSS
 
@@ -325,7 +325,7 @@ MY(`/my`)에는 프로필·관심 후보·저장 학원만 남았다(UX-06). 입
 
 ### C-08 내 일정에 넣기 (UX-09) — `ready`, S
 
-**목표**: 홈 "지금 챙길 것" 카드마다 "내 일정에 넣기". 담은 항목은 MY의 입학까지 카드 해당 달에 보인다(UX-03).
+**목표**: 홈 "지금 챙길 것" 카드마다 "내 일정에 넣기". 담은 항목은 우리집 일정 입학까지 면(`/timetable?face=timeline`)의 해당 달에 보인다(UX-03, UX-26).
 
 **바꿀 파일**: 신규 `src/components/content/AddToPlanButton.tsx`, `src/components/navigation/HomeShelves.tsx`, `src/content/home-shelves.json`, `src/styles/home-shelves.css`, `scripts/public-smoke.mjs`
 
@@ -339,7 +339,7 @@ MY(`/my`)에는 프로필·관심 후보·저장 학원만 남았다(UX-06). 입
 - 정적 홈(`build-shell-pages.mjs`)에는 버튼을 넣지 않는다 — 기기 저장값을 읽어야 해서 앱에서만 뜬다. `seasonCards()`의 선택 규칙은 바꾸지 않으므로 두 파일 동기화 규칙에 걸리지 않는다.
 - C-04가 `season`을 `worries`로 바꿀 때 `planId`와 이 버튼을 그대로 옮긴다(C-04 명세에 반영할 것).
 
-**완료 기준**: lint·typecheck·build·public smoke 통과. smoke: 홈에서 첫 시즌 카드의 버튼 → "일정에 있어요" → `/my`의 `.roadmap`에 그 제목이 보임(입학연도가 있는 상태에서) → 디버그 기록에 `plan_item_add` 한 번. 다시 누르면 빠짐.
+**완료 기준**: lint·typecheck·build·public smoke 통과. smoke: 홈에서 첫 시즌 카드의 버튼 → "일정에 있어요" → `/timetable?face=timeline`의 `.roadmap`에 그 제목이 보임(2026-11-01 UX-26으로 `/my`에서 옮김)(입학연도가 있는 상태에서) → 디버그 기록에 `plan_item_add` 한 번. 다시 누르면 빠짐.
 
 **결과**: 
 

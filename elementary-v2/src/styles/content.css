@@ -2955,3 +2955,11 @@ dialog.my-entry-sheet > a.my-button { display: flex; align-items: center; justif
 .plan-faces a:focus-visible { outline: 2px solid var(--warm-accent-strong); outline-offset: 1px; }
 .plan-page .my-preparation { margin-bottom: 14px; }
 .my-plan-link { margin: 14px 0; }
+
+/* 홈의 우리집 일정 카드 (UX-08c). RoadmapSummary의 모양을 그대로 쓰고 두 면으로 가는 줄을 더했다. */
+.plan-summary__kicker { margin: 0 0 2px; color: var(--warm-accent-strong); font-size: 12px; font-weight: 700; }
+.plan-summary .roadmap-summary__tasks li { display: flex; align-items: center; gap: 8px; }
+.plan-summary .roadmap-summary__tasks li > span { flex: 1; min-width: 0; }
+.plan-summary__progress { margin: 6px 0 0; color: var(--warm-sage); font-size: 13px; font-weight: 700; }
+.plan-summary__week { margin-top: 0; border-top-style: solid; }
+.plan-summary__week > span { display: inline-flex; align-items: center; gap: 6px; }

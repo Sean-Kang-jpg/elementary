@@ -16,7 +16,7 @@ import { readPlans, subscribePlans } from './schedule/plans'
 import { daysSince, mergeTimeline, validPinned, type PinnedItem, type PlanFace, type PlanSource, type TimelineEntry } from './familyPlanCore'
 
 export type { PinnedItem, PlanFace, PlanSource, TimelineEntry, TimelineGroup, TimelineWhen } from './familyPlanCore'
-export { daysUntil, groupTimeline, nextDateOf } from './familyPlanCore'
+export { daysUntil, dueBadge, groupTimeline, nextDateOf } from './familyPlanCore'
 
 const KEY = 'wherecho:family-plan-v1'
 const EVENT = 'wherecho:family-plan-change'

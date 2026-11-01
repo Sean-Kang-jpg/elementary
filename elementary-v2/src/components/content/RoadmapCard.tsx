@@ -4,7 +4,7 @@ import checklist from '../../content/checklist.json'
 import { daysToEntry, ENTRY_DAY_NOTE, roadmapFor } from '../../utils/roadmap'
 import type { MovingPlan, Profile, SchoolInterest } from '../../utils/profile'
 import { readChecklist } from '../../utils/profile'
-import { daysUntil, groupTimeline, readTimeline, setTimelineDone, subscribeFamilyPlan, type TimelineEntry } from '../../utils/familyPlan'
+import { daysUntil, dueBadge, groupTimeline, readTimeline, setTimelineDone, subscribeFamilyPlan, type TimelineEntry } from '../../utils/familyPlan'
 import { track } from '../../utils/analytics'
 import { planPath, VIEW_PATHS } from '../../utils/urlState'
 import { followLink } from './contentLinks'
@@ -26,14 +26,6 @@ const MOVING: Array<{ value: MovingPlan; label: string }> = [
 ]
 
 const CHECKLIST_IDS = checklist.groups.flatMap((group) => group.items.map((item) => item.id))
-
-/** D-12, 오늘, 지남. 날짜를 모르는 항목은 표시 없음. */
-const dueLabel = (entry: TimelineEntry): { text: string; tone: 'soon' | 'later' | 'missed' } | null => {
-  const days = daysUntil(entry.when)
-  if (days === null) return null
-  if (days < 0) return { text: '지남', tone: 'missed' }
-  return { text: days === 0 ? '오늘' : `D-${days}`, tone: days <= 14 ? 'soon' : 'later' }
-}
 
 /**
  * "입학까지 약 D-N" and this month's tasks (PRD v2 7.2). The tasks narrow to the
@@ -70,7 +62,7 @@ export default function RoadmapCard({ entryYear, profile, onProfileChange, onNav
   const taskList = (entries: TimelineEntry[]) => (
     <ul className="roadmap__tasks">
       {entries.map((entry) => {
-        const due = dueLabel(entry)
+        const due = dueBadge(entry.when)
         return (
           <li key={entry.id} className={entry.done ? 'is-done' : undefined}>
             <input
