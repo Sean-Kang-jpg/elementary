@@ -65,13 +65,15 @@ npm run typecheck
 
 ## Uncommitted Work At Handoff
 
-### 2026-11-01: 우리집 일정 중심 UX 개편 — 백로그·API·입학까지 v0 (master 커밋, release 미배포)
+### 2026-11-01: 우리집 일정 중심 UX 개편 — 우리집 일정 탭·완료 표시 (master 커밋, UX-26 이후 release 미배포)
 
 - 사용자 결정: 계획을 제품 중심에, GNB 시간표 → **우리집 일정**(입학까지 / 우리 아이 한 주, URL `/timetable` 유지), 홈은 고민에서 시작, MY는 프로필·설정만
 - 백로그 `elementary-v2/docs/product/UX_BACKLOG_PLAN_CENTERED.md`(UX-01~26), 분담·작업 카드 `elementary-v2/docs/operations/CODEX_UX_HANDOFF.md`(C-01~09)
-- master `4fce323`까지: UX-K0 `familyPlan.ts`(저장 키 `wherecho:family-plan-v1`, 순수 규칙 `familyPlanCore.ts`) · UX-03 MY 입학까지 카드에 시행령 날짜 D-day(`roadmap.json` `due`: 11-30·12-20·12-31)·완료 체크(체크리스트 저장값 공유, 진행률은 체크리스트 id만)·입학연도 첫 선택 시 `plan_start` · Codex C-01(타입 있는 퍼널 이벤트)·C-02(.ics, 날짜 있는 일정만) 검토·병합
-- 검증: lint·typecheck·build, test:unit 132, public smoke 115 PASS(3001). **로컬 smoke는 3001에서** — 3010·3011·3042 등은 지도 축소 검사에서 멈춘다(Naver 허용 호스트로 추정)
-- 다음: release 배포(사용자 승인), Codex C-03·C-07·C-08·C-09, Claude UX-26 우리집 일정 탭. 사용자 몫: C-04 홈 문구, C-06 추첨 결과 사실, 휴대폰 캘린더에 .ics 한 번 열어 보기
+- 운영 배포 완료(release `013bc70`): UX-K0 `familyPlan.ts` · UX-03 입학까지 D-day·완료 체크 · C-01 퍼널 이벤트 · C-02 .ics. 운영 smoke 119 PASS
+- master `5852791`까지(미배포): C-03 가이드 14편 다음 한 걸음(문구 사용자 확인 대기) · **UX-26** `/timetable?face=timeline|week`(`planPath()`), 면 없는 주소는 입학까지(연도 없이 시간표만 있으면 한 주) · **UX-06** MY는 입학연도·관심 후보·저장 학원 + 우리집 일정 링크(`MyTimetableSummary` 삭제) · **UX-08c** 홈 `PlanSummary`(옛 `RoadmapSummary`)가 고민 목록 위 · **UX-10** `describeProgress`, `schedule/coverage.ts`(엔진 공백만, 하교~19시)
+- 검증: lint·typecheck·build, test:unit 140, public smoke 118 PASS(3001). **로컬 smoke는 3001에서** — 3010·3011·3042 등은 지도 축소 검사에서 멈춘다(Naver 허용 호스트로 추정)
+- 기능별 스모크 중 `my-ux-smoke`·`morning-care-production-smoke`는 MY의 시간표 요약(`.my-timetable-summary`)을 찾으므로 UX-26 뒤로는 맞지 않는다. 고칠 때는 `/timetable?face=week`로
+- 다음: release 배포(사용자 승인 — C-03 문구 포함), Codex C-07·C-08·C-09(C-08 smoke는 `/timetable?face=timeline`으로 고쳐 둠), C-05에 일정 있는 가족의 `.timetable-banner` 숨김 추가. 사용자 몫: C-04 홈 문구, C-06 추첨 결과 사실, 휴대폰 캘린더에 .ics 열어 보기
 
 ### 2026-10-31~11-01: 방과후 시간대층 운영 적재·화면 전환·배포 (커밋·배포 완료)
 
