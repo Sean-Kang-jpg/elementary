@@ -358,6 +358,7 @@ MY(`/my`)에는 프로필·관심 후보·저장 학원만 남았다(UX-06). 입
 - 버튼 격리 검증: 실제 컴포넌트를 변환해 hook/API 대역으로 실행, exit 0. API 인자, 확인된 상태 표시, 담기/제거 실패 시 기존 선택 유지·status, 성공 시 오류 해제, 구독 함수 전달·서버 snapshot을 확인했다. 임시 실행기는 삭제했다. 실제 API·기기 저장·이벤트는 smoke로 확인한다.
 - `npm run browser:smoke:public -- http://127.0.0.1:3048`: C-08 검증은 모두 PASS. 링크 안에 버튼이 없음을 확인했고, 입학연도 선택 → 실제 담기 → MY의 한 번 표시 → home_worry/해당 ID의 plan_item_add 1회 → 홈 재진입 상태 유지 → 제거·추가 이벤트 없음 → 실제 Storage 쓰기 실패 시 미선택·status·이벤트 없음까지 통과했다. 이후 기존 지도 축소 검사에서 `zooming out replaces the district markers with province markers — still not true after 15000ms and 32 checks`로 exit 1(`scripts/public-smoke.mjs:450`). 전체 smoke 통과는 남은 검증 블로커다. 지도 검사 조건은 변경하지 않았다.
 - 임시 실행기는 정리했으며 master 병합·release 배포·운영 DB 쓰기는 수행하지 않는다.
+- 2026-11-02 호환성 갱신: 원격 master `e27556f`(UX-26·UX-08c·UX-10) 위로 작업 브랜치만 rebase했다. 새 `PlanSummary`와 `/timetable?face=timeline` 경로로 smoke를 보완했다. lint·typecheck·build 통과, 단위 테스트 140개 통과. 실제 C-08 담기·새 입학까지 면 표시·제거·저장 실패 검사 모두 PASS. 전체 smoke는 이후 동일 지도 축소 검사에서 15초/31 checks로 exit 1. 기존 master 작업 폴더는 바꾸지 않았다.
 
 **검토**: 
 
