@@ -5,6 +5,7 @@ import { getSchoolAfterschool, getSchoolCareStatistics, getSchoolDayEstimate } f
 import SchoolCarePanel from '../care/SchoolCarePanel'
 import AfterschoolSummary from './AfterschoolSummary'
 import { track } from '../../utils/analytics'
+import { startFamilyPlan } from '../../utils/familyPlan'
 import { useSeenOnce } from '../care/useSeenOnce'
 import { followLink } from '../content/contentLinks'
 import { guidePath, timetablePath } from '../../utils/urlState'
@@ -156,10 +157,14 @@ const SchoolDayEstimateCard: React.FC<{
       {(day || care || careStats) && <SourceLine text={`출처: ${[day?.clock_source, day && day.periods_source !== '없음' ? day.periods_source : null, care?.source, careStats && !care ? `학교알리미 ${careStats.statistics_year}년 돌봄 공시` : null].filter(Boolean).join(' · ')}. 학교 사정으로 바뀔 수 있어요.`} />}
 
       {planLink && (
-        <a href={timetablePath(school.school_id)} onClick={(event) => followLink(event, timetablePath(school.school_id), onOpenGuide)}
+        <a href={timetablePath(school.school_id)} onClick={(event) => {
+          if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return
+          startFamilyPlan({ from: 'school_detail', face: 'week', contentId: school.school_id })
+          followLink(event, timetablePath(school.school_id), onOpenGuide)
+        }}
           className="timetable-cta mt-3" data-testid="school-day-plan-link">
           <CalendarPlus size={18} aria-hidden="true" />
-          <span>이 학교로 시간표 미리 짜보기</span>
+          <span>이 학교로 우리 아이 한 주 만들기</span>
           <ChevronRight size={18} aria-hidden="true" />
         </a>
       )}

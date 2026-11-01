@@ -344,6 +344,35 @@ try {
   await assertOriginsAgree()
 
   run(['set', 'viewport', '390', '844'])
+  run(['open', baseUrl])
+  // C-07: a new device starts once, before leaving the school detail. Keep the
+  // debug events in the same document across SPA navigation to count repeats.
+  run(['eval', `(() => {
+    for (const key of ['wherecho:profile-v1', 'wherecho:family-plan-v1', 'elementary-schedule-plans-v1', 'elementary-favorites-v1', 'favorite-school-ids']) localStorage.removeItem(key)
+    localStorage.setItem('wherecho:analytics-debug', '1')
+    return 'C-07 fresh device, debug on'
+  })()`], { quiet: true })
+  run(['open', new URL('/school/서울-강남구-서울대현초등학교--B000002292', baseUrl).toString()])
+  await waitFor("document.querySelector('[aria-label=\"학교 상세 메뉴\"]')", 'C-07 opens the school detail on a fresh device')
+  run(['eval', "[...document.querySelectorAll('[aria-label=\"학교 상세 메뉴\"] button')].find(node => node.textContent.trim() === '방과후·돌봄').click(); 'care tab'"])
+  await waitFor("document.querySelector('[data-testid=school-day-plan-link]')", 'C-07 school weekly-plan CTA is present')
+  assertPage("document.querySelector('[data-testid=school-day-plan-link]').getAttribute('href') === '/timetable?school=B000002292' && document.querySelector('[data-testid=school-day-plan-link]').textContent.includes('이 학교로 우리 아이 한 주 만들기')", 'C-07 preserves the school-specific timetable address')
+  run(['eval', "document.querySelector('[data-testid=school-day-plan-link]').click(); 'start week'"])
+  await waitFor("location.pathname === '/timetable' && new URLSearchParams(location.search).get('school') === 'B000002292' && document.querySelector('#timetable-title')", 'C-07 opens the selected school weekly plan')
+  assertPage("(() => { const events = (window.__ANALYTICS_LOG__ || []).filter(entry => entry.event === 'plan_start'); return events.length === 1 && events[0].params.from === 'school_detail' && events[0].params.face === 'week' && events[0].params.content_id === 'B000002292' && Object.keys(events[0].params).sort().join(',') === 'content_id,face,from' })()", 'C-07 records exactly one school_detail plan_start with only the school ID')
+  run(['eval', 'history.back(); "back to school"'])
+  await waitFor("document.querySelector('[aria-label=\"학교 상세 메뉴\"]')", 'C-07 returns to the school detail')
+  run(['eval', "[...document.querySelectorAll('[aria-label=\"학교 상세 메뉴\"] button')].find(node => node.textContent.trim() === '방과후·돌봄').click(); 'care tab'"])
+  await waitFor("document.querySelector('[data-testid=school-day-plan-link]')", 'C-07 weekly-plan CTA is available on return')
+  run(['eval', "document.querySelector('[data-testid=school-day-plan-link]').click(); 'reopen week'"])
+  await waitFor("location.pathname === '/timetable' && document.querySelector('#timetable-title')", 'C-07 reopens an existing plan')
+  assertPage("(window.__ANALYTICS_LOG__ || []).filter(entry => entry.event === 'plan_start').length === 1", 'C-07 does not count an existing plan as a second start')
+  run(['eval', `(() => {
+    for (const key of ['wherecho:family-plan-v1', 'elementary-schedule-plans-v1', 'elementary-favorites-v1', 'favorite-school-ids', 'wherecho:analytics-debug']) localStorage.removeItem(key)
+    return 'C-07 test data removed, debug off'
+  })()`], { quiet: true })
+  run(['open', new URL('/school/서울-강남구-서울대현초등학교--B000002292', baseUrl).toString()])
+  await waitFor("document.querySelector('input[role=combobox]') && document.querySelector('[aria-label=\"학교 상세 메뉴\"]')", 'C-07 leaves the school detail ready for the remaining smoke')
   // The map lives at /map since the home became its own page (ADR-008). The shell
   // checks below hold for any path, so they run here with the map flow.
   run(['open', new URL('/map', baseUrl).toString()])
@@ -449,6 +478,7 @@ try {
     + " return text.includes('개 동') && text.includes('세대당 주차') && text.includes('배정 학교') })()",
     'apartment search opened the apartment detail with building count, parking and its assigned school',
   )
+  assertPage("document.querySelector('[data-testid=apartment-day-plan-link]')?.getAttribute('href')?.startsWith('/timetable?school=') && document.querySelector('[data-testid=apartment-day-plan-link]')?.textContent.includes('이 학교로 우리 아이 한 주 만들기')", 'the apartment offers its assigned school as a weekly-plan entry')
   run(['eval', `(() => {
     const close = document.querySelector('button[aria-label="상세 정보 닫기"]')
     if (!close) throw new Error('Apartment detail close button not found')
