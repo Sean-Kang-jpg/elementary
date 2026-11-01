@@ -2,7 +2,7 @@ import { useState, type FormEvent } from 'react'
 import { readPlans, writePlans } from '../../utils/schedule/plans'
 import { addAcademyToPlan } from '../../utils/schedule/frontyard'
 import { displaySchoolName } from '../../utils/schoolName'
-import { timetablePath } from '../../utils/urlState'
+import { planPath } from '../../utils/urlState'
 import { followLink } from '../content/contentLinks'
 import { track } from '../../utils/analytics'
 
@@ -33,7 +33,7 @@ export default function AcademyTimetableForm({ label, providerKey, onNavigate, o
     return (
       <p className="map-academy-form__empty">
         먼저 우리 아이 학교의 시간표 초안을 만들어 주세요.{' '}
-        <a href={timetablePath()} onClick={(event) => followLink(event, timetablePath(), onNavigate)}>시간표 만들기</a>
+        <a href={planPath('week')} onClick={(event) => followLink(event, planPath('week'), onNavigate)}>시간표 만들기</a>
       </p>
     )
   }

@@ -1,6 +1,6 @@
 ---
 slug: admission-timeline
-nextStep: {"label":"우리 집 입학 일정 만들기","href":"/my","kind":"plan"}
+nextStep: {"label":"우리 집 입학 일정 만들기","href":"/timetable?face=timeline","kind":"plan"}
 title: 초등 입학까지 전체 일정 한눈에
 description: 입학 전해 10월 취학아동명부부터 12월 취학통지서, 1월 예비소집, 3월 입학식까지 날짜와 할 일을 한 줄로 정리했습니다.
 order: -1

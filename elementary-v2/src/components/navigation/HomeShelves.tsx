@@ -4,7 +4,7 @@ import shelves from '../../content/home-shelves.json'
 import { seasonCards, type HomeShowcase, type SeasonItem } from '../../utils/homeShelves'
 import { followLink } from '../content/contentLinks'
 import { track } from '../../utils/analytics'
-import { timetablePath } from '../../utils/urlState'
+import { planPath, timetablePath } from '../../utils/urlState'
 import { getAcademyCategory, type AcademyCategoryKey } from '../../utils/academyCategories'
 
 // 막대 축: 정오~19시 30분 (학교 상세 '초1 오후 한눈에'와 같다)
@@ -65,7 +65,7 @@ export default function HomeShelves({ onNavigate }: { onNavigate: (path: string)
       {showcase && <ShowcaseRow showcase={showcase} go={go} />}
 
       {/* 예시를 본 다음 바로 우리 학교로 짜 보게 한다(2026-10-19). 예시 줄이 없는 개발 서버에서도 보인다. */}
-      <a href={timetablePath()} className="timetable-banner" onClick={go('banner', 'timetable', timetablePath())}>
+      <a href={planPath('week')} className="timetable-banner" onClick={go('banner', 'timetable', planPath('week'))}>
         <span className="timetable-banner__icon"><CalendarClock size={20} aria-hidden="true" /></span>
         <span className="min-w-0 flex-1">
           <strong>우리 아이 초등학교 시간표 미리 짜보기</strong>

@@ -77,14 +77,25 @@ Claude가 UX-K0·UX-03·UX-26을 하는 동안 Codex는 아래를 바꾸지 않�
 | `addToPlan({ id, title, href, when }, { from, contentId })` → `boolean` | "내 일정에 넣기"(UX-09). 실패하면 false — 담겼다고 보이지 말 것. 처음 담을 때만 `plan_item_add` |
 | `isInPlan(id)`, `removeFromPlan(id)` | 담기 버튼의 ✓ 상태 |
 | `readTimeline(now?, profile?)` → `TimelineEntry[]` | 입학까지 면, 완료 표시(UX-10). 로드맵 + 담은 항목, 날짜순. 시행령 날짜가 있는 할 일(`roadmap.json`의 `due`)은 날짜 항목 |
-| `groupTimeline(entries)`, `daysUntil(when)` | 달별 묶음(지난 날짜는 이번 달에), D-day. MY의 `RoadmapCard`가 쓰는 모양(UX-03) |
+| `groupTimeline(entries)`, `daysUntil(when)` | 달별 묶음(지난 날짜는 이번 달에), D-day. 입학까지 면의 `RoadmapCard`가 쓰는 모양(UX-03) |
 | `setTimelineDone(id, done)` | 완료 체크. 체크리스트와 같은 저장값. 체크할 때 `check_checklist_item`(`category: 'roadmap'`) |
 | `notePlanVisit()` | 우리집 일정·홈 일정 카드가 열릴 때. `plan_return` |
 | `subscribeFamilyPlan(listener)` | 담은 항목·프로필·시간표 초안이 바뀔 때 |
 | `nextDateOf('MM-DD')` | 홈 선반의 `deadline`을 `when: { kind: 'date' }`로 바꿀 때 |
 
 `when`은 `{ kind: 'date', date: 'YYYY-MM-DD' }` · `{ kind: 'month', month }` · `{ kind: 'anytime' }`. `from`은 C-01 표의 값에 `home`·`timetable`·`my`가 더해진다(입학연도를 처음 고른 화면, UX-03). 체크리스트 저장값에 로드맵 할 일의 완료도 들어가므로, 체크리스트 진행률은 `checklist.json`의 id만 센다.
-`plan_start`·`plan_item_add`·`plan_return`은 지금 `track()`으로 직접 보낸다. C-01이 병합되면 Claude가 타입 있는 함수로 바꾼다.
+`plan_start`·`plan_item_add`·`plan_return`은 C-01의 타입 있는 함수로 보낸다(2026-11-01 병합).
+
+**우리집 일정으로 가는 주소 (UX-26, 2026-11-01).** 화면은 `/timetable` 하나에 두 면이다. 주소는 `urlState.ts`의 함수로만 만든다.
+
+| 주소 | 함수 | 열리는 것 |
+| --- | --- | --- |
+| `/timetable?face=timeline` | `planPath('timeline')` | 입학까지: 입학연도 → 로드맵·D-day·완료 체크 |
+| `/timetable?face=week` | `planPath('week')` | 우리 아이 한 주: 가장 최근 초안 → 첫 관심 학교 → 학교 고르기 |
+| `/timetable?school=B…` | `timetablePath(id)` | 그 학교의 한 주. 학교가 있으면 언제나 한 주 면 |
+| `/timetable` | — | 입학까지. 입학연도 없이 시간표만 있으면 한 주. CTA에는 쓰지 말 것 |
+
+MY(`/my`)에는 프로필·관심 후보·저장 학원만 남았다(UX-06). 입학까지 카드와 체크리스트 진행률을 MY로 보내는 링크는 만들지 않는다.
 
 ## 5. 작업 카드
 
@@ -228,7 +239,7 @@ Claude가 UX-K0·UX-03·UX-26을 하는 동안 Codex는 아래를 바꾸지 않�
 
 **검토** (Claude, 2026-11-01): Codex가 토큰 만료로 멈춘 상태(front matter까지 적용, 미커밋)를 이어받아 병합.
 
-- 도착지 수정: "우리 집 입학 일정 만들기" 4편의 `/timetable?face=timeline` → `/my`. `face`는 아직 무시되어 한 주 시간표가 열렸다 — 입학까지 카드는 UX-26 전까지 MY에 있다. UX-26에서 다시 바꾼다.
+- 도착지 수정: "우리 집 입학 일정 만들기" 4편의 `/timetable?face=timeline` → `/my`. `face`는 아직 무시되어 한 주 시간표가 열렸다 — 입학까지 카드는 UX-26 전까지 MY에 있다. UX-26에서 다시 바꾼다. → 2026-11-01 UX-26에서 `/timetable?face=timeline`으로 되돌렸다.
 - 문구 수정(없는 기능을 약속하지 않게): "우리 학교 돌봄 공백 계산하기" → "우리 학교 하교·돌봄 시간으로 한 주 짜보기"(care-afterschool, morning-care), "첫 주 하교 시각, 우리 학교로 보기" → "우리 학교 하교 시각으로 한 주 짜보기"(first-weeks). 시간표에는 공백 계산·첫 주 모드가 없다.
 - 확인: 앱에서 private-national CTA → `/my`(입학연도 칩 3개), school-notice CTA → `/map` 검색창 포커스. 정적 `dist/guide/*/index.html`에 같은 CTA. lint·typecheck·build·test:unit 132·public smoke 115(3001) 통과.
 - 문구 14개는 사용자 확인 대상으로 남긴다(handoff 초안 표 + 위 수정). 바꾸려면 front matter의 `nextStep.label`만 고치면 된다.

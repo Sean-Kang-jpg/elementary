@@ -664,7 +664,7 @@ try {
   )
   assertPage(
     "['/map /guide /timetable', '/map /guide /timetable /frontyard'].includes([...document.querySelectorAll('.app-gnb__item')].map((item) => item.getAttribute('href')).join(' '))",
-    'the bottom navigation is 학교 찾기, 입학 준비, 시간표 (and 배움·돌봄) in that order',
+    'the bottom navigation is 학교 찾기, 입학 준비, 우리집 일정 (and 배움·돌봄) in that order',
   )
   assertPage(
     "document.querySelector('.app-topbar__home')?.getAttribute('href') === '/' && document.querySelector('.app-topbar__my')?.getAttribute('href') === '/my'",
@@ -745,6 +745,7 @@ try {
   // The entry year decides which stage leads. 2-3 years out is planning a move;
   // the year of entry is the admission procedure. The family's setup lives in MY
   // (2026-10-04); it folds the picker away once a year is saved and 바꾸기 brings it back.
+  // Since UX-26 (2026-11-01) the roadmap itself is 우리집 일정's 입학까지 face, and MY links there.
   run(['open', new URL('/my', baseUrl).toString()])
   await waitFor("document.querySelector('#my-title')", 'MY opens')
   run(['eval', "document.querySelector('.hub-profile__edit')?.click(); 'picker shown'"])
@@ -752,8 +753,23 @@ try {
   run(['eval', "const chip = document.querySelectorAll('.year-chip')[2]; sessionStorage.setItem('smoke-year', chip.querySelector('strong').textContent.slice(0, 4)); chip.click(); 'picked the furthest year'"])
   await waitFor(
     "document.querySelector('.hub-profile')?.textContent.includes(sessionStorage.getItem('smoke-year'))"
+    + " && !document.querySelector('.roadmap') && document.querySelector('a.my-plan-link')?.getAttribute('href') === '/timetable?face=timeline'",
+    'MY keeps the chosen year and points to 우리집 일정 instead of carrying the roadmap',
+  )
+  run(['eval', "document.querySelector('a.my-plan-link').click(); 'to the plan'"])
+  await waitFor(
+    "location.search === '?face=timeline' && document.querySelector('#timetable-title')?.textContent === '우리집 일정'"
+    + " && document.querySelector('.plan-faces a[aria-current=page]')?.textContent === '입학까지'"
+    + " && document.querySelector('.app-gnb__item--active')?.textContent.includes('우리집 일정')"
+    + " && document.querySelector('.hub-profile')?.textContent.includes(sessionStorage.getItem('smoke-year'))"
     + " && document.querySelector('.roadmap h2')?.textContent.includes('D-')",
-    'MY keeps the chosen year and shows the roadmap',
+    '우리집 일정 opens on 입학까지 with the same saved year and the roadmap',
+  )
+  run(['eval', "document.querySelectorAll('.plan-faces a')[1].click(); 'to the week'"])
+  await waitFor(
+    "location.pathname === '/timetable' && document.querySelector('.plan-faces a[aria-current=page]')?.textContent === '우리 아이 한 주'"
+    + " && !document.querySelector('.roadmap')",
+    'the second face is the week timetable',
   )
   // 입학 준비 is the public manual: no profile or roadmap, only the stage order and read marks.
   run(['eval', "document.querySelector('.app-gnb__item[href=\"/guide\"]').click(); 'to guides'"])
@@ -774,12 +790,12 @@ try {
   await waitFor("document.querySelectorAll('.year-chip').length === 3", 'the home offers the entry years')
   run(['eval', "document.querySelectorAll('.year-chip')[0].click(); 'nearest year'"])
   await waitFor(
-    "document.querySelector('.roadmap-summary h2')?.textContent.includes('D-') && document.querySelector('.roadmap-summary__more')?.getAttribute('href') === '/my'",
+    "document.querySelector('.roadmap-summary h2')?.textContent.includes('D-') && document.querySelector('.roadmap-summary__more')?.getAttribute('href') === '/timetable?face=timeline'",
     'picking a year on the home shows the days left and a way to the full roadmap',
   )
-  assertPage("!document.querySelector('.roadmap .pref-chip') && !document.querySelector('.guide-stage')", 'the home keeps the full roadmap in MY and the guides under 입학 준비')
+  assertPage("!document.querySelector('.roadmap .pref-chip') && !document.querySelector('.guide-stage')", 'the home keeps the full roadmap in 우리집 일정 and the guides under 입학 준비')
   run(['eval', "document.querySelector('.roadmap-summary__more').click(); 'to the hub'"])
-  await waitFor("location.pathname === '/my' && document.querySelectorAll('.roadmap .pref-chip').length >= 2", 'the summary opens the roadmap in MY')
+  await waitFor("location.pathname === '/timetable' && document.querySelectorAll('.roadmap .pref-chip').length >= 2", 'the summary opens the roadmap in 우리집 일정')
   run(['eval', "document.querySelectorAll('.roadmap .pref-chip')[1].click(); 'private interest on'"])
   await waitFor(
     "(() => { const month = new Date().getMonth() + 1; const privateMonths = [9, 10, 11];"

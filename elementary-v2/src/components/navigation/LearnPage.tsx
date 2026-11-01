@@ -1,7 +1,7 @@
 import { CalendarClock, CalendarPlus, ChevronRight, Flag, Home, Repeat, Sprout } from 'lucide-react'
 import { followLink } from '../content/contentLinks'
 import { LEARNING, LEARNING_CATEGORIES, subcategoryLabel, type LearningCategory } from '../../content'
-import { guidePath, learnPath, timetablePath, VIEW_PATHS } from '../../utils/urlState'
+import { guidePath, learnPath, planPath, VIEW_PATHS } from '../../utils/urlState'
 
 interface LearnPageProps {
   onNavigate: (path: string) => void
@@ -26,7 +26,7 @@ export default function LearnPage({ onNavigate }: LearnPageProps) {
         <p className="content-page__lead">초1 하루가 어떻게 흘러가는지 보고, 집에서 준비할 것을 골라요.</p>
 
         <h2>우리 학교 초1 시간표</h2>
-        <a href={timetablePath()} onClick={(event) => followLink(event, timetablePath(), onNavigate)} className="content-list__item content-list__item--card">
+        <a href={planPath('week')} onClick={(event) => followLink(event, planPath('week'), onNavigate)} className="content-list__item content-list__item--card">
           <span className="home-link__icon home-link__icon--peach"><CalendarPlus size={19} aria-hidden="true" /></span>
           <span className="min-w-0 flex-1">
             <strong>우리 아이 시간표 미리 짜보기</strong>

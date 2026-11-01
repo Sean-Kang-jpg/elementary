@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { BookOpenCheck, Check, ChevronRight, HelpCircle, UserRound } from 'lucide-react'
 import { GUIDE_GROUPS, GUIDE_LIST, GUIDES } from '../../content'
-import { guidePath, VIEW_PATHS } from '../../utils/urlState'
+import { guidePath, planPath, VIEW_PATHS } from '../../utils/urlState'
 import { STAGE_LABELS, stageOf, type Stage } from '../../utils/entryYear'
 import { readGuides, subscribeProfile } from '../../utils/profile'
 import ChecklistBanner from './ChecklistBanner'
@@ -35,11 +35,11 @@ export default function GuideListPage({ onNavigate, entryYear }: GuideListPagePr
         <p className="content-page__lead">{GUIDE_LIST.lead}</p>
 
         {entryYear ? null : (
-          <a href={VIEW_PATHS.my} onClick={(event) => followLink(event, VIEW_PATHS.my, onNavigate)} className="content-list__item content-list__item--card">
+          <a href={planPath('timeline')} onClick={(event) => followLink(event, planPath('timeline'), onNavigate)} className="content-list__item content-list__item--card">
             <span className="home-link__icon home-link__icon--sage"><UserRound size={19} aria-hidden="true" /></span>
             <span className="min-w-0 flex-1">
               <strong>우리 아이 입학연도 정하기</strong>
-              <small>MY에서 고르면 지금 볼 가이드가 먼저 나오고, 3월까지 할 일을 알려드려요</small>
+              <small>우리집 일정에서 고르면 지금 볼 가이드가 먼저 나오고, 3월까지 할 일을 알려드려요</small>
             </span>
             <ChevronRight size={18} aria-hidden="true" />
           </a>

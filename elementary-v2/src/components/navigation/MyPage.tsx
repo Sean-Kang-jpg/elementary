@@ -1,15 +1,11 @@
 import { useEffect, useState } from 'react'
-import { Building2, ChevronRight, GraduationCap, Map, Star, Trash2 } from 'lucide-react'
-import { VIEW_PATHS } from '../../utils/urlState'
-import { birthYearOf, STAGE_LABELS, stageOf } from '../../utils/entryYear'
+import { Building2, CalendarDays, ChevronRight, GraduationCap, Map, Star, Trash2 } from 'lucide-react'
+import { planPath, VIEW_PATHS } from '../../utils/urlState'
 import type { Profile } from '../../utils/profile'
 import { FavoriteRecord, readFavorites, removeFavorite, subscribeFavorites } from '../../utils/favorites'
-import EntryYearPicker from '../content/EntryYearPicker'
-import RoadmapCard from '../content/RoadmapCard'
-import ChecklistBanner from '../content/ChecklistBanner'
+import EntryProfile from '../content/EntryProfile'
 import { followLink } from '../content/contentLinks'
 import { displaySchoolName } from '../../utils/schoolName'
-import MyTimetableSummary from './MyTimetableSummary'
 import MySavedAcademies from './MySavedAcademies'
 import MyCandidateInfo from './MyCandidateInfo'
 
@@ -19,51 +15,37 @@ interface MyPageProps {
   entryYear: number | null
   onEntryYearChange: (year: number) => void
   profile: Profile
-  onProfileChange: (update: (current: Profile) => Profile) => void
 }
 
 /**
- * MY (2026-10-04): everything this device keeps for the family, in one place -
- * the entry year and preferences, the roadmap to March, checklist progress, the
- * schools and apartments saved from the map, and how many guides have been read.
- * It replaced the 즐겨찾기 tab, which was empty for nearly every visitor, and took
- * the personal half of the 입학 준비 hub so that /guide is the same public manual
- * for a visitor and a crawler. Nothing here leaves the browser (D1 option A).
+ * MY (2026-10-04): what this device keeps about the family - the entry year and
+ * preferences, the schools and apartments saved from the map, saved academies.
+ * Since UX-26 (2026-11-01) the plan itself - the roadmap to March, checklist
+ * progress and the week timetables - lives in 우리집 일정 (`/timetable`), and MY
+ * only points there. Nothing here leaves the browser (D1 option A).
  */
-export default function MyPage({ onNavigate, onOpenSaved, entryYear, onEntryYearChange, profile, onProfileChange }: MyPageProps) {
-  const stage = entryYear ? stageOf(entryYear) : null
-  const [editing, setEditing] = useState(false)
+export default function MyPage({ onNavigate, onOpenSaved, entryYear, onEntryYearChange, profile }: MyPageProps) {
   const [saved, setSaved] = useState<FavoriteRecord[]>(readFavorites)
   const [candidateTab, setCandidateTab] = useState<FavoriteRecord['kind']>('school')
   const [expandedId, setExpandedId] = useState<string | null>(null)
   const [message, setMessage] = useState('')
   useEffect(() => subscribeFavorites(() => setSaved(readFavorites())), [])
-
-  const interestLabel = profile.interest.includes('private') ? '사립·국립 관심' : '공립'
-  const movingLabel = profile.moving === 'planned' ? '이사 예정' : profile.moving === 'considering' ? '이사 검토 중' : null
+  const plan = planPath('timeline')
 
   return (
     <section className="app-destination app-page content-page" aria-labelledby="my-title">
       <div className="content-page__inner">
         <h1 id="my-title">MY</h1>
-        <p className="content-page__lead">관심 후보를 비교하고, 우리 아이의 하루를 계획해요.</p>
-        <section className="my-preparation" aria-label="입학연도">
-          {entryYear && stage && !editing ? (
-            <div className="hub-profile">
-              <span className={`stage-chip stage-chip--${stage}`}>{STAGE_LABELS[stage].short}</span>
-              <p>
-                <b>{entryYear}년 입학</b> · {birthYearOf(entryYear)}년생 · {interestLabel}{movingLabel ? ` · ${movingLabel}` : ''}
-              </p>
-              <button type="button" onClick={() => setEditing(true)} className="hub-profile__edit">바꾸기</button>
-            </div>
-          ) : (
-            <div className="home-card">
-              <EntryYearPicker value={entryYear} onChange={(year) => { onEntryYearChange(year); setEditing(false) }} />
-            </div>
-          )}
-        </section>
-        <ChecklistBanner onNavigate={onNavigate} />
-        <MyTimetableSummary onNavigate={onNavigate} />
+        <p className="content-page__lead">우리 집 설정과 관심 후보를 모아 둬요.</p>
+        <EntryProfile entryYear={entryYear} profile={profile} onEntryYearChange={onEntryYearChange} />
+        <a href={plan} onClick={(event) => followLink(event, plan, onNavigate)} className="content-list__item content-list__item--card my-plan-link">
+          <span className="home-link__icon home-link__icon--sage"><CalendarDays size={19} aria-hidden="true" /></span>
+          <span className="min-w-0 flex-1">
+            <strong>우리집 일정</strong>
+            <small>입학까지 할 일, 체크리스트, 우리 아이 한 주 시간표는 우리집 일정에 있어요</small>
+          </span>
+          <ChevronRight size={18} aria-hidden="true" />
+        </a>
         <MySavedAcademies onNavigate={onNavigate} />
 
         <div className="hub-guides-head">
@@ -108,10 +90,6 @@ export default function MyPage({ onNavigate, onOpenSaved, entryYear, onEntryYear
           </ul>
         )}
         <p role="status" className="my-help">{message}</p>
-
-        {entryYear ? (
-          <RoadmapCard entryYear={entryYear} profile={profile} onProfileChange={onProfileChange} onNavigate={onNavigate} source="my" />
-        ) : null}
 
         <p className="my-note">
           이 화면의 내용은 이 기기의 브라우저에만 저장돼요. 다른 기기나 브라우저에서는 보이지 않아요.{' '}

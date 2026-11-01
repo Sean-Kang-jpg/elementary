@@ -24,7 +24,7 @@ import checklistContent from './content/checklist.json'
 import { hasSavedProfile, readProfile, saveProfile, type Profile } from './utils/profile'
 import { FAQ_PAGE, findGuide, findLearning } from './content'
 import { readEntryYear } from './utils/entryYear'
-import { startFamilyPlan } from './utils/familyPlan'
+import { startFamilyPlan, type PlanFace } from './utils/familyPlan'
 import { getApartmentByPublicKey, getSchoolDetail } from './services/dataService'
 import { readFavorites, subscribeFavorites, type FavoriteRecord } from './utils/favorites'
 import { initAnalytics, markEntry, rememberDetailEntry, takeEntry, track, trackPageView, type EntrySource } from './utils/analytics'
@@ -81,15 +81,21 @@ function MapApplication() {
     const route = parseRoute(window.location.pathname, window.location.search)
     return route.kind === 'learn' ? route.slug : null
   })
-  // 시간표 미리 짜보기에서 고른 학교. 주소의 `?school=`과 같다.
+  // 우리집 일정의 한 주 면에서 고른 학교. 주소의 `?school=`과 같다.
   const [timetableSchool, setTimetableSchool] = useState<string | null>(() => {
     const route = parseRoute(window.location.pathname, window.location.search)
     return route.kind === 'timetable' ? route.schoolId : null
+  })
+  // 우리집 일정의 면(`?face=`). 없으면 화면이 고른다.
+  const [planFace, setPlanFace] = useState<PlanFace | null>(() => {
+    const route = parseRoute(window.location.pathname, window.location.search)
+    return route.kind === 'timetable' ? route.face : null
   })
   const changeTimetableSchool = useCallback((schoolId: string | null) => {
     // 학교를 바꿔 고르는 것은 같은 화면 안의 선택이라 기록을 쌓지 않는다.
     window.history.replaceState({}, '', timetablePath(schoolId))
     setTimetableSchool(schoolId)
+    if (schoolId) setPlanFace('week')
   }, [])
   // 학교앞마당에서 고른 학교. 주소의 `?school=`과 같다. 시간 조건(`?day=&from=&to=`)은 화면이 읽는다.
   const [frontyardSchool, setFrontyardSchool] = useState<string | null>(() => {
@@ -155,7 +161,10 @@ function MapApplication() {
     setView(viewOf(route))
     setGuideSlug(route.kind === 'guide' ? route.slug : null)
     setLearnSlug(route.kind === 'learn' ? route.slug : null)
-    if (route.kind === 'timetable') setTimetableSchool(route.schoolId)
+    if (route.kind === 'timetable') {
+      setTimetableSchool(route.schoolId)
+      setPlanFace(route.face)
+    }
     if (route.kind === 'frontyard') setFrontyardSchool(route.schoolId)
     if (route.kind === 'area') setAreaRoute(route.path)
   }
@@ -517,14 +526,14 @@ function MapApplication() {
           entryYear={entryYear}
           onEntryYearChange={changeEntryYear}
           profile={profile}
-          onProfileChange={changeProfile}
         />
       )}
       {view === 'learn' && (learnItem
         ? <LearnItemPage key={learnItem.slug} item={learnItem} onNavigate={(path) => navigate(path, 'related')} />
         : <LearnPage onNavigate={(path) => navigate(path, 'related')} />)}
       {view === 'timetable' && (
-        <TimetablePage schoolId={timetableSchool} entryYear={entryYear} onSchoolChange={changeTimetableSchool}
+        <TimetablePage schoolId={timetableSchool} face={planFace} entryYear={entryYear} onSchoolChange={changeTimetableSchool}
+          onEntryYearChange={changeEntryYear} profile={profile} onProfileChange={changeProfile}
           onNavigate={(path) => navigate(path, 'related')} />
       )}
       {view === 'frontyard' && (
@@ -581,7 +590,7 @@ const TITLES: Record<AppView, string> = {
   faq: `${FAQ_PAGE.title} | 어디초`,
   checklist: `${checklistContent.title} | 어디초`,
   learn: '학습 준비 | 어디초',
-  timetable: '초1 시간표 미리 짜보기 | 어디초',
+  timetable: '우리집 일정 | 어디초',
   frontyard: '우리 아이의 학교동네 | 어디초',
   area: '지역별 초등학교 배정 현황 | 어디초',
 }

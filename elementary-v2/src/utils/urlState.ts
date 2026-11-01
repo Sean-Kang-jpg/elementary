@@ -1,11 +1,12 @@
 import type { Apartment, School } from '../types'
 import { findRegion } from '../constants/regionRegistry'
+import type { PlanFace } from './familyPlanCore'
 
 /**
  * 주소와 화면을 잇는다.
  *
  * 화면: 홈(`/`), 지도(`/map`과 상세), 가이드(`/guide`, `/guide/{slug}`), FAQ, 학습 준비(`/learn`, `/learn/{slug}`), 소식,
- * MY(`/my`, 옛 주소 `/favorites`), 시간표 미리 짜보기(`/timetable?school=B…`), 학교앞마당(`/frontyard?school=B…`),
+ * MY(`/my`, 옛 주소 `/favorites`), 우리집 일정(`/timetable?face=timeline`, `/timetable?school=B…`), 학교앞마당(`/frontyard?school=B…`),
  * 개인정보처리방침, 지역 허브(`/area`, `/area/서울`,
  * `/area/서울/강남구`). 지도 쪽에서는
  * 여전히 주소가 선택을 비춘다 — `/map`, `/school/…`, `/apt/…`는 같은 지도 위에서
@@ -33,7 +34,7 @@ export type Route =
   | { kind: 'faq' }
   | { kind: 'checklist' }
   | { kind: 'learn'; slug: string | null }
-  | { kind: 'timetable'; schoolId: string | null }
+  | { kind: 'timetable'; schoolId: string | null; face: PlanFace | null }
   | { kind: 'frontyard'; schoolId: string | null }
   | { kind: 'area'; path: string }
   | { kind: 'admin' }
@@ -68,9 +69,15 @@ export const VIEW_PATHS: Record<AppView, string> = {
 
 export const guidePath = (slug: string): string => `/guide/${slug}`
 export const learnPath = (slug: string): string => `/learn/${slug}`
-/** 시간표 미리 짜보기. 학교는 질의로만 싣는다 — 이 화면은 기기 저장 초안이라 색인하지 않는다. */
+/** 우리집 일정의 한 주 면. 학교는 질의로만 싣는다 — 이 화면은 기기 저장 초안이라 색인하지 않는다. */
 export const timetablePath = (schoolId?: string | null): string =>
   schoolId ? `/timetable?school=${encodeURIComponent(schoolId)}` : '/timetable'
+
+/**
+ * 우리집 일정의 한 면(UX-26). 주소와 내부 이름은 `timetable` 그대로다 — 공유된 시간표 링크가 살아 있어야 한다.
+ * 면이 없는 `/timetable`은 화면이 고른다(TimetablePage). 학교가 있으면 언제나 한 주 면이다.
+ */
+export const planPath = (face: PlanFace): string => `/timetable?face=${face}`
 
 /** 앞마당에서 고를 수 있는 시간 조건. 시간표 빈칸에서 넘어올 때 쓴다(1 = 월 … 5 = 금). */
 export interface FrontyardSlot { weekday: number; start: string; end: string }
@@ -171,8 +178,12 @@ export const parseRoute = (pathname: string, search = ''): Route => {
     if (segments[0] === 'checklist') return { kind: 'checklist' }
     if (segments[0] === 'learn') return { kind: 'learn', slug: null }
     if (segments[0] === 'timetable' || segments[0] === 'frontyard') {
-      const school = new URLSearchParams(search).get('school')
-      return { kind: segments[0], schoolId: school && TIMETABLE_SCHOOL.test(school) ? school : null }
+      const params = new URLSearchParams(search)
+      const school = params.get('school')
+      const schoolId = school && TIMETABLE_SCHOOL.test(school) ? school : null
+      if (segments[0] === 'frontyard') return { kind: 'frontyard', schoolId }
+      const face = params.get('face')
+      return { kind: 'timetable', schoolId, face: schoolId ? 'week' : face === 'timeline' || face === 'week' ? face : null }
     }
   }
   // 모르는 주소는 홈으로 연다. 404 화면이 없으므로 가장 쓸모 있는 착지점이다.

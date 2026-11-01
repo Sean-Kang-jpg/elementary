@@ -1,6 +1,6 @@
 ---
 slug: private-national
-nextStep: {"label":"우리 집 입학 일정 만들기","href":"/my","kind":"plan"}
+nextStep: {"label":"우리 집 입학 일정 만들기","href":"/timetable?face=timeline","kind":"plan"}
 title: 사립초·국립초 지원, 2027학년도 일정과 준비 방법
 description: 서울·경기·인천 사립초와 국립초의 2027학년도 원서·추첨 일정, 학교 고르기·서류·등록 주의점을 정리했습니다.
 order: 0

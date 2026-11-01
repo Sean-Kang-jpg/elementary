@@ -9,10 +9,11 @@ interface BottomNavigationProps {
 }
 
 // 2026-10-21: 홈 탭은 상단 로고로, MY는 상단 오른쪽 아이콘으로 옮겼다(AppTopBar). 메뉴는 넷이다.
+// 2026-11-01(UX-26): 시간표 → 우리집 일정. 주소는 `/timetable` 그대로다.
 const items = [
   { id: 'map', label: '학교 찾기', icon: Map },
   { id: 'guide', label: '입학 준비', icon: BookOpen },
-  { id: 'timetable', label: '시간표', icon: CalendarClock },
+  { id: 'timetable', label: '우리집 일정', icon: CalendarClock },
   ...(FRONTYARD_ENABLED ? [{ id: 'frontyard', label: '배움·돌봄', icon: MessagesSquare }] as const : []),
 ] as const
 

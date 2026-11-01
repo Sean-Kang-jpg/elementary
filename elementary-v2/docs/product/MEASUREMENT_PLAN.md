@@ -188,7 +188,7 @@ GA4는 방문자 정보를 외부(Google)로 전송하므로 개인정보처리�
 | 이벤트 | 파라미터 | 시점 |
 | --- | --- | --- |
 | `start_profile_created` | `entry_year`, `school_type_interest`(`public`·`private`, 쉼표 연결), `moving_plan` | 이 기기에서 처음 프로필이 저장될 때 한 번 |
-| `view_roadmap` | `days_to_admission`, `entry_year`, `stage`, `entry_source`(`home`·`guides`·`my`) | 홈의 요약 카드 또는 전체 로드맵이 보일 때, 입학연도마다 한 번. 전체 로드맵은 2026-10-04부터 MY(`my`)에만 있다 — 그 전의 `guides`는 입학 준비 허브다 |
+| `view_roadmap` | `days_to_admission`, `entry_year`, `stage`, `entry_source`(`home`·`guides`·`my`·`plan`) | 홈의 요약 카드 또는 전체 로드맵이 보일 때, 입학연도마다 한 번. 전체 로드맵은 2026-10-04부터 MY(`my`), 2026-11-01(UX-26)부터 우리집 일정의 입학까지 면(`plan`)에만 있다 — 그 전의 `guides`는 입학 준비 허브다 |
 | `check_checklist_item` | `category`, `item_id` | 체크할 때만(해제는 보내지 않는다) |
 
 ### 콘텐츠 공유 (2026-10-04 추가)

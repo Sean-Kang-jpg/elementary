@@ -1166,12 +1166,6 @@
 .timetable-source[open] > summary { margin-bottom: 12px; }
 .timetable-cta { display: flex; align-items: center; gap: 8px; min-height: 48px; margin-top: 12px; padding: 10px 14px; border-radius: 12px; background: var(--warm-accent-strong); color: #fff; font-size: 14px; font-weight: 700; text-decoration: none; }
 .timetable-cta span { flex: 1; min-width: 0; }
-.my-timetable-summary__list { margin: 0; padding: 0; list-style: none; }
-.my-timetable-summary__list > li + li { margin-top: 8px; }
-.my-timetable-summary__list a { display: flex; align-items: center; gap: 8px; padding: 12px; border: 1px solid var(--warm-border); border-radius: 12px; background: var(--warm-bg); color: var(--warm-text); text-decoration: none; }
-.my-timetable-summary__list strong { display: block; font-size: 15px; }
-.my-timetable-summary__list small { display: block; color: var(--warm-muted); font-size: 12px; }
-.my-timetable-summary__list .my-plan-badge { flex: none; background: var(--warm-accent-soft); color: var(--warm-accent-strong); font-size: 12px; }
 .my-week-section { margin: 20px 0; min-width: 0; padding: 14px; border: 1px solid #e5e5f0; border-radius: 20px; background: #fff; box-shadow: 0 5px 22px #4c426a08; }
 .my-calendar-toolbar { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
 .my-calendar-toolbar h3 { margin: 0; font-size: 18px; color: #38354d; }
@@ -2888,13 +2882,8 @@
 /* ---- 시간표 편집 중심 화면 (2026-10-23) -----------------------------------
    초안이 있으면 시간표가 첫 화면이다. 카드를 누르면 아래에서 편집 시트가 올라온다. */
 .timetable-page--editing .content-page__inner { padding-top: 12px; }
-.timetable-bar { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
-.timetable-bar h1 { margin: 0; font-size: 22px; letter-spacing: -.4px; }
-.timetable-bar__search { display: inline-flex; align-items: center; gap: 5px; min-height: 40px; padding: 6px 12px; border: 1px solid var(--warm-border-strong); border-radius: 999px; background: var(--warm-surface); color: var(--warm-text); font-size: 13px; cursor: pointer; }
-.timetable-bar__search[aria-expanded="true"] { border-color: var(--warm-accent-strong); color: var(--warm-accent-strong); }
 .timetable-page--editing .timetable-picks { flex-wrap: nowrap; overflow-x: auto; margin-top: 10px; padding-bottom: 2px; scrollbar-width: none; }
 .timetable-page--editing .timetable-picks button { flex: none; min-height: 36px; }
-.timetable-bar__finder { margin-top: 10px; }
 .my-schedule--editing { margin-top: 12px; padding: 0; border: 0; background: transparent; }
 .my-schedule__head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 6px 10px; }
 .my-schedule--editing .my-schedule__head h2 { margin: 0; font-size: 17px; }
@@ -2956,3 +2945,13 @@ dialog.my-entry-sheet > a.my-button { display: flex; align-items: center; justif
 .my-add-card__saved p { margin: 0 0 4px; font-size: 14px; }
 .my-add-card__saved > .my-button { width: 100%; margin-top: 10px; }
 .my-add-card__saved > .my-button--primary { background: #7f6bad; }
+
+/* ---- 우리집 일정 (UX-26, 2026-11-01) ---------------------------------------
+   시간표 화면 위에 두 면을 고르는 칸. 면은 주소(`?face=`)라 링크로 둔다. */
+.plan-head h1 { margin: 0; font-size: 22px; letter-spacing: -.4px; }
+.plan-faces { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; margin: 12px 0 14px; padding: 4px; border-radius: 14px; background: var(--warm-bg); border: 1px solid var(--warm-border); }
+.plan-faces a { display: flex; align-items: center; justify-content: center; min-height: 40px; padding: 6px 8px; border-radius: 10px; color: var(--warm-muted); font-size: 14px; font-weight: 700; text-decoration: none; white-space: nowrap; }
+.plan-faces a[aria-current="page"] { background: var(--warm-surface); color: var(--warm-accent-strong); box-shadow: 0 1px 4px #4c426a14; }
+.plan-faces a:focus-visible { outline: 2px solid var(--warm-accent-strong); outline-offset: 1px; }
+.plan-page .my-preparation { margin-bottom: 14px; }
+.my-plan-link { margin: 14px 0; }

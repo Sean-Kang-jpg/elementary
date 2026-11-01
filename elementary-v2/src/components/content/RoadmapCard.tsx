@@ -6,7 +6,7 @@ import type { MovingPlan, Profile, SchoolInterest } from '../../utils/profile'
 import { readChecklist } from '../../utils/profile'
 import { daysUntil, groupTimeline, readTimeline, setTimelineDone, subscribeFamilyPlan, type TimelineEntry } from '../../utils/familyPlan'
 import { track } from '../../utils/analytics'
-import { VIEW_PATHS } from '../../utils/urlState'
+import { planPath, VIEW_PATHS } from '../../utils/urlState'
 import { followLink } from './contentLinks'
 import IcsButton from './IcsButton'
 
@@ -15,8 +15,8 @@ interface RoadmapCardProps {
   profile: Profile
   onProfileChange: (update: (current: Profile) => Profile) => void
   onNavigate: (path: string) => void
-  /** Where the card is shown, for view_roadmap. Only MY shows the full card since 2026-10-04. */
-  source?: 'home' | 'guides' | 'my'
+  /** Where the card is shown, for view_roadmap. MY showed the full card from 2026-10-04, 우리집 일정 since UX-26. */
+  source?: 'home' | 'guides' | 'my' | 'plan'
 }
 
 const MOVING: Array<{ value: MovingPlan; label: string }> = [
@@ -102,7 +102,7 @@ export default function RoadmapCard({ entryYear, profile, onProfileChange, onNav
   const calendarItems = groups
     .flatMap((group) => group.entries)
     .filter((entry) => entry.when.kind === 'date' && !entry.done && (daysUntil(entry.when) ?? -1) >= 0)
-    .map((entry) => ({ id: entry.id, title: entry.title, date: entry.when.kind === 'date' ? entry.when.date : '', url: entry.href ?? '/my' }))
+    .map((entry) => ({ id: entry.id, title: entry.title, date: entry.when.kind === 'date' ? entry.when.date : '', url: entry.href ?? planPath('timeline') }))
 
   // 이번 달(준비 단계에서는 시기 없는 목록)이 위에, 나머지는 3월까지의 줄기로.
   const thisMonth = groups.find((group) => group.month === (view.stage === 'planning' ? null : view.month)) ?? null

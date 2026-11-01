@@ -3,7 +3,7 @@ import { CalendarDays, ChevronRight } from 'lucide-react'
 import { daysToEntry, roadmapFor } from '../../utils/roadmap'
 import type { Profile } from '../../utils/profile'
 import { track } from '../../utils/analytics'
-import { VIEW_PATHS } from '../../utils/urlState'
+import { planPath } from '../../utils/urlState'
 import { followLink } from './contentLinks'
 
 interface RoadmapSummaryProps {
@@ -14,8 +14,8 @@ interface RoadmapSummaryProps {
 
 /**
  * The home's short version of the roadmap (2026-10-04): D-day and the next two
- * things to do. The whole timeline and the preferences that shape it live in MY,
- * so the home stays a front door with search on top.
+ * things to do. The whole timeline and the preferences that shape it live in
+ * 우리집 일정 (MY until UX-26), so the home stays a front door with search on top.
  */
 export default function RoadmapSummary({ entryYear, profile, onNavigate }: RoadmapSummaryProps) {
   const days = daysToEntry(entryYear)
@@ -26,7 +26,7 @@ export default function RoadmapSummary({ entryYear, profile, onNavigate }: Roadm
   const heading = view.now.length
     ? (view.stage === 'planning' ? '지금 해두면 좋은 일' : `${view.month}월에 할 일`)
     : nextMonth ? `${nextMonth.month}월에 할 일` : null
-  const hub = VIEW_PATHS.my
+  const hub = planPath('timeline')
 
   const reported = useRef<number | null>(null)
   useEffect(() => {
