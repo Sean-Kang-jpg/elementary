@@ -8,6 +8,7 @@ import { daysUntil, groupTimeline, readTimeline, setTimelineDone, subscribeFamil
 import { track } from '../../utils/analytics'
 import { VIEW_PATHS } from '../../utils/urlState'
 import { followLink } from './contentLinks'
+import IcsButton from './IcsButton'
 
 interface RoadmapCardProps {
   entryYear: number
@@ -97,6 +98,12 @@ export default function RoadmapCard({ entryYear, profile, onProfileChange, onNav
     </ul>
   )
 
+  // 캘린더로는 날짜가 정해진, 아직 지나지 않고 끝내지 않은 일정만 보낸다. 달만 아는 할 일을 1일로 적으면 틀린 날짜가 된다.
+  const calendarItems = groups
+    .flatMap((group) => group.entries)
+    .filter((entry) => entry.when.kind === 'date' && !entry.done && (daysUntil(entry.when) ?? -1) >= 0)
+    .map((entry) => ({ id: entry.id, title: entry.title, date: entry.when.kind === 'date' ? entry.when.date : '', url: entry.href ?? '/my' }))
+
   // 이번 달(준비 단계에서는 시기 없는 목록)이 위에, 나머지는 3월까지의 줄기로.
   const thisMonth = groups.find((group) => group.month === (view.stage === 'planning' ? null : view.month)) ?? null
   const later = groups.filter((group) => group !== thisMonth)
@@ -145,6 +152,13 @@ export default function RoadmapCard({ entryYear, profile, onProfileChange, onNav
               </li>
             ))}
           </ol>
+        </div>
+      ) : null}
+
+      {calendarItems.length ? (
+        <div className="roadmap__ics">
+          <p>날짜가 정해진 일정 {calendarItems.length}개를 휴대폰 캘린더에도 넣어 두세요.</p>
+          <IcsButton items={calendarItems} />
         </div>
       ) : null}
 

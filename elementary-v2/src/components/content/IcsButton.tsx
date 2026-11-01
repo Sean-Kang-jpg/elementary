@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { track } from '../../utils/analytics'
+import { trackIcsExport } from '../../utils/analytics'
 import { createIcs, type IcsItem } from '../../utils/ics'
 
 interface IcsButtonProps {
@@ -8,7 +8,7 @@ interface IcsButtonProps {
   siteOrigin?: string
 }
 
-/** UX-03 connects this button to the timeline; it does not read or write device storage. */
+/** The 입학까지 card (RoadmapCard, UX-03) passes its dated entries; this button does not read or write device storage. */
 export default function IcsButton({ items, className = 'my-button', siteOrigin }: IcsButtonProps) {
   const [error, setError] = useState(false)
   const download = () => {
@@ -27,8 +27,7 @@ export default function IcsButton({ items, className = 'my-button', siteOrigin }
       anchor.download = 'wherecho-plan.ics'
       document.body.appendChild(anchor)
       anchor.click()
-      // C-01 is not on this branch's master base yet; use the card's allowed fallback.
-      track('ics_export', { count: items.length })
+      trackIcsExport({ count: items.length })
     } catch {
       setError(true)
     } finally {

@@ -136,7 +136,7 @@ Claude가 UX-K0·UX-03·UX-26을 하는 동안 Codex는 아래를 바꾸지 않�
 
 ---
 
-### C-02 캘린더 파일 생성 (UX-04) — `review`, S
+### C-02 캘린더 파일 생성 (UX-04) — `merged`, S
 
 **목표**: 일정 목록을 .ics 문자열로 만드는 순수 함수와 내려받기 버튼 컴포넌트.
 
@@ -170,7 +170,14 @@ Claude가 UX-K0·UX-03·UX-26을 하는 동안 Codex는 아래를 바꾸지 않�
 - `npm run browser:smoke:public -- http://127.0.0.1:3042`: exit 1. 정적 홈·이미지·origin·지도 마운트·390px 레이아웃·지역 데이터 로드 검사는 통과했으나 `scripts/public-smoke.mjs:408`의 `zooming out replaces the district markers with province markers — still not true after 15000ms and 37 checks`로 중단됐다. C-01에서 본 것과 같은 검사 실패이며, 이 카드에서 지도·smoke 코드를 고치지 않았다. 전체 smoke 통과는 남은 검증 블로커다.
 - 화면 연결·저장 형식·Claude 소유 파일·`familyPlan.ts` 계약은 변경하지 않았다. master 병합·release 배포·운영 DB 쓰기는 하지 않는다.
 
-**검토**: 
+**검토** (Claude, 2026-11-01): 병합.
+
+- `ics.ts`·테스트는 그대로 받았다(75옥텟 줄 접기, 이스케이프, 실제 날짜 검증, 같은 출처 URL).
+- `IcsButton`의 `track()` 대체 호출을 `trackIcsExport`로 바꿨다(C-01 병합됨).
+- MY 입학까지 카드(`RoadmapCard`)에 붙였다. 내보내는 것은 날짜가 정해진, 지나지 않고 끝내지 않은 일정만 — 달만 아는 할 일을 1일로 적으면 틀린 날짜가 된다. 링크가 없는 항목은 `/my`. 디버그 기록으로 `ics_export { count: 3 }` 확인.
+- 안내 문구에 "알림을 받을 수 있어요"를 쓰지 않았다: 파일에 VALARM이 없어 알림은 캘린더 앱 설정에 달려 있다.
+- 남은 것: 구글·애플 캘린더 실제 가져오기는 아직 아무도 하지 않았다. 사용자가 휴대폰에서 한 번 열어 보면 끝난다.
+- smoke 지도 축소 실패는 C-01과 같은 포트 문제다(3001에서 전체 115개 통과).
 
 ---
 

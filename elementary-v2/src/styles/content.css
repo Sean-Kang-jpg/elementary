@@ -1769,6 +1769,24 @@
   opacity: 0.6;
 }
 
+.roadmap__ics {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.roadmap__ics p {
+  flex: 1;
+  margin: 0;
+  color: var(--warm-muted);
+  font-size: 12.5px;
+}
+
+.roadmap__ics .my-button {
+  flex: none;
+}
+
 .roadmap__timeline ol {
   position: relative;
   margin: 6px 0 0;
