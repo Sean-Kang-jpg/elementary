@@ -149,3 +149,31 @@ export const itemOfPath = (path: string): { item_type: 'school' | 'apartment' | 
   if (path === '/checklist') return { item_type: 'checklist', item_id: 'checklist' }
   return null
 }
+
+/** Controlled entry points only; identifiers must be content slugs/IDs, never user text or addresses. */
+export type PlanSource = 'guide' | 'home_worry' | 'school_detail' | 'apartment_detail' | 'result_page'
+export type PlanFace = 'timeline' | 'week'
+
+/** familyPlan owns the first-plan transition and calls this once when no plan becomes a plan. */
+export const trackPlanStart = ({ from, content_id, face }: { from: PlanSource; content_id: string; face: PlanFace }): void => {
+  track('plan_start', { from, content_id, face })
+}
+
+export const trackPlanItemAdd = ({ item_id, from }: { item_id: string; from: PlanSource }): void => {
+  track('plan_item_add', { item_id, from })
+}
+
+export const trackIcsExport = ({ count }: { count: number }): void => {
+  if (!Number.isInteger(count) || count < 0) return
+  track('ics_export', { count })
+}
+
+/** familyPlan owns elapsed-day calculation and the once-per-session guard. */
+export const trackPlanReturn = ({ days_since }: { days_since: number }): void => {
+  if (!Number.isInteger(days_since) || days_since < 1) return
+  track('plan_return', { days_since })
+}
+
+export const trackHomeWorryClick = ({ worry_id }: { worry_id: string }): void => {
+  track('home_worry_click', { worry_id })
+}

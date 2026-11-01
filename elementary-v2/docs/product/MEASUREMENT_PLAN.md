@@ -310,3 +310,30 @@ link·search·related·favorites 진입, 뒤로 가기 무시, 같은 학교 복
 
 `open_school_homepage`(`school_id`) — 학교 상세의 '학교 홈페이지' 링크를 누를 때(2026-10-10). 공지사항·가정통신문을 사이트 안에
 보이지 않고 학교 홈페이지로 보내므로, 이 클릭이 그 수요의 크기다.
+
+## 10. 우리집 일정 퍼널 (2026-11-01, UX-01 / C-01)
+
+기존 조회·저장 이벤트(9절)는 유지한다. 아래는 일정 생성·담기·내보내기·재방문과 홈 고민 선택을
+구분하기 위한 신규 이벤트다. `src/utils/analytics.ts`의 타입 있는 함수를 통해 `track()`에 전달한다.
+
+| 이벤트 / 함수 | 파라미터 | 보내는 때 / 호출 담당 |
+| --- | --- | --- |
+| `plan_start` / `trackPlanStart` | `from`: `guide`·`home_worry`·`school_detail`·`apartment_detail`·`result_page`, `content_id`: 콘텐츠 slug 또는 고민 ID, `face`: `timeline`·`week` | 기기에 일정이 없다가 처음 생길 때 한 번. `familyPlan.ts`(Claude)에서 호출 |
+| `plan_item_add` / `trackPlanItemAdd` | `item_id`: 항목 ID, `from`: 위와 같은 진입 출처 | 일정에 항목을 담을 때. `familyPlan.ts`(Claude)에서 호출 |
+| `ics_export` / `trackIcsExport` | `count`: 내보낸 일정 수(0 이상의 정수) | .ics 내려받기 시. C-02 버튼에서 호출 |
+| `plan_return` / `trackPlanReturn` | `days_since`: 지난 방문 이후 일수(1 이상의 정수) | 일정이 있는 사용자가 1일 이상 지나 다시 열 때 세션당 한 번. 일수 계산·중복 방지는 `familyPlan.ts`(Claude) 담당 |
+| `home_worry_click` / `trackHomeWorryClick` | `worry_id`: 홈 고민 ID | 홈 고민 항목 클릭 시. C-04에서 호출 |
+
+함수 입력은 객체다(예: `trackIcsExport({ count: items.length })`). 허용한 필드만 전달하며,
+자유 입력·주소·개인 식별 값은 보내지 않는다. ID에는 콘텐츠에 정한 slug/ID만 사용한다.
+저장 키·저장 구조·기기 방문 시각·세션 판단은 C-01에서 추가하거나 변경하지 않는다.
+
+가이드별·홈 고민별 `plan_start`를 기존 `view_guide`·`home_worry_click`과 함께 보고,
+`ics_export` 수와 `plan_return`으로 내보내기·재방문을 본다. 보고서 분석용 이벤트 범위 측정기준:
+`from`, `content_id`, `face`, `item_id`, `worry_id`(이미 등록한 항목은 재사용).
+`count`, `days_since`는 맞춤 측정항목으로 등록한다. GA4 설정 변경은 이 카드 범위 밖이다.
+
+검증: `wherecho:analytics-debug=1`이면 운영 전송 없이 `window.__ANALYTICS_LOG__`에 기록한다.
+로컬 Vite에서 public smoke는 모듈을 불러 다섯 함수의 기록·허용 필드·숫자 경계를 확인한다.
+이것은 함수 계약 검증이며 실제 UI 퍼널 검증이 아니다. 홈 클릭의 실제 배선 검사는 C-04 병합 뒤
+smoke에 추가한다. 나머지 실제 호출 검증도 해당 카드/Claude 통합 작업 뒤 수행한다.
