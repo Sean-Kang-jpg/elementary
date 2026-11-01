@@ -680,6 +680,41 @@ try {
   await waitFor("(window.__ANALYTICS_LOG__ || []).some((entry) => entry.event === 'prep_content_view' && entry.params.content_id === 'math-grade1-scope')", 'opening a learning item records prep_content_view')
   run(['eval', "document.querySelector('.content-sources').scrollIntoView(); 'to the end'"], { quiet: true })
   await waitFor("(window.__ANALYTICS_LOG__ || []).some((entry) => entry.event === 'prep_content_complete' && entry.params.content_id === 'math-grade1-scope')", 'reading to the sources records prep_content_complete')
+  // C-01 checks the helper contract on local Vite only. Real home-click wiring
+  // must be checked after C-04; production builds do not expose source modules.
+  if (['127.0.0.1', 'localhost'].includes(new URL(baseUrl).hostname)) {
+    run(['eval', `(async () => {
+      if (!document.querySelector('script[src*="/@vite/client"]')) {
+        return 'INFO: C-01 helper check requires local Vite dev; UI wiring awaits C-04'
+      }
+      const analytics = await import('/src/utils/analytics.ts')
+      // Vite HMR can give the app a timestamped module URL; initialize this
+      // imported instance too, with the same debug flag and no GA transmission.
+      analytics.initAnalytics()
+      const start = window.__ANALYTICS_LOG__.length
+      analytics.trackPlanStart({ from: 'guide', content_id: 'private-national', face: 'timeline', ignored: 'discard' })
+      analytics.trackPlanItemAdd({ item_id: 'admission', from: 'home_worry' })
+      analytics.trackIcsExport({ count: 2 })
+      analytics.trackPlanReturn({ days_since: 1 })
+      analytics.trackHomeWorryClick({ worry_id: 'assignment' })
+      analytics.trackIcsExport({ count: -1 })
+      analytics.trackIcsExport({ count: 1.5 })
+      analytics.trackPlanReturn({ days_since: 0 })
+      analytics.trackPlanReturn({ days_since: 1.5 })
+      analytics.trackPlanReturn({ days_since: NaN })
+      const expected = [
+        { event: 'plan_start', params: { from: 'guide', content_id: 'private-national', face: 'timeline' } },
+        { event: 'plan_item_add', params: { item_id: 'admission', from: 'home_worry' } },
+        { event: 'ics_export', params: { count: 2 } },
+        { event: 'plan_return', params: { days_since: 1 } },
+        { event: 'home_worry_click', params: { worry_id: 'assignment' } },
+      ]
+      if (JSON.stringify(window.__ANALYTICS_LOG__.slice(start)) !== JSON.stringify(expected)) {
+        throw new Error('C-01 analytics helper contract failed: ' + JSON.stringify(window.__ANALYTICS_LOG__.slice(start)))
+      }
+      return 'PASS: C-01 helpers record exact debug payloads and reject invalid numbers (not UI wiring)'
+    })()`])
+  }
   run(['eval', "localStorage.removeItem('wherecho:analytics-debug'); 'debug off'"], { quiet: true })
   run(['open', new URL('/news', baseUrl).toString()])
   // News left the bottom navigation for a link under the guide list; the address stays.

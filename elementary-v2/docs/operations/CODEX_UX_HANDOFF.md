@@ -72,7 +72,7 @@ Claude가 UX-K0·UX-03·UX-26을 하는 동안 Codex는 아래를 바꾸지 않�
 
 ---
 
-### C-01 퍼널 이벤트 (UX-01) — `ready`, S
+### C-01 퍼널 이벤트 (UX-01) — `review`, S
 
 **목표**: 우리집 일정 퍼널을 셀 수 있게 이벤트를 더한다. 화면 배선은 이 카드에서 이벤트가 생길 자리에만 한다.
 
@@ -93,7 +93,19 @@ Claude가 UX-K0·UX-03·UX-26을 하는 동안 Codex는 아래를 바꾸지 않�
 
 **완료 기준**: lint·typecheck·build 통과, MEASUREMENT_PLAN 10절에 표 추가, 디버그 모드(`wherecho:analytics-debug`)에서 `home_worry_click`이 기록된다(C-04 병합 뒤 smoke에 추가해도 됨).
 
-**결과**: (Codex 작성)
+**결과** (Codex, 2026-11-01)
+
+- 브랜치 `codex/ux-C-01`, 독립 worktree `F:/sm/vibe/elementary/.worktrees/codex-ux-C-01`. Claude가 커밋한 문서 기준점 `75dd2e7` 위에서 작업했다.
+- 변경 파일: `src/utils/analytics.ts` — 객체 입력의 타입 있는 함수 5개, 명시한 필드만 전송, 정수 범위 검사. `docs/product/MEASUREMENT_PLAN.md` — 10절 이벤트·호출 책임·검증 범위. `scripts/public-smoke.mjs` — 로컬 Vite 디버그 기록의 정확한 payload와 숫자 경계 검사(운영/preview에서는 소스 모듈 검증 생략). 이 문서 — C-01 결과와 별도 C-03 사전 검토 기록.
+- `npm run lint`: exit 0, 경고 없음.
+- `npm run typecheck`: exit 0, 콘텐츠 14 guides / 31 FAQ 검증 후 타입 검사 통과.
+- `npm run test:unit`: exit 0, tests 113 / suites 25 / pass 113 / fail 0.
+- `npm run build`: 네트워크 제한 환경에서는 sitemap fetch 실패(exit 1), 네트워크 접근 가능한 환경의 재실행은 exit 0. Vite 1,800 modules, 가이드 14편, 학교 6,302 / 아파트 45,699 URL, sitemap 8개 생성. 기존 브라우저 데이터 갱신 안내와 500 kB 초과 청크 경고 있음.
+- 추가 Node 직접 검증: `node --input-type=module -e ...`로 실제 analytics.ts의 타입을 제거해 읽고 debug 초기화 후 5개 이벤트 전체 payload를 deepEqual 검증. 추가 필드 제외, count=0 허용, 음수·소수·NaN·Infinity 및 days_since=0 거부 확인, PASS. `node --check scripts/public-smoke.mjs`와 `git diff --check` 통과.
+- `npm run browser:smoke:public -- http://127.0.0.1:3010`: exit 1. 정적 HTML·이미지·주소 origin·지도 마운트·390px 레이아웃·지역 데이터 로드 검사는 통과했으나 기존 지도 축소 검사에서 `zooming out replaces the district markers with province markers — still not true after 15000ms and 35 checks`로 중단됐다(`scripts/public-smoke.mjs:408`). C-01 검증 블록까지 도달하지 못했으며 이 지도 동작은 수정 범위 밖이다. 최초 3000 연결은 EACCES/ETIMEDOUT이었고 별도 3010 서버를 사용했다. 전체 smoke 통과는 통합 전 남은 검증 블로커다.
+- 분리한 브라우저 검증: 임시 실행기 `node .c01-debug-check.mjs`가 public smoke의 C-01 검증 블록을 그대로 읽어 로컬 학습 페이지에서 실행, exit 0. 출력 `PASS: C-01 helpers record exact debug payloads and reject invalid numbers (not UI wiring)`, `PASS: no GA transmission; debug flag removed`. `home_worry_click` 포함 5개 기록을 확인했고 브라우저도 닫았다. 첫 시도에서 Vite HMR의 별도 모듈 인스턴스가 초기화되지 않은 문제를 확인해 검증 블록에 `initAnalytics()`를 추가한 뒤 통과했다. 임시 실행기는 삭제하며 검증 코드는 public smoke에 남긴다.
+- 통합 대기: `plan_start`·`plan_item_add`·`plan_return` 호출 및 중복 방지는 Claude의 `familyPlan.ts`, 내보내기는 C-02, 실제 홈 고민 클릭은 C-04에서 연결한다. 이번 검증은 함수 계약 검증이며 실제 UI 퍼널 완료를 뜻하지 않는다. 카드가 허용한 대로 실제 `home_worry_click` 클릭 smoke는 C-04 뒤 추가한다.
+- Claude 소유 파일, 저장 형식·키·`familyPlan.ts` 계약은 변경하지 않았다. master 병합·release 푸시·운영 DB 쓰기는 수행하지 않는다. C-03 초안은 아래 사전 검토만 기록했으며 문구 확정·구현은 하지 않았다.
 
 **검토**: (Claude 작성)
 
@@ -144,6 +156,14 @@ Claude가 UX-K0·UX-03·UX-26을 하는 동안 Codex는 아래를 바꾸지 않�
 | first-weeks | 첫 주 하교 시각, 우리 학교로 보기 | `/timetable` |
 | preliminary-call, delay-or-early-entry, admission-timeline | 우리 집 입학 일정 만들기 | `/timetable?face=timeline` |
 | check-school-zone, compare-schools | 학교 찾기 | `/map` |
+
+**C-03 별도 사전 검토 (Codex, 2026-11-01 — 문구 미승인, 구현 없음)**
+
+- 초안 표는 현재 가이드 14편을 모두 포함한다. 제안 label은 모두 30자 이하다. front matter·화면 문구는 변경하지 않았다.
+- `school-notice`의 초안은 학교 찾기까지, 백로그 4절은 학교 상세의 하교·돌봄 확인까지 약속한다. 사용자에게 어느 단계를 CTA에 담을지 확인한 뒤 확정해야 한다.
+- `/map` 자체에는 검색 열림을 표현하는 경로 계약이 없다(`src/utils/urlState.ts`). 특히 `school-notice`의 “검색 열림”은 이동만으로 보장되는지 C-03에서 확인이 필요하다. 이 카드에서 라우팅을 바꾸지 않는다.
+- `care-afterschool`·`morning-care`의 “돌봄 공백 계산”, `first-weeks`의 “첫 주”는 모두 일반 `/timetable`로 향한다. 현재 `TimetablePage.tsx`는 학교 선택 → 공개 운영 자료 → 초안 흐름이므로, 자동 계산·첫 주 모드를 약속할 수 있는지 Claude 통합 작업과 대조해야 한다.
+- `face=timeline`은 현재 무시되도록 허용된 과도기다. 일정 만들기 CTA를 공개할 때 UX-03 준비 여부를 확인해야 한다. 문구 확정과 C-03 구현은 사용자 승인 후 별도 브랜치에서 수행한다.
 
 - `face=timeline` 파라미터는 UX-03 전까지 `/timetable`이 무시해도 된다. `urlState.ts`는 건드리지 않는다.
 
