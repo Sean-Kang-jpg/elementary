@@ -4,7 +4,7 @@ import checklist from '../../content/checklist.json'
 import { daysToEntry, ENTRY_DAY_NOTE, roadmapFor } from '../../utils/roadmap'
 import type { MovingPlan, Profile, SchoolInterest } from '../../utils/profile'
 import { readChecklist } from '../../utils/profile'
-import { daysUntil, dueBadge, groupTimeline, readTimeline, setTimelineDone, subscribeFamilyPlan, type TimelineEntry } from '../../utils/familyPlan'
+import { daysUntil, describeProgress, dueBadge, groupTimeline, readTimeline, setTimelineDone, subscribeFamilyPlan, type TimelineEntry } from '../../utils/familyPlan'
 import { track } from '../../utils/analytics'
 import { planPath, VIEW_PATHS } from '../../utils/urlState'
 import { followLink } from './contentLinks'
@@ -131,7 +131,10 @@ export default function RoadmapCard({ entryYear, profile, onProfileChange, onNav
       </div>
 
       <h3 className="roadmap__heading">{view.stage === 'planning' ? '지금 해두면 좋은 일' : `${view.month}월에 할 일`}</h3>
-      {thisMonth ? taskList(thisMonth.entries) : <p className="roadmap__empty">이번 달에는 챙길 일정이 없어요.</p>}
+      {thisMonth ? <>
+        <p className="plan-progress">{describeProgress(thisMonth.entries, view.stage === 'planning')}</p>
+        {taskList(thisMonth.entries)}
+      </> : <p className="roadmap__empty">이번 달에는 챙길 일정이 없어요.</p>}
 
       {later.length ? (
         <div className="roadmap__timeline">

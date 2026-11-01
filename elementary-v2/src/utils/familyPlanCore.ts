@@ -168,6 +168,13 @@ export const groupTimeline = (entries: TimelineEntry[], now = new Date()): Timel
   return groups
 }
 
+/** 완료 표시(UX-10): "이번 달 챙길 것 3개 중 3개 ✓". 다 했을 때만 ✓. 셀 것이 없으면 null. */
+export const describeProgress = (entries: TimelineEntry[], planning = false): string | null => {
+  if (!entries.length) return null
+  const done = entries.filter((entry) => entry.done).length
+  return `${planning ? '지금 챙길 것' : '이번 달 챙길 것'} ${entries.length}개 중 ${done}개${done === entries.length ? ' ✓' : ''}`
+}
+
 /** 마지막으로 연 뒤 지난 날 수(달력 기준). 기록이 없거나 깨졌으면 null. */
 export const daysSince = (lastSeenAt: string | null | undefined, now = new Date()): number | null => {
   if (!lastSeenAt) return null

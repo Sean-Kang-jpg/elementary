@@ -3,7 +3,8 @@ import { CalendarClock, CalendarDays, ChevronRight } from 'lucide-react'
 import { daysToEntry, roadmapFor } from '../../utils/roadmap'
 import type { Profile } from '../../utils/profile'
 import { track } from '../../utils/analytics'
-import { dueBadge, groupTimeline, hasFamilyPlan, notePlanVisit, readTimeline, subscribeFamilyPlan } from '../../utils/familyPlan'
+import { describeProgress, dueBadge, groupTimeline, hasFamilyPlan, notePlanVisit, readTimeline, subscribeFamilyPlan } from '../../utils/familyPlan'
+import { describeCoverage, planCoverage } from '../../utils/schedule/coverage'
 import { readPlans } from '../../utils/schedule/plans'
 import { displaySchoolName } from '../../utils/schoolName'
 import { planPath, timetablePath } from '../../utils/urlState'
@@ -49,15 +50,12 @@ export default function PlanSummary({ entryYear, profile, onNavigate }: PlanSumm
   const heading = open.length
     ? (stage === 'planning' || !current || current.month === null ? '지금 해두면 좋은 일' : `${current.month}월에 할 일`)
     : next ? (next.month ? `${next.month}월에 할 일` : '담아 둔 일') : null
-  const total = current?.entries.length ?? 0
-  const done = total - open.length
-  const progress = !total ? null
-    : !open.length ? `이번 달 할 일 ${total}개 모두 챙겼어요 ✓`
-      : done ? `이번 달 ${total}개 중 ${done}개 챙겼어요` : null
+  const progress = current && view ? describeProgress(current.entries, stage === 'planning') : null
 
   const recent = [...readPlans().plans].sort((a, b) => b.updatedAt.localeCompare(a.updatedAt))[0]
   const timeline = planPath('timeline')
   const week = recent ? timetablePath(recent.schoolId) : planPath('week')
+  const coverage = recent ? planCoverage(recent.entries) : null
 
   return (
     <section className="home-card roadmap-summary plan-summary" aria-labelledby="plan-summary-title">
@@ -84,7 +82,7 @@ export default function PlanSummary({ entryYear, profile, onNavigate }: PlanSumm
           </ul>
         </>
       ) : null}
-      {progress ? <p className="plan-summary__progress">{progress}</p> : null}
+      {progress ? <p className="plan-progress">{progress}</p> : null}
       {entryYear !== null || groups.length ? (
         <a href={timeline} onClick={(event) => followLink(event, timeline, onNavigate)} className="roadmap-summary__more">
           <span>입학까지 전체 일정과 체크</span>
@@ -92,7 +90,10 @@ export default function PlanSummary({ entryYear, profile, onNavigate }: PlanSumm
         </a>
       ) : null}
       <a href={week} onClick={(event) => followLink(event, week, onNavigate)} className="roadmap-summary__more plan-summary__week">
-        <span><CalendarClock size={16} aria-hidden="true" /> {recent ? `${displaySchoolName(recent.schoolName)} 한 주 시간표 이어서 보기` : '우리 아이 한 주 시간표 짜기'}</span>
+        <span className="plan-summary__week-text">
+          <span><CalendarClock size={16} aria-hidden="true" /> {recent ? `${displaySchoolName(recent.schoolName)} 한 주 시간표 이어서 보기` : '우리 아이 한 주 시간표 짜기'}</span>
+          {coverage ? <small className={`plan-coverage plan-coverage--${coverage.state}`}>{describeCoverage(coverage)}</small> : null}
+        </span>
         <ChevronRight size={16} aria-hidden="true" />
       </a>
     </section>

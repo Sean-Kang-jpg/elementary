@@ -7,6 +7,7 @@ import { displaySchoolName } from '../../utils/schoolName'
 import MyScheduleWeek from './MyScheduleWeek'
 import { applyCalendarChange, type CalendarChange } from '../../utils/schedule/editing'
 import { toggleProgramDay } from '../../utils/schedule/programSelection'
+import { describeCoverage, planCoverage } from '../../utils/schedule/coverage'
 import { removeEntryDay, repeatEntry, setEntryTimes } from '../../utils/schedule/dayTimes'
 
 const DAYS = ['월', '화', '수', '목', '금']
@@ -88,6 +89,9 @@ export default function MySchedule({ school, entryYear, saved, onNavigate }: {
     finally { if (alive.current) setLoading(false) }
   }
   const shownName = school.displayName ?? displaySchoolName(school.name)
+  // 완료 표시(UX-10). 엔진의 공백 계산만 쓴다 — 시간표 칸과 같은 창(하교~19시).
+  const coverage = plan ? planCoverage(plan.entries) : null
+
   return (
     <section className={`my-schedule my-card${plan ? ' my-schedule--editing' : ''}`} aria-labelledby="my-schedule-title">
       <div className="my-schedule__head">
@@ -101,6 +105,7 @@ export default function MySchedule({ school, entryYear, saved, onNavigate }: {
           <button type="button" className="my-button" disabled={loading} onClick={() => void create(true)}>자료 없이 직접 만들기</button>
         </div>
       </> : <>
+        {coverage && <p className={`plan-coverage plan-coverage--${coverage.state}`} data-testid="plan-coverage">{describeCoverage(coverage)}</p>}
         <MyScheduleWeek key={`week-${plan.schoolId}`} schoolId={plan.schoolId} onNavigate={onNavigate} entries={plan.entries} onSave={saveCalendarEntry} onAdd={addEntry} onRemove={removeEntry}
           onToggleDay={(entry, weekday) => changeEntries((entries) => toggleProgramDay(entries, entry, weekday))}
           onSetTimes={(id, days, time, label) => changeEntriesIf((entries) => setEntryTimes(entries, id, days, time, label))}

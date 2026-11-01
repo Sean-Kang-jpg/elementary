@@ -2960,6 +2960,12 @@ dialog.my-entry-sheet > a.my-button { display: flex; align-items: center; justif
 .plan-summary__kicker { margin: 0 0 2px; color: var(--warm-accent-strong); font-size: 12px; font-weight: 700; }
 .plan-summary .roadmap-summary__tasks li { display: flex; align-items: center; gap: 8px; }
 .plan-summary .roadmap-summary__tasks li > span { flex: 1; min-width: 0; }
-.plan-summary__progress { margin: 6px 0 0; color: var(--warm-sage); font-size: 13px; font-weight: 700; }
 .plan-summary__week { margin-top: 0; border-top-style: solid; }
-.plan-summary__week > span { display: inline-flex; align-items: center; gap: 6px; }
+
+/* 완료 표시 (UX-10). ✓가 붙는 상태만 초록, 나머지는 사실만 담담하게. */
+.plan-progress { margin: 0 0 6px; color: var(--warm-muted); font-size: 13px; font-weight: 700; }
+.plan-coverage { margin: 0 0 10px; color: var(--warm-muted); font-size: 13px; font-weight: 700; }
+.plan-coverage--covered { color: var(--warm-sage); }
+.plan-summary__week-text { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.plan-summary__week-text > span { display: inline-flex; align-items: center; gap: 6px; }
+.plan-summary__week-text .plan-coverage { margin: 0; font-size: 12px; }

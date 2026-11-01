@@ -1,6 +1,6 @@
 import { describe, it } from 'node:test'
 import assert from 'node:assert/strict'
-import { daysSince, daysUntil, dueBadge, groupTimeline, mergeTimeline, nextDateOf, validPinned, type PinnedItem, type RoadmapViewLike } from './familyPlanCore.ts'
+import { daysSince, daysUntil, describeProgress, dueBadge, groupTimeline, mergeTimeline, nextDateOf, validPinned, type PinnedItem, type RoadmapViewLike } from './familyPlanCore.ts'
 
 const pin = (id: string, when: PinnedItem['when']): PinnedItem => ({ id, title: id, href: `/guide/${id}`, when, addedAt: '2026-11-01T00:00:00.000Z' })
 
@@ -93,6 +93,14 @@ describe('family plan helpers', () => {
     assert.deepEqual(dueBadge({ kind: 'date', date: '2026-11-30' }, now), { text: 'D-29', tone: 'later' })
     assert.deepEqual(dueBadge({ kind: 'date', date: '2026-10-31' }, now), { text: '지남', tone: 'missed' })
     assert.equal(dueBadge({ kind: 'month', month: 12 }, now), null)
+  })
+
+  it('counts this month done, with a tick only when all are done', () => {
+    const entry = (id: string, done: boolean) => ({ id, title: id, when: { kind: 'month' as const, month: 11 }, done, source: 'roadmap' as const })
+    assert.equal(describeProgress([entry('a', true), entry('b', false), entry('c', false)]), '이번 달 챙길 것 3개 중 1개')
+    assert.equal(describeProgress([entry('a', true), entry('b', true)]), '이번 달 챙길 것 2개 중 2개 ✓')
+    assert.equal(describeProgress([entry('a', true)], true), '지금 챙길 것 1개 중 1개 ✓')
+    assert.equal(describeProgress([]), null)
   })
 
   it('counts calendar days since the last visit', () => {

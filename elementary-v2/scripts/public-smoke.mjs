@@ -762,8 +762,9 @@ try {
     + " && document.querySelector('.plan-faces a[aria-current=page]')?.textContent === '입학까지'"
     + " && document.querySelector('.app-gnb__item--active')?.textContent.includes('우리집 일정')"
     + " && document.querySelector('.hub-profile')?.textContent.includes(sessionStorage.getItem('smoke-year'))"
-    + " && document.querySelector('.roadmap h2')?.textContent.includes('D-')",
-    '우리집 일정 opens on 입학까지 with the same saved year and the roadmap',
+    + " && document.querySelector('.roadmap h2')?.textContent.includes('D-')"
+    + " && /챙길 것 \\d+개 중 \\d+개/.test(document.querySelector('.roadmap .plan-progress')?.textContent || '')",
+    '우리집 일정 opens on 입학까지 with the same saved year, the roadmap and its progress',
   )
   run(['eval', "document.querySelectorAll('.plan-faces a')[1].click(); 'to the week'"])
   await waitFor(
