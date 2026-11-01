@@ -1,5 +1,6 @@
 ---
 slug: delay-or-early-entry
+nextStep: {"label":"우리 집 입학 일정 만들기","href":"/my","kind":"plan"}
 title: 입학을 1년 늦추거나 당기려면
 description: 입학연기·조기입학은 입학 전해 10~12월 주민센터, 1월부터는 학교에 취학유예를 신청합니다. 시기별 신청처와 조건을 정리했습니다.
 order: 7

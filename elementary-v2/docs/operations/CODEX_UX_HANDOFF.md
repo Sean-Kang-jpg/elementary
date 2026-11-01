@@ -141,7 +141,7 @@ Claude가 UX-K0·UX-03·UX-26을 하는 동안 Codex는 아래를 바꾸지 않�
 
 ---
 
-### C-03 가이드별 다음 한 걸음 (UX-02, UX-08b 일부) — `ready`, M
+### C-03 가이드별 다음 한 걸음 (UX-02, UX-08b 일부) — `in-progress`(문구 승인 대기), M
 
 **목표**: 모든 가이드 끝에 그 가이드에 맞는 CTA 하나를 둔다.
 
@@ -169,7 +169,14 @@ Claude가 UX-K0·UX-03·UX-26을 하는 동안 Codex는 아래를 바꾸지 않�
 
 **완료 기준**: 빌드 검증이 누락 가이드를 잡는지 한 번 일부러 깨 보고 결과 칸에 적기. 앱 가이드와 정적 가이드 HTML 둘 다에 블록이 보임.
 
-**결과**: 
+**결과** (진행 중, Codex, 2026-11-01)
+
+- 독립 worktree `F:/sm/vibe/elementary/.worktrees/codex-ux-C-03`, 브랜치 `codex/ux-C-03`, 기준 `414382a`.
+- 준비한 파일: `scripts/build-content.mjs`(필수 nextStep·label 30자·kind·내부 경로·가이드 존재 검증), `scripts/build-shell-pages.mjs`(같은 CTA와 하단 체크리스트 링크), `src/components/content/NextStep.tsx`(신규), `GuidePage.tsx`(체크리스트 앞에 연결). 추가 타입 선언만 `src/content/index.ts`에 반영했다. 저장 형식과 Claude 소유 파일은 변경하지 않았다.
+- `npm run lint`: exit 0, 경고 없음. `node --check scripts/build-content.mjs`, `node --check scripts/build-shell-pages.mjs`, `git diff --check` 통과. `npm run test:unit`: tests 123 / suites 27 / pass 123 / fail 0.
+- `npm run content`: 예상한 exit 1, 가이드 14편의 `front matter needs nextStep with label, href and kind`를 모두 확인했다. 문구 미승인 상태라 front matter를 추가하지 않았으며, 전체 typecheck·build·화면 검증은 승인 뒤 수행해야 한다.
+- 최초 사용자 요청의 “승인 전에는 문구를 독자적으로 확정하지 않는다”와 카드의 “초안, 사용자 확인 전”을 따라 CTA 문구·도착지 승인을 요청했다. 현재 `/timetable`의 입학까지·첫 주 전용 동작, `/map` 검색 열림, 돌봄 공백 계산 약속은 승인 전에 검토할 사항이다.
+- 아직 완료 또는 검토 요청 상태가 아니며 커밋·push하지 않았다. 승인 뒤 가이드 14편 front matter 적용, 누락·잘못된 링크·길이 검증, 앱/정적 HTML 확인, 전체 필수 검증과 결과 갱신 후 push한다.
 
 **검토**: 
 

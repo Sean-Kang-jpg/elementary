@@ -1,5 +1,6 @@
 ---
 slug: move-after-call
+nextStep: {"label":"이사 갈 집 배정 학교 찾기","href":"/map","kind":"school"}
 title: 예비소집 뒤, 입학 전에 이사한다면 (1~2월)
 description: 예비소집에 다녀온 뒤 입학 전에 이사해도 새 주소의 학교로 입학할 수 있습니다. 입학 뒤 이사는 전학 절차를 따릅니다.
 order: 5

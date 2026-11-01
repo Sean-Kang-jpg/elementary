@@ -1,5 +1,6 @@
 ---
 slug: compare-schools
+nextStep: {"label":"학교 찾기","href":"/map","kind":"school"}
 title: 학교를 비교할 때 볼 수 있는 공식 정보
 description: 학교 순위는 없습니다. 대신 학생 수, 학급당 학생 수, 돌봄 운영처럼 공개된 사실로 우리 가족에게 맞는지 판단할 수 있습니다.
 order: 12

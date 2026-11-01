@@ -1,5 +1,6 @@
 ---
 slug: check-school-zone
+nextStep: {"label":"학교 찾기","href":"/map","kind":"school"}
 title: 이사할 집의 배정 학교, 이렇게 확인하세요
 description: 가까운 학교와 배정 학교는 다를 수 있고, 통학구역은 해마다 다시 정해집니다. 이사 전에 확인할 순서를 정리했습니다.
 order: 11

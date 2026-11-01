@@ -1,5 +1,6 @@
 ---
 slug: move-after-notice
+nextStep: {"label":"이사 갈 집 배정 학교 찾기","href":"/map","kind":"school"}
 title: 취학통지서를 받은 뒤 이사한다면 (12월 말~1월 예비소집 전)
 description: 취학통지서를 받은 뒤 이사해도 새 주소의 학교로 입학할 수 있습니다. 새 통지서를 받고 두 학교에 알리는 순서를 정리했습니다.
 order: 4

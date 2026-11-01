@@ -8,6 +8,7 @@ import { track } from '../../utils/analytics'
 import { useSeenOnce } from '../care/useSeenOnce'
 import ShareButton from '../ui/ShareButton'
 import ChecklistBanner from './ChecklistBanner'
+import NextStep from './NextStep'
 import SourceList from './SourceList'
 import SocialLinks from './SocialLinks'
 import AppliesTo from './AppliesTo'
@@ -48,6 +49,7 @@ export default function GuidePage({ guide, onNavigate }: GuidePageProps) {
         {guide.summary ? <GuideSummary summary={guide.summary} /> : null}
         <div className="content-body" dangerouslySetInnerHTML={{ __html: guide.html }} />
         <SocialLinks targetType="guide" targetKey={guide.slug} />
+        <NextStep nextStep={guide.nextStep} onNavigate={onNavigate} />
         <ChecklistBanner onNavigate={onNavigate} />
         <div ref={endRef}><SourceList sources={guide.sources} verifiedAt={guide.verifiedAt} /></div>
       </article>

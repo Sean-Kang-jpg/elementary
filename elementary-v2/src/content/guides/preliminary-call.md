@@ -1,5 +1,6 @@
 ---
 slug: preliminary-call
+nextStep: {"label":"우리 집 입학 일정 만들기","href":"/my","kind":"plan"}
 title: 예비소집, 꼭 가야 하나요
 description: 예비소집은 아이의 취학 여부와 안전을 확인하는 절차입니다. 준비물, 갈 수 없을 때 할 일, 불참하면 생기는 일을 정리했습니다.
 order: 2

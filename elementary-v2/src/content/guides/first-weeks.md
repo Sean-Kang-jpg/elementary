@@ -1,5 +1,6 @@
 ---
 slug: first-weeks
+nextStep: {"label":"우리 학교 하교 시각으로 한 주 짜보기","href":"/timetable","kind":"plan"}
 title: 입학식과 입학 첫 주, 몇 시에 끝나나요
 description: 입학식 날은 두세 시간 만에 끝나는 학교가 많고, 첫 1~2주는 4교시 하교가 흔합니다. 3월 첫 달을 미리 계획하세요.
 order: 8

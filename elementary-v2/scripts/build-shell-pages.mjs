@@ -282,6 +282,8 @@ for (const guide of content.guides) {
       guide.scope ? `<p class="content-page__scope">${escapeHtml(guide.scope)}</p>` : '',
       summaryHtml(guide.summary),
       `<div class="content-body">${guide.html}</div>`,
+      `<a href="${escapeHtml(guide.nextStep.href)}" class="my-button my-button--primary my-4 flex min-h-11 items-center justify-center text-center" data-testid="guide-next-step" data-next-step-kind="${escapeHtml(guide.nextStep.kind)}">${escapeHtml(guide.nextStep.label)}</a>`,
+      '<a href="/checklist" class="checklist-banner"><span class="checklist-banner__text"><strong>입학 준비 체크리스트</strong></span></a>',
       sourcesHtml(guide.sources, guide.verifiedAt),
     ].join(''), 'guide-title'),
   }))
