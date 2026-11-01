@@ -1,6 +1,6 @@
 import unittest
 
-from etl.load_school_afterschool import build, category, clean_row, grade_upper, school_record, table_rows, load_period_estimates
+from etl.load_school_afterschool import build, category, clean_row, grade_upper, school_record, table_rows, load_period_estimates, carry_resolved
 
 ROW = ['방과후', '컴퓨터', '컴기초', 'A', '1-2학년', '수목', '13:00', '14:20', 'true', '1분기', 12]
 
@@ -153,6 +153,14 @@ class SchoolRecordTest(unittest.TestCase):
                           ('방과후시각미확인', 3, '로봇 · A · L12')])
         self.assertEqual(rows['school_afterschool_summary'][0]['slot_status'], 'check')
         self.assertNotIn('school_afterschool_slots', table_rows(records, '2026-10-31'))
+
+    def test_a_reload_keeps_the_date_a_person_closed_a_check(self):
+        checks = [{'school_id': 'G', 'seq': 1, 'reason': '원문불일치', 'weekday': None, 'detail': '시각 · 놀이체육 · L7'},
+                  {'school_id': 'G', 'seq': 2, 'reason': '맞춤형시각없음', 'weekday': 2, 'detail': None}]
+        resolved = [{'school_id': 'G', 'reason': '원문불일치', 'weekday': None, 'detail': '시각 · 놀이체육 · L7', 'resolved_on': '2026-11-03'},
+                    {'school_id': 'G', 'reason': '맞춤형시각없음', 'weekday': 3, 'detail': None, 'resolved_on': '2026-11-03'}]
+        self.assertEqual(carry_resolved(checks, resolved), 1)
+        self.assertEqual([c.get('resolved_on') for c in checks], ['2026-11-03', None])
 
     def test_category(self):
         self.assertEqual(category('원어민영어 Starter'), '영어')

@@ -290,6 +290,21 @@ def build(outputs: list[Path], custom: list[Path] | None = None,
     return records, counts
 
 
+def check_key(row: dict) -> tuple:
+    return row['school_id'], row['reason'], row.get('weekday'), row.get('detail')
+
+
+def carry_resolved(checks: list[dict], resolved: list[dict]) -> int:
+    """A reload rebuilds checks with new seq numbers; an item a person already closed keeps its resolved_on."""
+    closed = {check_key(r): r['resolved_on'] for r in resolved if r.get('resolved_on')}
+    carried = 0
+    for row in checks:
+        if check_key(row) in closed:
+            row['resolved_on'] = closed[check_key(row)]
+            carried += 1
+    return carried
+
+
 def check_detail(check: list) -> str | None:
     detail = check[2] if len(check) > 2 else None
     if detail is None:
@@ -427,6 +442,19 @@ def main() -> None:
         if args.sql38_fields:
             # slots and checks are rebuilt per school: drop the school's old ones, then insert this snapshot's
             loaded = [r['school_id'] for r in rows['school_afterschool_summary']]
+            resolved, offset = [], 0
+            while True:
+                page, _ = rest(url, service_key, 'school_afterschool_checks?select=school_id,reason,weekday,detail,resolved_on'
+                               f'&resolved_on=not.is.null&order=school_id,seq&limit=1000&offset={offset}')
+                resolved += page
+                if len(page) < 1000:
+                    break
+                offset += 1000
+            if resolved:
+                # PostgREST bulk insert needs one key set: give every row the column
+                for row in rows['school_afterschool_checks']:
+                    row.setdefault('resolved_on', None)
+            report['resolved_carried'] = carry_resolved(rows['school_afterschool_checks'], resolved)
             for table in ('school_afterschool_slots', 'school_afterschool_checks'):
                 for start in range(0, len(loaded), 100):
                     ids = ','.join(loaded[start:start + 100])
