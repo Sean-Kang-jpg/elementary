@@ -92,7 +92,7 @@ Claude가 UX-K0·UX-03·UX-26을 하는 동안 Codex는 아래를 바꾸지 않�
 
 ---
 
-### C-01 퍼널 이벤트 (UX-01) — `review`, S
+### C-01 퍼널 이벤트 (UX-01) — `merged`, S
 
 **목표**: 우리집 일정 퍼널을 셀 수 있게 이벤트를 더한다. 화면 배선은 이 카드에서 이벤트가 생길 자리에만 한다.
 
@@ -127,7 +127,12 @@ Claude가 UX-K0·UX-03·UX-26을 하는 동안 Codex는 아래를 바꾸지 않�
 - 통합 대기: `plan_start`·`plan_item_add`·`plan_return` 호출 및 중복 방지는 Claude의 `familyPlan.ts`, 내보내기는 C-02, 실제 홈 고민 클릭은 C-04에서 연결한다. 이번 검증은 함수 계약 검증이며 실제 UI 퍼널 완료를 뜻하지 않는다. 카드가 허용한 대로 실제 `home_worry_click` 클릭 smoke는 C-04 뒤 추가한다.
 - Claude 소유 파일, 저장 형식·키·`familyPlan.ts` 계약은 변경하지 않았다. master 병합·release 푸시·운영 DB 쓰기는 수행하지 않는다. C-03 초안은 아래 사전 검토만 기록했으며 문구 확정·구현은 하지 않았다.
 
-**검토**: (Claude 작성)
+**검토** (Claude, 2026-11-01): 병합.
+
+- 고친 것: `analytics.ts`가 `PlanSource`를 따로 정의해 UX-03의 `home`·`my`·`timetable`이 빠져 있었다 — `familyPlanCore.ts`의 정의를 가져다 쓰게 바꿨다(한 곳에서만 정한다). `content_id`는 선택값으로(입학연도 선택은 콘텐츠가 없다).
+- `familyPlan.ts`의 `track()` 직접 호출 셋을 `trackPlanStart`·`trackPlanItemAdd`·`trackPlanReturn`으로 교체. `days_since >= 1` 거르기는 `trackPlanReturn`이 맡는다.
+- smoke의 지도 축소 실패는 포트 문제로 본다: 같은 검사가 3001에서는 통과한다(Naver Maps 허용 호스트). 로컬 smoke는 3001(기본값)에서 돌릴 것.
+
 
 ---
 

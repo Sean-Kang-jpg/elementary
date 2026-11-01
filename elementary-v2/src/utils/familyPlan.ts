@@ -7,9 +7,9 @@
  * 새로 저장하는 것은 담은 항목과 시작·방문 기록뿐이다(`wherecho:family-plan-v1`). 모두 이 기기에만 있다(D1).
  *
  * 화면은 저장 키를 직접 읽거나 쓰지 않고 이 파일의 함수만 부른다. 이벤트 plan_start·plan_item_add·plan_return도
- * 여기서만 보낸다 — 화면마다 보내면 "처음 한 번"을 지킬 수 없다.
+ * 여기서만 보낸다(analytics.ts의 타입 있는 함수, C-01) — 화면마다 보내면 "처음 한 번"을 지킬 수 없다.
  */
-import { track } from './analytics'
+import { track, trackPlanItemAdd, trackPlanReturn, trackPlanStart } from './analytics'
 import { readChecklist, readProfile, hasSavedProfile, saveChecklist, subscribeProfile, type Profile } from './profile'
 import { roadmapFor } from './roadmap'
 import { readPlans, subscribePlans } from './schedule/plans'
@@ -83,7 +83,7 @@ export const startFamilyPlan = ({ from, face, contentId }: StartOptions): void =
   if (store.startedAt) return
   const now = new Date().toISOString()
   if (!writeStore({ ...store, startedAt: now, startedFrom: from, lastSeenAt: now })) return
-  if (isNew) track('plan_start', { from, content_id: contentId, face })
+  if (isNew) trackPlanStart({ from, content_id: contentId, face })
 }
 
 export const isInPlan = (id: string): boolean => readStore().pinned.some((item) => item.id === id)
@@ -99,7 +99,7 @@ export const addToPlan = (item: Omit<PinnedItem, 'addedAt'>, options: Omit<Start
   const existing = store.pinned.find((pinned) => pinned.id === item.id)
   const next: PinnedItem = { ...item, addedAt: existing?.addedAt ?? new Date().toISOString() }
   const saved = writeStore({ ...store, pinned: [next, ...store.pinned.filter((pinned) => pinned.id !== item.id)] })
-  if (saved && !existing) track('plan_item_add', { item_id: item.id, from: options.from })
+  if (saved && !existing) trackPlanItemAdd({ item_id: item.id, from: options.from })
   return saved
 }
 
@@ -140,7 +140,7 @@ export const notePlanVisit = (now = new Date()): void => {
   const store = readStore()
   const days = daysSince(store.lastSeenAt, now)
   writeStore({ ...store, lastSeenAt: now.toISOString() })
-  if (days !== null && days >= 1) track('plan_return', { days_since: days })
+  if (days !== null) trackPlanReturn({ days_since: days })
 }
 
 /** 일정이 바뀌면 부른다: 담은 항목, 프로필·체크리스트, 시간표 초안 어느 쪽이든. */

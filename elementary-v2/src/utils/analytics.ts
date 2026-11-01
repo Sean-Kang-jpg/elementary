@@ -18,6 +18,8 @@
  * and without that guard every release would add sessions that did nothing.
  */
 
+import type { PlanFace, PlanSource } from './familyPlanCore'
+
 const MEASUREMENT_ID = 'G-NQT4XV9R00'
 const PRODUCTION_HOSTS = new Set(['wherecho.co.kr'])
 
@@ -150,12 +152,14 @@ export const itemOfPath = (path: string): { item_type: 'school' | 'apartment' | 
   return null
 }
 
-/** Controlled entry points only; identifiers must be content slugs/IDs, never user text or addresses. */
-export type PlanSource = 'guide' | 'home_worry' | 'school_detail' | 'apartment_detail' | 'result_page'
-export type PlanFace = 'timeline' | 'week'
+/**
+ * Controlled entry points only; identifiers must be content slugs/IDs, never user text or addresses.
+ * The source list is owned by familyPlanCore so the plan API and these events cannot drift apart.
+ */
+export type { PlanFace, PlanSource }
 
 /** familyPlan owns the first-plan transition and calls this once when no plan becomes a plan. */
-export const trackPlanStart = ({ from, content_id, face }: { from: PlanSource; content_id: string; face: PlanFace }): void => {
+export const trackPlanStart = ({ from, content_id, face }: { from: PlanSource; content_id?: string; face: PlanFace }): void => {
   track('plan_start', { from, content_id, face })
 }
 
