@@ -304,7 +304,7 @@ MY(`/my`)에는 프로필·관심 후보·저장 학원만 남았다(UX-06). 입
 
 ---
 
-### C-07 이 학교로 일정 만들기 (UX-07) — `ready`, S
+### C-07 이 학교로 일정 만들기 (UX-07) — `review`, S
 
 **목표**: 학교·아파트 상세에서 한 번 눌러 그 학교의 한 주 초안으로 간다. 초안 채우기(하교·돌봄·방과후)는 `TimetablePage.tsx`가 `?school=`로 이미 한다 — 이 카드는 입구와 이벤트만.
 
@@ -319,7 +319,20 @@ MY(`/my`)에는 프로필·관심 후보·저장 학원만 남았다(UX-06). 입
 
 **완료 기준**: lint·typecheck·build·public smoke(3001) 통과. smoke의 학교 상세 단계에서 링크를 누르면 `/timetable?school=`로 가고, 디버그 기록에 `plan_start`가 `from: 'school_detail'`로 한 번 남는다(이미 일정이 있는 세션이면 남지 않는 게 맞다 — smoke는 저장값을 비운 뒤 확인).
 
-**결과**: 
+**결과** (Codex, 2026-11-01)
+
+- 독립 worktree `F:/sm/vibe/elementary/.worktrees/codex-ux-C-07`, 브랜치 `codex/ux-C-07`, 기준 master `7747ada`.
+- 변경 파일: `src/components/school/SchoolDayEstimateCard.tsx` — 기존 testid·학교별 timetable 주소를 유지하고 승인된 문구로 변경. 기본 클릭에서 이동 직전에 `startFamilyPlan({ from: 'school_detail', face: 'week', contentId: school.school_id })` 호출. 시간표 안의 카드에는 기존대로 진입 링크를 표시하지 않는다.
+- `src/components/apartment/ApartmentDetail.tsx` — 배정 학교 아래 같은 스타일의 CTA 추가. 대표 학교 ID가 없으면 숨기고, 선택 배정 목록이 있으면 배열을 바꾸지 않고 최소 assignment_rank를 선택한다. 이벤트에는 선택한 학교 ID만 넣는다. 아파트 링크는 기존 화면에 이동 callback이 없어 기본 앵커 이동을 사용한다. 수정키·가운데 클릭·이미 처리된 클릭에서는 두 CTA 모두 일정을 시작하지 않는다.
+- 데이터 범위: 현재 `Apartment`에는 단일 assigned_school_id만 있고, `assigned_schools` 타입은 `SearchResult`에 있다. 상세 컴포넌트 prop에서 기존 선택 속성을 합성해 목록이 주어지는 경우를 지원했다. 서비스의 검색·공개 키 조회는 이미 assignment_rank 순으로 대표 학교를 선택한다. 공유 타입·데이터 서비스·저장 형식·DB·Claude 소유 파일은 수정하지 않았다.
+- `scripts/public-smoke.mjs` — 새 기기 상태에서 학교 CTA → 해당 학교 시간표 → 정확한 school_detail/week/학교 ID의 plan_start 1회 → 뒤로 갔다 재클릭해도 1회 검증. 검증 블록은 기존 지도 확대축소 검사보다 앞에 두었다. 아파트 CTA 주소와 문구도 검사한다.
+- `npm run lint`: exit 0, 경고 없음. `npm run typecheck`: exit 0. `npm run test:unit`: exit 0, tests 132 / suites 28 / pass 132 / fail 0.
+- `npm run build`: exit 0. Vite 1,805 modules, 가이드 14편, 학교 6,302·아파트 45,699 URL, sitemap 8개 생성. 기존 청크 크기와 브라우저 데이터 갱신 경고가 있다.
+- 추가 격리 검증: 임시 실행기로 실제 컴포넌트를 변환하고 의존성·hook 대역으로 실행, exit 0. 학교 이벤트가 이동보다 먼저 호출되는지, 숨긴 카드·수정키·가운데 클릭에 이벤트가 없는지, 아파트 rank 선택·빈 목록 fallback·미배정 숨김·원본 배열 불변·ID만 담은 이벤트를 확인했다. 실제 저장/이벤트 중복 판단은 smoke에서 기존 API로 검증한다. 임시 실행기는 삭제했다.
+- `node --check scripts/public-smoke.mjs`, `git diff --check` 통과. React 검토: 기존 anchor/testid/스타일 유지, 중첩 인터랙티브·추가 effect·저장 키·새 조회 없음.
+- `npm run browser:smoke:public -- http://127.0.0.1:3047`: 최종 실행에서 C-07 검증은 모두 PASS. 실제 학교 CTA 주소·문구, 해당 학교 시간표 이동, 정확한 3개 이벤트 파라미터, plan_start 1회와 재클릭 중복 방지, 검증 데이터 정리를 확인했다. 이어지는 기존 지도 검사에서 `zooming out replaces the district markers with province markers — still not true after 15000ms and 30 checks`로 exit 1(`scripts/public-smoke.mjs:437`). 따라서 전체 smoke 통과는 남은 검증 블로커이며, 뒤에 있는 아파트 CTA 표시 검사는 이 실행에서 도달하지 못했다(아파트 선택·이벤트 격리 검증은 위에서 통과).
+- 포트: 3001은 이미 사용 중이라 기존 서버를 유지하고 C-07 전용 3047을 사용했다. 최초 전체 smoke도 같은 지도 검사에서 실패했다(15초, 33 checks). 새 C-07 블록을 앞으로 옮겨 해당 기능의 실제 검증이 지도 검사에 가려지지 않게 했다. 지도 검사 조건은 완화하지 않았다.
+- master 병합·release 배포·운영 DB 쓰기는 수행하지 않는다.
 
 **검토**: 
 

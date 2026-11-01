@@ -1,6 +1,6 @@
-import { ArrowLeft, Building2, CarFront, GraduationCap, School, Star } from 'lucide-react'
+import { ArrowLeft, Building2, CalendarPlus, CarFront, ChevronRight, GraduationCap, School, Star } from 'lucide-react'
 import React, { useEffect, useState } from 'react'
-import type { Apartment, ApartmentAcademySummary } from '../../types'
+import type { Apartment, ApartmentAcademySummary, SearchResult } from '../../types'
 import { getApartmentAcademySummaries } from '../../services/dataService'
 import BottomSheet from '../ui/BottomSheet'
 import ApartmentCard from './ApartmentCard'
@@ -8,9 +8,10 @@ import ApartmentTransactionSummary from './ApartmentTransactionSummary'
 import ShareButton from '../ui/ShareButton'
 import DataFreshness from '../ui/DataFreshness'
 import CareCenterList from '../care/CareCenterList'
-import { apartmentPath } from '../../utils/urlState'
+import { apartmentPath, timetablePath } from '../../utils/urlState'
 import { apartmentFavorite, isFavorite as checkFavorite, refreshFavorite, toggleFavorite } from '../../utils/favorites'
 import { track } from '../../utils/analytics'
+import { startFamilyPlan } from '../../utils/familyPlan'
 import { ACADEMY_DATA_PENDING_LABEL, hasAcademyData } from '../../utils/academyCoverage'
 import { displaySchoolName } from '../../utils/schoolName'
 import { useAppContext } from '../../contexts/AppContext'
@@ -18,7 +19,9 @@ import DetailTabs from '../ui/DetailTabs'
 import MapLayerButton from '../map/MapLayerButton'
 
 interface ApartmentDetailProps {
-  apartment: Apartment | null
+  // The current serving read already chooses the lowest-rank assignment. Also
+  // accept the existing optional search-result list when supplied by a caller.
+  apartment: (Apartment & Pick<SearchResult, 'assigned_schools'>) | null
   isOpen: boolean
   onClose: () => void
   onBack?: () => void
@@ -58,6 +61,9 @@ const ApartmentDetail: React.FC<ApartmentDetailProps> = ({ apartment, isOpen, on
   const academyDataAvailable = hasAcademyData(apartment.city)
   const parkingTotal = Math.max(apartment.parking_total || 0, 0)
   const undergroundShare = parkingTotal > 0 ? apartment.underground_parking / parkingTotal * 100 : 0
+  const planSchoolId = apartment.assigned_school_id
+    ? [...(apartment.assigned_schools ?? [])].sort((a, b) => a.assignment_rank - b.assignment_rank)[0]?.school_id || apartment.assigned_school_id
+    : null
 
   return (
     <BottomSheet
@@ -114,6 +120,17 @@ const ApartmentDetail: React.FC<ApartmentDetailProps> = ({ apartment, isOpen, on
               </p>
             ) : null}
           </section>
+
+          {planSchoolId && (
+            <a href={timetablePath(planSchoolId)} className="timetable-cta" data-testid="apartment-day-plan-link" onClick={(event) => {
+              if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return
+              startFamilyPlan({ from: 'apartment_detail', face: 'week', contentId: planSchoolId })
+            }}>
+              <CalendarPlus size={18} aria-hidden="true" />
+              <span>이 학교로 우리 아이 한 주 만들기</span>
+              <ChevronRight size={18} aria-hidden="true" />
+            </a>
+          )}
 
           <section aria-labelledby="parking-title">
             <div className="mb-2 flex items-center justify-between">
