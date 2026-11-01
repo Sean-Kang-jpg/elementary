@@ -61,10 +61,10 @@ Claude가 UX-K0·UX-03·UX-26을 하는 동안 Codex는 아래를 바꾸지 않�
 | --- | --- | --- | --- |
 | 0 (지금) | C-01 이벤트, C-02 .ics, C-03 가이드 nextStep | UX-K0 API, UX-03 입학까지 v0 | 홈 제목·고민 문구, 추첨 결과 사실 |
 | 1 | C-04 홈 고민 목록, C-05 홈 하단 정리, C-06 결과 이후 페이지 | 차수 0 검토·병합, 배포 | 배포 승인 |
-| 2 (12월) | UX-07, UX-09, UX-10, UX-08d | UX-26 우리집 일정 탭, UX-06, UX-08c | 완료 표시·미뤄도 되는 것 내용 |
+| 2 (12월) | C-07 학교로 일정 만들기, C-08 내 일정에 넣기, C-09 퍼널 정의 | UX-26 우리집 일정 탭, UX-06, UX-08c, UX-10 완료 표시 | 완료 표시·미뤄도 되는 것 내용 |
 | 3 (1~2월) | UX-15, UX-16, UX-17 | UX-13 기본안, UX-14 칸 의도, UX-18 | 여백 이름 |
 
-차수 2의 Codex 카드는 UX-K0 병합 뒤에 이 문서에 추가한다.
+차수 2 카드(C-07~C-09)는 UX-K0·UX-03 병합 뒤인 2026-11-01에 추가했다. UX-10(완료 표시)은 입학까지 카드가 UX-26에서 옮겨 간 뒤 Claude가 한다 — 지금 `RoadmapCard.tsx`가 체크와 D-day를 이미 갖고 있어 Codex 카드로 나누면 같은 파일을 두 번 고치게 된다.
 
 ### 우리집 일정 API (`src/utils/familyPlan.ts`, UX-K0)
 
@@ -213,6 +213,7 @@ Claude가 UX-K0·UX-03·UX-26을 하는 동안 Codex는 아래를 바꾸지 않�
 - 누르면 `trackHomeWorryClick`(C-01), `markEntry('home')`.
 - 빌드 검증(UX-08b): 고민의 `href`가 있는 경로인지, 가이드면 `nextStep`이 있는지(C-03 병합 뒤).
 - 일정이 있는 사용자 카드(UX-08c)는 범위 밖. `RoadmapSummary` 자리는 그대로 둔다.
+- C-08이 먼저 병합되면 시즌 항목의 `planId`와 "내 일정에 넣기" 버튼을 고민 항목으로 그대로 옮긴다.
 
 **막힌 이유**: 홈 제목·설명, 11~12월 고민 문구를 사용자가 정해야 한다.
 
@@ -247,6 +248,72 @@ Claude가 UX-K0·UX-03·UX-26을 하는 동안 Codex는 아래를 바꾸지 않�
 **명세**: 기존 가이드 형식(출처·`verifiedAt`·80자 이내 설명, `nextStep`). 사실 문장은 사용자가 준 메모에 있는 것만. "안 됐다면" 편의 `nextStep`은 배정 학교 찾기 → 일정.
 
 **막힌 이유**: 2027학년도 지역별 추첨·결과 발표일과 등록 절차의 출처를 사용자가 확인해 줘야 한다.
+
+**결과**: 
+
+**검토**: 
+
+---
+
+### C-07 이 학교로 일정 만들기 (UX-07) — `ready`, S
+
+**목표**: 학교·아파트 상세에서 한 번 눌러 그 학교의 한 주 초안으로 간다. 초안 채우기(하교·돌봄·방과후)는 `TimetablePage.tsx`가 `?school=`로 이미 한다 — 이 카드는 입구와 이벤트만.
+
+**바꿀 파일**: `src/components/school/SchoolDayEstimateCard.tsx`, `src/components/apartment/ApartmentDetail.tsx`, `scripts/public-smoke.mjs`
+
+**명세**
+
+- 학교 상세: `data-testid="school-day-plan-link"` 링크의 문구를 "이 학교로 우리 아이 한 주 만들기"로. testid·`timetablePath(school_id)`는 그대로.
+- 누를 때 이동 전에 `startFamilyPlan({ from: 'school_detail', face: 'week', contentId: school_id })`.
+- 아파트 상세: 배정 학교 영역 아래 같은 모양의 링크 하나(`timetable-cta`). `apartment.assigned_school_id`가 있을 때만. `from: 'apartment_detail'`, `contentId`는 그 학교 id. 배정이 둘 이상(`assigned_schools`)이면 `assignment_rank`가 가장 작은 학교.
+- 주소·단지명은 `contentId`에 넣지 않는다.
+
+**완료 기준**: lint·typecheck·build·public smoke(3001) 통과. smoke의 학교 상세 단계에서 링크를 누르면 `/timetable?school=`로 가고, 디버그 기록에 `plan_start`가 `from: 'school_detail'`로 한 번 남는다(이미 일정이 있는 세션이면 남지 않는 게 맞다 — smoke는 저장값을 비운 뒤 확인).
+
+**결과**: 
+
+**검토**: 
+
+---
+
+### C-08 내 일정에 넣기 (UX-09) — `ready`, S
+
+**목표**: 홈 "지금 챙길 것" 카드마다 "내 일정에 넣기". 담은 항목은 MY의 입학까지 카드 해당 달에 보인다(UX-03).
+
+**바꿀 파일**: 신규 `src/components/content/AddToPlanButton.tsx`, `src/components/navigation/HomeShelves.tsx`, `src/content/home-shelves.json`, `src/styles/home-shelves.css`, `scripts/public-smoke.mjs`
+
+**명세**
+
+- `AddToPlanButton({ item: { id, title, href, when }, from, contentId })`: `isInPlan(id)`면 "일정에 있어요 ✓"(누르면 `removeFromPlan`), 아니면 "내 일정에 넣기"(누르면 `addToPlan`). `addToPlan`이 false면 상태를 바꾸지 않고 "저장하지 못했어요"를 `role="status"`로. `subscribeFamilyPlan`으로 다른 곳의 변경을 따라간다.
+- 시즌 카드는 지금 통째로 `<a>`다. 버튼을 링크 안에 넣지 말고 카드 안의 형제로 둔다(중첩 인터랙티브 금지).
+- `when`: `deadline`이 있으면 `{ kind: 'date', date: nextDateOf(deadline) }`, 없으면 `{ kind: 'month', month: 오늘 달 }`.
+- **id**: 로드맵에 같은 할 일이 있는 카드는 로드맵 id를 써서 일정에 두 번 나오지 않게 한다. `home-shelves.json` 항목에 `planId`를 더한다: `notice` → `adm-12-notice`, `delay` → `adm-12-defer`. 나머지는 `season-<id>`.
+- `from: 'home_worry'`, `contentId`는 카드 id.
+- 정적 홈(`build-shell-pages.mjs`)에는 버튼을 넣지 않는다 — 기기 저장값을 읽어야 해서 앱에서만 뜬다. `seasonCards()`의 선택 규칙은 바꾸지 않으므로 두 파일 동기화 규칙에 걸리지 않는다.
+- C-04가 `season`을 `worries`로 바꿀 때 `planId`와 이 버튼을 그대로 옮긴다(C-04 명세에 반영할 것).
+
+**완료 기준**: lint·typecheck·build·public smoke 통과. smoke: 홈에서 첫 시즌 카드의 버튼 → "일정에 있어요" → `/my`의 `.roadmap`에 그 제목이 보임(입학연도가 있는 상태에서) → 디버그 기록에 `plan_item_add` 한 번. 다시 누르면 빠짐.
+
+**결과**: 
+
+**검토**: 
+
+---
+
+### C-09 퍼널 정의 (UX-08d) — `ready`, S (문서만)
+
+**목표**: "고민 클릭 → 도착 → 일정 시작"을 GA4에서 바로 볼 수 있게 탐색 정의를 문서로 고정한다.
+
+**바꿀 파일**: `docs/product/MEASUREMENT_PLAN.md`(10절 아래 "우리집 일정 퍼널" 소절)
+
+**명세**
+
+- 단계: `home_worry_click` → `page_view`(가이드·상세) → `plan_start` → `plan_item_add` 또는 `ics_export` → `plan_return`. 각 단계의 이벤트·조건·기간(세션 / 7일 / 30일)을 표로.
+- `plan_start.from`별 분해(`home`·`guide`·`home_worry`·`school_detail`·`apartment_detail`·`result_page`·`timetable`·`my`), 맞춤 측정기준 등록 목록(`from`, `face`, `content_id`, `worry_id`, `item_id`)과 등록 여부 칸.
+- 기존 사용자 판정: 이 기기에 입학연도나 시간표 초안이 이미 있으면 `plan_start`가 오지 않는다(`hasFamilyPlan`). 퍼널의 분모가 신규 일정만이라는 점을 적는다.
+- 운영 데이터 조회·GA4 설정 변경은 하지 않는다(사용자 몫).
+
+**완료 기준**: 문서 표가 C-01 이벤트 표와 이름·매개변수가 일치. 맞춤 측정기준 등록 단계는 사용자 확인 항목으로 표시.
 
 **결과**: 
 
