@@ -136,7 +136,7 @@ Claude가 UX-K0·UX-03·UX-26을 하는 동안 Codex는 아래를 바꾸지 않�
 
 ---
 
-### C-02 캘린더 파일 생성 (UX-04) — `ready`, S
+### C-02 캘린더 파일 생성 (UX-04) — `review`, S
 
 **목표**: 일정 목록을 .ics 문자열로 만드는 순수 함수와 내려받기 버튼 컴포넌트.
 
@@ -152,7 +152,23 @@ Claude가 UX-K0·UX-03·UX-26을 하는 동안 Codex는 아래를 바꾸지 않�
 
 **완료 기준**: `npm run test:unit`에 이스케이프·줄 접기·한글 접기·날짜 형식 테스트. 생성 파일을 구글 캘린더 가져오기로 열어 본 결과(스크린샷 또는 문장)를 결과 칸에.
 
-**결과**: 
+**결과** (Codex, 2026-11-01)
+
+- 독립 worktree `F:/sm/vibe/elementary/.worktrees/codex-ux-C-02`, 브랜치 `codex/ux-C-02`, 기준 커밋 `043a73d`(master의 UX-K0). master 작업 폴더는 수정하지 않았다.
+- 변경 파일: `src/utils/ics.ts` — 순수 함수 `createIcs(items, { generatedAt: Date, siteOrigin?: string })`, `IcsItem`·`IcsOptions` 타입. 시각은 호출자가 넘겨 동일 입력에 같은 출력을 만든다. 종일 날짜·고정 UID·UTC DTSTAMP·CRLF·75옥텟 UTF-8 접기·TEXT 이스케이프를 지원한다. 잘못된 날짜·중복 ID·외부 URL은 오류로 처리한다.
+- `src/utils/ics.test.ts` — 신규 테스트 9개. 이스케이프, 속성 주입 방지, ASCII 경계·한글·이모지 접기, 윤년·실제 날짜·형식, 타임존 독립성, URL·origin, 빈 입력·중복 ID·불변성을 검증한다.
+- `src/components/content/IcsButton.tsx` — `items`, 선택 `className`·`siteOrigin`을 받는 미연결 버튼. Blob 다운로드, 빈 일정 비활성화, 실패 안내, 임시 링크 제거·Object URL 지연 해제. 공개 origin은 명시한 prop → 빌드에서 찍은 canonical → `VITE_SITE_ORIGIN` → `https://wherecho.co.kr` 순이다. `SITE_ORIGIN`만 지정한 빌드도 canonical을 통해 반영된다.
+- C-01은 이 브랜치의 master 기준에 아직 없으므로 카드가 허용한 `track('ics_export', { count: items.length })`를 사용했다. C-01 병합 뒤 Claude가 `trackIcsExport({ count })`로 바꾸면 된다. 이 브랜치에 C-01 변경은 섞지 않았다.
+- `node --test src/utils/ics.test.ts`: exit 0, tests 9 / pass 9 / fail 0.
+- `npm run test:unit`: exit 0, tests 130 / suites 28 / pass 130 / fail 0(기준 master의 UX-K0 테스트 포함).
+- `npm run lint`: exit 0, 경고 없음. 임시 검증 화면 제거 후 최종 파일로 재검증했다. `git diff --check`도 통과했다.
+- `npm run typecheck`: exit 0. 처음 드러난 `ImportMeta.env` 타입 오류는 저장소의 기존 타입 단언 패턴으로 수정한 뒤 재검증했다.
+- `npm run build`: exit 0. Vite 1,800 modules, 정적 가이드 14편, 학교 6,302·아파트 45,699 URL, sitemap 8개 생성. 기존 브라우저 데이터 갱신 안내와 500 kB 초과 청크 경고가 있다.
+- 실제 다운로드: 임시 로컬 화면 `http://127.0.0.1:3042/.c02-harness.html`에서 버튼을 눌러 `wherecho-plan.ics`(929 bytes)를 내려받았다. 브라우저의 다운로드 완료 대기 도구는 응답이 멈췄으나, 이후 실제 내려받은 파일의 전체 내용을 DTSTAMP를 제외하고 `createIcs` 예상 출력과 비교해 일치함을 확인했다. 2020-01-02 종일 날짜·한글·이스케이프·각 행 75옥텟 제한도 통과했다. 참고 파일 `F:/sm/vibe/elementary/.artifacts/ux-C-02/wherecho-downloaded.ics`(커밋 제외).
+- 버튼 추가 검증: 임시 실행기로 실제 컴포넌트를 변환해 DOM·hook·analytics를 대역으로 두고 실행, exit 0. Blob MIME/내용·파일명·클릭·`count=1`·링크 제거·URL 지연 해제·빈 목록 disabled·잘못된 날짜/클릭 실패 시 이벤트 미기록을 확인했다. 이는 모의 환경 검증이며 실제 GA 전송 검증은 아니다. 임시 화면·실행기는 제거했다.
+- Google 캘린더 가져오기: **미수행**. 생성한 검증 파일을 실제 계정에 가져오는 단계에 대해 사용자가 “외부 계정 변경 없이 검증”을 선택했다. 가져오기 화면까지 확인했으며 Google에는 파일 업로드·일정 생성·삭제를 하지 않았다. Google/Apple 가져오기 성공으로 보고하지 않는다. 이 수동 호환성 검증은 Claude 인수 후 필요하면 별도로 진행한다.
+- `npm run browser:smoke:public -- http://127.0.0.1:3042`: exit 1. 정적 홈·이미지·origin·지도 마운트·390px 레이아웃·지역 데이터 로드 검사는 통과했으나 `scripts/public-smoke.mjs:408`의 `zooming out replaces the district markers with province markers — still not true after 15000ms and 37 checks`로 중단됐다. C-01에서 본 것과 같은 검사 실패이며, 이 카드에서 지도·smoke 코드를 고치지 않았다. 전체 smoke 통과는 남은 검증 블로커다.
+- 화면 연결·저장 형식·Claude 소유 파일·`familyPlan.ts` 계약은 변경하지 않았다. master 병합·release 배포·운영 DB 쓰기는 하지 않는다.
 
 **검토**: 
 
