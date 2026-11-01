@@ -65,6 +65,20 @@ npm run typecheck
 
 ## Uncommitted Work At Handoff
 
+### 2026-10-31~11-01: 방과후 시간대층 운영 적재·화면 전환·배포 (커밋·배포 완료)
+
+- SQL 32·38 사용자 적용(10-31). 적재 `etl/load_school_afterschool.py --sql32-fields --sql38-fields --apply`: summary 682 · programs 24,262 ·
+  slots 10,846 · checks 1,062, 통과 411 · 확인 222 · 해당 없음 49(모두 C 등급). 서울 561 + 분당·위례 38(검수 해시 일치분) + 수지·동안·광명 83.
+  입력: `--slot-reviews`에 분당·위례 검수 파일 사본(원본은 그 세션 폴더에만 있고 **미커밋** — 재현하려면 커밋 필요)과
+  `docs/research/pivot/pivot_gyeonggi_priority_slots_current_20261031.json`, 교시 수는 SQL 26 anon 스냅숏(10-31)
+- 적재기 기존 버그 수정 `252ca0d`(학교 누락 방지 읽기가 `rest()` 튜플을 안 풀었음, 쓰기 전에 멈춰 피해 없음)
+- 화면 `76ff418`: 학교 상세 막대·데리러 가는 시각을 slots로(없으면 programs), 돌봄내는 연한 초록·픽업 제외, 교시 기준 추정 문구,
+  확인 요일 `!`와 사유 한 줄. **release `76ff418` 배포·운영 스모크 통과(11-01)**
+- `baaa69b`(master만, **미배포**): MY 강좌 고르기·강좌 목록에 '돌봄 이용 시'·'교시 기준 추정', 돌봄내 반은 `requiresCare`,
+  같은 요일 돌봄이 없으면 반 아래 경고(개발 서버에서 확인)
+- 남은 것: 시간대 우선 MY 고르기(설계 문서 37행), 확인 항목 CSV 처리(`resolved_on`), 한솔초 정정, 신백현 맹검.
+  `my-inline-selection`·`care-planning-defaults` 스모크는 이 기기에 playwright가 없어 못 돌림
+
 ### 2026-10-30: 경기 우선 방과후 추출 완료 83/83 (커밋만, 운영 DB 변경 없음)
 
 - batch33~75, 학교마다 커밋(마지막 `8c5bd2c` 효자초). 합계 과정 행 3,331 · 시간대 후보 1,031 · 통과후보 33 · 확인 필요 50곳(미해결 282건).
