@@ -181,7 +181,7 @@ Claude가 UX-K0·UX-03·UX-26을 하는 동안 Codex는 아래를 바꾸지 않�
 
 ---
 
-### C-03 가이드별 다음 한 걸음 (UX-02, UX-08b 일부) — `in-progress`(문구 승인 대기), M
+### C-03 가이드별 다음 한 걸음 (UX-02, UX-08b 일부) — `merged`, M
 
 **목표**: 모든 가이드 끝에 그 가이드에 맞는 CTA 하나를 둔다.
 
@@ -226,7 +226,13 @@ Claude가 UX-K0·UX-03·UX-26을 하는 동안 Codex는 아래를 바꾸지 않�
 - 최초 사용자 요청의 “승인 전에는 문구를 독자적으로 확정하지 않는다”와 카드의 “초안, 사용자 확인 전”을 따라 CTA 문구·도착지 승인을 요청했다. 현재 `/timetable`의 입학까지·첫 주 전용 동작, `/map` 검색 열림, 돌봄 공백 계산 약속은 승인 전에 검토할 사항이다.
 - 아직 완료 또는 검토 요청 상태가 아니며 커밋·push하지 않았다. 승인 뒤 가이드 14편 front matter 적용, 누락·잘못된 링크·길이 검증, 앱/정적 HTML 확인, 전체 필수 검증과 결과 갱신 후 push한다.
 
-**검토**: 
+**검토** (Claude, 2026-11-01): Codex가 토큰 만료로 멈춘 상태(front matter까지 적용, 미커밋)를 이어받아 병합.
+
+- 도착지 수정: "우리 집 입학 일정 만들기" 4편의 `/timetable?face=timeline` → `/my`. `face`는 아직 무시되어 한 주 시간표가 열렸다 — 입학까지 카드는 UX-26 전까지 MY에 있다. UX-26에서 다시 바꾼다.
+- 문구 수정(없는 기능을 약속하지 않게): "우리 학교 돌봄 공백 계산하기" → "우리 학교 하교·돌봄 시간으로 한 주 짜보기"(care-afterschool, morning-care), "첫 주 하교 시각, 우리 학교로 보기" → "우리 학교 하교 시각으로 한 주 짜보기"(first-weeks). 시간표에는 공백 계산·첫 주 모드가 없다.
+- 확인: 앱에서 private-national CTA → `/my`(입학연도 칩 3개), school-notice CTA → `/map` 검색창 포커스. 정적 `dist/guide/*/index.html`에 같은 CTA. lint·typecheck·build·test:unit 132·public smoke 115(3001) 통과.
+- 문구 14개는 사용자 확인 대상으로 남긴다(handoff 초안 표 + 위 수정). 바꾸려면 front matter의 `nextStep.label`만 고치면 된다.
+- Codex 임시 실행기 `.c03-check.mjs`·`.c03-interaction.mjs`는 커밋하지 않았다(worktree에 미추적으로 남음).
 
 ---
 
