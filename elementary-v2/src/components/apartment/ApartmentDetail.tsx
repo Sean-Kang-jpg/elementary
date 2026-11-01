@@ -101,7 +101,7 @@ const ApartmentDetail: React.FC<ApartmentDetailProps> = ({ apartment, isOpen, on
           {onBack ? <button type="button" onClick={onBack} className="inline-flex items-center gap-1 py-1 text-sm font-medium text-blue-700 hover:text-blue-900"><ArrowLeft size={16} aria-hidden="true" />아파트 목록으로</button> : null}
           <p className="text-sm text-gray-600">{apartment.address}</p>
           <DetailTabs label="아파트 상세 메뉴" tabs={[
-            { key: 'assignment', label: '배정·통학' },
+            { key: 'assignment', label: '배정 학교' },
             { key: 'care', label: '지역 돌봄' },
             { key: 'activity', label: '배움·활동' },
           ]} value={tab} onChange={(value) => dispatch({ type: 'SET_MAP_TOPIC', payload: value })} />

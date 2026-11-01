@@ -427,7 +427,7 @@ try {
   // the first line of every search result, and a release number is the least
   // useful thing that could occupy it. The version moved to a meta tag and the
   // freshness check moved with it, so both keep their point.
-  await waitFor("document.querySelector('.quick-filter-row')", 'application shell mounted')
+  await waitFor("document.querySelector('.app-header__row')", 'application shell mounted')
   assertPage("/^[0-9]+[.][0-9]+[.][0-9]+$/.test(document.querySelector('meta[name=app-version]')?.content || '')", 'application reports its release version')
   assertPage("!/v[0-9]+[.][0-9]+/.test(document.title)", 'the document title spends no room on a release number')
   assertPage("document.documentElement.scrollWidth === window.innerWidth", '390px layout has no horizontal overflow')
@@ -464,7 +464,6 @@ try {
     "!(document.querySelector('meta[name=description]')?.content || 'unset').startsWith('서울/경기/인천')",
     'the shell description does not name a stale subset of regions',
   )
-  assertPage("['학교', '방과후·돌봄', '배정·통학', '배움·활동'].every((label) => [...document.querySelectorAll('[aria-label=\"지도 탐색 영역\"] button')].some((node) => node.textContent.trim() === label))", 'map has four exploration topics')
   await waitFor("(window.__ELEMENTARY_PERFORMANCE__ || []).some((metric) => metric.name === 'school-map-load' && metric.status === 'success' && metric.context.resultCount > 0)", 'district data loaded and measured')
   collectPerformance()
 
@@ -530,40 +529,14 @@ try {
   })()`])
   run(['wait', '300'])
 
-  run(['eval', "[...document.querySelectorAll('[aria-label=\"지도 탐색 영역\"] button')].find((node) => node.textContent === '학교').click(); 'school topic'"])
-
-  run(['eval', `(() => {
-    const button = [...document.querySelectorAll('button')]
-      .find((node) => node.textContent?.trim() === '학생 수')
-    if (!button) throw new Error('Student quick filter not found')
-    button.click()
-    return 'student filter opened'
-  })()`])
-  run(['eval', `(() => {
-    const option = [...document.querySelectorAll('[role="menuitemradio"]')]
-      .find((node) => node.textContent?.trim() === '80명 이상')
-    if (!option) throw new Error('80 student option not found')
-    option.click()
-    return 'student filter applied'
-  })()`])
-  await waitFor("[...document.querySelectorAll('button')].some((node) => node.textContent?.trim() === '80명+')", 'quick filter applied')
-  run(['eval', `(() => {
-    const button = [...document.querySelectorAll('button')]
-      .find((node) => node.textContent?.trim() === '80명+')
-    button.click()
-    return 'student filter reopened'
-  })()`])
-  run(['wait', '100'])
-  run(['eval', `(() => {
-    const option = [...document.querySelectorAll('[role="menuitemradio"]')]
-      .find((node) => node.textContent?.trim() === '제한 없음')
-    if (!option) throw new Error('Unlimited student option not found')
-    option.click()
-    return 'student filter reset'
-  })()`])
-  // Resetting the filter reissues the map query, so wait for the control to
-  // return to its unfiltered label rather than guessing how long that takes.
-  await waitFor("[...document.querySelectorAll('button')].some((node) => node.textContent?.trim() === '학생 수')", 'student filter reset to unrestricted')
+  // The quick filters are hidden (2026-11-01); the full filter panel opens from
+  // the button under MY instead, so that entry point is what has to keep working.
+  assertPage("!document.querySelector('.quick-filter-row')", 'the quick filter bar stays hidden on the map')
+  await waitFor("document.querySelector('.map-filter-open')", 'detail filter button rendered under MY')
+  run(['eval', "document.querySelector('.map-filter-open').click(); 'detail filter opened'"])
+  await waitFor("document.querySelector('#filter-sidebar')?.getAttribute('aria-hidden') === 'false'", 'detail filter button opens the filter panel')
+  run(['eval', "document.querySelector('button[aria-label=\"필터 닫기\"]').click(); 'detail filter closed'"])
+  await waitFor("document.querySelector('#filter-sidebar')?.getAttribute('aria-hidden') === 'true'", 'filter panel closes again')
 
   // A shared link has to land on the thing it names, and the decorative part of
   // the path has to be corrected rather than trusted. Both are what the whole
@@ -648,7 +621,9 @@ try {
   )
   await waitFor("Boolean(document.querySelector('[data-testid=care-centers]'))", 'the school detail lists nearby care centers')
   assertPage("document.querySelector('[data-testid=care-guide-link]')?.getAttribute('href') === '/guide/care-afterschool'", 'the care block links to the care guide')
-  assertPage("document.querySelector('[aria-label=\"지도 탐색 영역\"] button[aria-pressed=true]')?.textContent === '방과후·돌봄'", 'school tab and top topic stay in sync')
+  // The top topic bar is hidden with the quick filters; the school sheet's tabs carry the four topics.
+  assertPage("['학교', '방과후·돌봄', '배정아파트', '배움·활동'].every((label) => [...document.querySelectorAll('[aria-label=\"학교 상세 메뉴\"] button')].some((node) => node.textContent.trim() === label))", 'the school sheet has four topic tabs')
+  assertPage("document.querySelector('[aria-label=\"학교 상세 메뉴\"] button[aria-pressed=true]')?.textContent === '방과후·돌봄'", 'the selected school tab stays selected')
   run(['eval', "[...document.querySelectorAll('[aria-label=\"학교 상세 메뉴\"] button')].find((node) => node.textContent.trim() === '학교').click(); 'school tab'"])
 
   run(['fill', 'input[role="combobox"]', '서울방현'])
@@ -689,7 +664,7 @@ try {
   run(['open', baseUrl])
   await waitFor("document.querySelector('#home-title') && document.querySelector('input[role=combobox]')", 'home opened with the assignment search on top')
   assertPage("![...document.querySelectorAll('.home-page__card')].some((node) => node.textContent.includes('지역별 배정')) && document.querySelector('.home-page__footer a[href=\"/area\"]')", 'home removes the comparison banner and preserves the area directory link')
-  assertPage("!document.querySelector('.quick-filter-row') && !document.querySelector('[aria-label=\"주변 초등학교 지도\"]')", 'the home does not build the map')
+  assertPage("!document.querySelector('.app-header__row') && !document.querySelector('[aria-label=\"주변 초등학교 지도\"]')", 'the home does not build the map')
   // The SDK is injected only when a map screen opens (ADR-008 section 5); the
   // home is where most first visits that are not detail pages land.
   assertPage("!document.querySelector('script[src*=oapi]')", 'the home does not load the Naver Maps SDK')

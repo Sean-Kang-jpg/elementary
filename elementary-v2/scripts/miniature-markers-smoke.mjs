@@ -62,7 +62,7 @@ try {
   }
   open('/school/서울-중구-서울흥인초등학교--B000002102')
   await wait("document.querySelector('.school-map-marker--selected .map-marker-art svg') && document.querySelector('.school-map-marker--selected .school-map-marker__count').textContent==='45명'", 'real school marker keeps grade-one count and miniature school art')
-  evaluate("[...document.querySelectorAll('[aria-label=\"지도 탐색 영역\"] button')].find(b=>b.textContent==='배정·통학').click(); true")
+  evaluate("[...document.querySelectorAll('[aria-label=\"학교 상세 메뉴\"] button')].find(b=>b.textContent==='배정아파트').click(); true")
   await wait("document.querySelector('.apartment-map-marker__label .map-marker-art svg')", 'real apartment markers show miniature building art')
   await wait("[...document.querySelectorAll('.apartment-map-marker__label')].every(label=>label.querySelector('small').textContent==='세대' && label.scrollWidth<=label.clientWidth)", 'apartment numbers and units fit every marker without clipping')
   for (const width of [360,390,430,1280]) {
@@ -88,7 +88,7 @@ try {
   await wait("getComputedStyle(document.querySelector('.apartment-map-marker--selected .apartment-map-marker__label')).borderTopWidth==='2px'", 'selected large marker keeps a stronger selection border')
   await wait(inlineApartmentArt, 'selected Eunma art stays fully inside beside its 4,424 household count')
   if (process.argv[5]) run('screenshot',process.argv[5])
-  evaluate("[...document.querySelectorAll('[aria-label=\"지도 탐색 영역\"] button')].find(b=>b.textContent==='배움·활동').click(); true")
+  evaluate("[...document.querySelectorAll('[aria-label=\"아파트 상세 메뉴\"] button')].find(b=>b.textContent==='배움·활동').click(); true")
   await wait("document.querySelector('.academy-map-marker .map-marker-art svg')", 'real activity layer uses miniature book art')
   await wait("[...document.querySelectorAll('.academy-map-marker')].every(marker=>marker.querySelector('strong').textContent.trim().length>0)", 'facility category labels remain alongside decorative art')
 } finally { try { run('close') } catch { /* preserve first failure */ } }

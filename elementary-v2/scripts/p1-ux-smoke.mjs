@@ -26,7 +26,8 @@ const wait = async (condition, label) => {
   process.stdout.write(`PASS: ${label}\n`)
 }
 const open = (route) => run('open', new URL(route, base).href)
-const topic = (label) => run('eval', `[...document.querySelectorAll('[aria-label="지도 탐색 영역"] button')].find(x => x.textContent === ${JSON.stringify(label)}).click(); 'topic'`)
+// The map's topic bar is hidden with the quick filters (2026-11-01); the detail sheets' tabs set the same topic.
+const topic = (label) => run('eval', `[...document.querySelectorAll('[aria-label="지도 탐색 영역"] button, [aria-label="학교 상세 메뉴"] button, [aria-label="아파트 상세 메뉴"] button')].find(x => x.textContent === ${JSON.stringify(label)}).click(); 'topic'`)
 const school = '/school/서울-강남구-서울대현초등학교--B000002292'
 const apartment = '/apt/서울-강남구-은마--7A2EMR5J'
 
@@ -75,15 +76,17 @@ try {
     process.stdout.write('SKIP: this sample UI shows no center rows; center detail needs a separate fixture\n')
   }
 
-  topic('배정·통학')
-  await wait("document.querySelector('[aria-label=\"학교 상세 메뉴\"] button[aria-pressed=true]')?.textContent === '배정·통학'", 'assignment topic opens assigned-apartment list')
-  check("document.querySelector('[aria-label=\"종속 조건\"]').textContent.includes('세대 수') && !document.querySelector('[aria-label=\"종속 조건\"]').textContent.includes('저녁돌봄')", 'assignment shows apartment conditions only')
+  topic('배정아파트')
+  await wait("document.querySelector('[aria-label=\"학교 상세 메뉴\"] button[aria-pressed=true]')?.textContent === '배정아파트'", 'assignment topic opens assigned-apartment list')
+  check("!document.querySelector('[aria-label=\"종속 조건\"]')", 'the quick filter conditions stay hidden')
   topic('배움·활동')
   await wait("document.querySelector('#academy-category-title')", 'activity topic reads existing public facility data')
   check("document.querySelector('[aria-label=\"학교 상세 메뉴\"] button[aria-pressed=true]')?.textContent === '배움·활동'", 'activity sheet synchronized')
-  const category = JSON.parse(run('eval', "(() => { const button = document.querySelector('#academy-category-title + p + div button'); return [...document.querySelector('select[aria-label=\"활동 분야\"]').options].find(x => x.value && button.textContent.includes(x.textContent)).value })()"))
-  run('select', 'select[aria-label="활동 분야"]', category)
-  await wait("[...document.querySelectorAll('#academy-category-title + p + div button[aria-pressed=true]')].some(x => x.textContent.includes(document.querySelector('select[aria-label=\"활동 분야\"]').selectedOptions[0].textContent))", 'activity field filter synchronized with an actually published category')
+  // The subject filter moved from the quick filters into the display filters' 교육환경 entry.
+  run('eval', "(() => { const d = document.querySelector('.map-layer-disclosure'); if (d && d.getAttribute('aria-expanded') === 'false' && getComputedStyle(d).display !== 'none') d.click(); return 'display filters shown' })()")
+  const category = JSON.parse(run('eval', "(() => { const button = document.querySelector('#academy-category-title + p + div button'); return [...document.querySelector('select[aria-label=\"교육환경 과목\"]').options].find(x => x.value && button.textContent.includes(x.textContent)).value })()"))
+  run('select', 'select[aria-label="교육환경 과목"]', category)
+  await wait("[...document.querySelectorAll('#academy-category-title + p + div button[aria-pressed=true]')].some(x => x.textContent.includes(document.querySelector('select[aria-label=\"교육환경 과목\"]').selectedOptions[0].textContent))", 'activity field filter synchronized with an actually published category')
   check("document.querySelector('[data-testid=bottom-sheet]').textContent.includes('초등학생 대상 강좌와 모집 여부')", 'facility classification does not assert elementary eligibility')
   for (const width of [360, 390, 430, 1280]) {
     run('set', 'viewport', String(width), '844')
@@ -93,15 +96,15 @@ try {
   run('set', 'viewport', '390', '844')
   open(apartment)
   await wait("document.querySelector('#assigned-school-title')", 'apartment deep link restores assignment view')
-  check("document.querySelector('[aria-label=\"지도 탐색 영역\"] button[aria-pressed=true]')?.textContent === '배정·통학'", 'apartment selection activates assignment topic')
-  topic('방과후·돌봄')
+  check("document.querySelector('[aria-label=\"아파트 상세 메뉴\"] button[aria-pressed=true]')?.textContent === '배정 학교'", 'apartment selection activates assignment topic')
+  topic('지역 돌봄')
   await wait("document.querySelector('[data-testid=care-centers]')", 'apartment care tab uses assigned school')
   check("document.querySelector('[data-testid=care-centers]').textContent.includes('학교 기준 직선거리 1km')", 'apartment care does not change distance origin')
   topic('배움·활동')
   await wait("document.querySelector('#academy-title')", 'apartment activity tab renders')
   check(`decodeURIComponent(location.pathname) === ${JSON.stringify(apartment)}`, 'tabs preserve apartment SEO URL')
-  topic('학교')
-  await wait("document.querySelector('#first-grade-title') && location.pathname.includes('/school/')", 'school topic opens assigned school rather than mismatched apartment tab')
+  // The jump from an apartment to its school through the top 학교 topic left with the
+  // topic bar (quick filters hidden 2026-11-01); the apartment sheet has no 학교 tab.
 
   open('/')
   await wait("document.querySelector('input[role=combobox]')", 'home search available')

@@ -435,15 +435,47 @@ body {
   bottom: 24px;
 }
 
+/* Under the MY button (quick filters hidden 2026-11-01): header padding + 44px button + 8px. */
 .map-layer-control-shell {
   position: absolute;
-  top: 126px;
-  right: 20px;
+  top: 68px;
+  right: 16px;
   z-index: var(--layer-map-ui);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
 }
 .map-layer-controls {
   display: flex;
   gap: 5px;
+}
+.map-filter-open {
+  display: inline-flex;
+  min-height: 32px;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 10px;
+  border: 1px solid #cdd5d0;
+  border-radius: 999px;
+  background: #fffdf8;
+  color: #445149;
+  box-shadow: 0 2px 7px rgb(80 65 45 / 16%);
+  font-size: 12px;
+  font-weight: 700;
+}
+.map-filter-open:focus-visible { outline: 2px solid #4c7397; outline-offset: 2px; }
+.map-layer-subfilter select {
+  height: 30px;
+  max-width: 120px;
+  padding: 0 8px;
+  border: 1px solid #9cafcc;
+  border-radius: 999px;
+  background: #edf2fb;
+  color: #3e5d85;
+  box-shadow: 0 2px 7px rgb(80 65 45 / 16%);
+  font-size: 12px;
+  font-weight: 650;
 }
 .map-layer-disclosure {
   display: none;
@@ -872,9 +904,11 @@ body {
 
 @media (max-width: 639px) {
   .map-layer-control-shell {
-    top: 176px;
+    top: 64px;
     right: 12px;
   }
+
+  .map-filter-open { min-height: 40px; padding: 7px 10px; }
 
   .map-layer-disclosure {
     display: inline-flex;
@@ -904,6 +938,7 @@ body {
 
   .map-layer-controls[data-mobile-expanded="true"] { display: grid; }
   .map-layer-controls .map-layer-button { min-height: 40px; border-radius: 10px; }
+  .map-layer-subfilter select { width: 100%; max-width: none; height: 40px; border-radius: 10px; }
 
   .care-map-chip {
     top: 176px;
@@ -1466,6 +1501,11 @@ button.apartment-card:hover {
   .care-map-chip {
     top: 16px;
   }
+
+  /* The header (and MY) sit in the side panel here, so the filters take the map's top-right corner. */
+  .map-layer-control-shell {
+    top: 16px;
+  }
 }
 
 /*
@@ -1573,20 +1613,6 @@ button.apartment-card:hover {
 }
 
 /* Map academy detail: add one institution to the parent's timetable (2026-10-22, FRONTYARD_PLAN). */
-.map-academy-add {
-  margin-top: 6px;
-  min-height: 36px;
-  padding: 4px 12px;
-  border: 1px solid #d0d5dd;
-  border-radius: 999px;
-  background: #fff;
-  color: #344054;
-  font-size: 13px;
-  font-weight: 600;
-}
-
-.map-academy-add[aria-expanded='true'] { border-color: #e8664f; color: #b8452f; }
-
 .map-academy-form {
   display: grid;
   gap: 10px;
@@ -1611,5 +1637,20 @@ button.apartment-card:hover {
 .map-academy-form__done,
 .map-academy-form__empty { margin: 8px 0 0; color: #344054; font-size: 13px; }
 .map-academy-form__empty a { color: #b8452f; font-weight: 700; text-decoration: underline; }
-.map-academy-actions { display: flex; flex-wrap: wrap; gap: 6px; }
-.map-academy-add[aria-pressed='true'] { border-color: #e8664f; background: #fff0eb; color: #b8452f; }
+.map-academy-actions { display: flex; flex: none; gap: 4px; }
+/* Name and its two icon actions share one row (2026-11-01); the labels live in aria-label and title. */
+.map-academy-head { display: flex; align-items: center; gap: 8px; }
+.map-academy-icon {
+  display: inline-flex;
+  width: 36px;
+  height: 36px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #d0d5dd;
+  border-radius: 999px;
+  background: #fff;
+  color: #475467;
+}
+.map-academy-icon[aria-expanded='true'],
+.map-academy-icon[aria-pressed='true'] { border-color: #e8664f; background: #fff0eb; color: #c94f3a; }
+.map-academy-icon:focus-visible { outline: 2px solid #c94f3a; outline-offset: 2px; }

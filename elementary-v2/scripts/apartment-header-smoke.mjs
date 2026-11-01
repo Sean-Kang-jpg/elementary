@@ -34,7 +34,7 @@ try {
     run('set', 'viewport', '390', '844')
     run('open', new URL(`/school/${school}`, base).href)
     await wait("document.querySelector('[aria-label=\"학교 상세 메뉴\"]')", 'school detail opens')
-    evaluate("[...document.querySelectorAll('[aria-label=\"학교 상세 메뉴\"] button')].find(b=>b.textContent==='배정·통학').click(); true")
+    evaluate("[...document.querySelectorAll('[aria-label=\"학교 상세 메뉴\"] button')].find(b=>b.textContent==='배정아파트').click(); true")
     await wait("document.querySelector('[data-testid=apartment-list-header]')", 'assigned apartment header loads')
     for (const width of [360, 390, 430, 1280]) {
       run('set', 'viewport', String(width), '844')

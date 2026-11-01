@@ -1,3 +1,4 @@
+import { CalendarPlus, Heart } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import { useAppContext } from '../../contexts/AppContext'
 import type { SelectedMapPlace } from '../../utils/mapTopics'
@@ -49,30 +50,38 @@ export default function MapPlaceDetail({ place, onNavigate }: { place: SelectedM
           <ul className="divide-y divide-gray-100 rounded-md border border-gray-200">
             {place.data.institutions.map((institution, index) => (
               <li key={`${institution.name}-${index}`} className="space-y-1 px-3 py-2.5">
-                <strong className="block text-sm">{institution.name || '기관명 미확인'}</strong>
+                <div className="map-academy-head">
+                  <strong className="min-w-0 flex-1 text-sm">{institution.name || '기관명 미확인'}</strong>
+                  {institution.name && place.kind === 'activity' && (() => {
+                    const identity = { name: institution.name, addressId: place.data.address_id, providerKey: institution.key }
+                    const isSaved = saved.some((item) => sameAcademy(item, identity))
+                    return (
+                      <div className="map-academy-actions">
+                        <button type="button" className="map-academy-icon" aria-expanded={adding === index}
+                          aria-label={`${institution.name} 내 시간표에 추가`} title="내 시간표에 추가"
+                          onClick={() => { setAdded(null); setAdding(adding === index ? null : index) }}>
+                          <CalendarPlus size={18} aria-hidden="true" />
+                        </button>
+                        <button type="button" className="map-academy-icon" aria-pressed={isSaved}
+                          aria-label={`${institution.name} 관심 학원 ${isSaved ? '저장됨' : '저장'}`} title={isSaved ? '관심 학원 저장됨' : '관심 학원 저장'}
+                          onClick={() => {
+                            try {
+                              const on = toggleSavedAcademy({ ...identity, category: getInstitutionCategories(institution)[0]?.label ?? '학원', area: `${place.data.region} ${place.data.district}` })
+                              setAdded({ index, message: on ? '관심 학원에 저장했어요. MY에서 볼 수 있어요.' : '관심 학원에서 뺐어요.' })
+                            } catch (error) {
+                              setAdded({ index, message: error instanceof Error && error.message.includes('까지') ? error.message : '이 브라우저에 저장하지 못했어요.' })
+                            }
+                          }}>
+                          <Heart size={18} fill={isSaved ? 'currentColor' : 'none'} aria-hidden="true" />
+                        </button>
+                      </div>
+                    )
+                  })()}
+                </div>
                 <div className="flex flex-wrap gap-1">{getInstitutionCategories(institution).map((category) => (
                   <span key={category.key} className="rounded-full px-2 py-0.5 text-xs" style={{ color: category.color, backgroundColor: category.softColor }}>{category.label}</span>
                 ))}</div>
                 <small className="text-gray-500">{[institution.type, institution.realm].filter(Boolean).join(' · ')}</small>
-                {institution.name && place.kind === 'activity' && (() => {
-                  const identity = { name: institution.name, addressId: place.data.address_id, providerKey: institution.key }
-                  const isSaved = saved.some((item) => sameAcademy(item, identity))
-                  return (
-                    <div className="map-academy-actions">
-                      <button type="button" className="map-academy-add" aria-expanded={adding === index}
-                        onClick={() => { setAdded(null); setAdding(adding === index ? null : index) }}>내 시간표에 추가</button>
-                      <button type="button" className="map-academy-add" aria-pressed={isSaved}
-                        onClick={() => {
-                          try {
-                            const on = toggleSavedAcademy({ ...identity, category: getInstitutionCategories(institution)[0]?.label ?? '학원', area: `${place.data.region} ${place.data.district}` })
-                            setAdded({ index, message: on ? '관심 학원에 저장했어요. MY에서 볼 수 있어요.' : '관심 학원에서 뺐어요.' })
-                          } catch (error) {
-                            setAdded({ index, message: error instanceof Error && error.message.includes('까지') ? error.message : '이 브라우저에 저장하지 못했어요.' })
-                          }
-                        }}>{isSaved ? '관심 학원 ✓' : '관심 학원 저장'}</button>
-                    </div>
-                  )
-                })()}
                 {adding === index && (
                   <AcademyTimetableForm label={`${getInstitutionCategories(institution)[0]?.label ?? '학원'} · ${institution.name}`}
                     providerKey={institution.key} onNavigate={onNavigate}

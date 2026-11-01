@@ -6,7 +6,7 @@ import { followLink } from '../content/contentLinks'
 
 /**
  * MY의 관심 학원 (인수인계서 4.1 Case C). 수업 시간을 몰라 시간표에 못 넣은 학원을 기억해 둔다.
- * 지도 학원 상세의 '관심 학원 저장'으로 담기고, 이 기기에만 있다. 한 곳도 없으면 칸을 그리지 않는다.
+ * 지도 학원 상세의 하트 버튼(관심 학원 저장)으로 담기고, 이 기기에만 있다. 한 곳도 없으면 칸을 그리지 않는다.
  */
 export default function MySavedAcademies({ onNavigate }: { onNavigate: (path: string) => void }) {
   const [items, setItems] = useState(readSavedAcademies)
@@ -16,7 +16,7 @@ export default function MySavedAcademies({ onNavigate }: { onNavigate: (path: st
   return (
     <section className="my-card my-saved-academies" aria-labelledby="my-saved-academies-title">
       <h2 id="my-saved-academies-title">관심 학원 <small>{items.length}곳</small></h2>
-      <p className="my-help">수업 시간을 알게 되면 지도에서 그 학원의 ‘내 시간표에 추가’로 담아 주세요.</p>
+      <p className="my-help">수업 시간을 알게 되면 지도에서 그 학원 이름 옆 달력 버튼으로 시간표에 담아 주세요.</p>
       <ul>
         {items.map((item) => (
           <li key={item.providerKey ?? `${item.addressId}-${item.name}`}>

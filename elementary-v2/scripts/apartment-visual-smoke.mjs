@@ -53,6 +53,6 @@ try {
   }
   open('/school/서울-중구-서울흥인초등학교--B000002102')
   await wait("document.querySelector('[aria-label=\"학교 상세 메뉴\"]')", 'real school opens')
-  evaluate("[...document.querySelectorAll('[aria-label=\"학교 상세 메뉴\"] button')].find(b=>b.textContent==='배정·통학').click(); true")
+  evaluate("[...document.querySelectorAll('[aria-label=\"학교 상세 메뉴\"] button')].find(b=>b.textContent==='배정아파트').click(); true")
   await wait("document.querySelectorAll('.apartment-card svg[data-apartment-era]').length>0 && [...document.querySelectorAll('.apartment-card')].every(card=>card.querySelector('[data-testid=apartment-age-badge]'))", 'assigned apartment list reuses the same icon and age badges')
 } finally { try { run('close') } catch { /* preserve first failure */ } }

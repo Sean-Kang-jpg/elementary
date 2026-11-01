@@ -30,7 +30,8 @@ const open = route => run('open', new URL(route, base).href)
 const floating = layer => `[data-layer-entry="floating"][data-map-layer="${layer}"]`
 const banner = layer => `[data-layer-entry="banner"][data-map-layer="${layer}"]`
 const toggle = layer => run('click', floating(layer))
-const topic = label => evaluate(`[...document.querySelectorAll('[aria-label="지도 탐색 영역"] button')].find(x=>x.textContent===${JSON.stringify(label)}).click(); true`)
+// The map's topic bar is hidden while the quick filters are off (2026-11-01); the school sheet's tabs set the same topic.
+const topic = label => evaluate(`[...document.querySelectorAll('[aria-label="지도 탐색 영역"] button, [aria-label="학교 상세 메뉴"] button, [aria-label="아파트 상세 메뉴"] button')].find(x=>x.textContent===${JSON.stringify(label)}).click(); true`)
 const matchingState = layer => `document.querySelector(${JSON.stringify(floating(layer))}).getAttribute('aria-pressed')===document.querySelector(${JSON.stringify(banner(layer))}).getAttribute('aria-pressed')`
 const school = "document.querySelector('.school-map-marker--selected')"
 const apartment = "document.querySelector('.apartment-map-marker--selected')"
@@ -56,7 +57,7 @@ try {
   else await wait("document.querySelector('[data-layer-entry=floating][data-map-layer=care]').getAttribute('aria-busy')==='false'", 'production care lookup reaches a non-loading state without fabricated rows')
   check(`${apartment} && ${school}`, 'school and selected apartment remain visible when facilities are on')
   check("[...document.querySelectorAll('.map-layer-controls button')].every(x=>x.getAttribute('aria-pressed')==='true')", 'all three independent push buttons remain on')
-  check("location.pathname.startsWith('/apt/') && document.querySelector('[aria-label=\"지도 탐색 영역\"] button[aria-pressed=true]').textContent==='배정·통학'", 'switches preserve apartment URL and detail topic')
+  check("location.pathname.startsWith('/apt/') && document.querySelector('[aria-label=\"아파트 상세 메뉴\"] button[aria-pressed=true]').textContent==='배정 학교'", 'switches preserve apartment URL and detail topic')
   check(`(() => { const r=${school}.getBoundingClientRect(); return Math.abs(r.x-window.qaSchoolPosition.x)<2 && Math.abs(r.y-window.qaSchoolPosition.y)<2 })()`, 'turning on layers does not fit bounds or move the map')
   if (process.argv[3]) run('screenshot', process.argv[3])
   check("document.querySelector('#assigned-school-title') && document.querySelectorAll('[data-testid=bottom-sheet]').length===1", 'push controls leave the selected detail and single sheet intact')
@@ -69,7 +70,7 @@ try {
     if (layer !== 'care' || local) await wait(marker, `${layer} on restores its markers`)
   }
   // Both entry points toggle the same state; actions must not navigate or hide content.
-  for (const [layer, label, content] of [['apartments','배정·통학','#assigned-school-title'],['activity','배움·활동','#academy-title'],['care','방과후·돌봄','[data-testid=care-centers]']]) {
+  for (const [layer, label, content] of [['apartments','배정 학교','#assigned-school-title'],['activity','배움·활동','#academy-title'],['care','지역 돌봄','[data-testid=care-centers]']]) {
     topic(label)
     await wait(`document.querySelector(${JSON.stringify(banner(layer))}) && document.querySelector(${JSON.stringify(content)})`, `${layer} detail shows its top banner and existing content`)
     check(matchingState(layer), `${layer} banner agrees with floating button`)
@@ -80,7 +81,7 @@ try {
     toggle(layer)
     await wait(`(${matchingState(layer)}) && document.querySelector(${JSON.stringify(banner(layer))}).textContent.includes('표시 끄기')`, `${layer} floating button restores its banner`)
   }
-  topic('배정·통학')
+  topic('배정 학교')
   for (const width of [360,390,430,1280]) {
     run('set', 'viewport', String(width), '844')
     if (width < 640) {
@@ -106,7 +107,7 @@ try {
   open('/school/서울-강남구-서울대현초등학교--B000002292')
   await wait("document.querySelector('#first-grade-title')", 'school overview restored')
   check("!document.querySelector('[data-layer-entry=banner]')", 'school overview has no unrelated layer banner')
-  for (const [layer, label] of [['apartments','배정·통학'],['activity','배움·활동'],['care','방과후·돌봄']]) {
+  for (const [layer, label] of [['apartments','배정아파트'],['activity','배움·활동'],['care','방과후·돌봄']]) {
     topic(label)
     await wait(`document.querySelector(${JSON.stringify(banner(layer))})`, `${layer} school detail has the same banner entry`)
     run('click', banner(layer))
@@ -115,7 +116,7 @@ try {
     check(matchingState(layer), `${layer} school floating button synchronizes its banner`)
   }
   if (local) {
-    evaluate("[...document.querySelectorAll('[aria-label=\"지도 탐색 영역\"] button')].find(x=>x.textContent==='방과후·돌봄').click(); true")
+    topic('방과후·돌봄')
     await wait("document.querySelector('[data-testid=care-centers] button[aria-label$=\"상세 안내\"]')", 'mocked center is available in the existing school-origin list')
     evaluate("document.querySelector('[data-testid=care-centers] button[aria-label$=\"상세 안내\"]').click(); true")
     await wait("document.querySelector('[data-testid=map-place-detail]')", 'center opens the common detail sheet')
