@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { getSchoolAfterschool, getSchoolDayEstimate } from '../../services/dataService'
-import type { SchoolAfterschool, SchoolCareHours } from '../../types'
+import type { SchoolAfterschool, SchoolAfterschoolSlot, SchoolCareHours } from '../../types'
 import { afterschoolEntryFromSection, afterschoolSectionId, afterschoolSectionLabel, careEntriesFromHours, formatMinutes } from '../../utils/schedule/fromSchoolData'
 import { scheduleEntryHeading } from '../../utils/schedule/calendar'
 import ScheduleSubjectIcon from './ScheduleSubjectIcon'
@@ -18,9 +18,15 @@ export interface EntryDraft {
   end: string
   source: ScheduleEntry['source']
   kind?: 'care' | 'afterschool'
+  /** 돌봄교실 안에서 하는 시간대에서 고른 강좌. 같은 요일 돌봄이 없으면 알린다 */
+  requiresCare?: boolean
 }
 
 const FILTERS = ['전체', '돌봄', '맞춤형', '방과후'] as const
+const SLOT_KIND_LABELS: Record<SchoolAfterschoolSlot['kind'], string> = {
+  맞춤형: '맞춤형', 저학년방과후: '방과후 저학년', 전학년방과후: '방과후 전학년', 학년미기재방과후: '방과후 학년 미기재',
+}
+const slotKey = (slot: SchoolAfterschoolSlot) => `${slot.kind}|${slot.start}|${slot.end}|${slot.place ?? ''}`
 const included = (entry?: ScheduleEntry) => Boolean(entry && ['planned', 'applying', 'confirmed'].includes(entry.participation))
 
 /** 선택한 반만 계획에 넣는다. 출처의 시간과 실제 신청·참여 여부는 별개다. */
@@ -45,6 +51,9 @@ export default function MyAfterschoolPicker({ schoolId, entries, onAdd, onRemove
   const [retry, setRetry] = useState(0)
   const [filter, setFilter] = useState<typeof FILTERS[number]>('전체')
   const [query, setQuery] = useState('')
+  // 요일 카드: 그날의 시간대(SQL 38)를 먼저 고르고, 그 창의 강좌를 고르거나 강좌명을 직접 적는다(설계 2026-10-24)
+  const [slotPick, setSlotPick] = useState<string | null>(null)
+  useEffect(() => { setSlotPick(null) }, [schoolId, weekday])
   useEffect(() => {
     let active = true
     setLoading(true)
@@ -65,13 +74,21 @@ export default function MyAfterschoolPicker({ schoolId, entries, onAdd, onRemove
   const options = (data?.options ?? []).map((option) => ({ ...option, sections: weekday
     ? option.sections.filter((section) => section.days?.includes('월화수목금'[weekday - 1])) : option.sections }))
     .filter((option) => option.sections.length > 0).sort((a, b) => Number(b.grade1 === 'true') - Number(a.grade1 === 'true'))
+  const daySlots = weekday ? (data?.slots ?? []).filter((slot) => slot.weekday === weekday).sort((a, b) => a.start.localeCompare(b.start)) : []
+  const picked = daySlots.find((slot) => slotKey(slot) === slotPick) ?? null
+  const dayChecked = Boolean(weekday && data?.checks?.some((check) => check.weekday === weekday))
+  // 고른 시간대 안에 드는 반만(시간대는 이어지는 블록을 합친 창이라 반 시각이 그 안에 있으면 같은 창)
+  const inPicked = (kind: string, section: { start: string | null; end: string | null }) => !picked || (
+    (picked.kind === '맞춤형') === (kind === '맞춤형') && section.start !== null && section.end !== null &&
+    section.start >= picked.start && section.end <= picked.end)
   const search = query.trim().toLocaleLowerCase()
   const matches = (text: string) => text.toLocaleLowerCase().includes(search)
-  const courses = options.filter((o) => (filter === '전체' || filter === o.kind) && matches(`${o.name} ${o.variant ?? ''} ${o.category}`))
+  const courses = options.map((o) => picked ? { ...o, sections: o.sections.filter((s) => inPicked(o.kind, s)) } : o)
+    .filter((o) => o.sections.length > 0 && (filter === '전체' || filter === o.kind) && matches(`${o.name} ${o.variant ?? ''} ${o.category}`))
   const careOptions = errors.includes('돌봄') ? [] : careEntriesFromHours(care ?? {
     school_id: schoolId, source_year: 0, status: 'school_check_needed', afternoon_end: null,
     extended_end: null, extended_condition: null, morning_hours: null, grades: null, source: '운영시간 미확인',
-  }).filter((e) => (filter === '전체' || filter === '돌봄') && matches(e.label))
+  }).filter((e) => !picked && (filter === '전체' || filter === '돌봄') && matches(e.label))
   const selectedCount = entries.filter((e) => e.kind !== 'school' && (weekday ? isProgramDaySelected(e, weekday) : included(e))).length
   // 등급은 방과후·맞춤형 중 나은 쪽이라(2026-10-15) A 학교에도 시간 없는 반이 있다. 안내는 반 기준으로 한다
   const untimed = options.filter((o) => o.sections.some((s) => !s.days || !s.end)).length
@@ -89,6 +106,22 @@ export default function MyAfterschoolPicker({ schoolId, entries, onAdd, onRemove
         <div className="my-course-filters" role="group" aria-label="프로그램 유형">
           {FILTERS.map((value) => <button type="button" key={value} aria-pressed={filter === value} onClick={() => setFilter(value)}>{value}</button>)}
         </div>
+        {daySlots.length > 0 && <div className="my-slot-picker">
+          <p className="my-help">{'월화수목금'[weekday! - 1]}요일 1학년이 들을 수 있는 시간대예요. 시간대를 고르면 그 시간의 강좌만 보여요.</p>
+          <div className="my-course-filters" role="group" aria-label="이 요일 시간대">
+            {daySlots.map((slot) => <button type="button" key={slotKey(slot)} aria-pressed={slotKey(slot) === slotPick}
+              onClick={() => setSlotPick(slotKey(slot) === slotPick ? null : slotKey(slot))}>
+              {SLOT_KIND_LABELS[slot.kind]} {slot.start}–{slot.end}{slot.place === '돌봄내' ? ' · 돌봄 이용 시' : ''}{slot.time_source === 'period_slot' ? ' · 교시 기준 추정' : ''}
+            </button>)}
+          </div>
+          {dayChecked && <p className="my-help">이 요일은 운영계획에서 학교 확인이 필요한 부분이 있어요. 시간은 학교 공지로 한 번 더 확인해 주세요.</p>}
+          {picked && <button type="button" className="my-button" onClick={() => onDraft({
+            id: `afterschool-${schoolId}-slot-${picked.kind}-${weekday}-${picked.start}-${picked.end}`, kind: 'afterschool',
+            label: picked.kind === '맞춤형' ? '맞춤형 ' : '', start: picked.start, end: picked.end,
+            source: { ref: `school_afterschool:${schoolId}`, version: `${data!.source_year} 운영계획` },
+            ...(picked.place === '돌봄내' ? { requiresCare: true } : {}),
+          })}>이 시간대에 강좌명 직접 적기</button>}
+        </div>}
         <label className="my-field">과목 찾기<input type="search" value={query} placeholder="예: 미술, 컴퓨터" onChange={(event) => setQuery(event.target.value)} /></label>
         {data && <p className="my-help my-course-source">강좌 {data.source_year}학년도{data.term ? ` · ${data.term}` : ''} 운영계획{weekday ? ' · 선택은 신청 확정과 별개예요.' : untimed === options.length && untimed > 0 ? ' · 요일·시간 확인이 필요한 목록이에요.' : untimed > 0 ? ` · ${untimed}개 강좌는 요일·시간이 적혀 있지 않아 직접 입력해요.` : ''}</p>}
         {!data && !errors.includes('강좌') && <p className="my-help">이 학교의 방과후·맞춤형 강좌 자료는 아직 확인하지 못했어요. 학교 공지를 보고 일정을 직접 추가할 수 있어요.</p>}

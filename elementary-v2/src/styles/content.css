@@ -1349,6 +1349,9 @@
 .my-course-picker__heading > span { font-size: 12px; color: var(--warm-muted); }
 .my-course-filters { display: flex; gap: 6px; }
 .my-course-filters button { flex: 1; min-height: 44px; padding: 6px; border: 1px solid var(--warm-border); border-radius: 10px; background: var(--warm-surface); color: var(--warm-text); font-size: 13px; cursor: pointer; }
+.my-slot-picker { display: grid; gap: 6px; margin: 8px 0; }
+.my-slot-picker .my-course-filters { flex-wrap: wrap; }
+.my-slot-picker .my-course-filters button { flex: 1 1 auto; text-align: left; }
 .my-course-filters button[aria-pressed=true] { border-color: var(--warm-accent-strong); background: var(--warm-bg); color: var(--warm-accent-strong); font-weight: 700; }
 .my-course-options { max-height: 320px; overflow-y: auto; overscroll-behavior-y: contain; margin: 0; padding: 0 4px 0 0; list-style: none; }
 .my-course-options > li { padding: 12px 0; border-top: 1px solid var(--warm-border); font-size: 14px; }

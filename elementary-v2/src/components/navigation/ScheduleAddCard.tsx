@@ -39,7 +39,8 @@ export default function ScheduleAddCard({ schoolId, entries, range, onAdd, onRem
   const save = (change: CalendarChange) => {
     if (mode === 'manual' && manualDraft) {
       const entry: ScheduleEntry = { id: manualDraft.id, label: change.label, kind: change.kind, weekdays: [change.weekday],
-        start: change.start, end: change.end, evidence: 'estimated', participation: 'planned', transitionIn: 'unknown', term: 'semester' }
+        start: change.start, end: change.end, evidence: 'estimated', participation: 'planned', transitionIn: 'unknown', term: 'semester',
+        ...(manualDraft.requiresCare ? { requiresCare: true } : {}) }
       if (!onAdd(entry)) return null
       markSaved(entry.id); return entry
     }
