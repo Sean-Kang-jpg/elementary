@@ -1026,7 +1026,7 @@ export const getSchoolAfterschool = async (schoolId: string, fetchOptions: { all
     supabase.from('school_afterschool_summary').select('school_id,source_year,tier,term_label').eq('school_id', schoolId).maybeSingle(),
     supabase
       .from('school_afterschool_programs')
-      .select('seq,kind,name,variant,section,category,grade1,grades_raw,grade_upper,weekdays,start_time,end_time')
+      .select('seq,kind,name,variant,section,category,grade1,grades_raw,grade_upper,weekdays,start_time,end_time,place,time_source')
       .eq('school_id', schoolId)
       .order('seq'),
   ])
@@ -1061,6 +1061,8 @@ export const getSchoolAfterschool = async (schoolId: string, fetchOptions: { all
       days: row.weekdays,
       start: row.start_time?.slice(0, 5) ?? null,
       end: row.end_time?.slice(0, 5) ?? null,
+      place: row.place === '돌봄내' ? '돌봄내' : null,
+      time_source: row.time_source === 'plan' || row.time_source === 'period_slot' ? row.time_source : null,
     })
     options.set(key, option)
   }

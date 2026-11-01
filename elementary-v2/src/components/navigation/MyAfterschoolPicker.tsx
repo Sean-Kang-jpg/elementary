@@ -9,6 +9,7 @@ import { isProgramDaySelected } from '../../utils/schedule/programSelection'
 import MorningCareScheduleChoice from './MorningCareScheduleChoice'
 import RepeatDays from './RepeatDays'
 import { morningCareFromLegacy } from '../../utils/morningCare'
+import { careDependencyIssues } from '../../utils/schedule/careDependency'
 
 export interface EntryDraft {
   id: string
@@ -74,6 +75,8 @@ export default function MyAfterschoolPicker({ schoolId, entries, onAdd, onRemove
   const selectedCount = entries.filter((e) => e.kind !== 'school' && (weekday ? isProgramDaySelected(e, weekday) : included(e))).length
   // 등급은 방과후·맞춤형 중 나은 쪽이라(2026-10-15) A 학교에도 시간 없는 반이 있다. 안내는 반 기준으로 한다
   const untimed = options.filter((o) => o.sections.some((s) => !s.days || !s.end)).length
+  // 고른 돌봄내 반 중 그 요일 돌봄이 계획에 없는 것(요일 카드에서는 그 요일만)
+  const careMissing = careDependencyIssues(entries).filter((issue) => !weekday || issue.weekday === weekday)
 
   return <section className="my-course-picker" aria-label="과목·돌봄 선택" aria-busy={loading}>
     <div className="my-course-picker__heading"><h3>{weekday ? `${'월화수목금'[weekday - 1]}요일 강좌·돌봄` : '과목·돌봄 선택'}</h3><span>계획에 포함 {selectedCount}개</span></div>
@@ -120,7 +123,7 @@ export default function MyAfterschoolPicker({ schoolId, entries, onAdd, onRemove
                 const time = `${section.days ?? '요일 미확인'} · ${section.start ?? '시작 미확인'} ~ ${section.end ?? '종료 미확인'}`
                 const grade = section.grade1 !== 'true' ? (section.school_wide ? '1~6학년 대상(학교 안내)' : '1학년 대상 확인 필요') : section.grade_upper === null ? '1학년 포함' : section.grade_upper === 6 ? '전학년' : `1~${section.grade_upper}학년`
                 return <div className="my-course-section" key={`${id}-${index}`}>
-                  <small className="my-course-meta">{option.category} · {section.days ?? '요일 미확인'} · {grade}</small>
+                  <small className="my-course-meta">{option.category} · {section.days ?? '요일 미확인'} · {grade}{section.place === '돌봄내' ? ' · 돌봄 이용 시' : ''}{section.time_source === 'period_slot' ? ' · 교시 기준 추정' : ''}</small>
                   <button type="button" className={`my-course-choice${option.kind === '맞춤형' ? ' my-course-choice--custom' : ''}`} aria-pressed={selected}
                     data-program-label={afterschoolSectionLabel(option, section)}
                     aria-label={`${scheduleEntryHeading({ kind: 'afterschool', label: afterschoolSectionLabel(option, section) })} ${time} ${grade} ${selected ? '선택 해제' : entry || existing ? '시간표에 넣기' : '요일 입력하기'}`}
@@ -133,6 +136,9 @@ export default function MyAfterschoolPicker({ schoolId, entries, onAdd, onRemove
                     <span className="my-course-choice__lines"><b><ScheduleSubjectIcon entry={{ kind: 'afterschool', label: option.name }} /><span className="my-entry-title">{scheduleEntryHeading({ kind: 'afterschool', label: afterschoolSectionLabel(option, section) })}</span></b><span>{section.start ?? '시작 미확인'}–{section.end ?? '종료 미확인'}</span></span><i aria-hidden="true">{selected ? '✓' : '+'}</i>
                   </button>
                   {repeat(id, selected)}
+                  {selected && careMissing.some((issue) => issue.entryId === id) && <small className="my-warning" role="status">
+                    돌봄교실 안에서 하는 반이에요. {[...new Set(careMissing.filter((issue) => issue.entryId === id).map((issue) => '월화수목금'[issue.weekday - 1]))].join('·')}요일 돌봄도 함께 넣어야 참여할 수 있어요.
+                  </small>}
                 </div>
               })}
             </div>

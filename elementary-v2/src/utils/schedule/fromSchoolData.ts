@@ -128,5 +128,7 @@ export const afterschoolEntryFromSection = (
     transitionIn: 'unknown',
     term: 'semester',
     source: { ref: `school_afterschool:${schoolId}`, version: `${sourceYear} 운영계획` },
+    // 돌봄교실 안에서 하는 반: 같은 요일 돌봄이 없으면 careDependencyIssues가 알린다
+    ...(section.place === '돌봄내' ? { requiresCare: true } : {}),
   }
 }

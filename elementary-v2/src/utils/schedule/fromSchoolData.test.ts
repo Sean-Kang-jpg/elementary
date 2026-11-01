@@ -4,6 +4,7 @@ import assert from 'node:assert/strict'
 import type { SchoolAfterschoolOption } from '../../types'
 import { afterschoolEntryFromSection } from './fromSchoolData.ts'
 import { computeDay } from './engine.ts'
+import { careDependencyIssues } from './careDependency.ts'
 
 const option: SchoolAfterschoolOption = {
   kind: '방과후', name: '컴퓨터', variant: '컴기초', category: 'STEM', grade1: 'true',
@@ -21,6 +22,13 @@ describe('afterschoolEntryFromSection', () => {
     assert.equal(entry.participation, 'considering')
     assert.equal(entry.label, '컴퓨터 (컴기초) · A')
     assert.equal(entry.source?.ref, 'school_afterschool:S1')
+  })
+
+  it('marks a class run inside the care room as needing care that day', () => {
+    const inCare = afterschoolEntryFromSection('S1', 2026, { ...option, kind: '맞춤형', variant: null }, { ...option.sections[0], place: '돌봄내' }, 'planned')!
+    assert.equal(inCare.requiresCare, true)
+    assert.deepEqual(careDependencyIssues([inCare]).map((issue) => issue.weekday), [3, 4])
+    assert.equal(afterschoolEntryFromSection('S1', 2026, option, option.sections[0])?.requiresCare, undefined)
   })
 
   it('needs a weekday and does not trust a missing or reversed time', () => {

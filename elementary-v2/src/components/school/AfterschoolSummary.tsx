@@ -99,7 +99,7 @@ type ListView = 'all' | 'custom' | 'paid' | 'unknown'
 const ALL_GRADE_FILL: React.CSSProperties = { backgroundImage: 'repeating-linear-gradient(135deg, rgba(245, 158, 11, .35) 0 4px, transparent 4px 7px)' }
 
 const sectionTime = (section: SchoolAfterschoolSection) =>
-  `${isMorning(section) ? '아침 ' : ''}${section.days ?? '요일 미기재'} ${section.start ? `${section.start}–` : ''}${section.end ?? '시간 미기재'}`
+  `${isMorning(section) ? '아침 ' : ''}${section.days ?? '요일 미기재'} ${section.start ? `${section.start}–` : ''}${section.end ?? '시간 미기재'}${section.place === '돌봄내' ? ' · 돌봄 이용 시' : ''}${section.time_source === 'period_slot' ? ' · 교시 기준 추정' : ''}`
 
 /** 반의 대상 학년: '1·2학년'(저학년) ~ '전학년'. 1학년 대상인지 모르면 빈 문자열. */
 const gradeLabel = (section: SchoolAfterschoolSection) => {

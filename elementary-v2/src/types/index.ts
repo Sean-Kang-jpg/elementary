@@ -299,6 +299,8 @@ export interface SchoolAfterschoolSection {
   days: string | null // '월수' 같이 요일 글자를 붙여 씀, 모르면 null
   start: string | null // 'HH:MM'
   end: string | null
+  place?: '돌봄내' | null // SQL 32: 돌봄교실 안에서 운영해 돌봄을 다니는 아이만 참여
+  time_source?: 'plan' | 'period_slot' | null // period_slot: '5교시 날' 같은 조건을 요일별 교시 수로 푼 시각
 }
 
 export interface SchoolAfterschoolOption {
