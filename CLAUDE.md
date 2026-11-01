@@ -76,7 +76,8 @@ npm run typecheck
   확인 요일 `!`와 사유 한 줄. **release `76ff418` 배포·운영 스모크 통과(11-01)**
 - `baaa69b`(master만, **미배포**): MY 강좌 고르기·강좌 목록에 '돌봄 이용 시'·'교시 기준 추정', 돌봄내 반은 `requiresCare`,
   같은 요일 돌봄이 없으면 반 아래 경고(개발 서버에서 확인)
-- 남은 것: 시간대 우선 MY 고르기(설계 문서 37행), 확인 항목 CSV 처리(`resolved_on`), 한솔초 정정, 신백현 맹검.
+- 11-01 후속: `baaa69b`까지 release 배포·운영 스모크 통과. 확인 목록 도구 `etl/afterschool_checks_sheet.py`(export → CSV에 확인일 → resolve, 적재기가 재적재 때 `resolved_on`을 이어받음, `3ea6cb1`). 첫 목록 `etl/runtime/afterschool_checks/afterschool_checks_20261101.csv` 1,062건(맞춤형시각없음 724). 한솔초 정정 운영 재적재(`docs/research/pivot/p1_corrections_20261101/`, 확인 1,056건). 신백현초 맹검: 추출 오류(맹검 문서 1절), 재추출 필요
+- 남은 것: 시간대 우선 MY 고르기(설계 문서 37행), 확인 목록 사람 처리, 신백현초 재추출.
   `my-inline-selection`·`care-planning-defaults` 스모크는 이 기기에 playwright가 없어 못 돌림
 
 ### 2026-10-30: 경기 우선 방과후 추출 완료 83/83 (커밋만, 운영 DB 변경 없음)
