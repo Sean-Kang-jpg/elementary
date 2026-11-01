@@ -36,6 +36,10 @@ LABELS = {
     '조건부개설미확인': '인원 등 개설 조건이 있어요',
     '교시요일배정미확인': '교시 기준 시간을 일부 요일에 맞추지 못했어요',
 }
+# One line per school for the inquiry (a phone call or a message to the school). Items the school cannot
+# answer (PDF원문: compare the extraction with the PDF ourselves) stay out of the question text.
+QUESTION_HEADER = ['school_id', 'school_name', 'address', '항목 수', '질문', '내부 확인', '15-라 링크', '확인일', '메모']
+INTERNAL = {'PDF원문'}
 HEADER = ['school_id', 'school_name', 'address', 'seq', 'reason', '사유', '요일', '세부', '15-라 링크', '확인일', '메모']
 DAY = re.compile(r'^\d{4}-\d{2}-\d{2}$')
 
@@ -59,6 +63,48 @@ def sheet_rows(checks: list[dict], schools: dict[str, dict], probes: dict[str, d
                     'address': school.get('road_address') or '', 'seq': c['seq'], 'reason': c['reason'],
                     '사유': LABELS.get(c['reason'], c['reason']), '요일': WEEKDAYS[c['weekday'] - 1] if c.get('weekday') else '',
                     '세부': c.get('detail') or '', '15-라 링크': item_link(probe) if probe else '', '확인일': '', '메모': ''})
+    return out
+
+
+def detail_names(detail: str) -> list[str]:
+    """Course names out of a check detail; line numbers and row indexes are for reviewers, not schools."""
+    parts = [p.strip() for p in detail.split('·')] if detail else []
+    return [p for p in parts if p and p not in ('시각', '요일', '학년') and not re.fullmatch(r'(L\d+[\s/L\d]*|\d+)', p)]
+
+
+def school_questions(rows: list[dict]) -> list[dict]:
+    by_school: dict[str, list[dict]] = {}
+    for row in rows:
+        by_school.setdefault(row['school_id'], []).append(row)
+    out = []
+    for sid, items in by_school.items():
+        def days(reason):
+            found = {i['요일'] for i in items if i['reason'] == reason and i['요일']}
+            return '·'.join(d for d in WEEKDAYS if d in found)
+        def names(reason):
+            return ', '.join(dict.fromkeys(' '.join(detail_names(i['세부'])) for i in items
+                                           if i['reason'] == reason and detail_names(i['세부'])))
+        reasons = {i['reason'] for i in items}
+        asks = []
+        if '맞춤형시각없음' in reasons:
+            custom_days = days('맞춤형시각없음')
+            asks.append(f'1학년 맞춤형 프로그램의 요일별 운영 시간(시작~끝){f" ({custom_days})" if custom_days else ""}')
+        if '방과후시각미확인' in reasons:
+            asks.append(f"요일·시간이 운영계획에 없는 방과후 강좌의 시간: {names('방과후시각미확인') or '목록 확인'}")
+        if '원문불일치' in reasons:
+            asks.append(f"운영계획 안에서 시간이 서로 다르게 적힌 강좌의 실제 시간: {names('원문불일치') or '목록 확인'}")
+        if '맞춤형미확정행' in reasons:
+            asks.append('미정으로 적힌 맞춤형 프로그램의 확정 내용과 시간')
+        if '조건부개설미확인' in reasons:
+            asks.append('인원 등 조건이 붙은 강좌의 실제 개설 여부')
+        if '교시요일배정미확인' in reasons:
+            asks.append('1학년 요일별 수업 교시(4교시·5교시)')
+        if '돌봄내분류확인' in reasons:
+            asks.append(f"돌봄교실 안에서만 하는 프로그램인지: {names('돌봄내분류확인') or '목록 확인'}")
+        first = items[0]
+        out.append({'school_id': sid, 'school_name': first['school_name'], 'address': first['address'], '항목 수': len(items),
+                    '질문': ' / '.join(f'{n}. {a}' for n, a in enumerate(asks, 1)),
+                    '내부 확인': ', '.join(sorted(reasons & INTERNAL)), '15-라 링크': first['15-라 링크'], '확인일': '', '메모': ''})
     return out
 
 
@@ -101,7 +147,12 @@ def main():
             writer = csv.DictWriter(handle, fieldnames=HEADER)
             writer.writeheader()
             writer.writerows(rows)
-        print(json.dumps({'file': str(out.relative_to(ROOT)), 'items': len(rows), 'schools': len(ids),
+        questions = OUT_DIR / f'afterschool_school_questions_{date.today().strftime("%Y%m%d")}.csv'
+        with questions.open('w', encoding='utf-8-sig', newline='') as handle:
+            writer = csv.DictWriter(handle, fieldnames=QUESTION_HEADER)
+            writer.writeheader()
+            writer.writerows(school_questions(rows))
+        print(json.dumps({'file': str(out.relative_to(ROOT)), 'questions': str(questions.relative_to(ROOT)), 'items': len(rows), 'schools': len(ids),
                           'without_link': sum(not r['15-라 링크'] for r in rows)}, ensure_ascii=False))
         return
     items = resolutions(args.csv)
