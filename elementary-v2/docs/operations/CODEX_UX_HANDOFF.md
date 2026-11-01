@@ -66,6 +66,25 @@ Claude가 UX-K0·UX-03·UX-26을 하는 동안 Codex는 아래를 바꾸지 않�
 
 차수 2의 Codex 카드는 UX-K0 병합 뒤에 이 문서에 추가한다.
 
+### 우리집 일정 API (`src/utils/familyPlan.ts`, UX-K0)
+
+화면은 저장 키를 직접 읽거나 쓰지 않고 아래 함수만 부른다. 이 파일은 Claude 몫이라 Codex는 고치지 않는다 — 필요한 함수가 없으면 결과 칸에 적는다.
+
+| 함수 | 쓰는 곳 |
+| --- | --- |
+| `hasFamilyPlan()` | 홈 두 갈래(UX-08c), CTA 문구 분기 |
+| `startFamilyPlan({ from, face, contentId })` | 일정을 여는 CTA. 처음일 때만 `plan_start` |
+| `addToPlan({ id, title, href, when }, { from, contentId })` → `boolean` | "내 일정에 넣기"(UX-09). 실패하면 false — 담겼다고 보이지 말 것. 처음 담을 때만 `plan_item_add` |
+| `isInPlan(id)`, `removeFromPlan(id)` | 담기 버튼의 ✓ 상태 |
+| `readTimeline(now?)` → `TimelineEntry[]` | 입학까지 면, 완료 표시(UX-10). 로드맵 + 담은 항목, 날짜순 |
+| `setTimelineDone(id, done)` | 완료 체크. 체크리스트와 같은 저장값 |
+| `notePlanVisit()` | 우리집 일정·홈 일정 카드가 열릴 때. `plan_return` |
+| `subscribeFamilyPlan(listener)` | 담은 항목·프로필·시간표 초안이 바뀔 때 |
+| `nextDateOf('MM-DD')` | 홈 선반의 `deadline`을 `when: { kind: 'date' }`로 바꿀 때 |
+
+`when`은 `{ kind: 'date', date: 'YYYY-MM-DD' }` · `{ kind: 'month', month }` · `{ kind: 'anytime' }`. `from`은 C-01 표의 값에 `timetable`·`my`가 더해진다.
+`plan_start`·`plan_item_add`·`plan_return`은 지금 `track()`으로 직접 보낸다. C-01이 병합되면 Claude가 타입 있는 함수로 바꾼다.
+
 ## 5. 작업 카드
 
 상태: `ready`(바로 시작) · `blocked`(조건 대기) · `in-progress` · `review` · `merged`
