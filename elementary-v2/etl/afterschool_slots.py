@@ -31,10 +31,22 @@ WEEKDAYS = '월화수목금'
 HHMM = re.compile(r'^\d{2}:\d{2}$')
 NOON = '12:00'
 LOWER_GRADE_MAX = 3
+# The first two or three weeks of March, when grade 1 leaves after 4교시 ("2026 입학초기 3.3~3.13",
+# 낙생초 B000003745, 2026-11-02: 화·목·금 13:00~14:30 sat beside the term's 13:50~15:20). Such a row is
+# not the term's timetable. merge_terms joins labels with ' · ', so a row also written for the regular
+# term keeps its slot, and "적응기간 이후" (B000003772) or "3월 3주 이후" (B000003752) is the term itself.
+# A March-long table ("3월 (1~4주) 및 방학 중", B000001921) is not caught: it may be all the plan gives.
+EARLY_TERM = re.compile(r'입학\s*초기|적응기|3월\s*[1-3]\s*~\s*[1-3]\s*주')
+AFTER_EARLY = re.compile(r'이후|부터')
+
+
+def early_term_only(term: str | None) -> bool:
+    parts = [t for t in (term or '').split(' · ') if t]
+    return bool(parts) and all(EARLY_TERM.search(t) and not AFTER_EARLY.search(t) for t in parts)
 
 
 def slot_kind(row: dict) -> str | None:
-    if row.get('period') != '학기' or row.get('grade1') == 'false':
+    if row.get('period') != '학기' or row.get('grade1') == 'false' or early_term_only(row.get('term')):
         return None
     if row.get('kind') == '맞춤형':
         return '맞춤형'
@@ -89,9 +101,17 @@ def merge_blocks(rows: Iterable[dict]) -> list[dict]:
 
 
 def school_slots(rows: Iterable[dict], conflicts: list | None = None, pdf_only: bool = False) -> dict:
-    rows = merge_blocks(rows)
+    rows = list(rows)
+    # Early-weeks rows draw nothing. Dropped before merge_blocks, which would join them to a term row and
+    # keep one label for both. When grade 1 has only an 적응기간 table (B000003768) its days are checks; when
+    # a term table exists, a day missing from it has no 맞춤형 (B000002158 자람기: 화·목·금 are classes).
+    early = [r for r in rows if early_term_only(r.get('term'))]
+    rows = merge_blocks(r for r in rows if not early_term_only(r.get('term')))
     slots: dict[tuple, dict] = {}
     custom_days_with_rows: set[str] = set()
+    if not any(slot_kind(r) == '맞춤형' for r in rows):
+        custom_days_with_rows = {d for r in early if slot_kind({**r, 'term': None}) == '맞춤형'
+                                 for d in (''.join(x for x in (r.get('days') or '') if x in WEEKDAYS) or WEEKDAYS)}
     for row in rows:
         kind = slot_kind(row)
         if not kind:

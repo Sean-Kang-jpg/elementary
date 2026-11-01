@@ -1,0 +1,322 @@
+{
+ "checked_on": "2026-11-02",
+ "scope": "PDF원문 확인 항목 14곳(운영 school_afterschool_checks, 2026-11-01 목록)",
+ "method": "원본 PDF를 쪽 이미지로 렌더(pypdfium2 4.30.0, scale 1.6)해 운영 slots 전부를 표의 요일·대상 학년·시각과 대조. 같은 작성자 검토이며 독립 검수가 아님",
+ "limit": "나열된 시간대의 짝 맞춤만 확인. 표에 없는 맞춤형 시각이나 최신 학기 공지는 확인하지 않음(다른 확인 항목이 맡음)",
+ "p1_schools": [
+  {
+   "school_id": "B000003738",
+   "school_name": "초림초등학교",
+   "pdf_sha256": "a672dfdfe3c8f428ec0c0c69cc96669ef2389c670b841b99d0c91666626d8f3c",
+   "pages": [
+    4
+   ],
+   "rendered": [
+    {
+     "page_image": "chorim-10.png",
+     "sha256": "5e0e69e3e907cf303bd879c82702b8cc81e0903abd2c9d7c4b1e70b787a17579"
+    },
+    {
+     "page_image": "chorim-4.png",
+     "sha256": "d931ed3511a586730b1df0040e1252fbf84550dba11c438b9f00e5f78f81aba7"
+    }
+   ],
+   "live_slots_compared": 12,
+   "verdict": "ok",
+   "notes": [],
+   "resolves": [
+    "PDF원문",
+    null,
+    null
+   ]
+  },
+  {
+   "school_id": "B000003740",
+   "school_name": "안말초등학교",
+   "pdf_sha256": "f2dd0995f8be25f44b5216aab380272d1f64d4cc49951eb3642eb0510829330f",
+   "pages": [
+    4,
+    5
+   ],
+   "rendered": [
+    {
+     "page_image": "anmal-4.png",
+     "sha256": "f1f7631404f623c7d5eaf6e5edbaff9d7071db183a1cc89e53b968d8718163dc"
+    },
+    {
+     "page_image": "anmal-5.png",
+     "sha256": "a5795efb888fcdd893f16021958417eb1e0544bfc05ba1dab2b4c67b899981bd"
+    }
+   ],
+   "live_slots_compared": 19,
+   "verdict": "ok",
+   "notes": [],
+   "resolves": [
+    "PDF원문",
+    null,
+    null
+   ]
+  },
+  {
+   "school_id": "B000003745",
+   "school_name": "낙생초등학교",
+   "pdf_sha256": "df758272fc6751971fadcd468363f1972d78f064528570fbdac30f235808f59e",
+   "pages": [
+    4,
+    5,
+    7,
+    8,
+    9,
+    13
+   ],
+   "rendered": [
+    {
+     "page_image": "naksaeng-13.png",
+     "sha256": "28d93e4b541f4bdf273a9e56943369a79fb83c7d9cc8f3cad7bf8deb3504f82e"
+    },
+    {
+     "page_image": "naksaeng-4.png",
+     "sha256": "e458def1a9bbff1424f36afe30936e2f639a49ed4d61841749ceea5dd0975cf8"
+    },
+    {
+     "page_image": "naksaeng-5.png",
+     "sha256": "bc325bdd8581284a51105ed7506c9bb9363d4865ca80dd058c435bde90061cc9"
+    },
+    {
+     "page_image": "naksaeng-6.png",
+     "sha256": "17e422065fc7d824a98f9fe26b9bcd18808f9ba639cfabb13d95e4d39dd2ef6c"
+    },
+    {
+     "page_image": "naksaeng-7.png",
+     "sha256": "c5b5e24614487c6cb3af20c9b38f5827d8f1f1bd18dac8c62cc685c1c1604513"
+    },
+    {
+     "page_image": "naksaeng-8.png",
+     "sha256": "fb85bb44ba26eee645d0e078db1216d0caf9ef3423cf08ef2ebb3e2258c1bf26"
+    },
+    {
+     "page_image": "naksaeng-9.png",
+     "sha256": "4b1f342677e6d427a5ad77c6a025ccfcdd8c5c3ca13962059dced13ffb5ebb2c"
+    }
+   ],
+   "live_slots_compared": 26,
+   "verdict": "ok_after_rule",
+   "notes": [
+    "맞춤형 화·목·금 13:00~14:30은 입학초기(3.3~3.13) 표의 시간이라 학기 중 시간이 아님. 학기 중은 13:50~15:20(p4). 추출은 학기 표기를 옳게 남겼고 시간대 생성이 학기 표기를 보지 않았음 -> afterschool_slots EARLY_TERM"
+   ],
+   "resolves": [
+    "PDF원문",
+    null,
+    null
+   ]
+  },
+  {
+   "school_id": "B000003752",
+   "school_name": "불곡초등학교",
+   "pdf_sha256": "4380b63cdc0bd7d72af16ffde1574d7d3a5b9e6834804c5dcacd081f2a9ceb5a",
+   "pages": [
+    3,
+    4,
+    5
+   ],
+   "rendered": [
+    {
+     "page_image": "bulgok-3.png",
+     "sha256": "4f5fd28824d0d54873f5bc81ede76f2732ddb0f4c5a120f68957cd918cef5198"
+    },
+    {
+     "page_image": "bulgok-4.png",
+     "sha256": "e8df7d9298895e9fd3ec83a68bd614441c754bf20ad845e755b271568313ddda"
+    },
+    {
+     "page_image": "bulgok-5.png",
+     "sha256": "0a9e0bba7ed243c2bd5223e6043f1bb55d10de19a134d22d15d66a27af3af79e"
+    },
+    {
+     "page_image": "bulgok-6.png",
+     "sha256": "c312a9e8971f15edda39ee215cf2483f5a4454311e400acbc09c9d161645fdd7"
+    },
+    {
+     "page_image": "bulgok-7.png",
+     "sha256": "0b53e3014f92aece84ee18f2d7544cc17243290ccd347e7a024ca54b2cfcf577"
+    }
+   ],
+   "live_slots_compared": 32,
+   "verdict": "ok_after_rule",
+   "notes": [
+    "맞춤형 월~금 13:00~14:30은 \"3월 1~2주\" 표. 학기 중(3월 3주 이후)은 월·화·수 13:50~15:20, 목·금 13:00~14:40(p3) -> 같은 규칙"
+   ],
+   "resolves": [
+    "PDF원문",
+    null,
+    null
+   ]
+  },
+  {
+   "school_id": "B000003759",
+   "school_name": "양영초등학교",
+   "pdf_sha256": "bd4e12a357cce2fa59e4c96ca45715795a78bf3bacf37e109442977728f8aa8f",
+   "pages": [
+    5,
+    10
+   ],
+   "rendered": [
+    {
+     "page_image": "yangyeong-10.png",
+     "sha256": "c9c230f16bdaa42b76b1ad1c20f561921495fa3e551afce9411dfbfa248910bf"
+    },
+    {
+     "page_image": "yangyeong-4.png",
+     "sha256": "b918b09ac026631ca1ac0e5e793bb4ce4f5668c8d29056a98677c9ab93dcf5fa"
+    },
+    {
+     "page_image": "yangyeong-5.png",
+     "sha256": "34bfa2b77203e20369a72d6467418d75a65d334caa6559d5bf1ee5474f79a65f"
+    },
+    {
+     "page_image": "yangyeong-9.png",
+     "sha256": "603ad23be5154cf21796146f8e26934557a1ee6487f8678c389208f4d510e284"
+    }
+   ],
+   "live_slots_compared": 15,
+   "verdict": "ok",
+   "notes": [],
+   "resolves": [
+    "PDF원문",
+    null,
+    null
+   ]
+  },
+  {
+   "school_id": "B000003760",
+   "school_name": "서현초등학교",
+   "pdf_sha256": "7da46fb9d19783e443392fd80a4894f85779bb90e19a4b468a36c3c416ab4478 + f9f0bad595b5f78ba68c517b9226cef6ce64703d73da54e541c066225c489fb1",
+   "pages": [
+    4,
+    5,
+    6,
+    "care 4"
+   ],
+   "rendered": [
+    {
+     "page_image": "seohyeon-4.png",
+     "sha256": "13842abfbeecfe28e8201ca08b282f6f2e62b2fcc249ca0b3531c3ce5e6b4b9b"
+    },
+    {
+     "page_image": "seohyeon-5.png",
+     "sha256": "a744ead31ace9d373862396041130f980d197409fd09085eb77de57458683f84"
+    },
+    {
+     "page_image": "seohyeon-6.png",
+     "sha256": "fa8f46907c5cdbdb14bfdbc344b3895379db198439186220e23c3b7b50b2e698"
+    },
+    {
+     "page_image": "seohyeon-7.png",
+     "sha256": "362452c4d6179c7858bab6b933780824eacf443a9d2901daa7b1a7f9b68daa6d"
+    },
+    {
+     "page_image": "seohyeon-8.png",
+     "sha256": "1efc115f516dbf114035c4bef228cce3860be7606080edfaf49a7f5492de3349"
+    },
+    {
+     "page_image": "seohyeon-9.png",
+     "sha256": "449c943c95dbec11bf3591f6d8f120ad6c3b26b78ea955234c11633425ea5b88"
+    },
+    {
+     "page_image": "seohyeon_care-2.png",
+     "sha256": "b3805661d132622678a0f4c86feeba376c47b1d0d21b4bc7d13e1b88744c35a5"
+    },
+    {
+     "page_image": "seohyeon_care-4.png",
+     "sha256": "9bbd146551b6c67931ac0e4d9acf68d0fbabbade848772cfd9d16ccc5459451e"
+    },
+    {
+     "page_image": "seohyeon_care-5.png",
+     "sha256": "9006796bf6938d75f0d5ed969d80dbd9441d4ce5072c7946ca7f179b09aaa856"
+    }
+   ],
+   "live_slots_compared": 20,
+   "verdict": "ok",
+   "notes": [
+    "수 보드게임 돌봄1 2:00~2:50(단체 프로그램 표)과 13:30~2:20(예시 시간표)은 원문끼리 다름 -> 원문불일치·맞춤형시각없음(수) 확인 항목 유지"
+   ],
+   "resolves": [
+    "PDF원문",
+    null,
+    null
+   ]
+  }
+ ],
+ "reused_83_track_verdicts": {
+  "source": "docs/research/pivot/pivot_gyeonggi_priority_slot_visual_review_20261101.json (다른 세션, 미커밋)",
+  "source_sha256": "f4a59c1142011cee631f8b008092578613b09723e3a9d773105833dfef360384",
+  "condition": "7곳 모두 운영 적재 입력(slots_current_20261031)과 검수 근거(slots_current_20261101)의 학교 항목이 바이트 단위로 같음을 확인(2026-11-02)",
+  "schools": [
+   {
+    "school_id": "B000003858",
+    "school_name": "동안초등학교",
+    "checked_on": "2026-10-25",
+    "pdf_sha256": "300e81dec154dd6f99342622d8b1d9eeb6ebd5c4a003b94100c58f721941777a"
+   },
+   {
+    "school_id": "B000003859",
+    "school_name": "평촌초등학교",
+    "checked_on": "2026-10-25",
+    "pdf_sha256": "1859aa07c9f7385991793ffd89a47632b2b5f0eade108df043e0f5b7ca7fa868"
+   },
+   {
+    "school_id": "B000004272",
+    "school_name": "광문초등학교",
+    "checked_on": "2026-10-25",
+    "pdf_sha256": "dcf3b00649c477995bb7b1d2d6377ff961f486e3acdd508aa051b73453710f96"
+   },
+   {
+    "school_id": "B000003876",
+    "school_name": "비산초등학교",
+    "checked_on": "2026-11-01",
+    "pdf_sha256": "6a6f83cb391e1cc0e279902a3f3ac6608e22ab03f0c64757c00b0f50fd2f48e8"
+   },
+   {
+    "school_id": "B000004265",
+    "school_name": "연서초등학교",
+    "checked_on": "2026-11-01",
+    "pdf_sha256": "3b40422f04a474a7d94ac3f266994342b529b9dbd80f24a66977a29913619287"
+   },
+   {
+    "school_id": "B000004000",
+    "school_name": "현암초등학교",
+    "checked_on": "2026-11-01",
+    "pdf_sha256": "6d3cf1db88dcb7340e61aced1457e7e06fa23d90cc525db98d59224d368ba6bf"
+   },
+   {
+    "school_id": "B000004260",
+    "school_name": "구름산초등학교",
+    "checked_on": "2026-11-01",
+    "pdf_sha256": "bf5efd6d2d474f49e6d934c28847cbb221b2a91177b086b7e8d9c4320c75f4c8"
+   }
+  ]
+ },
+ "left_open": [
+  {
+   "school_id": "B000004262",
+   "school_name": "안현초등학교",
+   "reason": "원문 표 칸이 밀림(원목건축 B반 대상 칸에 시간, 바이올린 C반 시간 칸에 학년). PDF로 풀리지 않아 학교 확인 필요 — 다른 세션 부분 검수와 같은 판단"
+  }
+ ],
+ "rule_change": {
+  "file": "etl/afterschool_slots.py",
+  "summary": "학기 표기가 입학초기·적응기·3월 1~3주뿐인 행은 시간대를 만들지 않음. 학기 중 표가 없으면 그 요일은 맞춤형시각없음",
+  "production_diff_20261102": "slots 10,846 -> 10,825(입학초기 시간대 -27, 학기 중 시간대 +6: B000003750 4·B000003756 2), checks 1,056 그대로(B000003750·3756 -6, B000003768 +5·B000003772 +1), slot_status B000003768 ok -> check",
+  "schools": [
+   "B000002158",
+   "B000003745",
+   "B000003750",
+   "B000003751",
+   "B000003752",
+   "B000003756",
+   "B000003768",
+   "B000003772",
+   "B000003867"
+  ]
+ }
+}

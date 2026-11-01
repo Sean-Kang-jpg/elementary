@@ -19,8 +19,26 @@ class SlotKindTest(unittest.TestCase):
         self.assertIsNone(slot_kind(row(period='방학')))
         self.assertIsNone(slot_kind(row(grade1='false', grades_raw='3~6')))
 
+    def test_early_entry_weeks_are_not_the_term(self):
+        self.assertIsNone(slot_kind(row(kind='맞춤형', term='2026 입학초기 3.3~3.13')))
+        self.assertIsNone(slot_kind(row(kind='맞춤형', term='2026 1학년 적응기간 3.3~3.6')))
+        self.assertEqual(slot_kind(row(kind='맞춤형', term='2026 평상시 · 2026 입학초기 3.3~3.13')), '맞춤형')
+        self.assertEqual(slot_kind(row(kind='맞춤형', term='2026 1학년 적응기간 이후')), '맞춤형')
+        self.assertIsNone(slot_kind(row(kind='맞춤형', term='2026 3월 1~2주')))
+        self.assertEqual(slot_kind(row(kind='맞춤형', term='2026 3월 3주 이후')), '맞춤형')
+
 
 class SchoolSlotsTest(unittest.TestCase):
+    def test_early_weeks_draw_no_slot_but_leave_the_day_to_check(self):
+        early = '2026 입학초기 3.3~3.13'
+        result = school_slots([row(kind='맞춤형', days='화', start='13:00', end='13:40', term=early),
+                               row(kind='맞춤형', days='화', start='13:50', end='14:30', term=f'{early} · 2026 평상시'),
+                               row(kind='맞춤형', days='수', start='13:00', end='14:30', term=early)])
+        self.assertEqual([(s['weekday'], s['start'], s['end']) for s in result['slots']], [('화', '13:50', '14:30')])
+        self.assertEqual(result['checks'], [])   # the term table has no 수 맞춤형
+        only_early = school_slots([row(kind='맞춤형', days='수', start='13:00', end='14:30', term=early)])
+        self.assertEqual((only_early['slots'], only_early['checks']), ([], [['맞춤형시각없음', '수', None]]))
+
     def test_courses_sharing_a_window_are_one_slot(self):
         result = school_slots([row(), row(name='로봇과학', section='B'), row(days='화', start='13:50', end='15:10')])
         self.assertEqual([(s['weekday'], s['start'], s['courses']) for s in result['slots']],
