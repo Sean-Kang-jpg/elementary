@@ -6,6 +6,10 @@ import { followLink } from '../content/contentLinks'
 import { track } from '../../utils/analytics'
 import { timetablePath } from '../../utils/urlState'
 import { getAcademyCategory, type AcademyCategoryKey } from '../../utils/academyCategories'
+import { nextDateOf } from '../../utils/familyPlan'
+import AddToPlanButton from '../content/AddToPlanButton'
+
+const planIds = new Map(shelves.season.items.map((item) => [item.id, item.planId]))
 
 // 막대 축: 정오~19시 30분 (학교 상세 '초1 오후 한눈에'와 같다)
 const T0 = 12 * 60
@@ -47,17 +51,30 @@ export default function HomeShelves({ onNavigate }: { onNavigate: (path: string)
         <section className="home-shelf" aria-labelledby="home-season-title">
           <div className="home-shelf__head"><h2 id="home-season-title">{shelves.season.title}</h2></div>
           <ul className="home-shelf__row">
-            {cards.map((card) => (
-              <li key={card.id}>
-                <a href={card.href} className="season-card" onClick={go('season', card.id, card.href)}>
-                  {card.dday !== null
-                    ? <span className="season-card__badge">{card.deadlineLabel} {card.dday === 0 ? 'D-day' : `D-${card.dday}`}</span>
-                    : card.isNew ? <span className="season-card__badge season-card__badge--new">NEW</span> : null}
-                  <strong>{card.title}</strong>
-                  <small>{card.body}</small>
-                </a>
-              </li>
-            ))}
+            {cards.map((card) => {
+              const date = card.deadline ? nextDateOf(card.deadline) : null
+              return (
+                <li key={card.id} className="season-card-item">
+                  <a href={card.href} className="season-card" onClick={go('season', card.id, card.href)}>
+                    {card.dday !== null
+                      ? <span className="season-card__badge">{card.deadlineLabel} {card.dday === 0 ? 'D-day' : `D-${card.dday}`}</span>
+                      : card.isNew ? <span className="season-card__badge season-card__badge--new">NEW</span> : null}
+                    <strong>{card.title}</strong>
+                    <small>{card.body}</small>
+                  </a>
+                  <AddToPlanButton
+                    item={{
+                      id: planIds.get(card.id) ?? `season-${card.id}`,
+                      title: card.title,
+                      href: card.href,
+                      when: date ? { kind: 'date', date } : { kind: 'month', month: new Date().getMonth() + 1 },
+                    }}
+                    from="home_worry"
+                    contentId={card.id}
+                  />
+                </li>
+              )
+            })}
           </ul>
         </section>
       )}

@@ -8,6 +8,9 @@ const cli = path.join(projectRoot, 'node_modules', 'agent-browser', 'bin', 'agen
 const baseUrl = process.argv[2] || 'http://127.0.0.1:3001'
 const session = `elementary-public-smoke-${process.pid}`
 const namespace = 'elementary-smoke'
+// Shared roadmap IDs keep their canonical title when a season card is pinned.
+const roadmap = JSON.parse(fs.readFileSync(path.join(projectRoot, 'src/content/roadmap.json'), 'utf8'))
+const roadmapTitles = Object.fromEntries([...roadmap.planning, ...Object.values(roadmap.admission).flat()].map((item) => [item.id, item.text]))
 const connectionArgs = process.env.AGENT_BROWSER_CDP_PORT
   ? ['--cdp', process.env.AGENT_BROWSER_CDP_PORT]
   : []
@@ -344,6 +347,45 @@ try {
   await assertOriginsAgree()
 
   run(['set', 'viewport', '390', '844'])
+  // C-08 runs before map interactions, so unrelated map failures cannot hide
+  // the add/remove flow. This smoke session owns and cleans its device data.
+  run(['open', baseUrl])
+  run(['eval', "localStorage.removeItem('wherecho:profile-v1'); localStorage.removeItem('wherecho:family-plan-v1'); localStorage.removeItem('elementary-schedule-plans-v1'); localStorage.setItem('wherecho:analytics-debug', '1'); 'C-08 fresh device, debug on'"], { quiet: true })
+  run(['open', baseUrl])
+  await waitFor("document.querySelectorAll('.year-chip').length === 3 && document.querySelector('.season-card-item [data-testid=add-to-plan-button]')", 'C-08 home offers seasonal add buttons and entry years')
+  assertPage("![...document.querySelectorAll('[data-testid=add-to-plan-button]')].some(button => button.closest('a'))", 'C-08 add buttons are siblings of card links, never nested inside links')
+  run(['eval', "document.querySelector('.year-chip').click(); 'C-08 entry year selected'"])
+  await waitFor("document.querySelector('.roadmap-summary')", 'C-08 entry year is saved before pinning a card')
+  run(['eval', `(() => {
+    const card = document.querySelector('.season-card-item')
+    const button = card.querySelector('[data-testid=add-to-plan-button]')
+    const id = button.dataset.planId
+    const titles = ${JSON.stringify(roadmapTitles)}
+    window.__C08_ITEM__ = { id, title: titles[id] || card.querySelector('strong').textContent, href: card.querySelector('a').getAttribute('href'), shared: Boolean(titles[id]) }
+    button.click()
+    return 'C-08 first seasonal item added'
+  })()`])
+  await waitFor("location.pathname === '/' && document.querySelector('.season-card-item [data-testid=add-to-plan-button]')?.getAttribute('aria-pressed') === 'true' && document.querySelector('.season-card-item [data-testid=add-to-plan-button]')?.textContent.includes('일정에 있어요')", 'C-08 add confirms stored state without opening the card link')
+  run(['eval', "document.querySelector('.app-topbar__my').click(); 'C-08 to MY'"])
+  await waitFor("location.pathname === '/my' && document.querySelector('.roadmap')?.textContent.includes(window.__C08_ITEM__.title)", 'C-08 pinned item appears in the MY timeline')
+  assertPage("[...document.querySelectorAll('.roadmap__tasks li')].filter(item => item.querySelector('a > span')?.textContent === window.__C08_ITEM__.title).length === 1", 'C-08 the item appears once, including when its ID is shared with the roadmap')
+  assertPage("(() => { const events = (window.__ANALYTICS_LOG__ || []).filter(entry => entry.event === 'plan_item_add'); return events.length === 1 && events[0].params.from === 'home_worry' && events[0].params.item_id === window.__C08_ITEM__.id })()", 'C-08 records one home_worry plan_item_add for the card ID')
+  run(['eval', "document.querySelector('.app-topbar__home').click(); 'C-08 home again'"])
+  await waitFor("document.querySelector('.season-card-item [data-testid=add-to-plan-button]')?.getAttribute('aria-pressed') === 'true'", 'C-08 remounted home reads the saved pin')
+  run(['eval', "document.querySelector('.season-card-item [data-testid=add-to-plan-button]').click(); 'C-08 remove pin'"])
+  await waitFor("document.querySelector('.season-card-item [data-testid=add-to-plan-button]')?.getAttribute('aria-pressed') === 'false'", 'C-08 clicking a saved card removes its pin')
+  assertPage("!JSON.parse(localStorage.getItem('wherecho:family-plan-v1')).pinned.some(item => item.id === window.__C08_ITEM__.id) && (window.__ANALYTICS_LOG__ || []).filter(entry => entry.event === 'plan_item_add').length === 1", 'C-08 removal updates storage without another add event')
+  run(['eval', `(() => {
+    const original = Storage.prototype.setItem
+    try {
+      Storage.prototype.setItem = function(key, value) { if (key === 'wherecho:family-plan-v1') throw new DOMException('C-08 quota test', 'QuotaExceededError'); return original.call(this, key, value) }
+      document.querySelector('.season-card-item [data-testid=add-to-plan-button]').click()
+    } finally { Storage.prototype.setItem = original }
+    return 'C-08 simulated storage failure'
+  })()`])
+  await waitFor("document.querySelector('.season-card-item [role=status]')?.textContent === '저장하지 못했어요' && document.querySelector('.season-card-item [data-testid=add-to-plan-button]')?.getAttribute('aria-pressed') === 'false'", 'C-08 failed storage leaves the button unselected and announces failure')
+  assertPage("(window.__ANALYTICS_LOG__ || []).filter(entry => entry.event === 'plan_item_add').length === 1", 'C-08 a failed save is not counted as an item add')
+  run(['eval', "localStorage.removeItem('wherecho:profile-v1'); localStorage.removeItem('wherecho:family-plan-v1'); localStorage.removeItem('wherecho:analytics-debug'); delete window.__C08_ITEM__; 'C-08 cleanup complete'"], { quiet: true })
   // The map lives at /map since the home became its own page (ADR-008). The shell
   // checks below hold for any path, so they run here with the map flow.
   run(['open', new URL('/map', baseUrl).toString()])

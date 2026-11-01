@@ -249,6 +249,7 @@ Claude가 UX-K0·UX-03·UX-26을 하는 동안 Codex는 아래를 바꾸지 않�
 - 누르면 `trackHomeWorryClick`(C-01), `markEntry('home')`.
 - 빌드 검증(UX-08b): 고민의 `href`가 있는 경로인지, 가이드면 `nextStep`이 있는지(C-03 병합 뒤).
 - 일정이 있는 사용자 카드(UX-08c)는 범위 밖. `RoadmapSummary` 자리는 그대로 둔다.
+- C-08에서 추가한 `planId`와 `AddToPlanButton`은 `season`을 `worries`로 바꿀 때 그대로 옮긴다. notice·delay의 로드맵 ID를 유지하고, 버튼을 링크 안에 넣지 않는다.
 - C-08이 먼저 병합되면 시즌 항목의 `planId`와 "내 일정에 넣기" 버튼을 고민 항목으로 그대로 옮긴다.
 
 **막힌 이유**: 홈 제목·설명, 11~12월 고민 문구를 사용자가 정해야 한다.
@@ -312,7 +313,7 @@ Claude가 UX-K0·UX-03·UX-26을 하는 동안 Codex는 아래를 바꾸지 않�
 
 ---
 
-### C-08 내 일정에 넣기 (UX-09) — `ready`, S
+### C-08 내 일정에 넣기 (UX-09) — `review`, S
 
 **목표**: 홈 "지금 챙길 것" 카드마다 "내 일정에 넣기". 담은 항목은 MY의 입학까지 카드 해당 달에 보인다(UX-03).
 
@@ -330,7 +331,21 @@ Claude가 UX-K0·UX-03·UX-26을 하는 동안 Codex는 아래를 바꾸지 않�
 
 **완료 기준**: lint·typecheck·build·public smoke 통과. smoke: 홈에서 첫 시즌 카드의 버튼 → "일정에 있어요" → `/my`의 `.roadmap`에 그 제목이 보임(입학연도가 있는 상태에서) → 디버그 기록에 `plan_item_add` 한 번. 다시 누르면 빠짐.
 
-**결과**: 
+**결과** (Codex, 2026-11-01)
+
+- 독립 worktree `F:/sm/vibe/elementary/.worktrees/codex-ux-C-08`, 브랜치 `codex/ux-C-08`, 기준 master `7747ada`. 다른 카드 변경은 포함하지 않는다.
+- `src/components/content/AddToPlanButton.tsx`(신규): 기존 API만 사용한 담기·제거 버튼. `useSyncExternalStore(subscribeFamilyPlan, ...)`로 확인된 기기 저장 상태를 읽고, 성공을 추측해 표시하지 않는다. 담기·제거 실패 시 현재 선택 상태를 유지하고 `role="status"`로 “저장하지 못했어요”를 표시한다. `aria-pressed`와 카드 제목을 포함한 접근성 이름을 제공한다.
+- `src/components/navigation/HomeShelves.tsx`: 기존 링크와 형제 위치에 버튼 연결. 카드 deadline은 `nextDateOf`로 날짜로, deadline이 없으면 현재 달로 전달한다. `from: 'home_worry'`, `contentId: card.id`를 API에 전달한다.
+- `src/content/home-shelves.json`: 8개 항목에 planId만 추가. notice=`adm-12-notice`, delay=`adm-12-defer`, 나머지=`season-<id>`. 로드맵과 같은 ID는 기존 API가 하나로 합치며, 그 경우 로드맵의 원래 제목·기본 항목은 유지된다. 제거는 담은 항목만 해제한다.
+- `src/styles/home-shelves.css`: 링크·버튼 형제 배치의 높이·간격, 44px 버튼, 선택·키보드 초점·실패 안내 스타일. 정적 홈에는 버튼을 추가하지 않았으며 `seasonCards()`나 날짜 창·정렬 규칙도 바꾸지 않았다.
+- `scripts/public-smoke.mjs`: 지도 검사 전 홈 담기 → MY에 한 번 표시 → 추가 이벤트 1회 → 홈 복귀·제거 → 저장 실패 시 미선택·안내·추가 이벤트 없음 검증. 로드맵과 ID가 같을 때 원래 제목을 사용해 월별 콘텐츠 변화에도 검사할 수 있게 했다. C-07도 같은 smoke 진입부에 검증을 추가하므로 Claude가 두 브랜치를 병합할 때 양쪽 검증을 유지해야 한다.
+- 이 문서: 결과 기록과 C-04에서 planId·버튼을 worries로 옮기라는 명세 추가. 저장 형식·키·`familyPlan.ts`·Claude 소유 파일은 변경하지 않았다.
+- `npm run lint`: exit 0, 경고 없음. `npm run typecheck`: exit 0. `npm run test:unit`: exit 0, tests 132 / suites 28 / pass 132 / fail 0.
+- `npm run build`: exit 0. Vite 1,806 modules, 정적 가이드 14편, 학교 6,302·아파트 45,699 URL, sitemap 8개 생성. 기존 청크 크기·브라우저 데이터 갱신 경고가 있다.
+- 추가 검증: metadata에서 planId를 제외하면 이전 JSON과 동일함, ID 8개가 고유함, 12개월의 카드 선택·정렬 동일함을 확인(PASS). 실제 dist 홈에 현재 카드 제목·링크는 있고 담기 버튼은 없음(PASS). `node --check scripts/public-smoke.mjs`, `git diff --check` 통과.
+- 버튼 격리 검증: 실제 컴포넌트를 변환해 hook/API 대역으로 실행, exit 0. API 인자, 확인된 상태 표시, 담기/제거 실패 시 기존 선택 유지·status, 성공 시 오류 해제, 구독 함수 전달·서버 snapshot을 확인했다. 임시 실행기는 삭제했다. 실제 API·기기 저장·이벤트는 smoke로 확인한다.
+- `npm run browser:smoke:public -- http://127.0.0.1:3048`: C-08 검증은 모두 PASS. 링크 안에 버튼이 없음을 확인했고, 입학연도 선택 → 실제 담기 → MY의 한 번 표시 → home_worry/해당 ID의 plan_item_add 1회 → 홈 재진입 상태 유지 → 제거·추가 이벤트 없음 → 실제 Storage 쓰기 실패 시 미선택·status·이벤트 없음까지 통과했다. 이후 기존 지도 축소 검사에서 `zooming out replaces the district markers with province markers — still not true after 15000ms and 32 checks`로 exit 1(`scripts/public-smoke.mjs:450`). 전체 smoke 통과는 남은 검증 블로커다. 지도 검사 조건은 변경하지 않았다.
+- 임시 실행기는 정리했으며 master 병합·release 배포·운영 DB 쓰기는 수행하지 않는다.
 
 **검토**: 
 
