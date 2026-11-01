@@ -60,11 +60,11 @@ const content = JSON.parse(await fs.readFile(path.join(projectRoot, 'src/content
 const structure = JSON.parse(await fs.readFile(path.join(projectRoot, 'src/content/structure.json'), 'utf8'))
 const STAGE_ORDER = ['planning', 'admission']
 
-// The home's two rows (2026-10-15). seasonCards mirrors src/utils/homeShelves.ts;
+// The home's worry list. worryCards mirrors src/utils/homeShelves.ts;
 // the static copy names the deadline date rather than a D-day, which would go
 // stale between deploys - the app replaces it with the live count on mount.
 const shelves = JSON.parse(await fs.readFile(path.join(projectRoot, 'src/content/home-shelves.json'), 'utf8'))
-const seasonCards = (items, now, max) => {
+const worryCards = (items, now, max) => {
   const today = `${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`
   const iso = `${now.getFullYear()}-${today}`
   const inWindow = (from, to) => (from <= to ? today >= from && today <= to : today >= from || today <= to)
@@ -76,23 +76,23 @@ const seasonCards = (items, now, max) => {
     return Math.round((target - start) / 86_400_000)
   }
   return items
-    .filter((item) => inWindow(item.from, item.to))
-    .map((item, index) => ({ ...item, index, dday: item.deadline ? until(item.deadline) : null, isNew: Boolean(item.newUntil && iso <= item.newUntil) }))
-    .sort((a, b) => (a.dday ?? 999) - (b.dday ?? 999) || a.index - b.index)
+    .filter((item) => (!item.from && !item.to) || Boolean(item.from && item.to && inWindow(item.from, item.to)))
+    .map((item, index) => ({ ...item, index, permanent: !item.from && !item.to, dday: item.deadline ? until(item.deadline) : null, isNew: Boolean(item.newUntil && iso <= item.newUntil) }))
+    .sort((a, b) => Number(b.permanent) - Number(a.permanent) || (a.dday ?? 999) - (b.dday ?? 999) || a.index - b.index)
     .slice(0, max)
 }
 const showcase = await loadShowcase(shelves.showcase.schoolId)
 if (showcase) await fs.writeFile(path.join(outDir, 'home-showcase.json'), JSON.stringify(showcase), 'utf8')
 process.stdout.write(`showcase    ${showcase ? `dist/home-showcase.json (${showcase.school.name})` : 'none - the home leaves the row out'}\n`)
 
-const seasonHtml = (() => {
-  const cards = seasonCards(shelves.season.items, new Date(), shelves.season.max)
+const worriesHtml = (() => {
+  const cards = worryCards(shelves.worries.items, new Date(), shelves.worries.max)
   if (!cards.length) return ''
   const badge = (card) => (card.deadline
-    ? `<span class="season-card__badge">${escapeHtml(card.deadlineLabel)} ${Number(card.deadline.slice(0, 2))}월 ${Number(card.deadline.slice(3))}일</span>`
-    : card.isNew ? '<span class="season-card__badge season-card__badge--new">NEW</span>' : '')
-  return `<section class="home-shelf" aria-labelledby="home-season-title"><div class="home-shelf__head"><h2 id="home-season-title">${escapeHtml(shelves.season.title)}</h2></div><ul class="home-shelf__row">`
-    + cards.map((card) => `<li><a href="${escapeHtml(card.href)}" class="season-card">${badge(card)}<strong>${escapeHtml(card.title)}</strong><small>${escapeHtml(card.body)}</small></a></li>`).join('')
+    ? `<span class="worry-card__badge">${escapeHtml(card.deadlineLabel)} ${Number(card.deadline.slice(0, 2))}월 ${Number(card.deadline.slice(3))}일</span>`
+    : card.isNew ? '<span class="worry-card__badge worry-card__badge--new">NEW</span>' : '')
+  return `<section class="home-shelf home-worries" aria-labelledby="home-worries-title"><div class="home-shelf__head"><h2 id="home-worries-title">${escapeHtml(shelves.worries.title)}</h2></div><ul class="home-worries__list">`
+    + cards.map((card) => `<li class="worry-item" data-worry-id="${escapeHtml(card.id)}"><a href="${escapeHtml(card.href)}" class="worry-card">${badge(card)}<strong>${escapeHtml(card.question)}</strong><small>${escapeHtml(card.hint)}</small></a></li>`).join('')
     + '</ul></section>'
 })()
 
@@ -114,15 +114,16 @@ const showcaseHtml = showcase ? (() => {
 })() : ''
 
 const homeBody = [
-  '<section class="app-destination app-page home-page" aria-labelledby="home-title">',
+  '<section class="app-destination app-page home-page home-page--worries" aria-labelledby="home-title">',
   '<div class="home-hero"><div class="home-page__inner">',
   `<p class="home-page__brand">${escapeHtml(copy.brand)}</p>`,
   `<h1 id="home-title">${escapeHtml(copy.title)}</h1>`,
   `<p class="home-page__lead">${escapeHtml(copy.lead)}</p>`,
+  worriesHtml,
+  `<div id="home-assignment-search" class="home-page__search"><a href="/map">${escapeHtml(shelves.worries.items[0].hint)}</a></div>`,
   `<p class="home-hero__trust"><span>${escapeHtml(copy.noteBefore)}<b>${escapeHtml(copy.noteStrong)}</b>${escapeHtml(copy.noteAfter)}</span></p>`,
   '</div></div>',
   '<div class="home-page__inner home-page__body">',
-  seasonHtml,
   showcaseHtml,
   // Same banner as HomeShelves.tsx: the way from the examples into /timetable.
   '<a href="/timetable" class="timetable-banner"><span class="min-w-0 flex-1"><strong>우리 아이 초등학교 시간표 미리 짜보기</strong><small>맞춤형·방과후·돌봄에 주변 학원까지, 입학 전에 한 주를 그려 봐요</small></span></a>',

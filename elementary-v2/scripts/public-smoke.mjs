@@ -347,17 +347,40 @@ try {
   await assertOriginsAgree()
 
   run(['set', 'viewport', '390', '844'])
+  // C-04: verify the worry-led home before any map interaction.
+  run(['open', baseUrl])
+  run(['eval', "for (const key of ['wherecho:profile-v1', 'wherecho:family-plan-v1', 'elementary-schedule-plans-v1', 'elementary-favorites-v1', 'favorite-school-ids']) localStorage.removeItem(key); localStorage.setItem('wherecho:analytics-debug', '1'); 'C-04 fresh device, debug on'"], { quiet: true })
+  run(['open', baseUrl])
+  await waitFor("document.querySelector('#home-title') && document.querySelectorAll('.worry-item').length >= 3", 'C-04 worry-led home mounted')
+  assertPage("document.querySelector('#home-title').textContent === '초등 입학 준비, 어떤 점이 궁금하세요?' && document.querySelector('.worry-item')?.dataset.worryId === 'assignment'", 'C-04 approved title and permanent assignment worry lead the home')
+  assertPage("document.querySelectorAll('.worry-item').length <= 6 && Boolean(document.querySelector('.home-worries').compareDocumentPosition(document.querySelector('#home-assignment-search')) & Node.DOCUMENT_POSITION_FOLLOWING)", 'C-04 search follows the worry list, capped at six')
+  assertPage("(() => { const questions = [...document.querySelectorAll('.worry-card strong')]; const nav = document.querySelector('.app-gnb')?.getBoundingClientRect().top; const bottom = nav > 0 ? nav : innerHeight; return document.querySelector('#home-title').getBoundingClientRect().top >= 0 && questions.filter(q => { const r = q.getBoundingClientRect(); return r.top >= 0 && r.bottom <= bottom }).length >= 3 && document.documentElement.scrollWidth === innerWidth })()", 'C-04 title and at least three worries fit the first 390px viewport without horizontal overflow')
+  const staticWorryIds = [...fs.readFileSync(path.join(projectRoot, 'dist/index.html'), 'utf8').matchAll(/data-worry-id="([^"]+)"/g)].map(match => match[1])
+  assertPage(`JSON.stringify([...document.querySelectorAll('.worry-item')].map(item => item.dataset.worryId)) === ${JSON.stringify(JSON.stringify(staticWorryIds))}`, 'C-04 static home and app show the same ordered worries')
+  run(['eval', "document.querySelector('.worry-item[data-worry-id=assignment] a').click(); 'C-04 focus assignment search'"])
+  await waitFor("location.pathname === '/' && document.activeElement === document.querySelector('#home-assignment-search input[role=combobox]') && document.activeElement.getAttribute('aria-expanded') === 'true'", 'C-04 assignment worry focuses and opens the home search')
+  assertPage("(window.__ANALYTICS_LOG__ || []).filter(entry => entry.event === 'home_worry_click' && entry.params.worry_id === 'assignment').length === 1", 'C-04 assignment click records home_worry_click')
+  run(['eval', `(() => {
+    const item = [...document.querySelectorAll('.worry-item')].find(item => item.dataset.worryId !== 'assignment')
+    const link = item.querySelector('.worry-card')
+    window.__C04_TARGET__ = { id: item.dataset.worryId, href: link.getAttribute('href') }
+    link.click()
+    return 'C-04 open guide worry'
+  })()`])
+  await waitFor("location.pathname === window.__C04_TARGET__.href && document.querySelector('#guide-title') && document.querySelector('[data-testid=guide-next-step]')", 'C-04 a worry reaches a guide with a next step')
+  assertPage("(window.__ANALYTICS_LOG__ || []).filter(entry => entry.event === 'home_worry_click' && entry.params.worry_id === window.__C04_TARGET__.id).length === 1 && (window.__ANALYTICS_LOG__ || []).some(entry => entry.event === 'view_guide' && entry.params.entry_source === 'home')", 'C-04 guide worry records its ID and home entry source')
+  run(['eval', "localStorage.removeItem('wherecho:analytics-debug'); delete window.__C04_TARGET__; 'C-04 cleanup complete'"], { quiet: true })
   // C-08 runs before map interactions, so unrelated map failures cannot hide
   // the add/remove flow. This smoke session owns and cleans its device data.
   run(['open', baseUrl])
   run(['eval', "localStorage.removeItem('wherecho:profile-v1'); localStorage.removeItem('wherecho:family-plan-v1'); localStorage.removeItem('elementary-schedule-plans-v1'); localStorage.setItem('wherecho:analytics-debug', '1'); 'C-08 fresh device, debug on'"], { quiet: true })
   run(['open', baseUrl])
-  await waitFor("document.querySelectorAll('.year-chip').length === 3 && document.querySelector('.season-card-item [data-testid=add-to-plan-button]')", 'C-08 home offers seasonal add buttons and entry years')
+  await waitFor("document.querySelectorAll('.year-chip').length === 3 && document.querySelector('.worry-item:has([data-testid=add-to-plan-button]) [data-testid=add-to-plan-button]')", 'C-08 home offers seasonal add buttons and entry years')
   assertPage("![...document.querySelectorAll('[data-testid=add-to-plan-button]')].some(button => button.closest('a'))", 'C-08 add buttons are siblings of card links, never nested inside links')
   run(['eval', "document.querySelector('.year-chip').click(); 'C-08 entry year selected'"])
   await waitFor("document.querySelector('.plan-summary')", 'C-08 entry year is saved before pinning a card')
   run(['eval', `(() => {
-    const card = document.querySelector('.season-card-item')
+    const card = document.querySelector('.worry-item:has([data-testid=add-to-plan-button])')
     const button = card.querySelector('[data-testid=add-to-plan-button]')
     const id = button.dataset.planId
     const titles = ${JSON.stringify(roadmapTitles)}
@@ -365,25 +388,25 @@ try {
     button.click()
     return 'C-08 first seasonal item added'
   })()`])
-  await waitFor("location.pathname === '/' && document.querySelector('.season-card-item [data-testid=add-to-plan-button]')?.getAttribute('aria-pressed') === 'true' && document.querySelector('.season-card-item [data-testid=add-to-plan-button]')?.textContent.includes('일정에 있어요')", 'C-08 add confirms stored state without opening the card link')
+  await waitFor("location.pathname === '/' && document.querySelector('.worry-item:has([data-testid=add-to-plan-button]) [data-testid=add-to-plan-button]')?.getAttribute('aria-pressed') === 'true' && document.querySelector('.worry-item:has([data-testid=add-to-plan-button]) [data-testid=add-to-plan-button]')?.textContent.includes('일정에 있어요')", 'C-08 add confirms stored state without opening the card link')
   run(['eval', "document.querySelector('.roadmap-summary__more').click(); 'C-08 to timeline'"])
   await waitFor("location.pathname === '/timetable' && location.search === '?face=timeline' && document.querySelector('.roadmap')?.textContent.includes(window.__C08_ITEM__.title)", 'C-08 pinned item appears in the family-plan timeline')
   assertPage("[...document.querySelectorAll('.roadmap__tasks li')].filter(item => item.querySelector('a > span')?.textContent === window.__C08_ITEM__.title).length === 1", 'C-08 the item appears once, including when its ID is shared with the roadmap')
   assertPage("(() => { const events = (window.__ANALYTICS_LOG__ || []).filter(entry => entry.event === 'plan_item_add'); return events.length === 1 && events[0].params.from === 'home_worry' && events[0].params.item_id === window.__C08_ITEM__.id })()", 'C-08 records one home_worry plan_item_add for the card ID')
   run(['eval', "document.querySelector('.app-topbar__home').click(); 'C-08 home again'"])
-  await waitFor("document.querySelector('.season-card-item [data-testid=add-to-plan-button]')?.getAttribute('aria-pressed') === 'true'", 'C-08 remounted home reads the saved pin')
-  run(['eval', "document.querySelector('.season-card-item [data-testid=add-to-plan-button]').click(); 'C-08 remove pin'"])
-  await waitFor("document.querySelector('.season-card-item [data-testid=add-to-plan-button]')?.getAttribute('aria-pressed') === 'false'", 'C-08 clicking a saved card removes its pin')
+  await waitFor("document.querySelector('.worry-item:has([data-testid=add-to-plan-button]) [data-testid=add-to-plan-button]')?.getAttribute('aria-pressed') === 'true'", 'C-08 remounted home reads the saved pin')
+  run(['eval', "document.querySelector('.worry-item:has([data-testid=add-to-plan-button]) [data-testid=add-to-plan-button]').click(); 'C-08 remove pin'"])
+  await waitFor("document.querySelector('.worry-item:has([data-testid=add-to-plan-button]) [data-testid=add-to-plan-button]')?.getAttribute('aria-pressed') === 'false'", 'C-08 clicking a saved card removes its pin')
   assertPage("!JSON.parse(localStorage.getItem('wherecho:family-plan-v1')).pinned.some(item => item.id === window.__C08_ITEM__.id) && (window.__ANALYTICS_LOG__ || []).filter(entry => entry.event === 'plan_item_add').length === 1", 'C-08 removal updates storage without another add event')
   run(['eval', `(() => {
     const original = Storage.prototype.setItem
     try {
       Storage.prototype.setItem = function(key, value) { if (key === 'wherecho:family-plan-v1') throw new DOMException('C-08 quota test', 'QuotaExceededError'); return original.call(this, key, value) }
-      document.querySelector('.season-card-item [data-testid=add-to-plan-button]').click()
+      document.querySelector('.worry-item:has([data-testid=add-to-plan-button]) [data-testid=add-to-plan-button]').click()
     } finally { Storage.prototype.setItem = original }
     return 'C-08 simulated storage failure'
   })()`])
-  await waitFor("document.querySelector('.season-card-item [role=status]')?.textContent === '저장하지 못했어요' && document.querySelector('.season-card-item [data-testid=add-to-plan-button]')?.getAttribute('aria-pressed') === 'false'", 'C-08 failed storage leaves the button unselected and announces failure')
+  await waitFor("document.querySelector('.worry-item:has([data-testid=add-to-plan-button]) [role=status]')?.textContent === '저장하지 못했어요' && document.querySelector('.worry-item:has([data-testid=add-to-plan-button]) [data-testid=add-to-plan-button]')?.getAttribute('aria-pressed') === 'false'", 'C-08 failed storage leaves the button unselected and announces failure')
   assertPage("(window.__ANALYTICS_LOG__ || []).filter(entry => entry.event === 'plan_item_add').length === 1", 'C-08 a failed save is not counted as an item add')
   run(['eval', "localStorage.removeItem('wherecho:profile-v1'); localStorage.removeItem('wherecho:family-plan-v1'); localStorage.removeItem('wherecho:analytics-debug'); delete window.__C08_ITEM__; 'C-08 cleanup complete'"], { quiet: true })
   // The map lives at /map since the home became its own page (ADR-008). The shell
@@ -656,7 +679,7 @@ try {
   // A pick there has to land on the detail address with the map behind it, and
   // the map must not be built for a visitor who never leaves the home.
   run(['open', baseUrl])
-  await waitFor("document.querySelector('#home-title') && document.querySelector('input[role=combobox]')", 'home opened with the assignment search on top')
+  await waitFor("document.querySelector('#home-title') && document.querySelector('input[role=combobox]')", 'home opened with worries followed by assignment search')
   assertPage("![...document.querySelectorAll('.home-page__card')].some((node) => node.textContent.includes('지역별 배정')) && document.querySelector('.home-page__footer a[href=\"/area\"]')", 'home removes the comparison banner and preserves the area directory link')
   assertPage("!document.querySelector('.quick-filter-row') && !document.querySelector('[aria-label=\"주변 초등학교 지도\"]')", 'the home does not build the map')
   // The SDK is injected only when a map screen opens (ADR-008 section 5); the

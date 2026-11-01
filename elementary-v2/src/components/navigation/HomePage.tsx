@@ -3,7 +3,6 @@ import SearchBox from '../search/SearchBox'
 import EntryYearPicker from '../content/EntryYearPicker'
 import PlanSummary from '../content/PlanSummary'
 import type { Profile } from '../../utils/profile'
-import SchoolIllustration from '../content/SchoolIllustration'
 import { followLink } from '../content/contentLinks'
 import { VIEW_PATHS } from '../../utils/urlState'
 import copy from '../../content/home.json'
@@ -17,8 +16,8 @@ interface HomePageProps {
 }
 
 /**
- * 첫 화면. 맨 위는 배정 검색창이다 (PRD 6.5절, ADR-008). 일정이 있는 가족에게는 그 아래,
- * 고민 목록 위에 우리집 일정 카드가 뜬다(UX-08c). 가이드 목록은 입학 준비 탭에,
+ * 고민으로 시작하는 첫 화면. 일정이 있는 가족의 우리집 일정 카드는 고민 목록 위에,
+ * 배정 검색창은 목록 아래에 둔다(C-04, UX-08c). 가이드 목록은 입학 준비 탭에,
  * 전체 로드맵은 우리집 일정에 있다(UX-26) — 같은 목록을 두 곳에 두지 않는다.
  *
  * 검색 결과를 고르면 선택이 바뀌고, App이 그 선택을 보고 상세 주소로 옮긴다.
@@ -30,14 +29,15 @@ export default function HomePage({ onNavigate, entryYear, onEntryYearChange, pro
   const guideList = entryYear ? `${VIEW_PATHS.guide}?year=${entryYear}` : VIEW_PATHS.guide
 
   return (
-    <section className="app-destination app-page home-page" aria-labelledby="home-title">
+    <section className="app-destination app-page home-page home-page--worries" aria-labelledby="home-title">
       <div className="home-hero">
         <div className="home-page__inner">
-          <SchoolIllustration className="home-hero__art" />
           <p className="home-page__brand">{copy.brand}</p>
           <h1 id="home-title">{copy.title}</h1>
           <p className="home-page__lead">{copy.lead}</p>
-          <SearchBox className="home-page__search" />
+          <PlanSummary entryYear={entryYear} profile={profile} onNavigate={onNavigate} />
+          <HomeShelves onNavigate={onNavigate} part="worries" />
+          <div id="home-assignment-search"><SearchBox className="home-page__search" /></div>
           <p className="home-hero__trust">
             <ShieldCheck size={15} aria-hidden="true" />
             <span>{copy.noteBefore}<b>{copy.noteStrong}</b>{copy.noteAfter}</span>
@@ -46,8 +46,7 @@ export default function HomePage({ onNavigate, entryYear, onEntryYearChange, pro
       </div>
 
       <div className="home-page__inner home-page__body">
-        <PlanSummary entryYear={entryYear} profile={profile} onNavigate={onNavigate} />
-        <HomeShelves onNavigate={onNavigate} />
+        <HomeShelves onNavigate={onNavigate} part="showcase" />
 
         <section className="home-card" aria-label="입학 연도 선택">
           <EntryYearPicker value={entryYear} onChange={onEntryYearChange} />
