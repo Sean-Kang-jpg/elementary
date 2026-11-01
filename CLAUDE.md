@@ -65,6 +65,12 @@ npm run typecheck
 
 ## Uncommitted Work At Handoff
 
+### 2026-11-01: 우리집 일정 중심 UX 개편 — 백로그·Codex 분담 (문서만, master 커밋)
+
+- 사용자 결정: 계획을 제품 중심에, GNB 시간표 → **우리집 일정**(입학까지 / 우리 아이 한 주, URL `/timetable` 유지), 홈은 고민에서 시작, MY는 프로필·설정만
+- 백로그 `elementary-v2/docs/product/UX_BACKLOG_PLAN_CENTERED.md`(UX-01~26), 분담·작업 카드 `elementary-v2/docs/operations/CODEX_UX_HANDOFF.md`(C-01~06)
+- 다음 첫 작업(Claude): UX-K0 `src/utils/familyPlan.ts` API 고정 → UX-03 입학까지 v0. Codex는 C-01·C-02·C-03 바로 시작 가능, C-04~06은 사용자 문구·사실 대기
+
 ### 2026-10-31~11-01: 방과후 시간대층 운영 적재·화면 전환·배포 (커밋·배포 완료)
 
 - SQL 32·38 사용자 적용(10-31). 적재 `etl/load_school_afterschool.py --sql32-fields --sql38-fields --apply`: summary 682 · programs 24,262 ·
