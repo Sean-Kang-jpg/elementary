@@ -126,6 +126,20 @@ for (const file of guideFiles) {
   const slug = path.basename(file, '.md')
   if (meta.slug && meta.slug !== slug) problem(file, `slug "${meta.slug}" does not match the file name`)
   const summary = meta.summary ?? null
+  const nextStep = meta.nextStep
+  if (!nextStep || typeof nextStep !== 'object' || Array.isArray(nextStep)) {
+    problem(file, 'front matter needs nextStep with label, href and kind')
+  } else {
+    if (typeof nextStep.label !== 'string' || !nextStep.label.trim() || [...nextStep.label].length > 30) {
+      problem(file, 'nextStep.label must be nonempty and at most 30 characters')
+    }
+    if (typeof nextStep.href !== 'string' || !/^\/(?!\/)[^\s\\]*$/.test(nextStep.href)) {
+      problem(file, 'nextStep.href must be an internal absolute path')
+    }
+    if (!['plan', 'school', 'guide'].includes(nextStep.kind)) {
+      problem(file, 'nextStep.kind must be plan, school or guide')
+    }
+  }
   if (summary) {
     if (!SUMMARY_KINDS.includes(summary.kind)) problem(file, `summary.kind must be one of ${SUMMARY_KINDS.join(', ')}`)
     if (!summary.title) problem(file, 'summary needs a title')
@@ -146,6 +160,7 @@ for (const file of guideFiles) {
     verifiedAt: String(meta.verifiedAt),
     scope: meta.scope ?? null,
     summary,
+    nextStep: nextStep ? { label: nextStep.label, href: nextStep.href, kind: nextStep.kind } : null,
     rule: meta.rule,
     basisYear: meta.basisYear,
     sources: withOfficial(meta.sources),
@@ -217,6 +232,15 @@ for (const stage of STAGES) {
 // are trying to act.
 
 const slugs = new Set(guides.map((guide) => guide.slug))
+for (const guide of guides) {
+  const href = guide.nextStep?.href
+  if (typeof href !== 'string' || !/^\/(?!\/)[^\s\\]*$/.test(href)) continue
+  const pathname = href.split(/[?#]/, 1)[0]
+  const targetGuide = pathname.match(/^\/guide\/([^/]+)$/)
+  if (targetGuide ? !slugs.has(targetGuide[1]) : !['/map', '/timetable', '/my', '/guide', '/faq', '/checklist', '/learn', '/'].includes(pathname)) {
+    problem(guide.file, `nextStep links to ${href}, which does not exist`)
+  }
+}
 const checkLinks = (file, html) => {
   for (const [, slug] of html.matchAll(/href="\/guide\/([^"#?]+)"/g)) {
     if (!slugs.has(slug)) problem(file, `links to /guide/${slug}, which does not exist`)

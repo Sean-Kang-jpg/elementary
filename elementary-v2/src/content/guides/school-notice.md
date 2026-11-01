@@ -1,5 +1,6 @@
 ---
 slug: school-notice
+nextStep: {"label":"통지서에 적힌 학교 찾기","href":"/map","kind":"school"}
 title: 취학통지서, 언제 어떻게 받나요
 description: 취학통지서는 입학 전해 12월 20일까지 주소지 주민센터가 보냅니다. 온라인 발급 방법과 받으면 확인할 세 가지를 정리했습니다.
 order: 1

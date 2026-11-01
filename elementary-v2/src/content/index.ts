@@ -23,6 +23,12 @@ export interface GuideSummary {
   items: Array<{ title: string; text?: string; when?: string }>
 }
 
+export interface GuideNextStep {
+  label: string
+  href: string
+  kind: 'plan' | 'school' | 'guide'
+}
+
 export interface Guide {
   slug: string
   title: string
@@ -33,6 +39,7 @@ export interface Guide {
   verifiedAt: string
   scope: string | null
   summary: GuideSummary | null
+  nextStep: GuideNextStep
   rule: ContentRule
   /** 날짜와 예시가 기준으로 삼은 학년도. */
   basisYear: number

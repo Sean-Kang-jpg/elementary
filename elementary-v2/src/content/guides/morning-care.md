@@ -1,5 +1,6 @@
 ---
 slug: morning-care
+nextStep: {"label":"우리 학교 하교·돌봄 시간으로 한 주 짜보기","href":"/timetable","kind":"plan"}
 title: 초1 아침, 등교 전 시간은 어떻게 하나요
 description: 초1 등교·하교 시각, 학교 아침돌봄(대개 7시~9시), 학교 밖 아침돌봄과 맞벌이 가정의 아침 선택지를 정리했습니다.
 order: 6.5

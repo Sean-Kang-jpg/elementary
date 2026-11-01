@@ -1,5 +1,6 @@
 ---
 slug: when-to-move
+nextStep: {"label":"이사 갈 집 배정 학교 찾기","href":"/map","kind":"school"}
 title: 언제까지 이사하면 원하는 학교에 갈 수 있나요
 description: 초등학교 배정은 취학통지 때의 주소로 정해집니다. 입학 2년 전부터 입학 직전까지, 이사 시점별로 달라지는 점을 정리했습니다.
 order: 10

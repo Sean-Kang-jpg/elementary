@@ -1,5 +1,6 @@
 ---
 slug: care-afterschool
+nextStep: {"label":"우리 학교 하교·돌봄 시간으로 한 주 짜보기","href":"/timetable","kind":"plan"}
 title: 늘봄·돌봄, 무엇을 언제 신청하나요
 description: 1·2학년 무상 프로그램, 돌봄교실, 방과후의 차이와 신청 시기, 돌봄교실에 떨어졌거나 방학이 걱정될 때의 대안을 정리했습니다.
 order: 6

@@ -1,5 +1,6 @@
 ---
 slug: move-before-notice
+nextStep: {"label":"이사 갈 집 배정 학교 찾기","href":"/map","kind":"school"}
 title: 취학통지서 받기 전에 이사한다면 (10~12월)
 description: 12월 20일 취학통지 전에 이사하면, 전입신고한 새 주소를 기준으로 학교가 배정됩니다. 놓치기 쉬운 점을 정리했습니다.
 order: 3
