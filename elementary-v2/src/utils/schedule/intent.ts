@@ -6,13 +6,14 @@ import type { ScheduleEntry, SlotIntent } from './types'
  * 칸의 의도(UX-14, 2026-11-02). 이 시간이 아이에게 무슨 시간인가 — 엔진의 evidence(어떻게 아나)·
  * participation(어디까지 왔나)와 다른 축이라 계산에 쓰지 않고 표시만 한다.
  *
- * '여백'은 임시 이름이다(백로그 6절 미결정 1). 바꿀 때는 이 표의 문구만 고친다 — 저장값은 'free'.
+ * 'free'의 화면 이름은 '휴식'(2026-11-03 사용자 결정, 임시 이름 '여백'을 바꿈). 저장값은 그대로 'free'다 —
+ * 이름을 다시 바꿀 때도 이 표의 문구만 고친다.
  */
 export const INTENT_LABELS: Record<SlotIntent, string> = {
   safety: '안전',
   basics: '기초',
   interest: '관심',
-  free: '여백',
+  free: '휴식',
   undecided: '미정',
 }
 

@@ -62,7 +62,7 @@ Claude가 UX-K0·UX-03·UX-26을 하는 동안 Codex는 아래를 바꾸지 않�
 | 0 (지금) | C-01 이벤트, C-02 .ics, C-03 가이드 nextStep | UX-K0 API, UX-03 입학까지 v0 | 홈 제목·고민 문구, 추첨 결과 사실 |
 | 1 | C-04 홈 고민 목록, C-05 홈 하단 정리, C-06 결과 이후 페이지 | 차수 0 검토·병합, 배포 | 배포 승인 |
 | 2 (12월) | C-07 학교로 일정 만들기, C-08 내 일정에 넣기, C-09 퍼널 정의 | UX-26 우리집 일정 탭, UX-06, UX-08c, UX-10 완료 표시 | 완료 표시·미뤄도 되는 것 내용 |
-| 3 (1~2월) | UX-15, UX-16, UX-17 | UX-13 기본안, UX-14 칸 의도, UX-18 | 여백 이름 |
+| 3 (1~2월) | UX-15, UX-16, UX-17 | UX-13 기본안, UX-14 칸 의도, UX-18 | 휴식 이름(확정) |
 
 차수 2 카드(C-07~C-09)는 UX-K0·UX-03 병합 뒤인 2026-11-01에 추가했다. UX-10(완료 표시)은 입학까지 카드가 UX-26에서 옮겨 간 뒤 Claude가 한다 — 지금 `RoadmapCard.tsx`가 체크와 D-day를 이미 갖고 있어 Codex 카드로 나누면 같은 파일을 두 번 고치게 된다.
 
@@ -84,7 +84,7 @@ Claude가 UX-K0·UX-03·UX-26을 하는 동안 Codex는 아래를 바꾸지 않�
 | `nextDateOf('MM-DD')` | 홈 선반의 `deadline`을 `when: { kind: 'date' }`로 바꿀 때 |
 | `dueBadge(when)`, `describeProgress(entries, planning?)` | D-day 배지, "이번 달 챙길 것 N개 중 M개 ✓"(UX-10). 같은 말을 새로 짓지 말 것 |
 | `planCoverage(entries, until)`, `describeCoverage(c)` (`schedule/coverage.ts`) | 한 주의 빈 시간(하교~`until`). "평일 19시까지 빈 시간 없음 ✓"은 엔진 공백이 0일 때만. 하교를 모르면 판단하지 않는다 |
-| `entryIntent(entry)`, `INTENT_LABELS` (`schedule/intent.ts`) | 칸의 의도(UX-14). 화면 문구는 이 표만 쓴다 — "여백"은 임시 이름이라 바뀔 수 있다. 저장값(`safety`·`basics`·`interest`·`free`·`undecided`)은 바뀌지 않는다 |
+| `entryIntent(entry)`, `INTENT_LABELS` (`schedule/intent.ts`) | 칸의 의도(UX-14). 화면 문구는 이 표만 쓴다(`free`의 화면 이름은 "휴식", 11-03 확정). 저장값(`safety`·`basics`·`interest`·`free`·`undecided`)은 바뀌지 않는다 |
 | `coverageUntil(plan.starter)` (`schedule/starter.ts`) | 빈 시간을 세는 끝 = 출발 계획의 보호자 귀가 시각(UX-13). 답이 없으면 19시, 정규수업 직후 귀가면 `null`(세지 않음). `planCoverage`를 부를 때 늘 이걸 넘길 것 |
 
 `when`은 `{ kind: 'date', date: 'YYYY-MM-DD' }` · `{ kind: 'month', month }` · `{ kind: 'anytime' }`. `from`은 C-01 표의 값에 `home`·`timetable`·`my`가 더해진다(입학연도를 처음 고른 화면, UX-03). 체크리스트 저장값에 로드맵 할 일의 완료도 들어가므로, 체크리스트 진행률은 `checklist.json`의 id만 센다.
