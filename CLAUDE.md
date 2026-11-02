@@ -59,7 +59,7 @@
 
 ### B. 방과후·맞춤형 시간대층 (SQL 32·38)
 
-현황(11-03 운영): summary 683곳(서울 561 + 경기 122 — 파일럿 지역 중 분당·위례 5곳 대기) · slots 10,828 · checks 1,103(13건 확인 완료) · 통과 410 · 확인 224 · 해당 없음 49.
+현황(11-03 운영): summary 688곳(서울 561 + 경기 127 — 경기 파일럿 지역 분당·위례·수지·동안·광명 전부) · slots 10,952 · checks 1,131(13건 확인 완료) · 통과 410 · 확인 229 · 해당 없음 49.
 기준 `docs/operations/PIVOT_SLOT_STANDARD.md`, 빌더 `etl/afterschool_slots.py`, 적재 `etl/load_school_afterschool.py`.
 
 - **표준 적재 명령**(저장소 경로만, 11-03 운영과 차이 0 확인):
@@ -77,12 +77,12 @@
     파일 `docs/research/pivot/p1_gate_20261102/`
   - 사용자 결정: 서울 B000001921(3월 1~4주 표뿐)은 그대로 둔다
 - **대기**:
-  - **분당·위례 남은 5곳 게이트 끝, 운영 적재는 사용자 승인 뒤**. 파일 `p1_gate_20261102/pending/`(batch + slot_review, 각 note에 대조 기록).
-    승인되면 batch를 상위 폴더로 옮기고 `afterschool_load_args.txt`에 `--slot-reviews .../slot_review_<id>.json`을 더한 뒤 차이 확인 → `--apply`
+  - **분당·위례 남은 5곳 게이트·운영 적재(11-03, 사용자 승인)**. 파일 `p1_gate_20261102/`(batch + slot_review, 각 note에 대조 기록).
+    새 학교도 같은 방식: batch를 그 폴더에, `afterschool_load_args.txt`에 `--slot-reviews`를 더한 뒤 차이 확인 → `--apply`
     - 보평 B000003743·성남화랑 B000024167: Codex 추출(10-28), 97·87행 원문 일치
     - 성남미금 B000003754·위례한빛 B000024238·위례중앙 B000024241: 11-03 소네트 하위 에이전트 추출(v3, 입력 Codex 작업 폴더 `inputs_v3/pivot_p1_stage2_20261023/`).
       게이트에서 고친 것: 미금 공개주간(5.18~5.22) 맞춤형 10행 제거, 위례중앙 요일 열로 월·금 요일 채우고 풀린 충돌 2건 제거. 위례한빛은 그대로
-    - 시뮬레이션: 5곳 모두 A등급·확인 필요, 맞춤형 창은 학교마다 월~금 있음
+    - 5곳 모두 A등급·확인 필요, 맞춤형 창은 학교마다 월~금. 확인 목록 다시 뽑음(`afterschool_checks_20261103.csv`, 222곳 1,118건)
   - 서울은 '맞춤형 시간 없음'만 검사돼 있다(경기처럼 원문불일치·PDF 검사는 안 함). 할지 사용자 결정
   - Codex 작업 폴더 `.worktrees/pivot-p1-v3-20261021`에 미커밋 검수 파일(part_a/b/c 리뷰, all44 후보 등)이 남아 있다 — 그 세션 것
   - `my-inline-selection`·`care-planning-defaults` 스모크는 playwright가 없어 못 돌림
