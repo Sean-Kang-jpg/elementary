@@ -38,12 +38,12 @@ const openDay = async (day, label) => {
 const plan = "JSON.parse(localStorage.getItem('elementary-schedule-plans-v1')).plans.find(p=>p.schoolId==='qa-schedule')"
 try {
   // Open first: with a viewport set beforehand, --init-script opens on a blank tab (agent-browser, 2026-10-19).
-  run('open', new URL('/timetable', base).href, '--init-script', path.join(root, 'scripts/fixtures/my-schedule-network.js'))
+  run('open', new URL('/timetable?face=week', base).href, '--init-script', path.join(root, 'scripts/fixtures/my-schedule-network.js'))
   run('set', 'viewport', '390', '844')
   await wait("document.querySelector('#timetable-title')", 'timetable page opens')
   evaluate(`localStorage.removeItem('elementary-schedule-plans-v1'); localStorage.setItem('elementary-favorites-v1',JSON.stringify([{kind:'school',id:'qa-schedule',name:'QA 시간표 검사용 학교',address:'운영자료 아님',latitude:0,longitude:0}])); location.reload(); true`)
   await wait("new URLSearchParams(location.search).get('school')==='qa-schedule' && document.querySelector('.timetable-picks button[aria-pressed=true]')?.dataset.schoolId==='qa-schedule' && document.querySelector('.my-schedule')", 'saved QA school opens without a separate save step')
-  clickText('시간표 초안 만들기')
+  evaluate("[...document.querySelectorAll('.plan-starter button')].find(b=>b.textContent.startsWith('정규수업 끝나면 바로')).click(); true")
   await wait("document.querySelector('.my-week-section')", 'draft opens on the timetable')
   check(`${plan}.entries.length===5 && ${plan}.entries.every(e=>e.kind==='school')`, 'new draft imports dismissal only and waits for explicit care selection')
   clickText('주간 편집')
@@ -131,9 +131,9 @@ try {
   clickText('자료 다시 불러오기')
   await wait("document.querySelectorAll('.my-add-card [data-program-label]').length===2 && !document.querySelector('.my-add-card .my-course-picker [role=alert]')", 'retry restores course data without changing the saved plan')
   // Real public reads are verified separately from the QA fixtures.
-  evaluate("localStorage.setItem('elementary-favorites-v1',JSON.stringify([{kind:'school',id:'B000002292',name:'서울대현초등학교',address:'서울',latitude:0,longitude:0}])); localStorage.removeItem('elementary-schedule-plans-v1'); location.href='/timetable'; true")
+  evaluate("localStorage.setItem('elementary-favorites-v1',JSON.stringify([{kind:'school',id:'B000002292',name:'서울대현초등학교',address:'서울',latitude:0,longitude:0}])); localStorage.removeItem('elementary-schedule-plans-v1'); location.href='/timetable?face=week'; true")
   await wait("new URLSearchParams(location.search).get('school')==='B000002292' && document.querySelector('[data-testid=school-day-estimate]')", 'real Seoul school is selected and its school-day data is shown before a draft')
-  clickText('시간표 초안 만들기')
+  evaluate("[...document.querySelectorAll('.plan-starter button')].find(b=>b.textContent.startsWith('정규수업 끝나면 바로')).click(); true")
   await wait("document.querySelector('.my-agenda__add')", 'real Seoul draft opens on the timetable')
   evaluate("document.querySelector('.my-agenda__add').click(); true")
   await wait("document.querySelector('.my-add-card .my-course-picker[aria-busy=false]')", 'real Seoul program and care reads finish')

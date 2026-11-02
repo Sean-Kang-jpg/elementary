@@ -1,4 +1,5 @@
 import type { ScheduleEntry } from './types'
+import { readStarter, type StarterAnswers } from './starter.ts'
 
 const KEY = 'elementary-schedule-plans-v1'
 const EVENT = 'elementary-schedule-plans-change'
@@ -8,6 +9,8 @@ export interface SchoolPlan {
   entryYear: number | null
   updatedAt: string
   entries: ScheduleEntry[]
+  /** 출발 계획 질문의 답(UX-13). 2026-11-02 이전 초안에는 없다. */
+  starter?: StarterAnswers
 }
 // 2026-10-27까지는 학교 하나를 '내 시간표'로 고르는 activeSchoolId가 있었다. 저장소에 남아 있어도 읽지 않고,
 // 다음 저장 때 빠진다. 지금은 내 학교마다 시간표가 하나씩이다.
@@ -41,6 +44,10 @@ export const readPlans = (): PlanStore => {
     const plans = value.plans.filter((p) => p && typeof p.schoolId === 'string' && typeof p.schoolName === 'string'
       && (p.entryYear === null || Number.isInteger(p.entryYear)) && typeof p.updatedAt === 'string'
       && Array.isArray(p.entries) && p.entries.every(validEntry))
+      .map(({ starter, ...plan }) => {
+        const answers = readStarter(starter)
+        return answers ? { ...plan, starter: answers } : plan
+      })
     return { version: 1, plans }
   } catch { return emptyPlans() }
 }

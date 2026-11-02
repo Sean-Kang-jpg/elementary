@@ -34,7 +34,8 @@ try {
   await panel.getByText(`운영시간 기재 ${start}~${end}`, { exact: true }).waitFor()
   assert.match(await panel.textContent(), /등교시각미확인/)
   assert.ok((await panel.getAttribute('title')).includes(`${sample.source_year}학년도`))
-  await page.getByRole('button', { name: '시간표 초안 만들기', exact: true }).click()
+  // Since UX-13 (2026-11-02) a draft starts from the first question; 정규수업 끝나면 바로 imports dismissal only, as the old button did.
+  await page.locator('.plan-starter button', { hasText: '정규수업 끝나면 바로' }).click()
   const choice = page.locator('.my-add-card [data-testid=morning-care-choice]')
   for (const day of ['월', '수']) {
     await page.locator('.my-week-nav').getByRole('button', { name: `${day}요일`, exact: true }).click()

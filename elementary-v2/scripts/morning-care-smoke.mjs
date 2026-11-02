@@ -39,12 +39,13 @@ const openSchoolCare = async () => {
   await wait("document.querySelector('[data-testid=school-morning-care][aria-busy=false]')", 'morning school panel finishes loading')
 }
 try {
-  run('open', new URL('/timetable', base).href, '--init-script', path.join(root, 'scripts/fixtures/morning-care-network.js'))
+  run('open', new URL('/timetable?face=week', base).href, '--init-script', path.join(root, 'scripts/fixtures/morning-care-network.js'))
   run('set', 'viewport', '390', '844')
   await wait("document.querySelector('#timetable-title')", 'timetable opens')
   evaluate("localStorage.removeItem('elementary-schedule-plans-v1'); sessionStorage.removeItem('qa-morning-state'); localStorage.setItem('elementary-favorites-v1',JSON.stringify([{kind:'school',id:'qa-morning',name:'QA 아침돌봄 검사용 학교',address:'모의 정보',latitude:0,longitude:0}])); location.reload(); true")
   await wait("new URLSearchParams(location.search).get('school')==='qa-morning' && document.querySelector('.my-schedule')", 'isolated QA school selected')
-  clickText('시간표 초안 만들기')
+  // Since UX-13 (2026-11-02) a draft starts from the first question; 정규수업 끝나면 바로 imports dismissal only, as the old button did.
+  evaluate("[...document.querySelectorAll('.plan-starter button')].find(b=>b.textContent.startsWith('정규수업 끝나면 바로')).click(); true")
   await wait("document.querySelector('.my-agenda__add')", 'draft opens on the timetable')
   // Since 2026-10-20 morning care is chosen per weekday in the add card, then repeated with 다른 요일에도 넣기.
   evaluate("document.querySelector('.my-agenda__add').click(); true")

@@ -347,6 +347,22 @@ try {
   await assertOriginsAgree()
 
   run(['set', 'viewport', '390', '844'])
+  // UX-13: a week starts from questions, not an empty draft. Real data moves, so this checks
+  // the order of questions, what is stored, and that care never runs past the return time.
+  run(['open', new URL('/timetable?school=B000002292', baseUrl).toString()])
+  run(['eval', "localStorage.removeItem('elementary-schedule-plans-v1'); location.reload(); 'UX-13 no drafts'"], { quiet: true })
+  await waitFor("document.querySelector('[data-testid=plan-starter][data-step=return]') && ![...document.querySelectorAll('.my-schedule button')].some(b => b.textContent.includes('자료 없이'))", 'UX-13 the week starts with the return-time question, with no empty-draft button')
+  const starterClick = (label) => run(['eval', `[...document.querySelectorAll('.plan-starter button')].find(b => b.textContent.startsWith(${JSON.stringify(label)})).click(); 'UX-13 ${label}'`], { quiet: true })
+  starterClick('17시쯤')
+  await waitFor("document.querySelector('[data-testid=plan-starter]')?.dataset.step === 'care'", 'UX-13 the return time leads to the care question')
+  starterClick('예')
+  await waitFor("document.querySelector('[data-testid=plan-starter]')?.dataset.step === 'courses' && document.querySelector('#plan-starter-title').textContent.includes('도 들을')", 'UX-13 care leads to the courses question, worded for families using care')
+  starterClick('아니요')
+  await waitFor("document.querySelector('[data-testid=plan-starter]')?.dataset.step === 'fill' && document.querySelector('.plan-starter .plan-coverage')?.textContent.includes('17시')", 'UX-13 the last step counts gaps only until the return time')
+  assertPage("(() => { const plan = JSON.parse(localStorage.getItem('elementary-schedule-plans-v1')).plans.find(p => p.schoolId === 'B000002292'); const care = plan.entries.find(e => e.id === 'care-B000002292-afternoon'); return JSON.stringify(plan.starter) === JSON.stringify({ returnAt: 1020, care: true, courses: false, done: false }) && care.participation === 'planned' && care.end <= 1020 })()", 'UX-13 answers are stored with the draft and care ends by the return time')
+  starterClick('다 됐어요')
+  await waitFor("!document.querySelector('[data-testid=plan-starter]') && document.querySelector('[data-testid=plan-coverage]')", 'UX-13 finishing hides the questions and keeps the coverage line')
+  run(['eval', "localStorage.removeItem('elementary-schedule-plans-v1'); 'UX-13 cleanup'"], { quiet: true })
   // C-04: verify the worry-led home before any map interaction.
   run(['open', baseUrl])
   run(['eval', "for (const key of ['wherecho:profile-v1', 'wherecho:family-plan-v1', 'elementary-schedule-plans-v1', 'elementary-favorites-v1', 'favorite-school-ids']) localStorage.removeItem(key); localStorage.setItem('wherecho:analytics-debug', '1'); 'C-04 fresh device, debug on'"], { quiet: true })

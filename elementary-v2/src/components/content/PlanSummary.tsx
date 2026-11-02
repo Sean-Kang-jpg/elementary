@@ -6,6 +6,7 @@ import { track } from '../../utils/analytics'
 import { describeProgress, dueBadge, groupTimeline, hasFamilyPlan, notePlanVisit, readTimeline, subscribeFamilyPlan } from '../../utils/familyPlan'
 import { describeCoverage, planCoverage } from '../../utils/schedule/coverage'
 import { readPlans } from '../../utils/schedule/plans'
+import { coverageUntil } from '../../utils/schedule/starter'
 import { displaySchoolName } from '../../utils/schoolName'
 import { planPath, timetablePath } from '../../utils/urlState'
 import { followLink } from './contentLinks'
@@ -55,7 +56,8 @@ export default function PlanSummary({ entryYear, profile, onNavigate }: PlanSumm
   const recent = [...readPlans().plans].sort((a, b) => b.updatedAt.localeCompare(a.updatedAt))[0]
   const timeline = planPath('timeline')
   const week = recent ? timetablePath(recent.schoolId) : planPath('week')
-  const coverage = recent ? planCoverage(recent.entries) : null
+  const until = recent ? coverageUntil(recent.starter) : null
+  const coverage = recent && until !== null ? planCoverage(recent.entries, until) : null
 
   return (
     <section className="home-card roadmap-summary plan-summary" aria-labelledby="plan-summary-title">

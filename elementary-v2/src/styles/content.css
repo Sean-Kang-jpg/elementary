@@ -2947,3 +2947,13 @@ dialog.my-entry-sheet > a.my-button { display: flex; align-items: center; justif
 .plan-summary__week-text { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
 .plan-summary__week-text > span { display: inline-flex; align-items: center; gap: 6px; }
 .plan-summary__week-text .plan-coverage { margin: 0; font-size: 12px; }
+
+/* 출발 계획 질문 카드(UX-13). 한 번에 한 질문, 답은 큰 버튼으로. */
+.plan-starter { margin: 12px 0; padding: 16px; border: 1px solid var(--warm-border); border-radius: 14px; background: var(--warm-accent-soft); }
+.plan-starter h3 { margin: 2px 0 6px; font-size: 16px; line-height: 1.4; color: var(--warm-text); }
+.plan-starter__count { margin: 0; color: var(--warm-accent-strong); font-size: 12px; font-weight: 700; }
+.plan-starter__choices { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin-top: 12px; }
+.plan-starter__choices .my-button { font-weight: 700; }
+.plan-starter__choices .my-button small { font-weight: 400; color: var(--warm-muted); }
+.plan-starter > .my-button { margin-top: 10px; width: 100%; }
+.plan-starter .my-course-picker { margin-top: 10px; }

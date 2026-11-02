@@ -9,6 +9,10 @@ import { applyCalendarChange, type CalendarChange } from '../../utils/schedule/e
 import { toggleProgramDay } from '../../utils/schedule/programSelection'
 import { describeCoverage, planCoverage } from '../../utils/schedule/coverage'
 import { removeEntryDay, repeatEntry, setEntryTimes } from '../../utils/schedule/dayTimes'
+import { afternoonCareFor, answerReturn, coverageUntil, emptyStarter, eveningCareFor, starterCareIds, starterStep, type ReturnAt, type StarterAnswers } from '../../utils/schedule/starter'
+import type { SchoolCareHours } from '../../types'
+import PlanStarter from './PlanStarter'
+import MyAfterschoolPicker from './MyAfterschoolPicker'
 
 const DAYS = ['월', '화', '수', '목', '금']
 const STATUS: Record<ParticipationStatus, string> = {
@@ -21,8 +25,9 @@ const timing = (e: ScheduleEntry) => e.kind === 'school'
   : `${e.startsAfterSchool ? '하교 후' : e.start === null ? '시작 미확인' : formatMinutes(e.start)} ~ ${e.end === null ? '종료 미확인' : formatMinutes(e.end)}`
 
 /**
- * 한 학교의 시간표 초안을 만들고 고친다. 학교는 시간표 미리 짜보기 화면(`/timetable`)이 고른다 —
- * 2026-10-19부터 관심 학교로 저장하지 않아도 짤 수 있고, MY에는 요약만 남았다.
+ * 한 학교의 시간표 초안을 만들고 고친다. 학교는 우리집 일정의 한 주 화면(`/timetable`)이 고른다 —
+ * 2026-10-19부터 관심 학교로 저장하지 않아도 짤 수 있다.
+ * 2026-11-02부터 빈 초안으로 시작하지 않는다: 출발 계획 질문(UX-13, PlanStarter)에 답하며 채운다.
  */
 export default function MySchedule({ school, entryYear, saved, onNavigate }: {
   /** displayName은 화면 표기(광역시 접두 생략)용. 초안에는 공식 이름을 저장한다. */
@@ -36,6 +41,9 @@ export default function MySchedule({ school, entryYear, saved, onNavigate }: {
   const [store, setStore] = useState(readPlans)
   const [message, setMessage] = useState('')
   const [loading, setLoading] = useState(false)
+  // 출발 계획이 쓰는 학교 돌봄 공시. 없거나 못 읽었으면 null — 17시 기본 가정으로 채운다.
+  const [care, setCare] = useState<{ schoolId: string; hours: SchoolCareHours | null } | null>(null)
+  const [picking, setPicking] = useState(false)
   const alive = useRef(true)
   useEffect(() => {
     alive.current = true
@@ -68,29 +76,74 @@ export default function MySchedule({ school, entryYear, saved, onNavigate }: {
     if (!result.ok) { setMessage(result.reason === 'stale' ? '다른 탭에서 일정이 바뀌었어요. 다시 열어 주세요.' : '직접 입력한 일정의 이름·요일·시간을 확인해 주세요.'); return null }
     return updatePlan({ ...latest, entries: result.entries }) ? result.entry : null
   }
-  const create = async (withoutData = false) => {
+  // 2026-11-02 이전 초안(답이 없음)은 이미 채운 것으로 본다 — 질문으로 덮지 않는다.
+  const step = plan && !plan.starter ? 'done' : starterStep(plan?.starter)
+  // 질문 2·4단계에 돌봄 공시가 필요하다. 새로고침 뒤에도 이어서 묻도록 그때 다시 읽는다.
+  useEffect(() => {
+    if (!plan || (step !== 'care' && step !== 'fill') || care?.schoolId === schoolId) return
+    let active = true
+    getSchoolDayEstimate(schoolId, { allowDevFixture: false })
+      .then((data) => { if (active) setCare({ schoolId, hours: data.care }) })
+      .catch(() => { if (active) setCare({ schoolId, hours: null }) })
+    return () => { active = false }
+  }, [plan, step, schoolId, care?.schoolId])
+  const careHours = care?.schoolId === schoolId ? care.hours : null
+  const setStarter = (answers: StarterAnswers, change: (entries: ScheduleEntry[]) => ScheduleEntry[] = (entries) => entries) => {
+    const latest = readPlans().plans.find((p) => p.schoolId === schoolId)
+    return latest ? updatePlan({ ...latest, starter: answers, entries: change(latest.entries) }) : false
+  }
+  // 1단계. 첫 답이 초안을 만든다 — 하교 시각을 먼저 넣고, 학교 자료를 못 읽어도 빈 초안이 아니라 질문으로 이어 간다.
+  const start = async (returnAt: ReturnAt) => {
     if (loading) return
+    if (plan) { setStarter(answerReturn(returnAt)); return }
     setLoading(true); setMessage('')
     const chosen = { id: school.id, name: school.name }
-    try {
-      const data = withoutData ? { day: null, care: null } : await getSchoolDayEstimate(chosen.id, { allowDevFixture: false })
-      if (!alive.current) return
-      // No invented timetable, enrollment or development fixtures in persisted plans.
-      const entries = [
-        ...(data.day ? schoolEntriesFromEstimate(data.day).map((e) => ({ ...e,
-          source: e.source ? { ...e.source, version: `${e.source.version} · 대상 ${data.day!.applies_to_entry_year}년 입학` } : undefined,
-        })) : []),
-      ]
-      const current = readPlans()
-      if (current.plans.some((p) => p.schoolId === chosen.id)) { setMessage('이미 만들어진 초안을 유지했어요.'); return }
-      persist(upsertPlan(current, { schoolId: chosen.id, schoolName: chosen.name, entryYear, entries, updatedAt: new Date().toISOString() }),
-        entries.length ? '예상 하교 시각을 가져왔어요. 과목·돌봄을 선택해 시간표를 채워 보세요.' : '초안을 만들었어요. 과목·돌봄을 선택하거나 일정을 직접 추가하세요.')
-    } catch { if (alive.current) setMessage('학교 운영 자료를 불러오지 못했어요. 다시 시도하거나 자료 없이 초안을 만들 수 있어요.') }
-    finally { if (alive.current) setLoading(false) }
+    let data: Awaited<ReturnType<typeof getSchoolDayEstimate>> = { day: null, care: null }
+    let failed = false
+    try { data = await getSchoolDayEstimate(chosen.id, { allowDevFixture: false }) } catch { failed = true }
+    if (!alive.current) return
+    setLoading(false)
+    setCare({ schoolId: chosen.id, hours: data.care })
+    // No invented timetable, enrollment or development fixtures in persisted plans.
+    const entries = data.day ? schoolEntriesFromEstimate(data.day).map((e) => ({ ...e,
+      source: e.source ? { ...e.source, version: `${e.source.version} · 대상 ${data.day!.applies_to_entry_year}년 입학` } : undefined,
+    })) : []
+    const current = readPlans()
+    if (current.plans.some((p) => p.schoolId === chosen.id)) { setMessage('이미 만들어진 초안을 유지했어요.'); return }
+    persist(upsertPlan(current, { schoolId: chosen.id, schoolName: chosen.name, entryYear, entries, starter: answerReturn(returnAt), updatedAt: new Date().toISOString() }),
+      failed ? '학교 자료를 불러오지 못해 하교 시각 없이 시작했어요. 하교 시각을 알면 정규수업 카드를 눌러 넣어 주세요.'
+        : entries.length ? '예상 하교 시각을 넣었어요.' : '이 학교의 하교 시각 자료가 아직 없어요. 질문에 답하며 채워 보세요.')
   }
+  const answerCare = (yes: boolean) => {
+    const answers = plan?.starter
+    if (!answers || typeof answers.returnAt !== 'number') return
+    const ids = starterCareIds(schoolId)
+    const entry = yes ? afternoonCareFor(schoolId, careHours, answers.returnAt) : null
+    setStarter({ ...answers, care: yes }, (entries) => [...entries.filter((e) => !ids.includes(e.id)), ...(entry ? [entry] : [])])
+  }
+  const answerCourses = (yes: boolean) => {
+    if (!plan?.starter) return
+    if (yes) { setPicking(true); return }
+    setStarter({ ...plan.starter, courses: false })
+  }
+  const returnAt = typeof plan?.starter?.returnAt === 'number' ? plan.starter.returnAt : null
+  const evening = returnAt === null ? null : eveningCareFor(careHours, returnAt)
+  // 다른 학교에서 고른 귀가 시각. 미리 눌러 두지는 않는다.
+  const suggested = store.plans.filter((p) => p.schoolId !== schoolId && p.starter?.returnAt)
+    .sort((a, b) => b.updatedAt.localeCompare(a.updatedAt))[0]?.starter?.returnAt ?? null
   const shownName = school.displayName ?? displaySchoolName(school.name)
-  // 완료 표시(UX-10). 엔진의 공백 계산만 쓴다 — 시간표 칸과 같은 창(하교~19시).
-  const coverage = plan ? planCoverage(plan.entries) : null
+  // 완료 표시(UX-10). 엔진의 공백 계산만 쓴다 — 하교부터 보호자 귀가(답이 없으면 19시)까지.
+  const until = plan ? coverageUntil(plan.starter) : null
+  const coverage = plan && until !== null ? planCoverage(plan.entries, until) : null
+  const starter = <PlanStarter answers={plan?.starter} suggested={suggested} busy={loading}
+    careDraft={returnAt === null ? null : afternoonCareFor(schoolId, careHours, returnAt)}
+    evening={evening} eveningAdded={Boolean(evening && plan?.entries.some((e) => e.id === evening.id))} coverage={coverage}
+    picker={picking && plan && step === 'courses' ? <MyAfterschoolPicker schoolId={schoolId} entries={plan.entries} onAdd={addEntry} onRemove={removeEntry}
+      onDraft={() => setMessage('요일·시간이 적혀 있지 않은 강좌는 다음 단계에서 시간표 빈칸을 눌러 직접 넣어 주세요.')} /> : null}
+    onReturn={(value) => void start(value)} onCare={answerCare} onCourses={answerCourses}
+    onCoursesNext={() => { setPicking(false); if (plan?.starter) setStarter({ ...plan.starter, courses: true }) }}
+    onEvening={() => { if (evening) addEntry(evening) }}
+    onDone={() => { if (plan?.starter) setStarter({ ...plan.starter, done: true }) }} />
 
   return (
     <section className={`my-schedule my-card${plan ? ' my-schedule--editing' : ''}`} aria-labelledby="my-schedule-title">
@@ -99,13 +152,11 @@ export default function MySchedule({ school, entryYear, saved, onNavigate }: {
 
       </div>
       {!plan ? <>
-        <p className="my-help">학교 자료로 하교 시각을 먼저 넣고, 방과후·돌봄·학원을 요일마다 골라요. 이 기기에만 저장돼요.</p>
-        <div className="my-actions">
-          <button type="button" className="my-button my-button--primary" disabled={loading} onClick={() => void create()}>{loading ? '자료 확인 중…' : '시간표 초안 만들기'}</button>
-          <button type="button" className="my-button" disabled={loading} onClick={() => void create(true)}>자료 없이 직접 만들기</button>
-        </div>
+        <p className="my-help">질문 몇 개에 답하면 하교 시각부터 한 주가 채워져요. 이 기기에만 저장돼요.</p>
+        {starter}
       </> : <>
-        {coverage && <p className={`plan-coverage plan-coverage--${coverage.state}`} data-testid="plan-coverage">{describeCoverage(coverage)}</p>}
+        {step !== 'done' && starter}
+        {coverage && step === 'done' && <p className={`plan-coverage plan-coverage--${coverage.state}`} data-testid="plan-coverage">{describeCoverage(coverage)}</p>}
         <MyScheduleWeek key={`week-${plan.schoolId}`} schoolId={plan.schoolId} onNavigate={onNavigate} entries={plan.entries} onSave={saveCalendarEntry} onAdd={addEntry} onRemove={removeEntry}
           onToggleDay={(entry, weekday) => changeEntries((entries) => toggleProgramDay(entries, entry, weekday))}
           onSetTimes={(id, days, time, label) => changeEntriesIf((entries) => setEntryTimes(entries, id, days, time, label))}
@@ -131,6 +182,7 @@ export default function MySchedule({ school, entryYear, saved, onNavigate }: {
           </p>
           <p className="my-help">위에서 학교를 바꾸면 해당 학교의 시간표를 볼 수 있어요. 학교 입학·프로그램 신청·참여 확정과는 별개예요.</p>
           <p className="my-help">돌봄 시간을 모르면 아침 08:00–09:00, 오후 17:00 종료를 기본으로 넣어요. 일정 카드를 눌러 실제 시간으로 바꿀 수 있어요. 운영·이용 가능 여부는 학교에 확인해 주세요.</p>
+          {step === 'done' && <button type="button" className="my-button" onClick={() => setStarter(emptyStarter())}>질문 따라 다시 채우기</button>}
           <button type="button" className="my-button" onClick={() => {
             if (window.confirm('이 학교의 시간표 초안을 삭제할까요? 관심 학교는 유지됩니다.')) persist(deletePlan(readPlans(), plan.schoolId), '시간표 초안을 삭제했어요.')
           }}>이 초안 삭제</button>
