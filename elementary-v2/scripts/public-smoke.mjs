@@ -803,6 +803,14 @@ try {
     "document.querySelectorAll('.frontyard-preview__card').length === 3 && [...document.querySelectorAll('.frontyard-preview__card')].every((card) => card.querySelector('.frontyard-tag--sample')) && document.querySelector('.frontyard-preview a[href=\"/timetable?face=week\"]')",
     'the three examples are each marked 예시 and the sample week links to the week timetable',
   )
+  assertPage("document.querySelectorAll('.frontyard-preview .sample-week .my-week__day').length === 5", '배움·돌봄 draws the sample as a real five-day week')
+  // The week face of 우리집 일정 shows the same sample week until a school is chosen.
+  run(['open', new URL('/timetable?face=week', baseUrl).toString()])
+  await waitFor("document.querySelector('#timetable-title') && document.querySelector('.timetable-sample .sample-week')", '우리 아이 한 주 without a school shows a sample week')
+  assertPage(
+    "document.querySelectorAll('.timetable-sample .my-week__day').length === 5 && document.querySelectorAll('.timetable-sample .my-week__entry').length >= 15 && !document.querySelector('.timetable-sample button') && document.documentElement.scrollWidth <= innerWidth",
+    'the sample week fills all five days with blocks, has no controls and does not widen the page',
+  )
   run(['eval', "(() => { const [list, legacy] = JSON.parse(sessionStorage.getItem('smoke-favorites') || '[null,null]'); if (list !== null) localStorage.setItem('elementary-favorites-v1', list); if (legacy !== null) localStorage.setItem('favorite-school-ids', legacy); sessionStorage.removeItem('smoke-favorites'); return 'saved schools restored' })()"], { quiet: true })
   run(['open', new URL('/learn', baseUrl).toString()])
   await waitFor("document.querySelector('#learn-title')", 'back on 학습 준비 for the map link check')

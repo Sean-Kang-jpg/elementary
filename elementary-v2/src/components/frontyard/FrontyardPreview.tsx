@@ -1,17 +1,7 @@
 import { CalendarDays, CalendarPlus, HandHeart, Megaphone } from 'lucide-react'
-import type { SlotIntent } from '../../utils/schedule/types'
-import { INTENT_LABELS } from '../../utils/schedule/intent'
 import { planPath } from '../../utils/urlState'
 import { followLink } from '../content/contentLinks'
-
-/** 예시 하루. 실제 학교 자료가 아니라 화면 모양을 보여 주는 고정값이다. */
-const SAMPLE_DAY: Array<{ time: string; label: string; intent: SlotIntent | null }> = [
-  { time: '13:40', label: '정규수업 끝', intent: null },
-  { time: '14:00~15:00', label: '방과후 창의미술', intent: 'interest' },
-  { time: '15:00~17:00', label: '학교 오후돌봄', intent: 'safety' },
-  { time: '17:00~17:50', label: '수학 학원', intent: 'basics' },
-  { time: '18:00', label: '보호자 귀가', intent: null },
-]
+import SampleWeek from '../navigation/SampleWeek'
 
 /**
  * 학교를 고르기 전 배움·돌봄(2026-11-03 사용자 요청). 학교 선택만 덩그러니 있으면 고른 뒤 무엇을 할 수 있는지
@@ -24,17 +14,9 @@ export default function FrontyardPreview({ onNavigate }: { onNavigate: (path: st
       <h2 id="frontyard-preview-title">학교를 고르면 이렇게 쓸 수 있어요</h2>
 
       <article className="frontyard-preview__card">
-        <p className="frontyard-preview__step"><CalendarDays size={16} aria-hidden="true" /> 우리 아이 한 주 시간표 <span className="frontyard-tag frontyard-tag--sample">예시</span></p>
+        <p className="frontyard-preview__step"><CalendarDays size={16} aria-hidden="true" /> 우리 아이 한 주 시간표</p>
         <p className="my-help">학교 하교 시각에 방과후·돌봄·학원을 이어 붙여 빈 시간을 찾아요.</p>
-        <ol className="frontyard-preview__day" aria-label="예시 화요일 오후">
-          <li className="frontyard-preview__weekday">화요일</li>
-          {SAMPLE_DAY.map((row) => (
-            <li key={row.time}>
-              <span className="frontyard-preview__time">{row.time}</span>
-              <span>{row.label}{row.intent && <em className={`intent-chip intent-chip--${row.intent}`}>{INTENT_LABELS[row.intent]}</em>}</span>
-            </li>
-          ))}
-        </ol>
+        <SampleWeek />
         <a className="my-button" href={weekPath} onClick={(event) => followLink(event, weekPath, onNavigate)}>
           <CalendarPlus size={15} aria-hidden="true" /> 우리집 일정에서 시간표 짜 보기
         </a>

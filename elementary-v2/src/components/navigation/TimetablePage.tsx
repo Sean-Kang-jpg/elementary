@@ -16,6 +16,7 @@ import { followLink } from '../content/contentLinks'
 import SchoolDayEstimateCard from '../school/SchoolDayEstimateCard'
 import MySchedule from './MySchedule'
 import SchoolSelection from '../search/SchoolSelection'
+import SampleWeek from './SampleWeek'
 
 interface TimetablePageProps {
   schoolId: string | null
@@ -178,6 +179,14 @@ export default function TimetablePage({
           {chips}
           <p className="my-help">학교는 최대 3곳까지 등록할 수 있어요. 시간표는 이 기기의 브라우저에만 저장돼요.</p>
         </section>
+
+        {!schoolId && (
+          <section className="timetable-sample my-card" aria-labelledby="timetable-sample-title">
+            <h2 id="timetable-sample-title">이런 한 주를 그리게 돼요</h2>
+            <p className="my-help">하교 시각 뒤로 돌봄·방과후·학원을 넣으면, 요일마다 아이가 어디에 있는지 한눈에 보여요.</p>
+            <SampleWeek />
+          </section>
+        )}
 
         {schoolId && (loadingDetail ? (
           <p className="my-help" role="status">학교 자료를 불러오는 중…</p>

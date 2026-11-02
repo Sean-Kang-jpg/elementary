@@ -2844,10 +2844,6 @@
 .frontyard-preview__step { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 0; font-size: 14px; font-weight: 700; }
 .frontyard-preview__step svg { color: var(--warm-accent, #e8664f); }
 .frontyard-preview__step .frontyard-tag { margin: 0; }
-.frontyard-preview__day { margin: 10px 0 0; padding: 0; list-style: none; font-size: 13px; }
-.frontyard-preview__day li { display: flex; gap: 10px; padding: 5px 0; border-top: 1px solid var(--warm-border); }
-.frontyard-preview__day .frontyard-preview__weekday { border-top: 0; padding-top: 0; color: var(--warm-muted); font-size: 12px; font-weight: 700; }
-.frontyard-preview__time { flex: none; width: 92px; color: var(--warm-muted); font-variant-numeric: tabular-nums; }
 .frontyard-preview__hint { display: flex; align-items: flex-start; gap: 5px; margin: 8px 0 0; color: var(--warm-muted); font-size: 12px; line-height: 1.5; }
 .frontyard-preview__hint svg { flex: none; margin-top: 2px; }
 
@@ -2991,3 +2987,26 @@ dialog.my-entry-sheet > a.my-button { display: flex; align-items: center; justif
 .plan-changes__list li { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
 .plan-changes__list a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
 .plan-changes__done { margin-left: auto; min-height: 32px; padding: 4px 10px; border: 1px solid var(--warm-border-strong); border-radius: 8px; background: var(--warm-surface); font-size: 12px; font-weight: 700; color: var(--warm-text); cursor: pointer; }
+
+/* 예시 한 주(2026-11-03). 실제 주간 편집과 같은 칸이지만, 모바일에서도 다섯 요일을 한 화면에 둔다(옆으로 넘기지 않음). */
+.sample-week { margin: 12px 0 0; }
+.sample-week .my-calendar { --my-calendar-height: 378px; --my-calendar-header: 30px; grid-template-columns: 34px minmax(0, 1fr); gap: 2px; margin: 0; }
+.sample-week .my-calendar__axis { font-size: 10px; }
+.sample-week .my-week { grid-template-columns: repeat(5, minmax(0, 1fr)); grid-auto-flow: row; overflow: visible; padding-bottom: 0; }
+.sample-week .my-week__day h4 { font-size: 12px; }
+.sample-week .my-week__timeline { background: repeating-linear-gradient(to bottom, transparent 0 26px, #f3f1f8 26px 27px); cursor: default; }
+.sample-week .my-week__entry { padding: 3px 4px; border-radius: 8px; cursor: default; font-size: 10px; }
+.sample-week .my-week__entry b { display: flex; align-items: center; gap: 2px; min-width: 0; }
+.sample-week .my-entry-title { overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+.sample-week .my-week__time { font-size: 9px; }
+.sample-week__legend { display: flex; flex-wrap: wrap; gap: 4px 12px; margin: 10px 0 0; padding: 0; list-style: none; color: var(--warm-muted); font-size: 12px; }
+.sample-week__legend li { display: inline-flex; align-items: center; gap: 5px; }
+.sample-week__legend i { display: inline-block; width: 12px; height: 12px; border-radius: 4px; }
+.sample-week__caption { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 8px 0 0; color: var(--warm-muted); font-size: 12px; line-height: 1.5; }
+.sample-week__caption .frontyard-tag { margin: 0; }
+.sample-week__legend .my-week__entry--afterschool { background: #ffebde; }
+@media (max-width: 639px) {
+  .sample-week .my-entry-icon, .sample-week__end { display: none; }
+  .sample-week .my-week__entry { padding: 3px; }
+  .sample-week .my-entry-title { white-space: normal; word-break: keep-all; overflow-wrap: anywhere; line-height: 1.2; }
+}
