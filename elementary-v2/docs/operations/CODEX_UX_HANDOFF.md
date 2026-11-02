@@ -286,6 +286,9 @@ MY(`/my`)에는 프로필·관심 후보·저장 학원만 남았다(UX-06). 입
 
 **검토** (Codex 통합 검토, 2026-11-02): 사용자가 “04와 05도 운영 배포 합니다”로 이번 master 통합·release 배포를 명시적으로 승인했다. 기존 Claude 담당 경계에 대한 이번 배포의 사용자 승인이다. 최신 master `a19bf81`와 C-05 `a8724e0`(C-04 `bce978a` 포함)를 독립 worktree `ux-C-04-C-05-release`에서 통합했다. C-08 담기 구현과 고민 목록의 충돌을 해결했고, 기존 8개 저장 ID·날짜·연결을 대조해 모두 유지됨을 확인했다. 최신 지도 UI와 C-07 스모크는 유지했다. familyPlan·엔진·저장 형식·GNB·라우팅·운영 DB는 변경하지 않았다. `npm run lint`, `npm run typecheck`, `npm run test:unit`(142/142, 29 suites), `npm run build`(1,806 modules, 8 sitemaps), `node --check scripts/public-smoke.mjs`, `git diff --check` 통과. `npm run browser:smoke:public -- http://127.0.0.1:3046`에서 C-04/C-05와 C-07/C-08 흐름은 모두 통과했다. 전체 스모크는 기존 지도 축소 검사에서 15,000ms/37 checks 후 실패했다. 검사 우회나 지도 코드 변경 없이 이 제한을 기록하고 사용자 승인 범위로 배포한다. 배포 후 운영 홈·깊은 링크와 동일 기능 흐름을 재확인한다.
 
+**운영 재검증** (Codex, 2026-11-02): release 커밋 `1ec626f`, Vercel production `dpl_2xXDXANcd5vhh6xxzb5eRMjDogKZ`가 **Ready**이며 `https://wherecho.co.kr`에 연결된 것을 확인했다(GitHub Production deployment `7485861707`, success). `npm run browser:smoke:public -- https://wherecho.co.kr`가 **exit 0 / Public map smoke test passed**. C-04/C-05 홈·검색·가이드·담기/배너 전환, C-07/C-08, 지도 축소와 지역 표식, 상세·MY·체크리스트·깊은 링크·정적 SEO·360/430/1280px 배치가 통과했다. 예상하지 못한 페이지 오류 0건. 지도 요청 5개 최대 628.3ms(5초 기준), 배정 아파트 요청 3개 최대 322.2ms(3초 기준). 새 production의 최근 1시간 error 로그 조회 결과도 항목 0건. 기존 **로컬** 지도 축소 실패는 운영에서 재현되지 않았으며 운영 스모크 블로커는 해소됐다.
+
+
 ---
 
 ### C-05 홈 하단 정리 (UX-12) — `merged`, S
@@ -310,6 +313,9 @@ MY(`/my`)에는 프로필·관심 후보·저장 학원만 남았다(UX-06). 입
 - 블로커: **전체 public smoke 미통과**. 앞선 두 실행은 기존 지도 축소의 `zooming out replaces the district markers with province markers`에서 15,000ms 후 실패(39/40 checks). 최종 실행은 C-05 검사를 모두 통과한 뒤 `district data loaded and measured`에서 15,000ms/40 checks 후 실패했다. 지도/측정 코드는 수정하지 않았고 이 검사를 우회하지 않았다. 실제 배포 환경의 깊은 링크 rewrite는 로컬 Vite에서 검증할 수 없어 배포 검증이 필요하다. C-06의 추첨 관련 사실 확인은 별도 대기 상태다.
 
 **검토** (Codex 통합 검토, 2026-11-02): 사용자가 “04와 05도 운영 배포 합니다”로 이번 master 통합·release 배포를 명시적으로 승인했다. 기존 Claude 담당 경계에 대한 이번 배포의 사용자 승인이다. 최신 master `a19bf81`와 C-05 `a8724e0`(C-04 `bce978a` 포함)를 독립 worktree `ux-C-04-C-05-release`에서 통합했다. C-08 담기 구현과 고민 목록의 충돌을 해결했고, 기존 8개 저장 ID·날짜·연결을 대조해 모두 유지됨을 확인했다. 최신 지도 UI와 C-07 스모크는 유지했다. familyPlan·엔진·저장 형식·GNB·라우팅·운영 DB는 변경하지 않았다. `npm run lint`, `npm run typecheck`, `npm run test:unit`(142/142, 29 suites), `npm run build`(1,806 modules, 8 sitemaps), `node --check scripts/public-smoke.mjs`, `git diff --check` 통과. `npm run browser:smoke:public -- http://127.0.0.1:3046`에서 C-04/C-05와 C-07/C-08 흐름은 모두 통과했다. 전체 스모크는 기존 지도 축소 검사에서 15,000ms/37 checks 후 실패했다. 검사 우회나 지도 코드 변경 없이 이 제한을 기록하고 사용자 승인 범위로 배포한다. 배포 후 운영 홈·깊은 링크와 동일 기능 흐름을 재확인한다.
+
+**운영 재검증** (Codex, 2026-11-02): release 커밋 `1ec626f`, Vercel production `dpl_2xXDXANcd5vhh6xxzb5eRMjDogKZ`가 **Ready**이며 `https://wherecho.co.kr`에 연결된 것을 확인했다(GitHub Production deployment `7485861707`, success). `npm run browser:smoke:public -- https://wherecho.co.kr`가 **exit 0 / Public map smoke test passed**. C-04/C-05 홈·검색·가이드·담기/배너 전환, C-07/C-08, 지도 축소와 지역 표식, 상세·MY·체크리스트·깊은 링크·정적 SEO·360/430/1280px 배치가 통과했다. 예상하지 못한 페이지 오류 0건. 지도 요청 5개 최대 628.3ms(5초 기준), 배정 아파트 요청 3개 최대 322.2ms(3초 기준). 새 production의 최근 1시간 error 로그 조회 결과도 항목 0건. 기존 **로컬** 지도 축소 실패는 운영에서 재현되지 않았으며 운영 스모크 블로커는 해소됐다.
+
 
 ---
 
