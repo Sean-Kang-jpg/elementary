@@ -426,6 +426,7 @@ def record_checks(
     staging_rows: int,
     loaded: list[tuple[str, tuple[str, ...], list[dict[str, Any]]]] | None = None,
     resolved_scope: dict[str, Any] | None = None,
+    reconciled: dict[str, int] | None = None,
 ) -> None:
     checks = [
         {
@@ -462,6 +463,18 @@ def record_checks(
     )
     if loaded is not None and resolved_scope is not None:
         checks.extend(scope_checks(run_id, loaded, resolved_scope))
+    checks.extend(
+        {
+            "run_id": run_id,
+            "check_name": f"stale_rows_deleted:{table}",
+            "scope_name": "global",
+            # Expected after a K-apt regrouping, but worth a look every time.
+            "status": "pass" if count == 0 else "warn",
+            "metric_value": count,
+            "metric_unit": "rows",
+        }
+        for table, count in (reconciled or {}).items()
+    )
     request_json(
         url,
         key,
@@ -470,6 +483,115 @@ def record_checks(
         checks,
         "resolution=merge-duplicates,return=minimal",
     )
+
+
+# Regrouping gives a complex a new canonical_complex_id (APT:... becomes KAPT:...
+# once K-apt lists it), and an upsert cannot remove the old one. Rows this build
+# no longer produces are deleted, children first, once nothing points at them.
+# School rows are never deleted here: a vanished school cascades into the
+# estimates, after-school and front-yard tables, so it stays a hard failure.
+RECONCILED_TABLES = (
+    ("apartment_assignment_schools", ("apt_cd", "school_id")),
+    ("apartment_assignment_units", ("apt_cd",)),
+    ("apartment_complex_master", ("canonical_complex_id",)),
+)
+# The first run on regrouped K-apt data left 1,055 of 20,683 capital complexes
+# behind (5.1%). A larger share means the build lost rows, not that they moved.
+RECONCILE_MAX_SHARE = 0.10
+RECONCILE_DELETE_BATCH = 100
+
+
+def remote_scope_keys(
+    url: str, key: str, table: str, keys: tuple[str, ...], regions: list[str]
+) -> set[tuple[str, ...]]:
+    select = ",".join(keys)
+    order = select
+    if table == "apartment_assignment_schools":
+        # Links carry no region; they belong to the scope through their unit.
+        select += ",apartment_assignment_units!inner(region)"
+    found: set[tuple[str, ...]] = set()
+    for region in regions:
+        quoted = urllib.parse.quote(region)
+        region_filter = (
+            f"apartment_assignment_units.region=eq.{quoted}"
+            if table == "apartment_assignment_schools"
+            else f"region=eq.{quoted}"
+        )
+        start = 0
+        while True:
+            rows = request_json(
+                url,
+                key,
+                "GET",
+                f"/rest/v1/{table}?select={select}&{region_filter}&order={order}"
+                f"&offset={start}&limit=1000",
+                timeout=90,
+            ) or []
+            found.update(tuple(str(row[column]) for column in keys) for row in rows)
+            if len(rows) < 1000:
+                break
+            start += 1000
+    return found
+
+
+def postgrest_value(value: str) -> str:
+    return '"' + value.replace("\\", "\\\\").replace('"', '\\"') + '"'
+
+
+def delete_keys(
+    url: str, key: str, table: str, keys: tuple[str, ...], identities: list[tuple[str, ...]]
+) -> int:
+    deleted = 0
+    for start in range(0, len(identities), RECONCILE_DELETE_BATCH):
+        batch = identities[start : start + RECONCILE_DELETE_BATCH]
+        if len(keys) == 1:
+            values = ",".join(postgrest_value(identity[0]) for identity in batch)
+            condition = f"{keys[0]}=in.({urllib.parse.quote(values)})"
+        else:
+            terms = ",".join(
+                "and(" + ",".join(
+                    f"{column}.eq.{postgrest_value(value)}" for column, value in zip(keys, identity)
+                ) + ")"
+                for identity in batch
+            )
+            condition = f"or=({urllib.parse.quote(terms)})"
+        rows = request_json(
+            url,
+            key,
+            "DELETE",
+            f"/rest/v1/{table}?{condition}&select={','.join(keys)}",
+            prefer="return=representation",
+            timeout=90,
+        ) or []
+        if len(rows) != len(batch):
+            raise RuntimeError(f"{table}: deleted {len(rows)} of {len(batch)} stale rows in a batch")
+        deleted += len(rows)
+    return deleted
+
+
+def find_stale_rows(
+    url: str,
+    key: str,
+    loaded: list[tuple[str, tuple[str, ...], list[dict[str, Any]]]],
+    regions: list[str],
+) -> dict[str, list[tuple[str, ...]]]:
+    """Rows in this scope that the build no longer produces, checked before any delete."""
+    staged = {table: rows for table, _, rows in loaded}
+    stale: dict[str, list[tuple[str, ...]]] = {}
+    for table, keys in RECONCILED_TABLES:
+        if table not in staged:
+            continue
+        expected = {tuple(str(row[column]) for column in keys) for row in staged[table]}
+        found = sorted(remote_scope_keys(url, key, table, keys, regions) - expected)
+        if len(found) > RECONCILE_MAX_SHARE * len(expected):
+            raise RuntimeError(
+                f"{table}: {len(found):,} remote rows in {regions} are missing from the build "
+                f"(staged {len(expected):,}); over {RECONCILE_MAX_SHARE:.0%}, so nothing was deleted"
+            )
+        stale[table] = found
+        sample = ", ".join("/".join(identity) for identity in found[:5])
+        print(f"stale {table}: {len(found):,}" + (f" (e.g. {sample})" if found else ""))
+    return stale
 
 
 def apply_run(
@@ -490,28 +612,28 @@ def apply_run(
         archive_snapshots(url, key, run_id, manifest)
         for table, keys, rows in loaded:
             stage_rows(url, key, run_id, table, keys, rows, batch_size)
+        regions = list(resolved_scope["regions"])
+        # Measured before any write, so a share over the cap stops the run while
+        # production still matches last month.
+        stale = find_stale_rows(url, key, loaded, regions)
         for table, keys, rows in loaded:
             for start in range(0, len(rows), batch_size):
                 uploader.upsert_batch(url, key, table, keys, rows[start : start + batch_size])
-            # Production holds every promoted region, so verify this run's scope
-            # rather than the whole table.
-            if table in uploader.REGION_COLUMN_TABLES:
-                remote_count = sum(
-                    uploader.region_count(url, key, table, region)
-                    for region in resolved_scope["regions"]
-                )
-                if remote_count != len(rows):
-                    raise RuntimeError(
-                        f"{table}: remote {remote_count:,} for {resolved_scope['regions']} "
-                        f"!= staged {len(rows):,}; reconcile stale rows"
-                    )
-            else:
+            if table not in uploader.REGION_COLUMN_TABLES:
                 remote_count = uploader.table_count(url, key, table)
                 if remote_count < len(rows):
                     raise RuntimeError(
                         f"{table}: remote {remote_count:,} < staged {len(rows):,}; rows are missing"
                     )
-            print(f"upserted {table}: {remote_count:,} rows")
+            print(f"upserted {table}: {len(rows):,} rows")
+        reconciled: dict[str, int] = {}
+        # Links and units first: the refresh must not rebuild Serving from them.
+        # Masters wait until after it, because Serving rows cascade from them and
+        # deleting a master the old Serving still shows would blank it on the site.
+        for table, keys in RECONCILED_TABLES[:2]:
+            if stale.get(table):
+                reconciled[table] = delete_keys(url, key, table, keys, stale[table])
+                print(f"deleted stale {table}: {reconciled[table]:,} rows")
         serving_path = SERVING_OUTPUT if not suffix else SERVING_OUTPUT.with_name(
             f"{SERVING_OUTPUT.stem}{suffix}{SERVING_OUTPUT.suffix}"
         )
@@ -519,13 +641,29 @@ def apply_run(
         # The refresh rebuilds every region at once, so its own total covers more
         # than this scope; the scope is what this run is accountable for.
         uploader.refresh_serving(url, key)
+        master_table, master_keys = RECONCILED_TABLES[2]
+        if stale.get(master_table):
+            # Units still pointing at a stale master make this delete fail on the
+            # foreign key, which is the guard against removing a live complex.
+            reconciled[master_table] = delete_keys(url, key, master_table, master_keys, stale[master_table])
+            print(f"deleted stale {master_table}: {reconciled[master_table]:,} rows")
+        # Production holds every promoted region, so verify this run's scope
+        # rather than the whole table.
+        for table, _, rows in loaded:
+            if table in uploader.REGION_COLUMN_TABLES:
+                remote_count = sum(uploader.region_count(url, key, table, region) for region in regions)
+                if remote_count != len(rows):
+                    raise RuntimeError(
+                        f"{table}: remote {remote_count:,} for {regions} != staged {len(rows):,}"
+                    )
+                print(f"verified {table}: {remote_count:,} rows in scope")
         remote_serving = sum(
             uploader.region_count(url, key, "school_apartment_serving", region)
-            for region in resolved_scope["regions"]
+            for region in regions
         )
         if remote_serving != expected_serving:
             raise RuntimeError(
-                f"serving rows for {resolved_scope['regions']} {remote_serving:,} "
+                f"serving rows for {regions} {remote_serving:,} "
                 f"!= expected {expected_serving:,}"
             )
         mark_snapshots(url, key, run_id, "validated")
@@ -542,12 +680,20 @@ def apply_run(
             staging_rows,
             loaded,
             manifest.get("resolved_scope") or resolve_scope(manifest),
+            reconciled,
         )
         uploader.finish_etl_run(url, key, run_id, "completed")
         print(f"completed ETL run; serving rows: {remote_serving:,}")
     except Exception as exc:
         mark_snapshots(url, key, run_id, "rejected")
         uploader.finish_etl_run(url, key, run_id, "failed", str(exc))
+        if not keep_staging:
+            # 2026-11-02: three failed attempts left 290,046 staged rows (270 MB)
+            # and pushed the database over its 500 MB plan limit.
+            try:
+                purge_staging(url, key, run_id)
+            except Exception as purge_error:  # the original failure matters more
+                print(f"staging purge after failure also failed: {purge_error}")
         raise
 
 
