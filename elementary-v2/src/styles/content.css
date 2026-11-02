@@ -2957,3 +2957,12 @@ dialog.my-entry-sheet > a.my-button { display: flex; align-items: center; justif
 .plan-starter__choices .my-button small { font-weight: 400; color: var(--warm-muted); }
 .plan-starter > .my-button { margin-top: 10px; width: 100%; }
 .plan-starter .my-course-picker { margin-top: 10px; }
+
+/* 칸의 의도 (UX-14). 색은 의도 구분만 — 좋고 나쁨을 뜻하지 않는다. */
+.intent-chip { display: inline-block; margin-left: 6px; padding: 1px 7px; border-radius: 999px; font-size: 11px; font-style: normal; font-weight: 700; vertical-align: 1px; }
+.intent-chip--safety { background: var(--warm-sage-soft); color: var(--warm-sage); }
+.intent-chip--basics { background: #eaf1fb; color: #2f5d9a; }
+.intent-chip--interest { background: var(--warm-peach-soft); color: var(--warm-peach); }
+.intent-chip--free { background: #f3eefb; color: #6a4a9c; }
+.intent-chip--undecided { background: #f1efed; color: var(--warm-muted); }
+.plan-intents { margin: -4px 0 10px; color: var(--warm-muted); font-size: 12px; }

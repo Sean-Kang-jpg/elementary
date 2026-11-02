@@ -84,6 +84,7 @@ Claude가 UX-K0·UX-03·UX-26을 하는 동안 Codex는 아래를 바꾸지 않�
 | `nextDateOf('MM-DD')` | 홈 선반의 `deadline`을 `when: { kind: 'date' }`로 바꿀 때 |
 | `dueBadge(when)`, `describeProgress(entries, planning?)` | D-day 배지, "이번 달 챙길 것 N개 중 M개 ✓"(UX-10). 같은 말을 새로 짓지 말 것 |
 | `planCoverage(entries, until)`, `describeCoverage(c)` (`schedule/coverage.ts`) | 한 주의 빈 시간(하교~`until`). "평일 19시까지 빈 시간 없음 ✓"은 엔진 공백이 0일 때만. 하교를 모르면 판단하지 않는다 |
+| `entryIntent(entry)`, `INTENT_LABELS` (`schedule/intent.ts`) | 칸의 의도(UX-14). 화면 문구는 이 표만 쓴다 — "여백"은 임시 이름이라 바뀔 수 있다. 저장값(`safety`·`basics`·`interest`·`free`·`undecided`)은 바뀌지 않는다 |
 | `coverageUntil(plan.starter)` (`schedule/starter.ts`) | 빈 시간을 세는 끝 = 출발 계획의 보호자 귀가 시각(UX-13). 답이 없으면 19시, 정규수업 직후 귀가면 `null`(세지 않음). `planCoverage`를 부를 때 늘 이걸 넘길 것 |
 
 `when`은 `{ kind: 'date', date: 'YYYY-MM-DD' }` · `{ kind: 'month', month }` · `{ kind: 'anytime' }`. `from`은 C-01 표의 값에 `home`·`timetable`·`my`가 더해진다(입학연도를 처음 고른 화면, UX-03). 체크리스트 저장값에 로드맵 할 일의 완료도 들어가므로, 체크리스트 진행률은 `checklist.json`의 id만 센다.

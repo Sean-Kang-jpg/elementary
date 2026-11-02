@@ -36,6 +36,7 @@ const validEntry = (value: unknown): value is ScheduleEntry => {
     && (e.dayTimes === undefined || (e.dayTimes !== null && typeof e.dayTimes === 'object' && Object.entries(e.dayTimes).every(([day, t]) =>
       ['1', '2', '3', '4', '5'].includes(day) && t && (t.start === 'dismissal' || (t.start !== null && time(t.start))) && Number.isInteger(t.end) && time(t.end))))
     && (e.offeredWeekdays === undefined || (Array.isArray(e.offeredWeekdays) && e.offeredWeekdays.every((day) => Number.isInteger(day) && day >= 1 && day <= 5)))
+    && (e.intent === undefined || ['safety', 'basics', 'interest', 'free', 'undecided'].includes(e.intent))
 }
 export const readPlans = (): PlanStore => {
   try {

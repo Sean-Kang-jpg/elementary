@@ -362,6 +362,7 @@ try {
   assertPage("(() => { const plan = JSON.parse(localStorage.getItem('elementary-schedule-plans-v1')).plans.find(p => p.schoolId === 'B000002292'); const care = plan.entries.find(e => e.id === 'care-B000002292-afternoon'); return JSON.stringify(plan.starter) === JSON.stringify({ returnAt: 1020, care: true, courses: false, done: false }) && care.participation === 'planned' && care.end <= 1020 })()", 'UX-13 answers are stored with the draft and care ends by the return time')
   starterClick('다 됐어요')
   await waitFor("!document.querySelector('[data-testid=plan-starter]') && document.querySelector('[data-testid=plan-coverage]')", 'UX-13 finishing hides the questions and keeps the coverage line')
+  assertPage("document.querySelector('[data-testid=plan-intents]')?.textContent.startsWith('이번 주 안전') && document.querySelector('.my-agenda__card--care .intent-chip--safety')", 'UX-14 care shows as 안전 on its card and in the weekly intent line')
   run(['eval', "localStorage.removeItem('elementary-schedule-plans-v1'); 'UX-13 cleanup'"], { quiet: true })
   // C-04: verify the worry-led home before any map interaction.
   run(['open', baseUrl])

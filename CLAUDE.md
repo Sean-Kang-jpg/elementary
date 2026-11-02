@@ -74,7 +74,8 @@ npm run typecheck
 - 검증: lint·typecheck·build, test:unit 140, public smoke 141 PASS(3001). 운영 smoke는 `ab3e4b2` 스크립트로 "은마" 검색 대기(`apartment search returned household data`)에서 두 번 연속 멈췄고, 검색 직후 6초를 기다린 사본으로는 147 PASS — 손으로 검색하면 정상이라 smoke 대기 문제로 보지만 원인은 미확정. **로컬 smoke는 3001에서** — 3010·3011·3042 등은 지도 축소 검사에서 멈춘다(Naver 허용 호스트로 추정)
 - 기능별 스모크 `my-ux-smoke`(3001 통과)·`morning-care-production-smoke`(운영 통과)를 UX-26 구조로 고쳤다. 아침돌봄 smoke는 10-24 개편 뒤로도 맞지 않았다(패널이 한 줄, 학년도는 `title`). playwright가 프로젝트 의존성에 없어 `CALENDAR_QA_PLAYWRIGHT`(Codex 런타임의 playwright)·`CALENDAR_QA_CHROME`(설치된 Chrome)을 넘겨 실행
 - **UX-13 1차**(11-02, 운영 배포 release `e4f2688`, 운영 public smoke 168 PASS·아침돌봄 운영 smoke 통과): 한 주는 빈 초안 대신 질문으로 시작 — 보호자 귀가 → 학교 돌봄 → 맞춤형·방과후 → 귀가까지 남은 빈 시간. 답은 `SchoolPlan.starter`(없던 초안은 완료로 보고 질문을 띄우지 않음), 빈 시간은 귀가 시각까지(`coverageUntil`). 공시 실측: 오후돌봄 종료 공시 1,435곳 중 19시 489곳·17시 854곳이라 '17시까지'로 고정하지 않고 공시 시각을 쓴다. "자료 없이 직접 만들기" 버튼은 없앴고 기능별 스모크 4개는 "정규수업 끝나면 바로"로 시작한다(그 셋은 `/timetable`을 면 없이 열어 UX-26 뒤로 깨져 있었다 — `?face=week`로 고침). 돌봄센터 넣기는 사용자 결정으로 제외
-- 다음: UX-14 칸의 의도 표시, UX-18 시기 전환 안내. C-04 홈 고민 목록·C-05 홈 하단 정리는 11-02 병합·배포됨(release `1ec626f`, 다른 세션). 사용자 몫: C-03 가이드 버튼 문구 14개 확인, C-06 추첨 결과 사실, 휴대폰 캘린더에 .ics 열어 보기
+- **UX-14**(11-02, master, release 미배포): 칸의 의도 안전·기초·관심·여백(임시 이름)·미정. `ScheduleEntry.intent`는 부모가 고를 때만 저장, 없으면 종류·과목 기본값. 하루 보기 카드·편집 시트·주간 합계. 이름 바꾸기는 `schedule/intent.ts` 표만
+- 다음: release 배포(UX-14, 사용자 승인), UX-18 시기 전환 안내. 사용자 몫: 여백 칸의 화면 이름 C-04 홈 고민 목록·C-05 홈 하단 정리는 11-02 병합·배포됨(release `1ec626f`, 다른 세션). 사용자 몫: C-03 가이드 버튼 문구 14개 확인, C-06 추첨 결과 사실, 휴대폰 캘린더에 .ics 열어 보기
 
 ### 2026-10-31~11-01: 방과후 시간대층 운영 적재·화면 전환·배포 (커밋·배포 완료)
 

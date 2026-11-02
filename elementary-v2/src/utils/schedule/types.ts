@@ -20,6 +20,9 @@ export type TransitionRule = 'confirmed' | 'prohibited' | 'unknown'
 
 export type EntryKind = 'school' | 'afterschool' | 'care' | 'personal'
 
+/** 이 시간이 아이에게 무슨 시간인가(UX-14). evidence·participation과 별개의 축이다 — intent.ts. */
+export type SlotIntent = 'safety' | 'basics' | 'interest' | 'free' | 'undecided'
+
 /** 1 = 월 … 5 = 금. 주말은 이번 범위 밖이다. */
 export type Weekday = 1 | 2 | 3 | 4 | 5
 
@@ -70,6 +73,8 @@ export interface ScheduleEntry {
   dayTimes?: Partial<Record<Weekday, DayTime>>
   /** 학교 강좌가 열리는 요일. 다른 요일로 복사하거나 넓히지 않도록 처음 고를 때 남긴다. */
   offeredWeekdays?: Weekday[]
+  /** 부모가 고른 칸의 의도. 없으면 종류·과목으로 정한 기본값을 보인다(intent.ts, 2026-11-02). */
+  intent?: SlotIntent
 }
 
 /** 'dismissal'이면 그날 하교 직후에 시작한다. */

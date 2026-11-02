@@ -5,7 +5,8 @@ import { scheduleKindLabel } from '../../utils/schedule/calendar'
 import { withCarePlanningDefaults } from '../../utils/schedule/carePlanning'
 import { allowedWeekdays, entryForDay, timeOnDay } from '../../utils/schedule/dayTimes'
 import { formatMinutes, toMinutes } from '../../utils/schedule/fromSchoolData'
-import type { DayTime, ParticipationStatus, ScheduleEntry, Weekday } from '../../utils/schedule/types'
+import type { DayTime, ParticipationStatus, ScheduleEntry, SlotIntent, Weekday } from '../../utils/schedule/types'
+import { entryIntent, INTENT_HINTS, INTENT_LABELS, INTENTS } from '../../utils/schedule/intent'
 import ScheduleSubjectIcon from './ScheduleSubjectIcon'
 
 const DAYS = ['월', '화', '수', '목', '금']
@@ -18,13 +19,15 @@ const same = (a: DayTime | null, b: DayTime | null) => Boolean(a && b && a.start
  * 출처 시각은 그대로 남고 이 계획의 시각만 바뀐다. 같은 시각을 쓰는 요일을 미리 골라 두어, 고친 값을
  * 그 요일들에 한 번에 적용한다. 정규수업은 보기만 한다.
  */
-export default function EntryEditSheet({ entry, day, onSave, onRemoveDay, onStatus, onClose, extra }: {
+export default function EntryEditSheet({ entry, day, onSave, onRemoveDay, onStatus, onIntent, onClose, extra }: {
   /** 저장된 그대로의 일정(요일별 시각 포함). */
   entry: ScheduleEntry
   day: DayPlan
   onSave: (days: Weekday[], time: DayTime, label?: string) => boolean
   onRemoveDay: () => boolean
   onStatus: (status: ParticipationStatus) => boolean
+  /** 칸의 의도(UX-14). 고르면 바로 저장한다 — 참여 상태와 같다. */
+  onIntent?: (intent: SlotIntent) => boolean
   onClose: () => void
   extra?: ReactNode
 }) {
@@ -101,6 +104,14 @@ export default function EntryEditSheet({ entry, day, onSave, onRemoveDay, onStat
         </div>
         <small>고른 요일에 같은 시간으로 넣어요. 고르지 않은 요일은 그대로예요.</small>
       </fieldset>
+      {onIntent && <fieldset className="my-entry-sheet__days my-entry-sheet__intent">
+        <legend>이 시간은</legend>
+        <div className="my-entry-sheet__chips">
+          {INTENTS.map((value) => <button type="button" key={value} aria-pressed={entryIntent(entry) === value} title={INTENT_HINTS[value]}
+            className={`intent-choice intent-choice--${value}`} onClick={() => onIntent(value)}>{INTENT_LABELS[value]}</button>)}
+        </div>
+        <small>{INTENT_HINTS[entryIntent(entry) ?? 'undecided']}. 모든 요일에 같이 적용돼요.</small>
+      </fieldset>}
       <label className="my-field">참여 상태<select value={entry.participation} onChange={(event) => onStatus(event.target.value as ParticipationStatus)}>
         {Object.entries(STATUS).map(([value, text]) => <option value={value} key={value}>{text}</option>)}
       </select></label>

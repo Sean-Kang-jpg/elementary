@@ -2,7 +2,7 @@ import { useLayoutEffect, useRef, useState } from 'react'
 import { computeWeek, WEEKDAYS, type DayPlan } from '../../utils/schedule/engine'
 import { CALENDAR_END, CALENDAR_HOURS, CALENDAR_START, careResumptions, layoutCalendarBlocks, scheduleEntryHeading, scheduleKindLabel } from '../../utils/schedule/calendar'
 import { formatMinutes } from '../../utils/schedule/fromSchoolData'
-import type { DayTime, ParticipationStatus, ScheduleEntry, Weekday } from '../../utils/schedule/types'
+import type { DayTime, ParticipationStatus, ScheduleEntry, SlotIntent, Weekday } from '../../utils/schedule/types'
 import { calendarRange, canEditCalendarEntry, GRID_STEP, type CalendarChange, type CalendarRange } from '../../utils/schedule/editing'
 import EntryEditSheet from './EntryEditSheet'
 import { entryForDay } from '../../utils/schedule/dayTimes'
@@ -33,7 +33,7 @@ const compactTime = (entry: ScheduleEntry, day: DayPlan) => {
   return `${start === null ? entry.startsAfterSchool ? '하교 후' : '시작 미확인' : formatMinutes(start)}–${entry.end === null ? '종료 미확인' : formatMinutes(entry.end)}${entry.timeAssumption ? ' · 기본 가정' : ''}`
 }
 
-export default function MyScheduleWeek({ schoolId, entries, onSave, onAdd, onRemove, onToggleDay, onSetTimes, onRemoveDay, onStatus, onRepeat, onNavigate }: {
+export default function MyScheduleWeek({ schoolId, entries, onSave, onAdd, onRemove, onToggleDay, onSetTimes, onRemoveDay, onStatus, onIntent, onRepeat, onNavigate }: {
   schoolId: string; entries: ScheduleEntry[]; onSave: (change: CalendarChange) => ScheduleEntry | null
   onNavigate?: (path: string) => void
   onAdd: (entry: ScheduleEntry) => boolean; onRemove: (id: string) => boolean
@@ -41,6 +41,7 @@ export default function MyScheduleWeek({ schoolId, entries, onSave, onAdd, onRem
   onSetTimes: (id: string, days: Weekday[], time: DayTime, label?: string) => boolean
   onRemoveDay: (id: string, weekday: Weekday) => boolean
   onStatus: (id: string, status: ParticipationStatus) => boolean
+  onIntent: (id: string, intent: SlotIntent) => boolean
   onRepeat: (id: string, from: Weekday, targets: Weekday[]) => boolean
 }) {
   const scroller = useRef<HTMLDivElement>(null)
@@ -204,6 +205,7 @@ export default function MyScheduleWeek({ schoolId, entries, onSave, onAdd, onRem
         return saved
       }}
       onStatus={(status) => onStatus(selectedEntry.id, status)}
+      onIntent={(intent) => onIntent(selectedEntry.id, intent)}
       extra={onNavigate && FRONTYARD_ENABLED ? <AlternativesLink schoolId={schoolId} entry={entryForDay(selectedEntry, selectedDay.weekday)} day={selectedDay} onNavigate={onNavigate} /> : undefined} />}
   </div>
 }

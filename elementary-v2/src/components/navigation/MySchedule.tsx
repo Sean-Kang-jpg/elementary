@@ -13,6 +13,9 @@ import { afternoonCareFor, answerReturn, coverageUntil, emptyStarter, eveningCar
 import type { SchoolCareHours } from '../../types'
 import PlanStarter from './PlanStarter'
 import MyAfterschoolPicker from './MyAfterschoolPicker'
+import { describeIntents, weekIntentMinutes } from '../../utils/schedule/intent'
+import { computeWeek } from '../../utils/schedule/engine'
+import { CALENDAR_END } from '../../utils/schedule/calendar'
 
 const DAYS = ['월', '화', '수', '목', '금']
 const STATUS: Record<ParticipationStatus, string> = {
@@ -134,6 +137,8 @@ export default function MySchedule({ school, entryYear, saved, onNavigate }: {
   const shownName = school.displayName ?? displaySchoolName(school.name)
   // 완료 표시(UX-10). 엔진의 공백 계산만 쓴다 — 하교부터 보호자 귀가(답이 없으면 19시)까지.
   const until = plan ? coverageUntil(plan.starter) : null
+  // 칸의 의도별 시간(UX-14). 엔진이 배치한 칸만 센다.
+  const intents = plan ? describeIntents(weekIntentMinutes(computeWeek(plan.entries, { from: 'dismissal', to: CALENDAR_END }))) : null
   const coverage = plan && until !== null ? planCoverage(plan.entries, until) : null
   const starter = <PlanStarter answers={plan?.starter} suggested={suggested} busy={loading}
     careDraft={returnAt === null ? null : afternoonCareFor(schoolId, careHours, returnAt)}
@@ -157,11 +162,13 @@ export default function MySchedule({ school, entryYear, saved, onNavigate }: {
       </> : <>
         {step !== 'done' && starter}
         {coverage && step === 'done' && <p className={`plan-coverage plan-coverage--${coverage.state}`} data-testid="plan-coverage">{describeCoverage(coverage)}</p>}
+        {intents && <p className="plan-intents" data-testid="plan-intents">{intents}</p>}
         <MyScheduleWeek key={`week-${plan.schoolId}`} schoolId={plan.schoolId} onNavigate={onNavigate} entries={plan.entries} onSave={saveCalendarEntry} onAdd={addEntry} onRemove={removeEntry}
           onToggleDay={(entry, weekday) => changeEntries((entries) => toggleProgramDay(entries, entry, weekday))}
           onSetTimes={(id, days, time, label) => changeEntriesIf((entries) => setEntryTimes(entries, id, days, time, label))}
           onRemoveDay={(id, weekday) => changeEntries((entries) => removeEntryDay(entries, id, weekday))}
           onStatus={(id, status) => changeEntries((entries) => entries.map((item) => item.id === id ? { ...item, participation: status } : item))}
+          onIntent={(id, intent) => changeEntries((entries) => entries.map((item) => item.id === id ? { ...item, intent } : item))}
           onRepeat={(id, from, targets) => changeEntriesIf((entries) => repeatEntry(entries, id, from, targets))} />
         <details className="my-entry-list"><summary>선택한 일정 관리 ({plan.entries.length})</summary>
           {plan.entries.map((e) => <div className="my-entry" key={e.id}>
