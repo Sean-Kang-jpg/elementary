@@ -73,14 +73,14 @@ try {
   run('set','viewport','390','844')
   if (process.argv[4]) run('screenshot',process.argv[4])
   // Real pointer events on a visible apartment label (not a synthetic SDK event).
-  evaluate(`(() => {
+  // Marked inside the wait: right after the resize from 1280px the markers are still being redrawn.
+  await wait(`(() => {
     const marker=[...document.querySelectorAll('.apartment-map-marker__label')].find(node=>{
       const r=node.getBoundingClientRect();
       const hit=document.elementFromPoint(r.left+r.width/2,r.top+r.height/2);
       return r.top>180&&r.bottom<420&&r.left>12&&r.right<innerWidth-12&&hit&&node.contains(hit);
-    }); if(marker)marker.dataset.qaClick='true'; return true;
-  })()`)
-  await wait("document.querySelector('[data-qa-click]')", 'a real apartment marker is visible for pointer selection')
+    }); if(marker)marker.dataset.qaClick='true'; return Boolean(marker);
+  })()`, 'a real apartment marker is visible for pointer selection')
   run('click','[data-qa-click]')
   await wait("document.querySelector('#assigned-school-title') && document.querySelector('.apartment-map-marker--selected') && location.pathname.startsWith('/apt/')", 'real marker click opens canonical apartment and selected state')
   open('/apt/서울-강남구-은마--7A2EMR5J')

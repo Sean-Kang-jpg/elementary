@@ -36,7 +36,7 @@ try {
   open('/')
   await wait("document.querySelector('#home-title')", 'home loads')
   check("![...document.querySelectorAll('.home-page__card')].some(x => x.textContent.includes('지역별 배정'))", 'home comparison banner removed')
-  check("document.querySelector('.home-page__footer a[href=\"/area\"]')", 'area directory entry preserved')
+  check("document.querySelector('.home-secondary-links a[href=\"/area\"]')", 'area directory entry preserved')
   open('/guide')
   await wait("document.querySelector('#guides-title')", 'admission guide loads')
   check("!document.querySelector('.content-page a[href=\"/news\"]')", 'data report banner removed')
@@ -50,13 +50,8 @@ try {
   check("document.querySelector('[aria-label=\"학교 상세 메뉴\"] button[aria-pressed=true]')?.textContent === '방과후·돌봄'", 'school tab synchronized with top topic')
   check("document.querySelector('[data-testid=care-centers]').textContent.includes('학교 기준 직선거리 1km')", 'care distance remains school-origin 1km')
   check("!document.querySelector('[data-testid=care-centers] select')", 'no distance selector introduced')
-  run('eval', "document.querySelector('[aria-label=\"종속 조건\"] button').click(); 'menu'")
-  await wait("document.querySelector('[role=menu]')", 'care disclosure menu opens')
-  check("document.querySelector('[role=menuitemradio][aria-checked=true]') === document.activeElement", 'menu focuses current option')
-  check("document.querySelector('[role=menu]').getBoundingClientRect().right <= innerWidth", 'long care menu stays within mobile screen')
-  run('press', 'Escape')
-  check("!document.querySelector('[role=menu]') && document.querySelectorAll('[data-testid=bottom-sheet]').length === 1", 'Escape closes only the menu, not school detail')
-  check("document.activeElement?.getAttribute('aria-expanded') === 'false'", 'Escape returns focus to trigger')
+  // The quick filter's condition menu (open, focus, Escape) left with the hidden quick filters (2026-11-01).
+  // Restore these checks from git history when the bar comes back.
 
   if (run('eval', "Boolean(document.querySelector('[data-testid=care-centers] button[aria-label$=\"상세 안내\"]'))").includes('true')) {
     run('eval', "document.querySelector('[data-testid=care-centers] button[aria-label$=\"상세 안내\"]').click(); 'center'")

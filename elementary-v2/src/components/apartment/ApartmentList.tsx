@@ -37,6 +37,12 @@ const ApartmentList: React.FC<ApartmentListProps> = ({
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('desc')
 
   const sortedApartments = useMemo(() => [...apartments].sort((a, b) => {
+    // 주차 미확인('확인 중') 단지는 어느 방향이든 맨 뒤. 0대로 치면 적은순 맨 위에 섞인다.
+    if (sortBy === 'parking') {
+      const aUnknown = a.parking_per_household === null
+      const bUnknown = b.parking_per_household === null
+      if (aUnknown !== bUnknown) return aUnknown ? 1 : -1
+    }
     const values: Record<SortField, [string | number, string | number]> = {
       name: [a.name || '', b.name || ''],
       parking: [a.parking_per_household || 0, b.parking_per_household || 0],

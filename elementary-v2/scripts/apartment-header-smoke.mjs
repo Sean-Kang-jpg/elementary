@@ -54,8 +54,12 @@ try {
                 : ${JSON.stringify(field)}==='year' ? Number((info.match(/(\\d{4})년/)||[])[1]||0)
                 : parseFloat([...card.querySelectorAll('strong')].at(-1).textContent);
             });
-            return values.every((value,index)=>!index || (typeof value==='string'
-              ? values[index-1].localeCompare(value,'ko') : values[index-1]-value) * ${order==='asc' ? 1 : -1} <= 0);
+            // 주차 '확인 중' reads as NaN and must sit after every known value, in either order.
+            const unknownFrom=values.findIndex(value=>Number.isNaN(value));
+            if (unknownFrom>=0 && values.slice(unknownFrom).some(value=>!Number.isNaN(value))) return false;
+            const known=unknownFrom>=0 ? values.slice(0,unknownFrom) : values;
+            return known.every((value,index)=>!index || (typeof value==='string'
+              ? known[index-1].localeCompare(value,'ko') : known[index-1]-value) * ${order==='asc' ? 1 : -1} <= 0);
           })()`, `${field} ${order} sorts actual cards`)
         }
       }

@@ -29,7 +29,11 @@ const wait = async (condition, label) => {
 const open = route => run('open', new URL(route, base).href)
 const floating = layer => `[data-layer-entry="floating"][data-map-layer="${layer}"]`
 const banner = layer => `[data-layer-entry="banner"][data-map-layer="${layer}"]`
-const toggle = layer => run('click', floating(layer))
+// Below 640px the floating buttons sit behind the 표시 필터 disclosure, which a page load folds again.
+const toggle = layer => {
+  evaluate("(() => { const d=document.querySelector('.map-layer-disclosure'); if (d && getComputedStyle(d).display!=='none' && d.getAttribute('aria-expanded')==='false') d.click(); return true })()")
+  run('click', floating(layer))
+}
 // The map's topic bar is hidden while the quick filters are off (2026-11-01); the school sheet's tabs set the same topic.
 const topic = label => evaluate(`[...document.querySelectorAll('[aria-label="지도 탐색 영역"] button, [aria-label="학교 상세 메뉴"] button, [aria-label="아파트 상세 메뉴"] button')].find(x=>x.textContent===${JSON.stringify(label)}).click(); true`)
 const matchingState = layer => `document.querySelector(${JSON.stringify(floating(layer))}).getAttribute('aria-pressed')===document.querySelector(${JSON.stringify(banner(layer))}).getAttribute('aria-pressed')`
@@ -61,7 +65,7 @@ try {
   check(`(() => { const r=${school}.getBoundingClientRect(); return Math.abs(r.x-window.qaSchoolPosition.x)<2 && Math.abs(r.y-window.qaSchoolPosition.y)<2 })()`, 'turning on layers does not fit bounds or move the map')
   if (process.argv[3]) run('screenshot', process.argv[3])
   check("document.querySelector('#assigned-school-title') && document.querySelectorAll('[data-testid=bottom-sheet]').length===1", 'push controls leave the selected detail and single sheet intact')
-  if (local) check(`(() => { const r=${care}.getBoundingClientRect(); const sheet=document.querySelector('[data-testid=bottom-sheet]').getBoundingClientRect(); return r.left>=0 && r.right<=innerWidth && r.top>150 && r.bottom<sheet.top })()`, 'local care fixture lies within the map viewport above the sheet, rather than off-screen')
+  if (local) check(`(() => { const r=${care}.getBoundingClientRect(); const sheet=document.querySelector('[data-testid=bottom-sheet]').getBoundingClientRect(); return r.left>=0 && r.right<=innerWidth && r.top>150 && (r.bottom<sheet.top || r.left>=sheet.right) })()`, 'local care fixture lies within the map viewport clear of the sheet (above it, or beside the desktop panel), rather than off-screen')
   if (process.argv[4]) run('screenshot', process.argv[4])
   for (const [layer, marker, other] of [['apartments', apartment, activity], ['activity', activity, apartment], ['care', care, apartment]]) {
     toggle(layer)
