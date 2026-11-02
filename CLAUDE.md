@@ -1,901 +1,198 @@
 # Session Init: Elementary Map
 
-새 작업 세션에서 프로젝트 상태를 빠르게 복원하기 위한 인수인계 문서다.
-세부 상태는 이 파일보다 `elementary-v2/docs/operations/OPERATION_PLAN.md`와
-`elementary-v2/docs/ux/FRONTEND_UX_SYSTEM_PLAN.md`를 우선한다.
+새 작업 세션에서 프로젝트 상태를 빠르게 복원하기 위한 인수인계 문서다. 세부 상태는 이 파일보다
+`elementary-v2/docs/operations/OPERATION_PLAN.md`와 `elementary-v2/docs/ux/FRONTEND_UX_SYSTEM_PLAN.md`를 우선한다.
+구조·빌드·데이터 계약은 루트 `../CLAUDE.md`가 맡고, 이 파일은 **지금 상태와 다음 일**만 적는다.
+
+2026-11-03 요약 정리: 935줄을 이 판으로 줄였다. 11-02까지의 날짜별 전문은 `git show db6e90f:CLAUDE.md`
+(옛 판)와 그때 작업 트리에만 있던 11-02 ETL·학원 신호 기록을 아래 절에 합쳤다. 지난 기록은 맨 아래 색인에 한 줄씩.
 
 ## Start Here
 
-- Git root: `F:\sm\vibe\elementary\pjt_250826`
-- Active app: `F:\sm\vibe\elementary\pjt_250826\elementary-v2`
-- Stack: React 18, TypeScript, Vite, Tailwind CSS, Supabase, Naver Maps
-- Branch: `master` (작업), `release` (운영 배포. push가 곧 운영 배포다)
-- Last pushed baseline (2026-10-15): 운영 `release` = master `f8e3638`(fast-forward). 6d2012a 이후 22+2개 커밋이
-  한꺼번에 나갔다: **초1 오후 한눈에 카드·MY 강좌 선택 첫 공개**(SQL 30), 팀원 커밋(교육환경 400m, 지도 필터 축소) 포함.
-- 이전 baseline (2026-10-08): 운영 `release` `920d8ee` = master `8fc2df7`의 트리
-  (그 앞 `c27530f` 초1 하루 예상 카드 SQL 26, `920d8ee` 홈 카드 간격 12px).
-  10-07 `4e766df`: SEO 허브·동별 등록 단지 canonical 통합·아파트 상세 보강, 신축 단지 '배정 확인 필요' 안내, 커리큘럼 화면 삭제.
-  10-08: 하단 탭 **홈 · 학교 찾기 · 입학 준비 · MY**(사용자 확정. '입학 행정'은 안 씀)
-  작업 트리: 다른 세션이 뺀 홈 탭을 사용자 요청으로 되살림(홈·학교 찾기·입학 준비·학습 준비·MY, 미커밋).
-  탭 5개라 모바일은 아이콘 위·글자 아래, 칸 수는 탭 수대로(`index.css` `.app-gnb`), 데스크톱 레일은 `grid-auto-flow: row`
-- push가 "Git LFS locking API … Unable to verify locks"로 막혀 2026-10-08 이 저장소 로컬 설정에
-  `lfs.<origin>/info/lfs.locksverify false`를 넣었다(사용자 승인). LFS 파일은 없다
-- Production: `https://wherecho.co.kr` (옛 주소 `elementary-lovat.vercel.app`은 301로 넘어온다)
-- Supabase project ref: `vsgeksumgvcrkzjwvlgs`
+- Git root `F:\sm\vibe\elementary\pjt_250826`, 앱 `elementary-v2/` (React 18 · TypeScript · Vite · Tailwind · Supabase · Naver Maps)
+- 브랜치: `master`(작업), `release`(운영 — **push가 곧 배포**). 운영 `https://wherecho.co.kr`(옛 `elementary-lovat.vercel.app`은 301)
+- Supabase project ref `vsgeksumgvcrkzjwvlgs`
+- 세션 시작: `git status --short` · `git log -5 --oneline` · `git fetch && git log --oneline HEAD..origin/master` · `cd elementary-v2 && npm run typecheck`
 
-세션 시작 시 아래부터 확인한다.
+작업 규칙(여러 세션이 같은 작업 트리를 쓴다):
 
-```powershell
-cd F:\sm\vibe\elementary\pjt_250826
-git status --short
-git log -5 --oneline
-cd elementary-v2
-npm run typecheck
-```
-
-작업 트리가 dirty이면 사용자 변경으로 간주한다. 관련 파일의 diff를 읽고 함께
-작업하며, 명시적 요청 없이 되돌리거나 삭제하지 않는다.
+- dirty 파일은 다른 세션 작업으로 본다. 되돌리거나 stash하지 않는다. `git add`는 파일이 아니라 hunk 단위
+- 로컬 master가 origin보다 뒤처져 있고 작업 트리가 더러우면 pull하지 말고, 임시 인덱스로 origin 위에 커밋한다:
+  `GIT_INDEX_FILE=<tmp> git read-tree origin/master` → `git update-index --cacheinfo 100644,<hash-object -w>,<path>` →
+  `write-tree` → `commit-tree -p origin/master` → `git push origin <sha>:refs/heads/master`. release도 `commit-tree`+`update-ref`
+- push 전 `git log`로 내 커밋이 남았는지 확인(10-28 이력 재작성으로 커밋이 한 번 빠졌다)
+- release push·운영 DB 쓰기·SQL 적용·Actions 시크릿은 사용자 승인 뒤. 자동 모드 권한 판단에 막히면 우회하지 말고 사용자에게 넘긴다
+- LFS 잠금 검사 끔(`lfs.<origin>/info/lfs.locksverify false`, 10-08 사용자 승인). LFS 파일은 없다
 
 ## Current Product State
 
-앱 버전 2.3.0, 브랜드 **어디초**, 전국 17개 시·도. 2026-10-03에 차기 버전 PRD
-(`elementary-v2/docs/product/PRD_V2_ELEMENTARY_START.md`)의 MVP 1a·1b를 모두 운영에 냈다.
-
-- **도메인**: `wherecho.co.kr` 전환·검색엔진 등록 완료. 구성표는 `docs/operations/DEPLOYMENT.md` 7.1절
-- **라우팅(ADR-008)**: `/` 홈, `/map`, `/school/…`·`/apt/…`, `/guide`, `/guide/{slug}`, `/faq`,
-  `/checklist`, `/news`, `/my`(옛 `/favorites`는 `/my`로 고친다), `/privacy`. 라우팅 라이브러리 없이 `urlState.ts`의 `parseRoute`
-- **셸 분리**: `dist/app.html`(셸), `dist/index.html`(정적 홈), 가이드·FAQ·체크리스트 정적 페이지,
-  `dist/404.html`. 네이버 지도 SDK는 지도 화면에서만 읽는다(`naverMapsLoader.ts`)
-- **GA4** `G-NQT4XV9R00` + `/privacy`. 이벤트·진입경로 규칙은 `docs/product/MEASUREMENT_PLAN.md` 8절
-- **콘텐츠**: 가이드 9편(입학 1~2년 전 3 / 입학하는 해 6), FAQ 24문항, 각 가이드 요약 도식.
-  원본은 `src/content/*.md`·`*.json`, `scripts/build-content.mjs`가 출처·확인일·링크·설명 길이를 검증
-- **입학 단계**: 입학연도 칩(출생연도 병기)으로 planning/admission을 고른다. 프로필·체크리스트는
-  기기 저장만(D1 A안)
-- **학교 상세 모듈** "이 학교 입학을 준비한다면"과 로드맵(3월 입학까지, 이사·사립 맞춤)
-- **GNB 재편(2026-10-04)**: 하단 탭 **홈 · 지도 · 입학 준비 · MY**. 지도 = 데이터 탐색,
-  입학 준비(`/guide`) = 공개 매뉴얼(시기별 가이드·읽음 표시·FAQ·데이터 리포트, 앱과 정적 페이지가 같다),
-  MY(`/my`, `MyPage.tsx`) = 기기 저장 전부(프로필·저장한 학교·아파트·전체 로드맵·읽음 수).
-  즐겨찾기 탭은 MY에 흡수됐다. 홈은 검색 + 요약 카드(D-Day·할 일 2개, `RoadmapSummary` → `/my`)이고
-  시기별 가이드 목록은 홈에서 뺐다. 결정 기록은 ADR-008 구현 기록 마지막 항목
-- **공유**: 가이드·FAQ·체크리스트에 '공유' 버튼(주소만). 체크 상태는 기기별 — 부부 공유 체크리스트는 보류
-- **체크리스트 배너**: 모든 가이드 본문 아래(`ChecklistBanner`, 진행률 표시)
-- 화면 디자인은 사용자 평가로 "AI 전형 디자인" — 재검토 대기
-
-이전 단계(v2.0~v2.2, P4~P6)의 기록은 `elementary-v2/docs/PROJECT_PROGRESS.html`에 있다.
-
-## Uncommitted Work At Handoff
-
-### 2026-11-01~02: 우리집 일정 중심 UX 개편 — 우리집 일정 탭·완료 표시·Codex C-07~09 (커밋·운영 배포 완료)
-
-- 사용자 결정: 계획을 제품 중심에, GNB 시간표 → **우리집 일정**(입학까지 / 우리 아이 한 주, URL `/timetable` 유지), 홈은 고민에서 시작, MY는 프로필·설정만
-- 백로그 `elementary-v2/docs/product/UX_BACKLOG_PLAN_CENTERED.md`(UX-01~26), 분담·작업 카드 `elementary-v2/docs/operations/CODEX_UX_HANDOFF.md`(C-01~09)
-- 운영 배포 완료(release `013bc70`): UX-K0 `familyPlan.ts` · UX-03 입학까지 D-day·완료 체크 · C-01 퍼널 이벤트 · C-02 .ics. 운영 smoke 119 PASS
-- 운영 배포 완료(release `439607b`, 11-02): C-03 가이드 14편 다음 한 걸음(문구 사용자 확인 대기) · **UX-26** `/timetable?face=timeline|week`(`planPath()`), 면 없는 주소는 입학까지(연도 없이 시간표만 있으면 한 주) · **UX-06** MY는 입학연도·관심 후보·저장 학원 + 우리집 일정 링크(`MyTimetableSummary` 삭제) · **UX-08c** 홈 `PlanSummary`(옛 `RoadmapSummary`)가 고민 목록 위 · **UX-10** `describeProgress`, `schedule/coverage.ts`(엔진 공백만, 하교~19시) · **C-07** 학교·아파트 상세 → 한 주 · **C-08** 홈 시즌 카드 "내 일정에 넣기" · **C-09** 퍼널 정의(문서). 바로 뒤에 다른 세션의 `ab3e4b2`(지도 빠른 필터 숨김, 필터를 MY 아래로)가 release에 올라갔다 — 사용자 의도 확인됨
-- 검증: lint·typecheck·build, test:unit 140, public smoke 141 PASS(3001). 운영 smoke는 `ab3e4b2` 스크립트로 "은마" 검색 대기(`apartment search returned household data`)에서 두 번 연속 멈췄고, 검색 직후 6초를 기다린 사본으로는 147 PASS — 손으로 검색하면 정상이라 smoke 대기 문제로 보지만 원인은 미확정. **로컬 smoke는 3001에서** — 3010·3011·3042 등은 지도 축소 검사에서 멈춘다(Naver 허용 호스트로 추정)
-- 기능별 스모크 `my-ux-smoke`(3001 통과)·`morning-care-production-smoke`(운영 통과)를 UX-26 구조로 고쳤다. 아침돌봄 smoke는 10-24 개편 뒤로도 맞지 않았다(패널이 한 줄, 학년도는 `title`). playwright가 프로젝트 의존성에 없어 `CALENDAR_QA_PLAYWRIGHT`(Codex 런타임의 playwright)·`CALENDAR_QA_CHROME`(설치된 Chrome)을 넘겨 실행
-- **UX-13 1차**(11-02, 운영 배포 release `e4f2688`, 운영 public smoke 168 PASS·아침돌봄 운영 smoke 통과): 한 주는 빈 초안 대신 질문으로 시작 — 보호자 귀가 → 학교 돌봄 → 맞춤형·방과후 → 귀가까지 남은 빈 시간. 답은 `SchoolPlan.starter`(없던 초안은 완료로 보고 질문을 띄우지 않음), 빈 시간은 귀가 시각까지(`coverageUntil`). 공시 실측: 오후돌봄 종료 공시 1,435곳 중 19시 489곳·17시 854곳이라 '17시까지'로 고정하지 않고 공시 시각을 쓴다. "자료 없이 직접 만들기" 버튼은 없앴고 기능별 스모크 4개는 "정규수업 끝나면 바로"로 시작한다(그 셋은 `/timetable`을 면 없이 열어 UX-26 뒤로 깨져 있었다 — `?face=week`로 고침). 돌봄센터 넣기는 사용자 결정으로 제외
-- **UX-14**(11-02, 11-03 운영 배포): 칸의 의도 안전·기초·관심·휴식·미정(휴식은 11-03 사용자 확정, 저장값 `free`). `ScheduleEntry.intent`는 부모가 고를 때만 저장, 없으면 종류·과목 기본값. 하루 보기 카드·편집 시트·주간 합계. 이름 바꾸기는 `schedule/intent.ts` 표만
-- C-04 홈 고민 목록·C-05 홈 하단 정리는 11-02 병합·배포됨(release `1ec626f`, 다른 세션)
-- 다음: UX-18 시기 전환 안내. 사용자 몫: C-03 가이드 버튼 문구 14개 확인, C-06 추첨 결과 사실, 휴대폰 캘린더에 .ics 열어 보기
-
-### 2026-10-31~11-01: 방과후 시간대층 운영 적재·화면 전환·배포 (커밋·배포 완료)
-
-- SQL 32·38 사용자 적용(10-31). 적재 `etl/load_school_afterschool.py --sql32-fields --sql38-fields --apply`: summary 682 · programs 24,262 ·
-  slots 10,846 · checks 1,062, 통과 411 · 확인 222 · 해당 없음 49(모두 C 등급). 서울 561 + 분당·위례 38(검수 해시 일치분) + 수지·동안·광명 83.
-  입력: `--slot-reviews`에 분당·위례 검수 파일 사본(원본은 그 세션 폴더에만 있고 **미커밋** — 재현하려면 커밋 필요)과
-  `docs/research/pivot/pivot_gyeonggi_priority_slots_current_20261031.json`, 교시 수는 SQL 26 anon 스냅숏(10-31)
-- 적재기 기존 버그 수정 `252ca0d`(학교 누락 방지 읽기가 `rest()` 튜플을 안 풀었음, 쓰기 전에 멈춰 피해 없음)
-- 화면 `76ff418`: 학교 상세 막대·데리러 가는 시각을 slots로(없으면 programs), 돌봄내는 연한 초록·픽업 제외, 교시 기준 추정 문구,
-  확인 요일 `!`와 사유 한 줄. **release `76ff418` 배포·운영 스모크 통과(11-01)**
-- `baaa69b`(master만, **미배포**): MY 강좌 고르기·강좌 목록에 '돌봄 이용 시'·'교시 기준 추정', 돌봄내 반은 `requiresCare`,
-  같은 요일 돌봄이 없으면 반 아래 경고(개발 서버에서 확인)
-- 11-01 후속: `baaa69b`까지 release 배포·운영 스모크 통과. 확인 목록 도구 `etl/afterschool_checks_sheet.py`(export → CSV에 확인일 → resolve, 적재기가 재적재 때 `resolved_on`을 이어받음, `3ea6cb1`). 첫 목록 `etl/runtime/afterschool_checks/afterschool_checks_20261101.csv` 1,062건(맞춤형시각없음 724). 한솔초 정정 운영 재적재(`docs/research/pivot/p1_corrections_20261101/`, 확인 1,056건). 신백현초 맹검: 정답과 다른 7개는 원문끼리 다른 곳이라 추출이 기준대로 원문불일치로 남김(맹검 문서 1절, 판정 정정 `0fceda2`). 적재는 검수 게이트 뒤
-- 분당·위례 검수 파일을 적재에 쓴 그대로 master에 커밋(`9e6d5c8`). 결과 38개는 병합 커밋으로 이미 같은 내용이 있어, 적재 입력은 이제 모두 저장소에 있음
-- `ac065b3`(**release 배포·운영 스모크 통과 11-01**): MY 요일 카드에 그날 시간대가 먼저 나오고, 고르면 그 창의 강좌만, '이 시간대에 강좌명 직접 적기'(시각 채움, 돌봄내면 `requiresCare`)
-- 확인 목록: export가 학교별 질문지도 씀(`fc640b9`, `afterschool_school_questions_<날짜>.csv`, 222곳). 1,056건 대부분 원문에 시각이 없는 것(서울 맞춤형시각없음 634: 시각 빈 행 416·요일 없는 행 293·120분 초과 제외 15)이라 문서로는 못 닫고 학교 문의가 필요
-- 남은 것: 학교 문의(사용자), PDF원문 14곳 대조(83곳 8곳은 입력 파일이 sha 이름으로 안 찾아짐 — P1 입력 매니페스트 경로로 찾아 PDF를 표 단위로 볼 것).
-  `my-inline-selection`·`care-planning-defaults` 스모크는 이 기기에 playwright가 없어 못 돌림
-
-### 2026-10-30: 경기 우선 방과후 추출 완료 83/83 (커밋만, 운영 DB 변경 없음)
-
-- batch33~75, 학교마다 커밋(마지막 `8c5bd2c` 효자초). 합계 과정 행 3,331 · 시간대 후보 1,031 · 통과후보 33 · 확인 필요 50곳(미해결 282건).
-  독립 검수·현행 학기 확인·운영 반영은 모두 0 — **다음 단계는 독립 검수**(확인 목록은 `PIVOT_GYEONGGI_PRIORITY_SESSION_CHECKLIST.md`)
-- 검사기 확장(커밋, 테스트 포함, `etl/tests` 390개 통과):
-  - 요일 머리글의 교시 표기 허용: `월 (4교시)`, `금요일(4, 5교시)` (부림·효자)
-  - `clock_colspan_from` + 검수 JSON `table_span_checked`: 월·화처럼 병합된 시각 칸을 첫 열에서 인용. HWPX `hp:cellSpan`으로 확인한 뒤에만 (상현·소현)
-  - `weekday_refs`: 요일이 다른 표(수강료 표 등)의 같은 부서 행에만 있을 때 그 행을 인용. 요일로 시작하는 칸만 인정해 "개월"의 월은 안 됨 (성서)
-- 용인 학교 다수는 맞춤형이 "예시" 강좌명이거나 시각 없이 "정규 수업 후 80분"뿐 → `example_course_names`·`missing_class_times` 이슈로 남김(신리·정평·소현). 교시 규칙만 있는 곳은 `period_slots`(빌더가 아직 안 풀어 확인 항목으로 나옴)
-- 학생 명단 xlsx(광명남 `2026운영현황`)·담임/강사 실명은 전사하지 않음
-
-### 2026-10-29: 경기 우선 방과후 추출 18→40/83 (커밋만, 운영 DB 변경 없음)
-
-- 배움·돌봄 개편·SQL 35/39 기록·경기 추출·셔틀 감사를 머지·배포(`ad2e90b`), 이어 추출 22개교(batch11~32, 학교 1곳=배치 1개, 학교마다 커밋)
-- 진척: `docs/research/pivot/PIVOT_GYEONGGI_PRIORITY_SESSION_CHECKLIST.md`(갱신기가 자동 작성). 다음은 남은 43곳, 목록은 `pivot_gyeonggi_priority_session_progress_20261029.json`
-- 로컬 도구(`etl/runtime/pivot_gyeonggi_priority_20261023/`, git 제외): `batch_lib.py`(배치·검수 JSON 쓰기), `build_batchNN.py`(학교별),
-  `render_pdf_page.mjs`(pdf.js+Playwright로 PDF 쪽 PNG — 깨진 PDF 표는 이것으로 눈 대조 후 `table_visual_checked`), 각 학교 뒤 `python -m etl.runtime.pivot_gyeonggi_priority_20261023.refresh_checkpoint --date YYYYMMDD`
-- 규칙 수정(커밋됨): `afterschool_slots.merge_blocks`는 같은 학년·과정, 50분 이하 블록만 합친다(안현 컴퓨터 B/C, 광명광성 큐브, 안서 2개 창이 잘못 합쳐졌었음). 검사기는 머리글 학년도 None일 때 바로 아래 "2026학년도" 제목 줄을 인정(인덕원·매봉)
-- 주의: 원문에 맞춤형 시간표가 아예 없는 학교는 시간대 빌더가 알 수 없어 "통과후보"로 셀 수 있다. 학기·시정 불확실(1학기 표만, 2025 시정 기준)은 `conflicts`로 올려 확인 목록에 나오게 했다
-
-### 2026-10-28: 시간표 smoke 정리 · 4번째 학교 안내 유지 · activeSchoolId 폐기 (운영 `release` = `8f207c4`)
-
-- `4dd7de5`(학교 선택 통합)·10-20 기본 가정·10-23 시간표 개편 뒤 실패하던 `my-ux`·`my-schedule`·`my-morning-calendar`를
-  새 규칙에 맞춤(`97b385e`). 학교 칩 버튼에 `data-school-id` 복원, 학교 상세 저장 버튼 이름은 이제 `내 학교에 추가`(아파트는 `MY에 저장` 그대로)
-- `my-ux` 후반부는 '내 시간표 지정' 대신 학교별 초안, 학교 제거 확인 창(취소 시 유지 / 저장 실패 시 둘 다 원상복구 / 칩 ×로 삭제),
-  4번째 학교 거절을 검사한다
-- **버그 수정**: 내 학교 3곳일 때 다른 학교 링크로 들어오면 첫 학교로 넘어가며 '최대 3곳' 안내가 떠야 하는데, 그 학교에 초안이 있으면
-  `TimetablePage`가 편집 배치로 바뀌며 `SchoolSelection`이 다시 만들어져 안내가 사라졌다. 안내 상태를 `TimetablePage`가 들게 함
-  (`message`/`onMessage` 선택 prop, 배움·돌봄 쪽 사용은 그대로)
-- `activeSchoolId` 폐기(`8f207c4`): 화면에선 없어졌는데 저장값이 남아 MY 요약 순서·지도 학원 시간표 넣기 기본 학교를 몰래 정했다.
-  이제 최근 수정순. 옛 저장값은 읽을 때 무시하고 다음 저장 때 빠진다. smoke 고정값의 `activeSchoolId:null`은 무해해서 둠
-- 검증: 단위 112개, lint·typecheck·build, 로컬 smoke 13종 전부 통과(`my-ux` 38·`my-schedule` 69·`my-morning-calendar` 8·`my-calendar-edit` 30·
-  `morning-care` 36·`p1-ux` 60 등, 위 배움·돌봄 미커밋 작업이 섞인 작업 트리 기준). 운영 public smoke 통과(`97b385e`·`8f207c4` 배포 후 각각)
-- 주의: agent-browser `open`은 replaceState로 바뀐 같은 경로(`/timetable?school=…`)에서 쿼리만 다른 주소로 이동하지 않을 때가 있어
-  smoke에서는 `location.href`로 옮긴다. `morning-care-smoke`는 `docs/research/track-b-morning-care/*.png`를 덮어쓰니 돌린 뒤 `git checkout`
-- 10-28 다른 세션이 이력을 다시 쓰며 커밋 하나(`ba8dde4`)가 빠졌다가 `97b385e`에 다시 담겼다. push 전에 `git log`로 내 커밋이 남았는지 확인
-
-### 2026-10-24: 배움·돌봄 메뉴명과 학교동네 문구 (미커밋·미배포)
-
-- GNB `앞마당` → `배움·돌봄`. 페이지 제목은 `우리 아이의 학교동네`, 화면 헤드라인은 `필요한 수업과 돌봄을 찾아보세요`,
-  설명은 `우리 학교 주변 프로그램을 찾고, 원하는 활동이 없다면 직접 요청해 보세요.`로 반영
-- 브라우저 타이틀과 시간표에서 이어지는 안내, 기획 문서와 public smoke 기대 문구도 함께 갱신. `/frontyard` 경로와 `frontyard` 내부 식별자는 유지
-- lint·typecheck·build 통과, 단위 테스트 111개 통과. 통합 브라우저에서 문구 확인
-- public smoke는 `agent-browser`의 연결 timeout으로 브라우저 검사 구간에서 중단(앞선 HTTP·정적 자산 점검은 통과)
-
-### 2026-10-24: 네이버 수집 저조 SEO 감사 Phase 1 (읽기 전용, 미커밋 문서만)
-
-- `elementary-v2/docs/seo/`: 사이트맵·렌더링·내부 링크·로봇 접근 감사 4편 + `seo-action-plan.md`(초안, 미적용) + `evidence/` 재현 스크립트.
-  `seo-review.md`는 Codex 검수 몫으로 비워 둠
-- 결론: 수집을 **막는** 결함 없음(사이트맵 52,292건·canonical·SSR·방화벽 정상). 확인된 결함은 홈이 링크하는 빈 셸(`/map`·`/learn`·`/timetable`),
-  soft 404, 상세 첫 응답 0.8~2.9 s(98% MISS), 가이드↔데이터 링크 단절, 인덱스 lastmod=빌드일, 0곳 학교 1,613, 고아 단지 1,208
-- Vercel 요청 기록은 UA 없음·보존 약 1시간이라 Yeti 방문 이력 복원 불가 → 수정안 P0-3(로봇 집계)이 SQL 승인 대기
-- 같은 날 수정 9건 커밋 `8a06f11`~`e7800bd`(목록은 `docs/seo/seo-action-plan.md` 6절). 다른 세션의 push로 origin/master에 올라갔고,
-  운영에는 홈 시·도 링크(`8a06f11`)만 release `c4bae23`에 섞여 나감. 나머지는 release 대기, SQL 37은 사용자 실행 대기
-- 2026-10-25 20:44 release `82657aa`로 전부 운영 반영. 10-27 확인: 운영 public smoke 69 PASS(없는 주소 404·`/learn` 정적 포함),
-  학교 JSON-LD·가이드 링크·구로남초 406곳·인덱스 lastmod(10-15/10-06) 정상. SQL 37은 아직 미적용(테이블 404)
-- 로컬 미push 커밋 `8d29d29`(홈 지역 링크 제거, 다른 세션)가 P1-1을 되돌린다 — push 전에 의도 확인 필요
-- 다음: 사용자가 서치어드바이저에서 10/6·10/9 수집 URL 확인(P0-1), RSS·수집 요청(P0-2), Codex 검수
-
-### 2026-10-23: Supabase 무료 한도 — DB 491.97/500 MB, 로그 1.51/1 GB (master `8b53857`)
-
-- 실측(사용자 SQL): 상위는 academy_address_serving 73 MB, apartment_transaction_raw 60 MB, school_apartment_serving 58 MB(인덱스 34),
-  실거래가 묶음 합계 약 145 MB. dead rows는 거의 0이라 bloat 가설은 틀림
-- 실거래가 `raw_payload`(원문 JSON, 행의 62%)는 Storage `etl-source-snapshots/molit-apartment-trade/`에 280개 전부 있음 → 적재기가
-  `{}`를 보내게 수정. **`sql/34_reclaim_database_space.sql`은 사용자 실행 대기**(1부 한 번, 2부 VACUUM FULL 한 줄씩, 새벽)
-- **월간 실거래가 일정을 켜면 월 약 40 MB 증가**(2개월에 raw+link 85 MB) — 켜기 전 34 적용·요금제 판단
-- 로그 10/12 약 600 MB 급증(실거래가 작업 병합일), 과금은 2027 초부터. 방문마다 testSupabaseConnection 요청 1회 — 제거 후보
-- 이 push에 다른 세션의 로컬 커밋 `2f1973a`(파일럿 ETL 읽기 전용 preflight)가 함께 올라감 — 화면 영향 없음
-
-### 2026-10-21: 학교앞마당·메뉴 4개·홈 첫 문장 (worktree `../.worktrees/frontyard`, 브랜치 `claude/frontyard`, 미커밋·미배포)
-
-- 기획 `elementary-v2/pivot_2`, 결정·계획 `docs/product/FRONTYARD_PLAN.md`(그 브랜치). 사용자 결정: 공개 게시판, 말머리
-  [모집해요]/[찾아요]/[어디초 소식], 방학·특강 제외, 익명 로그인 먼저, 별도 스테이징 없음
-- GNB: 홈 탭 → 상단 로고, MY → 상단 아이콘. 탭 = 학교 찾기·입학 준비·시간표·앞마당(앞마당은 `VITE_FRONTYARD_ENABLED=1` 또는 dev).
-  `/learn`은 입학 준비 탭 아래. **public-smoke의 탭 검사를 바꿨으니 운영 smoke는 배포된 판으로 돌릴 것**
-- 홈 h1 "우리 아이의 초등학교 생활, 미리 그려 보세요"(`content/home.json`), 문서 제목은 그대로
-- SQL `33_create_frontyard.sql` 초안(운영 미적용, pglast 문법 검사만). 적용 전 익명 로그인·Turnstile·처리방침·익명 세션 공개 읽기 확인
-- 검증: typecheck·lint·build·test:unit 101 통과, Playwright(시스템 Chrome)로 390/1280px 확인. agent-browser는 이 PC에서 응답 없음
-- 10-22 추가: 학원 마커 `institutions`에 기관 키 `key`(neis:/dojo:, 10/7 원천 134,579곳 전부), 시간표 학원 선택이 `providerKey` 저장,
-  시간표 빈칸 → 앞마당 두 버튼, 앞마당 대상 학교 = 시간표 초안 학교. **결함 수정**: `merge_sports_dojo_markers.parse_array`가
-  학원 `subjects`를 버려 10/6 갱신 산출물에 과목 0건(운영은 이후 백필로 복구된 듯). 고치지 않으면 11/2 실행이 과목을 다시 지운다 —
-  → **master `a15177d`로 커밋·push 완료(2026-10-22)**, 11/2 실행에 포함. 브랜치는 그 위로 옮김
-- 10-22 추가 2: 지도 학원 상세에 학원별 '내 시간표에 추가'(요일·시간 직접 입력, 예정/다니는 중), 기존 일정 선택 시
-  '이 시간에 다른 프로그램 알아보기'. 단위 103·build 통과, Playwright로 두 흐름 확인. 화면 변경은 브랜치에 미커밋
-- 10-23: 사용자가 `b2b31ce`(앞마당 1차본)를 master·release에 반영함. 그 위에 관심 학원 저장(Case C, 지도 '관심 학원 저장' + MY 목록,
-  `utils/savedAcademies.ts`)을 `60ad9e7`로 master push. **release push는 자동 모드 권한 판단에 막혀 미배포** — 사용자가
-  → 사용자가 권한 규칙 추가 후 **release `60ad9e7` 배포 완료(10-23)**. 운영 확인: 6개 경로 200, robots `Disallow: /frontyard`,
-  홈 h1 새 문구, 탭 /map /guide /timetable(앞마당 플래그 꺼짐), 로고·MY, 지도 검색창 옆 로고·MY, MY 관심 학원, /learn→입학 준비,
-  /frontyard 열림·예시 글 없음, 페이지 오류 0(Playwright). 전체 public smoke는 미실행(이 PC agent-browser 불가).
-  앞마당 메뉴(VITE_FRONTYARD_ENABLED)·익명 로그인·Turnstile·SQL 33·처리방침 개정은 미적용
-- 10-23~24: **시간표 탭 UX 개편 — master `2b65af6`, 10-24 release `8e58b25`로 운영 배포**(같이 나간 것: `bedf81d` 처리방침 앞마당 개정,
-  `8e58b25` 다른 세션의 ETL 사전 점검 워크플로). 운영 JS에 새 문구 확인, 운영 public smoke 통과. 초안이 있으면 시간표가 첫 화면(제목·학교 칩·'다른 학교'만),
-  안내 문단은 '안내 · 초안 관리' 접기로. 카드 탭 → 편집 시트(`EntryEditSheet.tsx`): 돌봄·방과후 포함 시작/종료·하교 직후,
-  적용 요일 칩, 참여 상태, 요일에서 빼기. 요일별 시각은 일정을 쪼개지 않고 `ScheduleEntry.dayTimes`(`utils/schedule/dayTimes.ts`,
-  엔진·dayTimeline·morningCalendar가 `entryForDay`로 풀어 씀), 강좌는 `offeredWeekdays` 밖 요일 금지. 하루 보기 아래
-  ~~하루 통째 복사~~ → **10-24 사용자 요청으로 항목별로 변경**: 돌봄·방과후 강좌·학원을 고른 바로 아래 '다른 요일에도 넣기' 칩
-  (`RepeatDays.tsx`, `repeatEntry`). 학원·직접 입력은 저장 뒤 카드가 '넣었어요 + 칩 + 완료'로 남는다.
-  10-24 학교 상세 하루 카드: 아침돌봄 상자 → 등교시각·아침돌봄 한 줄(출처는 title), 돌봄 안내·출처 줄 모바일 1줄(출처는 탭하면 펼침,
-  DOM에 남아 SEO 영향 없음 — 크롤러 HTML은 api/detail.js). **주의: 10-23 HEAD 비교용 임시 worktree 정리 중 junction을 따라
-  `node_modules`가 일부 지워져 `npm ci`로 복구함**(lockfile 변경 없음). 단위 111·tsc·lint(src)·build·public smoke 통과.
-  HEAD에서도 실패하던 smoke(변경 전부터): my-inline-selection, my-calendar-appearance, my-morning-calendar 끝부분, my-ux, my-schedule.
-  `npm run lint`는 `etl/runtime/parked/*.tsx` 파싱 오류 1건(로컬 산출물, src는 깨끗)
-
-### 2026-10-20: 어디초 2.0 개편 컨셉 잠정 합의 (`d1c9278`, 운영 변경 없음)
-
-- 컨셉: `elementary-v2/docs/product/PIVOT_V2_CONCEPT.md` — A(학기 중 돌봄 공백)→B(방학 설계)→E(수요 기반 학원 연결, 가설).
-  범위는 전국이 아니라 학군지 10곳 + 위례(298개교, 3단계). 운영 파일럿은 분당·판교와 위례.
-- **파일럿 데이터 작업은 다른 팀원 ETL과 분리**: 브랜치 `claude/pivot-pilot-etl`(worktree `../.worktrees/pivot-pilot-etl`),
-  규칙·순서는 그 브랜치의 `docs/operations/PIVOT_PILOT_ETL.md`. 매니페스트 `etl/build_pivot_pilot_manifest.py`(anon 읽기만).
-  이 작업 트리의 아침돌봄·gap37·방과후 v3 미커밋 파일은 건드리지 않는다.
-- 운영 DB 실측(10-20): 하교 예상 1,235개교, 돌봄 시간 2,014, 방과후 561(서울만). 파일럿 298곳 중 하교 예상 148, 방과후 162.
-- 다음: 운영 파일럿 50곳의 방과후 44곳·하교 빈 곳 채우기(적재는 사용자 확인 뒤), 수요 등록 개인정보 설계 결정.
-
-### 2026-10-20: 시간표 카드·입력 메뉴 정리 (운영 `e529774`)
-
-- 강좌 분류·요일·대상을 한 줄로 합치고 하단 선택·직접 입력 메뉴를 상단 일정 추가로 통합. 선택한 일정 관리는 유지.
-- 운영 public smoke와 실제 학교 시간표의 상단 입력·새로고침 복원 검증 통과.
-- 기록: `elementary-v2/docs/operations/RELEASE_TIMETABLE_COMPACT_20261020.md`.
-
-### 2026-10-19: 시간표 설계 독립 화면 (운영 `e13633b`)
-
-- `/timetable?school=학교ID`를 학습 준비 메뉴 안에 추가. 홈 예시 아래 배너·예시 카드, 학습 준비, 학교 상세에서 진입한다.
-- 관심 학교 저장 없이 검색 → 운영 자료 확인 → 초안 만들기. MY에는 같은 저장소의 초안 요약과 편집 링크를 둔다.
-- 구현·검증 기록: `elementary-v2/docs/operations/TIMETABLE_BUILDER_20261019.md`.
-- `e13633b`를 master·release에 push해 운영 배포 완료. 운영 public smoke 및 홈 배너 → 검색 → 초안 → MY → 편집 재진입 검증 통과.
-- 배포 중 추가된 다른 세션의 `a054193`은 이번 운영 배포에 포함하지 않았다.
-
-### 2026-10-18: 파비콘·로고 교체 (`560faaf`, 운영 `release` = `560faaf`)
-
-- 옛 파란 핀 `favicon.svg`를 지우고 10/16 새 로고(`docs/assets/logo-source.png`, 릴스 `brand/logo.png`와 같은 그림)로 바꿨다.
-  `scripts/build-icons.py`(Pillow)가 `public/`에 `favicon.ico`(16·32·48, 투명), `icon-192.png`, `apple-touch-icon.png`(흰 바탕), `logo.png`(512, JSON-LD `Organization.logo`)를 만든다.
-  원본 타일이 흰 바탕과 거의 같은 색이라 작은 크기에서는 타일을 빼고 핀+지도만 오려 냈다.
-- 운영 확인: 세 파일 이미지로 서빙, `browser:smoke:public -- https://wherecho.co.kr` 통과. `/favicon.svg`는 이제 SPA 셸(HTML)로 떨어진다.
-  구글 검색결과의 아이콘은 재수집 후 바뀐다(며칠~몇 주).
-
-### 2026-10-17: 릴스 녹화 중 찾은 버그 2건 (`6eb2862`, 운영 `release` = `6eb2862`)
-
-- 배포 검증(운영): `/admin/etl` 200, public smoke 66 PASS, 원효초 배정 아파트 13개 유지(3경로), 원효산호 "세대당 주차 확인 중"·
-  프리렌더에서 주차 줄 생략(은마는 0.683 그대로). **세대수는 운영에 아직 9** — 다음 월간 ETL 업로드 때 554로 바뀜.
-
-- 배정 아파트 0개: 아파트 검색 → 같은 배정 학교 마커를 누르면 학교 상세가 "배정 아파트 0개 단지". `SET_SELECTED_SCHOOL`이
-  목록을 비우는데 학교 ID가 같아 `SchoolDetail`이 다시 불러오지 않았음. `AppContext.tsx`에서 같은 학교 재선택 시 목록 유지,
-  `OPEN_SEARCHED_APARTMENT`도 같은 학교면 목록을 1개로 줄이지 않게. 브라우저 3경로 확인(원효초 13개 유지, 대현초 23개로 전환).
-- 세대당 주차 57.1대(원효산호): K-apt 2026-10-02 세대수 9 vs 기본 554. 화면·프리렌더는 5대 초과를 숨김(`src/utils/parking.ts`,
-  `api/detail.js`, "세대당 주차 확인 중"). ETL `build_complex_master`는 단일 단지에서 K-apt가 기본의 절반 미만이고 0이거나
-  주차비가 5 초과일 때 기본 세대수 유지(`apartment_base_kapt_outlier`). 로컬 수도권 기준 19곳 변경, 다른 행 변화 없음.
-- 검증: lint·typecheck·build·public smoke(62 PASS)·`test:unit` 84·`etl.tests.test_complex_household_source` 7.
-- 이식성 기준선 재잠금 완료(`portable_readonly_baseline.json`, 묶음 기준 17곳 값 변경·행 수 변화 없음). **주의:** 이 PC에서
-  읽기 전용 빌드를 돌리면 `etl/runtime/apartment_supplement/apartment_base_supplement.csv`(묶음 밖, 10-07부터 읽힘) 때문에
-  약 360행이 늘어 기준선과 항상 어긋남 — 로컬 재잠금 때는 그 파일을 잠시 치웠다가 되돌릴 것. CI는 영향 없음.
-  빌드가 덮어쓴 `local_outputs_20260320`은 백업으로 원상 복구했고, 백업
-  `etl/runtime/backup-local_outputs_20260320-before-relock-20261017`(1.3GB)은 지워도 됨.
-- 운영 데이터는 다음 월간 ETL 업로드 때 반영. 상세는 `OPERATION_PLAN.md` Update Log 2026-10-17.
-
-### 2026-10-15 (2): SEO·콘텐츠 시즌 대응과 홈 두 줄 (운영 `release` = `00b9021`)
-
-- 추가(`00b9021`): 홈 예시 아파트 카드에 교육환경(400m·800m 학원 수, 분야 상위 4개), 휴대폰은 가로 스크롤 없이 쌓기.
-  사립초 가이드에 경기 3곳·인천 5곳 일정(사용자 확인값). **경기 날짜는 요일 표기가 2025년 달력과 맞아 작년 일정일 수 있음** — 학교 요강으로 재확인 필요.
-
-- 운영 반영(`release`=`11f9199`): 새 가이드 `/guide/morning-care`(초1 등교·하교 중앙값 서울 223·경기 995개교,
-  서울 아침돌봄 411/606곳, 키움센터 아침돌봄), `/guide/private-national` 2027학년도 개편(서울 사립초 11/6~,
-  교대부초 10/26~ — 뉴스1 보도 기준, **공식 발표 나오면 날짜 확정 필요**), FAQ 7문항, 가이드 `Article`·FAQ
-  `FAQPage` JSON-LD, pages 사이트맵 `lastmod`, 학교 프리렌더에 1학년 요일별 하교·아침돌봄·오후 돌봄 종료.
-- 검색엔진 작업 목록: `elementary-v2/docs/operations/SEARCH_ENGINE_GUIDE_20261015.md` (배포 후 서치콘솔·
-  서치어드바이저에서 사이트맵 재제출·URL 수집 요청 — **사용자가 할 일**).
-- 홈 두 줄(`5de9bb3`, master만): '지금 챙길 것'(`content/home-shelves.json` 날짜 창, D-day/NEW)과
-  '어디초로 볼 수 있는 것'(빌드 시 `scripts/home-showcase.mjs`가 서울목동초 B000002209 실데이터를
-  `dist/home-showcase.json`으로). 개발 서버에는 그 파일이 없어 예시 줄이 안 보이는 게 정상.
-  `vite preview`는 Vercel rewrite가 없어 public smoke의 `/map` 검사가 실패한다 — 스모크는 dev 서버로.
-- 아침돌봄 Track B(다른 팀원, 미커밋)와 겹치지 않게 가이드 문구만 썼다. 학교별 아침돌봄 상태값이 확정되면 가이드·프리렌더 문구를 맞춘다.
-
-### 2026-10-15: 방과후 누락 보완 · 종류별 등급 · 학교 안내 학년 (`e25587c`·`f8e3638`, 운영 `f8e3638`)
-
-- 증상: 서초초 방과후 0개, 역삼초 맞춤형 0개. 원인은 발췌(`llm_extraction_inputs.afterschool_excerpt`)가
-  **시각 있는 줄만** 남겨 '화(주 80분)'식 목록·시간 없는 맞춤형 표가 추출에 안 들어간 것.
-- 방과후 행 없는 36곳 중 23곳을 `--wide` 발췌(`inputs_afterschool_wide_noas/`)로 소네트 재추출 →
-  `outputs_afterschool/seoul_noas/`(약 31만 토큰). 14곳에 방과후 추가, 9곳은 원문에도 없음.
-  11곳은 이미 `seoul_retry`로 wide 재추출됐고 2곳은 wide여도 같아 제외.
-- 적재기: `--afterschool-outputs`는 **방과후 행만** 바꾼다(재추출이 맞춤형을 더 못 읽은 학교가 있었다: 잠신).
-  등급은 방과후·맞춤형 **따로 매겨 나은 쪽**(시간 없는 방과후 목록이 맞춤형 막대를 숨기던 문제).
-  학년 없는 방과후 반에 운영계획의 '초1~6학년 대상의 방과후교실' 문장이 있으면 `grades_raw='학교 안내 1~6학년'`
-  (grade1은 unknown 그대로, 97곳 1,836반). 이 판정은 로컬 `etl/runtime/audit2-documents/text/`를 읽는다.
-- 운영 적재 명령(재현):
-  `python -m etl.load_school_afterschool --outputs <O>/seoul --outputs <O>/seoul_retry --afterschool-outputs <O>/seoul_noas --custom-outputs etl/runtime/llm_extraction/outputs_custom/seoul --apply`
-  (`<O>`=`etl/runtime/llm_extraction/outputs_afterschool`). 결과 536곳, 18,438반, A 449 / B 19 / C 68.
-- 화면: 요일만 있고 시간 없는 방과후는 그 요일 막대에 '방과후 N · 시간 미기재', 축 아래 설명. MY 선택 안내는 반 기준.
-- **남은 일**: ① 맞춤형 행 없는 269곳(원문에 '맞춤형교실' 249곳) — `--custom` 재추출을 맞춤형 0개 학교로 넓히고
-  적재기가 맞춤형을 새로 추가할 수 있게 해야 함(토큰 큼). ② 요일만 있는 47곳 추정 막대는 보류(사용자: 80분 일괄 부적절,
-  시작 시각 추정이 A/B반 때문에 위험). ③ 작업 트리의 MY 시간표 개편(다른 세션)과 `MyAfterschoolPicker.tsx`: 커밋본에는
-  같은 안내 수정만 HEAD 기준으로 따로 넣었다(작업 트리 파일은 그 개편 위에 같은 수정 포함).
-
-### 2026-10-10~11: 직접 할 수 있는 개편 작업 마무리 · 학교 홈페이지 링크 · 인스타 연동 1단계 (운영 `c8da548`)
-
-- 시간표 엔진 S03(일회 취소·보강, 부모 수정 보존, 새 판은 제안), P1-03 옛 주소 → `/learn`, P2-02 재사용 목록,
-  P2-07 편집 검수(불안 표현 빌드 차단), A-01·A-02 이벤트 매핑과 완독 이벤트, P0-04~08 정리
-- **B05-P**: smoke 성능 예산 검사가 빈 배열로 항상 통과하던 문제 수정(측정 직후 Node로 수집, 표본 없으면 실패)
-- 학교 상세에 학교 홈페이지 링크(6,265/6,302곳). **서울 `sen.es.kr` robots.txt가 첫 화면 밖을 막아** 공지·가정통신문은
-  가져오지 않고 링크만 — 개편 계획 §1.2 결정 수정
-- 인스타: 해시태그 피드는 안 함(API 30개/7일, 동명 학교, 아동 사생활). `/admin/social` + `SocialLinks` 카드(학습·가이드·학교,
-  영구 키로 연결), `sql/27_create_social_links.sql` **운영 적용 대기** — 적용 전엔 카드 없음(fail-open)
-- **로컬 dev 서버 주의**: 이 PC에서 vite dev 서버가 한동안 돌면(특히 HMR 뒤) 응답이 멈춘다. smoke 직전에 vite 프로세스를 모두
-  정리하고 새로 띄워 바로 돌릴 것(`--host 127.0.0.1 --port 3000 --strictPort --open false`). `vite preview`는 Vercel rewrite가
-  없어 smoke에 못 쓴다. agent-browser 기본 세션이 os error 10060이면 smoke처럼 `--namespace` 세션을 쓴다
-- 다음: 사용자 — SQL 27 적용, 학습 seed 소스 입력, 인스타 계정 개설 후 첫 연결
-
-### 2026-10-10: 시·도 클릭 시 시·군·구 목록 시트 · 지도 시트의 지역 허브 링크 (`417206a`, 운영 `a269d25`)
-
-- 줌 아웃 시·도 마커 클릭 → 줌 11 이동 + 하단 시트에 시·군·구 목록(1학년 합계, 80+/80 미만 학교 수).
-  `DistrictNeighborhoodSheet`에 `district`를 안 주면 시·도 단계(`historyKey` `region`). 행 클릭은 기존 구 시트로,
-  뒤로 가기는 구 → 시·도 목록 → 원래 시점. 줌 10 이하로 나가면 해제, 13 이상에선 숨김
-- 시·도·구 시트 아래 "○○ 초등학교 전체 비교" 링크 → 지역 허브(`/area/대구`, `/area/서울/강남구`). 내부 링크 보강용.
-  `App` → `MapContainer` → `MarkerManager`로 `navigate`를 내려 앱 안에서 연다
-- 검증: typecheck·lint·build, 운영 public smoke PASS 107건(시·도 시트·허브 링크 검사 추가), 운영에서 허브 링크 → `/area/대전` → 뒤로 가기로 시트 복귀 확인
-
-### 2026-10-10: 구·동 시트 닫기 · 광역시 학교 이름의 도시 접두 생략 (`47e7aaf`·`e3c0698`, 운영 `ee90595`)
-
-- 지도는 다른 메뉴로 가도 내려가지 않아 구·동 시트가 남았다. `MapScreenContext`(`panelSlot.ts`)로 지도 화면일 때만 연다.
-- `src/utils/schoolName.ts`의 `displaySchoolName`이 서울·인천·대구·대전·광주 공립초의 도시 접두를 **화면에서만** 뗀다. 데이터·ETL·공개 주소·문서 제목·검색은 공식 이름 그대로. 예외(한 글자 남음, 인천삼산초처럼 떼면 겹침, 국립·사립, 다른 시·도)는 파일 주석과 `schoolName.test.ts`에 있다. 새 학교가 들어와 떼면 겹치는 이름이 생기면 `KEEP_PREFIX`에 넣는다.
-- 공개 스모크의 학교 이름 확인은 화면 표기(대현초등학교, 방현초등학교)로 바뀌었다. 운영 스모크 통과.
-
-### 2026-10-09: P1-04~06 입학 준비 정리 · P2 학습 준비 콘텐츠 틀 (커밋 `1b15dc7`~`64ab799`, **미배포**)
-
-- P1-04: 가이드·FAQ에 적용 범위 칩(front matter `rule`·`basisYear` 필수)과 `.go.kr` 출처 '공식' 표시
-- P1-05: 가이드 3편 `admission-timeline`·`delay-or-early-entry`·`first-weeks`(경기도교육청 학적 길라잡이 원문 대조)
-- P1-06: 홈 '학습 준비' 카드, 학교 하교 카드 → 입학 첫 주 가이드
-- P2: `src/content/learning/*.md` + `learning-taxonomy.json`, `/learn/{slug}`, 빌드 검증(B11 규칙). **published만 운영에
-  나간다** — `npm run dev`만 `--preview`로 초안을 보인다(typecheck/build 뒤 dev 화면에서 초안이 사라지면 `node scripts/build-content.mjs --preview`).
-  seed 3편(한글·수학·영어)은 `status: review`, 사용자 검수 대기. 부모 반응은 사람이 수집(네이버 robots.txt)
-- 다음: 사용자 결정 — release 여부, seed 검수 후 발행, 환경·습관·준비물 seed의 공식 출처
-
-### 2026-10-08: 시간표 엔진 S01·S02 (커밋 — 화면 미연결) · 하단 메뉴 접근성 (운영 `db3bd88`)
-
-- 접근성: 활성 탭 글자 #b8452f(5.3:1), `:focus-visible` 테두리, smoke에 `/learn` 3검사 → 운영 smoke PASS 104건
-- 엔진: `src/utils/schedule/{types,fromSchoolData,engine}.ts`. 입력은 SQL 26의 하교·돌봄, 출력은 요일별 배치·미배치·
-  후보·겹침·이동 확인·공백(confirmed/estimated/uncertain). 하교 모름이면 공백 분을 내지 않는다
-- 테스트: `npm run test:unit`(Node 내장 runner, 타입 제거 실행) 16개 PASS. 새 script라 루트 CLAUDE.md·AGENTS.md도 고침
-- 다음: S06 MY 시간표 화면은 **로그인 준비 후**(사용자 결정 2026-10-08, 기기 저장 선행 안 함). 그 전에 할 수 있는 것: S03 일회 취소·보강
-
-### 2026-10-08: 5개 메뉴 — 학습 준비(`/learn`) 추가 (`b6376f2`, 운영 `129f87c`)
-
-- 사용자 결정: GNB **홈 / 학교 찾기 / 입학 준비 / 학습 준비 / MY**. 홈은 잠시 보류했다가 유지로 확정.
-  학습 준비는 가이드 '준비 중' + 시간표는 학교 상세 카드로 연결, 콘텐츠 전 배포도 사용자 결정
-- 계획: `docs/product/PLATFORM_EXPANSION_PLAN.md` §1(메뉴별 로그인 행동, MY 시간 관리 §1.1, 내 학교 소식 §1.2,
-  남은 결정 §1.3). 4분류 중 환경·습관·배움 → 학습 준비, 선택·준비물 → 입학 준비
-- 검증: lint·typecheck·build, Python 39개, 로컬 smoke(3000) 통과 → 운영 smoke PASS 101건, `/learn` 5탭·활성 확인
-- 커밋 제외: `etl/academy_geocode_profile.json`(로컬 학원 ETL 실행 산출물)
-
-### 2026-10-08: 지도 빠른 필터 배열·안드로이드 뒤로 가기로 시트 닫기 (`e27c142`, 운영 `129f87c`)
-
-- 빠른 필터(`QuickFilterBar.tsx`, `index.css`): 전체 필터 버튼을 스크롤 밖에 고정, 학교·아파트 칩을
-  묶음(`.quick-filter-group`)으로 감쌈. 모바일은 이름표(`.quick-filter-scope`)에 흰 바탕을 깔아 지도 위에서
-  읽히게, 데스크톱 패널은 두 묶음을 한 줄씩 쌓아 칩 정렬. 이전에는 데스크톱에서 '학생 수'가 아파트 줄로 넘어갔다.
-- 뒤로 가기: 구·동 목록 시트와 필터 서랍은 주소가 없어 뒤로 가기가 아래 화면만 넘기고 시트는 남았다.
-  `src/components/ui/useCloseOnBack.ts`가 열릴 때 같은 주소로 기록을 쌓고(`history.state.sheets`) 빠지면 닫는다.
-  `BottomSheet`의 `historyKey`(구 `district`, 동 `neighborhood`)와 `Sidebar`(`filter`)가 쓴다. 학교·아파트
-  상세는 주소가 기록을 맡으므로 쓰지 않는다. `App.tsx`는 주소가 같은 popstate에서 복원을 건너뛴다.
-- 상세 X 닫기: 전에는 X가 `/map`을 새로 쌓아, 다음 뒤로 가기가 방금 닫은 상세를 다시 열었다. 이제 지도에서
-  연 상세 기록은 `history.state.detailDepth`(지도 위 상세 겹수)를 남기고, X는 `history.go(-depth)`로 돌아간다.
-  링크·홈 검색·MY로 연 상세(겹수 0)는 주소만 `/map`으로 바꿔 쓴다. `SchoolDetail`의 close는 아파트 선택을
-  먼저 비우지 않는다(비우면 학교 주소가 새로 쌓인다). 같은 상세의 다른 철자(이름 바뀐 옛 링크)는 `syncPath`가
-  쌓지 않고 바꿔 쓴다 — 주석은 그렇게 말했지만 코드는 쌓고 있었다. `syncPath`에 `state` 인자 추가.
-- 검증: lint·typecheck·build 통과, public smoke 전체 통과(dev 3000). 브라우저(390px)에서 구→동→뒤로→구→뒤로→닫힘,
-  동→학교→뒤로→동, 동→학교→X→동(이후 뒤로는 구), 학교→아파트→X→동, 옛 이름 링크→정규 주소로 교체(기록 그대로)→
-  X→`/map` 교체, 필터 서랍 뒤로 닫기 확인. 실기기 안드로이드 확인은 아직.
-- 알려진 한계: 시트 기록으로 앞으로 가기를 하면 기록과 지도 상태가 어긋날 수 있다(닫힌 시트는 다시 열리지 않음).
-- `/learn` 작업과 나눠 커밋했다(`e27c142` → `b6376f2`). 운영 smoke 통과.
-
-### 2026-10-06~07: 개편 Audit 2 — 운영 기준선·NEIS·학교 문서 PoC (미커밋, 운영 변경 없음)
-
-- 체크 상태의 원본은 `OPERATION_PLAN.md` "Audit 2" 절. 근거 자료는 `docs/research/audit2/`,
-  계획은 `docs/product/PLATFORM_EXPANSION_{PLAN,AUDIT_20261005,AUDIT2_20261006}.md`
-- 완료: 스키마 기준선·정의 대조·읽기 역할 검증(B03), 운영 smoke(B05), 보호 fixture(B06), 60학교 PoC 분모(E01),
-  crosswalk 59/60(E02, 청산초 `B000006819` 실주소 상충 보류), NEIS 5학교 표본(E03, 절대시각 없음)
-- E04-b: 한솔·양영 학교 홈페이지 첨부 PDF 3 + 본문 이미지 1, 전부 2026학년도. 계획안≠기수별 가정통신문(가정통신문이 최종).
-  `DOCUMENT_ATTACHMENT_REVIEW_20261006.md`
-- E04-c1·c2: 중앙 출처는 **학교알리미**(교육청 통합저장소는 확인 안 됨). 2-가(4월) 교육과정 첨부 59/60, 15-라(5월) 방과후·돌봄 60/60.
-  판독은 로컬 추출 채택(`etl/school_document_text.py`, HWP는 `olefile` 필요) — 학교알리미 미리보기는 HWP 변환 실패·결과 1분 내 만료.
-  `python -m etl.audit_schoolinfo_daily_clock`: 시정표 탐지 35/60, 이미지 표 1, 미탐지 23(발췌본), 첨부 없음 1, 1학년 요일별 교시 수 14곳.
-  탐지 구간에 인접 표가 섞여 필드값은 미확정. 공시는 해당 학년도 4~5월이라 2027 입학 부모에게는 **전년도 기준선(estimated)**,
-  확정값은 기수별 가정통신문뿐. `SCHOOLINFO_SOURCE_SURVEY_20261006.md`
-- 신규 스크립트: `scripts/{collect-neis-poc,collect-school-document-pilot,probe-school-document-sources,probe-schoolinfo-disclosures,verify-protected-contract,audit-public-auth-settings}.mjs`,
-  `etl/{audit_neis_crosswalk,audit_product_definitions,audit_product_schema,audit_schoolinfo_daily_clock,school_document_text}.py`와 테스트들
-- 검증: `python -m unittest etl.tests.test_schoolinfo_daily_clock`(12개),
-  `node --test scripts/probe-schoolinfo-disclosures.test.mjs scripts/collect-school-document-pilot.test.mjs scripts/probe-school-document-sources.test.mjs`(17개) PASS
-- 원본 bytes·추출 텍스트는 `etl/runtime/audit2-documents/`(ignored). 이전 세션의 `elementary-v2/tmp/`는 사용자 요청으로 삭제함
-- 2026-10-07 계획 재정렬(사용자 결정): 비로그인 "초1 하루 예상" 카드를 로그인보다 먼저(11월), 파일럿 추출은 규칙+사람 검수,
-  로그인 공급자 설정은 사용자가 10월 중(`docs/operations/AUTH_PROVIDER_SETUP.md`). 순서는 OPERATION_PLAN "2026-10-07 재정렬" 표
-- A2-R01 완료: NEIS 1학년 요일별 교시 수(`scripts/collect-neis-grade1-periods.mjs`, `NEIS_GRADE1_PERIODS_20261007.md`) — 1학기 평시 50곳,
-  문서 표와 12/14 일치. 전남은 1학기 NEIS 자료 없음
-- E04-c2b 1차 검수: `etl/extract_school_day_periods.py`(규칙) → 원문 표 assistant 검수(`school_day_review_first_pass_20261007.json`) →
-  `python -m etl.build_grade1_dismissal_estimates` → 요일별 예상 하교 31/35 완성(`GRADE1_DISMISSAL_FIRST_PASS_20261007.md`).
-  사용자 확인 완료(화랑 월 NEIS 유지, 추론값은 `inferred` 추정 표시, 점심 앞 4교시 해석 확정, 빈 요일은 `school_check_needed`)
-- A2-R02 1차 검수: `python -m etl.audit_schoolinfo_care_plans` → 원문 검수(`care_review_first_pass_20261007.json`,
-  `CARE_HOURS_FIRST_PASS_20261007.md`). 1학년 돌봄 시간 44/60. 표시는 기본·연장 분리(사용자 결정 2026-10-08)
-- E04-c3: 전년도→다음 해 안정성 — NEIS 요일 패턴 45/48, 시정표 핵심 시각 25/26 동일(`YEAR_OVER_YEAR_STABILITY_20261008.md`)
-- A2-R03 설계 완료·**미적용**: `sql/26_create_school_day_estimates.sql`(공개 읽기 3테이블), `etl/load_school_day_estimates.py`
-  (dry-run 35/175/60, 위반 0), 영향 보고 `SCHOOL_DAY_CARD_CONTRACT_20261008.md`. **운영 적용은 사용자 승인 대기**
-- A2-R04 로컬 완료·**미배포**: `SchoolDayEstimateCard.tsx` + `getSchoolDayEstimate`(SQL 26 없으면 카드 숨김). 로컬 확인은
-  `python -m etl.load_school_day_estimates --write-fixture`(src/dev-fixtures/, git 제외, 운영 번들 미포함). typecheck·lint·build·로컬 smoke PASS
-- **2026-10-08 운영 반영**: SQL 26 적용(사용자)·anon 쓰기 42501 확인·적재 35/175/60 → master `df14027` → release `c27530f`,
-  운영 smoke PASS, 카드 확인. 이 커밋에 Audit 2 연구 자료·스크립트 포함. OPERATION_PLAN·이 파일의 Audit 2 기록은 다른 작업과 섞여 미커밋
-- **2026-10-08 파일럿 확대 운영 적재**(사용자 결정: 성남시 + 서울 강남·서초·송파): 새 148곳 1차 검수·사용자 확인 →
-  운영 106/530/208행, master `813aff3`. `etl/build_pilot_manifest.py`(NEIS 코드는 학교알리미 페이지 sdSchulCode, 59/59 검증).
-  적재기 REVIEW_SETS에 confirmed 표시, 미확인 세트는 --apply 거부. 메뉴는 홈 포함 5개 유지(사용자 결정), 로그인은 다른 팀원 담당
-- 다음 후보: 추가 지역 확대(규칙 정확도 57%라 원문 검수 필요 — 수백 곳 이상이면 E05 자동화 먼저), E04-d 2027 게시 감시(12~2월),
-  2월 1기 가정통신문으로 확정값 갱신
-
-### 2026-10-07: SEO — 허브·중복 정리·아파트 상세 보강 (커밋 `37a6bc2`, 운영 `release` `4e766df`)
-
-- 배경(Search Console 10/7): 발견됨-미색인 50,236 · 크롤링됨-미색인 350 · Google이 다른 표준 선택 82.
-  도메인 5일차라 "발견됨"은 대부분 시간 문제지만, 상세가 사이트맵으로만 닿고 아파트 페이지가 얇았다
-- **허브** `/area`, `/area/{시·도}`, `/area/{시·도}/{시·군·구}`(`api/detail.js` `type=area`, `AreaPage.tsx`,
-  첫 진입은 `utils/prerendered.ts`). 인근 학교 5곳 비교(프리렌더+`NearbySchools.tsx`), 빵부스러기·BreadcrumbList,
-  홈 '지역별 배정 현황' 카드, `sitemap-areas-1.xml`(270). 개발 서버에는 함수가 없어 허브가 "불러오지 못했습니다"가 정상
-- **동별 등록 단지 묶음**: 성호샤인힐즈(용인, 이현로29번길 72-1~72-41)처럼 건물마다 단지 ID·공개 키가 따로인 경우.
-  규칙 = 지역·시군구·단지명·도로명 주소 본번(`-부번` 제거)·배정 학교 집합이 같음, 대표 = 부번이 가장 낮은 동.
-  비대표 동은 canonical을 대표로(`data-for-key`, 앱 `setCanonical`이 유지), 사이트맵은 대표만(45,853→45,699, 154건).
-  같은 이름 1,053묶음 중 대부분은 **다른 단지**라 묶지 않고 제목에 도로명을 붙인다(`제일(이촌로)`).
-  규칙은 `api/detail.js`와 `scripts/build-seo-files.mjs` 두 곳 — 같이 바꿀 것. 학교 상세·허브 목록도 묶음을 한 줄로(N개 동 합계)
-- **아파트 프리렌더 보강**: 배정 학교 표(1학년·학급당·전교생, 학교 정규 주소로 링크), 같은 학교 배정 아파트 10곳,
-  주변 학원·교습소·체육도장 수, '배정 학교' 중복 행 제거
-- 메뉴 이름은 10-08에 '학교 찾기'·'입학 준비'로 확정해 별도 배포(`fcb0550`)
-- 검증: lint·typecheck·build(격리 worktree에서도), 로컬 dist+함수 서버에서 묶음 canonical 브라우저 유지·허브 렌더·smoke 프리렌더 검사 PASS.
-  로컬 smoke의 지도 단계는 네이버 지도 허용 호스트가 아니라 실패(환경 문제).
-  **배포 후 운영 smoke PASS 101건, 실패 0**(커밋된 smoke로 실행. 작업 트리의 smoke는 P1-01의 '입학 행정' 탭을 기대하므로 메뉴 변경 배포 전에는 탭 검사에서 멈춘다)
-- 다음: Search Console에 `sitemap.xml` 다시 제출(허브 사이트맵 포함), 2~4주 뒤 "발견됨"·"다른 표준" 추이 확인
-
-### 2026-10-07: 전체 ETL 점검과 후속 (2·3·4번)
-
-- 점검 결과(사용자 결정: 아파트 K-apt 반영은 11/2 정기 실행까지 기다림): K-apt는 8/21 자료에 멈춤, **단지 목록이
-  2024-10 기준 파일에 고정돼 신축이 못 들어옴**(K-apt 미사용 2,521곳, 2025+ 승인 583곳·약 40만 세대), 학구도 자동화
-  없음(2026-09-20판 10/02 공개, 우리는 03-20판), 실패 알림 없음, 1~5월 학교알리미 당해연도 빈 데이터 위험
-- **실패 알림**: GitHub 이슈 라벨 `etl-failure`. Actions 예약·apply 실패 시 이슈 생성/댓글, Windows 작업도 `gh`로 같은 방식.
-  시험 이슈 #1 생성·닫음
-- **Windows 작업 개편**: `Elementary Academy Geocode` → `Elementary Local Monthly ETL`(`install_local_monthly_task.ps1`,
-  `run_local_monthly_etl.ps1`), 단계 = 학원 지오코딩 + **돌봄 `collect_care_data.py --apply`**. 단계별 로그
-  `etl/logs/local-monthly-etl-<시각>-<단계>.log`(transcript가 Python 출력을 놓쳐서). 2026-10-07 시험 실행 성공(돌봄 6,266행)
-- **학교알리미 연도 대체**(`run_due_etl.collect_school`): 학년 행이 학교 행의 70% 미만이면 전년도 사용. 2027-01 실행 대비
-- **학구도**: `etl/compare_school_zone_release.py`(새 판으로 전 범위 점 배정 재생성 → 현재와 비교, 운영 파일 안 건드림).
-  현재 판 자기 시험 13개 범위 변경 0. 사이트가 스크립트 다운로드를 막아 **9월판은 사용자가 브라우저로 내려받아야 함**
-  (`etl/data/hakgudo/20260920/`, 학교 위치도 함께). `build_local_assignment_etl.SHP` 기본값을 03-20판으로 정정
-- **신축 단지 유입**(`88528ef`, `40a6ac6`): 계획 `docs/operations/NEW_COMPLEX_INTAKE_PLAN.md`, D1~D4 권고안 확정
-  (D1은 리허설 뒤 이름 유사도 규칙으로 변경). 보충 파일 808곳(약 57만 세대)을 Storage `apartment-supplement/`에
-  올림. 월간 실행이 아파트 빌드 전에 복원하고, 빌드 뒤 `publish_apartment_public_keys.py`가 DB 키 테이블 기준으로
-  발급(운영 dry-run 신규 0 = 현재 그대로). **첫 운영 반영은 11/2 정기 실행**(사용자 결정). 철거 추정 옛 단지 49곳은
-  보고서만(1안), 정리는 별도 작업. 화면 "배정 확인 필요"(serving `review_required`)는 다음 release에 나간다
-- 9월판 학구도: 사이트가 자동 다운로드(스크립트·자동 브라우저 모두)를 오류 페이지로 막음 → 사용자 브라우저 다운로드 필요
-- **Actions 아파트 리허설 `37613661871` 성공**(보충 805곳 복원, 전 범위 감사 pass, 키 dry-run 정상). 거기까지
-  실패 3번: 반포초·신문초 원천 공백(학교알리미엔 있고 표준데이터 03-20판엔 없음 → `upstream_school_gaps.json`),
-  K-apt 같은 코드 여러 행(보충 빌더가 코드당 1행), 학교알리미 시간 초과(재시도 4회). K-apt 다운로드도 러너에서
-  가끔 끊겨 그룹 재시도(5분 대기)로 회복하던 것을 스크립트 안 재시도로 바꿈
-
-### 2026-10-06: 학원·체육도장 기관 키 (커밋 — 아래 커밋 메시지 참고)
-
-- 실측: 학원 `ACA_ASNUM`·체육도장 `MNG_NO`는 단독으로 전국에서 유일하지 않다. 유일한 키는
-  `(교육청코드, 지정번호)`·`(지자체코드, 관리번호)` 복합키(각각 중복 0). 상세는 `ACADEMY_REFRESH_PLAN.md` 7절
-- `OPERATION_PLAN.md` 학원 절의 "ACA_ASNUM 단독 키" 문구 정정(한 줄, 같은 파일의 다른 미커밋 변경과 섞지 말 것)
-- `etl/collect_sports_dojo_snapshot.py`: `source_id`를 `{지자체코드}-{관리번호}`로, `local_gov_code`·`management_number` 추가.
-  파일럿 경로의 `MNG_NO` 단독 중복 제거 결함 수정. 원본 32,882행으로 유일성 확인, py_compile 통과
-- K2 `etl/academy_institutions.py`(신규): 학원·체육도장 기관 키 목록(비공개 CSV)과 월간 비교. 10/6 원본 151,256곳, 키 중복 0
-- K3 `run_academy_refresh.py`: 5단계 뒤 목록 작성·Storage `academy-refresh/institutions/latest.csv.gz`와 비교해 보고서
-  `institutions`에 기록. `--apply` 성공 뒤에만 Storage에 쓴다. 이 단계 실패는 갱신을 막지 않는다
-- 검증: `etl.tests.test_academy_institutions`(8개) 포함 학원 관련 테스트 20개 통과, 실 Storage 읽기 경로(기준 없음)·옛 형식 거부 확인
-- push `92e0b2e`(임시 인덱스로 이 작업 파일만 커밋 — 인덱스의 `.ps1` 이름 변경 2건은 다른 세션 것이라 남겨 둠).
-  기준 목록 Storage 시드 2026-10-07(151,256곳, 익명 400). **11/2 실행 보고서의 `institutions`에서 첫 월간 비교 확인**
-
-### 2026-10-06: 학원 데이터 월간 자동 갱신 (`f905ac7`, 운영 데이터 반영)
-
-- 계획 `docs/operations/ACADEMY_REFRESH_PLAN.md`(D1~D3 권고안 확정). 구현은 `etl/run_academy_refresh.py` 하나:
-  NEIS·체육도장 수집 → 새 주소만 VWorld → 마커 → 지역별 근접도 → 운영 3테이블 **전체 교체**(빠진 행 삭제).
-  한 지역이라도 15% 넘게 줄면 전체를 쓰지 않는다(계획의 "그 지역만 제외"에서 바꿈 — 주소가 지역을 넘어 걸려서)
-- Actions 비밀값 `NEIS_CLASS_API_KEY`·`VWORLD_API_KEY`·`DATA_GO_KR_DECODED_KEY` 등록(2026-10-06, `gh secret set`)
-- Storage `etl-source-snapshots/academy-refresh/`에 지오코딩 캐시·건물 기준점 2종 시드(익명 읽기 400 확인)
-- **운영 적용 완료** run `34ebb91f`: 주소 78,820 → 76,300(+202, −2,722), 기준점 80,641 → 80,220, 요약 46,927 → 46,929,
-  지역별 −1.7~−4.2%. 직업기술 0건(가드 dry-run), 익명 RPC 정상. 앞서 막혔던 `apply_academy_realm_exclusion --apply`는 이 적용으로 대체됨
-- **진행 기록**: ① SQL 25는 사용자가 SQL 편집기로 적용(psql·CLI 없음)
-  ② **지오코딩은 이 PC의 Windows 작업**(`eedd96b`): VWorld가 해외 IP를 막고(러너 재시도 698곳 전부 `transport_error`),
-  카카오 Local API는 결과 저장 금지라 대안이 아니다(운영팀 답변). 작업 `Elementary Local Monthly ETL`이 매월 1일 21:00
-  `run_academy_refresh.py --geocode-only`(NEIS·체육도장 수집 → 새 주소 변환 → 캐시·체육도장 사본을 Storage로) 실행,
-  러너는 지오코딩을 건너뛴다. **이 PC가 그 무렵 켜져 있고 로그인돼 있어야 한다**(StartWhenAvailable). 시험 실행 2회 성공
-  ③ 체육도장 API가 러너에서 가끔 시간 초과(`37466238434` 실패) → 재시도 강화 + Storage 사본 대체(`3eb6e99`).
-  Actions 리허설 `37470629136` 성공 ④ SQL 25 적용 확인(2026-10-06), 일정 `next_due_at` 비워 둠 → 11/2 정기 실행에 포함
-  ⑤ 11/2 정기 실행 결과 확인 ⑥ `/admin/etl`의 '학원' 라벨은 다음 release에 나간다
-- 첫 Actions 리허설(`37457087619`) 실패 원인: `collect_academy_snapshot.py`가 키를 `.env`에서만 읽음 → `14fe2ff`에서 환경변수 우선
-- 계획서의 "요약 고아 1,072행"은 오판이었다(운영 단지 마스터 기준 고아 없음) — 문서 정정함
-
-### 2026-10-06: 가이드·FAQ 취소선·`**` 노출 수정과 굵게 정리 (커밋·운영 반영)
-
-- 원인 1: `marked`의 GFM이 물결표 한 쌍을 취소선으로 읽어 `10~1월 … 12~2월` 사이가 그어졌다(돌봄 가이드 2곳, 1곳 더).
-  `scripts/build-content.mjs`에서 `del` 토크나이저를 꺼 물결표는 항상 글자로 둔다
-- 원인 2: `**…(학구도)**을`처럼 닫는 `**`가 문장부호 뒤·조사 앞이면 굵게가 안 닫혀 별표가 보였다. 4곳을 굵게가 글자에서
-  끝나도록 고쳤고(`faq.md`, `school-notice.md`, `care-afterschool.md` 2곳), 렌더 결과에 `**`가 남으면 빌드가 실패한다
-- 굵게 정리: 본문 굵게 125곳 → 11곳. 쪽마다 놓치면 안 되는 사실(핵심 규칙·법적 처벌·되돌릴 수 없는 결과) 한두 곳만 남겼다.
-  목록 머리의 `**라벨** — 설명` 꼴은 `라벨: 설명`(라벨이 문장이면 `문장. 설명`)으로 바꿨다. 새 글도 이 기준을 따른다
-- 검증: lint·build, 생성 JSON과 `dist/guide`·`dist/faq`에 `<del>`·`**` 0건, 본문 `<strong>` 11개(요약 도식 제목은 별개)
-
-### 2026-10-05: 데스크톱 지도 레이아웃 — 왼쪽 패널 (`2418dc7`, 운영 `f079364`)
-
-- 1024px 이상에서만 바뀐다. 하단 탭은 왼쪽 레일(72px), 지도 화면은 레일 옆 400px 패널에 검색·빠른 필터·상세를 담고
-  지도는 그 오른쪽 전체를 쓴다(네이버 지도·리치고 방식). 이전엔 시트가 전체 폭이라 좌우 여백이 컸고 올리면 지도가 가려졌다
-- `layout/panelSlot.ts`(신규): 패널 자리 컨텍스트와 `useIsDesktop`. `MainLayout`이 `.app-map-panel`(모바일에선 `display: contents`)을
-  그리고, `BottomSheet`는 데스크톱이면 그 자리에 펼친 채로 포털한다(드래그 없음, `data-snap-index`는 맨 위 단계)
-- `App.tsx`: 지도를 `.app-map-area`로 감싸 데스크톱에서 패널 폭만큼 비킨다. CSS는 `index.css` 끝 블록
-- 검증: lint·typecheck·build, 로컬 public smoke 통과, 1440px 학교·단지·빈 지도·홈과 390px 학교 화면 확인
-- 같은 릴리스로 `0411c7d`(월간 ETL 학원 가드)·`10a7ba7`(1학년 미리보기, 플래그 뒤)도 운영에 나갔다
-- **운영 smoke 미실행**: agent-browser 데몬이 첫 명령에서 os error 10060으로 응답하지 않았다(프로젝트·전역 사본 모두,
-  멈춘 데몬 종료 후에도). 대신 HTTP로 주요 경로 200·프리렌더 제목·새 번들 반영을 확인했다. 다음 세션에서
-  `npm run browser:smoke:public -- https://wherecho.co.kr`부터 다시 돌린다
-
-### 2026-10-05: 단지 카드 연식·규모 일러스트 (커밋·운영 반영)
-
-- `components/apartment/ApartmentIllustration.tsx`(신규): 카드 왼쪽 68×76 칸의 건물 아이콘+막대를 SVG
-  일러스트로 교체. 연식으로 모양·색(10년 이하 탑상형 초록, 11~25년 중층 파랑, 26년 이상 저층 분홍 — 연식 칩과
-  같은 색), 세대수로 건물 수(300 미만 1, 1,000 미만 2, 3,000 미만 3, 이상 4). 연식 모름은 기존 청록
-- `ApartmentCard.tsx`에서 `Building2`·`buildingBars` 제거, `index.css`의 `.apartment-card__skyline` 규칙 삭제.
-  상세 시트는 이 카드를 그대로 쓰므로 시트 머리에는 따로 넣지 않았다
-- 결정 경위: 건설사 로고는 상표 문제로 제외, 브랜드 배지(1안)는 단지명과 중복·모바일 정보 과다로 제외.
-  브랜드명 매칭률은 수도권 21,228단지 기준 26.6%(옛 건설사명 포함 41%)
-- 검증: lint·typecheck·build, 로컬 public smoke 통과(전역 agent-browser 사본), 412px 학교·단지 상세 화면 확인
-
-### 2026-10-05: 학원 지도 — 직업기술 제외·팝업 X·상호별 분류 칩 (`d30bc8f`, 운영 `f542691`)
-
-- `dataService.ts`: NEIS 분야 `직업기술`(성인 직무·자격 학원)을 RPC 응답에서 걸러 개수 재계산, 남는 학원이
-  없는 주소는 버림. 두 RPC가 `toPublishedAcademies` 하나로 매핑. `build_academy_marker_snapshot.py`도 원천에서
-  제외 — **`apartment_academy_summary`(카드·상세의 "교육시설 N곳")는 아래 `--apply` 전까지 직업기술 포함값**
-- `etl/apply_academy_realm_exclusion.py`(`0411c7d`): 운영 학원 테이블을 제자리 수정(직업기술 기관 제거, 빈 주소 삭제,
-  800m 안 단지 요약 차감). 멱등이라 `run_due_etl.py`가 매 실행 끝에 돈다(리허설은 dry-run). dry-run: 주소 3,526
-  (갱신 969·삭제 2,557), 기관 3,752, 요약 31,537단지, 표본 25단지 RPC와 일치. **`--apply`는 자동 모드 권한 판단에
-  막혀 아직 안 돌렸다 — 사용자가 직접 실행하거나 다음 월간 실행(11/2 03:15 KST)에 적용된다**
-- `utils/mapPopup.ts`(신규): 학원·돌봄센터 팝업 X 버튼, 그리고 X가 검색창·우측 교육시설 버튼·범례(지도 캔버스
-  밖 요소, `data-map-canvas`로 판별)에 가리면 지도를 내리는 `keepPopupClearOfMapControls`
-- 학원 팝업: 표 → 상호마다 마커 색과 같은 분류 칩(`getInstitutionCategories`), 분류 순 정렬, 상단 분류별 개수
-- 검증: lint·typecheck·build, 로컬 390px 화면 확인(X 노출·닫힘·레이어 유지), 운영 public smoke 통과
-- **smoke 실행 주의**: 프로젝트 `node_modules/agent-browser`의 win32 exe가 `spawn UNKNOWN`으로 막힌다(스마트
-  앱 컨트롤). 전역 설치본(`%APPDATA%/npm/node_modules/agent-browser`)은 동작해, `public-smoke.mjs` 사본의 `cli`
-  경로만 전역으로 바꿔 돌렸다
-
-### 2026-10-04: 지도 하단 간격·교육시설 범례 닫기·브라우저 확대 차단 (커밋·운영 반영)
-
-- `src/index.css`: 범례·"내 주변"·위치 안내의 bottom에서 GNB 높이 제거. `<main>`이 이미
-  `pb-app-gnb`로 GNB 위에서 끝나므로 64px가 이중으로 더해져 있었다(2026-10-03 GNB 전 폭 노출 때 생김)
-- `AcademyMarkerManager.tsx`: 교육시설 범례에 X(범례만 닫힘, 마커 유지). 레이어 재토글·선택 변경 시 다시 표시
-- `MapContainer.tsx`: 지도 영역에서 멀티터치 touchmove, ctrl+wheel, Safari gesture 이벤트의 기본
-  동작(페이지 확대)을 취소. 네이버 지도는 touch-action이 auto라 마커·범례 위에서 시작한 핀치가
-  브라우저 확대로 새어 지도와 마커 크기가 어긋났다. 전파는 막지 않아 SDK 확대는 그대로
-- `MapContainer.tsx`: 지도 래퍼에 `isolate`. SDK 컨트롤·마커의 z-index(100~)가 앱 레이어와 경쟁해
-  네이버 로고·축척이 상세 시트(50) 위에 그려졌다
-- 검증: lint · typecheck · build, 로컬 public smoke 통과, 390/1280px 화면 확인. 실기기(iOS/Android)
-  핀치는 미확인
-- **같은 작업 트리의 `SchoolCarePanel.tsx` 변경(소규모 학교 돌봄 이용률)은 다른 세션 작업이라 이 커밋에서 뺐다**
-
-### 2026-10-06: 커리큘럼·1학년 미리보기 검토안 폐기, 화면 코드 삭제
-
-- 사용자 결정으로 기존 검토안을 폐기하고 개편 계획(`PLATFORM_EXPANSION_PLAN.md`)을 따른다. 적용할 포인트는
-  `docs/product/PLATFORM_EXPANSION_LEARNING_INPUTS.md`(A2~A8, B9·B11·B12)
-- 삭제: `/plans`·`/items`·`/ranking`·`/grade1` 화면과 따봉 UI, 라우트, 입학 준비 진입 링크, 처리방침 7항 코드,
-  `src/content/curriculum.ts`·`learning.ts`, `build-content`의 1학년 검증. 플래그 `VITE_CURRICULUM_ENABLED`도 더 읽지 않는다
-- 보존(개편 Audit 2 §10 '보존/보류', P0-04·P3 결정 때 정리): SQL `24`(운영 미적용, EXECUTION_GUIDE에 '적용 보류'),
-  `src/lib/voter.ts`, `src/services/curriculumService.ts`, `src/content/curriculum/*.json`, `etl/upload_curriculum_refs.py`
-- 참고 자료로 이동: `docs/research/learning/stages.json`, `public-recommended-items.json`. 원칙·후보 문서는 '폐기 — 참고 자료'로 표시
-
-### 2026-10-05: 1학년 미리보기 (master, 플래그 뒤 — 운영 노출 안 됨) — 2026-10-06 폐기
-
-- 방향 전환: 따봉·순위 대신 **초1 교과서를 기준점으로** 과목·단계별 "언제 배우나"와 근거 있는 콘텐츠.
-  원칙 `docs/product/LEARNING_CONTENT_PRINCIPLES.md`, 단계표 `src/content/learning/stages.json`(국어 6·수학 5·영어 5단계),
-  콘텐츠 `src/content/learning/items.json`(공공 추천 국어 5개), 파일럿 후보·후기 양식 `docs/research/LEARNING_PILOT_CANDIDATES.md`
-- 화면 `/grade1` — 입학 준비 탭 진입 링크와 함께 `VITE_CURRICULUM_ENABLED=1`일 때만. 지금 수준 선택은 기기 저장
-  (`wherecho:grade1-level-v1`). `build-content`가 단계·콘텐츠·후기(본문 인용 금지, 협찬 표기 글 금지)를 검증
-- 공식 근거: 교육부 고시 2022-33호 [별책 2]·[별책 5] 원문, 경남교육청 도움자료(2024-12, 현장검토본 기준 — 2027-03 교과서로 재확인)
-- **네이버 검색·블로그와 NCIC는 robots.txt로 AI·봇 수집 금지.** 후기는 사람이 읽고 양식에 기록한다.
-  확인 중 네이버 검색 결과 페이지를 한 번 받았다가 지웠다. 찬찬한글 옛 주소(basics.re.kr)는 DNS가 없어 서울학습진단성장센터로 바꿨다
-- 검증: lint·typecheck·build, 플래그 켠 dev 서버(3005)에서 전역 agent-browser로 국어·수학 화면·수준 저장 확인
-- 따봉(SQL 24)·카드·순위 코드는 그대로 플래그 뒤에 남아 있다 — 정리할지 결정 필요
-
-### 2026-10-05: 커리큘럼 공유 1단계 코드 (운영 `f542691`에 포함, **플래그 꺼짐이라 노출 안 됨**)
-
-- **기능 플래그 `VITE_CURRICULUM_ENABLED=1`일 때만 켜진다.** 기본은 꺼짐 — 주소는 홈으로, 개인정보처리방침은 이전
-  그대로(`privacy.json`의 `effectiveDate`). master를 release해도 이 기능은 나가지 않는다. 사용자가 입학 준비 탭과
-  성격이 달라 표출 위치·운영 방식을 다시 고민 중(2026-10-05)
-
-- 설계 `docs/product/PRD_CURRICULUM_SHARING.md`, C-1~C-9 확정. 카드·아이템은 **저장소 콘텐츠**
-  (`src/content/curriculum/{items,plans,taxonomy}.json`, `build-content`가 검증), DB는 따봉만(SQL `24`)
-- 화면 `/plans`, `/plans/…--KEY`, `/items/…--KEY`, `/ranking`(입학 준비 탭 활성). 입학 준비 화면의 진입 링크는
-  카드가 하나 이상일 때만 보인다 — 지금 콘텐츠가 비어 있어 숨겨져 있다
-- 투표: Supabase 익명 로그인(`src/lib/voter.ts`) + Turnstile(`VITE_TURNSTILE_SITE_KEY`가 있을 때). 따봉 키
-  `P:`·`PI:{카드}:{아이템}`·`I:`. 순위는 카드 맥락(연령·지역·영역)으로 세고, 투표자 30명 미만 칸은 비공개
-- 개인정보처리방침 7항 '따봉 기록' 추가(Supabase 싱가포르 — DB IP로 AWS ap-southeast-1 확인, Cloudflare 미국)
-- **운영 전 남은 것**: SQL `24` 적용 · 익명 로그인 켜기 · Turnstile 사이트 키(Vercel)와 비밀 키(Supabase) 함께 ·
-  아이템 사전·에디터 카드 작성 · `python etl/upload_curriculum_refs.py --apply` · 익명 세션으로 학교·아파트 조회가
-  되는지 확인(역할이 `authenticated`로 바뀐다) · 브라우저 화면 검증과 smoke
-- **검증 한계**: Windows 스마트 앱 컨트롤이 agent-browser 실행 파일을 막아(2026-10-05) 화면 확인·smoke를 못 돌렸다.
-  lint·typecheck·build, 임시 샘플 콘텐츠로 빌드·검증 실패 케이스, `/plans/…` 라우트 200까지만 확인
-- `.env.example`은 권한 규칙으로 읽기·쓰기가 막혀 `VITE_TURNSTILE_SITE_KEY`를 넣지 못했다 — 사용자 몫
-
-### 2026-10-04: 돌봄 후속 — 필터·지도·프리렌더·측정·가이드
-
-- **필터** '저녁 돌봄 운영 학교만'(`FilterState.evening_care_only`): `school_care_statistics`에서
-  저녁 돌봄 학교 ID를 한 번 읽어(약 900) 모든 학교 목록 경로(`applyMatchingSchoolFilter`, 시·도 집계)에 적용.
-  결과 수는 교차 필터 RPC가 돌봄을 모르므로 RPC id 집합과의 교집합으로 센다. 전체 6,302 → 888
-- **지도**: 상세의 '지도에서 돌봄센터 보기' → `joinmap:show-care-centers` 이벤트로 목록 그대로 전달,
-  `CareCenterMarkerManager`가 마커·팝업·왼쪽 칩('돌봄센터 N곳 ×'). 지도는 따로 조회하지 않는다
-- **프리렌더** `api/detail.js` 학교 페이지에 오후·저녁 돌봄·방과후 사실 4줄. 돌봄 조회 실패는 그 줄만 빠진다
-- **GA4** `view_care`(블록 절반이 보일 때), `call_care_center`, `show_care_map`, `filter_evening_care`,
-  `click_care_guide`. `MEASUREMENT_PLAN.md` 8절
-- **가이드** `care-afterschool` "늘봄·돌봄, 무엇을 언제 신청하나요"(입학하는 해, 10번째). 2026학년도 기준이라
-  2027 정책 발표(2027년 초) 뒤 재확인 필요. 학교 사례는 인천계양초 2026 운영계획
-- 이용률은 `1·2학년 대비 이용률 %`, 전교생 120명 미만·100% 초과 학교는 '전 학년' 표기(`b258f48`)
-
-### 2026-10-04: 학교 돌봄·방과후와 주변 돌봄센터 (`9cf7ae5`, 운영 `f75f3cf`)
-
-- PRD D4 해소. 학교알리미 **apiType=59**(방과후·돌봄 공시) → `school_care_statistics`,
-  다함께돌봄 지원단 센터 목록(`dadol.or.kr/board/center/list`, 서울 우리동네키움센터 포함) →
-  `care_centers`, 반경 검색 `nearby_care_centers()`. SQL `23`(사용자가 SQL 편집기로 적용)
-- 적재: `python etl/collect_care_data.py --apply`(기본 dry-run). 운영 6,266개교 · 센터 1,483곳
-  (승인 1,489 중 좌표 실패 6). **월 1회 수동 실행** — 정기 ETL·Actions에는 아직 넣지 않았다
-- 화면: 학교 상세 "돌봄·방과후"(오후 돌봄 실·인원, 1·2학년 100명당, 교실당, 저녁 돌봄, 방과후 수),
-  학교·아파트 상세 "주변 돌봄센터"(1km, 학기·방학 운영시간). 신청·탈락 인원은 공시에 없어 간접 지표만,
-  점수 합산 없음. 센터의 이용료·현원은 공개 페이지에 없고 단위가 불분명해 싣지 않았다
-- 센터 목록 JSON에 담당자 이름·이메일이 섞여 온다. 수집기가 읽는 즉시 버린다 — 바꿀 때 유지할 것
-- 지오코딩: 인천 2026 구 개편(중·동·서구 → 제물포·영종·서해·검단구), 면→읍, 지번 주소를 변형으로 재시도.
-  `geocode_academy_addresses.geocode()`에 `address_type`(기본 road) 인자 추가
-- 검증: lint · typecheck · build, 로컬 public smoke 전체 통과(돌봄 검사 2개 추가). 배포 후
-  `browser:smoke:public -- https://wherecho.co.kr` 전체 통과(돌봄 검사 포함)
-- 사용자가 돌봄 이용비율을 경쟁률 proxy로 채택. 지역아동센터는 취약계층 대상이라 제외
-
-2026-10-03 세션 종료 시점에 **작업 트리는 깨끗하다.** 같은 날 두 세션이 같은 작업 트리에서
-동시에 작업했고, 둘 다 커밋·종료했다.
-
-### 2026-10-04: 모바일 화면 위아래 띠·검색창 가림 (`6f96125`, 운영 `05120ff`)
-
-- 원인: body에 남은 Vite 템플릿 `display:flex; place-items:center; min-height:100vh`. 모바일에서
-  100vh(주소창 숨김 높이) > 100dvh(앱)라서 앱이 가운데 정렬돼 위아래 띠(다크 모드 강제 브라우저에서 검정)가
-  생기고, 문서가 스크롤돼 지도 검색창이 주소창 밑으로 들어갔다
-- 수정: body 정렬·min-height 제거, 앱 높이 `.app-viewport`(100vh 대체 후 100dvh). smoke에 "앱이 화면을
-  맨 위부터 채우고 문서가 스크롤되지 않는다" 검사 추가. 운영 smoke 통과. 실기기 확인은 사용자 몫
-- dev 서버 주의: 네이버 지도 키는 `localhost:3000`(과 운영)만 허용한다. 다른 포트에서 smoke를 돌리면
-  지도가 "등록되어 있지 않습니다"로 막혀 시·도 마커 검사에서 실패한다
-
-### 2026-10-04: 즐겨찾기 → MY (`2d036f0`, 운영 `476798d`)
-
-- 하단 탭 '즐겨찾기'를 'MY'로 바꾸고 `/guide`의 개인 허브 요소(프로필·전체 로드맵)를 `/my`로 옮겼다.
-  `FavoritesPage.tsx` 삭제, `MyPage.tsx` 추가. `/favorites`는 앱이 `/my`로 `replaceState`
-- 홈(앱·정적 `dist/index.html`)에서 시기별 가이드 목록 제거. 홈의 가이드 내부 링크 9개가 빠졌다
-- 버그 수정: 저장한 아파트를 열면 배정 학교만 열리던 것. 기록에 `publicKey`를 남기고
-  (`favorites.ts`), 옛 기록은 단지 상세를 다시 열 때 채운다(`refreshFavorite`)
-- ★ 버튼 라벨 'MY에 저장' / 'MY에서 빼기'. 저장소 키 `elementary-favorites-v1`, `entry_source=favorites`는 유지.
-  `view_roadmap`의 `entry_source`에 `my` 추가
-- 검증: lint · typecheck · build 통과, `browser:smoke:public -- http://localhost:3000` 전체 통과
-  (저장한 아파트가 그 단지로 열리는 검사, `/favorites` → `/my` 검사 추가). dev 서버는 `127.0.0.1`이
-  아니라 `localhost`로만 응답했다
-- 운영 검증: release 후 `browser:smoke:public -- https://wherecho.co.kr` 전체 통과(MY 검사 포함)
-- 커밋할 때 같은 작업 트리의 다른 세션 변경(`DataFreshness`·SQL `22`·ETL 정기 실행)과 섞이지 않게
-  `ApartmentDetail.tsx`·`SchoolDetail.tsx`는 HEAD에 이 작업의 수정만 얹은 내용을 인덱스에 넣었다.
-  그 세션의 `DataFreshness` 네 줄은 작업 트리에 미커밋으로 남아 있다
-
-**동시 작업 교훈**: 한 세션이 파일째 `git add`해서 다른 세션의 hunk가 남의 커밋에 섞였다(아래
-줌아웃 smoke 블록). 동시 작업 중에는 같은 파일을 건드리기 전에 서로 알리고, `git add`는 파일이
-아니라 hunk 단위로 고른다.
-
-이 목록은 시점 기록이다. 실제 상태는 항상 `git status --short`로 다시 확인한다.
-
-### 2026-10-03: 줌아웃 시·도 마커 복구
-
-- 증상: 구 마커(줌 11)보다 더 줌아웃하면 지도에 아무것도 안 떴다.
-- 원인: `5bc5b05`(09-23)가 시·도 마커 조회·컴포넌트·CSS를 넣었지만
-  `MarkerManager`의 렌더 가드 `if (!map || !shouldShowMarkers) return null`을 그대로 둬서,
-  조회는 되는데 그리기 전에 반환했다. 열흘간 운영에서 빈 지도였다.
-- 수정(`1453663`): 가드가 `showRegionMarkers`도 통과시킨다. 시·도 마커가 있을 때
-  "조건에 맞는 학교가 없습니다" 안내를 띄우지 않는다. 시·도 클릭은 줌 10이 아니라 11로
-  간다(10도 시·도 모드라 중심만 옮겨졌다). 시·도 집계는 `school_master` 전체를 읽으므로
-  필터별로 캐시한다.
-- 줌 계층: 8–10 시·도 → 11–12 구 → 13 동 → 14+ 학교. 루트 `../CLAUDE.md`의
-  Zoom-driven granularity 절에 표로 적었다.
-- 배포: `release` `d263f2b`로 올렸고, 직후 다른 세션이 `b128cf0`을 `5d64ccb`로 릴리스해
-  운영에 둘 다 반영됐다.
-- smoke 보강: `public-smoke.mjs`가 지도 로드 직후 실제 휠로 줌아웃해 시·도 마커 10개
-  이상·구 마커 없음·빈 상태 안내 없음을 확인하고, 시·도 마커를 실제 포인터로 눌러 구
-  마커가 뜨는지 본 뒤 `/map`을 다시 열어 이후 흐름을 잇는다. 이 블록은 동시 작업하던
-  세션이 파일째 `git add`하면서 **그 세션의 커밋 `cf9c7b5`(가이드 요약 도식)에 함께
-  들어갔다.** 내용은 의도대로이고 push된 이력이라 고쳐 쓰지 않았다. 동시 작업 중에는
-  같은 파일을 건드리기 전에 서로 알리고, `git add`는 hunk 단위로 고른다.
-
-## Data Contract
-
-브라우저의 익명 조회가 닿는 것은 테이블 3개와 함수 3개다. 2026-09-27에 배포된
-anon 키로 운영 DB에 직접 확인했다.
-
-1. `school_master`
-2. `school_apartment_serving`
-3. `apartment_academy_summary` — 학원 개수만, 주소·기관명은 비공개 (SQL `14`)
-4. `filter_school_ids(...)` (SQL `13`)
-5. `nearby_academy_addresses(...)` (SQL `14`)
-6. `nearby_academy_addresses_for_school(...)` (SQL `15`)
-
-정규화 마스터, 배정 링크, ETL run/check, staging, source snapshot은 공개하지 않는다.
-같은 확인에서 `apartment_complex_master`·`apartment_name_history`·
-`apartment_property_history`·`etl_runs`는 `200 []`, `region_registry`·
-`etl_schedules`·`etl_staging_rows`·`etl_source_snapshots`는 `401`로 차단을 확인했다.
-관리 작업은 `service_role` 또는 등록된 ETL 관리자 계정으로만 수행한다.
-
-전체 계약은 `elementary-v2/docs/architecture/DATA_CONTRACTS.md`를 따른다.
-
-현재 운영 규모 (2026-09-30 실측, 시점 기록이므로 판단 전 재확인한다):
-
-- 운영 공개 지역: 17개 시·도 전부
-- 적용 완료 SQL `06`~`23`. 공개 계약은 위 6개에 SQL `22` `public_data_freshness()`,
-  SQL `23` `school_care_statistics`·`care_centers`·`nearby_care_centers()`가 더해졌다
-- 학교 6,302 · serving 48,189행 · 공개 키를 가진 단지 45,853
-
-행 수는 지역 승격 때마다 바뀌므로 여기에 적지 않는다.
-`docs/operations/OPERATION_PLAN.md`의 Update Log가 웨이브별 실측을 기록한다.
-
-SQL 작업은 `elementary-v2/sql/EXECUTION_GUIDE.md`와 번호 순서를 따른다. 이미 적용된
-migration은 Supabase 상태를 확인하지 않고 재설계하지 않는다.
-
-## Next Priority
-
-### 1. 학원 과목 분류 — 2026-10-03 완료
-
-학원명에서 과목(영어·수학·국어·논술·과학·코딩, 그 외 입시·종합)을 뽑는 ETL·프런트를 배포하고
-(`5e588e9`) 운영 DB에 백필했다(사용자 승인, 주소 78,820 · 기관 151,709, 이어서 세부 과학 과목
-키워드 추가분 9곳). 규칙은 `etl/academy_subjects.py`, 테스트 `etl/tests/test_academy_subjects.py`.
-과목은 공개 `institutions` JSONB 안의 `subjects`라 마이그레이션이 없다.
-
-- 키워드를 더할 때는 스냅샷 전체에서 그 문자열이 들어간 이름을 먼저 뽑아 본다. '어학원'(국어학원),
-  '문학'(전문학원), '국어'(중국어), '화학'(만화학원), '물리'(범물리드웰)가 모두 그렇게 걸렸다
-- 규칙을 바꾸면 `python etl/backfill_academy_subjects.py`(dry-run) → `--apply`. 바뀐 행만 쓴다
-- '입시.검정 및 보습' 중 26.5%는 이름에 과목이 없는 브랜드형 학원이라 입시·종합으로 남는다
-  (대치동처럼 브랜드 학원이 많은 곳은 비율이 더 높다).
-- **단일 과목 체인 사전**(`BRAND_SUBJECTS`, 2026-10-04 사용자 요청): 황소·필즈·폴리아·소마·CMS 등은
-  수학, 와이즈만은 수학+과학, 지앤비·아발론·이보영은 영어, 리드인·책나무·플라톤 등은 국어·논술.
-  같은 체인의 과목명 있는 지점 분포로 근거를 확인한 것만 넣었고, 이름에 과목이 있으면 그것이 우선한다.
-  적용 후 전국 입시·종합 25.3%, 대치(서울대현초 주변) 684→655. 남은 대치 입시·종합은 시대인재·
-  미래탐구·에듀플렉스 같은 전과목·관리형이 대부분이다. 엘브라운·플라즈마·강안교육·윤도영 등은
-  근거가 부족해 넣지 않았다 — 추가할 때도 같은 방식으로 지점 분포부터 본다
-
-### 2. 사용자 몫·예약된 일
-
-- GA4 맞춤 측정기준 `entry_year`, `guide_id` 등록 (관리 → 데이터 표시 → 맞춤 정의)
-- **2026-12-03 09:00 KST** 원격 루틴 `trig_012czGSetkKiGzozEgdmU1KT`가 2027학년도 정부24·
-  예비소집·사립초 일정을 찾아 `master` 대상 PR을 연다. 검수 후 병합·릴리스한다
-- UI 재검토 — 참고 사이트나 무드를 받은 뒤
-- 콘텐츠 큐레이션(PRD 7.5) — 책·영상 선정은 사용자 몫
-- 돌봄 데이터 월 1회 갱신(`etl/collect_care_data.py --apply`) — 정기 ETL 편입 전까지 수동
-
-### 3. ETL — 월 1회, GitHub Actions 이전 (2026-10-04)
-
-- **9/27~10/4 정기 ETL 전부 실패**(DB 쓰기 없음, 데이터만 멈춤). 결함 3개 수정:
-  빌더에 범위 미전달, K-apt의 `전남광주통합특별시`로 광주·전남 K-apt 매칭 0건,
-  세종을 충북·충남과 분리해 접경 공동통학구역 실패. 상세는 `docs/operations/ETL_SCHEDULING.md`
-- **주기**: 사용자 결정으로 월 1회. `etl_schedules.kapt-basic`을 weekly→monthly로 바꿨다
-  (학교알리미는 원본이 연 1회라 annual 유지)
-- **Actions**: `.github/workflows/etl-recurring.yml` — 매월 2일 03:15 KST, 수동 실행은 기본
-  `rehearse`(쓰기 없음). 입력 묶음 `etl/recurring_inputs_manifest.json` → 비공개 Storage
-  `portable-inputs/elementary-recurring-inputs-v1/2026-10-04.2/bundle.zip` (익명 차단 확인)
-- **사용자 몫(권한 분류기가 막음)**: Actions 시크릿 `KERIS_SCHOOLINFO_API_KEY` 등록
-  (`gh secret set KERIS_SCHOOLINFO_API_KEY` 후 값 붙여넣기). 원격 실행기는 매달 학교알리미 스냅샷을 새로 받아야 하므로 **이 시크릿 없이는 Actions 실행이 실패**한다. 등록 후 `gh workflow run etl-recurring.yml -f mode=rehearse -f force=apartment`로 리허설
-- **Windows 작업은 2026-10-04 비활성화**(사용자 결정, Actions로 전환). 운영 데이터는 8/29 이후
-  갱신되지 않은 상태. 시크릿 등록 완료, Actions 리허설 통과(run 37199555940, 13개 범위·쓰기 없음).
-  **첫 쓰기는 2026-11-02 03:15 KST 정기 실행**(사용자 결정 — 10월 수동 apply는 하지 않음).
-  인천 구 이름 80곳과 광주·전남 K-apt 매칭도 이때 운영에 들어간다.
-  **11/2 이후 확인할 것**: `gh run list --workflow etl-recurring.yml`로 성공 여부, `/admin/etl`의
-  최근 실행·검증 지표(`npm run browser:smoke:admin -- https://wherecho.co.kr`), 인천 학교가
-  새 구로 묶이는지, 상세 화면 기준일 줄(릴리스 후)이 아파트 2026-10-xx로 바뀌는지.
-  실패하면 GitHub가 메일로 알린다. Windows 작업 복구는 `Enable-ScheduledTask -TaskName "Elementary ETL Daily Check"`
-
-### 3-1. 사용자 확인이 필요한 운영 변경
-
-- **인천 행정구역** — DB 백필 대신 ETL에서 해결(2026-10-04). 학교 주소의 구 이름을 학교알리미 값으로
-  맞추는 규칙을 `build_school_master_v2`에 넣었다(수도권 80곳, 다른 지역 0곳). 백필은 매달 ETL이
-  `school_master`를 다시 쓰므로 되돌려졌을 것이다. **운영 반영은 다음 `mode=apply` 실행 때**
-- ~~SQL 22~~ — 2026-10-04 사용자 적용, anon 호출로 3행 확인. 상세 화면 기준일 줄은 다음 릴리스에 나간다
-- ~~관리자 smoke 계정~~ — 2026-10-04 생성·등록 완료. `npm run browser:smoke:admin -- https://wherecho.co.kr`
-  운영에서 통과(로그인·4개 패널·RLS 조회). 자격 증명은 `.env`의 `ADMIN_SMOKE_*`
-
-### 4. 이후 후보
-
-- KRIC 공식 원본 확보 후 역/주소 검색 P4 재개
-- 4컷 웹툰 파일럿(when-to-move 가이드, 인스타그램 겸용) — 사용자 결정 대기
-- **커리큘럼 공유(오늘의집형)** — 플랜(카드) > 모듈 > 아이템 구조, 아이템 단위 투표·인기도.
-  DB부터 프런트까지 설계 논의 중(2026-10-04). 계정이 필요해 D1(기기 저장만) 재검토가 걸린다
-- 방학 틈새돌봄 지정센터(국가아동권리보장원, 방학마다 게시) 수집 — 12월 겨울방학 전
-
-## ETL Portability
-
-관련 파일:
-
-- `elementary-v2/etl/portable_inputs_manifest.json`
-- `elementary-v2/etl/prepare_portable_inputs.py`
-- `elementary-v2/etl/tests/test_portable_inputs.py`
-- `.github/workflows/etl-portability-check.yml`
-
-검증된 bundle:
-
-- 입력 8개, 총 50,553,797 bytes
-- ZIP 8,383,649 bytes
-- ZIP SHA-256: `d7226fcf92ea9a60be431cce414e304e8abe8ee78c664a4ab774592e110f8b6f`
-- bundle v2 로컬 전체 빌드 및 backend audit 52/52 통과
-- 결과 7개 행 수·SHA-256 기준선: `etl/portable_readonly_baseline.json`
-- 기준선 해시는 플랫폼 독립이다. JSON은 canonical 직렬화 내용을 해싱하고
-  (`Path.write_text`가 Windows에서 CRLF를 쓰기 때문), CSV는 `csv.DictWriter`가
-  모든 플랫폼에서 CRLF를 쓰므로 바이트 해시를 유지한다.
-- Storage object:
-  `etl-source-snapshots/portable-inputs/elementary-reviewed-inputs-v1/2026-09-06/bundle.zip`
-- 기존 bundle v1은 service-role restore 및 anon 다운로드 차단 확인 완료
-- bundle v2의 Storage 업로드·원격 8개 checksum·anon 차단 검증 완료
-- 예정 v2 object: `etl-source-snapshots/portable-inputs/elementary-reviewed-inputs-v2/2026-09-07/bundle.zip`
-
-bundle과 restore 결과는 `elementary-v2/etl/runtime/`의 로컬 산출물이며 Git에 넣지
-않는다.
-
-## Station Search P4
-
-canonical 후보는 KRIC `전체_도시철도역사정보_20260630`이다. profiler와 source
-contract만 준비되어 있으며 production schema는 없다.
-
-- 계획: `elementary-v2/docs/reference/STATION_SEARCH_SOURCE_PLAN.md`
-- profiler: `elementary-v2/etl/profile_station_source.py`
-- tests: `elementary-v2/etl/tests/test_station_profile.py`
-
-공식 파일을 private snapshot으로 보존하고 수도권 coverage, 좌표, source key, 중복,
-환승역 alias를 검증한 뒤에만 schema와 검색 UI를 진행한다.
+앱 2.3.0, 브랜드 **어디초**, 전국 17개 시·도. 2.0 개편(10-20 합의, `docs/product/PIVOT_V2_CONCEPT.md`):
+정보 검색 → 학부모 고민(하교 후 공백 → 방학 → 학원 연결). 파일럿 298곳(학군지 10곳 + 위례), 운영 파일럿은 분당·판교와 위례.
+
+- 메뉴: 상단 로고·MY, 탭 **학교 찾기 · 입학 준비 · 우리집 일정(`/timetable`) · 배움·돌봄(`/frontyard`, 플래그)**.
+  홈은 고민 목록에서 시작(UX-08c `PlanSummary`), MY는 입학연도·관심 후보·저장 학원
+- 우리집 일정: `?face=timeline`(입학까지 D-day·완료 체크) / `?face=week`(한 주 시간표). 한 주는 질문으로 시작(UX-13)
+- 학교 상세: 1학년 요일별 하교 예상(SQL 26), 돌봄 시간, **방과후·맞춤형 시간대 막대**(SQL 38 slots, 돌봄내는 연한 초록, 확인 요일 `!`)
+- 라우팅·SEO·프리렌더·허브(`/area/*`)는 루트 `../CLAUDE.md`. GA4 `G-NQT4XV9R00`, 이벤트 규칙 `docs/product/MEASUREMENT_PLAN.md` 8절
+- 백로그 `docs/product/UX_BACKLOG_PLAN_CENTERED.md`(UX-01~26), Codex 분담 `docs/operations/CODEX_UX_HANDOFF.md`(C-01~09)
+
+## 진행 중 작업
+
+### A. 우리집 일정 UX (11-01~03)
+
+- 운영 배포: release `013bc70`(UX-K0·UX-03·C-01·C-02 .ics) → `439607b`(C-03·UX-26·UX-06·UX-08c·UX-10·C-07~09) →
+  `1ec626f`(C-04 홈 고민 목록·C-05 홈 하단, 다른 세션) → `e4f2688`(UX-13: 보호자 귀가 → 학교 돌봄 → 맞춤형·방과후 → 남은 빈 시간,
+  `SchoolPlan.starter`, 빈 시간은 귀가 시각까지 `coverageUntil`). 다른 세션의 `ab3e4b2`(지도 빠른 필터 숨김)도 운영에 있다
+- **UX-14**(11-03 운영 배포, `ab67bff`): 칸의 의도 안전·기초·관심·휴식·미정(휴식은 11-03 사용자 확정, 저장값 `free`).
+  `ScheduleEntry.intent`는 부모가 고를 때만 저장, 없으면 종류·과목 기본값. 이름 바꾸기는 `schedule/intent.ts` 표만
+- 다음: UX-18 시기 전환 안내
+- 사용자 몫: C-03 가이드 버튼 문구 14개, C-06 추첨 결과 사실, 휴대폰 캘린더에서 .ics 열어 보기
+
+### A2. 학교 찾기 지도 UI (11-01~03, 운영 `ab3e4b2`)
+
+- 사용자 결정: 빠른 필터는 지도를 가려 **숨긴다**. 부모 대상 브랜딩·UX 개편 뒤 다듬어 다시 켠다 — `Header.tsx`의 `SHOW_QUICK_FILTERS` 하나로 켜고 끈다.
+  상세 필터(`.map-filter-open`)·표시 필터는 MY 버튼 바로 아래(`MapLayerControl.tsx`, 데스크톱은 지도 오른쪽 위). 위치도 개편 때 다시 볼 것
+- 학교 시트 탭 '배정·통학' → 배정아파트, 아파트 시트 탭은 배정 학교(사용자 확인). 교육환경을 켜면 과목 선택이 표시 필터 아래 나온다.
+  학원 상세의 시간표 추가·관심 학원은 학원명 줄 오른쪽 달력+·하트 아이콘
+- 11-03: 주차순 정렬에서 **주차 미확인 단지는 어느 방향이든 맨 뒤**(사용자 결정, `ApartmentList.tsx`). smoke는 숨긴 주제 줄 대신 시트 탭을 쓴다.
+  빠른 필터 메뉴 검사는 p1-ux에서 뺐다 — 다시 켤 때 git 기록에서 복원
+
+### B. 방과후·맞춤형 시간대층 (SQL 32·38)
+
+현황(11-03 운영): summary 683곳(서울 561 + 경기 122 — 파일럿 지역 중 분당·위례 5곳 대기) · slots 10,828 · checks 1,103(13건 확인 완료) · 통과 410 · 확인 224 · 해당 없음 49.
+기준 `docs/operations/PIVOT_SLOT_STANDARD.md`, 빌더 `etl/afterschool_slots.py`, 적재 `etl/load_school_afterschool.py`.
+
+- **표준 적재 명령**(저장소 경로만, 11-03 운영과 차이 0 확인):
+  `python -m etl.load_school_afterschool $(cat etl/afterschool_load_args.txt)` → 차이 확인 뒤 `--apply`.
+  서울 입력 `etl/runtime/llm_extraction/...`는 이 PC에만 있다(git 제외). 교시 수는 SQL 26 스냅숏
+  `docs/research/pivot/p1_gate_20261102/sql26_periods_20261031.json`
+- 확인 목록: `python -m etl.afterschool_checks_sheet export`(항목 CSV + 학교별 질문지) → 확인일 기입 → `resolve <csv> [--apply]`.
+  재적재 때 `resolved_on`을 이어받는다. 남은 항목 대부분은 원문에 시각이 없는 것이라 **학교 문의(사용자 몫)**
+- 11-02 반영:
+  - PDF원문 14곳 대조(`docs/research/pivot/p1_pdf_review_20261102.json`): 13곳 닫음, **안현 B000004262는 원문 표 칸 밀림 — 학교 확인**
+  - 규칙 `a19bf81`: 입학초기·적응기·3월 1~3주만인 행은 학기 시간대가 아니다(낙생·불곡의 3월 초 창 제거, 학기 표가 없으면 그 요일은 확인 항목)
+  - 규칙(11-03 커밋): 교시 조건 시간(`period_slots`)은 원문불일치(`conflicts`)가 가리키는 줄의 행을 채우지 않는다(신백현 돌봄2반이 독립 맞춤형 5교시 창을 받던 것).
+    3월 안에서 시작·끝나는 날짜 범위('3.3~3.27')도 입학 초기로 본다(위례한빛). 둘 다 운영 학교 변화 0
+  - **신백현 B000003746 게이트·운영 적재**: Codex 작업 폴더 추출(71행)을 원문 줄과 대조해 전부 일치, 유료 46반은 요일 미공시라 1학년 반을 `방과후시각미확인`.
+    파일 `docs/research/pivot/p1_gate_20261102/`
+  - 사용자 결정: 서울 B000001921(3월 1~4주 표뿐)은 그대로 둔다
+- **대기**:
+  - **분당·위례 남은 5곳 게이트 끝, 운영 적재는 사용자 승인 뒤**. 파일 `p1_gate_20261102/pending/`(batch + slot_review, 각 note에 대조 기록).
+    승인되면 batch를 상위 폴더로 옮기고 `afterschool_load_args.txt`에 `--slot-reviews .../slot_review_<id>.json`을 더한 뒤 차이 확인 → `--apply`
+    - 보평 B000003743·성남화랑 B000024167: Codex 추출(10-28), 97·87행 원문 일치
+    - 성남미금 B000003754·위례한빛 B000024238·위례중앙 B000024241: 11-03 소네트 하위 에이전트 추출(v3, 입력 Codex 작업 폴더 `inputs_v3/pivot_p1_stage2_20261023/`).
+      게이트에서 고친 것: 미금 공개주간(5.18~5.22) 맞춤형 10행 제거, 위례중앙 요일 열로 월·금 요일 채우고 풀린 충돌 2건 제거. 위례한빛은 그대로
+    - 시뮬레이션: 5곳 모두 A등급·확인 필요, 맞춤형 창은 학교마다 월~금 있음
+  - 서울은 '맞춤형 시간 없음'만 검사돼 있다(경기처럼 원문불일치·PDF 검사는 안 함). 할지 사용자 결정
+  - Codex 작업 폴더 `.worktrees/pivot-p1-v3-20261021`에 미커밋 검수 파일(part_a/b/c 리뷰, all44 후보 등)이 남아 있다 — 그 세션 것
+  - `my-inline-selection`·`care-planning-defaults` 스모크는 playwright가 없어 못 돌림
+
+### C. 정기 ETL — 11/2 실패와 아파트 빌더 수정
+
+- run `41354707718`(이슈 #3): 수도권 아파트 3회 모두 `apartment_complex_master: remote 21,738 != staged 20,683`, 학원 단계 미실행.
+  원인: K-apt 9/25 자료가 2026 신설 구 이름(화성 동탄·만세·병점·효행, 인천 검단·서해·영종·제물포)을 쓰고 여러 동 단지 주소를 하나로 줄여
+  602곳 매칭이 풀림(1,055곳 모두 새 빌드에 대응 단지 있음 — 묶음 ID 변경)
+- 수정 push: `0d20649`(`DISTRICT_PREDECESSORS`, `etl/kapt_road_address_history.csv` — `.gitignore` 때문에 `add -f`), `82a80be`(옛 ID 정리·실패 시 staging 삭제, 다른 세션)
+- staging 281,781행 삭제 완료. **`VACUUM FULL etl_staging_rows;`는 사용자 SQL 편집기 몫**. 부분 쓰기(school_master 2,260·단지 마스터 20,683)는 공개 화면 영향 없음
+- 다음: Actions `mode=rehearse force=apartment` → 맞으면 `apply` → 학원 갱신(`levels` 첫 반영)
+
+### D. 학교 주변 기관 셔틀·1학년 신호 (10-31~, 미커밋 일부)
+
+- 계획 `docs/operations/ACADEMY_SIGNALS_PLAN.md`: 1 공개자료 → 2 운영자 입력 → 3 학원 자기등록 → 4 부모 확인(보류). **타 서비스 수집 안 함**.
+  1단계 전국, 2단계는 파일럿 범위·공개 게시물만. 셔틀은 통학버스 등록현황(`889e420`, 7,670곳)으로 '통학차량 등록' 배지까지
+- `etl/academy_levels.py`(lower/elem/preschool/secondary/adult) 마커 빌더 반영 `5029923`. 초등 표기 12.0%, 표기 없음 60.7%. 백필 안 함(11/2 실패로 아직 미반영)
+- 다음: 표본 CSV 사람 검수(`review` 칸) → 화면 S1. 표본 CSV·`docs/research/academy-levels/`는 학원명 포함이라 커밋 여부 미정
+
+### E. 하교 예상·돌봄 시간 (SQL 26, 파일럿 P2)
+
+- 파일럿 298곳 중 하교 예상 235곳(10-21), 단서 없는 58곳은 학교 전화 후보(`p2_school_day_review_stage*_20261021.json`의 `unresolved`)
+- `load_school_day_estimates.py`는 **전체 교체** — REVIEW_SETS에 없는 학교 행을 지운다. 세트 파일 없는 판으로 `--apply` 금지
+
+## 사용자 몫·대기 중인 운영 변경
+
+- SQL: `34_reclaim_database_space`(DB 한도, 1부 한 번 + VACUUM FULL 새벽), `37`(SEO 로봇 집계), `27`(소셜 링크), `33`(앞마당 — 익명 로그인·Turnstile·처리방침 먼저), `24`는 적용 보류
+- DB 한도: 10-23 491.97/500 MB. 월간 실거래가 일정을 켜면 월 약 40 MB 증가 — 켜기 전 34 적용·요금제 판단
+- 학구도 9월판은 사이트가 자동 다운로드를 막아 사용자가 브라우저로 `etl/data/hakgudo/20260920/`에 받아야 한다(`compare_school_zone_release.py`로 비교)
+- 학교 문의: 방과후 확인 질문지(`etl/runtime/afterschool_checks/afterschool_school_questions_<날짜>.csv`), 하교 예상 58곳, 안현 표
+- 콘텐츠: 학습 seed 3편 검수(`status: review`), 사립초 경기 일정(작년 일정일 수 있음)·교대부초 공식 발표 재확인, 돌봄 가이드는 2027 정책 뒤 재확인
+- 검색: 서치어드바이저 수집 URL 확인·RSS·수집 요청, Search Console 사이트맵 재제출
+- GA4 맞춤 측정기준 `entry_year`·`guide_id`. **2026-12-03 09:00 KST** 원격 루틴이 2027 일정 PR을 연다 — 검수 후 병합
+- 돌봄 데이터 월 1회 `etl/collect_care_data.py --apply`(Windows 월간 작업에 편입됨, 10-07)
+
+## 함정 모음
+
+- **로컬 smoke는 3001(또는 3000)에서**(`npm run browser:smoke:public -- http://127.0.0.1:3001`). 다른 포트는 Naver 허용 호스트가 아니라 지도 검사에서 멈춘다.
+  운영은 URL을 넘긴다. 작업 트리 smoke에 미배포 검사가 섞이면 `git show origin/release:elementary-v2/scripts/public-smoke.mjs > scripts/.smoke-release.tmp.mjs`로 돌리고 지운다
+- vite dev 서버는 오래 켜 두면 응답이 멈춘다 — smoke 직전에 새로 띄운다. `vite preview`는 rewrite가 없어 smoke에 못 쓴다
+- agent-browser: 프로젝트 사본이 스마트 앱 컨트롤에 막히면 전역 설치본, os error 10060이면 `--namespace` 세션.
+  playwright는 의존성에 없다 — `CALENDAR_QA_PLAYWRIGHT`·`CALENDAR_QA_CHROME`을 넘겨 실행
+- `morning-care-smoke`는 `docs/research/track-b-morning-care/*.png`를 덮어쓴다 — 돌린 뒤 `git checkout`
+- 운영 smoke가 "은마" 검색 대기에서 멈추는 일이 있다(손으로는 정상, 원인 미확정)
+- 이식성 읽기 전용 빌드는 이 PC의 `etl/runtime/apartment_supplement/apartment_base_supplement.csv` 때문에 약 360행이 늘어 기준선과 어긋난다 — 재잠금 때 잠시 치운다
+- 지오코딩은 이 PC의 Windows 작업(`Elementary Local Monthly ETL`, 매월 1일 21:00) — VWorld가 해외 IP를 막고, 카카오는 결과 저장 금지. 그 무렵 PC가 켜져 있어야 한다
+- 학원 갱신은 serving 전체 교체, 한 지역이라도 15% 넘게 줄면 쓰지 않는다. 과목 키워드는 스냅숏 전체에서 그 문자열이 든 이름부터 뽑아 본다(어학원·전문학원 함정)
+- robots: 네이버 검색·블로그·NCIC는 AI 수집 금지, 서울 `sen.es.kr`은 첫 화면 밖 금지 — 링크만 둔다
+- 돌봄센터 원본 JSON의 담당자 이름·이메일은 수집기가 즉시 버린다. 방과후 원문의 강사 이름·연락처는 옮기지 않는다
+- 이 PC 콘솔은 cp949 — Python 출력은 `PYTHONIOENCODING=utf-8`. 한글을 REST 쿼리에 넣을 때는 퍼센트 인코딩
+
+## Data Contract (요약)
+
+공개 조회는 루트 `../CLAUDE.md`의 목록과 `docs/architecture/DATA_CONTRACTS.md`를 따른다(SQL 06~38 운영 적용 범위는 `sql/EXECUTION_GUIDE.md`).
+`200 []`은 RLS가 걸러낸 것, `401`은 권한 없음, `404`는 테이블 없음. 운영 규모는 바뀌므로 판단 전에 다시 잰다.
+11-03 실측: 학교 6,302 · 돌봄 공시 6,266 · 돌봄센터 1,502 · 돌봄 시간 2,014(공시 1,435 · 확인 필요 579) · 하교 예상 서울 284 · 경기 1,021 ·
+방과후 683(서울 561 · 경기 122, 다른 시·도 0).
+
+## ETL 운영
+
+- 정기 실행: `.github/workflows/etl-recurring.yml` 매월 2일 03:15 KST(수동 실행 기본 `rehearse`), 입력 묶음 `etl/recurring_inputs_manifest.json`.
+  실패하면 GitHub 이슈(라벨 `etl-failure`). 상세 `docs/operations/ETL_SCHEDULING.md`
+- 학원: `etl/run_academy_refresh.py`(NEIS·체육도장 → 새 주소만 VWorld → 마커 → 근접도 → 운영 3테이블 전체 교체), 기관 키는 복합키
+  (`교육청코드+지정번호`, `지자체코드+관리번호`)
+- 신축 단지: 보충 파일 808곳을 월간 실행이 복원, 키 발급 `publish_apartment_public_keys.py`(`docs/operations/NEW_COMPLEX_INTAKE_PLAN.md`)
+- 이식성: `etl/portable_inputs_manifest.json`, 기준선 `etl/portable_readonly_baseline.json`(행 수·SHA-256), 검사 워크플로 `.github/workflows/etl-portability-check.yml`
+- 역 검색 P4는 KRIC 공식 원본 확보 전까지 보류(`docs/reference/STATION_SEARCH_SOURCE_PLAN.md`)
 
 ## Verification
 
-Frontend 변경 후:
-
 ```powershell
 cd F:\sm\vibe\elementary\pjt_250826\elementary-v2
-npm run lint
-npm run typecheck
-npm run build
-npm run browser:smoke:public
-```
-
-ETL portability와 station profiler:
-
-```powershell
+npm run lint; npm run typecheck; npm run build; npm run test:unit
+npm run browser:smoke:public -- http://127.0.0.1:3001     # 운영은 https://wherecho.co.kr
+python -m unittest etl.tests.test_afterschool_rules etl.tests.test_afterschool_slots etl.tests.test_load_school_afterschool etl.tests.test_afterschool_checks_sheet
 python -m unittest etl.tests.test_portable_inputs etl.tests.test_station_profile
-python -m py_compile etl/prepare_portable_inputs.py etl/profile_station_source.py
 ```
 
-`package.json`에는 일반 test runner가 없다. 존재하지 않는 npm test 명령을 가정하지
-않는다.
+`npm test`는 없다. 마지막 기록(11-02): test:unit 140, 운영 public smoke 168 PASS(UX-13 배포 후), 방과후 ETL 테스트 43개 통과.
 
-운영 검증은 URL을 넘긴다: `npm run browser:smoke:public -- https://wherecho.co.kr`.
-작업 트리의 smoke 스크립트에 다른 세션의 미배포 검사가 섞여 있으면 운영에 대해 실패한다.
-그때는 배포된 판을 꺼내 돌린다:
-`git show origin/release:elementary-v2/scripts/public-smoke.mjs > scripts/.smoke-release.tmp.mjs`
-(같은 `scripts/`에 둬야 `node_modules` 경로가 맞는다. 실행 후 지운다.)
+## 지난 기록 색인 (전문은 `git show db6e90f:CLAUDE.md`)
 
-2026-10-03 운영 검증:
-
-- `5d64ccb`: `/admin/etl` 200, 배포된 smoke 전체 통과(360·430·1280 overflow 없음,
-  지도 5초·아파트 3초 예산 안). 운영 지도에서 줌 8에 시·도 마커 17개, 대구 클릭 시 줌
-  11에서 구 마커 표시
-- `5cc5157`: 줌아웃 검사가 들어간 smoke를 운영에 3회 실행. 줌아웃·시·도 클릭 검사는
-  3회 모두 통과. 1회차는 한참 뒤 단계인 `school search returned results`(학교 딥링크 →
-  가이드 → 뒤로 → '서울방현' 검색)에서 15초 시간 초과로 실패했고 2·3회차는 전체 통과.
-  재현되지 않았고 원인은 확인하지 못했다. 다시 나오면 그 단계부터 본다
-- 깨끗한 worktree에서 lint·typecheck·vite build 통과. `seo` 단계는 `.env`가 없어
-  로컬에서 확인 못 했고 Vercel 빌드에서 생성됐다
-
-`1c87d49` 직전 검증 기록:
-
-- lint, typecheck, production build 통과
-- Python unit tests 5개 통과, compile 통과
-- 공개 smoke에서 선택 학교 최소화 상태 유지
-- 360, 390, 430, 1280 너비 horizontal overflow 없음
-- 초기 지도 약 1.45초, 아파트 read 약 0.26~0.39초
-- 비차단 경고: 오래된 browserslist 데이터, 500 kB 초과 bundle chunk
-
+- 10-30 경기 우선 방과후 추출 83/83(`8c5bd2c`), 검사기 확장(교시 머리글·병합 시각 칸·요일 참조) · 10-29 추출 18→40, `merge_blocks`는 50분 이하 같은 학년만
+- 10-28 시간표 smoke 정리, `activeSchoolId` 폐기(`8f207c4`) · 10-24 배움·돌봄 메뉴명, 네이버 SEO 감사(`docs/seo/`, 수정은 release `82657aa`)
+- 10-23 Supabase 한도 실측·실거래가 `raw_payload` 비우기(`8b53857`) · 10-21~23 앞마당 1차본(`b2b31ce`)·관심 학원(`60ad9e7`)·시간표 탭 개편(`8e58b25`)
+- 10-20 2.0 컨셉(`d1c9278`), 시간표 카드 정리(`e529774`) · 10-19 시간표 독립 화면(`e13633b`) · 10-18 파비콘·로고(`560faaf`) · 10-17 배정 0개·주차 이상치(`6eb2862`)
+- 10-15 SEO·가이드 시즌(`00b9021`), 방과후 누락 보완·종류별 등급(`f8e3638`, 서울 536곳 첫 공개)
+- 10-10~11 학교 홈페이지 링크·인스타 1단계(`c8da548`), 시·도 시트·허브 링크(`a269d25`), 광역시 학교명 접두(`ee90595`)
+- 10-09 입학 준비 P1-04~06·학습 콘텐츠 틀 · 10-08 시간표 엔진 S01·S02, `/learn`(`129f87c`), 뒤로 가기로 시트 닫기(`e27c142`)
+- 10-06~08 Audit 2(학교알리미 15-라·2-가, NEIS 교시, SQL 26 카드 `c27530f`, 파일럿 확대 `813aff3`)
+- 10-07 SEO 허브·동별 등록 단지 묶음(`4e766df`), ETL 점검(실패 알림·학교알리미 연도 대체·신축 유입 `88528ef`)
+- 10-06 학원 기관 키(`92e0b2e`), 학원 월간 갱신(`f905ac7`), 가이드 취소선·굵게 정리, 커리큘럼 화면 폐기
+- 10-05 데스크톱 왼쪽 패널(`2418dc7`), 단지 일러스트, 학원 직업기술 제외·팝업 X(`d30bc8f`)
+- 10-04 돌봄·방과후 공시와 돌봄센터(SQL 23, `9cf7ae5`)·후속, 모바일 위아래 띠(`6f96125`), 즐겨찾기 → MY(`2d036f0`), ETL 월 1회·Actions 이전
+- 10-03 줌아웃 시·도 마커 복구(`1453663`), 학원 과목 분류(`5e588e9`)
 
 ## Documentation Map
 
-- 진행 요약: `elementary-v2/docs/PROJECT_PROGRESS.html`
-- ETL 기준 계획: `elementary-v2/docs/operations/OPERATION_PLAN.md`
-- Frontend UX 계획: `elementary-v2/docs/ux/FRONTEND_UX_SYSTEM_PLAN.md`
-- ETL scheduling: `elementary-v2/docs/operations/ETL_SCHEDULING.md`
-- 추가 데이터: `elementary-v2/docs/operations/OPERATION_PLAN.md`의 Additional Data Domains 절
-- 릴리스 기록: `elementary-v2/docs/RELEASES.md`
-- 분석 아카이브: `../archive/elementary-v2-analysis-20260916/`
-
-`F:\sm\vibe\elementary\archive`와 v1 문서는 참고 전용이다.
+진행 `docs/PROJECT_PROGRESS.html` · ETL 기준 `docs/operations/OPERATION_PLAN.md` · UX `docs/ux/FRONTEND_UX_SYSTEM_PLAN.md` ·
+파일럿 ETL `docs/operations/PIVOT_PILOT_ETL.md` · 시간대 기준 `docs/operations/PIVOT_SLOT_STANDARD.md` · 릴리스 `docs/RELEASES.md` ·
+배포 `docs/operations/DEPLOYMENT.md`. `F:\sm\vibe\elementary\archive`는 참고 전용(아파트 ETL 입력 2개는 예외 — 루트 CLAUDE.md).
 
 ## Security
 
-- `.env` 실제 값을 출력, 문서화, 커밋하지 않는다.
-- frontend에는 anon key만 사용한다.
-- service role key는 ETL, Actions secret, 관리자 작업에서만 사용한다.
-- Supabase Storage 원천 snapshot은 private으로 유지한다.
-- commit 전 JWT 형태 문자열과 `etl/runtime/` 포함 여부를 확인한다.
+- `.env` 실제 값을 출력·문서화·커밋하지 않는다. frontend는 anon key만, service role key는 ETL·Actions·관리 작업만
+- Storage 원천 스냅숏은 비공개. 커밋 전 JWT 형태 문자열과 `etl/runtime/` 경로를 확인한다
 
 ## End Of Session
 
-종료 전에 다음을 갱신한다.
-
-1. `git status --short`, 최신 pushed commit, 배포 여부
-2. 완료한 단계와 다음 첫 작업
-3. 실행한 검증, 실패와 경고
-4. SQL 적용 및 외부 서비스 설정 여부
-5. `PROJECT_PROGRESS.html`과 해당 기준 계획
-6. 이 파일의 미커밋 목록과 최근 검증 기준
+종료 전에 갱신한다: ① `git status --short`·최신 push·배포 여부 ② 끝낸 일과 다음 첫 작업 ③ 실행한 검증과 실패
+④ SQL·외부 설정 변경 ⑤ 해당 기준 계획 문서. **새 기록은 '진행 중 작업'의 해당 절을 고쳐 쓰고**, 끝난 절은 색인 한 줄로 옮긴다 —
+날짜별 절을 계속 쌓지 않는다(이 파일이 935줄까지 늘었다).

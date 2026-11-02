@@ -174,7 +174,7 @@ def custom_rows(school: dict) -> list[list]:
 
 def school_record(school: dict, periods: dict[str, int] | None = None) -> dict[str, Any] | None:
     rows = [r for r in (clean_row(v) for v in school.get('rows', [])) if r]
-    rows = merge_terms(resolve_period_slots(rows, school.get('period_slots', {}), periods or {}))
+    rows = merge_terms(resolve_period_slots(rows, school.get('period_slots', {}), periods or {}, school.get('conflicts')))
     if not rows:
         return None
     # tier per kind, the better one wins: a 방과후 list without times must not hide timed 맞춤형 bars

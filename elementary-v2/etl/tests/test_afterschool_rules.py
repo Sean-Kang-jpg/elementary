@@ -31,6 +31,13 @@ class ResolvePeriodSlotsTest(unittest.TestCase):
         rows = resolve_period_slots([row(days='월수금')], SLOTS, PERIODS)
         self.assertEqual(sorted((r['days'], r['start']) for r in rows), [('수금', '13:00'), ('월', '13:50')])
 
+    def test_a_row_the_document_disputes_is_not_filled(self):
+        # 신백현초 B000003746: 돌봄2반 큐브 L878 13:50~14:40·14:40~15:30 vs 일과 예 L904 13:35~14:25
+        disputed = row(place='돌봄내', line=878)
+        conflicts = [['시각', '돌봄2반 큐브', 'L878 / L904']]
+        self.assertEqual(resolve_period_slots([disputed], SLOTS, PERIODS, conflicts), [disputed])
+        self.assertEqual(resolve_period_slots([row(place='돌봄내', line=348)], SLOTS, PERIODS, conflicts)[0]['start'], '13:50')
+
     def test_rows_with_times_or_unknown_periods_are_left_alone(self):
         timed = row(start='13:00', end='14:00')
         self.assertEqual(resolve_period_slots([timed], SLOTS, PERIODS), [timed])

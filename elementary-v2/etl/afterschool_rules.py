@@ -27,15 +27,22 @@ WEEKDAYS = '월화수목금'
 MERGE_KEY = ('kind', 'name', 'variant', 'section', 'grades_raw', 'days', 'start', 'end', 'grade1', 'period', 'place', 'time_source')
 
 
-def resolve_period_slots(rows: Iterable[dict], slots: dict, periods: dict[str, int]) -> list[dict]:
-    """slots: {'4': ['13:00', '14:20'], '5': ['13:50', '15:10']}; periods: {'월': 5, '수': 4, ...}."""
+def resolve_period_slots(rows: Iterable[dict], slots: dict, periods: dict[str, int],
+                         conflicts: Iterable | None = None) -> list[dict]:
+    """slots: {'4': ['13:00', '14:20'], '5': ['13:50', '15:10']}; periods: {'월': 5, '수': 4, ...}.
+    conflicts: the school's ['시각', label, 'L878 / L904'] items. A row on one of those lines was left untimed
+    because the document gives two times, not because it follows the period rule (신백현초 B000003746,
+    2026-11-02: 돌봄2반 큐브 took the 5교시 slot of the independent classes)."""
     by_period = {int(k): v for k, v in (slots or {}).items() if v and len(v) == 2}
+    disputed = {int(n) for c in conflicts or [] if isinstance(c, list) and len(c) == 3
+                for n in re.findall(r'L(\d+)', str(c[2]))}
     out: list[dict] = []
     for row in rows:
         # Grade-1 regular periods cannot determine paid-course or grade-2/mixed-grade times.
         grades = re.findall(r'[1-6]', str(row.get('grades_raw') or ''))
         eligible = (row.get('kind') == '맞춤형' and row.get('grade1') == 'true'
-                    and row.get('period') == '학기' and grades and set(grades) == {'1'})
+                    and row.get('period') == '학기' and grades and set(grades) == {'1'}
+                    and row.get('line') not in disputed)
         if not eligible or row.get('start') or row.get('end') or not row.get('days') or not by_period:
             out.append(row)
             continue

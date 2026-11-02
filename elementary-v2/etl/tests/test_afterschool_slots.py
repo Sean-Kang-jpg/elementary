@@ -26,6 +26,10 @@ class SlotKindTest(unittest.TestCase):
         self.assertEqual(slot_kind(row(kind='맞춤형', term='2026 1학년 적응기간 이후')), '맞춤형')
         self.assertIsNone(slot_kind(row(kind='맞춤형', term='2026 3월 1~2주')))
         self.assertEqual(slot_kind(row(kind='맞춤형', term='2026 3월 3주 이후')), '맞춤형')
+        # 위례한빛초 B000024238: a March-only date range, beside the term's own table
+        self.assertIsNone(slot_kind(row(kind='맞춤형', term='2026 3.3~3.27')))
+        self.assertEqual(slot_kind(row(kind='맞춤형', term='2026 3.30~학년말')), '맞춤형')
+        self.assertEqual(slot_kind(row(kind='맞춤형', term='2026 3월 (1~4주) 및 방학 중')), '맞춤형')
 
 
 class SchoolSlotsTest(unittest.TestCase):

@@ -35,8 +35,10 @@ LOWER_GRADE_MAX = 3
 # 낙생초 B000003745, 2026-11-02: 화·목·금 13:00~14:30 sat beside the term's 13:50~15:20). Such a row is
 # not the term's timetable. merge_terms joins labels with ' · ', so a row also written for the regular
 # term keeps its slot, and "적응기간 이후" (B000003772) or "3월 3주 이후" (B000003752) is the term itself.
-# A March-long table ("3월 (1~4주) 및 방학 중", B000001921) is not caught: it may be all the plan gives.
-EARLY_TERM = re.compile(r'입학\s*초기|적응기|3월\s*[1-3]\s*~\s*[1-3]\s*주')
+# A dated range that starts and ends in March ("2026 3.3~3.27", 위례한빛초 B000024238, 2026-11-03: every day
+# 4교시, beside a "3.30~학년말" table) is the same thing. A March-long table written in weeks ("3월 (1~4주) 및
+# 방학 중", B000001921) is not caught: it may be all the plan gives (user decision 2026-11-02: leave it).
+EARLY_TERM = re.compile(r'입학\s*초기|적응기|3월\s*[1-3]\s*~\s*[1-3]\s*주|(?<![\d.])3\.\s*\d{1,2}\s*~\s*3\.\s*\d{1,2}(?!\d)')
 AFTER_EARLY = re.compile(r'이후|부터')
 
 
