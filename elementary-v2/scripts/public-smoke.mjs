@@ -353,8 +353,30 @@ try {
   run(['open', baseUrl])
   await waitFor("document.querySelector('#home-title') && document.querySelectorAll('.worry-item').length >= 3", 'C-04 worry-led home mounted')
   assertPage("document.querySelector('#home-title').textContent === '초등 입학 준비, 어떤 점이 궁금하세요?' && document.querySelector('.worry-item')?.dataset.worryId === 'assignment'", 'C-04 approved title and permanent assignment worry lead the home')
+  assertPage("!document.querySelector('.home-page__card') && JSON.stringify([...document.querySelectorAll('.home-secondary-links a')].map(a => [a.getAttribute('href'), a.textContent])) === JSON.stringify([['/map', '지도에서 찾아보기'], ['/area', '지역별 학교 목록'], ['/learn', '학습 준비']]) && document.querySelector('.home-page__footer a[href=\"/privacy\"]')", 'home uses three compact secondary links and keeps the privacy link')
   assertPage("document.querySelectorAll('.worry-item').length <= 6 && Boolean(document.querySelector('.home-worries').compareDocumentPosition(document.querySelector('#home-assignment-search')) & Node.DOCUMENT_POSITION_FOLLOWING)", 'C-04 search follows the worry list, capped at six')
   assertPage("(() => { const questions = [...document.querySelectorAll('.worry-card strong')]; const nav = document.querySelector('.app-gnb')?.getBoundingClientRect().top; const bottom = nav > 0 ? nav : innerHeight; return document.querySelector('#home-title').getBoundingClientRect().top >= 0 && questions.filter(q => { const r = q.getBoundingClientRect(); return r.top >= 0 && r.bottom <= bottom }).length >= 3 && document.documentElement.scrollWidth === innerWidth })()", 'C-04 title and at least three worries fit the first 390px viewport without horizontal overflow')
+  assertPage("document.querySelector('.timetable-banner')?.getAttribute('href') === '/timetable?face=week'", 'new families retain the week-planning banner')
+  const builtHome = fs.readFileSync(path.join(projectRoot, 'dist/index.html'), 'utf8')
+  const staticLinks = builtHome.match(/<div class="home-secondary-links">(.*?)<\/div>/)?.[1]
+  if (!staticLinks || builtHome.includes('class="home-page__card"')) throw new Error('static home must use compact secondary links')
+  const expectedLinks = [...staticLinks.matchAll(/<a href="([^"]+)">([^<]+)<\/a>/g)].map(match => [match[1], match[2]])
+  assertPage(`JSON.stringify([...document.querySelectorAll('.home-secondary-links a')].map(a => [a.getAttribute('href'), a.textContent])) === ${JSON.stringify(JSON.stringify(expectedLinks))}`, 'static and app secondary links have matching destinations, labels and order')
+  if (fs.existsSync(path.join(projectRoot, 'dist/home-showcase.json')) && !builtHome.includes('id="home-showcase-title">일정 예시</h2>')) throw new Error('static example heading must be 일정 예시')
+  const showcaseAvailable = run(['eval', "fetch('/home-showcase.json').then(response => response.json()).then(data => Boolean(data?.school)).catch(() => false)"], { quiet: true })
+  if (showcaseAvailable.includes('true')) {
+    await waitFor("document.querySelector('#home-showcase-title')?.textContent === '일정 예시'", 'app example heading is 일정 예시, matching static home')
+  } else {
+    process.stdout.write('SKIP: app examples are omitted because /home-showcase.json is unavailable here\n')
+  }
+  run(['set', 'viewport', '360', '800'], { quiet: true })
+  assertPage("(() => { const rects = [...document.querySelectorAll('.home-secondary-links a')].map(a => a.getBoundingClientRect()); return rects.length === 3 && rects.every(r => Math.abs(r.top - rects[0].top) < 1) && document.documentElement.scrollWidth === innerWidth })()", 'secondary links stay on one row at 360px without horizontal overflow')
+  if (process.env.HOME_REVIEW_SCREENSHOT) {
+    run(['eval', "document.querySelector('.home-secondary-links').scrollIntoView({ block: 'center' }); 'home secondary links in view'"], { quiet: true })
+    run(['screenshot', process.env.HOME_REVIEW_SCREENSHOT])
+    run(['eval', "window.scrollTo(0, 0); 'home scroll restored'"], { quiet: true })
+  }
+  run(['set', 'viewport', '390', '844'], { quiet: true })
   const staticWorryIds = [...fs.readFileSync(path.join(projectRoot, 'dist/index.html'), 'utf8').matchAll(/data-worry-id="([^"]+)"/g)].map(match => match[1])
   assertPage(`JSON.stringify([...document.querySelectorAll('.worry-item')].map(item => item.dataset.worryId)) === ${JSON.stringify(JSON.stringify(staticWorryIds))}`, 'C-04 static home and app show the same ordered worries')
   run(['eval', "document.querySelector('.worry-item[data-worry-id=assignment] a').click(); 'C-04 focus assignment search'"])
@@ -389,6 +411,7 @@ try {
     return 'C-08 first seasonal item added'
   })()`])
   await waitFor("location.pathname === '/' && document.querySelector('.worry-item:has([data-testid=add-to-plan-button]) [data-testid=add-to-plan-button]')?.getAttribute('aria-pressed') === 'true' && document.querySelector('.worry-item:has([data-testid=add-to-plan-button]) [data-testid=add-to-plan-button]')?.textContent.includes('일정에 있어요')", 'C-08 add confirms stored state without opening the card link')
+  await waitFor("!document.querySelector('.timetable-banner') && document.querySelector('.plan-summary__week')?.getAttribute('href') === '/timetable?face=week'", 'saved families use PlanSummary and hide the duplicate week banner without a reload')
   run(['eval', "document.querySelector('.roadmap-summary__more').click(); 'C-08 to timeline'"])
   await waitFor("location.pathname === '/timetable' && location.search === '?face=timeline' && document.querySelector('.roadmap')?.textContent.includes(window.__C08_ITEM__.title)", 'C-08 pinned item appears in the family-plan timeline')
   assertPage("[...document.querySelectorAll('.roadmap__tasks li')].filter(item => item.querySelector('a > span')?.textContent === window.__C08_ITEM__.title).length === 1", 'C-08 the item appears once, including when its ID is shared with the roadmap')
@@ -680,7 +703,7 @@ try {
   // the map must not be built for a visitor who never leaves the home.
   run(['open', baseUrl])
   await waitFor("document.querySelector('#home-title') && document.querySelector('input[role=combobox]')", 'home opened with worries followed by assignment search')
-  assertPage("![...document.querySelectorAll('.home-page__card')].some((node) => node.textContent.includes('지역별 배정')) && document.querySelector('.home-page__footer a[href=\"/area\"]')", 'home removes the comparison banner and preserves the area directory link')
+  assertPage("![...document.querySelectorAll('.home-page__card')].some((node) => node.textContent.includes('지역별 배정')) && document.querySelector('.home-secondary-links a[href=\"/area\"]')", 'home removes the comparison banner and preserves the area directory link')
   assertPage("!document.querySelector('.quick-filter-row') && !document.querySelector('[aria-label=\"주변 초등학교 지도\"]')", 'the home does not build the map')
   // The SDK is injected only when a map screen opens (ADR-008 section 5); the
   // home is where most first visits that are not detail pages land.

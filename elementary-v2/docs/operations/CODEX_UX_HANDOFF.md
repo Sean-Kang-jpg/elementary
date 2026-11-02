@@ -288,7 +288,7 @@ MY(`/my`)에는 프로필·관심 후보·저장 학원만 남았다(UX-06). 입
 
 ---
 
-### C-05 홈 하단 정리 (UX-12) — `blocked`(C-04), S
+### C-05 홈 하단 정리 (UX-12) — `review`, S
 
 **목표**: 지도·지역·학습 카드를 한 줄 보조 링크로 내리고 예시 학교 영역 제목을 "일정 예시"로. 일정이 있는 가족에게는 `HomeShelves`의 `.timetable-banner`(시간표 미리 짜보기)를 숨긴다 — 위의 `PlanSummary`에 같은 길("우리 아이 한 주")이 있다(`hasFamilyPlan()`).
 
@@ -296,9 +296,20 @@ MY(`/my`)에는 프로필·관심 후보·저장 학원만 남았다(UX-06). 입
 
 **완료 기준**: 첫 화면 스크롤 안의 큰 카드형 CTA는 고민 목록 하나. 정적 홈과 앱 홈이 같음.
 
-**결과**: 
+**결과** (Codex, 2026-11-02):
 
-**검토**: 
+- 브랜치 `codex/ux-C-05`, 독립 worktree `.worktrees/codex-ux-C-05`. C-04의 `bce978a`에서 시작했다. 선행 병합 순서는 C-08 → C-04 → C-05이며, 이 브랜치는 master/release를 병합하거나 배포하지 않았다.
+- `src/components/navigation/HomePage.tsx`: 지도·지역·학습의 기존 문구/경로를 한 줄 보조 링크로 모았다. 큰 지도·학습 카드와 중복 지역 푸터 링크를 제거하고 개인정보 링크는 유지했다.
+- `src/content/home.json`: 기존 “지역별 학교 목록” 문구를 단일 출처로 옮겼다. `src/content/home-shelves.json`: 예시 제목을 카드의 “일정 예시”로 바꿨다. 예시 제목의 실제 출처여서 카드 목록 외 이 파일도 수정했다.
+- `src/components/navigation/HomeShelves.tsx`: 기존 `hasFamilyPlan`/`subscribeFamilyPlan`을 구독해 일정이 있는 가족에게 중복 시간표 배너를 숨긴다. 위 `PlanSummary`의 한 주 링크는 유지한다. 카드 목표에 명시된 배너 분기를 위해 추가한 파일이며 저장 계약은 변경하지 않았다.
+- `scripts/build-shell-pages.mjs`: 보조 링크와 제목을 앱과 맞췄다. 기기 상태를 모르는 정적 홈은 새 가족용 배너를 유지하고 앱과 같은 `/timetable?face=week`로 연결한다.
+- `src/styles/content.css`: 사용하지 않는 큰 카드 스타일을 한 줄 보조 링크 및 키보드 포커스 스타일로 교체했다.
+- `scripts/public-smoke.mjs`: 첫 홈에서 카드 제거, 세 링크의 정적/앱 순서·문구·주소 일치, 360px 한 줄/가로 넘침, 예시 제목, 신규/저장 가족의 배너 분기를 검증한다. DOM 변경에 맞춰 기존 지역 링크 검증도 수정했다. 검토용 스크린샷은 `HOME_REVIEW_SCREENSHOT`을 지정하면 저장한다.
+- 검증: `npm run lint` 통과(경고 0), `npm run typecheck` 통과, `npm run test:unit` 142/142 통과(29 suites), `npm run build` 통과(1,806 modules, 가이드 14편, 학교 6,302/아파트 45,699/사이트맵 8개). 최초 제한된 네트워크에서의 사이트맵 실패는 네트워크 접근을 허용한 최종 빌드에서 해소했다. `node --check scripts/public-smoke.mjs`, `git diff --check` 통과.
+- 화면 검증: `npm run browser:smoke:public -- http://127.0.0.1:3045`에서 보조 링크 3개, 360px 한 줄/넘침 없음, 첫 390px 화면의 고민 3개, 정적/앱 링크 일치, “일정 예시” 제목 일치, 새 가족의 배너 표시, 저장 후 새로고침 없는 배너 숨김과 `PlanSummary` 한 주 링크 유지가 통과했다. C-08의 담기/일정 이동/삭제/실패 표시도 통과했다. 예시 데이터는 빌드한 `dist/home-showcase.json`을 검증 서버에서 제공했다. 검토 스크린샷 `C-05-home-secondary-links.png`도 저장·확인했다.
+- 블로커: **전체 public smoke 미통과**. 앞선 두 실행은 기존 지도 축소의 `zooming out replaces the district markers with province markers`에서 15,000ms 후 실패(39/40 checks). 최종 실행은 C-05 검사를 모두 통과한 뒤 `district data loaded and measured`에서 15,000ms/40 checks 후 실패했다. 지도/측정 코드는 수정하지 않았고 이 검사를 우회하지 않았다. 실제 배포 환경의 깊은 링크 rewrite는 로컬 Vite에서 검증할 수 없어 배포 검증이 필요하다. C-06의 추첨 관련 사실 확인은 별도 대기 상태다.
+
+**검토**: Claude 검토 대기. 전체 스모크의 지도 블로커와 선행 브랜치 병합 순서를 확인할 것.
 
 ---
 

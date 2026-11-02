@@ -125,17 +125,16 @@ const homeBody = [
   '</div></div>',
   '<div class="home-page__inner home-page__body">',
   showcaseHtml,
-  // Same banner as HomeShelves.tsx: the way from the examples into /timetable.
-  '<a href="/timetable" class="timetable-banner"><span class="min-w-0 flex-1"><strong>우리 아이 초등학교 시간표 미리 짜보기</strong><small>맞춤형·방과후·돌봄에 주변 학원까지, 입학 전에 한 주를 그려 봐요</small></span></a>',
+  // New-family banner: the app hides it once hasFamilyPlan() is true.
+  '<a href="/timetable?face=week" class="timetable-banner"><span class="min-w-0 flex-1"><strong>우리 아이 초등학교 시간표 미리 짜보기</strong><small>맞춤형·방과후·돌봄에 주변 학원까지, 입학 전에 한 주를 그려 봐요</small></span></a>',
   // The guide list itself lives under /guide since 2026-10-04; the home links to it,
   // as the app does, rather than repeat it.
   '<div class="home-links">',
   '<a href="/guide" class="home-link"><span><strong>입학 준비 가이드</strong><small>시기별로 할 일을 공식 자료로</small></span></a>',
   '<a href="/faq" class="home-link"><span><strong>자주 묻는 질문</strong><small>이사·배정·취학통지서</small></span></a>',
   '</div>',
-  `<a href="/map" class="home-page__card"><span class="min-w-0 flex-1"><strong>${escapeHtml(copy.mapCardTitle)}</strong><small>${escapeHtml(copy.mapCardBody)}</small></span></a>`,
-  `<a href="/learn" class="home-page__card"><span class="min-w-0 flex-1"><strong>${escapeHtml(copy.learnCardTitle)}</strong><small>${escapeHtml(copy.learnCardBody)}</small></span></a>`,
-  '<footer class="home-page__footer"><a href="/area">지역별 학교 목록</a><a href="/privacy">개인정보처리방침</a></footer>',
+  `<div class="home-secondary-links"><a href="/map">${escapeHtml(copy.mapCardTitle)}</a><a href="/area">${escapeHtml(copy.areaLinkTitle)}</a><a href="/learn">${escapeHtml(copy.learnCardTitle)}</a></div>`,
+  '<footer class="home-page__footer"><a href="/privacy">개인정보처리방침</a></footer>',
   '</div></section>',
 ].join('')
 

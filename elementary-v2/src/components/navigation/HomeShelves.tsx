@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState, type MouseEvent } from 'react'
+import { useEffect, useMemo, useState, useSyncExternalStore, type MouseEvent } from 'react'
 import { CalendarClock, ChevronRight } from 'lucide-react'
 import shelves from '../../content/home-shelves.json'
 import { worryCards, type HomeShowcase, type WorryItem, type WorryCard } from '../../utils/homeShelves'
@@ -6,7 +6,7 @@ import { followLink } from '../content/contentLinks'
 import { markEntry, track, trackHomeWorryClick } from '../../utils/analytics'
 import { planPath, timetablePath } from '../../utils/urlState'
 import { getAcademyCategory, type AcademyCategoryKey } from '../../utils/academyCategories'
-import { nextDateOf } from '../../utils/familyPlan'
+import { hasFamilyPlan, nextDateOf, subscribeFamilyPlan } from '../../utils/familyPlan'
 import AddToPlanButton from '../content/AddToPlanButton'
 
 // 막대 축: 정오~19시 30분 (학교 상세 '초1 오후 한눈에'와 같다)
@@ -37,6 +37,7 @@ const useShowcase = (enabled: boolean) => {
  * 날짜 창·목록 선택은 scripts/build-shell-pages.mjs의 정적 홈과 함께 바꾼다.
  */
 export default function HomeShelves({ onNavigate, part = 'all' }: { onNavigate: (path: string) => void; part?: 'all' | 'worries' | 'showcase' }) {
+  const hasPlan = useSyncExternalStore(subscribeFamilyPlan, hasFamilyPlan, () => false)
   const cards = useMemo(() => worryCards(shelves.worries.items as WorryItem[], new Date(), shelves.worries.max), [])
   const showcase = useShowcase(part !== 'worries')
   const openWorry = (card: WorryCard) => (event: MouseEvent<HTMLAnchorElement>) => {
@@ -94,7 +95,7 @@ export default function HomeShelves({ onNavigate, part = 'all' }: { onNavigate: 
       {part !== 'worries' && showcase && <ShowcaseRow showcase={showcase} go={go} />}
 
       {/* 예시를 본 다음 바로 우리 학교로 짜 보게 한다(2026-10-19). 예시 줄이 없는 개발 서버에서도 보인다. */}
-      {part !== 'worries' && <a href={planPath('week')} className="timetable-banner" onClick={go('banner', 'timetable', planPath('week'))}>
+      {part !== 'worries' && !hasPlan && <a href={planPath('week')} className="timetable-banner" onClick={go('banner', 'timetable', planPath('week'))}>
         <span className="timetable-banner__icon"><CalendarClock size={20} aria-hidden="true" /></span>
         <span className="min-w-0 flex-1">
           <strong>우리 아이 초등학교 시간표 미리 짜보기</strong>
