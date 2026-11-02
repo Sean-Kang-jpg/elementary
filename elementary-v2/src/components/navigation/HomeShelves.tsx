@@ -1,15 +1,13 @@
-import { useEffect, useMemo, useState, type MouseEvent } from 'react'
+import { useEffect, useMemo, useState, useSyncExternalStore, type MouseEvent } from 'react'
 import { CalendarClock, ChevronRight } from 'lucide-react'
 import shelves from '../../content/home-shelves.json'
-import { seasonCards, type HomeShowcase, type SeasonItem } from '../../utils/homeShelves'
+import { worryCards, type HomeShowcase, type WorryItem, type WorryCard } from '../../utils/homeShelves'
 import { followLink } from '../content/contentLinks'
-import { track } from '../../utils/analytics'
+import { markEntry, track, trackHomeWorryClick } from '../../utils/analytics'
 import { planPath, timetablePath } from '../../utils/urlState'
 import { getAcademyCategory, type AcademyCategoryKey } from '../../utils/academyCategories'
-import { nextDateOf } from '../../utils/familyPlan'
+import { hasFamilyPlan, nextDateOf, subscribeFamilyPlan } from '../../utils/familyPlan'
 import AddToPlanButton from '../content/AddToPlanButton'
-
-const planIds = new Map(shelves.season.items.map((item) => [item.id, item.planId]))
 
 // 막대 축: 정오~19시 30분 (학교 상세 '초1 오후 한눈에'와 같다)
 const T0 = 12 * 60
@@ -20,26 +18,41 @@ const span = (from: number | null, to: number | null) =>
   from !== null && to !== null && to > from ? { left: `${pct(from)}%`, width: `${pct(to) - pct(from)}%` } : null
 
 /** 빌드가 쓴 대표 학교 스냅샷. 개발 서버에는 파일이 없어 줄이 빠진다. */
-const useShowcase = () => {
+const useShowcase = (enabled: boolean) => {
   const [data, setData] = useState<HomeShowcase | null>(null)
   useEffect(() => {
+    if (!enabled) return
     let active = true
     fetch('/home-showcase.json')
       .then((response) => (response.ok ? response.json() : null))
       .then((json) => { if (active && json?.school) setData(json as HomeShowcase) })
       .catch(() => {})
     return () => { active = false }
-  }, [])
+  }, [enabled])
   return data
 }
 
 /**
- * 홈의 두 줄 (2026-10-15): 날짜에 따라 바뀌는 '지금 챙길 것'과, 실제 학교 자료로 만든
- * '어디초로 볼 수 있는 것'. 정적 홈은 scripts/build-shell-pages.mjs가 같은 마크업으로 만든다.
+ * 홈의 고민 목록과 학교 예시. HomePage가 검색창 앞뒤로 나누어 배치한다.
+ * 날짜 창·목록 선택은 scripts/build-shell-pages.mjs의 정적 홈과 함께 바꾼다.
  */
-export default function HomeShelves({ onNavigate }: { onNavigate: (path: string) => void }) {
-  const cards = useMemo(() => seasonCards(shelves.season.items as SeasonItem[], new Date(), shelves.season.max), [])
-  const showcase = useShowcase()
+export default function HomeShelves({ onNavigate, part = 'all' }: { onNavigate: (path: string) => void; part?: 'all' | 'worries' | 'showcase' }) {
+  const hasPlan = useSyncExternalStore(subscribeFamilyPlan, hasFamilyPlan, () => false)
+  const cards = useMemo(() => worryCards(shelves.worries.items as WorryItem[], new Date(), shelves.worries.max), [])
+  const showcase = useShowcase(part !== 'worries')
+  const openWorry = (card: WorryCard) => (event: MouseEvent<HTMLAnchorElement>) => {
+    if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return
+    trackHomeWorryClick({ worry_id: card.id })
+    markEntry('home')
+    if (card.href === '#home-assignment-search') {
+      event.preventDefault()
+      const search = document.getElementById('home-assignment-search')
+      search?.scrollIntoView({ block: 'center' })
+      search?.querySelector<HTMLInputElement>('input[role="combobox"]')?.focus()
+    } else {
+      followLink(event, card.href, onNavigate)
+    }
+  }
   const go = (shelf: string, id: string, href: string) => (event: MouseEvent<HTMLAnchorElement>) => {
     track('home_shelf_click', { shelf, item: id })
     followLink(event, href, onNavigate)
@@ -47,31 +60,31 @@ export default function HomeShelves({ onNavigate }: { onNavigate: (path: string)
 
   return (
     <>
-      {cards.length > 0 && (
-        <section className="home-shelf" aria-labelledby="home-season-title">
-          <div className="home-shelf__head"><h2 id="home-season-title">{shelves.season.title}</h2></div>
-          <ul className="home-shelf__row">
+      {part !== 'showcase' && cards.length > 0 && (
+        <section className="home-shelf home-worries" aria-labelledby="home-worries-title">
+          <div className="home-shelf__head"><h2 id="home-worries-title">{shelves.worries.title}</h2></div>
+          <ul className="home-worries__list">
             {cards.map((card) => {
               const date = card.deadline ? nextDateOf(card.deadline) : null
               return (
-                <li key={card.id} className="season-card-item">
-                  <a href={card.href} className="season-card" onClick={go('season', card.id, card.href)}>
+                <li key={card.id} className="worry-item" data-worry-id={card.id}>
+                  <a href={card.href} className="worry-card" onClick={openWorry(card)}>
                     {card.dday !== null
-                      ? <span className="season-card__badge">{card.deadlineLabel} {card.dday === 0 ? 'D-day' : `D-${card.dday}`}</span>
-                      : card.isNew ? <span className="season-card__badge season-card__badge--new">NEW</span> : null}
-                    <strong>{card.title}</strong>
-                    <small>{card.body}</small>
+                      ? <span className="worry-card__badge">{card.deadlineLabel} {card.dday === 0 ? 'D-day' : `D-${card.dday}`}</span>
+                      : card.isNew ? <span className="worry-card__badge worry-card__badge--new">NEW</span> : null}
+                    <strong>{card.question}</strong>
+                    <small>{card.hint}</small>
                   </a>
-                  <AddToPlanButton
+                  {card.planId && <AddToPlanButton
                     item={{
-                      id: planIds.get(card.id) ?? `season-${card.id}`,
-                      title: card.title,
+                      id: card.planId,
+                      title: card.question,
                       href: card.href,
                       when: date ? { kind: 'date', date } : { kind: 'month', month: new Date().getMonth() + 1 },
                     }}
                     from="home_worry"
                     contentId={card.id}
-                  />
+                  />}
                 </li>
               )
             })}
@@ -79,17 +92,17 @@ export default function HomeShelves({ onNavigate }: { onNavigate: (path: string)
         </section>
       )}
 
-      {showcase && <ShowcaseRow showcase={showcase} go={go} />}
+      {part !== 'worries' && showcase && <ShowcaseRow showcase={showcase} go={go} />}
 
       {/* 예시를 본 다음 바로 우리 학교로 짜 보게 한다(2026-10-19). 예시 줄이 없는 개발 서버에서도 보인다. */}
-      <a href={planPath('week')} className="timetable-banner" onClick={go('banner', 'timetable', planPath('week'))}>
+      {part !== 'worries' && !hasPlan && <a href={planPath('week')} className="timetable-banner" onClick={go('banner', 'timetable', planPath('week'))}>
         <span className="timetable-banner__icon"><CalendarClock size={20} aria-hidden="true" /></span>
         <span className="min-w-0 flex-1">
           <strong>우리 아이 초등학교 시간표 미리 짜보기</strong>
           <small>맞춤형·방과후·돌봄에 주변 학원까지, 입학 전에 한 주를 그려 봐요</small>
         </span>
         <ChevronRight size={20} aria-hidden="true" />
-      </a>
+      </a>}
     </>
   )
 }

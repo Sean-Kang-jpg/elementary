@@ -221,49 +221,27 @@
   background: var(--warm-sage-soft);
 }
 
-.home-page__card {
+/* Secondary destinations stay on one compact row on narrow screens. */
+.home-secondary-links {
   display: flex;
+  justify-content: center;
   align-items: center;
-  gap: 12px;
-  border: 1px solid var(--warm-border);
-  border-radius: var(--warm-radius);
-  padding: 14px 14px 14px 16px;
-  color: var(--warm-text);
-  background: var(--warm-surface);
-  text-decoration: none;
+  gap: 16px;
+  margin-top: 16px;
 }
 
-.home-page__card + .home-page__card {
-  /* 위 .home-links와 첫 카드 사이(12px)와 같게. */
-  margin-top: 12px;
-}
-
-.home-page__card strong,
-.home-page__card small {
-  display: block;
-}
-
-.home-page__card strong {
-  font-size: 15px;
-  font-weight: 750;
-}
-
-.home-page__card small {
-  margin-top: 2px;
+.home-secondary-links a {
+  padding: 8px 0;
   color: var(--warm-muted);
   font-size: 13px;
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
-.home-page__card-icon {
-  display: inline-flex;
-  width: 40px;
-  height: 40px;
-  flex: none;
-  align-items: center;
-  justify-content: center;
-  border-radius: 12px;
-  color: #2563eb;
-  background: #eef4ff;
+.home-secondary-links a:focus-visible {
+  outline: 2px solid var(--warm-text);
+  outline-offset: 3px;
+  border-radius: 2px;
 }
 
 .home-page__note {

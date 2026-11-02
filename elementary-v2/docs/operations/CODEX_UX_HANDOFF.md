@@ -249,7 +249,7 @@ MY(`/my`)에는 프로필·관심 후보·저장 학원만 남았다(UX-06). 입
 
 ---
 
-### C-04 홈을 고민 목록으로 (UX-08, UX-08a, UX-08b) — `blocked`(사용자 문구), M
+### C-04 홈을 고민 목록으로 (UX-08, UX-08a, UX-08b) — `merged`, M
 
 **목표**: 홈 첫 화면을 질문형 제목 + 시기별 고민 4~6개로 바꾼다. 검색창은 고민 목록 아래로.
 
@@ -264,17 +264,31 @@ MY(`/my`)에는 프로필·관심 후보·저장 학원만 남았다(UX-06). 입
 - 일정이 있는 사용자 카드(UX-08c)는 2026-11-01에 들어갔다: `PlanSummary`(옛 `RoadmapSummary`)가 `HomeShelves` 바로 위에 있다. 고민 목록으로 바꿔도 이 카드는 목록 위에 둔다. 담은 고민의 ✓는 C-08의 `AddToPlanButton`이 맡는다.
 - C-08에서 추가한 `planId`와 `AddToPlanButton`은 `season`을 `worries`로 바꿀 때 그대로 옮긴다. notice·delay의 로드맵 ID를 유지하고, 버튼을 링크 안에 넣지 않는다.
 
-**막힌 이유**: 홈 제목·설명, 11~12월 고민 문구를 사용자가 정해야 한다.
+**문구 승인**: 2026-11-02 사용자가 제목·설명과 고민 질문/안내 초안에 “이 초안으로 진행”을 선택했다. 제목은 “초등 입학 준비, 어떤 점이 궁금하세요?”, 설명과 질문/안내는 `home.json`·`home-shelves.json`에 승인된 값으로 반영했다. 기존 노출 날짜와 가이드 연결은 유지한다.
 
 **완료 기준**: `homeShelves.test.ts` 갱신 통과, 정적 `dist/index.html`과 앱 홈이 같은 고민 목록, 390px에서 첫 화면에 제목과 고민 3개 이상.
 
-**결과**: 
+**결과** (Codex, 2026-11-02)
 
-**검토**: 
+- 독립 worktree `F:/sm/vibe/elementary/.worktrees/codex-ux-C-04`, 브랜치 `codex/ux-C-04`. 원격 master `e27556f` 위의 C-08 구현 `e981dbd`에서 분기했다. **Claude가 C-08을 먼저 병합한 뒤 C-04를 병합해야 한다.** C-08 원격 최신에는 같은 구현과 호환성 검토 기록(`38f94eb`)이 있다. master 작업 폴더는 변경하지 않았다.
+- `src/content/home.json`: 승인된 질문형 제목·설명. `home-shelves.json`: season→worries, title/body→question/hint, 날짜 창 없는 배정 검색을 첫 항목으로 추가, 최대 6개. 기존 8개 항목의 날짜·마감·연결·planId는 모두 유지했다.
+- `src/utils/homeShelves.ts`, `scripts/build-shell-pages.mjs`: 날짜 창 없는 검색 우선, 기존 마감·원래 순서 정렬을 양쪽에 같이 반영. 앱/정적 홈이 같은 질문·안내·링크를 읽는다. 정적 검색 위치에는 `/map`으로 가는 기본 링크를 두고, 앱에서는 실제 검색창에 초점을 준다. 정적 홈에 기기 저장 버튼은 넣지 않는다.
+- `HomePage.tsx`, `HomeShelves.tsx`: 질문 목록 다음에 검색창 배치. 기존 PlanSummary는 목록 위에 유지하고, 학교 예시·기존 하단 링크는 아래에 유지(C-05는 미수행). 작은 화면에 질문이 먼저 보이도록 상단 그림을 제거했다. 고민/예시를 나누어 렌더링하되 예시 조회는 한 번만 수행한다. 고민 클릭에서 `trackHomeWorryClick`·`markEntry('home')`, C-08의 담기 버튼·ID를 유지한다.
+- `src/styles/home-shelves.css`: 한 열의 질문 목록, 형제 위치 담기 버튼, 초점 표시·좁은 화면 배치. 저장 키·형식·familyPlan 계약·PlanSummary 구현·GNB·라우팅·시간표 엔진은 바꾸지 않았다.
+- 카드 파일 목록 외 추가: `scripts/build-content.mjs`는 카드가 요구한 도착 경로/가이드 nextStep 빌드 검증을 위해, `scripts/public-smoke.mjs`는 변경된 DOM·검색 위치·이벤트·C-08 경로 검증을 위해 수정했다.
+- `npm run lint`: exit 0, 경고 없음. `npm run typecheck`: exit 0. `npm run test:unit`: exit 0, tests 142 / suites 29 / pass 142 / fail 0. 고민 선택 테스트 6개(상시 검색 우선·날짜 창·동률 순서·원본 불변·D-day·NEW·최대 개수 포함).
+- `npm run build`: exit 0. Vite 1,806 modules, 가이드 14편, 학교 6,302·아파트 45,699 URL, sitemap 8개 생성. 기존 청크 크기·브라우저 데이터 갱신 경고가 있다.
+- 추가 검증: 원래 8개 항목의 id/planId/날짜/마감/링크 동일, 365일의 앱/정적 선택 결과 동일, 상시 검색 1순위·최대 6개, 11~12월 모든 날짜에서 4~6개 PASS. 기존 날짜 창을 보존해 다른 시기에 4개 미만인 경우는 남는다. 그 시기의 질문 보강은 별도 콘텐츠 결정이 필요하다.
+- 빌드 실패 검증: 없는 화면·없는 가이드·빈 질문·planId 누락·날짜 있는 상시 검색·nextStep 없는 연결 가이드를 각각 만들어 거부함을 확인(PASS). 원본을 정확히 복원한 뒤 content 빌드도 통과했다. 임시 실행기는 삭제했다.
+- React 검토: 훅 순서 유지, 조건부 예시 fetch, 반복 effect/추가 저장 없음, 담기 버튼과 링크 형제 관계, 수정키/비기본 클릭은 기본 링크 동작 유지. `node --check`(build-content/build-shell-pages/public-smoke), `git diff --check` 통과.
+- `npm run browser:smoke:public -- http://127.0.0.1:3044`: C-04의 승인 문구·상시 첫 항목·검색 위치, 390px 제목/고민 3개/가로 넘침 없음, 앱/정적 목록 일치, 검색 초점·열림, home_worry_click·home 진입 출처·가이드 nextStep 검증 모두 PASS. C-08 담기→새 입학까지 면→제거→저장 실패 검증도 PASS. 이후 기존 지도 축소 검사에서 `zooming out replaces the district markers with province markers — still not true after 15000ms and 27 checks`로 exit 1(`scripts/public-smoke.mjs:473`). 전체 smoke 통과는 남은 검증 블로커이며 지도 검사 조건은 완화하지 않았다.
+- master 병합·release 배포·운영 DB 쓰기는 수행하지 않는다.
+
+**검토** (Codex 통합 검토, 2026-11-02): 사용자가 “04와 05도 운영 배포 합니다”로 이번 master 통합·release 배포를 명시적으로 승인했다. 기존 Claude 담당 경계에 대한 이번 배포의 사용자 승인이다. 최신 master `a19bf81`와 C-05 `a8724e0`(C-04 `bce978a` 포함)를 독립 worktree `ux-C-04-C-05-release`에서 통합했다. C-08 담기 구현과 고민 목록의 충돌을 해결했고, 기존 8개 저장 ID·날짜·연결을 대조해 모두 유지됨을 확인했다. 최신 지도 UI와 C-07 스모크는 유지했다. familyPlan·엔진·저장 형식·GNB·라우팅·운영 DB는 변경하지 않았다. `npm run lint`, `npm run typecheck`, `npm run test:unit`(142/142, 29 suites), `npm run build`(1,806 modules, 8 sitemaps), `node --check scripts/public-smoke.mjs`, `git diff --check` 통과. `npm run browser:smoke:public -- http://127.0.0.1:3046`에서 C-04/C-05와 C-07/C-08 흐름은 모두 통과했다. 전체 스모크는 기존 지도 축소 검사에서 15,000ms/37 checks 후 실패했다. 검사 우회나 지도 코드 변경 없이 이 제한을 기록하고 사용자 승인 범위로 배포한다. 배포 후 운영 홈·깊은 링크와 동일 기능 흐름을 재확인한다.
 
 ---
 
-### C-05 홈 하단 정리 (UX-12) — `blocked`(C-04), S
+### C-05 홈 하단 정리 (UX-12) — `merged`, S
 
 **목표**: 지도·지역·학습 카드를 한 줄 보조 링크로 내리고 예시 학교 영역 제목을 "일정 예시"로. 일정이 있는 가족에게는 `HomeShelves`의 `.timetable-banner`(시간표 미리 짜보기)를 숨긴다 — 위의 `PlanSummary`에 같은 길("우리 아이 한 주")이 있다(`hasFamilyPlan()`).
 
@@ -282,9 +296,20 @@ MY(`/my`)에는 프로필·관심 후보·저장 학원만 남았다(UX-06). 입
 
 **완료 기준**: 첫 화면 스크롤 안의 큰 카드형 CTA는 고민 목록 하나. 정적 홈과 앱 홈이 같음.
 
-**결과**: 
+**결과** (Codex, 2026-11-02):
 
-**검토**: 
+- 브랜치 `codex/ux-C-05`, 독립 worktree `.worktrees/codex-ux-C-05`. C-04의 `bce978a`에서 시작했다. 선행 병합 순서는 C-08 → C-04 → C-05이며, 이 브랜치는 master/release를 병합하거나 배포하지 않았다.
+- `src/components/navigation/HomePage.tsx`: 지도·지역·학습의 기존 문구/경로를 한 줄 보조 링크로 모았다. 큰 지도·학습 카드와 중복 지역 푸터 링크를 제거하고 개인정보 링크는 유지했다.
+- `src/content/home.json`: 기존 “지역별 학교 목록” 문구를 단일 출처로 옮겼다. `src/content/home-shelves.json`: 예시 제목을 카드의 “일정 예시”로 바꿨다. 예시 제목의 실제 출처여서 카드 목록 외 이 파일도 수정했다.
+- `src/components/navigation/HomeShelves.tsx`: 기존 `hasFamilyPlan`/`subscribeFamilyPlan`을 구독해 일정이 있는 가족에게 중복 시간표 배너를 숨긴다. 위 `PlanSummary`의 한 주 링크는 유지한다. 카드 목표에 명시된 배너 분기를 위해 추가한 파일이며 저장 계약은 변경하지 않았다.
+- `scripts/build-shell-pages.mjs`: 보조 링크와 제목을 앱과 맞췄다. 기기 상태를 모르는 정적 홈은 새 가족용 배너를 유지하고 앱과 같은 `/timetable?face=week`로 연결한다.
+- `src/styles/content.css`: 사용하지 않는 큰 카드 스타일을 한 줄 보조 링크 및 키보드 포커스 스타일로 교체했다.
+- `scripts/public-smoke.mjs`: 첫 홈에서 카드 제거, 세 링크의 정적/앱 순서·문구·주소 일치, 360px 한 줄/가로 넘침, 예시 제목, 신규/저장 가족의 배너 분기를 검증한다. DOM 변경에 맞춰 기존 지역 링크 검증도 수정했다. 검토용 스크린샷은 `HOME_REVIEW_SCREENSHOT`을 지정하면 저장한다.
+- 검증: `npm run lint` 통과(경고 0), `npm run typecheck` 통과, `npm run test:unit` 142/142 통과(29 suites), `npm run build` 통과(1,806 modules, 가이드 14편, 학교 6,302/아파트 45,699/사이트맵 8개). 최초 제한된 네트워크에서의 사이트맵 실패는 네트워크 접근을 허용한 최종 빌드에서 해소했다. `node --check scripts/public-smoke.mjs`, `git diff --check` 통과.
+- 화면 검증: `npm run browser:smoke:public -- http://127.0.0.1:3045`에서 보조 링크 3개, 360px 한 줄/넘침 없음, 첫 390px 화면의 고민 3개, 정적/앱 링크 일치, “일정 예시” 제목 일치, 새 가족의 배너 표시, 저장 후 새로고침 없는 배너 숨김과 `PlanSummary` 한 주 링크 유지가 통과했다. C-08의 담기/일정 이동/삭제/실패 표시도 통과했다. 예시 데이터는 빌드한 `dist/home-showcase.json`을 검증 서버에서 제공했다. 검토 스크린샷 `C-05-home-secondary-links.png`도 저장·확인했다.
+- 블로커: **전체 public smoke 미통과**. 앞선 두 실행은 기존 지도 축소의 `zooming out replaces the district markers with province markers`에서 15,000ms 후 실패(39/40 checks). 최종 실행은 C-05 검사를 모두 통과한 뒤 `district data loaded and measured`에서 15,000ms/40 checks 후 실패했다. 지도/측정 코드는 수정하지 않았고 이 검사를 우회하지 않았다. 실제 배포 환경의 깊은 링크 rewrite는 로컬 Vite에서 검증할 수 없어 배포 검증이 필요하다. C-06의 추첨 관련 사실 확인은 별도 대기 상태다.
+
+**검토** (Codex 통합 검토, 2026-11-02): 사용자가 “04와 05도 운영 배포 합니다”로 이번 master 통합·release 배포를 명시적으로 승인했다. 기존 Claude 담당 경계에 대한 이번 배포의 사용자 승인이다. 최신 master `a19bf81`와 C-05 `a8724e0`(C-04 `bce978a` 포함)를 독립 worktree `ux-C-04-C-05-release`에서 통합했다. C-08 담기 구현과 고민 목록의 충돌을 해결했고, 기존 8개 저장 ID·날짜·연결을 대조해 모두 유지됨을 확인했다. 최신 지도 UI와 C-07 스모크는 유지했다. familyPlan·엔진·저장 형식·GNB·라우팅·운영 DB는 변경하지 않았다. `npm run lint`, `npm run typecheck`, `npm run test:unit`(142/142, 29 suites), `npm run build`(1,806 modules, 8 sitemaps), `node --check scripts/public-smoke.mjs`, `git diff --check` 통과. `npm run browser:smoke:public -- http://127.0.0.1:3046`에서 C-04/C-05와 C-07/C-08 흐름은 모두 통과했다. 전체 스모크는 기존 지도 축소 검사에서 15,000ms/37 checks 후 실패했다. 검사 우회나 지도 코드 변경 없이 이 제한을 기록하고 사용자 승인 범위로 배포한다. 배포 후 운영 홈·깊은 링크와 동일 기능 흐름을 재확인한다.
 
 ---
 

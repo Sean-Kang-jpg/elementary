@@ -294,6 +294,37 @@ for (const name of ['roadmap.json', 'checklist.json']) {
   }
 }
 
+// C-04: the home worry must lead to an existing screen and a guide with a next step.
+const shelvesFile = path.join(contentDir, 'home-shelves.json')
+const homeShelves = JSON.parse(await fs.readFile(shelvesFile, 'utf8'))
+const worries = homeShelves.worries
+if (!worries || !Array.isArray(worries.items) || !Number.isInteger(worries.max) || worries.max < 4 || worries.max > 6) {
+  problem(shelvesFile, 'worries needs items and a max between 4 and 6')
+} else {
+  const first = worries.items[0]
+  if (first?.id !== 'assignment' || first?.href !== '#home-assignment-search' || first?.from || first?.to) {
+    problem(shelvesFile, 'the first worry must be the undated assignment search')
+  }
+  const ids = new Set()
+  for (const item of worries.items) {
+    if (!item.id || ids.has(item.id)) problem(shelvesFile, 'worry IDs must be nonempty and unique')
+    ids.add(item.id)
+    if (typeof item.question !== 'string' || !item.question.trim() || typeof item.hint !== 'string' || !item.hint.trim()) {
+      problem(shelvesFile, `${item.id} needs question and hint`)
+    }
+    if ((item.from || item.to) && (!/^\d{2}-\d{2}$/.test(item.from ?? '') || !/^\d{2}-\d{2}$/.test(item.to ?? ''))) {
+      problem(shelvesFile, `${item.id} needs both from and to in MM-DD format`)
+    }
+    if (item.id !== 'assignment' && (typeof item.planId !== 'string' || !item.planId.trim())) problem(shelvesFile, `${item.id} needs planId`)
+    if (typeof item.href !== 'string' || !item.href) problem(shelvesFile, `${item.id} needs href`)
+    else if (item.href !== '#home-assignment-search') {
+      checkPath(shelvesFile, item.href)
+      const slug = item.href.match(/^\/guide\/([^/?#]+)$/)?.[1]
+      if (slug && !guides.find(guide => guide.slug === slug)?.nextStep) problem(shelvesFile, `${item.id} needs a guide with nextStep`)
+    }
+  }
+}
+
 // Learning and everyday preparation (P2) ------------------------------------
 // One question per file. Rules the plan makes non-negotiable are enforced here so
 // they hold when the editor is in a hurry (PLATFORM_EXPANSION_LEARNING_INPUTS B11):

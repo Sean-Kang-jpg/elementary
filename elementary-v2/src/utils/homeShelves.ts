@@ -1,19 +1,19 @@
-// 홈 '지금 챙길 것' 줄: content/home-shelves.json의 날짜 창으로 오늘 보일 카드를 고른다.
-// scripts/build-shell-pages.mjs의 seasonCards()가 같은 규칙으로 정적 홈을 만든다. 둘을 함께 고친다.
+// 홈 고민 목록. scripts/build-shell-pages.mjs의 worryCards()와 규칙을 함께 바꾼다.
 
-export interface SeasonItem {
+export interface WorryItem {
   id: string
-  from: string // 'MM-DD'
-  to: string // 'MM-DD', from보다 앞이면 해를 넘기는 창
+  from?: string // 'MM-DD', 날짜 창 없는 항목은 항상 맨 앞
+  to?: string // 'MM-DD', from보다 앞이면 해를 넘기는 창
   deadline?: string // 'MM-DD'
   deadlineLabel?: string
   newUntil?: string // 'YYYY-MM-DD'
-  title: string
-  body: string
+  question: string
+  hint: string
   href: string
+  planId?: string
 }
 
-export interface SeasonCard extends SeasonItem {
+export interface WorryCard extends WorryItem {
   dday: number | null
   isNew: boolean
 }
@@ -32,23 +32,25 @@ const daysUntil = (now: Date, mmdd: string) => {
   return Math.round((target.getTime() - start.getTime()) / 86_400_000)
 }
 
-/** 창 안의 카드를 원래 순서대로, 마감이 가까운 것을 앞에. */
-export const seasonCards = (items: SeasonItem[], now: Date, max: number): SeasonCard[] => {
+/** 날짜 창 없는 검색을 먼저, 시기별 고민은 마감 가까운 순·원래 순서대로. */
+export const worryCards = (items: WorryItem[], now: Date, max: number): WorryCard[] => {
   const today = monthDay(now)
   const iso = `${now.getFullYear()}-${today}`
   return items
-    .filter((item) => inWindow(today, item.from, item.to))
+    .filter((item) => (!item.from && !item.to) || Boolean(item.from && item.to && inWindow(today, item.from, item.to)))
     .map((item, index) => ({
       ...item,
       dday: item.deadline ? daysUntil(now, item.deadline) : null,
       isNew: Boolean(item.newUntil && iso <= item.newUntil),
       index,
+      permanent: !item.from && !item.to,
     }))
-    .sort((a, b) => (a.dday ?? 999) - (b.dday ?? 999) || a.index - b.index)
+    .sort((a, b) => Number(b.permanent) - Number(a.permanent) || (a.dday ?? 999) - (b.dday ?? 999) || a.index - b.index)
     .slice(0, max)
     .map((card) => {
-      const { index, ...rest } = card
+      const { index, permanent, ...rest } = card
       void index
+      void permanent
       return rest
     })
 }
