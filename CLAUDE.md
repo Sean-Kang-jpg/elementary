@@ -65,15 +65,15 @@ npm run typecheck
 
 ## Uncommitted Work At Handoff
 
-### 2026-11-01: 우리집 일정 중심 UX 개편 — 우리집 일정 탭·완료 표시 (master 커밋, UX-26 이후 release 미배포)
+### 2026-11-01~02: 우리집 일정 중심 UX 개편 — 우리집 일정 탭·완료 표시·Codex C-07~09 (커밋·운영 배포 완료)
 
 - 사용자 결정: 계획을 제품 중심에, GNB 시간표 → **우리집 일정**(입학까지 / 우리 아이 한 주, URL `/timetable` 유지), 홈은 고민에서 시작, MY는 프로필·설정만
 - 백로그 `elementary-v2/docs/product/UX_BACKLOG_PLAN_CENTERED.md`(UX-01~26), 분담·작업 카드 `elementary-v2/docs/operations/CODEX_UX_HANDOFF.md`(C-01~09)
 - 운영 배포 완료(release `013bc70`): UX-K0 `familyPlan.ts` · UX-03 입학까지 D-day·완료 체크 · C-01 퍼널 이벤트 · C-02 .ics. 운영 smoke 119 PASS
-- master `5852791`까지(미배포): C-03 가이드 14편 다음 한 걸음(문구 사용자 확인 대기) · **UX-26** `/timetable?face=timeline|week`(`planPath()`), 면 없는 주소는 입학까지(연도 없이 시간표만 있으면 한 주) · **UX-06** MY는 입학연도·관심 후보·저장 학원 + 우리집 일정 링크(`MyTimetableSummary` 삭제) · **UX-08c** 홈 `PlanSummary`(옛 `RoadmapSummary`)가 고민 목록 위 · **UX-10** `describeProgress`, `schedule/coverage.ts`(엔진 공백만, 하교~19시)
-- 검증: lint·typecheck·build, test:unit 140, public smoke 118 PASS(3001). **로컬 smoke는 3001에서** — 3010·3011·3042 등은 지도 축소 검사에서 멈춘다(Naver 허용 호스트로 추정)
-- 기능별 스모크 중 `my-ux-smoke`·`morning-care-production-smoke`는 MY의 시간표 요약(`.my-timetable-summary`)을 찾으므로 UX-26 뒤로는 맞지 않는다. 고칠 때는 `/timetable?face=week`로
-- 다음: release 배포(사용자 승인 — C-03 문구 포함), Codex C-07·C-08·C-09(C-08 smoke는 `/timetable?face=timeline`으로 고쳐 둠), C-05에 일정 있는 가족의 `.timetable-banner` 숨김 추가. 사용자 몫: C-04 홈 문구, C-06 추첨 결과 사실, 휴대폰 캘린더에 .ics 열어 보기
+- 운영 배포 완료(release `439607b`, 11-02): C-03 가이드 14편 다음 한 걸음(문구 사용자 확인 대기) · **UX-26** `/timetable?face=timeline|week`(`planPath()`), 면 없는 주소는 입학까지(연도 없이 시간표만 있으면 한 주) · **UX-06** MY는 입학연도·관심 후보·저장 학원 + 우리집 일정 링크(`MyTimetableSummary` 삭제) · **UX-08c** 홈 `PlanSummary`(옛 `RoadmapSummary`)가 고민 목록 위 · **UX-10** `describeProgress`, `schedule/coverage.ts`(엔진 공백만, 하교~19시) · **C-07** 학교·아파트 상세 → 한 주 · **C-08** 홈 시즌 카드 "내 일정에 넣기" · **C-09** 퍼널 정의(문서). 바로 뒤에 다른 세션의 `ab3e4b2`(지도 빠른 필터 숨김, 필터를 MY 아래로)가 release에 올라갔다 — 사용자 의도 확인됨
+- 검증: lint·typecheck·build, test:unit 140, public smoke 141 PASS(3001). 운영 smoke는 `ab3e4b2` 스크립트로 "은마" 검색 대기(`apartment search returned household data`)에서 두 번 연속 멈췄고, 검색 직후 6초를 기다린 사본으로는 147 PASS — 손으로 검색하면 정상이라 smoke 대기 문제로 보지만 원인은 미확정. **로컬 smoke는 3001에서** — 3010·3011·3042 등은 지도 축소 검사에서 멈춘다(Naver 허용 호스트로 추정)
+- 기능별 스모크 `my-ux-smoke`(3001 통과)·`morning-care-production-smoke`(운영 통과)를 UX-26 구조로 고쳤다. 아침돌봄 smoke는 10-24 개편 뒤로도 맞지 않았다(패널이 한 줄, 학년도는 `title`). playwright가 프로젝트 의존성에 없어 `CALENDAR_QA_PLAYWRIGHT`(Codex 런타임의 playwright)·`CALENDAR_QA_CHROME`(설치된 Chrome)을 넘겨 실행
+- 다음: Claude UX-13 출발 계획(상황별 채우는 규칙을 먼저 사용자 확인), 이어 UX-14·UX-18. Codex는 C-04 문구 대기, C-05(일정 있는 가족에게 `.timetable-banner` 숨김 포함). 사용자 몫: C-03 가이드 버튼 문구 14개 확인, C-04 홈 문구, C-06 추첨 결과 사실, 휴대폰 캘린더에 .ics 열어 보기
 
 ### 2026-10-31~11-01: 방과후 시간대층 운영 적재·화면 전환·배포 (커밋·배포 완료)
 
