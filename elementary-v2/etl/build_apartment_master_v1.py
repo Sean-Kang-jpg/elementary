@@ -32,6 +32,9 @@ LEGACY_KAPT_SOURCE = ROOT_DIR / "archive" / "legacy-v1" / "etl" / "data" / "kapt
 # Complexes built after the base file (build_apartment_supplement.py), read after it.
 # Optional: without the file the build is exactly what it was before 2026-10-07.
 APT_SUPPLEMENT = BASE_DIR / "runtime" / "apartment_supplement" / "apartment_base_supplement.csv"
+# Road addresses K-apt listed for a multi-building complex before it cut each
+# list to one address (2026-09-25 file). Committed; build_kapt_address_history.py.
+KAPT_ADDRESS_HISTORY = BASE_DIR / "kapt_road_address_history.csv"
 
 
 def base_origin(apt: dict[str, str]) -> tuple[str, str]:
@@ -105,6 +108,22 @@ def text(value: Any) -> str:
     return str(value or "").strip()
 
 
+def kapt_address_history(as_of: str) -> list[tuple[str, str]]:
+    """(code, road address) pairs K-apt had listed by `as_of` and no longer lists.
+
+    Only addresses first seen on or before the build's own K-apt date count, so
+    rebuilding from an older snapshot gives what it gave before.
+    """
+    if not KAPT_ADDRESS_HISTORY.is_file():
+        return []
+    with KAPT_ADDRESS_HISTORY.open(encoding="utf-8", newline="") as handle:
+        return [
+            (text(row["kapt_code"]), text(row["road_address"]))
+            for row in csv.DictReader(handle)
+            if text(row["first_seen"]) <= as_of
+        ]
+
+
 def kapt_region(row: dict[str, str]) -> str:
     """Region for a K-apt row, splitting merged values such as 전라남도광주특별시."""
     try:
@@ -138,15 +157,41 @@ def names_are_variants(left: Any, right: Any) -> bool:
     )
 
 
+# Districts created in 2026, mapped to the ones the 2024-10 apartment base still
+# names. K-apt writes the new names from its 2026-09-25 file; 567 capital
+# complexes lost their road and legal address match over it and the 2026-11-02
+# monthly run stopped (run 41354707718). 제물포구 took parts of both 중구 and 동구.
+DISTRICT_PREDECESSORS = {
+    "인천광역시 검단구": ("인천광역시 서구",),
+    "인천광역시 서해구": ("인천광역시 서구",),
+    "인천광역시 영종구": ("인천광역시 중구",),
+    "인천광역시 제물포구": ("인천광역시 중구", "인천광역시 동구"),
+    "경기도 화성시 동탄구": ("경기도 화성시",),
+    "경기도 화성시 만세구": ("경기도 화성시",),
+    "경기도 화성시 병점구": ("경기도 화성시",),
+    "경기도 화성시 효행구": ("경기도 화성시",),
+}
+
+
+def predecessor_addresses(address: str) -> list[str]:
+    for successor, predecessors in DISTRICT_PREDECESSORS.items():
+        if address.startswith(successor + " "):
+            remainder = address[len(successor):]
+            return [predecessor + remainder for predecessor in predecessors]
+    return []
+
+
 def address_candidates(value: Any) -> set[str]:
     """Normalized address keys, with a merged region prefix rewritten first.
 
     K-apt moved 광주 and 전남 to `전남광주통합특별시` from its 2026-09-22 file
     while the apartment base still reads `전라남도 ...`/`광주광역시 ...`. Compared
-    raw, not one 광주·전남 complex matched K-apt (found 2026-10-04).
+    raw, not one 광주·전남 complex matched K-apt (found 2026-10-04). A district
+    created in 2026 also yields the address under its predecessor.
     """
     registry = load_registry()
     parts = [registry.canonicalize_address(part) for part in text(value).split(",")]
+    parts += [older for part in parts for older in predecessor_addresses(part)]
     candidates = {normalize(part) for part in parts if normalize(part)}
     whole = registry.canonicalize_address(text(value))
     if normalize(whole):
@@ -280,6 +325,10 @@ def main(argv: list[str] | None = None) -> None:
         # Keyed by the resolved registry region, not the raw 시도 value, so a
         # merged source value lines up with the apartment's own region.
         name_index[(kapt_region(row), text(row.get("시군구")), normalize_name(row.get("단지명")))].add(code)
+    for code, address in kapt_address_history(KAPT_AS_OF):
+        if code in kapt_by_code:
+            for candidate in address_candidates(address):
+                road_index[candidate].add(code)
 
     ranked_by_apt: dict[str, list[dict[str, Any]]] = {}
     for apt in apartments:
