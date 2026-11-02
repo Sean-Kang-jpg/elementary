@@ -776,6 +776,18 @@ try {
     "['/map /guide /timetable', '/map /guide /timetable /frontyard'].includes([...document.querySelectorAll('.app-gnb__item')].map((item) => item.getAttribute('href')).join(' '))",
     'the bottom navigation is 학교 찾기, 입학 준비, 우리집 일정 (and 배움·돌봄) in that order',
   )
+  // 2026-11-03: before a school is chosen, 배움·돌봄 shows what it is for — a sample week and sample posts,
+  // all marked 예시 — instead of a lone school picker. The visitor's saved schools are put back afterwards.
+  run(['eval', "sessionStorage.setItem('smoke-favorites', JSON.stringify([localStorage.getItem('elementary-favorites-v1'), localStorage.getItem('favorite-school-ids')])); localStorage.removeItem('elementary-favorites-v1'); localStorage.removeItem('favorite-school-ids'); 'no saved school'"], { quiet: true })
+  run(['open', new URL('/frontyard', baseUrl).toString()])
+  await waitFor("document.querySelector('#frontyard-title') && document.querySelector('.frontyard-preview')", '배움·돌봄 without a school shows what choosing one leads to')
+  assertPage(
+    "document.querySelectorAll('.frontyard-preview__card').length === 3 && [...document.querySelectorAll('.frontyard-preview__card')].every((card) => card.querySelector('.frontyard-tag--sample')) && document.querySelector('.frontyard-preview a[href=\"/timetable?face=week\"]')",
+    'the three examples are each marked 예시 and the sample week links to the week timetable',
+  )
+  run(['eval', "(() => { const [list, legacy] = JSON.parse(sessionStorage.getItem('smoke-favorites') || '[null,null]'); if (list !== null) localStorage.setItem('elementary-favorites-v1', list); if (legacy !== null) localStorage.setItem('favorite-school-ids', legacy); sessionStorage.removeItem('smoke-favorites'); return 'saved schools restored' })()"], { quiet: true })
+  run(['open', new URL('/learn', baseUrl).toString()])
+  await waitFor("document.querySelector('#learn-title')", 'back on 학습 준비 for the map link check')
   assertPage(
     "document.querySelector('.app-topbar__home')?.getAttribute('href') === '/' && document.querySelector('.app-topbar__my')?.getAttribute('href') === '/my'",
     'the top bar carries the logo to the home and the MY icon',

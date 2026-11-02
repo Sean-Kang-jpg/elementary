@@ -19,6 +19,7 @@ import SchoolSelection from '../search/SchoolSelection'
 import PostCard from './PostCard'
 import SeekComposer from './SeekComposer'
 import OfferRequest from './OfferRequest'
+import FrontyardPreview from './FrontyardPreview'
 
 interface FrontyardPageProps {
   schoolId: string | null
@@ -142,6 +143,8 @@ export default function FrontyardPage({ schoolId, onSchoolChange, onNavigate }: 
           <strong>{schoolId ? `${schoolName ?? '학교'} 주변` : '학교를 골라 주세요'}</strong>
         </div>
         <SchoolSelection schoolId={schoolId} onChange={pickSchool} />
+
+        {!schoolId && <FrontyardPreview onNavigate={onNavigate} />}
 
         {schoolId && (
           <>

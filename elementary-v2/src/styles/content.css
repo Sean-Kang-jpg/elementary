@@ -2834,6 +2834,23 @@
 .frontyard-back { width: auto; padding: 0 14px; margin: 0 0 12px; }
 .frontyard-note { margin-top: 18px; }
 
+/* 학교를 고르기 전의 예시(2026-11-03). 실제 글과 같은 카드 모양에 '예시' 표시, 누르는 동작은 없다. */
+.frontyard-preview { margin-top: 22px; }
+.frontyard-preview h2 { margin: 0 0 10px; font-size: 16px; font-weight: 800; }
+.frontyard-preview__card { margin-top: 10px; padding: 14px 16px; border: 1px dashed var(--warm-border-strong); border-radius: 16px; background: var(--warm-surface); }
+.frontyard-preview__card .frontyard-card { padding: 6px 0 0; }
+.frontyard-preview__card .my-help { margin: 4px 0 0; }
+.frontyard-preview__card .my-button { display: inline-flex; align-items: center; gap: 6px; margin-top: 12px; text-decoration: none; }
+.frontyard-preview__step { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 0; font-size: 14px; font-weight: 700; }
+.frontyard-preview__step svg { color: var(--warm-accent, #e8664f); }
+.frontyard-preview__step .frontyard-tag { margin: 0; }
+.frontyard-preview__day { margin: 10px 0 0; padding: 0; list-style: none; font-size: 13px; }
+.frontyard-preview__day li { display: flex; gap: 10px; padding: 5px 0; border-top: 1px solid var(--warm-border); }
+.frontyard-preview__day .frontyard-preview__weekday { border-top: 0; padding-top: 0; color: var(--warm-muted); font-size: 12px; font-weight: 700; }
+.frontyard-preview__time { flex: none; width: 92px; color: var(--warm-muted); font-variant-numeric: tabular-nums; }
+.frontyard-preview__hint { display: flex; align-items: flex-start; gap: 5px; margin: 8px 0 0; color: var(--warm-muted); font-size: 12px; line-height: 1.5; }
+.frontyard-preview__hint svg { flex: none; margin-top: 2px; }
+
 .frontyard-composer fieldset { margin: 14px 0 0; padding: 0; border: 0; }
 .frontyard-composer legend { font-size: 14px; font-weight: 700; }
 .frontyard-composer .my-field { margin-top: 14px; }
