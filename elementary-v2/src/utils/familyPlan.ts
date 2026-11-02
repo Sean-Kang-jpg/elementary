@@ -13,9 +13,9 @@ import { track, trackPlanItemAdd, trackPlanReturn, trackPlanStart } from './anal
 import { readChecklist, readProfile, hasSavedProfile, saveChecklist, subscribeProfile, type Profile } from './profile'
 import { roadmapFor } from './roadmap'
 import { readPlans, subscribePlans } from './schedule/plans'
-import { daysSince, mergeTimeline, validPinned, type PinnedItem, type PlanFace, type PlanSource, type TimelineEntry } from './familyPlanCore'
+import { daysSince, mergeTimeline, planChangesSince, validPinned, type PinnedItem, type PlanChanges, type PlanFace, type PlanSource, type TimelineEntry } from './familyPlanCore'
 
-export type { PinnedItem, PlanFace, PlanSource, TimelineEntry, TimelineGroup, TimelineWhen } from './familyPlanCore'
+export type { PinnedItem, PlanChanges, PlanFace, PlanSource, TimelineEntry, TimelineGroup, TimelineWhen } from './familyPlanCore'
 export { daysUntil, describeProgress, dueBadge, groupTimeline, nextDateOf } from './familyPlanCore'
 
 const KEY = 'wherecho:family-plan-v1'
@@ -129,6 +129,8 @@ export const setTimelineDone = (id: string, done: boolean): void => {
 }
 
 let visitNoted = false
+// 이번 방문 전에 마지막으로 연 시각. notePlanVisit이 저장값을 지금으로 덮기 전에 붙잡아 둔다(UX-18).
+let previousSeenAt: string | null = null
 
 /**
  * 우리집 일정·홈의 일정 카드가 열릴 때 부른다. 페이지를 새로 읽을 때마다 한 번만 센다(이 앱은 방문당 문서 하나).
@@ -138,10 +140,18 @@ export const notePlanVisit = (now = new Date()): void => {
   if (visitNoted || !hasFamilyPlan()) return
   visitNoted = true
   const store = readStore()
+  previousSeenAt = store.lastSeenAt
   const days = daysSince(store.lastSeenAt, now)
   writeStore({ ...store, lastSeenAt: now.toISOString() })
   if (days !== null) trackPlanReturn({ days_since: days })
 }
+
+/**
+ * 지난 방문 뒤 달라진 것(UX-18). 이번 방문 동안은 같은 답을 준다 — 방문 기록을 남긴 뒤에도 그 전 시각으로 센다.
+ * 다음에 페이지를 새로 열면 기준이 이번 방문으로 옮겨 가니, 한 번 본 변화는 다시 알리지 않는다.
+ */
+export const readPlanChanges = (now = new Date(), profile: Profile = readProfile()): PlanChanges | null =>
+  planChangesSince(readTimeline(now, profile), visitNoted ? previousSeenAt : readStore().lastSeenAt, now)
 
 /** 일정이 바뀌면 부른다: 담은 항목, 프로필·체크리스트, 시간표 초안 어느 쪽이든. */
 export const subscribeFamilyPlan = (listener: () => void): (() => void) => {

@@ -364,6 +364,22 @@ try {
   await waitFor("!document.querySelector('[data-testid=plan-starter]') && document.querySelector('[data-testid=plan-coverage]')", 'UX-13 finishing hides the questions and keeps the coverage line')
   assertPage("document.querySelector('[data-testid=plan-intents]')?.textContent.startsWith('이번 주 안전') && document.querySelector('.my-agenda__card--care .intent-chip--safety')", 'UX-14 care shows as 안전 on its card and in the weekly intent line')
   run(['eval', "localStorage.removeItem('elementary-schedule-plans-v1'); 'UX-13 cleanup'"], { quiet: true })
+  // UX-18: a family back after two weeks sees what passed and what came near since, once.
+  // Dates are relative to the run so the check holds on any day.
+  const ymd = (offset) => { const d = new Date(); d.setDate(d.getDate() + offset); return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}` }
+  const returning = { version: 1, startedAt: new Date(Date.now() - 30 * 864e5).toISOString(), startedFrom: 'home', lastSeenAt: new Date(Date.now() - 14 * 864e5).toISOString(), pinned: [
+    { id: 'smoke-missed', title: '스모크 지난 일', href: '/guide/school-notice', when: { kind: 'date', date: ymd(-3) }, addedAt: '2026-11-01T00:00:00.000Z' },
+    { id: 'smoke-near', title: '스모크 다가온 일', href: '/guide/school-notice', when: { kind: 'date', date: ymd(9) }, addedAt: '2026-11-01T00:00:00.000Z' },
+  ] }
+  run(['eval', `localStorage.removeItem('wherecho:profile-v1'); localStorage.removeItem('wherecho:checklist-v1'); localStorage.setItem('wherecho:family-plan-v1', ${JSON.stringify(JSON.stringify(returning))}); 'UX-18 returning family'`], { quiet: true })
+  run(['open', new URL('/timetable?face=timeline', baseUrl).toString()])
+  await waitFor("document.querySelector('[data-testid=plan-changes]')?.innerText.includes('스모크 지난 일') && document.querySelector('[data-testid=plan-changes]').innerText.includes('스모크 다가온 일')", 'UX-18 a returning family sees what passed and what came near since the last visit')
+  run(['eval', "document.querySelector('[data-testid=plan-changes] .plan-changes__done').click(); 'UX-18 done'"], { quiet: true })
+  await waitFor("JSON.parse(localStorage.getItem('wherecho:checklist-v1') || '{}')['smoke-missed'] === true && !document.querySelector('[data-testid=plan-changes]').innerText.includes('스모크 지난 일')", 'UX-18 marking a passed item done records it and drops it from the note')
+  run(['open', new URL('/timetable?face=timeline', baseUrl).toString()])
+  await waitFor("document.querySelector('#timetable-title') && document.querySelector('.plan-faces')", 'UX-18 the plan page reopens')
+  assertPage("!document.querySelector('[data-testid=plan-changes]')", 'UX-18 the same changes are not announced twice')
+  run(['eval', "localStorage.removeItem('wherecho:family-plan-v1'); localStorage.removeItem('wherecho:checklist-v1'); 'UX-18 cleanup'"], { quiet: true })
   // C-04: verify the worry-led home before any map interaction.
   run(['open', baseUrl])
   run(['eval', "for (const key of ['wherecho:profile-v1', 'wherecho:family-plan-v1', 'elementary-schedule-plans-v1', 'elementary-favorites-v1', 'favorite-school-ids']) localStorage.removeItem(key); localStorage.setItem('wherecho:analytics-debug', '1'); 'C-04 fresh device, debug on'"], { quiet: true })

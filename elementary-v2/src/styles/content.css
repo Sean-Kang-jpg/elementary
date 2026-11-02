@@ -2983,3 +2983,11 @@ dialog.my-entry-sheet > a.my-button { display: flex; align-items: center; justif
 .intent-chip--free { background: #f3eefb; color: #6a4a9c; }
 .intent-chip--undecided { background: #f1efed; color: var(--warm-muted); }
 .plan-intents { margin: -4px 0 10px; color: var(--warm-muted); font-size: 12px; }
+
+/* 지난번 이후 (UX-18). 돌아온 가족에게 달라진 것만 짧게. */
+.plan-changes { margin: 10px 0; padding: 12px 14px; border-radius: 12px; background: var(--warm-accent-soft); }
+.plan-changes__title { margin: 0 0 6px; color: var(--warm-accent-strong); font-size: 13px; font-weight: 800; }
+.plan-changes__list { margin: 0; padding: 0; list-style: none; display: grid; gap: 6px; font-size: 13px; color: var(--warm-text); }
+.plan-changes__list li { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
+.plan-changes__list a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
+.plan-changes__done { margin-left: auto; min-height: 32px; padding: 4px 10px; border: 1px solid var(--warm-border-strong); border-radius: 8px; background: var(--warm-surface); font-size: 12px; font-weight: 700; color: var(--warm-text); cursor: pointer; }

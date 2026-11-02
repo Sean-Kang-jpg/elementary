@@ -183,6 +183,47 @@ export const daysSince = (lastSeenAt: string | null | undefined, now = new Date(
   return Math.max(0, Math.round((startOfDay(now).getTime() - startOfDay(last).getTime()) / DAY))
 }
 
+/** 지난 방문 뒤 일정에서 달라진 것(UX-18). */
+export interface PlanChanges {
+  /** 지난 방문 시각. */
+  since: Date
+  /** 달이 바뀌었으면 이번 달과 이번 달에 남은 일 수. */
+  newMonth: { month: number; open: number } | null
+  /** 지난 방문 뒤 날짜가 지났는데 아직 안 한 일. */
+  missed: TimelineEntry[]
+  /** 지난 방문 땐 2주 밖이었다가 이제 2주 안으로 들어온 일. */
+  nearing: TimelineEntry[]
+}
+
+const SOON = 14
+
+/**
+ * 하루 이상 지나 돌아왔을 때 알려 줄 변화. 달이 바뀐 것, 그 사이 지난 날짜, 새로 다가온 날짜만 —
+ * 그 전부터 지나 있던 일은 이미 본 것이라 다시 알리지 않는다. 달라진 게 없으면 null.
+ */
+export const planChangesSince = (entries: TimelineEntry[], lastSeenAt: string | null | undefined, now = new Date()): PlanChanges | null => {
+  const days = daysSince(lastSeenAt, now)
+  if (days === null || days < 1) return null
+  const since = new Date(lastSeenAt!)
+  const month = now.getMonth() + 1
+  const monthChanged = since.getFullYear() !== now.getFullYear() || since.getMonth() + 1 !== month
+  const open = entries.filter((entry) => !entry.done)
+  const current = groupTimeline(open, now).find((group) => group.month === month)
+  const missed = open.filter((entry) => {
+    const left = daysUntil(entry.when, now)
+    const before = daysUntil(entry.when, since)
+    return left !== null && before !== null && left < 0 && before >= 0
+  })
+  const nearing = open.filter((entry) => {
+    const left = daysUntil(entry.when, now)
+    const before = daysUntil(entry.when, since)
+    return left !== null && before !== null && left >= 0 && left <= SOON && before > SOON
+  })
+  const newMonth = monthChanged ? { month, open: current?.entries.length ?? 0 } : null
+  if (!newMonth && !missed.length && !nearing.length) return null
+  return { since, newMonth, missed, nearing }
+}
+
 const validWhen = (value: unknown): value is TimelineWhen => {
   if (!value || typeof value !== 'object') return false
   const when = value as TimelineWhen

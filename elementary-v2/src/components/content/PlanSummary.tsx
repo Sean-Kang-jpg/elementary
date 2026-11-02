@@ -10,6 +10,7 @@ import { coverageUntil } from '../../utils/schedule/starter'
 import { displaySchoolName } from '../../utils/schoolName'
 import { planPath, timetablePath } from '../../utils/urlState'
 import { followLink } from './contentLinks'
+import PlanChangesNote from './PlanChangesNote'
 
 interface PlanSummaryProps {
   entryYear: number | null
@@ -68,6 +69,7 @@ export default function PlanSummary({ entryYear, profile, onNavigate }: PlanSumm
           <h2 id="plan-summary-title">{days !== null ? <>입학까지 약 <b>D-{days}</b></> : '우리 아이 한 주를 짜고 있어요'}</h2>
         </div>
       </div>
+      <PlanChangesNote entryYear={entryYear} profile={profile} onNavigate={onNavigate} />
       {heading && tasks.length ? (
         <>
           <h3 className="roadmap__heading">{heading}</h3>

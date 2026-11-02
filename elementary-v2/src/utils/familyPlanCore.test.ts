@@ -1,6 +1,6 @@
 import { describe, it } from 'node:test'
 import assert from 'node:assert/strict'
-import { daysSince, daysUntil, describeProgress, dueBadge, groupTimeline, mergeTimeline, nextDateOf, validPinned, type PinnedItem, type RoadmapViewLike } from './familyPlanCore.ts'
+import { daysSince, daysUntil, describeProgress, dueBadge, groupTimeline, mergeTimeline, nextDateOf, planChangesSince, validPinned, type PinnedItem, type RoadmapViewLike, type TimelineEntry } from './familyPlanCore.ts'
 
 const pin = (id: string, when: PinnedItem['when']): PinnedItem => ({ id, title: id, href: `/guide/${id}`, when, addedAt: '2026-11-01T00:00:00.000Z' })
 
@@ -115,5 +115,41 @@ describe('family plan helpers', () => {
     assert.equal(validPinned(pin('a', { kind: 'month', month: 13 })), false)
     assert.equal(validPinned({ ...pin('a', { kind: 'anytime' }), href: 'https://example.com' }), false)
     assert.equal(validPinned(pin('a', { kind: 'date', date: '2026-1-1' })), false)
+  })
+})
+
+describe('planChangesSince (UX-18)', () => {
+  const item = (id: string, when: TimelineEntry['when'], done = false): TimelineEntry => ({ id, title: id, when, done, source: 'pinned' })
+  const entries = [
+    item('apply', { kind: 'date', date: '2026-11-06' }),
+    item('old', { kind: 'date', date: '2026-10-20' }),
+    item('notice', { kind: 'date', date: '2026-11-20' }),
+    item('far', { kind: 'date', date: '2027-01-10' }),
+    item('nov', { kind: 'month', month: 11 }),
+    item('nov-done', { kind: 'month', month: 11 }, true),
+  ]
+
+  it('reports nothing on the same day or without a previous visit', () => {
+    assert.equal(planChangesSince(entries, null, new Date(2026, 10, 10)), null)
+    assert.equal(planChangesSince(entries, new Date(2026, 10, 10, 8).toISOString(), new Date(2026, 10, 10, 20)), null)
+  })
+
+  it('names the new month, what passed since, and what came within two weeks', () => {
+    const changes = planChangesSince(entries, new Date(2026, 9, 28).toISOString(), new Date(2026, 10, 10))!
+    // 지난 날짜도 이번 달 묶음에 든다(groupTimeline) — apply·old·notice·nov.
+    assert.deepEqual(changes.newMonth, { month: 11, open: 4 })
+    assert.deepEqual(changes.missed.map((e) => e.id), ['apply'])
+    assert.deepEqual(changes.nearing.map((e) => e.id), ['notice'])
+  })
+
+  it('does not repeat what had already passed or was already near at the last visit', () => {
+    const changes = planChangesSince(entries, new Date(2026, 10, 8).toISOString(), new Date(2026, 10, 10))
+    assert.equal(changes, null)
+  })
+
+  it('leaves out what the family already did', () => {
+    const done = entries.map((e) => e.id === 'apply' ? { ...e, done: true } : e)
+    const changes = planChangesSince(done, new Date(2026, 10, 1).toISOString(), new Date(2026, 10, 10))!
+    assert.deepEqual(changes.missed, [])
   })
 })

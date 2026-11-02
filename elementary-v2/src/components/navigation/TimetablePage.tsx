@@ -11,6 +11,7 @@ import { planPath, timetablePath, VIEW_PATHS } from '../../utils/urlState'
 import ChecklistBanner from '../content/ChecklistBanner'
 import EntryProfile from '../content/EntryProfile'
 import RoadmapCard from '../content/RoadmapCard'
+import PlanChangesNote from '../content/PlanChangesNote'
 import { followLink } from '../content/contentLinks'
 import SchoolDayEstimateCard from '../school/SchoolDayEstimateCard'
 import MySchedule from './MySchedule'
@@ -118,6 +119,7 @@ export default function TimetablePage({
           {header}
           <p className="content-page__lead">3월 입학까지 할 일을 시기별로 모았어요. 끝낸 일은 체크해 두세요.</p>
           <EntryProfile entryYear={entryYear} profile={profile} onEntryYearChange={onEntryYearChange} />
+          <PlanChangesNote entryYear={entryYear} profile={profile} onNavigate={onNavigate} />
           {entryYear ? (
             <RoadmapCard entryYear={entryYear} profile={profile} onProfileChange={onProfileChange} onNavigate={onNavigate} source="plan" />
           ) : (
