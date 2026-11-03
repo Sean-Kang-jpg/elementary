@@ -1,0 +1,545 @@
+{
+ "note": "서울 PDF원문 확인(2026-11-03). 15-라 첨부가 모두 PDF인 학교(etl/runtime/llm_extraction/inputs/<id>.txt의 [file:] 머리글, 경기와 같은 규칙) 61곳 중 시간대가 있는 54곳. PDF는 표가 줄로 풀려 요일·시각 짝이 어긋날 수 있다(Opus 재검토에서 찾은 유일한 오류 유형). 입력에 [file:] 머리글이 없는 57곳은 판정하지 않았다.",
+ "schools": [
+  {
+   "school_id": "B000001839",
+   "checks": [
+    [
+     "PDF원문",
+     null,
+     null
+    ]
+   ]
+  },
+  {
+   "school_id": "B000001846",
+   "checks": [
+    [
+     "PDF원문",
+     null,
+     null
+    ]
+   ]
+  },
+  {
+   "school_id": "B000001860",
+   "checks": [
+    [
+     "PDF원문",
+     null,
+     null
+    ]
+   ]
+  },
+  {
+   "school_id": "B000001861",
+   "checks": [
+    [
+     "PDF원문",
+     null,
+     null
+    ]
+   ]
+  },
+  {
+   "school_id": "B000001887",
+   "checks": [
+    [
+     "PDF원문",
+     null,
+     null
+    ]
+   ]
+  },
+  {
+   "school_id": "B000001891",
+   "checks": [
+    [
+     "PDF원문",
+     null,
+     null
+    ]
+   ]
+  },
+  {
+   "school_id": "B000001915",
+   "checks": [
+    [
+     "PDF원문",
+     null,
+     null
+    ]
+   ]
+  },
+  {
+   "school_id": "B000001924",
+   "checks": [
+    [
+     "PDF원문",
+     null,
+     null
+    ]
+   ]
+  },
+  {
+   "school_id": "B000001925",
+   "checks": [
+    [
+     "PDF원문",
+     null,
+     null
+    ]
+   ]
+  },
+  {
+   "school_id": "B000001942",
+   "checks": [
+    [
+     "PDF원문",
+     null,
+     null
+    ]
+   ]
+  },
+  {
+   "school_id": "B000001957",
+   "checks": [
+    [
+     "PDF원문",
+     null,
+     null
+    ]
+   ]
+  },
+  {
+   "school_id": "B000001966",
+   "checks": [
+    [
+     "PDF원문",
+     null,
+     null
+    ]
+   ]
+  },
+  {
+   "school_id": "B000001967",
+   "checks": [
+    [
+     "PDF원문",
+     null,
+     null
+    ]
+   ]
+  },
+  {
+   "school_id": "B000001973",
+   "checks": [
+    [
+     "PDF원문",
+     null,
+     null
+    ]
+   ]
+  },
+  {
+   "school_id": "B000001980",
+   "checks": [
+    [
+     "PDF원문",
+     null,
+     null
+    ]
+   ]
+  },
+  {
+   "school_id": "B000001984",
+   "checks": [
+    [
+     "PDF원문",
+     null,
+     null
+    ]
+   ]
+  },
+  {
+   "school_id": "B000001985",
+   "checks": [
+    [
+     "PDF원문",
+     null,
+     null
+    ]
+   ]
+  },
+  {
+   "school_id": "B000002016",
+   "checks": [
+    [
+     "PDF원문",
+     null,
+     null
+    ]
+   ]
+  },
+  {
+   "school_id": "B000002029",
+   "checks": [
+    [
+     "PDF원문",
+     null,
+     null
+    ]
+   ]
+  },
+  {
+   "school_id": "B000002045",
+   "checks": [
+    [
+     "PDF원문",
+     null,
+     null
+    ]
+   ]
+  },
+  {
+   "school_id": "B000002058",
+   "checks": [
+    [
+     "PDF원문",
+     null,
+     null
+    ]
+   ]
+  },
+  {
+   "school_id": "B000002083",
+   "checks": [
+    [
+     "PDF원문",
+     null,
+     null
+    ]
+   ]
+  },
+  {
+   "school_id": "B000002102",
+   "checks": [
+    [
+     "PDF원문",
+     null,
+     null
+    ]
+   ]
+  },
+  {
+   "school_id": "B000002112",
+   "checks": [
+    [
+     "PDF원문",
+     null,
+     null
+    ]
+   ]
+  },
+  {
+   "school_id": "B000002129",
+   "checks": [
+    [
+     "PDF원문",
+     null,
+     null
+    ]
+   ]
+  },
+  {
+   "school_id": "B000002132",
+   "checks": [
+    [
+     "PDF원문",
+     null,
+     null
+    ]
+   ]
+  },
+  {
+   "school_id": "B000002159",
+   "checks": [
+    [
+     "PDF원문",
+     null,
+     null
+    ]
+   ]
+  },
+  {
+   "school_id": "B000002160",
+   "checks": [
+    [
+     "PDF원문",
+     null,
+     null
+    ]
+   ]
+  },
+  {
+   "school_id": "B000002165",
+   "checks": [
+    [
+     "PDF원문",
+     null,
+     null
+    ]
+   ]
+  },
+  {
+   "school_id": "B000002170",
+   "checks": [
+    [
+     "PDF원문",
+     null,
+     null
+    ]
+   ]
+  },
+  {
+   "school_id": "B000002174",
+   "checks": [
+    [
+     "PDF원문",
+     null,
+     null
+    ]
+   ]
+  },
+  {
+   "school_id": "B000002183",
+   "checks": [
+    [
+     "PDF원문",
+     null,
+     null
+    ]
+   ]
+  },
+  {
+   "school_id": "B000002201",
+   "checks": [
+    [
+     "PDF원문",
+     null,
+     null
+    ]
+   ]
+  },
+  {
+   "school_id": "B000002202",
+   "checks": [
+    [
+     "PDF원문",
+     null,
+     null
+    ]
+   ]
+  },
+  {
+   "school_id": "B000002208",
+   "checks": [
+    [
+     "PDF원문",
+     null,
+     null
+    ]
+   ]
+  },
+  {
+   "school_id": "B000002216",
+   "checks": [
+    [
+     "PDF원문",
+     null,
+     null
+    ]
+   ]
+  },
+  {
+   "school_id": "B000002219",
+   "checks": [
+    [
+     "PDF원문",
+     null,
+     null
+    ]
+   ]
+  },
+  {
+   "school_id": "B000002240",
+   "checks": [
+    [
+     "PDF원문",
+     null,
+     null
+    ]
+   ]
+  },
+  {
+   "school_id": "B000002245",
+   "checks": [
+    [
+     "PDF원문",
+     null,
+     null
+    ]
+   ]
+  },
+  {
+   "school_id": "B000002275",
+   "checks": [
+    [
+     "PDF원문",
+     null,
+     null
+    ]
+   ]
+  },
+  {
+   "school_id": "B000002301",
+   "checks": [
+    [
+     "PDF원문",
+     null,
+     null
+    ]
+   ]
+  },
+  {
+   "school_id": "B000002304",
+   "checks": [
+    [
+     "PDF원문",
+     null,
+     null
+    ]
+   ]
+  },
+  {
+   "school_id": "B000002306",
+   "checks": [
+    [
+     "PDF원문",
+     null,
+     null
+    ]
+   ]
+  },
+  {
+   "school_id": "B000002314",
+   "checks": [
+    [
+     "PDF원문",
+     null,
+     null
+    ]
+   ]
+  },
+  {
+   "school_id": "B000002330",
+   "checks": [
+    [
+     "PDF원문",
+     null,
+     null
+    ]
+   ]
+  },
+  {
+   "school_id": "B000002336",
+   "checks": [
+    [
+     "PDF원문",
+     null,
+     null
+    ]
+   ]
+  },
+  {
+   "school_id": "B000002344",
+   "checks": [
+    [
+     "PDF원문",
+     null,
+     null
+    ]
+   ]
+  },
+  {
+   "school_id": "B000002371",
+   "checks": [
+    [
+     "PDF원문",
+     null,
+     null
+    ]
+   ]
+  },
+  {
+   "school_id": "B000002381",
+   "checks": [
+    [
+     "PDF원문",
+     null,
+     null
+    ]
+   ]
+  },
+  {
+   "school_id": "B000002400",
+   "checks": [
+    [
+     "PDF원문",
+     null,
+     null
+    ]
+   ]
+  },
+  {
+   "school_id": "B000022762",
+   "checks": [
+    [
+     "PDF원문",
+     null,
+     null
+    ]
+   ]
+  },
+  {
+   "school_id": "B000022763",
+   "checks": [
+    [
+     "PDF원문",
+     null,
+     null
+    ]
+   ]
+  },
+  {
+   "school_id": "B000024031",
+   "checks": [
+    [
+     "PDF원문",
+     null,
+     null
+    ]
+   ]
+  },
+  {
+   "school_id": "B000024206",
+   "checks": [
+    [
+     "PDF원문",
+     null,
+     null
+    ]
+   ]
+  }
+ ]
+}
