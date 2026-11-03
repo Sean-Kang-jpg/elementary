@@ -496,3 +496,15 @@ seen at all — Vercel's request log keeps about an hour and no User-Agent
 3. Rollback is the two `DROP` statements in the file header.
 
 Counts cover only requests that reach the function; an edge cache hit is not counted.
+
+## 40: Serving refresh timeout (2026-11-03) — 적용 완료
+
+`refresh_school_apartment_serving()` hit the statement timeout (57014) on all three attempts of
+run 41523931995, after repeated rewrites of the capital tables. The refresh rolled back, so Serving
+was unchanged. `40` sets `statement_timeout = '5min'` on that function only.
+
+1. Run the single `ALTER FUNCTION` statement on its own (the SQL editor's transaction rejects a
+   `VACUUM` in the same batch with 25001).
+2. `SELECT proconfig FROM pg_proc WHERE proname = 'refresh_school_apartment_serving';` shows
+   `{statement_timeout=5min}`.
+3. Rollback: `ALTER FUNCTION public.refresh_school_apartment_serving() RESET statement_timeout;`
