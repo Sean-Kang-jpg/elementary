@@ -1,4 +1,4 @@
-import { ChevronRight, ExternalLink, Globe, LayoutGrid, LoaderCircle, MapPin, RefreshCw, Star, UserRound, Users } from 'lucide-react'
+import { ChevronRight, ExternalLink, Globe, Heart, LayoutGrid, LoaderCircle, MapPin, RefreshCw, UserRound, Users } from 'lucide-react'
 import React, { useEffect, useMemo, useState } from 'react'
 import { School } from '../../types'
 import { useAppContext } from '../../contexts/AppContext'
@@ -224,11 +224,12 @@ const SchoolDetail: React.FC<SchoolDetailProps> = ({ school, entryYear, isOpen, 
           <button
             type="button"
             onClick={toggleFavorite}
-            aria-label={isFavorite ? '학교 제거' : '내 학교에 추가'}
+            aria-label={isFavorite ? '관심 학교에서 빼기' : '관심 학교 저장'}
+            title={isFavorite ? '관심 학교 저장됨' : '관심 학교 저장'}
             aria-pressed={isFavorite}
-            className={`rounded-md p-2 transition-colors hover:bg-gray-100 ${isFavorite ? 'text-amber-500' : 'text-gray-500'}`}
+            className={`rounded-md p-2 transition-colors hover:bg-gray-100 ${isFavorite ? 'text-[#c94f3a]' : 'text-gray-500'}`}
           >
-            <Star size={21} fill={isFavorite ? 'currentColor' : 'none'} aria-hidden="true" />
+            <Heart size={21} fill={isFavorite ? 'currentColor' : 'none'} aria-hidden="true" />
           </button>
         </span>
       )}

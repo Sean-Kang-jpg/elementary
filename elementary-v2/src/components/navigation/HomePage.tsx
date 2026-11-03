@@ -17,7 +17,7 @@ interface HomePageProps {
 
 /**
  * 고민으로 시작하는 첫 화면. 일정이 있는 가족의 우리집 일정 카드는 고민 목록 위에,
- * 배정 검색창은 목록 아래에 둔다(C-04, UX-08c). 가이드 목록은 입학 준비 탭에,
+ * 배정 검색창은 '지금 챙길 것'의 첫 카드 안에 둔다(UX-08c, 2026-11-03). 가이드 목록은 입학 준비 탭에,
  * 전체 로드맵은 우리집 일정에 있다(UX-26) — 같은 목록을 두 곳에 두지 않는다.
  *
  * 검색 결과를 고르면 선택이 바뀌고, App이 그 선택을 보고 상세 주소로 옮긴다.
@@ -36,12 +36,17 @@ export default function HomePage({ onNavigate, entryYear, onEntryYearChange, pro
           <h1 id="home-title">{copy.title}</h1>
           <p className="home-page__lead">{copy.lead}</p>
           <PlanSummary entryYear={entryYear} profile={profile} onNavigate={onNavigate} />
-          <HomeShelves onNavigate={onNavigate} part="worries" />
-          <div id="home-assignment-search"><SearchBox className="home-page__search" /></div>
-          <p className="home-hero__trust">
-            <ShieldCheck size={15} aria-hidden="true" />
-            <span>{copy.noteBefore}<b>{copy.noteStrong}</b>{copy.noteAfter}</span>
-          </p>
+          <HomeShelves
+            onNavigate={onNavigate}
+            part="worries"
+            search={<>
+              <div id="home-assignment-search"><SearchBox className="home-page__search" /></div>
+              <p className="home-hero__trust">
+                <ShieldCheck size={15} aria-hidden="true" />
+                <span>{copy.noteBefore}<b>{copy.noteStrong}</b>{copy.noteAfter}</span>
+              </p>
+            </>}
+          />
         </div>
       </div>
 

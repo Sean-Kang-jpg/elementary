@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState, useSyncExternalStore, type MouseEvent } from 'react'
+import { useEffect, useMemo, useRef, useState, useSyncExternalStore, type MouseEvent, type ReactNode } from 'react'
 import { CalendarClock, ChevronRight } from 'lucide-react'
 import shelves from '../../content/home-shelves.json'
 import { worryCards, type HomeShowcase, type WorryItem, type WorryCard } from '../../utils/homeShelves'
@@ -8,6 +8,7 @@ import { planPath, timetablePath } from '../../utils/urlState'
 import { getAcademyCategory, type AcademyCategoryKey } from '../../utils/academyCategories'
 import { hasFamilyPlan, nextDateOf, subscribeFamilyPlan } from '../../utils/familyPlan'
 import AddToPlanButton from '../content/AddToPlanButton'
+import ShareButton from '../ui/ShareButton'
 
 // 막대 축: 정오~19시 30분 (학교 상세 '초1 오후 한눈에'와 같다)
 const T0 = 12 * 60
@@ -33,25 +34,27 @@ const useShowcase = (enabled: boolean) => {
 }
 
 /**
- * 홈의 고민 목록과 학교 예시. HomePage가 검색창 앞뒤로 나누어 배치한다.
+ * 홈의 고민 목록과 학교 예시. HomePage가 나누어 배치한다. 첫 고민인 배정 학교는 링크가 아니라
+ * 검색창(`search`)을 품은 카드 하나다 — 질문과 검색창이 따로 있으면 같은 일을 두 번 보여준다(2026-11-03).
  * 날짜 창·목록 선택은 scripts/build-shell-pages.mjs의 정적 홈과 함께 바꾼다.
  */
-export default function HomeShelves({ onNavigate, part = 'all' }: { onNavigate: (path: string) => void; part?: 'all' | 'worries' | 'showcase' }) {
+export default function HomeShelves({ onNavigate, part = 'all', search }: { onNavigate: (path: string) => void; part?: 'all' | 'worries' | 'showcase'; search?: ReactNode }) {
   const hasPlan = useSyncExternalStore(subscribeFamilyPlan, hasFamilyPlan, () => false)
   const cards = useMemo(() => worryCards(shelves.worries.items as WorryItem[], new Date(), shelves.worries.max), [])
   const showcase = useShowcase(part !== 'worries')
+  const searchTracked = useRef(false)
   const openWorry = (card: WorryCard) => (event: MouseEvent<HTMLAnchorElement>) => {
     if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return
     trackHomeWorryClick({ worry_id: card.id })
     markEntry('home')
-    if (card.href === '#home-assignment-search') {
-      event.preventDefault()
-      const search = document.getElementById('home-assignment-search')
-      search?.scrollIntoView({ block: 'center' })
-      search?.querySelector<HTMLInputElement>('input[role="combobox"]')?.focus()
-    } else {
-      followLink(event, card.href, onNavigate)
-    }
+    followLink(event, card.href, onNavigate)
+  }
+  // 검색 카드는 누를 링크가 없어, 처음 검색창에 들어갈 때를 고민 선택으로 센다.
+  const enterSearch = (card: WorryCard) => () => {
+    if (searchTracked.current) return
+    searchTracked.current = true
+    trackHomeWorryClick({ worry_id: card.id })
+    markEntry('home')
   }
   const go = (shelf: string, id: string, href: string) => (event: MouseEvent<HTMLAnchorElement>) => {
     track('home_shelf_click', { shelf, item: id })
@@ -65,6 +68,12 @@ export default function HomeShelves({ onNavigate, part = 'all' }: { onNavigate: 
           <div className="home-shelf__head"><h2 id="home-worries-title">{shelves.worries.title}</h2></div>
           <ul className="home-worries__list">
             {cards.map((card) => {
+              if (card.href === '#home-assignment-search') return (
+                <li key={card.id} className="worry-item worry-item--search" data-worry-id={card.id} onFocusCapture={enterSearch(card)}>
+                  <strong className="worry-item__question">{card.question}</strong>
+                  {search}
+                </li>
+              )
               const date = card.deadline ? nextDateOf(card.deadline) : null
               return (
                 <li key={card.id} className="worry-item" data-worry-id={card.id}>
@@ -75,16 +84,19 @@ export default function HomeShelves({ onNavigate, part = 'all' }: { onNavigate: 
                     <strong>{card.question}</strong>
                     <small>{card.hint}</small>
                   </a>
-                  {card.planId && <AddToPlanButton
-                    item={{
-                      id: card.planId,
-                      title: card.question,
-                      href: card.href,
-                      when: date ? { kind: 'date', date } : { kind: 'month', month: new Date().getMonth() + 1 },
-                    }}
-                    from="home_worry"
-                    contentId={card.id}
-                  />}
+                  {card.planId && <div className="worry-actions">
+                    <AddToPlanButton
+                      item={{
+                        id: card.planId,
+                        title: card.question,
+                        href: card.href,
+                        when: date ? { kind: 'date', date } : { kind: 'month', month: new Date().getMonth() + 1 },
+                      }}
+                      from="home_worry"
+                      contentId={card.id}
+                    />
+                    <ShareButton path={card.href} title={card.question} text={card.hint} className="worry-action" />
+                  </div>}
                 </li>
               )
             })}

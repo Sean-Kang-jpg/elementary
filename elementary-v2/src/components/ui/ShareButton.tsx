@@ -12,6 +12,8 @@ interface ShareButtonProps {
   text?: string
   /** 아이콘 옆에 보일 글자. 콘텐츠 화면은 아이콘만으로는 눈에 띄지 않아 '공유'를 쓴다. */
   label?: string
+  /** 버튼 모양을 바꿀 때. 홈 고민 목록의 아이콘 버튼이 쓴다. */
+  className?: string
 }
 
 type Outcome = 'idle' | 'copied' | 'failed'
@@ -46,7 +48,7 @@ const copyToClipboard = (value: string): Promise<void> => {
  * 없으면 클립보드에 복사한다. 둘 다 막히면 주소를 선택된 상태로 보여줘서
  * 사용자가 직접 복사할 수 있게 한다 — 조용히 실패하지 않는다.
  */
-const ShareButton: React.FC<ShareButtonProps> = ({ path, title, text, label }) => {
+const ShareButton: React.FC<ShareButtonProps> = ({ path, title, text, label, className }) => {
   const [outcome, setOutcome] = useState<Outcome>('idle')
   const resetTimer = useRef<number | null>(null)
 
@@ -96,7 +98,7 @@ const ShareButton: React.FC<ShareButtonProps> = ({ path, title, text, label }) =
         aria-label="이 페이지 공유"
         data-testid="share-button"
         data-share-url={url}
-        className={label ? 'content-share' : 'rounded-md p-2 text-gray-500 transition-colors hover:bg-gray-100 hover:text-gray-700'}
+        className={className ?? (label ? 'content-share' : 'rounded-md p-2 text-gray-500 transition-colors hover:bg-gray-100 hover:text-gray-700')}
       >
         {outcome === 'copied'
           ? <Check size={label ? 16 : 21} className="text-emerald-600" aria-hidden="true" />

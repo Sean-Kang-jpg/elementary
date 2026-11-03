@@ -387,7 +387,7 @@ try {
   await waitFor("document.querySelector('#home-title') && document.querySelectorAll('.worry-item').length >= 3", 'C-04 worry-led home mounted')
   assertPage("document.querySelector('#home-title').textContent === '초등 입학 준비, 어떤 점이 궁금하세요?' && document.querySelector('.worry-item')?.dataset.worryId === 'assignment'", 'C-04 approved title and permanent assignment worry lead the home')
   assertPage("!document.querySelector('.home-page__card') && JSON.stringify([...document.querySelectorAll('.home-secondary-links a')].map(a => [a.getAttribute('href'), a.textContent])) === JSON.stringify([['/map', '지도에서 찾아보기'], ['/area', '지역별 학교 목록'], ['/learn', '학습 준비']]) && document.querySelector('.home-page__footer a[href=\"/privacy\"]')", 'home uses three compact secondary links and keeps the privacy link')
-  assertPage("document.querySelectorAll('.worry-item').length <= 6 && Boolean(document.querySelector('.home-worries').compareDocumentPosition(document.querySelector('#home-assignment-search')) & Node.DOCUMENT_POSITION_FOLLOWING)", 'C-04 search follows the worry list, capped at six')
+  assertPage("document.querySelectorAll('.worry-item').length <= 6 && document.querySelector('.worry-item[data-worry-id=assignment] #home-assignment-search input[role=combobox]') && !document.querySelector('.worry-item[data-worry-id=assignment] a.worry-card')", 'the assignment worry is one card holding the search, within six worries')
   assertPage("(() => { const questions = [...document.querySelectorAll('.worry-card strong')]; const nav = document.querySelector('.app-gnb')?.getBoundingClientRect().top; const bottom = nav > 0 ? nav : innerHeight; return document.querySelector('#home-title').getBoundingClientRect().top >= 0 && questions.filter(q => { const r = q.getBoundingClientRect(); return r.top >= 0 && r.bottom <= bottom }).length >= 3 && document.documentElement.scrollWidth === innerWidth })()", 'C-04 title and at least three worries fit the first 390px viewport without horizontal overflow')
   assertPage("document.querySelector('.timetable-banner')?.getAttribute('href') === '/timetable?face=week'", 'new families retain the week-planning banner')
   const builtHome = fs.readFileSync(path.join(projectRoot, 'dist/index.html'), 'utf8')
@@ -412,9 +412,10 @@ try {
   run(['set', 'viewport', '390', '844'], { quiet: true })
   const staticWorryIds = [...fs.readFileSync(path.join(projectRoot, 'dist/index.html'), 'utf8').matchAll(/data-worry-id="([^"]+)"/g)].map(match => match[1])
   assertPage(`JSON.stringify([...document.querySelectorAll('.worry-item')].map(item => item.dataset.worryId)) === ${JSON.stringify(JSON.stringify(staticWorryIds))}`, 'C-04 static home and app show the same ordered worries')
-  run(['eval', "document.querySelector('.worry-item[data-worry-id=assignment] a').click(); 'C-04 focus assignment search'"])
-  await waitFor("location.pathname === '/' && document.activeElement === document.querySelector('#home-assignment-search input[role=combobox]') && document.activeElement.getAttribute('aria-expanded') === 'true'", 'C-04 assignment worry focuses and opens the home search')
-  assertPage("(window.__ANALYTICS_LOG__ || []).filter(entry => entry.event === 'home_worry_click' && entry.params.worry_id === 'assignment').length === 1", 'C-04 assignment click records home_worry_click')
+  run(['eval', "const input = document.querySelector('.worry-item[data-worry-id=assignment] input[role=combobox]'); input.focus(); input.blur(); input.focus(); 'C-04 focus assignment search twice'"])
+  await waitFor("location.pathname === '/' && document.activeElement === document.querySelector('#home-assignment-search input[role=combobox]')", 'C-04 assignment card search takes focus in place')
+  assertPage("(window.__ANALYTICS_LOG__ || []).filter(entry => entry.event === 'home_worry_click' && entry.params.worry_id === 'assignment').length === 1", 'C-04 first search focus records one home_worry_click')
+  run(['eval', "document.activeElement.blur(); 'C-04 search blurred'"], { quiet: true })
   run(['eval', `(() => {
     const item = [...document.querySelectorAll('.worry-item')].find(item => item.dataset.worryId !== 'assignment')
     const link = item.querySelector('.worry-card')
@@ -432,6 +433,7 @@ try {
   run(['open', baseUrl])
   await waitFor("document.querySelectorAll('.year-chip').length === 3 && document.querySelector('.worry-item:has([data-testid=add-to-plan-button]) [data-testid=add-to-plan-button]')", 'C-08 home offers seasonal add buttons and entry years')
   assertPage("![...document.querySelectorAll('[data-testid=add-to-plan-button]')].some(button => button.closest('a'))", 'C-08 add buttons are siblings of card links, never nested inside links')
+  assertPage("[...document.querySelectorAll('.worry-actions')].every(actions => actions.querySelector('[data-testid=add-to-plan-button] svg') && actions.querySelector('[data-testid=share-button]')?.dataset.shareUrl?.endsWith(actions.closest('.worry-item').querySelector('.worry-card').getAttribute('href'))) && !document.querySelector('.worry-actions')?.textContent.trim()", 'seasonal worries carry only plan and share icons, sharing their guide')
   run(['eval', "document.querySelector('.year-chip').click(); 'C-08 entry year selected'"])
   await waitFor("document.querySelector('.plan-summary')", 'C-08 entry year is saved before pinning a card')
   run(['eval', `(() => {
@@ -443,7 +445,7 @@ try {
     button.click()
     return 'C-08 first seasonal item added'
   })()`])
-  await waitFor("location.pathname === '/' && document.querySelector('.worry-item:has([data-testid=add-to-plan-button]) [data-testid=add-to-plan-button]')?.getAttribute('aria-pressed') === 'true' && document.querySelector('.worry-item:has([data-testid=add-to-plan-button]) [data-testid=add-to-plan-button]')?.textContent.includes('일정에 있어요')", 'C-08 add confirms stored state without opening the card link')
+  await waitFor("location.pathname === '/' && document.querySelector('.worry-item:has([data-testid=add-to-plan-button]) [data-testid=add-to-plan-button]')?.getAttribute('aria-pressed') === 'true' && document.querySelector('.worry-item:has([data-testid=add-to-plan-button]) [data-testid=add-to-plan-button]')?.getAttribute('aria-label').endsWith('우리집 일정에 있어요')", 'C-08 add confirms stored state without opening the card link')
   await waitFor("!document.querySelector('.timetable-banner') && document.querySelector('.plan-summary__week')?.getAttribute('href') === '/timetable?face=week'", 'saved families use PlanSummary and hide the duplicate week banner without a reload')
   run(['eval', "document.querySelector('.plan-summary .roadmap-summary__more:not(.plan-summary__week)').click(); 'C-08 to timeline'"])
   await waitFor("location.pathname === '/timetable' && location.search === '?face=timeline' && document.querySelector('.roadmap')?.textContent.includes(window.__C08_ITEM__.title)", 'C-08 pinned item appears in the family-plan timeline')
@@ -762,7 +764,7 @@ try {
     'a home search pick moved to the apartment address and opened its detail on the map',
   )
   // Save it for MY. Opening it from there must reopen this apartment, not its school.
-  run(['eval', "localStorage.removeItem('elementary-favorites-v1'); document.querySelector('[data-testid=bottom-sheet] button[aria-label=\"MY에 저장\"]').click(); 'saved'"])
+  run(['eval', "localStorage.removeItem('elementary-favorites-v1'); document.querySelector('[data-testid=bottom-sheet] button[aria-label=\"관심 아파트 저장\"]').click(); 'saved'"])
   run(['eval', 'history.back(); "back"'])
   await waitFor("location.pathname === '/' && document.querySelector('#home-title')", 'back from the detail returned to the home')
 
@@ -773,7 +775,7 @@ try {
     "location.pathname === '/my' && document.querySelector('#my-title') && document.querySelector('.app-topbar__my')?.getAttribute('aria-current') === 'page'",
     'the old /favorites address opens MY at /my with the MY icon active',
   )
-  run(['eval', "[...document.querySelectorAll('[aria-label=\"관심 후보 유형\"] button')].find(b => b.textContent.startsWith('아파트')).click(); 'apartment candidates'"])
+  run(['eval', "[...document.querySelectorAll('[aria-label=\"관심 학교·아파트 유형\"] button')].find(b => b.textContent.startsWith('아파트')).click(); 'apartment candidates'"])
   await waitFor("document.querySelectorAll('.my-saved li').length === 1", 'MY lists the apartment saved from its detail')
   run(['eval', "document.querySelector('.my-saved__open').click(); 'open saved'"])
   await waitFor(

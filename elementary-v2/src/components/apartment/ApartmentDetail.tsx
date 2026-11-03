@@ -1,4 +1,4 @@
-import { ArrowLeft, Building2, CalendarPlus, CarFront, ChevronRight, GraduationCap, School, Star } from 'lucide-react'
+import { ArrowLeft, Building2, CalendarPlus, CarFront, ChevronRight, GraduationCap, Heart, School } from 'lucide-react'
 import React, { useEffect, useState } from 'react'
 import type { Apartment, ApartmentAcademySummary, SearchResult } from '../../types'
 import { getApartmentAcademySummaries } from '../../services/dataService'
@@ -86,8 +86,8 @@ const ApartmentDetail: React.FC<ApartmentDetailProps> = ({ apartment, isOpen, on
             } catch (error) {
               window.alert(error instanceof Error ? error.message : '저장하지 못했어요. 브라우저 저장 설정을 확인해 주세요.')
             }
-          }} aria-label={isFavorite ? 'MY에서 빼기' : 'MY에 저장'} aria-pressed={isFavorite} className={`rounded-md p-2 transition-colors hover:bg-gray-100 ${isFavorite ? 'text-amber-500' : 'text-gray-500'}`}>
-            <Star size={21} fill={isFavorite ? 'currentColor' : 'none'} aria-hidden="true" />
+          }} aria-label={isFavorite ? '관심 아파트에서 빼기' : '관심 아파트 저장'} title={isFavorite ? '관심 아파트 저장됨' : '관심 아파트 저장'} aria-pressed={isFavorite} className={`rounded-md p-2 transition-colors hover:bg-gray-100 ${isFavorite ? 'text-[#c94f3a]' : 'text-gray-500'}`}>
+            <Heart size={21} fill={isFavorite ? 'currentColor' : 'none'} aria-hidden="true" />
           </button>
         </span>
       )}

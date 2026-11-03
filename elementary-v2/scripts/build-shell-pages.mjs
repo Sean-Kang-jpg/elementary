@@ -85,6 +85,11 @@ const showcase = await loadShowcase(shelves.showcase.schoolId)
 if (showcase) await fs.writeFile(path.join(outDir, 'home-showcase.json'), JSON.stringify(showcase), 'utf8')
 process.stdout.write(`showcase    ${showcase ? `dist/home-showcase.json (${showcase.school.name})` : 'none - the home leaves the row out'}\n`)
 
+// The assignment worry is one card holding the search, not a link to it (2026-11-03).
+const searchCardHtml = (card) => `<li class="worry-item worry-item--search" data-worry-id="${escapeHtml(card.id)}"><strong class="worry-item__question">${escapeHtml(card.question)}</strong>`
+  + `<div id="home-assignment-search" class="home-page__search"><a href="/map">${escapeHtml(card.hint)}</a></div>`
+  + `<p class="home-hero__trust"><span>${escapeHtml(copy.noteBefore)}<b>${escapeHtml(copy.noteStrong)}</b>${escapeHtml(copy.noteAfter)}</span></p></li>`
+
 const worriesHtml = (() => {
   const cards = worryCards(shelves.worries.items, new Date(), shelves.worries.max)
   if (!cards.length) return ''
@@ -92,7 +97,7 @@ const worriesHtml = (() => {
     ? `<span class="worry-card__badge">${escapeHtml(card.deadlineLabel)} ${Number(card.deadline.slice(0, 2))}월 ${Number(card.deadline.slice(3))}일</span>`
     : card.isNew ? '<span class="worry-card__badge worry-card__badge--new">NEW</span>' : '')
   return `<section class="home-shelf home-worries" aria-labelledby="home-worries-title"><div class="home-shelf__head"><h2 id="home-worries-title">${escapeHtml(shelves.worries.title)}</h2></div><ul class="home-worries__list">`
-    + cards.map((card) => `<li class="worry-item" data-worry-id="${escapeHtml(card.id)}"><a href="${escapeHtml(card.href)}" class="worry-card">${badge(card)}<strong>${escapeHtml(card.question)}</strong><small>${escapeHtml(card.hint)}</small></a></li>`).join('')
+    + cards.map((card) => card.href === '#home-assignment-search' ? searchCardHtml(card) : `<li class="worry-item" data-worry-id="${escapeHtml(card.id)}"><a href="${escapeHtml(card.href)}" class="worry-card">${badge(card)}<strong>${escapeHtml(card.question)}</strong><small>${escapeHtml(card.hint)}</small></a></li>`).join('')
     + '</ul></section>'
 })()
 
@@ -120,8 +125,6 @@ const homeBody = [
   `<h1 id="home-title">${escapeHtml(copy.title)}</h1>`,
   `<p class="home-page__lead">${escapeHtml(copy.lead)}</p>`,
   worriesHtml,
-  `<div id="home-assignment-search" class="home-page__search"><a href="/map">${escapeHtml(shelves.worries.items[0].hint)}</a></div>`,
-  `<p class="home-hero__trust"><span>${escapeHtml(copy.noteBefore)}<b>${escapeHtml(copy.noteStrong)}</b>${escapeHtml(copy.noteAfter)}</span></p>`,
   '</div></div>',
   '<div class="home-page__inner home-page__body">',
   showcaseHtml,

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Building2, CalendarDays, ChevronRight, GraduationCap, Map, Star, Trash2 } from 'lucide-react'
+import { Building2, CalendarDays, ChevronRight, GraduationCap, Heart, Map, Trash2 } from 'lucide-react'
 import { planPath, VIEW_PATHS } from '../../utils/urlState'
 import type { Profile } from '../../utils/profile'
 import { FavoriteRecord, readFavorites, removeFavorite, subscribeFavorites } from '../../utils/favorites'
@@ -36,7 +36,7 @@ export default function MyPage({ onNavigate, onOpenSaved, entryYear, onEntryYear
     <section className="app-destination app-page content-page" aria-labelledby="my-title">
       <div className="content-page__inner">
         <h1 id="my-title">MY</h1>
-        <p className="content-page__lead">우리 집 설정과 관심 후보를 모아 둬요.</p>
+        <p className="content-page__lead">우리 집 설정과 관심 학교·아파트·학원을 모아 둬요.</p>
         <EntryProfile entryYear={entryYear} profile={profile} onEntryYearChange={onEntryYearChange} />
         <a href={plan} onClick={(event) => followLink(event, plan, onNavigate)} className="content-list__item content-list__item--card my-plan-link">
           <span className="home-link__icon home-link__icon--sage"><CalendarDays size={19} aria-hidden="true" /></span>
@@ -49,10 +49,10 @@ export default function MyPage({ onNavigate, onOpenSaved, entryYear, onEntryYear
         <MySavedAcademies onNavigate={onNavigate} />
 
         <div className="hub-guides-head">
-          <h2>관심 후보</h2>
-          <span><Star size={15} aria-hidden="true" /> {saved.length}곳</span>
+          <h2>관심 학교·아파트</h2>
+          <span><Heart size={15} aria-hidden="true" /> {saved.length}곳</span>
         </div>
-        <div className="my-candidate-tabs" aria-label="관심 후보 유형">
+        <div className="my-candidate-tabs" aria-label="관심 학교·아파트 유형">
           {(['school', 'apartment'] as const).map((kind) => <button key={kind} type="button"
             aria-pressed={candidateTab === kind} onClick={() => { setCandidateTab(kind); setExpandedId(null) }}>
             {kind === 'school' ? '학교' : '아파트'} {saved.filter((item) => item.kind === kind).length}/3
@@ -61,7 +61,7 @@ export default function MyPage({ onNavigate, onOpenSaved, entryYear, onEntryYear
         <p className="my-help">학교·아파트 각각 최대 3곳. 학교는 시간표·배움/돌봄에서 함께 사용해요. 학교를 제거하면 해당 시간표도 삭제돼요. 기존 3곳 초과 기록은 삭제하지 않고 유지해요.</p>
         {!saved.some((item) => item.kind === candidateTab) ? (
           <div className="my-saved__empty">
-            <p>학교나 아파트 상세에서 <Star size={14} aria-hidden="true" /> 를 누르면 관심 후보에 모여요.</p>
+            <p>학교나 아파트 상세에서 <Heart size={14} aria-hidden="true" /> 를 누르면 여기에 모여요.</p>
             <a href={VIEW_PATHS.map} onClick={(event) => followLink(event, VIEW_PATHS.map, onNavigate)}><Map size={16} aria-hidden="true" /> 지도에서 찾기</a>
           </div>
         ) : (
