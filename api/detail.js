@@ -253,6 +253,9 @@ const schoolPage = async (key) => {
     school_id: `eq.${key}`,
     limit: '1',
   })
+  // A read that failed is not the same page as one that found nothing; see `partial` in the handler.
+  let partial = false
+  const extra = (promise) => promise.catch(() => { partial = true; return [] })
   const [schools, complexes, care, nearby, careHours, dayRows] = await Promise.all([
     schoolRead,
     query('school_apartment_serving', {
@@ -263,25 +266,25 @@ const schoolPage = async (key) => {
     }),
     // Care (SQL 23) is an extra, not the page: a failed read drops these facts
     // and keeps the rest, rather than failing the page open to the bare shell.
-    query('school_care_statistics', {
+    extra(query('school_care_statistics', {
       select: 'statistics_year,afternoon_care_rooms,afternoon_care_students,evening_care_rooms,'
         + 'afterschool_aptitude_programs,afterschool_curriculum_programs',
       school_id: `eq.${key}`,
       limit: '1',
-    }).catch(() => []),
-    schoolRead.then((rows) => (rows[0] ? nearbySchools(rows[0]) : [])).catch(() => []),
+    })),
+    extra(schoolRead.then((rows) => (rows[0] ? nearbySchools(rows[0]) : []))),
     // Morning care hours and grade-1 dismissal (SQL 26): what parents search as
     // "OO초 하교 시간", "아침돌봄 몇 시". Extras like care - a failure drops the lines.
-    query('school_care_hours', {
+    extra(query('school_care_hours', {
       select: 'source_year,status,morning_hours,afternoon_end,extended_end',
       school_id: `eq.${key}`,
       limit: '1',
-    }).catch(() => []),
-    query('school_day_estimate_weekdays', {
+    })),
+    extra(query('school_day_estimate_weekdays', {
       select: 'weekday,dismissal',
       school_id: `eq.${key}`,
       order: 'weekday',
-    }).catch(() => []),
+    })),
   ])
   const school = schools[0]
   if (!school) return null
@@ -316,6 +319,7 @@ const schoolPage = async (key) => {
     : null
 
   return {
+    partial,
     canonical: `/school/${readable([shortRegion(school.region), district, school.school_name])}--${school.school_id}`,
     // The product's question is which apartments a school takes, and the count
     // differs per page, which is what keeps results distinguishable.
@@ -486,7 +490,10 @@ const apartmentPage = async (key) => {
   // Everything below needs this complex's name or schools, so it waits on the
   // first read, then runs together. Each part is optional: a slow read drops a
   // section and keeps the page, as the school page's neighbours do.
-  const optional = (promise) => promise.catch(() => [])
+  // Marks the page partial when one fails: a dropped namesake read loses the building group,
+  // and with it the canonical (2026-11-03, 성호샤인힐즈 cached self-canonical after a cold start).
+  let partial = false
+  const optional = (promise) => promise.catch(() => { partial = true; return [] })
   const [namesakeRows, schoolRows, neighbourRows, academy] = await Promise.all([
     complex.district && complex.complex_name
       ? optional(query('school_apartment_serving', {
@@ -599,6 +606,7 @@ const apartmentPage = async (key) => {
   const academyAll = academyRow ? (academyCore || 0) + (number(academyRow.extended_institution_count) || 0) : null
 
   return {
+    partial,
     canonical: apartmentPath(complex, representative.complex_public_key),
     // The client keeps this canonical while the page shows this key; see setCanonical() in urlState.ts.
     canonicalForKey: key,
@@ -1075,7 +1083,12 @@ module.exports = async (req, res) => {
     res.setHeader('Content-Type', 'text/html; charset=utf-8')
     // A day, and a week stale: the data changes with the monthly ETL, while an
     // hour meant almost every crawler request was a cold MISS of 1-3 s (docs/seo).
-    res.setHeader('Cache-Control', 'public, s-maxage=86400, stale-while-revalidate=604800')
+    // A page built with a read missing (usually a cold start's timeout) is served but kept
+    // only a minute, so the next request rebuilds it whole instead of the edge holding the
+    // gap - for an apartment, a wrong canonical - for a day.
+    res.setHeader('Cache-Control', page.partial
+      ? 'public, s-maxage=60'
+      : 'public, s-maxage=86400, stale-while-revalidate=604800')
     res.status(200).send(inject(shell, page))
     countCrawl(req, type, '2xx', startedAt)
   } catch (error) {
