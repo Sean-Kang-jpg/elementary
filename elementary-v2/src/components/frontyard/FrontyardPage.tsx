@@ -13,6 +13,7 @@ import {
   type FrontyardPost,
 } from '../../services/frontyardService'
 import { readFavorites, subscribeFavorites } from '../../utils/favorites'
+import { sortByTimeOverlap } from '../../utils/frontyardTimeOrder'
 import { displaySchoolName } from '../../utils/schoolName'
 import { frontyardPath, parseFrontyardSlot, type FrontyardSlot } from '../../utils/urlState'
 import SchoolSelection from '../search/SchoolSelection'
@@ -103,7 +104,7 @@ export default function FrontyardPage({ schoolId, onSchoolChange, onNavigate }: 
   }, [postIds])
 
   // 소식은 '전체'에서만: 맨 위 하나를 고정하고, 우리 학교 글이 적으면 빈 자리를 채운다.
-  const posts = loaded?.posts ?? []
+  const posts = useMemo(() => sortByTimeOverlap(loaded?.posts ?? [], slot), [loaded, slot])
   const showNotices = type === 'all' && !category && !slot
   const pinned = showNotices ? notices[0] : undefined
   const fillers = showNotices ? notices.slice(1, 1 + Math.max(0, FILL_UNTIL - posts.length)) : []
@@ -189,7 +190,7 @@ export default function FrontyardPage({ schoolId, onSchoolChange, onNavigate }: 
                 <button type="button" onClick={clearSlot} aria-label="시간 조건 지우기">
                   {WEEKDAY_LABELS[slot.weekday]} {slot.start}~{slot.end} <X size={14} aria-hidden="true" />
                 </button>
-                <span>시간표에서 고른 시간과 겹치는 글만 보여요.</span>
+                <span>고른 시간과 많이 겹치는 글부터 보여요.</span>
               </p>
             )}
 
