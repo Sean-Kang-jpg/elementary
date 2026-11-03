@@ -19,12 +19,14 @@ const same = (a: DayTime | null, b: DayTime | null) => Boolean(a && b && a.start
  * 출처 시각은 그대로 남고 이 계획의 시각만 바뀐다. 같은 시각을 쓰는 요일을 미리 골라 두어, 고친 값을
  * 그 요일들에 한 번에 적용한다. 정규수업은 보기만 한다.
  */
-export default function EntryEditSheet({ entry, day, onSave, onRemoveDay, onStatus, onIntent, onClose, extra }: {
+export default function EntryEditSheet({ entry, day, onSave, onRemoveDay, onRemoveAll, onStatus, onIntent, onClose, extra }: {
   /** 저장된 그대로의 일정(요일별 시각 포함). */
   entry: ScheduleEntry
   day: DayPlan
   onSave: (days: Weekday[], time: DayTime, label?: string) => boolean
   onRemoveDay: () => boolean
+  /** 모든 요일에서 뺀다(2026-11-03). 여러 요일에 든 일정에만 보인다. */
+  onRemoveAll?: () => boolean
   onStatus: (status: ParticipationStatus) => boolean
   /** 칸의 의도(UX-14). 고르면 바로 저장한다 — 참여 상태와 같다. */
   onIntent?: (intent: SlotIntent) => boolean
@@ -119,6 +121,7 @@ export default function EntryEditSheet({ entry, day, onSave, onRemoveDay, onStat
       <div className="my-entry-sheet__actions">
         <button type="submit" className="my-button my-button--primary">저장</button>
         <button type="button" className="my-button" onClick={() => { if (onRemoveDay()) onClose() }}>{DAYS[weekday - 1]}요일에서 빼기</button>
+        {onRemoveAll && entry.weekdays.length > 1 && <button type="button" className="my-button my-entry-sheet__remove-all" onClick={() => { if (onRemoveAll()) onClose() }}>모든 요일에서 빼기</button>}
       </div>
       {entry.source && <small className="my-entry-sheet__source">학교 자료 {entry.source.version} · 바꾼 시간은 이 시간표에만 적용돼요</small>}
     </form>}

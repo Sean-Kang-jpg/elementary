@@ -8,6 +8,7 @@ import DetailTabs from '../ui/DetailTabs'
 import DataFreshness from '../ui/DataFreshness'
 import CareCenterMorningInfo from '../care/CareCenterMorningInfo'
 import AcademyTimetableForm from './AcademyTimetableForm'
+import { followLink } from '../content/contentLinks'
 import { readSavedAcademies, sameAcademy, subscribeSavedAcademies, toggleSavedAcademy } from '../../utils/savedAcademies'
 
 export default function MapPlaceDetail({ place, onNavigate }: { place: SelectedMapPlace; onNavigate: (path: string) => void }) {
@@ -16,7 +17,7 @@ export default function MapPlaceDetail({ place, onNavigate }: { place: SelectedM
   const [snap, setSnap] = useState(1)
   // 시간표에 담는 양식을 연 학원(목록 순번)과 담은 뒤의 안내.
   const [adding, setAdding] = useState<number | null>(null)
-  const [added, setAdded] = useState<{ index: number; message: string } | null>(null)
+  const [added, setAdded] = useState<{ index: number; message: string; path?: string } | null>(null)
   const [saved, setSaved] = useState(readSavedAcademies)
   useEffect(() => subscribeSavedAcademies(() => setSaved(readSavedAcademies())), [])
   const isCare = place.kind === 'care'
@@ -85,9 +86,10 @@ export default function MapPlaceDetail({ place, onNavigate }: { place: SelectedM
                 {adding === index && (
                   <AcademyTimetableForm label={`${getInstitutionCategories(institution)[0]?.label ?? '학원'} · ${institution.name}`}
                     providerKey={institution.key} onNavigate={onNavigate}
-                    onDone={(message) => { setAdding(null); setAdded({ index, message }) }} />
+                    onDone={(message, path) => { setAdding(null); setAdded({ index, message, path }) }} />
                 )}
-                {added?.index === index && <p className="map-academy-form__done" role="status">{added.message}</p>}
+                {added?.index === index && <p className="map-academy-form__done" role="status">{added.message}
+                  {added.path && <> <a href={added.path} onClick={(event) => followLink(event, added.path!, onNavigate)}>우리집 일정에서 보기·빼기</a></>}</p>}
               </li>
             ))}
           </ul>

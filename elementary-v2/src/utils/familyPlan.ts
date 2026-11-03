@@ -27,9 +27,11 @@ interface FamilyPlanStore {
   startedFrom: PlanSource | null
   lastSeenAt: string | null
   pinned: PinnedItem[]
+  /** 우리 집엔 해당 없다고 숨긴 로드맵 항목 id(2026-11-03). 지우지 않고 숨기기만 해서 다시 볼 수 있다. */
+  hidden: string[]
 }
 
-const empty = (): FamilyPlanStore => ({ version: 1, startedAt: null, startedFrom: null, lastSeenAt: null, pinned: [] })
+const empty = (): FamilyPlanStore => ({ version: 1, startedAt: null, startedFrom: null, lastSeenAt: null, pinned: [], hidden: [] })
 
 const readStore = (): FamilyPlanStore => {
   try {
@@ -41,6 +43,7 @@ const readStore = (): FamilyPlanStore => {
       startedFrom: typeof value.startedFrom === 'string' ? value.startedFrom : null,
       lastSeenAt: typeof value.lastSeenAt === 'string' ? value.lastSeenAt : null,
       pinned: Array.isArray(value.pinned) ? value.pinned.filter(validPinned) : [],
+      hidden: Array.isArray(value.hidden) ? value.hidden.filter((id): id is string => typeof id === 'string' && id.length > 0) : [],
     }
   } catch {
     return empty()
@@ -109,11 +112,39 @@ export const removeFromPlan = (id: string): boolean => {
   return writeStore({ ...store, pinned: store.pinned.filter((item) => item.id !== id) })
 }
 
+/** 담은 항목 하나(되돌리기에 쓴다). */
+export const readPinned = (id: string): PinnedItem | null => readStore().pinned.find((item) => item.id === id) ?? null
+
+/** 방금 뺀 항목을 되돌린다. 처음 담는 것이 아니라 plan_item_add를 보내지 않는다. */
+export const restoreToPlan = (item: PinnedItem): boolean => {
+  if (!validPinned(item)) return false
+  const store = readStore()
+  return writeStore({ ...store, pinned: [item, ...store.pinned.filter((pinned) => pinned.id !== item.id)] })
+}
+
+/** 로드맵 항목을 "해당 없어요"로 숨기거나 다시 보인다. 담은 항목은 숨기지 않고 뺀다(removeFromPlan). */
+export const setTimelineHidden = (id: string, hidden: boolean): boolean => {
+  const store = readStore()
+  const rest = store.hidden.filter((item) => item !== id)
+  return writeStore({ ...store, hidden: hidden ? [...rest, id] : rest })
+}
+
 /**
  * 입학까지 면. 입학연도가 없으면 로드맵 없이 담은 항목만.
  * `profile`은 화면이 이미 들고 있는 값(주소의 `?year=`가 저장값보다 앞선다)을 넘길 때만.
  */
 export const readTimeline = (now = new Date(), profile: Profile = readProfile()): TimelineEntry[] => {
+  const hidden = new Set(readStore().hidden)
+  return fullTimeline(now, profile).filter((entry) => !hidden.has(entry.id))
+}
+
+/** 숨긴 로드맵 항목. 입학까지 면 아래 "숨긴 일정"에서 다시 보이게 할 때. */
+export const readHiddenTimeline = (now = new Date(), profile: Profile = readProfile()): TimelineEntry[] => {
+  const hidden = new Set(readStore().hidden)
+  return fullTimeline(now, profile).filter((entry) => hidden.has(entry.id))
+}
+
+const fullTimeline = (now: Date, profile: Profile): TimelineEntry[] => {
   const roadmap = profile.entryYear === null ? null : roadmapFor(profile.entryYear, profile, now)
   return mergeTimeline(roadmap, readStore().pinned, readChecklist(), now)
 }

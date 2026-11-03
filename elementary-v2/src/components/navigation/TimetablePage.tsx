@@ -12,6 +12,7 @@ import ChecklistBanner from '../content/ChecklistBanner'
 import EntryProfile from '../content/EntryProfile'
 import RoadmapCard from '../content/RoadmapCard'
 import PlanChangesNote from '../content/PlanChangesNote'
+import PinnedPlanList from '../content/PinnedPlanList'
 import { followLink } from '../content/contentLinks'
 import SchoolDayEstimateCard from '../school/SchoolDayEstimateCard'
 import MySchedule from './MySchedule'
@@ -126,6 +127,7 @@ export default function TimetablePage({
           ) : (
             <>
               <p className="my-help">입학연도를 고르면 취학통지·예비소집·입학 준비가 달마다 나오고, 날짜가 정해진 일은 D-day로 보여요.</p>
+              <PinnedPlanList profile={profile} onNavigate={onNavigate} />
               <ChecklistBanner onNavigate={onNavigate} />
             </>
           )}

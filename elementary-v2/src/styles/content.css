@@ -3010,3 +3010,19 @@ dialog.my-entry-sheet > a.my-button { display: flex; align-items: center; justif
   .sample-week .my-week__entry { padding: 3px; }
   .sample-week .my-entry-title { white-space: normal; word-break: keep-all; overflow-wrap: anywhere; line-height: 1.2; }
 }
+
+/* 일정에서 빼기·해당 없어요(2026-11-03). 줄 끝의 작은 글자 버튼, 바로 되돌릴 수 있다. */
+.roadmap__tasks li > a, .roadmap__tasks li > span { flex: 1; min-width: 0; }
+.roadmap__leave { flex: none; display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; padding: 0; border: 0; border-radius: 8px; background: transparent; color: var(--warm-faint); cursor: pointer; }
+.roadmap__leave:hover, .roadmap__leave:focus-visible { background: var(--warm-surface-muted, #f6efe9); color: var(--warm-muted); }
+.roadmap__undo { display: flex; align-items: center; gap: 8px; margin: 8px 0; padding: 8px 12px; border-radius: 10px; background: #2d2926; color: #fff; font-size: 13px; }
+.roadmap__undo span { flex: 1; min-width: 0; }
+.roadmap__undo button { flex: none; min-height: 32px; border: 0; background: transparent; color: #ffd5c9; font-weight: 800; cursor: pointer; }
+.roadmap__hidden { margin: 12px 0 0; font-size: 13px; color: var(--warm-muted); }
+.roadmap__hidden summary { cursor: pointer; padding: 6px 0; }
+.roadmap__hidden ul { margin: 4px 0 0; padding: 0; list-style: none; }
+.roadmap__hidden li { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 6px 0; border-bottom: 1px dashed var(--warm-border); }
+.roadmap__hidden button { flex: none; min-height: 32px; padding: 4px 10px; border: 1px solid var(--warm-border-strong); border-radius: 8px; background: var(--warm-surface); font-size: 12px; cursor: pointer; }
+.my-calendar-undo { margin-left: 8px; min-height: 32px; padding: 2px 8px; border: 1px solid currentColor; border-radius: 8px; background: transparent; color: inherit; font-size: 12px; font-weight: 700; cursor: pointer; }
+.plan-starter__top { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.plan-starter__back { min-height: 32px; padding: 2px 6px; border: 0; background: transparent; color: var(--warm-muted); font-size: 12px; font-weight: 700; cursor: pointer; }

@@ -98,7 +98,8 @@ export default function MySchedule({ school, entryYear, saved, onNavigate }: {
   // 1단계. 첫 답이 초안을 만든다 — 하교 시각을 먼저 넣고, 학교 자료를 못 읽어도 빈 초안이 아니라 질문으로 이어 간다.
   const start = async (returnAt: ReturnAt) => {
     if (loading) return
-    if (plan) { setStarter(answerReturn(returnAt)); return }
+    // 다시 묻는 중이면 초안은 그대로, 답만 바꾼다. 하교 직후 귀가로 바꾸면 질문이 넣었던 돌봄은 뺀다.
+    if (plan) { setStarter(answerReturn(returnAt), (entries) => returnAt === 'dismissal' ? entries.filter((e) => !starterCareIds(schoolId).includes(e.id)) : entries); return }
     setLoading(true); setMessage('')
     const chosen = { id: school.id, name: school.name }
     let data: Awaited<ReturnType<typeof getSchoolDayEstimate>> = { day: null, care: null }
@@ -148,7 +149,13 @@ export default function MySchedule({ school, entryYear, saved, onNavigate }: {
     onReturn={(value) => void start(value)} onCare={answerCare} onCourses={answerCourses}
     onCoursesNext={() => { setPicking(false); if (plan?.starter) setStarter({ ...plan.starter, courses: true }) }}
     onEvening={() => { if (evening) addEntry(evening) }}
-    onDone={() => { if (plan?.starter) setStarter({ ...plan.starter, done: true }) }} />
+    onDone={() => { if (plan?.starter) setStarter({ ...plan.starter, done: true }) }}
+    onBack={() => {
+      const answers = plan?.starter
+      if (!answers) return
+      if (step === 'courses' && picking) { setPicking(false); return }
+      setStarter(step === 'care' ? { ...answers, returnAt: null } : step === 'courses' ? { ...answers, care: null } : { ...answers, courses: null })
+    }} />
 
   return (
     <section className={`my-schedule my-card${plan ? ' my-schedule--editing' : ''}`} aria-labelledby="my-schedule-title">

@@ -1,10 +1,10 @@
-import { CalendarDays, ChevronRight, ListChecks } from 'lucide-react'
-import { useEffect, useReducer, useRef } from 'react'
+import { CalendarDays, ChevronRight, ListChecks, X } from 'lucide-react'
+import { useEffect, useReducer, useRef, useState } from 'react'
 import checklist from '../../content/checklist.json'
 import { daysToEntry, ENTRY_DAY_NOTE, roadmapFor } from '../../utils/roadmap'
 import type { MovingPlan, Profile, SchoolInterest } from '../../utils/profile'
 import { readChecklist } from '../../utils/profile'
-import { daysUntil, describeProgress, dueBadge, groupTimeline, readTimeline, setTimelineDone, subscribeFamilyPlan, type TimelineEntry } from '../../utils/familyPlan'
+import { daysUntil, describeProgress, dueBadge, groupTimeline, readHiddenTimeline, readPinned, readTimeline, removeFromPlan, restoreToPlan, setTimelineDone, setTimelineHidden, subscribeFamilyPlan, type TimelineEntry } from '../../utils/familyPlan'
 import { track } from '../../utils/analytics'
 import { planPath, VIEW_PATHS } from '../../utils/urlState'
 import { followLink } from './contentLinks'
@@ -35,6 +35,10 @@ const CHECKLIST_IDS = checklist.groups.flatMap((group) => group.items.map((item)
  * Since UX-03 (2026-11-01) the list is the family plan's timeline: tasks with a
  * decree date show D-N, each can be ticked done (the same mark as the checklist),
  * and items pinned from a guide or the home join it in their month.
+ *
+ * Since 2026-11-03 every row can leave the plan: a pinned item is taken out, a
+ * roadmap task is hidden as 해당 없어요 (kept under 숨긴 일정 to bring back), and
+ * either can be undone right away.
  */
 export default function RoadmapCard({ entryYear, profile, onProfileChange, onNavigate, source = 'home' }: RoadmapCardProps) {
   const days = daysToEntry(entryYear)
@@ -42,8 +46,18 @@ export default function RoadmapCard({ entryYear, profile, onProfileChange, onNav
   const [, refresh] = useReducer((n: number) => n + 1, 0)
   useEffect(() => subscribeFamilyPlan(refresh), [])
   const groups = groupTimeline(readTimeline(new Date(), { ...profile, entryYear }))
+  const hiddenEntries = readHiddenTimeline(new Date(), { ...profile, entryYear })
   const checked = readChecklist()
   const done = CHECKLIST_IDS.filter((id) => checked[id]).length
+  const [undo, setUndo] = useState<{ text: string; restore: () => boolean } | null>(null)
+  const leave = (entry: TimelineEntry) => {
+    if (entry.source === 'pinned') {
+      const item = readPinned(entry.id)
+      if (item && removeFromPlan(entry.id)) setUndo({ text: `일정에서 뺐어요 · ${entry.title}`, restore: () => restoreToPlan(item) })
+    } else if (setTimelineHidden(entry.id, true)) {
+      setUndo({ text: `숨겼어요 · ${entry.title}`, restore: () => setTimelineHidden(entry.id, false) })
+    }
+  }
 
   // One view_roadmap per year shown, not per re-render or profile tweak.
   const reported = useRef<number | null>(null)
@@ -84,6 +98,11 @@ export default function RoadmapCard({ entryYear, profile, onProfileChange, onNav
                 {due ? <em className={`roadmap__due roadmap__due--${due.tone}`}>{due.text}</em> : null}
               </span>
             )}
+            <button type="button" className="roadmap__leave" onClick={() => leave(entry)}
+              title={entry.source === 'pinned' ? '일정에서 빼기' : '우리 집엔 해당 없어요(숨기기)'}
+              aria-label={entry.source === 'pinned' ? `${entry.title} 일정에서 빼기` : `${entry.title} 우리 집엔 해당 없어요`}>
+              <X size={16} aria-hidden="true" />
+            </button>
           </li>
         )
       })}
@@ -130,6 +149,11 @@ export default function RoadmapCard({ entryYear, profile, onProfileChange, onNav
         </div>
       </div>
 
+      {undo && <p className="roadmap__undo" role="status">
+        <span>{undo.text}</span>
+        <button type="button" onClick={() => { if (undo.restore()) setUndo(null) }}>되돌리기</button>
+      </p>}
+
       <h3 className="roadmap__heading">{view.stage === 'planning' ? '지금 해두면 좋은 일' : `${view.month}월에 할 일`}</h3>
       {thisMonth ? <>
         <p className="plan-progress">{describeProgress(thisMonth.entries, view.stage === 'planning')}</p>
@@ -148,6 +172,18 @@ export default function RoadmapCard({ entryYear, profile, onProfileChange, onNav
             ))}
           </ol>
         </div>
+      ) : null}
+
+      {hiddenEntries.length ? (
+        <details className="roadmap__hidden">
+          <summary>우리 집엔 해당 없다고 숨긴 일정 {hiddenEntries.length}개</summary>
+          <ul>
+            {hiddenEntries.map((entry) => <li key={entry.id}>
+              <span>{entry.title}</span>
+              <button type="button" onClick={() => setTimelineHidden(entry.id, false)} aria-label={`${entry.title} 다시 보기`}>다시 보기</button>
+            </li>)}
+          </ul>
+        </details>
       ) : null}
 
       {calendarItems.length ? (

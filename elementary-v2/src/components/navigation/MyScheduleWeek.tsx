@@ -51,6 +51,10 @@ export default function MyScheduleWeek({ schoolId, entries, onSave, onAdd, onRem
   const [adding, setAdding] = useState<CalendarRange | null>(null)
   const [cursor, setCursor] = useState<CalendarRange | null>(null)
   const [notice, setNotice] = useState('')
+  // 방금 일정에서 뺀 것. 알림 줄의 '되돌리기'로 그대로 다시 넣는다.
+  const [removed, setRemoved] = useState<ScheduleEntry | null>(null)
+  // 다른 알림을 띄우면 되돌리기는 사라진다 — 알림과 되돌릴 대상이 어긋나지 않게.
+  const say = (text: string, undo: ScheduleEntry | null = null) => { setRemoved(undo); setNotice(text) }
   useLayoutEffect(() => {
     const node = scroller.current
     const active = node?.querySelector<HTMLElement>('.my-week__day--active')
@@ -69,15 +73,15 @@ export default function MyScheduleWeek({ schoolId, entries, onSave, onAdd, onRem
     const first = node.children[0] as HTMLElement
     node.scrollTo({ left: day.offsetLeft - first.offsetLeft, behavior: 'auto' })
   }
-  const createAt = (range: CalendarRange) => { setAdding(range); setCursor(null); setNotice('') }
+  const createAt = (range: CalendarRange) => { setAdding(range); setCursor(null); say('') }
   const save = (change: CalendarChange) => {
     const saved = onSave(change)
     if (saved) {
       // 선택하면 편집 시트가 열린다. 추가·이동 직후에 시트가 덮이지 않게 선택은 비운다.
       setSelected(null)
       jumpTo(change.weekday)
-      setNotice(change.original ? '선택한 요일의 일정을 수정했어요.' : '일정을 추가했어요.')
-    } else setNotice('저장하지 못했어요. 변경된 일정은 다시 열어 주세요.')
+      say(change.original ? '선택한 요일의 일정을 수정했어요.' : '일정을 추가했어요.')
+    } else say('저장하지 못했어요. 변경된 일정은 다시 열어 주세요.')
     return saved
   }
   const interaction = useCalendarInteraction({ scroller, onCreate: createAt, onMove: (moved, fromWeekday, range) => {
@@ -192,16 +196,23 @@ export default function MyScheduleWeek({ schoolId, entries, onSave, onAdd, onRem
     </div>
     {composer}
     </>}
-    <p className="my-calendar-feedback" aria-live="polite">{notice}</p>
+    <p className="my-calendar-feedback" aria-live="polite">{notice}{removed && notice && <button type="button" className="my-calendar-undo" onClick={() => {
+      if (onAdd(removed)) say(`${removed.label} 일정을 되돌렸어요.`)
+    }}>되돌리기</button>}</p>
     {selectedEntry && selectedDay && <EntryEditSheet key={`${selectedEntry.id}-${selectedDay.weekday}`} entry={selectedEntry} day={selectedDay} onClose={() => setSelected(null)}
       onSave={(targets, time, label) => {
         const saved = onSetTimes(selectedEntry.id, targets, time, label)
-        setNotice(saved ? `${targets.map((d) => DAYS[d - 1]).join('·')}요일 ${selectedEntry.label} 시간을 바꿨어요.` : '저장하지 못했어요.')
+        say(saved ? `${targets.map((d) => DAYS[d - 1]).join('·')}요일 ${selectedEntry.label} 시간을 바꿨어요.` : '저장하지 못했어요.')
         return saved
       }}
       onRemoveDay={() => {
         const saved = onRemoveDay(selectedEntry.id, selectedDay.weekday)
-        if (saved) setNotice(`${DAYS[selectedDay.weekday - 1]}요일에서 ${selectedEntry.label} 일정을 뺐어요.`)
+        if (saved) say(`${DAYS[selectedDay.weekday - 1]}요일에서 ${selectedEntry.label} 일정을 뺐어요.`, selectedEntry)
+        return saved
+      }}
+      onRemoveAll={() => {
+        const saved = onRemove(selectedEntry.id)
+        if (saved) say(`${selectedEntry.label} 일정을 모든 요일에서 뺐어요.`, selectedEntry)
         return saved
       }}
       onStatus={(status) => onStatus(selectedEntry.id, status)}

@@ -357,12 +357,25 @@ try {
   await waitFor("document.querySelector('[data-testid=plan-starter]')?.dataset.step === 'care'", 'UX-13 the return time leads to the care question')
   starterClick('예')
   await waitFor("document.querySelector('[data-testid=plan-starter]')?.dataset.step === 'courses' && document.querySelector('#plan-starter-title').textContent.includes('도 들을')", 'UX-13 care leads to the courses question, worded for families using care')
+  starterClick('← 이전')
+  await waitFor("document.querySelector('[data-testid=plan-starter]')?.dataset.step === 'care'", 'UX-13 the back button returns to the care question')
+  starterClick('아니요')
+  await waitFor("document.querySelector('[data-testid=plan-starter]')?.dataset.step === 'courses' && !JSON.parse(localStorage.getItem('elementary-schedule-plans-v1')).plans[0].entries.some(e => e.id === 'care-B000002292-afternoon')", 'UX-13 answering care again with no takes out the care it had put in')
+  starterClick('← 이전')
+  starterClick('예')
+  await waitFor("document.querySelector('[data-testid=plan-starter]')?.dataset.step === 'courses'", 'UX-13 care answered yes again')
   starterClick('아니요')
   await waitFor("document.querySelector('[data-testid=plan-starter]')?.dataset.step === 'fill' && document.querySelector('.plan-starter .plan-coverage')?.textContent.includes('17시')", 'UX-13 the last step counts gaps only until the return time')
   assertPage("(() => { const plan = JSON.parse(localStorage.getItem('elementary-schedule-plans-v1')).plans.find(p => p.schoolId === 'B000002292'); const care = plan.entries.find(e => e.id === 'care-B000002292-afternoon'); return JSON.stringify(plan.starter) === JSON.stringify({ returnAt: 1020, care: true, courses: false, done: false }) && care.participation === 'planned' && care.end <= 1020 })()", 'UX-13 answers are stored with the draft and care ends by the return time')
   starterClick('다 됐어요')
   await waitFor("!document.querySelector('[data-testid=plan-starter]') && document.querySelector('[data-testid=plan-coverage]')", 'UX-13 finishing hides the questions and keeps the coverage line')
   assertPage("document.querySelector('[data-testid=plan-intents]')?.textContent.startsWith('이번 주 안전') && document.querySelector('.my-agenda__card--care .intent-chip--safety')", 'UX-14 care shows as 안전 on its card and in the weekly intent line')
+  run(['eval', "document.querySelector('.my-agenda__card--care').click(); 'open care'"], { quiet: true })
+  await waitFor("document.querySelector('.my-entry-sheet__remove-all')", 'a slot on several weekdays offers 모든 요일에서 빼기')
+  run(['eval', "document.querySelector('.my-entry-sheet__remove-all').click(); 'remove all'"], { quiet: true })
+  await waitFor("document.querySelector('.my-calendar-undo') && !JSON.parse(localStorage.getItem('elementary-schedule-plans-v1')).plans[0].entries.some(e => e.kind === 'care')", 'removing from every weekday takes the slot out and offers undo')
+  run(['eval', "document.querySelector('.my-calendar-undo').click(); 'undo'"], { quiet: true })
+  await waitFor("JSON.parse(localStorage.getItem('elementary-schedule-plans-v1')).plans[0].entries.some(e => e.id === 'care-B000002292-afternoon') && !document.querySelector('.my-calendar-undo')", 'undo puts the slot back')
   run(['eval', "localStorage.removeItem('elementary-schedule-plans-v1'); 'UX-13 cleanup'"], { quiet: true })
   // UX-18: a family back after two weeks sees what passed and what came near since, once.
   // Dates are relative to the run so the check holds on any day.
@@ -371,7 +384,9 @@ try {
     { id: 'smoke-missed', title: '스모크 지난 일', href: '/guide/school-notice', when: { kind: 'date', date: ymd(-3) }, addedAt: '2026-11-01T00:00:00.000Z' },
     { id: 'smoke-near', title: '스모크 다가온 일', href: '/guide/school-notice', when: { kind: 'date', date: ymd(9) }, addedAt: '2026-11-01T00:00:00.000Z' },
   ] }
-  run(['eval', `localStorage.removeItem('wherecho:profile-v1'); localStorage.removeItem('wherecho:checklist-v1'); localStorage.setItem('wherecho:family-plan-v1', ${JSON.stringify(JSON.stringify(returning))}); 'UX-18 returning family'`], { quiet: true })
+  // An entry year so the 입학까지 list (and its leave buttons) renders; the pinned items sit inside it.
+  const profile = { entryYear: new Date().getFullYear() + 1, interest: ['public'], moving: 'none' }
+  run(['eval', `localStorage.setItem('wherecho:profile-v1', ${JSON.stringify(JSON.stringify(profile))}); localStorage.removeItem('wherecho:checklist-v1'); localStorage.setItem('wherecho:family-plan-v1', ${JSON.stringify(JSON.stringify(returning))}); 'UX-18 returning family'`], { quiet: true })
   run(['open', new URL('/timetable?face=timeline', baseUrl).toString()])
   await waitFor("document.querySelector('[data-testid=plan-changes]')?.innerText.includes('스모크 지난 일') && document.querySelector('[data-testid=plan-changes]').innerText.includes('스모크 다가온 일')", 'UX-18 a returning family sees what passed and what came near since the last visit')
   run(['eval', "document.querySelector('[data-testid=plan-changes] .plan-changes__done').click(); 'UX-18 done'"], { quiet: true })
@@ -379,7 +394,11 @@ try {
   run(['open', new URL('/timetable?face=timeline', baseUrl).toString()])
   await waitFor("document.querySelector('#timetable-title') && document.querySelector('.plan-faces')", 'UX-18 the plan page reopens')
   assertPage("!document.querySelector('[data-testid=plan-changes]')", 'UX-18 the same changes are not announced twice')
-  run(['eval', "localStorage.removeItem('wherecho:family-plan-v1'); localStorage.removeItem('wherecho:checklist-v1'); 'UX-18 cleanup'"], { quiet: true })
+  run(['eval', "document.querySelector('.roadmap__leave[aria-label=\"스모크 다가온 일 일정에서 빼기\"]').click(); 'leave pinned'"], { quiet: true })
+  await waitFor("document.querySelector('.roadmap__undo') && !JSON.parse(localStorage.getItem('wherecho:family-plan-v1')).pinned.some(p => p.id === 'smoke-near')", 'a pinned item can be taken out of the plan, with undo')
+  run(['eval', "document.querySelector('.roadmap__undo button').click(); 'undo'"], { quiet: true })
+  await waitFor("JSON.parse(localStorage.getItem('wherecho:family-plan-v1')).pinned.some(p => p.id === 'smoke-near') && !document.querySelector('.roadmap__undo')", 'undo puts the pinned item back')
+  run(['eval', "localStorage.removeItem('wherecho:family-plan-v1'); localStorage.removeItem('wherecho:checklist-v1'); localStorage.removeItem('wherecho:profile-v1'); 'UX-18 cleanup'"], { quiet: true })
   // C-04: verify the worry-led home before any map interaction.
   run(['open', baseUrl])
   run(['eval', "for (const key of ['wherecho:profile-v1', 'wherecho:family-plan-v1', 'elementary-schedule-plans-v1', 'elementary-favorites-v1', 'favorite-school-ids']) localStorage.removeItem(key); localStorage.setItem('wherecho:analytics-debug', '1'); 'C-04 fresh device, debug on'"], { quiet: true })

@@ -2,7 +2,7 @@ import { useState, type FormEvent } from 'react'
 import { readPlans, writePlans } from '../../utils/schedule/plans'
 import { addAcademyToPlan } from '../../utils/schedule/frontyard'
 import { displaySchoolName } from '../../utils/schoolName'
-import { planPath } from '../../utils/urlState'
+import { planPath, timetablePath } from '../../utils/urlState'
 import { followLink } from '../content/contentLinks'
 import { track } from '../../utils/analytics'
 
@@ -13,7 +13,8 @@ interface AcademyTimetableFormProps {
   label: string
   providerKey?: string
   onNavigate: (path: string) => void
-  onDone: (message: string) => void
+  /** `path`는 담은 시간표 주소. 거기서 보고 뺄 수 있다(2026-11-03). */
+  onDone: (message: string, path?: string) => void
 }
 
 /**
@@ -53,7 +54,7 @@ export default function AcademyTimetableForm({ label, providerKey, onNavigate, o
       return
     }
     track('map_academy_add_timetable', { status: attending ? 'attending' : 'planned' })
-    onDone(`${displaySchoolName(plan.schoolName)} 시간표에 담았어요. 요일마다 시간이 다르면 한 번 더 담아 주세요.`)
+    onDone(`${displaySchoolName(plan.schoolName)} 시간표에 담았어요. 요일마다 시간이 다르면 한 번 더 담아 주세요.`, timetablePath(schoolId))
   }
 
   return (

@@ -10,7 +10,7 @@ const STEP_NUMBER = { return: 1, care: 2, courses: 3, fill: 4, done: 4 } as cons
  * 출발 계획 질문 카드(UX-13). 한 번에 한 질문만 보이고, 답하면 아래 시간표가 바로 바뀐다.
  * 저장과 자료 읽기는 MySchedule이 한다 — 여기서는 지금 단계의 질문과 버튼만 그린다.
  */
-export default function PlanStarter({ answers, suggested, busy, careDraft, evening, eveningAdded, coverage, picker, onReturn, onCare, onCourses, onCoursesNext, onEvening, onDone }: {
+export default function PlanStarter({ answers, suggested, busy, careDraft, evening, eveningAdded, coverage, picker, onReturn, onCare, onCourses, onCoursesNext, onEvening, onDone, onBack }: {
   answers: StarterAnswers | undefined
   /** 다른 학교에서 고른 귀가 시각. 미리 눌러 두지 않고 표시만 한다. */
   suggested: ReturnAt | null
@@ -29,6 +29,8 @@ export default function PlanStarter({ answers, suggested, busy, careDraft, eveni
   onCoursesNext: () => void
   onEvening: () => void
   onDone: () => void
+  /** 바로 앞 질문으로(2026-11-03). 다시 답하면 그 답이 넣은 칸이 새 답대로 바뀐다. */
+  onBack: () => void
 }) {
   const step = starterStep(answers)
   if (step === 'done') return null
@@ -36,7 +38,10 @@ export default function PlanStarter({ answers, suggested, busy, careDraft, eveni
   const until = returnAt === null ? '' : `${Math.floor(returnAt / 60)}시`
 
   return <section className="plan-starter my-card" aria-labelledby="plan-starter-title" data-testid="plan-starter" data-step={step}>
-    <p className="plan-starter__count">질문 {STEP_NUMBER[step]} / 4</p>
+    <div className="plan-starter__top">
+      <p className="plan-starter__count">질문 {STEP_NUMBER[step]} / 4</p>
+      {step !== 'return' && <button type="button" className="plan-starter__back" onClick={onBack}>← 이전 질문</button>}
+    </div>
     {step === 'return' && <>
       <h3 id="plan-starter-title">평일에 보호자가 집에 오는 시각은 언제쯤인가요?</h3>
       <p className="my-help">답할 때마다 아래 시간표가 채워져요. 나중에 언제든 바꿀 수 있어요.</p>
