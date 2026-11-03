@@ -11,6 +11,26 @@
         "href": "#home-assignment-search"
       },
       {
+        "id": "private-result-pass",
+        "year": 2026,
+        "planId": "season-private-result-pass",
+        "from": "11-16",
+        "to": "11-19",
+        "href": "/guide/private-result-pass",
+        "question": "사립초 추첨에 당첨됐어요",
+        "hint": "서울 공통 전형은 11월 16일 낮 12시 이후 결과를 확인하세요."
+      },
+      {
+        "id": "private-result-public",
+        "year": 2026,
+        "planId": "season-private-result-public",
+        "from": "11-16",
+        "to": "11-19",
+        "href": "/guide/private-result-public",
+        "question": "사립초 추첨에 당첨되지 않았어요",
+        "hint": "대기 순번을 확인하고 배정 학교를 찾아보세요."
+      },
+      {
         "id": "private",
         "planId": "season-private",
         "from": "09-15",

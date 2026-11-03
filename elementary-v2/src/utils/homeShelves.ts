@@ -2,6 +2,7 @@
 
 export interface WorryItem {
   id: string
+  year?: number // 특정 연도에만 노출하는 일정
   from?: string // 'MM-DD', 날짜 창 없는 항목은 항상 맨 앞
   to?: string // 'MM-DD', from보다 앞이면 해를 넘기는 창
   deadline?: string // 'MM-DD'
@@ -37,6 +38,7 @@ export const worryCards = (items: WorryItem[], now: Date, max: number): WorryCar
   const today = monthDay(now)
   const iso = `${now.getFullYear()}-${today}`
   return items
+    .filter((item) => item.year === undefined || item.year === now.getFullYear())
     .filter((item) => (!item.from && !item.to) || Boolean(item.from && item.to && inWindow(today, item.from, item.to)))
     .map((item, index) => ({
       ...item,
