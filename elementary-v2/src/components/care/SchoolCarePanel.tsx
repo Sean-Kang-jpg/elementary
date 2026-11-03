@@ -64,9 +64,8 @@ const SchoolCarePanel: React.FC<SchoolCarePanelProps> = ({ school, onOpenGuide, 
   const lowerGrades = count(school.grade1_students) + count(school.grade2_students)
   const allGrades = [1, 2, 3, 4, 5, 6].reduce((sum, grade) => sum + count(school[`grade${grade}_students` as keyof School] as number), 0)
   const usageRate = lowerGrades > 0 && disclosed(careStudents) && careStudents > 0 ? Math.round(careStudents / lowerGrades * 100) : null
-  // 100%를 넘는다는 것 자체가 다른 학년이 섞였다는 뜻이다. 1·2학년이 많아서는
-  // 넘을 수 없다 — 그들은 분모다.
-  const allGradeCare = (allGrades > 0 && allGrades < SMALL_SCHOOL_STUDENTS) || (usageRate != null && usageRate > 100)
+  // 전체 참여 인원과 1·2학년 학생 수를 비교한 참고값이다. 학년별 참여는 알 수 없다.
+  const omitUsageRate = (allGrades > 0 && allGrades < SMALL_SCHOOL_STUDENTS) || (usageRate != null && usageRate > 100)
   const perRoom = disclosed(careRooms) && careRooms > 0 && disclosed(careStudents) ? Math.round(careStudents / careRooms) : null
   const eveningRooms = stats.evening_care_rooms
   const programs = count(stats.afterschool_aptitude_programs) + count(stats.afterschool_curriculum_programs)
@@ -93,11 +92,11 @@ const SchoolCarePanel: React.FC<SchoolCarePanelProps> = ({ school, onOpenGuide, 
             <strong className="mt-0.5 block text-base text-rose-950">{careRooms}실 · {disclosed(careStudents) ? `${careStudents.toLocaleString()}명` : '인원 미공시'}</strong>
           </div>
           <div className="rounded-md bg-gray-100 p-2.5 text-center">
-            {allGradeCare ? <>
-              <span className="block text-[11px] text-gray-600">{usageRate != null && usageRate > 100 ? '참여 학년' : '소규모 학교'}</span>
-              <strong className="mt-0.5 block text-base text-gray-950">{usageRate != null && usageRate > 100 ? '전 학년 포함' : '전 학년 흔함'}</strong>
+            {omitUsageRate ? <>
+              <span className="block text-[11px] text-gray-600">참여 학년</span>
+              <strong className="mt-0.5 block text-base text-gray-950">구분 미공시</strong>
             </> : <>
-              <span className="block text-[11px] text-gray-600">1·2학년 대비 이용률</span>
+              <span className="block text-[11px] text-gray-600">1·2학년 학생 수 대비</span>
               <strong className="mt-0.5 block text-base text-gray-950">{usageRate != null ? `${usageRate}%` : '-'}</strong>
             </>}
           </div>
@@ -121,7 +120,7 @@ const SchoolCarePanel: React.FC<SchoolCarePanelProps> = ({ school, onOpenGuide, 
       </dl>
       {/* 모바일 한 줄(2026-10-24). 계산 방법은 돌봄 가이드에 있다. */}
       <p className="mt-2 text-[11px] leading-4 text-gray-500">
-        {allGradeCare ? '신청·탈락 인원은 비공시 · 전 학년 운영이라 이용률 생략' : '신청·탈락 인원은 비공시 · 이용률은 참고값(여석 아님)'}
+        학년별 참여·신청·탈락 인원은 공시되지 않아요.{!omitUsageRate && ' 비율은 전체 참여 인원을 1·2학년 학생 수와 비교한 참고값이에요.'}
       </p>
       <a
         href={CARE_GUIDE_PATH}
