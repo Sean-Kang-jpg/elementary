@@ -76,6 +76,7 @@ const worryCards = (items, now, max) => {
     return Math.round((target - start) / 86_400_000)
   }
   return items
+    .filter((item) => item.year === undefined || item.year === now.getFullYear())
     .filter((item) => (!item.from && !item.to) || Boolean(item.from && item.to && inWindow(item.from, item.to)))
     .map((item, index) => ({ ...item, index, permanent: !item.from && !item.to, dday: item.deadline ? until(item.deadline) : null, isNew: Boolean(item.newUntil && iso <= item.newUntil) }))
     .sort((a, b) => Number(b.permanent) - Number(a.permanent) || (a.dday ?? 999) - (b.dday ?? 999) || a.index - b.index)
