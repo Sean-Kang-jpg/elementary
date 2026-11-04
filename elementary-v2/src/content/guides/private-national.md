@@ -6,7 +6,7 @@ description: 2027학년도 서울 사립초 접수 일정과 경기·인천·국
 order: 0
 stage: admission
 group: admission
-verifiedAt: 2026-11-03
+verifiedAt: 2026-11-04
 rule: regional
 basisYear: 2027
 scope: 2027년 3월 입학하는 2020년생 기준입니다. 접수와 등록 전에는 지원할 학교의 최신 모집요강을 확인하세요.
@@ -20,6 +20,8 @@ summary:
 sources:
   - label: 서울사립초등학교연합회 신입생 입학포털
     url: https://www.kspesa.com/
+  - label: 인천 한일초등학교 2027학년도 신입생 입학 절차 및 일정
+    url: https://hanil.icees.kr/sub/info.do?m=0201&s=haniles
   - label: 인천동명초등학교 2027학년도 신입학 모집 규정
     url: https://dongmyeong.icees.kr/sub/info.do?m=010901&s=idongmyeonges
   - label: 서울시교육청, 서울 38개 사립초 2026학년도 신입생 원서접수 실시 (2025-11)
@@ -66,7 +68,7 @@ sources:
 | 박문초 | 10/28~30 | 11/10 |
 | 영화초 | 학교 공지 확인 · 설명회 11/7 | 11/10 |
 | 인성초 | 10/27~29 | 11/10 |
-| 한일초 | 10/27~29 | 11/10 |
+| [한일초](https://hanil.icees.kr/sub/info.do?m=0201&s=haniles) | 일반 11/2 오전 9시~11/6 오후 4시 | 11/10 오전 10시 |
 
 추첨일이 같아도 등록 마감 시각은 다를 수 있습니다. 인천동명초 일반전형은 **추첨 당일 오후 1시까지** 등록하도록 안내합니다.
 
