@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import argparse
+import contextlib
 import gzip
 import hashlib
 import json
@@ -326,15 +327,38 @@ def mark_snapshots(url: str, key: str, run_id: str, status: str) -> None:
     )
 
 
+PURGE_BATCH = 2000
+
+
 def purge_staging(url: str, key: str, run_id: str) -> None:
-    query = urllib.parse.quote(run_id)
-    request_json(
-        url,
-        key,
-        "DELETE",
-        f"/rest/v1/etl_staging_rows?run_id=eq.{query}",
-        prefer="return=minimal",
-    )
+    # 2026-11-03: one DELETE for a run's 88,630 rows hit the statement timeout
+    # and left 99 MB behind. Delete one key range at a time along the primary
+    # key (run_id, target_table, row_key), so every statement stays small.
+    run = f"run_id=eq.{urllib.parse.quote(run_id)}"
+    for table, _, _ in STAGED_TABLES:
+        scope = f"{run}&target_table=eq.{urllib.parse.quote(table)}"
+        while True:
+            edge = request_json(
+                url,
+                key,
+                "GET",
+                f"/rest/v1/etl_staging_rows?select=row_key&{scope}"
+                f"&order=row_key&offset={PURGE_BATCH - 1}&limit=1",
+            ) or []
+            # Plain operators take the value as is; quotes would become part of it.
+            bound = f"&row_key=lte.{urllib.parse.quote(edge[0]['row_key'], safe='')}" if edge else ""
+            request_json(
+                url,
+                key,
+                "DELETE",
+                f"/rest/v1/etl_staging_rows?{scope}{bound}",
+                prefer="return=minimal",
+                timeout=90,
+            )
+            if not edge:
+                break
+    # Anything staged under a table this build no longer stages.
+    request_json(url, key, "DELETE", f"/rest/v1/etl_staging_rows?{run}", prefer="return=minimal", timeout=90)
 
 
 def update_schedules(url: str, key: str, run_id: str, manifest: dict[str, Any]) -> None:
@@ -694,6 +718,8 @@ def apply_run(
                 purge_staging(url, key, run_id)
             except Exception as purge_error:  # the original failure matters more
                 print(f"staging purge after failure also failed: {purge_error}")
+                with contextlib.suppress(Exception):
+                    print(f"staging left behind: ~{staging_depth(url, key):,} rows; truncate etl_staging_rows")
         raise
 
 

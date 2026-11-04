@@ -157,6 +157,30 @@ class RecurringSafetyTests(unittest.TestCase):
         self.assertIn('canonical_complex_id=in.("APT:X1")', paths[0])
         self.assertIn('or=(and(apt_cd.eq."A1",school_id.eq."S1"))', paths[1])
 
+    def test_purge_staging_deletes_in_key_ranges(self) -> None:
+        calls: list[tuple[str, str]] = []
+        edges = iter([[{"row_key": '["K,1"]'}], []])
+
+        def capture(url, key, method, path, payload=None, prefer=None, timeout=60):
+            calls.append((method, urllib.parse.unquote(path)))
+            if method == "GET":
+                return next(edges, [])
+            return None
+
+        with (
+            patch.object(recurring, "STAGED_TABLES", (("school_master", Path("x"), ("school_id",)),)),
+            patch.object(recurring, "request_json", side_effect=capture),
+        ):
+            recurring.purge_staging("u", "k", "run-1")
+
+        deletes = [path for method, path in calls if method == "DELETE"]
+        # One bounded range, then the rest of the table, then any other table.
+        self.assertEqual(len(deletes), 3)
+        self.assertIn('target_table=eq.school_master&row_key=lte.["K,1"]', deletes[0])
+        self.assertNotIn("row_key", deletes[1])
+        self.assertTrue(deletes[2].endswith("?run_id=eq.run-1"))
+        self.assertIn(f"offset={recurring.PURGE_BATCH - 1}&limit=1", calls[0][1])
+
     def test_delete_keys_rejects_partial_batch(self) -> None:
         with patch.object(recurring, "request_json", return_value=[]):
             with self.assertRaisesRegex(RuntimeError, "deleted 0 of 1"):
