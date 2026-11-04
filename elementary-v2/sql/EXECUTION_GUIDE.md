@@ -508,3 +508,18 @@ was unchanged. `40` sets `statement_timeout = '5min'` on that function only.
 2. `SELECT proconfig FROM pg_proc WHERE proname = 'refresh_school_apartment_serving';` shows
    `{statement_timeout=5min}`.
 3. Rollback: `ALTER FUNCTION public.refresh_school_apartment_serving() RESET statement_timeout;`
+
+## 41: Serving excludes optional one-way choices (2026-11-04) — 적용 완료
+
+The 2026-11-03/04 monthly applies rebuilt every region with `refresh_school_apartment_serving()`,
+which unlike the ETL build never left out `optional_one_way` links. Serving went 48,189 → 61,437
+rows and 경북 apartments showed six or more assigned schools. `41` adds the same filter the build
+uses and restates SQL 40's timeout, since `CREATE OR REPLACE` resets function settings.
+
+1. Apply the file. It was applied from the SQL editor; `etl/run_sql.py` (Management API, needs
+   `SUPABASE_ACCESS_TOKEN`) can do the same from the shell.
+2. `SELECT refresh_school_apartment_serving();` returned 48,525 on 2026-11-05. Serving had kept
+   the bad rows until this ran — applying the file alone changes nothing on the site.
+3. Checked with the anon key: 48,525 rows, 0 rows whose only role is `optional_one_way`, 경북 3,019.
+   `proconfig` is `{search_path=public, pg_temp,statement_timeout=5min}`.
+4. Rollback: re-run the function from SQL 19, then SQL 40.
