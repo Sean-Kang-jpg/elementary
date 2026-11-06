@@ -1,8 +1,11 @@
 import { HeartHandshake, LoaderCircle, Phone } from 'lucide-react'
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useMemo, useRef, useState } from 'react'
 import type { CareCenter } from '../../types'
 import { getCareCentersNear } from '../../services/dataService'
 import { track } from '../../utils/analytics'
+import { describeUntil, sortByFit } from '../../utils/careFit'
+import { readPlans } from '../../utils/schedule/plans'
+import { coverageUntil } from '../../utils/schedule/starter'
 import { useSeenOnce } from './useSeenOnce'
 import { useAppContext } from '../../contexts/AppContext'
 import MapLayerButton from '../map/MapLayerButton'
@@ -31,6 +34,13 @@ const CareCenterList: React.FC<CareCenterListProps> = ({ latitude, longitude, or
   const { dispatch } = useAppContext()
   const [centers, setCenters] = useState<CareCenter[] | null>(null)
   const [expanded, setExpanded] = useState(false)
+  const [byFit, setByFit] = useState(false)
+  // 이 학교로 일정을 만들며 귀가 시각을 답한 가족만 시간 순을 고를 수 있다(UX-16).
+  const until = useMemo(() => {
+    if (origin.type !== 'school') return null
+    const starter = readPlans().plans.find((plan) => plan.schoolId === origin.id)?.starter
+    return starter?.returnAt ? coverageUntil(starter) : null
+  }, [origin.type, origin.id])
   const sectionRef = useRef<HTMLElement>(null)
   const originLabel = origin.type === 'school' ? '학교' : '단지'
   const eventBase = { item_type: origin.type, item_id: origin.id || undefined }
@@ -44,6 +54,7 @@ const CareCenterList: React.FC<CareCenterListProps> = ({ latitude, longitude, or
   useEffect(() => {
     setCenters(null)
     setExpanded(false)
+    setByFit(false)
     if (!latitude || !longitude) return
     let active = true
     getCareCentersNear(latitude, longitude, RADIUS_M)
@@ -66,7 +77,8 @@ const CareCenterList: React.FC<CareCenterListProps> = ({ latitude, longitude, or
     )
   }
 
-  const visible = expanded ? centers : centers.slice(0, INITIAL_COUNT)
+  const ordered = byFit && until !== null ? sortByFit(centers, until) : centers
+  const visible = expanded ? ordered : ordered.slice(0, INITIAL_COUNT)
 
   return (
     <section ref={sectionRef} aria-labelledby={headingId} data-testid="care-centers">
@@ -75,6 +87,17 @@ const CareCenterList: React.FC<CareCenterListProps> = ({ latitude, longitude, or
         <h3 id={headingId} className="inline-flex items-center gap-2 font-semibold text-gray-950"><HeartHandshake size={18} aria-hidden="true" />주변 돌봄센터</h3>
         <strong className="text-sm text-rose-800">{centers.length}곳</strong>
       </div>
+      {until !== null && centers.length > 1 ? (
+        <div className="mb-2" data-testid="care-sort">
+          <div className="flex flex-wrap gap-1.5" role="group" aria-label="돌봄센터 정렬">
+            {[{ value: false, label: '가까운 순' }, { value: true, label: '우리 집 시간에 맞는 순' }].map((option) => (
+              <button key={option.label} type="button" aria-pressed={byFit === option.value} onClick={() => setByFit(option.value)}
+                className={`rounded-full border px-3 py-1 text-xs font-semibold ${byFit === option.value ? 'border-rose-300 bg-rose-50 text-rose-900' : 'border-gray-200 text-gray-600'}`}>{option.label}</button>
+            ))}
+          </div>
+          {byFit ? <p className="mt-1.5 text-[11px] leading-4 text-gray-500">학기 중 운영 시간 기준, {describeUntil(until)}까지 여는 곳을 먼저 보여 드려요.</p> : null}
+        </div>
+      ) : null}
       {centers.length === 0 ? (
         <p className="rounded-md border border-gray-200 bg-gray-50 px-4 py-4 text-center text-sm text-gray-600">{originLabel} 1km 안에 등록된 돌봄센터가 없습니다.</p>
       ) : (

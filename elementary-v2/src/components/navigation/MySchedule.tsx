@@ -7,7 +7,10 @@ import { displaySchoolName } from '../../utils/schoolName'
 import MyScheduleWeek from './MyScheduleWeek'
 import { applyCalendarChange, type CalendarChange } from '../../utils/schedule/editing'
 import { toggleProgramDay } from '../../utils/schedule/programSelection'
-import { describeCoverage, planCoverage } from '../../utils/schedule/coverage'
+import { describeCoverage, firstGapSlot, planCoverage } from '../../utils/schedule/coverage'
+import { FRONTYARD_ENABLED } from '../../utils/features'
+import { frontyardPath } from '../../utils/urlState'
+import { followLink } from '../content/contentLinks'
 import { removeEntryDay, repeatEntry, setEntryTimes } from '../../utils/schedule/dayTimes'
 import { afternoonCareFor, answerReturn, coverageUntil, emptyStarter, eveningCareFor, starterCareIds, starterStep, type ReturnAt, type StarterAnswers } from '../../utils/schedule/starter'
 import type { SchoolCareHours } from '../../types'
@@ -141,6 +144,8 @@ export default function MySchedule({ school, entryYear, saved, onNavigate }: {
   // 칸의 의도별 시간(UX-14). 엔진이 배치한 칸만 센다.
   const intents = plan ? describeIntents(weekIntentMinutes(computeWeek(plan.entries, { from: 'dismissal', to: CALENDAR_END }))) : null
   const coverage = plan && until !== null ? planCoverage(plan.entries, until) : null
+  const gapSlot = plan && until !== null && coverage?.state === 'gaps' && onNavigate && FRONTYARD_ENABLED ? firstGapSlot(plan.entries, until) : null
+  const gapAsk = plan && gapSlot ? frontyardPath(plan.schoolId, gapSlot, { write: true }) : null
   const starter = <PlanStarter answers={plan?.starter} suggested={suggested} busy={loading}
     careDraft={returnAt === null ? null : afternoonCareFor(schoolId, careHours, returnAt)}
     evening={evening} eveningAdded={Boolean(evening && plan?.entries.some((e) => e.id === evening.id))} coverage={coverage}
@@ -169,6 +174,7 @@ export default function MySchedule({ school, entryYear, saved, onNavigate }: {
       </> : <>
         {step !== 'done' && starter}
         {coverage && step === 'done' && <p className={`plan-coverage plan-coverage--${coverage.state}`} data-testid="plan-coverage">{describeCoverage(coverage)}</p>}
+        {gapAsk && step === 'done' && <a className="my-button" data-testid="plan-gap-ask" href={gapAsk} onClick={(event) => followLink(event, gapAsk, onNavigate!)}>원하는 활동 알리기</a>}
         {intents && <p className="plan-intents" data-testid="plan-intents">{intents}</p>}
         <MyScheduleWeek key={`week-${plan.schoolId}`} schoolId={plan.schoolId} onNavigate={onNavigate} entries={plan.entries} onSave={saveCalendarEntry} onAdd={addEntry} onRemove={removeEntry}
           onToggleDay={(entry, weekday) => changeEntries((entries) => toggleProgramDay(entries, entry, weekday))}

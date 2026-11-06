@@ -1,6 +1,8 @@
 import { CALENDAR_END } from './calendar.ts'
 import { computeWeek, type DayPlan } from './engine.ts'
+import { formatMinutes } from './fromSchoolData.ts'
 import type { Minutes, ScheduleEntry, Weekday } from './types'
+import type { FrontyardSlot } from '../urlState'
 
 /**
  * 한 주가 비지 않고 이어지는가(UX-10 "돌봄 공백 없음 ✓"). 엔진의 공백 계산 결과만 쓴다 — 여기서 시각을 새로 셈하지 않는다.
@@ -27,6 +29,15 @@ export const weekCoverage = (days: DayPlan[], until: Minutes): WeekCoverage => {
 /** 시간표 화면과 같은 창(하교 ~ 19:00)으로 한 주를 본다. */
 export const planCoverage = (entries: ScheduleEntry[], until: Minutes = CALENDAR_END): WeekCoverage =>
   weekCoverage(computeWeek(entries, { from: 'dismissal', to: until }), until)
+
+/** 빈 시간 안내에서 [찾아요]로 넘길 첫 공백(UX-17). 불확실한 공백은 세지 않는 `weekCoverage`와 같은 기준이다. */
+export const firstGapSlot = (entries: ScheduleEntry[], until: Minutes = CALENDAR_END): FrontyardSlot | null => {
+  for (const day of computeWeek(entries, { from: 'dismissal', to: until })) {
+    const gap = day.gaps.find((item) => item.status !== 'uncertain')
+    if (gap) return { weekday: day.weekday, start: formatMinutes(gap.from), end: formatMinutes(gap.to) }
+  }
+  return null
+}
 
 const DAYS = ['월', '화', '수', '목', '금']
 const duration = (minutes: number) => {

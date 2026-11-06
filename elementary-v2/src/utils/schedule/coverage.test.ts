@@ -2,7 +2,7 @@
 import { describe, it } from 'node:test'
 import assert from 'node:assert/strict'
 import type { ScheduleEntry } from './types'
-import { describeCoverage, planCoverage } from './coverage.ts'
+import { describeCoverage, firstGapSlot, planCoverage } from './coverage.ts'
 
 const entry = (overrides: Partial<ScheduleEntry> & Pick<ScheduleEntry, 'id' | 'kind'>): ScheduleEntry => ({
   label: overrides.id,
@@ -21,6 +21,17 @@ const careUntil = (end: number, extra: Partial<ScheduleEntry> = {}) =>
 describe('week coverage', () => {
   it('is covered when care runs from dismissal to seven every weekday', () => {
     assert.deepEqual(planCoverage([school, careUntil(19 * 60)]), { state: 'covered', until: 19 * 60 })
+  })
+
+  it('finds the first open slot, on the earliest day with a gap', () => {
+    const entries = [school, careUntil(19 * 60, { weekdays: [1, 2] }), careUntil(17 * 60, { id: 'short', weekdays: [3, 4, 5] })]
+    assert.deepEqual(firstGapSlot(entries), { weekday: 3, start: '17:00', end: '19:00' })
+  })
+
+  it('has no slot to offer when the week is covered or the only gap is uncertain', () => {
+    assert.equal(firstGapSlot([school, careUntil(19 * 60)]), null)
+    const untimed = entry({ id: 'class', kind: 'personal', start: null, end: null })
+    assert.equal(firstGapSlot([school, careUntil(17 * 60), untimed]), null)
   })
 
   it('counts the days and minutes left open', () => {

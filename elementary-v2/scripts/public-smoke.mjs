@@ -376,6 +376,27 @@ try {
   await waitFor("document.querySelector('.my-calendar-undo') && !JSON.parse(localStorage.getItem('elementary-schedule-plans-v1')).plans[0].entries.some(e => e.kind === 'care')", 'removing from every weekday takes the slot out and offers undo')
   run(['eval', "document.querySelector('.my-calendar-undo').click(); 'undo'"], { quiet: true })
   await waitFor("JSON.parse(localStorage.getItem('elementary-schedule-plans-v1')).plans[0].entries.some(e => e.id === 'care-B000002292-afternoon') && !document.querySelector('.my-calendar-undo')", 'undo puts the slot back')
+  // UX-17: the gaps line goes straight to 찾아요 with the first gap filled in. Care is taken out so
+  // the week has a gap whatever the school publishes.
+  run(['eval', `(() => { const store = JSON.parse(localStorage.getItem('elementary-schedule-plans-v1')); const plan = store.plans.find(p => p.schoolId === 'B000002292'); plan.entries = plan.entries.filter(e => e.kind !== 'care'); plan.starter = { returnAt: 1140, care: false, courses: false, done: true }; localStorage.setItem('elementary-schedule-plans-v1', JSON.stringify(store)); location.href = '/timetable?face=week&school=B000002292'; return 'UX-17 gaps' })()`], { quiet: true })
+  await waitFor("document.querySelector('[data-testid=plan-coverage].plan-coverage--gaps') && /[?&]write=seek/.test(document.querySelector('[data-testid=plan-gap-ask]')?.getAttribute('href') || '')", 'UX-17 a week with gaps offers 원하는 활동 알리기')
+  run(['eval', "document.querySelector('[data-testid=plan-gap-ask]').click(); 'UX-17 ask'"], { quiet: true })
+  await waitFor("location.pathname === '/frontyard' && /[?&]day=[1-5]/.test(location.search) && /[?&]from=/.test(location.search) && /[?&]write=seek/.test(location.search)", 'UX-17 the link opens 찾아요 for the first gap')
+  // UX-16: the family's return time adds a sort to the care list; a school without a plan keeps distance only.
+  // B000002205 has three centers within 1 km; real data moves, so the reordering itself is left to careFit.test.ts.
+  const careSortTab = () => run(['eval', `[...document.querySelectorAll('[aria-label="학교 상세 메뉴"] button')].find(b => b.textContent === '방과후·돌봄').click(); 'UX-16 care tab'`], { quiet: true })
+  run(['eval', "localStorage.removeItem('elementary-schedule-plans-v1'); 'UX-16 no plan'"], { quiet: true })
+  run(['open', new URL('/school/B000002205', baseUrl).toString()])
+  await waitFor("document.querySelector('[aria-label=\"학교 상세 메뉴\"]')", 'UX-16 the school detail opens')
+  careSortTab()
+  await waitFor("document.querySelectorAll('[data-testid=care-centers] li').length > 0", 'UX-16 the care list loads')
+  assertPage("!document.querySelector('[data-testid=care-sort]')", 'UX-16 without a plan the care list keeps distance only')
+  run(['eval', `localStorage.setItem('elementary-schedule-plans-v1', JSON.stringify({ version: 1, plans: [{ schoolId: 'B000002205', schoolName: '스모크', entryYear: null, updatedAt: new Date().toISOString(), entries: [], starter: { returnAt: 1140, care: false, courses: false, done: true } }] })); location.reload(); 'UX-16 plan'`], { quiet: true })
+  await waitFor("document.querySelector('[aria-label=\"학교 상세 메뉴\"]')", 'UX-16 the school detail reopens')
+  careSortTab()
+  await waitFor("[...document.querySelectorAll('[data-testid=care-sort] button')].some(b => b.textContent === '우리 집 시간에 맞는 순')", 'UX-16 a family with a return time can sort by it')
+  run(['eval', `[...document.querySelectorAll('[data-testid=care-sort] button')].find(b => b.textContent === '우리 집 시간에 맞는 순').click(); 'UX-16 sort'`], { quiet: true })
+  await waitFor("document.querySelector('[data-testid=care-sort]').textContent.includes('19시까지 여는 곳을 먼저')", 'UX-16 the list says which time it sorts by')
   run(['eval', "localStorage.removeItem('elementary-schedule-plans-v1'); 'UX-13 cleanup'"], { quiet: true })
   // UX-18: a family back after two weeks sees what passed and what came near since, once.
   // Dates are relative to the run so the check holds on any day.
