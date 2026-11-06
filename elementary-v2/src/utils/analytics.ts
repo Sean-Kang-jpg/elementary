@@ -115,7 +115,8 @@ export const trackDisplayedScreen = (timetable?: MeasuredScreen['timetable']): v
     pathname: window.location.pathname,
     search: window.location.search,
     pageLocation: window.location.href,
-    pageTitle: document.title,
+    // Child effects run before App's title effect during an in-app transition.
+    pageTitle: timetable ? '우리집 일정 | 어디초' : document.title,
     timetable,
   })
 }

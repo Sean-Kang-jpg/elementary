@@ -18,6 +18,7 @@ import SchoolDayEstimateCard from '../school/SchoolDayEstimateCard'
 import MySchedule from './MySchedule'
 import SchoolSelection from '../search/SchoolSelection'
 import SampleWeek from './SampleWeek'
+import { funnelMeasurement, trackDisplayedScreen } from '../../utils/analytics'
 
 interface TimetablePageProps {
   schoolId: string | null
@@ -60,7 +61,10 @@ export default function TimetablePage({
   const fallbackId = recentPlan?.schoolId ?? savedSchools[0]?.id ?? null
   const schoolId = face === 'week' ? routeSchoolId ?? fallbackId : null
   useEffect(() => {
-    if (face === 'week' && !routeSchoolId && fallbackId) onSchoolChange(fallbackId)
+    if (face === 'week' && !routeSchoolId && fallbackId) {
+      funnelMeasurement.markSelection(fallbackId, 'restore')
+      onSchoolChange(fallbackId)
+    }
   }, [face, routeSchoolId, fallbackId, onSchoolChange])
 
   // 고른 학교의 공개 자료. 운영 키가 아닌 옛 초안 ID는 null로 끝나고, 초안 편집은 그대로 된다.
@@ -81,6 +85,12 @@ export default function TimetablePage({
     ?? plan?.schoolName
     ?? savedSchools.find((item) => item.id === schoolId)?.name
     ?? null
+  useEffect(() => {
+    // Do not count a transient unresolved school as another screen. Existing
+    // plans are already displayed while the current public data is loading.
+    if (face === 'week' && schoolId && loadingDetail && !plan) return
+    trackDisplayedScreen({ face, schoolId, schoolReady: Boolean(school), selectionMethod: routeSchoolId ? 'route' : 'restore' })
+  }, [face, schoolId, school, loadingDetail, plan, routeSchoolId])
   const shownName = school ? displaySchoolName(school.school_name, school.address, school.establishment_type) : name && displaySchoolName(name)
   const step = !schoolId ? 0 : plan ? 2 : 1
 
@@ -94,7 +104,8 @@ export default function TimetablePage({
 
   // 초안 유무로 레이아웃이 바뀌면 학교 목록이 다시 만들어진다. 4번째 학교 거절 같은 안내가 그때 사라지지 않게 여기서 든다.
   const [pickMessage, setPickMessage] = useState('')
-  const chips = <SchoolSelection schoolId={schoolId} onChange={onSchoolChange} message={pickMessage} onMessage={setPickMessage} />
+  const chips = <SchoolSelection schoolId={schoolId} onChange={onSchoolChange} message={pickMessage} onMessage={setPickMessage}
+    onSelection={(id) => funnelMeasurement.markSelection(id, 'user')} />
 
   const weekSchool = schoolId ?? fallbackId
   const weekHref = weekSchool ? timetablePath(weekSchool) : planPath('week')
