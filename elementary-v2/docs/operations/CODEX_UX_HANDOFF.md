@@ -62,7 +62,7 @@ Claude가 UX-K0·UX-03·UX-26을 하는 동안 Codex는 아래를 바꾸지 않�
 | 0 (지금) | C-01 이벤트, C-02 .ics, C-03 가이드 nextStep | UX-K0 API, UX-03 입학까지 v0 | 홈 제목·고민 문구, 추첨 결과 사실 |
 | 1 | C-04 홈 고민 목록, C-05 홈 하단 정리, C-06 결과 이후 페이지 | 차수 0 검토·병합, 배포 | 배포 승인 |
 | 2 (12월) | C-07 학교로 일정 만들기, C-08 내 일정에 넣기, C-09 퍼널 정의 | UX-26 우리집 일정 탭, UX-06, UX-08c, UX-10 완료 표시 | 완료 표시·미뤄도 되는 것 내용 |
-| 3 (1~2월) | UX-15, UX-16, UX-17 | UX-13 기본안, UX-14 칸 의도, UX-18 | 휴식 이름(확정) |
+| 3 (1~2월) | C-10(UX-16), C-11(UX-17). UX-15는 2026-11-06 사용자 결정으로 제외 | UX-13 기본안, UX-14 칸 의도, UX-18 | 휴식 이름(확정) |
 
 차수 2 카드(C-07~C-09)는 UX-K0·UX-03 병합 뒤인 2026-11-01에 추가했다. UX-10(완료 표시)은 입학까지 카드가 UX-26에서 옮겨 간 뒤 Claude가 한다 — 지금 `RoadmapCard.tsx`가 체크와 D-day를 이미 갖고 있어 Codex 카드로 나누면 같은 파일을 두 번 고치게 된다.
 
@@ -437,3 +437,51 @@ MY(`/my`)에는 프로필·관심 후보·저장 학원만 남았다(UX-06). 입
 - 구현 블로커 없음. GA4에서 실제 등록·수집·세션 조건을 확인하고 탐색을 만드는 단계는 사용자 확인 작업으로 남는다. master 병합·release 배포·운영 DB 쓰기는 수행하지 않는다.
 
 **검토** (Claude, 2026-11-02): 병합(문서만), 운영 배포에 포함. `from=my`는 UX-26 뒤 입학연도를 우리집 일정에서도 고르므로 MY만의 출처가 아니다 — 측정을 시작할 때 `timetable`과 묶어 볼 것.
+
+---
+
+### C-10 돌봄센터 목록 정렬 (UX-16) — `ready`, S
+
+**목표**: 학교·아파트 상세의 주변 돌봄센터 목록에서 "가까운 순"과 "우리 집 시간에 맞는 순"을 고른다.
+
+**바꿀 파일**: `src/components/care/CareCenterList.tsx`, `src/utils/careFit.ts`(신규), `src/utils/careFit.test.ts`(신규). 스타일이 꼭 필요할 때만 `src/styles/content.css`.
+
+**범위 밖**: 학원 목록. `MyScheduleAcademyPicker.tsx`는 이미 가까운 순이고 학원은 운영 시간 자료가 없어 시간 정렬을 할 수 없다. 건드리지 않는다.
+
+**명세**
+
+- 순수 함수 `careFit(termHours: string | null, until: Minutes): 'fits' | 'unknown' | 'short'`. `term_hours`는 `HH:MM~HH:MM`(1,000건 표본의 값은 모두 이 형식이거나 null, null 212건). 끝 시각이 `until` 이상이면 `fits`, 미만이면 `short`, null이거나 형식이 다르면 `unknown`.
+- 순수 함수 `sortByFit(centers, until)`: `fits` → `unknown` → `short`, 각 묶음 안에서는 `straight_distance_m` 오름차순. 입력 배열을 바꾸지 않는다.
+- `until`은 `origin.type === 'school'`일 때 `readPlans().plans`에서 `schoolId === origin.id`인 계획을 찾아 `coverageUntil(plan.starter)`로 얻는다. 계획이 없거나 `starter`가 없거나 값이 `null`이면 **선택 버튼을 그리지 않고** 지금처럼 거리 순으로 둔다.
+- 기본값은 가까운 순. 선택은 저장하지 않는다(새 저장 키 금지).
+- 버튼 문구는 `가까운 순`, `우리 집 시간에 맞는 순`. 시간 순일 때 목록 위 한 줄: `학기 중 운영 시간 기준, {N}시까지 여는 곳을 먼저 보여 드려요.` 분 단위가 있으면 `{N}시 {M}분`.
+- 인기·순위·평점 정렬을 넣지 않는다. 새 이벤트를 만들지 않는다. 방학 운영시간은 쓰지 않는다.
+
+**완료 기준**: `npm run test:unit`에 경계값(끝 시각이 `until`과 같음, null, 형식 오류, 같은 묶음의 거리 순, 입력 불변) 포함. 계획이 있는 학교 상세에서 버튼이 보이고 순서가 바뀌며, 계획이 없으면 버튼이 없다. 공통 검증 명령 전부.
+
+**결과**:
+
+**검토**:
+
+---
+
+### C-11 빈 시간 줄에서 [찾아요] 바로 쓰기 (UX-17) — `ready`, S
+
+**목표**: 우리집 일정의 빈 시간 안내에서 한 번에 [찾아요] 쓰기로 간다. 요일·시간은 미리 채운다.
+
+**현재 상태**: 배움·돌봄은 2026-10-24 공개되어 플래그 조건은 풀렸다. 시간표 빈칸을 눌렀을 때의 "원하는 활동 알리기"(`ScheduleAddCard.tsx`의 `FrontyardLinks`)와 쓰기 화면의 미리 채움(`SeekComposer`의 `initialSlot`)은 이미 있다. 없는 것은 빈 시간 안내(`data-testid="plan-coverage"`)에서 가는 길이다.
+
+**바꿀 파일**: `src/components/navigation/MySchedule.tsx`, `src/utils/schedule/coverage.ts`, `src/utils/schedule/coverage.test.ts`. `coverage.ts`는 이 카드에서만 함수 추가를 허용한다.
+
+**명세**
+
+- `coverage.ts`에 `firstGapSlot(entries, until): FrontyardSlot | null` 추가. `planCoverage`와 같은 창으로 `computeWeek`를 돌려 `status !== 'uncertain'`인 첫 공백(월요일부터, 같은 요일은 이른 시각부터)을 `{ weekday, start, end }`로 돌려준다. `FrontyardSlot`은 `urlState.ts`에서 `import type`으로만 가져온다.
+- `MySchedule.tsx` 171행 근처: `coverage.state === 'gaps'`이고 `FRONTYARD_ENABLED`이고 `onNavigate`가 있을 때만 안내 아래에 링크 `원하는 활동 알리기`(기존 문구 그대로). 주소는 `frontyardPath(plan.schoolId, slot, { write: true })`, 클릭은 `followLink`.
+- 쓰기 화면에는 첫 공백의 요일 하나만 채워진다. 나머지 요일은 사용자가 고른다. `SeekComposer`와 주소 형식은 바꾸지 않는다.
+- "아직 방법 없음"이라는 새 상태·문구를 만들지 않는다. 저장 형식을 바꾸지 않고 글을 대신 올리지 않는다. 새 이벤트를 만들지 않는다.
+
+**완료 기준**: `firstGapSlot` 단위 테스트(공백 없음, 불확실 공백만 있음, 여러 요일). 빈 시간이 있는 계획에서 링크를 누르면 `/frontyard?...write=seek`로 가서 요일·시간이 채워져 열린다. `covered`·`unknown`이면 링크가 없다. 공통 검증 명령 전부.
+
+**결과**:
+
+**검토**:
