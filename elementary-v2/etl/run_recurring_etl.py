@@ -378,7 +378,9 @@ def update_schedules(url: str, key: str, run_id: str, manifest: dict[str, Any]) 
         cadence_days = {
             "daily": 1,
             "weekly": 7,
-            "monthly": 30,
+            # Runs start on the 2nd, and the next one can be 28 days away. At 30 a
+            # run finishing on Nov 2 was not due again until after Dec 2's start.
+            "monthly": 27,
             "annual": 365,
         }.get(cadence_unit)
         next_due = completed_at + timedelta(days=cadence_days * cadence_value) if cadence_days else None

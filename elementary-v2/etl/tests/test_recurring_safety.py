@@ -4,6 +4,7 @@ import contextlib
 import sys
 import unittest
 import urllib.parse
+from datetime import datetime, timezone
 from pathlib import Path
 from unittest.mock import ANY, call, patch
 
@@ -221,6 +222,27 @@ class RecurringSafetyTests(unittest.TestCase):
         self.assertEqual(build_manifest.call_count, 2)
         self.assertIn("retry", run_script.call_args.args)
         notify.assert_called_once_with("school", 1, ANY)
+
+    def test_monthly_source_is_due_by_the_next_scheduled_start(self) -> None:
+        patches: list[dict] = []
+
+        def respond(url, key, method, path, payload=None, prefer=None, timeout=60):
+            if method == "GET":
+                return [{"cadence_unit": "monthly", "cadence_value": 1}]
+            patches.append(payload)
+            return None
+
+        # The shortest gap between starts: 23:00 KST on Feb 2, then 03:15 KST on Mar 2.
+        finished = datetime(2027, 2, 2, 14, 0, tzinfo=timezone.utc)
+        next_start = datetime(2027, 3, 1, 18, 15, tzinfo=timezone.utc)
+        with (
+            patch.object(recurring, "request_json", side_effect=respond),
+            patch.object(recurring, "datetime") as clock,
+        ):
+            clock.now.return_value = finished
+            recurring.update_schedules("u", "k", "run-1", {"snapshots": [{"source_name": "kapt-basic"}]})
+
+        self.assertLessEqual(datetime.fromisoformat(patches[0]["next_due_at"]), next_start)
 
 
 if __name__ == "__main__":
