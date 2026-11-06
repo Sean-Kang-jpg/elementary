@@ -32,6 +32,49 @@ class DistrictPredecessorTest(unittest.TestCase):
         self.assertEqual(builder.address_candidates("서울특별시 서구청로 1"), {builder.normalize("서울특별시 서구청로 1")})
 
 
+class DistantLegalOnlyMatchTest(unittest.TestCase):
+    """논현신동아 + 이움빌라: one K-apt code, 1.2 km apart (found 2026-11-06)."""
+
+    ANCHOR = {"la": "37.5100", "lo": "127.0200"}
+    NEARBY = {"la": "37.5105", "lo": "127.0205"}   # about 70 m
+    FAR = {"la": "37.5200", "lo": "127.0300"}      # about 1.4 km
+
+    def rejected(self, *components):
+        matches = {apt_id: {"kapt_code": "A1", "evidence": evidence} for apt_id, evidence, _ in components}
+        return builder.distant_legal_only_matches(matches, {apt_id: point for apt_id, _, point in components})
+
+    def test_a_distant_component_matched_only_on_the_jibun_is_rejected(self):
+        self.assertEqual(self.rejected(
+            ("road", "road_address+legal_address+households", self.ANCHOR),
+            ("villa", "legal_address+building_count+approval_year", self.FAR),
+        ), ["villa"])
+
+    def test_a_nearby_block_of_the_same_complex_stays(self):
+        self.assertEqual(self.rejected(
+            ("road", "road_address", self.ANCHOR),
+            ("block2", "legal_address+building_count", self.NEARBY),
+        ), [])
+
+    def test_a_road_match_stays_however_far_the_complex_spreads(self):
+        self.assertEqual(self.rejected(
+            ("road", "road_address", self.ANCHOR),
+            ("road2", "road_address+legal_address", self.FAR),
+        ), [])
+
+    def test_a_same_named_component_stays(self):
+        self.assertEqual(self.rejected(
+            ("road", "road_address", self.ANCHOR),
+            ("named", "legal_address+name_district", self.FAR),
+        ), [])
+
+    def test_nothing_to_measure_from_keeps_the_match(self):
+        self.assertEqual(self.rejected(("a", "legal_address", self.ANCHOR), ("b", "legal_address", self.FAR)), [])
+        self.assertEqual(self.rejected(
+            ("road", "road_address", {"la": "", "lo": ""}),
+            ("villa", "legal_address", self.FAR),
+        ), [])
+
+
 class AddressHistoryTest(unittest.TestCase):
     def test_keeps_addresses_a_multi_address_listing_dropped(self):
         rows = history([

@@ -9,6 +9,7 @@ from __future__ import annotations
 import argparse
 import csv
 import json
+import math
 import os
 import re
 import sys
@@ -35,6 +36,11 @@ APT_SUPPLEMENT = BASE_DIR / "runtime" / "apartment_supplement" / "apartment_base
 # Road addresses K-apt listed for a multi-building complex before it cut each
 # list to one address (2026-09-25 file). Committed; build_kapt_address_history.py.
 KAPT_ADDRESS_HISTORY = BASE_DIR / "kapt_road_address_history.csv"
+# How far a component matched on the 지번 alone may sit from the complex's
+# road-address-matched components. Every validated group beyond this in the
+# 2026-11-06 audit was a different building; a real complex's other blocks
+# (위례중앙푸르지오2단지, 112 m) stay inside it.
+LEGAL_ONLY_MAX_METERS = 300
 
 
 def base_origin(apt: dict[str, str]) -> tuple[str, str]:
@@ -239,6 +245,48 @@ def resolve_property(base: int | None, kapt: int | None, tolerance: int = 0) -> 
     return base, "apartment_base_conflict", True
 
 
+def meters_between(left: dict[str, Any], right: dict[str, Any]) -> float | None:
+    points = [floating(row.get(key)) for row in (left, right) for key in ("la", "lo")]
+    if None in points:
+        return None
+    lat1, lng1, lat2, lng2 = map(math.radians, points)
+    haversine = math.sin((lat2 - lat1) / 2) ** 2 + math.cos(lat1) * math.cos(lat2) * math.sin((lng2 - lng1) / 2) ** 2
+    return 6_371_000 * 2 * math.asin(math.sqrt(haversine))
+
+
+def distant_legal_only_matches(
+    matches: dict[str, dict[str, Any]], apartment_by_id: dict[str, dict[str, Any]]
+) -> list[str]:
+    """Components a 지번 tied to a K-apt complex they are nowhere near.
+
+    The 2024-10 base carries K-apt's own 법정동주소, complex name included, on small
+    buildings elsewhere: 이움빌라 at 봉은사로29길 reads `논현동 22 논현신동아`. A
+    10-unit villa also stays inside the 3% household check, so it merged into the
+    644-unit complex and its school showed under that complex's name.
+
+    Needs a road-matched component to measure from and leaves a same-named
+    component alone. A group with no road match cannot be judged this way.
+    """
+    by_code: dict[str, list[str]] = defaultdict(list)
+    for apt_id, match in matches.items():
+        by_code[match["kapt_code"]].append(apt_id)
+
+    rejected = []
+    for apt_ids in by_code.values():
+        anchors = [apt_id for apt_id in apt_ids if "road_address" in matches[apt_id]["evidence"]]
+        for apt_id in apt_ids:
+            evidence = matches[apt_id]["evidence"].split("+")
+            if "legal_address" not in evidence or "road_address" in evidence or "name_district" in evidence:
+                continue
+            distances = [
+                meters_between(apartment_by_id[apt_id], apartment_by_id[anchor]) for anchor in anchors
+            ]
+            distances = [distance for distance in distances if distance is not None]
+            if distances and min(distances) >= LEGAL_ONLY_MAX_METERS:
+                rejected.append(apt_id)
+    return sorted(rejected)
+
+
 def write_csv(path: Path, rows: list[dict[str, Any]], fieldnames: list[str]) -> None:
     with path.open("w", encoding="utf-8-sig", newline="") as handle:
         writer = csv.DictWriter(handle, fieldnames=fieldnames, extrasaction="ignore")
@@ -391,13 +439,17 @@ def main(argv: list[str] | None = None) -> None:
         if top["score"] >= 80 and (len(ranked) == 1 or top["score"] - runner_score >= 10):
             provisional[apt_id] = top
 
+    apartment_by_id = {text(apt.get("apt_cd")): apt for apt in apartments}
+    legal_only_rejected = distant_legal_only_matches(provisional, apartment_by_id)
+    for apt_id in legal_only_rejected:
+        del provisional[apt_id]
+
     apt_ids_by_kapt: dict[str, list[str]] = defaultdict(list)
     for apt_id, match in provisional.items():
         apt_ids_by_kapt[match["kapt_code"]].append(apt_id)
 
     accepted = dict(provisional)
     shared_kapt_codes = {kapt_code for kapt_code, apt_ids in apt_ids_by_kapt.items() if len(apt_ids) > 1}
-    apartment_by_id = {text(apt.get("apt_cd")): apt for apt in apartments}
     shared_complex_metrics: dict[str, dict[str, Any]] = {}
     shared_complex_review: list[dict[str, Any]] = []
     for kapt_code in sorted(shared_kapt_codes):
@@ -719,6 +771,7 @@ def main(argv: list[str] | None = None) -> None:
         "kapt_matched": sum(status.startswith("matched_") for status in (row["kapt_match_status"] for row in master)),
         "kapt_codes_used": len({row["kapt_code"] for row in master if row["kapt_code"]}),
         "shared_kapt_codes": len(shared_kapt_codes),
+        "legal_only_rejected": len(legal_only_rejected),
         "shared_complex_validation_counts": dict(sorted(Counter(
             metrics["validation"] for metrics in shared_complex_metrics.values()
         ).items())),
