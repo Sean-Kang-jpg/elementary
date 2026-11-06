@@ -160,17 +160,18 @@ def read_complexes(path: Path) -> list[Complex]:
 def assign(registry: Registry, complexes: Iterable[Complex], today: str) -> dict:
     """Give every complex a key, reusing an existing one wherever the atoms match.
 
-    Four cases, per ADR-007:
+    An atom that has a key keeps it, whatever happens to the grouping (ADR-007,
+    2026-11-05 amendment). K-apt matching regroups complexes every month, so a
+    grouping change is no reason to move a published URL:
       - one key found   -> reuse it, whatever happened to canonical_complex_id
-      - several found   -> merge: pick canonical, supersede the rest (redirects)
+      - several found   -> merge: pick one for the complex; the others keep their atoms
       - none found      -> new complex, mint a key
-      - key's atoms split across complexes -> one side keeps it, other mints
+      - every key found already went to another complex -> split: share the key
     """
     result = {
-        "reused": 0, "minted": 0, "merged": 0, "superseded": [],
-        "split": 0, "assignments": {}, "conflicts": [],
+        "reused": 0, "minted": 0, "merged": 0,
+        "split": 0, "assignments": {}, "shared_keys": [],
     }
-    # A key can only stay with one complex this round; whoever wins keeps it.
     claimed: dict[str, str] = {}
 
     for cx in sorted(complexes, key=lambda c: c.canonical_complex_id):
@@ -181,34 +182,23 @@ def assign(registry: Registry, complexes: Iterable[Complex], today: str) -> dict
             key = registry.mint()
             registry.keys[key] = {"issued_at": today, "superseded_by": None}
             result["minted"] += 1
-        elif not available:
-            # Every candidate already went to another complex this round: a split.
-            key = registry.mint()
-            registry.keys[key] = {"issued_at": today, "superseded_by": None}
-            result["minted"] += 1
-            result["split"] += 1
         else:
             ranked = sorted(
-                available,
+                available or found,
                 key=lambda k: canonical_rank(registry, k, len(registry.atoms_of(k) & cx.atoms)),
             )
             key = ranked[0]
             result["reused"] += 1
-            if len(found) > 1:
+            if not available:
+                result["split"] += 1
+                result["shared_keys"].append(key)
+            elif len(found) > 1:
                 result["merged"] += 1
-                for loser in sorted(found - {key}):
-                    if registry.keys[loser].get("superseded_by") in (None, key):
-                        registry.keys[loser]["superseded_by"] = key
-                        result["superseded"].append({"from": loser, "to": key})
-                    else:
-                        result["conflicts"].append(
-                            {"key": loser, "already": registry.keys[loser]["superseded_by"],
-                             "wanted": key})
 
-        claimed[key] = cx.canonical_complex_id
+        claimed.setdefault(key, cx.canonical_complex_id)
         result["assignments"][cx.canonical_complex_id] = key
         for atom in sorted(cx.atoms):
-            registry.atom_to_key[atom] = key
+            registry.atom_to_key.setdefault(atom, key)
 
     return result
 
@@ -220,7 +210,8 @@ def verify(registry: Registry, complexes: list[Complex], result: dict) -> list[s
     if len(result["assignments"]) != len(complexes):
         problems.append("not every complex received a key")
 
-    used = list(result["assignments"].values())
+    shared = set(result.get("shared_keys", ()))
+    used = [key for key in result["assignments"].values() if key not in shared]
     if len(set(used)) != len(used):
         problems.append("a key was assigned to more than one complex")
 
@@ -235,9 +226,6 @@ def verify(registry: Registry, complexes: list[Complex], result: dict) -> list[s
     for cid, key in result["assignments"].items():
         if registry.keys[key].get("superseded_by"):
             problems.append(f"{cid} was assigned superseded key {key}")
-
-    if result["conflicts"]:
-        problems.append(f"{len(result['conflicts'])} keys were asked to supersede two targets")
 
     return problems
 
@@ -312,8 +300,10 @@ def main(argv: list[str] | None = None) -> int:
     print(f"  reused           {result['reused']:,}")
     print(f"  newly issued     {result['minted']:,}")
     print(f"  merges absorbed  {result['merged']:,}")
-    print(f"  redirects added  {len(result['superseded']):,}")
     print(f"  splits           {result['split']:,}")
+    for cid, key in result["assignments"].items():
+        if key in result["shared_keys"]:
+            print(f"    {key} shared by {cid}")
     print(f"keys after         {len(registry.keys):,}")
 
     if problems:

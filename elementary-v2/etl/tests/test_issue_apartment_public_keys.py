@@ -71,33 +71,53 @@ class RejoinTest(unittest.TestCase):
         self.assertEqual(before["assignments"]["APT:APT123"],
                          after["assignments"]["KAPT:A900"])
 
-    def test_a_merge_keeps_both_old_urls_alive_as_redirects(self) -> None:
+    def test_a_merge_moves_no_atom_and_supersedes_no_key(self) -> None:
         registry = keys.Registry()
         before = keys.assign(registry, [cx("APT:a", "1"), cx("APT:b", "2")], TODAY)
         key_a, key_b = before["assignments"]["APT:a"], before["assignments"]["APT:b"]
 
         after = keys.assign(registry, [cx("KAPT:A1", "1", "2")], LATER)
-        survivor = after["assignments"]["KAPT:A1"]
 
         self.assertEqual(after["minted"], 0, "a merge must not abandon a published URL")
         self.assertEqual(after["merged"], 1)
-        self.assertIn(survivor, (key_a, key_b))
-        dropped = key_b if survivor == key_a else key_a
-        self.assertEqual(registry.keys[dropped]["superseded_by"], survivor)
-        self.assertIsNone(registry.keys[survivor]["superseded_by"])
+        self.assertIn(after["assignments"]["KAPT:A1"], (key_a, key_b))
+        self.assertEqual(registry.atom_to_key, {"1": key_a, "2": key_b})
+        self.assertIsNone(registry.keys[key_a]["superseded_by"])
+        self.assertIsNone(registry.keys[key_b]["superseded_by"])
 
-    def test_a_split_keeps_one_side_and_issues_for_the_other(self) -> None:
+    def test_a_merged_complex_can_split_again_on_its_old_keys(self) -> None:
+        registry = keys.Registry()
+        before = keys.assign(registry, [cx("APT:a", "1"), cx("APT:b", "2")], TODAY)
+        keys.assign(registry, [cx("KAPT:A1", "1", "2")], LATER)
+
+        complexes = [cx("APT:a", "1"), cx("APT:b", "2")]
+        after = keys.assign(registry, complexes, LATER)
+
+        self.assertEqual(after["assignments"], before["assignments"])
+        self.assertEqual(keys.verify(registry, complexes, after), [])
+
+    def test_a_split_shares_the_key_and_moves_no_atom(self) -> None:
         registry = keys.Registry()
         before = keys.assign(registry, [cx("KAPT:A1", "1", "2")], TODAY)
         original = before["assignments"]["KAPT:A1"]
 
-        after = keys.assign(registry, [cx("APT:a", "1"), cx("APT:b", "2")], LATER)
+        complexes = [cx("APT:a", "1"), cx("APT:b", "2")]
+        after = keys.assign(registry, complexes, LATER)
 
         self.assertEqual(after["split"], 1)
-        self.assertEqual(after["minted"], 1)
-        assigned = set(after["assignments"].values())
-        self.assertIn(original, assigned, "the original URL must survive a split")
-        self.assertEqual(len(assigned), 2)
+        self.assertEqual(after["minted"], 0)
+        self.assertEqual(set(after["assignments"].values()), {original})
+        self.assertEqual(registry.atom_to_key, {"1": original, "2": original})
+        self.assertEqual(keys.verify(registry, complexes, after), [])
+
+    def test_a_new_atom_joins_the_key_of_its_complex(self) -> None:
+        registry = keys.Registry()
+        before = keys.assign(registry, [cx("APT:a", "1")], TODAY)
+
+        after = keys.assign(registry, [cx("KAPT:A1", "1", "2")], LATER)
+
+        self.assertEqual(after["minted"], 0)
+        self.assertEqual(registry.atom_to_key["2"], before["assignments"]["APT:a"])
 
 
 class CanonicalChoiceTest(unittest.TestCase):
