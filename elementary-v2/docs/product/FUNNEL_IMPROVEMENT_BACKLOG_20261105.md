@@ -1,6 +1,8 @@
 # 검색 유입 → 시간표 활용 개선 백로그
 
-작성: 2026-11-05 · 상태: 작업 정의 완료, 구현 미착수
+작성: 2026-11-05 · 갱신: 2026-11-07 · 상태: 1차 계측 구현 완료, 검토·GA4 설정 일부·배포 후 검증 대기
+
+최신 결과: [1차 실행 기록](../operations/FUNNEL_MEASUREMENT_EXECUTION_20261106.md). FNL-00·01 완료, FNL-02·03 구현/개별 검증 완료이나 전체 공개 화면 검증 미통과, FNL-04 부분 진행이다. FNL-05~10은 후속 작업으로 유지한다.
 
 상위 방향: [우리집 일정 중심 UX 백로그](UX_BACKLOG_PLAN_CENTERED.md) · 실행 방식: [Codex 작업 인계](../operations/CODEX_UX_HANDOFF.md) · 측정 계약: [측정 계획](MEASUREMENT_PLAN.md)
 
