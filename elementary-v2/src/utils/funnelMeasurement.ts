@@ -3,7 +3,7 @@ import type { PlanFace } from './familyPlanCore.ts'
 export const MEASUREMENT_VERSION = 'fnl-1'
 export type FunnelParams = Record<string, string | number | undefined>
 export type SelectionMethod = 'user' | 'route' | 'restore'
-type EntryPoint = 'link' | 'home' | 'guide' | 'school_detail' | 'apartment_detail' | 'my' | 'frontyard' | 'timetable' | 'nav'
+type EntryPoint = 'link' | 'home' | 'guide' | 'school_detail' | 'apartment_detail' | 'my' | 'frontyard' | 'timetable' | 'map' | 'nav'
 
 export interface MeasuredScreen {
   pathname: string
@@ -35,6 +35,23 @@ const entryPointOf = (path?: string): EntryPoint => {
 
 /** Legacy local IDs and arbitrary query text are never transmitted as school IDs. */
 const publicSchool = (id: string | null): FunnelParams => id && /^B\d+$/i.test(id) ? { school_id: id.toUpperCase() } : {}
+
+const equalValue = (left: unknown, right: unknown): boolean => {
+  if (left === right) return true
+  if (!left || !right || typeof left !== 'object' || typeof right !== 'object') return false
+  if (Array.isArray(left) !== Array.isArray(right)) return false
+  const a = left as Record<string, unknown>
+  const b = right as Record<string, unknown>
+  const keys = Object.keys(a).filter(key => a[key] !== undefined)
+  return keys.length === Object.keys(b).filter(key => b[key] !== undefined).length
+    && keys.every(key => Object.prototype.hasOwnProperty.call(b, key) && equalValue(a[key], b[key]))
+}
+
+/** Ignore updatedAt and object key order; opening or re-saving unchanged data is not an edit. */
+export const timetableContentChanged = (
+  before: { entries: readonly unknown[]; starter?: unknown },
+  after: { entries: readonly unknown[]; starter?: unknown },
+): boolean => !equalValue(before.entries, after.entries) || !equalValue(before.starter, after.starter)
 
 /**
  * One observer per document, independent of React mounts. No new storage keys.
@@ -71,8 +88,8 @@ export const createFunnelMeasurement = (send: (event: string, params: FunnelPara
         emit('timetable_school_pick', { face: 'week', entry_point: entryPoint, selection_method: method, ...publicSchool(timetable.schoolId) })
       }
     },
-    write<T>(schoolId: string, operation: 'create' | 'edit', write: () => T): T {
-      const params = { face: 'week', entry_point: entryPoint, ...publicSchool(schoolId) }
+    write<T>(schoolId: string, operation: 'create' | 'edit', write: () => T, source?: 'map' | 'frontyard'): T {
+      const params = { face: 'week', entry_point: source ?? entryPoint, ...publicSchool(schoolId) }
       if (operation === 'edit' && !editedSchools.has(schoolId)) {
         editedSchools.add(schoolId)
         emit('timetable_first_edit', params)

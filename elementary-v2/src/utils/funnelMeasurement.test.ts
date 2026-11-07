@@ -1,6 +1,6 @@
 import { describe, it } from 'node:test'
 import assert from 'node:assert/strict'
-import { createFunnelMeasurement, measurementScreenKey, type FunnelParams, type MeasuredScreen } from './funnelMeasurement.ts'
+import { createFunnelMeasurement, measurementScreenKey, timetableContentChanged, type FunnelParams, type MeasuredScreen } from './funnelMeasurement.ts'
 
 const screen = (pathname: string, timetable?: MeasuredScreen['timetable']): MeasuredScreen => ({
   pathname, search: '', pageLocation: `https://wherecho.co.kr${pathname}`, pageTitle: 'QA', timetable,
@@ -54,6 +54,12 @@ describe('displayed funnel screens', () => {
 })
 
 describe('successful and failed timetable writes', () => {
+  it('rejects no-op edits but detects real changes to entries and starter answers', () => {
+    assert.equal(timetableContentChanged({ entries: [{ id: 'a', end: 900 }], starter: { done: true } },
+      { entries: [{ end: 900, id: 'a' }], starter: { done: true } }), false)
+    assert.equal(timetableContentChanged({ entries: [{ id: 'a', end: 900 }] }, { entries: [{ id: 'a', end: 910 }] }), true)
+    assert.equal(timetableContentChanged({ entries: [] }, { entries: [], starter: { done: true } }), true)
+  })
   it('creates only after a successful write, then records first edit once across remounts and retry', () => {
     const { observer, events } = fixture()
     assert.throws(() => observer.write('B000001', 'create', () => { throw new Error('private error') }))

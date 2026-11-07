@@ -13,6 +13,7 @@
     "browser:install": "agent-browser install",
     "browser:smoke": "npm run browser:smoke:public",
     "browser:smoke:public": "node scripts/public-smoke.mjs",
+    "browser:smoke:funnel": "node scripts/funnel-measurement-smoke.mjs",
     "browser:smoke:admin": "node scripts/admin-smoke.mjs",
     "content": "node scripts/build-content.mjs",
     "shell": "node scripts/build-shell-pages.mjs",
