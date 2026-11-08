@@ -406,6 +406,46 @@ def run_maintenance(url: str, key: str) -> None:
         f"maintenance complete: cleanup={cleanup_result or []} "
         f"storage_objects_deleted={len(pending)}"
     )
+    reclaim_space(url, key)
+
+
+# Every table an apply rewrites. SQL 42 holds the same list and refuses any other.
+RECLAIM_TABLES = (
+    "etl_staging_rows",
+    "school_apartment_serving",
+    "academy_address_serving",
+    "apartment_complex_master",
+    "apartment_assignment_units",
+    "apartment_name_history",
+    "apartment_academy_origin_points",
+    "apartment_assignment_schools",
+    "apartment_academy_summary",
+    "school_master",
+    "apartment_property_history",
+)
+
+
+def reclaim_space(url: str, key: str) -> None:
+    # 2026-11-06: one apply grew the database by about 75 MB without adding rows,
+    # past the 500 MB plan limit. Rewrite each table the run touched (SQL 42).
+    # A table that fails, usually on its lock timeout, is skipped, not retried.
+    freed = 0
+    for table in RECLAIM_TABLES:
+        try:
+            rows = recurring.request_json(
+                url, key, "POST", "/rest/v1/rpc/reclaim_etl_table_space", {"p_table": table}, timeout=240
+            ) or []
+        except RuntimeError as error:
+            if "PGRST202" in str(error):
+                print("space reclaim skipped: SQL 42 is not applied")
+                return
+            print(f"space reclaim skipped {table}: {error}")
+            continue
+        if rows:
+            change = int(rows[0]["bytes_before"]) - int(rows[0]["bytes_after"])
+            freed += change
+            print(f"reclaimed {table}: {change / 1024 / 1024:,.1f} MB")
+    print(f"space reclaim complete: {freed / 1024 / 1024:,.1f} MB")
 
 
 def execute_group(

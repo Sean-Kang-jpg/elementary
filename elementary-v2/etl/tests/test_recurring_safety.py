@@ -182,6 +182,27 @@ class RecurringSafetyTests(unittest.TestCase):
         self.assertTrue(deletes[2].endswith("?run_id=eq.run-1"))
         self.assertIn(f"offset={recurring.PURGE_BATCH - 1}&limit=1", calls[0][1])
 
+    def test_reclaim_space_skips_a_failed_table(self) -> None:
+        tables: list[str] = []
+
+        def reply(url, key, method, path, payload=None, prefer=None, timeout=60):
+            tables.append(payload["p_table"])
+            if payload["p_table"] == "school_apartment_serving":
+                raise RuntimeError("POST /rest/v1/rpc/reclaim_etl_table_space: HTTP 500: lock timeout")
+            return [{"bytes_before": 3 * 1024 * 1024, "bytes_after": 1024 * 1024}]
+
+        with patch.object(due.recurring, "request_json", side_effect=reply):
+            with contextlib.redirect_stdout(None):
+                due.reclaim_space("u", "k")
+        self.assertEqual(tuple(tables), due.RECLAIM_TABLES)
+
+    def test_reclaim_space_stops_before_sql_42(self) -> None:
+        missing = RuntimeError("POST /rest/v1/rpc/reclaim_etl_table_space: HTTP 404: PGRST202")
+        with patch.object(due.recurring, "request_json", side_effect=missing) as request:
+            with contextlib.redirect_stdout(None):
+                due.reclaim_space("u", "k")
+        request.assert_called_once()
+
     def test_delete_keys_rejects_partial_batch(self) -> None:
         with patch.object(recurring, "request_json", return_value=[]):
             with self.assertRaisesRegex(RuntimeError, "deleted 0 of 1"):

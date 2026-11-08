@@ -523,3 +523,19 @@ uses and restates SQL 40's timeout, since `CREATE OR REPLACE` resets function se
 3. Checked with the anon key: 48,525 rows, 0 rows whose only role is `optional_one_way`, 경북 3,019.
    `proconfig` is `{search_path=public, pg_temp,statement_timeout=5min}`.
 4. Rollback: re-run the function from SQL 19, then SQL 40.
+
+## 42: reclaim ETL table space (2026-11-08) — 사용자 승인 대기
+
+One monthly apply (2026-11-06) grew the database by about 75 MB without adding rows and took it
+past the 500 MB plan limit; on 11-08 a hand-run `TRUNCATE` and `VACUUM FULL` brought it from 539 to
+449 MB. `42` adds `reclaim_etl_table_space(table)`, which does the same for one table at a time —
+`CLUSTER` on the primary key, since `VACUUM` cannot run inside a function, or `TRUNCATE` of
+`etl_staging_rows` when no run has been `started` in the last six hours. `run_maintenance` in
+`etl/run_due_etl.py` calls it for every table an apply rewrites; until `42` is applied it prints
+that it skipped and carries on.
+
+1. Run the file once in the SQL editor.
+2. `select * from public.reclaim_etl_table_space('apartment_property_history');` returns the
+   before and after sizes.
+3. Each call locks its table for a few seconds; public reads of that table wait meanwhile.
+4. Rollback: `DROP FUNCTION public.reclaim_etl_table_space(TEXT);`
