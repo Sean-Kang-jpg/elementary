@@ -1,6 +1,6 @@
 {
   "bundle_name": "elementary-recurring-inputs-v1",
-  "bundle_version": "2026-10-04.2",
+  "bundle_version": "2026-11-11.1",
   "description": "Reviewed inputs the recurring ETL reads but does not fetch, for every production scope. Sources (K-apt, Schoolinfo) are fetched fresh by each run.",
   "scopes": [
     "capital",
@@ -19,7 +19,7 @@
   ],
   "storage": {
     "bucket": "etl-source-snapshots",
-    "archive_path": "portable-inputs/elementary-recurring-inputs-v1/2026-10-04.2/bundle.zip"
+    "archive_path": "portable-inputs/elementary-recurring-inputs-v1/2026-11-11.1/bundle.zip"
   },
   "files": [
     {
@@ -33,15 +33,15 @@
       "role": "school-baseline:capital",
       "source_path": "etl/local_outputs_20260320/school_master_v1_20260320.json",
       "bundle_path": "school/school_master_v1_20260320.json",
-      "byte_size": 3744850,
-      "sha256": "0a9c64e7be89c347ebf547eff32daba9fa5c7d2dd6c1f57f25050a0b7532a5cb"
+      "byte_size": 3749730,
+      "sha256": "e8d01def03a9632f2c384bc7fa0e618b53f6dad7e08ccc4e77b925ba1d1a5285"
     },
     {
       "role": "point-assignments:capital",
       "source_path": "etl/local_outputs_20260320/apartment_point_assignments.csv",
       "bundle_path": "assignment/apartment_point_assignments.csv",
-      "byte_size": 6156474,
-      "sha256": "58526d7111e9445e208212f5577b734fcccb7c5735bc0a30fffd818bf00ddafe"
+      "byte_size": 6156457,
+      "sha256": "5216ccc19832396e21b9201ad6ee1272aac458cb01f3a4352b14c9dd4b0ec806"
     },
     {
       "role": "assignment-review-queue:capital",
@@ -75,15 +75,15 @@
       "role": "school-baseline:c10",
       "source_path": "etl/local_outputs_20260320/school_master_v1_c10.json",
       "bundle_path": "school/school_master_v1_c10.json",
-      "byte_size": 493406,
-      "sha256": "438af53b5da82a9a8b139d2a24376baac899f7e80b8ff8cbf705e426599c7a9f"
+      "byte_size": 495039,
+      "sha256": "ef89958b8c87a7ad760bcec6cf05db135ef61135deddaa66dcec62bb5782b12d"
     },
     {
       "role": "point-assignments:c10",
       "source_path": "etl/local_outputs_20260320/apartment_point_assignments_c10.csv",
       "bundle_path": "assignment/apartment_point_assignments_c10.csv",
-      "byte_size": 1483811,
-      "sha256": "f14284ddfd7f91c89603abc78293128b94a6d6b4794772d45169bf1e2966ec03"
+      "byte_size": 1483912,
+      "sha256": "baa66bfc3449a05cfb90b6e560d32e86a1fe5bb1dacfe9d2b815cf985c2bdd76"
     },
     {
       "role": "school-baseline:d10",
@@ -117,15 +117,15 @@
       "role": "school-baseline:f10",
       "source_path": "etl/local_outputs_20260320/school_master_v1_f10.json",
       "bundle_path": "school/school_master_v1_f10.json",
-      "byte_size": 252539,
-      "sha256": "e0fbd4031be5067d46f507af656acbc5ec1a70b5bbc33fe55ee6d029894ace8d"
+      "byte_size": 254177,
+      "sha256": "cdecb6659f85ec6dd52c7455de624ecef32c481e61e9c036b12ad231a0498f95"
     },
     {
       "role": "point-assignments:f10",
       "source_path": "etl/local_outputs_20260320/apartment_point_assignments_f10.csv",
       "bundle_path": "assignment/apartment_point_assignments_f10.csv",
-      "byte_size": 396983,
-      "sha256": "f3c9affde0a9bc4159ef7ee77cfdec5a711a85505f97914b17cf7a97c053f2fe"
+      "byte_size": 412655,
+      "sha256": "d4393ecd7b90714d552b85b84374aa171c08e193bd4a8e60ea240fdb96bca716"
     },
     {
       "role": "school-baseline:h10",
@@ -139,7 +139,7 @@
       "source_path": "etl/local_outputs_20260320/apartment_point_assignments_h10.csv",
       "bundle_path": "assignment/apartment_point_assignments_h10.csv",
       "byte_size": 496833,
-      "sha256": "f78d9ea3d8c9fb616c2b45c1aa1591b620e009ac5e9fb7433584feeb8173b96b"
+      "sha256": "f41f28f938a30e33138532b72e8b75e914eb951ff2605bae0746991158e2c959"
     },
     {
       "role": "school-baseline:q10",
@@ -152,8 +152,8 @@
       "role": "point-assignments:q10",
       "source_path": "etl/local_outputs_20260320/apartment_point_assignments_q10.csv",
       "bundle_path": "assignment/apartment_point_assignments_q10.csv",
-      "byte_size": 450563,
-      "sha256": "1527751a0640a7878d07f74deaee1251d421c94b445a20fe3122055e2d1764f4"
+      "byte_size": 471750,
+      "sha256": "526b98520c860cec2e0e4c34287abba4815c920f317473c9cf728049de73d327"
     },
     {
       "role": "school-baseline:t10",
@@ -181,7 +181,7 @@
       "source_path": "etl/local_outputs_20260320/apartment_point_assignments_k10.csv",
       "bundle_path": "assignment/apartment_point_assignments_k10.csv",
       "byte_size": 465576,
-      "sha256": "8280c9917ad6a216d0566b4ed91868a8b5d866afe255122e1612bf0eaa8d21e4"
+      "sha256": "8f7da2195a88e0e5abd36ed4da96bc57f20e1e431e2d045a2edc443959dd8c0d"
     },
     {
       "role": "school-baseline:p10",
@@ -194,8 +194,8 @@
       "role": "point-assignments:p10",
       "source_path": "etl/local_outputs_20260320/apartment_point_assignments_p10.csv",
       "bundle_path": "assignment/apartment_point_assignments_p10.csv",
-      "byte_size": 503455,
-      "sha256": "d1f964fb1eda752d2527e7c31fb0427c4e3a44abb0f476ab13e56f0912c8f8a7"
+      "byte_size": 503608,
+      "sha256": "f56110f12771df6394e1ebfb057834f310bf55745fd24ed4ab90dc66fde64750"
     },
     {
       "role": "school-baseline:r10",
@@ -208,22 +208,22 @@
       "role": "point-assignments:r10",
       "source_path": "etl/local_outputs_20260320/apartment_point_assignments_r10.csv",
       "bundle_path": "assignment/apartment_point_assignments_r10.csv",
-      "byte_size": 1024134,
-      "sha256": "fd64e89b853de0b448969bd0a3a7b58fe35f4bf76d315a2814f23b5253b5336a"
+      "byte_size": 1022755,
+      "sha256": "1dc9f191ccabd85a8a104d6c07c50576356d61f662a6323fb79da0a54cf3b504"
     },
     {
       "role": "school-baseline:s10",
       "source_path": "etl/local_outputs_20260320/school_master_v1_s10.json",
       "bundle_path": "school/school_master_v1_s10.json",
-      "byte_size": 856963,
-      "sha256": "39b6eb7b572c5d5df8ad73bb4c59e21660f433a936d81d599106dfeb21d351d0"
+      "byte_size": 858584,
+      "sha256": "4f1c058aa9f540b3b8cb56e10b95c2ae1422a6d9cf023b3c1022129d3407c163"
     },
     {
       "role": "point-assignments:s10",
       "source_path": "etl/local_outputs_20260320/apartment_point_assignments_s10.csv",
       "bundle_path": "assignment/apartment_point_assignments_s10.csv",
-      "byte_size": 1120589,
-      "sha256": "f764c23e755a354d957f9e07a4eb3a5a668806ce7cbbab9f61f407bc181b9479"
+      "byte_size": 1120814,
+      "sha256": "6d72c754a5f1ff605e6b8e8df34d157ad613e98b40aa1b59d27bfba2baf185c6"
     }
   ]
 }

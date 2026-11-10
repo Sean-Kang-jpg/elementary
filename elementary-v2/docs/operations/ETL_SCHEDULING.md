@@ -190,7 +190,19 @@ comments monthly until it does. Promotion (step 3) stays a reviewed, manual step
    (`recurring_inputs_manifest.json` version bump, `prepare_portable_inputs.py --package --upload`),
    and let the next monthly run apply it.
 
-In use: the 2026-03-20 release. The 2026-09-20 release was published 2026-10-02; its attachment
+In use: the 2026-09-20 release, promoted 2026-11-11 (inputs bundle `2026-11-11.1`; the first run
+to apply it is the scheduled run of 2026-12-02 03:15 KST). Promotion also added six schools the
+2026-03-20 school location file lacked to their scope baselines (`school_master_v1_*.json`), taken
+from `한국교육시설안전원_초중등학교위치_20261001.csv`: 회천새봄초, 평안초, 위례해솔초 (capital),
+참미르초 (f10, address and offices written in the 광주광역시 form the rest of the baseline uses),
+신연초 (c10), 신문초 (s10). Without 회천새봄초 the four 양주 complexes that moved into its new zone
+would have had no school. The new-complex supplement was not rebuilt: rebuilding it on 2026-11-11
+produced 58 complexes instead of 821, because it takes K-apt codes no published complex uses and
+the supplement's own complexes are published since the 2026-11-06 recovery. Until that is fixed
+the supplement keeps the 2026-11-01 upload, assigned on the 2026-03-20 polygons (13 of its 821
+complexes change zone on the new release).
+
+History: the 2026-09-20 release was published 2026-10-02; its attachment
 did not download from the site at all, in a browser either (owner, 2026-10-08). The monthly task
 fetched it on 2026-11-01. In that release 광주 and 전남 carry the merged 전남광주통합특별시 code
 (`SD_CD` 12), which the builder did not read until 2026-11-10 (`MERGED_ZONE_SD`), so the first

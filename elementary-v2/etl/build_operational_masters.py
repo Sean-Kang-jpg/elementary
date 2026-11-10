@@ -665,7 +665,7 @@ def build_assignment_units(
             "confidence": confidence,
             "review_required": in_review,
             "review_reason": evidence,
-            "hakgudo_reference_date": "2026-03-20",
+            "hakgudo_reference_date": "2026-09-20",  # the release build_local_assignment_etl.SHP names
             "pipeline_version": PIPELINE_VERSION,
         })
     return output, school_links
