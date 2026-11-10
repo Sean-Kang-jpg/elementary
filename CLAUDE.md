@@ -76,7 +76,7 @@
 
 - **표준 적재 명령**(저장소 경로만, 11-03 운영과 차이 0 확인):
   `python -m etl.load_school_afterschool $(cat etl/afterschool_load_args.txt)` → 차이 확인 뒤 `--apply`.
-  서울 입력 `etl/runtime/llm_extraction/...`는 이 PC에만 있다(git 제외). 교시 수는 SQL 26 스냅숏
+  서울 입력은 11-10부터 `docs/research/pivot/seoul_llm_outputs/`(git, `etl/runtime/llm_extraction/`에서 복사, 미리보기 바이트 동일). 교시 수는 SQL 26 스냅숏
   `docs/research/pivot/p1_gate_20261102/sql26_periods_20261031.json`
 - 확인 목록: `python -m etl.afterschool_checks_sheet export`(항목 CSV + 학교별 질문지) → 확인일 기입 → `resolve <csv> [--apply]`.
   재적재 때 `resolved_on`을 이어받는다. 남은 항목 대부분은 원문에 시각이 없는 것이라 **학교 문의(사용자 몫)**
@@ -142,7 +142,7 @@
 
 - SQL: `34_reclaim_database_space`(DB 한도, 1부 한 번 + VACUUM FULL 새벽), `37`(SEO 로봇 집계), `27`(소셜 링크), `33`(앞마당 — 익명 로그인·Turnstile·처리방침 먼저), `24`는 적용 보류
 - DB 한도: 10-23 491.97/500 MB. 월간 실거래가 일정을 켜면 월 약 40 MB 증가 — 켜기 전 34 적용·요금제 판단
-- 학구도 9월판은 사이트가 자동 다운로드를 막아 사용자가 브라우저로 `etl/data/hakgudo/20260920/`에 받아야 한다(`compare_school_zone_release.py`로 비교)
+- 학구도 9월판: 11-01 월간 작업이 받아 비교했으나(이슈 #2 "2,753곳") 광주·전남이 통합 코드 `12`라 로더가 폴리곤을 못 읽은 오류였다. 11-10 로더 수정 후 재비교: 실제 변경 37곳(수도권 9·전남 구례 4·p10 9·r10 11·s10 4) + 이름만 4, 광주 0. 운영은 아직 3월판, 반영은 ETL_SCHEDULING "School Zones" 3단계
 - 학교 문의: 방과후 확인 질문지(`etl/runtime/afterschool_checks/afterschool_school_questions_<날짜>.csv`), 하교 예상 58곳, 안현 표
 - 콘텐츠: 학습 seed 3편 검수(`status: review`), 사립초 경기 일정(작년 일정일 수 있음)·교대부초 공식 발표 재확인, 돌봄 가이드는 2027 정책 뒤 재확인
 - 검색: 서치어드바이저 수집 URL 확인·RSS·수집 요청, Search Console 사이트맵 재제출

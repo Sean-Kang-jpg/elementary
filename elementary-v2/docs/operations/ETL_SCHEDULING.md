@@ -191,7 +191,11 @@ comments monthly until it does. Promotion (step 3) stays a reviewed, manual step
    and let the next monthly run apply it.
 
 In use: the 2026-03-20 release. The 2026-09-20 release was published 2026-10-02; its attachment
-did not download from the site at all, in a browser either (owner, 2026-10-08).
+did not download from the site at all, in a browser either (owner, 2026-10-08). The monthly task
+fetched it on 2026-11-01. In that release 광주 and 전남 carry the merged 전남광주통합특별시 code
+(`SD_CD` 12), which the builder did not read until 2026-11-10 (`MERGED_ZONE_SD`), so the first
+comparison reported all 2,720 apartments there as moved. Rerun with the fix: 37 apartments change
+zone (capital 9, 전남 구례 4, p10 9, r10 11, s10 4) and 4 are only renamed; 광주 has none.
 
 ## Manual Checks
 

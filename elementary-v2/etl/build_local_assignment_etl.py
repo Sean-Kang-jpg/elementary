@@ -38,6 +38,16 @@ CAPITAL_SD_NAMES = {"11": "seoul", "41": "gyeonggi", "28": "incheon"}
 TARGET_SD: set[str] = set(CAPITAL_SD_NAMES)
 TARGET_SD_NAMES: dict[str, str] = dict(CAPITAL_SD_NAMES)
 TARGET_SCOPES: list = []
+# 학구도 SD_CD values that replaced a province's own code. From the 2026-09-20 release
+# 광주 (29) and 전남 (46) carry the merged 전남광주통합특별시 code 12 (167 + 501 = 668
+# zones, all still present). Before this, both scopes read zero polygons from that
+# release and every apartment there looked moved. Polygons are matched geographically,
+# so either half reading both is harmless.
+MERGED_ZONE_SD: dict[str, set[str]] = {"12": {"29", "46"}}
+
+
+def zone_in_scope(sd_cd: str) -> bool:
+    return sd_cd in TARGET_SD or bool(MERGED_ZONE_SD.get(sd_cd, set()) & TARGET_SD)
 
 
 def in_scope(legal_dong_cd: str, road_address: str, legal_address: str) -> bool:
@@ -93,7 +103,7 @@ def load_polygons(shp_path):
     for sr in sf.iterShapeRecords():
         rec = sr.record
         sd_cd = rec[idx["SD_CD"]]
-        if sd_cd not in TARGET_SD:
+        if not zone_in_scope(sd_cd):
             continue
         geom = shape(sr.shape.__geo_interface__)
         if not geom.is_valid:
