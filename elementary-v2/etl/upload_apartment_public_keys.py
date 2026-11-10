@@ -5,9 +5,10 @@
 the `apartment_public_key` and `apartment_public_key_atom` tables migration 18
 created, so the serving refresh and the frontend can reach it.
 
-Slugs are append-only. This never deletes a key or moves an atom to a different
+Slugs are append-only. This never deletes a key or moves an atom to an existing
 key, because either would silently break a published URL. A run that would have
-to do so stops and says which rows.
+to do so stops and says which rows. An atom moves only onto a key minted in the
+same run, for a complex split off a K-apt complex (ADR-007, 2026-11-08).
 
     python etl/upload_apartment_public_keys.py
     python etl/upload_apartment_public_keys.py --apply
@@ -112,10 +113,16 @@ def main(argv: list[str] | None = None) -> int:
                     fetch_all(url, key, "apartment_public_key_atom", "apt_cd,public_key")}
 
     # Append-only. A key that vanished locally, or an atom that changed hands,
-    # means a published URL would move; refuse rather than do it quietly.
+    # means a published URL would move; refuse rather than do it quietly. The one
+    # move allowed is onto a key minted this run: a complex released from a K-apt
+    # complex's key (issue_apartment_public_keys.assign), which leaves that key
+    # with the K-apt complex it was published for.
     dropped = sorted(set(remote_keys) - set(local_keys))
+    released = [{"apt_cd": a, "from": k, "to": local_atoms[a]}
+                for a, k in sorted(remote_atoms.items())
+                if a in local_atoms and local_atoms[a] != k and local_atoms[a] not in remote_keys]
     moved = sorted(a for a, k in remote_atoms.items()
-                   if a in local_atoms and local_atoms[a] != k)
+                   if a in local_atoms and local_atoms[a] != k and local_atoms[a] in remote_keys)
     lost_atoms = sorted(set(remote_atoms) - set(local_atoms))
 
     new_keys = [{"public_key": k,
@@ -139,6 +146,9 @@ def main(argv: list[str] | None = None) -> int:
     print(f"  keys to insert   {len(new_keys):,}")
     print(f"  keys to update   {len(changed):,}  (supersession only)")
     print(f"  atoms to insert  {len(new_atoms):,}")
+    print(f"  atoms to release {len(released):,}  (onto a new key)")
+    for move in released:
+        print(f"    {move['apt_cd']} {move['from']} -> {move['to']}")
 
     problems = []
     if dropped:
@@ -171,6 +181,17 @@ def main(argv: list[str] | None = None) -> int:
                     method="POST", payload=chunk,
                     prefer="resolution=merge-duplicates,return=minimal")
         print(f"uploaded {len(rows):,} {label}")
+    for move in released:
+        # Only while the atom still points at the key the registry was read with.
+        changed_rows = request(
+            url, key,
+            f"apartment_public_key_atom?apt_cd=eq.{urllib.parse.quote(move['apt_cd'])}"
+            f"&public_key=eq.{urllib.parse.quote(move['from'])}",
+            method="PATCH", payload={"public_key": move["to"]}, prefer="return=representation")
+        if len(changed_rows or []) != 1:
+            print(f"FAIL: {move['apt_cd']} was not on {move['from']}", file=sys.stderr)
+            return 1
+    print(f"released {len(released):,} atoms")
 
     after_keys = fetch_all(url, key, "apartment_public_key", "public_key")
     after_atoms = fetch_all(url, key, "apartment_public_key_atom", "apt_cd")

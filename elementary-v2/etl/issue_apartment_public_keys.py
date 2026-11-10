@@ -157,6 +157,10 @@ def read_complexes(path: Path) -> list[Complex]:
     return out
 
 
+def is_kapt(canonical_complex_id: str) -> bool:
+    return canonical_complex_id.startswith("KAPT:")
+
+
 def assign(registry: Registry, complexes: Iterable[Complex], today: str) -> dict:
     """Give every complex a key, reusing an existing one wherever the atoms match.
 
@@ -166,22 +170,35 @@ def assign(registry: Registry, complexes: Iterable[Complex], today: str) -> dict
       - one key found   -> reuse it, whatever happened to canonical_complex_id
       - several found   -> merge: pick one for the complex; the others keep their atoms
       - none found      -> new complex, mint a key
-      - every key found already went to another complex -> split: share the key
+      - every key found already went to another complex -> split: share the key,
+        unless every one went to a K-apt complex and this one is not (below)
+
+    The one exception to "atoms stay" (2026-11-08 amendment): a complex K-apt
+    does not know, split off a K-apt complex, gets its own key and takes its atoms
+    there. A 10-unit villa wrongly merged into a 644-unit complex once shared its
+    key and opened as the complex's page (28SEBP7H, 논현신동아/이움빌라). K-apt
+    complexes claim first, so the K-apt side always keeps the published key.
     """
     result = {
         "reused": 0, "minted": 0, "merged": 0,
-        "split": 0, "assignments": {}, "shared_keys": [],
+        "split": 0, "assignments": {}, "shared_keys": [], "released": [],
     }
     claimed: dict[str, str] = {}
 
-    for cx in sorted(complexes, key=lambda c: c.canonical_complex_id):
+    for cx in sorted(complexes, key=lambda c: (not is_kapt(c.canonical_complex_id), c.canonical_complex_id)):
         found = {registry.atom_to_key[a] for a in cx.atoms if a in registry.atom_to_key}
         available = {k for k in found if k not in claimed}
+        release = (found and not available and not is_kapt(cx.canonical_complex_id)
+                   and all(is_kapt(claimed[k]) for k in found))
 
-        if not found:
+        if not found or release:
             key = registry.mint()
             registry.keys[key] = {"issued_at": today, "superseded_by": None}
             result["minted"] += 1
+            for atom in sorted(a for a in cx.atoms if a in registry.atom_to_key):
+                result["released"].append({"apt_cd": atom, "from": registry.atom_to_key[atom], "to": key,
+                                            "complex": cx.canonical_complex_id})
+                registry.atom_to_key[atom] = key
         else:
             ranked = sorted(
                 available or found,
@@ -304,7 +321,10 @@ def main(argv: list[str] | None = None) -> int:
     for cid, key in result["assignments"].items():
         if key in result["shared_keys"]:
             print(f"    {key} shared by {cid}")
-    print(f"keys after         {len(registry.keys):,}")
+    print(f"  released from a K-apt key {len(result['released']):,}")
+    for move in result["released"]:
+        print(f"    {move['apt_cd']} {move['from']} -> {move['to']} ({move['complex']})")
+    print(f"keys after        {len(registry.keys):,}")
 
     if problems:
         print("\nFAIL:", file=sys.stderr)

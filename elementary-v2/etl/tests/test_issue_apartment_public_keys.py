@@ -110,6 +110,38 @@ class RejoinTest(unittest.TestCase):
         self.assertEqual(registry.atom_to_key, {"1": original, "2": original})
         self.assertEqual(keys.verify(registry, complexes, after), [])
 
+    def test_a_complex_split_off_a_kapt_complex_gets_its_own_key(self) -> None:
+        """28SEBP7H: 이움빌라 had been merged into 논현신동아 and shared its key.
+        `APT:` sorts before `KAPT:`, so the villa used to claim it first."""
+        registry = keys.Registry()
+        before = keys.assign(registry, [cx("KAPT:A1", "big", "villa")], TODAY)
+        original = before["assignments"]["KAPT:A1"]
+
+        complexes = [cx("APT:villa", "villa"), cx("KAPT:A1", "big")]
+        after = keys.assign(registry, complexes, LATER)
+
+        self.assertEqual(after["assignments"]["KAPT:A1"], original)
+        self.assertNotEqual(after["assignments"]["APT:villa"], original)
+        self.assertEqual(registry.atom_to_key, {"big": original, "villa": after["assignments"]["APT:villa"]})
+        self.assertEqual(after["released"], [{"apt_cd": "villa", "from": original,
+                                              "to": after["assignments"]["APT:villa"],
+                                              "complex": "APT:villa"}])
+        self.assertEqual(after["split"], 0)
+        self.assertEqual(keys.verify(registry, complexes, after), [])
+
+        again = keys.assign(registry, complexes, "2026-12-01")
+        self.assertEqual(again["assignments"], after["assignments"])
+        self.assertEqual((again["minted"], again["released"]), (0, []))
+
+    def test_two_kapt_complexes_from_one_key_still_share_it(self) -> None:
+        registry = keys.Registry()
+        before = keys.assign(registry, [cx("KAPT:A1", "1", "2")], TODAY)
+
+        after = keys.assign(registry, [cx("KAPT:A1", "1"), cx("KAPT:A2", "2")], LATER)
+
+        self.assertEqual(set(after["assignments"].values()), {before["assignments"]["KAPT:A1"]})
+        self.assertEqual((after["split"], after["released"]), (1, []))
+
     def test_a_new_atom_joins_the_key_of_its_complex(self) -> None:
         registry = keys.Registry()
         before = keys.assign(registry, [cx("APT:a", "1")], TODAY)
