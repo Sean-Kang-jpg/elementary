@@ -15,6 +15,8 @@ from typing import Any
 BASE_DIR = Path(__file__).resolve().parent
 ACADEMY_DIR = BASE_DIR / "runtime" / "academy"
 DOJO_DIR = BASE_DIR / "runtime" / "sports_dojo"
+INSTRUCTION_TYPE = "체육교습업"
+ACTIVE_INSTRUCTION = "정상운영"
 
 
 def normalize_address(value: str) -> str:
@@ -84,6 +86,67 @@ def dojo_marker(row: dict[str, Any], source_name: str) -> dict[str, Any]:
     }
 
 
+def instruction_marker(row: dict[str, Any], point: dict[str, str], source_name: str) -> dict[str, Any]:
+    address = normalize_address(row["road_address"])
+    return {
+        "address_id": hashlib.sha256(address.encode("utf-8")).hexdigest()[:24],
+        "region": row["region"],
+        "district": district_from_address(address),
+        "road_address": address,
+        "longitude": float(point["longitude"]),
+        "latitude": float(point["latitude"]),
+        "geocode_status": "matched",
+        "academy_count": 1,
+        "institution_type_counts": {INSTRUCTION_TYPE: 1},
+        "realm_counts": {row["sport_type"]: 1},
+        "institutions": [{
+            "name": row["institution_name"],
+            "type": INSTRUCTION_TYPE,
+            "realm": row["sport_type"],
+            "subjects": ["sports"],
+            "key": f"sports:{row['source_id']}",
+        }],
+        "top_subjects": row["sport_type"],
+        "source_snapshot": source_name,
+    }
+
+
+def same_name_at_address(target: dict[str, Any], addition: dict[str, Any]) -> bool:
+    # One class can also be a NEIS academy or a dojo at the same address. Different names
+    # stay separate: a branch and a company name cannot be told apart from the source.
+    name = "".join(addition["institutions"][0]["name"].split())
+    return any("".join(item["name"].split()) == name for item in target["institutions"])
+
+
+def add_instruction(markers: dict[str, dict[str, Any]], rows: list[dict[str, Any]],
+                    geocodes: dict[str, dict[str, str]], source_name: str) -> dict[str, int]:
+    counts = Counter(rows=len(rows))
+    for row in rows:
+        if row.get("business_status") != ACTIVE_INSTRUCTION:
+            continue
+        counts["active"] += 1
+        point = geocodes.get(normalize_address(row["road_address"]))
+        if not point or point.get("status") != "matched":
+            counts["not_geocoded"] += 1
+            continue
+        marker = instruction_marker(row, point, source_name)
+        existing = markers.get(marker["address_id"])
+        if not existing:
+            markers[marker["address_id"]] = marker
+            counts["new_address_markers"] += 1
+        elif same_name_at_address(existing, marker):
+            counts["same_name_skipped"] += 1
+        else:
+            merge_marker(existing, marker)
+            counts["merged_into_existing_addresses"] += 1
+    return dict(counts)
+
+
+def read_geocodes(path: Path) -> dict[str, dict[str, str]]:
+    with path.open(encoding="utf-8-sig", newline="") as handle:
+        return {row["address"]: row for row in csv.DictReader(handle)}
+
+
 def academy_marker(row: dict[str, str]) -> dict[str, Any]:
     return {
         **row,
@@ -113,8 +176,12 @@ def main(argv: list[str] | None = None) -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--academy-markers", type=Path, required=True)
     parser.add_argument("--sports-dojos", type=Path, required=True)
+    parser.add_argument("--sports-instruction", type=Path, help="collect_sports_instruction_snapshot.py output")
+    parser.add_argument("--geocodes", type=Path, help="address cache for --sports-instruction")
     parser.add_argument("--as-of", default=date.today().strftime("%Y%m%d"))
     args = parser.parse_args(argv)
+    if bool(args.sports_instruction) != bool(args.geocodes):
+        parser.error("--sports-instruction and --geocodes go together")
 
     with args.academy_markers.open(encoding="utf-8-sig", newline="") as handle:
         markers = {row["address_id"]: academy_marker(row) for row in csv.DictReader(handle)}
@@ -137,6 +204,11 @@ def main(argv: list[str] | None = None) -> None:
         else:
             markers[marker["address_id"]] = marker
             added += 1
+    academy_and_dojo_markers = len(markers)
+    instruction = add_instruction(
+        markers, json.loads(args.sports_instruction.read_text(encoding="utf-8")),
+        read_geocodes(args.geocodes), args.sports_instruction.name,
+    ) if args.sports_instruction else None
 
     output = ACADEMY_DIR / f"education_facility_markers_{args.as_of}.csv"
     fields = (
@@ -154,11 +226,12 @@ def main(argv: list[str] | None = None) -> None:
             writer.writerow(serialized)
 
     profile = {
-        "academy_markers": len(markers) - added,
+        "academy_markers": academy_and_dojo_markers - added,
         "sports_dojo_rows": len(dojo_rows),
         "eligible_active_geocoded_dojos": len(eligible),
         "new_address_markers": added,
         "merged_into_existing_addresses": merged,
+        "sports_instruction": instruction,
         "combined_markers": len(markers),
         "output": output.name,
     }

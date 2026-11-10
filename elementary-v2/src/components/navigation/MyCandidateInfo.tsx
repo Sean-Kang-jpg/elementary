@@ -53,7 +53,7 @@ export default function MyCandidateInfo({ item, onNavigate, onOpenSaved }: {
       {item.kind === 'school' && school && <SchoolCarePanel school={school} onOpenGuide={onNavigate} />}
       <h3>주변 교육환경</h3>
       <p>{academies === null ? '조회 상태 미확인' : academies.length
-        ? `현재 조회된 학원·교습소·체육도장 ${academies.reduce((sum, row) => sum + row.institution_count, 0)}곳`
+        ? `현재 조회된 학원·교습소·체육시설 ${academies.reduce((sum, row) => sum + row.institution_count, 0)}곳`
         : '조회된 시설 없음 · 실제 시설 부재를 뜻하지 않아요'}</p>
       <p className="my-help">교육환경 자료의 대상·거리·출처와 확인일은 상세에서 확인하세요. 운영 시간·초등 수강·모집 여부는 별도 확인이 필요해요.</p>
       <button type="button" className="my-button" onClick={() => onOpenSaved(item)}>방과후·돌봄·배움활동 상세 보기</button>

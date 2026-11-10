@@ -159,7 +159,7 @@ const ApartmentDetail: React.FC<ApartmentDetailProps> = ({ apartment, isOpen, on
                 <div className="rounded-md bg-gray-100 p-3"><span className="text-xs text-gray-600">확장 생활권 · 800m</span><strong className="mt-1 block text-xl text-gray-900">{academySummary?.extended_institution_count.toLocaleString() ?? '-'}</strong></div>
               </div>
             </> : <div className="rounded-md border border-gray-200 bg-gray-50 px-4 py-5 text-center text-sm font-medium text-gray-600">{ACADEMY_DATA_PENDING_LABEL}</div>}
-            <p className="mt-2 text-[11px] leading-4 text-gray-500">단지 기준 직선거리로 집계한 주변 학원·교습소·체육도장이며 공식 배정 관계가 아닙니다.</p>
+            <p className="mt-2 text-[11px] leading-4 text-gray-500">단지 기준 직선거리로 집계한 주변 학원·교습소·체육시설이며 공식 배정 관계가 아닙니다.</p>
           </section>
           <p className="text-xs text-gray-500">초등학생 대상 강좌와 실제 모집 여부는 각 기관에 확인하세요.</p>
           <DataFreshness sources={['neis-academy']} />

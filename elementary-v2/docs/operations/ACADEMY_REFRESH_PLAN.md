@@ -57,6 +57,7 @@ D1의 비밀값 3개는 2026-10-06에 `gh secret set`으로 로컬 `.env` 값을
 | 지오코딩 | `geocode_academy_addresses.py` | VWorld, 캐시 `academy_geocodes_all.csv`(7.9 MB) | 캐시가 이 PC에만 있다. 실패 726곳(`api_error`)을 다시 시도하는 경로가 없다 |
 | 마커 | `build_academy_marker_snapshot.py` | 수집본 + 캐시 | 없음. 직업기술 제외와 과목 분류가 이미 들어 있다 |
 | 체육도장 | `collect_sports_dojo_snapshot.py` → `merge_sports_dojo_markers.py` | data.go.kr 체육도장업, 영업 중 16,658곳 | 키(D1). 실행 순서가 코드가 아니라 사람 기억에만 있다 |
+| 체육교습업 (2026-11 추가) | `collect_sports_instruction_snapshot.py` → `geocode_sports_instruction.py` → `merge_sports_dojo_markers.py --sports-instruction` | 국민체육진흥공단 전국체육시설 정보, 정상운영 3,668곳 | 수집 실패는 갱신을 막지 않는다. 지오코딩은 이 PC의 `--geocode-only` 단계에서 한다 |
 | 근접도 | `build_academy_proximity_snapshot.py --regions … --complexes …` | 지역별 단지 마스터, 건물 동 좌표 2종 | 아래 참고 |
 | 업로드 | `upload_academy_region.py` | 지역별 CSV 3종 | **추가 upsert만 한다.** 폐원 주소와 사라진 단지의 행이 남는다 |
 

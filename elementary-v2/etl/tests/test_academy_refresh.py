@@ -7,7 +7,46 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
-from run_academy_refresh import check_completeness, diff_plan  # noqa: E402
+import gzip  # noqa: E402
+import json  # noqa: E402
+import subprocess  # noqa: E402
+import tempfile  # noqa: E402
+from datetime import date, timedelta  # noqa: E402
+from unittest import mock  # noqa: E402
+
+import run_academy_refresh  # noqa: E402
+from run_academy_refresh import check_completeness, collect_instruction, diff_plan  # noqa: E402
+
+
+class CollectInstructionTest(unittest.TestCase):
+    """체육교습업 is optional: a failed collection falls back or leaves it out, and never raises."""
+
+    def run_failed_collection(self, stored_on):
+        objects = {}
+        if stored_on:
+            objects = {
+                run_academy_refresh.INSTRUCTION_OBJECT: gzip.compress(b"[]"),
+                run_academy_refresh.INSTRUCTION_PROFILE_OBJECT: gzip.compress(json.dumps({"generated_at": stored_on}).encode()),
+            }
+        with tempfile.TemporaryDirectory() as folder, \
+                mock.patch.object(run_academy_refresh, "INSTRUCTION_DIR", Path(folder)), \
+                mock.patch.object(run_academy_refresh, "run_step", side_effect=subprocess.CalledProcessError(1, "x")), \
+                mock.patch.object(run_academy_refresh, "storage_get", side_effect=lambda _u, _k, name: objects.get(name)):
+            path, source = collect_instruction("u", "k", "20261106", False)
+            return (path.exists() if path else None), source
+
+    def test_no_stored_copy_leaves_it_out(self):
+        self.assertEqual(self.run_failed_collection(None), (None, "collection failed; no stored copy"))
+
+    def test_recent_copy_is_used(self):
+        recent = date.today().isoformat()
+        self.assertEqual(self.run_failed_collection(recent), (True, f"storage copy from {recent}"))
+
+    def test_stale_copy_is_not_used(self):
+        old = (date.today() - timedelta(days=30)).isoformat()
+        path, source = self.run_failed_collection(old)
+        self.assertIsNone(path)
+        self.assertIn("stale", source)
 
 
 def address(address_id, region, count):

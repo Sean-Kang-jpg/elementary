@@ -629,7 +629,7 @@ const apartmentPage = async (key) => {
       ['사용승인연도', complex.use_approval_year || null],
       ['세대당 주차', plausibleParkingRatio(complex.parking_per_household)],
       ['공공임대 비율', number(complex.public_rental_ratio) ? `${complex.public_rental_ratio}%` : null],
-      ['주변 학원·교습소·체육도장', academyAll != null ? `600m 이내 ${withCommas(academyCore || 0)}곳 · 800m 이내 ${withCommas(academyAll)}곳` : null],
+      ['주변 학원·교습소·체육시설', academyAll != null ? `600m 이내 ${withCommas(academyCore || 0)}곳 · 800m 이내 ${withCommas(academyAll)}곳` : null],
     ],
     // Serving's district stops at the city in some provinces (수원시), while the
     // hubs split 수원시 장안구 - the road address gives the hub's level.
@@ -638,7 +638,7 @@ const apartmentPage = async (key) => {
       schoolTableHtml + (primarySentence ? `<p>${escapeHtml(primarySentence)}</p>` : ''),
       groupHtml,
       neighboursHtml,
-      academyAll != null ? '<p class="area-note">주변 학원·교습소·체육도장은 단지에서 잰 직선거리 기준이며 배정과는 관계가 없습니다.</p>' : '',
+      academyAll != null ? '<p class="area-note">주변 학원·교습소·체육시설은 단지에서 잰 직선거리 기준이며 배정과는 관계가 없습니다.</p>' : '',
       guideLinks('함께 보면 좋은 가이드'),
     ].filter(Boolean),
     // Links to the schools are in the table above; a list of the same names would repeat them.

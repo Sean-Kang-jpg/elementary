@@ -265,7 +265,7 @@ const SchoolDetail: React.FC<SchoolDetailProps> = ({ school, entryYear, isOpen, 
       ) : currentView === 'education' ? (
         <div className="mx-auto h-full w-full max-w-4xl overflow-auto px-4 py-3">
           <h3 className="mb-2 font-semibold">주변 배움·활동</h3>
-          <p className="mb-3 text-xs text-gray-500">배정 아파트 생활권의 학원·교습소·체육도장 분야 정보입니다. 초등학생 대상 강좌와 모집 여부는 각 기관에 확인하세요.</p>
+          <p className="mb-3 text-xs text-gray-500">배정 아파트 생활권의 학원·교습소·체육시설 분야 정보입니다. 초등학생 대상 강좌와 모집 여부는 각 기관에 확인하세요.</p>
           {(!assignsByZone || !hasSchoolInformation) && <p className="mb-3 text-xs text-gray-500">통학구역 배정 또는 학교 공시 정보가 확인되지 않아 이 학교의 생활권 시설 집계는 제공하지 않습니다. 주변 시설이 없다는 뜻은 아닙니다.</p>}
           <AcademySummaryPanel
             academies={schoolAcademies}

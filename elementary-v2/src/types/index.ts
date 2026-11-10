@@ -209,7 +209,7 @@ export interface AcademyAddress {
     realm: string
     /** Name-derived categories from the ETL (etl/academy_subjects.py). Absent on rows published before it. */
     subjects?: string[]
-    /** Institution key (etl/academy_institutions.py: neis:{교육청}-{지정번호}, dojo:…). Absent before the 2026-11 refresh. */
+    /** Institution key (etl/academy_institutions.py: neis:{교육청}-{지정번호}, dojo:…, sports:…). Absent before the 2026-11 refresh. */
     key?: string
   }>
   top_subjects: string

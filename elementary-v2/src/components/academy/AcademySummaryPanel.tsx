@@ -73,7 +73,7 @@ export default function AcademySummaryPanel({ academies, loading = false, error 
   if (!dataAvailable) return <div className="rounded-md border border-gray-200 bg-gray-50 px-4 py-10 text-center text-sm font-medium text-gray-600">교육시설 데이터 준비 중</div>
   if (loading) return <div className="py-10 text-center text-sm text-gray-500">주변 교육환경을 불러오는 중입니다.</div>
   if (error) return <div className="rounded-md border border-amber-200 bg-amber-50 p-4 text-sm text-amber-900">{error}</div>
-  if (!academies.length) return <div className="py-10 text-center text-sm text-gray-500">현재 확인된 주변 학원·교습소·체육도장이 없습니다.</div>
+  if (!academies.length) return <div className="py-10 text-center text-sm text-gray-500">현재 확인된 주변 학원·교습소·체육시설이 없습니다.</div>
 
   return (
     <div className="space-y-4">
@@ -121,7 +121,7 @@ export default function AcademySummaryPanel({ academies, loading = false, error 
         </section>
       ) : null}
 
-      <p className="text-[11px] leading-4 text-gray-500">배정 아파트 주변 학원·교습소·체육도장의 직선거리 기반 집계이며 공식 배정 관계를 의미하지 않습니다.</p>
+      <p className="text-[11px] leading-4 text-gray-500">배정 아파트 주변 학원·교습소·체육시설의 직선거리 기반 집계이며 공식 배정 관계를 의미하지 않습니다.</p>
     </div>
   )
 }

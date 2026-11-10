@@ -9,6 +9,7 @@ name, so neither can tell an opening from a rename. This list keeps the source k
 - Sports dojos     ``dojo:{OPN_ATMY_GRP_CD}-{MNG_NO}``, already composed as
   ``source_id`` by collect_sports_dojo_snapshot.py. MNG_NO alone repeats across
   local governments (1,571 values in 32,882 rows).
+- Sports classes   ``sports:{faci_cd}`` (체육교습업, collect_sports_instruction_snapshot.py).
 
 Membership follows the sources, not the map: academies outside EXCLUDED_REALMS and
 dojos in business. Geocoding is left out on purpose, or a month of VWorld failures
@@ -30,6 +31,7 @@ from typing import Any, Iterable
 # Same exclusion as build_academy_marker_snapshot.py; kept in step by a test.
 EXCLUDED_REALMS = {"직업기술"}
 ACTIVE_DOJO = "영업/정상"
+ACTIVE_INSTRUCTION = "정상운영"
 FIELDS = ("institution_key", "source", "name", "institution_type", "realm", "region", "road_address", "registered_on")
 SAMPLE = 20
 
@@ -94,8 +96,21 @@ def dojo_entries(rows: Iterable[dict[str, Any]]) -> list[dict[str, str]]:
     return entries
 
 
-def build_entries(academy_rows, dojo_rows) -> list[dict[str, str]]:
-    entries = academy_entries(academy_rows) + dojo_entries(dojo_rows)
+def instruction_entries(rows: Iterable[dict[str, Any]]) -> list[dict[str, str]]:
+    return [{
+        "institution_key": f"sports:{row['source_id']}",
+        "source": "sports",
+        "name": row.get("institution_name", ""),
+        "institution_type": "체육교습업",
+        "realm": row.get("sport_type", ""),
+        "region": row.get("region", ""),
+        "road_address": normalize_address(row.get("road_address", "")),
+        "registered_on": row.get("licensed_on", ""),
+    } for row in rows if row.get("business_status") == ACTIVE_INSTRUCTION]
+
+
+def build_entries(academy_rows, dojo_rows, instruction_rows=()) -> list[dict[str, str]]:
+    entries = academy_entries(academy_rows) + dojo_entries(dojo_rows) + instruction_entries(instruction_rows)
     duplicates = [key for key, count in Counter(row["institution_key"] for row in entries).items() if count > 1]
     if duplicates:
         raise ValueError(f"{len(duplicates):,} institution keys repeat, e.g. {duplicates[:3]}")

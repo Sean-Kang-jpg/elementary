@@ -6,8 +6,8 @@ Stages (docs/operations/ACADEMY_REFRESH_PLAN.md):
 2. collect    NEIS academies nationwide; every region checked against the last run
 3. geocode    only new addresses and earlier failures (VWorld)
 4. markers    address markers (drops 직업기술, classifies subjects)
-5. dojos      sports-dojo permits collected and merged into the markers; the private
-              per-institution list is written and diffed against the last applied
+5. dojos      sports-dojo permits and 체육교습업 collected and merged into the markers; the
+              private per-institution list is written and diffed against the last applied
               month (academy_institutions.py), stored only after a successful apply
 6. complexes  apartment complexes exported from the live master
 7. proximity  links and summaries, one region at a time (memory)
@@ -60,6 +60,7 @@ BASE_DIR = Path(__file__).resolve().parent
 PROJECT_DIR = BASE_DIR.parent
 ACADEMY_DIR = BASE_DIR / "runtime" / "academy"
 DOJO_DIR = BASE_DIR / "runtime" / "sports_dojo"
+INSTRUCTION_DIR = BASE_DIR / "runtime" / "sports_instruction"
 REPORT_PATH = BASE_DIR / "runtime" / "recurring_academy_refresh.json"
 GEOCODE_CACHE = ACADEMY_DIR / "academy_geocodes_all.csv"
 
@@ -73,6 +74,8 @@ STORAGE_INPUTS = {
 
 DOJO_OBJECT = "sports_dojo_nationwide.json.gz"
 DOJO_PROFILE_OBJECT = "sports_dojo_nationwide_profile.json.gz"
+INSTRUCTION_OBJECT = "sports_instruction_nationwide.json.gz"
+INSTRUCTION_PROFILE_OBJECT = "sports_instruction_nationwide_profile.json.gz"
 # Per-institution list (academy_institutions.py): one copy per applied month, and
 # "latest" as the next run's baseline. Written only after a successful apply.
 INSTITUTIONS_LATEST = "institutions/latest.csv.gz"
@@ -379,7 +382,31 @@ def restore_dojo_copy(url: str, key: str, stamp: str) -> str:
     return f"storage copy from {collected}"
 
 
-def institution_changes(url: str, key: str, snapshot: Path, dojos: Path, output: Path) -> dict[str, Any]:
+def collect_instruction(url: str, key: str, stamp: str, reuse_sources: bool) -> tuple[Path | None, str]:
+    """Today's 체육교습업 snapshot, or None. A newer, smaller source than NEIS and the dojos:
+    losing it for a month must not hold back the rest of the refresh."""
+    snapshot = INSTRUCTION_DIR / f"sports_instruction_nationwide_{stamp}.json"
+    profile = INSTRUCTION_DIR / f"sports_instruction_nationwide_profile_{stamp}.json"
+    if reuse_sources:
+        return (snapshot, "reused") if snapshot.exists() and profile.exists() else (None, "no snapshot today")
+    try:
+        run_step("etl/collect_sports_instruction_snapshot.py")
+        return snapshot, "collected"
+    except subprocess.CalledProcessError:
+        pass
+    body, stored_profile = storage_get(url, key, INSTRUCTION_OBJECT), storage_get(url, key, INSTRUCTION_PROFILE_OBJECT)
+    if body is None or stored_profile is None:
+        return None, "collection failed; no stored copy"
+    collected = str(json.loads(gzip.decompress(stored_profile)).get("generated_at", ""))[:10]
+    if not collected or date.fromisoformat(collected) < date.today() - timedelta(days=10):
+        return None, f"collection failed; stored copy is stale ({collected or 'undated'})"
+    INSTRUCTION_DIR.mkdir(parents=True, exist_ok=True)
+    snapshot.write_bytes(gzip.decompress(body))
+    profile.write_bytes(gzip.decompress(stored_profile))
+    return snapshot, f"storage copy from {collected}"
+
+
+def institution_changes(url: str, key: str, snapshot: Path, dojos: Path, instruction: Path | None, output: Path) -> dict[str, Any]:
     """Write this month's institution list and compare it with the last applied one.
 
     Observation only: a failure here is reported and never stops the refresh.
@@ -387,6 +414,7 @@ def institution_changes(url: str, key: str, snapshot: Path, dojos: Path, output:
     entries = academy_institutions.build_entries(
         json.loads(snapshot.read_text(encoding="utf-8")),
         json.loads(dojos.read_text(encoding="utf-8")),
+        json.loads(instruction.read_text(encoding="utf-8")) if instruction else (),
     )
     academy_institutions.write_entries(output, entries)
     body = storage_get(url, key, INSTITUTIONS_LATEST)
@@ -409,12 +437,20 @@ def geocode_only(url: str, key: str, reuse_sources: bool) -> None:
             storage_put(url, key, DOJO_OBJECT, DOJO_DIR / f"sports_dojo_nationwide_{stamp}.json")
             storage_put(url, key, DOJO_PROFILE_OBJECT, DOJO_DIR / f"sports_dojo_nationwide_profile_{stamp}.json")
             report["dojos"] = "collected and copied to Storage"
+        stamp = f"{date.today():%Y%m%d}"
+        instruction, report["sports_instruction"] = collect_instruction(url, key, stamp, reuse_sources)
+        if instruction and report["sports_instruction"] == "collected":
+            storage_put(url, key, INSTRUCTION_OBJECT, instruction)
+            storage_put(url, key, INSTRUCTION_PROFILE_OBJECT,
+                        INSTRUCTION_DIR / f"sports_instruction_nationwide_profile_{stamp}.json")
         run_step("etl/geocode_academy_addresses.py", "--all", "--retry-failures")
         profile = json.loads((BASE_DIR / "academy_geocode_profile.json").read_text(encoding="utf-8"))
         report["geocode"] = {k: profile[k] for k in ("snapshot", "selected_unique_addresses", "matched", "match_rate", "statuses")}
         if profile["statuses"].get("transport_error", 0) > profile["selected_unique_addresses"] * 0.05:
             # Reaching VWorld at all is the point of running here; do not overwrite a good cache with a failed pass.
             raise RuntimeError(f"VWorld unreachable: {profile['statuses']['transport_error']:,} transport errors")
+        if instruction:
+            run_step("etl/geocode_sports_instruction.py", "--snapshot", str(instruction))
         storage_put(url, key, "academy_geocodes_all.csv.gz", GEOCODE_CACHE)
         report["result"] = "cache written to Storage"
     except Exception as error:
@@ -492,15 +528,30 @@ def main() -> None:
         report["dojos"] = {"active": active_dojos, "baseline": previous_dojos, "source": dojo_source}
         if previous_dojos and active_dojos < previous_dojos * (1 - SHRINK_LIMIT):
             raise RuntimeError(f"sports-dojo source shrank {previous_dojos:,} -> {active_dojos:,}")
+        instruction, instruction_source = collect_instruction(url, key, stamp, args.reuse_sources)
+        active_instruction = None
+        report["sports_instruction"] = {"source": instruction_source}
+        if instruction:
+            if not ON_RUNNER:
+                run_step("etl/geocode_sports_instruction.py", "--snapshot", str(instruction))
+            active_instruction = int(json.loads(
+                (INSTRUCTION_DIR / f"sports_instruction_nationwide_profile_{stamp}.json").read_text(encoding="utf-8")
+            )["active_rows"])
+            last = last_completed_run(url, key)
+            previous_instruction = ((last or {}).get("row_counts") or {}).get("active_sports_instruction")
+            report["sports_instruction"] |= {"active": active_instruction, "baseline": previous_instruction}
+            if previous_instruction and active_instruction < previous_instruction * (1 - SHRINK_LIMIT):
+                raise RuntimeError(f"sports-instruction source shrank {previous_instruction:,} -> {active_instruction:,}")
         institutions = ACADEMY_DIR / f"academy_institutions_{stamp}.csv"
         try:
-            report["institutions"] = institution_changes(url, key, snapshot, dojos, institutions)
+            report["institutions"] = institution_changes(url, key, snapshot, dojos, instruction, institutions)
         except Exception as error:  # noqa: BLE001 - observation must not block the map refresh
             report["institutions"] = {"error": str(error)[:500]}
             institutions = None
         run_step("etl/merge_sports_dojo_markers.py",
                  "--academy-markers", str(ACADEMY_DIR / f"academy_address_markers_{stamp}.csv"),
-                 "--sports-dojos", str(dojos), "--as-of", stamp)
+                 "--sports-dojos", str(dojos), "--as-of", stamp,
+                 *(("--sports-instruction", str(instruction), "--geocodes", str(GEOCODE_CACHE)) if instruction else ()))
         merged = ACADEMY_DIR / f"education_facility_markers_{stamp}.csv"
 
         complexes = ACADEMY_DIR / f"academy_refresh_complexes_{stamp}.csv"
@@ -534,11 +585,13 @@ def main() -> None:
              "snapshots": [{"source_name": SOURCE_NAME, "source_as_of": as_of}],
              "resolved_scope": {"regions": [region.canonical_name for region in regions], "domains": ["academy"]}},
             {"neis_rows": sum(current.values()), "neis_rows_by_region": current, "active_dojos": active_dojos,
+             "active_sports_instruction": active_instruction,
              **{table: len(rows) for table, rows in build.items()}},
             "scheduled" if os.getenv("GITHUB_EVENT_NAME") == "schedule" else "manual", 1,
         )
         archive_sources(url, key, run_id, [(SOURCE_NAME, snapshot, sum(current.values())),
-                                           ("sports-dojo", dojos, int(dojo_profile["normalized_rows"]))], as_of)
+                                           ("sports-dojo", dojos, int(dojo_profile["normalized_rows"])),
+                                           *([("sports-instruction", instruction, active_instruction)] if instruction else [])], as_of)
         if not ON_RUNNER:
             storage_put(url, key, "academy_geocodes_all.csv.gz", GEOCODE_CACHE)
         apply_build(url, key, build, plan, as_of)
