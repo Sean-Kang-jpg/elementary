@@ -196,11 +196,15 @@ to apply it is the scheduled run of 2026-12-02 03:15 KST). Promotion also added 
 from `한국교육시설안전원_초중등학교위치_20261001.csv`: 회천새봄초, 평안초, 위례해솔초 (capital),
 참미르초 (f10, address and offices written in the 광주광역시 form the rest of the baseline uses),
 신연초 (c10), 신문초 (s10). Without 회천새봄초 the four 양주 complexes that moved into its new zone
-would have had no school. The new-complex supplement was not rebuilt: rebuilding it on 2026-11-11
-produced 58 complexes instead of 821, because it takes K-apt codes no published complex uses and
-the supplement's own complexes are published since the 2026-11-06 recovery. Until that is fixed
-the supplement keeps the 2026-11-01 upload, assigned on the 2026-03-20 polygons (13 of its 821
-complexes change zone on the new release).
+would have had no school. The new-complex supplement was rebuilt on the new release and uploaded
+2026-11-12 (818 complexes, 13 of them in a new zone). The first rebuild produced 58 instead of 821:
+it took K-apt codes no published complex uses, and the supplement's own complexes are published
+since the 2026-11-06 recovery. Fixed in 9d0dff5: a complex whose components are `KAPT<code>` is the
+supplement's own, a supplement code already published stays even if a base complex now carries it
+(dropping the atom would 404 its address), and a holder approved more than five years before the
+K-apt date is a redevelopment. The three dropped were never published (운암 1·2단지, 광양 와우). Five
+complexes are now published twice, from the supplement and from the base (`also_in_base_list` in
+the report); merging them waits on SQL 43 so their keys answer `moved`.
 
 History: the 2026-09-20 release was published 2026-10-02; its attachment
 did not download from the site at all, in a browser either (owner, 2026-10-08). The monthly task
