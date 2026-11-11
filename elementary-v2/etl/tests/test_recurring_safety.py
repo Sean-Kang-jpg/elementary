@@ -4,7 +4,7 @@ import contextlib
 import sys
 import unittest
 import urllib.parse
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from unittest.mock import ANY, call, patch
 
@@ -264,6 +264,18 @@ class RecurringSafetyTests(unittest.TestCase):
             recurring.update_schedules("u", "k", "run-1", {"snapshots": [{"source_name": "kapt-basic"}]})
 
         self.assertLessEqual(datetime.fromisoformat(patches[0]["next_due_at"]), next_start)
+
+    def test_a_late_recovery_run_is_still_due_on_the_next_first(self) -> None:
+        """Nov 6 + 27 days was Dec 3, after Dec 2's start; the month was skipped."""
+        kst = timezone(timedelta(hours=9))
+        cases = [
+            (datetime(2026, 11, 6, 12, 29, tzinfo=timezone.utc), datetime(2026, 12, 1, tzinfo=kst)),
+            (datetime(2026, 11, 30, 16, 0, tzinfo=timezone.utc), datetime(2027, 1, 1, tzinfo=kst)),  # Dec 1 KST
+            (datetime(2026, 12, 2, 0, 0, tzinfo=timezone.utc), datetime(2027, 1, 1, tzinfo=kst)),
+        ]
+        for finished, expected in cases:
+            self.assertEqual(recurring.next_due_after(finished, "monthly", 1), expected)
+        self.assertEqual(recurring.next_due_after(cases[0][0], "weekly", 1), cases[0][0] + timedelta(days=7))
 
 
 if __name__ == "__main__":

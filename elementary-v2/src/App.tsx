@@ -25,7 +25,8 @@ import { hasSavedProfile, readProfile, saveProfile, type Profile } from './utils
 import { FAQ_PAGE, findGuide, findLearning } from './content'
 import { readEntryYear } from './utils/entryYear'
 import { startFamilyPlan, type PlanFace } from './utils/familyPlan'
-import { getApartmentByPublicKey, getSchoolDetail } from './services/dataService'
+import { getApartmentByPublicKey, getSchoolDetail, resolveApartmentPublicKey, type ResolvedApartmentKey } from './services/dataService'
+import PendingApartmentSheet from './components/apartment/PendingApartmentSheet'
 import { readFavorites, subscribeFavorites, type FavoriteRecord } from './utils/favorites'
 import { initAnalytics, markEntry, rememberDetailEntry, takeEntry, track, trackPageView, type EntrySource } from './utils/analytics'
 import {
@@ -171,6 +172,12 @@ function MapApplication() {
   // 주소를 읽어 선택을 복원하는 동안에는 선택을 보고 주소를 쓰면 안 된다.
   // 그러지 않으면 복원 도중의 중간 상태가 기록으로 쌓인다.
   const restoring = useRef(false)
+  // 배정 학교가 아직 없는 단지의 주소로 들어온 경우. 선택 상태(학교·아파트)에는 넣지 않는다 —
+  // 넣으면 주소 동기화와 상세 조회 집계가 배정이 있는 단지처럼 다룬다.
+  const [pendingApartment, setPendingApartment] = useState<ResolvedApartmentKey | null>(null)
+  useEffect(() => {
+    if (state.selectedSchool || state.selectedApartment) setPendingApartment(null)
+  }, [state.selectedSchool, state.selectedApartment])
   // 뒤로·앞으로 가기로 되돌아온 상세는 새로 연 상세가 아니다. 상세 조회 이벤트를
   // 보내면 한 번 본 학교가 오갈 때마다 다시 집계된다. 시간 구간 플래그로는 안
   // 된다 — 복원이 끝난 뒤에야 React가 다시 그리므로 플래그가 먼저 풀린다. 그래서
@@ -185,7 +192,24 @@ function MapApplication() {
 
   // 공개 키로 단지를 찾아 지도 위에 연다. 주소로 들어온 경우와 MY에서 연 경우가 같은 길을 쓴다.
   const openApartment = useCallback(async (key: string): Promise<boolean> => {
-    const found = await getApartmentByPublicKey(key)
+    setPendingApartment(null)
+    let found = await getApartmentByPublicKey(key)
+    if (!found) {
+      // serving에 없는 키(SQL 43): 합쳐진 단지의 옛 키이거나, 배정 학교가 아직 없는 단지다.
+      const resolved = await resolveApartmentPublicKey(key)
+      if (resolved?.status === 'moved' && resolved.current_key !== key.toUpperCase()) {
+        found = await getApartmentByPublicKey(resolved.current_key)
+        // 옛 주소는 기록을 쌓지 않고 지금 단지의 주소로 바꿔 쓴다.
+        if (found) window.history.replaceState(window.history.state, '', apartmentPath(found.apartment))
+      } else if (resolved?.status === 'pending') {
+        if (resolved.latitude != null && resolved.longitude != null) {
+          dispatch({ type: 'SET_MAP_STATE', payload: { center: { lat: resolved.latitude, lng: resolved.longitude }, zoom: 15 } })
+        }
+        setCanonical(null)
+        setPendingApartment(resolved)
+        return true
+      }
+    }
     if (!found) return false
     // 대표 배정 학교를 함께 연다. 아파트만 띄우면 이 제품이 답하는 질문,
     // "어느 학교에 배정되나"가 화면에 없다.
@@ -201,6 +225,7 @@ function MapApplication() {
     try {
       // 상세가 아닌 주소는 선택이 없는 상태다. admin은 App이 따로 분기하므로
       // 여기까지 오지 않는다.
+      if (route.kind !== 'apartment') setPendingApartment(null)
       if (route.kind !== 'school' && route.kind !== 'apartment') {
         dispatch({ type: 'SET_SELECTED_APARTMENT', payload: null })
         dispatch({ type: 'SET_SELECTED_SCHOOL', payload: null })
@@ -320,6 +345,8 @@ function MapApplication() {
     const school = state.selectedSchool
     document.title = view === 'map' && apartment
       ? `${apartment.name} 배정 초등학교 | 어디초`
+      : view === 'map' && pendingApartment && !school
+        ? `${pendingApartment.complex_name || '아파트'} 배정 정보 준비 중 | 어디초`
       : view === 'map' && school
         ? `${school.school_name} 배정 아파트 | 어디초`
         : view === 'guide' && guide
@@ -327,7 +354,7 @@ function MapApplication() {
           : view === 'learn' && learnItem
             ? `${learnItem.title} | 어디초`
             : TITLES[view]
-  }, [view, state.selectedApartment, state.selectedSchool, guide, learnItem])
+  }, [view, state.selectedApartment, state.selectedSchool, pendingApartment, guide, learnItem])
 
   // 학습 콘텐츠 조회 (측정 계획 A-02의 prep_content_view). 뒤로 가기로 돌아온 것도 한 번으로 센다 —
   // 가이드와 달리 아직 기록 복원 구분이 필요할 만큼 경로가 많지 않다.
@@ -572,6 +599,16 @@ function MapApplication() {
         onClose={handleCloseSchoolDetail}
         onOpenGuide={(path) => navigate(path, 'detail')}
       />
+      {pendingApartment && (
+        <PendingApartmentSheet
+          apartment={pendingApartment}
+          isOpen={view === 'map' && !state.selectedSchool && !state.selectedApartment && !state.selectedMapPlace}
+          onClose={() => {
+            setPendingApartment(null)
+            syncPath(VIEW_PATHS.map, { push: false })
+          }}
+        />
+      )}
       {view === 'map' && state.selectedMapPlace && (
         <MapPlaceDetail key={state.selectedMapPlace.kind === 'care' ? state.selectedMapPlace.data.center_id : state.selectedMapPlace.data.address_id} place={state.selectedMapPlace}
           onNavigate={(path) => navigate(path, 'detail')} />

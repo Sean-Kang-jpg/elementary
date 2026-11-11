@@ -85,6 +85,24 @@ const query = async (table, params, { timeout = UPSTREAM_TIMEOUT_MS } = {}) => {
   }
 }
 
+const rpc = async (name, body, { timeout = UPSTREAM_TIMEOUT_MS } = {}) => {
+  const { url, key } = supabase()
+  const controller = new AbortController()
+  const timer = setTimeout(() => controller.abort(), timeout)
+  try {
+    const response = await fetch(`${url}/rest/v1/rpc/${name}`, {
+      method: 'POST',
+      headers: { apikey: key, Authorization: `Bearer ${key}`, 'Content-Type': 'application/json' },
+      body: JSON.stringify(body),
+      signal: controller.signal,
+    })
+    if (!response.ok) throw new Error(`rpc ${name} -> ${response.status}`)
+    return await response.json()
+  } finally {
+    clearTimeout(timer)
+  }
+}
+
 /**
  * Every row, past the 1,000-row cap. Pages run one after another, so callers
  * keep this to reads that are usually one page - a district - or two, 경기.
@@ -468,13 +486,53 @@ const byPublicKey = (rows) => {
   return [...complexes.values()]
 }
 
+/**
+ * A published key serving does not carry (SQL 43). A key merged into another
+ * complex answers with a redirect to that complex's page; a complex with no
+ * school assignment yet gets a short page saying so, kept out of the index.
+ * Anything else - a key never issued, or SQL 43 not applied - stays a 404.
+ */
+const unservedApartmentPage = async (key) => {
+  let resolved
+  try {
+    [resolved] = await rpc('resolve_apartment_public_key', { p_key: key }, { timeout: 3000 })
+  } catch {
+    return null
+  }
+  if (!resolved) return null
+  if (resolved.status === 'moved' && resolved.current_key && resolved.current_key !== key) {
+    const [row] = await query('school_apartment_serving', {
+      select: 'complex_name,region,district,complex_public_key',
+      complex_public_key: `eq.${resolved.current_key}`,
+      limit: '1',
+    })
+    return row ? { redirect: apartmentPath(row) } : null
+  }
+  if (resolved.status !== 'pending') return null
+  const name = resolved.complex_name || '아파트'
+  const district = districtFromAddress(resolved.road_address, resolved.region)
+  return {
+    noindex: true,
+    canonical: `/apt/${readable([shortRegion(resolved.region), district, name])}--${key}`,
+    title: `${name} 배정 정보 준비 중 | 어디초`,
+    description: `아직 통학구역 자료와 연결되지 않아 ${name}의 배정 초등학교 정보를 준비 중입니다. `
+      + '자료가 갱신되어 연결되면 이 주소에서 확인할 수 있습니다. 그 전에는 관할 교육지원청에 확인하세요.',
+    heading: `${name} 배정 정보 준비 중`,
+    facts: [
+      ['주소', resolved.road_address],
+      ['세대수', withCommas(resolved.households)],
+    ],
+    trail: [...areaTrail(resolved.region, district), { name }],
+  }
+}
+
 const apartmentPage = async (key) => {
   const rows = await query('school_apartment_serving', {
     select: APARTMENT_FIELDS,
     complex_public_key: `eq.${key}`,
     order: 'assignment_rank.asc',
   })
-  if (!rows.length) return null
+  if (!rows.length) return unservedApartmentPage(key)
 
   const complex = rows[0]
   const place = `${shortRegion(complex.region)} ${complex.district || ''}`.trim()
@@ -937,7 +995,11 @@ const inject = (shell, page) => {
   const head = [
     `<title>${escapeHtml(page.title)}</title>`,
     `<meta name="description" content="${escapeHtml(page.description)}">`,
-    `<link rel="canonical" href="${escapeHtml(canonical)}"${page.canonicalForKey ? ` data-for-key="${escapeHtml(page.canonicalForKey)}"` : ''}>`,
+    // A page with nothing to assign yet is for the visitor, not the index; a
+    // canonical beside noindex would send the two signals at once.
+    page.noindex
+      ? '<meta name="robots" content="noindex">'
+      : `<link rel="canonical" href="${escapeHtml(canonical)}"${page.canonicalForKey ? ` data-for-key="${escapeHtml(page.canonicalForKey)}"` : ''}>`,
     `<meta property="og:title" content="${escapeHtml(page.title)}">`,
     `<meta property="og:description" content="${escapeHtml(page.description)}">`,
     `<meta property="og:url" content="${escapeHtml(canonical)}">`,
@@ -1077,6 +1139,15 @@ module.exports = async (req, res) => {
       res.setHeader('Cache-Control', 'public, s-maxage=60')
       res.status(404).send(shell)
       countCrawl(req, type, '4xx', startedAt)
+      return
+    }
+
+    if (page.redirect) {
+      // A merged complex's old key. Permanent: the key will not come back to another complex.
+      // Not counted - the crawler table has no 3xx class, and the target page counts itself.
+      res.setHeader('Location', encodeURI(page.redirect))
+      res.setHeader('Cache-Control', 'public, s-maxage=86400')
+      res.status(301).end()
       return
     }
 

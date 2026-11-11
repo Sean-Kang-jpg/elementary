@@ -13,7 +13,7 @@ import urllib.error
 import urllib.parse
 import urllib.request
 from collections import Counter
-from datetime import date, datetime, timedelta
+from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 from typing import Any
 
@@ -361,6 +361,25 @@ def purge_staging(url: str, key: str, run_id: str) -> None:
     request_json(url, key, "DELETE", f"/rest/v1/etl_staging_rows?{run}", prefer="return=minimal", timeout=90)
 
 
+KST = timezone(timedelta(hours=9))
+
+
+def next_due_after(completed_at: datetime, cadence_unit: str, cadence_value: int) -> datetime | None:
+    """When a source that just succeeded is due again.
+
+    A monthly source is due at 00:00 KST on the 1st of the next month, whatever
+    day it finished. A fixed day count drifts: the Nov 6 recovery plus 27 days
+    was Dec 3, a day after Dec 2's scheduled start, which then skips the month.
+    """
+    if cadence_unit == "monthly":
+        local = completed_at.astimezone(KST)
+        months = local.month - 1 + cadence_value
+        return local.replace(year=local.year + months // 12, month=months % 12 + 1, day=1,
+                             hour=0, minute=0, second=0, microsecond=0)
+    cadence_days = {"daily": 1, "weekly": 7, "annual": 365}.get(cadence_unit)
+    return completed_at + timedelta(days=cadence_days * cadence_value) if cadence_days else None
+
+
 def update_schedules(url: str, key: str, run_id: str, manifest: dict[str, Any]) -> None:
     completed_at = datetime.now().astimezone()
     for snapshot in manifest["snapshots"]:
@@ -373,17 +392,8 @@ def update_schedules(url: str, key: str, run_id: str, manifest: dict[str, Any]) 
         )
         if not schedules:
             continue
-        cadence_unit = schedules[0]["cadence_unit"]
-        cadence_value = int(schedules[0]["cadence_value"])
-        cadence_days = {
-            "daily": 1,
-            "weekly": 7,
-            # Runs start on the 2nd, and the next one can be 28 days away. At 30 a
-            # run finishing on Nov 2 was not due again until after Dec 2's start.
-            "monthly": 27,
-            "annual": 365,
-        }.get(cadence_unit)
-        next_due = completed_at + timedelta(days=cadence_days * cadence_value) if cadence_days else None
+        next_due = next_due_after(completed_at, schedules[0]["cadence_unit"],
+                                  int(schedules[0]["cadence_value"]))
         request_json(
             url,
             key,

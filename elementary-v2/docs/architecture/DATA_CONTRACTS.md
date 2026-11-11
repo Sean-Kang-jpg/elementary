@@ -18,6 +18,7 @@ operational table returns an empty result under RLS rather than rows.
 | `nearby_academy_addresses(...)` | function |
 | `nearby_academy_addresses_for_school(...)` | function |
 | `public_data_freshness()` | function (SQL `22`, 2026-10-04; source name, as-of date and load time only) |
+| `resolve_apartment_public_key(p_key)` | function (SQL `43`, 2026-11-11; one key's status: served, moved to another key, or pending with name/address/position) |
 | `school_care_statistics` | table (SQL `23`, 2026-10-04; per-school care and after-school disclosure) |
 | `care_centers` | table (SQL `23`; community care centers, public-page fields only) |
 | `nearby_care_centers(...)` | function (SQL `23`) |
@@ -41,6 +42,16 @@ Stable identity: `school_id`. Important groups include official names and addres
 Purpose: selected-school apartment list, apartment search, apartment detail, and apartment-filter RPC results.
 
 Stable relationship: `school_id + canonical_complex_id`. Important fields include complex identity, address/region/district, coordinates, households, building count, approval year, parking, rental counts/ratio, assignment rank/roles/confidence, review status, and pipeline timestamps.
+
+### `resolve_apartment_public_key(p_key)` (SQL `43`)
+
+Purpose: what an apartment address shows when serving has no row for its key. `moved` returns
+the key serving uses for those atoms now (a merged complex's other key; the prerender answers
+301 and the app rewrites the address). `pending` returns the complex's name, road address,
+region, households and coordinates for a complex with no school assignment yet; the page says
+"배정 정보 준비 중" and is `noindex`. A key never issued returns no row. The key tables
+themselves stay private — this answers for one key per call, and a missing function
+(`PGRST202` / `42883`) is treated as no row.
 
 ### `apartment_academy_summary`
 

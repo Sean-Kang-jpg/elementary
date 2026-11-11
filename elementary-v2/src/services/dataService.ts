@@ -703,6 +703,32 @@ export const getApartmentByPublicKey = async (
   }
 }
 
+export interface ResolvedApartmentKey {
+  status: 'served' | 'moved' | 'pending'
+  current_key: string
+  complex_name: string | null
+  road_address: string | null
+  region: string | null
+  households: number | null
+  latitude: number | null
+  longitude: number | null
+}
+
+/**
+ * serving에 없는 공개 키가 무엇을 가리키는지 묻는다(SQL 43). 합쳐진 단지의 옛 키는
+ * 지금 키(`moved`)를, 배정 학교가 아직 없는 단지의 키는 이름과 위치(`pending`)를 돌려준다.
+ * 발급된 적 없는 키이거나 함수가 아직 없으면 null이다.
+ */
+export const resolveApartmentPublicKey = async (publicKey: string): Promise<ResolvedApartmentKey | null> => {
+  const { data, error } = await supabase.rpc('resolve_apartment_public_key', { p_key: publicKey.toUpperCase() })
+  if (error) {
+    if (error.code !== 'PGRST202' && error.code !== '42883') console.warn('apartment key lookup unavailable', error.message)
+    return null
+  }
+  const row = (data as ResolvedApartmentKey[] | null)?.[0]
+  return row ?? null
+}
+
 /**
  * 단지의 공개 실거래 집계 중 각 면적대의 최신 월 한 건만 돌려준다.
  * 계약일 원문은 UI 계약에 포함하지 않는다.
