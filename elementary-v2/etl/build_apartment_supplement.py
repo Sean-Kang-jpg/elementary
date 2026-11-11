@@ -102,9 +102,19 @@ def number(value) -> float | None:
         return None
 
 
-def candidates(kapt_rows: list[dict], used_codes: set[str]) -> list[dict]:
+def redeveloped(holder_year: int | None, approved: str) -> bool:
+    """The base matcher pairs a K-apt code with the base complex at the same road address,
+    and on a redevelopment that is the demolished complex (금단로 105: 삼창 1985 took
+    e편한세상금정메종카운티 2026). A holder older than the replacement rule's five years
+    leaves the new complex a candidate."""
+    return holder_year is not None and holder_year < int(approved[:4] or 0) - 5
+
+
+def candidates(kapt_rows: list[dict], used_codes: dict[str, int], kept: set[str] = frozenset()) -> list[dict]:
     """K-apt lists some complexes on several rows under one code (양정자이더샵SKVIEW: 3);
-    one row per code, the one with the most households."""
+    one row per code, the one with the most households. `kept` are codes an earlier
+    supplement already published: they stay even when a base complex has since been
+    matched to the same code, because dropping the atom would 404 its public address."""
     by_code: dict[str, dict] = {}
     for row in kapt_rows:
         code = (row.get("단지코드") or "").strip()
@@ -114,15 +124,36 @@ def candidates(kapt_rows: list[dict], used_codes: set[str]) -> list[dict]:
     for row in by_code.values():
         code = (row.get("단지코드") or "").strip()
         approved = (row.get("사용승인일") or "").replace("-", "").strip()
-        if code and code not in used_codes and approved >= APPROVED_FROM and (row.get("도로명주소") or "").strip():
+        unused = code not in used_codes or code in kept or redeveloped(used_codes[code], approved)
+        if code and unused and approved >= APPROVED_FROM and (row.get("도로명주소") or "").strip():
             out.append(row)
     return out
+
+
+def supplement_atoms(row: dict) -> set[str]:
+    """The K-apt codes a published complex carries only because an earlier supplement
+    added them (component apt_cd KAPT<code>). Once a supplement complex is published its
+    code is in apartment_complex_master, and counting it as used dropped it from the next
+    supplement: the 2026-11-11 rebuild kept 58 of 821. Such a complex is the supplement's
+    own output, not a base complex, so it is neither a used code nor a duplicate."""
+    return {str(atom)[4:] for atom in row.get("component_apt_ids") or () if str(atom).startswith("KAPT")}
+
+
+def used_codes(published: list[dict]) -> dict[str, int]:
+    """Code -> the oldest use-approval year among the base complexes holding it."""
+    used: dict[str, int] = {}
+    for row in published:
+        code = row.get("kapt_code")
+        if code and code not in supplement_atoms(row):
+            year = int(row.get("use_approval_year") or 9999)
+            used[code] = min(used.get(code, 9999), year)
+    return used
 
 
 def published_index(complexes: list[dict]) -> dict[tuple[int, int], list[dict]]:
     index: dict[tuple[int, int], list[dict]] = {}
     for row in complexes:
-        if row.get("latitude") is None or row.get("longitude") is None:
+        if row.get("latitude") is None or row.get("longitude") is None or supplement_atoms(row):
             continue
         key = (math.floor(row["latitude"] / GRID), math.floor(row["longitude"] / GRID))
         index.setdefault(key, []).append(row)
@@ -197,11 +228,14 @@ def main() -> None:
         kapt_rows = list(csv.DictReader(handle))
     url, key = credentials()
     published = fetch_all(url, key, "apartment_complex_master",
-                          "canonical_complex_id,kapt_code,complex_name,latitude,longitude,households,use_approval_year",
+                          "canonical_complex_id,kapt_code,complex_name,latitude,longitude,households,use_approval_year,component_apt_ids",
                           "canonical_complex_id")
-    used = {row["kapt_code"] for row in published if row.get("kapt_code")}
-    found = candidates(kapt_rows, used)
-    print(f"K-apt {kapt_path.name}: {len(kapt_rows):,} rows; unused codes approved from {APPROVED_FROM}: {len(found):,}")
+    used = used_codes(published)
+    kept = {code for row in published for code in supplement_atoms(row)}
+    found = candidates(kapt_rows, used, kept)
+    from_supplement = len(kept)
+    print(f"K-apt {kapt_path.name}: {len(kapt_rows):,} rows; unused codes approved from {APPROVED_FROM}: {len(found):,}"
+          f" (published supplement complexes, not counted as used: {from_supplement:,})")
 
     registry = load_registry()
     production = [region.canonical_name for region in registry.production_regions]
@@ -215,7 +249,7 @@ def main() -> None:
     cache = json.loads(GEOCODE_CACHE.read_text(encoding="utf-8")) if GEOCODE_CACHE.exists() else {}
     index = published_index(published)
 
-    base_rows, assignments, dropped, review, failed, replacements = [], [], [], [], [], []
+    base_rows, assignments, dropped, review, failed, replacements, also_in_base = [], [], [], [], [], [], []
     for row in found:
         code = row["단지코드"].strip()
         address = " ".join(row["도로명주소"].split())
@@ -233,7 +267,14 @@ def main() -> None:
         lat, lon = geocoded["latitude"], geocoded["longitude"]
         households = number(row.get("세대수"))
         near = nearest_published(index, lat, lon)
-        duplicate = is_duplicate(row.get("단지명") or "", near)
+        duplicate = None if code in kept else is_duplicate(row.get("단지명") or "", near)
+        if code in kept and code in used and not redeveloped(used[code], (row.get("사용승인일") or "").replace("-", "")):
+            # Published twice now: once from this supplement, once as the base complex
+            # the matcher has since paired with the code. Left for a merge that keeps the
+            # supplement's public key answering (SQL 43 'moved').
+            also_in_base.append({"kapt_code": code, "name": row.get("단지명"),
+                                 "nearest_base": near[0][1]["canonical_complex_id"] if near else None,
+                                 "nearest_base_name": near[0][1].get("complex_name") if near else None})
         if duplicate:
             dropped.append({"kapt_code": code, "name": row.get("단지명"), "same_as": duplicate["canonical_complex_id"],
                             "same_as_name": duplicate.get("complex_name"),
@@ -298,11 +339,11 @@ def main() -> None:
         "added_households": sum(b["nmhsh"] for b in base_rows),
         "confidence": dict(Counter(a["confidence"] for a in assignments)),
         "no_zone": sum(1 for a in assignments if not a["primary_hakgudo_id"]),
-        "possible_replacements": len(replacements),
-        "replacements": replacements, "review_band": review, "dropped": dropped, "failures": failed,
+        "possible_replacements": len(replacements), "also_in_base": len(also_in_base),
+        "replacements": replacements, "also_in_base_list": also_in_base, "review_band": review, "dropped": dropped, "failures": failed,
     }
     (OUTPUT_DIR / "supplement_report.json").write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    print(json.dumps({k: v for k, v in report.items() if k not in ("review_band", "dropped", "failures", "replacements")},
+    print(json.dumps({k: v for k, v in report.items() if k not in ("review_band", "dropped", "failures", "replacements", "also_in_base_list")},
                      ensure_ascii=False, indent=2))
     print(f"review band {len(review):,}, dropped {len(dropped):,}, failed {len(failed):,} -> {OUTPUT_DIR / 'supplement_report.json'}")
     if args.upload:
