@@ -540,9 +540,9 @@ that it skipped and carries on.
 3. Each call locks its table for a few seconds; public reads of that table wait meanwhile.
 4. Rollback: `DROP FUNCTION public.reclaim_etl_table_space(TEXT);`
 
-## 43: resolve apartment keys serving does not carry (2026-11-11) — 사용자 승인 대기
+## 43: resolve apartment keys serving does not carry (2026-11-11) — applied 2026-11-12
 
-On 2026-11-11, 40 of 46,650 published apartment keys had no serving row. Seven belonged to
+On 2026-11-11, 39 of 46,650 published apartment keys had no serving row. Six belonged to
 complexes merged under another key, and their addresses opened an empty map. The other 33 were
 complexes with no school link at all (new or rebuilt complexes whose buildings did not match the
 학구도 data), and their addresses also opened an empty map. `43` adds
@@ -554,6 +554,10 @@ key tables stay private. `api/detail.js` answers `moved` with a 301 and `pending
 
 1. Run the file once in the SQL editor.
 2. Check it with the anon key (`POST /rest/v1/rpc/resolve_apartment_public_key`):
-   `{"p_key":"KSQMMEG4"}` → `moved`, `0WZRPQNR`; `{"p_key":"36F5G7B3"}` → `pending`, 제일풍경채 옥정;
+   `{"p_key":"1CY9KJAG"}` → `moved`, `0WZRPQNR`; `{"p_key":"36F5G7B3"}` → `pending`, 제일풍경채 옥정;
    `{"p_key":"28SEBP7H"}` → `served`; `{"p_key":"ZZZZZZZZ"}` → `[]`.
 3. Rollback: `DROP FUNCTION resolve_apartment_public_key(TEXT);`
+
+Applied 2026-11-12 in the SQL editor. Checked with the anon key: all four answers as above, and
+of the 39 keys 6 answer `moved` and 33 `pending`. The site changes only once `release` carries
+`api/detail.js` and the app.

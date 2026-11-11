@@ -1,8 +1,8 @@
 -- What a public apartment key points at when serving has no row for it.
 --
 -- Serving carries one key per complex. Two kinds of published keys are not in it
--- (measured 2026-11-11, 40 of 46,650):
---   * 7 keys whose atoms were merged into a complex published under another key
+-- (measured 2026-11-11, 39 of 46,650):
+--   * 6 keys whose atoms were merged into a complex published under another key
 --     (ADR-007: a merge supersedes nothing). The old address should go to the
 --     new one, not to an empty map.
 --   * 33 keys of complexes with no school link at all (new or rebuilt complexes
@@ -94,7 +94,7 @@ COMMIT;
 
 -- Verify as the browser would (anon key), POST /rest/v1/rpc/resolve_apartment_public_key:
 --   {"p_key": "28SEBP7H"}  ->  served
---   {"p_key": "KSQMMEG4"}  ->  moved, current_key 0WZRPQNR (신반포 한신 25,26,27차)
+--   {"p_key": "1CY9KJAG"}  ->  moved, current_key 0WZRPQNR (신반포 한신 25,26,27차)
 --   {"p_key": "36F5G7B3"}  ->  pending, 제일풍경채 옥정
 --   {"p_key": "ZZZZZZZZ"}  ->  []
 -- Rollback: DROP FUNCTION resolve_apartment_public_key(TEXT);
