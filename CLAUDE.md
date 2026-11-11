@@ -73,7 +73,7 @@
 
 현황(11-11 운영): summary 708곳(서울 561 + 경기 147 — 분당·위례·수지·동안·광명 전부 + 안양 만안구 15 · 과천 5) · slots 11,263 · checks 1,267(13건 확인 완료) · 통과 344 · 확인 315 · 해당 없음 49.
 - **11-11 안양 만안구·과천 20곳 운영 적재**(사용자 승인, `9b8ec17`): 평촌·범계는 동안구라 이미 있었다. 소네트 4개 추출 → 근거 검사(인용 줄 ±8) → 게이트에서 안양초 `period_slots`·청계 줄번호 고침, 기존 688곳 변화 0. 기록 `docs/research/pivot/p1_anyang_gwacheon_20261111/GATE.md`.
-  `etl/afterschool_load_args.txt`(git 밖 파일)에 그 폴더를 추가함. **과천갈현초 B000023793**은 이미지 PDF라 PyMuPDF로 8쪽을 판독해 추출(`f54fa90`), **적재는 사용자 승인 대기** — 표준 명령 dry-run이 709곳·다른 학교 변화 0. 석수·박달·안양서·과천초는 공시 문서에 맞춤형이 없다
+  `etl/afterschool_load_args.txt`(git 밖 파일)에 그 폴더를 추가함. **과천갈현초 B000023793**은 이미지 PDF라 PyMuPDF로 8쪽을 판독해 추출(`f54fa90`), 11-12 사용자 승인으로 **적재 완료** — summary 709, slots 11,280, checks 1,270, 다른 학교 변화 0(anon 확인). 석수·박달·안양서·과천초는 공시 문서에 맞춤형이 없다
 기준 `docs/operations/PIVOT_SLOT_STANDARD.md`, 빌더 `etl/afterschool_slots.py`, 적재 `etl/load_school_afterschool.py`.
 
 - **표준 적재 명령**(저장소 경로만, 11-03 운영과 차이 0 확인):
