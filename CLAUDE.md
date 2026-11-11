@@ -135,7 +135,7 @@
 - **체육교습업 master 반영 11-11**(`aa726ed`, 원래 로컬 전용 `3b1b34a`를 origin 위로 다시 올림): 화면 출처 문구 포함. 12-01 21:00 Windows 작업이 수집·지오코딩, 12-02 03:15 Actions가 운영 반영(시크릿 `DATA_GO_KR_DECODED_KEY` 있음). 11-11 운영에는 아직 없음(서울 학원 15,474·교습소 10,116·체육도장 2,562 / 경기 29,245·13,136·4,109)
 - 계획 `docs/operations/ACADEMY_SIGNALS_PLAN.md`: 1 공개자료 → 2 운영자 입력 → 3 학원 자기등록 → 4 부모 확인(보류). **타 서비스 수집 안 함**.
   1단계 전국, 2단계는 파일럿 범위·공개 게시물만. 셔틀은 통학버스 등록현황(`889e420`, 7,670곳)으로 '통학차량 등록' 배지까지
-- **통학차량 등록 배지 master 반영 11-12**(`f846886`): `etl/mark_shuttle_registration.py`가 마커에 `shuttle_registered`를 붙이고 월간 학원 갱신이 쓴다. 11-12 실측 7,614곳. 12-01 Windows 작업이 엑셀을 Storage에 복사, 12-02 Actions 실행부터 운영. 화면은 지도 기관 상세 배지뿐, 정렬은 미반영. 같은 커밋에서 학원 매퍼가 버리던 기관 `key`도 살렸다. **release 미반영**
+- **통학차량 등록 배지 master 반영 11-12**(`84ce167`): `etl/mark_shuttle_registration.py`가 마커에 `shuttle_registered`를 붙이고 월간 학원 갱신이 쓴다. 11-12 실측 7,614곳. 12-01 Windows 작업이 엑셀을 Storage에 복사, 12-02 Actions 실행부터 운영. 화면은 지도 기관 상세 배지뿐, 정렬은 미반영. 같은 커밋에서 학원 매퍼가 버리던 기관 `key`도 살렸다. **release 미반영**
 - `etl/academy_levels.py`(lower/elem/preschool/secondary/adult) 마커 빌더 반영 `5029923`. 초등 표기 12.0%, 표기 없음 60.7%. 백필 안 함(11/2 실패로 아직 미반영)
 - 다음: 표본 CSV 사람 검수(`review` 칸) → 화면 S1. 표본 CSV·`docs/research/academy-levels/`는 학원명 포함이라 커밋 여부 미정
 
