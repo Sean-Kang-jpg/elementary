@@ -15,7 +15,7 @@ from datetime import date, timedelta  # noqa: E402
 from unittest import mock  # noqa: E402
 
 import run_academy_refresh  # noqa: E402
-from run_academy_refresh import check_completeness, collect_instruction, diff_plan  # noqa: E402
+from run_academy_refresh import check_completeness, collect_instruction, collect_shuttle, diff_plan, mark_shuttles  # noqa: E402
 
 
 class CollectInstructionTest(unittest.TestCase):
@@ -48,6 +48,38 @@ class CollectInstructionTest(unittest.TestCase):
         self.assertIsNone(path)
         self.assertIn("stale", source)
 
+
+
+class CollectShuttleTest(unittest.TestCase):
+    """The shuttle badge is optional: a failed collection falls back to a copy up to 40 days old, or is left out."""
+
+    def run_failed_collection(self, stored_on):
+        objects = {}
+        if stored_on:
+            objects = {
+                run_academy_refresh.SHUTTLE_OBJECT: gzip.compress(b"PK"),
+                run_academy_refresh.SHUTTLE_METADATA_OBJECT: gzip.compress(json.dumps({"downloaded_at_utc": stored_on}).encode()),
+            }
+        with tempfile.TemporaryDirectory() as folder,                 mock.patch.object(run_academy_refresh, "SHUTTLE_DIR", Path(folder)),                 mock.patch.object(run_academy_refresh, "run_step", side_effect=subprocess.CalledProcessError(1, "x")),                 mock.patch.object(run_academy_refresh, "storage_get", side_effect=lambda _u, _k, name: objects.get(name)):
+            path, source = collect_shuttle("u", "k", "20261201", False)
+            return (path.exists() if path else None), source
+
+    def test_no_stored_copy_leaves_it_out(self):
+        self.assertEqual(self.run_failed_collection(None), (None, "collection failed; no stored copy"))
+
+    def test_last_months_copy_is_used(self):
+        last_month = (date.today() - timedelta(days=30)).isoformat()
+        self.assertEqual(self.run_failed_collection(last_month), (True, f"storage copy from {last_month}"))
+
+    def test_stale_copy_is_not_used(self):
+        path, source = self.run_failed_collection((date.today() - timedelta(days=60)).isoformat())
+        self.assertIsNone(path)
+        self.assertIn("stale", source)
+
+    def test_failed_marking_does_not_raise(self):
+        with mock.patch.object(run_academy_refresh, "collect_shuttle", return_value=(Path("w.xlsx"), "collected")),                 mock.patch.object(run_academy_refresh, "run_step", side_effect=subprocess.CalledProcessError(2, "x")):
+            result = mark_shuttles("u", "k", "20261201", Path("s.json"), False)
+        self.assertEqual(result, {"source": "collected", "error": "marking failed (2)"})
 
 def address(address_id, region, count):
     return {"address_id": address_id, "region": region, "institution_count": count}

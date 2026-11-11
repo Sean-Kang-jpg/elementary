@@ -94,6 +94,13 @@
 6. 통학차량 등록: `audit_shuttle_registration.py`의 연결 결과로 기관마다 `shuttle_registered`(참일 때만 싣는다)를
    붙인다. `levels`와 같은 경로(마커 빌더 → 월간 학원 갱신)로 낸다. 등록현황 엑셀은 월간 갱신 때 함께 다시 받고,
    원본은 private Storage에 둔다. 이름만 맞는 행은 사람 검수 전에는 싣지 않는다.
+   - **구현 2026-11-12**: `etl/mark_shuttle_registration.py`가 마커 빌드 직후 마커 CSV의 기관에
+     `shuttle_registered: true`를 붙인다(감사기의 `Matcher` 그대로: 유형·시도·이름·건물 일치만).
+     월간 `run_academy_refresh.py`가 받아 쓰고, `--geocode-only`(국내 Windows 작업)가 엑셀을
+     `academy-refresh/shuttle_registration.xlsx.gz`에 복사해 둔다. 수집이 실패하면 40일 안의 사본을 쓰고,
+     그것도 없으면 배지 없이 갱신한다(갱신을 멈추지 않음). 11-12 실측: 등록현황 15,790행 중 학원·교습소
+     7,633행 연결, 기관 7,614곳. 화면은 지도 기관 상세의 '통학차량 등록' 배지(출처 문구 포함)이고
+     목록 정렬은 아직 바꾸지 않았다.
 7. 체육교습업: `etl/collect_sports_instruction_snapshot.py`(수집) → `etl/geocode_sports_instruction.py`(주소를 학원
    지오코딩 캐시에 추가) → `merge_sports_dojo_markers.py --sports-instruction`(마커). 월간 `run_academy_refresh.py`에
    연결했다. 기관 키는 `sports:{faci_cd}`, 유형은 `체육교습업`, 과목은 `sports`다.

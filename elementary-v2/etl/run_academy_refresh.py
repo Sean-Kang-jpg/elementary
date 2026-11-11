@@ -5,7 +5,8 @@ Stages (docs/operations/ACADEMY_REFRESH_PLAN.md):
 1. restore    geocode cache and building-origin files from private Storage
 2. collect    NEIS academies nationwide; every region checked against the last run
 3. geocode    only new addresses and earlier failures (VWorld)
-4. markers    address markers (drops 직업기술, classifies subjects)
+4. markers    address markers (drops 직업기술, classifies subjects); academies that registered
+              a school vehicle (SchoolSafe 통학버스 등록현황) carry shuttle_registered
 5. dojos      sports-dojo permits and 체육교습업 collected and merged into the markers; the
               private per-institution list is written and diffed against the last applied
               month (academy_institutions.py), stored only after a successful apply
@@ -61,6 +62,7 @@ PROJECT_DIR = BASE_DIR.parent
 ACADEMY_DIR = BASE_DIR / "runtime" / "academy"
 DOJO_DIR = BASE_DIR / "runtime" / "sports_dojo"
 INSTRUCTION_DIR = BASE_DIR / "runtime" / "sports_instruction"
+SHUTTLE_DIR = BASE_DIR / "runtime" / "shuttle"
 REPORT_PATH = BASE_DIR / "runtime" / "recurring_academy_refresh.json"
 GEOCODE_CACHE = ACADEMY_DIR / "academy_geocodes_all.csv"
 
@@ -76,6 +78,10 @@ DOJO_OBJECT = "sports_dojo_nationwide.json.gz"
 DOJO_PROFILE_OBJECT = "sports_dojo_nationwide_profile.json.gz"
 INSTRUCTION_OBJECT = "sports_instruction_nationwide.json.gz"
 INSTRUCTION_PROFILE_OBJECT = "sports_instruction_nationwide_profile.json.gz"
+SHUTTLE_OBJECT = "shuttle_registration.xlsx.gz"
+SHUTTLE_METADATA_OBJECT = "shuttle_registration_metadata.json.gz"
+# Registrations change slowly; a copy from last month beats a month without the badge.
+SHUTTLE_MAX_AGE_DAYS = 40
 # Per-institution list (academy_institutions.py): one copy per applied month, and
 # "latest" as the next run's baseline. Written only after a successful apply.
 INSTITUTIONS_LATEST = "institutions/latest.csv.gz"
@@ -406,6 +412,44 @@ def collect_instruction(url: str, key: str, stamp: str, reuse_sources: bool) -> 
     return snapshot, f"storage copy from {collected}"
 
 
+def collect_shuttle(url: str, key: str, stamp: str, reuse_sources: bool) -> tuple[Path | None, str]:
+    """Today's 통학버스 등록현황 workbook, or None. The badge is a signal, not the map:
+    losing it for a month leaves institutions unmarked and holds back nothing else."""
+    workbook = SHUTTLE_DIR / f"shuttle_registration_{stamp}.xlsx"
+    metadata = workbook.with_suffix(".metadata.json")
+    if reuse_sources:
+        return (workbook, "reused") if workbook.exists() else (None, "no workbook today")
+    try:
+        run_step("etl/collect_shuttle_registration.py", "--output", str(workbook))
+        return workbook, "collected"
+    except subprocess.CalledProcessError:
+        pass
+    body, stored_metadata = storage_get(url, key, SHUTTLE_OBJECT), storage_get(url, key, SHUTTLE_METADATA_OBJECT)
+    if body is None or stored_metadata is None:
+        return None, "collection failed; no stored copy"
+    collected = str(json.loads(gzip.decompress(stored_metadata)).get("downloaded_at_utc", ""))[:10]
+    if not collected or date.fromisoformat(collected) < date.today() - timedelta(days=SHUTTLE_MAX_AGE_DAYS):
+        return None, f"collection failed; stored copy is stale ({collected or 'undated'})"
+    SHUTTLE_DIR.mkdir(parents=True, exist_ok=True)
+    workbook.write_bytes(gzip.decompress(body))
+    metadata.write_bytes(gzip.decompress(stored_metadata))
+    return workbook, f"storage copy from {collected}"
+
+
+def mark_shuttles(url: str, key: str, stamp: str, snapshot: Path, reuse_sources: bool) -> dict[str, Any]:
+    """Add shuttle_registered to today's markers. Never stops the refresh."""
+    workbook, source = collect_shuttle(url, key, stamp, reuse_sources)
+    if workbook is None:
+        return {"source": source}
+    profile = SHUTTLE_DIR / f"shuttle_marking_profile_{stamp}.json"
+    try:
+        run_step("etl/mark_shuttle_registration.py", "--registration", str(workbook), "--academies", str(snapshot),
+                 "--markers", str(ACADEMY_DIR / f"academy_address_markers_{stamp}.csv"), "--profile", str(profile))
+    except subprocess.CalledProcessError as error:
+        return {"source": source, "error": f"marking failed ({error.returncode})"}
+    return {"source": source, **json.loads(profile.read_text(encoding="utf-8"))}
+
+
 def institution_changes(url: str, key: str, snapshot: Path, dojos: Path, instruction: Path | None, output: Path) -> dict[str, Any]:
     """Write this month's institution list and compare it with the last applied one.
 
@@ -437,6 +481,12 @@ def geocode_only(url: str, key: str, reuse_sources: bool) -> None:
             storage_put(url, key, DOJO_OBJECT, DOJO_DIR / f"sports_dojo_nationwide_{stamp}.json")
             storage_put(url, key, DOJO_PROFILE_OBJECT, DOJO_DIR / f"sports_dojo_nationwide_profile_{stamp}.json")
             report["dojos"] = "collected and copied to Storage"
+            stamp = f"{date.today():%Y%m%d}"
+            workbook, report["shuttle"] = collect_shuttle(url, key, stamp, False)
+            if workbook and report["shuttle"] == "collected":
+                # The runner may not reach schoolsafe24 from abroad; leave it a copy.
+                storage_put(url, key, SHUTTLE_OBJECT, workbook)
+                storage_put(url, key, SHUTTLE_METADATA_OBJECT, workbook.with_suffix(".metadata.json"))
         stamp = f"{date.today():%Y%m%d}"
         instruction, report["sports_instruction"] = collect_instruction(url, key, stamp, reuse_sources)
         if instruction and report["sports_instruction"] == "collected":
@@ -515,6 +565,7 @@ def main() -> None:
             report["geocode"] = json.loads((BASE_DIR / "academy_geocode_profile.json").read_text(encoding="utf-8"))
         run_step("etl/build_academy_marker_snapshot.py")
         report["markers"] = json.loads((BASE_DIR / "academy_marker_profile.json").read_text(encoding="utf-8"))
+        report["shuttle"] = mark_shuttles(url, key, stamp, snapshot, args.reuse_sources)
 
         dojos = DOJO_DIR / f"sports_dojo_nationwide_{stamp}.json"
         dojo_source = "collected"
@@ -586,6 +637,7 @@ def main() -> None:
              "resolved_scope": {"regions": [region.canonical_name for region in regions], "domains": ["academy"]}},
             {"neis_rows": sum(current.values()), "neis_rows_by_region": current, "active_dojos": active_dojos,
              "active_sports_instruction": active_instruction,
+             "shuttle_registered": report["shuttle"].get("marked_on_markers"),
              **{table: len(rows) for table, rows in build.items()}},
             "scheduled" if os.getenv("GITHUB_EVENT_NAME") == "schedule" else "manual", 1,
         )

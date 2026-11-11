@@ -902,7 +902,11 @@ const toAcademyAddress = (row: Record<string, unknown>): AcademyAddress => ({
       const item = institution as Record<string, unknown>
       // subjects: the ETL's name-derived categories (etl/academy_subjects.py).
       const subjects = Array.isArray(item.subjects) ? item.subjects.filter((value): value is string => typeof value === 'string') : undefined
-      return { name: String(item.name || ''), type: String(item.type || ''), realm: String(item.realm || ''), subjects }
+      const key = typeof item.key === 'string' && item.key ? item.key : undefined
+      return {
+        name: String(item.name || ''), type: String(item.type || ''), realm: String(item.realm || ''), subjects, key,
+        ...(item.shuttle_registered === true ? { shuttle_registered: true } : {}),
+      }
     })
     : [],
   top_subjects: String(row.top_subjects || ''),

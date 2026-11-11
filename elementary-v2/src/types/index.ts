@@ -211,6 +211,8 @@ export interface AcademyAddress {
     subjects?: string[]
     /** Institution key (etl/academy_institutions.py: neis:{교육청}-{지정번호}, dojo:…, sports:…). Absent before the 2026-11 refresh. */
     key?: string
+    /** Registered a school vehicle with SchoolSafe (etl/mark_shuttle_registration.py). Absent means not confirmed, not "no shuttle". */
+    shuttle_registered?: boolean
   }>
   top_subjects: string
   straight_distance_m: number
