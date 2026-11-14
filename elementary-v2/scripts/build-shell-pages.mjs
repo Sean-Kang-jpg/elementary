@@ -111,7 +111,7 @@ const showcaseHtml = showcase ? (() => {
   const days = school.days.filter((day) => day.dismissal)
     .map((day) => `${day.label} 하교 ${day.dismissal}${day.afterschoolEnd ? `·방과후 ~${day.afterschoolEnd}` : ''}`).join(', ')
   return `<section class="home-shelf" aria-labelledby="home-showcase-title"><div class="home-shelf__head"><h2 id="home-showcase-title">${escapeHtml(shelves.showcase.title)}</h2><small>${escapeHtml(shelves.showcase.lead)}</small></div><ul class="home-shelf__row home-shelf__row--wide">`
-    + `<li><a href="${escapeHtml(encodeURI(school.path))}" class="showcase-card"><span class="showcase-card__kicker">초1 오후 한눈에</span><strong>${escapeHtml(school.name)}</strong><small>${escapeHtml(days)}${school.careEnd ? `, 돌봄 ~${escapeHtml(school.careEnd)}` : ''}</small></a></li>`
+    + `<li><a href="/timetable?school=${encodeURIComponent(school.id)}" class="showcase-card"><span class="showcase-card__kicker">초1 오후 한눈에</span><strong>${escapeHtml(school.name)}</strong><small>${escapeHtml(days)}${school.careEnd ? `, 돌봄 ~${escapeHtml(school.careEnd)}` : ''}</small></a></li>`
     + (apartment ? `<li><a href="${escapeHtml(encodeURI(apartment.path))}" class="showcase-card"><span class="showcase-card__kicker">배정 학교 찾기</span><strong>${escapeHtml(apartment.name)} → ${escapeHtml(school.name)}</strong><small>1학년 ${school.grade1Students ?? '–'}명 · 학급당 ${school.grade1PerClass ?? '–'}명 · 배정 아파트 ${school.apartments}곳</small>`
       + (apartment.academies ? `<small>교육환경: 학원·교습소 400m ${apartment.academies.core ?? '–'}곳 · 800m ${apartment.academies.extended ?? '–'}곳 (${apartment.academies.categories.map(({ key, count }) => `${ACADEMY_LABELS[key] ?? key} ${count}`).join(', ')})</small>` : '')
       + '</a></li>' : '')
