@@ -67,6 +67,18 @@ const waitFor = async (condition, message, { timeoutMs = 15_000, intervalMs = 25
       return
     }
     if (Date.now() >= deadline) {
+      // Keep enough visible state to distinguish missing results from a closed
+      // search list or a failed request. Do not relax the original assertion.
+      try {
+        const diagnostic = run(['eval', `JSON.stringify({
+          path: location.pathname,
+          ready: document.readyState,
+          searchResults: document.querySelector('#map-search-results')?.innerText?.slice(0, 600) ?? null,
+          alerts: [...document.querySelectorAll('[role=alert]')].map(node => node.textContent?.slice(0, 200)),
+          optionCount: document.querySelectorAll('#map-search-results [role=option]').length
+        })`], { quiet: true })
+        process.stderr.write(`WAIT DIAGNOSTIC: ${diagnostic}\n`)
+      } catch { /* Diagnostics must not replace the original failure. */ }
       throw new Error(`${message} — still not true after ${timeoutMs}ms and ${checks} checks`)
     }
     await sleep(intervalMs)
