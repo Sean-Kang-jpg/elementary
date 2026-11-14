@@ -1,0 +1,14 @@
+{
+  "_comment": "School location file IDs that name a school school_master already carries under an older ID. school_id is the public school URL (ADR-007), so the older ID is kept and the new one is not added. Check this list before adding a school from a new location file: a re-issued ID looks like a new school, which is how 달전초 entered school_master twice. Statistics follow schoolinfo_code, which did not change for any of these.",
+  "_recorded": "2026-11-14",
+  "_source": "한국교육시설안전원_초중등학교위치_20261001.csv, compared with 학교알리미 apiType 0/09 (2026) and NEIS schoolInfo",
+  "aliases": [
+    {"new_id": "B000027079", "kept_id": "B000004742", "school_name": "천보초등학교", "schoolinfo_code": "S090001815", "note": "same address; the location file renamed the old ID 천보초등학교(폐교). The school is open (1학년 140명)."},
+    {"new_id": "B000030586", "kept_id": "B000004430", "school_name": "여주초등학교", "schoolinfo_code": "S090003351", "note": "same address, re-issued 2026-09-16"},
+    {"new_id": "B000027009", "kept_id": "B000004243", "school_name": "오산초등학교", "schoolinfo_code": "S090004325", "note": "moved 337 m to 고을1길 27; baseline address and coordinates updated"},
+    {"new_id": "B000023972", "kept_id": "B000006945", "school_name": "달전초등학교", "schoolinfo_code": "S150003568", "note": "new building 2026-03-01 (이인로101번길 27-10); was in school_master as a second entry with no statistics, removed 2026-11-14"}
+  ],
+  "closed": [
+    {"school_id": "B000006240", "school_name": "비룡초등학교", "region": "전북특별자치도", "schoolinfo_code": "S130000721", "closed_on": "2026-03-01", "merged_into": "용지초등학교", "evidence": "전북일보 2025-12-25 (https://jjan.kr/article/20251225500473); absent from NEIS and the 2026-10-01 location file. Removed from the p10 baseline; the 2026-09-20 학구도 still names it in 김제초비룡초공동, handled by INACTIVE_ZONE_SCHOOL_LABELS in build_operational_masters.py."}
+  ]
+}

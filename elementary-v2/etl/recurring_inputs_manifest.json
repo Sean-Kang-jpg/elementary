@@ -1,6 +1,6 @@
 {
   "bundle_name": "elementary-recurring-inputs-v1",
-  "bundle_version": "2026-11-11.1",
+  "bundle_version": "2026-11-14.1",
   "description": "Reviewed inputs the recurring ETL reads but does not fetch, for every production scope. Sources (K-apt, Schoolinfo) are fetched fresh by each run.",
   "scopes": [
     "capital",
@@ -19,7 +19,7 @@
   ],
   "storage": {
     "bucket": "etl-source-snapshots",
-    "archive_path": "portable-inputs/elementary-recurring-inputs-v1/2026-11-11.1/bundle.zip"
+    "archive_path": "portable-inputs/elementary-recurring-inputs-v1/2026-11-14.1/bundle.zip"
   },
   "files": [
     {
@@ -33,8 +33,8 @@
       "role": "school-baseline:capital",
       "source_path": "etl/local_outputs_20260320/school_master_v1_20260320.json",
       "bundle_path": "school/school_master_v1_20260320.json",
-      "byte_size": 3749730,
-      "sha256": "e8d01def03a9632f2c384bc7fa0e618b53f6dad7e08ccc4e77b925ba1d1a5285"
+      "byte_size": 3750303,
+      "sha256": "99fa8ebfb861cf2dc0966c2b8a5f38736d0fd0809b297dad93a603cd0c8831a0"
     },
     {
       "role": "point-assignments:capital",
@@ -187,8 +187,8 @@
       "role": "school-baseline:p10",
       "source_path": "etl/local_outputs_20260320/school_master_v1_p10.json",
       "bundle_path": "school/school_master_v1_p10.json",
-      "byte_size": 679870,
-      "sha256": "cf6390fab11f22d29c95957fe4d5f0e17edbd61d6c4e942c6ffe49a8de09f2e5"
+      "byte_size": 678194,
+      "sha256": "cfce78f4ad1b96e341990575714ff7f7c876793f800b13d587e7bd4ce6dee26e"
     },
     {
       "role": "point-assignments:p10",
@@ -201,8 +201,8 @@
       "role": "school-baseline:r10",
       "source_path": "etl/local_outputs_20260320/school_master_v1_r10.json",
       "bundle_path": "school/school_master_v1_r10.json",
-      "byte_size": 782870,
-      "sha256": "bb01e7c7964667dd07a58db93aa75463c8840c4a12a5a02c6c41b7a7f3866825"
+      "byte_size": 781582,
+      "sha256": "866aea6f9d03f832031b8d0cd671e44a8ad27ccb3dbc4c9a586de1a5c862716c"
     },
     {
       "role": "point-assignments:r10",

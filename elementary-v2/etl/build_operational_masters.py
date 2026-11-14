@@ -30,7 +30,11 @@ RESOLVED_CASES = OUTPUT_DIR / "p1_resolved_cases.csv"
 NAME_HISTORY = OUTPUT_DIR / "apartment_name_history.csv"
 PROPERTY_HISTORY = OUTPUT_DIR / "apartment_property_history.csv"
 PIPELINE_VERSION = "operational-v1"
-INACTIVE_ZONE_SCHOOL_LABELS = {"대원초"}
+# Schools a 학구도 polygon still names after they closed. A name is dropped only in a
+# region where no school carries it (안성 비룡초 is open). 김제 비룡초 closed 2026-03-01
+# into 용지초 (전북일보 2025-12-25) and left NEIS and the school location file; the
+# 2026-09-20 release still has 김제초비룡초공동 (2024-02), so its 19 complexes keep 김제초.
+INACTIVE_ZONE_SCHOOL_LABELS = {"대원초", "비룡초"}
 UPSTREAM_GAPS_PATH = BASE_DIR / "upstream_school_gaps.json"
 
 
@@ -200,8 +204,14 @@ def match_school_zone(value: Any, region: str, candidates: list[tuple[str, str]]
     for part in parts:
         label = school_zone_label(part)
         for inactive_label in INACTIVE_ZONE_SCHOOL_LABELS:
-            if label.startswith(inactive_label) and inactive_label not in active_candidate_labels:
+            if inactive_label in active_candidate_labels:
+                continue
+            if label.startswith(inactive_label):
                 label = label[len(inactive_label) :]
+            elif label.endswith(inactive_label) and label[: -len(inactive_label)].endswith("초"):
+                # The closed school second in a joint zone. The remainder has to end a
+                # school name, so 서대원초 never loses 대원초.
+                label = label[: -len(inactive_label)]
         labels = [label]
         if region_prefix:
             labels.append(label.replace(region_prefix, ""))
