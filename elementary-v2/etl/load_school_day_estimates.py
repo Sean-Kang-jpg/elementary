@@ -82,6 +82,12 @@ REVIEW_SETS = [
      'estimates': '../pivot/p2_dismissal_estimates_stage3_20261021.json', 'care': '../pivot/p2_care_review_stage3_20261021.json',
      'clock_source': '학교알리미 15-라 방과후·돌봄 운영 계획 2026년 5월 공시(초1~2 맞춤형·돌봄 시간표)',
      'reviewed_on': '2026-10-21', 'confirmed': True},
+    # Seoul schools whose 2-가 had no bell schedule: Sonnet read 15-라 excerpts with a blind control set
+    # (docs/research/pivot/P2_SEOUL_DISMISSAL_READING_SPEC_20261112.md); stated times plus the program-start rule
+    {'name': 'seoul_15ra_20261112', 'clock': '../pivot/p2_school_day_review_seoul_20261112.json',
+     'estimates': '../pivot/p2_dismissal_estimates_seoul_20261112.json', 'care': '../pivot/p2_care_review_seoul_20261112.json',
+     'clock_source': '학교알리미 15-라 방과후·돌봄 운영 계획 2026년 5월 공시(초1~2 맞춤형·돌봄 시간표)',
+     'reviewed_on': '2026-11-12', 'confirmed': True},  # user confirmed 2026-11-14 (all 131, inferred shown as 추정)
 ]
 
 

@@ -1,0 +1,5063 @@
+{
+ "schema_version": 1,
+ "read_at": "2026-11-12",
+ "spec": "docs/research/pivot/P2_SEOUL_DISMISSAL_READING_SPEC_20261112.md",
+ "control_ids": [
+  "B000001881",
+  "B000001889",
+  "B000001898",
+  "B000001903",
+  "B000001905",
+  "B000001914",
+  "B000001919",
+  "B000001935",
+  "B000001949",
+  "B000001972",
+  "B000001989",
+  "B000001994",
+  "B000002048",
+  "B000002101",
+  "B000002102",
+  "B000002107",
+  "B000002113",
+  "B000002163",
+  "B000002169",
+  "B000002176",
+  "B000002178",
+  "B000002203",
+  "B000002205",
+  "B000002209",
+  "B000002257",
+  "B000002284",
+  "B000002296",
+  "B000002406",
+  "B000002411",
+  "B000002428"
+ ],
+ "readings": [
+  {
+   "school_id": "B000001970",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": "12:50",
+   "lunch_position": "after_p4",
+   "p5_end": "13:30",
+   "doc_periods": [
+    4,
+    5,
+    4,
+    5,
+    5
+   ],
+   "basis": "program_start",
+   "confidence": "low",
+   "lines": [
+    281,
+    282,
+    283
+   ],
+   "evidence": "맞춤형 요일별 시간 12:50~14:10 / 13:40~15:00 (월수 12:50, 화목금 13:40; 2학년표, 1~2학년 프로그램 공통)"
+  },
+  {
+   "school_id": "B000002005",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "none",
+   "confidence": "low",
+   "lines": [],
+   "evidence": "오후돌봄 13:00 숙제지도, 맞춤형 13:50~15:20 (요일 구분 없음)"
+  },
+  {
+   "school_id": "B000002328",
+   "p4_end": "12:50",
+   "lunch_start": "11:20",
+   "lunch_end": "12:10",
+   "lunch_position": "before_p4",
+   "p5_end": "13:40",
+   "doc_periods": [
+    4,
+    5,
+    5,
+    5,
+    4
+   ],
+   "basis": "stated",
+   "confidence": "high",
+   "lines": [
+    454,
+    455,
+    456,
+    457
+   ],
+   "evidence": "09:00~12:10 정규수업(3교시), 11:20~12:10 점심, 12:10~12:50 정규수업(4교시), 정규수업(5교시) 13:00~13:40"
+  },
+  {
+   "school_id": "B000002169",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "none",
+   "confidence": "low",
+   "lines": [],
+   "evidence": "1학년 맞춤형 시간표 요일 머리글 없음, 시작시각 불명"
+  },
+  {
+   "school_id": "B000001852",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "none",
+   "confidence": "low",
+   "lines": [],
+   "evidence": ""
+  },
+  {
+   "school_id": "B000001961",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": "12:50",
+   "lunch_position": "after_p4",
+   "p5_end": "13:30",
+   "doc_periods": [
+    4,
+    5,
+    5,
+    5,
+    4
+   ],
+   "basis": "program_start",
+   "confidence": "low",
+   "lines": [
+    18
+   ],
+   "evidence": "운영시간 월금 12:50 ~ 15:40 화수목 13:40 ~ 16:30"
+  },
+  {
+   "school_id": "B000002087",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": "12:50",
+   "lunch_position": "after_p4",
+   "p5_end": "13:30",
+   "doc_periods": [
+    4,
+    5,
+    5,
+    5,
+    4
+   ],
+   "basis": "program_start",
+   "confidence": "low",
+   "lines": [
+    21
+   ],
+   "evidence": "(12:50~14:30)월 ... (13:40~15:30)화수목 ... (12:50~14:30)금 맞춤형교실"
+  },
+  {
+   "school_id": "B000002428",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "none",
+   "confidence": "low",
+   "lines": [],
+   "evidence": ""
+  },
+  {
+   "school_id": "B000026371",
+   "p4_end": "12:10",
+   "lunch_start": "12:10",
+   "lunch_end": "12:50",
+   "lunch_position": "after_p4",
+   "p5_end": "13:50",
+   "doc_periods": [
+    5,
+    5,
+    4,
+    5,
+    4
+   ],
+   "basis": "stated",
+   "confidence": "high",
+   "lines": [
+    431,
+    432,
+    433,
+    451
+   ],
+   "evidence": "12:10-12:50 점심시간 / 12:50-13:50 정규수업 정규수업 인성독서 정규수업 창의공예 (1학년)"
+  },
+  {
+   "school_id": "B000001897",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "none",
+   "confidence": "low",
+   "lines": [],
+   "evidence": "1,2학년 맞춤형 13:00~15:30 (요일 구분 없음)"
+  },
+  {
+   "school_id": "B000002257",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": "13:00",
+   "lunch_position": "after_p4",
+   "p5_end": "13:40",
+   "doc_periods": [
+    5,
+    5,
+    4,
+    5,
+    4
+   ],
+   "basis": "stated",
+   "confidence": "medium",
+   "lines": [
+    119,
+    120
+   ],
+   "evidence": "맞춤형 1학년 13:00~13:40 | 정규수업 | 정규수업 | 프로그램 | 정규수업 | 프로그램"
+  },
+  {
+   "school_id": "B000001893",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "none",
+   "confidence": "low",
+   "lines": [],
+   "evidence": ""
+  },
+  {
+   "school_id": "B000001915",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": "12:50",
+   "lunch_position": "after_p4",
+   "p5_end": "13:25",
+   "doc_periods": [
+    4,
+    5,
+    5,
+    5,
+    4
+   ],
+   "basis": "program_start",
+   "confidence": "low",
+   "lines": [
+    189
+   ],
+   "evidence": "(월,금) 1교시 12:50-13:30 (화,수,목) 1교시 13:35-14:15 (1학년 맞춤형)"
+  },
+  {
+   "school_id": "B000002236",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": "12:40",
+   "lunch_position": "after_p4",
+   "p5_end": "13:10",
+   "doc_periods": [
+    5,
+    5,
+    4,
+    5,
+    4
+   ],
+   "basis": "program_start",
+   "confidence": "low",
+   "lines": [
+    775,
+    781,
+    801
+   ],
+   "evidence": "맞춤형 월화목 13:20~15:20 / 수금 12:40~14:40 (1~2학년)"
+  },
+  {
+   "school_id": "B000002110",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": "13:00",
+   "lunch_position": "after_p4",
+   "p5_end": "13:40",
+   "doc_periods": [
+    5,
+    5,
+    4,
+    5,
+    4
+   ],
+   "basis": "stated",
+   "confidence": "high",
+   "lines": [
+    68,
+    73
+   ],
+   "evidence": "1학년 맞춤형 13:00~13:40 | 정규수업 (5교시) | 정규수업 (5교시) | 조물락공작 | 정규수업 (5교시) | 종이접기"
+  },
+  {
+   "school_id": "B000002405",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": "12:50",
+   "lunch_position": "after_p4",
+   "p5_end": "13:30",
+   "doc_periods": [
+    4,
+    5,
+    5,
+    5,
+    4
+   ],
+   "basis": "program_start",
+   "confidence": "low",
+   "lines": [
+    54
+   ],
+   "evidence": "월금: 12:50~14:50 화수목: 13:40~15:40; 1-2학년 4교시 5교시 5교시 5교시 4교시"
+  },
+  {
+   "school_id": "B000001846",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": "12:40",
+   "lunch_position": "after_p4",
+   "p5_end": "13:30",
+   "doc_periods": [
+    5,
+    5,
+    5,
+    4,
+    4
+   ],
+   "basis": "program_start",
+   "confidence": "low",
+   "lines": [
+    22,
+    143
+   ],
+   "evidence": "월·화·수 13:30~13:40(출결확인) 13:40~ / 목·금 12:40~12:50(출결확인) 12:50~ (늘봄1반 1학년)"
+  },
+  {
+   "school_id": "B000002378",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "none",
+   "confidence": "low",
+   "lines": [],
+   "evidence": ""
+  },
+  {
+   "school_id": "B000002007",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "none",
+   "confidence": "low",
+   "lines": [],
+   "evidence": ""
+  },
+  {
+   "school_id": "B000002335",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": "13:00",
+   "lunch_position": "after_p4",
+   "p5_end": "13:30",
+   "doc_periods": [
+    5,
+    5,
+    4,
+    5,
+    4
+   ],
+   "basis": "program_start",
+   "confidence": "low",
+   "lines": [
+    685,
+    707
+   ],
+   "evidence": "운영 시간: 정규수업이후 (수,금) 13:00~15:00 (월,화,목) 13:40~15:40"
+  },
+  {
+   "school_id": "B000001918",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": "12:50",
+   "lunch_position": "after_p4",
+   "p5_end": "13:30",
+   "doc_periods": [
+    4,
+    5,
+    5,
+    5,
+    4
+   ],
+   "basis": "stated",
+   "confidence": "medium",
+   "lines": [
+    278
+   ],
+   "evidence": "12:50~13:30 | 페이퍼공작 | 정규수업 | 정규수업 | 정규수업 | 음악놀이"
+  },
+  {
+   "school_id": "B000002319",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": "13:10",
+   "lunch_position": "after_p4",
+   "p5_end": "13:40",
+   "doc_periods": [
+    4,
+    5,
+    5,
+    5,
+    4
+   ],
+   "basis": "program_start",
+   "confidence": "low",
+   "lines": [
+    472,
+    473,
+    477,
+    479
+   ],
+   "evidence": "1학년 맞춤형 월·금 1:10~2:30, 화·수·목 1:50~3:10"
+  },
+  {
+   "school_id": "B000002104",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "none",
+   "confidence": "low",
+   "lines": [],
+   "evidence": ""
+  },
+  {
+   "school_id": "B000002101",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "none",
+   "confidence": "low",
+   "lines": [],
+   "evidence": ""
+  },
+  {
+   "school_id": "B000002308",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": "13:00",
+   "lunch_position": "after_p4",
+   "p5_end": "13:30",
+   "doc_periods": [
+    4,
+    5,
+    5,
+    5,
+    4
+   ],
+   "basis": "program_start",
+   "confidence": "low",
+   "lines": [
+    78
+   ],
+   "evidence": "13:00(월,금) 13:40~50(화~목) 맞춤형 프로그램(초1~2학년) 및 방과후교실"
+  },
+  {
+   "school_id": "B000002078",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "none",
+   "confidence": "low",
+   "lines": [],
+   "evidence": ""
+  },
+  {
+   "school_id": "B000002388",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "none",
+   "confidence": "low",
+   "lines": [],
+   "evidence": "1학년 자료 아님(방과후 하교 시각만)"
+  },
+  {
+   "school_id": "B000002381",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "none",
+   "confidence": "low",
+   "lines": [],
+   "evidence": "방과후~13:40 요일 구분 없음"
+  },
+  {
+   "school_id": "B000002161",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": "12:50",
+   "lunch_position": "after_p4",
+   "p5_end": "13:20",
+   "doc_periods": [
+    4,
+    5,
+    4,
+    5,
+    5
+   ],
+   "basis": "program_start",
+   "confidence": "low",
+   "lines": [
+    868,
+    869,
+    874,
+    875
+   ],
+   "evidence": "늘봄1 5교시 12:50-13:30 (월·수 프로그램), 6교시 13:30-14:10 (화목금 시작)"
+  },
+  {
+   "school_id": "B000002353",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": "12:50",
+   "lunch_position": "after_p4",
+   "p5_end": "13:30",
+   "doc_periods": [
+    5,
+    4,
+    5,
+    4,
+    5
+   ],
+   "basis": "program_start",
+   "confidence": "low",
+   "lines": [
+    105,
+    106
+   ],
+   "evidence": "12:50~14:20 맞춤형 화·목 / 13:40~15:10 맞춤형 월·수·금"
+  },
+  {
+   "school_id": "B000002166",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": "13:00",
+   "lunch_position": "after_p4",
+   "p5_end": "13:40",
+   "doc_periods": [
+    4,
+    5,
+    5,
+    5,
+    4
+   ],
+   "basis": "program_start",
+   "confidence": "low",
+   "lines": [
+    284,
+    285
+   ],
+   "evidence": "(13:00~14:20) 맞춤형교실 | 정규수업 x3 | (13:00~14:20) / (13:50~15:10) 맞춤형교실 화수목"
+  },
+  {
+   "school_id": "B000002221",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "none",
+   "confidence": "low",
+   "lines": [],
+   "evidence": ""
+  },
+  {
+   "school_id": "B000002217",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": "13:00",
+   "lunch_position": "after_p4",
+   "p5_end": "13:40",
+   "doc_periods": [
+    4,
+    5,
+    5,
+    5,
+    4
+   ],
+   "basis": "stated",
+   "confidence": "medium",
+   "lines": [
+    105,
+    106,
+    118
+   ],
+   "evidence": "13:00~13:40 | 프로그램 | 정규수업 | 정규수업 | 정규수업 | 프로그램; 맞춤형 월·금 13:00 화수목 13:50"
+  },
+  {
+   "school_id": "B000001980",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "none",
+   "confidence": "low",
+   "lines": [],
+   "evidence": ""
+  },
+  {
+   "school_id": "B000001851",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": "13:10",
+   "lunch_position": "after_p4",
+   "p5_end": "13:40",
+   "doc_periods": [
+    4,
+    5,
+    4,
+    5,
+    5
+   ],
+   "basis": "program_start",
+   "confidence": "low",
+   "lines": [
+    17,
+    18
+   ],
+   "evidence": "맞춤형 운영시간 월, 수 13:10 ~ 14:30 / 화, 목, 금 13:50 ~ 15:10"
+  },
+  {
+   "school_id": "B000002111",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": "13:10",
+   "lunch_position": "after_p4",
+   "p5_end": "13:40",
+   "doc_periods": [
+    4,
+    4,
+    5,
+    5,
+    5
+   ],
+   "basis": "program_start",
+   "confidence": "low",
+   "lines": [
+    264,
+    266
+   ],
+   "evidence": "맞춤형 교실 1~2학년 월, 화 13:10 ~ 14:30 / 수, 목, 금 13:50 ~ 15:10"
+  },
+  {
+   "school_id": "B000002259",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "none",
+   "confidence": "low",
+   "lines": [],
+   "evidence": ""
+  },
+  {
+   "school_id": "B000001924",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": "13:00",
+   "lunch_position": "after_p4",
+   "p5_end": "13:40",
+   "doc_periods": [
+    4,
+    5,
+    5,
+    5,
+    4
+   ],
+   "basis": "program_start",
+   "confidence": "low",
+   "lines": [
+    267
+   ],
+   "evidence": "맞춤형 시간표 월 13:00~14:20 화수목 13:50~15:10 금 13:00~14:20"
+  },
+  {
+   "school_id": "B000002149",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "none",
+   "confidence": "low",
+   "lines": [],
+   "evidence": ""
+  },
+  {
+   "school_id": "B000001898",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "none",
+   "confidence": "low",
+   "lines": [],
+   "evidence": "1학년 요일별 시작시각 없음"
+  },
+  {
+   "school_id": "B000001957",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": "12:50",
+   "lunch_position": "after_p4",
+   "p5_end": "13:30",
+   "doc_periods": [
+    5,
+    5,
+    4,
+    5,
+    4
+   ],
+   "basis": "program_start",
+   "confidence": "low",
+   "lines": [
+    30
+   ],
+   "evidence": "맞춤형 1학년 월·화·목 13:40-15:00, 수·금 12:50-14:10"
+  },
+  {
+   "school_id": "B000002179",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": "13:00",
+   "lunch_position": "after_p4",
+   "p5_end": "13:40",
+   "doc_periods": [
+    5,
+    5,
+    5,
+    4,
+    4
+   ],
+   "basis": "program_start",
+   "confidence": "low",
+   "lines": [
+    170
+   ],
+   "evidence": "맞춤형 교실 월화수13:50~15:10 목금13:00~14:20"
+  },
+  {
+   "school_id": "B000001914",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": "13:00",
+   "lunch_position": "after_p4",
+   "p5_end": "13:45",
+   "doc_periods": [
+    4,
+    5,
+    4,
+    5,
+    5
+   ],
+   "basis": "stated",
+   "confidence": "high",
+   "lines": [
+    233,
+    234,
+    658
+   ],
+   "evidence": "09:00~13:00 정규수업(4교시)|(5교시)|(4교시)|(5교시)|(5교시); 13:05~13:45 정규수업(5교시)"
+  },
+  {
+   "school_id": "B000001960",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "none",
+   "confidence": "low",
+   "lines": [],
+   "evidence": ""
+  },
+  {
+   "school_id": "B000002360",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": "12:50",
+   "lunch_position": "after_p4",
+   "p5_end": "13:30",
+   "doc_periods": [
+    4,
+    5,
+    5,
+    5,
+    4
+   ],
+   "basis": "stated",
+   "confidence": "medium",
+   "lines": [
+    10
+   ],
+   "evidence": "12:50~13:30 월 입실/출석확인 | 정규수업/수업준비 x3 | 금 입실/출석확인 (돌봄 일과표)"
+  },
+  {
+   "school_id": "B000001942",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": "13:00",
+   "lunch_position": "after_p4",
+   "p5_end": "13:50",
+   "doc_periods": [
+    5,
+    5,
+    4,
+    5,
+    4
+   ],
+   "basis": "stated",
+   "confidence": "medium",
+   "lines": [
+    144
+   ],
+   "evidence": "1:00~1:50 정규수업 정규수업 보드게임 정규수업 미술공작 (맞춤형1실)"
+  },
+  {
+   "school_id": "B000001850",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": "12:50",
+   "lunch_position": "after_p4",
+   "p5_end": "13:30",
+   "doc_periods": [
+    4,
+    5,
+    5,
+    5,
+    4
+   ],
+   "basis": "program_start",
+   "confidence": "low",
+   "lines": [
+    158
+   ],
+   "evidence": "맞춤형교실 1학년 월 12:50~14:30 | 화 13:40~15:30 | 수 13:40 | 목 13:40 | 금 12:50~14:30"
+  },
+  {
+   "school_id": "B000002389",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "none",
+   "confidence": "low",
+   "lines": [],
+   "evidence": "돌봄 일과표에 13:00~14:10 정규수업/휴식 화수만 있고 1학년 시각 불명확"
+  },
+  {
+   "school_id": "B000002336",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "none",
+   "confidence": "low",
+   "lines": [],
+   "evidence": ""
+  },
+  {
+   "school_id": "B000002365",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": "12:50",
+   "lunch_position": "after_p4",
+   "p5_end": "13:30",
+   "doc_periods": [
+    4,
+    5,
+    5,
+    5,
+    4
+   ],
+   "basis": "stated",
+   "confidence": "high",
+   "lines": [
+    437
+   ],
+   "evidence": "맞춤형 1학년 12:50~13:30 | 전래놀이 | 정규수업 | 정규수업 | 정규수업 | 책놀이"
+  },
+  {
+   "school_id": "B000001954",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": "12:40",
+   "lunch_position": "after_p4",
+   "p5_end": "13:20",
+   "doc_periods": [
+    4,
+    5,
+    5,
+    5,
+    4
+   ],
+   "basis": "program_start",
+   "confidence": "low",
+   "lines": [
+    80
+   ],
+   "evidence": "1학년 맞춤형 월·금 수업 전 준비 12:40~13:00, 화수목 '1,2학년 정규수업 5교시 진행' 후 13:20~13:40 준비"
+  },
+  {
+   "school_id": "B000002348",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": "12:50",
+   "lunch_position": "after_p4",
+   "p5_end": "13:30",
+   "doc_periods": [
+    4,
+    5,
+    5,
+    5,
+    4
+   ],
+   "basis": "stated",
+   "confidence": "low",
+   "lines": [
+    504
+   ],
+   "evidence": "12:50(4교시~) 13:30(5교시~) | 1, 2학년(4교시) | 5교시 | 5교시 | ... 1, 2학년(5교시)"
+  },
+  {
+   "school_id": "B000001995",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": "12:50",
+   "lunch_position": "after_p4",
+   "p5_end": "13:30",
+   "doc_periods": [
+    4,
+    5,
+    5,
+    5,
+    4
+   ],
+   "basis": "stated",
+   "confidence": "medium",
+   "lines": [
+    170,
+    171,
+    201,
+    202
+   ],
+   "evidence": "1~2학년 4교시|5교시|5교시|5교시|4교시; 맞춤형 월,금 12:50 화,수,목 13:30"
+  },
+  {
+   "school_id": "B000002268",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "none",
+   "confidence": "low",
+   "lines": [],
+   "evidence": ""
+  },
+  {
+   "school_id": "B000001885",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": "13:05",
+   "lunch_position": "after_p4",
+   "p5_end": "13:40",
+   "doc_periods": [
+    5,
+    5,
+    4,
+    5,
+    4
+   ],
+   "basis": "program_start",
+   "confidence": "low",
+   "lines": [
+    80,
+    81,
+    82
+   ],
+   "evidence": "1학년 1교시 월화목 13:50~14:30, 수·금 13:05~13:45"
+  },
+  {
+   "school_id": "B000002006",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": "12:30",
+   "lunch_position": "after_p4",
+   "p5_end": "13:20",
+   "doc_periods": [
+    4,
+    5,
+    5,
+    5,
+    4
+   ],
+   "basis": "program_start",
+   "confidence": "low",
+   "lines": [
+    125,
+    126,
+    332,
+    339
+   ],
+   "evidence": "맞춤형 운영시간 (월, 금) 12:30 ∼ 14:30 (화, 수, 목) 13:30 ~ 15:30"
+  },
+  {
+   "school_id": "B000002199",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "none",
+   "confidence": "low",
+   "lines": [],
+   "evidence": ""
+  },
+  {
+   "school_id": "B000001869",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "none",
+   "confidence": "low",
+   "lines": [],
+   "evidence": ""
+  },
+  {
+   "school_id": "B000002367",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": "12:50",
+   "lunch_position": "after_p4",
+   "p5_end": "13:40",
+   "doc_periods": [
+    5,
+    5,
+    4,
+    5,
+    4
+   ],
+   "basis": "stated",
+   "confidence": "high",
+   "lines": [
+    606,
+    409
+   ],
+   "evidence": "1~2학년 정규수업 종료 수금12:50 월화목13:40"
+  },
+  {
+   "school_id": "B000001985",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": "12:50",
+   "lunch_position": "after_p4",
+   "p5_end": "13:30",
+   "doc_periods": [
+    4,
+    5,
+    4,
+    5,
+    5
+   ],
+   "basis": "program_start",
+   "confidence": "low",
+   "lines": [
+    9
+   ],
+   "evidence": "월 12:50~14:10 화 13:40~15:00 수 12:50~14:10 목 13:40~15:00 금 13:40~15:00 (늘봄교실)"
+  },
+  {
+   "school_id": "B000002171",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "none",
+   "confidence": "low",
+   "lines": [],
+   "evidence": ""
+  },
+  {
+   "school_id": "B000001947",
+   "p4_end": "12:10",
+   "lunch_start": "12:10",
+   "lunch_end": "12:50",
+   "lunch_position": "after_p4",
+   "p5_end": "13:50",
+   "doc_periods": [
+    4,
+    5,
+    5,
+    5,
+    4
+   ],
+   "basis": "stated",
+   "confidence": "high",
+   "lines": [
+    510,
+    511,
+    512
+   ],
+   "evidence": "12:10~12:50 점심시간 / 13:00~13:50 신체놀이 | 정규수업 (5교시) x3 | 놀이연극"
+  },
+  {
+   "school_id": "B000002222",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "none",
+   "confidence": "low",
+   "lines": [],
+   "evidence": ""
+  },
+  {
+   "school_id": "B000002008",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": "12:40",
+   "lunch_position": "after_p4",
+   "p5_end": "13:40",
+   "doc_periods": [
+    4,
+    5,
+    5,
+    5,
+    4
+   ],
+   "basis": "stated",
+   "confidence": "low",
+   "lines": [
+    280,
+    281
+   ],
+   "evidence": "1학년 늘봄교실 12:40~13:40 | 연극놀이 | 정규수업 | (빈칸) | (빈칸) | 신나는책놀이"
+  },
+  {
+   "school_id": "B000002100",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "none",
+   "confidence": "low",
+   "lines": [],
+   "evidence": "2025학년도 자료 위주, 시각 없음"
+  },
+  {
+   "school_id": "B000001889",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "none",
+   "confidence": "low",
+   "lines": [],
+   "evidence": ""
+  },
+  {
+   "school_id": "B000002139",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "none",
+   "confidence": "low",
+   "lines": [],
+   "evidence": ""
+  },
+  {
+   "school_id": "B000002327",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "none",
+   "confidence": "low",
+   "lines": [],
+   "evidence": ""
+  },
+  {
+   "school_id": "B000001950",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": "12:50",
+   "lunch_position": "after_p4",
+   "p5_end": "13:40",
+   "doc_periods": [
+    5,
+    4,
+    5,
+    4,
+    5
+   ],
+   "basis": "stated",
+   "confidence": "medium",
+   "lines": [
+    401
+   ],
+   "evidence": "늘봄교실1 학기중 12:50~13:40 | 정규수업 | 세계여행 | 정규수업 | 실력쑥쑥 | 정규수업"
+  },
+  {
+   "school_id": "B000002423",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "none",
+   "confidence": "low",
+   "lines": [],
+   "evidence": ""
+  },
+  {
+   "school_id": "B000001888",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "none",
+   "confidence": "low",
+   "lines": [],
+   "evidence": ""
+  },
+  {
+   "school_id": "B000001996",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "none",
+   "confidence": "low",
+   "lines": [],
+   "evidence": "정규수업 후 ~13:50 요일 구분 없음(돌봄)"
+  },
+  {
+   "school_id": "B000002306",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": "12:50",
+   "lunch_position": "after_p4",
+   "p5_end": "13:30",
+   "doc_periods": [
+    4,
+    5,
+    5,
+    5,
+    4
+   ],
+   "basis": "program_start",
+   "confidence": "low",
+   "lines": [
+    80
+   ],
+   "evidence": "학기중 월,금 12:50~14:50 화,수,목 13:40~15:40 (맞춤형교실)"
+  },
+  {
+   "school_id": "B000001969",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "none",
+   "confidence": "low",
+   "lines": [],
+   "evidence": ""
+  },
+  {
+   "school_id": "B000002154",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "none",
+   "confidence": "low",
+   "lines": [],
+   "evidence": ""
+  },
+  {
+   "school_id": "B000002205",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": "12:50",
+   "lunch_position": "after_p4",
+   "p5_end": "13:30",
+   "doc_periods": [
+    4,
+    5,
+    5,
+    5,
+    4
+   ],
+   "basis": "stated",
+   "confidence": "medium",
+   "lines": [
+    84,
+    88
+   ],
+   "evidence": "12:50~13:30 정규수업 (화~목 병합), 월,금: 4교시 이후 맞춤형 / 화,수,목: 5교시 이후"
+  },
+  {
+   "school_id": "B000002160",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "none",
+   "confidence": "low",
+   "lines": [],
+   "evidence": ""
+  },
+  {
+   "school_id": "B000002247",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": "12:40",
+   "lunch_position": "after_p4",
+   "p5_end": "13:30",
+   "doc_periods": [
+    4,
+    5,
+    5,
+    5,
+    4
+   ],
+   "basis": "stated",
+   "confidence": "high",
+   "lines": [
+    91
+   ],
+   "evidence": "09:00~12:40 정규수업(4교시 기준) / 12:50~13:30 정규수업(5교시) 화수목"
+  },
+  {
+   "school_id": "B000002359",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "none",
+   "confidence": "low",
+   "lines": [],
+   "evidence": ""
+  },
+  {
+   "school_id": "B000002334",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "none",
+   "confidence": "low",
+   "lines": [],
+   "evidence": ""
+  },
+  {
+   "school_id": "B000002047",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "none",
+   "confidence": "low",
+   "lines": [],
+   "evidence": ""
+  },
+  {
+   "school_id": "B000002385",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": "12:50",
+   "lunch_position": "after_p4",
+   "p5_end": "13:40",
+   "doc_periods": [
+    4,
+    5,
+    4,
+    5,
+    5
+   ],
+   "basis": "stated",
+   "confidence": "high",
+   "lines": [
+    273,
+    274
+   ],
+   "evidence": "09:00~12:50 정규수업(1~4교시); 13:00~13:40 화,목,금 정규수업(5교시)"
+  },
+  {
+   "school_id": "B000001867",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": "13:00",
+   "lunch_position": "after_p4",
+   "p5_end": "13:30",
+   "doc_periods": [
+    5,
+    4,
+    4,
+    5,
+    5
+   ],
+   "basis": "program_start",
+   "confidence": "low",
+   "lines": [
+    41
+   ],
+   "evidence": "월,목,금: 13:40~ 화,수: 13:00~ (운영시간)"
+  },
+  {
+   "school_id": "B000002004",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "none",
+   "confidence": "low",
+   "lines": [],
+   "evidence": ""
+  },
+  {
+   "school_id": "B000002145",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "none",
+   "confidence": "low",
+   "lines": [],
+   "evidence": ""
+  },
+  {
+   "school_id": "B000002345",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": "12:40",
+   "lunch_position": "after_p4",
+   "p5_end": "13:20",
+   "doc_periods": [
+    5,
+    5,
+    4,
+    5,
+    4
+   ],
+   "basis": "stated",
+   "confidence": "medium",
+   "lines": [
+    64,
+    65
+   ],
+   "evidence": "12:40~13:20 교실수업(월,화,목) / 수,금 맞춤형교실 수업"
+  },
+  {
+   "school_id": "B000002397",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": "after_p4",
+   "p5_end": "13:30",
+   "doc_periods": [
+    4,
+    5,
+    5,
+    5,
+    4
+   ],
+   "basis": "stated",
+   "confidence": "medium",
+   "lines": [
+    50
+   ],
+   "evidence": "방과후~13:30 출석확인,독서(월,금) / 정규수업(화,수,목)"
+  },
+  {
+   "school_id": "B000002363",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": "12:50",
+   "lunch_position": "after_p4",
+   "p5_end": "13:30",
+   "doc_periods": [
+    4,
+    5,
+    5,
+    5,
+    4
+   ],
+   "basis": "program_start",
+   "confidence": "medium",
+   "lines": [
+    72,
+    257
+   ],
+   "evidence": "늘봄 12:50~2:10 월,금 프로그램 / 화수목 5교시, 1:40~3:00"
+  },
+  {
+   "school_id": "B000001903",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "none",
+   "confidence": "low",
+   "lines": [],
+   "evidence": ""
+  },
+  {
+   "school_id": "B000002077",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "none",
+   "confidence": "low",
+   "lines": [],
+   "evidence": ""
+  },
+  {
+   "school_id": "B000002341",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "none",
+   "confidence": "low",
+   "lines": [],
+   "evidence": ""
+  },
+  {
+   "school_id": "B000002232",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "none",
+   "confidence": "low",
+   "lines": [],
+   "evidence": ""
+  },
+  {
+   "school_id": "B000002114",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": "13:00",
+   "lunch_position": "after_p4",
+   "p5_end": "13:30",
+   "doc_periods": [
+    4,
+    5,
+    4,
+    5,
+    5
+   ],
+   "basis": "program_start",
+   "confidence": "low",
+   "lines": [
+    38
+   ],
+   "evidence": "맞춤형교실 1.2학년 월,수 13:00~14:30 / 화,목,금 13:40~15:10"
+  },
+  {
+   "school_id": "B000001842",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "none",
+   "confidence": "low",
+   "lines": [],
+   "evidence": ""
+  },
+  {
+   "school_id": "B000001971",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": "12:50",
+   "lunch_position": "after_p4",
+   "p5_end": "13:30",
+   "doc_periods": [
+    4,
+    5,
+    5,
+    5,
+    4
+   ],
+   "basis": "program_start",
+   "confidence": "low",
+   "lines": [
+    411
+   ],
+   "evidence": "맞춤형 (월, 금) 12:50 ~ 14:10 / (화, 수, 목) 13:40 ~ 15:00"
+  },
+  {
+   "school_id": "B000001905",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": "12:50",
+   "lunch_position": "after_p4",
+   "p5_end": "13:40",
+   "doc_periods": [
+    4,
+    5,
+    5,
+    5,
+    4
+   ],
+   "basis": "stated",
+   "confidence": "medium",
+   "lines": [
+    96,
+    101
+   ],
+   "evidence": "4교시 12:50 / 5교시 13:40 (월금 12:50, 화수목 13:40)"
+  },
+  {
+   "school_id": "B000002386",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "none",
+   "confidence": "low",
+   "lines": [],
+   "evidence": ""
+  },
+  {
+   "school_id": "B000024031",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "none",
+   "confidence": "low",
+   "lines": [],
+   "evidence": ""
+  },
+  {
+   "school_id": "B000002318",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "none",
+   "confidence": "low",
+   "lines": [],
+   "evidence": ""
+  },
+  {
+   "school_id": "B000024775",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": "13:10",
+   "lunch_position": "after_p4",
+   "p5_end": "13:40",
+   "doc_periods": [
+    4,
+    5,
+    5,
+    5,
+    4
+   ],
+   "basis": "program_start",
+   "confidence": "low",
+   "lines": [
+    115,
+    116,
+    118
+   ],
+   "evidence": "맞춤형 월 13:10~14:30, 화 13:50~15:10, 금 13:10~14:30"
+  },
+  {
+   "school_id": "B000002332",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": "13:00",
+   "lunch_position": "after_p4",
+   "p5_end": "13:30",
+   "doc_periods": [
+    4,
+    5,
+    5,
+    5,
+    4
+   ],
+   "basis": "program_start",
+   "confidence": "medium",
+   "lines": [
+    528
+   ],
+   "evidence": "(월,금) 13:00~14:20 (화,수,목) 13:40~15:00, 정규 5교시 화수목"
+  },
+  {
+   "school_id": "B000002031",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "none",
+   "confidence": "low",
+   "lines": [],
+   "evidence": ""
+  },
+  {
+   "school_id": "B000002151",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": "12:45",
+   "lunch_position": "after_p4",
+   "p5_end": "13:20",
+   "doc_periods": [
+    4,
+    5,
+    5,
+    5,
+    4
+   ],
+   "basis": "program_start",
+   "confidence": "low",
+   "lines": [
+    114
+   ],
+   "evidence": "맞춤형 1반 월,금 12:45-14:45 / 화~목 13:30-15:30"
+  },
+  {
+   "school_id": "B000002422",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": "after_p4",
+   "p5_end": "13:40",
+   "doc_periods": [
+    4,
+    5,
+    5,
+    5,
+    4
+   ],
+   "basis": "stated",
+   "confidence": "medium",
+   "lines": [
+    81
+   ],
+   "evidence": "방과후 ~13:40: 월,금 맞춤형 방과후 프로그램 / 화,수,목 정규수업"
+  },
+  {
+   "school_id": "B000002395",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": "13:00",
+   "lunch_position": "after_p4",
+   "p5_end": "13:40",
+   "doc_periods": [
+    4,
+    5,
+    5,
+    5,
+    4
+   ],
+   "basis": "program_start",
+   "confidence": "low",
+   "lines": [
+    682
+   ],
+   "evidence": "13:00 ~ 16:00(월,금) 13:50 ~ 16:00(화,수,목) 맞춤형"
+  },
+  {
+   "school_id": "B000001922",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "none",
+   "confidence": "low",
+   "lines": [],
+   "evidence": ""
+  },
+  {
+   "school_id": "B000001881",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": "13:00",
+   "lunch_position": "after_p4",
+   "p5_end": "13:50",
+   "doc_periods": [
+    4,
+    5,
+    4,
+    5,
+    5
+   ],
+   "basis": "stated",
+   "confidence": "high",
+   "lines": [
+    212,
+    213
+   ],
+   "evidence": "9:00~13:00 정규수업(4교시) 월,수 / 13:10~13:50 정규수업(5교시) 화,목,금"
+  },
+  {
+   "school_id": "B000001965",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "none",
+   "confidence": "low",
+   "lines": [],
+   "evidence": ""
+  },
+  {
+   "school_id": "B000002238",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": "13:00",
+   "lunch_position": "after_p4",
+   "p5_end": "13:40",
+   "doc_periods": [
+    4,
+    5,
+    5,
+    5,
+    4
+   ],
+   "basis": "stated",
+   "confidence": "medium",
+   "lines": [
+    71,
+    504
+   ],
+   "evidence": "방과후~13:00 (방과후~13:40) 5교시 화수목; 맞춤형 월,금 13:00 / 화~목 13:50"
+  },
+  {
+   "school_id": "B000001966",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "none",
+   "confidence": "low",
+   "lines": [],
+   "evidence": ""
+  },
+  {
+   "school_id": "B000002086",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": "12:55",
+   "lunch_position": "after_p4",
+   "p5_end": "13:35",
+   "doc_periods": [
+    5,
+    5,
+    4,
+    5,
+    4
+   ],
+   "basis": "stated",
+   "confidence": "high",
+   "lines": [
+    171
+   ],
+   "evidence": "12:55~13:35 정규수업 월,화,목 / 수,금 맞춤형 프로그램"
+  },
+  {
+   "school_id": "B000001872",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "none",
+   "confidence": "low",
+   "lines": [],
+   "evidence": ""
+  },
+  {
+   "school_id": "B000022762",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": "13:00",
+   "lunch_position": "after_p4",
+   "p5_end": "13:40",
+   "doc_periods": [
+    5,
+    5,
+    4,
+    5,
+    4
+   ],
+   "basis": "program_start",
+   "confidence": "low",
+   "lines": [
+    31
+   ],
+   "evidence": "월, 화, 목 13:50 ~ 15:20 / 수, 금 13:00~ 14:30 (정규수업 후)"
+  },
+  {
+   "school_id": "B000002296",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": "12:50",
+   "lunch_position": "after_p4",
+   "p5_end": "13:40",
+   "doc_periods": [
+    4,
+    5,
+    4,
+    5,
+    5
+   ],
+   "basis": "stated",
+   "confidence": "high",
+   "lines": [
+    198
+   ],
+   "evidence": "정규수업 하교 시간 월,수: 12:50 / 화,목,금: 13:40"
+  },
+  {
+   "school_id": "B000002233",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": "12:40",
+   "lunch_position": "after_p4",
+   "p5_end": "13:30",
+   "doc_periods": [
+    4,
+    5,
+    5,
+    5,
+    4
+   ],
+   "basis": "stated",
+   "confidence": "high",
+   "lines": [
+    127
+   ],
+   "evidence": "~12:40(월,금) ~13:30(화,수,목) 정규수업"
+  },
+  {
+   "school_id": "B000001997",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "none",
+   "confidence": "low",
+   "lines": [],
+   "evidence": ""
+  },
+  {
+   "school_id": "B000001934",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": "13:00",
+   "lunch_position": "after_p4",
+   "p5_end": "13:50",
+   "doc_periods": [
+    4,
+    5,
+    5,
+    5,
+    4
+   ],
+   "basis": "stated",
+   "confidence": "medium",
+   "lines": [
+    32,
+    107
+   ],
+   "evidence": "~1:00 (1:50) 월,금 맞춤형 / 화,수,목 정규수업; 방과후 월,금 13:10, 화수목 14:00"
+  },
+  {
+   "school_id": "B000002377",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "none",
+   "confidence": "low",
+   "lines": [],
+   "evidence": ""
+  },
+  {
+   "school_id": "B000025384",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": "13:00",
+   "lunch_position": "after_p4",
+   "p5_end": "13:40",
+   "doc_periods": [
+    5,
+    5,
+    5,
+    4,
+    4
+   ],
+   "basis": "program_start",
+   "confidence": "medium",
+   "lines": [
+    63,
+    64
+   ],
+   "evidence": "13:00~ 정규수업(5교시) 월~수 / (월화수) 13:50~15:10 (목금) 13:00~14:20"
+  },
+  {
+   "school_id": "B000002399",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "none",
+   "confidence": "low",
+   "lines": [],
+   "evidence": ""
+  },
+  {
+   "school_id": "B000002172",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "none",
+   "confidence": "low",
+   "lines": [],
+   "evidence": ""
+  },
+  {
+   "school_id": "B000002391",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "none",
+   "confidence": "low",
+   "lines": [],
+   "evidence": ""
+  },
+  {
+   "school_id": "B000002202",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "none",
+   "confidence": "low",
+   "lines": [],
+   "evidence": ""
+  },
+  {
+   "school_id": "B000002091",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": "13:00",
+   "lunch_position": "after_p4",
+   "p5_end": "13:40",
+   "doc_periods": [
+    4,
+    5,
+    4,
+    5,
+    5
+   ],
+   "basis": "stated",
+   "confidence": "high",
+   "lines": [
+    128
+   ],
+   "evidence": "13:00~13:40 뉴스포츠 | 정규수업 | 요가 | 정규수업 | 정규수업"
+  },
+  {
+   "school_id": "B000001853",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": "12:50",
+   "lunch_position": "after_p4",
+   "p5_end": "13:30",
+   "doc_periods": [
+    5,
+    5,
+    4,
+    5,
+    5
+   ],
+   "basis": "stated",
+   "confidence": "medium",
+   "lines": [
+    236,
+    237
+   ],
+   "evidence": "12:50~13:30 정규수업 월,화,목,금(병합 추정) / 수 창의체육"
+  },
+  {
+   "school_id": "B000002347",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": "13:00",
+   "lunch_position": "after_p4",
+   "p5_end": "13:40",
+   "doc_periods": [
+    4,
+    5,
+    4,
+    5,
+    5
+   ],
+   "basis": "stated",
+   "confidence": "high",
+   "lines": [
+    358,
+    359
+   ],
+   "evidence": "월,수 13:00~14:20 / 화,목,금 13:00~13:40 정규수업, 13:50~15:10 맞춤형"
+  },
+  {
+   "school_id": "B000001998",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": "13:00",
+   "lunch_position": "after_p4",
+   "p5_end": "13:40",
+   "doc_periods": [
+    5,
+    5,
+    4,
+    5,
+    4
+   ],
+   "basis": "stated",
+   "confidence": "medium",
+   "lines": [
+    71,
+    72
+   ],
+   "evidence": "5교시 (13:00~13:40) 칸이 수,금에만 프로그램, 월,화,목은 공란"
+  },
+  {
+   "school_id": "B000002026",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": "12:50",
+   "lunch_position": "after_p4",
+   "p5_end": "13:40",
+   "doc_periods": [
+    4,
+    5,
+    4,
+    5,
+    5
+   ],
+   "basis": "program_start",
+   "confidence": "low",
+   "lines": [
+    163
+   ],
+   "evidence": "맞춤형 월, 수요일-12:50~14:20 화, 목, 금요일-13:50~15:20"
+  },
+  {
+   "school_id": "B000002176",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "none",
+   "confidence": "low",
+   "lines": [],
+   "evidence": ""
+  },
+  {
+   "school_id": "B000002242",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "none",
+   "confidence": "low",
+   "lines": [],
+   "evidence": ""
+  },
+  {
+   "school_id": "B000001838",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "none",
+   "confidence": "low",
+   "lines": [],
+   "evidence": ""
+  },
+  {
+   "school_id": "B000002372",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": "12:50",
+   "lunch_position": "after_p4",
+   "p5_end": "13:30",
+   "doc_periods": [
+    5,
+    5,
+    4,
+    5,
+    4
+   ],
+   "basis": "program_start",
+   "confidence": "low",
+   "lines": [
+    204
+   ],
+   "evidence": "2학년 B반 수업시간 13:40~15:00(월,화,목) 12:50~14:10(수,금)"
+  },
+  {
+   "school_id": "B000002235",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "none",
+   "confidence": "low",
+   "lines": [],
+   "evidence": ""
+  },
+  {
+   "school_id": "B000002380",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": "13:00",
+   "lunch_position": "after_p4",
+   "p5_end": "13:40",
+   "doc_periods": [
+    4,
+    5,
+    5,
+    5,
+    4
+   ],
+   "basis": "stated",
+   "confidence": "high",
+   "lines": [
+    280,
+    293
+   ],
+   "evidence": "13:00~13:40 맞춤형교실 | 정규수업 | 정규수업 | 정규수업 | 맞춤형교실"
+  },
+  {
+   "school_id": "B000001894",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": "13:00",
+   "lunch_position": "after_p4",
+   "p5_end": "13:40",
+   "doc_periods": [
+    4,
+    5,
+    4,
+    5,
+    5
+   ],
+   "basis": "stated",
+   "confidence": "high",
+   "lines": [
+    132,
+    133
+   ],
+   "evidence": "09:00~13:00 정규수업(4교시) 월,수 / 13:00~13:40 정규수업(5교시) 화,목,금"
+  },
+  {
+   "school_id": "B000025891",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "none",
+   "confidence": "low",
+   "lines": [],
+   "evidence": ""
+  },
+  {
+   "school_id": "B000002092",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "none",
+   "confidence": "low",
+   "lines": [],
+   "evidence": ""
+  },
+  {
+   "school_id": "B000001953",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": "13:00",
+   "lunch_position": "after_p4",
+   "p5_end": "13:40",
+   "doc_periods": [
+    4,
+    5,
+    5,
+    5,
+    4
+   ],
+   "basis": "stated",
+   "confidence": "high",
+   "lines": [
+    40,
+    430
+   ],
+   "evidence": "13:00~13:40 정규수업(5교시) 화~목 / 화요일 학교수업(~13:40)"
+  },
+  {
+   "school_id": "B000002368",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": "12:50",
+   "lunch_position": "after_p4",
+   "p5_end": "13:30",
+   "doc_periods": [
+    5,
+    5,
+    4,
+    5,
+    4
+   ],
+   "basis": "program_start",
+   "confidence": "low",
+   "lines": [
+    57
+   ],
+   "evidence": "맞춤형 13:40~15:30 (월,화,목) / 12:50~14:40 (수,금)"
+  },
+  {
+   "school_id": "B000001943",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": "13:00",
+   "lunch_position": "after_p4",
+   "p5_end": "13:50",
+   "doc_periods": [
+    5,
+    5,
+    4,
+    5,
+    4
+   ],
+   "basis": "stated",
+   "confidence": "high",
+   "lines": [
+    31,
+    36
+   ],
+   "evidence": "13:00~13:50 5교시수업 월,화,목 / 수,금 맞춤형"
+  },
+  {
+   "school_id": "B000002321",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "none",
+   "confidence": "low",
+   "lines": [],
+   "evidence": ""
+  },
+  {
+   "school_id": "B000002184",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "none",
+   "confidence": "low",
+   "lines": [],
+   "evidence": ""
+  },
+  {
+   "school_id": "B000002117",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": "12:30",
+   "lunch_position": "after_p4",
+   "p5_end": "13:20",
+   "doc_periods": [
+    5,
+    5,
+    4,
+    5,
+    4
+   ],
+   "basis": "stated",
+   "confidence": "high",
+   "lines": [
+    177,
+    178
+   ],
+   "evidence": "11:50-12:30 정규수업(4교시) 수,금 / 12:40-13:20 정규수업(5교시) 월,화,목"
+  },
+  {
+   "school_id": "B000001892",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "none",
+   "confidence": "low",
+   "lines": [],
+   "evidence": ""
+  },
+  {
+   "school_id": "B000001935",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": "12:40",
+   "lunch_position": "after_p4",
+   "p5_end": "13:40",
+   "doc_periods": [
+    4,
+    5,
+    5,
+    5,
+    4
+   ],
+   "basis": "stated",
+   "confidence": "high",
+   "lines": [
+    116
+   ],
+   "evidence": "12:40~13:40 놀이음악 | 정규수업 | 정규수업 | 정규수업 | 창의미술"
+  },
+  {
+   "school_id": "B000002291",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": "12:50",
+   "lunch_position": "after_p4",
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "stated",
+   "confidence": "medium",
+   "lines": [
+    1872
+   ],
+   "evidence": "08:40~12:50 | 정규수업"
+  },
+  {
+   "school_id": "B000002312",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": "13:00",
+   "lunch_position": "after_p4",
+   "p5_end": "13:40",
+   "doc_periods": [
+    4,
+    5,
+    5,
+    5,
+    4
+   ],
+   "basis": "stated",
+   "confidence": "low",
+   "lines": [
+    338
+   ],
+   "evidence": "13:00~13:40 | 1G 책놀이 2G 놀이체육 | 정규수업 | 정규수업 | 정규수업 | 1G 놀이체육"
+  },
+  {
+   "school_id": "B000002354",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": "13:00",
+   "lunch_position": "after_p4",
+   "p5_end": "13:40",
+   "doc_periods": [
+    4,
+    5,
+    5,
+    5,
+    4
+   ],
+   "basis": "program_start",
+   "confidence": "low",
+   "lines": [
+    142,
+    144,
+    150
+   ],
+   "evidence": "책놀이 월 1학년 1교시 13:00~13:40 / 신체놀이 화 1교시 13:50~14:30"
+  },
+  {
+   "school_id": "B000002181",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "none",
+   "confidence": "low",
+   "lines": [
+    36
+   ],
+   "evidence": "적응기간 중 ... 2학년,돌봄 (월수 13:00~, 화목금 13:50~) 맞춤형교실"
+  },
+  {
+   "school_id": "B000002370",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "none",
+   "confidence": "low",
+   "lines": [],
+   "evidence": ""
+  },
+  {
+   "school_id": "B000001870",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "none",
+   "confidence": "low",
+   "lines": [
+    138
+   ],
+   "evidence": "맞춤형교실 1 | 1학년 | 월, 수, 금 - 방과후~15:00 화, 목 - 방과후~14:20"
+  },
+  {
+   "school_id": "B000002419",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": "13:00",
+   "lunch_position": "after_p4",
+   "p5_end": "13:40",
+   "doc_periods": [
+    5,
+    4,
+    5,
+    4,
+    5
+   ],
+   "basis": "program_start",
+   "confidence": "low",
+   "lines": [
+    74,
+    236
+   ],
+   "evidence": "월,수,금 13:50~14:30 ... 화,목 13:10~13:50 | 정규수업 ; 방과후 ~13:00"
+  },
+  {
+   "school_id": "B000002113",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": "12:50",
+   "lunch_position": "after_p4",
+   "p5_end": "13:40",
+   "doc_periods": [
+    4,
+    5,
+    5,
+    5,
+    4
+   ],
+   "basis": "stated",
+   "confidence": "medium",
+   "lines": [
+    35
+   ],
+   "evidence": "정규수업 후 2시간 (월, 금 – 12:50 ~ 14:50 / 화, 수, 목 - 13:40~15:40)"
+  },
+  {
+   "school_id": "B000002001",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": "13:00",
+   "lunch_position": "after_p4",
+   "p5_end": "13:40",
+   "doc_periods": [
+    4,
+    5,
+    5,
+    4,
+    5
+   ],
+   "basis": "stated",
+   "confidence": "high",
+   "lines": [
+    180
+   ],
+   "evidence": "1학년 | 13:00~13:40 | 놀이체육 | 정규수업 | 정규수업 | 책놀이 | 정규수업"
+  },
+  {
+   "school_id": "B000002182",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "none",
+   "confidence": "low",
+   "lines": [],
+   "evidence": ""
+  },
+  {
+   "school_id": "B000002029",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": "13:00",
+   "lunch_position": "after_p4",
+   "p5_end": "13:40",
+   "doc_periods": [
+    4,
+    5,
+    5,
+    5,
+    4
+   ],
+   "basis": "stated",
+   "confidence": "high",
+   "lines": [
+    188
+   ],
+   "evidence": "13:00~13:40 1학년(창의미술) 정규수업 정규수업 정규수업 1학년(게임수학)"
+  },
+  {
+   "school_id": "B000002162",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": "13:00",
+   "lunch_position": "after_p4",
+   "p5_end": "13:40",
+   "doc_periods": null,
+   "basis": "program_start",
+   "confidence": "low",
+   "lines": [
+    63,
+    64
+   ],
+   "evidence": "정규수업 4교시 13:00 ~ 13:15 ... 정규수업 5교시 13:40 ~ 13:55"
+  },
+  {
+   "school_id": "B000002396",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "none",
+   "confidence": "low",
+   "lines": [],
+   "evidence": ""
+  },
+  {
+   "school_id": "B000001920",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": "13:00",
+   "lunch_position": "after_p4",
+   "p5_end": "13:40",
+   "doc_periods": [
+    4,
+    5,
+    5,
+    5,
+    4
+   ],
+   "basis": "stated",
+   "confidence": "high",
+   "lines": [
+    257
+   ],
+   "evidence": "13:00~13:40 | 맞춤형 프로그램 | 정규수업 | 정규수업 | 정규수업 | 맞춤형 프로그램"
+  },
+  {
+   "school_id": "B000001839",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": "12:30",
+   "lunch_position": "after_p4",
+   "p5_end": "13:30",
+   "doc_periods": [
+    4,
+    5,
+    4,
+    5,
+    5
+   ],
+   "basis": "stated",
+   "confidence": "medium",
+   "lines": [
+    26,
+    68
+   ],
+   "evidence": "본교 월, 수 1~2학년 4교시 후 12:30분 하교"
+  },
+  {
+   "school_id": "B000002342",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "none",
+   "confidence": "low",
+   "lines": [],
+   "evidence": ""
+  },
+  {
+   "school_id": "B000001976",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": "12:50",
+   "lunch_position": "after_p4",
+   "p5_end": "13:40",
+   "doc_periods": [
+    5,
+    5,
+    4,
+    5,
+    4
+   ],
+   "basis": "stated",
+   "confidence": "medium",
+   "lines": [
+    87,
+    88
+   ],
+   "evidence": "12:10~12:50 점심시간 ; (수,금) 12:50~14:20 (월,화,목) 13:50~15:20 정규 5교시"
+  },
+  {
+   "school_id": "B000001940",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": "13:00",
+   "lunch_position": "after_p4",
+   "p5_end": "13:40",
+   "doc_periods": [
+    4,
+    5,
+    4,
+    5,
+    5
+   ],
+   "basis": "stated",
+   "confidence": "high",
+   "lines": [
+    411,
+    412,
+    413
+   ],
+   "evidence": "1학년 13:00~13:40 | 역사놀이 | 정규수업 | 책놀이 | 정규수업 | 정규수업"
+  },
+  {
+   "school_id": "B000002201",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "none",
+   "confidence": "low",
+   "lines": [
+    23
+   ],
+   "evidence": "정규수업종료후 ~13:50 입실 및 출석 확인 (care only)"
+  },
+  {
+   "school_id": "B000026183",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": "13:00",
+   "lunch_position": "after_p4",
+   "p5_end": "13:30",
+   "doc_periods": [
+    4,
+    5,
+    5,
+    5,
+    4
+   ],
+   "basis": "program_start",
+   "confidence": "low",
+   "lines": [
+    99,
+    100,
+    101
+   ],
+   "evidence": "12:50~13:00 ... 13:00 <맞춤형교실> ... (화, 수, 목 5교시) 13:40"
+  },
+  {
+   "school_id": "B000001844",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": "12:50",
+   "lunch_position": "after_p4",
+   "p5_end": "13:30",
+   "doc_periods": [
+    4,
+    5,
+    5,
+    5,
+    4
+   ],
+   "basis": "stated",
+   "confidence": "high",
+   "lines": [
+    312,
+    313
+   ],
+   "evidence": "12:50~13:30 | 미술놀이 | 5교시(정규수업시간) | | | 음악놀이"
+  },
+  {
+   "school_id": "B000002240",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "none",
+   "confidence": "low",
+   "lines": [],
+   "evidence": ""
+  },
+  {
+   "school_id": "B000002255",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "none",
+   "confidence": "low",
+   "lines": [
+    400
+   ],
+   "evidence": "정규수업후 ~13:00 출석 확인, 독서 (care only)"
+  },
+  {
+   "school_id": "B000002406",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": "13:00",
+   "lunch_position": "after_p4",
+   "p5_end": "13:40",
+   "doc_periods": [
+    4,
+    5,
+    5,
+    5,
+    4
+   ],
+   "basis": "stated",
+   "confidence": "high",
+   "lines": [
+    235
+   ],
+   "evidence": "13:00~13:40 | 맞춤형교실 | 정규수업 | 정규수업 | 정규수업 | 맞춤형교실"
+  },
+  {
+   "school_id": "B000001937",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "none",
+   "confidence": "low",
+   "lines": [],
+   "evidence": ""
+  },
+  {
+   "school_id": "B000001884",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "none",
+   "confidence": "low",
+   "lines": [],
+   "evidence": ""
+  },
+  {
+   "school_id": "B000002401",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": "13:00",
+   "lunch_position": "after_p4",
+   "p5_end": "13:40",
+   "doc_periods": [
+    4,
+    5,
+    5,
+    5,
+    4
+   ],
+   "basis": "program_start",
+   "confidence": "low",
+   "lines": [
+    846,
+    850,
+    859
+   ],
+   "evidence": "월/금 13:00-14:20 (12:50~13:00 출석확인); 화~목 13:50-15:10 (13:40~13:50 출석확인)"
+  },
+  {
+   "school_id": "B000001962",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "none",
+   "confidence": "low",
+   "lines": [],
+   "evidence": ""
+  },
+  {
+   "school_id": "B000002036",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "none",
+   "confidence": "low",
+   "lines": [],
+   "evidence": ""
+  },
+  {
+   "school_id": "B000002018",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "none",
+   "confidence": "low",
+   "lines": [],
+   "evidence": ""
+  },
+  {
+   "school_id": "B000002082",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": "12:20",
+   "lunch_position": "after_p4",
+   "p5_end": "13:10",
+   "doc_periods": [
+    5,
+    5,
+    4,
+    5,
+    4
+   ],
+   "basis": "stated",
+   "confidence": "high",
+   "lines": [
+    99,
+    100
+   ],
+   "evidence": "1~2학년 5교시 5교시 4교시 5교시 4교시 | 13:10 하교 13:10 하교 12:20 하교 13:10 하교 12:20 하교"
+  },
+  {
+   "school_id": "B000002273",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "none",
+   "confidence": "low",
+   "lines": [],
+   "evidence": ""
+  },
+  {
+   "school_id": "B000002277",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "none",
+   "confidence": "low",
+   "lines": [],
+   "evidence": ""
+  },
+  {
+   "school_id": "B000002088",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": "12:50",
+   "lunch_position": "after_p4",
+   "p5_end": "13:40",
+   "doc_periods": [
+    4,
+    5,
+    5,
+    5,
+    4
+   ],
+   "basis": "stated",
+   "confidence": "high",
+   "lines": [
+    535,
+    536
+   ],
+   "evidence": "09:00~12:50 정규수업(4교시); 13:00~13:40 | 음악놀이 | 정규수업(5교시) | | | 신체놀이"
+  },
+  {
+   "school_id": "B000001916",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": "13:00",
+   "lunch_position": "after_p4",
+   "p5_end": "13:50",
+   "doc_periods": [
+    4,
+    5,
+    5,
+    5,
+    4
+   ],
+   "basis": "stated",
+   "confidence": "high",
+   "lines": [
+    518,
+    519,
+    521
+   ],
+   "evidence": "월(4교시) 화(5교시) 수(5교시) 목(5교시) 금(4교시); 월,금 13:00~13:10 출석확인; 화,수,목 13:50~14:00 출석확인"
+  },
+  {
+   "school_id": "B000001981",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": "13:10",
+   "lunch_position": "after_p4",
+   "p5_end": "13:50",
+   "doc_periods": [
+    4,
+    5,
+    5,
+    5,
+    4
+   ],
+   "basis": "stated",
+   "confidence": "high",
+   "lines": [
+    113
+   ],
+   "evidence": "1학년 13:10~13:50 | 전래놀이 | 정규수업 | 정규수업 | 정규수업 | 보드게임"
+  },
+  {
+   "school_id": "B000002174",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "none",
+   "confidence": "low",
+   "lines": [],
+   "evidence": ""
+  },
+  {
+   "school_id": "B000002069",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "none",
+   "confidence": "low",
+   "lines": [],
+   "evidence": ""
+  },
+  {
+   "school_id": "B000002343",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "none",
+   "confidence": "low",
+   "lines": [],
+   "evidence": ""
+  },
+  {
+   "school_id": "B000002407",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "none",
+   "confidence": "low",
+   "lines": [],
+   "evidence": ""
+  },
+  {
+   "school_id": "B000001882",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": "12:50",
+   "lunch_position": "after_p4",
+   "p5_end": "13:40",
+   "doc_periods": [
+    4,
+    5,
+    4,
+    5,
+    5
+   ],
+   "basis": "stated",
+   "confidence": "high",
+   "lines": [
+    522,
+    523
+   ],
+   "evidence": "월,수 09:00~12:50 정규수업(4교시 기준); 화,목,금 12:50~13:40 정규수업(5교시 기준)"
+  },
+  {
+   "school_id": "B000002374",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": "12:50",
+   "lunch_position": "after_p4",
+   "p5_end": "13:30",
+   "doc_periods": [
+    4,
+    5,
+    5,
+    5,
+    4
+   ],
+   "basis": "stated",
+   "confidence": "high",
+   "lines": [
+    288
+   ],
+   "evidence": "12:50~13:30 | 놀이수학 | 정규수업 | 정규수업 | 정규수업 | 놀이체육"
+  },
+  {
+   "school_id": "B000002050",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "none",
+   "confidence": "low",
+   "lines": [],
+   "evidence": ""
+  },
+  {
+   "school_id": "B000002068",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "none",
+   "confidence": "low",
+   "lines": [],
+   "evidence": ""
+  },
+  {
+   "school_id": "B000001968",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "none",
+   "confidence": "low",
+   "lines": [],
+   "evidence": ""
+  },
+  {
+   "school_id": "B000002315",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "none",
+   "confidence": "low",
+   "lines": [],
+   "evidence": ""
+  },
+  {
+   "school_id": "B000001913",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": "12:40",
+   "lunch_position": "after_p4",
+   "p5_end": "13:40",
+   "doc_periods": [
+    4,
+    5,
+    5,
+    5,
+    4
+   ],
+   "basis": "stated",
+   "confidence": "medium",
+   "lines": [
+    348
+   ],
+   "evidence": "(1학년) 12:40~13:40 | 디지털 디톡스 이야기 공작소 | 정규수업 | 정규수업 | 정규수업 | 옛놀이 새놀이"
+  },
+  {
+   "school_id": "B000002107",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "none",
+   "confidence": "low",
+   "lines": [],
+   "evidence": ""
+  },
+  {
+   "school_id": "B000001956",
+   "p4_end": "12:20",
+   "lunch_start": null,
+   "lunch_end": "13:00",
+   "lunch_position": "after_p4",
+   "p5_end": "13:40",
+   "doc_periods": [
+    4,
+    5,
+    5,
+    5,
+    4
+   ],
+   "basis": "stated",
+   "confidence": "high",
+   "lines": [
+    361,
+    363
+   ],
+   "evidence": "09:00-12:20 정규수업(4교시); 13:00-13:40 | 오카리나 | 정규수업 | 정규수업 | 정규수업 | 동요부르기"
+  },
+  {
+   "school_id": "B000002411",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": "13:00",
+   "lunch_position": "after_p4",
+   "p5_end": "13:30",
+   "doc_periods": [
+    4,
+    5,
+    4,
+    5,
+    5
+   ],
+   "basis": "program_start",
+   "confidence": "low",
+   "lines": [
+    182,
+    183,
+    184,
+    185,
+    186
+   ],
+   "evidence": "월 13:00~14:20, 화 13:40~15:00, 수 13:00~14:20, 목 13:40~15:00, 금 13:40~15:00 (1-2학년)"
+  },
+  {
+   "school_id": "B000002133",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "none",
+   "confidence": "low",
+   "lines": [],
+   "evidence": ""
+  },
+  {
+   "school_id": "B000001895",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": "12:50",
+   "lunch_position": "after_p4",
+   "p5_end": "13:40",
+   "doc_periods": [
+    4,
+    5,
+    5,
+    5,
+    4
+   ],
+   "basis": "stated",
+   "confidence": "high",
+   "lines": [
+    481
+   ],
+   "evidence": "12:50~13:40 | 책놀이(1학년) | 정규수업 | 정규수업 | 정규수업 | 생명과학(1학년)"
+  },
+  {
+   "school_id": "B000002219",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "none",
+   "confidence": "low",
+   "lines": [],
+   "evidence": ""
+  },
+  {
+   "school_id": "B000001929",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "none",
+   "confidence": "low",
+   "lines": [],
+   "evidence": ""
+  },
+  {
+   "school_id": "B000002016",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": "12:50",
+   "lunch_position": "after_p4",
+   "p5_end": "13:40",
+   "doc_periods": [
+    4,
+    5,
+    5,
+    5,
+    4
+   ],
+   "basis": "program_start",
+   "confidence": "low",
+   "lines": [
+    32
+   ],
+   "evidence": "맞춤형 수업시간 월 12:50~14:50, 화~목 13:50~15:50, 금 12:50~14:50"
+  },
+  {
+   "school_id": "B000002108",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": "13:00",
+   "lunch_position": "after_p4",
+   "p5_end": "13:40",
+   "doc_periods": [
+    5,
+    5,
+    4,
+    5,
+    4
+   ],
+   "basis": "stated",
+   "confidence": "high",
+   "lines": [
+    702
+   ],
+   "evidence": "초1맞춤형 13:00~13:40 | 정규수업 | 정규수업 | 마술놀이 | 정규수업 | 생명과학"
+  },
+  {
+   "school_id": "B000001848",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "none",
+   "confidence": "low",
+   "lines": [
+    81
+   ],
+   "evidence": "월/금 14:30 화/수/목 15:20 (program end only)"
+  },
+  {
+   "school_id": "B000002013",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "none",
+   "confidence": "low",
+   "lines": [
+    425
+   ],
+   "evidence": "(1교시)12:50~13:30 (2교시)13:40~14:20 | (1교시)13:40~14:20 - weekday mapping not stated"
+  },
+  {
+   "school_id": "B000002393",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": "13:10",
+   "lunch_position": "after_p4",
+   "p5_end": "13:50",
+   "doc_periods": [
+    4,
+    5,
+    5,
+    5,
+    4
+   ],
+   "basis": "stated",
+   "confidence": "medium",
+   "lines": [
+    121,
+    130
+   ],
+   "evidence": "월금 13:10~15:10 화수목 13:50~15:50; 13:10~13:40 보드게임 | 정규수업 정규수업 정규수업 | 역사놀이"
+  },
+  {
+   "school_id": "B000002045",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "none",
+   "confidence": "low",
+   "lines": [],
+   "evidence": ""
+  },
+  {
+   "school_id": "B000002300",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "none",
+   "confidence": "low",
+   "lines": [],
+   "evidence": ""
+  },
+  {
+   "school_id": "B000001983",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": "12:50",
+   "lunch_position": "after_p4",
+   "p5_end": "13:30",
+   "doc_periods": [
+    4,
+    5,
+    4,
+    5,
+    5
+   ],
+   "basis": "stated",
+   "confidence": "high",
+   "lines": [
+    233
+   ],
+   "evidence": "1학년 12:50~13:30 | 우쿨렐레 | 정규수업 | 바이올린 | 정규수업 | 정규수업"
+  },
+  {
+   "school_id": "B000002099",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": "12:50",
+   "lunch_position": "after_p4",
+   "p5_end": "13:30",
+   "doc_periods": null,
+   "basis": "program_start",
+   "confidence": "low",
+   "lines": [
+    580
+   ],
+   "evidence": "학기중 | 12:50 ∼ 15:50 | 13:40 ∼ 16:30 (day mapping and grade not shown)"
+  },
+  {
+   "school_id": "B000002262",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "none",
+   "confidence": "low",
+   "lines": [],
+   "evidence": ""
+  },
+  {
+   "school_id": "B000002188",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "none",
+   "confidence": "low",
+   "lines": [],
+   "evidence": ""
+  },
+  {
+   "school_id": "B000002237",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": "12:50",
+   "lunch_position": "after_p4",
+   "p5_end": "13:30",
+   "doc_periods": [
+    4,
+    5,
+    5,
+    5,
+    4
+   ],
+   "basis": "stated",
+   "confidence": "medium",
+   "lines": [
+    626,
+    627,
+    644,
+    645
+   ],
+   "evidence": "09:00~12:50 정규수업(1~4교시); (월,금) 12:50~14:50 (화,수,목) 13:40~15:40 정규 5교시"
+  },
+  {
+   "school_id": "B000001999",
+   "p4_end": "12:10",
+   "lunch_start": "12:10",
+   "lunch_end": "13:00",
+   "lunch_position": "after_p4",
+   "p5_end": "13:40",
+   "doc_periods": [
+    4,
+    5,
+    5,
+    5,
+    4
+   ],
+   "basis": "stated",
+   "confidence": "high",
+   "lines": [
+    62,
+    63,
+    64
+   ],
+   "evidence": "초1 11:30~12:10 4교시, 12:10~13:00 점심; 13:00~13:40 창의놀이 | 5교시 | 5교시 | 5교시 | 책놀이"
+  },
+  {
+   "school_id": "B000002272",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "none",
+   "confidence": "low",
+   "lines": [],
+   "evidence": ""
+  },
+  {
+   "school_id": "B000002310",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": "13:10",
+   "lunch_position": "after_p4",
+   "p5_end": "13:40",
+   "doc_periods": null,
+   "basis": "program_start",
+   "confidence": "low",
+   "lines": [
+    522,
+    524,
+    528
+   ],
+   "evidence": "금 (1학년) 13:10~14:30; 수 (1학년) 13:50~15:10; 월 (2학년) 13:10; 목 (2학년) 13:50"
+  },
+  {
+   "school_id": "B000001873",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": "12:50",
+   "lunch_position": "after_p4",
+   "p5_end": null,
+   "doc_periods": [
+    4,
+    5,
+    5,
+    5,
+    4
+   ],
+   "basis": "program_start",
+   "confidence": "low",
+   "lines": [
+    188
+   ],
+   "evidence": "12:50~13:00 | 출결 확인 | 정규과정 5교시 수업하는 요일 | ... | 출결 확인"
+  },
+  {
+   "school_id": "B000001875",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "none",
+   "confidence": "low",
+   "lines": [
+    325,
+    326
+   ],
+   "evidence": "table dated 2025.3.4. ~ 2026.2.27. (2025 school year), not used"
+  },
+  {
+   "school_id": "B000002248",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": "12:40",
+   "lunch_position": "after_p4",
+   "p5_end": "13:20",
+   "doc_periods": [
+    5,
+    5,
+    4,
+    5,
+    4
+   ],
+   "basis": "stated",
+   "confidence": "high",
+   "lines": [
+    177,
+    181,
+    187
+   ],
+   "evidence": "정규 수업·급식 08:50~12:40; 12:50~13:20 학급 시간표(월,화,목) / 수,금 맞춤형"
+  },
+  {
+   "school_id": "B000002270",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": "13:40",
+   "doc_periods": [
+    4,
+    5,
+    4,
+    5,
+    5
+   ],
+   "basis": "stated",
+   "confidence": "medium",
+   "lines": [
+    278,
+    279
+   ],
+   "evidence": "방과후~13:40 | 출석 및 건강체크,독서 | 교실수업 | 출석 및 건강체크,독서 | 교실수업 | 교실수업"
+  },
+  {
+   "school_id": "B000002112",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": "13:00",
+   "lunch_position": "after_p4",
+   "p5_end": "13:40",
+   "doc_periods": null,
+   "basis": "stated",
+   "confidence": "medium",
+   "lines": [
+    21
+   ],
+   "evidence": "13:00~13:40 생활지도 및 자유 독서 | 정규수업 | 생활지도 및 자유 독서"
+  },
+  {
+   "school_id": "B000001979",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "none",
+   "confidence": "low",
+   "lines": [],
+   "evidence": ""
+  },
+  {
+   "school_id": "B000002178",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": "13:10",
+   "lunch_position": "after_p4",
+   "p5_end": "13:40",
+   "doc_periods": [
+    4,
+    5,
+    5,
+    5,
+    4
+   ],
+   "basis": "program_start",
+   "confidence": "low",
+   "lines": [
+    246,
+    249
+   ],
+   "evidence": "13:10~14:40 | 정규수업(화수목) ; 13:50~15:20 블럭놀이(화)"
+  },
+  {
+   "school_id": "B000002358",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "none",
+   "confidence": "low",
+   "lines": [],
+   "evidence": ""
+  },
+  {
+   "school_id": "B000001877",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "none",
+   "confidence": "low",
+   "lines": [],
+   "evidence": ""
+  },
+  {
+   "school_id": "B000002103",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "none",
+   "confidence": "low",
+   "lines": [],
+   "evidence": ""
+  },
+  {
+   "school_id": "B000002340",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "none",
+   "confidence": "low",
+   "lines": [],
+   "evidence": ""
+  },
+  {
+   "school_id": "B000001989",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "none",
+   "confidence": "low",
+   "lines": [],
+   "evidence": ""
+  },
+  {
+   "school_id": "B000002048",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "none",
+   "confidence": "low",
+   "lines": [],
+   "evidence": ""
+  },
+  {
+   "school_id": "B000002213",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "none",
+   "confidence": "low",
+   "lines": [],
+   "evidence": ""
+  },
+  {
+   "school_id": "B000002015",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "none",
+   "confidence": "low",
+   "lines": [],
+   "evidence": ""
+  },
+  {
+   "school_id": "B000002269",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "none",
+   "confidence": "low",
+   "lines": [],
+   "evidence": ""
+  },
+  {
+   "school_id": "B000002404",
+   "p4_end": "12:10",
+   "lunch_start": "12:10",
+   "lunch_end": "12:50",
+   "lunch_position": "after_p4",
+   "p5_end": "13:30",
+   "doc_periods": [
+    5,
+    5,
+    4,
+    5,
+    4
+   ],
+   "basis": "stated",
+   "confidence": "high",
+   "lines": [
+    53,
+    54,
+    55
+   ],
+   "evidence": "9:00~12:10 정규수업(4교시 기준); 12:10~12:50 점심; 12:50~13:30 5교시 (월화목)"
+  },
+  {
+   "school_id": "B000002000",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": "13:00",
+   "lunch_position": "after_p4",
+   "p5_end": "13:40",
+   "doc_periods": [
+    5,
+    5,
+    4,
+    5,
+    4
+   ],
+   "basis": "stated",
+   "confidence": "high",
+   "lines": [
+    98,
+    104
+   ],
+   "evidence": "13:00~13:40 | 정규 수업 | 정규 수업 | 창의력 쑥쑥 미술 탐험 | 정규 수업 | 골프 교실"
+  },
+  {
+   "school_id": "B000002346",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "none",
+   "confidence": "low",
+   "lines": [],
+   "evidence": ""
+  },
+  {
+   "school_id": "B000002371",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": "12:45",
+   "lunch_position": "after_p4",
+   "p5_end": "13:30",
+   "doc_periods": [
+    4,
+    5,
+    4,
+    5,
+    5
+   ],
+   "basis": "stated",
+   "confidence": "high",
+   "lines": [
+    10
+   ],
+   "evidence": "월수 9:00~12:45 정규수업(1~4교시) / 화목금 9:00~13:30 정규수업(1~5교시)"
+  },
+  {
+   "school_id": "B000002337",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": "13:00",
+   "lunch_position": "after_p4",
+   "p5_end": "13:30",
+   "doc_periods": [
+    5,
+    5,
+    4,
+    5,
+    4
+   ],
+   "basis": "program_start",
+   "confidence": "low",
+   "lines": [
+    45
+   ],
+   "evidence": "맞춤형교실(1~2학년) 13:40~15:00(월, 화, 목) 13:00~14:10(수, 금)"
+  },
+  {
+   "school_id": "B000002186",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "none",
+   "confidence": "low",
+   "lines": [],
+   "evidence": ""
+  },
+  {
+   "school_id": "B000002180",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "none",
+   "confidence": "low",
+   "lines": [],
+   "evidence": ""
+  },
+  {
+   "school_id": "B000002323",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "none",
+   "confidence": "low",
+   "lines": [],
+   "evidence": ""
+  },
+  {
+   "school_id": "B000001880",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "none",
+   "confidence": "low",
+   "lines": [],
+   "evidence": ""
+  },
+  {
+   "school_id": "B000002253",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "none",
+   "confidence": "low",
+   "lines": [],
+   "evidence": ""
+  },
+  {
+   "school_id": "B000001863",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": "13:00",
+   "lunch_position": "after_p4",
+   "p5_end": "13:40",
+   "doc_periods": [
+    4,
+    5,
+    4,
+    5,
+    5
+   ],
+   "basis": "stated",
+   "confidence": "high",
+   "lines": [
+    135
+   ],
+   "evidence": "1~2학년 월 4교시 (13:00) 화 5교시 (13:40) 수 4교시 (13:00) 목 5교시 (13:40) 금 5교시 (13:40)"
+  },
+  {
+   "school_id": "B000002410",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "none",
+   "confidence": "low",
+   "lines": [],
+   "evidence": ""
+  },
+  {
+   "school_id": "B000002128",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "none",
+   "confidence": "low",
+   "lines": [],
+   "evidence": ""
+  },
+  {
+   "school_id": "B000001972",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "none",
+   "confidence": "low",
+   "lines": [],
+   "evidence": ""
+  },
+  {
+   "school_id": "B000001921",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": "13:00",
+   "lunch_position": "after_p4",
+   "p5_end": "13:40",
+   "doc_periods": [
+    4,
+    5,
+    5,
+    5,
+    4
+   ],
+   "basis": "stated",
+   "confidence": "high",
+   "lines": [
+    218,
+    219
+   ],
+   "evidence": "09:00~13:00 정규수업 (4교시 및 급식) ... 정규수업 (5교시 13:40) 화수목"
+  },
+  {
+   "school_id": "B000002009",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": "13:00",
+   "lunch_position": "after_p4",
+   "p5_end": "13:40",
+   "doc_periods": [
+    4,
+    5,
+    5,
+    5,
+    4
+   ],
+   "basis": "stated",
+   "confidence": "high",
+   "lines": [
+    108
+   ],
+   "evidence": "13:00~13:40 | 음악놀이 | 정규수업 | 정규수업 | 정규수업 | 보드게임"
+  },
+  {
+   "school_id": "B000002320",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": "13:00",
+   "lunch_position": "after_p4",
+   "p5_end": "13:40",
+   "doc_periods": [
+    4,
+    5,
+    5,
+    5,
+    4
+   ],
+   "basis": "stated",
+   "confidence": "medium",
+   "lines": [
+    65
+   ],
+   "evidence": "13:00~13:40 | 맞춤형 교실 프로그램 | 학교 정규수업 | | | 맞춤형 교실 프로그램"
+  },
+  {
+   "school_id": "B000001927",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "none",
+   "confidence": "low",
+   "lines": [],
+   "evidence": ""
+  },
+  {
+   "school_id": "B000002085",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": "13:00",
+   "lunch_position": "after_p4",
+   "p5_end": "13:40",
+   "doc_periods": [
+    5,
+    5,
+    4,
+    5,
+    4
+   ],
+   "basis": "stated",
+   "confidence": "high",
+   "lines": [
+    132
+   ],
+   "evidence": "13:00~13:40 | 정규수업 | 정규수업 | 뉴스포츠/놀이영어 | 정규수업 | 태권도/놀이음악"
+  },
+  {
+   "school_id": "B000002150",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "none",
+   "confidence": "low",
+   "lines": [],
+   "evidence": ""
+  },
+  {
+   "school_id": "B000001949",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "none",
+   "confidence": "low",
+   "lines": [],
+   "evidence": ""
+  },
+  {
+   "school_id": "B000001879",
+   "p4_end": "12:10",
+   "lunch_start": "12:10",
+   "lunch_end": "13:00",
+   "lunch_position": "after_p4",
+   "p5_end": "13:40",
+   "doc_periods": null,
+   "basis": "stated",
+   "confidence": "medium",
+   "lines": [
+    594
+   ],
+   "evidence": "09:00-12:10 정규수업(1~4교시) 12:10-13:00 점심시간 및 준비시간 13:00-13:40 ... 정규수업(5교시)"
+  },
+  {
+   "school_id": "B000002420",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "none",
+   "confidence": "low",
+   "lines": [],
+   "evidence": ""
+  },
+  {
+   "school_id": "B000002218",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": "13:30",
+   "doc_periods": [
+    5,
+    5,
+    4,
+    5,
+    4
+   ],
+   "basis": "stated",
+   "confidence": "medium",
+   "lines": [
+    124
+   ],
+   "evidence": "방과 후 ~ 13:30 | (5교시) | (5교시) | 맞춤형⋅방과후교실 참여 | (5교시) | 맞춤형⋅방과후교실 참여"
+  },
+  {
+   "school_id": "B000001919",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "none",
+   "confidence": "low",
+   "lines": [],
+   "evidence": ""
+  },
+  {
+   "school_id": "B000002379",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": "13:00",
+   "lunch_position": "after_p4",
+   "p5_end": "13:40",
+   "doc_periods": [
+    4,
+    5,
+    5,
+    5,
+    4
+   ],
+   "basis": "program_start",
+   "confidence": "low",
+   "lines": [
+    12
+   ],
+   "evidence": "맞춤형 운영시간 주중(월,금)13:00~14:20(화,수,목)13:50~15:10"
+  },
+  {
+   "school_id": "B000002264",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "none",
+   "confidence": "low",
+   "lines": [],
+   "evidence": ""
+  },
+  {
+   "school_id": "B000002424",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "none",
+   "confidence": "low",
+   "lines": [],
+   "evidence": ""
+  },
+  {
+   "school_id": "B000002284",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": "12:50",
+   "lunch_position": "after_p4",
+   "p5_end": "13:30",
+   "doc_periods": [
+    4,
+    5,
+    5,
+    5,
+    4
+   ],
+   "basis": "stated",
+   "confidence": "medium",
+   "lines": [
+    138
+   ],
+   "evidence": "1~2학년: 월,금 4교시(12:50~)/ 화~목 5교시(13:30~)"
+  },
+  {
+   "school_id": "B000001925",
+   "p4_end": "12:10",
+   "lunch_start": "12:10",
+   "lunch_end": "12:50",
+   "lunch_position": "after_p4",
+   "p5_end": "13:30",
+   "doc_periods": [
+    5,
+    5,
+    4,
+    5,
+    4
+   ],
+   "basis": "stated",
+   "confidence": "medium",
+   "lines": [
+    24,
+    10
+   ],
+   "evidence": "9:00~12:10 정규수업 12:10~12:50 점심시간 (월,화,목)13:40~15:00 (수,금)13:00~15:00 정규 5교시"
+  },
+  {
+   "school_id": "B000002120",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": "13:00",
+   "lunch_position": "after_p4",
+   "p5_end": "13:30",
+   "doc_periods": [
+    5,
+    5,
+    4,
+    5,
+    4
+   ],
+   "basis": "program_start",
+   "confidence": "low",
+   "lines": [
+    131,
+    132
+   ],
+   "evidence": "맞춤형교실1 독서 13:40 | 신체놀이 13:40 | 미술 13:00 | 세계탐험 13:40 | 보드게임 13:00"
+  },
+  {
+   "school_id": "B000002102",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": "12:40",
+   "lunch_position": "after_p4",
+   "p5_end": "13:30",
+   "doc_periods": [
+    5,
+    5,
+    4,
+    5,
+    4
+   ],
+   "basis": "stated",
+   "confidence": "medium",
+   "lines": [
+    16,
+    25
+   ],
+   "evidence": "월화목 ~13:30 정규수업 ; 수금 ~12:40 정규수업 12:40~12:50 이동 및 하교"
+  },
+  {
+   "school_id": "B000002135",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "none",
+   "confidence": "low",
+   "lines": [],
+   "evidence": ""
+  },
+  {
+   "school_id": "B000002214",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "none",
+   "confidence": "low",
+   "lines": [],
+   "evidence": ""
+  },
+  {
+   "school_id": "B000002307",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": "13:00",
+   "lunch_position": "after_p4",
+   "p5_end": "13:40",
+   "doc_periods": [
+    4,
+    5,
+    5,
+    5,
+    4
+   ],
+   "basis": "stated",
+   "confidence": "medium",
+   "lines": [
+    66,
+    67
+   ],
+   "evidence": "월 정규수업 4교시 | 13:00~13:40 | 정규수업 5교시(화수목) | 금 정규수업 4교시"
+  },
+  {
+   "school_id": "B000002382",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": "13:00",
+   "lunch_position": "after_p4",
+   "p5_end": "13:40",
+   "doc_periods": [
+    5,
+    5,
+    4,
+    5,
+    4
+   ],
+   "basis": "stated",
+   "confidence": "high",
+   "lines": [
+    346
+   ],
+   "evidence": "13:00~13:40 | 정규수업 | 정규수업 | 그림책뮤지컬 | 정규수업 | 수학놀이"
+  },
+  {
+   "school_id": "B000002392",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "none",
+   "confidence": "low",
+   "lines": [],
+   "evidence": ""
+  },
+  {
+   "school_id": "B000002227",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": "12:50",
+   "lunch_position": "after_p4",
+   "p5_end": "13:30",
+   "doc_periods": [
+    4,
+    5,
+    5,
+    5,
+    4
+   ],
+   "basis": "stated",
+   "confidence": "high",
+   "lines": [
+    347
+   ],
+   "evidence": "12:50~13:30 | 방송댄스 | 정규수업 | 정규수업 | 정규수업 | 놀이영어"
+  },
+  {
+   "school_id": "B000002362",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "none",
+   "confidence": "low",
+   "lines": [],
+   "evidence": ""
+  },
+  {
+   "school_id": "B000002426",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "none",
+   "confidence": "low",
+   "lines": [],
+   "evidence": ""
+  },
+  {
+   "school_id": "B000002079",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "none",
+   "confidence": "low",
+   "lines": [],
+   "evidence": ""
+  },
+  {
+   "school_id": "B000001896",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "none",
+   "confidence": "low",
+   "lines": [],
+   "evidence": ""
+  },
+  {
+   "school_id": "B000001902",
+   "p4_end": "12:40",
+   "lunch_start": null,
+   "lunch_end": "12:40",
+   "lunch_position": "after_p4",
+   "p5_end": "13:30",
+   "doc_periods": [
+    5,
+    5,
+    4,
+    5,
+    4
+   ],
+   "basis": "stated",
+   "confidence": "high",
+   "lines": [
+    223,
+    224
+   ],
+   "evidence": "09:00~12:40 정규수업(5교시)/(4교시) ; 12:40~13:30 정규수업 (5교시) 월화목, 수금 4교시"
+  },
+  {
+   "school_id": "B000001945",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "none",
+   "confidence": "low",
+   "lines": [],
+   "evidence": ""
+  },
+  {
+   "school_id": "B000002317",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": "12:40",
+   "lunch_position": "after_p4",
+   "p5_end": "13:30",
+   "doc_periods": [
+    4,
+    5,
+    4,
+    5,
+    5
+   ],
+   "basis": "stated",
+   "confidence": "high",
+   "lines": [
+    269,
+    270,
+    69
+   ],
+   "evidence": "정규수업 4교시 이후 12:40 ~ ; 정규수업 5교시 이후 13:30 ~ ; 12:50~13:40 정규수업(5교시) 화목금"
+  },
+  {
+   "school_id": "B000002035",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": "13:00",
+   "lunch_position": "after_p4",
+   "p5_end": "13:30",
+   "doc_periods": [
+    4,
+    5,
+    5,
+    5,
+    4
+   ],
+   "basis": "program_start",
+   "confidence": "low",
+   "lines": [
+    323
+   ],
+   "evidence": "맞춤형 교실 월, 금 13:00~15:00 / 화, 수, 목 13:40~15:40"
+  },
+  {
+   "school_id": "B000001952",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "none",
+   "confidence": "low",
+   "lines": [],
+   "evidence": ""
+  },
+  {
+   "school_id": "B000002024",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": "13:00",
+   "lunch_position": "after_p4",
+   "p5_end": "13:30",
+   "doc_periods": [
+    4,
+    5,
+    5,
+    5,
+    4
+   ],
+   "basis": "stated",
+   "confidence": "medium",
+   "lines": [
+    75
+   ],
+   "evidence": "13:00~15:30 | 방과후 프로그램 | 정규수업 (~ 13:30) 화수목 | 방과후 프로그램 (금)"
+  },
+  {
+   "school_id": "B000002220",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "none",
+   "confidence": "low",
+   "lines": [],
+   "evidence": ""
+  },
+  {
+   "school_id": "B000001964",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": "13:00",
+   "lunch_position": "after_p4",
+   "p5_end": null,
+   "doc_periods": [
+    4,
+    5,
+    5,
+    5,
+    4
+   ],
+   "basis": "stated",
+   "confidence": "medium",
+   "lines": [
+    446
+   ],
+   "evidence": "13:00~14:30 | 놀이체육 | 정규수업 | 정규수업 | 정규수업 | 보드게임 (1학년)"
+  },
+  {
+   "school_id": "B000002163",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": "13:10",
+   "lunch_position": "after_p4",
+   "p5_end": "13:40",
+   "doc_periods": [
+    5,
+    5,
+    4,
+    5,
+    4
+   ],
+   "basis": "program_start",
+   "confidence": "low",
+   "lines": [
+    345
+   ],
+   "evidence": "1학년 맞춤형 음악놀이1 13:50 | 전래놀이1 13:50 | 미술공작1 13:10 | 창의블럭1 13:50 | 수놀이1 13:10"
+  },
+  {
+   "school_id": "B000001984",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": "13:00",
+   "lunch_position": "after_p4",
+   "p5_end": "13:40",
+   "doc_periods": [
+    5,
+    5,
+    4,
+    5,
+    4
+   ],
+   "basis": "program_start",
+   "confidence": "low",
+   "lines": [
+    116
+   ],
+   "evidence": "맞춤형 수업 시간(수, 금 : 13:00~14:20) / (월, 화, 목 : 13:50"
+  },
+  {
+   "school_id": "B000002356",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": "13:00",
+   "lunch_position": "after_p4",
+   "p5_end": "13:40",
+   "doc_periods": [
+    4,
+    5,
+    4,
+    5,
+    5
+   ],
+   "basis": "stated",
+   "confidence": "high",
+   "lines": [
+    99
+   ],
+   "evidence": "13:00~13:40 | 맞춤형교실 | 정규수업 (5교시) | 맞춤형교실 | 정규수업 (5교시) | 정규수업 (5교시)"
+  },
+  {
+   "school_id": "B000002193",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "none",
+   "confidence": "low",
+   "lines": [],
+   "evidence": ""
+  },
+  {
+   "school_id": "B000001977",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": "13:00",
+   "lunch_position": "after_p4",
+   "p5_end": "13:40",
+   "doc_periods": [
+    4,
+    5,
+    4,
+    5,
+    5
+   ],
+   "basis": "stated",
+   "confidence": "medium",
+   "lines": [
+    162,
+    163
+   ],
+   "evidence": "월 A반 1:00~1:40 | 화 5교시수업 | 수 A반 1:00~1:40 | 목 5교시수업 | 금 5교시수업"
+  },
+  {
+   "school_id": "B000002203",
+   "p4_end": "12:50",
+   "lunch_start": null,
+   "lunch_end": "12:50",
+   "lunch_position": "after_p4",
+   "p5_end": "13:30",
+   "doc_periods": [
+    4,
+    5,
+    5,
+    5,
+    4
+   ],
+   "basis": "stated",
+   "confidence": "high",
+   "lines": [
+    36,
+    37
+   ],
+   "evidence": "09:00~12:50 정규수업(4교시 기준) ; 12:50~13:30 소리여행 | 정규수업 (5교시) x3 | 과학탐험"
+  },
+  {
+   "school_id": "B000001887",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": "13:00",
+   "lunch_position": "after_p4",
+   "p5_end": "13:40",
+   "doc_periods": [
+    4,
+    5,
+    5,
+    5,
+    4
+   ],
+   "basis": "program_start",
+   "confidence": "low",
+   "lines": [
+    142
+   ],
+   "evidence": "창의과학놀이(13:00~14:20) 정규수업 정규수업 정규수업 신나는미술놀이(13:00~14:20) ; 신체놀이 등 (13:50~15:10)"
+  },
+  {
+   "school_id": "B000002097",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "none",
+   "confidence": "low",
+   "lines": [],
+   "evidence": ""
+  },
+  {
+   "school_id": "B000001891",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": null,
+   "lunch_position": null,
+   "p5_end": null,
+   "doc_periods": null,
+   "basis": "none",
+   "confidence": "low",
+   "lines": [],
+   "evidence": ""
+  },
+  {
+   "school_id": "B000002339",
+   "p4_end": null,
+   "lunch_start": null,
+   "lunch_end": "12:40",
+   "lunch_position": "after_p4",
+   "p5_end": "13:30",
+   "doc_periods": [
+    5,
+    5,
+    4,
+    5,
+    4
+   ],
+   "basis": "stated",
+   "confidence": "low",
+   "lines": [
+    70
+   ],
+   "evidence": "정규수업 후 ~ 13:30 | 수·금 12:40 ~ 입실(1~2학년 기준)"
+  }
+ ]
+}
