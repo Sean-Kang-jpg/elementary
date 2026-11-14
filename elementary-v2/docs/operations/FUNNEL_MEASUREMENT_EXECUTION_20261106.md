@@ -1,5 +1,7 @@
 # 퍼널 계측 1차 실행 기록
 
+11/14 운영 배포 진행·검증 결과는 [운영 배포 기록](FUNNEL_RELEASE_20261114.md)에 별도로 기록한다. 아래의 미배포 표시는 각 과거 점검 시점의 상태다.
+
 ## FNL-00 — 기준 확인 완료 (2026-11-06)
 
 - 운영: `wherecho.co.kr`, Vercel 프로젝트 `elementary`, 팀 `seankangs-projects`.
