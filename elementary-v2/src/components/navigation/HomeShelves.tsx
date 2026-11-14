@@ -136,7 +136,7 @@ function ShowcaseRow({ showcase, go }: {
       </div>
       <ul className="home-shelf__row home-shelf__row--wide">
         <li>
-          <a href={school.path} className="showcase-card" onClick={go('showcase', 'afternoon', school.path)}>
+          <a href={timetablePath(school.id)} className="showcase-card" onClick={go('showcase', 'afternoon', timetablePath(school.id))}>
             <span className="showcase-card__kicker">초1 오후 한눈에</span>
             <strong>{school.name}</strong>
             <ol className="showcase-bars" aria-label={`${school.name} 요일별 하교와 방과후 종료`}>
@@ -161,7 +161,7 @@ function ShowcaseRow({ showcase, go }: {
               <span><i className="showcase-bars__after" />방과후</span>
               {careEnd !== null && <span><i className="showcase-bars__care" />돌봄 ~{school.careEnd}</span>}
             </span>
-            <small>요일별 하교·방과후·돌봄 시각을 학교마다 봐요</small>
+            <small>요일별 방과후 종료와 우리 집 픽업 시각을 비교해요</small>
           </a>
         </li>
 
