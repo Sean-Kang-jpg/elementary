@@ -92,7 +92,7 @@ REVIEW_SETS = [
     {'name': 'gyeonggi_15ra_20261114', 'clock': '../pivot/p2_school_day_review_gyeonggi_20261114.json',
      'estimates': '../pivot/p2_dismissal_estimates_gyeonggi_20261114.json', 'care': '../pivot/p2_care_review_gyeonggi_20261114.json',
      'clock_source': '학교알리미 15-라 방과후·돌봄 운영 계획 2026년 5월 공시(초1~2 맞춤형·돌봄 시간표)',
-     'reviewed_on': '2026-11-14', 'confirmed': False},
+     'reviewed_on': '2026-11-14', 'confirmed': True},  # user confirmed 2026-11-14 (all 185, inferred shown as 추정)
 ]
 
 
