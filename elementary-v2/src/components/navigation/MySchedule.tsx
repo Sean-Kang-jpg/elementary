@@ -19,6 +19,8 @@ import MyAfterschoolPicker from './MyAfterschoolPicker'
 import { describeIntents, weekIntentMinutes } from '../../utils/schedule/intent'
 import { computeWeek } from '../../utils/schedule/engine'
 import { CALENDAR_END } from '../../utils/schedule/calendar'
+import { funnelMeasurement } from '../../utils/analytics'
+import { timetableContentChanged } from '../../utils/funnelMeasurement'
 
 const DAYS = ['월', '화', '수', '목', '금']
 const STATUS: Record<ParticipationStatus, string> = {
@@ -58,8 +60,18 @@ export default function MySchedule({ school, entryYear, saved, onNavigate }: {
   }, [])
   const schoolId = school.id
   const plan = store.plans.find((p) => p.schoolId === schoolId)
-  const persist = (next: PlanStore, success: string) => {
-    try { writePlans(next); setStore(next); setMessage(success); return true }
+  const persist = (next: PlanStore, success: string, operation: 'create' | 'edit' | 'delete' = 'edit') => {
+    const previous = readPlans().plans.find(p => p.schoolId === schoolId)
+    const updated = next.plans.find(p => p.schoolId === schoolId)
+    if (operation === 'edit' && previous && updated && !timetableContentChanged(previous, updated)) {
+      setMessage(success)
+      return true
+    }
+    try {
+      if (operation === 'delete') writePlans(next)
+      else funnelMeasurement.write(schoolId, operation, () => writePlans(next))
+      setStore(next); setMessage(success); return true
+    }
     catch { setMessage('저장하지 못했어요. 브라우저 저장 공간·설정을 확인해 주세요. 변경 내용은 저장되지 않았어요.'); return false }
   }
   const updatePlan = (next: SchoolPlan) => persist(upsertPlan(readPlans(), { ...next, updatedAt: new Date().toISOString() }), '시간표 초안을 저장했어요.')
@@ -119,7 +131,7 @@ export default function MySchedule({ school, entryYear, saved, onNavigate }: {
     if (current.plans.some((p) => p.schoolId === chosen.id)) { setMessage('이미 만들어진 초안을 유지했어요.'); return }
     persist(upsertPlan(current, { schoolId: chosen.id, schoolName: chosen.name, entryYear, entries, starter: answerReturn(returnAt), updatedAt: new Date().toISOString() }),
       failed ? '학교 자료를 불러오지 못해 하교 시각 없이 시작했어요. 하교 시각을 알면 정규수업 카드를 눌러 넣어 주세요.'
-        : entries.length ? '예상 하교 시각을 넣었어요.' : '이 학교의 하교 시각 자료가 아직 없어요. 질문에 답하며 채워 보세요.')
+        : entries.length ? '예상 하교 시각을 넣었어요.' : '이 학교의 하교 시각 자료가 아직 없어요. 질문에 답하며 채워 보세요.', 'create')
   }
   const answerCare = (yes: boolean) => {
     const answers = plan?.starter
@@ -204,7 +216,7 @@ export default function MySchedule({ school, entryYear, saved, onNavigate }: {
           <p className="my-help">돌봄 시간을 모르면 아침 08:00–09:00, 오후 17:00 종료를 기본으로 넣어요. 일정 카드를 눌러 실제 시간으로 바꿀 수 있어요. 운영·이용 가능 여부는 학교에 확인해 주세요.</p>
           {step === 'done' && <button type="button" className="my-button" onClick={() => setStarter(emptyStarter())}>질문 따라 다시 채우기</button>}
           <button type="button" className="my-button" onClick={() => {
-            if (window.confirm('이 학교의 시간표 초안을 삭제할까요? 관심 학교는 유지됩니다.')) persist(deletePlan(readPlans(), plan.schoolId), '시간표 초안을 삭제했어요.')
+            if (window.confirm('이 학교의 시간표 초안을 삭제할까요? 관심 학교는 유지됩니다.')) persist(deletePlan(readPlans(), plan.schoolId), '시간표 초안을 삭제했어요.', 'delete')
           }}>이 초안 삭제</button>
         </details>
       </>}

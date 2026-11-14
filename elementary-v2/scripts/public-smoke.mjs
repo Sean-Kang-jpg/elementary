@@ -287,9 +287,10 @@ const assertImageServed = async (filePath, minBytes = 10_000) => {
 const assertHomeAndShellSplit = async () => {
   const servedHome = await (await fetch(new URL('/', baseUrl).toString())).text()
   const builtHome = path.join(projectRoot, 'dist', 'index.html')
+  const isLocalTarget = ['localhost', '127.0.0.1', '[::1]'].includes(new URL(baseUrl).hostname)
   const home = servedHome.includes('<!--prerender:home-->')
     ? { text: servedHome, from: 'served' }
-    : fs.existsSync(builtHome) ? { text: fs.readFileSync(builtHome, 'utf8'), from: 'dist/' } : null
+    : isLocalTarget && fs.existsSync(builtHome) ? { text: fs.readFileSync(builtHome, 'utf8'), from: 'dist/' } : null
   if (!home || !home.text.includes('<!--prerender:home-->') || !home.text.includes('id="home-title"')) {
     throw new Error('/ does not carry the prerendered home content')
   }
@@ -303,7 +304,7 @@ const assertHomeAndShellSplit = async () => {
     // included. There is no separate shell to check there, and saying so beats
     // passing a check that looked at nothing.
     process.stdout.write('PASS: app paths are not split here (no build served), checked on deploy only\n')
-    return
+    return home.text
   }
   for (const appPath of ['/map', '/my', '/favorites', '/timetable', '/admin/etl']) {
     const body = await (await fetch(new URL(appPath, baseUrl).toString())).text()
@@ -332,10 +333,13 @@ const assertHomeAndShellSplit = async () => {
     }
   }
   process.stdout.write('PASS: /guide, a guide, /faq, /checklist and /learn are served as static pages with their own canonical\n')
+  return home.text
 }
 
 try {
-  await assertHomeAndShellSplit()
+  // Compare the app with the target's own prerender, not an unrelated local build.
+  // The dev server has no prerender, so the existing dist fallback still applies there.
+  const staticHome = await assertHomeAndShellSplit()
   await assertDeepLinkResolves('/admin/etl')
   await assertImageServed('/og-image.jpg')
   await assertFileServed('/robots.txt', 'Sitemap:', { built: true })
@@ -430,14 +434,14 @@ try {
   assertPage("document.querySelectorAll('.worry-item').length <= 6 && document.querySelector('.worry-item[data-worry-id=assignment] #home-assignment-search input[role=combobox]') && !document.querySelector('.worry-item[data-worry-id=assignment] a.worry-card')", 'the assignment worry is one card holding the search, within six worries')
   assertPage("(() => { const questions = [...document.querySelectorAll('.worry-card strong')]; const nav = document.querySelector('.app-gnb')?.getBoundingClientRect().top; const bottom = nav > 0 ? nav : innerHeight; return document.querySelector('#home-title').getBoundingClientRect().top >= 0 && questions.filter(q => { const r = q.getBoundingClientRect(); return r.top >= 0 && r.bottom <= bottom }).length >= 3 && document.documentElement.scrollWidth === innerWidth })()", 'C-04 title and at least three worries fit the first 390px viewport without horizontal overflow')
   assertPage("document.querySelector('.timetable-banner')?.getAttribute('href') === '/timetable?face=week'", 'new families retain the week-planning banner')
-  const builtHome = fs.readFileSync(path.join(projectRoot, 'dist/index.html'), 'utf8')
+  const builtHome = staticHome
   const staticLinks = builtHome.match(/<div class="home-secondary-links">(.*?)<\/div>/)?.[1]
   if (!staticLinks || builtHome.includes('class="home-page__card"')) throw new Error('static home must use compact secondary links')
   const expectedLinks = [...staticLinks.matchAll(/<a href="([^"]+)">([^<]+)<\/a>/g)].map(match => [match[1], match[2]])
   assertPage(`JSON.stringify([...document.querySelectorAll('.home-secondary-links a')].map(a => [a.getAttribute('href'), a.textContent])) === ${JSON.stringify(JSON.stringify(expectedLinks))}`, 'static and app secondary links have matching destinations, labels and order')
-  if (fs.existsSync(path.join(projectRoot, 'dist/home-showcase.json')) && !builtHome.includes('id="home-showcase-title">일정 예시</h2>')) throw new Error('static example heading must be 일정 예시')
   const showcaseAvailable = run(['eval', "fetch('/home-showcase.json').then(response => response.json()).then(data => Boolean(data?.school)).catch(() => false)"], { quiet: true })
   if (showcaseAvailable.includes('true')) {
+    if (!builtHome.includes('id="home-showcase-title">일정 예시</h2>')) throw new Error('static example heading must be 일정 예시')
     await waitFor("document.querySelector('#home-showcase-title')?.textContent === '일정 예시'", 'app example heading is 일정 예시, matching static home')
   } else {
     process.stdout.write('SKIP: app examples are omitted because /home-showcase.json is unavailable here\n')
@@ -450,7 +454,7 @@ try {
     run(['eval', "window.scrollTo(0, 0); 'home scroll restored'"], { quiet: true })
   }
   run(['set', 'viewport', '390', '844'], { quiet: true })
-  const staticWorryIds = [...fs.readFileSync(path.join(projectRoot, 'dist/index.html'), 'utf8').matchAll(/data-worry-id="([^"]+)"/g)].map(match => match[1])
+  const staticWorryIds = [...staticHome.matchAll(/data-worry-id="([^"]+)"/g)].map(match => match[1])
   assertPage(`JSON.stringify([...document.querySelectorAll('.worry-item')].map(item => item.dataset.worryId)) === ${JSON.stringify(JSON.stringify(staticWorryIds))}`, 'C-04 static home and app show the same ordered worries')
   run(['eval', "const input = document.querySelector('.worry-item[data-worry-id=assignment] input[role=combobox]'); input.focus(); input.blur(); input.focus(); 'C-04 focus assignment search twice'"])
   await waitFor("location.pathname === '/' && document.activeElement === document.querySelector('#home-assignment-search input[role=combobox]')", 'C-04 assignment card search takes focus in place')

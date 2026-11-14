@@ -19,6 +19,7 @@
  */
 
 import type { PlanFace, PlanSource } from './familyPlanCore'
+import { createFunnelMeasurement, type MeasuredScreen } from './funnelMeasurement'
 
 const MEASUREMENT_ID = 'G-NQT4XV9R00'
 const PRODUCTION_HOSTS = new Set(['wherecho.co.kr'])
@@ -100,6 +101,23 @@ export const trackPageView = (): void => {
   track('page_view', {
     page_location: window.location.href,
     page_title: document.title,
+  })
+}
+
+/** Shared across App and TimetablePage so mount order cannot double count a screen. */
+export const funnelMeasurement = createFunnelMeasurement((event, params) => {
+  initAnalytics()
+  track(event, params)
+})
+
+export const trackDisplayedScreen = (timetable?: MeasuredScreen['timetable']): void => {
+  funnelMeasurement.screen({
+    pathname: window.location.pathname,
+    search: window.location.search,
+    pageLocation: window.location.href,
+    // Child effects run before App's title effect during an in-app transition.
+    pageTitle: timetable ? '우리집 일정 | 어디초' : document.title,
+    timetable,
   })
 }
 

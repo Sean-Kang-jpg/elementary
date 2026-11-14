@@ -5,12 +5,13 @@ import { displaySchoolName } from '../../utils/schoolName'
 import SchoolSearch from './SchoolNameSearch'
 
 /** Shared school list. Browsing a school and removing it are separate actions. */
-export default function SchoolSelection({ schoolId, onChange, message: heldMessage, onMessage }: {
+export default function SchoolSelection({ schoolId, onChange, message: heldMessage, onMessage, onSelection }: {
   schoolId: string | null
   onChange: (id: string | null) => void
   /** A parent that swaps layouts remounts this list; holding the message there keeps a refusal visible. */
   message?: string
   onMessage?: (message: string) => void
+  onSelection?: (schoolId: string) => void
 }) {
   const [favorites, setFavorites] = useState(readFavorites)
   const [ownMessage, setOwnMessage] = useState('')
@@ -28,6 +29,7 @@ export default function SchoolSelection({ schoolId, onChange, message: heldMessa
         if (!school) throw new Error('학교를 찾지 못했어요. 다시 검색해 주세요.')
         saveFavorite(schoolFavorite(school))
       }
+      if (id !== schoolId) onSelection?.(id)
       onChange(id); setMessage('')
     } catch (error) { setMessage(error instanceof Error ? error.message : '학교를 추가하지 못했어요.') }
     finally { setBusy(false) }

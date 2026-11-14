@@ -28,7 +28,7 @@ import { startFamilyPlan, type PlanFace } from './utils/familyPlan'
 import { getApartmentByPublicKey, getSchoolDetail, resolveApartmentPublicKey, type ResolvedApartmentKey } from './services/dataService'
 import PendingApartmentSheet from './components/apartment/PendingApartmentSheet'
 import { readFavorites, subscribeFavorites, type FavoriteRecord } from './utils/favorites'
-import { initAnalytics, markEntry, rememberDetailEntry, takeEntry, track, trackPageView, type EntrySource } from './utils/analytics'
+import { initAnalytics, markEntry, rememberDetailEntry, takeEntry, track, trackDisplayedScreen, type EntrySource } from './utils/analytics'
 import {
   apartmentPath,
   guidePath,
@@ -435,15 +435,13 @@ function MapApplication() {
   })
 
   // 맨 뒤에 둔다 — GA4가 스스로 보내게 두면 제목이 바뀌기 전에 기록된다.
-  const lastPageView = useRef<string | null>(null)
   useEffect(() => {
     // 주소에서 선택을 복원하는 중에는 아직 그 화면이 아니다. 공유 링크로 들어온
     // 방문이 복원 전 주소와 정규 주소로 두 번 집계되는 것을 막는다.
-    if (restoring.current) return
-    const here = window.location.pathname
-    if (here === lastPageView.current) return
-    lastPageView.current = here
-    trackPageView()
+    if (restoring.current || view === 'timetable') return
+    // TimetablePage knows the actual default face and restored school. It owns
+    // its screen observation; both callers share the same deduplication state.
+    trackDisplayedScreen()
   })
 
   // 선택된 학교 상세 정보 바텀시트 상태

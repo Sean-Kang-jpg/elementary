@@ -13,7 +13,7 @@ import { readPlans, writePlans } from '../../utils/schedule/plans'
 import { addPostToPlan } from '../../utils/schedule/frontyard'
 import { timetablePath } from '../../utils/urlState'
 import { followLink } from '../content/contentLinks'
-import { track } from '../../utils/analytics'
+import { funnelMeasurement, track } from '../../utils/analytics'
 
 interface PostCardProps {
   post: FrontyardPost
@@ -81,7 +81,7 @@ export default function PostCard({ post, schoolId, onNavigate, interested = fals
       return
     }
     try {
-      writePlans({ ...store, plans: store.plans.map((item) => item.schoolId === schoolId ? result.plan : item) })
+      funnelMeasurement.write(schoolId, 'edit', () => writePlans({ ...store, plans: store.plans.map((item) => item.schoolId === schoolId ? result.plan : item) }), 'frontyard')
     } catch {
       // 기기 저장이 막히면(사생활 보호 모드·용량) 담았다고 말하지 않는다.
       setMessage('이 브라우저에 저장하지 못했어요.')

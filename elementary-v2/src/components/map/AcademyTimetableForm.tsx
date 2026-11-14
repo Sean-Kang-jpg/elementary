@@ -4,7 +4,7 @@ import { addAcademyToPlan } from '../../utils/schedule/frontyard'
 import { displaySchoolName } from '../../utils/schoolName'
 import { planPath, timetablePath } from '../../utils/urlState'
 import { followLink } from '../content/contentLinks'
-import { track } from '../../utils/analytics'
+import { funnelMeasurement, track } from '../../utils/analytics'
 
 const DAYS = ['월', '화', '수', '목', '금']
 const toMinutes = (value: string) => Number(value.slice(0, 2)) * 60 + Number(value.slice(3, 5))
@@ -47,7 +47,7 @@ export default function AcademyTimetableForm({ label, providerKey, onNavigate, o
     const result = addAcademyToPlan(plan, { label, providerKey, weekdays: days, start: toMinutes(start), end: toMinutes(end), attending }, () => crypto.randomUUID())
     if (!result.ok) { setError(days.length ? '끝나는 시각이 시작보다 늦어야 해요.' : '요일을 하나 이상 골라 주세요.'); return }
     try {
-      writePlans({ ...latest, plans: latest.plans.map((item) => (item.schoolId === schoolId ? result.plan : item)) })
+      funnelMeasurement.write(schoolId, 'edit', () => writePlans({ ...latest, plans: latest.plans.map((item) => (item.schoolId === schoolId ? result.plan : item)) }), 'map')
     } catch {
       // 기기 저장이 막히면 담았다고 말하지 않는다.
       setError('이 브라우저에 저장하지 못했어요.')

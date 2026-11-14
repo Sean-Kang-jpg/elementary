@@ -313,6 +313,53 @@ link·search·related·favorites 진입, 뒤로 가기 무시, 같은 학교 복
 
 ## 10. 우리집 일정 퍼널 (2026-11-01, UX-01 / C-01)
 
+### 주간 시간표 계측 보완 (FNL-01, 2026-11-06)
+
+측정 버전 `fnl-1`. 아래는 코드 계약이며 운영 배포·GA4 수신 확인 전까지 구현만으로 실측 가능 상태라 부르지 않는다.
+
+| 이벤트 | 실제 발화 경계 | 주체 |
+| --- | --- | --- |
+| `page_view` | 실제 표시된 화면 주소가 바뀔 때. timetable은 해석된 face·학교가 기준이며 추적 쿼리는 제외 | App / TimetablePage → 공유 관찰자 |
+| `timetable_view` | 입학까지/한 주 화면이 표시될 때. `face=timeline/week`로 구분 | TimetablePage |
+| `timetable_school_pick` | 한 주에서 학교 자료가 정상 해석돼 표시됐을 때 | TimetablePage |
+| `timetable_draft_create` | 첫 답변으로 초안이 실제 저장된 뒤. 빈/기존 자료 모두 저장 성공만 | MySchedule |
+| `timetable_first_edit` | 기존 초안에 처음 수락한 실제 사용자 변경, 쓰기 시도 직전 | MySchedule / 지도 학원 담기 / 앞마당 담기 |
+| `timetable_save_success` | 초안 생성 이후 사용자 변경이 실제 저장된 뒤 | 위 저장 호출 경계 |
+| `timetable_save_failure` | 생성/편집의 저장 쓰기가 실패했을 때 | 위 저장 호출 경계 |
+
+모든 새 이벤트와 위 화면 page_view에 `measurement_version=fnl-1`을 붙인다.
+공통 맥락은 `entry_point`(link/home/guide/school_detail/apartment_detail/my/frontyard/timetable/map/nav),
+`face`, 공개 B숫자 학교 ID만의 `school_id`다. 레거시·검사용 ID는 전송하지 않는다.
+학교 선택은 `selection_method=user/route/restore`로 실제 선택·주소 진입·자동 복원을 구분한다.
+저장 실패는 `operation=create/edit`, `error_code=storage_write`만 보낸다. 오류 원문·입력값은 보내지 않는다.
+`entry_point`는 이전에 표시된 앱 화면 기준이며 외부 유입 채널은 GA4의 세션 채널로 분해한다.
+지도 학원·앞마당에서 담아 저장하는 작업은 각각 `map`, `frontyard`를 명시한다.
+GA4 설정·등록 확인과 미확인 항목은 [실행 기록](../operations/FUNNEL_MEASUREMENT_EXECUTION_20261106.md)에 기록한다.
+
+아동 이름·일정명·주소·귀가 시각·질문 답변은 이벤트에 싣지 않는다. 저장 형식과 키는 바꾸지 않는다.
+첫 편집 중복 방지는 **문서 실행 중 학교별 1회**이며 컴포넌트 재마운트에도 유지된다.
+새로고침은 같은 GA4 세션에서도 다시 기록될 수 있다. 새 분석 저장 키나 GA 쿠키 해석 없이
+정확한 GA 세션 경계를 흉내 내지 않으며, 보고서는 이벤트 횟수가 아닌 실제 세션을 중복 제거한다.
+이는 백로그의 '세션 내 최초'를 구현 가능한 문서 경계와 분석의 세션 경계로 나눈 명세다.
+
+| 검증 시나리오 | 기대 기록 |
+| --- | --- |
+| 새 방문 timeline → week(학교 없음) | 화면마다 page_view + timetable_view 1회, 학교 선택·저장 없음 |
+| 학교 지정 링크 정상 복원 | 해석된 week 조회 1회 + school_pick(route) 1회, 중간 빈 화면은 기록 안 함 |
+| 자동 초안/관심 학교 복원 | school_pick(restore), 같은 화면 재마운트는 추가 없음 |
+| 다른 학교 선택 / 같은 학교 재선택 | 다른 학교는 조회·선택 각각 1회, 같은 학교는 추가 없음 |
+| 뒤로/앞으로 / 추적 쿼리만 변경 | 실제 화면 변경은 기록, utm만 변경한 재렌더는 추가 없음 |
+| 첫 답변 저장 성공 / 실패 후 재시도 | 성공에만 draft_create. 실패에는 failure만, 재시도 성공에 create 1회 |
+| 기존 초안 첫 변경 성공 | first_edit → save_success. 이후 변경은 save_success만 |
+| 기존 초안 첫 변경 실패 | first_edit → failure, 재시도 성공에는 success. 성공 UI 없음 |
+| 변경 없는 쓰기 / 자동 복원 / 초안 전체 삭제 | 생성·편집 성공 퍼널을 부풀리지 않음 |
+
+`plan_start`, `plan_item_add`, `save_candidate`의 기존 의미는 유지하며 위 저장 성공을 대체하지 않는다.
+초안 생성은 일반 저장 성공을 동시에 보내지 않는다. 첫 편집과 저장 성공이 같은 작업에서 각각
+발생할 수 있으므로 두 이벤트 수를 합쳐 전환자로 세지 않는다. 자료 조회 실패 뒤 사용 가능한
+초안이 실제 저장됐으면 생성 성공이며, 학교 데이터 읽기 실패를 저장 실패로 바꾸지 않는다.
+
+
 기존 조회·저장 이벤트(9절)는 유지한다. 아래는 일정 생성·담기·내보내기·재방문과 홈 고민 선택을
 구분하기 위한 신규 이벤트다. `src/utils/analytics.ts`의 타입 있는 함수를 통해 `track()`에 전달한다.
 
