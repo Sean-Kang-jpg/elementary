@@ -34,3 +34,13 @@
 - 최종 가이드 전용 스모크 exit 0. 390px 배치·저장 실패/재시도·중복 방지·기존 가족 설정 보존·세 가이드의 week 도착 통과.
 - 정적 가이드 8편의 설명·주소가 앱 콘텐츠와 일치하고, 동작하지 않는 저장 버튼을 정적 HTML에 넣지 않았음을 확인했다.
 - React 검토: 저장 상태는 기존 구독 API에서 읽고 성공을 추측하지 않는다. 버튼과 링크는 형제이며 요청·effect·저장 키를 추가하지 않았다.
+
+### 운영 배포 완료
+
+- 코드 커밋 5cf9936, 배포 커밋 cb75445fd2bb69df3cce361011ad1a284d43fe22. 작업 브랜치와 master에 반영한 동일 커밋으로 release를 fast-forward했다. 다른 팀원의 주 작업 폴더는 변경하지 않았다.
+- Vercel production `dpl_GLLDqyqTeGiMXjpLEBxdGcQrRnLC` Ready. 프로젝트 elementary / team_BwevgkWVS8CQ8ETHgE6xSxip, 운영 https://wherecho.co.kr 연결 확인.
+- 운영 정적 가이드 8편 HTTP 200, 새 안내와 목적별 주소 확인 통과. 실제 브라우저에서 morning-care의 새 버튼 → /timetable?face=week → 학교 선택 및 주간 예시 화면 도착 확인.
+- 배포 후 `npm run browser:smoke:public -- https://wherecho.co.kr`: exit 0 / Public map smoke test passed. 지도 축소, 검색·상세·홈·일정·가이드·체크리스트·깊은 링크·정적 SEO·360/430/1280px 배치 통과. 예상하지 못한 페이지 오류 0. 지도 요청 최대 1,353.4ms(5초 기준), 아파트 요청 최대 1,495.1ms(3초 기준). 로컬 지도 검사 실패는 운영에서 재현되지 않았다.
+- 새 배포의 최근 1시간 error 로그 조회 결과 0건. 기존 Drains 연결은 없음(조회만 수행, 설정 변경 없음).
+- 운영 화면 증빙: C:/Users/ksmgn/.codex/visualizations/2026/11/01/01a19665-96b6-7a93-8048-b476fe3351c2/guide-plan-live-20261115.png.
+- 검증용 로컬 서버 3055/3056/3057은 종료했다. 구현 블로커 없음. 이 최종 검증 기록은 문서만의 후속 커밋으로 보관하며 코드 재배포를 유발하지 않는다.
