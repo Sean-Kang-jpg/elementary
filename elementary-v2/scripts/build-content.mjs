@@ -139,6 +139,12 @@ for (const file of guideFiles) {
     if (!['plan', 'school', 'guide'].includes(nextStep.kind)) {
       problem(file, 'nextStep.kind must be plan, school or guide')
     }
+    if (nextStep.description !== undefined && (typeof nextStep.description !== 'string' || !nextStep.description.trim() || [...nextStep.description].length > 120)) {
+      problem(file, 'nextStep.description must be nonempty and at most 120 characters')
+    }
+    if (nextStep.planItem !== undefined && (nextStep.kind !== 'plan' || nextStep.href !== '/timetable?face=timeline' || !/^guide-[a-z0-9-]+$/.test(nextStep.planItem?.id ?? '') || typeof nextStep.planItem?.title !== 'string' || !nextStep.planItem.title.trim() || [...nextStep.planItem.title].length > 60)) {
+      problem(file, 'nextStep.planItem needs a guide ID and title, and must link to timeline')
+    }
   }
   if (summary) {
     if (!SUMMARY_KINDS.includes(summary.kind)) problem(file, `summary.kind must be one of ${SUMMARY_KINDS.join(', ')}`)
@@ -160,7 +166,7 @@ for (const file of guideFiles) {
     verifiedAt: String(meta.verifiedAt),
     scope: meta.scope ?? null,
     summary,
-    nextStep: nextStep ? { label: nextStep.label, href: nextStep.href, kind: nextStep.kind } : null,
+    nextStep: nextStep ? { label: nextStep.label, href: nextStep.href, kind: nextStep.kind, ...(nextStep.description ? { description: nextStep.description } : {}), ...(nextStep.planItem ? { planItem: nextStep.planItem } : {}) } : null,
     rule: meta.rule,
     basisYear: meta.basisYear,
     sources: withOfficial(meta.sources),

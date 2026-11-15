@@ -27,6 +27,8 @@ export interface GuideNextStep {
   label: string
   href: string
   kind: 'plan' | 'school' | 'guide'
+  description?: string
+  planItem?: { id: string; title: string }
 }
 
 export interface Guide {

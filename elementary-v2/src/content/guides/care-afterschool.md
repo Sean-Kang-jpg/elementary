@@ -1,6 +1,6 @@
 ---
 slug: care-afterschool
-nextStep: {"label":"우리 학교 하교·돌봄 시간으로 한 주 짜보기","href":"/timetable","kind":"plan"}
+nextStep: {"label":"우리 학교로 한 주 짜보기","href":"/timetable?face=week","kind":"plan","description":"학교를 고른 뒤 요일별 하교 시각을 보고 돌봄·방과후를 넣어 보세요. 기존 시간표가 있으면 이어서 열려요."}
 title: 늘봄·돌봄, 무엇을 언제 신청하나요
 description: 맞춤형·방과후·돌봄교실은 무엇이 다를까요? 신청 시기와 하교 뒤 빈 시간을 우리 학교 안내문에서 확인해 보세요.
 order: 6

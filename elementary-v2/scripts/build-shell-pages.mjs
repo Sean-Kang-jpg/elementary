@@ -256,6 +256,7 @@ await writePage('/guide', contentPage({
   body: listBody,
 }))
 
+const guideActionHtml = (step, compact = false) => `<aside class="guide-next-action" aria-label="다음 한 걸음">${!compact && step.description ? `<p>${escapeHtml(step.description)}</p>` : ''}${!compact && step.planItem ? `<p><strong>${escapeHtml(step.planItem.title)}</strong></p><p class="my-help">일정 화면에서 시기별 할 일을 확인할 수 있어요.</p>` : ''}<a href="${escapeHtml(step.href)}" class="my-button my-button--primary my-4 flex min-h-11 items-center justify-center text-center" data-testid="${compact || !step.description ? 'guide-next-step' : 'guide-next-step-preview'}" data-next-step-kind="${escapeHtml(step.kind)}">${escapeHtml(step.label)}</a></aside>`
 for (const guide of content.guides) {
   await writePage(`/guide/${guide.slug}`, contentPage({
     pagePath: `/guide/${guide.slug}`,
@@ -285,8 +286,9 @@ for (const guide of content.guides) {
       appliesHtml(guide.rule, guide.basisYear),
       guide.scope ? `<p class="content-page__scope">${escapeHtml(guide.scope)}</p>` : '',
       summaryHtml(guide.summary),
+      guide.nextStep.description ? guideActionHtml(guide.nextStep) : '',
       `<div class="content-body">${guide.html}</div>`,
-      `<a href="${escapeHtml(guide.nextStep.href)}" class="my-button my-button--primary my-4 flex min-h-11 items-center justify-center text-center" data-testid="guide-next-step" data-next-step-kind="${escapeHtml(guide.nextStep.kind)}">${escapeHtml(guide.nextStep.label)}</a>`,
+      guideActionHtml(guide.nextStep, Boolean(guide.nextStep.description)),
       '<a href="/checklist" class="checklist-banner"><span class="checklist-banner__text"><strong>입학 준비 체크리스트</strong></span></a>',
       sourcesHtml(guide.sources, guide.verifiedAt),
     ].join(''), 'guide-title'),

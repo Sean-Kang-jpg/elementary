@@ -1,6 +1,6 @@
 ---
 slug: school-notice
-nextStep: {"label":"통지서에 적힌 학교 찾기","href":"/map","kind":"school"}
+nextStep: {"label":"통지서에 적힌 학교 찾기","href":"/map","kind":"school","description":"통지서에 적힌 학교명을 확인한 뒤 지도에서 찾아보세요. 학교 상세에서 그 학교의 한 주 시간표로 이어갈 수 있어요."}
 title: 취학통지서, 언제 어떻게 받나요
 description: 취학통지서는 주소지 주민센터에서 보냅니다. 정부24에서 받는 방법과 통지서에서 먼저 볼 세 가지를 확인하세요.
 order: 1

@@ -47,9 +47,10 @@ export default function GuidePage({ guide, onNavigate }: GuidePageProps) {
           <p className="content-page__scope"><Info size={15} aria-hidden="true" /><span>{guide.scope}</span></p>
         ) : null}
         {guide.summary ? <GuideSummary summary={guide.summary} /> : null}
+        {guide.nextStep.description ? <NextStep nextStep={guide.nextStep} slug={guide.slug} onNavigate={onNavigate} /> : null}
         <div className="content-body" dangerouslySetInnerHTML={{ __html: guide.html }} />
         <SocialLinks targetType="guide" targetKey={guide.slug} />
-        <NextStep nextStep={guide.nextStep} onNavigate={onNavigate} />
+        <NextStep nextStep={guide.nextStep} slug={guide.slug} compact={Boolean(guide.nextStep.description)} onNavigate={onNavigate} />
         <ChecklistBanner onNavigate={onNavigate} />
         <div ref={endRef}><SourceList sources={guide.sources} verifiedAt={guide.verifiedAt} /></div>
       </article>
