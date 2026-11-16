@@ -74,7 +74,7 @@ export default function HomeShelves({ onNavigate, part = 'all', search }: { onNa
                   {search}
                 </li>
               )
-              const date = card.deadline ? nextDateOf(card.deadline) : null
+              const date = card.deadline && card.dday !== null ? nextDateOf(card.deadline) : null
               return (
                 <li key={card.id} className="worry-item" data-worry-id={card.id}>
                   <a href={card.href} className="worry-card" onClick={openWorry(card)}>

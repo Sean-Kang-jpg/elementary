@@ -35,6 +35,14 @@ describe('home worry cards', () => {
     assert.deepEqual(cards.map((c) => [c.id, c.dday]), [['private', 22], ['delay', 77], ['care', null]])
   })
 
+  it('drops a deadline already past instead of counting to next year', () => {
+    const items = [item('private', '09-15', '11-25', { deadline: '11-06' }), item('notice', '11-20', '12-31', { deadline: '12-20' }), item('call', '12-15', '01-31', { deadline: '01-10' })]
+    assert.equal(worryCards(items, new Date(2026, 10, 10), 4).find((c) => c.id === 'private')?.dday, null)
+    assert.equal(worryCards(items, new Date(2026, 11, 21), 4).find((c) => c.id === 'notice')?.dday, null)
+    assert.equal(worryCards(items, new Date(2026, 11, 21), 4).find((c) => c.id === 'call')?.dday, 20)
+    assert.equal(worryCards(items, new Date(2027, 0, 11), 4).find((c) => c.id === 'call')?.dday, null)
+  })
+
   it('says D-day on the day itself and marks NEW until its date', () => {
     const items = [item('private', '09-15', '11-25', { deadline: '11-06' }), item('morning', '10-15', '03-15', { newUntil: '2026-11-15' })]
     const onDay = worryCards(items, new Date(2026, 10, 6), 4)

@@ -33,6 +33,13 @@ const daysUntil = (now: Date, mmdd: string) => {
   return Math.round((target.getTime() - start.getTime()) / 86_400_000)
 }
 
+/** 마감이 이미 지났으면(창이 끝나기 전에 다음 마감이 오지 않으면) null — 내년 마감을 세지 않는다. */
+const ddayOf = (now: Date, item: WorryItem) => {
+  if (!item.deadline) return null
+  const dday = daysUntil(now, item.deadline)
+  return item.to && dday > daysUntil(now, item.to) ? null : dday
+}
+
 /** 날짜 창 없는 검색을 먼저, 시기별 고민은 마감 가까운 순·원래 순서대로. */
 export const worryCards = (items: WorryItem[], now: Date, max: number): WorryCard[] => {
   const today = monthDay(now)
@@ -42,7 +49,7 @@ export const worryCards = (items: WorryItem[], now: Date, max: number): WorryCar
     .filter((item) => (!item.from && !item.to) || Boolean(item.from && item.to && inWindow(today, item.from, item.to)))
     .map((item, index) => ({
       ...item,
-      dday: item.deadline ? daysUntil(now, item.deadline) : null,
+      dday: ddayOf(now, item),
       isNew: Boolean(item.newUntil && iso <= item.newUntil),
       index,
       permanent: !item.from && !item.to,
