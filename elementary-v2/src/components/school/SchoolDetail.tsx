@@ -20,7 +20,9 @@ import SocialLinks from '../content/SocialLinks'
 import NearbySchools from './NearbySchools'
 import CareCenterList from '../care/CareCenterList'
 import { markEntry, track } from '../../utils/analytics'
-import { schoolPath } from '../../utils/urlState'
+import { schoolPath, timetablePath } from '../../utils/urlState'
+import { startFamilyPlan } from '../../utils/familyPlan'
+import { followLink } from '../content/contentLinks'
 import { hasAcademyData } from '../../utils/academyCoverage'
 import { displaySchoolName } from '../../utils/schoolName'
 import { MAP_TOPICS, type MapTopic } from '../../utils/mapTopics'
@@ -240,6 +242,12 @@ const SchoolDetail: React.FC<SchoolDetailProps> = ({ school, entryYear, isOpen, 
     >
       {sheetSnap !== 0 && (
         <div className="px-4 pt-3">
+          <a className="timetable-cta mb-3" data-testid="school-plan-primary" href={timetablePath(school.school_id)}
+            onClick={(event) => {
+              if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return
+              startFamilyPlan({ from: 'school_detail', face: 'week', contentId: school.school_id })
+              followLink(event, timetablePath(school.school_id), onOpenGuide)
+            }}>이 학교로 한 주 짜보기</a>
           <DetailTabs<MapTopic> label="학교 상세 메뉴" tabs={MAP_TOPICS} value={state.mapTopic}
             onChange={(topic) => dispatch({ type: 'SET_MAP_TOPIC', payload: topic })} />
           {(state.mapTopic === 'assignment' || state.mapTopic === 'activity') && <div className="mt-3">

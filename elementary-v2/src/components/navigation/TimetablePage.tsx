@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from 'react'
-import { CalendarClock } from 'lucide-react'
 import type { School } from '../../types'
 import { getSchoolDetail } from '../../services/dataService'
 import { readFavorites, subscribeFavorites, type FavoriteRecord } from '../../utils/favorites'
@@ -31,8 +30,6 @@ interface TimetablePageProps {
   onSchoolChange: (schoolId: string | null) => void
   onNavigate: (path: string) => void
 }
-
-const STEPS = ['학교 고르기', '시간표 확인', '직접 짜기']
 
 /**
  * 우리집 일정 (`/timetable`, UX-26 2026-11-01). 두 면이 있다.
@@ -92,10 +89,23 @@ export default function TimetablePage({
     trackDisplayedScreen({ face, schoolId, schoolReady: Boolean(school), selectionMethod: routeSchoolId ? 'route' : 'restore' })
   }, [face, schoolId, school, loadingDetail, plan, routeSchoolId])
   const shownName = school ? displaySchoolName(school.school_name, school.address, school.establishment_type) : name && displaySchoolName(name)
-  const step = !schoolId ? 0 : plan ? 2 : 1
 
   // 초안을 막 만들면 화면이 시간표 중심으로 바뀐다. 아래로 내려가 있던 자리 그대로면 시간표가 위로 잘려 보인다.
   const page = useRef<HTMLElement>(null)
+  useEffect(() => {
+    if (face !== 'timeline') return
+    const id = new URLSearchParams(window.location.search).get('item')
+    if (!id) return
+    const frame = requestAnimationFrame(() => {
+      const target = [...(page.current?.querySelectorAll<HTMLElement>('[data-plan-item]') ?? [])].find((node) => node.dataset.planItem === id)
+      if (!target) return
+      target.classList.add('plan-item--focused')
+      target.tabIndex = -1
+      target.focus({ preventScroll: true })
+      target.scrollIntoView({ block: 'center', behavior: 'auto' })
+    })
+    return () => cancelAnimationFrame(frame)
+  }, [face, entryYear])
   const hadPlan = useRef(Boolean(plan))
   useEffect(() => {
     if (plan && !hadPlan.current) page.current?.scrollTo({ top: 0 })
@@ -151,16 +161,20 @@ export default function TimetablePage({
     )
   }
 
-  // 초안이 있으면 시간표가 첫 화면이다. 안내·단계·운영 자료는 초안을 만들기 전에만 앞에 둔다.
-  if (schoolId && plan) {
+  // 학교를 골랐다면 첫 질문 또는 저장된 편집기부터 보여 준다.
+  if (schoolId) {
     return (
       <section ref={page} className="app-destination app-page content-page timetable-page timetable-page--editing" aria-labelledby="timetable-title">
         <div className="content-page__inner">
           {header}
-          {chips}
-
-          <MySchedule key={schoolId} school={{ id: schoolId, name: name ?? plan.schoolName, displayName: shownName ?? undefined }} entryYear={entryYear}
-            saved={savedSchools.some((item) => item.id === schoolId)} onNavigate={onNavigate} />
+          <details className="timetable-school-change my-card">
+            <summary>{shownName ?? '선택한 학교'} · 학교 바꾸기</summary>
+            {chips}
+          </details>
+          {loadingDetail && !plan ? <p className="my-help" role="status">학교 자료를 불러오는 중…</p>
+            : name ? <MySchedule key={schoolId} school={{ id: schoolId, name, displayName: shownName ?? undefined }} entryYear={entryYear}
+              saved={savedSchools.some((item) => item.id === schoolId)} onNavigate={onNavigate} />
+            : <p className="my-help" role="status">이 학교를 찾지 못했어요. 위에서 학교를 다시 골라 주세요.</p>}
           {school && (
             <details className="timetable-source my-card">
               <summary>{shownName} 운영 자료 보기</summary>
@@ -176,52 +190,17 @@ export default function TimetablePage({
     <section ref={page} className="app-destination app-page content-page timetable-page" aria-labelledby="timetable-title">
       <div className="content-page__inner">
         {header}
-        <p className="timetable-page__kicker"><CalendarClock size={16} aria-hidden="true" /> 맞춤형 · 방과후 · 돌봄 · 주변 학원</p>
-        <p className="content-page__lead">학교의 초1 하루를 먼저 보고, 입학 전에 우리 아이 한 주를 직접 그려 봐요.</p>
-
-        <ol className="timetable-steps" aria-label="진행 단계">
-          {STEPS.map((label, index) => (
-            <li key={label} aria-current={index === step ? 'step' : undefined} className={index < step ? 'is-done' : undefined}>
-              <b>{index + 1}</b><span>{label}</span>
-            </li>
-          ))}
-        </ol>
-
+        <p className="content-page__lead">학교를 고르면 하교 뒤 돌봄·방과후를 넣어 한 주를 짤 수 있어요.</p>
         <section className="timetable-pick my-card" aria-labelledby="timetable-pick-title">
-          <h2 id="timetable-pick-title">1. 학교 고르기</h2>
+          <h2 id="timetable-pick-title">우리 아이 학교 찾기</h2>
           {chips}
-          <p className="my-help">학교는 최대 3곳까지 등록할 수 있어요. 시간표는 이 기기의 브라우저에만 저장돼요.</p>
+          <p className="my-help">시간표는 이 기기에 저장돼요. 학교는 최대 3곳까지 고를 수 있어요.</p>
         </section>
-
-        {!schoolId && (
-          <section className="timetable-sample my-card" aria-labelledby="timetable-sample-title">
-            <h2 id="timetable-sample-title">이런 한 주를 그리게 돼요</h2>
-            <p className="my-help">하교 시각 뒤로 돌봄·방과후·학원을 넣으면, 요일마다 아이가 어디에 있는지 한눈에 보여요.</p>
-            <SampleWeek />
-          </section>
-        )}
-
-        {schoolId && (loadingDetail ? (
-          <p className="my-help" role="status">학교 자료를 불러오는 중…</p>
-        ) : !name ? (
-          <p className="my-help" role="status">이 학교를 찾지 못했어요. 위에서 다시 검색해 주세요.</p>
-        ) : (
-          <>
-            {school && (
-              <section className="timetable-source my-card" aria-labelledby="timetable-source-title">
-                <h2 id="timetable-source-title">2. {shownName} 초1 하루 확인</h2>
-                <p className="my-help">학교가 공시한 운영계획으로 만든 예상이에요. 아래에서 초안을 만들면 하교 시각이 먼저 들어가고, 강좌·돌봄·학원은 직접 골라요.</p>
-                <button type="button" className="my-button timetable-skip"
-                  onClick={() => document.getElementById('my-schedule-title')?.scrollIntoView({ behavior: 'smooth', block: 'start' })}>
-                  3. 바로 시간표 짜기로 가기
-                </button>
-                <SchoolDayEstimateCard school={school} onOpenGuide={onNavigate} />
-              </section>
-            )}
-            <MySchedule key={schoolId} school={{ id: schoolId, name, displayName: shownName ?? undefined }} entryYear={entryYear}
-              saved={savedSchools.some((item) => item.id === schoolId)} onNavigate={onNavigate} />
-          </>
-        ))}
+        <details className="timetable-sample my-card">
+          <summary>어떤 시간표가 만들어지나요? · 한 주 예시 보기</summary>
+          <p className="my-help">예시예요. 학교를 고르면 그 학교 자료와 우리 가족의 답으로 시작해요.</p>
+          <SampleWeek />
+        </details>
       </div>
     </section>
   )

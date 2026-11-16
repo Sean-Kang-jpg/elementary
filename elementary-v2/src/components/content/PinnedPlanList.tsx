@@ -24,7 +24,7 @@ export default function PinnedPlanList({ profile, onNavigate }: { profile: Profi
     <ul className="roadmap__tasks">
       {entries.map((entry) => {
         const due = dueBadge(entry.when)
-        return <li key={entry.id} className={entry.done ? 'is-done' : undefined}>
+        return <li key={entry.id} data-plan-item={entry.id} className={entry.done ? 'is-done' : undefined}>
           <input type="checkbox" className="roadmap__done" checked={entry.done} onChange={(event) => setTimelineDone(entry.id, event.target.checked)} aria-label={`${entry.title} 완료`} />
           {entry.href ? <a href={entry.href} onClick={(event) => followLink(event, entry.href!, onNavigate)}>
             <span>{entry.title}</span>

@@ -863,6 +863,7 @@ try {
   // The week face of 우리집 일정 shows the same sample week until a school is chosen.
   run(['open', new URL('/timetable?face=week', baseUrl).toString()])
   await waitFor("document.querySelector('#timetable-title') && document.querySelector('.timetable-sample .sample-week')", '우리 아이 한 주 without a school shows a sample week')
+  run(['eval', `document.querySelector('.timetable-sample > summary').click(); true`], { quiet: true })
   assertPage(
     "document.querySelectorAll('.timetable-sample .my-week__day').length === 5 && document.querySelectorAll('.timetable-sample .my-week__entry').length >= 15 && !document.querySelector('.timetable-sample button') && document.documentElement.scrollWidth <= innerWidth",
     'the sample week fills all five days with blocks, has no controls and does not widen the page',

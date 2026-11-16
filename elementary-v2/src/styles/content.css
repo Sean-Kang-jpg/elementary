@@ -3031,3 +3031,8 @@ dialog.my-entry-sheet > a.my-button { display: flex; align-items: center; justif
 .guide-next-action p { margin: 0 0 12px; line-height: 1.65; }
 .guide-next-action .my-button { width: 100%; white-space: normal; }
 .guide-next-action .my-button:disabled { opacity: .7; cursor: default; }
+
+.timetable-school-change { padding: 10px 14px; margin-bottom: 12px; }
+.timetable-school-change > summary, .timetable-sample > summary { cursor: pointer; font-weight: 700; line-height: 1.6; }
+.timetable-school-change[open] > summary, .timetable-sample[open] > summary { margin-bottom: 12px; }
+.roadmap__tasks li.plan-item--focused { outline: 3px solid var(--warm-accent, #c94f3a); outline-offset: 3px; border-radius: 8px; scroll-margin-block: 24px; }

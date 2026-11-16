@@ -78,7 +78,7 @@ export default function RoadmapCard({ entryYear, profile, onProfileChange, onNav
       {entries.map((entry) => {
         const due = dueBadge(entry.when)
         return (
-          <li key={entry.id} className={entry.done ? 'is-done' : undefined}>
+          <li key={entry.id} data-plan-item={entry.id} className={entry.done ? 'is-done' : undefined}>
             <input
               type="checkbox"
               className="roadmap__done"

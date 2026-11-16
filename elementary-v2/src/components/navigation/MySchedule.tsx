@@ -177,7 +177,7 @@ export default function MySchedule({ school, entryYear, saved, onNavigate }: {
   return (
     <section className={`my-schedule my-card${plan ? ' my-schedule--editing' : ''}`} aria-labelledby="my-schedule-title">
       <div className="my-schedule__head">
-        <h2 id="my-schedule-title">{plan ? `${shownName} 시간표` : `3. ${shownName} 시간표 짜기`}</h2>
+        <h2 id="my-schedule-title">{plan ? `${shownName} 시간표` : `${shownName} 한 주 짜기`}</h2>
 
       </div>
       {!plan ? <>
