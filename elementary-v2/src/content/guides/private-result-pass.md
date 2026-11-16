@@ -3,7 +3,7 @@ slug: private-result-pass
 nextStep: {"label":"우리 집 입학 일정 만들기","href":"/timetable?face=timeline","kind":"plan"}
 title: 사립초 추첨에 당첨됐다면, 등록부터 확인하세요
 description: 서울 사립초 당첨자 등록 기간과 학교별 마감 확인 방법을 안내합니다.
-order: 1
+order: 20
 stage: admission
 group: admission
 verifiedAt: 2026-11-04

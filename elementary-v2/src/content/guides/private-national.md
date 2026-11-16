@@ -3,7 +3,7 @@ slug: private-national
 nextStep: {"label":"입학 준비 일정 열기","href":"/timetable?face=timeline","kind":"plan","description":"지원한 학교의 추첨·등록 공지를 확인할 일을 담아 두세요. 학교별 마감 날짜는 모집요강에서 확인하세요.","planItem":{"id":"guide-private-national-followup","title":"지원한 학교의 추첨·등록 공지 확인하기"}}
 title: 사립초·국립초 지원, 2027학년도 일정과 준비 방법
 description: 2027학년도 서울 사립초 접수 일정과 경기·인천·국립초의 학교별 모집 안내입니다. 원서 마감과 추첨 후 등록 기한을 확인하세요.
-order: 0
+order: 22
 stage: admission
 group: admission
 verifiedAt: 2026-11-04

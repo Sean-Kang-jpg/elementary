@@ -75,10 +75,16 @@ const worryCards = (items, now, max) => {
     if (target < start) target = new Date(now.getFullYear() + 1, month - 1, day)
     return Math.round((target - start) / 86_400_000)
   }
+  // A deadline already past inside the window is dropped rather than counted to next year.
+  const ddayOf = (item) => {
+    if (!item.deadline) return null
+    const dday = until(item.deadline)
+    return item.to && dday > until(item.to) ? null : dday
+  }
   return items
     .filter((item) => item.year === undefined || item.year === now.getFullYear())
     .filter((item) => (!item.from && !item.to) || Boolean(item.from && item.to && inWindow(item.from, item.to)))
-    .map((item, index) => ({ ...item, index, permanent: !item.from && !item.to, dday: item.deadline ? until(item.deadline) : null, isNew: Boolean(item.newUntil && iso <= item.newUntil) }))
+    .map((item, index) => ({ ...item, index, permanent: !item.from && !item.to, dday: ddayOf(item), isNew: Boolean(item.newUntil && iso <= item.newUntil) }))
     .sort((a, b) => Number(b.permanent) - Number(a.permanent) || (a.dday ?? 999) - (b.dday ?? 999) || a.index - b.index)
     .slice(0, max)
 }
@@ -94,7 +100,7 @@ const searchCardHtml = (card) => `<li class="worry-item worry-item--search" data
 const worriesHtml = (() => {
   const cards = worryCards(shelves.worries.items, new Date(), shelves.worries.max)
   if (!cards.length) return ''
-  const badge = (card) => (card.deadline
+  const badge = (card) => (card.dday !== null
     ? `<span class="worry-card__badge">${escapeHtml(card.deadlineLabel)} ${Number(card.deadline.slice(0, 2))}월 ${Number(card.deadline.slice(3))}일</span>`
     : card.isNew ? '<span class="worry-card__badge worry-card__badge--new">NEW</span>' : '')
   return `<section class="home-shelf home-worries" aria-labelledby="home-worries-title"><div class="home-shelf__head"><h2 id="home-worries-title">${escapeHtml(shelves.worries.title)}</h2></div><ul class="home-worries__list">`

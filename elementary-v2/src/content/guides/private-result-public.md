@@ -3,7 +3,7 @@ slug: private-result-public
 nextStep: {"label":"배정 학교 찾기","href":"/map","kind":"school"}
 title: 사립초 추첨에 당첨되지 않았다면, 배정 학교부터 찾아보세요
 description: 대기 순번을 확인하고 배정 공립초와 입학 일정을 준비하는 방법을 안내합니다.
-order: 2
+order: 21
 stage: admission
 group: admission
 verifiedAt: 2026-11-04
