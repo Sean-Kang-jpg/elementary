@@ -209,7 +209,9 @@ Bundle `2026-11-14.1` (2026-11-14) corrects four schools the location file re-is
 IDs, keeping the old IDs because they are the public URLs (`etl/school_id_aliases.json`): 천보초
 lost the "(폐교)" its old ID carried, 오산초 moved to 고을1길 27, and 달전초 moved to its 2026 building
 and lost a second, empty entry. 김제 비룡초 closed 2026-03-01; it left the p10 baseline, and the
-19 complexes of 김제초비룡초공동 keep 김제초 only (`INACTIVE_ZONE_SCHOOL_LABELS`).
+19 complexes of 김제초비룡초공동 keep 김제초 only (`INACTIVE_ZONE_SCHOOL_LABELS`). Applied to production
+2026-11-15 for capital, p10 and r10 (OPERATION_PLAN Update Log). A school dropped from a baseline has to be
+deleted by hand before the run, because the runner never deletes school rows and then checks their count.
 
 History: the 2026-09-20 release was published 2026-10-02; its attachment
 did not download from the site at all, in a browser either (owner, 2026-10-08). The monthly task
