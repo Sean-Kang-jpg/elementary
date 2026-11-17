@@ -2833,6 +2833,7 @@
 
 .frontyard-back { width: auto; padding: 0 14px; margin: 0 0 12px; }
 .frontyard-note { margin-top: 18px; }
+.frontyard-providers { margin-top: 24px; }
 
 /* 학교를 고르기 전의 예시(2026-11-03). 실제 글과 같은 카드 모양에 '예시' 표시, 누르는 동작은 없다. */
 .frontyard-preview { margin-top: 22px; }

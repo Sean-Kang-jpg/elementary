@@ -20,6 +20,7 @@ import PostCard from './PostCard'
 import SeekComposer from './SeekComposer'
 import OfferRequest from './OfferRequest'
 import FrontyardPreview from './FrontyardPreview'
+import SchoolNearbyProviders from '../academy/SchoolNearbyProviders'
 
 interface FrontyardPageProps {
   schoolId: string | null
@@ -221,6 +222,7 @@ export default function FrontyardPage({ schoolId, onSchoolChange, onNavigate }: 
             {loaded && !loaded.available && posts.some((post) => post.sample) && (
               <p className="my-help">개발 서버 예시 글이에요. 운영에는 나오지 않아요.</p>
             )}
+            <div className="frontyard-providers"><SchoolNearbyProviders schoolId={schoolId} onNavigate={onNavigate} /></div>
             <p className="my-help frontyard-note">학교 이름은 찾기 기준이에요. 이 학교의 공식 프로그램이라는 뜻이 아니에요.</p>
           </>
         )}
