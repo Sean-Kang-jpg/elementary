@@ -52,17 +52,6 @@
         "hint": "아침돌봄과 우리 학교 운영 시간을 살펴봐요."
       },
       {
-        "id": "delay",
-        "planId": "adm-12-defer",
-        "from": "10-01",
-        "to": "12-31",
-        "deadline": "12-31",
-        "deadlineLabel": "신청 마감",
-        "href": "/guide/delay-or-early-entry",
-        "question": "입학을 늦추거나 앞당길 수 있나요?",
-        "hint": "신청 절차와 확인할 점을 알아봐요."
-      },
-      {
         "id": "care",
         "planId": "season-care",
         "from": "10-01",
