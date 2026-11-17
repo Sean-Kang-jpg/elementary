@@ -7,7 +7,7 @@ and building), and adds ``"shuttle_registered": true`` to the matching instituti
 the address-marker CSV, rewriting it in place.
 
 Only confirmed links are marked. Name-only and ambiguous rows are left out until a person
-reviews them, and an institution without the flag is "not confirmed", never "no shuttle".
+reviews them (review_shuttle_name_only.py, etl/shuttle_reviewed_links.json), and an institution without the flag is "not confirmed", never "no shuttle".
 The registration says a vehicle is registered, not which school it serves.
 
 Operator names and plate numbers never leave the workbook: the profile holds counts only.
@@ -23,12 +23,16 @@ from pathlib import Path
 
 from academy_institutions import academy_entries
 from audit_shuttle_registration import ALIASES, Matcher, read_registration, region_key
+from review_shuttle_name_only import load_reviewed, registration_id
 
 TARGET_TYPES = {"학원", "교습소"}
 FLAG = "shuttle_registered"
 
 
-def registered_keys(registration: list[dict], neis_rows: list[dict]) -> tuple[set[str], Counter]:
+def registered_keys(registration: list[dict], neis_rows: list[dict],
+                    reviewed: dict[str, str] | None = None) -> tuple[set[str], Counter]:
+    """Institutions with a confirmed link: matched by building, or accepted by a person
+    (review_shuttle_name_only.py) while the row still names that institution."""
     masters = [{**entry, "addresses": [entry["road_address"]]}
                for entry in academy_entries(neis_rows) if entry["institution_type"] in TARGET_TYPES]
     matcher = Matcher(masters)
@@ -43,6 +47,9 @@ def registered_keys(registration: list[dict], neis_rows: list[dict]) -> tuple[se
         statuses[result["status"]] += 1
         if result["status"] == "matched":
             keys.add(result["institution_key"])
+        elif reviewed and reviewed.get(registration_id(row)) in result.get("candidates", []):
+            keys.add(reviewed[registration_id(row)])
+            statuses["accepted_by_review"] += 1
     return keys, statuses
 
 
@@ -77,7 +84,7 @@ def main() -> None:
     parser.add_argument("--profile", type=Path, required=True)
     args = parser.parse_args()
     registration = read_registration(args.registration)
-    keys, statuses = registered_keys(registration, json.loads(args.academies.read_text(encoding="utf-8")))
+    keys, statuses = registered_keys(registration, json.loads(args.academies.read_text(encoding="utf-8")), load_reviewed())
     marked = mark_markers(args.markers, keys)
     profile = {"registration_rows": len(registration), "target_statuses": dict(statuses),
                "matched_institutions": len(keys), "marked_on_markers": marked,

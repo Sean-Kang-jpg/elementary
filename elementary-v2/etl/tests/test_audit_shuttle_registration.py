@@ -36,6 +36,25 @@ class MatchingTests(unittest.TestCase):
         result = Matcher([master(), master(key="neis:B10-2", address="서울 강남구 삼성로 10, 3층")]).match(registration())
         self.assertEqual(result["status"], "ambiguous")
 
+    def test_renamed_districts_and_towns_still_match(self):
+        cases = (
+            ("인천광역시 서해구 염곡로 472", "인천 서구 염곡로 472", "인천광역시"),
+            ("경기도 부천시 길주로 189", "경기도 부천시 원미구 길주로 189 4F (중동)", "경기도"),
+            ("경기도 용인시 처인구 남사면 한숲로 84", "경기도 용인시 처인구 남사읍 한숲로 84 401호", "경기도"),
+            ("서울특별시 강남구 남부순환로 2947", "강남구 남부순환로 2947,5층(대치동)", "서울특별시"),
+            ("경상남도 창원시 마산합포구 3·15대로 42", "경상남도 창원시 마산합포구 3.15대로 42 2층", "경상남도"),
+            ("경상북도 포항시 북구 양학로 34번길 8", "경상북도 포항시 북구 양학로34번길 8", "경상북도"),
+        )
+        for master_address, registered, region in cases:
+            row = {**master(address=master_address), "region": region}
+            result = Matcher([row]).match({**registration(address=registered), "region": region})
+            self.assertEqual(result["status"], "matched", registered)
+
+    def test_road_number_key_keeps_city_and_number(self):
+        matcher = Matcher([{**master(address="경기도 부천시 길주로 189"), "region": "경기도"}])
+        for address in ("경기도 안양시 길주로 189", "경기도 부천시 길주로 18", "경기도 부천시 길주로 189-1"):
+            self.assertNotEqual(matcher.match({**registration(address=address), "region": "경기도"})["status"], "matched", address)
+
     def test_suffix_changes_require_address(self):
         matcher = Matcher([master()])
         self.assertEqual(matcher.match(registration(name="가나다"))["method"], "suffix_normalized_name_address")

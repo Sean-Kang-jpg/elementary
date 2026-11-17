@@ -27,6 +27,8 @@ ALIASES = {
     "전라북도": "전북", "전라남도": "전남", "경상북도": "경북",
     "경상남도": "경남", "제주특별자치도": "제주", "제주도": "제주",
 }
+# Same mapping as build_academy_marker_snapshot.INCHEON_DISTRICT_MAP.
+METRO_DISTRICT_ALIASES = {"검단구": "서구", "서해구": "서구", "영종구": "중구", "제물포구": "중구"}
 COURSE_FIELDS = ("LE_CRSE_LIST_NM", "LE_CRSE_NM", "PSNBY_THCC_CNTNT")
 GRADE_PATTERNS = {
     "grade1_explicit_candidate": re.compile(
@@ -77,7 +79,33 @@ def address_keys(value: str) -> set[str]:
     for kind, match in (("road", road), ("lot", lot)):
         if match:
             keys.add(kind + ":" + re.sub(r"\s+", "", value[:match.end()]))
+    road_number = road_number_key(value)
+    if road_number:
+        keys.add(road_number)
     return keys
+
+
+def road_number_key(value: str) -> str | None:
+    """City + road name + building number, without the province, 구 and 읍면 levels.
+
+    Districts and towns were renamed under the sources (인천 서구 -> 서해구, 부천시 ->
+    소사구/원미구, 화성시 -> 만세구, 모현면 -> 모현읍, 전남 -> 전남광주통합특별시), and one
+    side often leaves the province out. A road name is unique within a city, and the
+    institution name and province must match too, so these still name one building.
+    The number keeps its boundary: 삼성로 1 never matches 삼성로 10 or 1-1.
+    """
+    value = re.sub(r"\([^)]*\)", "", normalize_address(value)).replace(".", "·")
+    value = re.sub(r"(로|길)\s+(\d+번?길)", r"", value)
+    tokens = value.split()
+    city = next((token for token in tokens[:3] if re.fullmatch(r"[가-힣]+[시군]", token)
+                 and "특별" not in token and "광역" not in token), "")
+    if not city:
+        # A metro city: the same road name can run in two 구, so keep the 구, mapping
+        # Incheon's 2026 districts back to the ones they split from.
+        district = next((token for token in tokens[:3] if re.fullmatch(r"[가-힣]+구", token)), "")
+        city = METRO_DISTRICT_ALIASES.get(district, district)
+    match = re.search(r"([가-힣A-Za-z0-9·]+(?:대로|로|길))\s*(\d+(?:-\d+)?)(?=\s|[,()]|$)", value)
+    return f"roadnum:{city}:{match.group(1)}:{match.group(2)}" if match else None
 
 
 def read_registration(path: Path) -> list[dict]:
