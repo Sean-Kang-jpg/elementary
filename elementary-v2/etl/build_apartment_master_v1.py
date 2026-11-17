@@ -454,7 +454,13 @@ def main(argv: list[str] | None = None) -> None:
     shared_complex_review: list[dict[str, Any]] = []
     for kapt_code in sorted(shared_kapt_codes):
         apt_ids = apt_ids_by_kapt[kapt_code]
-        component_households = [integer(apartment_by_id[apt_id].get("nmhsh")) for apt_id in apt_ids]
+        # A supplement row (apt_cd KAPT<code>) is K-apt's own record of the complex.
+        # Once a base row matches the same code, the two are one complex seen twice,
+        # not two parts of it, so the partition is checked on the base rows alone.
+        # Counting both doubled the households and split them into two published
+        # complexes (갑천2트리풀시티엘리프 and four others, 2026-11-11).
+        partition_ids = [apt_id for apt_id in apt_ids if apt_id != f"KAPT{kapt_code}"] or apt_ids
+        component_households = [integer(apartment_by_id[apt_id].get("nmhsh")) for apt_id in partition_ids]
         component_households = [value for value in component_households if value is not None]
         kapt_households = integer(kapt_by_code[kapt_code].get("\uc138\ub300\uc218"))
         household_sum = sum(component_households) if component_households else None
