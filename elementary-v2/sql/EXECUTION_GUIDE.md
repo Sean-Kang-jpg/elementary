@@ -524,7 +524,7 @@ uses and restates SQL 40's timeout, since `CREATE OR REPLACE` resets function se
    `proconfig` is `{search_path=public, pg_temp,statement_timeout=5min}`.
 4. Rollback: re-run the function from SQL 19, then SQL 40.
 
-## 42: reclaim ETL table space (2026-11-08) — 사용자 승인 대기
+## 42: reclaim ETL table space (2026-11-08) — applied 2026-11-15
 
 One monthly apply (2026-11-06) grew the database by about 75 MB without adding rows and took it
 past the 500 MB plan limit; on 11-08 a hand-run `TRUNCATE` and `VACUUM FULL` brought it from 539 to
@@ -540,6 +540,9 @@ that it skipped and carries on.
 3. Each call locks its table for a few seconds; public reads of that table wait meanwhile.
 4. Rollback: `DROP FUNCTION public.reclaim_etl_table_space(TEXT);`
 
+Applied 2026-11-15 in the SQL editor, before the 12-02 monthly run, which now reclaims instead of
+skipping. Public tables measured 432.7 MB on 2026-11-14.
+
 ## 43: resolve apartment keys serving does not carry (2026-11-11) — applied 2026-11-12
 
 On 2026-11-11, 39 of 46,650 published apartment keys had no serving row. Six belonged to
@@ -554,10 +557,35 @@ key tables stay private. `api/detail.js` answers `moved` with a 301 and `pending
 
 1. Run the file once in the SQL editor.
 2. Check it with the anon key (`POST /rest/v1/rpc/resolve_apartment_public_key`):
-   `{"p_key":"1CY9KJAG"}` → `moved`, `0WZRPQNR`; `{"p_key":"36F5G7B3"}` → `pending`, 제일풍경채 옥정;
+   `{"p_key":"1CY9KJAG"}` → `moved`, `0WZRPQNR` (served again since SQL 44's rebuild; use
+   `{"p_key":"7C2XPGGX"}` → `moved`, `76BK3KSW`); `{"p_key":"36F5G7B3"}` → `pending`, 제일풍경채 옥정;
    `{"p_key":"28SEBP7H"}` → `served`; `{"p_key":"ZZZZZZZZ"}` → `[]`.
 3. Rollback: `DROP FUNCTION resolve_apartment_public_key(TEXT);`
 
 Applied 2026-11-12 in the SQL editor. Checked with the anon key: all four answers as above, and
 of the 39 keys 6 answer `moved` and 33 `pending`. The site changes only once `release` carries
 `api/detail.js` and the app.
+
+## 44: one public key per complex in serving (2026-11-14) — applied 2026-11-15
+
+SQL 41 picked the key per (school, complex) row, so a complex whose atoms carried different keys
+and sat in different school zones got a different key on each row. On 2026-11-12 one complex did:
+신반포 한신 25,26,27차 (`KAPT:A13790716`), `0WZRPQNR` on the 서울신동초 row and `KSQMMEG4` on the
+서울반원초 row. `44` takes the key as `MIN` over all of the complex's rows; a complex whose rows
+already shared a key keeps it.
+
+1. Run the file once in the SQL editor.
+2. `select refresh_school_apartment_serving();`, then
+   `select * from reclaim_etl_table_space('school_apartment_serving');` (SQL 42) for the space the
+   rewrite leaves.
+3. `select canonical_complex_id from school_apartment_serving group by 1 having count(distinct
+   complex_public_key) > 1;` → 0 rows. `prosrc` contains `complex_keys`.
+4. Rollback: re-run SQL 41.
+
+Applied and rebuilt 2026-11-15 (serving 48,918 rows, 46,610 complexes, 46,605 keys). The rebuild
+did not keep 신반포 한신 as one complex: the masters it reads carry the three buildings as three
+`APT:` complexes, so 25차 `0WZRPQNR` and 27차 `1CY9KJAG` (서울신동초) and 26차 `KSQMMEG4`
+(서울반원초) are each served under their own key. `KAPT:A13403101` and `KAPT:A15101901` split the
+same way. Why the serving rows before the rebuild grouped them differently from the masters was
+not established — the masters are private. Checked with the anon key: every one of the 46,461
+apartment URLs in the production sitemap is still served (46,450) or `moved` (11); none is lost.

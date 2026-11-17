@@ -94,7 +94,9 @@ COMMIT;
 
 -- Verify as the browser would (anon key), POST /rest/v1/rpc/resolve_apartment_public_key:
 --   {"p_key": "28SEBP7H"}  ->  served
---   {"p_key": "1CY9KJAG"}  ->  moved, current_key 0WZRPQNR (신반포 한신 25,26,27차)
+--   {"p_key": "7C2XPGGX"}  ->  moved, current_key 76BK3KSW (힐스테이트초월역)
+--   (1CY9KJAG -> 0WZRPQNR, the example on 2026-11-12, is served again since the
+--   2026-11-15 serving rebuild split 신반포 한신 25,26,27차; see SQL 44.)
 --   {"p_key": "36F5G7B3"}  ->  pending, 제일풍경채 옥정
 --   {"p_key": "ZZZZZZZZ"}  ->  []
 -- Rollback: DROP FUNCTION resolve_apartment_public_key(TEXT);
