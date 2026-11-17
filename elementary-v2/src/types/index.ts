@@ -213,6 +213,8 @@ export interface AcademyAddress {
     key?: string
     /** Registered a school vehicle with SchoolSafe (etl/mark_shuttle_registration.py). Absent means not confirmed, not "no shuttle". */
     shuttle_registered?: boolean
+    /** School levels the NEIS course list names (etl/academy_levels.py: lower, elem, preschool, secondary, adult). Absent when it names none. */
+    levels?: string[]
   }>
   top_subjects: string
   straight_distance_m: number

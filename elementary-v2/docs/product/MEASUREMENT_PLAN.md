@@ -497,3 +497,16 @@ Claude의 API 통합 검토 항목으로 남긴다(이번 문서 카드에서 �
 등록 후 위 표에 확인일을 적고 탐색으로 가져온다. 처리 대기와 등록 전 기간의 이용 가능 여부를
 확인하기 전에는 과거 데이터까지 확보됐다고 판단하지 않는다. 등록 절차 참고:
 [이벤트 범위 맞춤 측정기준 만들기](https://support.google.com/analytics/answer/14239696?hl=ko).
+
+### 학교 주변 기관 목록 이벤트 (2026-11-17)
+
+`ACADEMY_SIGNALS_PLAN.md` 6절. 학교 상세 '배움·활동'의 주변 기관 목록(`NearbyProviderList.tsx`)이 보낸다.
+
+| 이벤트 | 언제 | 매개변수 |
+| --- | --- | --- |
+| `view_nearby_providers` | 학교마다 목록이 처음 보일 때 | `school_id`, `providers`, `elementary`, `shuttle`(배지 붙은 기관 수) |
+| `click_provider` | 기관의 '내 시간표에 추가'를 열 때 | `school_id`, `position`, `rank`(5절 순위), `badges` |
+| `add_provider_to_timetable` | 시간표에 담았을 때 | 위와 같음 |
+
+볼 것: 배지 붙은 기관(`badges` ≠ `none`)의 `click_provider` 비율이 같은 위치의 배지 없는 기관보다 높은지.
+

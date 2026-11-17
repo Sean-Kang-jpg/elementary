@@ -8,6 +8,7 @@ import ApartmentList from '../apartment/ApartmentList'
 import ApartmentDetail from '../apartment/ApartmentDetail'
 import ApartmentCard from '../apartment/ApartmentCard'
 import AcademySummaryPanel from '../academy/AcademySummaryPanel'
+import NearbyProviderList from '../academy/NearbyProviderList'
 import GradeChart from '../charts/GradeChart'
 import { isFavorite as checkFavorite, schoolFavorite, toggleFavorite as toggleSavedFavorite } from '../../utils/favorites'
 import { recordPerformanceMetric } from '../../utils/performanceMetrics'
@@ -281,6 +282,9 @@ const SchoolDetail: React.FC<SchoolDetailProps> = ({ school, entryYear, isOpen, 
             error={academyError}
             dataAvailable={academyDataAvailable && assignsByZone && hasSchoolInformation}
           />
+          {academyDataAvailable && assignsByZone && hasSchoolInformation && !academyLoading && !academyError && (
+            <div className="mt-5"><NearbyProviderList academies={schoolAcademies} schoolId={school.school_id} onNavigate={onOpenGuide} /></div>
+          )}
           <DataFreshness sources={['neis-academy']} />
         </div>
       ) : currentView === 'care' ? (
