@@ -3,7 +3,7 @@ slug: delay-or-early-entry
 nextStep: {"label":"입학 준비 일정 열기","href":"/timetable?face=timeline","kind":"plan","description":"연기·조기입학은 신청처와 기한을 먼저 확인하세요. 할 일을 담아도 저장된 입학연도는 바뀌지 않아요.","planItem":{"id":"guide-delay-or-early-entry-followup","title":"입학 연기·조기입학 신청처와 기한 확인하기"}}
 title: 입학을 1년 늦추거나 당기려면
 description: 입학연기·조기입학은 입학 전해 10~12월 주민센터, 1월부터는 학교에 취학유예를 신청합니다. 시기별 신청처와 조건을 정리했습니다.
-order: 1.5
+order: 21.5
 stage: admission
 group: admission
 verifiedAt: 2026-10-08
