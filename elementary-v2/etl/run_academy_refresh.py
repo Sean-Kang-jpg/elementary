@@ -332,6 +332,28 @@ def table_count(url: str, key: str, table: str) -> int:
         return int(response.headers["Content-Range"].rsplit("/", 1)[-1])
 
 
+MIN_BATCH = 25
+
+
+def upsert_batch(url: str, key: str, table: str, rows: list[dict[str, Any]]) -> None:
+    """Upsert one batch; on a statement timeout (57014) split it in half and retry.
+
+    500 rows of institution JSON is heavy when the database is slow, and on 2026-11-17
+    one batch hit the timeout while reads around it took under a second. Halving
+    keeps the run going; a batch still timing out at MIN_BATCH rows is a real failure.
+    """
+    try:
+        rest(url, key, "POST", f"{table}?on_conflict={','.join(TABLES[table])}", rows,
+             "resolution=merge-duplicates,return=minimal")
+    except RuntimeError as error:
+        if "57014" not in str(error) or len(rows) <= MIN_BATCH:
+            raise
+        middle = len(rows) // 2
+        print(f"timeout on {len(rows)} rows of {table}; retrying as {middle} + {len(rows) - middle}", flush=True)
+        upsert_batch(url, key, table, rows[:middle])
+        upsert_batch(url, key, table, rows[middle:])
+
+
 def apply_build(url: str, key: str, build, plan: dict[str, Any], as_of: str) -> None:
     now = datetime.now().astimezone().isoformat()
     # Write everything new first, then remove what the build no longer has, so a
@@ -340,8 +362,7 @@ def apply_build(url: str, key: str, build, plan: dict[str, Any], as_of: str) -> 
         values = [{**row, "source_as_of": as_of, "updated_at": now} if table == "academy_address_serving"
                   else {**row, "updated_at": now} for row in rows.values()]
         for start in range(0, len(values), BATCH):
-            rest(url, key, "POST", f"{table}?on_conflict={','.join(TABLES[table])}", values[start:start + BATCH],
-                 "resolution=merge-duplicates,return=minimal")
+            upsert_batch(url, key, table, values[start:start + BATCH])
         print(f"upserted {table}: {len(values):,}", flush=True)
     for table in ("apartment_academy_summary", "apartment_academy_origin_points", "academy_address_serving"):
         removed = [tuple(identity) for identity in plan["tables"][table]["removed_keys"]]
