@@ -1,6 +1,6 @@
 {
   "bundle_name": "elementary-recurring-inputs-v1",
-  "bundle_version": "2026-11-14.1",
+  "bundle_version": "2026-11-18.1",
   "description": "Reviewed inputs the recurring ETL reads but does not fetch, for every production scope. Sources (K-apt, Schoolinfo) are fetched fresh by each run.",
   "scopes": [
     "capital",
@@ -19,7 +19,7 @@
   ],
   "storage": {
     "bucket": "etl-source-snapshots",
-    "archive_path": "portable-inputs/elementary-recurring-inputs-v1/2026-11-14.1/bundle.zip"
+    "archive_path": "portable-inputs/elementary-recurring-inputs-v1/2026-11-18.1/bundle.zip"
   },
   "files": [
     {
@@ -61,8 +61,8 @@
       "role": "school-baseline:i10-m10-n10",
       "source_path": "etl/local_outputs_20260320/school_master_v1_i10-m10-n10.json",
       "bundle_path": "school/school_master_v1_i10-m10-n10.json",
-      "byte_size": 1211177,
-      "sha256": "c9515c1b0a5e246052fb786af1bc3cadba35e2e5746db7e80f2440a63353a4c4"
+      "byte_size": 1207876,
+      "sha256": "c5dea2acc5ffb7d28293e470c5eb25742a1160530a2e1229a30d4ff8a05fee19"
     },
     {
       "role": "point-assignments:i10-m10-n10",
@@ -75,8 +75,8 @@
       "role": "school-baseline:c10",
       "source_path": "etl/local_outputs_20260320/school_master_v1_c10.json",
       "bundle_path": "school/school_master_v1_c10.json",
-      "byte_size": 495039,
-      "sha256": "ef89958b8c87a7ad760bcec6cf05db135ef61135deddaa66dcec62bb5782b12d"
+      "byte_size": 493405,
+      "sha256": "18f6d57f4592b793bcc2e4938e94fa0b900c32ef269d061839fd9830e652d592"
     },
     {
       "role": "point-assignments:c10",
@@ -89,8 +89,8 @@
       "role": "school-baseline:d10",
       "source_path": "etl/local_outputs_20260320/school_master_v1_d10.json",
       "bundle_path": "school/school_master_v1_d10.json",
-      "byte_size": 388041,
-      "sha256": "8df9acaeeb61f4f5cedd66f52531de83e4582f4d21f4205ac9bf52f1726dfa70"
+      "byte_size": 384776,
+      "sha256": "139f696c0dd7ce07e05a580bdb28139f162b4b2fe11df3d1b7949c707733c07a"
     },
     {
       "role": "point-assignments:d10",
@@ -173,8 +173,8 @@
       "role": "school-baseline:k10",
       "source_path": "etl/local_outputs_20260320/school_master_v1_k10.json",
       "bundle_path": "school/school_master_v1_k10.json",
-      "byte_size": 593798,
-      "sha256": "f12c58491d0477396523cdfc10d444698a723dc49529d9c63e6d2e46da03e850"
+      "byte_size": 592112,
+      "sha256": "1ac3804795878714497cbb32a9cca4dd56c50b77688862ea1a27e104dfd0bdf0"
     },
     {
       "role": "point-assignments:k10",
@@ -187,8 +187,8 @@
       "role": "school-baseline:p10",
       "source_path": "etl/local_outputs_20260320/school_master_v1_p10.json",
       "bundle_path": "school/school_master_v1_p10.json",
-      "byte_size": 678194,
-      "sha256": "cfce78f4ad1b96e341990575714ff7f7c876793f800b13d587e7bd4ce6dee26e"
+      "byte_size": 674854,
+      "sha256": "7f3934e37c3bae99a483b34edf8a0395262f250a58055c224f9c263d77ee98ee"
     },
     {
       "role": "point-assignments:p10",
@@ -201,8 +201,8 @@
       "role": "school-baseline:r10",
       "source_path": "etl/local_outputs_20260320/school_master_v1_r10.json",
       "bundle_path": "school/school_master_v1_r10.json",
-      "byte_size": 781582,
-      "sha256": "866aea6f9d03f832031b8d0cd671e44a8ad27ccb3dbc4c9a586de1a5c862716c"
+      "byte_size": 774985,
+      "sha256": "e6520c2cb1b5b68e0a3e5067cd203756fd4f532edcb1d89456bab7147f2b0513"
     },
     {
       "role": "point-assignments:r10",
@@ -215,8 +215,8 @@
       "role": "school-baseline:s10",
       "source_path": "etl/local_outputs_20260320/school_master_v1_s10.json",
       "bundle_path": "school/school_master_v1_s10.json",
-      "byte_size": 858584,
-      "sha256": "4f1c058aa9f540b3b8cb56e10b95c2ae1422a6d9cf023b3c1022129d3407c163"
+      "byte_size": 855296,
+      "sha256": "c91d6bb661f7f61ad20e01c3bbb31350aacc842867b7b1a09a5d544dc0f60f6d"
     },
     {
       "role": "point-assignments:s10",
