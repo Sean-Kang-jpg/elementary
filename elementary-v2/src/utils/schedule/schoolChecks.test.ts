@@ -26,6 +26,8 @@ describe('school confirmation summary', () => {
     assert.equal(rows.length,1)
     assert.match(rows[0].reasons.join(' '),/17:00 종료/)
     assert.match(rows[0].reasons.join(' '),/참여가 확정되지/)
+    assert.equal(rows[0].kind,'care')
+    assert.deepEqual(rows[0].facts.map(fact=>fact.kind),['assumption','participation'])
     assert.equal(JSON.stringify(care),before)
   })
   it('uses per-day overrides rather than warning about a replaced default on every day', () => {
@@ -33,6 +35,8 @@ describe('school confirmation summary', () => {
     const row=schoolChecks([school,...changed])[0]
     assert.match(row.reasons.find(reason=>reason.includes('기본 가정'))!,/^화·수·목·금요일/)
     assert.match(row.reasons.find(reason=>reason.includes('운영계획 또는 입력'))!,/^월요일/)
+    assert.deepEqual(row.facts.find(fact=>fact.kind==='assumption')?.weekdays,[2,3,4,5])
+    assert.deepEqual(row.facts.find(fact=>fact.kind==='estimate')?.weekdays,[1])
   })
   it('keeps a time concern after participation is confirmed and vice versa', () => {
     assert.ok(schoolChecks([school,{...care,participation:'confirmed'}])[0].reasons.every(reason=>!reason.includes('참여가')))

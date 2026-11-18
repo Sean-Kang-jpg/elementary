@@ -3038,9 +3038,35 @@ dialog.my-entry-sheet > a.my-button { display: flex; align-items: center; justif
 .timetable-school-change[open] > summary, .timetable-sample[open] > summary { margin-bottom: 12px; }
 .roadmap__tasks li.plan-item--focused { outline: 3px solid var(--warm-accent, #c94f3a); outline-offset: 3px; border-radius: 8px; scroll-margin-block: 24px; }
 
-.school-checks { margin: 16px 0; padding: 14px; border: 1px solid var(--warm-border); border-radius: 12px; background: var(--warm-surface); }
-.school-checks h3 { margin: 0 0 8px; font-size: 15px; font-weight: 700; }
+.school-checks { margin: 18px 0; padding: 16px; border: 1px solid var(--warm-border); border-radius: 18px; background: #fbf7f1; }
+.school-checks__heading { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+.school-checks__heading-icon, .school-checks__item-icon { flex: none; display: inline-flex; align-items: center; justify-content: center; border-radius: 12px; }
+.school-checks__heading-icon { width: 40px; height: 40px; background: #f6e8d8; color: #946132; }
+.school-checks h3 { display: flex; align-items: center; gap: 8px; margin: 0; font-size: 16px; font-weight: 800; }
+.school-checks__count { display: inline-flex; align-items: center; justify-content: center; min-width: 23px; height: 23px; padding: 0 6px; border-radius: 20px; background: #eee3d4; color: #795c3c; font-size: 12px; }
+.school-checks__heading p { margin: 4px 0 0; color: var(--warm-muted); font-size: 12px; line-height: 1.5; }
 .school-checks ul { margin: 0; padding: 0; list-style: none; }
-.school-checks li { padding: 12px 0; border-top: 1px solid var(--warm-border); }
-.school-checks li p { margin: 6px 0; font-size: 13px; line-height: 1.65; overflow-wrap: anywhere; }
-.school-checks .my-button { margin-top: 6px; min-height: 44px; }
+.school-checks__cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.school-checks__card { min-width: 0; padding: 14px; border: 1px solid #e9e2d9; border-radius: 14px; background: #fff; }
+.school-checks__card-head { display: flex; align-items: center; gap: 9px; margin-bottom: 12px; }
+.school-checks__item-icon { width: 34px; height: 34px; color: #567582; background: #edf4f6; }
+.school-checks__card--care .school-checks__item-icon { color: #6c7c59; background: #f0f4ea; }
+.school-checks__card--afterschool .school-checks__item-icon { color: #8e6b90; background: #f5eef6; }
+.school-checks h4 { margin: 0; font-size: 15px; font-weight: 750; overflow-wrap: anywhere; }
+.school-checks__facts { display: grid; gap: 8px; }
+.school-checks__fact { display: flex; align-items: flex-start; gap: 7px; padding: 9px 10px; border-radius: 9px; color: #85653b; background: #fbf5e8; }
+.school-checks__fact > svg { flex: none; margin-top: 2px; }
+.school-checks__fact--participation { color: #5d6d8a; background: #eff3f9; }
+.school-checks__fact-label { display: block; font-size: 11px; line-height: 1.5; }
+.school-checks__fact strong { display: block; margin-top: 2px; color: var(--warm-text, #342f2b); font-size: 13px; font-weight: 700; line-height: 1.5; overflow-wrap: anywhere; }
+.school-checks__action { display: flex; align-items: center; justify-content: space-between; gap: 8px; width: 100%; min-height: 44px; margin-top: 12px; padding: 8px 10px; border: 1px solid #e9e2d9; border-radius: 9px; background: #fff; color: var(--warm-text, #342f2b); font-size: 13px; font-weight: 700; cursor: pointer; }
+.school-checks__action:hover { background: #faf7f2; }
+.school-checks__action:focus-visible, .school-checks__why > summary:focus-visible { outline: 2px solid #b05d44; outline-offset: 3px; }
+.school-checks__why { margin-top: 10px; color: var(--warm-muted); font-size: 12px; }
+.school-checks__why > summary { min-height: 32px; padding: 6px 0; cursor: pointer; }
+.school-checks__why p { margin: 6px 0; font-size: 12px; line-height: 1.7; overflow-wrap: anywhere; }
+.school-checks__note { margin: 12px 0 0; color: var(--warm-muted); font-size: 11px; line-height: 1.5; }
+@media (max-width: 639px) {
+  .school-checks { padding: 12px; }
+  .school-checks__cards { grid-template-columns: minmax(0, 1fr); gap: 10px; }
+}
