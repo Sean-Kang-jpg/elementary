@@ -3037,3 +3037,10 @@ dialog.my-entry-sheet > a.my-button { display: flex; align-items: center; justif
 .timetable-school-change > summary, .timetable-sample > summary { cursor: pointer; font-weight: 700; line-height: 1.6; }
 .timetable-school-change[open] > summary, .timetable-sample[open] > summary { margin-bottom: 12px; }
 .roadmap__tasks li.plan-item--focused { outline: 3px solid var(--warm-accent, #c94f3a); outline-offset: 3px; border-radius: 8px; scroll-margin-block: 24px; }
+
+.school-checks { margin: 16px 0; padding: 14px; border: 1px solid var(--warm-border); border-radius: 12px; background: var(--warm-surface); }
+.school-checks h3 { margin: 0 0 8px; font-size: 15px; font-weight: 700; }
+.school-checks ul { margin: 0; padding: 0; list-style: none; }
+.school-checks li { padding: 12px 0; border-top: 1px solid var(--warm-border); }
+.school-checks li p { margin: 6px 0; font-size: 13px; line-height: 1.65; overflow-wrap: anywhere; }
+.school-checks .my-button { margin-top: 6px; min-height: 44px; }

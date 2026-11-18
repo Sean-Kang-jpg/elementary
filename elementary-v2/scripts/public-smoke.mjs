@@ -386,6 +386,12 @@ try {
   starterClick('다 됐어요')
   await waitFor("!document.querySelector('[data-testid=plan-starter]') && document.querySelector('[data-testid=plan-coverage]')", 'UX-13 finishing hides the questions and keeps the coverage line')
   assertPage("document.querySelector('[data-testid=plan-intents]')?.textContent.startsWith('이번 주 안전') && document.querySelector('.my-agenda__card--care .intent-chip--safety')", 'UX-14 care shows as 안전 on its card and in the weekly intent line')
+  assertPage("document.querySelector('[data-testid=school-checks]')?.textContent.includes('학교에 확인할 것') && document.querySelector('[data-testid=school-checks]')?.textContent.includes('참여가 확정되지')", 'completed plan groups school confirmations separately from filled time')
+  run(['eval', `document.querySelector('[data-testid=school-checks] button[aria-label="오후 돌봄 일정에서 확인"]').click(); true`], { quiet: true })
+  await waitFor("document.querySelector('dialog[open]')?.textContent.includes('오후 돌봄')", 'school confirmation opens the existing care editor')
+  run(['eval', `document.querySelector('dialog[open] button[aria-label="닫기"]').click(); true`], { quiet: true })
+  await waitFor("!document.querySelector('dialog[open]') && document.querySelector('[data-testid=school-checks]')", 'closing confirmation preserves the completed plan and its summary')
+
   run(['eval', "document.querySelector('.my-agenda__card--care').click(); 'open care'"], { quiet: true })
   await waitFor("document.querySelector('.my-entry-sheet__remove-all')", 'a slot on several weekdays offers 모든 요일에서 빼기')
   run(['eval', "document.querySelector('.my-entry-sheet__remove-all').click(); 'remove all'"], { quiet: true })

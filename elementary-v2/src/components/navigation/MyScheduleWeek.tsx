@@ -1,4 +1,4 @@
-import { useLayoutEffect, useRef, useState } from 'react'
+import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { computeWeek, WEEKDAYS, type DayPlan } from '../../utils/schedule/engine'
 import { CALENDAR_END, CALENDAR_HOURS, CALENDAR_START, careResumptions, layoutCalendarBlocks, scheduleEntryHeading, scheduleKindLabel } from '../../utils/schedule/calendar'
 import { formatMinutes } from '../../utils/schedule/fromSchoolData'
@@ -33,7 +33,8 @@ const compactTime = (entry: ScheduleEntry, day: DayPlan) => {
   return `${start === null ? entry.startsAfterSchool ? '하교 후' : '시작 미확인' : formatMinutes(start)}–${entry.end === null ? '종료 미확인' : formatMinutes(entry.end)}${entry.timeAssumption ? ' · 기본 가정' : ''}`
 }
 
-export default function MyScheduleWeek({ schoolId, entries, onSave, onAdd, onRemove, onToggleDay, onSetTimes, onRemoveDay, onStatus, onIntent, onRepeat, onNavigate }: {
+export default function MyScheduleWeek({ reviewEntry, schoolId, entries, onSave, onAdd, onRemove, onToggleDay, onSetTimes, onRemoveDay, onStatus, onIntent, onRepeat, onNavigate }: {
+  reviewEntry?: { id: string; weekday: Weekday } | null
   schoolId: string; entries: ScheduleEntry[]; onSave: (change: CalendarChange) => ScheduleEntry | null
   onNavigate?: (path: string) => void
   onAdd: (entry: ScheduleEntry) => boolean; onRemove: (id: string) => boolean
@@ -48,6 +49,7 @@ export default function MyScheduleWeek({ schoolId, entries, onSave, onAdd, onRem
   const [activeDay, setActiveDay] = useState<Weekday>(1)
   const [view, setView] = useState<'day' | 'week'>('day')
   const [selected, setSelected] = useState<{ id: string; weekday: Weekday } | null>(null)
+  useEffect(() => { if (reviewEntry) setSelected(reviewEntry) }, [reviewEntry])
   const [adding, setAdding] = useState<CalendarRange | null>(null)
   const [cursor, setCursor] = useState<CalendarRange | null>(null)
   const [notice, setNotice] = useState('')
