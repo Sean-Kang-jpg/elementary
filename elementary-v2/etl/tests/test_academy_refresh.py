@@ -81,6 +81,26 @@ class CollectShuttleTest(unittest.TestCase):
             result = mark_shuttles("u", "k", "20261201", Path("s.json"), False)
         self.assertEqual(result, {"source": "collected", "error": "marking failed (2)"})
 
+
+class UpsertBatchTest(unittest.TestCase):
+    def test_a_timeout_splits_the_batch(self):
+        sizes = []
+        def fake_rest(_u, _k, _m, _p, rows, _prefer):
+            sizes.append(len(rows))
+            if len(rows) > 125:
+                raise RuntimeError('POST x: HTTP 500: {"code":"57014"}')
+        with mock.patch.object(run_academy_refresh, "rest", side_effect=fake_rest):
+            run_academy_refresh.upsert_batch("u", "k", "academy_address_serving", [{}] * 500)
+        self.assertEqual(sizes, [500, 250, 125, 125, 250, 125, 125])
+
+    def test_other_errors_and_the_floor_raise(self):
+        with mock.patch.object(run_academy_refresh, "rest", side_effect=RuntimeError("HTTP 400: bad")):
+            with self.assertRaises(RuntimeError):
+                run_academy_refresh.upsert_batch("u", "k", "academy_address_serving", [{}] * 500)
+        with mock.patch.object(run_academy_refresh, "rest", side_effect=RuntimeError('{"code":"57014"}')):
+            with self.assertRaises(RuntimeError):
+                run_academy_refresh.upsert_batch("u", "k", "academy_address_serving", [{}] * 500)
+
 def address(address_id, region, count):
     return {"address_id": address_id, "region": region, "institution_count": count}
 
