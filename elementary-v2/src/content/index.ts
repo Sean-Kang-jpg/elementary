@@ -47,6 +47,8 @@ export interface Guide {
   basisYear: number
   sources: Source[]
   html: string
+  /** 고민 카드(UX-19)일 때만: 홈 고민 목록과 같은 질문, 출발 질문의 귀가 시각 태그. */
+  worry: { question: string; situations: Array<number | 'dismissal'> } | null
 }
 
 export interface FaqItem {

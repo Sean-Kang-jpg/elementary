@@ -57,8 +57,26 @@
         "from": "10-01",
         "to": "02-28",
         "href": "/guide/care-afterschool",
-        "question": "하교 후 돌봄과 방과후가 궁금해요",
-        "hint": "돌봄·맞춤형·방과후의 차이를 살펴봐요."
+        "question": "돌봄·늘봄·방과후, 무엇이 다르고 같이 할 수 있나요",
+        "hint": "대상과 시간, 함께 이용하는 방법을 살펴봐요."
+      },
+      {
+        "id": "care-waitlist",
+        "planId": "season-care-waitlist",
+        "from": "12-01",
+        "to": "03-15",
+        "href": "/guide/care-waitlist",
+        "question": "돌봄교실에 떨어지면 하교 후는 어떻게 하나요",
+        "hint": "대기·맞춤형·연계형 돌봄과 학교 밖 돌봄을 알아봐요."
+      },
+      {
+        "id": "dismissal",
+        "planId": "season-dismissal",
+        "from": "01-01",
+        "to": "03-31",
+        "href": "/guide/dismissal-time",
+        "question": "1학년은 요일마다 몇 시에 끝나나요",
+        "hint": "요일별 하교 시각과 3월 첫 주를 확인해요."
       },
       {
         "id": "notice",
