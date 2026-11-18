@@ -24,5 +24,14 @@
     {"school_id": "B000007415", "school_name": "소천초등학교두음분교장", "region": "경상북도", "schoolinfo_code": "S150001967", "evidence": "absent from NEIS schoolInfo (2026-11-17), no 2025 student statistics in 학교알리미, no apartment linked; deleted from school_master 2026-11-18"},
     {"school_id": "B000007778", "school_name": "남산초등학교궁류분교장", "region": "경상남도", "schoolinfo_code": "S160001859", "evidence": "absent from NEIS schoolInfo (2026-11-17), no 2025 student statistics in 학교알리미, no apartment linked; deleted from school_master 2026-11-18"},
     {"school_id": "B000007858", "school_name": "동광초등학교", "region": "경상남도", "schoolinfo_code": "S160001056", "evidence": "absent from NEIS schoolInfo (2026-11-17), no 2025 student statistics in 학교알리미, no apartment linked; deleted from school_master 2026-11-18"}
+  ],
+  "renamed": [
+    {"school_id": "B000007261", "from": "대구송원초등학교", "to": "대구군위초등학교송원캠퍼스", "evidence": "NEIS schoolInfo and 학교알리미 2026 name at the same address (2026-11-19)"},
+    {"school_id": "B000007262", "from": "대구효령초등학교", "to": "대구부계초등학교효령캠퍼스", "evidence": "NEIS schoolInfo and 학교알리미 2026 name at the same address (2026-11-19)"},
+    {"school_id": "B000007263", "from": "대구고매초등학교", "to": "대구부계초등학교고매캠퍼스", "evidence": "NEIS schoolInfo and 학교알리미 2026 name at the same address (2026-11-19)"},
+    {"school_id": "B000007266", "from": "대구의흥초등학교", "to": "대구부계초등학교의흥캠퍼스", "evidence": "NEIS schoolInfo and 학교알리미 2026 name at the same address (2026-11-19)"},
+    {"school_id": "B000007277", "from": "가음초등학교", "to": "금성초등학교가음분교장", "evidence": "NEIS schoolInfo and 학교알리미 2026 name at the same address (2026-11-19); campus_type 분교"},
+    {"school_id": "B000007047", "from": "증산초등학교", "to": "지품천초등학교증산분교장", "evidence": "NEIS schoolInfo and 학교알리미 2026 name at the same address (2026-11-19); campus_type 분교"},
+    {"school_id": "B000024921", "from": "초등학교", "to": "화천초등학교", "evidence": "NEIS schoolInfo and 학교알리미 2026 name at the same address (2026-11-19); the location file carries no name for this ID"}
   ]
 }

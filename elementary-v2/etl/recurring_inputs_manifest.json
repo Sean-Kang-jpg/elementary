@@ -1,6 +1,6 @@
 {
   "bundle_name": "elementary-recurring-inputs-v1",
-  "bundle_version": "2026-11-18.1",
+  "bundle_version": "2026-11-19.1",
   "description": "Reviewed inputs the recurring ETL reads but does not fetch, for every production scope. Sources (K-apt, Schoolinfo) are fetched fresh by each run.",
   "scopes": [
     "capital",
@@ -19,7 +19,7 @@
   ],
   "storage": {
     "bucket": "etl-source-snapshots",
-    "archive_path": "portable-inputs/elementary-recurring-inputs-v1/2026-11-18.1/bundle.zip"
+    "archive_path": "portable-inputs/elementary-recurring-inputs-v1/2026-11-19.1/bundle.zip"
   },
   "files": [
     {
@@ -89,8 +89,8 @@
       "role": "school-baseline:d10",
       "source_path": "etl/local_outputs_20260320/school_master_v1_d10.json",
       "bundle_path": "school/school_master_v1_d10.json",
-      "byte_size": 384776,
-      "sha256": "139f696c0dd7ce07e05a580bdb28139f162b4b2fe11df3d1b7949c707733c07a"
+      "byte_size": 385316,
+      "sha256": "f09bc42f2e614ca86bcb3c7ef27b0531ac0e313e6b2837de8b4250a71ac5636f"
     },
     {
       "role": "point-assignments:d10",
@@ -201,8 +201,8 @@
       "role": "school-baseline:r10",
       "source_path": "etl/local_outputs_20260320/school_master_v1_r10.json",
       "bundle_path": "school/school_master_v1_r10.json",
-      "byte_size": 774985,
-      "sha256": "e6520c2cb1b5b68e0a3e5067cd203756fd4f532edcb1d89456bab7147f2b0513"
+      "byte_size": 775359,
+      "sha256": "6b7fe6883600965d29dec682602f7eda97e634617d7ea400dfc57caebadfa947"
     },
     {
       "role": "point-assignments:r10",
