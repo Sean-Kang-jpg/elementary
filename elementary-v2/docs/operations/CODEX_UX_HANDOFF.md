@@ -10,7 +10,7 @@
 
 | ID | 제목 | 담당 | 브랜치 | 상태 | 갱신일 |
 | --- | --- | --- | --- | --- | --- |
-| PLAN-CHECKS | 완성한 한 주에 '학교에 확인할 것' | C → K | `codex/plan-checks-20261118` | review — Claude 검토·병합 대기, 기록 `PLAN_SCHOOL_CHECKS_RELEASE_20261118.md`(브랜치) | 11-18 |
+| PLAN-CHECKS | 완성한 한 주에 '학교에 확인할 것' | C → K | `codex/plan-checks-20261118` | merged — Claude 검토 통과, 로컬 전체 smoke 195 PASS(3000). 배포 묶음 대기(사용자 승인) | 11-19 |
 | FNL-04 | GA4 맞춤 정의 등록 기록 | C → K | `codex/ga4-registration-20261112` | review — 문서 1커밋 미병합 | 11-12 |
 | FNL-09 | 랜딩 `(not set)`·초기 조회 품질 진단 | C | — | ready | 11-19 |
 | FNL-10 | 전체 동선 검증·효과 재점검 | K + U | — | blocked — 관찰 기간 | 11-19 |
