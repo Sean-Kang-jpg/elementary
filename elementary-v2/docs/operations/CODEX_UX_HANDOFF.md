@@ -10,7 +10,7 @@
 
 | ID | 제목 | 담당 | 브랜치 | 상태 | 갱신일 |
 | --- | --- | --- | --- | --- | --- |
-| PLAN-CHECKS | 완성한 한 주에 '학교에 확인할 것' | C → K | `codex/plan-checks-20261118` | review — Claude 검토·병합 대기, 기록 `PLAN_SCHOOL_CHECKS_RELEASE_20261118.md`(브랜치) | 11-18 |
+| PLAN-CHECKS | 완성한 한 주에 '학교에 확인할 것' | C → K | `codex/plan-checks-20261118` | review — 11-19 사용자 카드 UI 배포 승인, 최신 master 통합·검증 완료 | 11-19 |
 | FNL-04 | GA4 맞춤 정의 등록 기록 | C → K | `codex/ga4-registration-20261112` | review — 문서 1커밋 미병합 | 11-12 |
 | FNL-09 | 랜딩 `(not set)`·초기 조회 품질 진단 | C | — | ready | 11-19 |
 | FNL-10 | 전체 동선 검증·효과 재점검 | K + U | — | blocked — 관찰 기간 | 11-19 |
@@ -26,6 +26,14 @@ FNL-00~03(`FUNNEL_RELEASE_20261114.md`), FNL-07(`GUIDE_PLAN_UX_RELEASE_20261115.
 ## 진행 중 카드
 
 (지금 없음. 새 카드는 이 아래에 `### ID 제목 — 상태, 크기`로. 양식: 목표 · 바꿀 파일 · 명세 · 완료 기준 · 결과(5줄) · 검토)
+
+### PLAN-CHECKS 결과 — 2026-11-19
+
+- 브랜치/커밋: `codex/plan-checks-20261118` · 구현 `eacdd99` / UI `5840851` / 최신 master 통합 `3c14ff0` (push 완료).
+- 바꾼 파일: SchoolChecks·MySchedule·MyScheduleWeek·schoolChecks(순수 함수/검사)·content.css·public-smoke·검증 기록.
+- 검증: lint·typecheck·build 통과, unit 189/189. 카드 표시·접힘·편집 연결 검사와 390px 직접 검증 통과(이전 실행).
+- 다른 점·막힌 점: 사용자 11-19 ‘배포합니다’ 승인. 3000/3001은 다른 팀원 서버 사용 중이라 유지. 과거 다른 포트 전체 smoke의 지도 축소 실패는 기록 유지.
+- Claude 몫: R2의 검토·병합·배포 경로 및 운영 전체 smoke 확인. 최신 운영 변경은 모두 보존함.
 
 ## Codex가 부르는 API
 
