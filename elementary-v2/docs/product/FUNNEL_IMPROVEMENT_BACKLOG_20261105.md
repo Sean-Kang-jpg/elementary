@@ -6,7 +6,7 @@
 
 11/14 배포 전 재시도에서 운영 홈 검증이 과거 로컬 빌드와 비교하던 오류를 수정했다. 이후 최신 코드 통합·기본 포트의 로컬 전체 검증·운영 배포를 마쳤으며, 배포 후 운영 전체 검증도 최종 통과했다. 최초 운영 검증의 홈 검색 시간초과 1회는 재현되지 않아 FNL-QA-01로 남겼다. GA4 직접 조회는 이 채팅의 브라우저 연결이 없어 대기 중이다.
 
-상위 방향: [우리집 일정 중심 UX 백로그](UX_BACKLOG_PLAN_CENTERED.md) · 실행 방식: [Codex 작업 인계](../operations/CODEX_UX_HANDOFF.md) · 측정 계약: [측정 계획](MEASUREMENT_PLAN.md)
+상위 방향: [우리집 일정 중심 UX 백로그](UX_BACKLOG_PLAN_CENTERED.md) · 실행 방식: [협업 R&R](../operations/AGENT_COLLAB_RR.md)·[상태판](../operations/CODEX_UX_HANDOFF.md) · 측정 계약: [측정 계획](MEASUREMENT_PLAN.md)
 
 ## 목표와 근거
 

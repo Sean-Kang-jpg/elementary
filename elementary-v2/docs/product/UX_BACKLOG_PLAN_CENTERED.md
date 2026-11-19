@@ -47,7 +47,7 @@
 ## 5. 백로그
 
 크기: S = 반나절 이하, M = 하루 안팎, L = 여러 날. 담당: K = Claude, C = Codex, U = 사용자.
-담당 기준은 `CODEX_UX_HANDOFF.md` 2절.
+담당 기준은 `../operations/AGENT_COLLAB_RR.md` 3절(R2, 2026-11-19). 진행 상태는 `CODEX_UX_HANDOFF.md` 상태판.
 
 ### P0 — 지금~사립·국립 추첨 결과 발표 전
 

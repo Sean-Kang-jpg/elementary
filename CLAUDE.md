@@ -34,7 +34,8 @@
 - 우리집 일정: `?face=timeline`(입학까지 D-day·완료 체크) / `?face=week`(한 주 시간표). 한 주는 질문으로 시작(UX-13)
 - 학교 상세: 1학년 요일별 하교 예상(SQL 26), 돌봄 시간, **방과후·맞춤형 시간대 막대**(SQL 38 slots, 돌봄내는 연한 초록, 확인 요일 `!`)
 - 라우팅·SEO·프리렌더·허브(`/area/*`)는 루트 `../CLAUDE.md`. GA4 `G-NQT4XV9R00`, 이벤트 규칙 `docs/product/MEASUREMENT_PLAN.md` 8절
-- 백로그 `docs/product/UX_BACKLOG_PLAN_CENTERED.md`(UX-01~26), Codex 분담 `docs/operations/CODEX_UX_HANDOFF.md`(C-01~09)
+- 백로그 `docs/product/UX_BACKLOG_PLAN_CENTERED.md`(UX-01~27). **Claude·Codex 역할·진행·보관은 `docs/operations/AGENT_COLLAB_RR.md`(R2, 11-19)** —
+  상태판 `CODEX_UX_HANDOFF.md`, 결정 `DECISIONS.md`, 아이디어 수신함 `F:\sm\vibe\elementary\INBOX.md`(git 밖, **세션 시작 때 분류**). 배포·병합은 Claude만
 
 ## 진행 중 작업
 
