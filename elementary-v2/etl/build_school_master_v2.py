@@ -84,6 +84,15 @@ def region_from_address(value: Any) -> str:
     return region.canonical_name if region else ""
 
 
+def first_region(*values: Any) -> str:
+    """The region of the first address that resolves to one."""
+    for value in values:
+        region = region_from_address(value)
+        if region:
+            return region
+    return ""
+
+
 def distance_m(lat1: Any, lon1: Any, lat2: Any, lon2: Any) -> float | None:
     values = [number(value, float) for value in (lat1, lon1, lat2, lon2)]
     if any(value is None for value in values):
@@ -100,10 +109,19 @@ def distance_m(lat1: Any, lon1: Any, lat2: Any, lon2: Any) -> float | None:
 def candidate_score(school: dict[str, Any], basic: dict[str, Any]) -> tuple[int, str, float | None]:
     school_address = normalize_address(school.get("address"))
     basic_address = normalize_address(basic.get("SCHUL_RDNMA"))
-    address_exact = bool(school_address and school_address == basic_address)
+    # Schoolinfo sometimes puts the lot-number address in its road-address field
+    # (양산 동면초, 2022: 내송리 502-6), which then equals the base's address_old.
+    school_lot_address = normalize_address(school.get("address_old"))
+    address_exact = bool(basic_address and basic_address in {school_address, school_lot_address} - {""})
     name_exact = normalize_name(school.get("school_name")) == normalize_name(basic.get("SCHUL_NM"))
-    same_region = region_from_address(school.get("address_old") or school.get("address")) == region_from_address(
-        basic.get("SCHUL_RDNMA") or basic.get("ADRES_BRKDN")
+    # Schoolinfo leaves the road address blank (" ", 목포 schools) or writes the
+    # short province form (전남 신안군 ..., 경남 통영시 ...), which resolves to no
+    # region; the lot-number address that follows still names it.
+    # and the education office decides when both addresses use the short form (경남 통영시).
+    basic_office = load_registry().by_education_office(text(basic.get("ATPT_OFCDC_ORG_NM")))
+    same_region = region_from_address(school.get("address_old") or school.get("address")) == (
+        first_region(basic.get("SCHUL_RDNMA"), basic.get("ADRES_BRKDN"))
+        or (basic_office.canonical_name if basic_office else "")
     )
     distance = distance_m(
         school.get("latitude"),

@@ -2,7 +2,7 @@ import { CalendarPlus } from 'lucide-react'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import type { AcademyAddress } from '../../types'
 import { getAcademyCategory, getInstitutionCategories } from '../../utils/academyCategories'
-import { rankProviders, type ProviderBadge } from '../../utils/providerRanking'
+import { lacksVehicleData, rankProviders, type ProviderBadge } from '../../utils/providerRanking'
 import { useAppContext } from '../../contexts/AppContext'
 import { track } from '../../utils/analytics'
 import AcademyTimetableForm from '../map/AcademyTimetableForm'
@@ -70,8 +70,8 @@ export default function NearbyProviderList({ academies, schoolId, onNavigate }: 
     <section aria-labelledby="nearby-providers-title" className="space-y-2" data-testid="nearby-provider-list">
       <h3 id="nearby-providers-title" className="font-semibold text-gray-950">주변 기관 <span className="text-xs font-normal text-gray-500">· {rows.length.toLocaleString()}곳</span></h3>
       <p className="text-[11px] leading-4 text-gray-500">
-        초등 과정 등록, 통학차량 등록 순으로 먼저 보이고 같은 단계 안에서는 가까운 곳부터예요. 두 표시는 공개자료에서 확인한 것이라
-        1학년 반이 있는지, 우리 학교로 셔틀이 오는지는 기관에 확인하세요.
+        초등 과정 등록, 통학차량 등록·체육시설 순으로 먼저 보이고 같은 단계 안에서는 가까운 곳부터예요. 표시는 공개자료에서 확인한 것이라
+        1학년 반이 있는지, 우리 학교로 셔틀이 오는지는 기관에 확인하세요. 태권도장·수영 등 체육시설은 차량 공개자료가 없어 통학차량을 표시하지 못해요.
       </p>
       {category && (
         <p className="text-xs text-gray-600">분야: <strong>{getAcademyCategory(category).label}</strong>{' '}
@@ -107,6 +107,10 @@ export default function NearbyProviderList({ academies, schoolId, onNavigate }: 
                 {row.badges.map((badge) => (
                   <span key={badge} title={BADGES[badge].title} className={`rounded-full border px-2 py-0.5 text-xs ${BADGES[badge].className}`}>{BADGES[badge].label}</span>
                 ))}
+                {lacksVehicleData(row.institution) && (
+                  <span title="체육시설은 통학버스를 경찰서에 신고해 공개자료로 확인할 수 없어요. 운행 여부는 기관에 확인하세요."
+                    className="rounded-full border border-dashed border-gray-300 px-2 py-0.5 text-xs text-gray-500">차량 정보 없음</span>
+                )}
                 {categories.map((item) => (
                   <span key={item.key} className="rounded-full px-2 py-0.5 text-xs" style={{ color: item.color, backgroundColor: item.softColor }}>{item.label}</span>
                 ))}

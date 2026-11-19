@@ -41,13 +41,13 @@ try {
   check(`${count('plan_item_add')} === 1 && ${count('plan_start')} === 1`, 'first real save records one addition and one start')
   check(`JSON.parse(localStorage.getItem('wherecho:family-plan-v1')).pinned[0].when.kind === 'anytime' && !localStorage.getItem('wherecho:profile-v1')`, 'save invents no date and does not choose a profile')
   evaluate(`document.querySelector('[data-testid=guide-next-step-preview]').click(); true`)
-  await wait(`location.search === '?face=timeline' && document.querySelector('#pinned-plan-title')`, 'timeline shows saved task even without entry year')
+  await wait(`location.search.startsWith('?face=timeline') && document.querySelector('#pinned-plan-title')`, 'timeline shows saved task even without entry year')
   check(`document.querySelector('.roadmap').textContent.includes('지원한 학교의 추첨·등록 공지 확인하기') && ${count('guide_next_step_click')} === 1`, 'saved subject survives navigation and click is measured separately')
   route('/guide/private-national')
   await wait(`document.querySelector('[data-testid=guide-plan-add]')?.disabled`, 'return shows already saved state')
   evaluate(`document.querySelector('[data-testid=guide-plan-add]').click(); true`)
   check(`${count('plan_item_add')} === 1`, 'repeat click cannot add twice')
-  for (const slug of ['morning-care', 'care-afterschool', 'first-weeks']) {
+  for (const slug of ['morning-care', 'care-afterschool', 'care-waitlist', 'dismissal-time', 'first-weeks']) {
     route('/guide/' + slug)
     await wait(`document.querySelector('#guide-title') && document.querySelector('[data-testid=guide-next-step-preview]')?.getAttribute('href') === '/timetable?face=week'`, `${slug} explicitly links to week`)
     evaluate(`document.querySelector('[data-testid=guide-next-step-preview]').click(); true`)

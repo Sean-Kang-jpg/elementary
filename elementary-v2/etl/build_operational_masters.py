@@ -34,7 +34,10 @@ PIPELINE_VERSION = "operational-v1"
 # region where no school carries it (안성 비룡초 is open). 김제 비룡초 closed 2026-03-01
 # into 용지초 (전북일보 2025-12-25) and left NEIS and the school location file; the
 # 2026-09-20 release still has 김제초비룡초공동 (2024-02), so its 19 complexes keep 김제초.
-INACTIVE_ZONE_SCHOOL_LABELS = {"대원초", "비룡초"}
+# Mid-label names (부안 상서초 closed 2026-03-01 into 우덕초, 전북일보 2025-12-11, sits
+# eighth in an eleven-school joint zone) are dropped by the same fallback as upstream
+# gaps, which runs only on a label that matched nothing.
+INACTIVE_ZONE_SCHOOL_LABELS = {"대원초", "비룡초", "상서초"}
 UPSTREAM_GAPS_PATH = BASE_DIR / "upstream_school_gaps.json"
 
 
@@ -158,7 +161,7 @@ def first_segmentation(
 
 def strip_gap_labels(label: str, active_candidate_labels: set[str]) -> str:
     """`label` without the names of schools confirmed missing from the source."""
-    for gap_label in upstream_school_gaps():
+    for gap_label in (*upstream_school_gaps(), *INACTIVE_ZONE_SCHOOL_LABELS):
         if gap_label in label and gap_label not in active_candidate_labels:
             label = label.replace(gap_label, "")
     return label

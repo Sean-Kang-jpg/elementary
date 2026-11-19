@@ -18,6 +18,7 @@
  */
 
 import fs from 'node:fs/promises'
+import { readFileSync } from 'node:fs'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { Marked } from 'marked'
@@ -55,6 +56,36 @@ const isOfficial = (url) => {
 }
 const withOfficial = (sources) => (sources ?? []).map((source) => ({ label: source.label, url: source.url, official: isOfficial(source.url) }))
 const SUMMARY_MAX_ITEMS = 6
+
+/**
+ * 고민 카드(UX-19, docs/product/WORRY_CARDS_PLAN.md 5절). 고민 카드는 `worry` 필드를 가진
+ * 가이드다. 새 화면 없이 가이드의 출처 검증·정적 페이지·사이트맵을 그대로 쓰고, 여기서
+ * 카드의 모양만 더 막는다: 질문 한 줄, 귀가 시각 태그, 세 절, 일정으로 끝나는 다음 단계.
+ */
+const WORRY_QUESTION_LIMIT = 40
+const WORRY_SECTIONS = ['알아두기', '확인하기', '다음 행동']
+const WORRY_NEXT_LABEL = '이 고민, 우리집 일정에서 풀어보기'
+// 태그 값은 출발 질문의 선택지(RETURN_OPTIONS)와 같아야 한다. 값이 둘로 갈라지지 않게 원본을 읽는다.
+const RETURN_VALUES = (() => {
+  const starter = readFileSync(path.join(projectRoot, 'src', 'utils', 'schedule', 'starter.ts'), 'utf8')
+  const block = starter.match(/RETURN_OPTIONS[^=]*=\s*\[([\s\S]*?)\n\]/)?.[1] ?? ''
+  return [...block.matchAll(/value:\s*(\d+|'[a-z]+')/g)].map(([, value]) => (value.startsWith("'") ? value.slice(1, -1) : Number(value)))
+})()
+if (RETURN_VALUES.length === 0) throw new Error('could not read RETURN_OPTIONS from src/utils/schedule/starter.ts')
+
+const checkWorry = (file, worry, nextStep, body) => {
+  const question = typeof worry?.question === 'string' ? worry.question.trim() : ''
+  if (!question || [...question].length > WORRY_QUESTION_LIMIT) problem(file, `worry.question must be nonempty and at most ${WORRY_QUESTION_LIMIT} characters`)
+  const situations = Array.isArray(worry?.situations) ? worry.situations : []
+  if (situations.length === 0 || situations.some((value) => !RETURN_VALUES.includes(value))) {
+    problem(file, `worry.situations must list return times from RETURN_OPTIONS (${RETURN_VALUES.join(', ')})`)
+  }
+  const headings = [...body.matchAll(/^## (.+)$/gm)].map(([, heading]) => heading.trim())
+  if (headings.join('|') !== WORRY_SECTIONS.join('|')) {
+    problem(file, `a worry card needs exactly the sections ${WORRY_SECTIONS.map((name) => `## ${name}`).join(', ')} in that order (found ${headings.join(', ') || 'none'})`)
+  }
+  if (nextStep?.kind !== 'plan' || nextStep?.label !== WORRY_NEXT_LABEL) problem(file, `a worry card ends in the plan: nextStep.kind plan and label "${WORRY_NEXT_LABEL}"`)
+}
 
 const problems = []
 const problem = (file, message) => problems.push(`${path.relative(projectRoot, file)}: ${message}`)
@@ -156,6 +187,7 @@ for (const file of guideFiles) {
       if (summary.kind === 'timeline' && !item?.when) problem(file, `timeline item ${index + 1} needs a when`)
     })
   }
+  if (meta.worry !== undefined) checkWorry(file, meta.worry, nextStep, body)
   guides.push({
     slug,
     title: meta.title,
@@ -171,6 +203,7 @@ for (const file of guideFiles) {
     basisYear: meta.basisYear,
     sources: withOfficial(meta.sources),
     html: marked.parse(body),
+    worry: meta.worry ? { question: String(meta.worry.question).trim(), situations: meta.worry.situations } : null,
     file,
   })
 }
@@ -327,6 +360,8 @@ if (!worries || !Array.isArray(worries.items) || !Number.isInteger(worries.max) 
       checkPath(shelvesFile, item.href)
       const slug = item.href.match(/^\/guide\/([^/?#]+)$/)?.[1]
       if (slug && !guides.find(guide => guide.slug === slug)?.nextStep) problem(shelvesFile, `${item.id} needs a guide with nextStep`)
+      const worryQuestion = slug && guides.find(guide => guide.slug === slug)?.worry?.question
+      if (worryQuestion && item.question !== worryQuestion) problem(shelvesFile, `${item.id} question must match the worry card's worry.question ("${worryQuestion}")`)
     }
   }
 }

@@ -133,7 +133,7 @@ const SchoolCarePanel: React.FC<SchoolCarePanelProps> = ({ school, onOpenGuide, 
         className="mt-2 flex items-center justify-between rounded-md border border-gray-200 px-3 py-2.5 text-sm font-semibold text-blue-700 hover:bg-blue-50"
         data-testid="care-guide-link"
       >
-        늘봄·돌봄, 무엇을 언제 신청하나요
+        돌봄·늘봄·방과후, 무엇이 다르고 같이 할 수 있나요
         <ChevronRight size={16} aria-hidden="true" />
       </a>
     </Wrapper>

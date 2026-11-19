@@ -8,8 +8,10 @@
  * 운영자 입력(2단계)부터 들어오고, 돌봄센터(2순위)는 돌봄 탭이 따로 보인다.
  *
  *   3 초등 과정 등록   levels에 elem(NEIS 교습과정이 '초등'을 적음)
- *   4 통학차량 등록    shuttle_registered(학교안전지원시스템 등록현황, 운행 학교는 모름)
- *   5 예능·체육         학년 표기 없이 예능·체육 분야이거나 체육도장·체육교습업
+ *   4 통학차량 등록    shuttle_registered(학교안전지원시스템 등록현황, 운행 학교는 모름), 또는
+ *     체육도장·체육교습업 — 이 둘은 경찰서에 통학버스를 신고해 차량 공개자료가 아예 없다. 태권도장·수영 교습은
+ *     차량을 운행하는 곳이 많아, 배지가 없다고 등록 학원 아래로 두면 '차량 없음'처럼 읽힌다(2026-11-19 사용자 결정)
+ *   5 예능·체육         학년 표기 없이 예능·체육 분야인 학원·교습소
  *   6 그 밖
  *   7 중·고 과정만      levels에 secondary가 있고 elem이 없음
  */
@@ -51,12 +53,15 @@ export const providerBadges = (institution: RankableInstitution): ProviderBadge[
   return badges
 }
 
+/** 차량 공개자료가 없는 체육시설(체육도장업·체육교습업). 화면이 '차량 정보 없음'을 알린다. */
+export const lacksVehicleData = (institution: RankableInstitution): boolean => SPORTS_TYPES.has(institution.type)
+
 export const providerRank = (institution: RankableInstitution, categories: string[]): number => {
   const badges = providerBadges(institution)
   if (badges.includes('elementary')) return 3
-  if (badges.includes('shuttle')) return 4
+  if (badges.includes('shuttle') || SPORTS_TYPES.has(institution.type)) return 4
   if (badges.includes('secondary')) return 7
-  if (SPORTS_TYPES.has(institution.type) || categories.some((key) => ACTIVITY_CATEGORIES.has(key))) return 5
+  if (categories.some((key) => ACTIVITY_CATEGORIES.has(key))) return 5
   return 6
 }
 
