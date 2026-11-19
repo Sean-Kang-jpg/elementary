@@ -2,9 +2,10 @@ import { useEffect, useRef, useState } from 'react'
 import { getSchoolDayEstimate } from '../../services/dataService'
 import { formatMinutes, schoolEntriesFromEstimate } from '../../utils/schedule/fromSchoolData'
 import { deletePlan, readPlans, subscribePlans, upsertPlan, writePlans, type PlanStore, type SchoolPlan } from '../../utils/schedule/plans'
-import type { EntryKind, ParticipationStatus, ScheduleEntry } from '../../utils/schedule/types'
+import type { EntryKind, ParticipationStatus, ScheduleEntry, Weekday } from '../../utils/schedule/types'
 import { displaySchoolName } from '../../utils/schoolName'
 import MyScheduleWeek from './MyScheduleWeek'
+import SchoolChecks from './SchoolChecks'
 import { applyCalendarChange, type CalendarChange } from '../../utils/schedule/editing'
 import { toggleProgramDay } from '../../utils/schedule/programSelection'
 import { describeCoverage, firstGapSlot, planCoverage } from '../../utils/schedule/coverage'
@@ -48,6 +49,7 @@ export default function MySchedule({ school, entryYear, saved, onNavigate }: {
 }) {
   const [store, setStore] = useState(readPlans)
   const [message, setMessage] = useState('')
+  const [reviewEntry, setReviewEntry] = useState<{ id: string; weekday: Weekday } | null>(null)
   const [loading, setLoading] = useState(false)
   // 출발 계획이 쓰는 학교 돌봄 공시. 없거나 못 읽었으면 null — 17시 기본 가정으로 채운다.
   const [care, setCare] = useState<{ schoolId: string; hours: SchoolCareHours | null } | null>(null)
@@ -187,8 +189,9 @@ export default function MySchedule({ school, entryYear, saved, onNavigate }: {
         {step !== 'done' && starter}
         {coverage && step === 'done' && <p className={`plan-coverage plan-coverage--${coverage.state}`} data-testid="plan-coverage">{describeCoverage(coverage)}</p>}
         {gapAsk && step === 'done' && <a className="my-button" data-testid="plan-gap-ask" href={gapAsk} onClick={(event) => followLink(event, gapAsk, onNavigate!)}>원하는 활동 알리기</a>}
+        {step === 'done' && <SchoolChecks entries={plan.entries} onInspect={(id, weekday) => setReviewEntry({ id, weekday })} />}
         {intents && <p className="plan-intents" data-testid="plan-intents">{intents}</p>}
-        <MyScheduleWeek key={`week-${plan.schoolId}`} schoolId={plan.schoolId} onNavigate={onNavigate} entries={plan.entries} onSave={saveCalendarEntry} onAdd={addEntry} onRemove={removeEntry}
+        <MyScheduleWeek key={`week-${plan.schoolId}`} reviewEntry={reviewEntry} schoolId={plan.schoolId} onNavigate={onNavigate} entries={plan.entries} onSave={saveCalendarEntry} onAdd={addEntry} onRemove={removeEntry}
           onToggleDay={(entry, weekday) => changeEntries((entries) => toggleProgramDay(entries, entry, weekday))}
           onSetTimes={(id, days, time, label) => changeEntriesIf((entries) => setEntryTimes(entries, id, days, time, label))}
           onRemoveDay={(id, weekday) => changeEntries((entries) => removeEntryDay(entries, id, weekday))}
