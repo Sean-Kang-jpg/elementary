@@ -1,3 +1,4 @@
+import { track } from '../../utils/analytics'
 import React, { useState } from 'react'
 import type { SchoolAfterschool, SchoolAfterschoolOption, SchoolAfterschoolSection, SchoolAfterschoolSlot, SchoolCareHours, SchoolCareStatistics, SchoolDayEstimate } from '../../types'
 
@@ -135,6 +136,9 @@ const AfterschoolSummary: React.FC<{
   care: SchoolCareHours | null
   careStats?: SchoolCareStatistics | null
 }> = ({ data, day, care, careStats = null }) => {
+  const [weekdayIndex, setWeekdayIndex] = useState(4)
+  const [pickupTime, setPickupTime] = useState('')
+  const [showGap, setShowGap] = useState(false)
   const [open, setOpen] = useState(false)
   // 목록 보기: 맞춤형과 방과후는 신청을 따로 하므로 나눠 보여 준다. 위 숫자 칸을 누르면 그 종류만
   const [view, setView] = useState<ListView>('all')
@@ -192,6 +196,10 @@ const AfterschoolSummary: React.FC<{
     const untimed = allPaid.filter((o) => !o.sections.some(isTimed) && o.sections.some((s) => s.days?.includes(label))).length
     return { label, dismissal, c, a, ext, pickup, untimed, careOnly, estimated, checked }
   })
+  const selectedDay = rows[weekdayIndex]
+  const end = selectedDay.a?.end
+  const pickupMinutes = toMin(pickupTime)
+  const gap = pickupMinutes !== null && end !== undefined ? pickupMinutes - end : null
   const hasExtension = rows.some((row) => row.ext)
   const hasCareOnly = rows.some((row) => row.careOnly)
   const estimatedDays = rows.filter((row) => row.estimated).map((row) => row.label)
@@ -240,6 +248,23 @@ const AfterschoolSummary: React.FC<{
         <h4 className="text-sm font-semibold text-gray-900">초1 오후 한눈에</h4>
         {data && <span className="text-[11px] text-gray-500">{data.source_year}학년도 운영계획{data.term ? ` · ${data.term}` : ''}</span>}
       </div>
+
+      <form className="my-3 rounded-lg border p-3" onSubmit={(event) => {
+        event.preventDefault()
+        setShowGap(true)
+        track('pickup_gap_check', { weekday: weekdayIndex + 1, result: gap === null ? 'unknown' : gap < 0 ? 'early' : 'ready' })
+      }}>
+        <strong>방과후가 끝나면 몇 시에 데리러 갈 수 있나요?</strong>
+        <div className="my-2 flex flex-wrap items-center gap-3">
+          <label>요일 <select value={weekdayIndex} onChange={(event) => { setWeekdayIndex(Number(event.target.value)); setShowGap(false) }}>
+            {WEEKDAYS.map((label, index) => <option key={label} value={index}>{label}요일</option>)}
+          </select></label>
+          <label>픽업 시각 <input type="time" required value={pickupTime} onChange={(event) => { setPickupTime(event.target.value); setShowGap(false) }} /></label>
+          <button className="my-button" type="submit">남는 시간 확인</button>
+        </div>
+        <p className="text-xs text-gray-600">{end === undefined ? '이 요일의 방과후 종료 시각은 학교 확인이 필요해요.' : `운영계획에 나온 방과후 반 중 ${fmt(end)}에 끝나는 반을 듣는 경우예요. 실제 수강과 돌봄 이용은 별도로 확인해 주세요.`}</p>
+        <p role="status">{showGap && (gap === null ? '종료 시각을 확인한 뒤 계산할 수 있어요.' : gap < 0 ? '픽업 시각이 반 종료보다 일러요.' : gap === 0 ? '반이 끝날 때 바로 데리러 갈 수 있어요.' : `반 종료부터 픽업까지 ${Math.floor(gap / 60) ? Math.floor(gap / 60) + '시간 ' : ''}${gap % 60 ? gap % 60 + '분' : ''} 남아요.`)}</p>
+      </form>
 
       {hasTimeline && (
         <>
