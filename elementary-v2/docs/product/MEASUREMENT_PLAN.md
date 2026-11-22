@@ -325,6 +325,7 @@ link·search·related·favorites 진입, 뒤로 가기 무시, 같은 학교 복
 | `timetable_draft_create` | 첫 답변으로 초안이 실제 저장된 뒤. 빈/기존 자료 모두 저장 성공만 | MySchedule |
 | `timetable_first_edit` | 기존 초안에 처음 수락한 실제 사용자 변경, 쓰기 시도 직전 | MySchedule / 지도 학원 담기 / 앞마당 담기 |
 | `timetable_save_success` | 초안 생성 이후 사용자 변경이 실제 저장된 뒤 | 위 저장 호출 경계 |
+| `pickup_gap_check` | 픽업 미리보기 결과가 표시될 때. `weekday`(1–5), `result`(`unknown`, `early`, `same`, `gap`)만 전송. 본문 공백은 예상 하교를 기준으로 계산하며, 조건부 프로그램 시간은 GA4에 넣지 않는다 | SchoolPickupPreview |
 | `timetable_save_failure` | 생성/편집의 저장 쓰기가 실패했을 때 | 위 저장 호출 경계 |
 
 모든 새 이벤트와 위 화면 page_view에 `measurement_version=fnl-1`을 붙인다.
