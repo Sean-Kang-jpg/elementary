@@ -325,7 +325,6 @@ link·search·related·favorites 진입, 뒤로 가기 무시, 같은 학교 복
 | `timetable_draft_create` | 첫 답변으로 초안이 실제 저장된 뒤. 빈/기존 자료 모두 저장 성공만 | MySchedule |
 | `timetable_first_edit` | 기존 초안에 처음 수락한 실제 사용자 변경, 쓰기 시도 직전 | MySchedule / 지도 학원 담기 / 앞마당 담기 |
 | `timetable_save_success` | 초안 생성 이후 사용자 변경이 실제 저장된 뒤 | 위 저장 호출 경계 |
-| `pickup_gap_check` | 픽업 미리보기 결과가 표시될 때. `weekday`(1–5), `result`(`unknown`, `early`, `same`, `gap`)만 전송. 본문 공백은 예상 하교를 기준으로 계산하며, 조건부 프로그램 시간은 GA4에 넣지 않는다 | SchoolPickupPreview |
 | `timetable_save_failure` | 생성/편집의 저장 쓰기가 실패했을 때 | 위 저장 호출 경계 |
 
 모든 새 이벤트와 위 화면 page_view에 `measurement_version=fnl-1`을 붙인다.
@@ -335,6 +334,8 @@ link·search·related·favorites 진입, 뒤로 가기 무시, 같은 학교 복
 저장 실패는 `operation=create/edit`, `error_code=storage_write`만 보낸다. 오류 원문·입력값은 보내지 않는다.
 `entry_point`는 이전에 표시된 앱 화면 기준이며 외부 유입 채널은 GA4의 세션 채널로 분해한다.
 지도 학원·앞마당에서 담아 저장하는 작업은 각각 `map`, `frontyard`를 명시한다.
+픽업 미리보기의 `pickup_gap_check`는 결과가 실제 표시될 때 별도로 전송한다. `weekday`(1–5)와 `result`(`unknown`, `early`, `same`, `gap`)를 보낸다. 예상 하교를 기준으로 계산한 결과이며, 선택 프로그램과 보호자 픽업 시각은 보내지 않는다.
+
 GA4 설정·등록 확인과 미확인 항목은 [실행 기록](../operations/FUNNEL_MEASUREMENT_EXECUTION_20261106.md)에 기록한다.
 
 아동 이름·일정명·주소·귀가 시각·질문 답변은 이벤트에 싣지 않는다. 저장 형식과 키는 바꾸지 않는다.
