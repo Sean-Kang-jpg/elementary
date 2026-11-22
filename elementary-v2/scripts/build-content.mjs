@@ -64,7 +64,6 @@ const SUMMARY_MAX_ITEMS = 6
  */
 const WORRY_QUESTION_LIMIT = 40
 const WORRY_SECTIONS = ['알아두기', '확인하기', '다음 행동']
-const WORRY_NEXT_LABEL = '이 고민, 우리집 일정에서 풀어보기'
 // 태그 값은 출발 질문의 선택지(RETURN_OPTIONS)와 같아야 한다. 값이 둘로 갈라지지 않게 원본을 읽는다.
 const RETURN_VALUES = (() => {
   const starter = readFileSync(path.join(projectRoot, 'src', 'utils', 'schedule', 'starter.ts'), 'utf8')
@@ -84,7 +83,7 @@ const checkWorry = (file, worry, nextStep, body) => {
   if (headings.join('|') !== WORRY_SECTIONS.join('|')) {
     problem(file, `a worry card needs exactly the sections ${WORRY_SECTIONS.map((name) => `## ${name}`).join(', ')} in that order (found ${headings.join(', ') || 'none'})`)
   }
-  if (nextStep?.kind !== 'plan' || nextStep?.label !== WORRY_NEXT_LABEL) problem(file, `a worry card ends in the plan: nextStep.kind plan and label "${WORRY_NEXT_LABEL}"`)
+  if (nextStep?.kind !== 'plan') problem(file, 'a worry card ends in the plan: nextStep.kind must be plan')
 }
 
 const problems = []

@@ -14,10 +14,15 @@ test('pickup preview handles gaps, zero, early pickup and missing dismissal', ()
 })
 
 test('dismissal preview uses weekday identity and suppresses unconfirmed slots', () => {
-  const day = { weekdays: [
-    { weekday: 5, dismissal: '13:30:00', note: 'inferred' },
-    { weekday: 2, dismissal: '12:50', note: 'school_check_needed' },
-  ] } as SchoolDayEstimate
+  const day: SchoolDayEstimate = {
+    school_id: 'B900000001', source_year: 2026, applies_to_entry_year: 2027,
+    lunch_position: 'before_p4', lunch_start: null, lunch_end: null,
+    clock_source: 'fixture', periods_source: 'fixture', reviewed_on: '2026-11-22',
+    weekdays: [
+      { weekday: 5, periods: 4, dismissal: '13:30:00', note: 'inferred' },
+      { weekday: 2, periods: 4, dismissal: '12:50', note: 'school_check_needed' },
+    ],
+  }
   assert.equal(dismissalForPickup(day, 5), 810)
   assert.equal(dismissalForPickup(day, 2), null)
   assert.equal(dismissalForPickup(day, 1), null)
@@ -25,10 +30,10 @@ test('dismissal preview uses weekday identity and suppresses unconfirmed slots',
 
 test('conditional preview only offers eligible programs with complete hours after dismissal', () => {
   const slot: SchoolAfterschoolSlot = { weekday: 5, start: '13:50', end: '14:20', kind: '맞춤형', place: null, time_source: 'plan', courses: [] }
-  const data = { slots: [
+  const data: SchoolAfterschool = { school_id: 'B900000001', source_year: 2026, term: null, note: null, options: [], slots: [
     { ...slot }, { ...slot, weekday: 1 }, { ...slot, place: '돌봄내' },
     { ...slot, start: '13:00' }, { ...slot, end: '14:99' },
     { ...slot, kind: '학년미기재방과후' },
-  ], tier: 'A' } as SchoolAfterschool
+  ], tier: 'A' }
   assert.deepEqual(pickupProgramOptions(data, 5, 810), [{ start: 830, end: 860, kind: '맞춤형', estimated: false }])
 })
