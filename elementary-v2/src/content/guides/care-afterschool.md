@@ -3,7 +3,7 @@ slug: care-afterschool
 worry:
   question: 돌봄·늘봄·방과후, 무엇이 다르고 같이 할 수 있나요
   situations: [1140, 1020, 900]
-nextStep: {"label":"이 고민, 우리집 일정에서 풀어보기","href":"/timetable?face=week","kind":"plan","description":"학교를 고르면 요일별 하교 시각에 맞춤형·방과후·돌봄을 차례로 넣어 볼 수 있어요. 기존 시간표가 있으면 이어서 열려요."}
+nextStep: {"label":"우리 학교 방과후·픽업 시간 맞춰보기","href":"/timetable?face=week","kind":"plan","description":"예상 하교와 픽업 사이에 비는 시간을 확인하고, 운영계획에 있는 맞춤형·방과후에 참여할 때와 비교해 보세요."}
 title: 돌봄·늘봄·방과후, 무엇이 다르고 같이 할 수 있나요
 description: 맞춤형·방과후·돌봄교실의 대상과 시간, 함께 이용하는 방법을 정리했습니다. 우리 학교 운영계획에서 확인할 점도 담았습니다.
 order: 6

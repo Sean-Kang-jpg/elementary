@@ -3,7 +3,7 @@ slug: care-waitlist
 worry:
   question: 돌봄교실에 떨어지면 하교 후는 어떻게 하나요
   situations: [1140, 1020]
-nextStep: {"label":"이 고민, 우리집 일정에서 풀어보기","href":"/timetable?face=week","kind":"plan","description":"돌봄교실 칸을 비운 한 주를 그려 보세요. 맞춤형이 끝난 뒤 귀가까지 비는 시간이 보여요."}
+nextStep: {"label":"돌봄 없이 비는 시간부터 보기","href":"/timetable?face=week","kind":"plan","description":"학교와 픽업 시각을 고르면 예상 하교 뒤 비는 시간을 확인할 수 있어요. 실제 이용할 수 있는 활동은 한 주에 직접 담아 보세요."}
 title: 돌봄교실에 떨어지면 하교 후는 어떻게 하나요
 description: 돌봄교실 선정 기준과 맞벌이 증빙, 떨어졌을 때 쓸 수 있는 맞춤형·연계형 돌봄·학교 밖 돌봄을 정리했습니다.
 order: 6.2

@@ -248,7 +248,7 @@ const SchoolDetail: React.FC<SchoolDetailProps> = ({ school, entryYear, isOpen, 
               if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return
               startFamilyPlan({ from: 'school_detail', face: 'week', contentId: school.school_id })
               followLink(event, timetablePath(school.school_id), onOpenGuide)
-            }}>이 학교로 한 주 짜보기</a>
+            }}>이 학교 오후 시간 미리보기</a>
           <DetailTabs<MapTopic> label="학교 상세 메뉴" tabs={MAP_TOPICS} value={state.mapTopic}
             onChange={(topic) => dispatch({ type: 'SET_MAP_TOPIC', payload: topic })} />
           {(state.mapTopic === 'assignment' || state.mapTopic === 'activity') && <div className="mt-3">

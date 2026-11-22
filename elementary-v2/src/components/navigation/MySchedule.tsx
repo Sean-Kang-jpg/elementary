@@ -38,7 +38,7 @@ const timing = (e: ScheduleEntry) => e.kind === 'school'
  * 2026-10-19부터 관심 학교로 저장하지 않아도 짤 수 있다.
  * 2026-11-02부터 빈 초안으로 시작하지 않는다: 출발 계획 질문(UX-13, PlanStarter)에 답하며 채운다.
  */
-export default function MySchedule({ school, entryYear, saved, onNavigate }: {
+export default function MySchedule({ school, entryYear, saved, onNavigate, pickupFocus }: {
   /** displayName은 화면 표기(광역시 접두 생략)용. 초안에는 공식 이름을 저장한다. */
   school: { id: string; name: string; displayName?: string }
   entryYear: number | null
@@ -46,6 +46,7 @@ export default function MySchedule({ school, entryYear, saved, onNavigate }: {
   saved: boolean
   /** 빈 시간에서 학교앞마당으로 넘어갈 때 쓴다. 없으면 그 버튼을 그리지 않는다. */
   onNavigate?: (path: string) => void
+  pickupFocus?: { weekday: Weekday } | null
 }) {
   const [store, setStore] = useState(readPlans)
   const [message, setMessage] = useState('')
@@ -191,7 +192,7 @@ export default function MySchedule({ school, entryYear, saved, onNavigate }: {
         {gapAsk && step === 'done' && <a className="my-button" data-testid="plan-gap-ask" href={gapAsk} onClick={(event) => followLink(event, gapAsk, onNavigate!)}>원하는 활동 알리기</a>}
         {step === 'done' && <SchoolChecks entries={plan.entries} onInspect={(id, weekday) => setReviewEntry({ id, weekday })} />}
         {intents && <p className="plan-intents" data-testid="plan-intents">{intents}</p>}
-        <MyScheduleWeek key={`week-${plan.schoolId}`} reviewEntry={reviewEntry} schoolId={plan.schoolId} onNavigate={onNavigate} entries={plan.entries} onSave={saveCalendarEntry} onAdd={addEntry} onRemove={removeEntry}
+        <MyScheduleWeek key={`week-${plan.schoolId}`} reviewEntry={reviewEntry} pickupFocus={pickupFocus} schoolId={plan.schoolId} onNavigate={onNavigate} entries={plan.entries} onSave={saveCalendarEntry} onAdd={addEntry} onRemove={removeEntry}
           onToggleDay={(entry, weekday) => changeEntries((entries) => toggleProgramDay(entries, entry, weekday))}
           onSetTimes={(id, days, time, label) => changeEntriesIf((entries) => setEntryTimes(entries, id, days, time, label))}
           onRemoveDay={(id, weekday) => changeEntries((entries) => removeEntryDay(entries, id, weekday))}
