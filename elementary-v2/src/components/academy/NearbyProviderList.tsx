@@ -7,6 +7,7 @@ import { useAppContext } from '../../contexts/AppContext'
 import { track } from '../../utils/analytics'
 import AcademyTimetableForm from '../map/AcademyTimetableForm'
 import { followLink } from '../content/contentLinks'
+import { NAVER_TITLE, naverMapSearchUrl } from '../../utils/naverMapLink'
 
 /**
  * 학교 주변 기관 목록(ACADEMY_SIGNALS_PLAN.md 7절 S1). 순서는 utils/providerRanking.ts(5절 규칙)이고,
@@ -50,6 +51,7 @@ export default function NearbyProviderList({ academies, schoolId, onNavigate }: 
     [academies],
   )
   const rows = useMemo(() => (category ? ranked.filter((row) => row.categories.includes(category)) : ranked), [ranked, category])
+  const districts = useMemo(() => new Map(academies.map((address) => [address.address_id, address.district])), [academies])
   const viewed = useRef<string | null>(null)
 
   useEffect(() => { setShown(PAGE) }, [category, schoolId])
@@ -71,7 +73,7 @@ export default function NearbyProviderList({ academies, schoolId, onNavigate }: 
       <h3 id="nearby-providers-title" className="font-semibold text-gray-950">주변 기관 <span className="text-xs font-normal text-gray-500">· {rows.length.toLocaleString()}곳</span></h3>
       <p className="text-[11px] leading-4 text-gray-500">
         초등 과정 등록, 통학차량 등록·체육시설 순으로 먼저 보이고 같은 단계 안에서는 가까운 곳부터예요. 표시는 공개자료에서 확인한 것이라
-        1학년 반이 있는지, 우리 학교로 셔틀이 오는지는 기관에 확인하세요. 태권도장·수영 등 체육시설은 차량 공개자료가 없어 통학차량을 표시하지 못해요.
+        1학년 반이 있는지, 우리 학교로 셔틀이 오는지는 기관에 확인하세요. '네이버 지도에서 찾기'로 업체가 올린 차량·시간 정보를 볼 수 있어요(네이버에 없거나 이름이 다른 곳도 있어요). 태권도장·수영 등 체육시설은 차량 공개자료가 없어 통학차량을 표시하지 못해요.
       </p>
       {category && (
         <p className="text-xs text-gray-600">분야: <strong>{getAcademyCategory(category).label}</strong>{' '}
@@ -90,7 +92,11 @@ export default function NearbyProviderList({ academies, schoolId, onNavigate }: 
               <div className="flex items-start gap-2">
                 <div className="min-w-0 flex-1">
                   <strong className="block text-sm text-gray-900">{row.institution.name}</strong>
-                  <small className="text-gray-500">{[row.institution.type, Number.isFinite(row.distance) ? `${Math.round(row.distance).toLocaleString()}m` : ''].filter(Boolean).join(' · ')}</small>
+                  <small className="text-gray-500">{[row.institution.type, Number.isFinite(row.distance) ? `${Math.round(row.distance).toLocaleString()}m` : ''].filter(Boolean).join(' · ')}
+                    {' · '}<a className="text-blue-700 underline" href={naverMapSearchUrl(row.institution.name, districts.get(row.addressId))}
+                      target="_blank" rel="noopener noreferrer" title={NAVER_TITLE}
+                      onClick={() => track('open_naver_map', { school_id: schoolId, position: index + 1, rank: row.rank, badges: row.badges.join(',') || 'none' })}>
+                      네이버 지도에서 찾기</a></small>
                 </div>
                 <button type="button" className="map-academy-icon" aria-expanded={adding === rowId}
                   aria-label={`${row.institution.name} 내 시간표에 추가`} title="내 시간표에 추가"

@@ -9,6 +9,7 @@ import DataFreshness from '../ui/DataFreshness'
 import CareCenterMorningInfo from '../care/CareCenterMorningInfo'
 import AcademyTimetableForm from './AcademyTimetableForm'
 import { followLink } from '../content/contentLinks'
+import { NAVER_TITLE, naverMapSearchUrl } from '../../utils/naverMapLink'
 import { readSavedAcademies, sameAcademy, subscribeSavedAcademies, toggleSavedAcademy } from '../../utils/savedAcademies'
 
 export default function MapPlaceDetail({ place, onNavigate }: { place: SelectedMapPlace; onNavigate: (path: string) => void }) {
@@ -85,7 +86,9 @@ export default function MapPlaceDetail({ place, onNavigate }: { place: SelectedM
                   <span className="rounded-full border border-gray-300 px-2 py-0.5 text-xs text-gray-700"
                     title="학교안전지원시스템 통학버스 등록현황에 있는 기관이에요. 어느 학교를 도는지는 기관에 확인하세요.">통학차량 등록</span>
                 )}</div>
-                <small className="text-gray-500">{[institution.type, institution.realm].filter(Boolean).join(' · ')}</small>
+                <small className="text-gray-500">{[institution.type, institution.realm].filter(Boolean).join(' · ')}
+                  {institution.name && <>{' · '}<a className="text-blue-700 underline" href={naverMapSearchUrl(institution.name, place.data.district)}
+                    target="_blank" rel="noopener noreferrer" title={NAVER_TITLE}>네이버 지도에서 찾기</a></>}</small>
                 {adding === index && (
                   <AcademyTimetableForm label={`${getInstitutionCategories(institution)[0]?.label ?? '학원'} · ${institution.name}`}
                     providerKey={institution.key} onNavigate={onNavigate}

@@ -509,6 +509,7 @@ Claude의 API 통합 검토 항목으로 남긴다(이번 문서 카드에서 �
 | `view_nearby_providers` | 학교마다 목록이 처음 보일 때 | `school_id`, `providers`, `elementary`, `shuttle`(배지 붙은 기관 수) |
 | `click_provider` | 기관의 '내 시간표에 추가'를 열 때 | `school_id`, `position`, `rank`(5절 순위), `badges` |
 | `add_provider_to_timetable` | 시간표에 담았을 때 | 위와 같음 |
+| `open_naver_map` | 주변 기관 목록의 '네이버 지도에서 찾기'를 누를 때(지도 기관 상세는 측정 안 함) | 위와 같음 |
 
 볼 것: 배지 붙은 기관(`badges` ≠ `none`)의 `click_provider` 비율이 같은 위치의 배지 없는 기관보다 높은지.
 
