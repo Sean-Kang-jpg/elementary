@@ -23,7 +23,7 @@
 배포된 것(카드 본문은 보관 파일·각 릴리스 기록): C-01~C-11, UX-03·06·08c·10·13·14·16·17·18·26·27,
 FNL-00~03(`FUNNEL_RELEASE_20261114.md`), FNL-07(`GUIDE_PLAN_UX_RELEASE_20261115.md`), FNL-05·06·08(`PLAN_ENTRY_UX_RELEASE_20261116.md`). UX-15는 제외(11-06 사용자).
 
-| 오후 미리보기·진입 | PR #4 보완과 학교·가이드 연결 | C → K | `codex/afternoon-preview-20261122` | review — PR #5, 빌드·모바일 검증 상태 확인 후 Claude 통합 | 11-22 |
+| 오후 미리보기·진입 | PR #4 보완과 학교·가이드 연결 | C → K | `codex/afternoon-preview-20261122` | released — PR #5 병합, 운영 release `b6c92c4` (11-22). 390px 브라우저 smoke 미실행(agent-browser 실행 차단) | 11-22 |
 
 ## 진행 중 카드
 
