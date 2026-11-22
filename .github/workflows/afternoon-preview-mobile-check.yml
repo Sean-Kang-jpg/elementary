@@ -1,0 +1,35 @@
+name: Afternoon preview mobile check
+on:
+  push:
+    branches: [codex/afternoon-mobile-check-20261122]
+permissions:
+  contents: read
+jobs:
+  mobile:
+    runs-on: ubuntu-latest
+    timeout-minutes: 9
+    defaults:
+      run:
+        working-directory: elementary-v2
+    env:
+      VITE_SUPABASE_URL: https://wherecho-fixture.invalid/
+      VITE_SUPABASE_ANON_KEY: local-browser-fixture
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: npm ci
+      - run: npm run typecheck
+      - run: npm run lint
+      - run: npm run test:unit
+      - run: npm run browser:install -- --with-deps
+      - name: Verify pickup and entry at mobile viewport
+        run: |
+          sed -i "s/'B900000002'\]/'B900000002', 'B000002292'\]/" scripts/fixtures/funnel-network.js
+          npm run dev -- --host 127.0.0.1 --port 3001 > /tmp/wherecho-mobile-vite.log 2>&1 &
+          for attempt in {1..30}; do
+            if curl --silent --fail http://localhost:3001/ > /dev/null; then break; fi
+            sleep 1
+          done
+          node scripts/plan-entry-smoke.mjs http://localhost:3001
