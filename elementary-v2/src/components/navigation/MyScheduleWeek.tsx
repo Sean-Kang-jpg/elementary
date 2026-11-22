@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { computeWeek, WEEKDAYS, type DayPlan } from '../../utils/schedule/engine'
 import { CALENDAR_END, CALENDAR_HOURS, CALENDAR_START, careResumptions, layoutCalendarBlocks, scheduleEntryHeading, scheduleKindLabel } from '../../utils/schedule/calendar'
 import { formatMinutes } from '../../utils/schedule/fromSchoolData'
@@ -33,8 +33,9 @@ const compactTime = (entry: ScheduleEntry, day: DayPlan) => {
   return `${start === null ? entry.startsAfterSchool ? '하교 후' : '시작 미확인' : formatMinutes(start)}–${entry.end === null ? '종료 미확인' : formatMinutes(entry.end)}${entry.timeAssumption ? ' · 기본 가정' : ''}`
 }
 
-export default function MyScheduleWeek({ reviewEntry, schoolId, entries, onSave, onAdd, onRemove, onToggleDay, onSetTimes, onRemoveDay, onStatus, onIntent, onRepeat, onNavigate }: {
+export default function MyScheduleWeek({ reviewEntry, pickupFocus, schoolId, entries, onSave, onAdd, onRemove, onToggleDay, onSetTimes, onRemoveDay, onStatus, onIntent, onRepeat, onNavigate }: {
   reviewEntry?: { id: string; weekday: Weekday } | null
+  pickupFocus?: { weekday: Weekday } | null
   schoolId: string; entries: ScheduleEntry[]; onSave: (change: CalendarChange) => ScheduleEntry | null
   onNavigate?: (path: string) => void
   onAdd: (entry: ScheduleEntry) => boolean; onRemove: (id: string) => boolean
@@ -67,14 +68,17 @@ export default function MyScheduleWeek({ reviewEntry, schoolId, entries, onSave,
   const morning = morningCalendarView(entries)
   const selectedEntry = entries.find((entry) => entry.id === selected?.id && !['cancelled', 'rejected'].includes(entry.participation))
   const selectedDay = days.find((day) => day.weekday === selected?.weekday)
-  const jumpTo = (weekday: Weekday) => {
+  const jumpTo = useCallback((weekday: Weekday) => {
     setActiveDay(weekday)
     const node = scroller.current
     if (!node) return
     const day = node.children[weekday - 1] as HTMLElement
     const first = node.children[0] as HTMLElement
     node.scrollTo({ left: day.offsetLeft - first.offsetLeft, behavior: 'auto' })
-  }
+  }, [])
+  useEffect(() => {
+    if (pickupFocus) jumpTo(pickupFocus.weekday)
+  }, [jumpTo, pickupFocus])
   const createAt = (range: CalendarRange) => { setAdding(range); setCursor(null); say('') }
   const save = (change: CalendarChange) => {
     const saved = onSave(change)

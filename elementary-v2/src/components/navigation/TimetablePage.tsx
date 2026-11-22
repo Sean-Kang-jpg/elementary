@@ -14,6 +14,9 @@ import PlanChangesNote from '../content/PlanChangesNote'
 import PinnedPlanList from '../content/PinnedPlanList'
 import { followLink } from '../content/contentLinks'
 import SchoolDayEstimateCard from '../school/SchoolDayEstimateCard'
+import SchoolPickupPreview from '../school/SchoolPickupPreview'
+import { formatMinutes } from '../../utils/schedule/fromSchoolData'
+import type { Weekday } from '../../utils/schedule/types'
 import MySchedule from './MySchedule'
 import SchoolSelection from '../search/SchoolSelection'
 import SampleWeek from './SampleWeek'
@@ -45,6 +48,8 @@ export default function TimetablePage({
   schoolId: routeSchoolId, face: routeFace, entryYear, profile, onEntryYearChange, onProfileChange, onSchoolChange, onNavigate,
 }: TimetablePageProps) {
   const [plans, setPlans] = useState(readPlans)
+  const [pickupSelection, setPickupSelection] = useState<{ schoolId: string; weekday: Weekday; pickup: number } | null>(null)
+  const editor = useRef<HTMLDivElement>(null)
   const [favorites, setFavorites] = useState<FavoriteRecord[]>(readFavorites)
   useEffect(() => subscribePlans(() => setPlans(readPlans())), [])
   useEffect(() => subscribeFavorites(() => setFavorites(readFavorites())), [])
@@ -78,6 +83,7 @@ export default function TimetablePage({
   const loadingDetail = Boolean(schoolId) && detail?.id !== schoolId
 
   const plan = plans.plans.find((item) => item.schoolId === schoolId)
+  const pickup = pickupSelection?.schoolId === schoolId ? pickupSelection : null
   const name = school?.school_name
     ?? plan?.schoolName
     ?? savedSchools.find((item) => item.id === schoolId)?.name
@@ -108,9 +114,9 @@ export default function TimetablePage({
   }, [face, entryYear])
   const hadPlan = useRef(Boolean(plan))
   useEffect(() => {
-    if (plan && !hadPlan.current) page.current?.scrollTo({ top: 0 })
+    if (plan && !hadPlan.current && !pickup) page.current?.scrollTo({ top: 0 })
     hadPlan.current = Boolean(plan)
-  }, [plan])
+  }, [plan, pickup])
 
   // 초안 유무로 레이아웃이 바뀌면 학교 목록이 다시 만들어진다. 4번째 학교 거절 같은 안내가 그때 사라지지 않게 여기서 든다.
   const [pickMessage, setPickMessage] = useState('')
@@ -161,7 +167,7 @@ export default function TimetablePage({
     )
   }
 
-  // 학교를 골랐다면 첫 질문 또는 저장된 편집기부터 보여 준다.
+  // 학교가 있으면 예상 하교를 확인하고 같은 화면에서 한 주를 짤 수 있다.
   if (schoolId) {
     return (
       <section ref={page} className="app-destination app-page content-page timetable-page timetable-page--editing" aria-labelledby="timetable-title">
@@ -171,10 +177,23 @@ export default function TimetablePage({
             <summary>{shownName ?? '선택한 학교'} · 학교 바꾸기</summary>
             {chips}
           </details>
-          {loadingDetail && !plan ? <p className="my-help" role="status">학교 자료를 불러오는 중…</p>
-            : name ? <MySchedule key={schoolId} school={{ id: schoolId, name, displayName: shownName ?? undefined }} entryYear={entryYear}
-              saved={savedSchools.some((item) => item.id === schoolId)} onNavigate={onNavigate} />
-            : <p className="my-help" role="status">이 학교를 찾지 못했어요. 위에서 학교를 다시 골라 주세요.</p>}
+          {school && (
+            <details key={schoolId} className="my-card" open={plan ? undefined : true}>
+              <summary>우리 학교 오후 시간 확인하기</summary>
+              <SchoolPickupPreview schoolId={schoolId} onContinue={(weekday, pickupTime) => {
+                setPickupSelection({ schoolId, weekday, pickup: pickupTime })
+                editor.current?.focus({ preventScroll: true })
+                editor.current?.scrollIntoView({ block: 'start' })
+              }} />
+            </details>
+          )}
+          <div ref={editor} tabIndex={-1} data-testid="timetable-week-editor">
+            {pickup && <p className="my-help">미리보기 기준 · {['월', '화', '수', '목', '금'][pickup.weekday - 1]}요일 {formatMinutes(pickup.pickup)} 픽업</p>}
+            {loadingDetail && !plan ? <p className="my-help" role="status">학교 자료를 불러오는 중…</p>
+              : name ? <MySchedule key={schoolId} school={{ id: schoolId, name, displayName: shownName ?? undefined }} entryYear={entryYear}
+                saved={savedSchools.some((item) => item.id === schoolId)} onNavigate={onNavigate} pickupFocus={pickup} />
+              : <p className="my-help" role="status">이 학교를 찾지 못했어요. 위에서 학교를 다시 골라 주세요.</p>}
+          </div>
           {school && (
             <details className="timetable-source my-card">
               <summary>{shownName} 운영 자료 보기</summary>
@@ -190,7 +209,7 @@ export default function TimetablePage({
     <section ref={page} className="app-destination app-page content-page timetable-page" aria-labelledby="timetable-title">
       <div className="content-page__inner">
         {header}
-        <p className="content-page__lead">학교를 고르면 하교 뒤 돌봄·방과후를 넣어 한 주를 짤 수 있어요.</p>
+        <p className="content-page__lead">학교를 고르면 예상 하교와 픽업 시각을 비교하고, 돌봄·방과후를 넣어 한 주를 짤 수 있어요.</p>
         <section className="timetable-pick my-card" aria-labelledby="timetable-pick-title">
           <h2 id="timetable-pick-title">우리 아이 학교 찾기</h2>
           {chips}

@@ -3,7 +3,7 @@ slug: dismissal-time
 worry:
   question: 1학년은 요일마다 몇 시에 끝나나요
   situations: [dismissal, 900, 1020, 1140]
-nextStep: {"label":"이 고민, 우리집 일정에서 풀어보기","href":"/timetable?face=week","kind":"plan","description":"학교를 고르면 요일별 예상 하교 시각이 한 주에 먼저 들어가요. 가장 일찍 끝나는 요일부터 오후를 채워 보세요."}
+nextStep: {"label":"우리 학교 예상 하교 시각 보기","href":"/timetable?face=week","kind":"plan","description":"학교를 고르면 요일별 예상 하교 시각을 보고 우리 집 픽업과 비교할 수 있어요."}
 title: 1학년은 요일마다 몇 시에 끝나나요
 description: 초1은 4교시 날과 5교시 날이 섞여 12시 40분~2시 사이에 끝납니다. 서울·경기 요일별 하교 시각과 3월 첫 주를 정리했습니다.
 order: 5.8
