@@ -10,7 +10,8 @@
 
 | ID | 제목 | 담당 | 브랜치 | 상태 | 갱신일 |
 | --- | --- | --- | --- | --- | --- |
-| PLAN-CHECKS | 완성한 한 주에 '학교에 확인할 것' | C → K | `codex/plan-checks-20261118` | merged — Claude 검토 통과, 로컬 전체 smoke 195 PASS(3000). 사용자가 Codex 세션에서 배포 승인(11-19) → Claude release 대기 | 11-19 |
+| PLAN-CHECKS | 완성한 한 주에 '학교에 확인할 것' | C → K | `codex/plan-checks-20261118` | released — 운영 release `b6c92c4`(11-22, 오후 미리보기와 한 묶음). 운영 번들 포함 확인(11-24) | 11-24 |
+| 오후 미리보기·진입 | PR #4 보완과 학교·가이드 연결 | C → K | `codex/afternoon-preview-20261122` | released — PR #5 병합, 운영 release `b6c92c4` (11-22). 운영 HTTP smoke 16 PASS(11-24), 브라우저 단계는 이 PC에서 agent-browser 실행 불가(spawn UNKNOWN)로 미실행 | 11-24 |
 | FNL-04 | GA4 맞춤 정의 등록 기록 | C → K | `codex/ga4-registration-20261112` | review — 문서 1커밋 미병합 | 11-12 |
 | FNL-09 | 랜딩 `(not set)`·초기 조회 품질 진단 | C | — | ready | 11-19 |
 | FNL-10 | 전체 동선 검증·효과 재점검 | K + U | — | blocked — 관찰 기간 | 11-19 |
@@ -23,7 +24,6 @@
 배포된 것(카드 본문은 보관 파일·각 릴리스 기록): C-01~C-11, UX-03·06·08c·10·13·14·16·17·18·26·27,
 FNL-00~03(`FUNNEL_RELEASE_20261114.md`), FNL-07(`GUIDE_PLAN_UX_RELEASE_20261115.md`), FNL-05·06·08(`PLAN_ENTRY_UX_RELEASE_20261116.md`). UX-15는 제외(11-06 사용자).
 
-| 오후 미리보기·진입 | PR #4 보완과 학교·가이드 연결 | C → K | `codex/afternoon-preview-20261122` | released — PR #5 병합, 운영 release `b6c92c4` (11-22). 390px 브라우저 smoke 미실행(agent-browser 실행 차단) | 11-22 |
 
 ## 진행 중 카드
 
