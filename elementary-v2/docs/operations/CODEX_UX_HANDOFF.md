@@ -12,7 +12,7 @@
 | --- | --- | --- | --- | --- | --- |
 | PLAN-CHECKS | 완성한 한 주에 '학교에 확인할 것' | C → K | `codex/plan-checks-20261118` | released — 운영 release `b6c92c4`(11-22, 오후 미리보기와 한 묶음). 운영 번들 포함 확인(11-24) | 11-24 |
 | 오후 미리보기·진입 | PR #4 보완과 학교·가이드 연결 | C → K | `codex/afternoon-preview-20261122` | released — PR #5 병합, 운영 release `b6c92c4` (11-22). 운영 HTTP smoke 16 PASS(11-24), 브라우저 단계는 이 PC에서 agent-browser 실행 불가(spawn UNKNOWN)로 미실행 | 11-24 |
-| TT-01 | 한 주 입력 덜어내기·하교 질문·측정 | K(저장·엔진) → C(화면) | — | ready — K 몫 먼저 | 11-24 |
+| TT-01 | 한 주 입력 덜어내기·하교 질문·측정 | C(저장·엔진, 소유자 승인) → C(화면) | `codex/TT-01-timetable-input` | in-progress — 저장·엔진 | 11-24 |
 | TT-02 | 3번 질문을 요일×시간대 표로 + '채워 보기' | C → K | — | blocked — TT-01 측정 배포 뒤 | 11-24 |
 | TT-03 | 요일 카드를 시간대 축으로(빈 칸 → 맞는 선택지 한 목록) | C → K | — | blocked — TT-02 뒤, 1~2월 | 11-24 |
 | FNL-04 | GA4 맞춤 정의 등록 기록 | C → K | `codex/ga4-registration-20261112` | review — 문서 1커밋 미병합 | 11-12 |
