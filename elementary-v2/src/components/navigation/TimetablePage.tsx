@@ -42,7 +42,7 @@ interface TimetablePageProps {
  * - 우리 아이 한 주(`?face=week`, `?school=B…`): 2026-10-19의 시간표 미리 짜보기. 학교 고르기 → 그 학교의
  *   초1 하루(하교·방과후·맞춤형·돌봄) 확인 → 초안을 만들어 주변 학원과 직접 일정까지 넣기.
  *
- * 면이 없는 주소는 입학까지로 연다. 입학연도 없이 시간표만 짜 둔 가족은 한 주로 연다 — 그들에게 입학까지는 빈 칩뿐이다.
+ * 면이 없는 주소는 한 주로 연다. 입학까지는 명시적인 면 주소로 연다.
  * 모든 값은 이 기기에만 있다(`familyPlan.ts`, `plans.ts`). 기기마다 다른 화면이라 색인하지 않는다.
  */
 export default function TimetablePage({
@@ -56,7 +56,7 @@ export default function TimetablePage({
   useEffect(() => subscribeFavorites(() => setFavorites(readFavorites())), [])
   useEffect(() => notePlanVisit(), [])
   const savedSchools = favorites.filter((item) => item.kind === 'school')
-  const face: PlanFace = routeFace ?? (entryYear === null && plans.plans.length ? 'week' : 'timeline')
+  const face: PlanFace = routeFace ?? 'week'
 
   // 한 주 면의 주소에 학교가 없으면 가장 최근에 고친 초안 → 첫 관심 학교 순으로 이어서 연다. 첫 그림부터 그 학교로
   // 그린다 — 주소를 고친 뒤에 다시 그리면 빈 화면이 한 번 보였다가 시간표가 펼쳐진다(2026-10-23).
@@ -216,14 +216,14 @@ export default function TimetablePage({
     <section ref={page} className="app-destination app-page content-page timetable-page" aria-labelledby="timetable-title">
       <div className="content-page__inner">
         {header}
-        <p className="content-page__lead">학교를 고르면 예상 하교와 픽업 시각을 비교하고, 돌봄·방과후를 넣어 한 주를 짤 수 있어요.</p>
+        {!restoreManual && <button type="button" className="my-button my-button--primary timetable-manual-start" onClick={() => setManualOpen(true)}>학교 없이 시작</button>}
+        {restoreManual && <MySchedule school={{ id: UNSPECIFIED_SCHOOL, name: '학교 미선택' }} entryYear={entryYear} saved={false} />}
         <section className="timetable-pick my-card" aria-labelledby="timetable-pick-title">
-          <h2 id="timetable-pick-title">우리 아이 학교 찾기</h2>
+          <h2 id="timetable-pick-title">학교 일정 불러오기</h2>
           {chips}
-          {!restoreManual && <button type="button" className="my-button" onClick={() => setManualOpen(true)}>학교 없이 시작</button>}
+          <a className="my-button" href={VIEW_PATHS.map} onClick={(event) => followLink(event, VIEW_PATHS.map, onNavigate)}>배정 학교 찾기</a>
           <p className="my-help">시간표는 이 기기에 저장돼요. 학교는 최대 3곳까지 고를 수 있어요.</p>
         </section>
-        {restoreManual && <MySchedule school={{ id: UNSPECIFIED_SCHOOL, name: '학교 미선택' }} entryYear={entryYear} saved={false} />}
         <details className="timetable-sample my-card">
           <summary>어떤 시간표가 만들어지나요? · 한 주 예시 보기</summary>
           <p className="my-help">예시예요. 학교를 고르면 그 학교 자료와 우리 가족의 답으로 시작해요.</p>
