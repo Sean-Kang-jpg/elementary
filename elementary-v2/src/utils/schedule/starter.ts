@@ -2,6 +2,7 @@ import type { SchoolAfterschool, SchoolCareHours } from '../../types'
 import { CALENDAR_END } from './calendar.ts'
 import { careEntriesFromHours, formatMinutes } from './fromSchoolData.ts'
 import { entryForDay } from './dayTimes.ts'
+import { WEEKDAYS } from './engine.ts'
 import { effectiveEntry } from './overrides.ts'
 import type { Minutes, ScheduleEntry, Weekday } from './types'
 
@@ -62,7 +63,6 @@ export function starterStep(answers: StarterAnswers | undefined, context?: Start
   return answers.done ? 'done' : 'fill'
 }
 
-const WEEKDAYS = [1, 2, 3, 4, 5] as const
 const validDismissal = (value: unknown): value is DismissalChoice => DISMISSAL_OPTIONS.some(choice => choice === value)
 const readDismissal = (value: unknown): DismissalAnswer | undefined => {
   if (!value || typeof value !== 'object') return

@@ -1,6 +1,7 @@
 import { beforeEach, describe, it } from 'node:test'
 import assert from 'node:assert/strict'
 import { deletePlan, emptyPlans, readPlans, upsertPlan, writePlans, type SchoolPlan } from './plans.ts'
+import { answerReturn, answerStarterDismissal } from './starter.ts'
 import { isFavorite, readFavorites, refreshFavorite, removeFavorite, saveFavorite, toggleFavorite, type FavoriteRecord } from '../favorites.ts'
 
 const values = new Map<string, string>()
@@ -49,6 +50,18 @@ describe('MY candidate and timetable persistence', () => {
   it('drops the retired active-plan field from older storage and keeps every draft', () => {
     values.set('elementary-schedule-plans-v1', JSON.stringify({ version: 1, activeSchoolId: 'b', plans: [plan('a'), plan('b')] }))
     assert.deepEqual(readPlans(), { version: 1, plans: [plan('a'), plan('b')] })
+  })
+  it('persists dismissal and schedule entries together while retaining older and manual entries', () => {
+    const old = plan('a')
+    const draft = plan('b')
+    const manual = { ...draft.entries[0], kind: 'personal' as const, label: '직접 입력', start: 900, end: 960 }
+    values.set('elementary-schedule-plans-v1', JSON.stringify({ version: 1, plans: [old, { ...draft, entries: [manual] }] }))
+    const stored = readPlans()
+    const updated = { ...stored.plans[1], ...answerStarterDismissal('b', answerReturn(1020), stored.plans[1].entries,
+      { default: 'unknown', weekdays: { 3: 770 } }) }
+    writePlans(upsertPlan(stored, updated))
+    assert.deepEqual(readPlans().plans, [updated, old])
+    assert.deepEqual(readPlans().plans[0].entries[0], manual)
   })
   it('removing a school deletes its timetable and keeps other schools', () => {
     saveFavorite(favorite('a'))
