@@ -323,6 +323,11 @@
   font-weight: 700;
 }
 
+/* Keep the scroll area above the fixed mobile navigation. */
+.app-main--below-topbar > :is(.home-page, .timetable-page) {
+  bottom: var(--app-bottom-inset);
+}
+
 .timetable-manual-start { margin: 0 0 8px; }
 
 .home-page--worries .home-hero { padding-top: 16px; }

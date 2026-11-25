@@ -16,7 +16,8 @@ export async function smokeHomeTimetable({ baseUrl, projectRoot, run, waitFor, a
   const inViewport = `(() => {
     const links = [...document.querySelectorAll('.home-hero__actions a')]
     const bottom = document.querySelector('.app-gnb').getBoundingClientRect().top
-    return innerWidth === 393 && innerHeight === 852 && document.documentElement.scrollWidth === innerWidth &&
+    return document.querySelector('.home-page').getBoundingClientRect().bottom <= bottom &&
+      innerWidth === 393 && innerHeight === 852 && document.documentElement.scrollWidth === innerWidth &&
       links.length === 2 && links.every(link => {
         const { top, left, right, bottom: edge } = link.getBoundingClientRect()
         return top >= 0 && edge <= bottom && left >= 0 && right <= innerWidth
@@ -36,6 +37,7 @@ export async function smokeHomeTimetable({ baseUrl, projectRoot, run, waitFor, a
   click(home)
   named('link', '하교 후 일정 짜기')
   await waitFor(view('week'), 'home primary CTA opens the weekly timetable')
+  assertPage("document.querySelector('.timetable-page').getBoundingClientRect().bottom <= document.querySelector('.app-gnb').getBoundingClientRect().top", 'weekly scroll area ends above the fixed mobile menu')
   assertPage("location.search === '?face=week' && !location.search.includes('school=')", 'home opens the week without a school')
   named('button', '학교 없이 시작')
   named('button', '+ 일정 추가')
@@ -51,6 +53,7 @@ export async function smokeHomeTimetable({ baseUrl, projectRoot, run, waitFor, a
   await waitFor("location.pathname === '/map' && document.querySelector('input[role=combobox]')", 'home secondary CTA opens the same assignment search')
 
   click(home)
+  await waitFor("document.querySelector('.showcase-card')", 'school example finishes loading before scroll to the guide')
   const guideLink = '.home-links a[href^="/guide"]'
   await waitFor(`document.querySelector(${JSON.stringify(guideLink)})`, 'home guide link is rendered')
   run(['eval', `document.querySelector(${JSON.stringify(guideLink)}).scrollIntoView({ block: 'center' })`], quiet)
