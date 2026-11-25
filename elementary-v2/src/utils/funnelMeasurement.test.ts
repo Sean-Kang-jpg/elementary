@@ -78,3 +78,62 @@ describe('successful and failed timetable writes', () => {
     assert.equal(observer.write('B000001', 'edit', () => 'saved'), 'saved')
   })
 })
+
+describe('TT-01 question funnel', () => {
+  it('separates show, button choice, first successful storage and completion', () => {
+    const { observer, events } = fixture()
+    observer.timetableStep('B000001', { step: 'return', answer: 'start' })
+    observer.timetableStep('B000001', { step: 'return', answer: 'start' })
+    observer.timetableStep('B000001', { step: 'return', answer: '17:00' })
+    assert.throws(() => observer.write('B000001', 'create', () => { throw new Error() }))
+    observer.write('B000001', 'create', () => undefined)
+    observer.timetableStep('B000001', { step: 'courses', answer: 'skip' })
+    observer.write('B000001', 'edit', () => undefined)
+    observer.timetableComplete('B000001', { coverageState: 'covered', hasSlots: false, hasDismissal: false })
+    assert.deepEqual(events.map(({ event, params }) => [event, params.answer]), [
+      ['timetable_step', 'start'], ['timetable_step', '17:00'], ['timetable_save_failure', undefined],
+      ['timetable_draft_create', undefined], ['timetable_step', 'skip'], ['timetable_first_edit', undefined],
+      ['timetable_save_success', undefined], ['timetable_complete', undefined],
+    ])
+    assert.deepEqual(events[events.length - 1]?.params, {
+      face: 'week', entry_point: 'link', school_id: 'B000001', coverage_state: 'covered',
+      has_slots: 0, has_dismissal: 0, measurement_version: 'fnl-1',
+    })
+  })
+
+  it('emits completion once after a failed write is retried, even without a slot lookup result', () => {
+    for (const hasSlots of [undefined, false, true]) {
+      const { observer, events } = fixture()
+      let storedDone = false
+      const saveCompletion = (fail: boolean) => {
+        const wasDone = storedDone
+        if (wasDone) return
+        observer.write('B000001', 'edit', () => {
+          if (fail) throw new Error('quota')
+          storedDone = true
+        })
+        observer.timetableComplete('B000001', { coverageState: 'covered', hasSlots, hasDismissal: false })
+      }
+
+      assert.throws(() => saveCompletion(true), /quota/)
+      assert.equal(events.filter(e => e.event === 'timetable_complete').length, 0)
+      saveCompletion(false)
+      saveCompletion(false)
+      assert.deepEqual(events.map(e => e.event), [
+        'timetable_first_edit', 'timetable_save_failure', 'timetable_save_success', 'timetable_complete',
+      ])
+      const completion = events[3].params
+      if (hasSlots === undefined) assert.equal('has_slots' in completion, false)
+      else assert.equal(completion.has_slots, Number(hasSlots))
+    }
+  })
+
+  it('drops non-button text at runtime and omits a local school identifier', () => {
+    const { observer, events } = fixture()
+    observer.timetableStep('local', { step: 'courses', answer: 'private' as 'yes' })
+    observer.timetableStep('local', { step: 'courses', answer: 'no' })
+    assert.equal(events.length, 1)
+    assert.equal(events[0].params.answer, 'no')
+    assert.equal(events[0].params.school_id, undefined)
+  })
+})
