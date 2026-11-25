@@ -12,7 +12,7 @@
 | --- | --- | --- | --- | --- | --- |
 | PLAN-CHECKS | 완성한 한 주에 '학교에 확인할 것' | C → K | `codex/plan-checks-20261118` | released — 운영 release `b6c92c4`(11-22, 오후 미리보기와 한 묶음). 운영 번들 포함 확인(11-24) | 11-24 |
 | 오후 미리보기·진입 | PR #4 보완과 학교·가이드 연결 | C → K | `codex/afternoon-preview-20261122` | released — PR #5 병합, 운영 release `b6c92c4` (11-22). 운영 HTTP smoke 16 PASS(11-24), 브라우저 단계는 이 PC에서 agent-browser 실행 불가(spawn UNKNOWN)로 미실행 | 11-24 |
-| TT-01 | 한 주 입력 덜어내기·하교 질문·측정 | C(저장·엔진, 소유자 승인) → C(화면) | `codex/TT-01-timetable-input` | in-progress — 저장·엔진 | 11-24 |
+| TT-01 | 한 주 입력 덜어내기·하교 질문·측정 | C(저장·엔진, 소유자 승인) → C(화면) | `codex/TT-01-timetable-input` | review — 저장·엔진, 화면 연동 대기 | 11-25 |
 | TT-02 | 3번 질문을 요일×시간대 표로 + '채워 보기' | C → K | — | blocked — TT-01 측정 배포 뒤 | 11-24 |
 | TT-03 | 요일 카드를 시간대 축으로(빈 칸 → 맞는 선택지 한 목록) | C → K | — | blocked — TT-02 뒤, 1~2월 | 11-24 |
 | FNL-04 | GA4 맞춤 정의 등록 기록 | C → K | `codex/ga4-registration-20261112` | review — 문서 1커밋 미병합 | 11-12 |
@@ -52,6 +52,22 @@ FNL-00~03(`FUNNEL_RELEASE_20261114.md`), FNL-07(`GUIDE_PLAN_UX_RELEASE_20261115.
 완료 기준: 자료 없는 학교에서 1→하교→2→3(건너뜀)→4→완료 ✓ 도달. 3번 '예' 뒤 고정 문구 120자 이하(공백 제외).
 lint·typecheck·test:unit·smoke 블록 통과, 390px 확인.
 문구는 초안 — 화면 문구는 사용자 확정(R2 3절).
+
+#### TT-01 저장·엔진 결과
+
+- 브랜치/커밋 — `codex/TT-01-timetable-input`, 구현 `b51b349`·`5b5fb5e`·`ae379f0` (push 완료, 기준 master `01b34a9`).
+- 바꾼 파일 — `starter.ts`, `funnelMeasurement.ts`, 저장·엔진·계측 단위 검사와 측정 문서.
+- 검증 — lint·typecheck·unit 202/202 통과. Vite 번들·정적 셸 생성 성공. 전체 build의 sitemap은 로컬 Supabase URL/anon key 부재로 중단.
+- 다른 점 — 화면 호출부와 390px·브라우저 smoke 블록은 후속 화면 카드에서 확인. 브랜치로 전달.
+- Claude 몫 — 저장·엔진 먼저 검토 및 병합, 화면 연동 검토 뒤 승인된 출시 묶음 배포와 운영 smoke.
+
+#### 화면 연동 계약
+
+1. 학교별 조회 완료 후 `hasScheduleDismissal(schoolEntriesFromEstimate(day))`로 학교 하교 자료 유무를 판정한다(자료 없음은 빈 배열). 이 값의 반대로 `{ needsDismissal }`을 만들어 `answerReturn(value, context)`와 `starterStep(answers, context)`에 동일하게 전달한다. 기존 답을 수정할 때는 저장된 `dismissal`도 이어받는다. `starter` 없는 과거 저장 초안은 기존대로 완료 상태로 복원한다.
+2. 하교 답은 `{ default, weekdays? }` 형태. 값은 `770 | 820 | 870 | 'unknown'`이고 `weekdays`의 키는 월~금 1~5다. 최신 저장 초안에 `answerStarterDismissal(schoolId, starter, entries, answer)`를 적용하고 반환된 `starter`와 `entries`를 한 번에 저장한다. 뒤로 이동할 때는 기존 칸과 답을 보존하고, 하교 답을 다시 편집할 때는 이 함수로 갱신한다. 돌봄 선택을 다시 적용할 때 시간이나 요일을 직접 고친 칸도 보존한다.
+3. 학교별 `getSchoolAfterschool(schoolId, { allowDevFixture: false })` 결과를 `starterHasSlots`에 넘긴다. 로딩·조회 실패인 `undefined`와 확인된 자료 없음인 `false`를 구분한다. 3번에서 자료 없음 [다음]을 누르면 `skipStarterCourses(starter, hasSlots)`가 `courses: false`를 만든다. 기존 일정 항목은 그대로 저장한다.
+4. 실제 1번 표시에서 `funnelMeasurement.timetableStep(schoolId, { step: 'return', answer: 'start' })`. 버튼 값은 측정 문서의 목록을 사용하고, 요일별 하교는 `by_weekday`, 자료 없음 [다음]은 `courses/skip`, 4번 완료 버튼은 `fill/yes`다. 첫 저장 성공은 기존 `write('create')`가 보내는 `timetable_draft_create`를 사용한다.
+5. 저장된 상태가 미완료에서 완료로 바뀔 때만 `timetableComplete(schoolId, { coverageState, hasSlots, hasDismissal })`를 호출한다. `coverageState`는 저장에 성공한 일정의 엔진 결과를 사용하고 하교 직후 귀가는 `covered`로 기록한다. `hasDismissal`은 학교 자료 여부로, 부모가 답한 시각과 구분한다. 하교 직후 귀가 분기도 완료가 저장되는 시점에 같은 계약을 적용한다.
 
 ### TT-02 · 3번 질문을 요일×시간대 표로 + '채워 보기' — M
 
