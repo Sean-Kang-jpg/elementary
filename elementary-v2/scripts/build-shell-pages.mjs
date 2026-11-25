@@ -64,9 +64,8 @@ const STAGE_ORDER = ['planning', 'admission']
 // the static copy names the deadline date rather than a D-day, which would go
 // stale between deploys - the app replaces it with the live count on mount.
 const shelves = JSON.parse(await fs.readFile(path.join(projectRoot, 'src/content/home-shelves.json'), 'utf8'))
-const worryCards = (items, now, max) => {
+const currentHomeCard = (items, now) => {
   const today = `${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`
-  const iso = `${now.getFullYear()}-${today}`
   const inWindow = (from, to) => (from <= to ? today >= from && today <= to : today >= from || today <= to)
   const until = (mmdd) => {
     const [month, day] = mmdd.split('-').map(Number)
@@ -83,45 +82,33 @@ const worryCards = (items, now, max) => {
   }
   return items
     .filter((item) => item.year === undefined || item.year === now.getFullYear())
-    .filter((item) => (!item.from && !item.to) || Boolean(item.from && item.to && inWindow(item.from, item.to)))
-    .map((item, index) => ({ ...item, index, permanent: !item.from && !item.to, dday: ddayOf(item), isNew: Boolean(item.newUntil && iso <= item.newUntil) }))
-    .sort((a, b) => Number(b.permanent) - Number(a.permanent) || (a.dday ?? 999) - (b.dday ?? 999) || a.index - b.index)
-    .slice(0, max)
+    .filter((item) => item.from && item.to && inWindow(item.from, item.to))
+    .map((item, index) => ({ ...item, index, dday: ddayOf(item) }))
+    .sort((a, b) => (a.dday ?? 999) - (b.dday ?? 999) || a.index - b.index)
+    .find((card) => !card.deadline || card.dday !== null)
 }
 const showcase = await loadShowcase(shelves.showcase.schoolId)
 if (showcase) await fs.writeFile(path.join(outDir, 'home-showcase.json'), JSON.stringify(showcase), 'utf8')
 process.stdout.write(`showcase    ${showcase ? `dist/home-showcase.json (${showcase.school.name})` : 'none - the home leaves the row out'}\n`)
 
-// The assignment worry is one card holding the search, not a link to it (2026-11-03).
-const searchCardHtml = (card) => `<li class="worry-item worry-item--search" data-worry-id="${escapeHtml(card.id)}"><strong class="worry-item__question">${escapeHtml(card.question)}</strong>`
-  + `<div id="home-assignment-search" class="home-page__search"><a href="/map">${escapeHtml(card.hint)}</a></div>`
-  + `<p class="home-hero__trust"><span>${escapeHtml(copy.noteBefore)}<b>${escapeHtml(copy.noteStrong)}</b>${escapeHtml(copy.noteAfter)}</span></p></li>`
-
 const worriesHtml = (() => {
-  const cards = worryCards(shelves.worries.items, new Date(), shelves.worries.max)
-  if (!cards.length) return ''
-  const badge = (card) => (card.dday !== null
+  const card = currentHomeCard(shelves.worries.items, new Date())
+  if (!card) return ''
+  const badge = card.dday !== null
     ? `<span class="worry-card__badge">${escapeHtml(card.deadlineLabel)} ${Number(card.deadline.slice(0, 2))}월 ${Number(card.deadline.slice(3))}일</span>`
-    : card.isNew ? '<span class="worry-card__badge worry-card__badge--new">NEW</span>' : '')
+    : ''
   return `<section class="home-shelf home-worries" aria-labelledby="home-worries-title"><div class="home-shelf__head"><h2 id="home-worries-title">${escapeHtml(shelves.worries.title)}</h2></div><ul class="home-worries__list">`
-    + cards.map((card) => card.href === '#home-assignment-search' ? searchCardHtml(card) : `<li class="worry-item" data-worry-id="${escapeHtml(card.id)}"><a href="${escapeHtml(card.href)}" class="worry-card">${badge(card)}<strong>${escapeHtml(card.question)}</strong><small>${escapeHtml(card.hint)}</small></a></li>`).join('')
+    + `<li class="worry-item" data-worry-id="${escapeHtml(card.id)}"><a href="${escapeHtml(card.href)}" class="worry-card">${badge}<strong>${escapeHtml(card.question)}</strong><small>${escapeHtml(card.hint)}</small></a></li>`
     + '</ul></section>'
 })()
 
-// Labels of src/utils/academyCategories.ts, for the static text only.
-const ACADEMY_LABELS = { english: '영어', math: '수학', writing: '국어·논술', science: '과학', coding: '코딩', study: '입시·종합', language: '외국어', arts: '예능', sports: '체육' }
-
 // Text-only for the crawler: the bars are drawn by the app.
 const showcaseHtml = showcase ? (() => {
-  const { school, apartment } = showcase
+  const { school } = showcase
   const days = school.days.filter((day) => day.dismissal)
     .map((day) => `${day.label} 하교 ${day.dismissal}${day.afterschoolEnd ? `·방과후 ~${day.afterschoolEnd}` : ''}`).join(', ')
   return `<section class="home-shelf" aria-labelledby="home-showcase-title"><div class="home-shelf__head"><h2 id="home-showcase-title">${escapeHtml(shelves.showcase.title)}</h2><small>${escapeHtml(shelves.showcase.lead)}</small></div><ul class="home-shelf__row home-shelf__row--wide">`
     + `<li><a href="/timetable?school=${encodeURIComponent(school.id)}" class="showcase-card"><span class="showcase-card__kicker">초1 오후 한눈에</span><strong>${escapeHtml(school.name)}</strong><small>${escapeHtml(days)}${school.careEnd ? `, 돌봄 ~${escapeHtml(school.careEnd)}` : ''}</small></a></li>`
-    + (apartment ? `<li><a href="${escapeHtml(encodeURI(apartment.path))}" class="showcase-card"><span class="showcase-card__kicker">배정 학교 찾기</span><strong>${escapeHtml(apartment.name)} → ${escapeHtml(school.name)}</strong><small>1학년 ${school.grade1Students ?? '–'}명 · 학급당 ${school.grade1PerClass ?? '–'}명 · 배정 아파트 ${school.apartments}곳</small>`
-      + (apartment.academies ? `<small>교육환경: 학원·교습소 400m ${apartment.academies.core ?? '–'}곳 · 800m ${apartment.academies.extended ?? '–'}곳 (${apartment.academies.categories.map(({ key, count }) => `${ACADEMY_LABELS[key] ?? key} ${count}`).join(', ')})</small>` : '')
-      + '</a></li>' : '')
-    + `<li><a href="/timetable?school=${encodeURIComponent(school.id)}" class="showcase-card"><span class="showcase-card__kicker">시간표 예시</span><strong>맞벌이 가정의 하루</strong><small>${school.morning ? `아침돌봄 ${escapeHtml(school.morning)}, ` : ''}하교 뒤 방과후와 돌봄을 이어 붙인 예시</small></a></li>`
     + '</ul></section>'
 })() : ''
 
@@ -131,12 +118,11 @@ const homeBody = [
   `<p class="home-page__brand">${escapeHtml(copy.brand)}</p>`,
   `<h1 id="home-title">${escapeHtml(copy.title)}</h1>`,
   `<p class="home-page__lead">${escapeHtml(copy.lead)}</p>`,
-  worriesHtml,
+  `<div class="home-hero__actions"><a class="my-button my-button--primary" href="/timetable?face=week">${escapeHtml(copy.timetableAction)}</a><a class="my-button" href="/map">${escapeHtml(copy.assignmentAction)}</a></div>`,
   '</div></div>',
   '<div class="home-page__inner home-page__body">',
   showcaseHtml,
-  // New-family banner: the app hides it once hasFamilyPlan() is true.
-  '<a href="/timetable?face=week" class="timetable-banner"><span class="min-w-0 flex-1"><strong>우리 아이 초등학교 시간표 미리 짜보기</strong><small>맞춤형·방과후·돌봄에 주변 학원까지, 입학 전에 한 주를 그려 봐요</small></span></a>',
+  worriesHtml,
   // The guide list itself lives under /guide since 2026-10-04; the home links to it,
   // as the app does, rather than repeat it.
   '<div class="home-links">',

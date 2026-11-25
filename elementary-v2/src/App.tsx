@@ -531,8 +531,6 @@ function MapApplication() {
         <HomePage
           onNavigate={(path) => navigate(path, 'home')}
           entryYear={entryYear}
-          onEntryYearChange={changeEntryYear}
-          profile={profile}
         />
       )}
       {view === 'checklist' && <ChecklistPage onNavigate={(path) => navigate(path, 'related')} />}

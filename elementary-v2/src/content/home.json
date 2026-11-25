@@ -1,8 +1,10 @@
 {
   "_comment": "홈 문구의 단일 출처. HomePage.tsx와 scripts/build-shell-pages.mjs(빌드 시점 정적 HTML)가 함께 읽는다. 한쪽만 고치면 크롤러와 사람이 다른 홈을 본다.",
   "brand": "어디초",
-  "title": "초등 입학 준비, 어떤 점이 궁금하세요?",
-  "lead": "우리 아이 배정 학교부터 입학 일정, 하교 후 돌봄까지 필요한 것부터 살펴보세요.",
+  "title": "초등 입학 준비, 우리 아이의 하루부터",
+  "lead": "하교 뒤 돌봄·방과후·픽업을 우리 집 일정에 맞춰보세요",
+  "timetableAction": "하교 후 일정 짜기",
+  "assignmentAction": "배정 학교 찾기",
   "mapCardTitle": "지도에서 찾아보기",
   "areaLinkTitle": "지역별 학교 목록",
   "mapCardBody": "지역을 옮겨 다니며 학교와 배정 아파트를 함께 봅니다.",
