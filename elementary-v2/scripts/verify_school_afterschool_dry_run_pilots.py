@@ -1,10 +1,14 @@
 """Reproduce SW item 8's two offline cases from the committed gate inputs."""
 
+import json
 import shlex
+import subprocess
+import sys
+import tempfile
 from pathlib import Path
 
 from etl.load_school_afterschool import build, load_period_estimates, school_record, table_rows
-from scripts.school_afterschool_dry_run import KEYS, SLOTS, SUMMARY, compare, dump
+from scripts.school_afterschool_dry_run import KEYS, SLOTS, SUMMARY, dump
 
 ROOT = Path(__file__).resolve().parents[1]
 PIVOT = ROOT / "docs/research/pivot"
@@ -77,10 +81,20 @@ def verify(school_id, baseline, expected):
         table: {"rows": items, "state": "partial_reviewed", "evidence": evidence[school_id]}
         for table, items in rows.items()
     }}
-    first = compare(school_id, baseline, candidate)
+    with tempfile.TemporaryDirectory() as directory:
+        original = Path(directory) / "baseline.json"
+        reviewed = Path(directory) / "candidate.json"
+        next_baseline = Path(directory) / "next-baseline.json"
+        original.write_text(dump(baseline), encoding="utf-8")
+        reviewed.write_text(dump(candidate), encoding="utf-8")
+        command = [sys.executable, str(ROOT / "scripts/school_afterschool_dry_run.py"),
+                   "--school-id", school_id, "--candidate", str(reviewed)]
+        first_output = subprocess.check_output([*command, "--baseline", str(original)])
+        first = json.loads(first_output)
+        next_baseline.write_text(dump(first["proposed_baseline"]), encoding="utf-8")
+        repeat = json.loads(subprocess.check_output([*command, "--baseline", str(next_baseline)]))
+        assert first_output == subprocess.check_output([*command, "--baseline", str(original)])
     proposed = first["proposed_baseline"]
-    repeat = compare(school_id, proposed, candidate)
-    assert dump(first) == dump(compare(school_id, baseline, candidate))
     for table, adds in zip(KEYS, expected):
         assert first["counts"][table] == {"added": adds, "modified": 0, "deleted": 0}
         assert not first["coverage"][table]["held_candidates"]

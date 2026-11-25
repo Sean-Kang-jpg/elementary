@@ -48,9 +48,13 @@ python3 scripts/school_afterschool_dry_run.py \
 cd elementary-v2
 PYTHONDONTWRITEBYTECODE=1 python3 -m unittest -v scripts.test_school_afterschool_dry_run
 PYTHONDONTWRITEBYTECODE=1 python3 -m scripts.verify_school_afterschool_dry_run_pilots
+PYTHONDONTWRITEBYTECODE=1 python3 -m unittest scripts.test_school_afterschool_dry_run \
+  etl.tests.test_afterschool_rules etl.tests.test_load_school_afterschool \
+  etl.tests.test_afterschool_slots etl.tests.test_afterschool_checks_sheet \
+  etl.tests.test_build_pivot_priority_slots etl.tests.test_pivot_p1_slot_review
 ```
 
-단위 검사 6건은 결정적 출력, 추가·수정·삭제, 대상 외 후보 전체 거부, 검수·완료일 보존, 자료 없음·실패·부분 검수, 요약과 자식 표의 삭제 조건을 확인했다. 파일럿 검증기는 SW #7 선행 검토와 #8 첨부 보고서·비교 로그의 입력을 재사용한다. 기존 일반 적재기의 순수 변환 함수만 호출해 검수 입력과 지역 게이트에서 로컬 기준을 재구성했다. SW #8 비교 로그와 기준 행 수가 일치했다.
+단위 검사 6건과 기존 관련 검사 60건이 통과했다. 결정적 출력, 추가·수정·삭제, 대상 외 후보 전체 거부, 검수·완료일 보존, 자료 없음·실패·부분 검수, 요약과 자식 표의 삭제 조건을 확인했다. 파일럿 검증기는 SW #7 선행 검토와 #8 첨부 보고서·비교 로그의 입력을 재사용한다. 기존 일반 적재기의 순수 변환 함수만 호출해 검수 입력과 지역 게이트에서 로컬 기준을 재구성하고, 각 학교를 별도로 CLI에 넣었다. SW #8 비교 로그와 기준 행 수가 일치했다.
 
 | 학교 | 확인한 근거와 모의 결과 |
 | --- | --- |
