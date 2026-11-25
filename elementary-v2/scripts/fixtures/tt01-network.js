@@ -1,13 +1,15 @@
 // Synthetic read-only responses for the isolated TT-01 browser smoke.
 if (['localhost', '127.0.0.1'].includes(location.hostname)) {
   localStorage.setItem('wherecho:analytics-debug', '1')
+  window.qaSchoolRequests = []
   const originalFetch = window.fetch.bind(window)
   window.fetch = async (...args) => {
     const request = args[0]
-    const url = new URL(typeof request === 'string' ? request : request.url)
+    const url = new URL(typeof request === 'string' ? request : request.url, location.href)
     if (!url.pathname.startsWith('/rest/v1/')) return originalFetch(...args)
     const id = url.searchParams.get('school_id')?.replace(/^eq\./, '')
     const table = url.pathname.split('/').at(-1)
+    window.qaSchoolRequests.push(table)
     const knownSchool = /^B90000000[1-5]$/.test(id)
     const oneRow = ['school_master', 'school_day_estimates', 'school_care_hours', 'school_afterschool_summary'].includes(table)
     let row = oneRow ? null : []

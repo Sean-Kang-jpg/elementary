@@ -16,7 +16,7 @@ export async function smokeHomeTimetable({ baseUrl, projectRoot, run, waitFor, a
   const inViewport = `(() => {
     const links = [...document.querySelectorAll('.home-hero__actions a')]
     const bottom = document.querySelector('.app-gnb').getBoundingClientRect().top
-    return innerWidth === 390 && innerHeight === 844 && document.documentElement.scrollWidth === innerWidth &&
+    return innerWidth === 393 && innerHeight === 852 && document.documentElement.scrollWidth === innerWidth &&
       links.length === 2 && links.every(link => {
         const { top, left, right, bottom: edge } = link.getBoundingClientRect()
         return top >= 0 && edge <= bottom && left >= 0 && right <= innerWidth
@@ -24,13 +24,16 @@ export async function smokeHomeTimetable({ baseUrl, projectRoot, run, waitFor, a
   })()`
 
   open('/')
-  run(['set', 'device', 'iPhone 13'], quiet)
+  run(['set', 'device', 'iPhone 15'], quiet)
   await waitFor("document.querySelector('.home-hero__actions')", 'home mounted')
-  assertPage(inViewport, 'both CTAs fit the first 390×844 mobile screen')
+  assertPage(inViewport, 'both CTAs fit the first 393×852 mobile screen')
   assertPage("document.querySelector('#home-title').textContent === '초등 입학 준비, 우리 아이의 하루부터' && document.querySelector('.home-page__lead').textContent === '하교 뒤 돌봄·방과후·픽업을 우리 집 일정에 맞춰보세요'", 'home uses the approved title and lead')
   assertPage("document.querySelectorAll('.worry-item').length === 1 && !document.querySelector('.plan-summary')", 'home shows a single seasonal card')
   await waitFor("document.querySelectorAll('#home-showcase-title').length === 1 && document.querySelectorAll('.showcase-card').length === 1 && document.querySelector('.showcase-card .showcase-bars li')", 'home shows one real-school example when the build snapshot is served')
 
+  click('.app-gnb a[href="/timetable"]')
+  await waitFor(`${view('week')} && document.querySelector('.timetable-manual-start')`, 'fresh 우리집 일정 GNB opens the week with the manual start')
+  click(home)
   named('link', '하교 후 일정 짜기')
   await waitFor(view('week'), 'home primary CTA opens the weekly timetable')
   assertPage("location.search === '?face=week' && !location.search.includes('school=')", 'home opens the week without a school')
@@ -39,7 +42,7 @@ export async function smokeHomeTimetable({ baseUrl, projectRoot, run, waitFor, a
   click('.my-calendar-form button[type="submit"]')
   await waitFor(`${stored}.find(plan => plan.schoolId === 'no-school')?.entries[0]?.label === '픽업'`, 'first pickup saves without school selection')
   assertPage("(window.__ANALYTICS_LOG__ || []).filter(event => event.event === 'timetable_draft_create').length === 1 && (window.__ANALYTICS_LOG__ || []).some(event => event.event === 'home_shelf_click' && event.params.item === 'timetable')", 'client debug records the home click and a single draft create')
-  assertPage("!performance.getEntriesByType('resource').some(entry => /\/rest\/v1\/school_afterschool/.test(entry.name))", 'manual path does not request school courses')
+  assertPage("Array.isArray(window.qaSchoolRequests) && !window.qaSchoolRequests.some(table => table.startsWith('school_afterschool'))", 'manual path does not request school courses')
 
   click('.timetable-pick a[href="/map"]')
   await waitFor("location.pathname === '/map' && document.querySelector('input[role=combobox]')", 'school import links to existing assignment search')
@@ -48,7 +51,10 @@ export async function smokeHomeTimetable({ baseUrl, projectRoot, run, waitFor, a
   await waitFor("location.pathname === '/map' && document.querySelector('input[role=combobox]')", 'home secondary CTA opens the same assignment search')
 
   click(home)
-  named('link', '입학 준비 가이드')
+  const guideLink = '.home-links a[href^="/guide"]'
+  await waitFor(`document.querySelector(${JSON.stringify(guideLink)})`, 'home guide link is rendered')
+  run(['eval', `document.querySelector(${JSON.stringify(guideLink)}).scrollIntoView({ block: 'center' })`], quiet)
+  click(guideLink)
   await waitFor("location.pathname === '/guide' && document.querySelector('.guide-stage')", 'home guide link opens admission guides')
   click('.app-gnb a[href="/timetable"]')
   await waitFor(view('week'), '우리집 일정 GNB opens the weekly timetable by default')
