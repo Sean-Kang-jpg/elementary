@@ -1,7 +1,9 @@
-import type { SchoolCareHours } from '../../types'
+import type { SchoolAfterschool, SchoolCareHours } from '../../types'
 import { CALENDAR_END } from './calendar.ts'
 import { careEntriesFromHours, formatMinutes } from './fromSchoolData.ts'
-import type { Minutes, ScheduleEntry } from './types'
+import { entryForDay } from './dayTimes.ts'
+import { effectiveEntry } from './overrides.ts'
+import type { Minutes, ScheduleEntry, Weekday } from './types'
 
 /**
  * 출발 계획(UX-13, 2026-11-02). 빈 시간표 대신 질문 몇 개로 한 주를 채운다.
@@ -12,7 +14,15 @@ import type { Minutes, ScheduleEntry } from './types'
  */
 export type ReturnAt = 'dismissal' | 900 | 1020 | 1140
 
+export const DISMISSAL_OPTIONS = [770, 820, 870, 'unknown'] as const
+export type DismissalChoice = typeof DISMISSAL_OPTIONS[number]
+export interface DismissalAnswer {
+  default: DismissalChoice
+  weekdays?: Partial<Record<Weekday, DismissalChoice>>
+}
+
 export interface StarterAnswers {
+  dismissal?: DismissalAnswer
   returnAt: ReturnAt | null
   care: boolean | null
   courses: boolean | null
@@ -20,7 +30,13 @@ export interface StarterAnswers {
   done: boolean
 }
 
-export type StarterStep = 'return' | 'care' | 'courses' | 'fill' | 'done'
+type LegacyStarterStep = 'return' | 'care' | 'courses' | 'fill' | 'done'
+export type StarterStep = LegacyStarterStep | 'dismissal'
+
+export interface StarterContext {
+  /** 학교 하교 자료에 읽을 수 있는 요일이 하나도 없을 때. */
+  needsDismissal: boolean
+}
 
 export const RETURN_OPTIONS: ReadonlyArray<{ value: ReturnAt; label: string }> = [
   { value: 1140, label: '19시쯤' },
@@ -31,15 +47,76 @@ export const RETURN_OPTIONS: ReadonlyArray<{ value: ReturnAt; label: string }> =
 
 export const emptyStarter = (): StarterAnswers => ({ returnAt: null, care: null, courses: null, done: false })
 
-export const answerReturn = (returnAt: ReturnAt): StarterAnswers => returnAt === 'dismissal'
-  ? { returnAt, care: false, courses: false, done: true }
+export const answerReturn = (returnAt: ReturnAt, context?: StarterContext): StarterAnswers => returnAt === 'dismissal'
+  ? { returnAt, care: false, courses: false, done: !context?.needsDismissal }
   : { returnAt, care: null, courses: null, done: false }
 
-export const starterStep = (answers: StarterAnswers | undefined): StarterStep => {
+// The current screen uses the legacy sequence until it can render the dismissal question.
+export function starterStep(answers: StarterAnswers | undefined): LegacyStarterStep
+export function starterStep(answers: StarterAnswers | undefined, context: StarterContext): StarterStep
+export function starterStep(answers: StarterAnswers | undefined, context?: StarterContext): StarterStep {
   if (!answers || answers.returnAt === null) return 'return'
+  if (!answers.done && context?.needsDismissal && !answers.dismissal) return 'dismissal'
   if (answers.care === null) return 'care'
   if (answers.courses === null) return 'courses'
   return answers.done ? 'done' : 'fill'
+}
+
+const WEEKDAYS = [1, 2, 3, 4, 5] as const
+const validDismissal = (value: unknown): value is DismissalChoice => DISMISSAL_OPTIONS.some(choice => choice === value)
+const readDismissal = (value: unknown): DismissalAnswer | undefined => {
+  if (!value || typeof value !== 'object') return
+  const answer = value as DismissalAnswer
+  if (!validDismissal(answer.default)) return
+  const weekdays: DismissalAnswer['weekdays'] = {}
+  for (const day of WEEKDAYS) {
+    const choice = answer.weekdays?.[day]
+    if (validDismissal(choice)) weekdays[day] = choice
+  }
+  return { default: answer.default, ...(Object.keys(weekdays).length ? { weekdays } : {}) }
+}
+
+/** SQL 38 시간대 유무. undefined는 아직 읽지 않았거나 읽기에 실패한 경우다. */
+export const starterHasSlots = (data: SchoolAfterschool | null | undefined): boolean | undefined =>
+  data === undefined ? undefined : Boolean(data?.slots?.length)
+
+export const skipStarterCourses = (answers: StarterAnswers, hasSlots: boolean | undefined): StarterAnswers =>
+  hasSlots === false && starterStep(answers) === 'courses' ? { ...answers, courses: false } : answers
+
+const regularSchool = (entry: ScheduleEntry) => entry.kind === 'school' && entry.term !== 'vacation'
+
+/** 저장된 유효한 시각은 학교 자료 또는 부모의 입력을 그대로 사용한다. */
+export const hasScheduleDismissal = (entries: readonly ScheduleEntry[]): boolean => entries.some(entry => {
+  if (!regularSchool(entry)) return false
+  const effective = effectiveEntry(entry)
+  return effective !== null && effective.weekdays.some(day => entryForDay(effective, day).end !== null)
+})
+
+/** 하교 답과 정규수업 칸을 같은 쓰기에 담는다. 기존 직접 입력과 삭제 기록은 그대로 둔다. */
+export const answerStarterDismissal = (
+  schoolId: string, answers: StarterAnswers, entries: readonly ScheduleEntry[], dismissal: DismissalAnswer,
+): { starter: StarterAnswers; entries: ScheduleEntry[] } => {
+  const next = [...entries]
+  const source = { ref: `starter_dismissal:${schoolId}`, version: '1' }
+  for (const day of WEEKDAYS) {
+    const id = `school-${schoolId}-${day}`
+    const index = next.findIndex(entry => regularSchool(entry) && entry.weekdays.includes(day))
+    const current = next[index]
+    const owned = current?.source?.ref === source.ref
+    const unansweredEstimate = current?.source?.ref === `school_day_estimates:${schoolId}` && current.end === null
+    if (current && (current.userOverride || current.dayTimes || current.weekdays.length !== 1 || (!owned && !unansweredEstimate))) continue
+    if (!current && next.some(entry => entry.id === id)) continue
+    const choice = dismissal.weekdays?.[day] ?? dismissal.default
+    const entry: ScheduleEntry = {
+      ...(current ?? { id, kind: 'school', label: '정규수업', weekdays: [day], start: null, participation: 'confirmed', term: 'semester' }),
+      source, end: choice === 'unknown' ? 820 : choice, evidence: 'estimated',
+    }
+    if (choice === 'unknown') entry.timeAssumption = '13:40 하교 기본 가정'
+    else delete entry.timeAssumption
+    if (current) next[index] = entry
+    else next.push(entry)
+  }
+  return { starter: { ...answers, dismissal, done: answers.returnAt === 'dismissal' || answers.done }, entries: next }
 }
 
 /**
@@ -89,5 +166,6 @@ export const readStarter = (value: unknown): StarterAnswers | undefined => {
   if (!value || typeof value !== 'object') return undefined
   const answers = value as StarterAnswers
   if (!(answers.returnAt === null || validReturn(answers.returnAt)) || !tri(answers.care) || !tri(answers.courses) || typeof answers.done !== 'boolean') return undefined
-  return { returnAt: answers.returnAt, care: answers.care, courses: answers.courses, done: answers.done }
+  const dismissal = readDismissal(answers.dismissal)
+  return { returnAt: answers.returnAt, care: answers.care, courses: answers.courses, done: answers.done, ...(dismissal ? { dismissal } : {}) }
 }
