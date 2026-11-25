@@ -345,8 +345,8 @@ GA4 설정·등록 확인과 미확인 항목은 [실행 기록](../operations/F
 - `dismissal`은 `12:50`, `13:40`, `14:30`, `unknown`, `by_weekday`, `back`. 요일별 답은 한 번에 `by_weekday`로 기록한다.
 - `care`는 `yes/no/back`, `courses`는 `yes/no/back/skip`, `fill`은 `yes/back`. 자료 없음 [다음]은 `courses/skip`이고 사용자가 고른 아니요는 `courses/no`다.
 - 첫 일정 저장 성공은 기존 `timetable_draft_create`로 센다. 첫 편집 시도인 `timetable_first_edit`와 이후 변경의 `timetable_save_success`는 각각 기존 경계를 따른다.
-- `timetable_complete`에는 `coverage_state=covered/gaps/unknown`, `has_slots=0/1`, `has_dismissal=0/1`을 보낸다. 마지막 두 값은 학교 시간대·하교 자료의 제공 여부다. 질문으로 하교를 채운 학교는 `has_dismissal=0`이다. 즉시 귀가라 공백 계산이 필요 없으면 `covered`로 보낸다.
-- 완료는 저장 전후 `done` 전환을 기준으로 한 번 호출한다. 공백 상태에서도 질문은 완료할 수 있다. 과거 완료 초안의 복원, 같은 답 재저장, 저장 실패에서는 완료를 보내지 않는다. 자료를 읽는 중이거나 조회 실패 상태는 확인된 자료 없음과 구분한다.
+- `timetable_complete`에는 `coverage_state=covered/gaps/unknown`, `has_dismissal=0/1`을 보낸다. 시간대 자료가 확인됐으면 `has_slots=0/1`을 포함한다(자료 없음은 0). 조회 대기·실패면 `has_slots`만 생략하고 완료 이벤트는 즉시 보낸다. 질문으로 하교를 채운 학교는 `has_dismissal=0`이다. 즉시 귀가라 공백 계산이 필요 없으면 `covered`로 보낸다.
+- 완료는 저장 전후 `done` 전환을 기준으로 한 번 호출한다. 공백 상태에서도 질문은 완료할 수 있다. 과거 완료 초안의 복원, 같은 답 재저장, 저장 실패에서는 완료를 보내지 않는다. 실패 뒤 재시도가 성공하면 그때 한 번 보낸다. 뒤늦은 조회 결과로 완료 이벤트를 다시 보내지 않는다.
 
 저장 키와 버전은 유지한다. TT-01 하교 답은 기존 초안에 선택 필드로 저장된다.
 첫 편집 중복 방지는 **문서 실행 중 학교별 1회**이며 컴포넌트 재마운트에도 유지된다.

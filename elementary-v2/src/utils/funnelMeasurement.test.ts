@@ -101,6 +101,33 @@ describe('TT-01 question funnel', () => {
     })
   })
 
+  it('emits completion once after a failed write is retried, even without a slot lookup result', () => {
+    for (const hasSlots of [undefined, false, true]) {
+      const { observer, events } = fixture()
+      let storedDone = false
+      const saveCompletion = (fail: boolean) => {
+        const wasDone = storedDone
+        if (wasDone) return
+        observer.write('B000001', 'edit', () => {
+          if (fail) throw new Error('quota')
+          storedDone = true
+        })
+        observer.timetableComplete('B000001', { coverageState: 'covered', hasSlots, hasDismissal: false })
+      }
+
+      assert.throws(() => saveCompletion(true), /quota/)
+      assert.equal(events.filter(e => e.event === 'timetable_complete').length, 0)
+      saveCompletion(false)
+      saveCompletion(false)
+      assert.deepEqual(events.map(e => e.event), [
+        'timetable_first_edit', 'timetable_save_failure', 'timetable_save_success', 'timetable_complete',
+      ])
+      const completion = events[3].params
+      if (hasSlots === undefined) assert.equal('has_slots' in completion, false)
+      else assert.equal(completion.has_slots, Number(hasSlots))
+    }
+  })
+
   it('drops non-button text at runtime and omits a local school identifier', () => {
     const { observer, events } = fixture()
     observer.timetableStep('local', { step: 'courses', answer: 'private' as 'yes' })

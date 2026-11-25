@@ -39,7 +39,7 @@ FNL-00~03(`FUNNEL_RELEASE_20261114.md`), FNL-07(`GUIDE_PLAN_UX_RELEASE_20261115.
 **K 몫(먼저, master)** — `src/utils/schedule/starter.ts`, 저장 경로
 - `StarterStep`에 `'dismissal'` 추가: 1번 답 뒤, 그 학교 하교 예상이 한 요일도 없을 때만. 답은 저장하고(`readStarter` 하위 호환 — 필드 없으면 묻지 않은 것으로) 정규수업 칸 끝으로 쓴다. 고른 값은 `evidence: 'estimated'`, '잘 몰라요'는 13:40 + `timeAssumption`
 - 방과후 시간대 자료 유무를 화면에 넘길 값(`hasSlots`)과 3번 건너뛰기 규칙: 없으면 `courses: false`로 두고 다음 단계로
-- 이벤트 함수 `timetable_step {step, answer}`·`timetable_complete {coverage_state, has_slots, has_dismissal}` — `funnelMeasurement.ts`와 `MEASUREMENT_PLAN.md` 같이. answer는 고른 버튼 값(`yes`·`no`·`back`·`skip`·귀가·하교 구간)만, 자유 입력 없음
+- 이벤트 함수 `timetable_step {step, answer}`·`timetable_complete {coverage_state, has_slots?, has_dismissal}` — `funnelMeasurement.ts`와 `MEASUREMENT_PLAN.md` 같이. answer는 고른 버튼 값(`yes`·`no`·`back`·`skip`·귀가·하교 구간)만, 자유 입력 없음
 
 **C 몫(K 몫 병합 뒤)** — `PlanStarter.tsx`, `MySchedule.tsx`, `MyAfterschoolPicker.tsx`
 1. 하교 질문 카드: `[12:50] [13:40] [14:30] [잘 몰라요]`, '요일마다 달라요' → 요일별 칩. 도움말 한 줄
@@ -67,7 +67,7 @@ lint·typecheck·test:unit·smoke 블록 통과, 390px 확인.
 2. 하교 답은 `{ default, weekdays? }` 형태. 값은 `770 | 820 | 870 | 'unknown'`이고 `weekdays`의 키는 월~금 1~5다. 최신 저장 초안에 `answerStarterDismissal(schoolId, starter, entries, answer)`를 적용하고 반환된 `starter`와 `entries`를 한 번에 저장한다. 뒤로 이동할 때는 기존 칸과 답을 보존하고, 하교 답을 다시 편집할 때는 이 함수로 갱신한다. 돌봄 선택을 다시 적용할 때 시간이나 요일을 직접 고친 칸도 보존한다.
 3. 학교별 `getSchoolAfterschool(schoolId, { allowDevFixture: false })` 결과를 `starterHasSlots`에 넘긴다. 로딩·조회 실패인 `undefined`와 확인된 자료 없음인 `false`를 구분한다. 3번에서 자료 없음 [다음]을 누르면 `skipStarterCourses(starter, hasSlots)`가 `courses: false`를 만든다. 기존 일정 항목은 그대로 저장한다.
 4. 실제 1번 표시에서 `funnelMeasurement.timetableStep(schoolId, { step: 'return', answer: 'start' })`. 버튼 값은 측정 문서의 목록을 사용하고, 요일별 하교는 `by_weekday`, 자료 없음 [다음]은 `courses/skip`, 4번 완료 버튼은 `fill/yes`다. 첫 저장 성공은 기존 `write('create')`가 보내는 `timetable_draft_create`를 사용한다.
-5. 저장된 상태가 미완료에서 완료로 바뀔 때만 `timetableComplete(schoolId, { coverageState, hasSlots, hasDismissal })`를 호출한다. `coverageState`는 저장에 성공한 일정의 엔진 결과를 사용하고 하교 직후 귀가는 `covered`로 기록한다. `hasDismissal`은 학교 자료 여부로, 부모가 답한 시각과 구분한다. 하교 직후 귀가 분기도 완료가 저장되는 시점에 같은 계약을 적용한다.
+5. 저장 직전 최신 초안의 `done`과 저장할 초안의 `done`을 비교해 최초 완료 전환(초안이 없던 경우 포함)을 확인하고, 실제 쓰기에 성공한 직후 `timetableComplete(schoolId, { coverageState, hasSlots, hasDismissal })`를 한 번 호출한다. 시간대 조회 대기·실패의 `undefined`는 `has_slots`만 생략하며 이벤트는 즉시 보낸다. 자료 없음이 확인된 `false`는 `0`으로 보낸다. 실패한 쓰기에서는 완료 이벤트를 보내지 않으며, 재시도가 성공하면 한 번 보낸다. 조회 결과가 뒤늦게 도착하거나 완료 초안을 복원·재저장할 때는 다시 보내지 않는다. `coverageState`는 저장에 성공한 일정의 엔진 결과를 사용하고 하교 직후 귀가는 `covered`로 기록한다. `hasDismissal`은 학교 자료 여부로, 부모가 답한 시각과 구분한다. 하교 직후 귀가 분기도 완료가 저장되는 시점에 같은 계약을 적용한다.
 
 ### TT-02 · 3번 질문을 요일×시간대 표로 + '채워 보기' — M
 

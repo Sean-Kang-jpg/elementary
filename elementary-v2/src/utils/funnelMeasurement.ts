@@ -21,7 +21,7 @@ type TimetableStepAnswer = {
 const COVERAGE_STATES = ['covered', 'gaps', 'unknown'] as const
 interface TimetableCompletion {
   coverageState: typeof COVERAGE_STATES[number]
-  hasSlots: boolean
+  hasSlots?: boolean
   hasDismissal: boolean
 }
 
@@ -118,10 +118,11 @@ export const createFunnelMeasurement = (send: (event: string, params: FunnelPara
       emit('timetable_step', { face: 'week', entry_point: entryPoint, ...publicSchool(schoolId), step, answer })
     },
     timetableComplete(schoolId: string, { coverageState, hasSlots, hasDismissal }: TimetableCompletion) {
-      if (!COVERAGE_STATES.includes(coverageState) || typeof hasSlots !== 'boolean' || typeof hasDismissal !== 'boolean') return
+      if (!COVERAGE_STATES.includes(coverageState) || typeof hasDismissal !== 'boolean') return
       emit('timetable_complete', {
         face: 'week', entry_point: entryPoint, ...publicSchool(schoolId),
-        coverage_state: coverageState, has_slots: Number(hasSlots), has_dismissal: Number(hasDismissal),
+        coverage_state: coverageState, has_dismissal: Number(hasDismissal),
+        ...(typeof hasSlots === 'boolean' ? { has_slots: Number(hasSlots) } : {}),
       })
     },
     write<T>(schoolId: string, operation: 'create' | 'edit', write: () => T, source?: 'map' | 'frontyard'): T {
