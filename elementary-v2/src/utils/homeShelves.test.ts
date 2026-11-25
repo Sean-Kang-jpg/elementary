@@ -1,6 +1,6 @@
 import { describe, it } from 'node:test'
 import assert from 'node:assert/strict'
-import { worryCards, type WorryItem } from './homeShelves.ts'
+import { currentHomeCard, worryCards, type WorryItem } from './homeShelves.ts'
 
 const item = (id: string, from: string, to: string, extra: Partial<WorryItem> = {}): WorryItem =>
   ({ id, from, to, question: id, hint: '', href: `/guide/${id}`, ...extra })
@@ -54,5 +54,25 @@ describe('home worry cards', () => {
   it('stops at max', () => {
     const items = ['a', 'b', 'c', 'd', 'e'].map((id) => item(id, '01-01', '12-31'))
     assert.equal(worryCards(items, new Date(2026, 5, 1), 4).length, 4)
+  })
+})
+
+describe('single seasonal home card', () => {
+  it('chooses the nearest valid deadline, then an in-season undated item', () => {
+    const items = [
+      item('ongoing', '11-01', '01-31'),
+      item('expired', '11-01', '12-31', { deadline: '11-20' }),
+      item('near', '11-01', '12-31', { deadline: '12-20' }),
+      item('far', '11-01', '01-31', { deadline: '01-15' }),
+    ]
+    assert.equal(currentHomeCard(items, new Date(2026, 10, 25))?.id, 'near')
+    assert.equal(currentHomeCard(items, new Date(2027, 0, 17))?.id, 'ongoing')
+  })
+
+  it('omits the card when the deadline is past or no season is active', () => {
+    const items = [item('notice', '11-20', '12-31', { deadline: '12-20' })]
+    assert.equal(currentHomeCard(items, new Date(2026, 11, 20))?.dday, 0)
+    assert.equal(currentHomeCard(items, new Date(2026, 11, 21)), undefined)
+    assert.equal(currentHomeCard(items, new Date(2027, 6, 1)), undefined)
   })
 })

@@ -64,6 +64,11 @@ export const worryCards = (items: WorryItem[], now: Date, max: number): WorryCar
     })
 }
 
+/** 활성 시기 안에서 마감이 가까운 항목 하나. 날짜 없는 항목은 기존 순서로 고른다. */
+export const currentHomeCard = (items: WorryItem[], now: Date): WorryCard | undefined =>
+  worryCards(items.filter((item) => item.from && item.to), now, items.length)
+    .find((card) => !card.deadline || card.dday !== null)
+
 export interface ShowcaseDay {
   label: string
   dismissal: string | null
@@ -76,22 +81,7 @@ export interface HomeShowcase {
   school: {
     id: string
     name: string
-    place: string
-    path: string
-    grade1Students: number | null
-    grade1PerClass: number | null
-    apartments: number
-    morning: string | null
     careEnd: string | null
-    grade1Options: number | null
-    customOptions: number | null
     days: ShowcaseDay[]
   }
-  apartment: {
-    name: string
-    path: string
-    households: number | null
-    // 아파트 상세 '교육환경'과 같은 값: 400m·800m 안 기관 수, 800m 안 분야 상위 4개(키는 academyCategories)
-    academies?: { core: number | null; extended: number | null; categories: { key: string; count: number }[] } | null
-  } | null
 }

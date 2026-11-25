@@ -1,15 +1,8 @@
 {
-  "_comment": "고민 목록은 날짜 창 안의 항목과 날짜 창 없는 배정 검색을 표시한다. 정적 홈과 앱이 함께 읽는다. planId는 기존 담기 ID를 유지한다.",
+  "_comment": "홈에는 날짜 창 안에서 지금 챙길 항목 하나를 표시한다. 정적 홈과 앱이 함께 읽는다. planId는 기존 담기 ID를 유지한다.",
   "worries": {
     "title": "지금 챙길 것",
-    "max": 6,
     "items": [
-      {
-        "id": "assignment",
-        "question": "우리 아이 배정 학교가 궁금해요",
-        "hint": "학교명이나 아파트명으로 찾아보세요.",
-        "href": "#home-assignment-search"
-      },
       {
         "id": "private-result-pass",
         "year": 2026,
