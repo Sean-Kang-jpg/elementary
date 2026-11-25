@@ -118,17 +118,24 @@ export default function MySchedule({ school, entryYear, saved, onNavigate, picku
       setMessage(success)
       return true
     }
+    // Older completed drafts have only starter.done. Preserve that history
+    // when restarting the questions, in the same write as the new answers.
+    const wasCompleted = previous?.starterCompleted === true || previous?.starter?.done === true
+    const firstCompletion = updated?.starter?.done === true && !wasCompleted
+    const stored = updated && (wasCompleted || firstCompletion) && !updated.starterCompleted
+      ? upsertPlan(next, { ...updated, starterCompleted: true })
+      : next
     try {
-      if (operation === 'delete') writePlans(next)
-      else funnelMeasurement.write(schoolId, operation, () => writePlans(next))
-      if (updated?.starter?.done && !previous?.starter?.done) {
+      if (operation === 'delete') writePlans(stored)
+      else funnelMeasurement.write(schoolId, operation, () => writePlans(stored))
+      if (firstCompletion) {
         const until = coverageUntil(updated.starter)
         funnelMeasurement.timetableComplete(schoolId, {
           coverageState: until === null ? 'covered' : planCoverage(updated.entries, until).state,
           hasDismissal, hasSlots,
         })
       }
-      setStore(next); setMessage(success); return true
+      setStore(stored); setMessage(success); return true
     }
     catch { setSaveFailed(true); setMessage('저장하지 못했어요. 브라우저 저장 공간·설정을 확인해 주세요. 변경 내용은 저장되지 않았어요.'); return false }
   }
