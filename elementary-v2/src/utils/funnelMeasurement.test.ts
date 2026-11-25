@@ -78,3 +78,35 @@ describe('successful and failed timetable writes', () => {
     assert.equal(observer.write('B000001', 'edit', () => 'saved'), 'saved')
   })
 })
+
+describe('TT-01 question funnel', () => {
+  it('separates show, button choice, first successful storage and completion', () => {
+    const { observer, events } = fixture()
+    observer.timetableStep('B000001', { step: 'return', answer: 'start' })
+    observer.timetableStep('B000001', { step: 'return', answer: 'start' })
+    observer.timetableStep('B000001', { step: 'return', answer: '17:00' })
+    assert.throws(() => observer.write('B000001', 'create', () => { throw new Error() }))
+    observer.write('B000001', 'create', () => undefined)
+    observer.timetableStep('B000001', { step: 'courses', answer: 'skip' })
+    observer.write('B000001', 'edit', () => undefined)
+    observer.timetableComplete('B000001', { coverageState: 'covered', hasSlots: false, hasDismissal: false })
+    assert.deepEqual(events.map(({ event, params }) => [event, params.answer]), [
+      ['timetable_step', 'start'], ['timetable_step', '17:00'], ['timetable_save_failure', undefined],
+      ['timetable_draft_create', undefined], ['timetable_step', 'skip'], ['timetable_first_edit', undefined],
+      ['timetable_save_success', undefined], ['timetable_complete', undefined],
+    ])
+    assert.deepEqual(events[events.length - 1]?.params, {
+      face: 'week', entry_point: 'link', school_id: 'B000001', coverage_state: 'covered',
+      has_slots: 0, has_dismissal: 0, measurement_version: 'fnl-1',
+    })
+  })
+
+  it('drops non-button text at runtime and omits a local school identifier', () => {
+    const { observer, events } = fixture()
+    observer.timetableStep('local', { step: 'courses', answer: 'private' as 'yes' })
+    observer.timetableStep('local', { step: 'courses', answer: 'no' })
+    assert.equal(events.length, 1)
+    assert.equal(events[0].params.answer, 'no')
+    assert.equal(events[0].params.school_id, undefined)
+  })
+})

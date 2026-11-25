@@ -5,6 +5,26 @@ export type FunnelParams = Record<string, string | number | undefined>
 export type SelectionMethod = 'user' | 'route' | 'restore'
 type EntryPoint = 'link' | 'home' | 'guide' | 'school_detail' | 'apartment_detail' | 'my' | 'frontyard' | 'timetable' | 'map' | 'nav'
 
+const TIMETABLE_ANSWERS = {
+  return: ['start', '15:00', '17:00', '19:00', 'dismissal'],
+  dismissal: ['12:50', '13:40', '14:30', 'unknown', 'by_weekday', 'back'],
+  care: ['yes', 'no', 'back'],
+  courses: ['yes', 'no', 'back', 'skip'],
+  fill: ['yes', 'back'],
+} as const
+
+type TimetableStep = keyof typeof TIMETABLE_ANSWERS
+type TimetableStepAnswer = {
+  [Step in TimetableStep]: { step: Step; answer: typeof TIMETABLE_ANSWERS[Step][number] }
+}[TimetableStep]
+
+const COVERAGE_STATES = ['covered', 'gaps', 'unknown'] as const
+interface TimetableCompletion {
+  coverageState: typeof COVERAGE_STATES[number]
+  hasSlots: boolean
+  hasDismissal: boolean
+}
+
 export interface MeasuredScreen {
   pathname: string
   search: string
@@ -64,6 +84,7 @@ export const createFunnelMeasurement = (send: (event: string, params: FunnelPara
   let entryPoint: EntryPoint = 'link'
   let pending: { schoolId: string; method: SelectionMethod; at: number } | null = null
   const editedSchools = new Set<string>()
+  const startedQuestions = new Set<string>()
   const emit = (event: string, params: FunnelParams) => {
     // An unavailable analytics transport must never make a successful save fail.
     try { send(event, { ...params, measurement_version: MEASUREMENT_VERSION }) } catch { /* Measurement is best effort. */ }
@@ -87,6 +108,21 @@ export const createFunnelMeasurement = (send: (event: string, params: FunnelPara
         lastSelectedScreen = key
         emit('timetable_school_pick', { face: 'week', entry_point: entryPoint, selection_method: method, ...publicSchool(timetable.schoolId) })
       }
+    },
+    timetableStep(schoolId: string, { step, answer }: TimetableStepAnswer) {
+      if (!Object.prototype.hasOwnProperty.call(TIMETABLE_ANSWERS, step) || !(TIMETABLE_ANSWERS[step] as readonly string[]).includes(answer)) return
+      if (answer === 'start') {
+        if (startedQuestions.has(schoolId)) return
+        startedQuestions.add(schoolId)
+      }
+      emit('timetable_step', { face: 'week', entry_point: entryPoint, ...publicSchool(schoolId), step, answer })
+    },
+    timetableComplete(schoolId: string, { coverageState, hasSlots, hasDismissal }: TimetableCompletion) {
+      if (!COVERAGE_STATES.includes(coverageState) || typeof hasSlots !== 'boolean' || typeof hasDismissal !== 'boolean') return
+      emit('timetable_complete', {
+        face: 'week', entry_point: entryPoint, ...publicSchool(schoolId),
+        coverage_state: coverageState, has_slots: Number(hasSlots), has_dismissal: Number(hasDismissal),
+      })
     },
     write<T>(schoolId: string, operation: 'create' | 'edit', write: () => T, source?: 'map' | 'frontyard'): T {
       const params = { face: 'week', entry_point: source ?? entryPoint, ...publicSchool(schoolId) }

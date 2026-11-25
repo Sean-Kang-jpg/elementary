@@ -326,6 +326,8 @@ link·search·related·favorites 진입, 뒤로 가기 무시, 같은 학교 복
 | `timetable_first_edit` | 기존 초안에 처음 수락한 실제 사용자 변경, 쓰기 시도 직전 | MySchedule / 지도 학원 담기 / 앞마당 담기 |
 | `timetable_save_success` | 초안 생성 이후 사용자 변경이 실제 저장된 뒤 | 위 저장 호출 경계 |
 | `timetable_save_failure` | 생성/편집의 저장 쓰기가 실패했을 때 | 위 저장 호출 경계 |
+| `timetable_step` | 첫 질문이 실제 표시될 때 `return/start`, 이후 질문의 버튼 선택 시 `step/answer` | TT-01 화면 연동 |
+| `timetable_complete` | 질문 흐름이 처음 완료 상태로 전환되어 저장된 뒤 | TT-01 화면 연동 |
 
 모든 새 이벤트와 위 화면 page_view에 `measurement_version=fnl-1`을 붙인다.
 공통 맥락은 `entry_point`(link/home/guide/school_detail/apartment_detail/my/frontyard/timetable/map/nav),
@@ -338,7 +340,15 @@ link·search·related·favorites 진입, 뒤로 가기 무시, 같은 학교 복
 
 GA4 설정·등록 확인과 미확인 항목은 [실행 기록](../operations/FUNNEL_MEASUREMENT_EXECUTION_20261106.md)에 기록한다.
 
-아동 이름·일정명·주소·귀가 시각·질문 답변은 이벤트에 싣지 않는다. 저장 형식과 키는 바꾸지 않는다.
+아동 이름·일정명·주소·직접 입력 시각과 자유 입력은 이벤트에 싣지 않는다. TT-01 질문 이벤트는 지정된 버튼 코드만 보낸다.
+- `return`은 `start`, `15:00`, `17:00`, `19:00`, `dismissal`. `start`는 문서 실행 중 학교별 1회이며 첫 저장이 없어도 발생한다.
+- `dismissal`은 `12:50`, `13:40`, `14:30`, `unknown`, `by_weekday`, `back`. 요일별 답은 한 번에 `by_weekday`로 기록한다.
+- `care`는 `yes/no/back`, `courses`는 `yes/no/back/skip`, `fill`은 `yes/back`. 자료 없음 [다음]은 `courses/skip`이고 사용자가 고른 아니요는 `courses/no`다.
+- 첫 일정 저장 성공은 기존 `timetable_draft_create`로 센다. 첫 편집 시도인 `timetable_first_edit`와 이후 변경의 `timetable_save_success`는 각각 기존 경계를 따른다.
+- `timetable_complete`에는 `coverage_state=covered/gaps/unknown`, `has_slots=0/1`, `has_dismissal=0/1`을 보낸다. 마지막 두 값은 학교 시간대·하교 자료의 제공 여부다. 질문으로 하교를 채운 학교는 `has_dismissal=0`이다. 즉시 귀가라 공백 계산이 필요 없으면 `covered`로 보낸다.
+- 완료는 저장 전후 `done` 전환을 기준으로 한 번 호출한다. 공백 상태에서도 질문은 완료할 수 있다. 과거 완료 초안의 복원, 같은 답 재저장, 저장 실패에서는 완료를 보내지 않는다. 자료를 읽는 중이거나 조회 실패 상태는 확인된 자료 없음과 구분한다.
+
+저장 키와 버전은 유지한다. TT-01 하교 답은 기존 초안에 선택 필드로 저장된다.
 첫 편집 중복 방지는 **문서 실행 중 학교별 1회**이며 컴포넌트 재마운트에도 유지된다.
 새로고침은 같은 GA4 세션에서도 다시 기록될 수 있다. 새 분석 저장 키나 GA 쿠키 해석 없이
 정확한 GA 세션 경계를 흉내 내지 않으며, 보고서는 이벤트 횟수가 아닌 실제 세션을 중복 제거한다.
