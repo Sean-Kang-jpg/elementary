@@ -15,6 +15,7 @@
 | TT-01 | 한 주 입력 덜어내기·하교 질문·측정 | C(저장·엔진, 소유자 승인) → C(화면) | `codex/TT-01-timetable-screen` | review — 화면 구현·로컬 검증 완료 | 11-25 |
 | HOME-TT | 홈에서 하교 후 일정 시작 | C → K | `codex/HOME-TT-timetable-start` | review — 구현·모바일 검증 완료 | 11-26 |
 | SW-11 | 단일 학교 방과후·맞춤형 ETL 모의 실행 | C → K | `codex/SW-11-school-etl-dry-run` | review — 로컬 검증 완료, 자동 Preview 승인 | 11-26 |
+| SW-12 | GA4 수요 기반 학교별 ETL 모의 실행 | C → K | `codex/SW-12-ga4-school-demand` | review — 오프라인·운영 누락 조회 검증, GA4 인증 대기 | 11-26 |
 | TT-02 | 3번 질문을 요일×시간대 표로 + '채워 보기' | C → K | — | blocked — TT-01 측정 배포 뒤 | 11-24 |
 | TT-03 | 요일 카드를 시간대 축으로(빈 칸 → 맞는 선택지 한 목록) | C → K | — | blocked — TT-02 뒤, 1~2월 | 11-24 |
 | FNL-04 | GA4 맞춤 정의 등록 기록 | C → K | `codex/ga4-registration-20261112` | review — 문서 1커밋 미병합 | 11-12 |
@@ -31,6 +32,14 @@ FNL-00~03(`FUNNEL_RELEASE_20261114.md`), FNL-07(`GUIDE_PLAN_UX_RELEASE_20261115.
 
 
 ## 진행 중 카드
+
+### SW-12 · GA4 수요 기반 학교별 ETL 모의 실행
+
+- 브랜치/커밋 — `codex/SW-12-ga4-school-demand`, PR #11 병합 `38e0891` 기준.
+- 바꾼 파일 — 일배치 실행기, 회귀 검사, 파일럿 후보 재사용, [실행 및 검증 기록](SCHOOL_DEMAND_DRY_RUN.md).
+- 검증 — 파일럿 2곳 재현·반복·중단 복구·대상 밖 변경 0. 운영 누락 조회는 동패초 누락·서울윤중초 보유 확인.
+- 다른 점 — 서울 기준 완료일 14일과 최대 5개 후보. GA4 API는 인증 없이 HTTP 401, 실수요 확인 대기.
+- Claude 몫 — 병합·배포. 기존 GA4 읽기 인증으로 온라인 교차 확인 후 강비서가 일정 1건 생성.
 
 ### SW-11 · 단일 학교 방과후·맞춤형 ETL 모의 실행
 
