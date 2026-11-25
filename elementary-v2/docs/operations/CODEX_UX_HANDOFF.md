@@ -11,6 +11,7 @@
 | ID | 제목 | 담당 | 브랜치 | 상태 | 갱신일 |
 | --- | --- | --- | --- | --- | --- |
 | PLAN-CHECKS | 완성한 한 주에 '학교에 확인할 것' | C → K | `codex/plan-checks-20261118` | merged — Claude 검토 통과, 로컬 전체 smoke 195 PASS(3000). 사용자가 Codex 세션에서 배포 승인(11-19) → Claude release 대기 | 11-19 |
+| HOME-TT | 홈에서 하교 후 일정 시작 | C | `codex/HOME-TT-timetable-start` | merged — PR #9에서 master 병합, 운영 확인 대기 | 11-26 |
 | FNL-04 | GA4 맞춤 정의 등록 기록 | C → K | `codex/ga4-registration-20261112` | review — 문서 1커밋 미병합 | 11-12 |
 | FNL-09 | 랜딩 `(not set)`·초기 조회 품질 진단 | C | — | ready | 11-19 |
 | FNL-10 | 전체 동선 검증·효과 재점검 | K + U | — | blocked — 관찰 기간 | 11-19 |
@@ -26,6 +27,14 @@ FNL-00~03(`FUNNEL_RELEASE_20261114.md`), FNL-07(`GUIDE_PLAN_UX_RELEASE_20261115.
 | 오후 미리보기·진입 | PR #4 보완과 학교·가이드 연결 | C → K | `codex/afternoon-preview-20261122` | released — PR #5 병합, 운영 release `b6c92c4` (11-22). 390px 브라우저 smoke 미실행(agent-browser 실행 차단) | 11-22 |
 
 ## 진행 중 카드
+
+### HOME-TT · 홈에서 하교 후 일정 시작
+
+- 브랜치/커밋 — `codex/HOME-TT-timetable-start`, 구현 `0d92608`, 기준 master `fa28331`.
+- 바꾼 파일 — 홈·한 주 화면과 홈 문구·시기 데이터, 학교 예시와 정적 홈 생성기, 브라우저·단위 검사.
+- 검증 — Chromium 모바일 터치 360×800·390×844에서 두 경로, 첫 픽업 저장, 배정 검색 진입, 입학 준비 및 입학 전 일정, 시기 카드 표시·생략 통과. lint·typecheck·unit 205/205, TT-01 57/57, funnel 23/23. 공개 읽기 구성으로 전체 빌드·사이트맵 생성 성공.
+- 다른 점·미확인 — 운영 release 공개 smoke는 테스트 학교 `B000002292`의 강좌가 없어 UX-13에서 중단. 새 경로는 강좌 요청 없이 검증. 운영 GA 요청 HTTP 204 관찰, 속성 내 수신 미확인. 홈·시간표 스크롤 영역을 고정 메뉴 위로 조정.
+- 운영 확인 — 소유자 승인으로 이 세션에서 병합·배포를 진행. 강좌 의존 smoke 갱신 및 GA4 속성 수신 확인이 남음.
 
 ### 오후 미리보기·진입 결과 — 2026-11-22
 
