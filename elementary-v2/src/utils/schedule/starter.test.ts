@@ -4,7 +4,7 @@ import assert from 'node:assert/strict'
 import type { SchoolCareHours } from '../../types'
 import type { ScheduleEntry } from './types'
 import { planCoverage } from './coverage.ts'
-import { afternoonCareFor, answerReturn, coverageUntil, emptyStarter, eveningCareFor, readStarter, starterStep } from './starter.ts'
+import { afternoonCareFor, answerReturn, answerStarterDismissal, coverageUntil, emptyStarter, eveningCareFor, hasScheduleDismissal, readStarter, skipStarterCourses, starterHasSlots, starterStep } from './starter.ts'
 
 const care = (afternoon_end: string | null, extended_end: string | null, status: SchoolCareHours['status'] = 'stated'): SchoolCareHours => ({
   school_id: 'S1', source_year: 2026, status, afternoon_end, extended_end, extended_condition: null, morning_hours: null, grades: null, source: '학교알리미',
@@ -81,5 +81,58 @@ describe('readStarter', () => {
     assert.deepEqual(readStarter({ returnAt: 1020, care: true, courses: null, done: false }), { returnAt: 1020, care: true, courses: null, done: false })
     assert.equal(readStarter({ returnAt: 1000, care: true, courses: null, done: false }), undefined)
     assert.equal(readStarter('x'), undefined)
+  })
+})
+
+describe('TT-01 dismissal and skip', () => {
+  const missing = { needsDismissal: true }
+
+  it('places the dismissal question after return only when needed and preserves finished plans', () => {
+    assert.equal(starterStep(answerReturn(1020, missing), missing), 'dismissal')
+    assert.equal(starterStep(answerReturn(1020), { needsDismissal: false }), 'care')
+    assert.equal(starterStep({ ...answerReturn(1020), care: false, courses: true, done: true }, missing), 'done')
+    assert.equal(hasScheduleDismissal([school]), true)
+    assert.equal(hasScheduleDismissal([{ ...school, end: null }]), false)
+  })
+
+  it('round trips weekday answers and reaches covered without school data or phantom courses', () => {
+    const first = answerReturn(1020, missing)
+    const { entries, starter } = answerStarterDismissal('S1', first, [], { default: 'unknown', weekdays: { 2: 870 } })
+    assert.deepEqual(readStarter(JSON.parse(JSON.stringify(starter))), starter)
+    assert.equal(starterStep(starter, missing), 'care')
+    assert.deepEqual(entries.map(entry => [entry.end, entry.evidence, entry.timeAssumption]), [
+      [820, 'estimated', '13:40 하교 기본 가정'], [870, 'estimated', undefined],
+      [820, 'estimated', '13:40 하교 기본 가정'], [820, 'estimated', '13:40 하교 기본 가정'],
+      [820, 'estimated', '13:40 하교 기본 가정'],
+    ])
+    const afterCare = { ...starter, care: true }
+    assert.equal(starterStep(afterCare, missing), 'courses')
+    assert.equal(starterHasSlots(undefined), undefined)
+    assert.equal(skipStarterCourses(afterCare, undefined), afterCare)
+    assert.equal(skipStarterCourses(afterCare, true), afterCare)
+    const afterSkip = skipStarterCourses(afterCare, starterHasSlots(null))
+    assert.equal(afterSkip.courses, false)
+    assert.equal(starterStep(afterSkip, missing), 'fill')
+    assert.equal(starterStep({ ...afterSkip, done: true }, missing), 'done')
+    assert.equal(planCoverage([...entries, afternoonCareFor('S1', null, 1020)], 1020).state, 'covered')
+  })
+
+  it('preserves direct input and published times when applying or changing an answer', () => {
+    const manual: ScheduleEntry = { ...school, id: 'manual-school', weekdays: [1], end: null, userOverride: { end: 790 } }
+    const published: ScheduleEntry = { ...school, id: 'published-school', weekdays: [2], end: 780 }
+    const custom: ScheduleEntry = { ...school, id: 'custom', kind: 'personal', weekdays: [2], start: 850, end: 900 }
+    const { starter, entries } = answerStarterDismissal('S1', answerReturn('dismissal', missing), [manual, published, custom], { default: 770 })
+    assert.equal(starterStep(starter, missing), 'done')
+    assert.deepEqual(entries.slice(0, 3), [manual, published, custom])
+    const revised = answerStarterDismissal('S1', starter, entries, { default: 870 })
+    assert.deepEqual(revised.entries.slice(0, 3), [manual, published, custom])
+    assert.deepEqual(revised.entries.slice(3).map(entry => entry.end), [870, 870, 870])
+  })
+
+  it('ignores unrecognized dismissal values without discarding existing answers', () => {
+    const legacy = answerReturn(1020)
+    assert.deepEqual(readStarter({ ...legacy, dismissal: { default: 'other' } }), legacy)
+    assert.deepEqual(readStarter({ ...legacy, dismissal: { default: 820, weekdays: { 1: 770, 3: 800, 6: 870 } } }),
+      { ...legacy, dismissal: { default: 820, weekdays: { 1: 770 } } })
   })
 })
