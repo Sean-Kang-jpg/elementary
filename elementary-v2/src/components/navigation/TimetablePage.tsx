@@ -180,6 +180,9 @@ export default function TimetablePage({
           <details className="timetable-school-change my-card">
             <summary>{shownName ?? '선택한 학교'} · 학교 바꾸기</summary>
             {chips}
+            <button type="button" className="my-button" onClick={() => { setManualOpen(true); onSchoolChange(null) }}>
+              {manualPlan ? '학교 없이 짠 시간표 보기' : '학교 없이 시작'}
+            </button>
           </details>
           {school && (
             <details key={schoolId} className="my-card" open={plan ? undefined : true}>

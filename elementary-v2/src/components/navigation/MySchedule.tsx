@@ -109,10 +109,12 @@ export default function MySchedule({ school, entryYear, saved, onNavigate, picku
     return upsertPlan(deletePlan(current, UNSPECIFIED_SCHOOL), { ...next, entries })
   }
   const persist = (next: PlanStore, success: string, operation: 'create' | 'edit' | 'delete' = 'edit') => {
-    const previous = readPlans().plans.find(p => p.schoolId === schoolId)
+    const before = readPlans()
+    const previous = before.plans.find(p => p.schoolId === schoolId)
+    const movedManual = before.plans.length > next.plans.length
     const updated = next.plans.find(p => p.schoolId === schoolId)
     setSaveFailed(false)
-    if (operation === 'edit' && previous && updated && !pendingManual && !timetableContentChanged(previous, updated)) {
+    if (operation === 'edit' && previous && updated && !movedManual && !timetableContentChanged(previous, updated)) {
       setMessage(success)
       return true
     }
@@ -158,7 +160,7 @@ export default function MySchedule({ school, entryYear, saved, onNavigate, picku
     return latest ? updatePlan({ ...latest, starter: answers, entries: change(latest.entries) }) : false
   }
   const keepCare = (entry: ScheduleEntry) => !starterCareIds(schoolId).includes(entry.id)
-    || Boolean(entry.userOverride || entry.dayTimes) || !entry.source
+    || Boolean(entry.userOverride || entry.dayTimes) || entry.weekdays.length !== 5 || !entry.source
 
   const start = (returnAt: ReturnAt) => {
     const current = readPlans()
