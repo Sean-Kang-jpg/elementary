@@ -67,7 +67,7 @@ def pilot_rows(school_id):
     return rows
 
 
-def verify(school_id, baseline, expected):
+def pilot_candidate(school_id):
     record = school_record({"school_id": school_id, "rows": pilot_rows(school_id)})
     rows = table_rows([record], SNAPSHOT_DATE, True, True)
     if school_id == YUNJUNG:
@@ -77,10 +77,14 @@ def verify(school_id, baseline, expected):
         DONGPA: "SW #8, 2학기 운영 공지 §2 및 학교알리미 방과후 운영계획(안) §Ⅳ 표본",
         YUNJUNG: "SW #8, 학교알리미 방과후·맞춤형교실 운영 계획 PDF 5쪽",
     }
-    candidate = {"school_id": school_id, "tables": {
+    return {"school_id": school_id, "tables": {
         table: {"rows": items, "state": "partial_reviewed", "evidence": evidence[school_id]}
         for table, items in rows.items()
     }}
+
+
+def verify(school_id, baseline, expected):
+    candidate = pilot_candidate(school_id)
     with tempfile.TemporaryDirectory() as directory:
         original = Path(directory) / "baseline.json"
         reviewed = Path(directory) / "candidate.json"
