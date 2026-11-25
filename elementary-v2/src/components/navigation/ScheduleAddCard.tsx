@@ -11,7 +11,8 @@ import { followLink } from '../content/contentLinks'
 import { FRONTYARD_ENABLED } from '../../utils/features'
 import { frontyardPath } from '../../utils/urlState'
 
-export default function ScheduleAddCard({ schoolId, entries, range, onAdd, onRemove, onToggleDay, onSave, onChangeDay, onClose, onNavigate, onRepeat, onRemoveDay }: {
+export default function ScheduleAddCard({ schoolId, manualOnly, entries, range, onAdd, onRemove, onToggleDay, onSave, onChangeDay, onClose, onNavigate, onRepeat, onRemoveDay }: {
+  manualOnly?: boolean
   schoolId: string; entries: ScheduleEntry[]; range: CalendarRange
   onNavigate?: (path: string) => void
   onAdd: (entry: ScheduleEntry) => boolean; onRemove: (id: string) => boolean
@@ -22,7 +23,7 @@ export default function ScheduleAddCard({ schoolId, entries, range, onAdd, onRem
   onRemoveDay: (id: string, weekday: Weekday) => boolean
 }) {
   const heading = useRef<HTMLHeadingElement>(null)
-  const [mode, setMode] = useState<'school' | 'academy' | 'manual'>('school')
+  const [mode, setMode] = useState<'school' | 'academy' | 'manual'>(manualOnly ? 'manual' : 'school')
   const [academy, setAcademy] = useState('')
   const [academyKey, setAcademyKey] = useState<string | undefined>()
   const [feedback, setFeedback] = useState('')
@@ -53,11 +54,11 @@ export default function ScheduleAddCard({ schoolId, entries, range, onAdd, onRem
       <button type="button" className="my-button" aria-label="일정 선택 카드 닫기" onClick={onClose}><X size={18} aria-hidden="true" /></button></div>
     <label className="my-field">선택 요일<select value={range.weekday} onChange={(event) => onChangeDay(Number(event.target.value) as Weekday)}>{[1,2,3,4,5].map((day) => <option key={day} value={day}>{'월화수목금'[day - 1]}요일</option>)}</select></label>
     {onNavigate && FRONTYARD_ENABLED && <FrontyardLinks schoolId={schoolId} range={range} onNavigate={onNavigate} />}
-    <div className="my-add-card__tabs" role="group" aria-label="추가할 일정 종류">
+    {!manualOnly && <div className="my-add-card__tabs" role="group" aria-label="추가할 일정 종류">
       <button type="button" aria-pressed={mode === 'school'} onClick={() => setMode('school')}>방과후·돌봄</button>
       <button type="button" aria-pressed={mode === 'academy'} onClick={() => setMode('academy')}>외부 학원</button>
       <button type="button" aria-pressed={mode === 'manual'} onClick={() => { setManualDraft(null); setMode('manual') }}>직접 입력</button>
-    </div>
+    </div>}
     {savedId ? <div className="my-add-card__saved">
       <p><b>{entries.find((entry) => entry.id === savedId)?.label ?? '일정'}</b>을(를) {'월화수목금'[range.weekday - 1]}요일에 넣었어요.</p>
       <RepeatDays entry={entries.find((entry) => entry.id === savedId)} weekday={range.weekday} onRepeat={onRepeat} onRemoveDay={onRemoveDay} />
@@ -70,7 +71,7 @@ export default function ScheduleAddCard({ schoolId, entries, range, onAdd, onRem
       <MyScheduleAcademyPicker schoolId={schoolId} onChoose={(label, key) => { setAcademy(label); setAcademyKey(key) }} />
       {academy && <div className="my-add-card__academy-time"><h5>{academy}</h5><p className="my-help">학원을 골랐어요. 확인한 수업 시간을 직접 입력해 주세요.</p><CalendarEntryForm key={`${academy}-${range.weekday}`} unknownTimes draft={{ ...range, label: academy, kind: 'personal' }} onSave={save} onClose={formClose} /></div>}
     </>}
-    {mode === 'manual' && <CalendarEntryForm key={`${range.weekday}-${manualDraft?.id ?? ''}`} draft={{ ...range, label: manualDraft?.label ?? '', kind: manualDraft?.kind ?? (manualDraft ? 'afterschool' : 'personal') }}
+    {mode === 'manual' && <CalendarEntryForm key={`${range.weekday}-${manualDraft?.id ?? ''}`} draft={{ ...range, label: manualDraft?.label ?? (manualOnly ? '픽업' : ''), kind: manualDraft?.kind ?? (manualDraft ? 'afterschool' : 'personal') }}
       initialTimes={manualDraft ? { start: manualDraft.start, end: manualDraft.end } : undefined} planningSelection={Boolean(manualDraft)} onSave={save} onClose={formClose} />}
     </>}
     <p className="my-help" role="status">{feedback}</p>

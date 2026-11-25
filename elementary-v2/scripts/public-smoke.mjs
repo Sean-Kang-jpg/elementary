@@ -348,6 +348,17 @@ const assertHomeAndShellSplit = async () => {
   return home.text
 }
 
+// TT-01 is deterministic and runs without public map or database credentials.
+if (process.argv.includes('--tt01')) {
+  const { smokeTimetableInput } = await import('./tt01-smoke.mjs')
+  try {
+    await smokeTimetableInput({ baseUrl, projectRoot, run, waitFor, assertPage })
+  } finally {
+    run(['close'], { quiet: true })
+  }
+  process.exit(0)
+}
+
 try {
   // Compare the app with the target's own prerender, not an unrelated local build.
   // The dev server has no prerender, so the existing dist fallback still applies there.

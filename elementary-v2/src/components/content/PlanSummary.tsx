@@ -1,3 +1,4 @@
+import { UNSPECIFIED_SCHOOL } from '../../utils/schedule/standalone'
 import { useEffect, useReducer, useRef } from 'react'
 import { CalendarClock, CalendarDays, ChevronRight } from 'lucide-react'
 import { daysToEntry, roadmapFor } from '../../utils/roadmap'
@@ -56,8 +57,8 @@ export default function PlanSummary({ entryYear, profile, onNavigate }: PlanSumm
 
   const recent = [...readPlans().plans].sort((a, b) => b.updatedAt.localeCompare(a.updatedAt))[0]
   const timeline = planPath('timeline')
-  const week = recent ? timetablePath(recent.schoolId) : planPath('week')
-  const until = recent ? coverageUntil(recent.starter) : null
+  const week = recent && recent.schoolId !== UNSPECIFIED_SCHOOL ? timetablePath(recent.schoolId) : planPath('week')
+  const until = recent && recent.schoolId !== UNSPECIFIED_SCHOOL ? coverageUntil(recent.starter) : null
   const coverage = recent && until !== null ? planCoverage(recent.entries, until) : null
 
   return (

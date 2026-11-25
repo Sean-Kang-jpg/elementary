@@ -12,7 +12,7 @@
 | --- | --- | --- | --- | --- | --- |
 | PLAN-CHECKS | 완성한 한 주에 '학교에 확인할 것' | C → K | `codex/plan-checks-20261118` | released — 운영 release `b6c92c4`(11-22, 오후 미리보기와 한 묶음). 운영 번들 포함 확인(11-24) | 11-24 |
 | 오후 미리보기·진입 | PR #4 보완과 학교·가이드 연결 | C → K | `codex/afternoon-preview-20261122` | released — PR #5 병합, 운영 release `b6c92c4` (11-22). 운영 HTTP smoke 16 PASS(11-24), 브라우저 단계는 이 PC에서 agent-browser 실행 불가(spawn UNKNOWN)로 미실행 | 11-24 |
-| TT-01 | 한 주 입력 덜어내기·하교 질문·측정 | C(저장·엔진, 소유자 승인) → C(화면) | `codex/TT-01-timetable-input` | review — 저장·엔진, 화면 연동 대기 | 11-25 |
+| TT-01 | 한 주 입력 덜어내기·하교 질문·측정 | C(저장·엔진, 소유자 승인) → C(화면) | `codex/TT-01-timetable-screen` | review — 화면 구현·로컬 검증 완료 | 11-25 |
 | TT-02 | 3번 질문을 요일×시간대 표로 + '채워 보기' | C → K | — | blocked — TT-01 측정 배포 뒤 | 11-24 |
 | TT-03 | 요일 카드를 시간대 축으로(빈 칸 → 맞는 선택지 한 목록) | C → K | — | blocked — TT-02 뒤, 1~2월 | 11-24 |
 | FNL-04 | GA4 맞춤 정의 등록 기록 | C → K | `codex/ga4-registration-20261112` | review — 문서 1커밋 미병합 | 11-12 |
@@ -68,6 +68,14 @@ lint·typecheck·test:unit·smoke 블록 통과, 390px 확인.
 3. 학교별 `getSchoolAfterschool(schoolId, { allowDevFixture: false })` 결과를 `starterHasSlots`에 넘긴다. 로딩·조회 실패인 `undefined`와 확인된 자료 없음인 `false`를 구분한다. 3번에서 자료 없음 [다음]을 누르면 `skipStarterCourses(starter, hasSlots)`가 `courses: false`를 만든다. 기존 일정 항목은 그대로 저장한다.
 4. 실제 1번 표시에서 `funnelMeasurement.timetableStep(schoolId, { step: 'return', answer: 'start' })`. 버튼 값은 측정 문서의 목록을 사용하고, 요일별 하교는 `by_weekday`, 자료 없음 [다음]은 `courses/skip`, 4번 완료 버튼은 `fill/yes`다. 첫 저장 성공은 기존 `write('create')`가 보내는 `timetable_draft_create`를 사용한다.
 5. 저장 직전 최신 초안의 `done`과 저장할 초안의 `done`을 비교해 최초 완료 전환(초안이 없던 경우 포함)을 확인하고, 실제 쓰기에 성공한 직후 `timetableComplete(schoolId, { coverageState, hasSlots, hasDismissal })`를 한 번 호출한다. 시간대 조회 대기·실패의 `undefined`는 `has_slots`만 생략하며 이벤트는 즉시 보낸다. 자료 없음이 확인된 `false`는 `0`으로 보낸다. 실패한 쓰기에서는 완료 이벤트를 보내지 않으며, 재시도가 성공하면 한 번 보낸다. 조회 결과가 뒤늦게 도착하거나 완료 초안을 복원·재저장할 때는 다시 보내지 않는다. `coverageState`는 저장에 성공한 일정의 엔진 결과를 사용하고 하교 직후 귀가는 `covered`로 기록한다. `hasDismissal`은 학교 자료 여부로, 부모가 답한 시각과 구분한다. 하교 직후 귀가 분기도 완료가 저장되는 시점에 같은 계약을 적용한다.
+
+#### TT-01 화면 결과
+
+- 브랜치/커밋 — `codex/TT-01-timetable-screen`, 화면·검사 `2d95dab`·`f91faad`, 선행 PR #7 병합 `99d6684`.
+- 바꾼 파일 — 질문·시간표·강좌 선택 컴포넌트, 학교 미선택 초안과 기존 이어보기 연결, TT-01 smoke 및 로컬 응답 fixture.
+- 검증 — lint·typecheck·unit 203/203, 390×844 로컬 TT-01 smoke 50/50, funnel smoke 23/23. 시작·방과후 건너뛰기·첫 수동 저장·완료를 검증했고, 저장 실패 후 재시도·완료 복원·늦은 응답에도 완료 이벤트는 중복되지 않았다.
+- 다른 점·미검증 — 학교 미선택 진입과 기존 초안의 첫 수동 추가에는 전용 이벤트가 없다. Vite 번들과 정적 셸은 성공했고 전체 빌드는 로컬 Supabase 설정이 없어 사이트맵에서 중단됐다. 전체 공개 smoke·운영 GA4 수신은 미검증.
+- Claude 몫 — 화면 PR 승인·검토 및 병합 후 선행 PR #7과 화면 변경을 승인된 운영 출시 묶음에 함께 반영하고 운영 smoke를 실행한다.
 
 ### TT-02 · 3번 질문을 요일×시간대 표로 + '채워 보기' — M
 

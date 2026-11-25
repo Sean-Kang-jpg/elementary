@@ -1,9 +1,10 @@
-import { useEffect, useRef, useState } from 'react'
-import { getSchoolDayEstimate } from '../../services/dataService'
+import { useEffect, useState } from 'react'
+import { getSchoolDayEstimate, getSchoolAfterschool } from '../../services/dataService'
 import { formatMinutes, schoolEntriesFromEstimate } from '../../utils/schedule/fromSchoolData'
 import { deletePlan, readPlans, subscribePlans, upsertPlan, writePlans, type PlanStore, type SchoolPlan } from '../../utils/schedule/plans'
 import type { EntryKind, ParticipationStatus, ScheduleEntry, Weekday } from '../../utils/schedule/types'
 import { displaySchoolName } from '../../utils/schoolName'
+import MyScheduleDay from './MyScheduleDay'
 import MyScheduleWeek from './MyScheduleWeek'
 import SchoolChecks from './SchoolChecks'
 import { applyCalendarChange, type CalendarChange } from '../../utils/schedule/editing'
@@ -13,8 +14,8 @@ import { FRONTYARD_ENABLED } from '../../utils/features'
 import { frontyardPath } from '../../utils/urlState'
 import { followLink } from '../content/contentLinks'
 import { removeEntryDay, repeatEntry, setEntryTimes } from '../../utils/schedule/dayTimes'
-import { afternoonCareFor, answerReturn, coverageUntil, emptyStarter, eveningCareFor, starterCareIds, starterStep, type ReturnAt, type StarterAnswers } from '../../utils/schedule/starter'
-import type { SchoolCareHours } from '../../types'
+import { afternoonCareFor, answerReturn, coverageUntil, emptyStarter, eveningCareFor, starterCareIds, starterStep, answerStarterDismissal, hasScheduleDismissal, skipStarterCourses, starterHasSlots, type DismissalAnswer, type ReturnAt, type StarterAnswers } from '../../utils/schedule/starter'
+import type { SchoolAfterschool } from '../../types'
 import PlanStarter from './PlanStarter'
 import MyAfterschoolPicker from './MyAfterschoolPicker'
 import { describeIntents, weekIntentMinutes } from '../../utils/schedule/intent'
@@ -22,6 +23,9 @@ import { computeWeek } from '../../utils/schedule/engine'
 import { CALENDAR_END } from '../../utils/schedule/calendar'
 import { funnelMeasurement } from '../../utils/analytics'
 import { timetableContentChanged } from '../../utils/funnelMeasurement'
+
+import { UNSPECIFIED_SCHOOL } from '../../utils/schedule/standalone'
+const RETURN_ANSWERS = { 900: '15:00', 1020: '17:00', 1140: '19:00', dismissal: 'dismissal' } as const
 
 const DAYS = ['월', '화', '수', '목', '금']
 const STATUS: Record<ParticipationStatus, string> = {
@@ -51,31 +55,89 @@ export default function MySchedule({ school, entryYear, saved, onNavigate, picku
   const [store, setStore] = useState(readPlans)
   const [message, setMessage] = useState('')
   const [reviewEntry, setReviewEntry] = useState<{ id: string; weekday: Weekday } | null>(null)
-  const [loading, setLoading] = useState(false)
-  // 출발 계획이 쓰는 학교 돌봄 공시. 없거나 못 읽었으면 null — 17시 기본 가정으로 채운다.
-  const [care, setCare] = useState<{ schoolId: string; hours: SchoolCareHours | null } | null>(null)
+  const [dayData, setDayData] = useState<Awaited<ReturnType<typeof getSchoolDayEstimate>> | null>()
+  const [courseData, setCourseData] = useState<SchoolAfterschool | null>()
+  const [courseFailed, setCourseFailed] = useState(false)
+  const [courseRetry, setCourseRetry] = useState(0)
+  const [editingDismissal, setEditingDismissal] = useState(false)
+  const [withoutDayData, setWithoutDayData] = useState(false)
+  const [saveFailed, setSaveFailed] = useState(false)
   const [picking, setPicking] = useState(false)
-  const alive = useRef(true)
-  useEffect(() => {
-    alive.current = true
-    const unsubscribe = subscribePlans(() => setStore(readPlans()))
-    return () => { alive.current = false; unsubscribe() }
-  }, [])
+  useEffect(() => subscribePlans(() => setStore(readPlans())), [])
   const schoolId = school.id
   const plan = store.plans.find((p) => p.schoolId === schoolId)
+  const manual = schoolId === UNSPECIFIED_SCHOOL
+  useEffect(() => {
+    if (manual) return
+    let active = true
+    getSchoolDayEstimate(schoolId, { allowDevFixture: false })
+      .then((data) => { if (active) setDayData(data) })
+      .catch(() => { if (active) setDayData(null) })
+    return () => { active = false }
+  }, [schoolId, manual])
+  useEffect(() => {
+    if (manual) return
+    let active = true
+    getSchoolAfterschool(schoolId, { allowDevFixture: false })
+      .then((data) => { if (active) setCourseData(data) })
+      .catch(() => { if (active) setCourseFailed(true) })
+    return () => { active = false }
+  }, [schoolId, manual, courseRetry])
+
+  const availableEntries = dayData?.day ? schoolEntriesFromEstimate(dayData.day) : []
+  const publicEntries = withoutDayData ? [] : availableEntries
+  const publicSource = `school_day_estimates:${schoolId}`
+  const storedDismissal = hasScheduleDismissal(plan?.entries.filter((entry) => entry.source?.ref === publicSource) ?? [])
+  const hasDismissal = hasScheduleDismissal(availableEntries) || storedDismissal
+  const context = { needsDismissal: !(hasScheduleDismissal(publicEntries) || storedDismissal) }
+  const hasSlots = starterHasSlots(courseData)
+  const step = manual || (plan && !plan.starter) ? 'done' : editingDismissal ? 'dismissal' : starterStep(plan?.starter, context)
+  useEffect(() => {
+    if (step !== 'return') return
+    // Let the enclosing timetable record the displayed screen and its entry point first.
+    let active = true
+    queueMicrotask(() => { if (active) funnelMeasurement.timetableStep(schoolId, { step: 'return', answer: 'start' }) })
+    return () => { active = false }
+  }, [schoolId, step])
+
+  const pendingManual = !manual && store.plans.some((item) => item.schoolId === UNSPECIFIED_SCHOOL)
+  // Move the standalone draft in the same successful write as the school draft.
+  const withManualEntries = (current: PlanStore, next: SchoolPlan) => {
+    const standalone = current.plans.find((item) => item.schoolId === UNSPECIFIED_SCHOOL)
+    if (!standalone || manual) return upsertPlan(current, next)
+    const entries = [...next.entries, ...standalone.entries.filter((entry) => !next.entries.some((item) => item.id === entry.id))]
+    return upsertPlan(deletePlan(current, UNSPECIFIED_SCHOOL), { ...next, entries })
+  }
   const persist = (next: PlanStore, success: string, operation: 'create' | 'edit' | 'delete' = 'edit') => {
-    const previous = readPlans().plans.find(p => p.schoolId === schoolId)
+    const before = readPlans()
+    const previous = before.plans.find(p => p.schoolId === schoolId)
+    const movedManual = before.plans.length > next.plans.length
     const updated = next.plans.find(p => p.schoolId === schoolId)
-    if (operation === 'edit' && previous && updated && !timetableContentChanged(previous, updated)) {
+    setSaveFailed(false)
+    if (operation === 'edit' && previous && updated && !movedManual && !timetableContentChanged(previous, updated)) {
       setMessage(success)
       return true
     }
+    // Older completed drafts have only starter.done. Preserve that history
+    // when restarting the questions, in the same write as the new answers.
+    const wasCompleted = previous?.starterCompleted === true || previous?.starter?.done === true
+    const firstCompletion = updated?.starter?.done === true && !wasCompleted
+    const stored = updated && (wasCompleted || firstCompletion) && !updated.starterCompleted
+      ? upsertPlan(next, { ...updated, starterCompleted: true })
+      : next
     try {
-      if (operation === 'delete') writePlans(next)
-      else funnelMeasurement.write(schoolId, operation, () => writePlans(next))
-      setStore(next); setMessage(success); return true
+      if (operation === 'delete') writePlans(stored)
+      else funnelMeasurement.write(schoolId, operation, () => writePlans(stored))
+      if (firstCompletion) {
+        const until = coverageUntil(updated.starter)
+        funnelMeasurement.timetableComplete(schoolId, {
+          coverageState: until === null ? 'covered' : planCoverage(updated.entries, until).state,
+          hasDismissal, hasSlots,
+        })
+      }
+      setStore(stored); setMessage(success); return true
     }
-    catch { setMessage('저장하지 못했어요. 브라우저 저장 공간·설정을 확인해 주세요. 변경 내용은 저장되지 않았어요.'); return false }
+    catch { setSaveFailed(true); setMessage('저장하지 못했어요. 브라우저 저장 공간·설정을 확인해 주세요. 변경 내용은 저장되지 않았어요.'); return false }
   }
   const updatePlan = (next: SchoolPlan) => persist(upsertPlan(readPlans(), { ...next, updatedAt: new Date().toISOString() }), '시간표 초안을 저장했어요.')
   const changeEntries = (change: (entries: ScheduleEntry[]) => ScheduleEntry[]) => {
@@ -91,62 +153,57 @@ export default function MySchedule({ school, entryYear, saved, onNavigate, picku
   const addEntry = (entry: ScheduleEntry) => changeEntries((entries) => [...entries.filter((e) => e.id !== entry.id), entry])
   const removeEntry = (id: string) => changeEntries((entries) => entries.filter((e) => e.id !== id))
   const saveCalendarEntry = (change: CalendarChange): ScheduleEntry | null => {
-    const latest = readPlans().plans.find((p) => p.schoolId === schoolId)
-    if (!latest) { setMessage('초안이 변경됐어요. 학교를 다시 선택해 주세요.'); return null }
-    const result = applyCalendarChange(latest.entries, change, crypto.randomUUID())
+    const current = readPlans()
+    const latest = current.plans.find((p) => p.schoolId === schoolId)
+    if (!latest && !manual) { setMessage('초안이 변경됐어요. 학교를 다시 선택해 주세요.'); return null }
+    const result = applyCalendarChange(latest?.entries ?? [], change, crypto.randomUUID())
     if (!result.ok) { setMessage(result.reason === 'stale' ? '다른 탭에서 일정이 바뀌었어요. 다시 열어 주세요.' : '직접 입력한 일정의 이름·요일·시간을 확인해 주세요.'); return null }
-    return updatePlan({ ...latest, entries: result.entries }) ? result.entry : null
+    const next = { schoolId, schoolName: school.name, entryYear, ...latest, entries: result.entries, updatedAt: new Date().toISOString() }
+    return persist(upsertPlan(current, next), '시간표 초안을 저장했어요.', latest ? 'edit' : 'create') ? result.entry : null
   }
-  // 2026-11-02 이전 초안(답이 없음)은 이미 채운 것으로 본다 — 질문으로 덮지 않는다.
-  const step = plan && !plan.starter ? 'done' : starterStep(plan?.starter)
-  // 질문 2·4단계에 돌봄 공시가 필요하다. 새로고침 뒤에도 이어서 묻도록 그때 다시 읽는다.
-  useEffect(() => {
-    if (!plan || (step !== 'care' && step !== 'fill') || care?.schoolId === schoolId) return
-    let active = true
-    getSchoolDayEstimate(schoolId, { allowDevFixture: false })
-      .then((data) => { if (active) setCare({ schoolId, hours: data.care }) })
-      .catch(() => { if (active) setCare({ schoolId, hours: null }) })
-    return () => { active = false }
-  }, [plan, step, schoolId, care?.schoolId])
-  const careHours = care?.schoolId === schoolId ? care.hours : null
+  const careHours = withoutDayData ? null : dayData?.care ?? null
   const setStarter = (answers: StarterAnswers, change: (entries: ScheduleEntry[]) => ScheduleEntry[] = (entries) => entries) => {
     const latest = readPlans().plans.find((p) => p.schoolId === schoolId)
     return latest ? updatePlan({ ...latest, starter: answers, entries: change(latest.entries) }) : false
   }
-  // 1단계. 첫 답이 초안을 만든다 — 하교 시각을 먼저 넣고, 학교 자료를 못 읽어도 빈 초안이 아니라 질문으로 이어 간다.
-  const start = async (returnAt: ReturnAt) => {
-    if (loading) return
-    // 다시 묻는 중이면 초안은 그대로, 답만 바꾼다. 하교 직후 귀가로 바꾸면 질문이 넣었던 돌봄은 뺀다.
-    if (plan) { setStarter(answerReturn(returnAt), (entries) => returnAt === 'dismissal' ? entries.filter((e) => !starterCareIds(schoolId).includes(e.id)) : entries); return }
-    setLoading(true); setMessage('')
-    const chosen = { id: school.id, name: school.name }
-    let data: Awaited<ReturnType<typeof getSchoolDayEstimate>> = { day: null, care: null }
-    let failed = false
-    try { data = await getSchoolDayEstimate(chosen.id, { allowDevFixture: false }) } catch { failed = true }
-    if (!alive.current) return
-    setLoading(false)
-    setCare({ schoolId: chosen.id, hours: data.care })
-    // No invented timetable, enrollment or development fixtures in persisted plans.
-    const entries = data.day ? schoolEntriesFromEstimate(data.day).map((e) => ({ ...e,
-      source: e.source ? { ...e.source, version: `${e.source.version} · 대상 ${data.day!.applies_to_entry_year}년 입학` } : undefined,
-    })) : []
+  const keepCare = (entry: ScheduleEntry) => !starterCareIds(schoolId).includes(entry.id)
+    || Boolean(entry.userOverride || entry.dayTimes) || entry.weekdays.length !== 5 || !entry.source
+
+  const start = (returnAt: ReturnAt) => {
     const current = readPlans()
-    if (current.plans.some((p) => p.schoolId === chosen.id)) { setMessage('이미 만들어진 초안을 유지했어요.'); return }
-    persist(upsertPlan(current, { schoolId: chosen.id, schoolName: chosen.name, entryYear, entries, starter: answerReturn(returnAt), updatedAt: new Date().toISOString() }),
-      failed ? '학교 자료를 불러오지 못해 하교 시각 없이 시작했어요. 하교 시각을 알면 정규수업 카드를 눌러 넣어 주세요.'
-        : entries.length ? '예상 하교 시각을 넣었어요.' : '이 학교의 하교 시각 자료가 아직 없어요. 질문에 답하며 채워 보세요.', 'create')
+    const latest = current.plans.find((item) => item.schoolId === schoolId)
+    const starter = { ...answerReturn(returnAt, context), ...(latest?.starter?.dismissal && { dismissal: latest.starter.dismissal }) }
+    // A previously answered dismissal is still enough for the immediate pickup branch.
+    if (returnAt === 'dismissal' && starter.dismissal) starter.done = true
+    const entryById = new Map(publicEntries.map((entry) => [entry.id, entry]))
+    latest?.entries.forEach((entry) => entryById.set(entry.id, entry))
+    const entries = [...entryById.values()].filter((entry) => returnAt !== 'dismissal' || keepCare(entry))
+    funnelMeasurement.timetableStep(schoolId, { step: 'return', answer: RETURN_ANSWERS[returnAt] })
+    persist(withManualEntries(current, { schoolId, schoolName: school.name, entryYear, ...latest, entries, starter, updatedAt: new Date().toISOString() }),
+      '시간표 초안을 저장했어요.', latest ? 'edit' : 'create')
+  }
+  const answerDismissal = (answer: DismissalAnswer) => {
+    const latest = readPlans().plans.find((p) => p.schoolId === schoolId)
+    if (!latest?.starter) return
+    const { default: choice, weekdays } = answer
+    funnelMeasurement.timetableStep(schoolId, { step: 'dismissal', answer: weekdays ? 'by_weekday' : choice === 'unknown' ? 'unknown' : choice === 770 ? '12:50' : choice === 820 ? '13:40' : '14:30' })
+    if (updatePlan({ ...latest, ...answerStarterDismissal(schoolId, latest.starter, latest.entries, answer) })) setEditingDismissal(false)
   }
   const answerCare = (yes: boolean) => {
     const answers = plan?.starter
     if (!answers || typeof answers.returnAt !== 'number') return
-    const ids = starterCareIds(schoolId)
     const entry = yes ? afternoonCareFor(schoolId, careHours, answers.returnAt) : null
-    setStarter({ ...answers, care: yes }, (entries) => [...entries.filter((e) => !ids.includes(e.id)), ...(entry ? [entry] : [])])
+    funnelMeasurement.timetableStep(schoolId, { step: 'care', answer: yes ? 'yes' : 'no' })
+    setStarter({ ...answers, care: yes }, (entries) => {
+      const kept = entries.filter(keepCare)
+      return entry && !kept.some((item) => item.id === entry.id) ? [...kept, entry] : kept
+    })
   }
-  const answerCourses = (yes: boolean) => {
+  const answerCourses = (answer: 'yes' | 'no' | 'skip') => {
     if (!plan?.starter) return
-    if (yes) { setPicking(true); return }
-    setStarter({ ...plan.starter, courses: false })
+    funnelMeasurement.timetableStep(schoolId, { step: 'courses', answer })
+    if (answer === 'yes') { setPicking(true); return }
+    setStarter(hasSlots === false ? skipStarterCourses(plan.starter, hasSlots) : { ...plan.starter, courses: false })
   }
   const returnAt = typeof plan?.starter?.returnAt === 'number' ? plan.starter.returnAt : null
   const evening = returnAt === null ? null : eveningCareFor(careHours, returnAt)
@@ -157,49 +214,71 @@ export default function MySchedule({ school, entryYear, saved, onNavigate, picku
   // 완료 표시(UX-10). 엔진의 공백 계산만 쓴다 — 하교부터 보호자 귀가(답이 없으면 19시)까지.
   const until = plan ? coverageUntil(plan.starter) : null
   // 칸의 의도별 시간(UX-14). 엔진이 배치한 칸만 센다.
-  const intents = plan ? describeIntents(weekIntentMinutes(computeWeek(plan.entries, { from: 'dismissal', to: CALENDAR_END }))) : null
-  const coverage = plan && until !== null ? planCoverage(plan.entries, until) : null
+  const week = plan ? computeWeek(plan.entries, { from: 'dismissal', to: CALENDAR_END }) : null
+  const intents = week && step === 'done' ? describeIntents(weekIntentMinutes(week)) : null
+  const coverage = plan && !manual && until !== null ? planCoverage(plan.entries, until) : null
   const gapSlot = plan && until !== null && coverage?.state === 'gaps' && onNavigate && FRONTYARD_ENABLED ? firstGapSlot(plan.entries, until) : null
   const gapAsk = plan && gapSlot ? frontyardPath(plan.schoolId, gapSlot, { write: true }) : null
-  const starter = <PlanStarter answers={plan?.starter} suggested={suggested} busy={loading}
+  const starter = <PlanStarter answers={plan?.starter} step={step} suggested={suggested}
+    busy={dayData === undefined && !withoutDayData && !hasDismissal} dayFailed={dayData === null}
+    onContinueWithoutDay={() => setWithoutDayData(true)}
+    hasSlots={hasSlots} courseFailed={courseFailed}
+    onRetryCourses={() => { setCourseFailed(false); setCourseRetry((count) => count + 1) }}
     careDraft={returnAt === null ? null : afternoonCareFor(schoolId, careHours, returnAt)}
     evening={evening} eveningAdded={Boolean(evening && plan?.entries.some((e) => e.id === evening.id))} coverage={coverage}
-    picker={picking && plan && step === 'courses' ? <MyAfterschoolPicker schoolId={schoolId} entries={plan.entries} onAdd={addEntry} onRemove={removeEntry}
-      onDraft={() => setMessage('요일·시간이 적혀 있지 않은 강좌는 다음 단계에서 시간표 빈칸을 눌러 직접 넣어 주세요.')} /> : null}
-    onReturn={(value) => void start(value)} onCare={answerCare} onCourses={answerCourses}
-    onCoursesNext={() => { setPicking(false); if (plan?.starter) setStarter({ ...plan.starter, courses: true }) }}
-    onEvening={() => { if (evening) addEntry(evening) }}
-    onDone={() => { if (plan?.starter) setStarter({ ...plan.starter, done: true }) }}
+    picker={picking && plan && step === 'courses' ? <MyAfterschoolPicker schoolId={schoolId} entries={plan.entries}
+      starterData={courseData} onAdd={addEntry} onRemove={removeEntry}
+      onDraft={() => { setSaveFailed(true); setMessage('요일·시간이 적혀 있지 않은 강좌는 완료 후 직접 넣어 주세요.') }} /> : null}
+    onReturn={start} onDismissal={answerDismissal} onCare={answerCare} onCourses={answerCourses}
+    onCoursesNext={() => { if (plan?.starter && setStarter({ ...plan.starter, courses: true })) setPicking(false) }}
+    onEvening={() => { if (evening && !plan?.entries.some((entry) => entry.id === evening.id)) addEntry(evening) }}
+    onDone={() => {
+      if (!plan?.starter) return
+      funnelMeasurement.timetableStep(schoolId, { step: 'fill', answer: 'yes' })
+      setStarter({ ...plan.starter, done: true })
+    }}
     onBack={() => {
       const answers = plan?.starter
-      if (!answers) return
+      if (!answers || step === 'return' || step === 'done') return
+      funnelMeasurement.timetableStep(schoolId, { step, answer: 'back' })
       if (step === 'courses' && picking) { setPicking(false); return }
-      setStarter(step === 'care' ? { ...answers, returnAt: null } : step === 'courses' ? { ...answers, care: null } : { ...answers, courses: null })
+      if (step === 'care' && context.needsDismissal && answers.dismissal) { setEditingDismissal(true); return }
+      const saved = setStarter(step === 'dismissal' || step === 'care' ? { ...answers, returnAt: null }
+        : step === 'courses' ? { ...answers, care: null } : { ...answers, courses: null })
+      if (saved) setEditingDismissal(false)
     }} />
 
   return (
     <section className={`my-schedule my-card${plan ? ' my-schedule--editing' : ''}`} aria-labelledby="my-schedule-title">
       <div className="my-schedule__head">
-        <h2 id="my-schedule-title">{plan ? `${shownName} 시간표` : `${shownName} 한 주 짜기`}</h2>
+        <h2 id="my-schedule-title">{manual ? '우리 아이 시간표' : plan ? `${shownName} 시간표` : `${shownName} 한 주 짜기`}</h2>
 
       </div>
-      {!plan ? <>
+      {pendingManual && plan && step === 'done' && <button type="button" className="my-button" onClick={() => {
+        const current = readPlans()
+        const latest = current.plans.find((item) => item.schoolId === schoolId)
+        if (latest) persist(withManualEntries(current, { ...latest, updatedAt: new Date().toISOString() }), '직접 입력한 일정을 가져왔어요.')
+      }}>직접 입력한 일정 가져오기</button>}
+      {!plan && !manual ? <>
         <p className="my-help">질문 몇 개에 답하면 하교 시각부터 한 주가 채워져요. 이 기기에만 저장돼요.</p>
         {starter}
       </> : <>
         {step !== 'done' && starter}
+        {plan?.starter?.done && <p className="my-help" data-testid="starter-complete">시간표 초안 완료 ✓</p>}
         {coverage && step === 'done' && <p className={`plan-coverage plan-coverage--${coverage.state}`} data-testid="plan-coverage">{describeCoverage(coverage)}</p>}
         {gapAsk && step === 'done' && <a className="my-button" data-testid="plan-gap-ask" href={gapAsk} onClick={(event) => followLink(event, gapAsk, onNavigate!)}>원하는 활동 알리기</a>}
-        {step === 'done' && <SchoolChecks entries={plan.entries} onInspect={(id, weekday) => setReviewEntry({ id, weekday })} />}
+        {step === 'done' && plan && !manual && <SchoolChecks entries={plan.entries} onInspect={(id, weekday) => setReviewEntry({ id, weekday })} />}
         {intents && <p className="plan-intents" data-testid="plan-intents">{intents}</p>}
-        <MyScheduleWeek key={`week-${plan.schoolId}`} reviewEntry={reviewEntry} pickupFocus={pickupFocus} schoolId={plan.schoolId} onNavigate={onNavigate} entries={plan.entries} onSave={saveCalendarEntry} onAdd={addEntry} onRemove={removeEntry}
+        {step !== 'done' && plan && week ? <div className="my-week-section">
+          <MyScheduleDay day={week[0]} entries={plan.entries} />
+        </div> : <MyScheduleWeek key={`week-${schoolId}`} manualOnly={manual} reviewEntry={reviewEntry} pickupFocus={pickupFocus} schoolId={schoolId} onNavigate={manual ? undefined : onNavigate} entries={plan?.entries ?? []} onSave={saveCalendarEntry} onAdd={addEntry} onRemove={removeEntry}
           onToggleDay={(entry, weekday) => changeEntries((entries) => toggleProgramDay(entries, entry, weekday))}
           onSetTimes={(id, days, time, label) => changeEntriesIf((entries) => setEntryTimes(entries, id, days, time, label))}
           onRemoveDay={(id, weekday) => changeEntries((entries) => removeEntryDay(entries, id, weekday))}
           onStatus={(id, status) => changeEntries((entries) => entries.map((item) => item.id === id ? { ...item, participation: status } : item))}
           onIntent={(id, intent) => changeEntries((entries) => entries.map((item) => item.id === id ? { ...item, intent } : item))}
-          onRepeat={(id, from, targets) => changeEntriesIf((entries) => repeatEntry(entries, id, from, targets))} />
-        <details className="my-entry-list"><summary>선택한 일정 관리 ({plan.entries.length})</summary>
+          onRepeat={(id, from, targets) => changeEntriesIf((entries) => repeatEntry(entries, id, from, targets))} />}
+        {plan && step === 'done' && <><details className="my-entry-list"><summary>선택한 일정 관리 ({plan.entries.length})</summary>
           {plan.entries.map((e) => <div className="my-entry" key={e.id}>
             <b>{e.label}</b><small>{e.weekdays.map((d) => DAYS[d - 1]).join('·')} · {timing(e)}{e.dayTimes && ' · 요일마다 시간 다름'}</small>
             <small>{e.source ? `출처 ${SOURCES[e.kind]} · 학년도/확인 기준 ${e.source.version}` : '사용자 입력 · 운영 자료와 별도 확인 필요'}</small>
@@ -218,13 +297,13 @@ export default function MySchedule({ school, entryYear, saved, onNavigate, picku
           </p>
           <p className="my-help">위에서 학교를 바꾸면 해당 학교의 시간표를 볼 수 있어요. 학교 입학·프로그램 신청·참여 확정과는 별개예요.</p>
           <p className="my-help">돌봄 시간을 모르면 아침 08:00–09:00, 오후 17:00 종료를 기본으로 넣어요. 일정 카드를 눌러 실제 시간으로 바꿀 수 있어요. 운영·이용 가능 여부는 학교에 확인해 주세요.</p>
-          {step === 'done' && <button type="button" className="my-button" onClick={() => setStarter(emptyStarter())}>질문 따라 다시 채우기</button>}
+          {!manual && <button type="button" className="my-button" onClick={() => setStarter({ ...emptyStarter(), dismissal: plan.starter?.dismissal })}>질문 따라 다시 채우기</button>}
           <button type="button" className="my-button" onClick={() => {
             if (window.confirm('이 학교의 시간표 초안을 삭제할까요? 관심 학교는 유지됩니다.')) persist(deletePlan(readPlans(), plan.schoolId), '시간표 초안을 삭제했어요.', 'delete')
           }}>이 초안 삭제</button>
-        </details>
+        </details></>}
       </>}
-      <p role="status" aria-live="polite" className="my-help">{message}</p>
+      {(step === 'done' || saveFailed) && <p role="status" aria-live="polite" className="my-help">{message}</p>}
     </section>
   )
 }

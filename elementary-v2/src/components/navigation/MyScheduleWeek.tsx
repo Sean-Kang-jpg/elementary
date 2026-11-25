@@ -33,7 +33,8 @@ const compactTime = (entry: ScheduleEntry, day: DayPlan) => {
   return `${start === null ? entry.startsAfterSchool ? '하교 후' : '시작 미확인' : formatMinutes(start)}–${entry.end === null ? '종료 미확인' : formatMinutes(entry.end)}${entry.timeAssumption ? ' · 기본 가정' : ''}`
 }
 
-export default function MyScheduleWeek({ reviewEntry, pickupFocus, schoolId, entries, onSave, onAdd, onRemove, onToggleDay, onSetTimes, onRemoveDay, onStatus, onIntent, onRepeat, onNavigate }: {
+export default function MyScheduleWeek({ reviewEntry, pickupFocus, manualOnly, schoolId, entries, onSave, onAdd, onRemove, onToggleDay, onSetTimes, onRemoveDay, onStatus, onIntent, onRepeat, onNavigate }: {
+  manualOnly?: boolean
   reviewEntry?: { id: string; weekday: Weekday } | null
   pickupFocus?: { weekday: Weekday } | null
   schoolId: string; entries: ScheduleEntry[]; onSave: (change: CalendarChange) => ScheduleEntry | null
@@ -97,7 +98,7 @@ export default function MyScheduleWeek({ reviewEntry, pickupFocus, schoolId, ent
     save({ ...range, original, fromWeekday, label: original.label, kind: original.kind })
   } })
   const preview = interaction.preview ?? cursor
-  const composer = adding ? <ScheduleAddCard key={adding.weekday} schoolId={schoolId} entries={entries} range={adding} onNavigate={onNavigate} onAdd={onAdd} onRemove={onRemove} onToggleDay={onToggleDay} onSave={save} onRepeat={onRepeat} onRemoveDay={onRemoveDay}
+  const composer = adding ? <ScheduleAddCard manualOnly={manualOnly} key={adding.weekday} schoolId={schoolId} entries={entries} range={adding} onNavigate={onNavigate} onAdd={onAdd} onRemove={onRemove} onToggleDay={onToggleDay} onSave={save} onRepeat={onRepeat} onRemoveDay={onRemoveDay}
     onChangeDay={(weekday) => { setSelected(null); jumpTo(weekday); setAdding({ ...adding, weekday }) }} onClose={() => setAdding(null)} /> : undefined
   return <div className={`my-week-section my-week-section--${view}`} onKeyDown={(event) => {
     if (event.key === 'Escape' && (interaction.onEscape() || cursor)) { setCursor(null); event.preventDefault(); event.stopPropagation() }
