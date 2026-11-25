@@ -14,7 +14,7 @@
 | 오후 미리보기·진입 | PR #4 보완과 학교·가이드 연결 | C → K | `codex/afternoon-preview-20261122` | released — PR #5 병합, 운영 release `b6c92c4` (11-22). 운영 HTTP smoke 16 PASS(11-24), 브라우저 단계는 이 PC에서 agent-browser 실행 불가(spawn UNKNOWN)로 미실행 | 11-24 |
 | TT-01 | 한 주 입력 덜어내기·하교 질문·측정 | C(저장·엔진, 소유자 승인) → C(화면) | `codex/TT-01-timetable-screen` | review — 화면 구현·로컬 검증 완료 | 11-25 |
 | HOME-TT | 홈에서 하교 후 일정 시작 | C → K | `codex/HOME-TT-timetable-start` | review — 구현·모바일 검증 완료 | 11-26 |
-| SW-11 | 단일 학교 방과후·맞춤형 ETL 모의 실행 | C → K | `codex/SW-11-school-etl-dry-run` | blocked — 로컬 검증 완료, push 시 Preview 배포 | 11-26 |
+| SW-11 | 단일 학교 방과후·맞춤형 ETL 모의 실행 | C → K | `codex/SW-11-school-etl-dry-run` | review — 로컬 검증 완료, 자동 Preview 승인 | 11-26 |
 | TT-02 | 3번 질문을 요일×시간대 표로 + '채워 보기' | C → K | — | blocked — TT-01 측정 배포 뒤 | 11-24 |
 | TT-03 | 요일 카드를 시간대 축으로(빈 칸 → 맞는 선택지 한 목록) | C → K | — | blocked — TT-02 뒤, 1~2월 | 11-24 |
 | FNL-04 | GA4 맞춤 정의 등록 기록 | C → K | `codex/ga4-registration-20261112` | review — 문서 1커밋 미병합 | 11-12 |
@@ -37,8 +37,8 @@ FNL-00~03(`FUNNEL_RELEASE_20261114.md`), FNL-07(`GUIDE_PLAN_UX_RELEASE_20261115.
 - 브랜치/커밋 — `codex/SW-11-school-etl-dry-run`, 구현 `2bf5351`과 후속 검증·인계 커밋.
 - 바꾼 파일 — `scripts/school_afterschool_dry_run.py`, 단위 검사·파일럿 검증기와 [실행 기록](SCHOOL_AFTERSCHOOL_DRY_RUN.md).
 - 검증 — 관련 검사 66건 통과. 동패초 요약 1·강좌 28·시간대 7 추가, 서울윤중초 변경 0. 두 학교 재실행 변경 0, 원래 입력의 출력 및 비대상 행 동일.
-- 다른 점 — 부분 검수는 기존 학교의 행을 보존한다. 이전 작업 브랜치에서 PR 생성 전 Preview 배포가 발생해 이번 커밋은 로컬에 남겼다.
-- Claude 몫 — 배포가 발생하지 않는 검토 경로 확인과 병합·배포. 운영 검토 전 동패초 반별 자격·확정 강좌와 서울윤중초 최신 공지·완료 기록 확인.
+- 다른 점 — 부분 검수는 기존 학교의 행을 보존한다. 사용자가 작업 브랜치의 기존 자동 Vercel Preview를 승인했다.
+- Claude 몫 — 병합·운영 배포. 운영 검토 전 동패초 반별 자격·확정 강좌와 서울윤중초 최신 공지·완료 기록 확인.
 
 ### TT-01 · 한 주 입력 덜어내기·하교 질문·측정 — S~M
 

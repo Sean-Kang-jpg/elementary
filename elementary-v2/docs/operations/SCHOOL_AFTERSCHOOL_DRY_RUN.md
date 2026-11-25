@@ -67,4 +67,4 @@ PYTHONDONTWRITEBYTECODE=1 python3 -m unittest scripts.test_school_afterschool_dr
 
 ## GitHub 인계
 
-`.github/workflows/`의 ETL 워크플로는 수동 또는 예약 실행이다. 두 `vercel.json`에서 작업 브랜치 Preview를 막는 설정은 확인되지 않았다. PR #9의 첫 작업 브랜치 커밋 `0d92608`에는 PR 생성보다 약 5분 이른 Vercel Preview 배포 기록이 있어, 브랜치 push부터 배포가 유발될 수 있다. 사용자 지시에 따라 로컬 커밋으로 전달한다. [PR #9](https://github.com/Sean-Kang-jpg/elementary/pull/9)
+`.github/workflows/`의 ETL 워크플로는 수동 또는 예약 실행이다. PR #9의 첫 작업 브랜치 커밋 `0d92608`에는 PR 생성보다 약 5분 이른 Vercel Preview 배포 기록이 있다. 이번 작업 브랜치의 기존 자동 Preview는 사용자가 승인했다. [PR #9](https://github.com/Sean-Kang-jpg/elementary/pull/9)
