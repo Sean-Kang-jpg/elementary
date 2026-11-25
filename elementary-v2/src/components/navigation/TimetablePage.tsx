@@ -18,6 +18,7 @@ import SchoolPickupPreview from '../school/SchoolPickupPreview'
 import { formatMinutes } from '../../utils/schedule/fromSchoolData'
 import type { Weekday } from '../../utils/schedule/types'
 import MySchedule from './MySchedule'
+import { UNSPECIFIED_SCHOOL } from '../../utils/schedule/standalone'
 import SchoolSelection from '../search/SchoolSelection'
 import SampleWeek from './SampleWeek'
 import { funnelMeasurement, trackDisplayedScreen } from '../../utils/analytics'
@@ -59,15 +60,18 @@ export default function TimetablePage({
 
   // 한 주 면의 주소에 학교가 없으면 가장 최근에 고친 초안 → 첫 관심 학교 순으로 이어서 연다. 첫 그림부터 그 학교로
   // 그린다 — 주소를 고친 뒤에 다시 그리면 빈 화면이 한 번 보였다가 시간표가 펼쳐진다(2026-10-23).
-  const recentPlan = [...plans.plans].sort((a, b) => b.updatedAt.localeCompare(a.updatedAt))[0]
+  const manualPlan = plans.plans.find((item) => item.schoolId === UNSPECIFIED_SCHOOL)
+  const [manualOpen, setManualOpen] = useState(false)
+  const recentPlan = plans.plans.filter((item) => item.schoolId !== UNSPECIFIED_SCHOOL).sort((a, b) => b.updatedAt.localeCompare(a.updatedAt))[0]
   const fallbackId = recentPlan?.schoolId ?? savedSchools[0]?.id ?? null
-  const schoolId = face === 'week' ? routeSchoolId ?? fallbackId : null
+  const restoreManual = Boolean(manualPlan || manualOpen)
+  const schoolId = face === 'week' ? routeSchoolId ?? (restoreManual ? null : fallbackId) : null
   useEffect(() => {
-    if (face === 'week' && !routeSchoolId && fallbackId) {
+    if (face === 'week' && !routeSchoolId && fallbackId && !restoreManual) {
       funnelMeasurement.markSelection(fallbackId, 'restore')
       onSchoolChange(fallbackId)
     }
-  }, [face, routeSchoolId, fallbackId, onSchoolChange])
+  }, [face, routeSchoolId, fallbackId, restoreManual, onSchoolChange])
 
   // 고른 학교의 공개 자료. 운영 키가 아닌 옛 초안 ID는 null로 끝나고, 초안 편집은 그대로 된다.
   const [detail, setDetail] = useState<{ id: string; school: School | null } | null>(null)
@@ -91,9 +95,9 @@ export default function TimetablePage({
   useEffect(() => {
     // Do not count a transient unresolved school as another screen. Existing
     // plans are already displayed while the current public data is loading.
-    if (face === 'week' && schoolId && loadingDetail && !plan) return
+    if (face === 'week' && schoolId && loadingDetail && !name) return
     trackDisplayedScreen({ face, schoolId, schoolReady: Boolean(school), selectionMethod: routeSchoolId ? 'route' : 'restore' })
-  }, [face, schoolId, school, loadingDetail, plan, routeSchoolId])
+  }, [face, schoolId, school, loadingDetail, name, routeSchoolId])
   const shownName = school ? displaySchoolName(school.school_name, school.address, school.establishment_type) : name && displaySchoolName(name)
 
   // 초안을 막 만들면 화면이 시간표 중심으로 바뀐다. 아래로 내려가 있던 자리 그대로면 시간표가 위로 잘려 보인다.
@@ -123,7 +127,7 @@ export default function TimetablePage({
   const chips = <SchoolSelection schoolId={schoolId} onChange={onSchoolChange} message={pickMessage} onMessage={setPickMessage}
     onSelection={(id) => funnelMeasurement.markSelection(id, 'user')} />
 
-  const weekSchool = schoolId ?? fallbackId
+  const weekSchool = schoolId
   const weekHref = weekSchool ? timetablePath(weekSchool) : planPath('week')
   const faces = [
     { id: 'timeline' as const, label: '입학까지', href: planPath('timeline') },
@@ -189,7 +193,7 @@ export default function TimetablePage({
           )}
           <div ref={editor} tabIndex={-1} data-testid="timetable-week-editor">
             {pickup && <p className="my-help">미리보기 기준 · {['월', '화', '수', '목', '금'][pickup.weekday - 1]}요일 {formatMinutes(pickup.pickup)} 픽업</p>}
-            {loadingDetail && !plan ? <p className="my-help" role="status">학교 자료를 불러오는 중…</p>
+            {loadingDetail && !name ? <p className="my-help" role="status">학교 자료를 불러오는 중…</p>
               : name ? <MySchedule key={schoolId} school={{ id: schoolId, name, displayName: shownName ?? undefined }} entryYear={entryYear}
                 saved={savedSchools.some((item) => item.id === schoolId)} onNavigate={onNavigate} pickupFocus={pickup} />
               : <p className="my-help" role="status">이 학교를 찾지 못했어요. 위에서 학교를 다시 골라 주세요.</p>}
@@ -213,8 +217,10 @@ export default function TimetablePage({
         <section className="timetable-pick my-card" aria-labelledby="timetable-pick-title">
           <h2 id="timetable-pick-title">우리 아이 학교 찾기</h2>
           {chips}
+          {!restoreManual && <button type="button" className="my-button" onClick={() => setManualOpen(true)}>학교 없이 시작</button>}
           <p className="my-help">시간표는 이 기기에 저장돼요. 학교는 최대 3곳까지 고를 수 있어요.</p>
         </section>
+        {restoreManual && <MySchedule school={{ id: UNSPECIFIED_SCHOOL, name: '학교 미선택' }} entryYear={entryYear} saved={false} />}
         <details className="timetable-sample my-card">
           <summary>어떤 시간표가 만들어지나요? · 한 주 예시 보기</summary>
           <p className="my-help">예시예요. 학교를 고르면 그 학교 자료와 우리 가족의 답으로 시작해요.</p>

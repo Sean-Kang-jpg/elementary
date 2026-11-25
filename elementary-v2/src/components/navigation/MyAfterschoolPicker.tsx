@@ -30,8 +30,9 @@ const slotKey = (slot: SchoolAfterschoolSlot) => `${slot.kind}|${slot.start}|${s
 const included = (entry?: ScheduleEntry) => Boolean(entry && ['planned', 'applying', 'confirmed'].includes(entry.participation))
 
 /** 선택한 반만 계획에 넣는다. 출처의 시간과 실제 신청·참여 여부는 별개다. */
-export default function MyAfterschoolPicker({ schoolId, entries, onAdd, onRemove, onDraft, weekday, onToggleDay, onRepeat, onRemoveDay }: {
+export default function MyAfterschoolPicker({ schoolId, starterData, entries, onAdd, onRemove, onDraft, weekday, onToggleDay, onRepeat, onRemoveDay }: {
   schoolId: string
+  starterData?: SchoolAfterschool | null
   entries: ScheduleEntry[]
   onAdd: (entry: ScheduleEntry) => boolean
   onRemove: (id: string) => boolean
@@ -44,7 +45,8 @@ export default function MyAfterschoolPicker({ schoolId, entries, onAdd, onRemove
 }) {
   const repeat = (id: string, selected: boolean) => weekday && selected && onRepeat && onRemoveDay
     ? <RepeatDays entry={entries.find((e) => e.id === id)} weekday={weekday} onRepeat={onRepeat} onRemoveDay={onRemoveDay} /> : null
-  const [data, setData] = useState<SchoolAfterschool | null>(null)
+  const compact = starterData !== undefined
+  const [loadedData, setData] = useState<SchoolAfterschool | null>(null)
   const [care, setCare] = useState<SchoolCareHours | null>(null)
   const [loading, setLoading] = useState(true)
   const [errors, setErrors] = useState<string[]>([])
@@ -55,6 +57,7 @@ export default function MyAfterschoolPicker({ schoolId, entries, onAdd, onRemove
   const [slotPick, setSlotPick] = useState<string | null>(null)
   useEffect(() => { setSlotPick(null) }, [schoolId, weekday])
   useEffect(() => {
+    if (compact) return
     let active = true
     setLoading(true)
     setErrors([])
@@ -69,7 +72,9 @@ export default function MyAfterschoolPicker({ schoolId, entries, onAdd, onRemove
       setLoading(false)
     })
     return () => { active = false }
-  }, [schoolId, retry])
+  }, [compact, schoolId, retry])
+  const data = compact ? starterData : loadedData
+  const pending = !compact && loading
 
   const options = (data?.options ?? []).map((option) => ({ ...option, sections: weekday
     ? option.sections.filter((section) => section.days?.includes('월화수목금'[weekday - 1])) : option.sections }))
@@ -85,7 +90,7 @@ export default function MyAfterschoolPicker({ schoolId, entries, onAdd, onRemove
   const matches = (text: string) => text.toLocaleLowerCase().includes(search)
   const courses = options.map((o) => picked ? { ...o, sections: o.sections.filter((s) => inPicked(o.kind, s)) } : o)
     .filter((o) => o.sections.length > 0 && (filter === '전체' || filter === o.kind) && matches(`${o.name} ${o.variant ?? ''} ${o.category}`))
-  const careOptions = errors.includes('돌봄') ? [] : careEntriesFromHours(care ?? {
+  const careOptions = compact || errors.includes('돌봄') ? [] : careEntriesFromHours(care ?? {
     school_id: schoolId, source_year: 0, status: 'school_check_needed', afternoon_end: null,
     extended_end: null, extended_condition: null, morning_hours: null, grades: null, source: '운영시간 미확인',
   }).filter((e) => !picked && (filter === '전체' || filter === '돌봄') && matches(e.label))
@@ -95,17 +100,17 @@ export default function MyAfterschoolPicker({ schoolId, entries, onAdd, onRemove
   // 고른 돌봄내 반 중 그 요일 돌봄이 계획에 없는 것(요일 카드에서는 그 요일만)
   const careMissing = careDependencyIssues(entries).filter((issue) => !weekday || issue.weekday === weekday)
 
-  return <section className="my-course-picker" aria-label="과목·돌봄 선택" aria-busy={loading}>
-    <div className="my-course-picker__heading"><h3>{weekday ? `${'월화수목금'[weekday - 1]}요일 강좌·돌봄` : '과목·돌봄 선택'}</h3><span>계획에 포함 {selectedCount}개</span></div>
-    <p className="my-help">{weekday ? '선택하면 이 요일만 추가돼요. 돌봄도 함께 고를 수 있어요.' : '반을 선택하면 요일·시간이 자동으로 채워져요. 다시 누르면 시간표에서 빠져요. 선택은 신청·참여 확정과 별개예요.'}</p>
-    {!weekday && <p className="my-help">돌봄과 방과후·맞춤형은 함께 선택할 수 있어요. 수업을 마친 뒤 돌봄으로 이어지는 계획도 만들 수 있어요.</p>}
-    {loading ? <p role="status" className="my-help">학교 강좌·돌봄 자료를 불러오는 중…</p> : <>
+  return <section className="my-course-picker" aria-label="과목·돌봄 선택" aria-busy={pending}>
+    {!compact && <div className="my-course-picker__heading"><h3>{weekday ? `${'월화수목금'[weekday - 1]}요일 강좌·돌봄` : '과목·돌봄 선택'}</h3><span>계획에 포함 {selectedCount}개</span></div>}
+    <p className="my-help">{compact ? '선택한 반은 시간표에 추가돼요. 신청·참여 확정과는 별개예요.' : weekday ? '선택하면 이 요일만 추가돼요. 돌봄도 함께 고를 수 있어요.' : '반을 선택하면 요일·시간이 자동으로 채워져요. 다시 누르면 시간표에서 빠져요. 선택은 신청·참여 확정과 별개예요.'}</p>
+    {!compact && !weekday && <p className="my-help">돌봄과 방과후·맞춤형은 함께 선택할 수 있어요. 수업을 마친 뒤 돌봄으로 이어지는 계획도 만들 수 있어요.</p>}
+    {pending ? <p role="status" className="my-help">학교 강좌·돌봄 자료를 불러오는 중…</p> : <>
       {errors.length > 0 && <div className="my-actions"><p role="alert" className="my-warning">{errors.join('·')} 자료를 불러오지 못했어요.</p><button type="button" className="my-button" onClick={() => setRetry((n) => n + 1)}>자료 다시 불러오기</button></div>}
-      {!errors.includes('돌봄') && (filter === '전체' || filter === '돌봄') && matches('아침돌봄 아침 돌봄') && <MorningCareScheduleChoice key={schoolId} schoolId={schoolId} info={morningCareFromLegacy(care)} entries={entries} onAdd={onAdd} onRemove={onRemove} weekday={weekday} onToggleDay={onToggleDay} onRepeat={onRepeat} onRemoveDay={onRemoveDay} />}
+      {!compact && !errors.includes('돌봄') && (filter === '전체' || filter === '돌봄') && matches('아침돌봄 아침 돌봄') && <MorningCareScheduleChoice key={schoolId} schoolId={schoolId} info={morningCareFromLegacy(care)} entries={entries} onAdd={onAdd} onRemove={onRemove} weekday={weekday} onToggleDay={onToggleDay} onRepeat={onRepeat} onRemoveDay={onRemoveDay} />}
       {(!errors.includes('돌봄') || data?.options.length || care) ? <>
-        <div className="my-course-filters" role="group" aria-label="프로그램 유형">
+        {!compact && <div className="my-course-filters" role="group" aria-label="프로그램 유형">
           {FILTERS.map((value) => <button type="button" key={value} aria-pressed={filter === value} onClick={() => setFilter(value)}>{value}</button>)}
-        </div>
+        </div>}
         {daySlots.length > 0 && <div className="my-slot-picker">
           <p className="my-help">{'월화수목금'[weekday! - 1]}요일 1학년이 들을 수 있는 시간대예요. 시간대를 고르면 그 시간의 강좌만 보여요.</p>
           <div className="my-course-filters" role="group" aria-label="이 요일 시간대">
@@ -122,10 +127,10 @@ export default function MyAfterschoolPicker({ schoolId, entries, onAdd, onRemove
             ...(picked.place === '돌봄내' ? { requiresCare: true } : {}),
           })}>이 시간대에 강좌명 직접 적기</button>}
         </div>}
-        <label className="my-field">과목 찾기<input type="search" value={query} placeholder="예: 미술, 컴퓨터" onChange={(event) => setQuery(event.target.value)} /></label>
-        {data && <p className="my-help my-course-source">강좌 {data.source_year}학년도{data.term ? ` · ${data.term}` : ''} 운영계획{weekday ? ' · 선택은 신청 확정과 별개예요.' : untimed === options.length && untimed > 0 ? ' · 요일·시간 확인이 필요한 목록이에요.' : untimed > 0 ? ` · ${untimed}개 강좌는 요일·시간이 적혀 있지 않아 직접 입력해요.` : ''}</p>}
+        {(!compact || options.length > 20) && <label className="my-field">과목 찾기<input type="search" value={query} placeholder="예: 미술, 컴퓨터" onChange={(event) => setQuery(event.target.value)} /></label>}
+        {!compact && data && <p className="my-help my-course-source">강좌 {data.source_year}학년도{data.term ? ` · ${data.term}` : ''} 운영계획{weekday ? ' · 선택은 신청 확정과 별개예요.' : untimed === options.length && untimed > 0 ? ' · 요일·시간 확인이 필요한 목록이에요.' : untimed > 0 ? ` · ${untimed}개 강좌는 요일·시간이 적혀 있지 않아 직접 입력해요.` : ''}</p>}
         {!data && !errors.includes('강좌') && <p className="my-help">이 학교의 방과후·맞춤형 강좌 자료는 아직 확인하지 못했어요. 학교 공지를 보고 일정을 직접 추가할 수 있어요.</p>}
-        {!care && !errors.includes('돌봄') && <p className="my-help">이 학교의 돌봄 운영 시간은 아직 확인하지 못했어요.</p>}
+        {!compact && !care && !errors.includes('돌봄') && <p className="my-help">이 학교의 돌봄 운영 시간은 아직 확인하지 못했어요.</p>}
         <ul className="my-course-options" aria-label="선택 가능한 과목·돌봄">
           {careOptions.map((entry) => {
             const existing = entries.find((e) => e.id === entry.id)
