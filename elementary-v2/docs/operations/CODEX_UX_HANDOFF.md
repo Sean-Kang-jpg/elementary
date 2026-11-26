@@ -16,6 +16,7 @@
 | HOME-TT | 홈에서 하교 후 일정 시작 | C → K | `codex/HOME-TT-timetable-start` | review — 구현·모바일 검증 완료 | 11-26 |
 | SW-11 | 단일 학교 방과후·맞춤형 ETL 모의 실행 | C → K | `codex/SW-11-school-etl-dry-run` | review — 로컬 검증 완료, 자동 Preview 승인 | 11-26 |
 | SW-26 | 우리집 일정 빈 시간 지도 | C → K | `codex/SW-26-gap-map` | review — [PR #13](https://github.com/Sean-Kang-jpg/elementary/pull/13) · [검증 및 결과](SW_26_GAP_MAP.md) | 11-27 |
+| SW-26 후속 | 첫 진입·학교 미선택 빈 시간 지도 | C → K | `codex/SW-26-entry-map` | review — [검증 및 결과](SW_26_ENTRY_MAP.md) | 11-27 |
 | TT-02 | 3번 질문을 요일×시간대 표로 + '채워 보기' | C → K | — | blocked — TT-01 측정 배포 뒤 | 11-24 |
 | TT-03 | 요일 카드를 시간대 축으로(빈 칸 → 맞는 선택지 한 목록) | C → K | — | blocked — TT-02 뒤, 1~2월 | 11-24 |
 | FNL-04 | GA4 맞춤 정의 등록 기록 | C → K | `codex/ga4-registration-20261112` | review — 문서 1커밋 미병합 | 11-12 |

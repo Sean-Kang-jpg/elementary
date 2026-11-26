@@ -289,8 +289,8 @@ const assertImageServed = async (filePath, minBytes = 10_000) => {
 /**
  * `/` and every other app path are different files since ADR-008 section 3.
  *
- * `/` is the home with its content prerendered for crawlers; the rest rewrite to
- * app.html, the shell with no canonical. A status code cannot tell these apart -
+ * Home and timetable have route-specific static heads; ordinary app routes
+ * rewrite to app.html, the shell with no canonical. A status code cannot tell these apart -
  * during the rollout, /app.html answered 200 from the old deploy's catch-all
  * while the file itself did not exist yet - so these look at what was served.
  */
@@ -308,6 +308,18 @@ const assertHomeAndShellSplit = async () => {
   if (home.text.includes('oapi.map.naver.com')) throw new Error('/ still loads the Naver Maps SDK in its HTML')
   process.stdout.write(`PASS: / carries the prerendered home and one canonical (${home.from})\n`)
 
+  const timetable = isLocalTarget
+    ? fs.readFileSync(path.join(projectRoot, 'dist', 'timetable', 'index.html'), 'utf8')
+    : await (await fetch(new URL('/timetable', baseUrl))).text()
+  const timetableMeta = JSON.parse(fs.readFileSync(path.join(projectRoot, 'src', 'content', 'timetable-meta.json'), 'utf8'))
+  const timetableCanonical = timetable.match(/<link rel="canonical" href="([^"]*)"/g) ?? []
+  if (timetableCanonical.length !== 1 || !timetableCanonical[0].endsWith('/timetable"')
+    || !Object.values(timetableMeta).every(value => timetable.includes(value))
+    || !timetable.includes('<meta name="twitter:card" content="summary_large_image">')) {
+    throw new Error('/timetable does not carry its canonical and approved share metadata')
+  }
+  process.stdout.write(`PASS: /timetable has its own static head (${isLocalTarget ? 'dist/' : 'served'})\n`)
+
   const shell = await (await fetch(new URL(`/app.html?smoke=${Date.now()}`, baseUrl).toString())).text()
   if (/rel="canonical"/.test(shell)) {
     // The dev server answers every path with the source index.html, canonical
@@ -316,13 +328,13 @@ const assertHomeAndShellSplit = async () => {
     process.stdout.write('PASS: app paths are not split here (no build served), checked on deploy only\n')
     return home.text
   }
-  for (const appPath of ['/map', '/my', '/favorites', '/timetable', '/admin/etl']) {
+  for (const appPath of ['/map', '/my', '/favorites', '/admin/etl']) {
     const body = await (await fetch(new URL(appPath, baseUrl).toString())).text()
     if (/rel="canonical"/.test(body) || !body.includes('<div id="root"></div>')) {
       throw new Error(`${appPath} is not served the app shell - it names an address or carries prerendered content`)
     }
   }
-  process.stdout.write('PASS: /map, /my, /favorites, /timetable and /admin/etl are served the app shell, not the home\n')
+  process.stdout.write('PASS: /map, /my, /favorites and /admin/etl are served the app shell, not the home\n')
 
   // The shell is rewritten only to the screens the app has (vercel.json). An address
   // that names nothing must answer 404, not the shell with 200 (docs/seo, soft 404).
@@ -447,7 +459,7 @@ try {
   run(['eval', "document.querySelector('[data-testid=plan-changes] .plan-changes__done').click(); 'UX-18 done'"], { quiet: true })
   await waitFor("JSON.parse(localStorage.getItem('wherecho:checklist-v1') || '{}')['smoke-missed'] === true && !document.querySelector('[data-testid=plan-changes]').innerText.includes('스모크 지난 일')", 'UX-18 marking a passed item done records it and drops it from the note')
   run(['open', new URL('/timetable?face=timeline', baseUrl).toString()])
-  await waitFor("document.querySelector('#timetable-title') && document.querySelector('.plan-faces')", 'UX-18 the plan page reopens')
+  await waitFor("document.querySelector('#timetable-title') && document.querySelector('.plan-page .roadmap')", 'UX-18 the plan page reopens')
   assertPage("!document.querySelector('[data-testid=plan-changes]')", 'UX-18 the same changes are not announced twice')
   run(['eval', "document.querySelector('.roadmap__leave[aria-label=\"스모크 다가온 일 일정에서 빼기\"]').click(); 'leave pinned'"], { quiet: true })
   await waitFor("document.querySelector('.roadmap__undo') && !JSON.parse(localStorage.getItem('wherecho:family-plan-v1')).pinned.some(p => p.id === 'smoke-near')", 'a pinned item can be taken out of the plan, with undo')
@@ -509,8 +521,9 @@ try {
       return 'C-08 first seasonal item added'
     })()`])
     await waitFor("location.pathname === '/' && document.querySelector('.worry-item:has([data-testid=add-to-plan-button]) [data-testid=add-to-plan-button]')?.getAttribute('aria-pressed') === 'true' && document.querySelector('.worry-item:has([data-testid=add-to-plan-button]) [data-testid=add-to-plan-button]')?.getAttribute('aria-label').endsWith('우리집 일정에 있어요')", 'C-08 add confirms stored state without opening the card link')
-    run(['click', '.app-gnb a[href="/timetable"]'], { quiet: true })
-    run(['click', '.plan-faces a[href="/timetable?face=timeline"]'], { quiet: true })
+    run(['click', '.app-topbar__my'], { quiet: true })
+    await waitFor("document.querySelector('a.my-plan-link')?.getAttribute('href') === '/timetable?face=timeline'", 'C-08 MY preserves its entry to the admission timeline')
+    clickGap('a.my-plan-link')
     await waitFor("location.pathname === '/timetable' && location.search === '?face=timeline' && [...document.querySelectorAll('[aria-labelledby=pinned-plan-title] [data-plan-item]')].some(node => node.dataset.planItem === window.__C08_ITEM__.id && node.querySelector('a')?.getAttribute('href') === window.__C08_ITEM__.href)", 'C-08 the same pinned item and guide appear in the family-plan timeline')
     assertPage("(() => { const events = (window.__ANALYTICS_LOG__ || []).filter(entry => entry.event === 'plan_item_add'); return events.length === 1 && events[0].params.from === 'home_worry' && events[0].params.item_id === window.__C08_ITEM__.id })()", 'C-08 records one home_worry plan_item_add for the card ID')
     run(['eval', "document.querySelector('.app-topbar__home').click(); 'C-08 home again'"])
@@ -867,14 +880,32 @@ try {
     'the three examples are each marked 예시 and the sample week links to the week timetable',
   )
   assertPage("document.querySelectorAll('.frontyard-preview .sample-week .my-week__day').length === 5", '배움·돌봄 draws the sample as a real five-day week')
-  // The week face of 우리집 일정 shows the same sample week until a school is chosen.
+  // The first timetable visit is a read-only grid. Neither preview nor opening a sheet creates a plan.
   run(['open', new URL('/timetable?face=week', baseUrl).toString()])
-  await waitFor("document.querySelector('#timetable-title') && document.querySelector('.timetable-sample .sample-week')", '우리 아이 한 주 without a school shows a sample week')
-  run(['eval', `document.querySelector('.timetable-sample > summary').click(); true`], { quiet: true })
-  assertPage(
-    "document.querySelectorAll('.timetable-sample .my-week__day').length === 5 && document.querySelectorAll('.timetable-sample .my-week__entry').length >= 15 && !document.querySelector('.timetable-sample button') && document.documentElement.scrollWidth <= innerWidth",
-    'the sample week fills all five days with blocks, has no controls and does not widen the page',
-  )
+  await waitFor("document.querySelector('[data-testid=gap-map][data-example=true]') && document.querySelector('.gap-example-label')?.textContent.includes('예시')", 'SW-26 entry shows the marked example grid on the first viewport')
+  assertPage("!document.querySelector('.gap-page p, [data-testid=gap-slot], .gap-event:is(button)') && !localStorage.getItem('elementary-schedule-plans-v1')", 'SW-26 the example is read-only and does not create a draft')
+  assertPage("!document.querySelector('.timetable-page .plan-faces,.timetable-page details,.gap-page-inner p,a[href*=timeline]')", 'SW-26 timetable entry leaves the admission tab and old explanation out')
+  clickGap('.gap-menu-button')
+  await waitFor("document.querySelector('dialog[open]')", 'SW-26 the timetable help is available')
+  assertPage("!document.querySelector('dialog[open]').textContent.includes('입학까지')", 'SW-26 the timetable menu has no admission entry')
+  clickGap('dialog[open] [aria-label=닫기]')
+  clickGap('[data-testid=gap-school-select]')
+  await waitFor("document.querySelector('dialog[open] input[type=search]')", 'SW-26 the school chip opens search directly')
+  clickGap('dialog[open] [aria-label=닫기]')
+  clickGap('[data-testid=gap-manual-start]')
+  await waitFor("document.querySelector('[data-testid=gap-dismissal-line]')?.textContent.includes('미정') && document.querySelector('[data-testid=gap-return-question]')", 'SW-26 one tap starts a real blank manual grid, without guessed dismissal')
+  clickGap('[data-testid=gap-return-1020]')
+  await waitFor("document.querySelector('[data-testid=gap-return-line]')", 'SW-26 the explicit return answer is shown')
+  assertPage("!document.querySelector('[data-testid=gap-slot]')", 'SW-26 return alone does not invent an afternoon gap')
+  clickGap('[data-testid=gap-dismissal-line]')
+  await waitFor("document.querySelector('dialog[open] [data-testid=gap-dismissal-unknown]')", 'SW-26 tapping dismissal offers explicit options')
+  clickGap('[data-testid=gap-dismissal-unknown]')
+  await waitFor("document.querySelector('[data-testid=gap-dismissal-line]')?.textContent.includes('13:40 · 가정') && document.querySelector('[data-testid=gap-weekdays]')?.textContent.includes('빈 200분') && document.querySelector('[data-testid=gap-slot]')", 'SW-26 an explicit unknown choice shows the assumption and calculates the gaps')
+  assertPage("!JSON.parse(localStorage.getItem('elementary-schedule-plans-v1')).plans[0].starter.done", 'SW-26 these answers leave the old completion flag false')
+  clickGap('[data-testid=gap-dismissal-line]')
+  clickGap('dialog[open] [data-testid=gap-dismissal-820]')
+  await waitFor("document.querySelector('[data-testid=gap-dismissal-line]')?.textContent.includes('13:40 · 직접 입력')", 'SW-26 explicitly selecting 13:40 removes the assumption for that weekday')
+  run(['eval', "localStorage.removeItem('elementary-schedule-plans-v1'); 'manual draft removed'"], { quiet: true })
   run(['eval', "(() => { const [list, legacy] = JSON.parse(sessionStorage.getItem('smoke-favorites') || '[null,null]'); if (list !== null) localStorage.setItem('elementary-favorites-v1', list); if (legacy !== null) localStorage.setItem('favorite-school-ids', legacy); sessionStorage.removeItem('smoke-favorites'); return 'saved schools restored' })()"], { quiet: true })
   run(['open', new URL('/learn', baseUrl).toString()])
   await waitFor("document.querySelector('#learn-title')", 'back on 학습 준비 for the map link check')
@@ -971,16 +1002,16 @@ try {
   run(['eval', "document.querySelector('a.my-plan-link').click(); 'to the plan'"])
   await waitFor(
     "location.search === '?face=timeline' && document.querySelector('#timetable-title')?.textContent === '우리집 일정'"
-    + " && document.querySelector('.plan-faces a[aria-current=page]')?.textContent === '입학까지'"
+    + " && !document.querySelector('.plan-faces')"
     + " && document.querySelector('.app-gnb__item--active')?.textContent.includes('우리집 일정')"
     + " && document.querySelector('.hub-profile')?.textContent.includes(sessionStorage.getItem('smoke-year'))"
     + " && document.querySelector('.roadmap h2')?.textContent.includes('D-')"
     + " && /챙길 것 \\d+개 중 \\d+개/.test(document.querySelector('.roadmap .plan-progress')?.textContent || '')",
     '우리집 일정 opens on 입학까지 with the same saved year, the roadmap and its progress',
   )
-  run(['eval', "document.querySelectorAll('.plan-faces a')[1].click(); 'to the week'"])
+  run(['eval', "document.querySelector('.app-gnb__item[href=\"/timetable\"]').click(); 'to the week'"])
   await waitFor(
-    "location.pathname === '/timetable' && document.querySelector('.plan-faces a[aria-current=page]')?.textContent === '우리 아이 한 주'"
+    "location.pathname === '/timetable' && document.querySelector('[data-testid=gap-map]')"
     + " && !document.querySelector('.roadmap')",
     'the second face is the week timetable',
   )

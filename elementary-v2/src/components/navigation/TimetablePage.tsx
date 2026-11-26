@@ -7,7 +7,7 @@ import { notePlanVisit, type PlanFace } from '../../utils/familyPlan'
 import type { Profile } from '../../utils/profile'
 import { readPlans, subscribePlans } from '../../utils/schedule/plans'
 import { displaySchoolName } from '../../utils/schoolName'
-import { planPath, timetablePath, VIEW_PATHS } from '../../utils/urlState'
+import { VIEW_PATHS } from '../../utils/urlState'
 import ChecklistBanner from '../content/ChecklistBanner'
 import EntryProfile from '../content/EntryProfile'
 import RoadmapCard from '../content/RoadmapCard'
@@ -20,8 +20,17 @@ import { ChevronDown, School as SchoolIcon } from 'lucide-react'
 import '../../styles/timetable-gap-map.css'
 import { UNSPECIFIED_SCHOOL } from '../../utils/schedule/standalone'
 import SchoolSelection from '../search/SchoolSelection'
-import SampleWeek from './SampleWeek'
+import MyScheduleWeek from './MyScheduleWeek'
+import { computeWeek, WEEKDAYS } from '../../utils/schedule/engine'
+import type { ScheduleEntry, Weekday } from '../../utils/schedule/types'
 import { funnelMeasurement, trackDisplayedScreen } from '../../utils/analytics'
+
+// Read-only illustration. Never pass these entries to the plan store.
+const exampleEntries: ScheduleEntry[] = [
+  { id: 'example-dismissal', kind: 'school', label: '하교 예시', start: null, end: 770, weekdays: WEEKDAYS, evidence: 'estimated', participation: 'planned' },
+  { id: 'example-activity', kind: 'afterschool', label: '방과후 예시', start: 840, end: 900, weekdays: [1, 3, 5], evidence: 'estimated', participation: 'planned' },
+]
+const exampleDays = computeWeek(exampleEntries, { from: 'dismissal', to: 1020 })
 
 interface TimetablePageProps {
   schoolId: string | null
@@ -50,6 +59,9 @@ export default function TimetablePage({
 }: TimetablePageProps) {
   const [plans, setPlans] = useState(readPlans)
   const [schoolPicker, setSchoolPicker] = useState(false)
+  const [exampleMenu, setExampleMenu] = useState(false)
+  const [exampleDay, setExampleDay] = useState<Weekday>(1)
+  const [exampleWeek, setExampleWeek] = useState(false)
   const [favorites, setFavorites] = useState<FavoriteRecord[]>(readFavorites)
   useEffect(() => subscribePlans(() => setPlans(readPlans())), [])
   useEffect(() => subscribeFavorites(() => setFavorites(readFavorites())), [])
@@ -132,35 +144,17 @@ export default function TimetablePage({
     return () => cancelAnimationFrame(frame)
   }, [face, entryYear])
   const [pickMessage, setPickMessage] = useState('')
-  const chips = <SchoolSelection schoolId={schoolId} onChange={(id) => {
+  const chips = <SchoolSelection compact schoolId={schoolId} onChange={(id) => {
     if (id) { setSchoolPicker(false); setManualOpen(false) }
     onSchoolChange(id)
   }} message={pickMessage} onMessage={setPickMessage}
     onSelection={(id) => funnelMeasurement.markSelection(id, 'user')} />
 
-  const weekSchool = schoolId
-  const weekHref = weekSchool ? timetablePath(weekSchool) : planPath('week')
-  const faces = [
-    { id: 'timeline' as const, label: '입학까지', href: planPath('timeline') },
-    { id: 'week' as const, label: '우리 아이 한 주', href: weekHref },
-  ]
-  const header = (
-    <div className="plan-head">
-      <h1 id="timetable-title">우리집 일정</h1>
-      <nav className="plan-faces" aria-label="우리집 일정 보기">
-        {faces.map((item) => (
-          <a key={item.id} href={item.href} aria-current={face === item.id ? 'page' : undefined}
-            onClick={(event) => followLink(event, item.href, onNavigate)}>{item.label}</a>
-        ))}
-      </nav>
-    </div>
-  )
-
   if (face === 'timeline') {
     return (
       <section ref={page} className="app-destination app-page content-page timetable-page plan-page" aria-labelledby="timetable-title">
         <div className="content-page__inner">
-          {header}
+          <div className="plan-head"><h1 id="timetable-title">우리집 일정</h1></div>
           <p className="content-page__lead">3월 입학까지 할 일을 시기별로 모았어요. 끝낸 일은 체크해 두세요.</p>
           <EntryProfile entryYear={entryYear} profile={profile} onEntryYearChange={onEntryYearChange} />
           <PlanChangesNote entryYear={entryYear} profile={profile} onNavigate={onNavigate} />
@@ -182,42 +176,39 @@ export default function TimetablePage({
     )
   }
 
-  if ((schoolId && name) || restoreManual) {
-    return <section ref={page} className="app-destination app-page content-page timetable-page gap-page" aria-labelledby="timetable-title">
-      <h1 className="sr-only" id="timetable-title">우리집 일정</h1>
-      <div className="gap-page-inner" data-testid="timetable-week-editor">
-        <MySchedule key={schoolId ?? UNSPECIFIED_SCHOOL} school={{ id: schoolId ?? UNSPECIFIED_SCHOOL, name: name ?? '학교 미선택' }} entryYear={entryYear}
-          onNavigate={onNavigate} schoolControl={<button type="button" className="gap-school-control" aria-label="학교 바꾸기" onClick={() => setSchoolPicker(true)}>
-            <SchoolIcon size={16} aria-hidden="true" /><span>{shownName ?? '학교 미선택'}</span><ChevronDown size={15} aria-hidden="true" />
-          </button>} timelineLink={<a href={planPath('timeline')} onClick={event => followLink(event, planPath('timeline'), onNavigate)}>입학까지 일정</a>} />
-      </div>
-      {schoolPicker && <GapDialog title="학교 바꾸기" onClose={() => setSchoolPicker(false)}>
-        {chips}
-        <button type="button" onClick={() => { setManualOpen(true); setSchoolPicker(false); onSchoolChange(null) }}>
-          {manualPlan ? '학교 없이 짠 시간표 보기' : '학교 없이 시작'}
-        </button>
-      </GapDialog>}
-    </section>
-  }
+  const editing = Boolean((schoolId && name) || restoreManual)
+  const startManual = () => { setManualOpen(true); setSchoolPicker(false); onSchoolChange(null) }
+  const schoolControl = <button type="button" className="gap-school-control" data-testid="gap-school-select"
+    aria-label={editing ? (shownName ?? '학교 미선택') + ' · 학교 바꾸기' : '학교 선택'}
+    aria-haspopup="dialog" onClick={() => setSchoolPicker(true)}>
+    <SchoolIcon size={16} aria-hidden="true" /><span>{editing ? shownName ?? '학교 미선택' : '학교 선택'}</span><ChevronDown size={15} aria-hidden="true" />
+  </button>
 
-  return (
-    <section ref={page} className="app-destination app-page content-page timetable-page" aria-labelledby="timetable-title">
-      <div className="content-page__inner">
-        {header}
-        {!restoreManual && <button type="button" className="my-button my-button--primary timetable-manual-start" onClick={() => setManualOpen(true)}>학교 없이 시작</button>}
-        {schoolId && <p className="my-help" role="status">{loadingDetail ? '학교 자료를 불러오는 중…' : '이 학교를 찾지 못했어요. 학교를 다시 골라 주세요.'}</p>}
-        <section className="timetable-pick my-card" aria-labelledby="timetable-pick-title">
-          <h2 id="timetable-pick-title">학교 일정 불러오기</h2>
-          {chips}
-          <a className="my-button" href={VIEW_PATHS.map} onClick={(event) => followLink(event, VIEW_PATHS.map, onNavigate)}>배정 학교 찾기</a>
-          <p className="my-help">시간표는 이 기기에 저장돼요. 학교는 최대 3곳까지 고를 수 있어요.</p>
-        </section>
-        <details className="timetable-sample my-card">
-          <summary>어떤 시간표가 만들어지나요? · 한 주 예시 보기</summary>
-          <p className="my-help">예시예요. 학교를 고르면 그 학교 자료와 우리 가족의 답으로 시작해요.</p>
-          <SampleWeek />
-        </details>
+  return <section ref={page} className="app-destination app-page content-page timetable-page gap-page" aria-labelledby="timetable-title">
+    <h1 className="sr-only" id="timetable-title">우리집 일정</h1>
+    <div className="gap-page-inner" data-testid={editing ? 'timetable-week-editor' : 'timetable-entry'}>
+      {editing ? <MySchedule key={schoolId ?? UNSPECIFIED_SCHOOL} school={{ id: schoolId ?? UNSPECIFIED_SCHOOL, name: name ?? '학교 미선택' }} entryYear={entryYear}
+        onNavigate={onNavigate} schoolControl={schoolControl} />
+        : <>
+          <MyScheduleWeek days={exampleDays} active={exampleDay} setActive={setExampleDay} week={exampleWeek} setWeek={setExampleWeek}
+            school={schoolControl} example manual={false} returnAt={1020} needsCheck={new Set()} onMenu={() => setExampleMenu(true)} />
+          <div className="gap-bottom gap-entry-actions">
+            {schoolId && <span role="status">{loadingDetail ? '학교 자료 확인 중…' : '학교를 다시 선택해 주세요.'}</span>}
+            <button type="button" className="gap-primary" data-testid="gap-manual-start" onClick={startManual}>학교 없이 시작</button>
+          </div>
+        </>}
+    </div>
+    {schoolPicker && <GapDialog title={editing ? '학교 바꾸기' : '학교 선택'} onClose={() => setSchoolPicker(false)}>
+      {chips}
+      {editing && schoolId && <button type="button" className="gap-switch-manual" onClick={startManual}>
+        {manualPlan ? '학교 없이 짠 시간표 보기' : '학교 없이 시작'}
+      </button>}
+    </GapDialog>}
+    {exampleMenu && !editing && <GapDialog title="시간표 안내" onClose={() => setExampleMenu(false)}>
+      <div className="gap-menu-list">
+        <p>직접 짠 일정은 이 브라우저에 저장돼요.</p>
+        <a href={VIEW_PATHS.map} onClick={event => followLink(event, VIEW_PATHS.map, onNavigate)}>배정 학교 찾기</a>
       </div>
-    </section>
-  )
+    </GapDialog>}
+  </section>
 }

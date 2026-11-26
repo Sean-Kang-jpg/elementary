@@ -5,9 +5,10 @@ import { displaySchoolName } from '../../utils/schoolName'
 import SchoolSearch from './SchoolNameSearch'
 
 /** Shared school list. Browsing a school and removing it are separate actions. */
-export default function SchoolSelection({ schoolId, onChange, message: heldMessage, onMessage, onSelection }: {
+export default function SchoolSelection({ schoolId, onChange, compact = false, message: heldMessage, onMessage, onSelection }: {
   schoolId: string | null
   onChange: (id: string | null) => void
+  compact?: boolean
   /** A parent that swaps layouts remounts this list; holding the message there keeps a refusal visible. */
   message?: string
   onMessage?: (message: string) => void
@@ -56,7 +57,7 @@ export default function SchoolSelection({ schoolId, onChange, message: heldMessa
     return () => { alive = false }
   }, [])
   return <div aria-label="내 학교 선택" aria-busy={busy}>
-    <p className="my-help">내 학교 {schools.length}/3 · 시간표와 배움·돌봄에서 함께 사용해요.</p>
+    {!compact && <p className="my-help">내 학교 {schools.length}/3 · 시간표와 배움·돌봄에서 함께 사용해요.</p>}
     <div className="timetable-picks">
       {schools.map((school) => <span key={school.id}>
         <button type="button" data-school-id={school.id} aria-pressed={school.id === schoolId} onClick={() => void pick(school.id)}>{displaySchoolName(school.name, school.address)}</button>
@@ -68,6 +69,6 @@ export default function SchoolSelection({ schoolId, onChange, message: heldMessa
       </span>)}
     </div>
     <SchoolSearch onPick={(id) => void pick(id)} />
-    <p className="my-help" role="status">{busy ? '학교 확인 중…' : message}</p>
+    <div className={busy || message ? 'my-help' : 'sr-only'} role="status">{busy ? '학교 확인 중…' : message}</div>
   </div>
 }
