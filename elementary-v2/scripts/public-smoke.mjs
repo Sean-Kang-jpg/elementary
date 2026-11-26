@@ -459,7 +459,7 @@ try {
   run(['eval', "document.querySelector('[data-testid=plan-changes] .plan-changes__done').click(); 'UX-18 done'"], { quiet: true })
   await waitFor("JSON.parse(localStorage.getItem('wherecho:checklist-v1') || '{}')['smoke-missed'] === true && !document.querySelector('[data-testid=plan-changes]').innerText.includes('스모크 지난 일')", 'UX-18 marking a passed item done records it and drops it from the note')
   run(['open', new URL('/timetable?face=timeline', baseUrl).toString()])
-  await waitFor("document.querySelector('#timetable-title') && document.querySelector('.plan-faces')", 'UX-18 the plan page reopens')
+  await waitFor("document.querySelector('#timetable-title') && document.querySelector('.plan-page .roadmap')", 'UX-18 the plan page reopens')
   assertPage("!document.querySelector('[data-testid=plan-changes]')", 'UX-18 the same changes are not announced twice')
   run(['eval', "document.querySelector('.roadmap__leave[aria-label=\"스모크 다가온 일 일정에서 빼기\"]').click(); 'leave pinned'"], { quiet: true })
   await waitFor("document.querySelector('.roadmap__undo') && !JSON.parse(localStorage.getItem('wherecho:family-plan-v1')).pinned.some(p => p.id === 'smoke-near')", 'a pinned item can be taken out of the plan, with undo')
@@ -521,10 +521,9 @@ try {
       return 'C-08 first seasonal item added'
     })()`])
     await waitFor("location.pathname === '/' && document.querySelector('.worry-item:has([data-testid=add-to-plan-button]) [data-testid=add-to-plan-button]')?.getAttribute('aria-pressed') === 'true' && document.querySelector('.worry-item:has([data-testid=add-to-plan-button]) [data-testid=add-to-plan-button]')?.getAttribute('aria-label').endsWith('우리집 일정에 있어요')", 'C-08 add confirms stored state without opening the card link')
-    run(['click', '.app-gnb a[href="/timetable"]'], { quiet: true })
-    await waitFor("document.querySelector('.gap-menu-button')", 'C-08 the timetable presents its menu')
-    clickGap('.gap-menu-button')
-    clickGap('[data-testid=gap-admission-link]')
+    run(['click', '.app-topbar__my'], { quiet: true })
+    await waitFor("document.querySelector('a.my-plan-link')?.getAttribute('href') === '/timetable?face=timeline'", 'C-08 MY preserves its entry to the admission timeline')
+    clickGap('a.my-plan-link')
     await waitFor("location.pathname === '/timetable' && location.search === '?face=timeline' && [...document.querySelectorAll('[aria-labelledby=pinned-plan-title] [data-plan-item]')].some(node => node.dataset.planItem === window.__C08_ITEM__.id && node.querySelector('a')?.getAttribute('href') === window.__C08_ITEM__.href)", 'C-08 the same pinned item and guide appear in the family-plan timeline')
     assertPage("(() => { const events = (window.__ANALYTICS_LOG__ || []).filter(entry => entry.event === 'plan_item_add'); return events.length === 1 && events[0].params.from === 'home_worry' && events[0].params.item_id === window.__C08_ITEM__.id })()", 'C-08 records one home_worry plan_item_add for the card ID')
     run(['eval', "document.querySelector('.app-topbar__home').click(); 'C-08 home again'"])
@@ -885,6 +884,11 @@ try {
   run(['open', new URL('/timetable?face=week', baseUrl).toString()])
   await waitFor("document.querySelector('[data-testid=gap-map][data-example=true]') && document.querySelector('.gap-example-label')?.textContent.includes('예시')", 'SW-26 entry shows the marked example grid on the first viewport')
   assertPage("!document.querySelector('.gap-page p, [data-testid=gap-slot], .gap-event:is(button)') && !localStorage.getItem('elementary-schedule-plans-v1')", 'SW-26 the example is read-only and does not create a draft')
+  assertPage("!document.querySelector('.timetable-page .plan-faces,.timetable-page details,.gap-page-inner p,a[href*=timeline]')", 'SW-26 timetable entry leaves the admission tab and old explanation out')
+  clickGap('.gap-menu-button')
+  await waitFor("document.querySelector('dialog[open]')", 'SW-26 the timetable help is available')
+  assertPage("!document.querySelector('dialog[open]').textContent.includes('입학까지')", 'SW-26 the timetable menu has no admission entry')
+  clickGap('dialog[open] [aria-label=닫기]')
   clickGap('[data-testid=gap-school-select]')
   await waitFor("document.querySelector('dialog[open] input[type=search]')", 'SW-26 the school chip opens search directly')
   clickGap('dialog[open] [aria-label=닫기]')
@@ -998,14 +1002,14 @@ try {
   run(['eval', "document.querySelector('a.my-plan-link').click(); 'to the plan'"])
   await waitFor(
     "location.search === '?face=timeline' && document.querySelector('#timetable-title')?.textContent === '우리집 일정'"
-    + " && document.querySelector('.plan-faces a[aria-current=page]')?.textContent === '입학까지'"
+    + " && !document.querySelector('.plan-faces')"
     + " && document.querySelector('.app-gnb__item--active')?.textContent.includes('우리집 일정')"
     + " && document.querySelector('.hub-profile')?.textContent.includes(sessionStorage.getItem('smoke-year'))"
     + " && document.querySelector('.roadmap h2')?.textContent.includes('D-')"
     + " && /챙길 것 \\d+개 중 \\d+개/.test(document.querySelector('.roadmap .plan-progress')?.textContent || '')",
     '우리집 일정 opens on 입학까지 with the same saved year, the roadmap and its progress',
   )
-  run(['eval', "document.querySelectorAll('.plan-faces a')[1].click(); 'to the week'"])
+  run(['eval', "document.querySelector('.app-gnb__item[href=\"/timetable\"]').click(); 'to the week'"])
   await waitFor(
     "location.pathname === '/timetable' && document.querySelector('[data-testid=gap-map]')"
     + " && !document.querySelector('.roadmap')",

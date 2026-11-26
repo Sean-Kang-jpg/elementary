@@ -29,12 +29,11 @@ const RETURN_ANSWERS = { 900: '15:00', 1020: '17:00', 1140: '19:00', dismissal: 
 const returnLabels = { 900: '15시', 1020: '17시', 1140: '19시', dismissal: '바로' } as const
 const placeable = (entries: ScheduleEntry[]) => entries.map(effectiveEntry).filter((entry): entry is ScheduleEntry => entry !== null)
 
-export default function MySchedule({ school, entryYear, schoolControl, onNavigate, timelineLink }: {
+export default function MySchedule({ school, entryYear, schoolControl, onNavigate }: {
   school: { id: string; name: string }
   entryYear: number | null
   schoolControl: ReactNode
   onNavigate: (path: string) => void
-  timelineLink: ReactNode
 }) {
   const schoolId = school.id
   const manual = schoolId === UNSPECIFIED_SCHOOL
@@ -270,7 +269,6 @@ export default function MySchedule({ school, entryYear, schoolControl, onNavigat
         {standalone && plan && <button type="button" onClick={() => {
           if (savePlan(previous => ({ ...previous }), '직접 입력한 일정을 가져왔어요.', false, true)) closePanel()
         }}>직접 입력한 일정 가져오기</button>}
-        {timelineLink}
       </div>
     </GapDialog>}
     {panel === 'return' && <GapDialog title="보호자 귀가 시각" onClose={closePanel}>{returnOptions}</GapDialog>}

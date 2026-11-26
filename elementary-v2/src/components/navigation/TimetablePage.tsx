@@ -7,7 +7,7 @@ import { notePlanVisit, type PlanFace } from '../../utils/familyPlan'
 import type { Profile } from '../../utils/profile'
 import { readPlans, subscribePlans } from '../../utils/schedule/plans'
 import { displaySchoolName } from '../../utils/schoolName'
-import { planPath, timetablePath, VIEW_PATHS } from '../../utils/urlState'
+import { VIEW_PATHS } from '../../utils/urlState'
 import ChecklistBanner from '../content/ChecklistBanner'
 import EntryProfile from '../content/EntryProfile'
 import RoadmapCard from '../content/RoadmapCard'
@@ -144,35 +144,17 @@ export default function TimetablePage({
     return () => cancelAnimationFrame(frame)
   }, [face, entryYear])
   const [pickMessage, setPickMessage] = useState('')
-  const chips = <SchoolSelection schoolId={schoolId} onChange={(id) => {
+  const chips = <SchoolSelection compact schoolId={schoolId} onChange={(id) => {
     if (id) { setSchoolPicker(false); setManualOpen(false) }
     onSchoolChange(id)
   }} message={pickMessage} onMessage={setPickMessage}
     onSelection={(id) => funnelMeasurement.markSelection(id, 'user')} />
 
-  const weekSchool = schoolId
-  const weekHref = weekSchool ? timetablePath(weekSchool) : planPath('week')
-  const faces = [
-    { id: 'timeline' as const, label: '입학까지', href: planPath('timeline') },
-    { id: 'week' as const, label: '우리 아이 한 주', href: weekHref },
-  ]
-  const header = (
-    <div className="plan-head">
-      <h1 id="timetable-title">우리집 일정</h1>
-      <nav className="plan-faces" aria-label="우리집 일정 보기">
-        {faces.map((item) => (
-          <a key={item.id} href={item.href} aria-current={face === item.id ? 'page' : undefined}
-            onClick={(event) => followLink(event, item.href, onNavigate)}>{item.label}</a>
-        ))}
-      </nav>
-    </div>
-  )
-
   if (face === 'timeline') {
     return (
       <section ref={page} className="app-destination app-page content-page timetable-page plan-page" aria-labelledby="timetable-title">
         <div className="content-page__inner">
-          {header}
+          <div className="plan-head"><h1 id="timetable-title">우리집 일정</h1></div>
           <p className="content-page__lead">3월 입학까지 할 일을 시기별로 모았어요. 끝낸 일은 체크해 두세요.</p>
           <EntryProfile entryYear={entryYear} profile={profile} onEntryYearChange={onEntryYearChange} />
           <PlanChangesNote entryYear={entryYear} profile={profile} onNavigate={onNavigate} />
@@ -196,11 +178,6 @@ export default function TimetablePage({
 
   const editing = Boolean((schoolId && name) || restoreManual)
   const startManual = () => { setManualOpen(true); setSchoolPicker(false); onSchoolChange(null) }
-  const timeline = planPath('timeline')
-  const timelineLink = <a data-testid="gap-admission-link" href={timeline} onClick={event => followLink(event, timeline, path => {
-    setExampleMenu(false)
-    onNavigate(path)
-  })}>입학까지 일정</a>
   const schoolControl = <button type="button" className="gap-school-control" data-testid="gap-school-select"
     aria-label={editing ? (shownName ?? '학교 미선택') + ' · 학교 바꾸기' : '학교 선택'}
     aria-haspopup="dialog" onClick={() => setSchoolPicker(true)}>
@@ -211,7 +188,7 @@ export default function TimetablePage({
     <h1 className="sr-only" id="timetable-title">우리집 일정</h1>
     <div className="gap-page-inner" data-testid={editing ? 'timetable-week-editor' : 'timetable-entry'}>
       {editing ? <MySchedule key={schoolId ?? UNSPECIFIED_SCHOOL} school={{ id: schoolId ?? UNSPECIFIED_SCHOOL, name: name ?? '학교 미선택' }} entryYear={entryYear}
-        onNavigate={onNavigate} schoolControl={schoolControl} timelineLink={timelineLink} />
+        onNavigate={onNavigate} schoolControl={schoolControl} />
         : <>
           <MyScheduleWeek days={exampleDays} active={exampleDay} setActive={setExampleDay} week={exampleWeek} setWeek={setExampleWeek}
             school={schoolControl} example manual={false} returnAt={1020} needsCheck={new Set()} onMenu={() => setExampleMenu(true)} />
@@ -229,8 +206,7 @@ export default function TimetablePage({
     </GapDialog>}
     {exampleMenu && !editing && <GapDialog title="시간표 안내" onClose={() => setExampleMenu(false)}>
       <div className="gap-menu-list">
-        <p>예시 시각은 저장되지 않아요. 직접 짠 일정은 이 브라우저에 초안으로 저장해요.</p>
-        {timelineLink}
+        <p>직접 짠 일정은 이 브라우저에 저장돼요.</p>
         <a href={VIEW_PATHS.map} onClick={event => followLink(event, VIEW_PATHS.map, onNavigate)}>배정 학교 찾기</a>
       </div>
     </GapDialog>}
