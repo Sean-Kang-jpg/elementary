@@ -55,7 +55,7 @@ export default function MyScheduleWeek({ days, active, setActive, week, setWeek,
       <div className="gap-axis" aria-hidden="true">{CALENDAR_HOURS.map((hour, i) => <span key={hour} style={{ top: i / 7 * 100 + '%' }}>{hour}:00</span>)}</div>
       {(week ? days : [days[active - 1]]).map((day) => <MyScheduleDay key={day.weekday} day={day} compact={week} manual={manual}
         homeAt={returnAt === 'dismissal' ? day.dismissal.at : returnAt} answered={returnAt !== null} needsCheck={needsCheck}
-        dismissalNote={dismissalNotes?.[day.weekday]}
+        dismissalNote={example ? '예시' : dismissalNotes?.[day.weekday]}
         care={care?.weekday === day.weekday ? care.content : undefined}
         onDismissal={onDismissal} onAdd={onAdd} onEdit={onEdit} />)}
       {question}

@@ -197,7 +197,10 @@ export default function TimetablePage({
   const editing = Boolean((schoolId && name) || restoreManual)
   const startManual = () => { setManualOpen(true); setSchoolPicker(false); onSchoolChange(null) }
   const timeline = planPath('timeline')
-  const timelineLink = <a data-testid="gap-admission-link" href={timeline} onClick={event => followLink(event, timeline, onNavigate)}>입학까지 일정</a>
+  const timelineLink = <a data-testid="gap-admission-link" href={timeline} onClick={event => followLink(event, timeline, path => {
+    setExampleMenu(false)
+    onNavigate(path)
+  })}>입학까지 일정</a>
   const schoolControl = <button type="button" className="gap-school-control" data-testid="gap-school-select"
     aria-label={editing ? (shownName ?? '학교 미선택') + ' · 학교 바꾸기' : '학교 선택'}
     aria-haspopup="dialog" onClick={() => setSchoolPicker(true)}>

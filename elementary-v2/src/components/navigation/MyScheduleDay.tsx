@@ -29,7 +29,7 @@ export default function MyScheduleDay({ day, compact, manual, homeAt, answered, 
   answered: boolean
   needsCheck: ReadonlySet<string>
   care?: ReactNode
-  dismissalNote?: '가정' | '직접 입력'
+  dismissalNote?: '가정' | '직접 입력' | '예시'
   onDismissal?: (day: Weekday) => void
   onAdd?: (range: CalendarRange, gap?: [number, number]) => void
   onEdit?: (id: string, day: Weekday) => void

@@ -289,8 +289,8 @@ const assertImageServed = async (filePath, minBytes = 10_000) => {
 /**
  * `/` and every other app path are different files since ADR-008 section 3.
  *
- * `/` is the home with its content prerendered for crawlers; the rest rewrite to
- * app.html, the shell with no canonical. A status code cannot tell these apart -
+ * Home and timetable have route-specific static heads; ordinary app routes
+ * rewrite to app.html, the shell with no canonical. A status code cannot tell these apart -
  * during the rollout, /app.html answered 200 from the old deploy's catch-all
  * while the file itself did not exist yet - so these look at what was served.
  */
@@ -308,6 +308,18 @@ const assertHomeAndShellSplit = async () => {
   if (home.text.includes('oapi.map.naver.com')) throw new Error('/ still loads the Naver Maps SDK in its HTML')
   process.stdout.write(`PASS: / carries the prerendered home and one canonical (${home.from})\n`)
 
+  const timetable = isLocalTarget
+    ? fs.readFileSync(path.join(projectRoot, 'dist', 'timetable', 'index.html'), 'utf8')
+    : await (await fetch(new URL('/timetable', baseUrl))).text()
+  const timetableMeta = JSON.parse(fs.readFileSync(path.join(projectRoot, 'src', 'content', 'timetable-meta.json'), 'utf8'))
+  const timetableCanonical = timetable.match(/<link rel="canonical" href="([^"]*)"/g) ?? []
+  if (timetableCanonical.length !== 1 || !timetableCanonical[0].endsWith('/timetable"')
+    || !Object.values(timetableMeta).every(value => timetable.includes(value))
+    || !timetable.includes('<meta name="twitter:card" content="summary_large_image">')) {
+    throw new Error('/timetable does not carry its canonical and approved share metadata')
+  }
+  process.stdout.write(`PASS: /timetable has its own static head (${isLocalTarget ? 'dist/' : 'served'})\n`)
+
   const shell = await (await fetch(new URL(`/app.html?smoke=${Date.now()}`, baseUrl).toString())).text()
   if (/rel="canonical"/.test(shell)) {
     // The dev server answers every path with the source index.html, canonical
@@ -316,13 +328,13 @@ const assertHomeAndShellSplit = async () => {
     process.stdout.write('PASS: app paths are not split here (no build served), checked on deploy only\n')
     return home.text
   }
-  for (const appPath of ['/map', '/my', '/favorites', '/timetable', '/admin/etl']) {
+  for (const appPath of ['/map', '/my', '/favorites', '/admin/etl']) {
     const body = await (await fetch(new URL(appPath, baseUrl).toString())).text()
     if (/rel="canonical"/.test(body) || !body.includes('<div id="root"></div>')) {
       throw new Error(`${appPath} is not served the app shell - it names an address or carries prerendered content`)
     }
   }
-  process.stdout.write('PASS: /map, /my, /favorites, /timetable and /admin/etl are served the app shell, not the home\n')
+  process.stdout.write('PASS: /map, /my, /favorites and /admin/etl are served the app shell, not the home\n')
 
   // The shell is rewritten only to the screens the app has (vercel.json). An address
   // that names nothing must answer 404, not the shell with 200 (docs/seo, soft 404).
@@ -886,6 +898,9 @@ try {
   clickGap('[data-testid=gap-dismissal-unknown]')
   await waitFor("document.querySelector('[data-testid=gap-dismissal-line]')?.textContent.includes('13:40 · 가정') && document.querySelector('[data-testid=gap-weekdays]')?.textContent.includes('빈 200분') && document.querySelector('[data-testid=gap-slot]')", 'SW-26 an explicit unknown choice shows the assumption and calculates the gaps')
   assertPage("!JSON.parse(localStorage.getItem('elementary-schedule-plans-v1')).plans[0].starter.done", 'SW-26 these answers leave the old completion flag false')
+  clickGap('[data-testid=gap-dismissal-line]')
+  clickGap('dialog[open] [data-testid=gap-dismissal-820]')
+  await waitFor("document.querySelector('[data-testid=gap-dismissal-line]')?.textContent.includes('13:40 · 직접 입력')", 'SW-26 explicitly selecting 13:40 removes the assumption for that weekday')
   run(['eval', "localStorage.removeItem('elementary-schedule-plans-v1'); 'manual draft removed'"], { quiet: true })
   run(['eval', "(() => { const [list, legacy] = JSON.parse(sessionStorage.getItem('smoke-favorites') || '[null,null]'); if (list !== null) localStorage.setItem('elementary-favorites-v1', list); if (legacy !== null) localStorage.setItem('favorite-school-ids', legacy); sessionStorage.removeItem('smoke-favorites'); return 'saved schools restored' })()"], { quiet: true })
   run(['open', new URL('/learn', baseUrl).toString()])
