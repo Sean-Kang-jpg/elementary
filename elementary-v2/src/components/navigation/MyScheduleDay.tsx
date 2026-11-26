@@ -62,17 +62,18 @@ export default function MyScheduleDay({ day, compact, manual, homeAt, answered, 
           const at = event.detail && rect.height ? start + (event.clientY - rect.top) / rect.height * (end - start) : start
           onAdd(gapRange(day.weekday, start, end, at), [start, end])
         }}><Plus size={16} aria-hidden="true" />{!compact && <span>빈 {end - start}분</span>}</button>
-        {!compact && from === first && care}
+        {!compact && from === first && end - start >= 55 && care}
       </div>
     })}
     {blocks.map(({ block: { entry, tentative }, from, to, lane, lanes }) => {
       const type = entryType(entry), Icon = icons[type], check = needsCheck.has(entry.id)
-      const label = date + ' ' + entry.label + ' ' + formatMinutes(from) + '–' + formatMinutes(to) + (check ? ' · 확인 필요' : '')
+      const status = entry.participation === 'applying' ? '신청 중' : tentative ? '후보' : '확정'
+      const label = date + ' ' + entry.label + ' ' + formatMinutes(from) + '–' + formatMinutes(to) + ' · ' + status + (check ? ' · 확인 필요' : '')
       return <button key={entry.id} type="button" data-testid="gap-event" className="gap-event" data-kind={type}
         data-candidate={tentative || undefined} style={{ ...area(from, to), '--lane': lane, '--lanes': lanes } as CSSProperties}
         title={label} aria-label={label} onClick={() => onEdit(entry.id, day.weekday)}>
         <span className="gap-event-name">{!compact && <Icon size={13} aria-hidden="true" />}<strong>{entry.label}</strong></span>
-        {to - from >= 36 && <span className="gap-event-meta">{!compact && <>{names[type]} · </>}{entry.participation === 'applying' ? '신청 중' : tentative ? '후보' : '확정'}</span>}
+        {to - from >= 36 && <span className="gap-event-meta">{!compact && <>{names[type]} · </>}{status}</span>}
         {check && <b className="gap-check" aria-hidden="true">!</b>}
       </button>
     })}

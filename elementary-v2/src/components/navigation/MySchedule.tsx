@@ -165,6 +165,7 @@ export default function MySchedule({ school, entryYear, schoolControl, onNavigat
       return { ...previous, starter: { ...answers, care: yes }, entries: yes && !previous.entries.some(entry => entry.id === candidate.id) ? [...previous.entries, candidate] : previous.entries }
     }, yes ? '돌봄 후보를 넣었어요.' : '돌봄 선택을 저장했어요.', true)
     if (saved) funnelMeasurement.timetableStep(schoolId, { step: 'care', answer: yes ? 'yes' : 'no' })
+    return saved
   }
   const answerCourses = (yes: boolean) => {
     const saved = savePlan(previous => previous.starter?.care !== null && previous.starter?.courses === null
@@ -243,7 +244,10 @@ export default function MySchedule({ school, entryYear, schoolControl, onNavigat
         <button type="button" onClick={() => setPanel('off-grid')}>격자 밖 · 숨긴 일정</button>
         {coverage && <p data-testid="plan-coverage" data-coverage={coverage.state}>{describeCoverage(coverage)}</p>}
         {gapAsk && <a href={gapAsk} data-testid="plan-gap-ask" onClick={event => followLink(event, gapAsk, onNavigate)}>원하는 활동 알리기</a>}
-        {step === 'care' && <button type="button" onClick={() => answerCare(false)}>학교 돌봄 없이 계속</button>}
+        {step === 'care' && <>
+          {offerCare && <button type="button" onClick={() => { if (answerCare(true)) closePanel() }}>학교 돌봄 후보 넣기</button>}
+          <button type="button" onClick={() => answerCare(false)}>학교 돌봄 없이 계속</button>
+        </>}
         {step === 'courses' && <>
           {entries.some(entry => entry.kind === 'afterschool' && !entry.userOverride?.deleted) && <button type="button" onClick={() => answerCourses(true)}>방과후 선택 완료</button>}
           <button type="button" onClick={() => answerCourses(false)}>{hasSlots ? '방과후 없이 계속' : '학교 강좌 시간 자료 건너뛰기'}</button>
