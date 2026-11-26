@@ -8,9 +8,6 @@ const cli = path.join(projectRoot, 'node_modules', 'agent-browser', 'bin', 'agen
 const baseUrl = process.argv[2] || 'http://127.0.0.1:3001'
 const session = `elementary-public-smoke-${process.pid}`
 const namespace = 'elementary-smoke'
-// Shared roadmap IDs keep their canonical title when a season card is pinned.
-const roadmap = JSON.parse(fs.readFileSync(path.join(projectRoot, 'src/content/roadmap.json'), 'utf8'))
-const roadmapTitles = Object.fromEntries([...roadmap.planning, ...Object.values(roadmap.admission).flat()].map((item) => [item.id, item.text]))
 const connectionArgs = process.env.AGENT_BROWSER_CDP_PORT
   ? ['--cdp', process.env.AGENT_BROWSER_CDP_PORT]
   : []
@@ -389,6 +386,7 @@ try {
   run(['open', new URL('/timetable?school=B000002292', baseUrl).toString()])
   run(['eval', "localStorage.removeItem('elementary-schedule-plans-v1'); location.reload(); 'new draft'"], { quiet: true })
   await waitFor("document.querySelector('[data-testid=gap-return-question]') && document.querySelectorAll('[data-testid=gap-weekdays] button').length === 5", 'SW-26 the return question and five-day summary are on the grid')
+  await waitFor("document.querySelector('[data-testid=gap-return-1020]:enabled')", 'SW-26 published school data is ready')
   const clickGap = (selector) => run(['eval', `document.querySelector(${JSON.stringify(selector)}).click(); true`], { quiet: true })
   clickGap('[data-testid=gap-return-1020]')
   await waitFor("document.querySelector('[data-testid=gap-return-line]') && document.querySelector('[data-testid=gap-slot]')", 'SW-26 the return line bounds the new gap')
@@ -506,15 +504,14 @@ try {
       const card = document.querySelector('.worry-item:has([data-testid=add-to-plan-button])')
       const button = card.querySelector('[data-testid=add-to-plan-button]')
       const id = button.dataset.planId
-      const titles = ${JSON.stringify(roadmapTitles)}
-      window.__C08_ITEM__ = { id, title: titles[id] || card.querySelector('strong').textContent, href: card.querySelector('a').getAttribute('href'), shared: Boolean(titles[id]) }
+      window.__C08_ITEM__ = { id, href: card.querySelector('a').getAttribute('href') }
       button.click()
       return 'C-08 first seasonal item added'
     })()`])
     await waitFor("location.pathname === '/' && document.querySelector('.worry-item:has([data-testid=add-to-plan-button]) [data-testid=add-to-plan-button]')?.getAttribute('aria-pressed') === 'true' && document.querySelector('.worry-item:has([data-testid=add-to-plan-button]) [data-testid=add-to-plan-button]')?.getAttribute('aria-label').endsWith('우리집 일정에 있어요')", 'C-08 add confirms stored state without opening the card link')
     run(['click', '.app-gnb a[href="/timetable"]'], { quiet: true })
     run(['click', '.plan-faces a[href="/timetable?face=timeline"]'], { quiet: true })
-    await waitFor("location.pathname === '/timetable' && location.search === '?face=timeline' && document.querySelector('[aria-labelledby=pinned-plan-title]')?.textContent.includes(window.__C08_ITEM__.title)", 'C-08 pinned item appears in the family-plan timeline')
+    await waitFor("location.pathname === '/timetable' && location.search === '?face=timeline' && [...document.querySelectorAll('[aria-labelledby=pinned-plan-title] [data-plan-item]')].some(node => node.dataset.planItem === window.__C08_ITEM__.id && node.querySelector('a')?.getAttribute('href') === window.__C08_ITEM__.href)", 'C-08 the same pinned item and guide appear in the family-plan timeline')
     assertPage("(() => { const events = (window.__ANALYTICS_LOG__ || []).filter(entry => entry.event === 'plan_item_add'); return events.length === 1 && events[0].params.from === 'home_worry' && events[0].params.item_id === window.__C08_ITEM__.id })()", 'C-08 records one home_worry plan_item_add for the card ID')
     run(['eval', "document.querySelector('.app-topbar__home').click(); 'C-08 home again'"])
     await waitFor("document.querySelector('.worry-item:has([data-testid=add-to-plan-button]) [data-testid=add-to-plan-button]')?.getAttribute('aria-pressed') === 'true'", 'C-08 remounted home reads the saved pin')

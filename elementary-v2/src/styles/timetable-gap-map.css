@@ -38,9 +38,9 @@
 .gap-map .gap-line--unknown::before { content: none; }
 .gap-space { inset-inline: 3px; border: 1px dashed #d37547; border-radius: 6px; background: #fff6e9; color: #853a1c; }
 .gap-space[data-pending] { background: #fffaf4; }
-.gap-space button { width: 100%; height: 100%; position: relative; z-index: 2; display: flex; align-items: center; justify-content: center; gap: 3px; font-size: 12px; font-weight: 800; }
-.gap-space button span { white-space: nowrap; }
-.gap-space button svg { flex: none; }
+.gap-space > button { width: 100%; height: 100%; position: relative; z-index: 2; display: flex; align-items: center; justify-content: center; gap: 3px; font-size: 12px; font-weight: 800; }
+.gap-space > button span { white-space: nowrap; }
+.gap-space > button svg { flex: none; }
 .gap-sliver { background: repeating-linear-gradient(135deg, #f6e1d1 0 3px, #fffaf1 3px 6px); }
 .gap-event { position: absolute; z-index: 4; left: calc(3px + (100% - 6px) * var(--lane) / var(--lanes)); width: calc((100% - 6px) / var(--lanes)); min-height: 0 !important; min-width: 0 !important; padding: 2px 4px; border-radius: 6px; border: 1px solid currentColor; overflow: hidden; text-align: left; display: flex; flex-direction: column; gap: 1px; font-size: 11px !important; line-height: 1.15; }
 .gap-event[data-candidate] { border-style: dashed; }
@@ -61,7 +61,7 @@
 .gap-bottom { display: flex; align-items: center; justify-content: flex-end; gap: 4px; height: 41px; font-size: 12px; flex: none; }
 .gap-primary { background: #a94030; color: white; border-radius: 10px; padding: 0 10px; font-weight: 750 !important; white-space: nowrap; }
 .gap-care { position: absolute; z-index: 3; display: flex; align-items: center; gap: 2px; right: 3px; top: 1px; color: #2a4a34; }
-.gap-care button { border-radius: 8px; padding: 0 6px; background: #e9f4ef; }
+.gap-care button { border-radius: 8px; padding: 0 6px; background: #e9f4ef; font-size: 11px; font-weight: 700; }
 .gap-toast { position: absolute; z-index: 10; inset: auto 8px 50px; display: flex; align-items: center; gap: 2px; padding: 0 5px 0 9px; min-height: 38px; border-radius: 9px; background: #31251f; color: white; font-size: 12px; box-shadow: 0 2px 5px #3a281929; }
 .gap-toast span { flex: 1; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
 .gap-toast button { min-height: 36px; min-width: 36px; padding-inline: 4px; font: inherit; white-space: nowrap; }
