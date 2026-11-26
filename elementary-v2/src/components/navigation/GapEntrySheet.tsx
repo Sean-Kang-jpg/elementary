@@ -47,7 +47,11 @@ export default function GapEntrySheet({ range, entry, suggestions, reasons, onCl
       setError('이름·시작·끝과 적용할 요일을 확인해 주세요.')
       return
     }
-    const time: DayTime | null = !noTimes && from !== null && to !== null && (from !== initial.time?.start || to !== initial.time?.end || weekdays.some(day => !entry?.weekdays.includes(day))) ? { start: from, end: to } : null
+    const needsTimeUpdate = weekdays.some(day => {
+      const current = entry?.weekdays.includes(day) ? timeOnDay(entry, day) : null
+      return current?.start !== from || current?.end !== to
+    })
+    const time: DayTime | null = !noTimes && from !== null && to !== null && needsTimeUpdate ? { start: from, end: to } : null
     if (onSave({ label, kind, weekdays, participation, time, original: entry, activityType: academy ? 'academy' : undefined })) onClose()
     else setError('저장하지 못했어요. 다른 탭에서 수정했다면 다시 열어 주세요.')
   }
