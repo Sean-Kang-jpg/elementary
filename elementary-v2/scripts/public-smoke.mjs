@@ -510,7 +510,9 @@ try {
     })()`])
     await waitFor("location.pathname === '/' && document.querySelector('.worry-item:has([data-testid=add-to-plan-button]) [data-testid=add-to-plan-button]')?.getAttribute('aria-pressed') === 'true' && document.querySelector('.worry-item:has([data-testid=add-to-plan-button]) [data-testid=add-to-plan-button]')?.getAttribute('aria-label').endsWith('우리집 일정에 있어요')", 'C-08 add confirms stored state without opening the card link')
     run(['click', '.app-gnb a[href="/timetable"]'], { quiet: true })
-    run(['click', '.plan-faces a[href="/timetable?face=timeline"]'], { quiet: true })
+    await waitFor("document.querySelector('.gap-menu-button')", 'C-08 the timetable presents its menu')
+    clickGap('.gap-menu-button')
+    clickGap('[data-testid=gap-admission-link]')
     await waitFor("location.pathname === '/timetable' && location.search === '?face=timeline' && [...document.querySelectorAll('[aria-labelledby=pinned-plan-title] [data-plan-item]')].some(node => node.dataset.planItem === window.__C08_ITEM__.id && node.querySelector('a')?.getAttribute('href') === window.__C08_ITEM__.href)", 'C-08 the same pinned item and guide appear in the family-plan timeline')
     assertPage("(() => { const events = (window.__ANALYTICS_LOG__ || []).filter(entry => entry.event === 'plan_item_add'); return events.length === 1 && events[0].params.from === 'home_worry' && events[0].params.item_id === window.__C08_ITEM__.id })()", 'C-08 records one home_worry plan_item_add for the card ID')
     run(['eval', "document.querySelector('.app-topbar__home').click(); 'C-08 home again'"])
@@ -867,14 +869,24 @@ try {
     'the three examples are each marked 예시 and the sample week links to the week timetable',
   )
   assertPage("document.querySelectorAll('.frontyard-preview .sample-week .my-week__day').length === 5", '배움·돌봄 draws the sample as a real five-day week')
-  // The week face of 우리집 일정 shows the same sample week until a school is chosen.
+  // The first timetable visit is a read-only grid. Neither preview nor opening a sheet creates a plan.
   run(['open', new URL('/timetable?face=week', baseUrl).toString()])
-  await waitFor("document.querySelector('#timetable-title') && document.querySelector('.timetable-sample .sample-week')", '우리 아이 한 주 without a school shows a sample week')
-  run(['eval', `document.querySelector('.timetable-sample > summary').click(); true`], { quiet: true })
-  assertPage(
-    "document.querySelectorAll('.timetable-sample .my-week__day').length === 5 && document.querySelectorAll('.timetable-sample .my-week__entry').length >= 15 && !document.querySelector('.timetable-sample button') && document.documentElement.scrollWidth <= innerWidth",
-    'the sample week fills all five days with blocks, has no controls and does not widen the page',
-  )
+  await waitFor("document.querySelector('[data-testid=gap-map][data-example=true]') && document.querySelector('.gap-example-label')?.textContent.includes('예시')", 'SW-26 entry shows the marked example grid on the first viewport')
+  assertPage("!document.querySelector('.gap-page p, [data-testid=gap-slot], .gap-event:is(button)') && !localStorage.getItem('elementary-schedule-plans-v1')", 'SW-26 the example is read-only and does not create a draft')
+  clickGap('[data-testid=gap-school-select]')
+  await waitFor("document.querySelector('dialog[open] input[type=search]')", 'SW-26 the school chip opens search directly')
+  clickGap('dialog[open] [aria-label=닫기]')
+  clickGap('[data-testid=gap-manual-start]')
+  await waitFor("document.querySelector('[data-testid=gap-dismissal-line]')?.textContent.includes('미정') && document.querySelector('[data-testid=gap-return-question]')", 'SW-26 one tap starts a real blank manual grid, without guessed dismissal')
+  clickGap('[data-testid=gap-return-1020]')
+  await waitFor("document.querySelector('[data-testid=gap-return-line]')", 'SW-26 the explicit return answer is shown')
+  assertPage("!document.querySelector('[data-testid=gap-slot]')", 'SW-26 return alone does not invent an afternoon gap')
+  clickGap('[data-testid=gap-dismissal-line]')
+  await waitFor("document.querySelector('dialog[open] [data-testid=gap-dismissal-unknown]')", 'SW-26 tapping dismissal offers explicit options')
+  clickGap('[data-testid=gap-dismissal-unknown]')
+  await waitFor("document.querySelector('[data-testid=gap-dismissal-line]')?.textContent.includes('13:40 · 가정') && document.querySelector('[data-testid=gap-weekdays]')?.textContent.includes('빈 200분') && document.querySelector('[data-testid=gap-slot]')", 'SW-26 an explicit unknown choice shows the assumption and calculates the gaps')
+  assertPage("!JSON.parse(localStorage.getItem('elementary-schedule-plans-v1')).plans[0].starter.done", 'SW-26 these answers leave the old completion flag false')
+  run(['eval', "localStorage.removeItem('elementary-schedule-plans-v1'); 'manual draft removed'"], { quiet: true })
   run(['eval', "(() => { const [list, legacy] = JSON.parse(sessionStorage.getItem('smoke-favorites') || '[null,null]'); if (list !== null) localStorage.setItem('elementary-favorites-v1', list); if (legacy !== null) localStorage.setItem('favorite-school-ids', legacy); sessionStorage.removeItem('smoke-favorites'); return 'saved schools restored' })()"], { quiet: true })
   run(['open', new URL('/learn', baseUrl).toString()])
   await waitFor("document.querySelector('#learn-title')", 'back on 학습 준비 for the map link check')
@@ -980,7 +992,7 @@ try {
   )
   run(['eval', "document.querySelectorAll('.plan-faces a')[1].click(); 'to the week'"])
   await waitFor(
-    "location.pathname === '/timetable' && document.querySelector('.plan-faces a[aria-current=page]')?.textContent === '우리 아이 한 주'"
+    "location.pathname === '/timetable' && document.querySelector('[data-testid=gap-map]')"
     + " && !document.querySelector('.roadmap')",
     'the second face is the week timetable',
   )

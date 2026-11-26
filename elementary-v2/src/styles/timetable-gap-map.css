@@ -67,6 +67,14 @@
 .gap-toast button { min-height: 36px; min-width: 36px; padding-inline: 4px; font: inherit; white-space: nowrap; }
 .gap-dialog { position: fixed; inset: auto 0 0; width: min(100%, 540px); max-width: 100%; max-height: 86dvh; max-height: min(86dvh, var(--gap-visual-height, 100dvh)); margin: 0 auto var(--gap-keyboard, 0px); padding: 0; overflow: auto; border: 0; border-radius: 20px 20px 0 0; background: white; color: #272720; }
 .gap-dialog::backdrop { background: #2a20195e; }
+.gap-example-label { display: flex; align-items: center; gap: 7px; padding: 5px 0 3px 34px; color: #604031; font-size: 13px; font-weight: 750; }
+.gap-example-label span { border-radius: 6px; padding: 2px 7px; background: #f7e6d8; color: #813a28; font-size: 11px; }
+.gap-example-space { display: grid; height: 100%; place-items: center; text-align: center; font-size: 11px; font-weight: 750; }
+.gap-map[data-example] .gap-line--school { pointer-events: none; }
+.gap-map[data-example] .gap-line--school::before { content: none; }
+.gap-entry-actions { justify-content: space-between; }
+.gap-entry-actions button { margin-left: auto; }
+.gap-switch-manual { border: 1px solid #eadbd0; border-radius: 8px; padding: 0 7px; }
 .gap-sheet { padding: 0 14px max(14px, env(safe-area-inset-bottom)); }
 .gap-handle { width: 32px; height: 4px; border-radius: 4px; margin: 8px auto 5px; background: #cfc3b9; }
 .gap-sheet > header { display: flex; align-items: center; justify-content: space-between; }

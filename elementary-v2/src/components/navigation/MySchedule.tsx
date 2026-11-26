@@ -71,7 +71,11 @@ export default function MySchedule({ school, entryYear, schoolControl, onNavigat
   const step = manual || (plan && !starter) ? 'done' : starterStep(starter, context)
   const home = starter?.returnAt ?? null
   const until = coverageUntil(starter)
-  const days = computeWeek(visible, { from: 'dismissal', to: until ?? 0 })
+  const days = computeWeek(visible, { from: 'dismissal', to: manual && home === null ? 0 : until ?? 0 })
+  const dismissalNotes = manual ? Object.fromEntries(days.flatMap(day => {
+    const entry = day.blocks.find(block => block.entry.kind === 'school')?.entry
+    return entry ? [[day.weekday, entry.timeAssumption ? '가정' : '직접 입력']] : []
+  })) : undefined
   const checks = new Map(schoolChecks(visible).map(check => [check.id, check.reasons]))
   const coverage = !manual && until !== null ? planCoverage(visible, until) : null
   const care = typeof home === 'number' ? afternoonCareFor(schoolId, dayData?.care ?? null, home) : null
@@ -97,7 +101,7 @@ export default function MySchedule({ school, entryYear, schoolControl, onNavigat
     if (!next) return false
     if (mergeManual && !manual) {
       const source = current.plans.find(item => item.schoolId === UNSPECIFIED_SCHOOL)
-      if (source) next.entries = [...next.entries, ...source.entries.filter(entry => !next.entries.some(item => item.id === entry.id))]
+      if (source) next.entries = [...next.entries, ...source.entries.filter(entry => entry.kind !== 'school' && !next.entries.some(item => item.id === entry.id))]
     }
     const wasCompleted = previous?.starterCompleted === true || previous?.starter?.done === true
     const firstCompletion = next.starter?.done === true && !wasCompleted
@@ -132,16 +136,17 @@ export default function MySchedule({ school, entryYear, schoolControl, onNavigat
   }
 
   const pickReturn = (returnAt: ReturnAt) => {
-    funnelMeasurement.timetableStep(schoolId, { step: 'return', answer: RETURN_ANSWERS[returnAt] })
+    if (!manual) funnelMeasurement.timetableStep(schoolId, { step: 'return', answer: RETURN_ANSWERS[returnAt] })
     const saved = savePlan(previous => {
       const before = previous.starter
+      if (manual) return { ...previous, starter: { ...emptyStarter(), ...before, returnAt } }
       const seeded = withSchoolTimes(previous.entries)
       // Preserve in-progress answers and completed history when changing the displayed pickup line.
       const answers = before?.returnAt != null && returnAt !== 'dismissal'
         ? { ...before, returnAt }
         : { ...answerReturn(returnAt, { needsDismissal: !hasScheduleDismissal(seeded) }), dismissal: before?.dismissal, ...(before?.done && { done: true }) }
       return { ...previous, starter: answers, entries: seeded }
-    }, '귀가 시각을 저장했어요.', false, !plan)
+    }, '귀가 시각을 저장했어요.', false, !manual && !plan)
     if (saved) setPanel(null)
   }
   const answerDismissal = (choice: DismissalChoice) => {
@@ -150,10 +155,11 @@ export default function MySchedule({ school, entryYear, schoolControl, onNavigat
       const seeded = withSchoolTimes(previous.entries)
       const oneDay = hasScheduleDismissal(seeded)
       const response = oneDay ? { default: answers.dismissal?.default ?? 'unknown' as const, weekdays: { ...answers.dismissal?.weekdays, [dismissalDay]: choice } } : { default: choice }
-      return { ...previous, ...answerStarterDismissal(schoolId, answers, seeded, response, oneDay ? dismissalDay : undefined) }
+      const result = answerStarterDismissal(schoolId, answers, seeded, response, oneDay ? dismissalDay : undefined)
+      return { ...previous, ...result, starter: manual ? { ...result.starter, done: answers.done } : result.starter }
     }, '하교 시각을 저장했어요.')
     if (saved) {
-      funnelMeasurement.timetableStep(schoolId, { step: 'dismissal', answer: choice === 'unknown' ? 'unknown' : formatMinutes(choice) as '12:50' | '13:40' | '14:30' })
+      if (!manual) funnelMeasurement.timetableStep(schoolId, { step: 'dismissal', answer: choice === 'unknown' ? 'unknown' : formatMinutes(choice) as '12:50' | '13:40' | '14:30' })
       setPanel(null)
     }
   }
@@ -221,17 +227,17 @@ export default function MySchedule({ school, entryYear, schoolControl, onNavigat
   }, '일정을 뺐어요.', true) || false
 
   const returnOptions = <div className="gap-choices">{[...RETURN_OPTIONS].reverse().map(({ value }) => <button type="button" key={value}
-    disabled={dayData === undefined && !hasDismissal} aria-pressed={home === value} data-testid={'gap-return-' + value} onClick={() => pickReturn(value)}>{returnLabels[value]}</button>)}</div>
+    disabled={!manual && dayData === undefined && !hasDismissal} aria-pressed={home === value} data-testid={'gap-return-' + value} onClick={() => pickReturn(value)}>{returnLabels[value]}</button>)}</div>
   const closePanel = () => setPanel(null)
   const free = gaps(activePlan).find(([from, to]) => to - from >= GAP_MINIMUM)
   return <>
     <MyScheduleWeek days={days} active={active} setActive={setActive} week={week} setWeek={setWeek} manual={manual} returnAt={home}
-      school={schoolControl} needsCheck={new Set(checks.keys())} onMenu={() => { setNotice(null); setPanel('menu') }}
+      school={schoolControl} needsCheck={new Set(checks.keys())} dismissalNotes={dismissalNotes} onMenu={() => { setNotice(null); setPanel('menu') }}
       care={offerCare && careDay ? { weekday: careDay.weekday, content: <div className="gap-care" data-testid="gap-care-offer">
         <button type="button" onClick={() => answerCare(true)}>＋ 학교 돌봄 후보</button><button type="button" aria-label="학교 돌봄 없이 계속" onClick={() => answerCare(false)}>×</button>
       </div> } : undefined}
       onDismissal={day => { setDismissalDay(day); setPanel('dismissal') }} onAdd={chooseGap} onEdit={editEntry}
-      question={!manual && home === null && <div className="gap-question" data-testid="gap-return-question"><strong>보호자가 몇 시에 집에 오나요?</strong>{returnOptions}</div>} />
+      question={home === null && <div className="gap-question" data-testid="gap-return-question"><strong>보호자가 몇 시에 집에 오나요?</strong>{returnOptions}</div>} />
     <div className="gap-bottom">
       <button type="button" className="gap-primary" aria-label="일정 추가" onClick={() => free ? chooseGap(gapRange(active, free[0], free[1], free[0]), free) : chooseGap(calendarRange(active, 840))}>＋ 일정</button>
     </div>
@@ -240,7 +246,7 @@ export default function MySchedule({ school, entryYear, schoolControl, onNavigat
     {panel === 'menu' && <GapDialog title="시간표 안내" onClose={closePanel}>
       <div className="gap-menu-list">
         <p>이 브라우저에 초안을 저장해요. 예상·후보 일정은 학교 일정과 참여 여부를 확인해 주세요.</p>
-        {!manual && <button type="button" onClick={() => setPanel('return')}>보호자 귀가 시각 바꾸기</button>}
+        <button type="button" onClick={() => setPanel('return')}>보호자 귀가 시각 바꾸기</button>
         <button type="button" onClick={() => setPanel('off-grid')}>격자 밖 · 숨긴 일정</button>
         {coverage && <p data-testid="plan-coverage" data-coverage={coverage.state}>{describeCoverage(coverage)}</p>}
         {gapAsk && <a href={gapAsk} data-testid="plan-gap-ask" onClick={event => followLink(event, gapAsk, onNavigate)}>원하는 활동 알리기</a>}
@@ -268,9 +274,9 @@ export default function MySchedule({ school, entryYear, schoolControl, onNavigat
       </div>
     </GapDialog>}
     {panel === 'return' && <GapDialog title="보호자 귀가 시각" onClose={closePanel}>{returnOptions}</GapDialog>}
-    {panel === 'dismissal' && <GapDialog title={DAY_NAMES[dismissalDay - 1] + '요일 하교'} onClose={closePanel}>
-      {days[dismissalDay - 1].dismissal.at === null
-        ? <div className="gap-menu-list"><p>학교 하교 시각을 확인해 주세요. 잘 모르면 13:40으로 가정해요.</p>{DISMISSAL_OPTIONS.map(choice => <button type="button" key={choice} onClick={() => answerDismissal(choice)}>{choice === 'unknown' ? '잘 몰라요' : formatMinutes(choice)}</button>)}</div>
+    {panel === 'dismissal' && <GapDialog title={manual && !hasDismissal ? '평일 하교 시각' : DAY_NAMES[dismissalDay - 1] + '요일 하교'} onClose={closePanel}>
+      {manual || days[dismissalDay - 1].dismissal.at === null
+        ? <div className="gap-menu-list"><p>{manual ? '잘 몰라요를 선택하면 13:40으로 가정해요.' : '학교 하교 시각을 확인해 주세요. 잘 모르면 13:40으로 가정해요.'}</p>{DISMISSAL_OPTIONS.map(choice => <button type="button" key={choice} data-testid={'gap-dismissal-' + choice} onClick={() => answerDismissal(choice)}>{choice === 'unknown' ? '잘 몰라요' : formatMinutes(choice)}</button>)}</div>
         : <div className="gap-menu-list"><p>{formatMinutes(days[dismissalDay - 1].dismissal.at!)} · 실제 시간은 학교에 확인해 주세요.</p></div>}
     </GapDialog>}
     {panel === 'off-grid' && <GapDialog title="격자 밖 · 숨긴 일정" onClose={closePanel}><div className="gap-menu-list">
