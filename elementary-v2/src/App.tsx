@@ -1,3 +1,4 @@
+import timetableMeta from './content/timetable-meta.json'
 import { lazy, Suspense, useCallback, useEffect, useRef, useState } from 'react'
 import MainLayout from './components/layout/MainLayout'
 import FilterPanel from './components/filters/FilterPanel'
@@ -623,7 +624,7 @@ const TITLES: Record<AppView, string> = {
   faq: `${FAQ_PAGE.title} | 어디초`,
   checklist: `${checklistContent.title} | 어디초`,
   learn: '학습 준비 | 어디초',
-  timetable: '우리집 일정 | 어디초',
+  timetable: timetableMeta.title,
   frontyard: '우리 아이의 학교동네 | 어디초',
   area: '지역별 초등학교 배정 현황 | 어디초',
 }

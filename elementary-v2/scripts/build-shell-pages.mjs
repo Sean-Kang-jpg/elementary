@@ -198,6 +198,14 @@ const writePage = async (pagePath, html) => {
   await fs.writeFile(file, html, 'utf8')
 }
 
+// A route-specific static head for clients that do not run the application bundle.
+const timetableMeta = JSON.parse(await fs.readFile(path.join(projectRoot, 'src/content/timetable-meta.json'), 'utf8'))
+const timetableHtml = contentPage({ pagePath: '/timetable', title: timetableMeta.title, description: timetableMeta.description, body: '' })
+  .replace(/(<meta property="og:title" content=")[^"]*/, '$1' + escapeHtml(timetableMeta.ogTitle))
+  .replace(/(<meta property="og:description" content=")[^"]*/, '$1' + escapeHtml(timetableMeta.ogDescription))
+  .replace('</head>', `<meta name="twitter:title" content="${escapeHtml(timetableMeta.xTitle)}"><meta name="twitter:description" content="${escapeHtml(timetableMeta.xDescription)}"></head>`)
+await writePage('/timetable', timetableHtml)
+
 const sourcesHtml = (sources, verifiedAt) => '<aside class="content-sources" aria-label="근거 자료"><h2>근거 자료</h2><ul>'
   + sources.map((source) => `<li>${source.official ? '<span class="content-sources__official">공식</span>' : ''}<a href="${escapeHtml(source.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(source.label)}</a></li>`).join('')
   + `</ul><p>내용 확인일 ${escapeHtml(verifiedAt)}</p></aside>`

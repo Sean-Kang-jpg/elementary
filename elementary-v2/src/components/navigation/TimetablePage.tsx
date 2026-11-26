@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import timetableMeta from '../../content/timetable-meta.json'
 import type { School } from '../../types'
 import { getSchoolDetail } from '../../services/dataService'
 import { readFavorites, subscribeFavorites, type FavoriteRecord } from '../../utils/favorites'
@@ -13,11 +14,10 @@ import RoadmapCard from '../content/RoadmapCard'
 import PlanChangesNote from '../content/PlanChangesNote'
 import PinnedPlanList from '../content/PinnedPlanList'
 import { followLink } from '../content/contentLinks'
-import SchoolDayEstimateCard from '../school/SchoolDayEstimateCard'
-import SchoolPickupPreview from '../school/SchoolPickupPreview'
-import { formatMinutes } from '../../utils/schedule/fromSchoolData'
-import type { Weekday } from '../../utils/schedule/types'
 import MySchedule from './MySchedule'
+import GapDialog from './GapDialog'
+import { ChevronDown, School as SchoolIcon } from 'lucide-react'
+import '../../styles/timetable-gap-map.css'
 import { UNSPECIFIED_SCHOOL } from '../../utils/schedule/standalone'
 import SchoolSelection from '../search/SchoolSelection'
 import SampleWeek from './SampleWeek'
@@ -49,12 +49,28 @@ export default function TimetablePage({
   schoolId: routeSchoolId, face: routeFace, entryYear, profile, onEntryYearChange, onProfileChange, onSchoolChange, onNavigate,
 }: TimetablePageProps) {
   const [plans, setPlans] = useState(readPlans)
-  const [pickupSelection, setPickupSelection] = useState<{ schoolId: string; weekday: Weekday; pickup: number } | null>(null)
-  const editor = useRef<HTMLDivElement>(null)
+  const [schoolPicker, setSchoolPicker] = useState(false)
   const [favorites, setFavorites] = useState<FavoriteRecord[]>(readFavorites)
   useEffect(() => subscribePlans(() => setPlans(readPlans())), [])
   useEffect(() => subscribeFavorites(() => setFavorites(readFavorites())), [])
   useEffect(() => notePlanVisit(), [])
+  useEffect(() => {
+    const fields = [
+      ['name', 'description', timetableMeta.description], ['property', 'og:title', timetableMeta.ogTitle],
+      ['property', 'og:description', timetableMeta.ogDescription], ['name', 'twitter:title', timetableMeta.xTitle],
+      ['name', 'twitter:description', timetableMeta.xDescription],
+    ]
+    const restore = fields.map(([attribute, key, content]) => {
+      const prior = document.head.querySelector<HTMLMetaElement>('meta[' + attribute + '="' + key + '"]')
+      const original = prior?.content
+      const node = prior ?? document.createElement('meta')
+      node.setAttribute(attribute, key)
+      node.content = content
+      if (!prior) document.head.append(node)
+      return () => { if (original === undefined) node.remove(); else node.content = original }
+    })
+    return () => { restore.forEach(reset => reset()) }
+  }, [])
   const savedSchools = favorites.filter((item) => item.kind === 'school')
   const face: PlanFace = routeFace ?? 'week'
 
@@ -87,7 +103,6 @@ export default function TimetablePage({
   const loadingDetail = Boolean(schoolId) && detail?.id !== schoolId
 
   const plan = plans.plans.find((item) => item.schoolId === schoolId)
-  const pickup = pickupSelection?.schoolId === schoolId ? pickupSelection : null
   const name = school?.school_name
     ?? plan?.schoolName
     ?? savedSchools.find((item) => item.id === schoolId)?.name
@@ -116,15 +131,11 @@ export default function TimetablePage({
     })
     return () => cancelAnimationFrame(frame)
   }, [face, entryYear])
-  const hadPlan = useRef(Boolean(plan))
-  useEffect(() => {
-    if (plan && !hadPlan.current && !pickup) page.current?.scrollTo({ top: 0 })
-    hadPlan.current = Boolean(plan)
-  }, [plan, pickup])
-
-  // 초안 유무로 레이아웃이 바뀌면 학교 목록이 다시 만들어진다. 4번째 학교 거절 같은 안내가 그때 사라지지 않게 여기서 든다.
   const [pickMessage, setPickMessage] = useState('')
-  const chips = <SchoolSelection schoolId={schoolId} onChange={onSchoolChange} message={pickMessage} onMessage={setPickMessage}
+  const chips = <SchoolSelection schoolId={schoolId} onChange={(id) => {
+    if (id) { setSchoolPicker(false); setManualOpen(false) }
+    onSchoolChange(id)
+  }} message={pickMessage} onMessage={setPickMessage}
     onSelection={(id) => funnelMeasurement.markSelection(id, 'user')} />
 
   const weekSchool = schoolId
@@ -171,45 +182,22 @@ export default function TimetablePage({
     )
   }
 
-  // 학교가 있으면 예상 하교를 확인하고 같은 화면에서 한 주를 짤 수 있다.
-  if (schoolId) {
-    return (
-      <section ref={page} className="app-destination app-page content-page timetable-page timetable-page--editing" aria-labelledby="timetable-title">
-        <div className="content-page__inner">
-          {header}
-          <details className="timetable-school-change my-card">
-            <summary>{shownName ?? '선택한 학교'} · 학교 바꾸기</summary>
-            {chips}
-            <button type="button" className="my-button" onClick={() => { setManualOpen(true); onSchoolChange(null) }}>
-              {manualPlan ? '학교 없이 짠 시간표 보기' : '학교 없이 시작'}
-            </button>
-          </details>
-          {school && (
-            <details key={schoolId} className="my-card" open={plan ? undefined : true}>
-              <summary>우리 학교 오후 시간 확인하기</summary>
-              <SchoolPickupPreview schoolId={schoolId} onContinue={(weekday, pickupTime) => {
-                setPickupSelection({ schoolId, weekday, pickup: pickupTime })
-                editor.current?.focus({ preventScroll: true })
-                editor.current?.scrollIntoView({ block: 'start' })
-              }} />
-            </details>
-          )}
-          <div ref={editor} tabIndex={-1} data-testid="timetable-week-editor">
-            {pickup && <p className="my-help">미리보기 기준 · {['월', '화', '수', '목', '금'][pickup.weekday - 1]}요일 {formatMinutes(pickup.pickup)} 픽업</p>}
-            {loadingDetail && !name ? <p className="my-help" role="status">학교 자료를 불러오는 중…</p>
-              : name ? <MySchedule key={schoolId} school={{ id: schoolId, name, displayName: shownName ?? undefined }} entryYear={entryYear}
-                saved={savedSchools.some((item) => item.id === schoolId)} onNavigate={onNavigate} pickupFocus={pickup} />
-              : <p className="my-help" role="status">이 학교를 찾지 못했어요. 위에서 학교를 다시 골라 주세요.</p>}
-          </div>
-          {school && (
-            <details className="timetable-source my-card">
-              <summary>{shownName} 운영 자료 보기</summary>
-              <SchoolDayEstimateCard school={school} onOpenGuide={onNavigate} />
-            </details>
-          )}
-        </div>
-      </section>
-    )
+  if ((schoolId && name) || restoreManual) {
+    return <section ref={page} className="app-destination app-page content-page timetable-page gap-page" aria-labelledby="timetable-title">
+      <h1 className="sr-only" id="timetable-title">우리집 일정</h1>
+      <div className="gap-page-inner" data-testid="timetable-week-editor">
+        <MySchedule key={schoolId ?? UNSPECIFIED_SCHOOL} school={{ id: schoolId ?? UNSPECIFIED_SCHOOL, name: name ?? '학교 미선택' }} entryYear={entryYear}
+          onNavigate={onNavigate} schoolControl={<button type="button" className="gap-school-control" aria-label="학교 바꾸기" onClick={() => setSchoolPicker(true)}>
+            <SchoolIcon size={16} aria-hidden="true" /><span>{shownName ?? '학교 미선택'}</span><ChevronDown size={15} aria-hidden="true" />
+          </button>} timelineLink={<a href={planPath('timeline')} onClick={event => followLink(event, planPath('timeline'), onNavigate)}>입학까지 일정</a>} />
+      </div>
+      {schoolPicker && <GapDialog title="학교 바꾸기" onClose={() => setSchoolPicker(false)}>
+        {chips}
+        <button type="button" onClick={() => { setManualOpen(true); setSchoolPicker(false); onSchoolChange(null) }}>
+          {manualPlan ? '학교 없이 짠 시간표 보기' : '학교 없이 시작'}
+        </button>
+      </GapDialog>}
+    </section>
   }
 
   return (
@@ -217,7 +205,7 @@ export default function TimetablePage({
       <div className="content-page__inner">
         {header}
         {!restoreManual && <button type="button" className="my-button my-button--primary timetable-manual-start" onClick={() => setManualOpen(true)}>학교 없이 시작</button>}
-        {restoreManual && <MySchedule school={{ id: UNSPECIFIED_SCHOOL, name: '학교 미선택' }} entryYear={entryYear} saved={false} />}
+        {schoolId && <p className="my-help" role="status">{loadingDetail ? '학교 자료를 불러오는 중…' : '이 학교를 찾지 못했어요. 학교를 다시 골라 주세요.'}</p>}
         <section className="timetable-pick my-card" aria-labelledby="timetable-pick-title">
           <h2 id="timetable-pick-title">학교 일정 불러오기</h2>
           {chips}
