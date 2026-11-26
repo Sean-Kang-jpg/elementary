@@ -132,6 +132,7 @@ export default function MySchedule({ school, entryYear, schoolControl, onNavigat
   }
 
   const pickReturn = (returnAt: ReturnAt) => {
+    funnelMeasurement.timetableStep(schoolId, { step: 'return', answer: RETURN_ANSWERS[returnAt] })
     const saved = savePlan(previous => {
       const before = previous.starter
       const seeded = withSchoolTimes(previous.entries)
@@ -141,10 +142,7 @@ export default function MySchedule({ school, entryYear, schoolControl, onNavigat
         : { ...answerReturn(returnAt, { needsDismissal: !hasScheduleDismissal(seeded) }), dismissal: before?.dismissal, ...(before?.done && { done: true }) }
       return { ...previous, starter: answers, entries: seeded }
     }, '귀가 시각을 저장했어요.', false, !plan)
-    if (saved) {
-      funnelMeasurement.timetableStep(schoolId, { step: 'return', answer: RETURN_ANSWERS[returnAt] })
-      setPanel(null)
-    }
+    if (saved) setPanel(null)
   }
   const answerDismissal = (choice: DismissalChoice) => {
     const saved = savePlan(previous => {
@@ -152,9 +150,7 @@ export default function MySchedule({ school, entryYear, schoolControl, onNavigat
       const seeded = withSchoolTimes(previous.entries)
       const oneDay = hasScheduleDismissal(seeded)
       const response = oneDay ? { default: answers.dismissal?.default ?? 'unknown' as const, weekdays: { ...answers.dismissal?.weekdays, [dismissalDay]: choice } } : { default: choice }
-      const result = answerStarterDismissal(schoolId, answers, seeded, response)
-      return { ...previous, ...result, entries: oneDay ? seeded.filter(entry => entry.kind !== 'school' || !entry.weekdays.includes(dismissalDay))
-        .concat(result.entries.filter(entry => entry.kind === 'school' && entry.weekdays.includes(dismissalDay))) : result.entries }
+      return { ...previous, ...answerStarterDismissal(schoolId, answers, seeded, response, oneDay ? dismissalDay : undefined) }
     }, '하교 시각을 저장했어요.')
     if (saved) {
       funnelMeasurement.timetableStep(schoolId, { step: 'dismissal', answer: choice === 'unknown' ? 'unknown' : formatMinutes(choice) as '12:50' | '13:40' | '14:30' })
@@ -170,10 +166,10 @@ export default function MySchedule({ school, entryYear, schoolControl, onNavigat
     }, yes ? '돌봄 후보를 넣었어요.' : '돌봄 선택을 저장했어요.', true)
     if (saved) funnelMeasurement.timetableStep(schoolId, { step: 'care', answer: yes ? 'yes' : 'no' })
   }
-  const answerCourses = () => {
+  const answerCourses = (yes: boolean) => {
     const saved = savePlan(previous => previous.starter?.care !== null && previous.starter?.courses === null
-      ? { ...previous, starter: { ...previous.starter, courses: false } } : null, '방과후 선택을 저장했어요.')
-    if (saved) funnelMeasurement.timetableStep(schoolId, { step: 'courses', answer: hasSlots === true ? 'no' : 'skip' })
+      ? { ...previous, starter: { ...previous.starter, courses: yes } } : null, '방과후 선택을 저장했어요.')
+    if (saved) funnelMeasurement.timetableStep(schoolId, { step: 'courses', answer: yes ? 'yes' : hasSlots === true ? 'no' : 'skip' })
   }
   const chooseGap = (range: CalendarRange, gap?: [number, number]) => {
     setActive(range.weekday)
@@ -224,7 +220,7 @@ export default function MySchedule({ school, entryYear, schoolControl, onNavigat
   }, '일정을 뺐어요.', true) || false
 
   const returnOptions = <div className="gap-choices">{[...RETURN_OPTIONS].reverse().map(({ value }) => <button type="button" key={value}
-    aria-pressed={home === value} data-testid={'gap-return-' + value} onClick={() => pickReturn(value)}>{returnLabels[value]}</button>)}</div>
+    disabled={dayData === undefined && !hasDismissal} aria-pressed={home === value} data-testid={'gap-return-' + value} onClick={() => pickReturn(value)}>{returnLabels[value]}</button>)}</div>
   const closePanel = () => setPanel(null)
   const free = gaps(activePlan).find(([from, to]) => to - from >= GAP_MINIMUM)
   return <>
@@ -247,8 +243,11 @@ export default function MySchedule({ school, entryYear, schoolControl, onNavigat
         <button type="button" onClick={() => setPanel('off-grid')}>격자 밖 · 숨긴 일정</button>
         {coverage && <p data-testid="plan-coverage" data-coverage={coverage.state}>{describeCoverage(coverage)}</p>}
         {gapAsk && <a href={gapAsk} data-testid="plan-gap-ask" onClick={event => followLink(event, gapAsk, onNavigate)}>원하는 활동 알리기</a>}
-        {offerCare && <button type="button" onClick={() => answerCare(false)}>학교 돌봄 없이 계속</button>}
-        {step === 'courses' && <button type="button" onClick={answerCourses}>{hasSlots ? '방과후 없이 계속' : '학교 강좌 시간 자료 건너뛰기'}</button>}
+        {step === 'care' && <button type="button" onClick={() => answerCare(false)}>학교 돌봄 없이 계속</button>}
+        {step === 'courses' && <>
+          {entries.some(entry => entry.kind === 'afterschool' && !entry.userOverride?.deleted) && <button type="button" onClick={() => answerCourses(true)}>방과후 선택 완료</button>}
+          <button type="button" onClick={() => answerCourses(false)}>{hasSlots ? '방과후 없이 계속' : '학교 강좌 시간 자료 건너뛰기'}</button>
+        </>}
         {step === 'fill' && evening && !entries.some(entry => entry.id === evening.id) && <button type="button" onClick={() => {
           if (savePlan(previous => previous.entries.some(entry => entry.id === evening.id) ? null : { ...previous, entries: [...previous.entries, evening] }, '저녁 돌봄을 넣었어요.', true)) closePanel()
         }}>저녁 돌봄 넣기 · 학교 공시</button>}

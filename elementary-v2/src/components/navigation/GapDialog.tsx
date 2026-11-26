@@ -11,8 +11,22 @@ export default function GapDialog({ title, children, onClose, hint }: {
   const id = useId()
   useEffect(() => {
     const node = dialog.current
-    if (node && !node.open) node.showModal()
-    return () => { if (node?.open) node.close() }
+    if (!node) return
+    node.showModal()
+    const viewport = window.visualViewport
+    const fit = () => {
+      if (!viewport) return
+      node.style.setProperty('--gap-visual-height', viewport.height + 'px')
+      node.style.setProperty('--gap-keyboard', Math.max(0, window.innerHeight - viewport.height - viewport.offsetTop) + 'px')
+    }
+    viewport?.addEventListener('resize', fit)
+    viewport?.addEventListener('scroll', fit)
+    fit()
+    return () => {
+      viewport?.removeEventListener('resize', fit)
+      viewport?.removeEventListener('scroll', fit)
+      if (node.open) node.close()
+    }
   }, [])
   return <dialog ref={dialog} className="gap-dialog" aria-labelledby={id} onCancel={(event) => { event.preventDefault(); onClose() }}
     onClick={(event) => { if (event.target === event.currentTarget) onClose() }}>

@@ -94,11 +94,12 @@ export const hasScheduleDismissal = (entries: readonly ScheduleEntry[]): boolean
 
 /** 하교 답과 정규수업 칸을 같은 쓰기에 담는다. 기존 직접 입력과 삭제 기록은 그대로 둔다. */
 export const answerStarterDismissal = (
-  schoolId: string, answers: StarterAnswers, entries: readonly ScheduleEntry[], dismissal: DismissalAnswer,
+  schoolId: string, answers: StarterAnswers, entries: readonly ScheduleEntry[], dismissal: DismissalAnswer, targetDay?: Weekday,
 ): { starter: StarterAnswers; entries: ScheduleEntry[] } => {
   const next = [...entries]
   const source = { ref: `starter_dismissal:${schoolId}`, version: '1' }
   for (const day of WEEKDAYS) {
+    if (targetDay !== undefined && day !== targetDay) continue
     const id = `school-${schoolId}-${day}`
     const index = next.findIndex(entry => regularSchool(entry) && entry.weekdays.includes(day))
     const current = next[index]
