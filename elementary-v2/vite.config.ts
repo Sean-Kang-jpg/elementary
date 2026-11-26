@@ -3,6 +3,8 @@ import react from '@vitejs/plugin-react'
 import { readFileSync } from 'node:fs'
 import { siteOrigin } from './scripts/site-origin.mjs'
 
+import timetableMeta from './src/content/timetable-meta.json'
+
 const { version } = JSON.parse(readFileSync('./package.json', 'utf8'))
 
 /**
@@ -18,8 +20,15 @@ const { version } = JSON.parse(readFileSync('./package.json', 'utf8'))
  */
 const stampHtml = () => ({
   name: 'stamp-html',
-  transformIndexHtml: (html: string) => {
-    const filled = html
+  transformIndexHtml: (html: string, { originalUrl }: { originalUrl?: string }) => {
+    const timetable = originalUrl?.split('?')[0] === '/timetable'
+    const page = timetable ? html
+      .replace(/<title>[^<]*<\/title>/, `<title>${timetableMeta.title}</title>`)
+      .replace(/(<meta name="description" content=")[^"]*/, '$1' + timetableMeta.description)
+      .replace(/(<meta property="og:title" content=")[^"]*/, '$1' + timetableMeta.ogTitle)
+      .replace(/(<meta property="og:description" content=")[^"]*/, '$1' + timetableMeta.ogDescription)
+      .replace('</head>', `<meta name="twitter:title" content="${timetableMeta.xTitle}"><meta name="twitter:description" content="${timetableMeta.xDescription}"></head>`) : html
+    const filled = page
       .replaceAll('{{SITE_ORIGIN}}', siteOrigin())
       .replaceAll('{{APP_VERSION}}', version)
     const leftover = filled.match(/\{\{[A-Z_]+\}\}/)

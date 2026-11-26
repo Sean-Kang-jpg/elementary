@@ -8,9 +8,6 @@ const cli = path.join(projectRoot, 'node_modules', 'agent-browser', 'bin', 'agen
 const baseUrl = process.argv[2] || 'http://127.0.0.1:3001'
 const session = `elementary-public-smoke-${process.pid}`
 const namespace = 'elementary-smoke'
-// Shared roadmap IDs keep their canonical title when a season card is pinned.
-const roadmap = JSON.parse(fs.readFileSync(path.join(projectRoot, 'src/content/roadmap.json'), 'utf8'))
-const roadmapTitles = Object.fromEntries([...roadmap.planning, ...Object.values(roadmap.admission).flat()].map((item) => [item.id, item.text]))
 const connectionArgs = process.env.AGENT_BROWSER_CDP_PORT
   ? ['--cdp', process.env.AGENT_BROWSER_CDP_PORT]
   : []
@@ -72,6 +69,7 @@ const waitFor = async (condition, message, { timeoutMs = 15_000, intervalMs = 25
       try {
         const diagnostic = run(['eval', `JSON.stringify({
           path: location.pathname,
+          search: location.search,
           ready: document.readyState,
           searchResults: document.querySelector('#map-search-results')?.innerText?.slice(0, 600) ?? null,
           alerts: [...document.querySelectorAll('[role=alert]')].map(node => node.textContent?.slice(0, 200)),
@@ -384,46 +382,38 @@ try {
   await assertOriginsAgree()
 
   run(['set', 'viewport', '390', '844'])
-  // UX-13: a week starts from questions, not an empty draft. Real data moves, so this checks
-  // the order of questions, what is stored, and that care never runs past the return time.
+  // SW-26 keeps the plan answers but puts the first question and edit action on the grid.
   run(['open', new URL('/timetable?school=B000002292', baseUrl).toString()])
-  run(['eval', "localStorage.removeItem('elementary-schedule-plans-v1'); location.reload(); 'UX-13 no drafts'"], { quiet: true })
-  await waitFor("document.querySelector('[data-testid=plan-starter][data-step=return]') && ![...document.querySelectorAll('.my-schedule button')].some(b => b.textContent.includes('자료 없이'))", 'UX-13 the week starts with the return-time question, with no empty-draft button')
-  const starterClick = (label) => run(['eval', `[...document.querySelectorAll('.plan-starter button')].find(b => b.textContent.startsWith(${JSON.stringify(label)})).click(); 'UX-13 ${label}'`], { quiet: true })
-  starterClick('17시쯤')
-  await waitFor("document.querySelector('[data-testid=plan-starter]')?.dataset.step === 'care'", 'UX-13 the return time leads to the care question')
-  starterClick('예')
-  await waitFor("document.querySelector('[data-testid=plan-starter]')?.dataset.step === 'courses' && document.querySelector('#plan-starter-title').textContent.includes('도 들을')", 'UX-13 care leads to the courses question, worded for families using care')
-  starterClick('← 이전')
-  await waitFor("document.querySelector('[data-testid=plan-starter]')?.dataset.step === 'care'", 'UX-13 the back button returns to the care question')
-  starterClick('아니요')
-  await waitFor("document.querySelector('[data-testid=plan-starter]')?.dataset.step === 'courses' && !JSON.parse(localStorage.getItem('elementary-schedule-plans-v1')).plans[0].entries.some(e => e.id === 'care-B000002292-afternoon')", 'UX-13 answering care again with no takes out the care it had put in')
-  starterClick('← 이전')
-  starterClick('예')
-  await waitFor("document.querySelector('[data-testid=plan-starter]')?.dataset.step === 'courses'", 'UX-13 care answered yes again')
-  starterClick('아니요')
-  await waitFor("document.querySelector('[data-testid=plan-starter]')?.dataset.step === 'fill' && document.querySelector('.plan-starter .plan-coverage')?.textContent.includes('17시')", 'UX-13 the last step counts gaps only until the return time')
-  assertPage("(() => { const plan = JSON.parse(localStorage.getItem('elementary-schedule-plans-v1')).plans.find(p => p.schoolId === 'B000002292'); const care = plan.entries.find(e => e.id === 'care-B000002292-afternoon'); return JSON.stringify(plan.starter) === JSON.stringify({ returnAt: 1020, care: true, courses: false, done: false }) && care.participation === 'planned' && care.end <= 1020 })()", 'UX-13 answers are stored with the draft and care ends by the return time')
-  starterClick('다 됐어요')
-  await waitFor("!document.querySelector('[data-testid=plan-starter]') && document.querySelector('[data-testid=plan-coverage]')", 'UX-13 finishing hides the questions and keeps the coverage line')
-  assertPage("document.querySelector('[data-testid=plan-intents]')?.textContent.startsWith('이번 주 안전') && document.querySelector('.my-agenda__card--care .intent-chip--safety')", 'UX-14 care shows as 안전 on its card and in the weekly intent line')
-  assertPage("document.querySelector('[data-testid=school-checks]')?.textContent.includes('학교에 확인할 것') && document.querySelector('[data-testid=school-checks]')?.textContent.includes('참여가 확정되지')", 'completed plan groups school confirmations separately from filled time')
-  assertPage("document.querySelectorAll('.school-checks__card').length >= 2 && [...document.querySelectorAll('.school-checks__why')].every(node => !node.open)", 'confirmation cards keep detailed explanations collapsed initially')
-  run(['eval', `document.querySelector('[data-testid=school-checks] button[aria-label="오후 돌봄 일정에서 확인"]').click(); true`], { quiet: true })
-  await waitFor("document.querySelector('dialog[open]')?.textContent.includes('오후 돌봄')", 'school confirmation opens the existing care editor')
-  run(['eval', `document.querySelector('dialog[open] button[aria-label="닫기"]').click(); true`], { quiet: true })
-  await waitFor("!document.querySelector('dialog[open]') && document.querySelector('[data-testid=school-checks]')", 'closing confirmation preserves the completed plan and its summary')
-
-  run(['eval', "document.querySelector('.my-agenda__card--care').click(); 'open care'"], { quiet: true })
-  await waitFor("document.querySelector('.my-entry-sheet__remove-all')", 'a slot on several weekdays offers 모든 요일에서 빼기')
-  run(['eval', "document.querySelector('.my-entry-sheet__remove-all').click(); 'remove all'"], { quiet: true })
-  await waitFor("document.querySelector('.my-calendar-undo') && !JSON.parse(localStorage.getItem('elementary-schedule-plans-v1')).plans[0].entries.some(e => e.kind === 'care')", 'removing from every weekday takes the slot out and offers undo')
-  run(['eval', "document.querySelector('.my-calendar-undo').click(); 'undo'"], { quiet: true })
-  await waitFor("JSON.parse(localStorage.getItem('elementary-schedule-plans-v1')).plans[0].entries.some(e => e.id === 'care-B000002292-afternoon') && !document.querySelector('.my-calendar-undo')", 'undo puts the slot back')
+  run(['eval', "localStorage.removeItem('elementary-schedule-plans-v1'); location.reload(); 'new draft'"], { quiet: true })
+  await waitFor("document.querySelector('[data-testid=gap-return-question]') && document.querySelectorAll('[data-testid=gap-weekdays] button').length === 5", 'SW-26 the return question and five-day summary are on the grid')
+  await waitFor("document.querySelector('[data-testid=gap-return-1020]:enabled')", 'SW-26 published school data is ready')
+  const clickGap = (selector) => run(['eval', `document.querySelector(${JSON.stringify(selector)}).click(); true`], { quiet: true })
+  clickGap('[data-testid=gap-return-1020]')
+  await waitFor("document.querySelector('[data-testid=gap-return-line]') && document.querySelector('[data-testid=gap-slot]')", 'SW-26 the return line bounds the new gap')
+  assertPage("JSON.parse(localStorage.getItem('elementary-schedule-plans-v1')).plans[0].starter.care === null", 'SW-26 unanswered care stays null')
+  clickGap('[data-testid=gap-slot]')
+  await waitFor("document.querySelector('dialog[open] [data-testid=gap-entry-form] input[name=label]')", 'SW-26 tapping a gap opens the direct input sheet')
+  run(['eval', `const input=document.querySelector('dialog[open] input[name=label]'); Object.getOwnPropertyDescriptor(HTMLInputElement.prototype,'value').set.call(input,'스모크 읽기'); input.dispatchEvent(new Event('input',{bubbles:true})); true`], { quiet: true })
+  clickGap('dialog[open] button[type=submit]')
+  await waitFor("document.querySelector('[data-testid=gap-event]')?.textContent.includes('스모크 읽기') && document.querySelector('[data-testid=gap-toast]')", 'SW-26 saving adds the block and one toast')
+  assertPage("!JSON.parse(localStorage.getItem('elementary-schedule-plans-v1')).plans[0].starter.done", 'SW-26 adding a block does not complete the old questionnaire')
+  clickGap('[data-testid=gap-toast] button')
+  await waitFor("!document.querySelector('[data-testid=gap-event]')", 'SW-26 undo restores the previous draft')
+  clickGap('[data-testid=gap-care-offer] button')
+  await waitFor("document.querySelector('[data-testid=gap-event][data-kind=care][data-candidate] .gap-check')", 'SW-26 care is a candidate with a check badge')
+  clickGap('[data-testid=gap-event][data-kind=care]')
+  await waitFor("document.querySelector('dialog[open] .gap-explanation')", 'SW-26 check reasons live in the shared edit sheet')
+  clickGap('dialog[open] button[aria-label=닫기]')
+  clickGap('.gap-menu-button')
+  run(['eval', "[...document.querySelectorAll('dialog[open] button')].find(b => /방과후 없이|강좌 시간 자료/.test(b.textContent)).click(); true"], { quiet: true })
+  clickGap('[data-testid=gap-complete]')
+  await waitFor("JSON.parse(localStorage.getItem('elementary-schedule-plans-v1')).plans[0].starter.done === true", 'SW-26 explicit confirmation preserves the completed-plan flag')
   // UX-17: the gaps line goes straight to 찾아요 with the first gap filled in. Care is taken out so
   // the week has a gap whatever the school publishes.
   run(['eval', `(() => { const store = JSON.parse(localStorage.getItem('elementary-schedule-plans-v1')); const plan = store.plans.find(p => p.schoolId === 'B000002292'); plan.entries = plan.entries.filter(e => e.kind !== 'care'); plan.starter = { returnAt: 1140, care: false, courses: false, done: true }; localStorage.setItem('elementary-schedule-plans-v1', JSON.stringify(store)); location.href = '/timetable?face=week&school=B000002292'; return 'UX-17 gaps' })()`], { quiet: true })
-  await waitFor("document.querySelector('[data-testid=plan-coverage].plan-coverage--gaps') && /[?&]write=seek/.test(document.querySelector('[data-testid=plan-gap-ask]')?.getAttribute('href') || '')", 'UX-17 a week with gaps offers 원하는 활동 알리기')
+  await waitFor("document.querySelector('.gap-menu-button')", 'UX-17 the gap map is ready')
+  clickGap('.gap-menu-button')
+  await waitFor("document.querySelector('[data-testid=plan-coverage][data-coverage=gaps]') && /[?&]write=seek/.test(document.querySelector('[data-testid=plan-gap-ask]')?.getAttribute('href') || '')", 'UX-17 a week with gaps offers 원하는 활동 알리기')
   run(['eval', "document.querySelector('[data-testid=plan-gap-ask]').click(); 'UX-17 ask'"], { quiet: true })
   await waitFor("location.pathname === '/frontyard' && /[?&]day=[1-5]/.test(location.search) && /[?&]from=/.test(location.search) && /[?&]write=seek/.test(location.search)", 'UX-17 the link opens 찾아요 for the first gap')
   // UX-16: the family's return time adds a sort to the care list; a school without a plan keeps distance only.
@@ -514,15 +504,14 @@ try {
       const card = document.querySelector('.worry-item:has([data-testid=add-to-plan-button])')
       const button = card.querySelector('[data-testid=add-to-plan-button]')
       const id = button.dataset.planId
-      const titles = ${JSON.stringify(roadmapTitles)}
-      window.__C08_ITEM__ = { id, title: titles[id] || card.querySelector('strong').textContent, href: card.querySelector('a').getAttribute('href'), shared: Boolean(titles[id]) }
+      window.__C08_ITEM__ = { id, href: card.querySelector('a').getAttribute('href') }
       button.click()
       return 'C-08 first seasonal item added'
     })()`])
     await waitFor("location.pathname === '/' && document.querySelector('.worry-item:has([data-testid=add-to-plan-button]) [data-testid=add-to-plan-button]')?.getAttribute('aria-pressed') === 'true' && document.querySelector('.worry-item:has([data-testid=add-to-plan-button]) [data-testid=add-to-plan-button]')?.getAttribute('aria-label').endsWith('우리집 일정에 있어요')", 'C-08 add confirms stored state without opening the card link')
     run(['click', '.app-gnb a[href="/timetable"]'], { quiet: true })
     run(['click', '.plan-faces a[href="/timetable?face=timeline"]'], { quiet: true })
-    await waitFor("location.pathname === '/timetable' && location.search === '?face=timeline' && document.querySelector('[aria-labelledby=pinned-plan-title]')?.textContent.includes(window.__C08_ITEM__.title)", 'C-08 pinned item appears in the family-plan timeline')
+    await waitFor("location.pathname === '/timetable' && location.search === '?face=timeline' && [...document.querySelectorAll('[aria-labelledby=pinned-plan-title] [data-plan-item]')].some(node => node.dataset.planItem === window.__C08_ITEM__.id && node.querySelector('a')?.getAttribute('href') === window.__C08_ITEM__.href)", 'C-08 the same pinned item and guide appear in the family-plan timeline')
     assertPage("(() => { const events = (window.__ANALYTICS_LOG__ || []).filter(entry => entry.event === 'plan_item_add'); return events.length === 1 && events[0].params.from === 'home_worry' && events[0].params.item_id === window.__C08_ITEM__.id })()", 'C-08 records one home_worry plan_item_add for the card ID')
     run(['eval', "document.querySelector('.app-topbar__home').click(); 'C-08 home again'"])
     await waitFor("document.querySelector('.worry-item:has([data-testid=add-to-plan-button]) [data-testid=add-to-plan-button]')?.getAttribute('aria-pressed') === 'true'", 'C-08 remounted home reads the saved pin')
