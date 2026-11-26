@@ -16,12 +16,15 @@ export type WeekCoverage =
   | { state: 'gaps'; until: Minutes; days: Weekday[]; minutes: number }
   | { state: 'unknown'; until: Minutes }
 
+export const gaps = (day: DayPlan): Array<[Minutes, Minutes]> =>
+  day.gapsUndetermined ? [] : day.gaps.filter((gap) => gap.status !== 'uncertain').map(({ from, to }) => [from, to])
+
 export const weekCoverage = (days: DayPlan[], until: Minutes): WeekCoverage => {
   if (!days.length || days.some((day) => day.gapsUndetermined !== null)) return { state: 'unknown', until }
-  const firm = days.map((day) => ({ day, gaps: day.gaps.filter((gap) => gap.status !== 'uncertain') }))
+  const firm = days.map((day) => ({ day, gaps: gaps(day) }))
   const withGaps = firm.filter(({ gaps }) => gaps.length)
   if (withGaps.length) {
-    return { state: 'gaps', until, days: withGaps.map(({ day }) => day.weekday), minutes: withGaps.reduce((sum, { gaps }) => sum + gaps.reduce((s, gap) => s + gap.minutes, 0), 0) }
+    return { state: 'gaps', until, days: withGaps.map(({ day }) => day.weekday), minutes: withGaps.reduce((sum, { gaps }) => sum + gaps.reduce((s, [from, to]) => s + to - from, 0), 0) }
   }
   return days.some((day) => day.gaps.length) ? { state: 'unknown', until } : { state: 'covered', until }
 }
@@ -33,8 +36,8 @@ export const planCoverage = (entries: ScheduleEntry[], until: Minutes = CALENDAR
 /** 빈 시간 안내에서 [찾아요]로 넘길 첫 공백(UX-17). 불확실한 공백은 세지 않는 `weekCoverage`와 같은 기준이다. */
 export const firstGapSlot = (entries: ScheduleEntry[], until: Minutes = CALENDAR_END): FrontyardSlot | null => {
   for (const day of computeWeek(entries, { from: 'dismissal', to: until })) {
-    const gap = day.gaps.find((item) => item.status !== 'uncertain')
-    if (gap) return { weekday: day.weekday, start: formatMinutes(gap.from), end: formatMinutes(gap.to) }
+    const gap = gaps(day)[0]
+    if (gap) return { weekday: day.weekday, start: formatMinutes(gap[0]), end: formatMinutes(gap[1]) }
   }
   return null
 }
