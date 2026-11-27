@@ -3,13 +3,13 @@ import { getSchoolAfterschool, getSchoolDayEstimate } from '../../services/dataS
 import type { SchoolAfterschool } from '../../types'
 import { funnelMeasurement } from '../../utils/analytics'
 import { timetableContentChanged } from '../../utils/funnelMeasurement'
-import { describeCoverage, firstGapSlot, gaps, planCoverage } from '../../utils/schedule/coverage'
+import { describeCoverage, firstGapSlot, planCoverage } from '../../utils/schedule/coverage'
 import { removeEntryDay } from '../../utils/schedule/dayTimes'
 import { calendarRange, type CalendarRange } from '../../utils/schedule/editing'
 import { computeWeek } from '../../utils/schedule/engine'
 import { afterschoolEntryFromSection, formatMinutes, schoolEntriesFromEstimate } from '../../utils/schedule/fromSchoolData'
 import { applyGapEdit, type GapEdit } from '../../utils/schedule/gapEditing'
-import { GAP_MINIMUM, gapRange } from '../../utils/schedule/gapMap'
+import { GAP_MINIMUM, gapRange, mapGaps } from '../../utils/schedule/gapMap'
 import { effectiveEntry } from '../../utils/schedule/overrides'
 import { deletePlan, readPlans, subscribePlans, upsertPlan, writePlans, type SchoolPlan } from '../../utils/schedule/plans'
 import { schoolChecks } from '../../utils/schedule/schoolChecks'
@@ -29,12 +29,11 @@ const RETURN_ANSWERS = { 900: '15:00', 1020: '17:00', 1140: '19:00', dismissal: 
 const returnLabels = { 900: '15시', 1020: '17시', 1140: '19시', dismissal: '바로' } as const
 const placeable = (entries: ScheduleEntry[]) => entries.map(effectiveEntry).filter((entry): entry is ScheduleEntry => entry !== null)
 
-export default function MySchedule({ school, entryYear, schoolControl, onNavigate, timelineLink }: {
+export default function MySchedule({ school, entryYear, schoolControl, onNavigate }: {
   school: { id: string; name: string }
   entryYear: number | null
   schoolControl: ReactNode
   onNavigate: (path: string) => void
-  timelineLink: ReactNode
 }) {
   const schoolId = school.id
   const manual = schoolId === UNSPECIFIED_SCHOOL
@@ -50,6 +49,12 @@ export default function MySchedule({ school, entryYear, schoolControl, onNavigat
   const [notice, setNotice] = useState<{ text: string; undo?: () => void } | null>(null)
 
   useEffect(() => subscribePlans(() => setStore(readPlans())), [])
+  // 토스트는 5초 뒤 사라진다(C안). 되돌리기는 그 안에 누른다.
+  useEffect(() => {
+    if (!notice) return
+    const timer = window.setTimeout(() => setNotice(null), 5000)
+    return () => window.clearTimeout(timer)
+  }, [notice])
   useEffect(() => {
     if (manual) return
     let current = true
@@ -76,7 +81,7 @@ export default function MySchedule({ school, entryYear, schoolControl, onNavigat
   const coverage = !manual && until !== null ? planCoverage(visible, until) : null
   const care = typeof home === 'number' ? afternoonCareFor(schoolId, dayData?.care ?? null, home) : null
   const evening = typeof home === 'number' ? eveningCareFor(dayData?.care ?? null, home) : null
-  const careDay = care && days.find(day => day.dismissal.at !== null && care.end !== null && care.end > day.dismissal.at && gaps(day).some(([from, to]) => to - from >= GAP_MINIMUM && from < care.end!))
+  const careDay = care && days.find(day => day.dismissal.at !== null && care.end !== null && care.end > day.dismissal.at && mapGaps(day).some(([from, to]) => to - from >= GAP_MINIMUM && from < care.end!))
   const offerCare = !manual && starter && starter.care === null && care && careDay && !entries.some(entry => entry.id === care.id)
   const standalone = !manual && store.plans.find(item => item.schoolId === UNSPECIFIED_SCHOOL)
   const rawGap = coverage?.state === 'gaps' && FRONTYARD_ENABLED && until !== null ? firstGapSlot(visible, until) : null
@@ -223,18 +228,16 @@ export default function MySchedule({ school, entryYear, schoolControl, onNavigat
   const returnOptions = <div className="gap-choices">{[...RETURN_OPTIONS].reverse().map(({ value }) => <button type="button" key={value}
     disabled={dayData === undefined && !hasDismissal} aria-pressed={home === value} data-testid={'gap-return-' + value} onClick={() => pickReturn(value)}>{returnLabels[value]}</button>)}</div>
   const closePanel = () => setPanel(null)
-  const free = gaps(activePlan).find(([from, to]) => to - from >= GAP_MINIMUM)
+  const free = mapGaps(activePlan).find(([from, to]) => to - from >= GAP_MINIMUM)
   return <>
     <MyScheduleWeek days={days} active={active} setActive={setActive} week={week} setWeek={setWeek} manual={manual} returnAt={home}
       school={schoolControl} needsCheck={new Set(checks.keys())} onMenu={() => { setNotice(null); setPanel('menu') }}
+      onAddAny={() => free ? chooseGap(gapRange(active, free[0], free[1], free[0]), free) : chooseGap(calendarRange(active, 840))}
       care={offerCare && careDay ? { weekday: careDay.weekday, content: <div className="gap-care" data-testid="gap-care-offer">
-        <button type="button" onClick={() => answerCare(true)}>＋ 학교 돌봄 후보</button><button type="button" aria-label="학교 돌봄 없이 계속" onClick={() => answerCare(false)}>×</button>
+        <button type="button" onClick={() => answerCare(true)}>＋ 학교 돌봄으로 채우기</button><button type="button" aria-label="학교 돌봄 없이 계속" onClick={() => answerCare(false)}>괜찮아요</button>
       </div> } : undefined}
       onDismissal={day => { setDismissalDay(day); setPanel('dismissal') }} onAdd={chooseGap} onEdit={editEntry}
       question={!manual && home === null && <div className="gap-question" data-testid="gap-return-question"><strong>보호자가 몇 시에 집에 오나요?</strong>{returnOptions}</div>} />
-    <div className="gap-bottom">
-      <button type="button" className="gap-primary" aria-label="일정 추가" onClick={() => free ? chooseGap(gapRange(active, free[0], free[1], free[0]), free) : chooseGap(calendarRange(active, 840))}>＋ 일정</button>
-    </div>
     {notice && <div className="gap-toast" data-testid="gap-toast"><span role="status">{notice.text}</span>{notice.undo && <button type="button" onClick={notice.undo}>되돌리기</button>}
       <button type="button" aria-label="알림 닫기" onClick={() => setNotice(null)}>×</button></div>}
     {panel === 'menu' && <GapDialog title="시간표 안내" onClose={closePanel}>
@@ -264,7 +267,6 @@ export default function MySchedule({ school, entryYear, schoolControl, onNavigat
         {standalone && plan && <button type="button" onClick={() => {
           if (savePlan(previous => ({ ...previous }), '직접 입력한 일정을 가져왔어요.', false, true)) closePanel()
         }}>직접 입력한 일정 가져오기</button>}
-        {timelineLink}
       </div>
     </GapDialog>}
     {panel === 'return' && <GapDialog title="보호자 귀가 시각" onClose={closePanel}>{returnOptions}</GapDialog>}
@@ -277,7 +279,7 @@ export default function MySchedule({ school, entryYear, schoolControl, onNavigat
       {entries.filter(entry => entry.kind !== 'school' && !entry.userOverride?.deleted).map(entry => <button type="button" key={entry.id}
         onClick={() => editEntry(entry.id, entry.weekdays.includes(active) ? active : entry.weekdays[0])}>{entry.label}</button>)}
     </div></GapDialog>}
-    {editing && <GapEntrySheet range={editing.range} entry={editing.entry} suggestions={suggestions} reasons={checks.get(editing.entry?.id ?? '') ?? []}
+    {editing && <GapEntrySheet range={editing.range} gap={editing.gap} entry={editing.entry} suggestions={suggestions} reasons={checks.get(editing.entry?.id ?? '') ?? []}
       onClose={() => setEditing(null)} onSave={saveEntry} onCourse={saveCourse} onRemove={remove} />}
   </>
 }

@@ -510,7 +510,8 @@ try {
     })()`])
     await waitFor("location.pathname === '/' && document.querySelector('.worry-item:has([data-testid=add-to-plan-button]) [data-testid=add-to-plan-button]')?.getAttribute('aria-pressed') === 'true' && document.querySelector('.worry-item:has([data-testid=add-to-plan-button]) [data-testid=add-to-plan-button]')?.getAttribute('aria-label').endsWith('우리집 일정에 있어요')", 'C-08 add confirms stored state without opening the card link')
     run(['click', '.app-gnb a[href="/timetable"]'], { quiet: true })
-    run(['click', '.plan-faces a[href="/timetable?face=timeline"]'], { quiet: true })
+    // C안: 시간표 화면에는 입학까지 탭이 없다. MY와 같은 주소로 같은 앱 안에서 이동한다(분석 기록 유지).
+    run(['eval', "history.pushState({}, '', '/timetable?face=timeline'); dispatchEvent(new PopStateEvent('popstate')); 'C-08 to timeline'"], { quiet: true })
     await waitFor("location.pathname === '/timetable' && location.search === '?face=timeline' && [...document.querySelectorAll('[aria-labelledby=pinned-plan-title] [data-plan-item]')].some(node => node.dataset.planItem === window.__C08_ITEM__.id && node.querySelector('a')?.getAttribute('href') === window.__C08_ITEM__.href)", 'C-08 the same pinned item and guide appear in the family-plan timeline')
     assertPage("(() => { const events = (window.__ANALYTICS_LOG__ || []).filter(entry => entry.event === 'plan_item_add'); return events.length === 1 && events[0].params.from === 'home_worry' && events[0].params.item_id === window.__C08_ITEM__.id })()", 'C-08 records one home_worry plan_item_add for the card ID')
     run(['eval', "document.querySelector('.app-topbar__home').click(); 'C-08 home again'"])
@@ -867,13 +868,15 @@ try {
     'the three examples are each marked 예시 and the sample week links to the week timetable',
   )
   assertPage("document.querySelectorAll('.frontyard-preview .sample-week .my-week__day').length === 5", '배움·돌봄 draws the sample as a real five-day week')
-  // The week face of 우리집 일정 shows the same sample week until a school is chosen.
+  // C안 (2026-11-27): before a school is chosen the week face shows the example map directly, a one-line school
+  // search and no 입학까지 tab or storage note.
   run(['open', new URL('/timetable?face=week', baseUrl).toString()])
-  await waitFor("document.querySelector('#timetable-title') && document.querySelector('.timetable-sample .sample-week')", '우리 아이 한 주 without a school shows a sample week')
-  run(['eval', `document.querySelector('.timetable-sample > summary').click(); true`], { quiet: true })
+  await waitFor("document.querySelector('#timetable-title') && document.querySelector('[data-testid=gap-start-preview]')", '우리 아이 한 주 without a school shows the example map')
   assertPage(
-    "document.querySelectorAll('.timetable-sample .my-week__day').length === 5 && document.querySelectorAll('.timetable-sample .my-week__entry').length >= 15 && !document.querySelector('.timetable-sample button') && document.documentElement.scrollWidth <= innerWidth",
-    'the sample week fills all five days with blocks, has no controls and does not widen the page',
+    "document.querySelectorAll('[data-testid=gap-start-preview] .gap-example__block').length >= 3 && document.querySelector('[data-testid=gap-start-preview] .gap-example__gap') && document.querySelector('.gap-example__line--home') && !document.querySelector('[data-testid=gap-start-preview] :is(button,a,input)') && !document.querySelector('.plan-faces') && !document.querySelector('.gap-start details')"
+    + " && !document.querySelector('.gap-start').textContent.includes('이 기기에') && !document.querySelector('.gap-start').textContent.includes('입학까지')"
+    + " && document.querySelectorAll('.gap-start input[type=search]').length === 1 && document.documentElement.scrollWidth <= innerWidth",
+    'the read-only example shows the day strip, blocks, a gap and the return line, with one search line, no tab, no storage note and no horizontal scroll',
   )
   run(['eval', "(() => { const [list, legacy] = JSON.parse(sessionStorage.getItem('smoke-favorites') || '[null,null]'); if (list !== null) localStorage.setItem('elementary-favorites-v1', list); if (legacy !== null) localStorage.setItem('favorite-school-ids', legacy); sessionStorage.removeItem('smoke-favorites'); return 'saved schools restored' })()"], { quiet: true })
   run(['open', new URL('/learn', baseUrl).toString()])

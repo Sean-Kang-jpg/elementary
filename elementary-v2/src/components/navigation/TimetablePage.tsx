@@ -20,7 +20,7 @@ import { ChevronDown, School as SchoolIcon } from 'lucide-react'
 import '../../styles/timetable-gap-map.css'
 import { UNSPECIFIED_SCHOOL } from '../../utils/schedule/standalone'
 import SchoolSelection from '../search/SchoolSelection'
-import SampleWeek from './SampleWeek'
+import GapMapExample from './GapMapExample'
 import { funnelMeasurement, trackDisplayedScreen } from '../../utils/analytics'
 
 interface TimetablePageProps {
@@ -189,7 +189,7 @@ export default function TimetablePage({
         <MySchedule key={schoolId ?? UNSPECIFIED_SCHOOL} school={{ id: schoolId ?? UNSPECIFIED_SCHOOL, name: name ?? '학교 미선택' }} entryYear={entryYear}
           onNavigate={onNavigate} schoolControl={<button type="button" className="gap-school-control" aria-label="학교 바꾸기" onClick={() => setSchoolPicker(true)}>
             <SchoolIcon size={16} aria-hidden="true" /><span>{shownName ?? '학교 미선택'}</span><ChevronDown size={15} aria-hidden="true" />
-          </button>} timelineLink={<a href={planPath('timeline')} onClick={event => followLink(event, planPath('timeline'), onNavigate)}>입학까지 일정</a>} />
+          </button>} />
       </div>
       {schoolPicker && <GapDialog title="학교 바꾸기" onClose={() => setSchoolPicker(false)}>
         {chips}
@@ -200,23 +200,19 @@ export default function TimetablePage({
     </section>
   }
 
+  // 학교를 고르기 전 (C안 2026-11-27): 질문 한 줄 + 학교 검색 + 학교 없이 시작. 아래 그림은 이 화면이 무엇을 보여 줄지만 알린다.
   return (
-    <section ref={page} className="app-destination app-page content-page timetable-page" aria-labelledby="timetable-title">
-      <div className="content-page__inner">
-        {header}
-        {!restoreManual && <button type="button" className="my-button my-button--primary timetable-manual-start" onClick={() => setManualOpen(true)}>학교 없이 시작</button>}
+    <section ref={page} className="app-destination app-page content-page timetable-page gap-start" aria-labelledby="timetable-title">
+      <div className="gap-start__inner">
+        <h1 id="timetable-title">우리 아이 하교 후,<br />언제 비나요?</h1>
         {schoolId && <p className="my-help" role="status">{loadingDetail ? '학교 자료를 불러오는 중…' : '이 학교를 찾지 못했어요. 학교를 다시 골라 주세요.'}</p>}
-        <section className="timetable-pick my-card" aria-labelledby="timetable-pick-title">
-          <h2 id="timetable-pick-title">학교 일정 불러오기</h2>
-          {chips}
-          <a className="my-button" href={VIEW_PATHS.map} onClick={(event) => followLink(event, VIEW_PATHS.map, onNavigate)}>배정 학교 찾기</a>
-          <p className="my-help">시간표는 이 기기에 저장돼요. 학교는 최대 3곳까지 고를 수 있어요.</p>
-        </section>
-        <details className="timetable-sample my-card">
-          <summary>어떤 시간표가 만들어지나요? · 한 주 예시 보기</summary>
-          <p className="my-help">예시예요. 학교를 고르면 그 학교 자료와 우리 가족의 답으로 시작해요.</p>
-          <SampleWeek />
-        </details>
+        <div className="gap-start__pick timetable-pick"><SchoolSelection schoolId={schoolId} compact onChange={(id) => onSchoolChange(id)} message={pickMessage} onMessage={setPickMessage}
+          onSelection={(id) => funnelMeasurement.markSelection(id, 'user')} /></div>
+        <div className="gap-start__links">
+          <button type="button" className="timetable-manual-start" onClick={() => setManualOpen(true)}>학교 없이 직접 짜기 →</button>
+          <a href={VIEW_PATHS.map} onClick={(event) => followLink(event, VIEW_PATHS.map, onNavigate)}>배정 학교 찾기</a>
+        </div>
+        <GapMapExample />
       </div>
     </section>
   )
