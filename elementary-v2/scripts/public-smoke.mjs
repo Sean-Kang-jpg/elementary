@@ -873,10 +873,10 @@ try {
   run(['open', new URL('/timetable?face=week', baseUrl).toString()])
   await waitFor("document.querySelector('#timetable-title') && document.querySelector('[data-testid=gap-start-preview]')", '우리 아이 한 주 without a school shows the example map')
   assertPage(
-    "document.querySelectorAll('[data-testid=gap-start-preview] .gap-start__gap').length === 5 && !document.querySelector('.plan-faces') && !document.querySelector('.gap-start details')"
+    "document.querySelectorAll('[data-testid=gap-start-preview] .gap-example__block').length >= 3 && document.querySelector('[data-testid=gap-start-preview] .gap-example__gap') && document.querySelector('.gap-example__line--home') && !document.querySelector('[data-testid=gap-start-preview] :is(button,a,input)') && !document.querySelector('.plan-faces') && !document.querySelector('.gap-start details')"
     + " && !document.querySelector('.gap-start').textContent.includes('이 기기에') && !document.querySelector('.gap-start').textContent.includes('입학까지')"
     + " && document.querySelectorAll('.gap-start input[type=search]').length === 1 && document.documentElement.scrollWidth <= innerWidth",
-    'the example shows five days at once, with one search line, no tab, no storage note and no horizontal scroll',
+    'the read-only example shows the day strip, blocks, a gap and the return line, with one search line, no tab, no storage note and no horizontal scroll',
   )
   run(['eval', "(() => { const [list, legacy] = JSON.parse(sessionStorage.getItem('smoke-favorites') || '[null,null]'); if (list !== null) localStorage.setItem('elementary-favorites-v1', list); if (legacy !== null) localStorage.setItem('favorite-school-ids', legacy); sessionStorage.removeItem('smoke-favorites'); return 'saved schools restored' })()"], { quiet: true })
   run(['open', new URL('/learn', baseUrl).toString()])

@@ -20,7 +20,7 @@ import { ChevronDown, School as SchoolIcon } from 'lucide-react'
 import '../../styles/timetable-gap-map.css'
 import { UNSPECIFIED_SCHOOL } from '../../utils/schedule/standalone'
 import SchoolSelection from '../search/SchoolSelection'
-import { formatMinutes } from '../../utils/schedule/fromSchoolData'
+import GapMapExample from './GapMapExample'
 import { funnelMeasurement, trackDisplayedScreen } from '../../utils/analytics'
 
 interface TimetablePageProps {
@@ -212,13 +212,7 @@ export default function TimetablePage({
           <button type="button" className="timetable-manual-start" onClick={() => setManualOpen(true)}>학교 없이 직접 짜기 →</button>
           <a href={VIEW_PATHS.map} onClick={(event) => followLink(event, VIEW_PATHS.map, onNavigate)}>배정 학교 찾기</a>
         </div>
-        <figure className="gap-start__preview" data-testid="gap-start-preview" aria-label="예시: 월~금 하교 뒤 비는 시간">
-          <div aria-hidden="true">{[770, 820, 820, 820, 770].map((dismissal, index) => <span key={index}>
-            <b>{'월화수목금'[index]}<small>{formatMinutes(dismissal)}</small></b>
-            <em><i className="gap-start__school" style={{ height: (dismissal - 720) / 420 * 100 + '%' }} />
-            <i className="gap-start__gap" style={{ top: (dismissal - 720) / 420 * 100 + '%', height: (1020 - dismissal) / 420 * 100 + '%' }} /></em>
-          </span>)}</div>
-        </figure>
+        <GapMapExample />
       </div>
     </section>
   )

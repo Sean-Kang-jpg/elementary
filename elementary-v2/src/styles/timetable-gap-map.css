@@ -132,18 +132,44 @@
 .gap-start__links { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
 .gap-start__links button, .gap-start__links a { min-height: 44px; display: inline-flex; align-items: center; font-size: 15px; font-weight: 750; color: #9c3a28; background: none; border: 0; padding: 0; cursor: pointer; }
 .gap-start__links a { font-size: 13px; font-weight: 650; color: #6b625a; text-decoration: underline; }
-.gap-start__preview { margin: 0; padding: 10px; border-radius: 14px; border: 1px solid #ece4dc; background: #fff; }
-.gap-start__preview > div { display: grid; grid-template-columns: repeat(5, 1fr); gap: 4px; height: 132px; }
-.gap-start__preview span { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
-.gap-start__preview em { position: relative; flex: 1; border-radius: 6px; background: #faf6f2; overflow: hidden; }
-.gap-start__preview b { text-align: center; font-size: 13px; color: #272720; }
-.gap-start__preview i { position: absolute; left: 2px; right: 2px; display: block; border-radius: 4px; }
-.gap-start__school { top: 0; background: #eef0f2; }
-.gap-start__gap { border: 1.5px dashed #e98a2c; background: #fff4e6; }
-.gap-start__preview figcaption { margin-top: 8px; font-size: 12px; color: #6b625a; }
 .gap-start__note { margin: 0; font-size: 12px; color: #6b625a; }
 .gap-start__note a { color: inherit; }
 
 .gap-add-button { border: 1px solid; border-radius: 10px; color: #fff; background: #c94f3a !important; border-color: #c94f3a !important; }
-.gap-start__preview b { display: grid; gap: 1px; line-height: 1.2; }
-.gap-start__preview b small { font-size: 11px; font-weight: 600; color: #6b625a; font-variant-numeric: tabular-nums; }
+
+/* 첫 화면 예시 (읽기 전용) */
+.gap-example { margin: 0; padding: 10px 10px 8px; border-radius: 14px; border: 1px solid #ece4dc; background: #fff; pointer-events: none; user-select: none; }
+.gap-example__head { display: flex; align-items: center; gap: 6px; margin-bottom: 6px; font-size: 12px; color: #4a4038; }
+.gap-example__tag { padding: 1px 7px; border-radius: 999px; background: #f3ede7; color: #6b625a; font-size: 11px; font-weight: 800; }
+.gap-example__strip { display: grid; grid-template-columns: repeat(5, 1fr); gap: 4px; margin: 0 0 8px 30px; }
+.gap-example__strip span { display: grid; justify-items: center; gap: 2px; padding: 4px 2px 5px; border-radius: 10px; border: 1.5px solid transparent; font-size: 11px; line-height: 1.15; font-variant-numeric: tabular-nums; }
+.gap-example__strip span[data-active] { border-color: #272720; }
+.gap-example__strip b { font-size: 12px; }
+.gap-example__strip small { font-size: 11px; color: #6b625a; }
+.gap-example__strip i { position: relative; display: block; width: 86%; height: 5px; border-radius: 3px; overflow: hidden; background: #a9d3b6; }
+.gap-example__strip em { position: absolute; top: 0; bottom: 0; background: repeating-linear-gradient(135deg, #e98a2c 0 2px, #f6c48d 2px 4px); }
+.gap-example__strip strong { font-size: 11px; font-weight: 800; color: #8a4b0c; white-space: nowrap; }
+.gap-example__strip strong[data-filled] { color: #235c36; }
+.gap-example__board { position: relative; display: flex; height: 284px; padding-left: 30px; }
+.gap-example__axis { position: absolute; inset: 0 auto 0 0; width: 28px; font-size: 11px; font-weight: 700; color: #6b625a; font-variant-numeric: tabular-nums; }
+.gap-example__axis span { position: absolute; right: 3px; transform: translateY(-50%); }
+.gap-example__day { position: relative; flex: 1; border: 1px solid #e8dbcf; border-radius: 8px; overflow: hidden; background: #fff; }
+.gap-example__school { position: absolute; inset: 0 0 auto; background: #e8edf0; color: #40515b; font-size: 11px; font-weight: 700; padding: 3px 6px; }
+.gap-example__line { position: absolute; inset-inline: 0; z-index: 3; border-top: 2px solid; }
+.gap-example__line span { position: absolute; top: -10px; padding: 1px 7px; border-radius: 999px; font-size: 11px; font-weight: 750; line-height: 15px; white-space: nowrap; }
+.gap-example__line--school { border-color: #4f6875; }
+.gap-example__line--school span { right: 4px; background: #fff; border: 1px solid #cfd5db; color: #344d59; }
+.gap-example__line--home { border-color: #272720; }
+.gap-example__line--home span { left: 4px; top: 5px; background: #272720; color: #fff; }
+.gap-example__home { position: absolute; inset-inline: 0; bottom: 0; background: #eeeae5; }
+.gap-example__block { position: absolute; z-index: 2; left: 3px; right: 3px; padding: 2px 6px; margin-top: 1px; border-radius: 7px; border: 1.5px solid transparent; border-left: 4px solid var(--accent); background: var(--fill); color: var(--ink); display: flex; align-items: baseline; gap: 6px; overflow: hidden; font-size: 12px; line-height: 1.25; }
+.gap-example__block b { font-weight: 800; white-space: nowrap; }
+.gap-example__block small { font-size: 11px; font-weight: 650; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.gap-example__block em { font-style: normal; font-weight: 800; padding: 0 4px; border-radius: 4px; background: #ffffffb3; }
+.gap-example__block[data-candidate] { border: 1.5px dashed var(--accent); border-left: 4px solid var(--accent); }
+.gap-example__block[data-kind=care] { --fill: #e2f3e7; --accent: #3f8f5a; --ink: #235c36; }
+.gap-example__block[data-kind=afterschool] { --fill: #e6eefc; --accent: #3d6fd6; --ink: #22448c; }
+.gap-example__block[data-kind=academy] { --fill: #f1e9fb; --accent: #7e4ccb; --ink: #4f2c86; }
+.gap-example__block[data-kind=personal] { --fill: #f5efe6; --accent: #9a7b52; --ink: #5f4a2f; }
+.gap-example__gap { position: absolute; z-index: 1; left: 3px; right: 3px; margin-top: 1px; border: 1.5px dashed #e98a2c; border-radius: 7px; background: #fff4e6; color: #8a4b0c; display: flex; align-items: center; justify-content: center; gap: 5px; font-size: 11px; font-weight: 800; }
+.gap-example__gap span { width: 18px; height: 18px; border-radius: 50%; display: grid; place-items: center; background: #e98a2c; color: #fff; }
